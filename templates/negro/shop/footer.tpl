@@ -2,9 +2,9 @@
     <div class="container">
         <div class="box">
             {if $CI->uri->total_segments() > 0}
-                <a href="{site_url('')}" class="logo d_b"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></a>
+                <a href="{site_url('')}" class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
                 {else:}
-                <span class="logo d_b"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></span>
+                <span class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
                 {/if}
             <p>© {echo date('Y', time())} Интернет-супермаркет «Negro»<br/>Все права защищены</p>
             <div class="social-block-footer">
