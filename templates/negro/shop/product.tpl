@@ -577,24 +577,6 @@
     </div>
 </div>
 
-{//$similar = getsimilar($model->getCategoryId(), $model->getId(), $model->firstVariant->getPrice(), 10)}
-{$CI->template->assign('promos',$similar)}
-{if count($similar) > 0}
-    <section class="special-proposition">
-        <div class="title_h1 container">Похожие товары</div>
-        <div class="m-w_1090">
-            <div class="carousel_js products-carousel">
-                <div class="content-carousel container">
-                    <ul class="items-catalog">
-                        {include_tpl('one_product_item')}
-                    </ul>
-                </div>
-                <button type="button" class="prev arrow"></button>
-                <button type="button" class="next arrow"></button>
-            </div>
-        </div>
-    </section>
-{/if}
 
 <!-- fancy photo -->
 <div class="d_n">

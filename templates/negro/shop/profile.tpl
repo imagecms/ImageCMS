@@ -32,7 +32,7 @@
                                     {form_csrf}
                                 </form>
                             </div>
-                            {if count(getComulativDiscountList()) > 0}
+                            {if  false}
                                 <div class="right-personal">    
                                     <div class="info-discount">
                                         {$discountCom = ShopCore::app()->SCart->rediscount()}
