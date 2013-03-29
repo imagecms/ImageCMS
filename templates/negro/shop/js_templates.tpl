@@ -31,7 +31,7 @@
                                 <td>
                                     <a href="<%-item.url%>" class="d_i-b photo">
                                         <figure>
-                                            <img src="<% if(item.img) { %><%-item.img.replace('mainMod', 'smallMod')%><% } else { %>/uploads/shop/<%- item.id %>_smallMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>"/>
+                                            <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>"/>
                                         </figure>
                                     </a>
                                 </td>
@@ -92,7 +92,7 @@
                                                 <td>
                                                     <a class="photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -130,7 +130,7 @@
                                                 <td>
                                                     <a class="d_i-b photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -228,7 +228,7 @@
                         <td class="v-a_m">
                             <a class="photo" href="<%-item.url%>">
                                 <figure>
-                                    <img src="<% if(item.img) { %><%-item.img.replace('mainMod', 'smallMod') %><% } else { %>/uploads/shop/<%- item.id %>_smallMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>">
+                                    <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>">
                                 </figure>
                             </a>
                         </td>
@@ -278,7 +278,7 @@
                                         <td>
                                             <a class="photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>
@@ -305,7 +305,7 @@
                                         <td>
                                             <a class="d_i-b photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>

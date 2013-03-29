@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                     <!-- end of compare buttons ---------------->
-                                </div>     
+                                </div>
 
                                 {if trim($p->short_description) != ""}
                                     <div class="short_desc">
@@ -200,16 +200,16 @@
             {$maxPrice = (int)$priceRange.maxCost;}
             {if $_GET['lp']}
                 {$curMin = (int)$_GET['lp'];}
-            {else:}    
+            {else:}
                 {$curMin = $minPrice;}
             {/if}
             {if $_GET['rp']}
                 {$curMax = (int)$_GET['rp'];}
-            {else:}    
+            {else:}
                 {$curMax = $maxPrice;}
             {/if}
 
-            {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}   
+            {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
                 <div class="frame-check-filter inside-padd">
                     <div class="title_h4">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} с фильтрами:</div>
                     <ul class="check-filter">
@@ -250,25 +250,6 @@
                     </div>
                 </form>
             {/if}
-
-            {if $model->parent_id == 0}
-                {$managers = getMennager($model->id)}
-            {else:}
-                {$managers = getMennager( getRootCategId() )}
-            {/if}
-            {foreach $managers as $mn}
-                {$mn = $CI->load->module('cfcm')->connect_fields($mn, 'page')}
-                <div class="frame-manager shadow-w_220">
-
-                    {if trim($mn[field_photo]) != ""}
-                        <div class="photo-block">
-                            <span class="helper"></span>
-                            <img src="{echo $mn[field_photo]}" alt='{$mn.title}'/>
-                        </div>
-                    {/if}
-                    {$mn[prev_text]}
-                </div>
-            {/foreach}
         </div>
     </div>
 </div>

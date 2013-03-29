@@ -365,10 +365,7 @@ var Shop = {
         /*find image*/
         var images = false;
         if (images = $context.closest('li').find('img'))
-            $(images).each(function(){
-                if ( $(this).attr('src').match(cartItem.id))
-                    cartItem.img = $(images[0]).attr('src');
-            });
+            cartItem.img = $(images[0]).attr('src');
         delete  images;
 
 

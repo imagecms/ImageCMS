@@ -35,7 +35,7 @@ class Star_rating extends MY_Controller {
     }
 
     public function autoload() {
-
+        
     }
 
     /**
@@ -44,7 +44,7 @@ class Star_rating extends MY_Controller {
      */
     public function show_star_rating($item = null) {
         $get_settings = $this->rating_model->get_settings();
-        
+
         //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null) {
@@ -82,14 +82,14 @@ class Star_rating extends MY_Controller {
                     'type' => $rating->type,
                     'votes' => $rating->votes,
                     'rating' => $rating_s
-                        ));
+                ));
 
                 $template = 'star_rating';
             } else {
                 $template = null;
             }
         }
-        
+
         //Show template with prepared parametrs
         if ($template !== null)
             CMSFactory\assetManager::create()
@@ -99,7 +99,6 @@ class Star_rating extends MY_Controller {
                     ->render($template, true);
     }
 
-    
     /**
      * Change rating for pages / product
      * @return type
@@ -157,7 +156,7 @@ class Star_rating extends MY_Controller {
             if ($this->input->is_ajax_request()) {
                 return json_encode(array("rate" => "$rating_res",
                     "votes" => "$votes_res"
-                        ));
+                ));
             }
         } else {
             return json_encode(array("rate" => null));

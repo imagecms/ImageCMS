@@ -12,11 +12,7 @@
 </div>
 <div class="content-header">
     <div class="container">
-        {if $CI->uri->total_segments() > 0}
-            <a href="{site_url('')}" class="logo f_l"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
-            {else:}
-            <span class="logo f_l"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
-            {/if}
+        <a href="{site_url('')}" class="f_l"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
         <div class="content-cleaner-search">
             <div class="o_h">
                 <div class="phones-header f_l">
