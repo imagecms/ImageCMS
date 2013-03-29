@@ -3,9 +3,11 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
-        {//myCrumbs($model->getCategoryId(), " / ", $model->getName())}
+        {myCrumbs($model->getCategoryId(), " / ", $model->getName())}
+
     </div>
 </div>
+{$Comments = $CI->load->module('comments')->init($model)}
 <div class="frame-inside">
     <div class="container">
         <div class="clearfix item-product">
@@ -47,7 +49,7 @@
                     {if $model->getOldPrice() > $model->firstVariant->getPrice()}
                         <div class="v-a_b d_i-b">
                             <div class="price-old-catalog">
-                                <span>Старая цена: <span class="old-price"><span>{echo round_price($model->getOldPrice())} <span class="cur">{$CS}</span></span></span></span>
+                                <span>Старая цена: <span class="old-price"><span>{echo $model->getOldPrice()} <span class="cur">{$CS}</span></span></span></span>
                             </div>
                         </div>
                     {/if}
@@ -89,12 +91,20 @@
                                     <button>Уже в корзине</button>
                                 </div>
                                 <div class="btn btn-buy-product goBuy {$dn_gobuy}" data-varid="{echo $v->getId()}" data-prodid="{echo $model->getId()}">
-                                    <button>
+                                    <button 
+                                        data-prodid="{echo $model->getId()}"
+                                        data-varid="{echo $model->firstVariant->getId()}"
+                                        data-price="{echo $model->firstVariant->toCurrency()}"
+                                        data-name="{echo ShopCore::encode($model->getName())}"
+                                        data-number="{echo $model->firstVariant->getnumber()}"
+                                        data-maxcount="{echo $model->firstVariant->getstock()}"
+                                        data-prodpage="true"
+                                        >
                                         <span class="icon icon-bask-buy"></span>
-                                        В корзину
+                                        {lang('s_buy')}
                                     </button>
                                 </div>
-                            </div>
+                            </div>                            
                             <!-- end of buy/inCart buttons ------------->
                         {else:}
                             <!-- нема в наявності -->
@@ -102,7 +112,8 @@
                                 <span class="helper v-a_b"></span>
                                 <span class="f-s_12 t-a_l v-a_b">
                                     <span class="d_b">Товара нет в наличии</span>
-                                    <button type="button" class="d_l_b f-s_12" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="bottom left">Сообщить</button> о появлении
+                                    <button type="button" class="d_l_b f-s_12" 
+                                            data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="bottom left">Сообщить</button> о появлении
                                 </span>
                                 <span class="datas">
                                     <input type="hidden" name="ProductId" value="{echo $model->getId()}" />
@@ -165,9 +176,16 @@
                                 </button>
                             </div>
                             <div class="btn btn-def {$dn_gowish} {if $is_logged_in}toWList{else:}goEnter{/if}" data-title="В список желаний" data-varid="{echo $v->getId()}" data-prodid="{echo $model->getId()}">
-                                <button type="button">
+                                <button type="button"
+                                        data-prodid="{echo $model->getId()}" 
+                                        data-varid="{echo $model->firstVariant->getId()}"  
+                                        type="button" 
+                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-rel="tooltip"
+                                        >
                                     <span class="icon-wish"></span>
-                                    <span class="text-el">В список желаний</span>
+                                    <span class="text-el">{lang('s_slw')}</span>
                                 </button>
                             </div>
                         </div>
@@ -190,7 +208,13 @@
                         <div class="btn btn-def toCompare {$dn_gocomp}" data-title="В список сравнений"  data-prodid="{echo $model->getId()}">
                             <button type="button">
                                 <span class="icon-compare"></span>
-                                <span class="text-el">В список сравнений</span>
+                                <span class="text-el"
+                                      data-prodid="{echo $model->getId()}"  
+                                      type="button" 
+                                      data-title="{lang('s_add_to_compare')}"
+                                      data-sectitle="{lang('s_in_compare')}"
+                                      data-rel="tooltip"
+                                      >{lang('s_add_to_compare')}</span>
                             </button>
                         </div>
                     </div>
@@ -221,14 +245,14 @@
                             <div class="title">Доставка</div>
                             <ul>
                                 {foreach $delivery_methods as $dm}
-                                    <li>{echo $dm['name']} 
+                                    <li>{echo $dm->getName()} 
                                         <span class="green">
-                                            {if (int)$dm['price'] == 0}
+                                            {if (int)$dm->getPrice() == 0}
                                                 (Бесплатно)
-                                            {elseif $dm['price'] < 0}
+                                            {elseif $dm->getPrice() < 0}
                                                 <br />(Стоимость согласно тарифам перевозчика)
                                             {else:}
-                                                ({echo round_price($dm['price'])} {$CS})
+                                                ({echo $dm->getPrice()} {$CS})
                                             {/if}
                                         </span>
                                     </li>
@@ -241,8 +265,8 @@
                         <div>
                             <div class="title">Оплата</div>
                             <ul>
-                                {foreach $payment_methods as $pm}
-                                    <li>{echo $pm['name']}</li>
+                                {foreach $payments_methods as $pm}
+                                    <li>{echo $pm->getName()}</li>
                                 {/foreach}
                             </ul>
                         </div>
@@ -260,20 +284,14 @@
                     <a {$rel} class="{$var_class} var_photo_{echo $v->getId()} prod_photo_block" href="#main_pic_{echo $v->getId()}">
                         <span class="photo-block">
                             <span class="helper"></span>
-                            {if $v->getMainImage()}
-                                <img src="{productImageUrl($v->getMainImage())}" alt="{echo $model->getName() ." - ".$v->getName()}" />
-                            {elseif $model->getMainModImage()}
-                                <img src="{productImageUrl($model->getMainModImage())}" alt="{echo $model->getName()}" />
-                            {else:}
-                                <img src="{productImageUrl('no_m.png')}" alt="{echo $model->getName()}" />
-                            {/if}
+                            <img src="{productImageUrl($v->getMainImage())}" alt="{echo $model->getName() ." - ".$v->getName()}" />
 
                             {if $model->getOldPrice() > $model->firstVariant->getPrice()}
                                 {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
                             {else:}
                                 {$discount = 0}
                             {/if}
-                            {//promoLabel($model->getHit(), $model->getHot(), $discount)}
+                            {promoLabel($model->getHit(), $model->getHot(), $discount)}
                         </span>
                     </a>
                 {/foreach}
@@ -288,6 +306,7 @@
                             </div>
                         </div>
                     </div>
+
                     {if $totalComm = totalComments($model->getId())}
                         <span onclick="tabComment()" class="ref f_r">{$totalComm} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('отзыв','отзыва','отзывов'))}</span>
                     {/if}
@@ -313,13 +332,13 @@
             </div>
         </div>
 
-        {if $model->getShopKits()->count() > 0}                
+        {if $model->getShopKits()->count() > 0}               
             <section class="frame-complect">
                 <div class="carousel_js products-carousel">
                     <div class="content-carousel w_815">
-                        <div class="title_h1">Вместе дешевле</div>
+                        <div class="title_h1">{lang('s_spec_promotion')}</div>
                         <ul>
-                            {foreach $model->getShopKits() as $kid}
+                            {foreach $model->getShopKits() as $kitProducts} 
                                 <li class="f_l">
                                     <ul class="items-complect">
                                         <!-- основний товар -->
@@ -328,13 +347,9 @@
 
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
-                                                    {if $model->getSmallImage()}
-                                                        <img src="{productImageUrl($model->getSmallImage())}" alt="{echo ShopCore::encode($model->getName())}" />
-                                                    {else:}
-                                                        <img src="{productImageUrl('no_s.png')}" alt="{echo ShopCore::encode($model->getName())}" />
-                                                    {/if}
+                                                    <img src="{productImageUrl($model->getSmallImage())}" alt="{echo ShopCore::encode($model->getName())}" />
                                                 </span>
-                                                <span class="title">{echo ShopCore::encode($model->getName())}</span>
+                                                <span class="title">{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}</span>
 
                                                 <div class="description">
                                                     <div class="o_h">
@@ -347,71 +362,82 @@
                                             <div class="f_l plus-complect">+</div>
                                         </li>
                                         <!-- /основний товар -->
-                                        {$old_sum = $sum = $model->firstVariant->getPrice()}
 
-                                        {$kcnt = count($kid->getShopKitProducts())}
-                                        {foreach $kid->getShopKitProducts() as $prod_l}
-                                            {$p = getProduct($prod_l->getProductId())}
+                                        {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                             <!-- додатковий товар -->
                                             <li>
                                                 <div class="f_l">
-                                                    <a href="{shop_url('product/' . $p->getUrl())}">
+                                                    <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}">
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
-                                                            {if $p->getSmallImage()}
-                                                                <img src="{productImageUrl($p->getSmallImage())}" alt="{echo ShopCore::encode($p->getName())}" />
-                                                            {else:}
-                                                                <img src="{productImageUrl('no_s.png')}" alt="{echo ShopCore::encode($p->getName())}" />
-                                                            {/if}
+                                                            <img src="{productImageUrl($kitProduct->getSProducts()->getSmallImage())}" alt=" {echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                         </span>
-                                                        <span class="title">{echo ShopCore::encode($p->getName())}</span>
+                                                        <span class="title"> {echo ShopCore::encode($kitProduct->getSProducts()->getName())}</span>
                                                     </a>
                                                     <div class="description">
                                                         <div class="o_h">
-                                                            {$p_price = $p->firstVariant->getPrice()}
-                                                            {$p_disc = $p_price-($p_price *$prod_l->getDiscount()/100)}
-                                                            <div class="d_i-b m-r_10">
-                                                                <span><span class="old-price"><span>{$p_price} <span class="cur">{$CS}</span></span></span></span>
-                                                            </div>
+                                                            {if $kitProduct->getDiscount()}
+                                                                <div class="d_i-b m-r_10">
+                                                                    <span>
+                                                                        <span class="old-price">
+                                                                            <span>
+                                                                                {echo $kitProduct->getBeforePrice()}<span class="cur">{$CS}</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            {/if}
                                                             <div class="price-complect">
-                                                                <div>{$p_disc} <span class="cur">{$CS}</span></div>
+                                                                <div>
+                                                                    {echo $kitProduct->getDiscountProductPrice()} <span class="cur">{$CS}</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="f_l plus-complect">{if $kcnt == 1}={else:}+{/if}</div>
-                                                {$kcnt --}
+                                                <div class="f_l plus-complect">{if $kitProducts->countProducts() == $key}={else:}+{/if}</div>
                                             </li>
                                             <!-- /додатковий товар -->
-                                            {$sum += $p_disc}
-                                            {$old_sum += $p_price}
+
                                         {/foreach}
                                         <!-- сума -->
                                         <li>
                                             <div class="t-a_c">
                                                 <div class="price-old-catalog d_i-b m-b_10">
-                                                    <span><span class="old-price"><span>{$old_sum} <span class="cur">{$CS}</span></span></span></span>
+                                                    <span>
+                                                        <span class="old-price">
+                                                            <span>
+                                                                {echo $kitProducts->getAllPriceBefore()} <span class="cur">{$CS}</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="t-a_c m-b_10">
                                                 <div class="price-product d_i-b">
-                                                    <div>{$sum}<span class="cur"> {$CS}</span></div>
+                                                    <div>{echo $kitProducts->getTotalPrice()}<span class="cur"> {$CS}</span></div>
                                                 </div>
                                             </div>
                                             <div class="t-a_c">
-                                                {if is_kit_in_cart($kid->getId())}
-                                                    {$dn_incart = ""}{$dn_gobuy = "d_n"}
-                                                {else:}
-                                                    {$dn_incart = "d_n"}{$dn_gobuy = ""}
-                                                {/if}
-                                                <div class="btn btn-buy-product goBuy {$dn_gobuy}" data-kitid="{echo $kid->getId()}" data-price="{$sum}">
-                                                    <button>
-                                                        Купить комплект
+
+                                                <div class="btn btn-buy-product goBuy {$dn_gobuy}" data-kitid="{//echo $kid->getId()}" data-price="{$sum}">
+                                                    <button 
+                                                        data-price="{echo $kitProducts->getTotalPrice()}" 
+                                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                                        data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                                        data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                                        data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                                        data-kit="true"
+                                                        data-kitId="{echo $kitProducts->getId()}"
+                                                        data-number="{echo $model->firstVariant->getnumber()}"
+                                                        data-maxcount="{echo $model->firstVariant->getstock()}"
+                                                        >
+                                                        {lang('s_buy')}
                                                     </button>
                                                 </div>
-                                                <div class="btn btn-order-product goCart ShopKit_{echo $kid->getId()} {$dn_incart}">
+<!--                                                <div class="btn btn-order-product goCart ShopKit_{//echo $kid->getId()} {$dn_incart}">
                                                     <button>Уже в корзине</button>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </li>
                                         <!-- /сума -->
@@ -437,8 +463,24 @@
                     {if trim($model->getShortDescription()) != ''}
                         <li><span data-href="#second">Полное описание</span></li>
                     {/if}
-                    {$totalComm = totalComments($model->getId())}
-                    <li><span data-href="#third">Отзывы {if $totalComm}({$totalComm}){/if}</span></li>
+                    {//$totalComm = totalComments($model->getId())}
+                    <li>
+                        <span data-href="#third">
+
+                            <button type="button" data-href="#comment" onclick="renderPosts(this)">
+                                <span class="icon-comment-tab"></span>
+                                <span class="text-el">                    
+                                    <span id="cc">
+                                        {if $Comments[$model->getId()][0] !== '0'}
+                                            {echo $Comments[$model->getId()]}
+                                        {else:}
+                                            Оставить отзыв
+                                        {/if}
+                                    </span>
+                                </span>
+                            </button>
+                        </span>
+                    </li>
                     {if $model->getRelatedProducts()}
                         <li><span data-href="#fourth">Аксессуары</span></li>
                     {/if}
@@ -468,108 +510,15 @@
                     </div>
 
                     <div id="third">
+                        <!--<div  class="frame-form-comment">-->
                         <div class="frame-form-comment">
-                            <form method="post" action="/comments/add" class="comment_form">
-                                <div class="form-comment horizontal-form">
-                                    <div class="title_h3">Ваш отзыв о {echo $model->getName()}</div>
-                                    <div class="drop_comm_container"></div>
-                                    <label class="control-group">
-                                        <span class="control-label">Ваша оценка:</span>
-                                        <span class="controls">
-                                            <div class="productRate star-big">
-                                                <div></div>
-                                            </div>
-                                        </span>
-                                    </label>
-                                    <label class="control-group">
-                                        <span class="control-label">Ваше имя:</span>
-                                        <span class="controls">
-                                            <input type="text" name="comment_author" class="required" />
-                                        </span>
-                                    </label>
-                                    <label class="control-group">
-                                        <span class="control-label">Комментарий:</span>
-                                        <span class="controls">
-                                            <textarea name="comment_text" class="required"></textarea>
-                                        </span>
-                                    </label>
-                                    <div class="control-group">
-                                        <span class="control-label">&nbsp;</span>
-                                        <span class="controls">
-                                            <span class="btn btn-order-product">
-                                                <input type="submit" value="Отправить"/>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <span class="datas_main">
-                                        <input type="hidden" name="comment_item_id" value="{echo $model->getId()}" />
-                                        <input type="hidden" name="ratec" value="0" />
-                                        <input type="hidden" name="module" value="shop"/>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="frame-comments">
-                            {if $comments_arr && count($comments_arr) > 0}
-                                {foreach $comments_arr as $comment}
-                                    <div class="frame-commenter_comment">
-                                        <div class="frame_commenter m-t_20">
-                                            <span class="icon-person-comment"></span>
-                                            <span class="title">{$comment.user_name}</span>
-                                            <span class="time">{date('d',$comment.date)} {echo $month[date('n',$comment.date)]} {date('Y',$comment.date)} в {date('H:i',$comment.date)}</span>
-                                        </div>
-                                        {if $comment.rate > 0}
-                                            {$rate = round($comment.rate * 100 / 5)}
-                                            {$width = "width:$rate%"}
-                                            <div class="productRate star-small">
-                                                <div style="{$width}"></div>
-                                            </div>
-                                        {/if}
-                                        <div class="frame-comment">
-                                            <div class="text-comment">
-                                                <p>{$comment.text}</p>
-                                            </div>
-                                            <div class="func-button-comment">
-                                                <div class="d_i-b v-a_b">
-                                                    <div class="btn btn-def2" data-rel="cloneCommentForm" data-parent="{$comment.id}">
-                                                        <button type="button"><span class="icon-replay-comment"></span>Ответить</button>
-                                                    </div>
-                                                </div>
-                                                <div class="d_i-b f-s_0 v-a_b">
-                                                    <div class="d_i-b">
-                                                        <div class="btn btn-def2 btn-like like_this" data-rel="tooltip" data-title="нравится" data-event="like" data-com_id="{$comment.id}">
-                                                            <button type="button"><span class="icon-like-comment"></span><span class="text-like result">({$comment.likes})</span></button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d_i-b">
-                                                        <div class="btn btn-def2 btn-dislike disslike_this" data-rel="tooltip" data-title="не нравится"  data-event="disslike" data-com_id="{$comment.id}">
-                                                            <button type="button"><span class="icon-dislike-comment"></span><span class="text-dislike result">({$comment.disslike})</span></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {if count($comment_ch[$comment.id]) > 0}
-                                        <ul class="frame-list-comment">
-                                            {foreach $comment_ch[$comment.id] as $ch}
-                                                <li>
-                                                    <div class="frame_commenter">
-                                                        <span class="icon-replay-comment2"></span><span class="text-replay">Ответ от</span>
-                                                        <span class="icon-person-comment"></span><span class="title">{$ch.user_name}</span>
-                                                        <span class="time">{date('d',$ch.date)} {echo $month[date('n',$ch.date)]} {date('Y',$ch.date)} в {date('H:i',$ch.date)}</span>
-                                                    </div>
-                                                    <div class="text-comment">
-                                                        <p>{$ch.text}</p>
-                                                    </div>
-                                                </li>
-                                            {/foreach}
-                                        </ul>
-                                    {/if}
+                            <div id="comment">
 
-                                {/foreach}
-                            {/if}
+                                <div id="for_comments" name="for_comments"></div>
+                            </div>
                         </div>
+                        <!--</div>-->
+                        
 
                     </div>
 
@@ -591,8 +540,8 @@
                                                             <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
                                                         {/if}
 
-                                                        {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                                                            {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
+                                                        {if $p->getOldPrice() > $p->firstVariant->toCurrency()}
+                                                            {$discount = (100 - ($p->firstVariant->toCurrency() / $p->getOldPrice() * 100))}
                                                         {else:}
                                                             {$discount = 0}
                                                         {/if}
@@ -609,7 +558,7 @@
                                                         {/if}
                                                         {if $p->firstVariant->getPrice() > 0}
                                                             <div class="price-complect d_i-b">
-                                                                <div>{echo round_price($p->firstVariant->getPrice())} <span class="cur">{$CS}</span></div>
+                                                                <div>{echo $p->firstVariant->toCurrency()} <span class="cur">{$CS}</span></div>
                                                             </div>
                                                         {/if}
                                                     </div>

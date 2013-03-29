@@ -31,11 +31,3 @@
     {widget('popular_products')}
     {widget('new_products')}
     {widget('action_products')}
-<div class="frame-seo-text">
-    <div class="container">
-        <div class="text seo-text">
-            {//$pg = get_page(9)}
-            {//$pg.prev_text}
-        </div>
-    </div>
-</div>
