@@ -11,30 +11,10 @@
                 {else:}
                     <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
                 {/if}
-
-                {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                    {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
-                {else:}
-                    {$discount = 0}
-                {/if}
-                {promoLabel($p->getHit(), $p->getHot(), $discount)}
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            {if count($p->getProductVariants()) > 1 && $CI->uri->total_segments() > 1}
-                <div class="check-variants m-b_15">
-                    <div class="title">Выберите вариант:</div>
-                    <div class="lineForm">
-                        <select name="variant" id="variant_{echo $p->id}" onchange="change_variant(this, {echo $p->id})">
-                            {$vcnt = 1}
-                            {foreach $p->getProductVariants() as $v}
-                                <option value="{echo $v->getId()}" {if $vcnt == 1}selected="selected"{$vcnt = NULL}{/if}>{echo $v->getName()}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                </div>
-            {/if}
             <div class="star">
                 <div class="d_i-b">
                     {$rate = round($p->getRating() * 100 / 5)}

@@ -152,7 +152,8 @@
                                     data-name="{echo ShopCore::encode($model->getName())}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
                                     data-maxcount="{echo $model->firstVariant->getstock()}"
-                                    data-prodpage="true">
+                                    data-prodpage="true"
+                                    >
                                 {lang('s_buy')}
                             </button>
                         {/if}
@@ -198,7 +199,8 @@
                             type="button" 
                             data-title="{lang('s_add_to_compare')}"
                             data-sectitle="{lang('s_in_compare')}"
-                            data-rel="tooltip">
+                            data-rel="tooltip"
+                            >
                         <span class="icon-comprasion_2"></span>
                         <span class="text-el">{lang('s_add_to_compare')}</span>
                     </button>
@@ -212,7 +214,8 @@
                             type="button" 
                             data-title="{lang('s_add_to_wish_list')}"
                             data-sectitle="{lang('s_in_wish_list')}"
-                            data-rel="tooltip">
+                            data-rel="tooltip"
+                            >
                         <span class="icon-wish_2"></span>
                         <span class="text-el">{lang('s_slw')}</span>
                     </button>
@@ -488,7 +491,8 @@
                                     data-kit="true"
                                     data-kitId="{echo $kitProducts->getId()}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $model->firstVariant->getstock()}">
+                                    data-maxcount="{echo $model->firstVariant->getstock()}"
+                                    >
                                 {lang('s_buy')}
                             </button>
                         </li>

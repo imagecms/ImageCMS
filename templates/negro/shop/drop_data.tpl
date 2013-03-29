@@ -34,7 +34,7 @@
                 <div class="horizontal-form standart_form">
                     <form method="post" action="{site_url('auth/login')}" id="enter_form">
                         <div class="popup_container">
-                            {include_tpl('../../login_popup')}
+                            {include_tpl('../login_popup')}
                         </div>
                         <div class="control-group">
                             <span class="control-label">&nbsp;</span>
@@ -68,7 +68,7 @@
                 <div class="horizontal-form standart_form">
                     <form method="post" action="{site_url('auth/login')}" id="register_form">
                         <div class="popup_container">
-                            {include_tpl('../../register_popup')}
+                            {include_tpl('../register_popup')}
                         </div>
                         {form_csrf()}
                     </form>
