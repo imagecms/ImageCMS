@@ -32,7 +32,6 @@ function set_per_page(elem){
 
 function sort_current(elem){
     val = $(elem).find('button').val();
-    //alert(val);
     $('input[name=order]').val(val);
     if ($.exists('#catalog_form')){
         $('#catalog_form').submit();
