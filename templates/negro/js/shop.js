@@ -1,13 +1,19 @@
 if (!Array.indexOf) {
-  Array.prototype.indexOf = function (obj, start) {
-    for (var i = (start || 0); i < this.length; i++) {
-      if (this[i] == obj) {
-        return i;
-      }
+    Array.prototype.indexOf = function (obj, start) {
+        for (var i = (start || 0); i < this.length; i++) {
+            if (this[i] == obj) {
+                return i;
+            }
+        }
+        return -1;
     }
-    return -1;
-  }
 }
+
+
+
+var btnBuyClass = 'buyButton';
+var btnToCartClass = 'toCart';
+var btnInCartClass = 'inCart';
 
 var Shop = {
     //var Cart = new Object();
@@ -170,7 +176,7 @@ var Shop = {
 
                     Shop.Cart.totalRecount();
                 }
-                );
+            );
         },
 
         //work with storage
@@ -191,7 +197,7 @@ var Shop = {
                 $(document).trigger({
                     type:'cart_changed'
                 });
-            //
+                //
             }
             return this;
         },
@@ -286,7 +292,7 @@ var Shop = {
                             kit.count = data.data.items[key].count;
                             Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
                         }
-                            //console.log(data.data.items[key]);
+                        //console.log(data.data.items[key]);
                     });
 
                     $(document).trigger({
@@ -365,7 +371,10 @@ var Shop = {
         /*find image*/
         var images = false;
         if (images = $context.closest('li').find('img'))
-            cartItem.img = $(images[0]).attr('src');
+            $(images).each(function(){
+                if ( $(this).attr('src').match(cartItem.id))
+                    cartItem.img = $(images[0]).attr('src');
+            });
         delete  images;
 
 
@@ -436,7 +445,7 @@ var Shop = {
                     } catch (e) {
                         //console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
                         //console.log(e)
-                   }
+                    }
                 });
             }
         },
@@ -614,20 +623,20 @@ function processPage() {
     });
 
     //update all product buttons
-    $('button.btn_buy').not('.psPay').each(function () {
+    $('button.'+btnToCartClass).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) != -1) {
-            $(this).removeClass('btn_buy').addClass('btn_cart').removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
+            $(this).removeClass(btnToCartClass).addClass(btnInCartClass).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
             }).closest('li').addClass('in_cart');
         }
     });
 
-    $('button.btn_cart').not('.toCompare, .inCompare, .toWishlist, .inWishlist, .psPay').each(function () {
+    $('button.'+btnInCartClass).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) == -1) {
-            $(this).removeClass('btn_cart').addClass('btn_buy').html(toCart).removeAttr('disabled').unbind('click').on('click', function(){
+            $(this).removeClass(btnInCartClass).addClass(btnToCartClass).html(toCart).removeAttr('disabled').unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem);
@@ -765,10 +774,10 @@ function emptyPopupCart() {
 
 function checkCompareWishLink() {
     var wishListFrame = $('#wishListData'),
-    compareListFrame = $('#compareListData'),
-    refS = '[data-rel="ref"]',
-    notRefS = '[data-rel="notref"]';
-        
+        compareListFrame = $('#compareListData'),
+        refS = '[data-rel="ref"]',
+        notRefS = '[data-rel="notref"]';
+
     if (Shop.WishList.all().length) {
         wishListFrame.find(refS).removeClass('d_n').find('a').removeClass('d_n');
         wishListFrame.find(notRefS).addClass('d_n');
@@ -817,7 +826,7 @@ $(document).ready(
             changeDeliveryMethod($('#method_deliv').val());
         $('#popupCart').html(Shop.Cart.renderPopupCart())
         //click 'add to cart'
-        $('button.btn_buy').not('.psPay').on('click', function () {
+        $('button.'+btnToCartClass).on('click', function () {
             Shop.Cart.countChanged = false;
             $(this).attr('disabled', 'disabled');
             var cartItem = Shop.composeCartItem($(this));
@@ -924,9 +933,9 @@ $(document).ready(
             }
             checkCompareWishLink();
             //chcss(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
-                $this.tooltip();
+            $this.tooltip();
 
-                checkCompareWishLink();
+            checkCompareWishLink();
         });
 
 
@@ -996,7 +1005,7 @@ $(//gift certificate in cart
                         {// apply certificate
                             $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
                             $('#giftCertSpan').show();
-                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
+                            //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
                         }
 
                         Shop.Cart.totalRecount();
@@ -1012,7 +1021,7 @@ $(//gift certificate in cart
             return false;
         });
     }
-    )
+)
 
 //variants
 $('#variantSwitcher').live('change', function () {
