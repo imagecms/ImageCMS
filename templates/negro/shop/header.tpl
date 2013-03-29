@@ -13,14 +13,14 @@
 <div class="content-header">
     <div class="container">
         {if $CI->uri->total_segments() > 0}
-            <a href="{site_url('')}" class="logo f_l"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></a>
+            <a href="{site_url('')}" class="logo f_l"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
             {else:}
-            <span class="logo f_l"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></span>
+            <span class="logo f_l"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
             {/if}
         <div class="content-cleaner-search">
             <div class="o_h">
                 <div class="phones-header f_l">
-                    {/*}{widget('phones_head')}{*/}
+                    {//widget('phones_head')}
                     <nav class="d_i-b">
                         <ul class="nav">
                             <li>
@@ -30,19 +30,18 @@
                     </nav>
                 </div>
                 <div class="f_r wish-list-min" id="wishlistBlock">
-                    {include_tpl('wish_list_data')}
+                   {include_tpl('wish_list_data')}
                 </div>
             </div>
             <div class="frame-search">
                 <div class="f_l frame-search-form">
-                    <form method="get" action="{shop_url('search')}">
-                        <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if $searched_text}{$searched_text}{/if}"/>
+                    <form name="search" method="get" action="{shop_url('search')}"  id="autocomlete">
+                        <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="" placeholder="{lang('s_se_thi_sit')}" />
                         <div class="btn btn-search d_i-b">
-                            <button type="submit">Искать</button>
+                            <button type="submit">{lang('search_find')}</button>
                         </div>
                         <div id="suggestions" class="drop-search drop"></div>
                     </form>
-
                 </div>
                 <div class="f_r" id="bask_block">
                     {include_tpl('cart_data')}

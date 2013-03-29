@@ -2,9 +2,9 @@
     <div class="container">
         <div class="box">
             {if $CI->uri->total_segments() > 0}
-                <a href="{site_url('')}" class="logo d_b"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></a>
+                <a href="{site_url('')}" class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
                 {else:}
-                <span class="logo d_b"><img src="{$SHOP_THEME}images/logo.png" alt="logo.png"/></span>
+                <span class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
                 {/if}
             <p>© {echo date('Y', time())} Интернет-супермаркет «Negro»<br/>Все права защищены</p>
             <div class="social-block-footer">
@@ -21,17 +21,7 @@
         </div>
         <div class="box">
             <div class="title_h3">Продукция</div>
-            <ul>
-                {foreach getCategories(0) as $c}
-                    <li>
-                        {if $CI->uri->segment(2) == "category" && $CI->uri->segment(3) == $c[url]}
-                            <span>{echo $c[name]}</span>
-                        {else:}
-                            <a href="{shop_url('category/' . $c[url])}">{echo $c[name]}</a>
-                        {/if}
-                    </li>
-                {/foreach}
-            </ul>
+             {load_menu('top_menu')}
         </div>
         <div class="box">
             <div class="title_h3">Мы принимаем</div>

@@ -1,7 +1,6 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Поиск")}
+        {//myCrumbs(0, " / ", "Поиск")}
     </div>
 </div>
 <div class="frame-inside">
@@ -9,7 +8,7 @@
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-head-ategory">
                 <div class="d_i m-r_15">
-                    <div class="d_i title_h1">Вы искали: <span class="alert-small">«{$searched_text}»</span></div>
+                    <div class="d_i title_h1">Вы искали: <span class="alert-small">«{encode($_GET['text'])}»</span></div>
                 </div>
                 {if $totalProducts > 0}
                     <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
@@ -27,18 +26,23 @@
                     <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
                 </div>
             {/if}
-            {$pagination}
+            <!--Start. Pagination -->
+            {if $pagination}
+                {$pagination}
+            {/if}
+            <!-- End pagination -->
         </div>
 
         {if $totalProducts > 0}
             <div class="left-catalog filter">
                 <form method="GET" action="" id="seacrh_p_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <input type="hidden" name="text" value="{$searched_text}">
+                    <input type="hidden" name="text" value="{echo $_GET[text]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
+                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
                 </form>
 
-                {$cat = searchResultsInCategories($tree, $categorys)}
+                {$cat = searchResultsInCategories($tree, $categories)}
                 <div class="block-filter">
                     <div class="title_h3">Категории</div>
                     <div class="inside-padd">
