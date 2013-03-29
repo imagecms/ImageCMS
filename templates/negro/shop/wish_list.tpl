@@ -1,7 +1,6 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Список желаний")}
+        {//myCrumbs(0, " / ", "Список желаний")}
     </div>
 </div>
 <div class="frame-inside">
