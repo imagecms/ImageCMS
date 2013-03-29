@@ -15,18 +15,10 @@
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            <div class="star">
-                <div class="d_i-b">
-                    {$rate = round($p->getRating() * 100 / 5)}
-                    {$width = "width:$rate%"}
-                    <div class="productRate star-small">
-                        <div style="{$width}"></div>
-                    </div>
-                </div>
-            </div>
-            {if $p->getOldPrice() > $p->firstVariant->getPrice()}
+            {$CI->load->module('star_rating')->show_star_rating($p)}
+            {if $p->hasDiscounts()}
                 <div class="price-old-catalog">
-                    <span>Старая цена: <span class="old-price"><span>{echo round_price($p->getOldPrice())} <span class="cur">{$CS}</span></span></span></span>
+                    <span>Старая цена: <span class="old-price"><span>{echo $p->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
                 </div>
             {/if}
             {$vcnt = 1}
@@ -38,7 +30,7 @@
                 {/if}
                 {if $v->getPrice() > 0}
                     <div class="price-catalog {$var_class} var_price_{echo $v->getId()} prod_price_{echo $p->getId()}">
-                        <div>{echo $v->getPrice()} <span class="cur">{$CS}</span></div>
+                        <div>{echo $p->firstVariant->toCurrency()} <span class="cur">{$CS}</span></div>
                     </div>
                 {/if}
             {/foreach}
@@ -51,22 +43,20 @@
                         {else:}
                             {$var_class = 'd_n';}
                         {/if}
-                        {if $v->getStock() > 0}
+                        {if $p->firstvariant->getstock() != 0}
                             <!-- buy/inCart buttons -------------------->
-                            {if is_in_cart($p->getId(), $v->getId())}
-                                {$dn_incart = ""}{$dn_gobuy = "d_n"}
-                            {else:}
-                                {$dn_incart = "d_n"}{$dn_gobuy = ""}
-                            {/if}
                             <div class="{$var_class} var_{echo $v->getId()} prod_{echo $p->getId()}">
-                                <div class="btn btn-order goCart SProducts_{echo $p->getId()}_{echo $v->getId()} {$dn_incart}">
-                                    <button type="button">Уже в корзине</button>
-                                </div>
-                                <div class="btn btn-buy goBuy {$dn_gobuy}" data-varid="{echo $v->getId()}" data-prodid="{echo $p->getId()}">
-                                    <button type="button">
-                                        <span class="icon-bask-buy"></span>В корзину
-                                    </button>
-                                </div>
+                                 <button class="btn btn_buy"
+                                        type="button"
+                                        data-prodId="{echo $p->getId()}"
+                                        data-varId="{echo $p->firstVariant->getId()}"
+                                        data-price="{echo $p->firstVariant->toCurrency()}"
+                                        data-name="{echo $p->getName()}"
+                                        data-number="{echo $p->firstVariant->getnumber()}"
+                                        data-maxcount="{echo $p->firstVariant->getstock()}"
+                                        data-vname="{echo $p->firstVariant->getName()}">
+                                    {lang('s_buy')}
+                                </button>
                             </div>
                             <!-- end of buy/inCart buttons ------------->
                         {else:}
@@ -82,7 +72,7 @@
                                 </span>
                             </div>
                         {/if}
-
+                        
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons --------------------->
                             {if is_in_wish($p->getId(), $v->getId())}
