@@ -1,44 +1,45 @@
-{if !$success}
-    {if $errors}
-        <div class="msg">
-            <div class="error">
-                {$errors}
+<div class="drop-order-call drop" id="ordercall">
+    <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
+    <div class="drop-content">
+        <div class="header_title">
+            Заказ звонка
+        </div>
+        <div class="inside_padd">
+            <div class="horizontal_form standart_form">
+                <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
+                        return false;">
+                    <label>
+                        <span class="title">Ваше имя</span>
+                        <span class="frame_form_field">
+                            <span class="icon-person"></span>
+                            <input type="text" name="Name"/>
+                            <label id="for_Name" class="for_validations"></label>
+                        </span>
+                    </label>
+                    <label>
+                        <span class="title">Номер телефона</span>
+                        <span class="frame_form_field">
+                            <span class="icon-phone"></span>
+                            <input type="text" name="Phone"/>
+                            <label id="for_Phone" class="for_validations"></label>
+                        </span>
+                    </label>
+                    <label>
+                        <span class="title">Комментарий</span>
+                        <span class="frame_form_field">
+                            <textarea name="Comment"></textarea>
+                            <label id="for_Comment" class="for_validations"></label>
+                        </span>
+                    </label>
+                    <div class="frameLabel">
+                        <span class="title">&nbsp;</span>
+                        <span class="frame_form_field c_n">
+                            <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
-    {/if}
-    <label class="control-group">
-        <span class="control-label">Ваше имя</span>
-        <span class="controls" for="call_name">
-            <input type="text" id="call_name" class="required" name="Name" maxlength="40" value="{$_POST['Name']}" />
-        </span>
-    </label>
-    <label class="control-group" for="call_phone">
-        <span class="control-label">Номер телефона</span>
-        <span class="controls">
-            <input type="text" id="call_phone" class="required" name="Phone" maxlength="40" value="{$_POST['Phone']}" />
-        </span>
-    </label>
-    <label class="control-group" for="call_comment">
-        <span class="control-label">Комментарий</span>
-        <span class="controls">
-            <textarea name="Comment" id="call_comment">{$_POST['Comment']}</textarea>
-        </span>
-    </label>
-    <div class="frameLabel">
-        <span class="control-label">&nbsp;</span>
-        <span class="controls">
-            <span class="btn btn-drop">
-                <input type="hidden" name="ThemeId" value="2" />
-                <input type="submit" value="Позвоните мне"/>
-            </span>
-        </span>
     </div>
-{else:}
-    <div class="msg p-b_15">
-        <div class="success">
-            <img src="{$SHOP_THEME}/images/success.png" class="f_l m-r_10"/>
-            {$success}
-        </div>
-    </div>
-{/if}
-
+    <div class="drop-footer"></div>
+</div>
