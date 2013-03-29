@@ -73,7 +73,7 @@
                                     </div>
                                 {/if}
                                 {$vcnt = 1}
-                                {foreach $p->variants as $v}
+                                {foreach $p->getProductVariants() as $v}
                                     {if $vcnt == 1}
                                         {$vcnt = NULL}{$var_class = '';}
                                     {else:}
@@ -88,7 +88,7 @@
 
                                 <div class="f-s_0 func-button">
                                     {$vcnt = 1}
-                                    {foreach $p->variants as $v}
+                                    {foreach $p->getProductVariants() as $v}
                                         {if $vcnt == 1}
                                             {$vcnt = NULL}{$var_class = 'd_i-b';}
                                         {else:}
