@@ -30,6 +30,12 @@ function set_per_page(elem){
     })
 }
 
+function search_per_page(elem){
+    val = $(elem).val();
+    $('input[name=user_per_page]').val(val);
+    $('#seacrh_p_form').submit();
+}
+
 function sort_current(elem){
     val = $(elem).find('button').val();
     //alert(val);

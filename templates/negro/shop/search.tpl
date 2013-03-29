@@ -1,4 +1,3 @@
-<script type="text/javascript" src="{$THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
         {//myCrumbs(0, " / ", "Поиск")}
@@ -27,15 +26,20 @@
                     <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
                 </div>
             {/if}
-            {$pagination}
+            <!--Start. Pagination -->
+            {if $pagination}
+                {$pagination}
+            {/if}
+            <!-- End pagination -->
         </div>
 
         {if $totalProducts > 0}
             <div class="left-catalog filter">
                 <form method="GET" action="" id="seacrh_p_form">
                     <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <input type="hidden" name="text" value="{$searched_text}">
+                    <input type="hidden" name="text" value="{echo $_GET[text]}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
+                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
                 </form>
 
                 {$cat = searchResultsInCategories($tree, $categories)}

@@ -42,5 +42,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/shop_script/code.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop_script/cart.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop_script/category.js"></script>
 </body>
 </html>
