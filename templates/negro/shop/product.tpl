@@ -3,7 +3,7 @@
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs($model->getCategoryId(), " / ", $model->getName())}
+        {//myCrumbs($model->getCategoryId(), " / ", $model->getName())}
     </div>
 </div>
 <div class="frame-inside">
@@ -62,7 +62,7 @@
                         {if $v->getPrice() > 0}
                             <div class="v-a_b {$var_class} var_{echo $v->getId()} prod_{echo $model->getId()}">
                                 <div class="price-product">
-                                    <div>{round_price($v->getPrice())} <span class="cur">{$CS}</span></div>
+                                    <div>{echo $v->toCurrency()} <span class="cur">{$CS}</span></div>
                                 </div>
                             </div>
                         {/if}
@@ -221,14 +221,14 @@
                             <div class="title">Доставка</div>
                             <ul>
                                 {foreach $delivery_methods as $dm}
-                                    <li>{echo $dm[name]} 
+                                    <li>{echo $dm['name']} 
                                         <span class="green">
-                                            {if (int)$dm[price] == 0}
+                                            {if (int)$dm['price'] == 0}
                                                 (Бесплатно)
-                                            {elseif $dm[price] < 0}
+                                            {elseif $dm['price'] < 0}
                                                 <br />(Стоимость согласно тарифам перевозчика)
                                             {else:}
-                                                ({echo round_price($dm[price])} {$CS})
+                                                ({echo round_price($dm['price'])} {$CS})
                                             {/if}
                                         </span>
                                     </li>
@@ -242,7 +242,7 @@
                             <div class="title">Оплата</div>
                             <ul>
                                 {foreach $payment_methods as $pm}
-                                    <li>{echo $pm[name]}</li>
+                                    <li>{echo $pm['name']}</li>
                                 {/foreach}
                             </ul>
                         </div>
@@ -273,7 +273,7 @@
                             {else:}
                                 {$discount = 0}
                             {/if}
-                            {promoLabel($model->getHit(), $model->getHot(), $discount)}
+                            {//promoLabel($model->getHit(), $model->getHot(), $discount)}
                         </span>
                     </a>
                 {/foreach}
@@ -431,13 +431,13 @@
         <div class="clearfix item-product">
             <div class="right-product f-s_0">
                 <ul class="tabs tabs-data">
-                    {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTr($model)}
+                    {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
                         <li><span data-href="#first">Характеристики</span></li>
                     {/if}
                     {if trim($model->getShortDescription()) != ''}
                         <li><span data-href="#second">Полное описание</span></li>
                     {/if}
-                    {$totalComm = totalComments($model->getId());}
+                    {$totalComm = totalComments($model->getId())}
                     <li><span data-href="#third">Отзывы {if $totalComm}({$totalComm}){/if}</span></li>
                     {if $model->getRelatedProducts()}
                         <li><span data-href="#fourth">Аксессуары</span></li>
@@ -628,7 +628,7 @@
     </div>
 </div>
 
-{$similar = getsimilar($model->getCategoryId(), $model->getId(), $model->firstVariant->getPrice(), 10)}
+{//$similar = getsimilar($model->getCategoryId(), $model->getId(), $model->firstVariant->getPrice(), 10)}
 {$CI->template->assign('promos',$similar)}
 {if count($similar) > 0}
     <section class="special-proposition">
