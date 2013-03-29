@@ -28,12 +28,8 @@
                             <a href="{shop_url('product/' . $p->url)}">
                                 <span class="photo-block">
                                     <span class="helper"></span>
-                                    {if $p->mainModImage}
-                                        <img src="{productImageUrl($p->mainModImage)}" alt="{echo ShopCore::encode($p->name)}" />
-                                    {else:}
-                                        <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->name)}" />
-                                    {/if}
 
+                                    <img src="{productSmallImageUrl($p)}" alt="{echo ShopCore::encode($p->getName())} - {echo $p->getId()}"/>
                                     {if $p->old_price > $p->variants[0]->price}
                                         {$discount = round(100 - ($p->variants[0]->price / $p->old_price * 100))}
                                     {else:}
@@ -44,14 +40,13 @@
                                 <span class="title">{echo ShopCore::encode($p->name)}</span>
                             </a>
                             <div class="description">
-                                {if count($p->variants) > 1}
+                                {if count($p->getProductVariants()) > 1}
                                     <div class="check-variants m-b_15">
                                         <div class="title">Выберите вариант:</div>
                                         <div class="lineForm">
-                                            <select name="variant" id="variant_{echo $p->id}" onchange="change_variant(this, {echo $p->id})">
-                                                {$vcnt = 1}
-                                                {foreach $p->variants as $v}
-                                                    <option value="{echo $v->id}" {if $vcnt == 1}selected="selected"{$vcnt = NULL}{/if}>{echo $v->name}</option>
+                                            <select name="variant" id="variant_{echo $p->id}" onchange="change_variant(this, {echo $p->getId()})">
+                                                {foreach $p->getProductVariants() as $v}
+                                                    <option value="{echo $v->getId()}">{echo $v->getName()}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
@@ -73,7 +68,7 @@
                                     </div>
                                 {/if}
                                 {$vcnt = 1}
-                                {foreach $p->variants as $v}
+                                {foreach $p->getProductVariants() as $v}
                                     {if $vcnt == 1}
                                         {$vcnt = NULL}{$var_class = '';}
                                     {else:}
@@ -88,7 +83,7 @@
 
                                 <div class="f-s_0 func-button">
                                     {$vcnt = 1}
-                                    {foreach $p->variants as $v}
+                                    {foreach $p->getProductVariants() as $v}
                                         {if $vcnt == 1}
                                             {$vcnt = NULL}{$var_class = 'd_i-b';}
                                         {else:}
@@ -96,20 +91,40 @@
                                         {/if}
                                         {if $v->stock > 0}
                                             <!-- buy/inCart buttons -------------------->
-                                            {if is_in_cart($p->id, $v->id)}
-                                                {$dn_incart = ""}{$dn_gobuy = "d_n"}
-                                            {else:}
-                                                {$dn_incart = "d_n"}{$dn_gobuy = ""}
-                                            {/if}
                                             <div class="{$var_class} var_{echo $v->id} prod_{echo $p->id}">
-                                                <div class="btn btn-order goCart SProducts_{echo $p->id}_{echo $v->id} {$dn_incart}">
-                                                    <button type="button">Уже в корзине</button>
-                                                </div>
-                                                <div class="btn btn-buy goBuy {$dn_gobuy}" data-varid="{echo $v->id}" data-prodid="{echo $p->id}">
-                                                    <button type="button">
-                                                        <span class="icon-bask-buy"></span>В корзину
-                                                    </button>
-                                                </div>
+
+                                                {if is_in_cart($p->id, $v->id)}
+                                                    <div class="btn btn-order goCart">
+                                                        <button class="buyButton inCart"
+                                                                type="button"
+                                                                data-prodId="{echo $p->getId()}"
+                                                                data-varId="{echo $p->firstVariant->getId()}"
+                                                                data-price="{echo $p->firstVariant->toCurrency()}"
+                                                                data-name="{echo $p->getName()}"
+                                                                data-number="{echo $p->firstVariant->getnumber()}"
+                                                                data-maxcount="{echo $p->firstVariant->getstock()}"
+                                                                data-vname="{echo $p->firstVariant->getName()}">
+                                                            <span class="icon-bask-buy"></span>
+                                                            Уже в корзине
+                                                        </button>
+                                                    </div>
+                                                {else:}
+                                                    <div class="btn btn-buy goBuy ">
+                                                        <button class="buyButton toCart"
+                                                                type="button"
+                                                                data-prodId="{echo $p->getId()}"
+                                                                data-varId="{echo $p->firstVariant->getId()}"
+                                                                data-price="{echo $p->firstVariant->toCurrency()}"
+                                                                data-name="{echo $p->getName()}"
+                                                                data-number="{echo $p->firstVariant->getnumber()}"
+                                                                data-maxcount="{echo $p->firstVariant->getstock()}"
+                                                                data-vname="{echo $p->firstVariant->getName()}">
+                                                            <span class="icon-bask-buy"></span>
+                                                            {lang('s_buy')}
+                                                        </button>
+                                                    </div>
+                                                {/if}
+
                                             </div>
                                             <!-- end of buy/inCart buttons ------------->
                                         {else:}
@@ -150,27 +165,26 @@
                                     {/foreach}
 
                                     <!-- compare buttons ----------------------->
-                                    {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
-                                        {$dn_comp = ""}{$dn_gocomp = "d_n"}
-                                    {else:}
-                                        {$dn_comp = "d_n"}{$dn_gocomp = ""}
-                                    {/if}
                                     <div class="d_i-b">
+                                    {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
                                         <div class="btn btn-order goCompare {$dn_comp}" data-title="Сравнить" data-rel="tooltip">
                                             <button type="button">
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">Уже в сравнение</span>
                                             </button>
                                         </div>
+                                        {else:}
                                         <div class="btn btn-def toCompare {$dn_gocomp}" data-title="В список сравнений"  data-prodid="{echo $p->id}" data-rel="tooltip">
                                             <button type="button">
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">В список сравнению</span>
                                             </button>
                                         </div>
+                                    {/if}
                                     </div>
+
                                     <!-- end of compare buttons ---------------->
-                                </div>     
+                                </div>
 
                                 {if trim($p->short_description) != ""}
                                     <div class="short_desc">
@@ -186,12 +200,12 @@
                         </li>
                     {/foreach}
                 </ul>
+                {$pagination}
             {else:}
                 <div class="alert alert-search-result">
                     <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
                 </div>
             {/if}
-            {$pagination}
         </div>
 
         <div class="left-catalog filter">
@@ -200,16 +214,16 @@
             {$maxPrice = (int)$priceRange.maxCost;}
             {if $_GET['lp']}
                 {$curMin = (int)$_GET['lp'];}
-            {else:}    
+            {else:}
                 {$curMin = $minPrice;}
             {/if}
             {if $_GET['rp']}
                 {$curMax = (int)$_GET['rp'];}
-            {else:}    
+            {else:}
                 {$curMax = $maxPrice;}
             {/if}
 
-            {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}   
+            {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
                 <div class="frame-check-filter inside-padd">
                     <div class="title_h4">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} с фильтрами:</div>
                     <ul class="check-filter">
@@ -250,25 +264,6 @@
                     </div>
                 </form>
             {/if}
-
-            {if $model->parent_id == 0}
-                {$managers = getMennager($model->id)}
-            {else:}
-                {$managers = getMennager( getRootCategId() )}
-            {/if}
-            {foreach $managers as $mn}
-                {$mn = $CI->load->module('cfcm')->connect_fields($mn, 'page')}
-                <div class="frame-manager shadow-w_220">
-
-                    {if trim($mn[field_photo]) != ""}
-                        <div class="photo-block">
-                            <span class="helper"></span>
-                            <img src="{echo $mn[field_photo]}" alt='{$mn.title}'/>
-                        </div>
-                    {/if}
-                    {$mn[prev_text]}
-                </div>
-            {/foreach}
         </div>
     </div>
 </div>

@@ -1,64 +1,43 @@
-<div class="fancy order_call">
-    {if !$message}
-        <form method="post" action="" id="notifMe" class="clearfix">
-            <h1>{lang('s_message_not_found')}</h1>
-            <h2>{echo ShopCore::encode($model->getName())} {echo $model->firstVariant->getName()}</h2>
-        {if validation_errors()}<div class="validate_error_ml" style="margin: 5px 2px 2px;">{validation_errors()}</div>{/if}
-        <div class="f_l w_191">
-            <label>
-                {lang('s_c_uoy_name_u')}<span>*</span>
-                <input type="text" name="UserName" value="{echo ShopCore::encode($_POST.UserName)}" />
-            </label>
-            <label>
-                {lang('s_c_uoy_user_el')}<span>*</span>
-                <input type="text" name="UserEmail" value="{echo ShopCore::encode($_POST.UserEmail)}" />
-            </label>
-            <label>
-                {lang('s_phone')}<span>*</span>
-                <input type="text" name="UserPhone" value="{echo ShopCore::encode($_POST.UserPhone)}" />
-            </label>
-        </div>
-        <div class="f_r w_191">
-            <label>
-                {lang('s_to_additional_information')}
-                <textarea class="w_191" name="UserComment">{echo ShopCore::encode($_POST.UserComment)}</textarea>
-            </label>
-            <label>
-                {lang('s_actual_to')}<span>*</span>
-                <input id="actual" class="datepicker" type="text" name="ActiveTo" value="{echo ShopCore::encode($_POST.active_to)}" />
-            </label>
-        </div>
-        <div class="p-t_19 c_b clearfix">
-            <div class="buttons button_middle_blue f_r">
-                <input type="submit" value="{lang('s_to_call_me')}">
-            </div>
-        </div>
-        {form_csrf()}
-        <input type="hidden" name="notifme" value="1" />
-        <input type="hidden" name="ProductId" value="{echo $model->getId()}" />
-        <input type="hidden" name="VariantId" value="{echo $model->firstVariant->getId()}" />
-    </form>
-{else:}
-    <div style="margin-bottom: 44px;">
-        <div class='comparison_slider'>
-            <div class='f-s_17  t-a_c'>
-                {echo $message}
-            </div>
-        </div>
+<div class="drop drop-report">
+    <div class="drop-content">
+        <div class="title_h2">Сообщить когда появится</div>
+        <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     </div>
-
-{/if}
+    <div class="drop-footer"></div>
 </div>
-<script>
-    {literal}
-        var currentDate = new Date();
-        var toDate = new Date( currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7);
-        $('.datepicker').datepicker({
-            'dateFormat' : 'yy-mm-dd',
-            'defaultDate' : toDate,
-            'minDate' : currentDate
-        });
-        
-        $('#actual').val(toDate.getFullYear() + '-' + toDate.getMonth() + '-' + toDate.getDate() );
-    {/literal}
-</script>
+<div class="d_n" data-clone="data-report">
+    <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+            return false;">
+        <div class="standart_form">
+            <label>
+                <span class="title">Ваше имя</span>
+                <span class="frame_form_field">
+                    <input type="text" id="" name="UserName"/>
+                    <label id="for_UserName" class="for_validations"></label>
+                    <span class="must">*</span>
+                </span>
+            </label>
+            <label>
+                <span class="title">E-mail</span>
+                <span class="frame_form_field">
+                    <input type="text" id="" name="UserEmail"/>
+                    <label id="for_UserEmail" class="for_validations"></label>
+                    <input type="hidden" name="ProductId" value=""/>
+                    <input type="hidden" name="notifme" value="true"/>
+                    <span class="must">*</span>
+                    <span class="help_inline">На почту придет уведомление о появлении данного товара</span>
+                </span>
+            </label>
+            <label>
+                <span class="title">Телефон</span>
+                <span class="frame_form_field">
+                    <input type="text" id="" name="UserPhone"/>
+                    <label id="for_UserPhone" class="for_validations"></label>
+                </span>
+            </label>
+        </div>
+        <div class="t-a_r">
+            <input type="submit" value="Отправить"  class="btn btn_cart"/>
+        </div>
+    </form>
+</div>
