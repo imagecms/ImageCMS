@@ -4,10 +4,10 @@
         <div class="f_l">
             <span class="v-a_m">На странице:</span>
             <div class="lineForm d_i-b">
-                {$per_page_arr = array(3,6,9,12,18,24,30,42)}
-                <select name="c" id="c" onchange="set_per_page(this)">
+                {$per_page_arr = array(12,24,36,48)}
+                <select name="user_per_page" id="c" onchange="search_per_page(this)">
                     {foreach $per_page_arr as $pp}
-                        <option {if $pp == $_COOKIE['per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                        <option {if $pp == $_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
                     {/foreach}
                 </select>
             </div>

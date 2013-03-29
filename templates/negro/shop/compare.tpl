@@ -1,7 +1,6 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Сравнение товаров")}
+        {//myCrumbs(0, " / ", "Сравнение товаров")}
     </div>
 </div>
 <div class="frame-inside">
@@ -10,12 +9,12 @@
             <div class="clearfix frame-catalog-view">
                 <div class="title_h1 f_l">Сравнение товаров</div>
                 <ul class="tabs groups-buttons f_l m-l_50">
-                    <li {if $_COOKIE['listtable'] != 1}class="active"{/if}>
+                    <li>
                         <button data-href="#all-params">
                             Все параметры
                         </button>
                     </li>
-                    <li {if $_COOKIE['listtable'] == 1}class="active"{/if}>
+                    <li>
                         <button data-href="#only-dif">
                             Только отличия
                         </button>
@@ -26,7 +25,7 @@
                 <div class="comprasion_head">
                     <div class="title_h2">Категория:</div>
                     <ul class="tabs tabs-comprasion">
-                        {foreach $categorys as $category}
+                        {foreach $categories as $category}
                             <li><button data-href="#tab_{$category[Url]}"><span class="d_l_b">{$category[Name]}</span></button></li>
                         {/foreach}
                     </ul>
@@ -34,7 +33,7 @@
                 <div class="frame-tabs-ref comprasion-frame-tabs">
 
                     <!-- 1-st category -->
-                    {foreach $categorys as $category}
+                    {foreach $categories as $category}
                         <div id="tab_{$category[Url]}" class="categoryCompareBlock" data-refresh>
                             <div class="leftDescription">
                                 <ul>
