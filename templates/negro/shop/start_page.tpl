@@ -22,6 +22,12 @@
         </section>
     </div>
 {/if}
+<div class="frame-news-catalog">
+    <div class="container">
+        {widget('news_main')}
+        {\Category\RenderMenu::create()->load('front_menu')}
+    </div>
+</div>
     {widget('popular_products')}
     {widget('new_products')}
     {widget('action_products')}
