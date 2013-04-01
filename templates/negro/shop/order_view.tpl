@@ -1,4 +1,3 @@
-{//$_SESSION["flash:old:makeOrder"] = true}
 <div class="frame-crumbs">
     <div class="container">
         {myCrumbs(0, " / ", "Просмотр заказа")}
@@ -8,6 +7,11 @@
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="title_h2">Спасибо за ваш заказ!</div>
+            <!-- Clear Cart locale Storage -->
+            <script>{literal}$(document).ready(function() {
+                    Shop.Cart.clear();
+                }){/literal}
+            </script>
         {else:}
             <div class="title_h2">Заказ №<span class="arial">{echo $model->getId()}</span></div>
         {/if}
@@ -85,12 +89,6 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
-                {if $model->getUserCity()}
-                    <tr>
-                        <th>Город:</th>
-                        <td>{echo $model->getUserCity()}</td>
-                    </tr>
-                {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>Адрес:</th>
@@ -113,6 +111,7 @@
                     {if !$item->getKitId() > 0}
                         {$p = getProduct($item->getProductId())}
                         {$v = getVariant($item->getVariantId())}
+                        {var_dumps($v)}
                         <ul class="items-complect item-order">
                             <li>
                                 <a href="{shop_url('product/' . $p->getUrl())}">

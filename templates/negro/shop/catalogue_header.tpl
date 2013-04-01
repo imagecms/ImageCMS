@@ -1,18 +1,22 @@
-
 {if $totalProducts > 0}
+<form method="get" id="searchSortForm" action="">
     <div class="head-category clearfix">
-        <div class="f_l">
-            <span class="v-a_m">На странице:</span>
-            <div class="lineForm d_i-b">
-                {$per_page_arr = array(12,24,36,48)}
-                <select name="user_per_page" id="c" onchange="search_per_page(this)">
-                    {foreach $per_page_arr as $pp}
-                        <option {if $pp == $_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
-                    {/foreach}
+         <div class="f_l">
+            <span class="v-a_m">Фильтровать по:</span>
+            <div class="lineForm w_170">
+                <select class="sort" id="sort" name="order">
+                    <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
+                    <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                    <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                    <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                    <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                    <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                    <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                 </select>
             </div>
         </div>
-        <nav class="f_r frame-catalog-view t-a_r">
+        <!-- End. Sort by block -->
+        <nav class="f_l frame-catalog-view t-a_r">
             <ul class="tabs groups-buttons d_i-b" data-type="itemsView" data-elchange="#items-catalog-main" data-elchtglcls="list">
                 <li {if $_COOKIE['listtable'] != 1}class="active"{/if}>
                     <button data-href="">
@@ -26,9 +30,21 @@
                 </li>
             </ul>
         </nav>
+         <div class="f_r">
+            <span class="v-a_m">На странице:</span>
+            <div class="lineForm d_i-b">
+                {$per_page_arr = array(12,24,36,48)}
+                <select id="sort2" name="user_per_page">
+                    {foreach $per_page_arr as $pp}
+                        <option {if $pp == $_COOKIE['per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
     </div>
+    <input type="hidden" name="text" value="{$_GET['text']}">
+</form>
 {/if}
-
 <div class="catalog-baner clearfix">
     {if $CI->uri->segment(2) == "category" && count($banners = getBannersCat($limit = 3, $model->id)) > 0}
         {foreach $banners as $banner}
@@ -51,18 +67,3 @@
         <hr/>
     {/if}
 </div>
-
-{if $totalProducts > 0}
-    <nav class="frame-sort clearfix">
-        <span class="c_47">Сортировать:</span>
-        <ul class="sort_current">
-            <li class="{if trim($_GET[order]) == "" || $_GET[order] == "hit"}active{/if}" data-rel="tooltip" data-title="Самые продаваемые" ><button type="button" class="ref" value="hit">Топ продаж</button></li>
-            <li class="{if $_GET[order] == "price"}active{/if}" data-rel="tooltip" data-title="По цене, начиная с дешевых" ><button type="button" class="ref"  value="price">Дешевые</button></li>
-            <li class="{if $_GET[order] == "price_desc"}active{/if}" data-rel="tooltip" data-title="По цене, начиная с дорогих"><button type="button" class="ref"  value="price_desc">Дорогие</button></li>
-            <li class="{if $_GET[order] == "hot"}active{/if}" data-rel="tooltip" data-title="Новинки сезона"><button type="button" class="ref" value="hot">Новинки</button></li>
-            <li class="{if $_GET[order] == "discount"}active{/if}" data-rel="tooltip" data-title="Со скидкой"><button type="button" class="ref" value="discount">Скидки</button></li>
-            <li class="{if $_GET[order] == "popular"}active{/if}" data-rel="tooltip" data-title="Больше всего просмотров"><button type="button" class="ref" value="popular">Популярные</button></li>
-            <li class="{if $_GET[order] == "created_desc"}active{/if}" data-rel="tooltip" data-title="Последние появившиеся"><button type="button" class="ref" value="created_desc">Последние</button></li>
-        </ul>
-    </nav>
-{/if}

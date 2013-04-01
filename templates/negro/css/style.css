@@ -921,7 +921,7 @@ footer .logo{width: 184px;margin-left: 0;margin-bottom: 24px;}
 .nav-enter-reg .or{margin: 0 7px 0 12px;}
 .nav-enter-reg > li > span, .nav-enter-reg > li > a{padding: 0;}
 .menu-header .f_l > .nav > li > a, .menu-header .f_l > .nav > li > span{border-width: 0 1px;border-style: solid;border-right-color: #e4e4e4;border-left-color: #fff;}
-.fon-header{background: url('../images/fon_header.png') repeat;}
+/*.fon-header{background: url('../images/fon_header.png') repeat;}*/
 .menu-header .nav > li > a:hover{color: #f57332;}
 
 .menu-header .nav > li.active{
