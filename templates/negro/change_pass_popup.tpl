@@ -1,40 +1,33 @@
-{if $errors}
-    <div class="msg">
-        <div class="error">
-            {$errors}
-        </div>
-    </div>
-{elseif $msg_success}
-    <div class="msg">            
-        <div class="notice">
-            {$msg_success}
-        </div>
-    </div>
-{/if}
-
-<label class="control-group">
-    <span class="control-label">Старый пароль</span>
-    <span class="controls">
-        <input type="password" class="required" name="old_password" maxlength="25" id="crpswd"/>
+<form method="post" id="form_change_pass">
+<label>
+    <span class="title">{lang('lang_old_password')}:</span>
+    <span class="frame_form_field">
+        <input type="password" name="old_password"/>
+        <label id="for_old_password" class="for_validations"></label>
     </span>
 </label>
-<label class="control-group">
-    <span class="control-label">Пароль</span>
-    <span class="controls">
-        <input type="password" class="required" name="new_password" maxlength="25" id="rpnwpswd"/>
+<label>
+    <span class="title">{lang('lang_new_password')}:</span>
+    <span class="frame_form_field">
+        <input type="password" name="new_password"/>
+        <label id="for_new_password" class="for_validations"></label>
     </span>
 </label>
-<label class="control-group">
-    <span class="control-label">Повторите пароль</span>
-    <span class="controls">
-        <input type="password" class="required" name="confirm_new_password" maxlength="25" id="rpnwpswd"/>
+<label>
+    <span class="title">{lang('s_newpassword')}:</span>
+    <span class="frame_form_field">
+        <input type="password" name="confirm_new_password"/>
+        <label id="for_confirm_new_password" class="for_validations"></label>
     </span>
 </label>
 <div class="control-group">
     <span class="control-label">&nbsp;</span>
     <span class="controls">
         <span class="btn btn-order-product">
-            <input type="submit" value="Сохранить данные"/>
+        <input type="submit" value="{lang('s_save')}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
+    return false;"/>
         </span>
     </span>
 </div>
+{form_csrf()}
+</form>

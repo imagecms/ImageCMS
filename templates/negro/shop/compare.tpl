@@ -1,7 +1,4 @@
 <div class="frame-crumbs">
-    <div class="container">
-        {//myCrumbs(0, " / ", "Сравнение товаров")}
-    </div>
 </div>
 <div class="frame-inside">
     <div class="container">
@@ -31,7 +28,6 @@
                     </ul>
                 </div>
                 <div class="frame-tabs-ref comprasion-frame-tabs">
-
                     <!-- 1-st category -->
                     {foreach $categories as $category}
                         <div id="tab_{$category[Url]}" class="categoryCompareBlock" data-refresh>
