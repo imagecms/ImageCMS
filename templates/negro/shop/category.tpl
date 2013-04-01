@@ -141,24 +141,24 @@
                                         {/if}
 
                                         <!-- Wish List buttons --------------------->
-                                        {if is_in_wish($p->id, $v->id)}
-                                            {$dn_inwish = ""}{$dn_gowish = "d_n"}
-                                        {else:}
-                                            {$dn_inwish = "d_n"}{$dn_gowish = ""}
-                                        {/if}
+
+}
                                         <div class="{$var_class} var_{echo $v->id} prod_{echo $p->id}">
-                                            <div class="btn btn-order goWList {$dn_inwish}" data-title="Уже в желаемых" data-rel="tooltip">
-                                                <button type="button">
-                                                    <span class="icon-wish"></span>
-                                                    <span class="text-el">Уже в желаемых</span>
-                                                </button>
-                                            </div>
-                                            <div class="btn btn-def {$dn_gowish} {if $is_logged_in}toWList{else:}goEnter{/if}" data-title="В список желаний" data-varid="{echo $v->id}" data-prodid="{echo $p->id}" data-rel="tooltip">
-                                                <button type="button">
-                                                    <span class="icon-wish"></span>
-                                                    <span class="text-el">В список желаний</span>
-                                                </button>
-                                            </div>
+                                            {if is_in_wish($p->id, $v->id)}
+                                                <div class="btn btn-order goWList" data-title="Уже в желаемых" data-rel="tooltip">
+                                                    <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="inWishlist" data-title="В списке желаний" data-sectitle="В списке желаний">
+                                                        <span class="icon-wish"></span>
+                                                        <span class="text-el">Уже в желаемых</span>
+                                                    </button>
+                                                </div>
+                                            {else:}
+                                                <div class="btn btn-def {if $is_logged_in}toWList{else:}goEnter{/if}" data-title="В список желаний" data-varid="{echo $v->id}" data-prodid="{echo $p->id}" data-rel="tooltip">
+                                                    <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="toWishlist" data-title="В списке желаний" data-sectitle="В списке желаний">
+                                                        <span class="icon-wish"></span>
+                                                        <span class="text-el">В список желаний</span>
+                                                    </button>
+                                                </div>
+                                            {/if}
                                         </div>
                                         <!-- end of Wish List buttons -------------->
                                     {/foreach}
@@ -167,14 +167,16 @@
                                     <div class="d_i-b">
                                     {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
                                         <div class="btn btn-order goCompare {$dn_comp}" data-title="Сравнить" data-rel="tooltip">
-                                            <button type="button">
+                                            <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="inCompare"
+                                                    data-title="В список сравнений" data-sectitle="В списке сравнений" >
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">Уже в сравнение</span>
                                             </button>
                                         </div>
                                         {else:}
                                         <div class="btn btn-def toCompare {$dn_gocomp}" data-title="В список сравнений"  data-prodid="{echo $p->id}" data-rel="tooltip">
-                                            <button type="button">
+                                            <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="toCompare"
+                                                    data-title="В список сравнений" data-sectitle="В списке сравнений" >
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">В список сравнению</span>
                                             </button>
