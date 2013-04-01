@@ -14,9 +14,7 @@
                     <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
                 {/if}
             </div>
-            
             {include_tpl('catalogue_header')}
-            
             {if count($products) > 0}
                 <ul class="items-catalog {if $_COOKIE['listtable'] == 1}list{/if}" id="items-catalog-main">
                     {include_tpl('one_product_item')}

@@ -73,8 +73,6 @@
                                 </span>
                             </div>
                         {/if}
-                        
-                       
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons --------------------->
                             <div class="var_{echo $p->firstVariant->getId()} f_l prod_{echo $p->getId()}">
@@ -93,9 +91,7 @@
                             </div>
                             <!-- end of Wish List buttons -------------->
                         {/if}
-                   
-
-                    {if $CI->uri->segment(2) != "compare"}
+                   {if $CI->uri->segment(2) != "compare"}
                         <!-- compare buttons ----------------------->
                         <div class="d_i-b">
                             <div class="btn btn-def f_l" data-title="В список сравнений"  data-prodid="{echo $p->getId()}" data-rel="tooltip">
@@ -112,7 +108,6 @@
                         </div>
                         <!-- end of compare buttons ---------------->
                     {/if}
-
                     {if trim($p->getShortDescription()) != ''}
                         <div class="short_desc">
                             {echo $p->getShortDescription()}
