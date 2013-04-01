@@ -104,7 +104,6 @@
                                                                 data-number="{echo $p->firstVariant->getnumber()}"
                                                                 data-maxcount="{echo $p->firstVariant->getstock()}"
                                                                 data-vname="{echo $p->firstVariant->getName()}">
-                                                            <span class="icon-bask-buy"></span>
                                                             Уже в корзине
                                                         </button>
                                                     </div>
