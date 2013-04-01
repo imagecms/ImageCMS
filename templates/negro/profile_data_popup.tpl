@@ -1,46 +1,38 @@
-{if $errors}
-    <div class="msg">
-        <div class="error">
-            {$errors}
-        </div>
-    </div>
-{elseif $msg_success}
-    <div class="msg">            
-        <div class="notice">
-            {$msg_success}
-        </div>
-    </div>
-{/if}
+<form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', 'form_change_info');
+                                return false;">
 <label class="control-group">
-    <span class="control-label">Имя</span>
-    <span class="controls">
-        <input type="text" name="name" class="required" value="{echo encode($profile->getName())}" maxlength="40" id="prof_name"/>
+    <span class="title">{lang('s_c_uoy_name_u')}:</span>
+    <span class="row">
+        <span class="frame_form_field">
+            <input type="text" value="{echo encode($profile->getName())}" name="name"/>
+            <label id="for_name" class="for_validations"></label>
+            <span class="help_inline">{lang('s_email_4_sumbls')}</span>
+        </span>
     </span>
 </label>
 <label class="control-group">
-    <span class="control-label">E-mail</span>
-    <span class="controls">
-        <input type="text" name="email" class="required email" value="{echo encode($profile->getUserEmail())}" maxlength="25" id="prof_email"/>
+    <span class="title">{lang('s_c_uoy_user_el')}:</span>
+    <span class="frame_form_field">
+        <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
+        <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
+        <span class="help_inline">{lang('s_email_is_login')}</span>
+        <label id="for_email" class="for_validations"></label>
     </span>
 </label>
 <label class="control-group">
-    <span class="control-label">Телефон</span>
-    <span class="controls">
-        <input type="text" class="required" name="phone" value="{echo encode($profile->getPhone())}" maxlength="25" id="prof_phn"/>
+    <span class="title">{lang('s_phone')}:</span>
+    <span class="frame_form_field">
+        <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
+        <label id="for_phone" class="for_validations"></label>
     </span>
 </label>
 <label class="control-group">
-    <span class="control-label">Город</span>
-    <span class="controls">
-        <input type="text" name="city" value="{echo encode($profile->getCity())}" maxlength="25" id="prof_city"/>
+    <span class="title">{lang('s_profile_me_address')}:</span>
+    <span class="frame_form_field">
+        <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
+        <label id="for_address" class="for_validations"></label>
     </span>
-</label>
-<label class="control-group">
-    <span class="control-label">Адрес</span>
-    <span class="controls">
-        <textarea class="required" name="address" id="prof_addr">{echo encode($profile->getAddress())}</textarea>
-    </span>
-</label>
+</label >
 <div class="control-group">
     <span class="control-label">&nbsp;</span>
     <span class="controls">
@@ -49,3 +41,5 @@
         </span>
     </span>
 </div>
+{form_csrf()}
+</form>
