@@ -640,7 +640,7 @@ function processPage() {
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem);
-            }).removeClass('btn-order').addClass('btn-buy').closest('li').removeClass('in_cart');
+            }).closest('div').removeClass('btn-order').addClass('btn-buy').closest('li').removeClass('in_cart');
         }
     });
 }
