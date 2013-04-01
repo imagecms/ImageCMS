@@ -629,7 +629,7 @@ function processPage() {
             $(this).removeClass(btnToCartClass).addClass(btnInCartClass).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
-            }).closest('li').addClass('in_cart');
+            }).closest('div').removeClass('btn-buy').addClass('btn-order').closest('li').addClass('in_cart');
         }
     });
 
@@ -640,7 +640,7 @@ function processPage() {
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem);
-            }).closest('li').removeClass('in_cart');
+            }).removeClass('btn-order').addClass('btn-buy').closest('li').removeClass('in_cart');
         }
     });
 }
