@@ -63,7 +63,7 @@ class Forms extends MY_Controller {
 
 	// Set config
 	public function set_config($config = array())
-	{
+	{ 
 		if (count($config))
 		{
 			foreach ($config as $key => $val)
