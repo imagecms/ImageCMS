@@ -150,6 +150,8 @@
         }
     }
 })(jQuery);
+
+$(function(){
 function afterAjaxInitializeFilter(){
     var apply = $('.apply'),
     slider_el = $('#slider');
@@ -202,6 +204,7 @@ function ajaxRecount(el, slChk) {
     });
     return false;
 }
-$(document).ready(function(){
+
     afterAjaxInitializeFilter();
-});
+
+})
