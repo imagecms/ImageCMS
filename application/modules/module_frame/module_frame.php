@@ -6,14 +6,14 @@
  * Image CMS
  * Module Frame
  */
-class Module_frame extends MY_Controller {
+class Module_frame extends \Category\BaseCategory {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function index() {
-        
+        $this->render_min('filter', $this->data);
     }
 
     public function autoload() {
@@ -45,7 +45,7 @@ class Module_frame extends MY_Controller {
         /**
           $this->load->dbforge();
           $this->dbforge->drop_table('mod_empty');
-         * 
+         *
          */
     }
 
