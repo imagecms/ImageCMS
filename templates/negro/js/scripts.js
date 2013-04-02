@@ -64,13 +64,19 @@ function deleteWishListItem(el) {
 
 jQuery(document).ready(function() {
 
-//    $.ajax({
-//        type: "GET",
-//        url: "/module_frame/index/video?order=rating&user_per_page=12&lp=39&rp=100",
-//        success: function(msg) {
-//            $(' .filter').html(msg);
-//        }
-//    });
+    var catUrl = window.location.pathname + window.location.search;
+    catUrl = catUrl.replace('shop/category', 'module_frame/index');
+
+    //console.log(catUrl)
+
+    $.ajax({
+        type: "GET",
+        url: catUrl,
+        success: function(msg) {
+//            $('.filter').html(msg);
+//            console.log(msg);
+        }
+    });
 
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
