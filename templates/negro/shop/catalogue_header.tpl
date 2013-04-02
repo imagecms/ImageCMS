@@ -36,7 +36,7 @@
                 {$per_page_arr = array(12,24,36,48)}
                 <select id="sort2" name="user_per_page">
                     {foreach $per_page_arr as $pp}
-                        <option {if $pp == $_COOKIE['per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                        <option {if $pp == $_COOKIE['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
                     {/foreach}
                 </select>
             </div>
