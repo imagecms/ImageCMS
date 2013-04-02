@@ -66,9 +66,9 @@ jQuery(document).ready(function() {
 
 //    $.ajax({
 //        type: "GET",
-//        url: "/module_frame/index/video",
+//        url: "/module_frame/index/video?order=rating&user_per_page=12&lp=39&rp=100",
 //        success: function(msg) {
-//            $('left-catalog filter').html(msg);
+//            $(' .filter').html(msg);
 //        }
 //    });
 
