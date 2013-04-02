@@ -5,14 +5,14 @@
 #}
 <div class="drop-enter drop">
     <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
-    <div class="drop-content">
+    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
         <div class="header_title">
             {lang('lang_login_page')}
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
                 <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                        return false;">
+                                        return false;" style="background-color: #E5E5E5; padding: 10px">
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame_form_field">
@@ -37,7 +37,7 @@
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
-                            <input type="submit" value="Войти" class="btn btn_cart f_r" />
+                            <input type="submit" value="Войти" class="btn btn_cart f_r" style="padding: 10px;" />
                         </span>
                     </div>
                 </form>
