@@ -25,35 +25,37 @@ var genObj = {
     compareIn: 'btn_cart',
     textEl: '.text-el'
 }
-    
-function deleteComprasionItem(el){
+
+function deleteComprasionItem(el) {
     var $this = el,
-    $thisI = $this.parents('li'),
-    $thisP = $this.parents('[data-equalhorizcell]').last(),
-    count_products = $thisP.find(optionCompare.right),
-    gen_count_products = count_products.add($thisP.siblings().find(optionCompare.right)).length,
-    count_productsL = count_products.length;
-    
+            $thisI = $this.parents('li'),
+            $thisP = $this.parents('[data-equalhorizcell]').last(),
+            count_products = $thisP.find(optionCompare.right),
+            gen_count_products = count_products.add($thisP.siblings().find(optionCompare.right)).length,
+            count_productsL = count_products.length;
+
     $thisI.remove();
-        
+
     if (count_productsL == 1) {
-        var btn = $('[data-href="#'+$thisP.attr('id')+'"],[href="#'+$thisP.attr('id')+'"]').parent();
+        var btn = $('[data-href="#' + $thisP.attr('id') + '"],[href="#' + $thisP.attr('id') + '"]').parent();
         $thisP.find(optionCompare.left).remove();
-        
-        if ($.exists_nabir(btn.next())) btn.next().children().click();
-        else btn.prev().children().click();
-                            
+
+        if ($.exists_nabir(btn.next()))
+            btn.next().children().click();
+        else
+            btn.prev().children().click();
+
         btn.remove();
     }
-    if (gen_count_products == 1){
+    if (gen_count_products == 1) {
         $('[data-body="body"]').hide()
         $('[data-body="message"]').show()
     }
-    
+
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
-function deleteWishListItem(el){
-    if (el.parent().siblings().length == 0){
+function deleteWishListItem(el) {
+    if (el.parent().siblings().length == 0) {
         $('[data-body="body"]').hide()
         $('[data-body="message"]').show()
     }
@@ -61,6 +63,15 @@ function deleteWishListItem(el){
 }
 
 jQuery(document).ready(function() {
+
+//    $.ajax({
+//        type: "GET",
+//        url: "/module_frame/index/video",
+//        success: function(msg) {
+//            $('left-catalog filter').html(msg);
+//        }
+//    });
+
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
         if (!event)
@@ -108,7 +119,7 @@ jQuery(document).ready(function() {
             //check for drop-report
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
-                
+
                 if ($(el).offset().left < 322 - $(el).outerWidth()) {
                     $(el).attr('data-placement', 'bottom left');
                     $(dropEl).addClass('left-report');
@@ -117,13 +128,13 @@ jQuery(document).ready(function() {
                     if ($(el).data('placement') != 'top right')
                         $(el).attr('data-placement', 'bottom right');
                 }
-                if ($(el).data('placement') == 'top right'){
+                if ($(el).data('placement') == 'top right') {
                     $(dropEl).addClass('top-right-report');
                 }
-            
+
                 $(dropEl).find('li').remove();
                 var elWrap = $(el).closest('li').clone().removeAttr('style').removeAttr('class'),
-                dropEl = $(dropEl).find('.drop-content');
+                        dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
                 var formCont = $('#data-report');
@@ -140,8 +151,8 @@ jQuery(document).ready(function() {
                 return $(el);
             }
         },
-        after: function(el, dropEl){
-            
+        after: function(el, dropEl) {
+
         }
     });
     $('.tabs').tabs({
@@ -172,8 +183,8 @@ jQuery(document).ready(function() {
         })
     } catch (err) {
     }
-    if (isTouch){
-        $('.jcarousel-clip-horizontal').touchstart(function(){
+    if (isTouch) {
+        $('.jcarousel-clip-horizontal').touchstart(function() {
             alert(1)
         })
     }
@@ -190,7 +201,7 @@ wnd.load(function() {
             next: '.frame_baner .next',
             prev: '.frame_baner .prev',
             pager:      '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
+                    pagerAnchorBuilder: function(idx, slide) {
                 return '<a href="#"></a>';
             }
         }).hover(function() {
@@ -202,7 +213,7 @@ wnd.load(function() {
 
 
     var $js_carousel = $('.carousel_js'),
-    $frame_button = new Array();
+            $frame_button = new Array();
     $item = new Array();
     $item_l = new Array();
     $item_w = new Array();
@@ -212,7 +223,7 @@ wnd.load(function() {
 
     $js_carousel.each(function(index) {
         var index = index,
-        $this = $(this);
+                $this = $(this);
 
         $frame_button[index] = $this.find('.groupButton')
         $item[index] = $this.find('.items:first > li');
@@ -226,7 +237,7 @@ wnd.load(function() {
         var cont_width = $('.container').width();
         $js_carousel.each(function(index) {
             var index = index,
-            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
             if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
                 $this_carousel[index].jcarousel({
                     buttonNextHTML: $this_next[index],
@@ -264,7 +275,7 @@ wnd.load(function() {
         if (btn_not_avail.length != 0)
             btn_not_avail.drop('positionDrop');
     })
-    
+
     navPortait();
     var d_r_f_item = $('[data-radio-frame]');
     $('.list_pic_btn > .btn').click(function() {
@@ -279,7 +290,7 @@ wnd.load(function() {
         }
         $this.siblings().removeClass('active').end().addClass('active');
     });
-    
+
     var itemThumbs = $('.item_tovar .frame_thumbs > li');
     if ($.exists_nabir(itemThumbs)) {
         itemThumbs.click(function() {
@@ -329,9 +340,9 @@ cur_min = $('span#opt3').data('cur_min');
 cur_max = $('span#opt4').data('cur_max');
 
 /*$(".star-big").starRating({
-        width: 26,
-        afterClick: function(el, value) {
-            alert(value)
-            console.log(el)
-        }
-    });*/
+ width: 26,
+ afterClick: function(el, value) {
+ alert(value)
+ console.log(el)
+ }
+ });*/
