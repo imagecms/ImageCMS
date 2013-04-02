@@ -51,7 +51,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body>        
+    <body>
         <div class="mainBody">
             <div class="header">
                 <header>
@@ -60,18 +60,18 @@
                             <div class="f_r m-l_25">
                                 <nav class="f_l">
                                     <ul class="nav navHorizontal frameEnterReg">
-                                        <!--Start. If not logged in then show links for registration and enter to the system--> 
+                                        <!--Start. If not logged in then show links for registration and enter to the system-->
                                         {if !$CI->dx_auth->is_logged_in()}
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
-                                                    <button type="button" 
+                                                    <button type="button"
                                                             id="loginButton"
-                                                            data-drop=".drop-enter" 
-                                                            data-effect-on="fadeIn" 
-                                                            data-effect-off="fadeOut" 
-                                                            data-duration="300" 
-                                                            data-place="noinherit" 
+                                                            data-drop=".drop-enter"
+                                                            data-effect-on="fadeIn"
+                                                            data-effect-off="fadeOut"
+                                                            data-duration="300"
+                                                            data-place="noinherit"
                                                             data-placement="top right">
                                                         <span class="icon-enter"></span>
                                                         <span class="d_l_g">Вход</span>
@@ -114,7 +114,7 @@
                                         <!--End. ***-->
                                     </ul>
                                 </nav>
-                                <!-- Start. Block with link for basket with count of products -->       
+                                <!-- Start. Block with link for basket with count of products -->
                                 <div class="cleaner f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
@@ -154,22 +154,22 @@
                             ><div class="w_100 f-s_0 frameUndef_1">
                                 <div class="span6">
                                     <div class="frameSearch">
-                                        <form name="search" 
-                                              class="clearfix" 
-                                              action="{shop_url('search')}" 
-                                              method="get" 
+                                        <form name="search"
+                                              class="clearfix"
+                                              action="{shop_url('search')}"
+                                              method="get"
                                               id="autocomlete">
                                             <button class="f_r btn" type="submit">
                                                 <span class="icon-search"></span>
                                                 <span class="text-el">{lang('search_find')}</span>
                                             </button>
                                             <div class="o_h">
-                                                <input type="text" 
-                                                       name="text" 
-                                                       value="" 
-                                                       placeholder="{lang('s_se_thi_sit')}" 
-                                                       autocomplete="off" 
-                                                       class="place_hold" 
+                                                <input type="text"
+                                                       name="text"
+                                                       value=""
+                                                       placeholder="{lang('s_se_thi_sit')}"
+                                                       autocomplete="off"
+                                                       class="place_hold"
                                                        id="inputString"/>
                                             </div>
                                             <div id="suggestions" class="drop-search"></div>
@@ -188,12 +188,12 @@
                                     <div style="margin-top: 7px;">
                                         <ul class="tabs">
                                             <li>
-                                                <a class="t-d_n d_b" 
-                                                   href="#ordercall" 
-                                                   data-drop=".drop-order-call" 
-                                                   data-effect-on="fadeIn" 
-                                                   data-effect-off="fadeOut" 
-                                                   data-duration="300" 
+                                                <a class="t-d_n d_b"
+                                                   href="#ordercall"
+                                                   data-drop=".drop-order-call"
+                                                   data-effect-on="fadeIn"
+                                                   data-effect-off="fadeOut"
+                                                   data-duration="300"
                                                    data-place="center"
                                                    data-simple="yes">
                                                     <span class="icon-order-call"></span>
@@ -225,63 +225,65 @@
                 </div>
                 <!-- End. Show content -->
             </div>
-
+            {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
+            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
+        </div>
+        <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
-            {if !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop'}
+            {if $exists_brands}
                 {widget('brands')}
             {/if}
             <!-- End. Brands widget for Shop -->
-            <div class="hFooter"></div>
-        </div>
-        <footer>
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span5">
-                        <nav>
-                            {load_menu('footer_menu')}<!-- footer menu-->
-                        </nav>
-                    </div>
-                    <!-- Start. Block with contacts -->
-                    <div class="span4">
-                        <ul class="contacts_info">
-                            <li>
-                                <span class="icon-foot-phone"></span>
-                                <span class="f-w_b">{lang('s_tel')}:</span> 
-                                +8 (090) <span class="d_n">&minus;</span> 500-50-50, 
-                                +8 (100)<span class="d_n">&minus;</span> 500-50-50
-                            </li>
-                            <li>
-                                <span class="icon-foot-email"></span>
-                                <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
-                            </li>
-                            <li>
-                                <span class="icon-foot-skype"></span>
-                                <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
-                            </li>
-                            <!--Load star rating-->
-                            {$CI->load->module('star_rating')->show_star_rating()}
-                        </ul>
-                    </div>
-                    <!-- End. Block with contacts -->
-
-                    <!-- Start. Social buttons-->
-                    <div class="span3 t-a_r">
-                        <div class="copy_right">© ImageCMS, 2013</div>
-                        <div class="footer_social">
-                            <div class="social">
-                                <a href="#" class="mail"></a>
-                                <a href="#" class="g_plus"></a>
-                                <a href="#" class="facebook"></a>
-                                <a href="#" class="vkontakte"></a>
-                                <a href="#" class="twitter"></a>
-                                <a href="#" class="odnoklasniki"></a>
-                            </div>
+            <div class="frame_footer">
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span5">
+                            <nav>
+                                {load_menu('footer_menu')}<!-- footer menu-->
+                            </nav>
                         </div>
-                        <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                        {lang('s_footer_seo')}
-                    </div>
-                    <!--End-->
+                        <!-- Start. Block with contacts -->
+                        <div class="span4">
+                            <ul class="contacts_info">
+                                <li>
+                                    <span class="icon-foot-phone"></span>
+                                    <span class="f-w_b">{lang('s_tel')}:</span>
+                                    +8 (090) <span class="d_n">&minus;</span> 500-50-50,
+                                    +8 (100)<span class="d_n">&minus;</span> 500-50-50
+                                </li>
+                                <li>
+                                    <span class="icon-foot-email"></span>
+                                    <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                </li>
+                                <li>
+                                    <span class="icon-foot-skype"></span>
+                                    <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                </li>
+                                <!--Load star rating-->
+                                {$CI->load->module('star_rating')->show_star_rating()}
+                            </ul>
+                        </div>
+                        <!-- End. Block with contacts -->
 
+                        <!-- Start. Social buttons-->
+                        <div class="span3 t-a_r">
+                            <div class="copy_right">© ImageCMS, 2013</div>
+                            <div class="footer_social">
+                                <div class="social">
+                                    <a href="#" class="mail"></a>
+                                    <a href="#" class="g_plus"></a>
+                                    <a href="#" class="facebook"></a>
+                                    <a href="#" class="vkontakte"></a>
+                                    <a href="#" class="twitter"></a>
+                                    <a href="#" class="odnoklasniki"></a>
+                                </div>
+                            </div>
+                            <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
+                            {lang('s_footer_seo')}
+                        </div>
+                        <!--End-->
+
+                    </div>
                 </div>
             </div>
         </footer>
@@ -323,7 +325,7 @@
 
     <!-- Start. Callback form -->
     {include_shop_tpl('callback')}
-    <!-- End. Callback form -->        
+    <!-- End. Callback form -->
 
     <!-- Start. Block report on appearance -->
     {include_shop_tpl('report_appearance')}

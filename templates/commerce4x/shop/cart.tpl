@@ -1,13 +1,13 @@
 <article class="container">
 
-
-    <div class="bot_border_grey m-b_10 {if count($items) > 0}d_n{/if}" id="shopCartPageEmpty" >
-        <div class="d_i title_h1">Корзина</div>
+    <div class="{if count($items) > 0}d_n{/if}" id="shopCartPageEmpty">
+        <div class="bot_border_grey m-b_10">
+            <div class="d_i title_h1">Корзина</div>
+        </div>
         <div class="alert alert-search-result">
             <div class="title_h2 t-a_c">Ваша корзина пуста</div>
         </div>
     </div>
-
 
     {if count($items) > 0}
         <div id="shopCartPage">

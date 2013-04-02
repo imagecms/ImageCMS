@@ -139,15 +139,15 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Img">
+                                            <label class="control-label" for="Img0">
                                                 {lang('amt_image')}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="item_image" id="Img0" value="{$item.item_image}">
                                                 </div>
                                             </div>
                                         </div>  
@@ -281,15 +281,15 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Img">
+                                            <label class="control-label" for="Img1">
                                                 {lang('amt_image')}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="item_image" id="Img1" value="{$item.item_image}">
                                                 </div>
                                             </div>
                                         </div>  
@@ -428,15 +428,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="Img">
+                                                    <label class="control-label" for="Img2">
                                                         {lang('amt_image')}:
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                         </div>
                                                         <div class="o_h">		            
-                                                            <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                            <input type="text" name="item_image" id="Img2" value="{$item.item_image}">
                                                         </div>
                                                     </div>
                                                 </div>  
@@ -573,15 +573,15 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Img">
+                                            <label class="control-label" for="Img3">
                                                 {lang('amt_image')}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                                 </div>
                                                 <div class="o_h">		            
-                                                    <input type="text" name="item_image" id="Img" value="{$item.item_image}">					
+                                                    <input type="text" name="item_image" id="Img3" value="{$item.item_image}">
                                                 </div>
                                             </div>
                                         </div>  

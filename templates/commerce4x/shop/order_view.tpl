@@ -178,8 +178,8 @@
                                                         </div>
                                                         <div class="photo-block">
                                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="photo">
-                                                                <span class="helper"></span>
                                                                 <figure>
+                                                                    <span class="helper"></span>
                                                                     <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
                                                                          alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
                                                                 </figure>
@@ -210,8 +210,8 @@
                                                             </div>
                                                                 <div class="photo-block">
                                                                 <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
-                                                                    <span class="helper"></span>
                                                                     <figure>
+                                                                        <span class="helper"></span>
                                                                         <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
                                                                              alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
                                                                     </figure>

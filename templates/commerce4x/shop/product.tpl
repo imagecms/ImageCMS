@@ -33,8 +33,8 @@
                             {foreach $productImages as $key => $image}
                                 <li>
                                     <a rel="group" href="{echo $image->getThumbUrl()}" class="photo">
-                                        <span class="helper"></span>
                                         <figure>
+                                            <span class="helper"></span>
                                             <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
@@ -152,7 +152,8 @@
                                     data-name="{echo ShopCore::encode($model->getName())}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
                                     data-maxcount="{echo $model->firstVariant->getstock()}"
-                                    data-prodpage="true">
+                                    data-prodpage="true"
+                                    >
                                 {lang('s_buy')}
                             </button>
                         {/if}
@@ -198,7 +199,8 @@
                             type="button" 
                             data-title="{lang('s_add_to_compare')}"
                             data-sectitle="{lang('s_in_compare')}"
-                            data-rel="tooltip">
+                            data-rel="tooltip"
+                            >
                         <span class="icon-comprasion_2"></span>
                         <span class="text-el">{lang('s_add_to_compare')}</span>
                     </button>
@@ -212,7 +214,8 @@
                             type="button" 
                             data-title="{lang('s_add_to_wish_list')}"
                             data-sectitle="{lang('s_in_wish_list')}"
-                            data-rel="tooltip">
+                            data-rel="tooltip"
+                            >
                         <span class="icon-wish_2"></span>
                         <span class="text-el">{lang('s_slw')}</span>
                     </button>
@@ -230,7 +233,7 @@
 
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
-                {if $model->getShortDescription()        != ''}
+                {if $model->getFullDescription()        != ''}
                     <li>
                         <button type="button" data-href="#info">
                             <span class="icon-info"></span>
@@ -283,10 +286,10 @@
 
             <div class="frame_tabs">
                 <!--Piece of information about the product Start-->
-                {if $model->getShortDescription() != ''}
+                {if $model->getFullDescription() != ''}
                     <div id="info">
                         <div class="text">
-                            {echo $model->getShortDescription()}                      
+                            {echo $model->getFullDescription()}                      
                         </div>
                     </div>
                 {/if}
@@ -365,8 +368,8 @@
                                     <!--Photo and link to accessory Start-->
                                     <div class="photo-block">
                                         <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
-                                            <span class="helper"></span>
                                             <figure>
+                                                <span class="helper"></span>
                                                 <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
                                             </figure>
                                         </a>
@@ -423,8 +426,8 @@
                                         </div>
                                         <div class="photo-block">
                                             <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
-                                                <span class="helper"></span>
                                                 <figure>
+                                                    <span class="helper"></span>
                                                     <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                 </figure>
                                             </a>
@@ -456,8 +459,8 @@
                                             </div>
                                             <div class="photo-block">
                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
-                                                    <span class="helper"></span>
                                                     <figure>
+                                                        <span class="helper"></span>
                                                         <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                     </figure>
                                                 </a>
@@ -488,7 +491,8 @@
                                     data-kit="true"
                                     data-kitId="{echo $kitProducts->getId()}"
                                     data-number="{echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $model->firstVariant->getstock()}">
+                                    data-maxcount="{echo $model->firstVariant->getstock()}"
+                                    >
                                 {lang('s_buy')}
                             </button>
                         </li>
