@@ -80,6 +80,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -90,6 +97,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -100,6 +114,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>     
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -110,6 +131,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
+     * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
+     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>     
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -122,12 +150,10 @@ abstract class BaseEvents {
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
-     * <tr valign="top"><td>['url']</td><td></td></tr>
-     * <tr valign="top"><td>['short_desc']</td><td></td></tr>
-     * <tr valign="top"><td>['parent_id']</td><td></td></tr>
-     * <tr valign="top"><td>['description']</td><td></td></tr>
-     * <tr valign="top"><td>['userId']</td><td></td></tr>
+     * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
+     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>
      * </table>
      * @return BehaviorFactory
      * @author Kaero
@@ -139,6 +165,11 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -149,6 +180,11 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -159,6 +195,11 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['model']</td><td></td>Instanceof SProducts</tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -169,6 +210,10 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -179,6 +224,10 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -189,6 +238,10 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['commentId']</td><td>Comment ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>

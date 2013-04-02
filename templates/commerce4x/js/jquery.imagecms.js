@@ -1299,9 +1299,10 @@ function ieInput(els) {
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
 
-                        if (input.val() == 1)
-                            $thisPrev.attr('disabled', 'disabled');
-                        else
+                        if (input.val() != 1)
+                                //$thisPrev.attr('disabled', 'disabled');
+//                                continue;
+//                        else
                             $thisPrev.removeAttr('disabled');
                     })
                     $this.die('keyup').live('keyup', function(){
@@ -1346,7 +1347,7 @@ function ieInput(els) {
                         return false;
                 })
             }
-            else if ($thisVal < $min)
+            else if ($thisVal <= $min)
                 $this.val($min);
             
             if (typeof $max == 'integer' && $max != 0)  
@@ -1378,7 +1379,7 @@ function ieInput(els) {
 
             $thisVal = $this.val();
 
-            if ($thisVal >  $max-1) {
+            if ($thisVal >  $max) {
                 $this.val($max);
                 return true;
             }
