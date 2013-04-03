@@ -1070,6 +1070,14 @@ function initAdminArea() {
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.")
 }
 ;
+//+++++++++++++++++++++++++++++++++++++++++
+function ch_lan(el){
+    $('div.lan').addClass('d_n');
+    $('div.lan input').attr('disabled','disabled');
+    $('#lang_form'+$(el).val()).removeClass('d_n');
+    $('#lang_form'+$(el).val()+' input').removeAttr('disabled');    
+}
+//+++++++++++++++++++++++++++++++
 
 $(document).ready(
     function() {
