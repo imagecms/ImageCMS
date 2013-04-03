@@ -2,31 +2,22 @@
     <div class="container">
         <div class="title_h2">{lang('lang_forgot_password')}</div>
         <div class="frame-register">
-            <form method="post" action="{site_url('auth/forgot_password')}" id="login_form">
+             <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
+                                            return false;">
                 <div class="grey-b_r-bord inside-padd">
                     <div class="title_h4">На вашу электронную почту будет выслано письмо с указаниями по восстановлению пароля.</div>
                     <div class="horizontal-form">
-                        {if $info_message || validation_errors()}
-                            <div class="control-group">
-                                <div class="msg">
-                                    <div class="error">
-                                        {validation_errors()}
-                                        {$info_message}
-                                    </div>
-                                </div>
-                            </div>
-                        {/if}
                         <div class="control-group">
                             <label class="control-label" for="reg_email">E-mail:</label>
                             <div class="controls">
-                                <input id="reg_email" type="text" class="required email" maxlength="30" name="email" value="{set_value('email')}" />
+                                <input type="text" name="email" id="login" />
                                 <span class="must">*</span>
+                                <label id="for_email" class="for_validations"></label>
                             </div>
                         </div>
-
                         <div class="control-group">
-                            <div class="btn btn-order f_l">
-                                <input type="submit" value="Войти"/>
+                            <div class="btn btn-order">
+                                <input type="submit" value="Отправить"/>
                             </div>
                         </div>
                     </div>

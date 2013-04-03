@@ -182,15 +182,19 @@ function ajaxRecount(el, slChk) {
     var $this = el,
     slChk = slChk;
     
-    $cur_url = $('input[name=requestUri]').val();
+//    $cur_url = $('input[name=requestUri]').val();
+
+    var catUrl = window.location.pathname + window.location.search;
+    catUrl = catUrl.replace('shop/category', 'module_frame/filter');
        
     $.ajax({
         type: 'get',
-        url: $cur_url,
+        url: catUrl,
         data: catalogForm.serialize(),
         beforeSend: function(){
             $.fancybox.showActivity();
         },
+
         success: function(msg){
             var otherClass = '';
             catalogForm.find('.popup_container').html(msg);
