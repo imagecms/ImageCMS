@@ -28,38 +28,22 @@
             {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search" || $CI->uri->segment(2) == "compare" || $CI->uri->segment(2) == "wish_list"}
                 <div class="f-s_0 func-button">
                         {if $p->firstvariant->getstock() != 0}
-                                <!-- buy/inCart button -------------------->
-                               {if is_in_cart($p->id, $p->firstVariant->getId())}
-                                   <div class="btn btn-order goCart f_l">
-                                        <button class="buyButton inCart"
-                                                type="button"
-                                                data-prodId="{echo $p->getId()}"
-                                                data-varId="{echo $p->firstVariant->getId()}"
-                                                data-price="{echo $p->firstVariant->toCurrency()}"
-                                                data-name="{echo $p->getName()}"
-                                                data-number="{echo $p->firstVariant->getnumber()}"
-                                                data-maxcount="{echo $p->firstVariant->getstock()}"
-                                                data-vname="{echo $p->firstVariant->getName()}">
-                                            Уже в корзине
-                                        </button>
-                                    </div>
-                                {else:}
-                                    <div class="btn btn-buy goBuy f_l">
-                                        <button class="buyButton toCart"
-                                                type="button"
-                                                data-prodId="{echo $p->getId()}"
-                                                data-varId="{echo $p->firstVariant->getId()}"
-                                                data-price="{echo $p->firstVariant->toCurrency()}"
-                                                data-name="{echo $p->getName()}"
-                                                data-number="{echo $p->firstVariant->getnumber()}"
-                                                data-maxcount="{echo $p->firstVariant->getstock()}"
-                                                data-vname="{echo $p->firstVariant->getName()}">
-                                            <span class="icon-bask-buy"></span>
-                                            {lang('s_buy')}
-                                        </button>
-                                    </div>
-                                {/if}
-                            <!-- end of buy/inCart buttons ------------->
+                        <!-- buy/inCart button -------------------->
+                            <div class="btn btn-buy goBuy f_l">
+                                <button class="buyButton toCart"
+                                        type="button"
+                                        data-prodId="{echo $p->getId()}"
+                                        data-varId="{echo $p->firstVariant->getId()}"
+                                        data-price="{echo $p->firstVariant->toCurrency()}"
+                                        data-name="{echo $p->getName()}"
+                                        data-number="{echo $p->firstVariant->getnumber()}"
+                                        data-maxcount="{echo $p->firstVariant->getstock()}"
+                                        data-vname="{echo $p->firstVariant->getName()}">
+                                    <span class="icon-bask-buy"></span>
+                                    {lang('s_buy')}
+                                </button>
+                            </div>
+                        <!-- end of buy/inCart buttons ------------->
                         {else:}
                             <!-- нема в наявності -->
                             <div class="d_i-b f_l var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail_wrap">
