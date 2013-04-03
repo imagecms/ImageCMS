@@ -10,7 +10,10 @@ if ( ! function_exists('get_page'))
 		$ci->db->limit(1);
 		$ci->db->select('content.*');
 		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
-		$ci->db->where('id', $id);
+                if (get_main_lang('identif') == $ci->uri->segment(1))
+                    $ci->db->where('lang_alias', $id);
+                else
+                    $ci->db->where('id', $id);
 		$query = $ci->db->get('content');
 
 		if ($query->num_rows() == 1)
