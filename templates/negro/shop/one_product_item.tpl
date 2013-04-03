@@ -10,7 +10,8 @@
                     <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
                 {/if}
 <!--                Discount in percents-->
-                {if $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
+                
+                {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
                      {$discount = round(100 - ($p->firstVariant->toCurrency() / $p->firstVariant->toCurrency('OrigPrice') * 100))}
                 {/if}
                 {promoLabel($p->getHit(), $p->getHot(), $discount)}
