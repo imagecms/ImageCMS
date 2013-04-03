@@ -1,4 +1,3 @@
-{$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
         {myCrumbs($model->getCategoryId(), " / ", $model->getName())}
@@ -41,7 +40,7 @@
                     {if $model->hasDiscounts()}
                         <div class="v-a_b d_i-b">
                             <div class="price-old-catalog">
-                                <span>Старая цена: <span class="old-price"><span>{echo $model->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
+                                <span>Старая цена: <span class="old-price"><span id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
                             </div>
                         </div>
                     {/if}
