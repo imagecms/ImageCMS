@@ -5,13 +5,19 @@ if ( ! function_exists('get_page'))
 	// Get page by id
 	function get_page($id)
 	{
+            
+            $lang_id = get_main_lang('id');
+            $lang_identif = get_main_lang('identif');
 		$ci =& get_instance();
 
 		$ci->db->limit(1);
 		$ci->db->select('content.*');
-		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
-                if (get_main_lang('identif') == $ci->uri->segment(1))
+		//$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+
+                if ($lang_identif == $ci->uri->segment(1)){
                     $ci->db->where('lang_alias', $id);
+                    $ci->db->where('lang', $lang_id);
+                }
                 else
                     $ci->db->where('id', $id);
 		$query = $ci->db->get('content');
