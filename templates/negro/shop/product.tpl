@@ -13,13 +13,7 @@
                     <div class="d_i m-r_15">
                         <h1 class="d_i">{echo $model->getName()}</h1>
                     </div>
-                    {foreach $model->getProductVariants() as $v}
-                        {if $v->getNumber()}
-                            <span class="var_{echo $v->getId()} prod_{echo $model->getId()}">
-                                <span class="code">Код: {echo $v->getNumber()}</span>
-                            </span>
-                        {/if}
-                    {/foreach}
+                    <span class="code" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
                 </div>
                 <div class="f-s_0 buy-block">
                     <!--Select variant -->
@@ -51,7 +45,7 @@
                             </div>
                         </div>
                     {/if}
-                    <div class="v-a_b d_i-b var_{echo $v->getId()} prod_{echo $model->getId()}">
+                    <div class="v-a_b d_i-b var_{echo $model->firstVariant->getId()} prod_{echo $model->getId()}">
                         <div class="price-product">
                             <div>
                                 <span class="" id="priceVariant">{echo $model->firstVariant->toCurrency()} </span>
@@ -338,7 +332,7 @@
             </section>
         {/if}
 <!--        End. Buy kits-->
-
+        
         <div class="clearfix item-product">
             <div class="right-product f-s_0">
                 <ul class="tabs tabs-data">
