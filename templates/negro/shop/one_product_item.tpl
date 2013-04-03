@@ -9,13 +9,17 @@
                 {else:}
                     <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
                 {/if}
+<!--                Discount in percents-->
+                {if $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
+                     {$discount = round(100 - ($p->firstVariant->toCurrency() / $p->firstVariant->toCurrency('OrigPrice') * 100))}
+                {/if}
                 {promoLabel($p->getHit(), $p->getHot(), $discount)}
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
             {$CI->load->module('star_rating')->show_star_rating($p)}
-            {if $p->hasDiscounts()}
+            {if $discount}
                 <div class="price-old-catalog">
                     <span>Старая цена: <span class="old-price"><span>{echo $p->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
                 </div>
@@ -23,6 +27,7 @@
             {if $p->firstVariant->toCurrency() > 0}
                 <div class="price-catalog var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
                     <div>{echo $p->firstVariant->toCurrency()} <span class="cur">{$CS}</span></div>
+                    {echo $p->firstVariant->toCurrency('Price',1)} $
                 </div>
             {/if}
             {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search" || $CI->uri->segment(2) == "compare" || $CI->uri->segment(2) == "wish_list"}
