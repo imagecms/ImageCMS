@@ -10,7 +10,6 @@
                     <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
                 {/if}
 <!--                Discount in percents-->
-                
                 {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
                      {$discount = round(100 - ($p->firstVariant->toCurrency() / $p->firstVariant->toCurrency('OrigPrice') * 100))}
                 {/if}
@@ -28,7 +27,6 @@
             {if $p->firstVariant->toCurrency() > 0}
                 <div class="price-catalog var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
                     <div>{echo $p->firstVariant->toCurrency()} <span class="cur">{$CS}</span></div>
-                    {echo $p->firstVariant->toCurrency('Price',1)} $
                 </div>
             {/if}
             {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search" || $CI->uri->segment(2) == "compare" || $CI->uri->segment(2) == "wish_list"}

@@ -32,8 +32,11 @@
         </nav>
          <div class="f_r">
             <span class="v-a_m">На странице:</span>
+            {if ShopCore::$_GET['user_per_page'] == null}
+                {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
+            {/if}
             <div class="lineForm d_i-b">
-                {$per_page_arr = array(12,24,36,48)}
+                {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
                 <select id="sort2" name="user_per_page">
                     {foreach $per_page_arr as $pp}
                         <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
