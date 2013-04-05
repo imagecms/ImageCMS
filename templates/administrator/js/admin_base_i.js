@@ -423,7 +423,29 @@ $(document).ready(function() {
         textcomment_s_h('s', $(this));
         //display_edit_fields(id);
     });
-
+    //////////////sorting on site
+    $('.edit_field_sort').live('click', function() {
+         $(this).next(".text_field_block").toggle();
+    });
+    $('.save_button_field').live('click', function() {
+        obj = $(this);
+        id = $(this).attr('data-id');
+        name = $(this).attr('data-name');
+        text= $(this).prev('textarea').val();
+        $.ajax({
+            type: 'post',
+            url: '/admin/components/run/shop/settings/ajaxUpdateFieldName',
+            data: 'id=' + id + '&name=' +name+ '&text=' +text,
+            success: function(data) {
+                obj.parent('.text_field_block').prev().html(text);
+                obj.parent('.text_field_block').hide();
+            }
+        });
+        
+    });
+    
+    
+    //////////////end sorting on site
     function display_edit_fields(id)
     {
         $('#nc' + id).trigger('click');
