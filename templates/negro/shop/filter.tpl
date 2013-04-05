@@ -15,7 +15,7 @@
     def_max={$maxPrice};
     cur_min={$curMin};
     cur_max={$curMax};
-    totalProducts = parseInt('{echo $countProducts}');
+    totalProducts = parseInt('{echo count($produtcs)}');
 </script>
 <div class="block-filter shadow-w_220">
     <div class="title_h3">Подробор по параметрам</div>

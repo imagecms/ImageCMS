@@ -14,6 +14,7 @@
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie_7.css" /><![endif]-->
        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
+        <script type="text/javascript" src="{$SHOP_THEME}js/jquery.pluginssiteimage.min.js"></script>
         {$gmeta}
     </head>
     <body>
@@ -37,7 +38,7 @@
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
             var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
             var inCart = '{lang('already_in_basket')}';
-            var toCart = '{lang('s_buy')}';
+            var toCart = '<span class="icon-bask-buy"></span> {lang('s_buy')}';
             var pcs = 'шт.';
             var kits = 'компл.';
         </script>
@@ -54,7 +55,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
         <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <!-- Dev. scripts -->

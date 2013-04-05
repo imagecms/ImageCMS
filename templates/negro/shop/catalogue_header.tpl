@@ -1,18 +1,19 @@
-
 {if $totalProducts > 0}
+<form method="get" id="searchSortForm" action="">
     <div class="head-category clearfix">
-        <div class="f_l">
-            <span class="v-a_m">На странице:</span>
-            <div class="lineForm d_i-b">
-                {$per_page_arr = array(12,24,36,48)}
-                <select name="user_per_page" id="c" onchange="search_per_page(this)">
-                    {foreach $per_page_arr as $pp}
-                        <option {if $pp == $_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+         <div class="f_l">
+            <span class="v-a_m">Фильтровать по:</span>
+            <div class="lineForm w_170">
+                <select class="sort" id="sort" name="order">
+                    {$sort =ShopCore::app()->SSettings->getSortingFront()}
+                    {foreach $sort as $s}
+                        <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                     {/foreach}
                 </select>
             </div>
         </div>
-        <nav class="f_r frame-catalog-view t-a_r">
+        <!-- End. Sort by block -->
+        <nav class="f_l frame-catalog-view t-a_r">
             <ul class="tabs groups-buttons d_i-b" data-type="itemsView" data-elchange="#items-catalog-main" data-elchtglcls="list">
                 <li {if $_COOKIE['listtable'] != 1}class="active"{/if}>
                     <button data-href="">
@@ -26,9 +27,26 @@
                 </li>
             </ul>
         </nav>
+         <div class="f_r">
+            <span class="v-a_m">На странице:</span>
+            {if ShopCore::$_GET['user_per_page'] == null}
+                {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
+            {/if}
+            <div class="lineForm d_i-b">
+                {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
+                <select id="sort2" name="user_per_page">
+                    {foreach $per_page_arr as $pp}
+                        <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
     </div>
+    {if $CI->uri->segment(2) == "search"}
+        <input type="hidden" name="text" value="{$_GET['text']}">
+    {/if}
+</form>
 {/if}
-
 <div class="catalog-baner clearfix">
     {if $CI->uri->segment(2) == "category" && count($banners = getBannersCat($limit = 3, $model->id)) > 0}
         {foreach $banners as $banner}
@@ -51,18 +69,3 @@
         <hr/>
     {/if}
 </div>
-
-{if $totalProducts > 0}
-    <nav class="frame-sort clearfix">
-        <span class="c_47">Сортировать:</span>
-        <ul class="sort_current">
-            <li class="{if trim($_GET[order]) == "" || $_GET[order] == "hit"}active{/if}" data-rel="tooltip" data-title="Самые продаваемые" ><button type="button" class="ref" value="hit">Топ продаж</button></li>
-            <li class="{if $_GET[order] == "price"}active{/if}" data-rel="tooltip" data-title="По цене, начиная с дешевых" ><button type="button" class="ref"  value="price">Дешевые</button></li>
-            <li class="{if $_GET[order] == "price_desc"}active{/if}" data-rel="tooltip" data-title="По цене, начиная с дорогих"><button type="button" class="ref"  value="price_desc">Дорогие</button></li>
-            <li class="{if $_GET[order] == "hot"}active{/if}" data-rel="tooltip" data-title="Новинки сезона"><button type="button" class="ref" value="hot">Новинки</button></li>
-            <li class="{if $_GET[order] == "discount"}active{/if}" data-rel="tooltip" data-title="Со скидкой"><button type="button" class="ref" value="discount">Скидки</button></li>
-            <li class="{if $_GET[order] == "popular"}active{/if}" data-rel="tooltip" data-title="Больше всего просмотров"><button type="button" class="ref" value="popular">Популярные</button></li>
-            <li class="{if $_GET[order] == "created_desc"}active{/if}" data-rel="tooltip" data-title="Последние появившиеся"><button type="button" class="ref" value="created_desc">Последние</button></li>
-        </ul>
-    </nav>
-{/if}

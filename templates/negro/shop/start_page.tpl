@@ -3,7 +3,7 @@
     <div class="frame_baner">
         <section class="carousel_js baner container">
             <div class="content-carousel">
-                <ul>
+                 <ul class="cycle">
                     {foreach $banners as $banner}
                         <li>
                             {if trim($banner['url']) != ""}
@@ -29,5 +29,5 @@
     </div>
 </div>
     {widget('popular_products')}
-    {widget('new_products')}
     {widget('action_products')}
+    {widget('brands')}

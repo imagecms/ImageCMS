@@ -1,5 +1,5 @@
 <div class="drop drop-report">
-    <div class="drop-content">
+    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
         <div class="title_h2">Сообщить когда появится</div>
         <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     </div>

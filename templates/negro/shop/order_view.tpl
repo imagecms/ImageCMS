@@ -1,4 +1,3 @@
-{//$_SESSION["flash:old:makeOrder"] = true}
 <div class="frame-crumbs">
     <div class="container">
         {myCrumbs(0, " / ", "Просмотр заказа")}
@@ -8,6 +7,11 @@
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="title_h2">Спасибо за ваш заказ!</div>
+            <!-- Clear Cart locale Storage -->
+            <script>{literal}$(document).ready(function() {
+                    Shop.Cart.clear();
+                }){/literal}
+            </script>
         {else:}
             <div class="title_h2">Заказ №<span class="arial">{echo $model->getId()}</span></div>
         {/if}
@@ -30,22 +34,6 @@
                 {/if}
                 {$total = round_price($total)}
                 <br/>Итого: <span class="green f-w_b">{$total} {$CS}</span>
-
-                <br/>Способ оплаты:
-                {if $paymentMethods[0] != null && !$model->getPaid()}
-                    {foreach $paymentMethods as $pm}
-                        {if $pm->getId() == 3 || $pm->getId() == 4}
-                            <div class="d_i-b">
-                                {echo encode($pm->getName())}
-                            </div>
-                            <div class="m-t_10 m-b_10">
-                                {echo $pm->getPaymentForm($model)} 
-                            </div>    
-                        {else:}
-                            {echo encode($pm->getName())}
-                        {/if}
-                    {/foreach}
-                {/if}
             </div>
             <div class="title_h3">Параметры заказа</div>
             <table class="table-info-order">
@@ -85,12 +73,6 @@
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
-                {if $model->getUserCity()}
-                    <tr>
-                        <th>Город:</th>
-                        <td>{echo $model->getUserCity()}</td>
-                    </tr>
-                {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>Адрес:</th>
@@ -108,123 +90,79 @@
         <div class="right-order">
             <div class="frame-your-order">
                 <div class="title_h3">Ваш заказ</div>
-
-                {foreach $model->getSOrderProductss() as $item}
-                    {if !$item->getKitId() > 0}
-                        {$p = getProduct($item->getProductId())}
-                        {$v = getVariant($item->getVariantId())}
+                {foreach $model->getSOrderProductss() as $orderProduct}
+                   
                         <ul class="items-complect item-order">
                             <li>
-                                <a href="{shop_url('product/' . $p->getUrl())}">
+                                <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        {if $p->getSmallImage()}
-                                            <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl($p->getSmallImage())}">
-                                        {else:}
-                                            <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl('no_s.png')}">
-                                        {/if}
-
-                                        {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                                            {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
-                                        {else:}
-                                            {$discount = 0}
-                                        {/if}
-                                        {promoLabel($p->getHit(), $p->getHot(), $discount)}
+                                        <img alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}" src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}">
                                     </span>
-                                    <span class="title">{echo ShopCore::encode($p->getName())} {echo ShopCore::encode($v->getName())}</span>
-                                </a>
-                                <div class="description">
-                                    {if $p->getOldPrice() > $v->getPrice()}
-                                        <div class="d_i-b m-r_10">
-                                            <span><span class="old-price"><span>{echo round_price($p->getOldPrice())} <span class="cur">{$CS}</span></span></span></span>
-                                        </div>
-                                    {/if}
-                                    {if $v->getPrice() > 0}
-                                        <div class="price-complect d_i-b">
-                                            <div>{echo $v->getPrice()} <span class="cur">{$CS}</span></div>
-                                        </div>
-                                        х {echo $item->getQuantity()} шт.
-                                    {/if}
-                                </div>
-                            </li>
-                        </ul>
-                    {else:}
-                        <!-- комплект -->
-                        {if $kitId == $item->getKitId()}
-                            {continue;}
-                        {else:}
-                            {$kitId = $item->getKitId()}
-                        {/if}
-                        {$kitProducts = getKitProducts($kitId)}
-                        {$k_main = getProduct($kitProducts[0][main_product])}
-                        {$kit_price = $k_main->firstVariant->getPrice()}
-                        <ul class="items-complect items-complect-order-view">
-                            <li>
-                                <a href="{shop_url('product/' . $k_main->getUrl())}">
-                                    <span class="photo-block">
-                                        <span class="helper"></span>
-                                        {if $k_main->getSmallImage()}
-                                            <img src="{productImageUrl($k_main->getSmallImage())}" alt="{echo ShopCore::encode($k_main->getName())}" />
-                                        {else:}
-                                            <img src="{productImageUrl('no_s.png')}" alt="{echo ShopCore::encode($k_main->getName())}" />
-                                        {/if}
-                                    </span>
-                                    <span class="title">{echo $k_main->getName()}</span>
+                                    <span class="title">{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}</span>
                                 </a>
                                 <div class="description">
                                     <div class="price-complect d_i-b">
-                                        <div>{echo $k_main->firstVariant->getPrice()} <span class="cur">{$CS}</span></div>
+                                        <div>{echo $orderProduct->getPrice()} <span class="cur">{$CS}</span></div>
                                     </div>
-                                </div>
-                                {$sum = $k_main->firstVariant->getPrice()}
-                            </li>
-                            {$kcnt = count($kitProducts)}
-                            {foreach $kitProducts as $prod}
-                                {$p = getProduct($prod[product_id])}
-                                {$p_price = $p->firstVariant->getPrice()}
-                                {$p_disc = $p_price - ($p_price * $prod[discount] / 100)}
-                                {$kit_price += $p_price}
-                                <li>
-                                    <a href="{shop_url('product/' . $p->getUrl())}">
-                                        <span class="photo-block">
-                                            <span class="helper"></span>
-                                            {if $p->getSmallImage()}
-                                                <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl($p->getSmallImage())}">
-                                            {else:}
-                                                <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl('no_s.png')}">
-                                            {/if}
-                                        </span>
-                                        <span class="title">{echo ShopCore::encode($p->getName())}</span>
-                                    </a>
-                                    <div class="description">
-                                        <div class="d_i-b m-r_10">
-                                            <span><span class="old-price"><span>{$p_price} <span class="cur">{$CS}</span></span></span></span>
-                                        </div>
-                                        <div class="price-complect d_i-b">
-                                            <div>{$p_disc} <span class="cur">{$CS}</span></div>
-                                        </div>
-                                    </div>
-                                    {$kcnt --}
-                                </li>
-                                {$sum += $p_disc}
-                            {/foreach}
-                            <li style="width:100% !important;margin-left:0;">
-                                <div class="t-a_c">
-                                    <img src="{$THEME}/shop/default/images/sum_arrow.png"/>
-                                </div>
-                                <span class="v-a_bl">Комплект ({echo $item->getQuantity()}  шт):</span>
-                                <div class="v-a_bl d_i-b">
-                                    {$kit_price = $kit_price * $item->getQuantity()}
-                                    <span class="old-price"><span>{$kit_price} <span class="cur">{$CS}</span></span></span>
-                                    <div class="price-complect f-s_21 d_i-b"><div>{$sum} <span class="cur">{$CS}</span></div></div>
+                                    х {echo $orderProduct->getQuantity()} шт.
                                 </div>
                             </li>
                         </ul>
-                    {/if}
                 {/foreach}
-
+<!--                Kits-->
+                {foreach $model->getOrderKits() as $orderProduct}                        
+                                    <ul class="items-complect items-complect-order-view">
+                                        <li>
+                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
+                                                <span class="photo-block">
+                                                    <span class="helper"></span>
+                                                        <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
+                                                                         alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
+                                                    </span>
+                                                <span class="title">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</span>
+                                            </a>
+                                            <div class="description">
+                                                <div class="price-complect d_i-b">
+                                                    <div>{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()} <span class="cur">{$CS}</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Start. Display kits products -->
+                                        {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
+                                            <li>
+                                                <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">
+                                                    <span class="photo-block">
+                                                        <span class="helper"></span>
+                                                            <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
+                                                                             alt="{echo ShopCore::encode($kitProducts->getSProducts()->getName())}"/>
+                                                    </span>
+                                                    <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
+                                                </a>
+                                                <div class="description">
+                                                    <div class="price-complect d_i-b">
+                                                        <div>{echo $kitProducts->getDiscountProductPrice()}<span class="cur">{$CS}</span></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {/foreach}
+                                        <li style="width:100% !important;margin-left:0;">
+                                            <div class="t-a_c">
+                                                <img src="{$THEME}/shop/default/images/sum_arrow.png"/>
+                                            </div>
+                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}}  шт):</span>
+                                            <div class="v-a_bl d_i-b">
+                                                <div class="price-complect f-s_21 d_i-b"><div>{echo $orderProduct->getKit()->getTotalPrice()}<span class="cur">{$CS}</span></div></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                {/foreach}
                 <div class="m-b_15 t-a_r">
-                    <div class="f-s_18 f-w_b">К оплате: <span class="price-order"><span>{$total} <span class="cur">{$CS}</span></span></span></div>
+                    <div class="f-s_18 f-w_b">К оплате: <span class="price-order">
+                            <span>{echo $model->getTotalPrice()} <span class="cur">{$CS}</span></span><br/>
+                            + Доставка:<span>{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}<span class="cur">{$CS}</span></span>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,13 +5,18 @@
 </div>
 <div class="frame-inside">
     {if count($items) > 0}
-        <form method="post" action="{shop_url('cart')}" id="order_form">
+        <form method="post" action="{shop_url('cart')}" id="makeOrderForm">
             <div class="container">
                 <h1>Оформление заказа</h1>
                 <div class="frame-cleaner-main left_order">
-                    {include_tpl('cart_products')}
+
                 </div>
                 <div class="">
+
+                    <div id="orderDetails">
+
+                    </div>
+
                     <div class="clearfix horizontal-form">
                         <div class="box-ordering1">
                             <div class="title_h3">Данные получателя</div>
@@ -67,28 +72,30 @@
                         </div>
                         <div class="box-ordering3">
                             {if sizeof($paymentMethods) > 0}
-                                <div class="control-group">
-                                    <span class="title_h3">Способ оплаты</span>&nbsp;&nbsp;<a href="{site_url('oplata')}">Подробнее</a>
-                                    <div class="frame-radio-but">
-                                        {foreach $paymentMethods as $pm}
-                                            {$deliv_ids = getDelivIdsByPayments($pm->getId())}
-                                            {$class = "frame-label "}
-                                            {foreach $deliv_ids as $d}
-                                                {$class .= "deliv_id_" . $d . " "}
-                                            {/foreach}
-                                            <div class="payMethods {$class}">
-                                                <div class="niceRadio">
-                                                    <input type="radio" name="paymentMethodId" class="f_l" value="{echo $pm->getId()}" />
-                                                </div>
-                                                <div class="neigh-radio">{echo $pm->getName()}
-                                                    {if $pm->getDescription()}
-                                                        <div class="help-block d_b">{echo $pm->getDescription()}</div>
-                                                    {/if}
-                                                </div>
+                                <div class="frameLabel" style="position: relative; z-index: 5;">
+                                    <span class="title">Способ оплаты</span>
+                                    <div class="frame_form_field">
+                                        <div class="row-fluid">
+                                            <div class="lineForm pmDiv">
+                                                <select name="paymentMethodId"  id="paymentMethod">
+                                                    {$counter = true}
+                                                    {foreach $paymentMethods as $paymentMethod}
+                                                    <label>
+                                                        <option
+                                                                {if $counter} checked="checked"
+                                                                    {$counter = false}
+                                                                    {$pay_id = $paymentMethod->getId()}
+                                                                {/if}
+                                                                value="{echo $pay_id}" />
+                                                        {echo $paymentMethod->getName()}</option>
+                                                        {/foreach}
+
+                                                </select>
                                             </div>
-                                        {/foreach}
+                                        </div>
                                     </div>
                                 </div>
+
                             {/if}
                         </div>
                     </div>
@@ -101,9 +108,10 @@
                             <div class="d_i-b v-a_m">
                                 <div style="width: 196px;" class="d_i-b v-a_b">
                                     <input type="text" name="giftcert" placeholder="Введите номер сертификата"/>
+                                    <input type="hidden" value="0" name="checkCert">
                                 </div>
                                 <div class="btn btn-def2 v-a_b">
-                                    <button type="button" class="c_3 giftCertCheck">ОК</button>
+                                    <button type="button" id="applyGiftCert" class="c_3 giftCertCheck">ОК</button>
                                 </div>
                             </div>
                         </div>
@@ -153,8 +161,8 @@
         var cs = '{/literal}{$CS}{literal}';
         var cur_delivery = $('input[name=deliveryMethodId][checked=checked]').val();  
         $(document).ready(function(){
-            setAllowablePaymentMethods(cur_delivery);
-            summaryOrderPrice(cs);
+//            setAllowablePaymentMethods(cur_delivery);
+//            summaryOrderPrice(cs);
         })
     </script>
 {/literal}
