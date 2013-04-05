@@ -25,6 +25,17 @@
                             <div class="horizontal-form w_350 f_l">
                                 {include_tpl('../profile_data_popup')}
                             </div>
+                            {//$discount = ShopCore::app()->SDiscountsManager->getActive();}
+                            {/*if count(getComulativDiscountList()) > 0}
+                                <div class="right-personal">    
+                                    <div class="info-discount">
+                                        {if count($discountCom) > 0}
+                                            <div class="f-s_14 title">Ваша скидка</div>
+                                            <div class="c_68 info-discount-count">Текущая накопительная скидка: <span class="text-discount f-s_14">{echo $discountCom->getDiscount()}%</span></div>
+                                        {/if}
+                                    </div>
+                                </div>
+                            {/if*/}
                         </div>
                     </div>
                     <div id="change_pass">

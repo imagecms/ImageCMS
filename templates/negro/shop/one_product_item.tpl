@@ -1,5 +1,6 @@
 {if !$promos && $products}{$promos = $products}{/if}
 {foreach $promos as $p}
+    {$Comments = $CI->load->module('comments')->init($p)}
     <li>
         <a href="{shop_url('product/' . $p->getUrl())}">
             <span class="photo-block">
@@ -19,6 +20,11 @@
         </a>
         <div class="description">
             {$CI->load->module('star_rating')->show_star_rating($p)}
+            {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
+                    {echo $Comments[$p->getId()]}
+                </a>
+            {/if}
             {if $discount}
                 <div class="price-old-catalog">
                     <span>Старая цена: <span class="old-price"><span>{echo $p->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>

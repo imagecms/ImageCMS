@@ -30,3 +30,4 @@
 </div>
     {widget('popular_products')}
     {widget('action_products')}
+    {widget('brands')}
