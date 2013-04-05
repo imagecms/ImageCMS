@@ -1,7 +1,6 @@
-<div class="frame_brand carousel_js">
-    <div class="container p_r">
-        <div class="carousel">
-            <ul class="items">
+<div class="carousel_js products-carousel">
+    <div class="content-carousel container">
+        <ul class="items-catalog">
                 {foreach $brands as $brand}
                     <li>
                         <a href="{shop_url($brand.full_url)}">
@@ -11,8 +10,8 @@
                     </li>
                 {/foreach}
             </ul>
+            <button type="button" class="prev arrow"></button>
+            <button type="button" class="next arrow"></button>
         </div>
-        <button class="btn_brand btn_prev"></button>
-        <button class="btn_brand btn_next"></button>
     </div>
 </div>
