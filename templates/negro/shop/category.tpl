@@ -1,6 +1,7 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui-slider.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/shop_script/filter.js"></script>
+{$Comments = $CI->load->module('comments')->init($products)}
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
@@ -76,16 +77,12 @@
                                         </div>
                                     </div>
                                 {/if}
-
-                                <div class="star">
-                                    <div class="d_i-b">
-                                        {$rate = round(countRating($p->id) * 100 / 5)}
-                                        {$width = "width:$rate%"}
-                                        <div class="productRate star-small">
-                                            <div style="{$width}"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {$CI->load->module('star_rating')->show_star_rating($p)}
+                                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                                    <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
+                                        {echo $Comments[$p->getId()]}
+                                    </a>
+                                {/if}
                                 {if $p->old_price > $p->variants[0]->price}
                                     <div class="price-old-catalog">
                                         <span>Старая цена: <span class="old-price"><span>{echo round_price($p->old_price)} <span class="cur">{$CS}</span></span></span></span>
