@@ -1,5 +1,11 @@
 <div class="inside">
     <div class="container">
+        {if validation_errors() OR $info_message}
+            <div class="errors">
+                {validation_errors()}
+                {$info_message}
+            </div>
+        {/if}
         <div class="title_h2">{lang('lang_forgot_password')}</div>
         <div class="frame-register">
              <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
