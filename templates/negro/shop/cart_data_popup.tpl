@@ -1,8 +1,4 @@
 {$inCart = ShopCore::app()->SCart->getData()}
-{$discountCom = ShopCore::app()->SCart->rediscount()}
-{if count($discountCom)}
-    {$comulativ = $discountCom->getDiscount()}
-{/if}
 <div class="fancy-cleaner fancy">
     {if count($inCart) > 0}
         <div class="inside-padd frame-cleaner-main">
