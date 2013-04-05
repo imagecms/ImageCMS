@@ -600,194 +600,190 @@ function ieInput(els) {
         }
     };
 })(jQuery);
-(function($) {
-    var methods = {
-        init: function(options) {
-            var settings = $.extend({
-                before: function() {
-                    return true;
+(function (b) {
+    var a = {
+        init: function (c) {
+            var d = b.extend({
+                before: function () {
+                    return true
                 },
-                after: function() {
-                    return true;
+                after: function () {
+                    return true
                 }
-            }, options);
+            }, c);
             $this = this;
-            var tabs_div = [],
-            nav_tabs_li = [],
-            reg_refs = [];
+            var g = [],
+                e = [],
+                f = [];
             refs = [];
             attrOrdata = [];
             this_l = this.length;
             k = true;
-
-            return this.each(function(index) {
-                var $thiss = $(this);
-                nav_tabs_li[index] = $thiss.children();
-                refs[index] = nav_tabs_li[index].children();
-                attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
-
-                temp_obj = $([]);
-
-                refs[index].each(function(ind) {
-                    var this_href = $(this)[attrOrdata[index]]('href');
-                    if (ind == 0) {
-                        reg_refs[index] = "";
-                        temp_obj = temp_obj.add($(this_href));
-                        reg_refs[index] += this_href;
+            return this.each(function (h) {
+                var i = b(this);
+                condRadio = i.data("type") != "itemsView";
+                e[h] = i.children();
+                refs[h] = e[h].children();
+                attrOrdata[h] = refs[h].attr("href") != undefined ? "attr" : "data";
+                temp_obj = b([]);
+                refs[h].each(function (j) {
+                    var l = b(this)[attrOrdata[h]]("href");
+                    if (j == 0) {
+                        f[h] = "";
+                        temp_obj = temp_obj.add(b(l));
+                        f[h] += l
+                    } else {
+                        temp_obj = temp_obj.add(b(l));
+                        f[h] += "|" + l
                     }
-                    else {
-                        temp_obj = temp_obj.add($(this_href));
-                        reg_refs[index] += '|' + this_href;
-                    }
-                })
-                tabs_div[index] = temp_obj;
-                reg_refs[index] = new RegExp(reg_refs[index]);
-                refs[index].on('click', function(event) {
-                    var $this = $(this);
-                    settings.before();
-                    event.preventDefault();
-
-                    if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
-
+                });
+                g[h] = temp_obj;
+                f[h] = new RegExp(f[h]);
+                refs[h].on("click", function (j) {
+                    var m = b(this);
+                    d.before();
+                    j.preventDefault();
+                    if (!m.parent().hasClass("active") && !m.parent().hasClass("disabled")) {
                         wST = wnd.scrollTop();
-                        $thisA = $this[attrOrdata[index]]('href');
-                        if ($this.data('drop') == undefined) {
-                            nav_tabs_li[index].removeClass('active');
-                            $this.parent().addClass('active');
-                            tabs_div[index].hide().removeClass('active');
-                            $($thisA).show().addClass('active');
+                        $thisA = m[attrOrdata[h]]("href");
+                        if (m.data("drop") == undefined) {
+                            e[h].removeClass("active");
+                            m.parent().addClass("active");
+                            if (condRadio) {
+                                g[h].hide().removeClass("active");
+                                b($thisA).show().addClass("active");
+                                if (ltie7) {
+                                    ieInput()
+                                }
+                            } else {
+                                setcookie("listtable", m.parent().index(), 0, "/")
+                            }
                         }
-                        if (attrOrdata[index] != 'data') {
-                            if (event.which || event.button == 0) {
-                                var wLH = window.location.hash;
-                                temp = wLH;
-                                try {
-                                    if (wLH.indexOf($thisA) == -1) {
-                                        temp = temp.replace(wLH.match(reg_refs[index])[0], $thisA)
+                        if (condRadio) {
+                            if (attrOrdata[h] != "data") {
+                                if (j.which || j.button == 0) {
+                                    var n = window.location.hash;
+                                    temp = n;
+                                    try {
+                                        if (n.indexOf($thisA) == -1) {
+                                            temp = temp.replace(n.match(f[h])[0], $thisA)
+                                        }
+                                        if (n.charAt(n.indexOf($thisA)) != "") {
+                                            temp += $thisA
+                                        }
+                                        window.location.hash = temp
+                                    } catch (l) {
+                                        window.location.hash += $thisA
                                     }
-                                    if (wLH.charAt(wLH.indexOf($thisA)) != '') {
-                                        temp += $thisA;
+                                } else {
+                                    if (m.data("drop") == undefined && k) {
+                                        window.location.hash = hashs[0].join("");
+                                        k = false
                                     }
-                                    window.location.hash = temp;
-                                } catch (e) {
-                                    window.location.hash += $thisA;
                                 }
                             }
-                            else if ($this.data('drop') == undefined && k) {
-                                window.location.hash = hashs[0].join('');
-                                k = false;
-                            }
+                        } else {
+                            b(i.data("elchange")).toggleClass(i.data("elchtglcls"))
                         }
-                    };
-                    if (event.which || event.button == 0) {
-                        settings.after($thiss);
+                    }
+                    if (j.which || j.button == 0) {
+                        d.after(i)
                     }
                 });
-
-                if (this_l - 1 == index) {
-                    methods.location();
-                    methods.startCheck();
+                if (this_l - 1 == h) {
+                    a.location();
+                    a.startCheck()
                 }
+                wnd.bind("hashchange", function (l) {
+                    a.location();
+                    a.startCheck();
 
-                wnd.bind('hashchange', function(event) {
-                    methods.location();
-                    methods.startCheck();
-                    function scroll_top(wST) {
-                        wnd.scrollTop(wST);
+                    function j(m) {
+                        wnd.scrollTop(m)
                     }
-
-                    //chrome bug
-                    if ($.browser.webkit)
-                        scroll_top(wST - 100);
-
-                    scroll_top(wST);
+                    if (b.browser.webkit) {
+                        j(wST - 100)
+                    }
+                    j(wST)
                 })
-            });
+            })
         },
-        location: function() {
+        location: function () {
             hashs = [];
             hashs2 = [];
-
-            if (location.hash == '')
-            {
-                var i = 0,
-                j = 0;
-                $(refs).each(function(index) {
-                    var index = index;
-                    $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-
-                    if ($this.data('drop') == undefined && attrOrdataL != 'data') {
-                        hashs[i] = $this[attrOrdataL]('href');
-                        i++;
-                    }
-                    else if (attrOrdataL == 'data') {
-                        hashs2[j] = $this[attrOrdataL]('href');
-                        j++;
-                    }
-                })
-                return hashs = [hashs, hashs2];
-            }
-            else {
-                $(refs).each(function(index) {
-                    var index = index,
-                    j = 0;
-
-                    $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-
-                    if (attrOrdataL == 'data') {
-                        hashs2[j] = $this[attrOrdataL]('href');
-                        j++;
+            if (location.hash == "") {
+                var g = 0,
+                    d = 0;
+                b(refs).each(function (i) {
+                    var i = i;
+                    $this = refs[i].first(), attrOrdataL = $this.attr("href") != undefined ? "attr" : "data";
+                    if ($this.data("drop") == undefined && attrOrdataL != "data") {
+                        hashs[g] = $this[attrOrdataL]("href");
+                        g++
+                    } else {
+                        if (attrOrdataL == "data") {
+                            hashs2[d] = $this[attrOrdataL]("href");
+                            d++
+                        }
                     }
                 });
-                var t = location.hash,
-                s = '#',
-                m = s.length,
-                res = 0,
-                i = 0;
-                pos = [];
-
-                while (i < t.length - 1)
-                {
-                    var ch = t.substr(i, m)
-                    if (ch == s) {
-                        res += 1;
-                        i = i + m
-                        pos[res - 1] = t.indexOf(s, i - m)
-                    }
-                    else
+                return hashs = [hashs, hashs2]
+            } else {
+                b(refs).each(function (m) {
+                    var m = m,
+                        i = 0;
+                    $this = refs[m].first(), attrOrdataL = $this.attr("href") != undefined ? "attr" : "data";
+                    if (attrOrdataL == "data") {
+                        hashs2[i] = $this[attrOrdataL]("href");
                         i++
+                    }
+                });
+                var f = location.hash,
+                    l = "#",
+                    c = l.length,
+                    e = 0,
+                    g = 0;
+                pos = [];
+                while (g < f.length - 1) {
+                    var h = f.substr(g, c);
+                    if (h == l) {
+                        e += 1;
+                        g = g + c;
+                        pos[e - 1] = f.indexOf(l, g - c)
+                    } else {
+                        g++
+                    }
                 }
-                var i = 0;
-                while (i < pos.length) {
-                    hashs[i] = t.substring(pos[i], pos[i + 1]);
-                    i++;
+                var g = 0;
+                while (g < pos.length) {
+                    hashs[g] = f.substring(pos[g], pos[g + 1]);
+                    g++
                 }
-                return hashs = [hashs, hashs2];
+                return hashs = [hashs, hashs2]
             }
         },
-        startCheck: function() {
-            $(hashs[1].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id');
-                $('[data-href="#' + $thisId + '"]').trigger('click');
+        startCheck: function () {
+            b(hashs[1].join(",")).each(function (d) {
+                var c = b(this).attr("id");
+                b('[data-href="#' + c + '"]').trigger("click")
             });
-            $(hashs[0].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
-
-                $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
-            });
+            b(hashs[0].join(",")).each(function (d) {
+                var c = b(this).attr("id"),
+                    e = "";
+                b('[href="#' + c + '"]').length == 0 ? e = "data-href" : e = "href";
+                b("[" + e + '="#' + c + '"]').trigger("click")
+            })
         }
     };
-    $.fn.tabs = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
+    b.fn.tabs = function (c) {
+        if (a[c]) {
+            return a[c].apply(this, Array.prototype.slice.call(arguments, 1))
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tabs');
+            if (typeof c === "object" || !c) {
+                return a.init.apply(this, arguments)
+            } else {
+                b.error("Method " + c + " does not exist on jQuery.tabs")
+            }
         }
     }
 })(jQuery);

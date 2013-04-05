@@ -1,8 +1,5 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <div class="frame-crumbs">
     <div class="container">
-        {$segment = '&nbsp;/&nbsp;<span typeof="v:Breadcrumb"><a href="'.site_url('brendy').'" rel="v:url" property="v:title">Бренды</a></span>&nbsp;/&nbsp;'}
-        {myCrumbs(0, $segment, "Бренд")}
     </div>
 </div>
 <div class="frame-inside">
@@ -37,8 +34,7 @@
                     <input type="hidden" name="text" value="{$searched_text}">
                     <input type="hidden" name="category" value="{echo $_GET[category]}">
                 </form>
-
-                {$cat = searchResultsInCategories($tree, $categorys)}
+                {$cat = searchResultsInCategories($tree, $incats)}
                 <div class="block-filter">
                     <div class="title_h3">Категории</div>
                     <div class="inside-padd">

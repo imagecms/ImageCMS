@@ -588,7 +588,7 @@ function processWish() {
     $('button.toWishlist').each(function () {
         if (wishlist.indexOf($(this).data('prodid')) !== -1){
             var $this = $(this);
-            $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+            $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).closest('div').removeClass('btn-def').addClass('btn-order');
         }
     });
 
@@ -597,7 +597,7 @@ function processWish() {
     $('button.toCompare').each(function () {
         if (comparelist.indexOf($(this).data('prodid')) !== -1){
             var $this = $(this);
-            $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+            $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).closest('div').removeClass('btn-def').addClass('btn-order');
         }
     });
 }
@@ -629,7 +629,7 @@ function processPage() {
             $(this).removeClass(btnToCartClass).addClass(btnInCartClass).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
-            }).closest('li').addClass('in_cart');
+            }).closest('div').removeClass('btn-buy').addClass('btn-order').closest('li').addClass('in_cart');
         }
     });
 
@@ -640,7 +640,7 @@ function processPage() {
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem);
-            }).closest('li').removeClass('in_cart');
+            }).closest('div').removeClass('btn-order').addClass('btn-buy').closest('li').removeClass('in_cart');
         }
     });
 }
@@ -727,19 +727,31 @@ function rmFromPopupCart(context, isKit) {
 };
 
 function togglePopupCart() {
-    $('#showCart').click();
+    if ($('#popupCart:visible').length)
+        $('#popupCart').hide()
+    else
+        $('#showCart').click();
 }
 
 function renderOrderDetails() {
-    $('#orderDetails').html(_.template($('#orderDetailsTemplate').html(), {
+    $('#orderDetails').html(_.template($('#cartPopupTemplate').html(), {
         cart:Shop.Cart
     }));
 }
 
 function changeDeliveryMethod(id) {
+
+    Shop.Cart.shipping = parseFloat($('input[name=deliveryMethodId]:checked').data('price'));
+
+
+    //$('#deliveryPrice').html(Shop.Cart.shipping);
+    recountCartPage();
+
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function (dataStr) {
         data = JSON.parse(dataStr);
-        var replaceStr = _.template('<select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select> ', {
+        var replaceStr = _.template('<ul><% _.each(data, function(item) { %>' +
+            '<div class="frame-label"><div><input name="paymentMethodId" value="<%-item.id%>" type="radio" class="f_l">' +
+            '</div><div class="neigh-radio"><%-item.name%><div class="help-block d_b"><p><%- item.description%></p>  </div></div></div> <% }) %></ul> ', {
             data:data
         });
         $('div.pmDiv').closest('div').html(replaceStr);
@@ -753,13 +765,13 @@ function changeDeliveryMethod(id) {
 
 function recountCartPage() {
     var ca = $('span.cuselActive');
-    Shop.Cart.shipping = parseFloat(ca.data('price'));
-    Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
+    Shop.Cart.shipping = parseFloat($('input[name=deliveryMethodId]:checked').data('price'));
+    //Shop.Cart.shipFreeFrom = parseFloat(.data('freefrom'));
     delete ca;
 
     $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
-    $('span#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    $('span#fullPrice').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
+    $('span#deliveryPrice').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 
     $('span.curr').html(curr);
 }
@@ -822,8 +834,11 @@ $(document).ready(
         checkSyncs();
         processWish();
         recountCartPage();
-        if (window.location.href.match(/cart/))
-            changeDeliveryMethod($('#method_deliv').val());
+        if (window.location.href.match(/cart/)) {
+            $('input[name=deliveryMethodId]').on('change', function(){ changeDeliveryMethod(  $('input[name=deliveryMethodId]:checked').val()  ) } ).val()
+            $('input[name=deliveryMethodId]').first().click();
+            changeDeliveryMethod($('input[name=deliveryMethodId]:checked').val());
+        }
         $('#popupCart').html(Shop.Cart.renderPopupCart())
         //click 'add to cart'
         $('button.'+btnToCartClass).on('click', function () {
@@ -928,7 +943,7 @@ $(document).ready(
             if (e.dataObj.success == true) {
                 $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
                 var $this = $('.toWishlist[data-prodid=' + e.dataObj.id + ']')
-                $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+                $this.removeClass('toWishlist').addClass('inWishlist').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).closest('div').removeClass('btn-def').addClass('btn-order');
                 $this.tooltip();
             }
             checkCompareWishLink();
@@ -943,7 +958,7 @@ $(document).ready(
             if (e.dataObj.success == true) {
                 $('#compareListCount').html('(' + Shop.WishList.all().length + ')');
                 var $this = $('.toCompare[data-prodid=' + e.dataObj.id + ']')
-                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+                $this.removeClass('toCompare').addClass('inCompare').addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle')).closest('div').removeClass('btn-def').addClass('btn-order');
                 $this.tooltip();
             }
 

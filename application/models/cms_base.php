@@ -20,7 +20,17 @@ class Cms_base extends CI_Model {
         $query = $this->db->get('settings', 1);
 
         if ($query->num_rows() == 1) {
-            return $query->row_array();
+//+++++++++++++++++++++++++++            
+            $arr = $query->row_array(); 
+            $lang_arr = get_main_lang();
+            $meta = $this->db->where('lang_ident',$lang_arr['id'])->limit(1)->get('settings_i18n')->result_array();
+            $arr['site_short_title'] = $meta[0]['short_name'];
+            $arr['site_title'] = $meta[0]['name'];
+            $arr['site_description'] = $meta[0]['description'];
+            $arr['site_keywords'] = $meta[0]['keywords'];
+            
+            return $arr;
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
 
         return FALSE;

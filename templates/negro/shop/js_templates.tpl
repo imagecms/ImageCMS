@@ -1,10 +1,10 @@
     <!-- floating elements-->
-<div id="popupCart" style="display: none;" class="drop"></div>
+<div id="popupCart" style="display: none;" class="drop drop-popup"></div>
 <a href="#" data-drop="#popupCart" data-place="center"data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}   
-        <div class="fancy fancy_cleaner frame_head_content">
+        <div class="fancy_cleaner frame_head_content">
             <div class="header_title">Ваша корзина
             </div>
             <button type="button" class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></button>
@@ -180,7 +180,7 @@
                                 <% setTimeout("location.href = '/';", 2000); %>
                                 <% } %>
                                 <td colspan="4" class="t-a_r">
-                                    <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a>
+<!--                                     <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a> -->
                                 </td>
                                 <% } else { %>
                                 <td colspan="4">

@@ -1,12 +1,37 @@
 <script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui-slider.js"></script>
 <script type="text/javascript" src="{$SHOP_THEME}js/shop_script/filter.js"></script>
+{$Comments = $CI->load->module('comments')->init($products)}
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
         {myCrumbs($model->id, " / ")}
     </div>
 </div>
+{$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
+{if count($banners)}
+    <div class="frame_baner">
+        <section class="carousel_js baner container">
+            <div class="content-carousel">
+                 <ul class="cycle">
+                    {foreach $banners as $banner}
+                        <li>
+                            {if trim($banner['url']) != ""}
+                                <a href="{echo $banner['url']}">
+                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
+                                </a>
+                            {else:}
+                                <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
+                            {/if}
+                        </li>
+                    {/foreach}
+                </ul>
+                <button type="button" class="prev arrow"></button>
+                <button type="button" class="next arrow"></button>
+            </div>
+        </section>
+    </div>
+{/if}
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog">
@@ -52,16 +77,12 @@
                                         </div>
                                     </div>
                                 {/if}
-
-                                <div class="star">
-                                    <div class="d_i-b">
-                                        {$rate = round(countRating($p->id) * 100 / 5)}
-                                        {$width = "width:$rate%"}
-                                        <div class="productRate star-small">
-                                            <div style="{$width}"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {$CI->load->module('star_rating')->show_star_rating($p)}
+                                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                                    <a href="{shop_url('product/'.$p->url.'#comment')}" class="count_response">
+                                        {echo $Comments[$p->getId()]}
+                                    </a>
+                                {/if}
                                 {if $p->old_price > $p->variants[0]->price}
                                     <div class="price-old-catalog">
                                         <span>Старая цена: <span class="old-price"><span>{echo round_price($p->old_price)} <span class="cur">{$CS}</span></span></span></span>
@@ -104,7 +125,6 @@
                                                                 data-number="{echo $p->firstVariant->getnumber()}"
                                                                 data-maxcount="{echo $p->firstVariant->getstock()}"
                                                                 data-vname="{echo $p->firstVariant->getName()}">
-                                                            <span class="icon-bask-buy"></span>
                                                             Уже в корзине
                                                         </button>
                                                     </div>
@@ -142,24 +162,24 @@
                                         {/if}
 
                                         <!-- Wish List buttons --------------------->
-                                        {if is_in_wish($p->id, $v->id)}
-                                            {$dn_inwish = ""}{$dn_gowish = "d_n"}
-                                        {else:}
-                                            {$dn_inwish = "d_n"}{$dn_gowish = ""}
-                                        {/if}
+
+}
                                         <div class="{$var_class} var_{echo $v->id} prod_{echo $p->id}">
-                                            <div class="btn btn-order goWList {$dn_inwish}" data-title="Уже в желаемых" data-rel="tooltip">
-                                                <button type="button">
-                                                    <span class="icon-wish"></span>
-                                                    <span class="text-el">Уже в желаемых</span>
-                                                </button>
-                                            </div>
-                                            <div class="btn btn-def {$dn_gowish} {if $is_logged_in}toWList{else:}goEnter{/if}" data-title="В список желаний" data-varid="{echo $v->id}" data-prodid="{echo $p->id}" data-rel="tooltip">
-                                                <button type="button">
-                                                    <span class="icon-wish"></span>
-                                                    <span class="text-el">В список желаний</span>
-                                                </button>
-                                            </div>
+                                            {if is_in_wish($p->id, $v->id)}
+                                                <div class="btn btn-order goWList" data-title="Уже в желаемых" data-rel="tooltip">
+                                                    <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="inWishlist" data-title="В списке желаний" data-sectitle="В списке желаний">
+                                                        <span class="icon-wish"></span>
+                                                        <span class="text-el">Уже в желаемых</span>
+                                                    </button>
+                                                </div>
+                                            {else:}
+                                                <div class="btn btn-def {if $is_logged_in}toWList{else:}goEnter{/if}" data-title="В список желаний" data-varid="{echo $v->id}" data-prodid="{echo $p->id}" data-rel="tooltip">
+                                                    <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="toWishlist" data-title="В списке желаний" data-sectitle="В списке желаний">
+                                                        <span class="icon-wish"></span>
+                                                        <span class="text-el">В список желаний</span>
+                                                    </button>
+                                                </div>
+                                            {/if}
                                         </div>
                                         <!-- end of Wish List buttons -------------->
                                     {/foreach}
@@ -168,14 +188,16 @@
                                     <div class="d_i-b">
                                     {if $forCompareProducts && in_array($p->id, $forCompareProducts)}
                                         <div class="btn btn-order goCompare {$dn_comp}" data-title="Сравнить" data-rel="tooltip">
-                                            <button type="button">
+                                            <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="inCompare"
+                                                    data-title="В список сравнений" data-sectitle="В списке сравнений" >
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">Уже в сравнение</span>
                                             </button>
                                         </div>
                                         {else:}
                                         <div class="btn btn-def toCompare {$dn_gocomp}" data-title="В список сравнений"  data-prodid="{echo $p->id}" data-rel="tooltip">
-                                            <button type="button">
+                                            <button type="button" data-prodid="{echo $p->id}" data-varid="{echo $p->firstVariant->getId()}" class="toCompare"
+                                                    data-title="В список сравнений" data-sectitle="В списке сравнений" >
                                                 <span class="icon-compare"></span>
                                                 <span class="text-el">В список сравнению</span>
                                             </button>
@@ -208,64 +230,10 @@
             {/if}
         </div>
 
-        <div class="left-catalog filter">
-            <!-- selected filters block -->
-            {$minPrice = (int)$priceRange.minCost;}
-            {$maxPrice = (int)$priceRange.maxCost;}
-            {if $_GET['lp']}
-                {$curMin = (int)$_GET['lp'];}
-            {else:}
-                {$curMin = $minPrice;}
-            {/if}
-            {if $_GET['rp']}
-                {$curMax = (int)$_GET['rp'];}
-            {else:}
-                {$curMax = $maxPrice;}
-            {/if}
+        {$CI->load->module('module_frame')->init()}
 
-            {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
-                <div class="frame-check-filter inside-padd">
-                    <div class="title_h4">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} с фильтрами:</div>
-                    <ul class="check-filter">
-                        {if $curMin != $minPrice || $curMax != $maxPrice}
-                            <li class="ref cleare_price"><span class="icon-remove"></span><div>Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></div></li>
-                        {/if}
-                        {if count($brands) > 0}
-                            {foreach $brands as $brand}
-                                {foreach $_GET['brand'] as $id}
-                                    {if $id == $brand->id}
-                                        <li data-name="brand_{echo $brand->id}" class="cleare_filter ref"><span class="icon-remove"></span><div>{echo $brand->name}</div></li>
-                                    {/if}
-                                {/foreach}
-                            {/foreach}
-                        {/if}
-                        {if count($propertiesInCat) > 0}
-                            {foreach $propertiesInCat as $prop}
-                                {foreach $prop->possibleValues as $key}
-                                    {foreach $_GET['p'][$prop->property_id] as $nm}
-                                        {if $nm == $key.value}
-                                            <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="cleare_filter ref"><span class="icon-remove"></span><div>{echo $prop->name}: {echo $key.value}</div></li>
-                                        {/if}
-                                    {/foreach}
-                                {/foreach}
-                            {/foreach}
-                        {/if}
-                    </ul>
-                    <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="d_l_o">Сбросить фильтр</button>
-                </div>
-            {/if}
-            <!-- end of selected filters block -->
 
-            {if $totalProducts > 0}
-                <form action="" method="get" id="catalog_form">
-                    <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <div class="popup_container">
-                        {include_tpl('filter')}
-                    </div>
-                </form>
-            {/if}
-        </div>
-    </div>
+
 </div>
 {if trim($model->description) != ""}
     <div class="frame-seo-text">

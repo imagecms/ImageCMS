@@ -1,6 +1,6 @@
-<div class="drop-order-call drop" id="ordercall">
+<div class="drop-order-call drop drop-popup" id="ordercall">
     <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
-    <div class="drop-content">
+    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
         <div class="header_title">
             Заказ звонка
         </div>
