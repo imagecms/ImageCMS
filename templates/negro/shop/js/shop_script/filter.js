@@ -151,14 +151,13 @@
     }
 })(jQuery);
 
-$(function(){
 function afterAjaxInitializeFilter(){
     var apply = $('.apply'),
-    slider_el = $('#slider');
-    
-	catalogForm = $('#catalog_form');
-    
-	slider_el.sliderInit({
+        slider_el = $('#slider');
+
+    catalogForm = $('#catalog_form');
+
+    slider_el.sliderInit({
         minCost: $('#minCost'),
         maxCost: $('#maxCost')
     });
@@ -168,30 +167,35 @@ function afterAjaxInitializeFilter(){
         evCond:true,
         before: function(a, b, c){
             c.nStCheck('changeCheck');
+            console.log(b);
+//            window.setTimeout( function(){ ajaxRecount(b.attr('id'), false) }, 500 );
             ajaxRecount(b.attr('id'), false);
         }
     });
     apply.cleaverFilterMethod();
     apply.find('a').click(function(){
-        catalogForm.submit(); 
+        catalogForm.submit();
         return false;
     });
-	$('.tooltip').tooltip('remove');
+    $('.tooltip').tooltip('remove');
 }
 function ajaxRecount(el, slChk) {
     var $this = el,
-    slChk = slChk;
-    
+        slChk = slChk;
+
 //    $cur_url = $('input[name=requestUri]').val();
 
-    var catUrl = window.location.pathname + window.location.search;
+    var catUrl = window.location.pathname;// + window.location.search;
     catUrl = catUrl.replace('shop/category', 'module_frame/filter');
-       
+
+    var data = $('#catalog_form').serializeArray();
+
     $.ajax({
         type: 'get',
         url: catUrl,
-        data: catalogForm.serialize(),
+        data: data,
         beforeSend: function(){
+            console.log(data);
             $.fancybox.showActivity();
         },
 
@@ -202,12 +206,14 @@ function ajaxRecount(el, slChk) {
             $.fancybox.hideActivity();
 
             if (slChk) otherClass = 'apply-slider';
-            
+
             cleaverFilterObj.cleverFilterFunc($('#'+$this), totalProducts, otherClass);
         }
     });
     return false;
 }
+
+$(function(){
 
     afterAjaxInitializeFilter();
 
