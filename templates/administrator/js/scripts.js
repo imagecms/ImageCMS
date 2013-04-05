@@ -790,7 +790,7 @@ function initAdminArea() {
             axis: 'y',
             cursor: 'move',
             scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select',
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select, td textarea',
             helper: function(e, tr)
             {
                 var $originals = tr.children();
