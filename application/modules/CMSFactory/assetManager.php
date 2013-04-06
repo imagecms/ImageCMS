@@ -27,23 +27,25 @@ class assetManager {
         $trace = debug_backtrace();
         if ($list == 'first_file')
         {
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);           
-        return  $paths[count($paths) - 2];
+            $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);           
+            return  $paths[count($paths) - 2];
         }
 
         if ($list == 'first')
         {
-        return $trace[0];
+            return $trace[0];
         }
 
         if ($list == 'all')
         {
-        return $trace;
+            return $trace;
         }
         if (is_numeric($list))
         {
-        return $trace[$list]; 
-        }  
+            return $trace[$list]; 
+        }
+        // exit('error get trace file. (assetManager)');
+        return false;
     }
     /**
      * @param array $data Fetch data to template
@@ -68,8 +70,18 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function registerScript($name) {        
-        $paths = $this->Get_trace('first_file');        
-        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
+        $paths = $this->Get_trace('first_file');           
+        if (is_array($name) and count($name) >= 1 )
+        {
+            foreach ($name as $v)
+            {
+                \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $v . '.js', 'after');
+            }
+        }
+        else
+        {
+            \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
+        }
         return $this;
     }
 
@@ -81,7 +93,18 @@ class assetManager {
      */
     public function registerStyle($name) {
         $paths = $this->Get_trace('first_file'); 
+        
+        if (is_array($name) and count($name) >= 1 )
+        {
+            foreach ($name as $v)
+            {
+                \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $v . '.css', 'before');
+            }
+        }
+        else
+        {
         \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $name . '.css', 'before');
+        }
         return $this;
     }
 
