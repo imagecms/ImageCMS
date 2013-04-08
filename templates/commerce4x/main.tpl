@@ -320,8 +320,11 @@
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/shop.js"></script>
-        <!-- Including template file for displaying drop-down login form is user is not logged in -->
+        
+        
+    <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
     {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
+    <!-- End. Including template file for displaying drop-down login form is user is not logged in -->
 
     <!-- Start. Callback form -->
     {include_shop_tpl('callback')}

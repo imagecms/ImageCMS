@@ -21,8 +21,16 @@ class Exchange {
 
     public function __construct() {
         set_time_limit(0);
+        ini_set('max_execution_time', 90000000);
+
+        //define path to folder for saving files from 1c
+        $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
+
         $this->ci = &get_instance();
+
         $this->ci->load->helper('translit');
+        $this->ci->load->helper('file');
+        
         $this->locale = $this->getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
@@ -38,8 +46,6 @@ class Exchange {
             //get settings from database
             $this->config = $this->get1CSettings();
         }
-        //define path to folder for saving files from 1c
-        $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
 
         $this->allowed_image_extensions = array('jpg', 'jpeg', 'png', 'gif');
 
@@ -70,6 +76,8 @@ class Exchange {
             $this->load->dbutil();
             $backup = & $this->dbutil->backup(array('format' => 'zip'));
             write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'zip', $backup);
+        } else {
+            $this->error_log('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
     }
 
@@ -95,6 +103,11 @@ class Exchange {
         }
     }
 
+    function error_log($error) {
+        if (true)
+            write_file($this->tempDir . "error_log.txt", date('c') . ' - ' . $error . PHP_EOL, 'ab');
+    }
+
     function __autoload() {
         return;
     }
@@ -107,6 +120,7 @@ class Exchange {
             $this->checkauth();
         } else {
             echo "failure. wrong password";
+            $this->error_log('Неверно введен пароль');
         }
     }
 
@@ -147,8 +161,9 @@ class Exchange {
     private function check_perm() {
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
-        return true;
+            return true;
         } else {
+            $this->error_log("Ошибка безопасности!!!");
             die("Ошибка безопасности!!!");
         }
     }
@@ -177,10 +192,10 @@ class Exchange {
             $st = basename($st);
             if (strrchr($st, "/"))
                 $st = strrchr($st, "/");
-            $filename = explode('.', $st);
-            if ($filename[1] != 'xml' && in_array($filename[1], $this->allowed_image_extensions)) {
+            $ext = pathinfo($st, PATHINFO_EXTENSION);
+            if ($ext != 'xml' && in_array($ext, $this->allowed_image_extensions)) {
                 //saving images to cmlTemp/images folder
-                if (write_file($this->tempDir . "images/" . basename($st, $filename[1]) . "jpg", file_get_contents('php://input'), 'wb')) {
+                if (write_file($this->tempDir . "images/" . $st, file_get_contents('php://input'), 'wb')) {
                     echo "success";
                 }
             } else {
@@ -221,10 +236,12 @@ class Exchange {
             if (isset($this->xml->Классификатор->Группы)) {
                 $this->importCategories($this->xml->Классификатор->Группы);
             }
+
             // Import properties
             if (isset($this->xml->Классификатор->Свойства)) {
                 $this->importProperties();
             }
+
             //import products
             if (isset($this->xml->Каталог->Товары)) {
                 $this->importProducts();
@@ -243,6 +260,7 @@ class Exchange {
             if (file_exists($this->tempDir . "success_" . ShopCore::$_GET['filename'])) {
                 unlink($this->tempDir . "success_" . ShopCore::$_GET['filename']);
             }
+
             //rename import xml file after import finished
             rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
             //returns success status to 1c
@@ -358,6 +376,8 @@ class Exchange {
                 $data = array();
                 $data['external_id'] = $property->Ид . "";
                 $data['csv_name'] = translit_url($property->Наименование);
+                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -370,9 +390,9 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0) 
+                if (count($property->ИспользованиеСвойства) == 0)
                     $data['active'] = true;
-                
+
                 $data['show_in_compare'] = false;
                 $data['show_on_site'] = true;
                 $data['show_in_filter'] = false;
@@ -397,6 +417,8 @@ class Exchange {
                 //preparing data for update
                 $data = array();
                 $data['csv_name'] = translit_url($property->Наименование);
+                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
+
                 if ($property->Обязательное . "" == 'true')
                     $data['main_property'] = true;
                 elseif ($property->Обязательное . "" == 'false')
@@ -409,9 +431,8 @@ class Exchange {
                     $data['active'] = true;
                 elseif ($property->ИспользованиеСвойства . "" == 'false')
                     $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0) 
+                if (count($property->ИспользованиеСвойства) == 0)
                     $data['active'] = true;
-                
 
                 //updating property
                 $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
@@ -437,8 +458,6 @@ class Exchange {
                     $properties_data[$item['id']] = unserialize($item['data']);
             }
         }
-//        var_dump($properties_data);
-//        exit();
         unset($temp_properties);
 
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
@@ -490,7 +509,9 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
 
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
@@ -608,7 +629,10 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
                     $image = explode('/', $product->Картинка);
-                    rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.jpg');
+                    $ext = explode('.', $image[count($image) - 1]);
+
+                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+
                     $data = array();
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';

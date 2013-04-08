@@ -19,6 +19,27 @@ function ChangeBannerActive(el, bannerId)
 
     });
 }
+// on/of sorting method  
+function ChangeSortActive(el, sortId)
+{
+    var currentActiveStatus = $(el).attr('rel');
+
+    $.post('/admin/components/run/shop/settings/changeSortActive/', {
+        sortId: sortId,
+        status: currentActiveStatus
+    }, function(data) {
+        $('.notifications').append(data)
+        if (currentActiveStatus == 'true')
+        {
+            $(el).addClass('disable_tovar').attr('rel', false);
+
+        } else {
+            $(el).removeClass('disable_tovar').attr('rel', true);
+        }
+
+    });
+}
+
 var shopAdminMenuCache = false;
 
 function showMessage(title, text, messageType)
