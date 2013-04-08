@@ -1,14 +1,11 @@
-{$promos = getPromoBlock('hot', 10)}
-{if count($promos) > 0}
-    {$CI->template->assign('promos',$promos)}
+{if count($products) > 0}
     <section class="special-proposition">
         <div class="title_h1 container">Горячие новинки</div>
         <div class="m-w_1090">
             <div class="carousel_js products-carousel">
                 <div class="content-carousel container">
                     <ul class="items-catalog">
-                        {if !$promos && $products}{$promos = $products}{/if}
-                        {foreach $promos as $p}
+                        {foreach $products as $p}
                             <li>
                                 <a href="{shop_url('product/' . $p->getUrl())}">
                                     <span class="photo-block">
