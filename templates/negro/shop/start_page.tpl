@@ -24,7 +24,7 @@
 {/if}
 <div class="frame-news-catalog">
     <div class="container">
-        {widget('news_main')}
+        {widget('latest_news')}
         {\Category\RenderMenu::create()->load('front_menu')}
     </div>
 </div>

@@ -148,9 +148,9 @@
                                         {/foreach}
                                         <li style="width:100% !important;margin-left:0;">
                                             <div class="t-a_c">
-                                                <img src="{$THEME}/shop/default/images/sum_arrow.png"/>
+                                                <img src="{$THEME}/images/sum_arrow.png"/>
                                             </div>
-                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}}  шт):</span>
+                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}  шт):</span>
                                             <div class="v-a_bl d_i-b">
                                                 <div class="price-complect f-s_21 d_i-b"><div>{echo $orderProduct->getKit()->getTotalPrice()}<span class="cur">{$CS}</span></div></div>
                                             </div>
@@ -160,7 +160,7 @@
                 <div class="m-b_15 t-a_r">
                     <div class="f-s_18 f-w_b">К оплате: <span class="price-order">
                             <span>{echo $model->getTotalPrice()} <span class="cur">{$CS}</span></span><br/>
-                            + Доставка:<span>{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}<span class="cur">{$CS}</span></span>
+                            {if round_price($model->getDeliveryPrice())!= null}+ Доставка:<span>{echo round_price($model->getDeliveryPrice())}<span class="cur"> {$CS}</span></span>{/if}
                         </span>
                     </div>
                 </div>
