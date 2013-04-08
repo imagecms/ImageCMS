@@ -355,3 +355,11 @@
 <script>
     var curr = '{$CS}';
 </script>
+
+<div class="apply">
+    <div>
+        <div class="description">Найдено <span id="apply-count">5</span> тов.</div>
+        <a href="#">Показать</a>
+    </div>
+    <span class="icon-times-apply"></span>
+</div>
