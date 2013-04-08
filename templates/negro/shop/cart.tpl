@@ -9,14 +9,10 @@
             <div class="container">
                 <h1>Оформление заказа</h1>
                 <div class="frame-cleaner-main left_order">
-
                 </div>
                 <div class="">
-
                     <div id="orderDetails">
-
                     </div>
-
                     <div class="clearfix horizontal-form">
                         <div class="box-ordering1">
                             <div class="title_h3">Данные получателя</div>

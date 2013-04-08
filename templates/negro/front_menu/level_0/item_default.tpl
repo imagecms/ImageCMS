@@ -3,7 +3,9 @@
         <span class="photo-block">
             <span class="helper"></span>
             <span>
-                <span class="icon-cat_item1"></span>
+                <span class="">
+                <img src="{$image}" />
+                </span>
                 <span class="title">{$title}</span>
             </span>
         </span>
