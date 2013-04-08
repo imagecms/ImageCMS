@@ -608,6 +608,7 @@ function processPage() {
     Shop.Cart.totalRecount();
     //console.log(Shop.Cart.totalCount);
     $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
+    $('#topCartTotalPrice').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
     if (!Shop.Cart.totalCount)
         $('div.cleaner.isAvail').removeClass('isAvail');
     else if (Shop.Cart.totalCount && !$('div.cleaner').hasClass('isAvail')) {
