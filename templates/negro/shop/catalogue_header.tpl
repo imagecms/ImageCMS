@@ -47,14 +47,9 @@
     {/if}
 </form>
 {/if}
+<hr/>
 <div class="catalog-baner clearfix">
-    {if $CI->uri->segment(2) == "category" && count($banners = getBannersCat($limit = 3, $model->id)) > 0}
-        {foreach $banners as $banner}
-            <a href="{echo $banner->getUrl()}">
-                <img src="/uploads/shop/banners/{echo $banner->getImage()}" alt="{echo ShopCore::encode($banner->getName())}" class="f_r"/>
-            </a>
-        {/foreach}
-    {elseif $CI->uri->segment(2) == "brand" && ($model->getImage() || trim($model->getDescription()) != "")}
+    {if $CI->uri->segment(2) == "brand" && ($model->getImage() || trim($model->getDescription()) != "")}
         <div class="alert-search-result alert m-t_10">
             <div class="inside-padd clearfix">
                 {if $model->getDescription()}
@@ -65,7 +60,5 @@
                 {/if}
             </div>
         </div>
-    {else:}
-        <hr/>
     {/if}
 </div>
