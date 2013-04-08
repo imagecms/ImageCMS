@@ -25,7 +25,7 @@
 <div class="frame-news-catalog">
     <div class="container">
         {widget('latest_news')}
-        {\Category\RenderMenu::create()->load('front_menu')}
+        {\Category\RenderMenu::create()->showSubCategories('front_menu')}
     </div>
 </div>
     {widget('popular_products')}
