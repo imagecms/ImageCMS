@@ -1,6 +1,3 @@
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/category.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/jquery.ui-slider.js"></script>
-<script type="text/javascript" src="{$SHOP_THEME}js/shop_script/filter.js"></script>
 {$Comments = $CI->load->module('comments')->init($products)}
 {$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
@@ -58,7 +55,7 @@
             {/if}
         </div>
 
-        {$CI->load->module('module_frame')->init()}
+        {$CI->load->module('smart_filter')->init()}
 </div>
 {if trim($model->description) != ""}
     <div class="frame-seo-text">
