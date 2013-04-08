@@ -187,7 +187,7 @@ function ajaxRecount(el, slChk) {
 //    $cur_url = $('input[name=requestUri]').val();
 
     var catUrl = window.location.pathname;// + window.location.search;
-    catUrl = catUrl.replace('shop/category', 'module_frame/filter');
+    catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
 
     var data = $('#catalog_form').serializeArray();
 
