@@ -1,4 +1,4 @@
-$(document).ready(function(){
+            $(document).ready(function(){
     $('.cleare_filter').click(function(){
         nm = $(this).data('name');
         //alert(nm);
