@@ -65,7 +65,7 @@ function deleteWishListItem(el) {
 jQuery(document).ready(function() {
 
     var catUrl = window.location.pathname + window.location.search;
-    catUrl = catUrl.replace('shop/category', 'module_frame/index');
+    catUrl = catUrl.replace('shop/category', 'smart_filter/index');
 
     //console.log(catUrl)
 
