@@ -1,4 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 /**
  * CodeIgniter
  *
@@ -12,7 +15,6 @@
  * @since		Version 1.0
  * @filesource
  */
-
 // ------------------------------------------------------------------------
 
 /**
@@ -24,7 +26,6 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/helpers/language_helper.html
  */
-
 // ------------------------------------------------------------------------
 
 /**
@@ -37,20 +38,45 @@
  * @param	string	the id of the form element
  * @return	string
  */
-if ( ! function_exists('lang'))
-{
-	function lang($line, $id = '')
-	{
-		$CI =& get_instance();
-		$line = $CI->lang->line($line);
+if (!function_exists('lang')) {
 
-		if ($id != '')
-		{
-			$line = '<label for="'.$id.'">'.$line."</label>";
-		}
+    function lang($line, $id = '') {
+        $CI = & get_instance();
+        $line = $CI->lang->line($line);
 
-		return $line;
-	}
+        if ($id != '') {
+            $line = '<label for="' . $id . '">' . $line . "</label>";
+        }
+
+        return $line;
+    }
+
+}
+
+function get_main_lang($flag = null) {
+    $ci = & get_instance();
+    $lang = $ci->db->get('languages')->result_array();
+    $lan_array = array();
+    foreach ($lang as $l) {
+        $lan_array[$l['identif']] = $l['id'];
+        $lan_array_rev[$l['id']] = $l['identif'];
+    }
+
+    $lang_uri = $ci->uri->segment(1);
+    if (in_array($lang_uri, $lan_array_rev)) {
+        $lang_id = $lan_array[$lang_uri];
+        $lang_ident = $lang_uri;
+    } else {
+        $lang = $ci->db->where('default', 1)->get('languages')->result_array();
+        $lang_id = $lang[0]['id'];
+        $lang_ident = $lang[0]['identif'];
+    }
+    if ($flag == 'id')
+        return $lang_id;
+    if ($flag == 'identif')
+        return $lang_ident;
+    if ($flag == null)
+        return array('id' => $lang_id, 'identif' => $lang_ident);
 }
 
 // ------------------------------------------------------------------------
