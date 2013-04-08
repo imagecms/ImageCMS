@@ -8,11 +8,11 @@
         <meta name="generator" content="ImageCMS" />
         {$meta_noindex}
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
-		<!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png" />
+        <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}/css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie_7.css" /><![endif]-->
-       <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.pluginssiteimage.min.js"></script>
         {$gmeta}
@@ -31,8 +31,8 @@
         <footer>
             {include_tpl('shop/footer')}
         </footer>
-        
-        <!-- php vars to js -->
+
+        <!-- Start. PHP vars to JS -->
         <script type="text/javascript">
             var curr = '{$CS}';
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
@@ -42,13 +42,15 @@
             var pcs = 'шт.';
             var kits = 'компл.';
         </script>
+        <!-- End. PHP vars to JS -->
 
-        <!--        Syncronization data for cart, wishlist  and comparelist     -->
+        <!-- Start. Syncronization data for cart, wishlist and comparelist -->
         <script>
             var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
+        <!-- End. Syncronization data for cart, wishlist and comparelist -->
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
@@ -61,25 +63,26 @@
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
-
         <script type="text/javascript" src="{$THEME}js/shop.js"></script>
-        <!-- Including template file for displaying drop-down login form is user is not logged in -->
-        {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
+        
+    <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
+    {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
+    <!-- End. Including template file for displaying drop-down login form is user is not logged in -->
 
-        <!-- Start. Callback form -->
-        {include_shop_tpl('callback')}
-        <!-- End. Callback form -->
+    <!-- Start. Callback form -->
+    {include_shop_tpl('callback')}
+    <!-- End. Callback form -->
 
-        <!-- Start. Block report on appearance -->
-        {include_shop_tpl('report_appearance')}
-        <!-- End. Block report on appearance -->
+    <!-- Start. Block report on appearance -->
+    {include_shop_tpl('report_appearance')}
+    <!-- End. Block report on appearance -->
 
-        <!-- Start. Include js-template for popup cart and order-products-->
-        {include_shop_tpl('js_templates')}
-        <!-- End. Include js-template for popup cart and order-products-->
+    <!-- Start. Include js-template for popup cart and order-products-->
+    {include_shop_tpl('js_templates')}
+    <!-- End. Include js-template for popup cart and order-products-->
 
-        <!-- Start. Include template for autocomplete-->
-        {include_shop_tpl('search_autocomplete')}
-        <!-- End. Include template for autocomplete-->
+    <!-- Start. Include template for autocomplete-->
+    {include_shop_tpl('search_autocomplete')}
+    <!-- End. Include template for autocomplete-->
 </body>
 </html>

@@ -17,7 +17,8 @@
                         value: cur_max
                     }).insertAfter(body).hide();
                 }
-                
+
+                console.log(def_min)
                 rel.slider({
                     min: def_min,
                     max: def_max,
@@ -207,14 +208,13 @@ function ajaxRecount(el, slChk) {
 
             if (slChk) otherClass = 'apply-slider';
 
+            totalProducts = parseInt( $('#'+$this).find('.count').first().html().replace('(', '').replace(')', ''));
             cleaverFilterObj.cleverFilterFunc($('#'+$this), totalProducts, otherClass);
         }
     });
     return false;
 }
 
-$(function(){
-
+$(window).load(function(){
     afterAjaxInitializeFilter();
-
 })
