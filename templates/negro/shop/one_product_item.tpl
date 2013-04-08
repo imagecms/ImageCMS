@@ -14,7 +14,7 @@
                 {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
                      {$discount = round(100 - ($p->firstVariant->toCurrency() / $p->firstVariant->toCurrency('OrigPrice') * 100))}
                 {/if}
-                {promoLabel($p->getHit(), $p->getHot(), $discount)}
+                {promoLabel($p->getHit(), $p->getHot())}
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>

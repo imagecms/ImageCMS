@@ -231,9 +231,6 @@
         </div>
 
         {$CI->load->module('module_frame')->init()}
-
-
-
 </div>
 {if trim($model->description) != ""}
     <div class="frame-seo-text">
@@ -244,3 +241,4 @@
         </div>
     </div>
 {/if}
+{widget('popular_products')}
