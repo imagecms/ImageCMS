@@ -24,9 +24,9 @@
             <div class="right-product">
                 <div class="f-s_0 title-head-ategory">
                     <div class="d_i m-r_15">
-                        <h1 class="d_i">{echo $model->getName()}</h1>
+                        <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                     </div>
-                    <span class="code" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
+                   {if $model->firstVariant->getNumber() != ''} <span class="code" id="number">(Артикул {echo $model->firstVariant->getNumber()}) </span>{/if}
                 </div>
                 <div class="f-s_0 buy-block">
                     <!--Select variant -->
@@ -129,10 +129,10 @@
                                                 data-prodId="{echo $model->getId()}"
                                                 data-varId="{echo $v->getId()}"
                                                 data-price="{echo $v->toCurrency()}"
-                                                data-name="{echo $model->getName()}"
+                                                data-name="{echo  ShopCore::encode($model->getName())}"
                                                 data-number="{echo $v->getnumber()}"
                                                 data-maxcount="{echo $v->getstock()}"
-                                                data-vname="{echo $v->getName()}">
+                                                data-vname="{echo  ShopCore::encode($v->getName())}">
                                             <span class="icon-bask-buy"></span>
                                             {lang('s_buy')}
                                         </button>
@@ -217,19 +217,16 @@
                 <a class="var_photo_{echo $v->getId()} prod_photo_block"  rel="group" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo $model->getName() ." - ".$v->getName()}" />
+                        <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo  ShopCore::encode($model->getName()) ." - ". ShopCore::encode($v->getName())}" />
                         
                     </span>
                 </a>
                 <!-- End. Photo block-->
-                <!-- Star rating & comments-->
+                <!-- Star rating -->
                 <div class="clearfix m-b_10">
                     {$CI->load->module('star_rating')->show_star_rating($model)}
-                    {if $Comments[$model->getId()][0] !== '0'}
-                        {echo $Comments[$model->getId()]}
-                    {/if}
                 </div>
-                <!-- End rating & comments -->
+                <!-- End. Star rating-->
                 <!--Additional images-->
                 {if sizeof($model->getSProductImagess()) > 0}
                     <ul class="frame-thumbail">
@@ -364,6 +361,8 @@
                     {if trim($model->getShortDescription()) != ''}
                         <li><span data-href="#second">Полное описание</span></li>
                     {/if}
+                    <!--Output of the block comments-->
+                    {if $Comments && $model->enable_comments}
                     <li>
                         <span data-href="#third">
 
@@ -381,6 +380,7 @@
                             </button>
                         </span>
                     </li>
+                    {/if}
                    {if $accessories = $model->getRelatedProductsModels()}     
                         <li><span data-href="#fourth">Аксессуары</span></li>
                     {/if}
@@ -406,7 +406,7 @@
                     <div id="second">
 <!--                        Start. Description block-->
                         <div class="text">
-                            <h1>{echo $model->getName()}</h1>
+                            <h1>{echo  ShopCore::encode($model->getName())}</h1>
                             {echo $model->getFullDescription()}
                         </div>
 <!--                        End. Description block-->
