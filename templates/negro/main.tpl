@@ -15,13 +15,12 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.pluginssiteimage.min.js"></script>
-        {$gmeta}
     </head>
     <body>
         <div class="main-body">
             <div class="fon-header">
                 <header>
-                    {include_tpl('shop/header')}
+                    {include_tpl('header')}
                 </header>
                 {\Category\RenderMenu::create()->load('category_menu')}
             </div>
@@ -29,7 +28,7 @@
             <div class="h-footer"></div>
         </div>
         <footer>
-            {include_tpl('shop/footer')}
+            {include_tpl('footer')}
         </footer>
 
         <!-- Start. PHP vars to JS -->
