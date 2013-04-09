@@ -6,7 +6,7 @@
             </ul>
         </nav>
         <div class="f_r">
-            {include_tpl('auth_data')}
+            {include_shop_tpl('auth_data')}
         </div>
     </div>
 </div>
@@ -20,8 +20,8 @@
                     <button type="button" class="f-s_0" data-event="call" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="top right"><span class="icon-order-call"></span><span class="form_title d_l_b f-s_14">Заказать звонок</span></button>
                 </div>
                 <div class="f_r">
-                   {include_tpl('wish_list_data')}
-                   {include_tpl('compare_data')}
+                   {include_shop_tpl('wish_list_data')}
+                   {include_shop_tpl('compare_data')}
                 </div>
             </div>
             <div class="frame-search">
@@ -35,7 +35,7 @@
                     </form>
                 </div>
                 <div class="f_r" id="bask_block">
-                    {include_tpl('cart_data')}
+                    {include_shop_tpl('cart_data')}
                 </div>
             </div>
         </div>
