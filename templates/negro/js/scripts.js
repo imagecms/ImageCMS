@@ -190,29 +190,7 @@ jQuery(document).ready(function() {
         })
     }
 });
-wnd.load(function() {
-    if ($('.cycle li').length > 1) {
-        $('.cycle').cycle({
-            speed: 600,
-            timeout: 2000,
-            fx: 'fade',
-            pager: '.cycle .nav',
-            pagerEvent: 'click',
-            pauseOnPagerHover: true,
-            next: '.frame_baner .next',
-            prev: '.frame_baner .prev',
-            pager:      '.pager',
-                    pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            $('.cycle').cycle('pause');
-        }, function() {
-            $('.cycle').cycle('resume');
-        });
-    }
-
-
+wnd.load(function() {   
     var $js_carousel = $('.carousel_js'),
             $frame_button = new Array();
     $item = new Array();
