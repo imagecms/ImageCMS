@@ -1,18 +1,19 @@
 <div class="content-footer">
     <div class="container">
         <div class="box">
-            {if $CI->uri->total_segments() > 0}
-                <a href="{site_url('')}" class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
-                {else:}
-                <span class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
-                {/if}
-            <p>© {echo date('Y', time())} Интернет-супермаркет «Negro»<br/>Все права защищены</p>
+<!--            Start. Logo and text-->
+            <span class="logo d_b"><img src="{$THEME}images/logo.png" alt="logo.png"/></span>
+            <p>© {echo date('Y', time())} Imagecms<br/>Все права защищены</p>
+<!--            End. Logo and text-->
+<!--                Start. Social buttons-->
             <div class="social-block-footer">
                 <a href="#" class="vk icon-"></a>
                 <a href="#" class="fb icon-"></a>
                 <a href="#" class="tw icon-"></a>
             </div>
+<!--                End. Social buttons-->
         </div>
+<!--        Start. Load menu in footer-->
         <div class="box">
             <div class="title_h3">Сайт</div>
             <ul>
@@ -23,6 +24,8 @@
             <div class="title_h3">Продукция</div>
              {load_menu('top_menu')}
         </div>
+<!--        End. Load menu in footer-->
+<!--            Start. Info block-->
         <div class="box">
             <div class="title_h3">Мы принимаем</div>
             <div class="frame-method-pay icon-">
@@ -42,6 +45,7 @@
                 <div class="privat24 icon-"></div>
             </div>
         </div>
+<!--            End. Info block-->
     </div>
 </div>
 <div class="footer-footer">
