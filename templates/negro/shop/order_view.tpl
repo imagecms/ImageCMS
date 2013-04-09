@@ -1,6 +1,5 @@
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Просмотр заказа")}
     </div>
 </div>
 <div class="frame-inside">

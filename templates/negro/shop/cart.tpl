@@ -1,8 +1,3 @@
-<div class="frame-crumbs">
-    <div class="container">
-        {myCrumbs(0, " / ", "Оформление заказа")}
-    </div>
-</div>
 <div class="frame-inside">
     {if count($items) > 0}
         <form method="post" action="{shop_url('cart')}" id="makeOrderForm">
