@@ -1,8 +1,6 @@
-{$Comments = $CI->load->module('comments')->init($products)}
-{$forCompareProducts = $CI->session->userdata('shopForCompare')}
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs($model->id, " / ")}
+        {widget('path')}
     </div>
 </div>
 {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
