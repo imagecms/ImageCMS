@@ -329,4 +329,3 @@ $(document).ready(function() {
         $('form#searchSortForm').submit();
     });
 });
-
