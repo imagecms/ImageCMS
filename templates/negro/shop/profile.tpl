@@ -14,9 +14,6 @@
                     {if count($orders) > 0}
                         <li><span data-href="#history_order">История заказов</span></li>
                     {/if}
-                    {if count($goods_in_spy) > 0}
-                        <li><span data-href="#wait_tov">Слежение за ценой</span></li>
-                    {/if}
                 </ul>
                 <div class="frame-tabs-ref">
 
@@ -26,7 +23,7 @@
                                 {include_tpl('../profile_data_popup')}
                             </div>
                             {$discount = ShopCore::app()->SDiscountsManager->getActive();}
-                            {if $discount['0']->getDiscount() != null}
+                            {if $discount['0']!=null && $discount['0']->getDiscount() != null}
                                 <div class="right-personal">    
                                     <div class="info-discount">
                                         <div class="f-s_14 title">Ваша скидка</div>
@@ -68,12 +65,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="wait_tov">
-                        <div class="spy_popup_container">
-                            {include_tpl('product_spy_popup')}
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
