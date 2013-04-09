@@ -1,3 +1,17 @@
+{#
+/**
+* @main.tpl - template for displaying shop main page
+* Variables
+*   $site_title: variable for insert site title
+*   $meta_noindex: variable for insert meta noindex
+*   $canonical: variable for insert canonical
+*   $site_description: variable for insert site description
+*   $THEME: variable for template path
+*   $site_keywords : variable for insert site keywords
+*   $content : variable for insert content of page
+*/
+#}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,14 +34,17 @@
         <div class="main-body">
             <div class="fon-header">
                 <header>
+<!--                    Include header template-->
                     {include_tpl('header')}
                 </header>
+<!--                Render category menu-->
                 {\Category\RenderMenu::create()->load('category_menu')}
             </div>
             {$content}
             <div class="h-footer"></div>
         </div>
         <footer>
+<!--            Include footer template-->
             {include_tpl('footer')}
         </footer>
 
