@@ -1,22 +1,13 @@
-<div class="frame-crumbs">
-    <div class="container">
-        {myCrumbs(0, " / ", "Оформление заказа")}
-    </div>
-</div>
 <div class="frame-inside">
     {if count($items) > 0}
         <form method="post" action="{shop_url('cart')}" id="makeOrderForm">
             <div class="container">
                 <h1>Оформление заказа</h1>
                 <div class="frame-cleaner-main left_order">
-
                 </div>
                 <div class="">
-
                     <div id="orderDetails">
-
                     </div>
-
                     <div class="clearfix horizontal-form">
                         <div class="box-ordering1">
                             <div class="title_h3">Данные получателя</div>

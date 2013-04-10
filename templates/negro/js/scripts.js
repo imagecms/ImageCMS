@@ -65,7 +65,7 @@ function deleteWishListItem(el) {
 jQuery(document).ready(function() {
 
     var catUrl = window.location.pathname + window.location.search;
-    catUrl = catUrl.replace('shop/category', 'module_frame/index');
+    catUrl = catUrl.replace('shop/category', 'smart_filter/index');
 
     //console.log(catUrl)
 
@@ -102,11 +102,6 @@ jQuery(document).ready(function() {
     if (ltie7) {
         ieInput()
     }
-
-    $('#slider').sliderInit({
-        minCost: $('#minCost'),
-        maxCost: $('#maxCost')
-    });
 
     if ($.exists('.lineForm')) {
         var params = {
@@ -195,29 +190,7 @@ jQuery(document).ready(function() {
         })
     }
 });
-wnd.load(function() {
-    if ($('.cycle li').length > 1) {
-        $('.cycle').cycle({
-            speed: 600,
-            timeout: 2000,
-            fx: 'fade',
-            pager: '.cycle .nav',
-            pagerEvent: 'click',
-            pauseOnPagerHover: true,
-            next: '.frame_baner .next',
-            prev: '.frame_baner .prev',
-            pager:      '.pager',
-                    pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            $('.cycle').cycle('pause');
-        }, function() {
-            $('.cycle').cycle('resume');
-        });
-    }
-
-
+wnd.load(function() {   
     var $js_carousel = $('.carousel_js'),
             $frame_button = new Array();
     $item = new Array();
@@ -339,16 +312,5 @@ wnd.load(function() {
 
     /*fancybox-based imagebox initialization*/
     $('a.fancybox').fancybox();
-});
-def_min = $('span#opt1').data('def_min');
-def_max = $('span#opt2').data('def_max');
-cur_min = $('span#opt3').data('cur_min');
-cur_max = $('span#opt4').data('cur_max');
 
-/*$(".star-big").starRating({
- width: 26,
- afterClick: function(el, value) {
- alert(value)
- console.log(el)
- }
- });*/
+});
