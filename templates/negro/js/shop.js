@@ -715,8 +715,8 @@ function changeDeliveryMethod(id) {
 
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function (dataStr) {
         data = JSON.parse(dataStr);
-        var replaceStr = _.template('<ul><% _.each(data, function(item) { %>' +
-            '<div class="frame-label"><div><input name="paymentMethodId" value="<%-item.id%>" type="radio" class="f_l">' +
+        var replaceStr = _.template('<ul><%var i=1%><% _.each(data, function(item) { %>' +
+            '<div class="frame-label"><div><input <%if (i==1){%> checked="checked" <%}%> <%i++%>name="paymentMethodId" value="<%-item.id%>" type="radio" class="f_l">' +
             '</div><div class="neigh-radio"><%-item.name%><div class="help-block d_b"><p><%- item.description%></p>  </div></div></div> <% }) %></ul> ', {
             data:data
         });
@@ -966,6 +966,10 @@ $(document).ready(
                     {
                         $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
                         $('#giftCertSpan').show();
+                        $('#errorCertSpan').hide();
+                    }else{
+                         $('#giftCertSpan').hide();
+                         $('#errorCertSpan').show();
                     }
 
                     Shop.Cart.totalRecount();
