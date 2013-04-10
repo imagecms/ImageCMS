@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Квт 10 2013 р., 11:54
+-- Час створення: Квт 10 2013 р., 20:19
 -- Версія сервера: 5.1.67-community-log
 -- Версія PHP: 5.4.11
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `shop_sorting` (
   `get` varchar(15) DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Дамп даних таблиці `shop_sorting`
@@ -50,7 +50,8 @@ INSERT INTO `shop_sorting` (`id`, `pos`, `name`, `name_front`, `tooltip`, `get`,
 (6, 5, 'Акции', 'Акции', '', 'action', 1),
 (7, 6, 'А-Я', 'Имени', '', 'name', 1),
 (8, 7, 'Я-А', 'Имени(Я-А)', '', 'name_desc', 1),
-(9, 7, 'Просмотров', 'Количеству просмотров', '', 'views', 1);
+(9, 7, 'Просмотров', 'Количеству просмотров', '', 'views', 1),
+(10, 9, 'Топ продаж', 'Топ продаж', '', 'topsales', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
