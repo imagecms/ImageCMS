@@ -69,8 +69,6 @@
                             <% var ids = item.id %>
                             <% var prices = item.prices %>
 
-
-
                             <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
                                 <td colspan="5">
                                     <table>
@@ -150,7 +148,6 @@
                                 </td>
                             </tr>
 
-
                             <% } %>
 
                             <% }); %>
@@ -206,8 +203,6 @@
     {/literal}  
 </script>
 
-
-
 <script type="text/template" id="orderDetailsTemplate">
     {literal}
         <div class="frame_head_content">
@@ -254,8 +249,6 @@
                     <% var names = item.name %>
                     <% var ids = item.id %>
                     <% var prices = item.prices %>
-
-
 
                     <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
                         <td colspan="4">
@@ -325,9 +318,7 @@
                         </td>
                     </tr>
 
-
                     <% } %>
-
 
                     <% }) %>
                 </tbody>
@@ -350,10 +341,6 @@
             </table>
         </div>
     {/literal}
-</script>
-
-<script>
-    var curr = '{$CS}';
 </script>
 
 <div class="apply">

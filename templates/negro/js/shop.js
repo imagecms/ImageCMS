@@ -9,13 +9,6 @@ if (!Array.indexOf) {
     }
 }
 
-
-
-var btnBuyClass = 'buyButton';
-var btnToCartClass = 'toCart';
-var btnInCartClass = 'inCart';
-var popupCartSelector = 'script#cartPopupTemplate';
-
 var Shop = {
     currentItem: {},
     Cart:{
@@ -329,6 +322,8 @@ var Shop = {
 
     //create cartItem from data, stored as data-attributes in $context element
     composeCartItem:function ($context) {  //TODO: test speed of this function, maybe she works slow
+
+        var now = Date.now();
         var cartItem = new Shop.cartItem();
 
         cartItem.id = $context.data('prodid');
@@ -373,6 +368,7 @@ var Shop = {
         }
 
 
+        console.log( Date.now() - now );
         return cartItem;
     },
 
@@ -959,26 +955,23 @@ $(document).ready(
         $('#applyGiftCert').on('click', function(){
             $('input[name=makeOrder]').val(0);
             $('input[name=checkCert]').val(1);
-            $('#makeOrderForm').ajaxSubmit({
-                url:'/shop/cart_api',
-                success : function(data){
-                    try {
-                        var dataObj = JSON.parse(data);
 
-                        Shop.Cart.giftCertPrice = dataObj.cert_price;
+            $.post('/shop/cart_api', $('#makeOrderForm').serializeArray(), function(data){
+                try {
+                    var dataObj = JSON.parse(data);
 
-                        if (Shop.Cart.giftCertPrice > 0)
-                        {// apply certificate
-                            $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
-                            $('#giftCertSpan').show();
-                            //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
-                        }
+                    Shop.Cart.giftCertPrice = dataObj.cert_price;
 
-                        Shop.Cart.totalRecount();
-                        recountCartPage();
-                    } catch (e) {
-                        //console.error('Checking gift certificate filed. '+e.message);
+                    if (Shop.Cart.giftCertPrice > 0)
+                    {
+                        $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
+                        $('#giftCertSpan').show();
                     }
+
+                    Shop.Cart.totalRecount();
+                    recountCartPage();
+                } catch (e) {
+                    //console.error('Checking gift certificate filed. '+e.message);
                 }
             });
 

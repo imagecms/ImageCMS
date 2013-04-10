@@ -48,25 +48,10 @@
             {include_tpl('footer')}
         </footer>
 
-        <!-- Start. PHP vars to JS -->
-        <script type="text/javascript">
-            var curr = '{$CS}';
-            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
-            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-            var inCart = '{lang('already_in_basket')}';
-            var toCart = '<span class="icon-bask-buy"></span> {lang('s_buy')}';
-            var pcs = 'шт.';
-            var kits = 'компл.';
-        </script>
-        <!-- End. PHP vars to JS -->
+        <!-- Start. Config.js -->
+        {include_tpl('config.js')}
+        <!-- End. Config.js -->
 
-        <!-- Start. Syncronization data for cart, wishlist and comparelist -->
-        <script>
-            var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
-            var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
-            var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
-        </script>
-        <!-- End. Syncronization data for cart, wishlist and comparelist -->
 
         <!-- DELETE -->
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
