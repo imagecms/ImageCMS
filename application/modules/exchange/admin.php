@@ -46,6 +46,9 @@ class Admin extends BaseAdminController {
             $config['usepassword'] = $for_update['usepassword'];
             $config['userstatuses'] = $for_update['statuses'];
             $config['autoresize'] = $for_update['autoresize'];
+            $config['brand'] = $for_update['brand'];
+            $config['userstatuses_after'] = $for_update['userstatuses_after'];
+            $config['backup'] = $for_update['backup'];
             if ($this->form_validation->run() == false) {
                 showMessage(validation_errors(), '', '');
             } else {
