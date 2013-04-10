@@ -42,14 +42,22 @@ class Admin extends BaseAdminController {
             $config['zip'] = $for_update['zip'];
             $config['filesize'] = $for_update['filesize'];
             $config['validIP'] = $for_update['validIP'];
+            $config['login'] = $for_update['login'];
             $config['password'] = $for_update['password'];
             $config['usepassword'] = $for_update['usepassword'];
             $config['userstatuses'] = $for_update['statuses'];
             $config['autoresize'] = $for_update['autoresize'];
+            $config['debug'] = $for_update['debug'];
+            $config['email'] = $for_update['email'];
+            $config['brand'] = $for_update['brand'];
+            $config['userstatuses_after'] = $for_update['userstatuses_after'];
+            $config['backup'] = $for_update['backup'];
+            
             if ($this->form_validation->run() == false) {
-                showMessage(validation_errors(), '', '');
+                showMessage(validation_errors(), '', 'r');
             } else {
-                $this->db->where('identif', 'exchange')->update('components', array('settings' => serialize($config)));
+                $this->db->where('identif', 'exchange')
+                        ->update('components', array('settings' => serialize($config)));
                 showMessage("Настройки сохранены");
             }
         }
@@ -57,6 +65,7 @@ class Admin extends BaseAdminController {
     
     public function startImagesResize() {
         ShopCore::app()->SWatermark->updateWatermarks(true);
+        showMessage("Изображения обновлены");
     }
 
 }
