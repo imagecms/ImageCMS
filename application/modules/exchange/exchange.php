@@ -18,10 +18,8 @@ class Exchange {
     private $product_variants_table = 'shop_product_variants';  //contains shop products variants name
     private $settings_table = 'components';                     //table which contains module settings if modules is installed
     private $allowed_image_extensions = array();
-
     private $login;
     private $password;
-
     private $brand_identif;
     //+++++++++++++++++++++++++++++++++++++++++++++++++
     private $cat = array();
@@ -97,12 +95,9 @@ class Exchange {
      * Use this function to make backup before import starts
      */
     protected function makeDBBackup() {
-        include './system/database/DB_forge.php';
-        include './system/database/DB_utility.php';
-        
         if (is_really_writable('./application/backups')) {
-            $util = new CI_DB_utility();
-            $backup = & $util->backup(array('format' => 'txt'));
+            $this->ci->load->dbutil();
+            $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
             write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
         } else {
             $this->error_log('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
@@ -209,7 +204,7 @@ class Exchange {
     private function check_perm() {
         if ($this->config[debug])
             return true;
-            
+
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
             return true;
@@ -442,7 +437,7 @@ class Exchange {
             } else {
 
                 //searching property by external id
-               // $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
+                // $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
                 $searchedProperty = is_prop($property->Ид, $this->prop);
                 if (!$searchedProperty) {
                     //property not found, it should be inserted
@@ -527,7 +522,7 @@ class Exchange {
         $brand_id = 0;
         $brandName = $property->Значение . "";
         $brand_id = is_brand($brandName, $this->brand);
-        if (!$brand_id){
+        if (!$brand_id) {
             $brand_data = array(
                 'url' => translit_url(strtolower($brandName))
             );
@@ -538,9 +533,9 @@ class Exchange {
                 'name' => $brandName,
                 'locale' => $this->locale,
             );
-            $this->ci->db->insert('shop_brands_i18n', $brand_data_locale);  
+            $this->ci->db->insert('shop_brands_i18n', $brand_data_locale);
             $this->brand[] = array('name' => $brandName);
-        } 
+        }
         $this->ci->db->where('id', $insert_id)->update('shop_products', array('brand_id' => $brand_id));
     }
 
@@ -600,7 +595,7 @@ class Exchange {
                 $insert_id = null;
                 $insert_id = $this->ci->db->insert_id();
                 $data = array();
-                
+
 
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
@@ -609,9 +604,9 @@ class Exchange {
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
                     @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-        
+
                     //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
-                    
+
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
                     $data['mainModImage'] = $insert_id . '_mainMod.jpg';
@@ -737,7 +732,7 @@ class Exchange {
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
                     @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-        
+
                     $data = array();
 
                     //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];   
@@ -797,7 +792,7 @@ class Exchange {
                                 $data = array();
                                 $data['value'] = $property->Значение . "";
                                 //check if product property exists
-                                
+
                                 if (is_prop_data($searchedProperty['id'], $searchedProduct['id'], $this->prop_data))
                                 //update prepared data into shop_product_properties_data
                                     $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'property_id' => $searchedProperty['id']))->update($this->properties_table . "_data", $data);
@@ -809,7 +804,7 @@ class Exchange {
                                         'value' => $property->Значение . "",
                                         'locale' => $this->locale
                                     ));
-                                    $this->prop_data[$searchedProperty['id'] . '_' . $searchedProduct['id']] = $property->Значение . "";
+                                $this->prop_data[$searchedProperty['id'] . '_' . $searchedProduct['id']] = $property->Значение . "";
 
                                 if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
                                     $properties_data[$searchedProperty['id']][] = $property->Значение . "";
