@@ -10,11 +10,7 @@
                                 <a href="{shop_url('product/' . $p->getUrl())}">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        {if $p->getMainModimage()}
-                                            <img src="{productImageUrl($p->getMainModimage())}" alt="{echo ShopCore::encode($p->getName())}" />
-                                        {else:}
-                                            <img src="{productImageUrl('no_mm.png')}" alt="{echo ShopCore::encode($p->getName())}" />
-                                        {/if}
+                                        <img src="{productImageUrl($p->getSmallImage())}" alt="{echo ShopCore::encode($p->getName())}" />
                                         <!-- creating hot bubble for products image if product is hot -->
                                         {if $p->getHot()}
                                             <span class="prod_status nowelty">{lang('s_shot')}</span>
