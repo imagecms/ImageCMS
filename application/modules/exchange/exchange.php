@@ -284,7 +284,7 @@ class Exchange {
             //reading xml files
             $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml) {
-                $this->error_log('Ненайден ХМL фал импорта');
+                $this->error_log('Ненайден ХМL файл импорта');
                 return "failure";
             }
 
