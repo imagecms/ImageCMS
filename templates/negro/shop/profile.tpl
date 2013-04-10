@@ -1,6 +1,5 @@
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs(0, " / ", "Личный кабинет")}
     </div>
 </div>
  <div class="frame-inside">
@@ -14,9 +13,6 @@
                     {if count($orders) > 0}
                         <li><span data-href="#history_order">История заказов</span></li>
                     {/if}
-                    {if count($goods_in_spy) > 0}
-                        <li><span data-href="#wait_tov">Слежение за ценой</span></li>
-                    {/if}
                 </ul>
                 <div class="frame-tabs-ref">
 
@@ -25,17 +21,15 @@
                             <div class="horizontal-form w_350 f_l">
                                 {include_tpl('../profile_data_popup')}
                             </div>
-                            {//$discount = ShopCore::app()->SDiscountsManager->getActive();}
-                            {/*if count(getComulativDiscountList()) > 0}
+                            {$discount = ShopCore::app()->SDiscountsManager->getActive();}
+                            {if $discount['0']!=null && $discount['0']->getDiscount() != null}
                                 <div class="right-personal">    
                                     <div class="info-discount">
-                                        {if count($discountCom) > 0}
-                                            <div class="f-s_14 title">Ваша скидка</div>
-                                            <div class="c_68 info-discount-count">Текущая накопительная скидка: <span class="text-discount f-s_14">{echo $discountCom->getDiscount()}%</span></div>
-                                        {/if}
+                                        <div class="f-s_14 title">Ваша скидка</div>
+                                        <div class="c_68 info-discount-count"><span class="text-discount f-s_14">{echo $discount['0']->getDiscount()}%</span></div>
                                     </div>
                                 </div>
-                            {/if*/}
+                            {/if}
                         </div>
                     </div>
                     <div id="change_pass">
@@ -70,12 +64,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="wait_tov">
-                        <div class="spy_popup_container">
-                            {include_tpl('product_spy_popup')}
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

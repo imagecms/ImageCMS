@@ -6,31 +6,15 @@
  * Image CMS
  * Module Frame
  */
-class Module_frame extends \Category\BaseCategory {
+class Module_frame {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function index() {
-        //parent::index();
-        //parent::__CMSCore__();
-        return true;
-//
-//
-//        if ($this->input->is_ajax_request())
-//        else
-    }
 
-    public function init() {
-        return \CMSFactory\assetManager::create()->render('main', true);
     }
-
-    public function filter() {
-        return $this->render_min('filter', $this->data);
-    }
-
-//    public function ()
 
     public function autoload() {
         

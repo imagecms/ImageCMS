@@ -24,8 +24,8 @@
 {/if}
 <div class="frame-news-catalog">
     <div class="container">
-        {widget('news_main')}
-        {\Category\RenderMenu::create()->load('front_menu')}
+        {widget('latest_news')}
+        {\Category\RenderMenu::create()->showSubCategories('front_menu','0')}
     </div>
 </div>
     {widget('popular_products')}
