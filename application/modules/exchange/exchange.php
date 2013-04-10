@@ -99,7 +99,6 @@ class Exchange {
     protected function makeDBBackup() {
         include './system/database/DB_forge.php';
         include './system/database/DB_utility.php';
-
         
         if (is_really_writable('./application/backups')) {
             $util = new CI_DB_utility();
@@ -332,7 +331,7 @@ class Exchange {
             //search category by external id
             //$searchedCat = array();
             // не робити в циклі а зробити один раз і працювати з масивом масив виду external_id => category_data
-            // $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get('shop_category')->row_array(); 
+            // $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array(); 
             $searchedCat = is_cat($category->Ид, $this->cat);
 
             if (!$searchedCat) {
@@ -354,7 +353,7 @@ class Exchange {
                     $data['full_path'] = $parent['full_path'] . "/" . $translit;
                 }
                 $insert_id = null;
-                $this->ci->db->insert('shop_category', $data);
+                $this->ci->db->insert($this->categories_table, $data);
                 $insert_id = $this->ci->db->insert_id();
 
 
@@ -366,7 +365,7 @@ class Exchange {
                     else {
                         $data['full_path_ids'][] = (int) $parent['id'];
                     }
-                    $this->ci->db->where('id', $insert_id)->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
+                    $this->ci->db->where('id', $insert_id)->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
                 }
 
                 //preparing data for i18n table insert
@@ -401,7 +400,7 @@ class Exchange {
                     $data['parent_id'] = $parent['id'];
                     $data['full_path'] = $parent['full_path'] . "/" . $translit;
                 }
-                $this->ci->db->where('external_id', $searchedCat['external_id'])->update('shop_category', $data);
+                $this->ci->db->where('external_id', $searchedCat['external_id'])->update($this->categories_table, $data);
 
                 //preparing data for i18n table update
                 $i18n_data['name'] = $category->Наименование . "";
@@ -417,7 +416,7 @@ class Exchange {
                     else {
                         $data['full_path_ids'][] = $searchedCat['id'];
                     }
-                    $this->ci->db->where('id', $searchedCat['id'])->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
+                    $this->ci->db->where('id', $searchedCat['id'])->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
                 }
             }
             //process subcategories
@@ -425,7 +424,7 @@ class Exchange {
 
                 //$parent_cat брати з масиву
                 $parentCat = is_cat($category->Ид, $this->cat);
-                //$this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get('shop_category')->row_array();
+                //$this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array();
                 $this->importCategories($category->Группы, $parentCat);
             }
         }
