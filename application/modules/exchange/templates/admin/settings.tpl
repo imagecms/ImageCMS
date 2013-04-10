@@ -55,12 +55,21 @@
                                     </span>
                                 </div>
                             </div>
+                                        
+                            <div class="control-group">
+                                <label class="control-label" for="login">Задать логин для доступа c сервера 1C:</label>
+                                <div class="controls">
+                                    <input type = "text" name = "1CSettings[login]" class="textbox_short" value="{$settings['login']}" id="login"/>
+                                </div>
+                            </div>
+                                
                             <div class="control-group">
                                 <label class="control-label" for="pass">{lang('a_server_zadat')}:</label>
                                 <div class="controls">
                                     <input type = "password" name = "1CSettings[password]" class="textbox_short" value="{$settings['password']}" id="pass"/>
                                 </div>
                             </div>
+                                
                             <div class="control-group">
                                 <label class="control-label" for="status">{lang('a_select_order_status')}:</label>
                                 <div class="controls">
@@ -87,6 +96,36 @@
                                 <label class="control-label">Ручной запуск ресайза</label>
                                 <div class="controls">
                                     <a class="btn runResize"><i class="icon-play"></i>&nbsp;Запустить</a>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <span class="control-label">
+                                    <span data-title="&lt;b&gt;Debug&lt;/b&gt;" class="popover_ref" data-original-title="">
+                                        <i class="icon-info-sign"></i>
+                                    </span>
+                                    <div class="d_n">Все ошибки будут записаны в файл error_log.txt</div>&nbsp;Режим отладки
+                                </span>
+                                <div class="controls">
+                                    <span class="frame_label no_connection">
+                                        <span class="niceCheck b_n">
+                                            <input type = "checkbox" name = "1CSettings[debug]" id="debug" {if $settings['debug'] == 'on'}checked="checked"{/if}/>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <span class="control-label">
+                                    <span data-title="&lt;b&gt;Debug&lt;/b&gt;" class="popover_ref" data-original-title="">
+                                        <i class="icon-info-sign"></i>
+                                    </span>
+                                    <div class="d_n">Если указать емайл ошибки про неправильно введенный пароль<br>
+                                        и ошибки безопасности будут отправлятся администратору</div>&nbsp;
+                                    Email администратора для отправки важных ошибок безопасности
+                                </span>
+                                <div class="controls">
+                                    <input type = "text" name = "1CSettings[email]" id="email" />
                                 </div>
                             </div>
                         </div>
