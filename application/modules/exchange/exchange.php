@@ -18,6 +18,8 @@ class Exchange {
     private $product_variants_table = 'shop_product_variants';  //contains shop products variants name
     private $settings_table = 'components';                     //table which contains module settings if modules is installed
     private $allowed_image_extensions = array();
+    private $login;
+    private $password;
 
     public function __construct() {
         set_time_limit(0);
@@ -30,7 +32,7 @@ class Exchange {
 
         $this->ci->load->helper('translit');
         $this->ci->load->helper('file');
-        
+
         $this->locale = $this->getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
@@ -42,15 +44,19 @@ class Exchange {
             $this->config['usepassword'] = false;
             $this->config['userstatuses'] = array();
             $this->config['autoresize'] = 'off';
+            $this->config['debug'] = false;
+            $this->config['email'] = false;
         } else {
             //get settings from database
             $this->config = $this->get1CSettings();
         }
-
         $this->allowed_image_extensions = array('jpg', 'jpeg', 'png', 'gif');
 
         //define first get command parameter
         $method = 'command_';
+
+        $this->login = trim($_SERVER['PHP_AUTH_USER']);
+        $this->password = trim($_SERVER['PHP_AUTH_PW']);
 
         //saving get requests to log file
         if ($_GET) {
@@ -59,6 +65,7 @@ class Exchange {
             }
             write_file($this->tempDir . "log.txt", $string, 'ab');
         }
+
         //preparing method and mode name from $_GET variables
         if (isset($_GET['type']) && isset($_GET['mode']))
             $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
@@ -103,9 +110,29 @@ class Exchange {
         }
     }
 
-    function error_log($error) {
-        if (true)
-            write_file($this->tempDir . "error_log.txt", date('c') . ' - ' . $error . PHP_EOL, 'ab');
+    function error_log($error, $send_email = FALSE) {
+        $intIp = $_SERVER ["REMOTE_ADDR"];
+        if (isset($_SERVER ["HTTP_X_FORWARDED_FOR"])) {
+            if (isset($_SERVER ["HTTP_X_REAL_IP"]))
+                $intIp = $_SERVER ["HTTP_X_REAL_IP"];
+            else
+                $intIp = $_SERVER ["HTTP_X_FORWARDED_FOR"];
+        }
+
+        if ($this->config[debug])
+            write_file($this->tempDir . "error_log.txt", $intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL, 'ab');
+
+        if ($send_email) {
+            $this->ci->load->library('email');
+
+            $this->ci->email->from('your@example.com', 'Your Name');
+            $this->ci->email->to($this->config[email]);
+
+            $this->ci->email->subject('1C exchange');
+            $this->ci->email->message($intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL);
+
+            $this->ci->email->send();
+        }
     }
 
     function __autoload() {
@@ -116,11 +143,11 @@ class Exchange {
      * checking password from $_GET['password'] if use_password option in settings is "On"
      */
     private function check_password() {
-        if (isset($_GET['password']) && ($this->config['password'] == $_GET['password'])) {
+        if (($this->config['login'] == $this->login) && ($this->config['password'] == $this->password)) {
             $this->checkauth();
         } else {
             echo "failure. wrong password";
-            $this->error_log('Неверно введен пароль');
+            $this->error_log('Неверно введен пароль', TRUE);
         }
     }
 
@@ -159,11 +186,14 @@ class Exchange {
      * @return boolean
      */
     private function check_perm() {
+        if ($this->config[debug])
+            return true;
+            
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
             return true;
         } else {
-            $this->error_log("Ошибка безопасности!!!");
+            $this->error_log("Ошибка безопасности!!!", TRUE);
             die("Ошибка безопасности!!!");
         }
     }
@@ -229,8 +259,10 @@ class Exchange {
         if ($this->check_perm() === true) {
             //reading xml files
             $this->xml = $this->_readXmlFile($_GET['filename']);
-            if (!$this->xml)
+            if (!$this->xml) {
+                $this->error_log('Ненайден ХМL фал импорта');
                 return "failure";
+            }
 
             // Import categories
             if (isset($this->xml->Классификатор->Группы)) {
@@ -512,7 +544,10 @@ class Exchange {
                     $ext = explode('.', $image[count($image) - 1]);
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-
+                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+        
+                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
+                    
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
                     $data['mainModImage'] = $insert_id . '_mainMod.jpg';
@@ -632,8 +667,10 @@ class Exchange {
                     $ext = explode('.', $image[count($image) - 1]);
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-
+                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+        
                     $data = array();
+                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];   
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
                     $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
