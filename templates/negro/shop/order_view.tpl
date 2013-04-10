@@ -1,8 +1,22 @@
-<div class="frame-crumbs">
-    <div class="container">
-        {myCrumbs(0, " / ", "Просмотр заказа")}
-    </div>
-</div>
+{#
+/**
+* @file Template. Displaying order view page;
+* @partof main.tpl;
+* Variables
+*   $model : (object) instance of SOrders;
+*    $model->getId() : return Order ID;
+*    $model->getPaid() : return Order paid status;
+*    $model->getSDeliveryMethods()->getName() : get Delivery method name;
+*    $model->getOrderProducts() : return Ordered products list;
+*    $model->getOrderKits() : return Ordered Kits list;
+*    $model->getTotalPrice() : get aggregate ordered Products Price;
+*    $model->getDeliveryPrice() : return delivery Price;
+*    $model->getTotalPriceWithDelivery() : sum of Product and Delivery Prices;
+*    $model->getTotalPriceWithGift() : difference of previous price (getTotalPriceWithDelivery) and gift certificate price;
+* @updated 27 January 2013;
+*/
+#}
+
 <div class="frame-inside">
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
@@ -17,38 +31,47 @@
         {/if}
 
         {$total = $model->getTotalPrice()}
-
+        <!-- Start. Displays a information block about Order -->
         <div class="left-order">
             <div class="m-b_15">
                 Дата заказа {date('d.m.Y, H:i:s.',$model->getDateCreated())} 
                 {if (int)$model->getComulativ() > 0}
                     <br/>Скидка: <span class="text-discount">-{echo $model->getComulativ()}%</span>
                 {/if}
+                 <!-- Start. Render certificate -->
                 {if $model->getGiftCertKey() != null}
                     <br/>Сертификат: <span class="text-discount">-{echo $model->getgiftCertPrice()} {$CS}</span>
                     {$total -= (float)$model->getgiftCertPrice()}
                 {/if}
+                 <!-- End. Render certificate -->
+                  <!-- Start. Delivery Method price -->
                 {if (int)$model->getDeliveryPrice() > 0}
                     <br/>Стоимость доставки: <span class="green">{echo round_price($model->getDeliveryPrice())} {$CS}</span>
                     {$total = $total + $model->getDeliveryPrice()}
                 {/if}
-                {$total = round_price($total)}
-                <br/>Итого: <span class="green f-w_b">{$total} {$CS}</span>
+                <!-- End. Delivery Method price -->
+                <br/>Итого: <span class="green f-w_b">{echo round_price($total)} {$CS}</span>
             </div>
+            
             <div class="title_h3">Параметры заказа</div>
             <table class="table-info-order">
+<!--                Start. Order status-->
                 <tr>
                     <th>Статус заказа</th>
                     <td><span class="status-order">{echo SOrders::getStatusName('Id',$model->getStatus())}</span></td>
                 </tr>
+<!--                End. Order status-->
+<!--                    Start. Paid or not-->
                 <tr>
                     <th>Статус оплаты</th>
                     <td><span class="status-order">{if $model->getPaid() == true}Оплачен{else:}Неоплачен{/if}</span></td>
                 </tr>
+<!--                    End. Paid or not-->
                 <tr>
                     <th></th>
                     <td></td>
                 </tr>
+                 <!-- Start. Delivery Method name -->
                 <tr>
                     <th>Способ доставки</th>
                     <td>
@@ -57,10 +80,12 @@
                         {/if}
                     </td>
                 </tr>
+                 <!-- End. Delivery Method name -->
                 <tr>
                     <th></th>
                     <td></td>
                 </tr>
+<!--                Start. User info block-->
                 <tr>
                     <th>Ваше имя:</th>
                     <td>{echo $model->getUserFullName()}</td>
@@ -85,13 +110,15 @@
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
+<!--                End. User info block-->
             </table>
         </div>
+        <!-- End. Displays a information block about Order -->
         <div class="right-order">
             <div class="frame-your-order">
                 <div class="title_h3">Ваш заказ</div>
                 {foreach $model->getSOrderProductss() as $orderProduct}
-                   
+         <!-- Start. Render Ordered Products -->            
                         <ul class="items-complect item-order">
                             <li>
                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">
@@ -110,7 +137,8 @@
                             </li>
                         </ul>
                 {/foreach}
-<!--                Kits-->
+            <!-- End. Render Ordered Products -->
+        <!-- Start. Render Ordered kit products  -->
                 {foreach $model->getOrderKits() as $orderProduct}                        
                                     <ul class="items-complect items-complect-order-view">
                                         <li>
@@ -148,22 +176,24 @@
                                         {/foreach}
                                         <li style="width:100% !important;margin-left:0;">
                                             <div class="t-a_c">
-                                                <img src="{$THEME}/shop/default/images/sum_arrow.png"/>
+                                                <img src="{$THEME}/images/sum_arrow.png"/>
                                             </div>
-                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}}  шт):</span>
+                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}  шт):</span>
                                             <div class="v-a_bl d_i-b">
                                                 <div class="price-complect f-s_21 d_i-b"><div>{echo $orderProduct->getKit()->getTotalPrice()}<span class="cur">{$CS}</span></div></div>
                                             </div>
                                         </li>
                                     </ul>
                 {/foreach}
+<!--                Start. Price block-->
                 <div class="m-b_15 t-a_r">
                     <div class="f-s_18 f-w_b">К оплате: <span class="price-order">
                             <span>{echo $model->getTotalPrice()} <span class="cur">{$CS}</span></span><br/>
-                            + Доставка:<span>{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}<span class="cur">{$CS}</span></span>
+                            {if round_price($model->getDeliveryPrice())!= null}+ Доставка:<span>{echo round_price($model->getDeliveryPrice())}<span class="cur"> {$CS}</span></span>{/if}
                         </span>
                     </div>
                 </div>
+<!--                End. Price block-->
             </div>
         </div>
     </div>

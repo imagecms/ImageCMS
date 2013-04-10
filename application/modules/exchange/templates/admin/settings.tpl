@@ -64,6 +64,16 @@
                             </div>
                                 
                             <div class="control-group">
+                                <label class="control-label" for="back">Беккап бази:</label>
+                                <div class="controls">
+                                    <span class="frame_label no_connection">
+                                        <span class="niceCheck b_n">
+                                            <input value="1" type = "checkbox" name = "1CSettings[backup]" {if $settings['backup']}checked="checked"{/if} id="back"/>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label" for="pass">{lang('a_server_zadat')}:</label>
                                 <div class="controls">
                                     <input type = "password" name = "1CSettings[password]" class="textbox_short" value="{$settings['password']}" id="pass"/>
@@ -81,7 +91,25 @@
                                         {/foreach}
                                     </select>
                                 </div>
-                            </div>    
+                            </div>   
+                            <div class="control-group">
+                                <label class="control-label" for="brand">Под каким названиям свойства будет подразумеваться Бренд:</label>
+                                <div class="controls">
+                                    <input type = "text" name = "1CSettings[brand]" value = "{$settings['brand']}" id="brand"/>
+                                </div>
+                            </div>        
+                            <div class="control-group">
+                                <label class="control-label" for="status_after">Статус после обработки:</label>
+                                <div class="controls">
+                                    <select name="1CSettings[userstatuses_after]" id="status_after">
+                                        {foreach $statuses as $status}
+                                            <option value="{$status['id']}" {if $settings['userstatuses_after'] == $status['id']}selected="selected"{/if}>
+                                                {echo $status['name']}
+                                            </option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                            </div>        
                             <div class="control-group">
                                 <label class="control-label" for="autores">Запускать ресайз изображений автоматически?</label>
                                 <div class="controls">
