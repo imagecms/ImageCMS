@@ -6,15 +6,36 @@
  * Image CMS
  * Module Frame
  */
-class Module_frame {
+class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function index() {
-
+        //parent::index();
+        //parent::__CMSCore__();
+        return true;
+//
+//
+//        if ($this->input->is_ajax_request())
+//        else
     }
+
+    public function init() {
+        return \CMSFactory\assetManager::create()
+            ->registerScript('jquery.ui-slider')
+            ->registerScript('filter')
+            ->render('main', true);
+    }
+
+    public function filter() {
+        return \CMSFactory\assetManager::create()
+            ->setData($this->data)
+            ->render('filter', true);
+    }
+
+//    public function ()
 
     public function autoload() {
         
@@ -36,7 +57,7 @@ class Module_frame {
           $this->dbforge->create_table('mod_empty', TRUE);
          */
         /**
-          $this->db->where('name', 'module_frame')
+          $this->db->where('name', 'smart_filter')
           ->update('components', array('autoload' => '1', 'enabled' => '1'));
          */
     }

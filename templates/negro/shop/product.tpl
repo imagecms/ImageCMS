@@ -1,18 +1,32 @@
+{#
+/**
+ * @file Render shop product; 
+ * @partof main.tpl;
+ * @updated 26 February 2013;
+ * Variables 
+ *  $model : PropelObjectCollection of (object) instance of SProducts
+ *   $model->hasDiscounts() : Check whether the discount on the product.
+ *   $model->firstVariant : variable which contains the first variant of product;
+ *   $model->firstVariant->toCurrency() : variable which contains price of product;
+ *
+ */
+#}
+{$Comments = $CI->load->module('comments')->init($model)}
 <div class="frame-crumbs">
     <div class="container">
-        {myCrumbs($model->getCategoryId(), " / ", $model->getName())}
+         <!-- Making bread crumbs -->
+        {widget('path')}
     </div>
 </div>
-{$Comments = $CI->load->module('comments')->init($model)}
 <div class="frame-inside">
     <div class="container">
         <div class="clearfix item-product">
             <div class="right-product">
                 <div class="f-s_0 title-head-ategory">
                     <div class="d_i m-r_15">
-                        <h1 class="d_i">{echo $model->getName()}</h1>
+                        <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                     </div>
-                    <span class="code" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
+                   {if $model->firstVariant->getNumber() != ''} <span class="code" id="number">(Артикул {echo $model->firstVariant->getNumber()}) </span>{/if}
                 </div>
                 <div class="f-s_0 buy-block">
                     <!--Select variant -->
@@ -37,6 +51,7 @@
                         </div>
                     {/if}
                     <!--End. Select variant -->
+                     <!-- $model->hasDiscounts() - check for a discount. And show old price-->
                     {if $model->hasDiscounts()}
                         <div class="v-a_b d_i-b">
                             <div class="price-old-catalog">
@@ -44,6 +59,8 @@
                             </div>
                         </div>
                     {/if}
+                    <!-- End. Show old price-->
+<!--                    Start. Product price-->
                     <div class="v-a_b d_i-b var_{echo $model->firstVariant->getId()} prod_{echo $model->getId()}">
                         <div class="price-product">
                             <div>
@@ -52,6 +69,7 @@
                             </div>
                         </div>
                     </div>
+<!--                    End. Product price-->
                      <!-- Start. Collect information about Variants, for future processing -->
                       {foreach $model->getProductVariants() as $key => $pv}
                             {if $pv->getMainImage()}{$mainImage = productImageUrl($pv->getMainImage())}{else:}{$mainImage = productImageUrl($model->getMainimage())}{/if}
@@ -69,7 +87,6 @@
                         {/foreach}
                         <!-- End. Collect information about Variants, for future processing -->
                     <br />
-                    <!--buy button for main prod -->
                      <div class="btn btn-buy goBuy f_l">
                     {if (int)$model->firstvariant->getstock() > 0}
                         <!-- displaying buy or in cart button -->
@@ -86,7 +103,7 @@
                                 {lang('s_buy')}
                             </button>
                         {else:}
-                             <!-- displaying notify button -->
+                             <!-- Start. Displaying notify button -->
                               <button
                                 data-placement="top right"
                                 data-place="noinherit"
@@ -100,28 +117,29 @@
                                 <span class="icon-but"></span>
                                 <span class="text-el">{lang('s_message_o_report')}</span>
                             </button>
+                            <!-- End. Displaying notify button -->
                         {/if}
                          <!--End .Buy button for main prod -->
                         
                         {foreach $model->getProductVariants() as $v}
                             {if $v->getStock() > 0}
-                                 <!-- buy/inCart button -------------------->
+                                 <!--Start.Buy/inCart button -------------------->
                                         <button class="buyButton toCart variant_{echo $v->getId()} variant" style="display: none;"
                                                 type="button"
                                                 data-prodId="{echo $model->getId()}"
                                                 data-varId="{echo $v->getId()}"
                                                 data-price="{echo $v->toCurrency()}"
-                                                data-name="{echo $model->getName()}"
+                                                data-name="{echo  ShopCore::encode($model->getName())}"
                                                 data-number="{echo $v->getnumber()}"
                                                 data-maxcount="{echo $v->getstock()}"
-                                                data-vname="{echo $v->getName()}">
+                                                data-vname="{echo  ShopCore::encode($v->getName())}">
                                             <span class="icon-bask-buy"></span>
                                             {lang('s_buy')}
                                         </button>
-                                   
+                                    <!-- End. Buy/inCart button -------------------->
                                 <!-- end of buy/inCart buttons ------------->                          
                             {else:}
-                                <!-- нема в наявності -->
+                                <!-- Start. Notify button -->
                                  <button
                                     style="display: none;" 
                                     data-placement="top right"
@@ -136,6 +154,7 @@
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
+                                <!-- End. Notify button -->
                             {/if}
                         {/foreach}
                         </div>
@@ -171,7 +190,7 @@
                     </div>
                     <!-- end of compare buttons ---------------->
                 </div>
-
+<!--                Start. Description -->
                 {if trim($model->getShortDescription()) != ''}
                     <div class="small-description">
                         {echo $model->getShortDescription()}
@@ -181,32 +200,33 @@
                         <p>{echo $props}</p>
                     </div>
                 {/if}
-                <!--share-->
+                <!--  End. Description -->
+                <!--Start .Share-->
                 <dl class="social-product">
                     <dd class="social">
                         {echo $CI->load->module('share')->_make_share_form()}
                     </dd>
                 </dl>
-                <!-- /share -->
+                <!-- End. Share -->
                 <!--Start. Payments method form -->
-                    {include_tpl('payments_methods_info.tpl')}
+                    {include_tpl('payments_methods_info')}
                 <!--End. Payments method form -->
             </div>
             <div class="left-product">
-               <!--photo block -->
+               <!--Statr. Photo block -->
                 <a class="var_photo_{echo $v->getId()} prod_photo_block"  rel="group" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo">
                     <span class="photo-block">
                         <span class="helper"></span>
-                        <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo $model->getName() ." - ".$v->getName()}" />
-                        {promoLabel($model->getHit(), $model->getHot(), $discount)}
+                        <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo  ShopCore::encode($model->getName()) ." - ". ShopCore::encode($v->getName())}" />
+                        
                     </span>
                 </a>
-                <!-- end.photo block-->
-                <!-- Star rating-->
+                <!-- End. Photo block-->
+                <!-- Star rating -->
                 <div class="clearfix m-b_10">
                     {$CI->load->module('star_rating')->show_star_rating($model)}
                 </div>
-                <!-- End rating -->
+                <!-- End. Star rating-->
                 <!--Additional images-->
                 {if sizeof($model->getSProductImagess()) > 0}
                     <ul class="frame-thumbail">
@@ -223,10 +243,8 @@
                     </ul>
                 {/if}
                 <!--End block-->
-                
             </div>
         </div>
-                
        <!--Kit start-->
        {if $model->getShopKits()->count() > 0}             
             <section class="frame-complect">
@@ -323,15 +341,17 @@
                             {/foreach}
                         </ul>
                     </div>
+<!--                        Start. Buttons for next/prev kit-->
                     {if $model->getShopKits()->count() > 1}
                         <button type="button" class="prev arrow"></button>
                         <button type="button" class="next arrow"></button>
                     {/if}
+                    <!--                        Start. Buttons for next/prev kit-->
                 </div>
             </section>
         {/if}
 <!--        End. Buy kits-->
-        
+<!--        Start. Tabs block       -->
         <div class="clearfix item-product">
             <div class="right-product f-s_0">
                 <ul class="tabs tabs-data">
@@ -341,7 +361,8 @@
                     {if trim($model->getShortDescription()) != ''}
                         <li><span data-href="#second">Полное описание</span></li>
                     {/if}
-                    {//$totalComm = totalComments($model->getId())}
+                    <!--Output of the block comments-->
+                    {if $Comments && $model->enable_comments}
                     <li>
                         <span data-href="#third">
 
@@ -359,11 +380,13 @@
                             </button>
                         </span>
                     </li>
+                    {/if}
                    {if $accessories = $model->getRelatedProductsModels()}     
                         <li><span data-href="#fourth">Аксессуары</span></li>
                     {/if}
                 </ul>
                 <div class="frame-tabs-ref">
+   <!--             Start. Characteristic-->                 
                     <div id="first">
                         <div class="characteristic">
                             <table>
@@ -379,20 +402,23 @@
                             </table>
                         </div>
                     </div>
+<!--                    End. Characteristic-->
                     <div id="second">
+<!--                        Start. Description block-->
                         <div class="text">
-                            <h1>{echo $model->getName()}</h1>
+                            <h1>{echo  ShopCore::encode($model->getName())}</h1>
                             {echo $model->getFullDescription()}
                         </div>
+<!--                        End. Description block-->
                     </div>
                     <div id="third">
-                        <!--<div  class="frame-form-comment">-->
+                        <!--Start. Comments block-->
                         <div class="frame-form-comment">
                             <div id="comment">
                                 <div id="for_comments" name="for_comments"></div>
                             </div>
                         </div>
-                        <!--</div>-->
+                         <!--End. Comments block-->
                     </div>
                     <!--Block Accessories Start-->
                     {if $accessories}
@@ -406,7 +432,6 @@
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
                                                             <img src="{productImageUrl($p->getSmallImage())}" alt="{echo ShopCore::encode($p->getName())}" />
-                                                        {promoLabel($p->getHit(), $p->getHot(), $discount)}
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($p->getName())}</span>
                                                 </a>
@@ -429,9 +454,11 @@
                             </ul>
                         </div>
                     {/if}
+                    <!--End. Block Accessories-->
                 </div>
            </div>
         </div>
+        <!-- End. Tabs block       -->
     </div>
 </div>
 
