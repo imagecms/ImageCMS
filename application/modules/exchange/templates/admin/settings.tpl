@@ -55,14 +55,21 @@
                                     </span>
                                 </div>
                             </div>
-                                        
+
                             <div class="control-group">
                                 <label class="control-label" for="login">Задать логин для доступа c сервера 1C:</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[login]" class="textbox_short" value="{$settings['login']}" id="login"/>
                                 </div>
                             </div>
-                                
+
+                            <div class="control-group">
+                                <label class="control-label" for="pass">{lang('a_server_zadat')}:</label>
+                                <div class="controls">
+                                    <input type = "password" name = "1CSettings[password]" class="textbox_short" value="{$settings['password']}" id="pass"/>
+                                </div>
+                            </div>
+
                             <div class="control-group">
                                 <label class="control-label" for="back">Беккап бази:</label>
                                 <div class="controls">
@@ -73,13 +80,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="pass">{lang('a_server_zadat')}:</label>
-                                <div class="controls">
-                                    <input type = "password" name = "1CSettings[password]" class="textbox_short" value="{$settings['password']}" id="pass"/>
-                                </div>
-                            </div>
-                                
+
                             <div class="control-group">
                                 <label class="control-label" for="status">{lang('a_select_order_status')}:</label>
                                 <div class="controls">
@@ -93,7 +94,7 @@
                                 </div>
                             </div>   
                             <div class="control-group">
-                                <label class="control-label" for="brand">Под каким названиям свойства будет подразумеваться Бренд:</label>
+                                <label class="control-label" for="brand">Под каким названеям свойства будет подразумиваться Бренд:</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[brand]" value = "{$settings['brand']}" id="brand"/>
                                 </div>
