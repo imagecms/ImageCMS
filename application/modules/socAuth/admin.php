@@ -15,15 +15,18 @@ class Admin extends BaseAdminController {
                 ->where('identif', 'socAuth')
                 ->get('components')
                 ->row_array();
-        
+
         $this->template->add_array(array('settings' => unserialize($settings[settings])));
         if (!$this->ajaxRequest)
             $this->display_tpl('settings');
     }
 
     public function update_settings() {
+        var_dump($_POST);
         $this->db->where('identif', 'socAuth')
                 ->update('components', array('settings' => serialize($_POST)));
+
+        showMessage("Настройки сохранены");
     }
 
     private function display_tpl($file = '') {
