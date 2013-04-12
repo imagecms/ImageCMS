@@ -12,7 +12,7 @@ class Admin extends BaseAdminController {
 
     public function index() {
         $settings = $this->db->select('settings')
-                ->where('identif', 'socAuth')
+                ->where('identif', 'socauth')
                 ->get('components')
                 ->row_array();
 
@@ -22,11 +22,13 @@ class Admin extends BaseAdminController {
     }
 
     public function update_settings() {
-        var_dump($_POST);
-        $this->db->where('identif', 'socAuth')
-                ->update('components', array('settings' => serialize($_POST)));
+        $result = array_map('trim', $_POST);
+        
+        $this->db->where('identif', 'socauth')
+                ->update('components', array('settings' => serialize($result)));
 
         showMessage("Настройки сохранены");
+        pjax($_SERVER[HTTP_REFERER]);
     }
 
     private function display_tpl($file = '') {

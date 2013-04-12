@@ -11,7 +11,7 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="{site_url('admin/components/cp/socAuth/update_settings')}" class="form-horizontal" id="settings_form">
+    <form method="post" action="{site_url('admin/components/cp/socauth/update_settings')}" class="form-horizontal" id="settings_form">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
                 <tr>
@@ -57,7 +57,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socAuth/google&response_type=code&client_id={echo $settings['googleClientID']}&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile" 
+                            <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/google&response_type=code&client_id={echo $settings['googleClientID']}&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile" 
                                title="Войти через Google">
                                 Войти через Google
                             </a>
@@ -112,7 +112,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="http://oauth.vk.com/authorize?client_id={echo $settings['vkClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socAuth/vk&response_type=code&scope=PERMISSIONS" 
+                            <a href="http://oauth.vk.com/authorize?client_id={echo $settings['vkClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS" 
                                title="Зайти через ВКонтакте">
                                 Зайти через ВКонтакте
                             </a>
@@ -167,7 +167,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="https://www.facebook.com/dialog/oauth?client_id={echo $settings['facebookClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socAuth/facebook&response_type=code" 
+                            <a href="https://www.facebook.com/dialog/oauth?client_id={echo $settings['facebookClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code" 
                                title="Зайти через FaceBook">
                                 Зайти через FaceBook
                             </a>
@@ -293,7 +293,7 @@
                                 </div>
                             </div>
 
-                            <a href="http://{echo $_SERVER[HTTP_HOST]}/socAuth/twitter" 
+                            <a href="http://{echo $_SERVER[HTTP_HOST]}/socauth/twitter" 
                                title="Зайти через Twitter">
                                 Зайти через Twitter
                             </a>

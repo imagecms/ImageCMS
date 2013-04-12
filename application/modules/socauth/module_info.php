@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'socAuth',
+    'menu_name' => 'socauth',
     'description' => 'Модуль для авторизации через популярные социальные сети',
     'admin_type' => 'window',
     'window_type' => 'xhr',
