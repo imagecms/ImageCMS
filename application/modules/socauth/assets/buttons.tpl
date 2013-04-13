@@ -9,14 +9,14 @@
 {if $useVk == 'on'}
     <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS" 
        title="ВКонтакте">
-        Зайти через ВКонтакте
+        Войти через ВКонтакте
     </a><br>
 {/if}
 
 {if $useFaceBook == 'on'}
     <a href="https://www.facebook.com/dialog/oauth?client_id={$facebookClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code" 
        title="FaceBook">
-        Зайти через FaceBook
+        Войти через FaceBook
     </a><br>
 {/if}
 
