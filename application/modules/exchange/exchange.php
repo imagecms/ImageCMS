@@ -158,7 +158,7 @@ class Exchange {
         if ($send_email) {
             $this->ci->load->library('email');
 
-            $this->ci->email->from('your@example.com', 'Your Name');
+            $this->ci->email->from("noreplay@$_SERVER[HTTP_HOST]");
             $this->ci->email->to($this->config[email]);
 
             $this->ci->email->subject('1C exchange');
