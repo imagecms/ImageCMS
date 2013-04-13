@@ -90,6 +90,17 @@ class Socauth extends MY_Controller {
     }
 
     public function index() {
+        $this->core->set_meta_tags('SocAuts');
+
+        if (!$this->dx_auth->is_logged_in())
+            \CMSFactory\assetManager::create()
+                    ->setData($this->settings)
+                    ->render('buttons');
+        else
+            redirect("/shop/profile");
+    }
+
+    public function renderLogin() {
         \CMSFactory\assetManager::create()
                 ->setData($this->settings)
                 ->render('buttons', TRUE);
@@ -163,6 +174,7 @@ class Socauth extends MY_Controller {
     }
 
     public function vk() {
+        $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings[vkClientID]}&client_secret={$this->settings[vkClientSecret]}&code=$_GET[code]&redirect_uri=http://$_SERVER[HTTP_HOST]/socauth/vk");
@@ -188,7 +200,7 @@ class Socauth extends MY_Controller {
 
             \CMSFactory\assetManager::create()
                     ->setData('data', $res->response[0])
-                    ->render('vklogin', TRUE);
+                    ->render('vklogin');
         } elseif ($this->input->post()) {
             $this->load->helper(array('form', 'url'));
 
