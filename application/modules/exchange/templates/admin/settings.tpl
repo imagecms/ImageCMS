@@ -94,7 +94,7 @@
                                 </div>
                             </div>   
                             <div class="control-group">
-                                <label class="control-label" for="brand">Под каким названеям свойства будет подразумиваться Бренд:</label>
+                                <label class="control-label" for="brand">Под каким названием свойства будет подразумиваться "Бренд":</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[brand]" value = "{$settings['brand']}" id="brand"/>
                                 </div>
