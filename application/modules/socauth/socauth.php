@@ -42,7 +42,7 @@ class Socauth extends MY_Controller {
 
             $this->load->library('email');
 
-            $this->email->from("noreplay@$_SERVER[HTTP_HOST]", 'Your Name');
+            $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
             $this->email->to($email);
             $this->email->subject('Password');
             $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
