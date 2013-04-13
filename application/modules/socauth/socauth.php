@@ -42,13 +42,11 @@ class Socauth extends MY_Controller {
 
             $this->load->library('email');
 
-            $this->email->from('your@example.com', 'Your Name');
+            $this->email->from("noreplay@$_SERVER[HTTP_HOST]", 'Your Name');
             $this->email->to($email);
             $this->email->subject('Password');
-            $this->email->message("Ваш пароль для входа на сайт {$_SERVER[HTTP_HOST]} - $pass");
+            $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
             $this->email->send();
-
-            $pass = crypt($this->dx_auth->_encode($pass));
 
             $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone);
 
