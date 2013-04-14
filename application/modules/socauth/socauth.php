@@ -112,7 +112,7 @@ class Socauth extends MY_Controller {
 
     public function ya() {
 
-        if ($_GET) {
+        if ($this->input->get()) {
             $postdata = "grant_type=authorization_code&code={$this->input->get(code)}&client_id={$this->settings[yandexClientID]}&client_secret={$this->settings[yandexClientSecret]}";
 
             $curl = curl_init();
@@ -145,7 +145,7 @@ class Socauth extends MY_Controller {
     }
 
     public function facebook() {
-        if ($_GET) {
+        if ($this->input->get()) {
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings[facebookClientID]}&redirect_uri=http://{$_SERVER[HTTP_HOST]}/socauth/facebook&client_secret={$this->settings[facebookClientSecret]}&code={$this->input->get(code)}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -222,7 +222,7 @@ class Socauth extends MY_Controller {
     }
 
     public function google() {
-        if ($_GET) {
+        if ($this->input->get()) {
             $postdata = array(
                 'code' => $this->input->get(code),
                 'client_id' => "{$this->settings[googleClientID]}",
