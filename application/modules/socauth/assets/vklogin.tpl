@@ -16,9 +16,9 @@
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <!-- input for email -->
-                                        <input value="Введите Ваш логин" type="text" name="email" onfocus="if (this.value == 'Введите Ваш логин')
+                                        <input value="Введите Ваш Email" type="text" name="email" onfocus="if (this.value == 'Введите Ваш Email')
                                                     this.value = '';" onblur="if (this.value == '')
-                                                    this.value = 'Введите Ваш логин';"/>
+                                                    this.value = 'Введите Ваш Email';"/>
                                         <!-- validation error container -->
                                         <label id="for_email" class="for_validations"></label>
                                     </span>

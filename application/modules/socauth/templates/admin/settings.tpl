@@ -7,7 +7,12 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form" data-action="save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" 
+                        class="btn btn-small btn-primary action_on formSubmit" 
+                        data-form="#settings_form" 
+                        data-action="save">
+                    <i class="icon-ok"></i>{lang('a_save')}
+                </button>
             </div>
         </div>                            
     </div>
@@ -226,14 +231,13 @@
                                title="Яндекс">
                                 Войти через Яндекс
                             </a>
-
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <!--<table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -301,6 +305,6 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
     </form>
 </section>
