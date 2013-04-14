@@ -202,9 +202,18 @@ class Socauth extends MY_Controller {
             $res = json_decode($res);
             curl_close($curl);
 
-            \CMSFactory\assetManager::create()
-                    ->setData('data', $res->response[0])
-                    ->render('vklogin');
+            $isRegistereg = $this->db
+                    ->join('users', 'mod_social.userId=users.id')
+                    ->where('socialId', $res->response[0]->uid)
+                    ->get('mod_social', 1)
+                    ->row();
+
+            if (count($isRegistereg) == 0)
+                \CMSFactory\assetManager::create()
+                        ->setData('data', $res->response[0])
+                        ->render('vklogin');
+            else
+                $this->socAuth('vk', $res->response[0]->uid, $res->response[0]->first_name . ' ' . $res->response[0]->last_name, $isRegistereg->email, '', '', '');
         } elseif ($this->input->post()) {
             $this->load->helper(array('form', 'url'));
 
@@ -298,7 +307,7 @@ class Socauth extends MY_Controller {
         $this->db->where('name', 'socauth');
         $this->db->update('components', array(
             'enabled' => 1,
-            'autoload' => 1));
+            'autoload' => 0));
     }
 
     public function _deinstall() {
