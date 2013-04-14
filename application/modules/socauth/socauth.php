@@ -5,7 +5,7 @@
 /**
  * Image CMS
  *
- * Класс редиректа удаленных товаров
+ * Класс авторизации через посторонние сервисы
  */
 class Socauth extends MY_Controller {
 
@@ -15,11 +15,22 @@ class Socauth extends MY_Controller {
         parent::__construct();
         $this->load->module('core');
 
-        $this->settings = $this->db->select('settings')
+        $this->settings = $this->db
+                ->select('settings')
                 ->where('identif', 'socauth')
                 ->get('components')
                 ->row_array();
         $this->settings = unserialize($this->settings[settings]);
+    }
+
+    public function sendPassByEmail($email, $pass) {
+        $this->load->library('email');
+
+        $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
+        $this->email->to($email);
+        $this->email->subject('Password');
+        $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
+        $this->email->send();
     }
 
     public function socAuth($social, $id, $username, $email, $address, $key, $phone) {
@@ -31,7 +42,8 @@ class Socauth extends MY_Controller {
 
         if (count($user) == 0) {
 
-            $emailChack = $this->db->where('email', $email)
+            $emailChack = $this->db
+                    ->where('email', $email)
                     ->get('users', 1)
                     ->row();
 
@@ -40,13 +52,7 @@ class Socauth extends MY_Controller {
 
             $pass = random_string('alnum', 20);
 
-            $this->load->library('email');
-
-            $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
-            $this->email->to($email);
-            $this->email->subject('Password');
-            $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
-            $this->email->send();
+            $this->sendPassByEmail($email, $pass);
 
             $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone);
 
@@ -107,7 +113,7 @@ class Socauth extends MY_Controller {
     public function ya() {
 
         if ($_GET) {
-            $postdata = "grant_type=authorization_code&code=$_GET[code]&client_id={$this->settings[yandexClientID]}&client_secret={$this->settings[yandexClientSecret]}";
+            $postdata = "grant_type=authorization_code&code={$this->input->get(code)}&client_id={$this->settings[yandexClientID]}&client_secret={$this->settings[yandexClientSecret]}";
 
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, 'https://oauth.yandex.ru/token');
@@ -141,7 +147,7 @@ class Socauth extends MY_Controller {
     public function facebook() {
         if ($_GET) {
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings[facebookClientID]}&redirect_uri=http://{$_SERVER[HTTP_HOST]}/socauth/facebook&client_secret={$this->settings[facebookClientSecret]}&code=$_GET[code]");
+            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings[facebookClientID]}&redirect_uri=http://{$_SERVER[HTTP_HOST]}/socauth/facebook&client_secret={$this->settings[facebookClientSecret]}&code={$this->input->get(code)}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -175,7 +181,7 @@ class Socauth extends MY_Controller {
         $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings[vkClientID]}&client_secret={$this->settings[vkClientSecret]}&code=$_GET[code]&redirect_uri=http://$_SERVER[HTTP_HOST]/socauth/vk");
+            curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings[vkClientID]}&client_secret={$this->settings[vkClientSecret]}&code={$this->input->get(code)}&redirect_uri=http://$_SERVER[HTTP_HOST]/socauth/vk");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -218,7 +224,7 @@ class Socauth extends MY_Controller {
     public function google() {
         if ($_GET) {
             $postdata = array(
-                'code' => $_GET[code],
+                'code' => $this->input->get(code),
                 'client_id' => "{$this->settings[googleClientID]}",
                 'client_secret' => "{$this->settings[googleClientSecret]}",
                 'redirect_uri' => "http://$_SERVER[HTTP_HOST]/socauth/google",
@@ -330,38 +336,38 @@ class Socauth extends MY_Controller {
 //
 //        $response = file_get_contents($url);
 //        var_dump($response);
-        /*
-          $postdata = array(
-          'code' => $_GET[code],
-          'client_id' => "{$this->settings[googleClientID]}",
-          'client_secret' => "{$this->settings[googleClientSecret]}",
-          'redirect_uri' => "http://$_SERVER[HTTP_HOST]/socauth/google",
-          'grant_type' => 'authorization_code'
-          );
-
-          $opts = array(
-          'http' => array(
-          'method' => 'POST',
-          'header' => 'Content-type:application/x-www-form-urlencoded',
-          'content' => $postdata
-          )
-          );
-
-          $curl = curl_init();
-          curl_setopt($curl, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-          curl_setopt($curl, CURLOPT_HEADER, 0);
-          curl_setopt($curl, CURLOPT_NOBODY, 0);
-          curl_setopt($curl, CURLOPT_POST, 1);
-          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-          curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-          curl_setopt($curl, CURLOPT_REFERER, "http://$_SERVER[HTTP_HOST]");
-          $res = curl_exec($curl);
-          $res = json_decode($res);
-          var_dumps($res);
-
-          curl_close($curl); */
+//        
+//          $postdata = array(
+//          'code' => $this->input->get(code),
+//          'client_id' => "{$this->settings[googleClientID]}",
+//          'client_secret' => "{$this->settings[googleClientSecret]}",
+//          'redirect_uri' => "http://$_SERVER[HTTP_HOST]/socauth/google",
+//          'grant_type' => 'authorization_code'
+//          );
+//
+//          $opts = array(
+//          'http' => array(
+//          'method' => 'POST',
+//          'header' => 'Content-type:application/x-www-form-urlencoded',
+//          'content' => $postdata
+//          )
+//          );
+//
+//          $curl = curl_init();
+//          curl_setopt($curl, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
+//          curl_setopt($curl, CURLOPT_HEADER, 0);
+//          curl_setopt($curl, CURLOPT_NOBODY, 0);
+//          curl_setopt($curl, CURLOPT_POST, 1);
+//          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+//          curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
+//          curl_setopt($curl, CURLOPT_REFERER, "http://$_SERVER[HTTP_HOST]");
+//          $res = curl_exec($curl);
+//          $res = json_decode($res);
+//          var_dumps($res);
+//
+//          curl_close($curl); 
     }
 
 }
 
-/* End of file trash.php */
+/* End of file socauth.php */
