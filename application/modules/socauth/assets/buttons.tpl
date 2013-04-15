@@ -7,21 +7,21 @@
 {/if}
 
 {if $useVk == 'on'}
-    <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS" 
+    <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS&display=popup" 
        title="ВКонтакте">
         <img src="/application/modules/socauth/assets/images/vk.png"/>
     </a>
 {/if}
 
 {if $useFaceBook == 'on'}
-    <a href="https://www.facebook.com/dialog/oauth?client_id={$facebookClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code" 
+    <a href="https://www.facebook.com/dialog/oauth?client_id={$facebookClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code&scope=email" 
        title="FaceBook">
         <img src="/application/modules/socauth/assets/images/fb.png"/>
     </a>
 {/if}
 
 {if $useYandex == 'on'}
-    <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id={$yandexClientID}" 
+    <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id={$yandexClientID}&display=popup" 
        title="Яндекс">
         <img src="/application/modules/socauth/assets/images/ya.png"/>
     </a>
