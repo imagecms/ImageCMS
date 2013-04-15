@@ -4,13 +4,13 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'socauth',
+    'menu_name' => 'Модуль авторизации',
     'description' => 'Модуль для авторизации через популярные социальные сети',
     'admin_type' => 'window',
     'window_type' => 'xhr',
     'w' => 600,
     'h' => 550,
-    'version' => '1.0',
+    'version' => '1.0b',
     'author' => 'a.gula@imagecms.net'
 );
 
