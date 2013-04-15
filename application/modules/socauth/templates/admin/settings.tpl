@@ -62,10 +62,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/google&response_type=code&client_id={echo $settings['googleClientID']}&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile" 
-                               title="Войти через Google">
-                                Войти через Google
-                            </a>
                         </div>
                     </td>
                 </tr>
@@ -117,10 +113,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="http://oauth.vk.com/authorize?client_id={echo $settings['vkClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS" 
-                               title="Зайти через ВКонтакте">
-                                Зайти через ВКонтакте
-                            </a>
                         </div>
                     </td>
                 </tr>
@@ -172,10 +164,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="https://www.facebook.com/dialog/oauth?client_id={echo $settings['facebookClientID']}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code" 
-                               title="Зайти через FaceBook">
-                                Зайти через FaceBook
-                            </a>
                         </div>
                     </td>
                 </tr>
@@ -227,10 +215,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id={$settings['yandexClientID']}" 
-                               title="Яндекс">
-                                Войти через Яндекс
-                            </a>
                         </div>
                     </td>
                 </tr>

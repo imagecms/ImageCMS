@@ -35,6 +35,9 @@ class Socauth extends MY_Controller {
 
     public function socAuth($social, $id, $username, $email, $address, $key, $phone) {
 
+        if ($email == '')
+            redirect('/socauth');
+
         $user = $this->db
                 ->where('socialId', $id)
                 ->get('mod_social')
@@ -90,7 +93,7 @@ class Socauth extends MY_Controller {
             $this->dx_auth->_clear_login_attempts();
             $this->dx_auth_event->user_logged_in($userData->id);
         }
-        redirect("/shop/profile");
+        redirect('/shop/profile');
     }
 
     public function index() {
@@ -101,7 +104,7 @@ class Socauth extends MY_Controller {
                     ->setData($this->settings)
                     ->render('buttons');
         else
-            redirect("/shop/profile");
+            redirect('/shop/profile');
     }
 
     public function renderLogin() {
@@ -231,6 +234,7 @@ class Socauth extends MY_Controller {
     }
 
     public function google() {
+
         if ($this->input->get()) {
             $postdata = array(
                 'code' => $this->input->get(code),
