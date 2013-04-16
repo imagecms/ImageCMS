@@ -3,38 +3,55 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS
+ * Exchange Class
  * exchange class handles 1c import/export
+ * @package 1C-Exchange
+ * @author ImageCMS <dev@imagecms.net>
+ * @link  http://wiki.imagecms.net/%D0%98%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F_%D1%81_1%D0%A1
  */
 class Exchange {
 
-    private $config = array();                                  //array which contains 1c settings
-    private $ci;                                                //object instance of ci
-    private $tempDir;                                           //default directory for saving files from 1c
-    private $locale;                                            //contains default locale
-    private $categories_table = 'shop_category';                //contains shop category table name
-    private $properties_table = 'shop_product_properties';      //contains shop products properties table name
-    private $products_table = 'shop_products';                  //contains shop products table name
-    private $product_variants_table = 'shop_product_variants';  //contains shop products variants name
-    private $settings_table = 'components';                     //table which contains module settings if modules is installed
+    /** array which contains 1c settings  */
+    private $config = array();
+
+    /** object instance of ci */
+    private $ci;
+
+    /** default directory for saving files from 1c */
+    private $tempDir;
+
+    /* contains default locale */
+    private $locale;
+
+    /* contains shop category table name */
+    private $categories_table = 'shop_category';
+
+    /* contains shop products properties table name */
+    private $properties_table = 'shop_product_properties';
+
+    /* contains shop products table name */
+    private $products_table = 'shop_products';
+
+    /* contains shop products variants name */
+    private $product_variants_table = 'shop_product_variants';
+
+    /* table which contains module settings if modules is installed */
+    private $settings_table = 'components';
     private $allowed_image_extensions = array();
     private $login;
     private $password;
     private $brand_identif;
-    //+++++++++++++++++++++++++++++++++++++++++++++++++
     private $cat = array();
     private $prod = array();
     private $brand = array();
     private $prop = array();
     private $prop_data = array();
 
-    //-------------------------------------------------
-
     public function __construct() {
         set_time_limit(0);
         ini_set('max_execution_time', 90000000);
 
-        //define path to folder for saving files from 1c
+        /* define path to folder for saving files from 1c */
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
 
         $this->ci = &get_instance();
@@ -141,7 +158,7 @@ class Exchange {
         if ($send_email) {
             $this->ci->load->library('email');
 
-            $this->ci->email->from('your@example.com', 'Your Name');
+            $this->ci->email->from("noreplay@$_SERVER[HTTP_HOST]");
             $this->ci->email->to($this->config[email]);
 
             $this->ci->email->subject('1C exchange');
@@ -279,7 +296,7 @@ class Exchange {
             //reading xml files
             $this->xml = $this->_readXmlFile($_GET['filename']);
             if (!$this->xml) {
-                $this->error_log('Ненайден ХМL фал импорта');
+                $this->error_log('Ненайден ХМL файл импорта');
                 return "failure";
             }
 
@@ -326,7 +343,7 @@ class Exchange {
             //search category by external id
             //$searchedCat = array();
             // не робити в циклі а зробити один раз і працювати з масивом масив виду external_id => category_data
-            // $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array(); 
+            // $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array();
             $searchedCat = is_cat($category->Ид, $this->cat);
 
             if (!$searchedCat) {
@@ -735,7 +752,7 @@ class Exchange {
 
                     $data = array();
 
-                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];   
+                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
                     $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
