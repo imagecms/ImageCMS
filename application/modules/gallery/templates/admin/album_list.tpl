@@ -58,8 +58,20 @@
                                             <tr>
                                                 <th></th>
                                                 <td>
-                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn btn-small   " data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i> Редактировать альбом</a>
-                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" data-title="{lang('a_delete')}" data-remove=""><i class="icon-trash icon-white"></i> Удалить альбом</button>
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" 
+                                                       class="btn btn-small" 
+                                                       data-rel="tooltip" 
+                                                       data-title="{lang('a_to_edit')}">
+                                                        <i class="icon-edit"></i> Редактировать альбом
+                                                    </a>
+                                                    <button type="button" 
+                                                            class="btn btn-danger btn-small" 
+                                                            data-rel="tooltip" 
+                                                            onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" 
+                                                            data-title="{lang('a_delete')}" 
+                                                            data-remove="">
+                                                        <i class="icon-trash icon-white"></i> Удалить альбом
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -84,6 +96,7 @@
     </div>
     <div class="modal-footer">
         <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
-        <a href="" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang('a_delete')}</a>
+        <a href="" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm();
+                                                                    $('.modal').modal('hide');">{lang('a_delete')}</a>
     </div>
 </div>
