@@ -816,9 +816,20 @@ $(document).ready(function() {
         $('#addPictures').trigger('click');
     });
 
-    $('[name="makeResize"]').live('click', function() {
+    $('#resizeAll').live('click', function() {
         $.ajax({
-            url: "/admin/components/run/shop/settings/runResize",
+            url: "/admin/components/run/shop/settings/runResizeAll",
+            type: "post",
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
+    });
+    $('#resizeById').live('click', function() {
+        id = $('#product_variant_name').val();
+        console.log(id);
+        $.ajax({
+            url: "/admin/components/run/shop/settings/runResizeById/"+id,
             type: "post",
             success: function(data) {
                 $('.notifications').append(data);
