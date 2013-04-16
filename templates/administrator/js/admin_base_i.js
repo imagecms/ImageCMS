@@ -761,14 +761,8 @@ $(document).ready(function() {
     $('.delete_image').live('click', function() {
         var container = $(this).closest('td');
         //container.find('[name="variants[MainImageForDel][]"]');
-        if (container.find('[name="variants[MainImageForDel][]"]').length) {
-            container.find('[name="variants[MainImageForDel][]"]').attr('value', 1);
-            container.find('[name="variants[mainPhoto][]"]').attr('value', '');
-        }
-        if (container.find('[name="variants[SmallImageForDel][]"]').length) {
-            container.find('[name="variants[SmallImageForDel][]"]').attr('value', 1);
-            container.find('[name="variants[smallPhoto][]"]').attr('value', '');
-        }
+        container.find(".deleteImage").attr("value", 1);
+        container.find('[name="variants[mainPhoto][]"]').attr('value', '');
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
         container.find('img').css('width', '50px');
     });
@@ -781,7 +775,7 @@ $(document).ready(function() {
         event.preventDefault();
         var container = $(this).parents("div.control-group");
         container.find("img").attr("src", "/templates/administrator/images/select-picture.png");
-        container.find("input[type=hidden]").attr("value", 1);
+        container.find(".deleteImage").attr("value", 1);
         container.find("input[type=file]").attr("value", "");
         return false;
     });
