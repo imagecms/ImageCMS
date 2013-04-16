@@ -132,6 +132,7 @@
 
                                 <!-- displaying product name -->
                                 <a href="{shop_url('product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
+                                {if $product->firstVariant->getNumber() != ''}<span class="c_97" id="number">(Артикул: {echo $product->firstVariant->getNumber()}) </span>{/if}
                                 {if $product->hasDiscounts()}
                                     <span class="d_b old_price">
                                         <!--
