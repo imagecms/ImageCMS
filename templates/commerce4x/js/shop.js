@@ -679,6 +679,11 @@ function initShopPage(showWindow) {
             pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(pricePrecision));
 
             $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+            
+            if (pd.closest('div.frame_count').find('input').val() == 1)
+                pd.closest('div.frame_count').find('.minus').attr('disabled', 'disabled');
+            else
+                pd.closest('div.frame_count').find('.minus').removeAttr('disabled');
             //
         }
 

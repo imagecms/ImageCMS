@@ -72,6 +72,15 @@
                                     <label id="for_address" class="for_validations"></label>
                                 </span>
                             </label>
+                            {if $profile->getdiscount()}
+                            <label>
+                                <span class="title">{lang('s_disk')}:</span>
+                                <span class="frame_form_field">
+                                    <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
+                                    
+                                </span>
+                            </label>
+                            {/if}                                    
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
