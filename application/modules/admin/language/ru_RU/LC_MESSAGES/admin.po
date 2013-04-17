@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-28 12:07+0300\n"
-"PO-Revision-Date: 2013-03-28 12:07+0300\n"
+"PO-Revision-Date: 2013-04-16 19:29+0300\n"
 "Last-Translator: koloda <koloda90@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -748,7 +748,7 @@ msgstr ""
 #: /var/www/img/templates/administrator/roleCreate.tpl:21
 #: /var/www/img/templates/administrator/widget_edit_html.tpl:22
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/img/templates/administrator/_out.php:69
 #: /var/www/img/templates/administrator/_out.php:227
@@ -812,9 +812,8 @@ msgstr ""
 #: /var/www/img/templates/administrator/_out.php:4407
 #: /var/www/img/templates/administrator/settings.tpl:18
 #: /var/www/img/templates/administrator/settings.tpl:32
-#, fuzzy
 msgid "Settings"
-msgstr "Позиція"
+msgstr "Настройки"
 
 #: /var/www/img/templates/administrator/_out.php:110
 #: /var/www/img/templates/administrator/_out.php:283
@@ -894,7 +893,7 @@ msgstr ""
 #: /var/www/img/templates/administrator/pages.tpl:7
 #: /var/www/img/templates/administrator/pages.tpl:98
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: /var/www/img/templates/administrator/_out.php:312
 #: /var/www/img/templates/administrator/settings.tpl:222
@@ -1573,7 +1572,7 @@ msgstr ""
 #: /var/www/img/templates/administrator/_out.php:4220
 #: /var/www/img/templates/administrator/_out.php:4233
 msgid "Content"
-msgstr ""
+msgstr "Содержимое"
 
 #: /var/www/img/templates/administrator/_out.php:2316
 #: /var/www/img/templates/administrator/_out.php:2603
@@ -1864,11 +1863,11 @@ msgstr ""
 
 #: /var/www/img/templates/administrator/_out.php:3748
 msgid "Edit page"
-msgstr ""
+msgstr "Редактировать страницу"
 
 #: /var/www/img/templates/administrator/_out.php:3779
 msgid "a_show_page"
-msgstr ""
+msgstr "Просмотр"
 
 #: /var/www/img/templates/administrator/_out.php:3843
 #: /var/www/img/templates/administrator/_out.php:4275

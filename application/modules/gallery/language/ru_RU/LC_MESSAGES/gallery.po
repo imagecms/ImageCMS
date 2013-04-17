@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-03-28 12:32+0300\n"
-"PO-Revision-Date: 2013-03-28 12:32+0300\n"
+"PO-Revision-Date: 2013-04-16 19:33+0300\n"
 "Last-Translator: koloda <koloda90@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -450,7 +450,7 @@ msgstr ""
 #: ../../..//_out.php:1086
 #: ../../..//admin.php:269
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: ../../..//_out.php:931
 #: ../../..//_out.php:1072
