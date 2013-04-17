@@ -29,7 +29,7 @@ class assetManager {
             $data[$item] = $value;
         else
             $data = $item;
-        (empty($data)) OR \CI_Controller::get_instance()->template->add_array($data);
+        (empty($data)) OR \CI_Controller::get_instance()->template->add_array((array) $data);
         return $this;
     }
 

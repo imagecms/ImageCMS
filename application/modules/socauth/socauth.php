@@ -97,12 +97,16 @@ class Socauth extends MY_Controller {
     }
 
     public function index() {
+        redirect('/shop/profile');
+    }
+
+    public function error($error = '') {
         $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in())
             \CMSFactory\assetManager::create()
                     ->setData($this->settings)
-                    ->render('buttons');
+                    ->render('login');
         else
             redirect('/shop/profile');
     }
