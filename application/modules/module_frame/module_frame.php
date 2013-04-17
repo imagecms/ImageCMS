@@ -6,14 +6,14 @@
  * Image CMS
  * Module Frame
  */
-class Module_frame {
+class Module_frame extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
     }
 
     public function index() {
-
+        
     }
 
     public function autoload() {
