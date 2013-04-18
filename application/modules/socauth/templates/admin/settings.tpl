@@ -92,13 +92,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientID">Client ID:</label>
+                                <label class="control-label" for="ClientID">Application ID:</label>
                                 <div class="controls">
                                     <input type = "text" name = "vkClientID" value = "{$settings['vkClientID']}"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientSecret">Client secret:</label>
+                                <label class="control-label" for="ClientSecret">Secure key:</label>
                                 <div class="controls">
                                     <input type = "text" name = "vkClientSecret" value = "{$settings['vkClientSecret']}"/>
                                 </div>
@@ -143,13 +143,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientID">Client ID:</label>
+                                <label class="control-label" for="ClientID">App ID:</label>
                                 <div class="controls">
                                     <input type = "text" name = "facebookClientID" value = "{$settings['facebookClientID']}"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientSecret">Client secret:</label>
+                                <label class="control-label" for="ClientSecret">App Secret:</label>
                                 <div class="controls">
                                     <input type = "text" name = "facebookClientSecret" value = "{$settings['facebookClientSecret']}"/>
                                 </div>
@@ -194,13 +194,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientID">Client ID:</label>
+                                <label class="control-label" for="ClientID">Id приложения:</label>
                                 <div class="controls">
                                     <input type = "text" name = "yandexClientID" value = "{$settings['yandexClientID']}"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientSecret">Client secret:</label>
+                                <label class="control-label" for="ClientSecret">Пароль приложения:</label>
                                 <div class="controls">
                                     <input type = "text" name = "yandexClientSecret" value = "{$settings['yandexClientSecret']}"/>
                                 </div>
