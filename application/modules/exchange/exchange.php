@@ -3,34 +3,69 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS
+ * Exchange Class
  * exchange class handles 1c import/export
+ * @package 1C-Exchange
+ * @author ImageCMS <dev@imagecms.net>
+ * @link  http://wiki.imagecms.net/%D0%98%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F_%D1%81_1%D0%A1
  */
 class Exchange {
 
-    private $config = array();                                  //array which contains 1c settings
-    private $ci;                                                //object instance of ci
-    private $tempDir;                                           //default directory for saving files from 1c
-    private $locale;                                            //contains default locale
-    private $categories_table = 'shop_category';                //contains shop category table name
-    private $properties_table = 'shop_product_properties';      //contains shop products properties table name
-    private $products_table = 'shop_products';                  //contains shop products table name
-    private $product_variants_table = 'shop_product_variants';  //contains shop products variants name
-    private $settings_table = 'components';                     //table which contains module settings if modules is installed
+    /** array which contains 1c settings  */
+    private $config = array();
+
+    /** object instance of ci */
+    private $ci;
+
+    /** default directory for saving files from 1c */
+    private $tempDir;
+
+    /* contains default locale */
+    private $locale;
+
+    /* contains shop category table name */
+    private $categories_table = 'shop_category';
+
+    /* contains shop products properties table name */
+    private $properties_table = 'shop_product_properties';
+
+    /* contains shop products table name */
+    private $products_table = 'shop_products';
+
+    /* contains shop products variants name */
+    private $product_variants_table = 'shop_product_variants';
+
+    /* table which contains module settings if modules is installed */
+    private $settings_table = 'components';
     private $allowed_image_extensions = array();
+    private $login;
+    private $password;
+    private $brand_identif;
+    private $cat = array();
+    private $prod = array();
+    private $brand = array();
+    private $prop = array();
+    private $prop_data = array();
 
     public function __construct() {
         set_time_limit(0);
         ini_set('max_execution_time', 90000000);
 
-        //define path to folder for saving files from 1c
+        /* define path to folder for saving files from 1c */
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
 
         $this->ci = &get_instance();
 
         $this->ci->load->helper('translit');
         $this->ci->load->helper('file');
-        
+
+        include 'application/modules/exchange/helpers/ex_helper.php';
+
+        $this->cat = load_cat();
+        $this->prod = load_product();
+        $this->prop = load_prop();
+        $this->prop_data = load_prop_data();
+
         $this->locale = $this->getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
@@ -42,15 +77,19 @@ class Exchange {
             $this->config['usepassword'] = false;
             $this->config['userstatuses'] = array();
             $this->config['autoresize'] = 'off';
+            $this->config['debug'] = false;
+            $this->config['email'] = false;
         } else {
             //get settings from database
             $this->config = $this->get1CSettings();
         }
-
         $this->allowed_image_extensions = array('jpg', 'jpeg', 'png', 'gif');
 
         //define first get command parameter
         $method = 'command_';
+
+        $this->login = trim($_SERVER['PHP_AUTH_USER']);
+        $this->password = trim($_SERVER['PHP_AUTH_PW']);
 
         //saving get requests to log file
         if ($_GET) {
@@ -59,6 +98,7 @@ class Exchange {
             }
             write_file($this->tempDir . "log.txt", $string, 'ab');
         }
+
         //preparing method and mode name from $_GET variables
         if (isset($_GET['type']) && isset($_GET['mode']))
             $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
@@ -73,9 +113,9 @@ class Exchange {
      */
     protected function makeDBBackup() {
         if (is_really_writable('./application/backups')) {
-            $this->load->dbutil();
-            $backup = & $this->dbutil->backup(array('format' => 'zip'));
-            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'zip', $backup);
+            $this->ci->load->dbutil();
+            $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
+            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
         } else {
             $this->error_log('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
@@ -103,9 +143,29 @@ class Exchange {
         }
     }
 
-    function error_log($error) {
-        if (true)
-            write_file($this->tempDir . "error_log.txt", date('c') . ' - ' . $error . PHP_EOL, 'ab');
+    function error_log($error, $send_email = FALSE) {
+        $intIp = $_SERVER ["REMOTE_ADDR"];
+        if (isset($_SERVER ["HTTP_X_FORWARDED_FOR"])) {
+            if (isset($_SERVER ["HTTP_X_REAL_IP"]))
+                $intIp = $_SERVER ["HTTP_X_REAL_IP"];
+            else
+                $intIp = $_SERVER ["HTTP_X_FORWARDED_FOR"];
+        }
+
+        if ($this->config[debug])
+            write_file($this->tempDir . "error_log.txt", $intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL, 'ab');
+
+        if ($send_email) {
+            $this->ci->load->library('email');
+
+            $this->ci->email->from("noreplay@$_SERVER[HTTP_HOST]");
+            $this->ci->email->to($this->config[email]);
+
+            $this->ci->email->subject('1C exchange');
+            $this->ci->email->message($intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL);
+
+            $this->ci->email->send();
+        }
     }
 
     function __autoload() {
@@ -116,11 +176,11 @@ class Exchange {
      * checking password from $_GET['password'] if use_password option in settings is "On"
      */
     private function check_password() {
-        if (isset($_GET['password']) && ($this->config['password'] == $_GET['password'])) {
+        if (($this->config['login'] == $this->login) && ($this->config['password'] == $this->password)) {
             $this->checkauth();
         } else {
             echo "failure. wrong password";
-            $this->error_log('Неверно введен пароль');
+            $this->error_log('Неверно введен пароль', TRUE);
         }
     }
 
@@ -159,11 +219,14 @@ class Exchange {
      * @return boolean
      */
     private function check_perm() {
+        if ($this->config[debug])
+            return true;
+
         $string = read_file($this->tempDir . 'session.txt');
         if (md5(session_id()) == $string) {
             return true;
         } else {
-            $this->error_log("Ошибка безопасности!!!");
+            $this->error_log("Ошибка безопасности!!!", TRUE);
             die("Ошибка безопасности!!!");
         }
     }
@@ -225,12 +288,17 @@ class Exchange {
      * @return string "success" if success
      */
     private function command_catalog_import() {
+
         //check if session is up to date
         if ($this->check_perm() === true) {
+            if ($this->config['backup'])
+                $this->makeDBBackup();
             //reading xml files
             $this->xml = $this->_readXmlFile($_GET['filename']);
-            if (!$this->xml)
+            if (!$this->xml) {
+                $this->error_log('Ненайден ХМL файл импорта');
                 return "failure";
+            }
 
             // Import categories
             if (isset($this->xml->Классификатор->Группы)) {
@@ -273,10 +341,12 @@ class Exchange {
 
         foreach ($data->Группа as $category) {
             //search category by external id
-            $searchedCat = array();
-            $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get('shop_category')->row_array();
+            //$searchedCat = array();
+            // не робити в циклі а зробити один раз і працювати з масивом масив виду external_id => category_data
+            // $searchedCat = $this->ci->db->select("id, external_id")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array();
+            $searchedCat = is_cat($category->Ид, $this->cat);
 
-            if (empty($searchedCat)) {
+            if (!$searchedCat) {
                 //category not found, it should be inserted
                 $translit = '';
                 $translit = translit_url($category->Наименование);
@@ -295,7 +365,7 @@ class Exchange {
                     $data['full_path'] = $parent['full_path'] . "/" . $translit;
                 }
                 $insert_id = null;
-                $this->ci->db->insert('shop_category', $data);
+                $this->ci->db->insert($this->categories_table, $data);
                 $insert_id = $this->ci->db->insert_id();
 
 
@@ -307,7 +377,7 @@ class Exchange {
                     else {
                         $data['full_path_ids'][] = (int) $parent['id'];
                     }
-                    $this->ci->db->where('id', $insert_id)->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
+                    $this->ci->db->where('id', $insert_id)->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
                 }
 
                 //preparing data for i18n table insert
@@ -317,6 +387,14 @@ class Exchange {
 
                 //inserting data to i18n table
                 $this->ci->db->insert('shop_category_i18n', $i18n_data);
+                $this->cat[] = array(
+                    'id' => $insert_id,
+                    'external_id' => $category->Ид . '',
+                    'full_path_ids' => $data['full_path_ids'],
+                    'full_path' => $data['full_path'],
+                    'url' => $data['url'],
+                    'parent_id' => $data['parent_id']
+                );
             } else {
                 //category found - we'll update it
                 $translit = '';
@@ -334,7 +412,7 @@ class Exchange {
                     $data['parent_id'] = $parent['id'];
                     $data['full_path'] = $parent['full_path'] . "/" . $translit;
                 }
-                $this->ci->db->where('external_id', $searchedCat['external_id'])->update('shop_category', $data);
+                $this->ci->db->where('external_id', $searchedCat['external_id'])->update($this->categories_table, $data);
 
                 //preparing data for i18n table update
                 $i18n_data['name'] = $category->Наименование . "";
@@ -350,12 +428,15 @@ class Exchange {
                     else {
                         $data['full_path_ids'][] = $searchedCat['id'];
                     }
-                    $this->ci->db->where('id', $searchedCat['id'])->update('shop_category', array('full_path_ids' => serialize($data['full_path_ids'])));
+                    $this->ci->db->where('id', $searchedCat['id'])->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
                 }
             }
             //process subcategories
             if (isset($category->Группы)) {
-                $parentCat = $this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get('shop_category')->row_array();
+
+                //$parent_cat брати з масиву
+                $parentCat = is_cat($category->Ид, $this->cat);
+                //$this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array();
                 $this->importCategories($category->Группы, $parentCat);
             }
         }
@@ -368,83 +449,111 @@ class Exchange {
             $properties = $this->xml->Классификатор->Свойства->Свойство;
         foreach ($properties as $property) {
 
-            //searching property by external id
-            $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
-            if (empty($searchedProperty)) {
-                //property not found, it should be inserted
-                //preparing insert data array
-                $data = array();
-                $data['external_id'] = $property->Ид . "";
-                $data['csv_name'] = translit_url($property->Наименование);
-                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
-
-                if ($property->Обязательное . "" == 'true')
-                    $data['main_property'] = true;
-                elseif ($property->Обязательное . "" == 'false')
-                    $data['main_property'] = false;
-                if ($property->Множественное . "" == 'true')
-                    $data['multiple'] = true;
-                elseif ($property->Множественное . "" == 'false')
-                    $data['multiple'] = false;
-                if ($property->ИспользованиеСвойства . "" == 'true')
-                    $data['active'] = true;
-                elseif ($property->ИспользованиеСвойства . "" == 'false')
-                    $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0)
-                    $data['active'] = true;
-
-                $data['show_in_compare'] = false;
-                $data['show_on_site'] = true;
-                $data['show_in_filter'] = false;
-                //insert new property to properties table
-                $this->ci->db->insert($this->properties_table, $data);
-
-                $insert_id = null;
-                $insert_id = $this->ci->db->insert_id();
-
-                //preparing data for insert to i18n table
-                $i18n_data = array();
-                $i18n_data['id'] = $insert_id;
-                $i18n_data['name'] = $property->Наименование . "";
-                $i18n_data['locale'] = $this->locale;
-                $i18n_data['data'] = '';
-
-
-                //inserting data to i18n table
-                $this->ci->db->insert($this->properties_table . "_i18n", $i18n_data);
+            if ($property->Наименование == $this->config['brand']) {
+                $this->brand_identif = $property->Ид;
             } else {
-                //property found, it sould be updated
-                //preparing data for update
-                $data = array();
-                $data['csv_name'] = translit_url($property->Наименование);
-                $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
 
-                if ($property->Обязательное . "" == 'true')
-                    $data['main_property'] = true;
-                elseif ($property->Обязательное . "" == 'false')
-                    $data['main_property'] = false;
-                if ($property->Множественное . "" == 'true')
-                    $data['multiple'] = true;
-                elseif ($property->Множественное . "" == 'false')
-                    $data['multiple'] = false;
-                if ($property->ИспользованиеСвойства . "" == 'true')
-                    $data['active'] = true;
-                elseif ($property->ИспользованиеСвойства . "" == 'false')
-                    $data['active'] = false;
-                if (count($property->ИспользованиеСвойства) == 0)
-                    $data['active'] = true;
+                //searching property by external id
+                // $searchedProperty = $this->ci->db->select('id, external_id')->where('external_id', $property->Ид . "")->get('shop_product_properties')->row_array();
+                $searchedProperty = is_prop($property->Ид, $this->prop);
+                if (!$searchedProperty) {
+                    //property not found, it should be inserted
+                    //preparing insert data array
+                    $data = array();
+                    $data['external_id'] = $property->Ид . "";
+                    $data['csv_name'] = translit_url($property->Наименование);
+                    $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
 
-                //updating property
-                $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
+                    if ($property->Обязательное . "" == 'true')
+                        $data['main_property'] = true;
+                    elseif ($property->Обязательное . "" == 'false')
+                        $data['main_property'] = false;
+                    if ($property->Множественное . "" == 'true')
+                        $data['multiple'] = true;
+                    elseif ($property->Множественное . "" == 'false')
+                        $data['multiple'] = false;
+                    if ($property->ИспользованиеСвойства . "" == 'true')
+                        $data['active'] = true;
+                    elseif ($property->ИспользованиеСвойства . "" == 'false')
+                        $data['active'] = false;
+                    if (count($property->ИспользованиеСвойства) == 0)
+                        $data['active'] = true;
 
-                //preparing update data for i18n table
-                $i18n_data = array();
-                $i18n_data['name'] = $property->Наименование . "";
+                    $data['show_in_compare'] = false;
+                    $data['show_on_site'] = true;
+                    $data['show_in_filter'] = false;
+                    //insert new property to properties table
+                    $this->ci->db->insert($this->properties_table, $data);
 
-                //updating i18n property table
-                $this->ci->db->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $i18n_data);
+                    $insert_id = null;
+                    $insert_id = $this->ci->db->insert_id();
+
+                    //preparing data for insert to i18n table
+                    $i18n_data = array();
+                    $i18n_data['id'] = $insert_id;
+                    $i18n_data['name'] = $property->Наименование . "";
+                    $i18n_data['locale'] = $this->locale;
+                    $i18n_data['data'] = '';
+
+
+                    //inserting data to i18n table
+                    $this->ci->db->insert($this->properties_table . "_i18n", $i18n_data);
+                    $this->prop[] = array('id' => $insert_id, 'external_id' => $property->Ид . '');
+                } else {
+                    //property found, it sould be updated
+                    //preparing data for update
+                    $data = array();
+                    $data['csv_name'] = translit_url($property->Наименование);
+                    $data['csv_name'] = str_replace(array("-", "_", "'"), '', $data['csv_name']);
+
+                    if ($property->Обязательное . "" == 'true')
+                        $data['main_property'] = true;
+                    elseif ($property->Обязательное . "" == 'false')
+                        $data['main_property'] = false;
+                    if ($property->Множественное . "" == 'true')
+                        $data['multiple'] = true;
+                    elseif ($property->Множественное . "" == 'false')
+                        $data['multiple'] = false;
+                    if ($property->ИспользованиеСвойства . "" == 'true')
+                        $data['active'] = true;
+                    elseif ($property->ИспользованиеСвойства . "" == 'false')
+                        $data['active'] = false;
+                    if (count($property->ИспользованиеСвойства) == 0)
+                        $data['active'] = true;
+
+                    //updating property
+                    $this->ci->db->where(array('id' => $searchedProperty['id'], 'external_id' => $searchedProperty['external_id']))->update($this->properties_table, $data);
+
+                    //preparing update data for i18n table
+                    $i18n_data = array();
+                    $i18n_data['name'] = $property->Наименование . "";
+
+                    //updating i18n property table
+                    $this->ci->db->where(array('id' => $searchedProperty['id'], 'locale' => $this->locale))->update($this->properties_table . "_i18n", $i18n_data);
+                }
             }
         }
+    }
+
+    private function set_brand($property, $insert_id) {
+        $brand_id = 0;
+        $brandName = $property->Значение . "";
+        $brand_id = is_brand($brandName, $this->brand);
+        if (!$brand_id) {
+            $brand_data = array(
+                'url' => translit_url(strtolower($brandName))
+            );
+            $this->ci->db->insert('shop_brands', $brand_data);
+            $brand_id = $this->ci->db->insert_id();
+            $brand_data_locale = array(
+                'id' => $brand_id,
+                'name' => $brandName,
+                'locale' => $this->locale,
+            );
+            $this->ci->db->insert('shop_brands_i18n', $brand_data_locale);
+            $this->brand[] = array('name' => $brandName);
+        }
+        $this->ci->db->where('id', $insert_id)->update('shop_products', array('brand_id' => $brand_id));
     }
 
     private function importProducts() {
@@ -461,30 +570,27 @@ class Exchange {
         unset($temp_properties);
 
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
-            $searchedProduct = array();
 
-            //search product by external id
-            $searchedProduct = $this->ci->db
-                    ->select('id')
-                    ->where('external_id', $product->Ид . "")
-                    ->get($this->products_table)
-                    ->row_array();
+            $searchedProduct = is_prod($product->Ид, $this->prod);
 
-            if (empty($searchedProduct)) {
+            if (!$searchedProduct) {
 
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
                 $data['external_id'] = $product->Ид . "";
 
-                //check if product belongs to any category
                 if (isset($product->Группы)) {
-                    $categoryId = $this->ci->db->select('id')->where('external_id', $product->Группы->Ид . "")->get($this->categories_table)->row_array();
-                    if (empty($categoryId))
+                    $categ = is_cat($product->Группы->Ид, $this->cat);
+                    if ($categ)
+                        $categoryId = $categ['id'];
+                    else
                         return false;
-                    $categoryId = $categoryId['id'];
                     $data['category_id'] = $categoryId;
                 }
+
+
+
                 $data['active'] = true;
                 $data['hit'] = false;
                 $data['brand_id'] = 0;
@@ -496,6 +602,8 @@ class Exchange {
                 $data['action'] = false;
                 $data['added_to_cart_count'] = 0;
                 $data['enable_comments'] = true;
+                $data['url'] = translit_url($product->Наименование);
+
 
                 //inserting prepared data to shop_products table
                 $this->ci->db->insert($this->products_table, $data);
@@ -504,7 +612,7 @@ class Exchange {
                 $insert_id = null;
                 $insert_id = $this->ci->db->insert_id();
                 $data = array();
-                $data['url'] = $insert_id . "_" . translit_url($product->Наименование);
+
 
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
@@ -512,6 +620,9 @@ class Exchange {
                     $ext = explode('.', $image[count($image) - 1]);
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+
+                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
 
                     $data['mainImage'] = $insert_id . '_main.jpg';
                     $data['smallImage'] = $insert_id . '_small.jpg';
@@ -573,55 +684,60 @@ class Exchange {
                     foreach ($product->ЗначенияСвойств->ЗначенияСвойства as $property) {
                         if ($property->Значение . "" == '')
                             continue;
-                        //search property by external id
-                        $searchedProperty = null;
-                        $searchedProperty = $this->ci->db->select('shop_product_properties.id, multiple, data')
-                                ->join('shop_product_properties_i18n', 'shop_product_properties_i18n.id=shop_product_properties.id')
-                                ->where(array('external_id' => $property->Ид . "", 'locale' => $this->locale))
-                                ->get($this->properties_table)
-                                ->row_array();
-                        if (!empty($searchedProperty)) {
 
-                            //prepare insert data for shop_product_properties_data
-                            $data = array();
-                            $data['property_id'] = $searchedProperty['id'];
-                            $data['product_id'] = $insert_id;
-                            $data['value'] = $property->Значение . "";
-                            $data['locale'] = $this->locale;
+                        // for brand------------------------------------------------------------------------
+                        if ($property->Ид . "" == $this->brand_identif) {
+                            $this->set_brand($property, $insert_id);
+                        } else {
+                            //------------------------------------------------------------------------------------
+                            //search property by external id
+                            $searchedProperty = null;
 
-                            //insert prepared data into shop_product_properties_data
-                            $this->ci->db->insert($this->properties_table . "_data", $data);
+                            $searchedProperty = is_prop($property->Ид, $this->prop);
+                            if ($searchedProperty) {
 
-                            if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
-                                $properties_data[$searchedProperty['id']][] = $property->Значение . "";
-                            }
+                                //prepare insert data for shop_product_properties_data
+                                $data = array();
+                                $data['property_id'] = $searchedProperty['id'];
+                                $data['product_id'] = $insert_id;
+                                $data['value'] = $property->Значение . "";
+                                $data['locale'] = $this->locale;
 
-                            //update shop_product_properties_categories
-                            //search if relation not exists and insert record to base
-                            if ($categoryId) {
-                                if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
-                                    $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                                //insert prepared data into shop_product_properties_data
+                                $this->ci->db->insert($this->properties_table . "_data", $data);
+
+                                if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
+                                    $properties_data[$searchedProperty['id']][] = $property->Значение . "";
                                 }
+
+                                //update shop_product_properties_categories
+                                //search if relation not exists and insert record to base
+                                if ($categoryId) {
+                                    if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
+                                        $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                                    }
+                                }
+                                $this->prop_data[$searchedProperty['id'] . '_' . $insert_id] = $property->Значение . "";
                             }
                         }
                     }
                 }
+                $this->prod[$insert_id] = $product->Ид . '';
             } else {
                 //product found and should be updated
                 //preparing update data for shop_products table
                 $data = array();
 
-
-                //check if product belongs to any category
                 if (isset($product->Группы)) {
-                    $categoryId = $this->ci->db->select('id')->where('external_id', $product->Группы->Ид . "")->get($this->categories_table)->row_array();
-                    if (empty($categoryId))
+                    $categ = is_cat($product->Группы->Ид, $this->cat);
+                    if ($categ)
+                        $categoryId = $categ['id'];
+                    else
                         return false;
-                    $categoryId = $categoryId['id'];
                     $data['category_id'] = $categoryId;
                 }
                 $data['updated'] = time();
-                $data['url'] = $searchedProduct['id'] . "_" . translit_url($product->Наименование . "");
+                $data['url'] = translit_url($product->Наименование . "");
 
                 //updating prepared data in shop_products table
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
@@ -632,8 +748,11 @@ class Exchange {
                     $ext = explode('.', $image[count($image) - 1]);
 
                     @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
 
                     $data = array();
+
+                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
                     $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
                     $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
                     $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
@@ -674,39 +793,46 @@ class Exchange {
                     foreach ($product->ЗначенияСвойств->ЗначенияСвойства as $property) {
                         if ($property->Значение . "" == '')
                             continue;
-                        //search property by external id
-                        $searchedProperty = null;
-                        $searchedProperty = $this->ci->db->select('shop_product_properties.id, multiple, data')
-                                ->join('shop_product_properties_i18n', 'shop_product_properties_i18n.id=shop_product_properties.id')
-                                ->where(array('external_id' => $property->Ид . "", 'locale' => $this->locale))
-                                ->get($this->properties_table)
-                                ->row_array();
-                        if (!empty($searchedProperty)) {
-                            //prepare insert data for shop_product_properties_data
-                            $data = array();
-                            $data['value'] = $property->Значение . "";
-                            //check if product property exists
-                            if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'product_id' => $searchedProduct['id']))->get('shop_product_properties_data')->num_rows() > 0)
-                            //update prepared data into shop_product_properties_data
-                                $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'property_id' => $searchedProperty['id']))->update($this->properties_table . "_data", $data);
-                            else
-                            //insert new row
-                                $this->ci->db->insert($this->properties_table . "_data", array(
-                                    'property_id' => $searchedProperty['id'],
-                                    'product_id' => $searchedProduct['id'],
-                                    'value' => $property->Значение . "",
-                                    'locale' => $this->locale
-                                ));
 
-                            if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
-                                $properties_data[$searchedProperty['id']][] = $property->Значение . "";
-                            }
+                        // for brand------------------------------------------------------------------------
+                        if ($property->Ид . "" == $this->brand_identif) {
+                            $this->set_brand($property, $searchedProduct['id']);
+                        } else {
+                            //------------------------------------------------------------------------------------
+                            //search property by external id
+                            $searchedProperty = null;
 
-                            //update shop_product_properties_categories
-                            //search if relation not exists and insert record to base
-                            if ($categoryId) {
-                                if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
-                                    $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                            $searchedProperty = is_prop($property->Ид, $this->prop);
+                            if ($searchedProperty) {
+
+                                //prepare insert data for shop_product_properties_data
+                                $data = array();
+                                $data['value'] = $property->Значение . "";
+                                //check if product property exists
+
+                                if (is_prop_data($searchedProperty['id'], $searchedProduct['id'], $this->prop_data))
+                                //update prepared data into shop_product_properties_data
+                                    $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'property_id' => $searchedProperty['id']))->update($this->properties_table . "_data", $data);
+                                else
+                                //insert new row
+                                    $this->ci->db->insert($this->properties_table . "_data", array(
+                                        'property_id' => $searchedProperty['id'],
+                                        'product_id' => $searchedProduct['id'],
+                                        'value' => $property->Значение . "",
+                                        'locale' => $this->locale
+                                    ));
+                                $this->prop_data[$searchedProperty['id'] . '_' . $searchedProduct['id']] = $property->Значение . "";
+
+                                if (!in_array($property->Значение . "", $properties_data[$searchedProperty['id']])) {
+                                    $properties_data[$searchedProperty['id']][] = $property->Значение . "";
+                                }
+
+                                //update shop_product_properties_categories
+                                //search if relation not exists and insert record to base
+                                if ($categoryId) {
+                                    if ($this->ci->db->where(array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId))->get('shop_product_properties_categories')->num_rows() == 0) {
+                                        $this->ci->db->insert('shop_product_properties_categories', array('property_id' => $searchedProperty['id'], 'category_id' => $categoryId));
+                                    }
                                 }
                             }
                         }
@@ -837,9 +963,9 @@ class Exchange {
      */
     private function command_sale_success() {
         if ($this->check_perm() === true) {
-            $model = SOrdersQuery::create()->findByStatus(1);
+            $model = SOrdersQuery::create()->findByStatus($this->config['userstatuses']);
             foreach ($model as $order) {
-                $order->SetStatus(9);
+                $order->SetStatus($this->config['userstatuses_after']);
                 $order->save();
             }
         }
@@ -947,6 +1073,7 @@ class Exchange {
                 } else {
                     $paid_status = 'true';
                 }
+                $status = SOrders::getStatusName('Id', $model->getStatus());
                 $xml_order .= "<ЗначенияРеквизитов>\n" .
                         "<ЗначениеРеквизита>\n" .
                         "<Наименование>Метод оплаты</Наименование>\n" .
@@ -970,7 +1097,7 @@ class Exchange {
                         "</ЗначениеРеквизита>\n" .
                         "<ЗначениеРеквизита>\n" .
                         "<Наименование>Статус заказа</Наименование>\n" .
-                        "<Значение>В обработке</Значение>\n" .
+                        "<Значение>" . $status . "</Значение>\n" .
                         "</ЗначениеРеквизита>\n" .
                         "<ЗначениеРеквизита>\n" .
                         "<Наименование>Дата изменения статуса</Наименование>\n" .
