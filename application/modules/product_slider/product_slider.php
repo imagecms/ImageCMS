@@ -71,6 +71,20 @@ class Product_slider extends MY_Controller {
                 ->setData($responseData)
                 ->render('product', true);
     }
+    
+    public function links($catId, $withoutIds = array(0)) {
+        $ids = $this->db->select('id')
+                ->where('category_id', $catId)
+                ->where_not_in('id', $withoutIds)
+                ->get('shop_products')
+                ->result();
+        
+        $links = array();
+        foreach ($ids as $id)
+            $links[] = '<a class="various fancybox.ajax photo" href="/product_slider/show/'.$id->id.'" rel="productSlider">product-slider</a>';
+        
+        return $links;
+    }
 
 }
 

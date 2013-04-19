@@ -108,13 +108,14 @@
                 <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
 
                     <!-- starts loop for array with products -->
+                    { $inPageIds = array()}
                     {foreach $products as $product}
 
                         {$product->firstVariant}
                         <!-- product block -->
                         <!-- check if product is in stock -->
                         <li class="{if (int)$product->getallstock() == 0}not-avail{/if} span3">
-
+                            { $inPageIds[] = $product->getId()}
                             <!-- product info block -->
                             <div class="description">
                                 <div class="frame_response">
@@ -251,7 +252,11 @@
                     <div class="title_h2 t-a_c">Категория пуста</div>
                 </div>
             {/if}
-
+                <div style="display: none;">
+                { if $CI->product_slider}
+                { echo implode($CI->product_slider->links($category->getId(), $inPageIds))}
+                { /if}
+                </div>
             <!-- pagination variable from category.php controller -->
             {$pagination}
         </div>
