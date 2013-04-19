@@ -87,12 +87,12 @@ $(document).ready(
         });
 
 
-        $('button.toCompare').on('click', function () {
+        $('button.toCompare').die('click').live('click', function () {
             var id = $(this).data('prodid');
             Shop.CompareList.add(id);
         });
 
-        $('button.toWishlist').on('click', function () {
+        $('button.toWishlist').die('click').live('click', function () {
             var id = $(this).data('prodid');
             var vid = $(this).data('varid');
             Shop.WishList.add(id, vid);

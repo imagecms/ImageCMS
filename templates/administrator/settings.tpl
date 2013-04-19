@@ -71,11 +71,25 @@
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('a_tpl')}:</label>
                                                             <div class="controls">
+                                                                        {/*}
                                                                 <select name="template" id="template">
                                                                     {foreach $templates as $k => $v}
-                                                                        <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
+                                                                        { if (is_array($v)) }
+                                                                            <optgroup>
+                                                                            { foreach $v as $subStyle}
+                                                                                <option value="{$k}/{$subStyle}" {if $template_selected == $k} selected="selected" {/if} >{$k} - {$subStyle}</option>
+                                                                            { /foreach}
+                                                                            </optgroup>
+                                                                        { else:}
+                                                                            <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
+                                                                        { /if}
+                                                                        
+                                                                        
                                                                     {/foreach}
                                                                 </select>
+                                                                        { */}
+                                                                { form_dropdown('template', $templates, $template_selected, 'id="tplPreview"')}
+                                                                <img style="max-width: 200px;" class="thumbnail" id="templateSelectorImage" src="{echo site_url('templates/'.$template_selected)}/screenshot.png">
                                                             </div>
                                                         </div>
                                                         <div class="control-group">

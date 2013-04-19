@@ -17,7 +17,10 @@ class Product_slider extends MY_Controller {
     }
 
     public function autoload() {
-        
+        if (!$this->input->is_ajax_request())
+        \CMSFactory\assetManager::create()
+            ->setData ('productSliderEnabled', true)
+            ->registerScript('script');
     }
 
     public function _install() {
@@ -35,10 +38,9 @@ class Product_slider extends MY_Controller {
           $this->dbforge->add_field($fields);
           $this->dbforge->create_table('mod_empty', TRUE);
          */
-        /**
-          $this->db->where('name', 'module_frame')
+        
+          $this->db->where('name', 'product_slider')
           ->update('components', array('autoload' => '1', 'enabled' => '1'));
-         */
     }
 
     public function _deinstall() {
@@ -63,16 +65,9 @@ class Product_slider extends MY_Controller {
                 ->get('shop_products')
                 ->result_array();
         
-        $ids = array();
-        foreach ($result as $item)
-            $ids[] = $item['id'];
+        $responseData['model'] = $product;
         
-        $key = array_search($id, $ids);
-        $responseData['product'] = $product;
-        $responseData['prevId']  = $ids[$key-1];
-        $responseData['nextId']  = $ids[$key+1];
-        
-        echo \CMSFactory\assetManager::create()
+        \CMSFactory\assetManager::create()
                 ->setData($responseData)
                 ->render('product', true);
     }

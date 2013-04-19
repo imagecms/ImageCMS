@@ -1244,7 +1244,24 @@ $(document).ready(
         })
         $('#settings_form .control-label').live('click', function() {
             $(this).next().find(':input:first').focus();
-        })
+        });
+        
+        
+        $('#templateSelector').live('change', function(){
+            var src = $(this).val();
+            if (src.charAt(0) == '.')
+                src = src.substr(1);
+            src += '/screenshot.png';
+            $('#templateSelectorImage').attr('src', src);
+        });
+        
+        $('#tplPreview').live('change', function(){
+            var src = $(this).val();
+            src = '/templates/' + src + '/screenshot.png';
+            $('#templateSelectorImage').attr('src', src);
+        });
+        
+        
     });
 
 $(window).load(function() {
