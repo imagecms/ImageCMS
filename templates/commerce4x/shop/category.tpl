@@ -149,7 +149,7 @@
 
                                 <!-- displaying buy button according to its availability in stock -->
 
-                                {if (int)$product->getallstock() == 0}
+                                { if (int)$product->getallstock() == 0}
 
                                     <!-- displaying notify button -->
                                     <button data-placement="bottom right"
@@ -164,7 +164,7 @@
                                         <span class="icon-but"></span>
                                         <span class="text-el">{lang('s_message_o_report')}</span>
                                     </button>
-                                {else:}
+                                { else:}
 
                                     <!-- displaying buy or in cart button -->
                                     <button class="btn btn_buy" type="button"
@@ -214,7 +214,13 @@
 
                             <!-- displaying products small mod image -->
                             <div class="photo-block">
-                                <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
+                                
+                                
+                                { if $productSliderEnabled  }
+                                    <a class="various fancybox.ajax photo" href="/product_slider/show/{ echo $product->getId()}" rel="productSlider">
+                                { else:}
+                                    <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
+                                { /if}
                                     <figure>
                                         <span class="helper"></span>
                                         <img src="{productSmallImageUrl($product)}" 

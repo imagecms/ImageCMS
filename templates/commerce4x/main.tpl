@@ -23,7 +23,14 @@
         <meta name="generator" content="ImageCMS" />
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
+        
+        { if $subStyle}
+            <link rel="stylesheet" type="text/css" href="{$THEME}stylesets/{$subStyle}/style.css"/>
+        { /if}
+        
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        
+        
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
         <!--[if lt IE 9]>
@@ -320,6 +327,7 @@
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop_processing.js"></script>
         
         
     <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->

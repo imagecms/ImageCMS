@@ -137,14 +137,36 @@ class Settings extends BaseAdminController {
      * @access private
      * @return array
      */
-    function _get_templates() {
+    private function _get_templates() {
         $new_arr = array();
 
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
                 if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
-                        $new_arr[$file] = $file;
+                        if ($subStyles = $this->getSubStyles($file))
+                            $new_arr[$file] = array_merge(array($file => "$file - default"), $subStyles );
+                        else
+                            $new_arr[$file] = $file;
+                    }
+                }
+            }
+            closedir($handle);
+        } else {
+            return FALSE;
+        }
+        
+        return $new_arr;
+    }
+    
+    private function getSubStyles($path) {
+        $new_arr = array();
+        
+        if ($handle = opendir(TEMPLATES_PATH.$path.'/stylesets')) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != "." && $file != ".." ) {
+                    if (!is_file(TEMPLATES_PATH . $file)) {
+                        $new_arr[$path.'/stylesets/'.$file] = "$path - $file";
                     }
                 }
             }

@@ -20,6 +20,14 @@ class Template extends Mabilis {
         $this->CI = & get_instance();
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
+        
+        $subStyle = null;
+        if ( strpos($tpl, '/') ) {
+            $parts = explode('/', $tpl);
+            $tpl = $parts[0];
+            $subStyle = $parts[2]!= 'default'?$parts[2]:null;
+        }
+        
         $config = array(
             'tpl_path' => TEMPLATES_PATH . $tpl . '/',
             'compile_path' => $this->CI->config->item('tpl_compile_path'),
@@ -36,6 +44,10 @@ class Template extends Mabilis {
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
         $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
+        
+        /*  subStyle folder */
+        $this->assign('subStyle', $subStyle);
+        
         $this->assign('CI', $this->CI);
     }
 

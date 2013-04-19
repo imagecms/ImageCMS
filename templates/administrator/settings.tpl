@@ -69,16 +69,6 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="template">{lang('a_tpl')}:</label>
-                                                            <div class="controls">
-                                                                <select name="template" id="template">
-                                                                    {foreach $templates as $k => $v}
-                                                                        <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
-                                                                    {/foreach}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
                                                             <label class="control-label" for="cat_list">Отображать дерево категорий в списке содержимого:</label>
                                                             <div class="controls">
                                                                 <select name="cat_list" id="cat_list">
@@ -96,6 +86,13 @@
                                                                     <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
                                                                     <option value="none" {if $text_editor == 'none'} selected="selected" {/if} >Native textarea</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="template">{lang('a_tpl')}:</label>
+                                                            <div class="controls">
+                                                                { form_dropdown('template', $templates, $template_selected, 'id="tplPreview" style="float: left; width: 60% !important;"')}
+                                                                <img style="max-width: 35%; float: left; margin-left: 4%;" class="thumbnail" id="templateSelectorImage" src="{echo site_url('templates/'.$template_selected)}/screenshot.png">
                                                             </div>
                                                         </div>
                                                     </div>
