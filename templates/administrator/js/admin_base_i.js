@@ -809,23 +809,32 @@ $(document).ready(function() {
     $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
-
+    
     $('#resizeAll').live('click', function() {
+        $('#progressBlock').fadeIn(100);
+        $('#fixPage').fadeIn(100);
         $.ajax({
             url: "/admin/components/run/shop/settings/runResizeAll",
             type: "post",
+            async : true,
+            cache : false,
             success: function(data) {
+                $('#fixPage').fadeOut(100);
                 $('.notifications').append(data);
+                $('#progressBlock').fadeOut(100);
             }
         });
     });
+
     $('#resizeById').live('click', function() {
         id = $('#product_variant_name').val();
         console.log(id);
+        $('#loading').fadeIn(100);
         $.ajax({
             url: "/admin/components/run/shop/settings/runResizeById/"+id,
             type: "post",
             success: function(data) {
+                $('#loading').fadeIn(100);
                 $('.notifications').append(data);
             }
         });
