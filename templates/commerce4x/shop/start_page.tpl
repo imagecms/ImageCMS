@@ -30,9 +30,13 @@
         </section>
     </div>
     <!-- Show banners in circle -->
-
+    <div class="container">
+    {//widget('infobox2')}
+    {//widget('infobox1')}
+    </div>
     {widget('popular_products')}
     {widget('new_products')}
     {widget('action_products')}
+    {//widget('Kits')}
 
 </div>

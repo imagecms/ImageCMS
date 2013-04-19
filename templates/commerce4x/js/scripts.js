@@ -322,6 +322,12 @@ wnd.load(function() {
 
     /*fancybox-based imagebox initialization*/
     $('a.fancybox').fancybox();
+    
+    /*prop_tip*/
+    $('.tip').on('hover', function(){
+        $(this).parent().next().next().slideToggle();
+    })
+    /*-------*/
 });
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');

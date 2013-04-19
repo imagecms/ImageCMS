@@ -1,0 +1,98 @@
+{if $kits->count() > 0}
+<div class="container">
+                <ul class="items items_catalog">
+                    {foreach $kits as $kitProducts}                                     
+                        <li class="container">
+                            <ul class="items items_middle">
+                                <li class="span3">
+                                    <div class="item_set">
+                                        <!--Photo, price, name for parent product-->
+                                        <div class="description">
+                                            <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}">
+                                                {echo ShopCore::encode($kitProducts->getMainProduct()->getName())}
+                                            </a>
+                                            <div class="price price_f-s_16">
+                                                <!-- "$kitProducts->getMainProductPrice()" price of the main product-->
+                                                <span class="f-w_b">{echo $kitProducts->getMainProductPrice()} </span>
+                                                {$CS}
+                                            </div>
+                                        </div>
+                                        <div class="photo-block">
+                                            <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
+                                                <figure>
+                                                    <span class="helper"></span>
+                                                    <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                </figure>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="d_i-b">+</div>
+                                </li>
+                                <!--Output of goods subsidiaries set-->
+                                {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
+                                    <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
+                                        <div class="item_set">
+                                            <div class="description">
+                                                <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}">
+                                                    {echo ShopCore::encode($kitProduct->getSProducts()->getName())}
+                                                </a>
+                                                <!--Conclusion discounts-->
+                                                <div class="price price_f-s_16">
+                                                    {if $kitProduct->getDiscount()}
+                                                        <span class="d_b old_price">
+                                                            <!--$kitProduct->getBeforePrice() - Price before discount-->
+                                                            <span class="f-w_b">{echo $kitProduct->getBeforePrice()} </span>
+                                                            {$CS}
+                                                        </span>
+                                                    {/if}
+                                                    <!--$kitProduct->getDiscountProductPrice() - discount price-->
+                                                    <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()} </span>
+                                                    {$CS}
+                                                </div>
+                                            </div>
+                                            <div class="photo-block">
+                                                <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
+                                                    <figure>
+                                                        <span class="helper"></span>
+                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                    </figure>
+                                                </a>
+                                            </div>
+                                            <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
+                                        </div>
+                                        <div class="d_i-b">
+                                    {if $kitProducts->countProducts() == $key}={else:}+{/if}
+                                </div>
+                            </li>                                            
+                        {/foreach}                       
+                        <!--Output of goods subsidiaries set END-->
+                        <li class="span3 p-t_40">
+                            <div class="price price_f-s_24">
+                                <span class="d_b old_price">
+                                    <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
+                                    <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()} </span> {$CS}
+                                </span>
+                                <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
+                                <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
+                            </div>                                   
+                            <button class="btn btn_buy" type="button"                                    
+                                    data-price="{echo $kitProducts->getTotalPrice()}" 
+                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                    data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                    data-kit="true"
+                                    data-kitId="{echo $kitProducts->getId()}"
+                                    data-number="{//echo $model->firstVariant->getnumber()}"
+                                    data-maxcount="{//echo $model->firstVariant->getstock()}"
+                                    >
+                                {lang('s_buy')}
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            {/foreach}                            
+        </ul>
+        </div>
+
+{/if}
