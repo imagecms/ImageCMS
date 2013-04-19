@@ -27,11 +27,12 @@ class Top_menu_additional extends MY_Controller {
 
     public function _install() {
         $sql = "CREATE TABLE IF NOT EXISTS `top_menu_additional` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `settings` text CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;";
-
+          `id` int(11) NOT NULL AUTO_INCREMENT,
+          `settings` text CHARACTER SET utf8 NOT NULL,
+          PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;";
+        
+        $this->db->query($sql);
         $this->db->where('name', 'top_menu_additional');
         $this->db->update('components', array('enabled' => 0, 'autoload' => 1));
     }
@@ -108,7 +109,7 @@ class Top_menu_additional extends MY_Controller {
     public function _deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-$this->dbforge->drop_table('top_menu_additional');
+        $this->dbforge->drop_table('top_menu_additional');
     }
 
 }

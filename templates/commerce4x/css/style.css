@@ -1259,3 +1259,21 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .drop h1{line-height: 1;}
 .vertical_template .span3.f_r{position: relative;z-index: 2;}
 .vertical_template .span3.f_r + .span6{position: relative;z-index: 1;}
+
+
+
+/** infobox1- widget---------------------*/
+.infobox1 {width: 840;}
+.infobox1 div {width: 280px; float: left}
+/* */
+/** infobox2---widget-------------------*/
+.infobox2 {width: 300px; float: left}
+
+/* */
+
+/* prop_tip */
+
+.caract {position: relative}
+.tip {width: 15px; display: inline-block; background: #c0c0c0; cursor: pointer}
+.info_prop{display: none; position: absolute; top: 18px; left: 94px; background: #c0c0c0; border: solid 1px black; width: 350px; z-index: 1000}
+/* ----------------------*/

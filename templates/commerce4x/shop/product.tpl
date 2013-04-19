@@ -159,8 +159,23 @@
                         {/if}
 
                         {foreach $model->getProductVariants() as $key => $pv}
-                            {if $pv->getStock() > 0}
-                                <button style="display: none;" 
+                            {if !$pv->getAvailable()}
+                                 <button
+                                    style="display: none;" 
+                                    data-placement="top right"
+                                    data-place="noinherit"
+                                    data-duration="500"
+                                    data-effect-off=    "fadeOut"
+                                    data-effect-on="fadeIn"
+                                    data-drop=".drop-report"
+                                    data-prodid="{echo $model->getId()}" 
+                                    type="button"
+                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant">
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">Под заказ</span>
+                                </button>
+                            {elseif $pv->getStock() > 0}
+                                 <button style="display: none;" 
                                         class="btn btn_buy variant_{echo $pv->getId()} variant" 
                                         type="button" 
                                         data-prodid="{echo $model->getId()}"
@@ -187,6 +202,7 @@
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
+                             
                             {/if}
                         {/foreach}
                     </div>
@@ -229,7 +245,25 @@
             <div class="share_tov">
                 {echo $CI->load->module('share')->_make_share_form()}
             </div>
+                       
             <!-- End. Withdraw button to "share" -->
+             <!-- prop_tip -->
+             {$prop_tip = $model->getPropertiesWithTip()}
+             {if count($prop_tip) > 0}
+                 <div class="clearfix">
+                     {foreach $prop_tip as $prop}
+                         <div class="caract clearfix">
+                             <div class="f_l">{echo $prop.Name}<span class="tip">&nbsp</span></div>
+                             <div class="f_l"> - {echo $prop.Value}</div>
+                             <div class="info_prop">
+                                 {echo $prop.Desc}
+                             </div>
+                         </div>
+
+                     {/foreach}
+                 </div>
+             {/if}
+            <!-- -->
 
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
@@ -263,6 +297,7 @@
                         </button>
                     </li>
                 {/if}
+
                 <!--Output of the block if there is one accessory END-->
                 <!--Output of the block comments-->
                 {if $Comments && $model->enable_comments}
@@ -381,6 +416,8 @@
                         </ul>
                     </div>
                 {/if}
+
+                
                 <!--Block Accessories End-->
                 <div id="comment">
                     <div id="for_comments" name="for_comments"></div>
@@ -389,6 +426,8 @@
         </li>
     </ul>
 </div>
+                
+                
 <!--Kit start-->
 {if $model->getShopKits()->count() > 0}
     <div class="frame_carousel_product carousel_js c_b frameSet">

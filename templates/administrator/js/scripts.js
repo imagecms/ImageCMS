@@ -1080,10 +1080,33 @@ function ch_lan(el){
     $('#lang_form'+$(el).val()).removeClass('d_n');
     $('#lang_form'+$(el).val()+' input').removeAttr('disabled');    
 }
+
+function ChangeVariantOn(obj){
+    el = $(obj.target);
+    checkOn = $('.variant_on input[type=checkbox]:checked');
+    if (checkOn.length == 0){
+        alert('Хотя бы один вариант должен быть включенным или отключите продукт полностью')
+        obj.preventDefault();
+    } else 
+        if (el.is(':checked'))
+            el.next().val(1)
+        else
+            el.next().val(0)               
+}
+function ChangeVariantAvail(obj){
+    el = $(obj.target);
+        if (el.is(':checked'))
+            el.next().val(1)
+        else
+            el.next().val(0)               
+}
 //+++++++++++++++++++++++++++++++
 
 $(document).ready(
     function() {
+
+        $('.variant_on input[type=checkbox]').live('click',ChangeVariantOn);
+        $('.variant_avail input[type=checkbox]').live('click',ChangeVariantAvail);
 
         if ($('#shopSearch').length) {
             initShopSearch();
