@@ -33,10 +33,20 @@ class Socauth extends MY_Controller {
         $this->email->send();
     }
 
-    public function socAuth($social, $id, $username, $email, $address, $key, $phone) {
+    public function writeCookies() {
+//        $this->load->helper('cookie');
+//        set_cookie("serverPosition", 'sdfsd', 600, '/');
+//        SetCookie("serverPosition", $this->uri->uri_string());
+//        
+//        var_dumps($_COOKIE['serverPosition']);
+//        var_dumps($this->uri->uri_string());
+    }
+
+    private function socAuth($social, $id, $username, $email, $address, $key, $phone) {
+//        var_dumps($_COOKIE['serverPosition']);
 
         if ($email == '')
-            redirect('/socauth');
+            redirect('/socauth/error');
 
         $user = $this->db
                 ->where('socialId', $id)
@@ -51,7 +61,7 @@ class Socauth extends MY_Controller {
                     ->row();
 
             if (count($emailChack) > 0)
-                redirect('/socauth');
+                redirect('/socauth/error');
 
             $pass = random_string('alnum', 20);
 
@@ -60,7 +70,7 @@ class Socauth extends MY_Controller {
             $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone);
 
             if (!$register)
-                redirect('/socauth');
+                redirect('/socauth/error');
 
             $userId = $this->db
                     ->select('id')
@@ -82,7 +92,7 @@ class Socauth extends MY_Controller {
                     ->row();
 
             if (count($userData) == 0)
-                redirect('/socauth');
+                redirect('/socauth/error');
 
             $data->role_id = $userData->role_id;
             $data->id = $userData->userId;
@@ -93,14 +103,21 @@ class Socauth extends MY_Controller {
             $this->dx_auth->_clear_login_attempts();
             $this->dx_auth_event->user_logged_in($userData->id);
         }
+//        var_dump($_COOKIE['serverPosition']);
+//        redirect($_COOKIE['serverPosition']);
         redirect('/shop/profile');
     }
 
     public function index() {
-        redirect('/shop/profile');
+        if (!$this->dx_auth->is_logged_in())
+            \CMSFactory\assetManager::create()
+                    ->setData($this->settings)
+                    ->render('login');
+        else
+            redirect('/shop/profile');
     }
 
-    public function error($error = '') {
+    public function error($error = "") {
         $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in())
@@ -112,10 +129,13 @@ class Socauth extends MY_Controller {
     }
 
     public function renderLogin() {
-        if (!$this->dx_auth->is_logged_in())
+        if (!$this->dx_auth->is_logged_in()) {
+            $this->writeCookies();
+
             \CMSFactory\assetManager::create()
                     ->setData($this->settings)
                     ->render('buttons', TRUE);
+        }
     }
 
     public function ya() {
@@ -241,6 +261,7 @@ class Socauth extends MY_Controller {
     public function google() {
 
         if ($this->input->get()) {
+
             $postdata = array(
                 'code' => $this->input->get(code),
                 'client_id' => "{$this->settings[googleClientID]}",
