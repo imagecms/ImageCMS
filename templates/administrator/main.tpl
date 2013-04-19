@@ -29,6 +29,7 @@
     </head>
     <body>
         <div class="main_body">
+          <div id="fixPage"></div>
             <!-- Here be notifications -->
             <div class="notifications top-right"></div>
 
