@@ -112,9 +112,10 @@ class Socauth extends MY_Controller {
     }
 
     public function renderLogin() {
-        \CMSFactory\assetManager::create()
-                ->setData($this->settings)
-                ->render('buttons', TRUE);
+        if (!$this->dx_auth->is_logged_in())
+            \CMSFactory\assetManager::create()
+                    ->setData($this->settings)
+                    ->render('buttons', TRUE);
     }
 
     public function ya() {
