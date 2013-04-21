@@ -1,16 +1,21 @@
-function spy(varId) {
+function spy(id, varId, $this) {
     $.ajax({
         type: 'POST',
-        url: 'pricespy/spy/' + varId,
-        onComplete: function(response) {
-
+        url: 'pricespy/spy/' + id + '/' + varId,
+        success: function(obj) {
+//            if (obj.answer == 'sucesfull') {
+                $('.btn').val('aaaa');
+//            }
+//            else {
+//            }
         }
     });
 }
-function unspy(varId) {
+
+function unspy(hash) {
     $.ajax({
         type: 'POST',
-        url: 'pricespy/unSpy/' + varId,
+        url: 'pricespy/unSpy/' + hash,
         onComplete: function(response) {
 
         }
