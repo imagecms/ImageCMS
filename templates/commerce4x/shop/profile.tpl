@@ -73,13 +73,13 @@
                                 </span>
                             </label>
                             {if $profile->getdiscount()}
-                            <label>
-                                <span class="title">{lang('s_disk')}:</span>
-                                <span class="frame_form_field">
-                                    <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
-                                    
-                                </span>
-                            </label>
+                                <label>
+                                    <span class="title">{lang('s_disk')}:</span>
+                                    <span class="frame_form_field">
+                                        <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
+
+                                    </span>
+                                </label>
                             {/if}                                    
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
@@ -150,7 +150,13 @@
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
                                     <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>
                                     <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                                    <td>{if $order->getPaid()}<span class="icon-paid"></span> {else:} <span class="icon-paid_not"></span> {/if}</td>
+                                    <td>
+                                        {if $order->getPaid()}
+                                            <span class="icon-paid"></span> 
+                                        {else:} 
+                                            <span class="icon-paid_not"></span> 
+                                        {/if}
+                                    </td>
                                 </tr>
                             {/foreach}
                         </tbody>

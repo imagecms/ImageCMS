@@ -1,2 +1,6 @@
-<a href='#' onclick='spy({echo $Id},{echo $varId})'>Следить</a>
-<a href='#' onclick='unspy({echo $Id},{echo $varId})'>НЕ Следить</a>
+
+<input type="submit" class="btn" value="Уведомить о снижении цены" onclick="spy({echo $Id},{echo $varId}, this);
+        return false"/>
+<br>
+<input type="submit" class="btn" value="Отписаться " onclick="unspy({$product[hash]});
+        return false"/>

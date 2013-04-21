@@ -5,7 +5,7 @@
 /**
  * Image CMS
  *
- * Класс авторизации через посторонние сервисы
+ * Класс слежения за ценой
  */
 class Pricespy extends MY_Controller {
 
@@ -42,11 +42,14 @@ class Pricespy extends MY_Controller {
     }
 
     public function index() {
+        $data = array(
+            'varId' => 231,
+            'Id' => 124
+        );
 
         \CMSFactory\assetManager::create()
                 ->registerScript('spy')
-                ->setData('varId', 232)
-                ->setData('Id', 124)
+                ->setData($data)
                 ->render('button');
     }
 
@@ -81,24 +84,20 @@ class Pricespy extends MY_Controller {
 
         $this->db
                 ->set('userId', $this->dx_auth->get_user_id())
-                ->set('productId', $Id)
+                ->set('productId', $id)
                 ->set('productVariantId', $varId)
                 ->set('productPrice', $product->price)
                 ->set('oldProductPrice', $product->price)
-                ->set('hash', random_string('alnum', 30))
+                ->set('hash', random_string('numeric', 10))
                 ->insert('mod_price_spy');
+        
+        echo json_encode(array(
+            'answer' => 'sucesfull',
+        ));
     }
 
-    public function unSpy($varId, $hash = '') {
-        if ($hash != '')
-            $this->db->delete('mod_price_spy', array(
-                'productVariantId' => $varId,
-                'hash' => $hash));
-        else
-            $this->db->delete('mod_price_spy', array('productVariantId' => $varId));
-
-
-//        var_dumps($product);
+    public function unSpy($hash) {
+        $this->db->delete('mod_price_spy', array('hash' => $hash));
     }
 
     public function renderButton($id) {
@@ -118,6 +117,18 @@ class Pricespy extends MY_Controller {
                     ->registerScript('spy')
                     ->setData('varId', $id)
                     ->render('button');
+    }
+
+    public function renderUserSpys() {
+        $products = $this->db
+                ->where('userId', $this->dx_auth->get_user_id())
+                ->get('mod_price_spy')
+                ->result_array();
+
+        \CMSFactory\assetManager::create()
+                ->registerScript('spy')
+                ->setData('products', $products)
+                ->render('spys');
     }
 
     public function _install() {
@@ -160,7 +171,7 @@ class Pricespy extends MY_Controller {
         $this->db->where('name', 'pricespy');
         $this->db->update('components', array(
             'enabled' => 1,
-            'autoload' => 0));
+            'autoload' => 1));
     }
 
     public function _deinstall() {
@@ -171,4 +182,4 @@ class Pricespy extends MY_Controller {
 
 }
 
-/* End of file socauth.php */
+/* End of file pricespy.php */

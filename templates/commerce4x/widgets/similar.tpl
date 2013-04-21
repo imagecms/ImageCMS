@@ -43,17 +43,32 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()} </span> 
                                 {$CS}
                             </div>
-
-                            <button class="btn btn_buy" 
-                                    type="button" 
-                                    data-prodid="{echo $product->getId()}" 
-                                    data-varid="{echo $product->firstVariant->getId()}" 
-                                    data-price="{echo $product->firstVariant->toCurrency()}"  
-                                    data-name="{echo ShopCore::encode($product->getName())}"
-                                    data-number="{echo $product->firstVariant->getnumber()}"
-                                    data-maxcount="{echo $product->firstVariant->getstock()}">
-                                {lang('s_buy')}
-                            </button>
+                            {if $product->firstVariant->getStock() != 0}
+                                <button class="btn btn_buy" 
+                                        type="button" 
+                                        data-prodid="{echo $product->getId()}" 
+                                        data-varid="{echo $product->firstVariant->getId()}" 
+                                        data-price="{echo $product->firstVariant->toCurrency()}"  
+                                        data-name="{echo ShopCore::encode($product->getName())}"
+                                        data-number="{echo $product->firstVariant->getnumber()}"
+                                        data-maxcount="{echo $product->firstVariant->getstock()}">
+                                    {lang('s_buy')}
+                                </button>
+                            {else:}
+                                <button
+                                    data-placement="top right"
+                                    data-place="noinherit"
+                                    data-duration="500"
+                                    data-effect-off=    "fadeOut"
+                                    data-effect-on="fadeIn"
+                                    data-drop=".drop-report"
+                                    data-prodid="{echo $product->getId()}"
+                                    type="button"
+                                    class="btn btn_not_avail variant">
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                </button>
+                            {/if}
                         </div>
                         <div class="photo-block">
                             <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
