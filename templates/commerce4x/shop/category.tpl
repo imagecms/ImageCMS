@@ -179,7 +179,7 @@
                                             >
                                         {lang('s_buy')}
                                     </button>
-                                {/if}
+                                { /if}
 
                                 <div class="d_i-b">
 
