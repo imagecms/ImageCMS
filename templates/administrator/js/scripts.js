@@ -1094,6 +1094,7 @@ function ChangeVariantOn(obj){
             el.next().val(0)               
 }
 function ChangeVariantAvail(obj){
+    alert(1)
     el = $(obj.target);
         if (el.is(':checked'))
             el.next().val(1)
@@ -1105,8 +1106,8 @@ function ChangeVariantAvail(obj){
 $(document).ready(
     function() {
 
-        $('.variant_on input[type=checkbox]').live('click',ChangeVariantOn);
-        $('.variant_avail input[type=checkbox]').live('click',ChangeVariantAvail);
+        $('.variant_on :checkbox').live('click',ChangeVariantOn);
+        $('.variant_avail :checkbox').live('click',ChangeVariantAvail);
 
         if ($('#shopSearch').length) {
             initShopSearch();
