@@ -85,7 +85,12 @@ class Permitions {
         }else {
             //user always has access to admin/login page
             if ($adminClassName != 'Login')
-                redirect('admin/login');
+                if ($ci->input->is_ajax_request()) {
+                    echo json_encode(array('success'=>false, 'redirect'=> 'admin/login'));
+                    exit;
+                }
+                else
+                    redirect('admin/login');
         }
     }
 

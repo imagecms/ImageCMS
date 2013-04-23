@@ -95,7 +95,7 @@ class Template extends Mabilis {
     }
 
     public function get_var($var) {
-        return $this->template_vars[$var];
+        return isset($this->template_vars[$var])?$this->template_vars[$var]:false;
     }
 
     public function run_info() {
