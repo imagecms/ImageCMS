@@ -811,6 +811,11 @@ $(document).ready(function() {
     });
     
     $('#resizeAll').live('click', function() {
+        
+        window.onbeforeunload = ( function(){
+            return 'Дождитесь завершения ресайза!';
+        });
+        
         $.ajax({
             url: "/admin/components/run/shop/settings/getAllProductsVariantsIds",
             type: "post",
@@ -857,6 +862,8 @@ $(document).ready(function() {
                                     $('#fixPage').fadeOut(100);
                                     $('#progressLabel').html('Ресайз завершен!!');
                                     $('#progressBlock').fadeOut(2000);
+                                    
+                                    window.onbeforeunload = null;
                                 }
                             }
                         });
@@ -866,19 +873,6 @@ $(document).ready(function() {
                 }
             }
         });
-//        $('#fixPage').fadeIn(100);
-//        $.ajax({
-//            url: "/admin/components/run/shop/settings/runResizeAll",
-//            type: "post",
-//            async : true,
-//            cache : false,
-//            success: function(data) {
-////                $('#fixPage').fadeOut(100);
-////                $('#progressBlock').fadeOut(100);
-//                $('.notifications').append(data);
-//        
-//            }
-//        });
     });
     
     $('#resizeById').live('click', function() {
