@@ -1272,6 +1272,11 @@ function ieInput(els) {
                         $thisNext = $thisNext[regM](regS);
 
                     })
+                    
+                    if ($this.focus().val() == 1)
+                            $thisPrev.attr('disabled', 'disabled');
+                        else
+                            $thisPrev.removeAttr('disabled');
 
                     $thisNext.click(function() {
                         var input = $this.focus();
@@ -1294,16 +1299,13 @@ function ieInput(els) {
                         var inputVal = parseInt(input.val());
 
                         $thisNext.removeAttr('disabled', 'disabled');
+                        //alert(inputVal);
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
 
-                        if (input.val() != 1)
-                                //$thisPrev.attr('disabled', 'disabled');
-//                                continue;
-//                        else
-                            $thisPrev.removeAttr('disabled');
+                        
                     })
                     $this.die('keyup').live('keyup', function(){
                         if (checkProdStock)

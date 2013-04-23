@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Квт 04 2013 р., 16:54
+-- Час створення: Квт 10 2013 р., 20:19
 -- Версія сервера: 5.1.67-community-log
 -- Версія PHP: 5.4.11
 
@@ -35,19 +35,23 @@ CREATE TABLE IF NOT EXISTS `shop_sorting` (
   `get` varchar(15) DEFAULT NULL,
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Дамп даних таблиці `shop_sorting`
 --
 
 INSERT INTO `shop_sorting` (`id`, `pos`, `name`, `name_front`, `tooltip`, `get`, `active`) VALUES
-(1, 0, 'По рейтингу', NULL, '', 'rating', 0),
-(2, 1, 'От дешевих к дорогим', NULL, '', 'price', 0),
-(3, 2, 'От дорогих к дешевым', NULL, '', 'price_desc', 0),
-(4, 3, 'Популярные', NULL, '', 'hit', 1),
-(5, 5, 'Новинки', NULL, '', 'hot', 0),
-(6, 4, 'Акции', NULL, '', 'action', 1);
+(1, 3, 'По рейтингу', 'Рейтинг', 'sdfsadf', 'rating', 1),
+(2, 0, 'От дешевих к дорогим', 'От дешевих к дорогим', 'gdsgsdfg', 'price', 1),
+(3, 2, 'От дорогих к дешевым', 'От дорогих к дешевим', 'fdghdfgh', 'price_desc', 1),
+(4, 1, 'Популярные', 'Популярние', '', 'hit', 1),
+(5, 4, 'Новинки', 'Новинки', 'fhdfh', 'hot', 1),
+(6, 5, 'Акции', 'Акции', '', 'action', 1),
+(7, 6, 'А-Я', 'Имени', '', 'name', 1),
+(8, 7, 'Я-А', 'Имени(Я-А)', '', 'name_desc', 1),
+(9, 7, 'Просмотров', 'Количеству просмотров', '', 'views', 1),
+(10, 9, 'Топ продаж', 'Топ продаж', '', 'topsales', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

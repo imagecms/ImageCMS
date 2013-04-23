@@ -46,11 +46,20 @@
                  <!-- End. Render certificate -->
                   <!-- Start. Delivery Method price -->
                 {if (int)$model->getDeliveryPrice() > 0}
-                    <br/>Стоимость доставки: <span class="green">{echo round_price($model->getDeliveryPrice())} {$CS}</span>
+                    <br/>Стоимость доставки: <span class="green">{echo round($model->getDeliveryPrice())} {$CS}</span>
                     {$total = $total + $model->getDeliveryPrice()}
                 {/if}
                 <!-- End. Delivery Method price -->
-                <br/>Итого: <span class="green f-w_b">{echo round_price($total)} {$CS}</span>
+                <br/>Итого: <span class="green f-w_b">{echo $total} {$CS}</span>
+                <!-- Start. Render payment button and payment description -->
+                <br/>Способ оплаты:
+                {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
+                    {echo $paymentMethod->getPaymentForm($model)}
+                            {if $paymentMethod->getDescription()}
+                                <div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                            {/if}
+                {/if}
+                <!-- End. Render payment button and payment description -->
             </div>
             
             <div class="title_h3">Параметры заказа</div>
@@ -188,8 +197,8 @@
 <!--                Start. Price block-->
                 <div class="m-b_15 t-a_r">
                     <div class="f-s_18 f-w_b">К оплате: <span class="price-order">
-                            <span>{echo $model->getTotalPrice()} <span class="cur">{$CS}</span></span><br/>
-                            {if round_price($model->getDeliveryPrice())!= null}+ Доставка:<span>{echo round_price($model->getDeliveryPrice())}<span class="cur"> {$CS}</span></span>{/if}
+                            <span>{echo $total}<span class="cur">{$CS}</span></span><br/>
+                            {if round($model->getDeliveryPrice())!= null}Доставка:<span> {echo round($model->getDeliveryPrice())}<span class="cur"> {$CS}</span></span>{/if}
                         </span>
                     </div>
                 </div>

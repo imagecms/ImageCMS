@@ -12,6 +12,8 @@
  */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
+{$CI->load->module('pricespy')->init($model)}
+{$CI->load->module('pricespy')->renderButton($model->getid(), $model->firstVariant->getid())}
 <div>
     <article class="container">       
         <!-- Making bread crumbs -->
