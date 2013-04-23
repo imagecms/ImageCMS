@@ -811,21 +811,76 @@ $(document).ready(function() {
     });
     
     $('#resizeAll').live('click', function() {
-        $('#progressBlock').fadeIn(100);
-        $('#fixPage').fadeIn(100);
         $.ajax({
-            url: "/admin/components/run/shop/settings/runResizeAll",
+            url: "/admin/components/run/shop/settings/getAllProductsVariantsIds",
             type: "post",
-            async : true,
-            cache : false,
             success: function(data) {
-                $('#fixPage').fadeOut(100);
-                $('.notifications').append(data);
-                $('#progressBlock').fadeOut(100);
+                try {
+                    var ids = $.parseJSON(data);
+                    var countAll = ids.length;
+                    var portion = 0;
+                    var arrayForProcess = new Array();
+                    var done = 0;
+                   
+                    $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : 0 )');
+                    $('#progressBlock').fadeIn(100);
+                    
+                    //Prepare portion of images
+                    if ((countAll / 50) < 0){
+                        portion = 1; 
+                    }else {
+                        portion = Math.ceil(countAll / 50);
+                    }
+                    
+                    //Disable page
+                    $('#fixPage').fadeIn(100);
+                    //Make resize 
+                    while (ids.length > 0){
+                        arrayForProcess = ids.splice(0,portion);
+                        makeResize(arrayForProcess);
+                    }
+                    
+                    //Resize by array 
+                    function makeResize(array){
+                        data = JSON.stringify(array); 
+                        $.ajax({
+                            url: "/admin/components/run/shop/settings/runResizeAllJsone",
+                            type: "post",
+                            dataType: 'jsone',
+                            data: 'array=' + data,
+                            complete: function() {
+                                done += array.length;
+                                $('.bar').css('width',((done / countAll) * 100)+'%');
+                                $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : ' + done + ' )');
+                                console.log((done / countAll) * 100);
+                                if (done == countAll){
+                                    $('#fixPage').fadeOut(100);
+                                    $('#progressLabel').html('Ресайз завершен!!');
+                                    $('#progressBlock').fadeOut(2000);
+                                }
+                            }
+                        });
+                    } 
+                }catch(e) {
+                    console.log(e);
+                }
             }
         });
+//        $('#fixPage').fadeIn(100);
+//        $.ajax({
+//            url: "/admin/components/run/shop/settings/runResizeAll",
+//            type: "post",
+//            async : true,
+//            cache : false,
+//            success: function(data) {
+////                $('#fixPage').fadeOut(100);
+////                $('#progressBlock').fadeOut(100);
+//                $('.notifications').append(data);
+//        
+//            }
+//        });
     });
-
+    
     $('#resizeById').live('click', function() {
         id = $('#product_variant_name').val();
         console.log(id);
