@@ -157,14 +157,26 @@ $('.formSubmit').live('click', function() {
 function updateNotificationsTotal()
 {
     //if (isShop)
-    $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification', function(){
-        $('#topPanelNotifications>div a').die('click').on('click', function(){
-            $.pjax({
-                url: $(this).attr('href'),
-                container: '#mainContent',
-                timeout: 3000
+    $.get('/admin/components/run/shop/notifications/getAvailableNotification', function(data){
+        
+        try{
+            var Obj = JSON.parse(data);
+            if (!Obj.success)
+                window.location.href = '/admin';
+        } catch (e) {
+            
+            $('#topPanelNotifications>div').html(data);
+        
+            $('#topPanelNotifications>div a').die('click').on('click', function(){
+                $.pjax({
+                    url: $(this).attr('href'),
+                    container: '#mainContent',
+                    timeout: 3000
+                });
             });
-        });
+            
+        }
+        
     });
 
 }

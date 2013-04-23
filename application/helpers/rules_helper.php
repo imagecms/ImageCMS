@@ -9,13 +9,19 @@ if (!function_exists('admin_or_redirect')) {
         $ci = & get_instance();
 
         if (!$ci->dx_auth->is_logged_in()) {
-            redirect('admin/login', '');
+            if ($ci->input->is_ajax_request())
+                echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
+            else 
+                redirect('admin/login', '');
             exit;
         }
         
         if($ci->dx_auth->is_admin())
             return true;
         else{
+            if ($this->input->is_ajax_request())
+                echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
+            else
             redirect('admin/login', '');
             exit;
         }
