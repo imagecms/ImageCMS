@@ -1,23 +1,33 @@
-function spy(id, varId, $this) {
-    $.ajax({
-        type: 'POST',
-        url: 'pricespy/spy/' + id + '/' + varId,
-        success: function(obj) {
-//            if (obj.answer == 'sucesfull') {
-                $('.btn').val('aaaa');
-//            }
-//            else {
-//            }
-        }
-    });
+function spy(id, varId) {
+    if (!$('#' + varId).hasClass('inSpy')) {
+        $.ajax({
+            type: 'POST',
+            url: '/pricespy/spy/' + id + '/' + varId,
+            success: function(data) {
+                obj = JSON.parse(data);
+                if (obj.answer === 'sucesfull') {
+                    $('#' + varId).val('Уже в слежении');
+                    document.getElementById(varId).className = 'btn inSpy';
+                    document.getElementById(varId).onclick = 'btn inSpy';
+                    $('#' + varId).die('click').on("click", function() {
+                        document.location.href = '/pricespy';
+                    });
+                }
+            }
+        });
+    } else {
+        document.location.href = '/pricespy';
+    }
 }
 
 function unspy(hash) {
     $.ajax({
         type: 'POST',
-        url: 'pricespy/unSpy/' + hash,
-        onComplete: function(response) {
-
+        url: '/pricespy/unspy/' + hash,
+        success: function(data) {
+            obj = JSON.parse(data);
+            if (obj.answer === 'sucesfull')
+                $("#" + hash).remove();
         }
     });
 }

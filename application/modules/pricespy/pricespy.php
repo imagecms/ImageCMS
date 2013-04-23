@@ -23,45 +23,62 @@ class Pricespy extends MY_Controller {
         $this->settings = unserialize($this->settings[settings]);
     }
 
-    public function sendPassByEmail($email, $pass) {
-        $this->load->library('email');
+    private static function sendNotificationByEmail($email, $name, $hash) {
+        $CI = &get_instance();
+        $CI->load->library('email');
 
-        $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
-        $this->email->to($email);
-        $this->email->subject('Password');
-        $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
-        $this->email->send();
+        $CI->email->from("noreplay@$_SERVER[HTTP_HOST]");
+        $CI->email->to($email);
+        $CI->email->set_mailtype('html');
+        $CI->email->subject('Изминение цены');
+        $CI->email->message("Цена на $name за которым вы следите на сайте $_SERVER[HTTP_HOST] изменилась.<br>
+                <a href='" . site_url('pricespy') . "' title='Посмотреть список слежения'>Посмотреть список слежения</a><br>
+                <a href='" . site_url("pricespy/$hash") . "' title='Отписатся от слежения'>Отписатся от слежения</a><br>");
+        $CI->email->send();
     }
 
     public static function adminAutoload() {
         parent::adminAutoload();
 
-        \CMSFactory\Events::create()
-                ->onShopProductUpdate()
-                ->setListener('priceUpdate');
+        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('priceUpdate');
+        \CMSFactory\Events::create()->onShopProductDelete()->setListener('priceDelete');
     }
 
     public function index() {
-        $data = array(
-            'varId' => 231,
-            'Id' => 124
-        );
+        if ($this->dx_auth->is_logged_in()) {
+            $this->init();
+            $this->renderUserSpys();
+        }
+        else
+            $this->core->error_404();
+    }
 
-        \CMSFactory\assetManager::create()
-                ->registerScript('spy')
-                ->setData($data)
-                ->render('button');
+    public function priceDelete($product) {
+        if (!$product)
+            return;
+
+        $CI = &get_instance();
+
+        $product = $product[model];
+        $ids = array();
+        foreach ($product as $key => $p)
+            $ids[$key] = $p->id;
+
+        $CI->db->where_in('productId', $ids);
+        $CI->db->delete('mod_price_spy');
     }
 
     public function priceUpdate($product) {
         if (!$product)
             return;
+
         $CI = &get_instance();
 
         $spys = $CI->db
                 ->from('mod_price_spy')
                 ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
                 ->join('users', 'mod_price_spy.userId=users.id')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
                 ->where('mod_price_spy.productId', $product[productId])
                 ->get()
                 ->result();
@@ -72,6 +89,8 @@ class Pricespy extends MY_Controller {
                 $CI->db->set('productPrice', $spy->price);
                 $CI->db->where('productVariantId', $spy->productVariantId);
                 $CI->db->update('mod_price_spy');
+
+                self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
             }
         }
     }
@@ -88,9 +107,9 @@ class Pricespy extends MY_Controller {
                 ->set('productVariantId', $varId)
                 ->set('productPrice', $product->price)
                 ->set('oldProductPrice', $product->price)
-                ->set('hash', random_string('numeric', 10))
+                ->set('hash', random_string('numeric', 15))
                 ->insert('mod_price_spy');
-        
+
         echo json_encode(array(
             'answer' => 'sucesfull',
         ));
@@ -98,35 +117,57 @@ class Pricespy extends MY_Controller {
 
     public function unSpy($hash) {
         $this->db->delete('mod_price_spy', array('hash' => $hash));
+
+        echo json_encode(array(
+            'answer' => 'sucesfull',
+        ));
     }
 
-    public function renderButton($id) {
-        $product = $this->db
-                ->where('productVariantId', $id)
-                ->where('userId', $this->dx_auth->get_user_id())
-                ->get('mod_price_spy')
-                ->row();
-
-        if (count($product) == 0)
+    public function init() {
+        if ($this->dx_auth->is_logged_in()) {
             \CMSFactory\assetManager::create()
-                    ->registerScript('spy')
-                    ->setData('varId', $id)
-                    ->render('button');
-        else
-            \CMSFactory\assetManager::create()
-                    ->registerScript('spy')
-                    ->setData('varId', $id)
-                    ->render('button');
+                    ->registerScript('spy');
+        }
     }
 
-    public function renderUserSpys() {
+    public function renderButton($id, $varId) {
+        if ($this->dx_auth->is_logged_in()) {
+            $product = $this->db
+                    ->where('productVariantId', $varId)
+                    ->where('userId', $this->dx_auth->get_user_id())
+                    ->get('mod_price_spy')
+                    ->row();
+
+            $data = array(
+                'Id' => $id,
+                'varId' => $varId,
+            );
+
+            if (count($product) == 0)
+                \CMSFactory\assetManager::create()
+                        ->setData('data', $data)
+                        ->setData('value', 'Уведомить о снижении цены')
+                        ->setData('class', 'btn')
+                        ->render('button', true);
+            else
+                \CMSFactory\assetManager::create()
+                        ->setData('data', $data)
+                        ->setData('value', 'Уже в слежении')
+                        ->setData('class', 'btn inSpy')
+                        ->render('button', true);
+        }
+    }
+
+    private function renderUserSpys() {
         $products = $this->db
                 ->where('userId', $this->dx_auth->get_user_id())
+                ->join('shop_product_variants', 'shop_product_variants.id=mod_price_spy.productVariantId')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
+                ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
                 ->get('mod_price_spy')
                 ->result_array();
 
         \CMSFactory\assetManager::create()
-                ->registerScript('spy')
                 ->setData('products', $products)
                 ->render('spys');
     }

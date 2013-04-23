@@ -10,25 +10,27 @@ class Admin extends BaseAdminController {
         $this->load->library('DX_Auth');
     }
 
-    public function index() {
-//        $settings = $this->db->select('settings')
-//                ->where('identif', 'socauth')
-//                ->get('components')
-//                ->row_array();
-//
-//        $this->template->add_array(array('settings' => unserialize($settings[settings])));
-//        if (!$this->ajaxRequest)
-//            $this->display_tpl('settings');
+    private function init() {
+        \CMSFactory\assetManager::create()
+                ->registerScript('spy');
     }
 
-    public function update_settings() {
-//        $result = array_map('trim', $_POST);
-//        
-//        $this->db->where('identif', 'socauth')
-//                ->update('components', array('settings' => serialize($result)));
-//
-//        showMessage("Настройки сохранены");
-//        pjax($_SERVER[HTTP_REFERER]);
+    public function index() {
+        $this->init();
+        
+        $spys = $this->db
+                ->from('users')
+                ->join('mod_price_spy', 'mod_price_spy.userId=users.id')
+                ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
+                ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
+                ->order_by('users.id')
+                ->get()
+                ->result();
+
+        $this->template->add_array(array('spys' => $spys));
+        if (!$this->ajaxRequest)
+            $this->display_tpl('list');
     }
 
     private function display_tpl($file = '') {
