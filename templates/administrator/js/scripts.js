@@ -515,7 +515,7 @@ function autocomplete() {
             select: function(event, ui) {
                 $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
                     '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                    '<a id="AttachedProducts" >' + ui.item.label + '</a>' +
+                    '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
                     '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                     '</span>' +
                     '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
@@ -1011,6 +1011,9 @@ function initAdminArea() {
         });
         $(this).closest('.control-group').find('.controls').html(img);
         $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
+        
+        isChanged = $(this).closest('td').find('.changeImage').val('1');
+        console.log(isChanged);
 
     });
 
@@ -1170,7 +1173,7 @@ $(document).ready(
                 url: '/admin/report_bug',
                 data: url,
                 success: function(data) {
-                    $('.frame_rep_bug').prepend('<div class="alert alert-success">???? ????????? ??????????</div>');
+                    $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше сообщение отправено</div>');
                     setTimeout(function() {
                         overlay.trigger('click')
                     }, 2000)
@@ -1261,3 +1264,61 @@ $(window).load(function() {
         notificationsInitialized = true;
     }
 })
+    //add new imageSizes block
+    $('#addImageSizesBlock').live('click', function() {
+            var clonedSizesBlock = $('#CloneImageSizesBlock').clone();
+            clonedSizesBlock.removeAttr('id');
+            $('#AppendHolder').append(clonedSizesBlock);
+        });
+    //update fields names   
+    $('.keyupSizes').live('keyup', function() {
+            var thisInput = $(this);
+            var name = $(this).val();
+            var heightInput = $(this).closest('tr').find('.keyupHeight').first();
+            var widthInput = $(this).closest('tr').find('.keyupWidth');
+
+            //make new names for inputs
+            newName = 'imageSizesBlock[' + name + '][name]'; 
+            newheight = 'imageSizesBlock[' + name + '][height]';
+            newWidth = 'imageSizesBlock[' + name + '][width]';
+
+            //set names to inputs
+            thisInput.attr('name', newName);
+            heightInput.attr('name',newheight);
+            widthInput.attr('name',newWidth);
+
+    });
+   //autocomplete for resize in settings
+   $('#product_name').autocomplete({
+        source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+        select: function(event, ui) {
+            productName = ui.item.label;
+            $('#product_id').val(ui.item.value);
+            vKeys = Object.keys(ui.item.variants);
+            $('#product_variant_name').empty();
+            
+            for (var i = 0; i < vKeys.length; i++)
+                $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+        },
+        close: function() {
+            $('#product_name').val(productName);
+        }
+    });       
+    // resize for all images
+    $('[name="makeResize"]').live('click', function() {
+        $.ajax({
+            url: "/admin/components/run/shop/settings/runResize",
+            type: "post",
+            success: function(data) {
+                $('.notifications').append(data);
+            }
+        });
+    });
+ 
+            
+            
+            
+            
+
+
+   

@@ -33,15 +33,20 @@ class Comments extends MY_Controller {
     }
 
     public function init($model) {
-        \CMSFactory\assetManager::create()->registerScript('comments');
+        \CMSFactory\assetManager::create()
+                ->registerScript('comments');
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
             if ($this->core->core_data[module] != 'shop') {
-                foreach ($model as $id)
-                    $ids[] = $id[id];
+                foreach ((array) $model as $key => $id) {
+                    if (is_array($id))
+                        $ids[$key] = $id[id];
+                    else
+                        $ids[$key] = $id;
+                }
                 $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids, 'core');
             } else {
                 foreach ($model as $id)

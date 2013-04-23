@@ -8,9 +8,10 @@ namespace CMSFactory;
 class assetManager {
 
     protected static $_BehaviorInstance;
+    protected $callMapp = null;
 
     private function __construct() {
-        $vla = new \stdClass();
+        
     }
 
     private function __clone() {
@@ -25,11 +26,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function setData($item, $value = null) {
-        if ($value != null AND !is_array($item))
+        if ($value != null AND !is_array($item)) {
             $data[$item] = $value;
-        else
+        } else {
             $data = $item;
-        (empty($data)) OR \CI_Controller::get_instance()->template->add_array($data);
+        }
+        (empty($data)) OR \CI_Controller::get_instance()->template->add_array((array) $data);
         return $this;
     }
     
@@ -52,10 +54,8 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function registerScript($name) {
-        $trace = debug_backtrace();
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
-        \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
+        /** Start. Load file into template */
+        \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
         return $this;
     }
 
@@ -66,10 +66,8 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function registerStyle($name) {
-        $trace = debug_backtrace();
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
-        \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $name . '.css', 'before');
+        /** Start. Load file into template */
+        \CI_Controller::get_instance()->template->registerCssFile($this->buildStylePath($name), 'before');
         return $this;
     }
 
@@ -82,13 +80,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function renderAdmin($tpl) {
-        $trace = debug_backtrace();
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
         try {
-            $tplPath = 'application/modules/' . $paths . '/assets/admin/' . $tpl;
-            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . '/assets/admin/' . $tpl . '.tpl</i>');
-            \CI_Controller::get_instance()->template->show('file:' . $tplPath);
+            /** Start. If file doesn't exists thorow exception */
+            file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
+
+            /** Start. Load template file */
+            \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl));
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -103,16 +100,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function render($tpl, $ignoreWrap = FALSE) {
-        $trace = debug_backtrace();
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
         try {
-            $tplPath = 'application/modules/' . $paths . '/assets/' . $tpl;
-            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
-            if (!$ignoreWrap)
-                \CI_Controller::get_instance()->template->show('file:' . $tplPath);
-            else
-                \CI_Controller::get_instance()->template->display('file:' . $tplPath);
+            /** Start. If file doesn't exists thorow exception */
+            file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
+
+            /** Start. Load template file */
+            \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -127,13 +120,12 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function fetchTemplate($tpl) {
-        $trace = debug_backtrace();
-        $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);
-        $paths = $paths[count($paths) - 2];
         try {
-            $tplPath = APPPATH . '/modules/' . $paths . '/assets/' . $tpl;
-            file_exists($tplPath . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DS . $tpl . '.tpl</i>');
-            return \CI_Controller::get_instance()->template->fetch('file:' . $tplPath);
+            /** Start. If file doesn't exists thorow exception */
+            file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+
+            /** Start. Return template file */
+            return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($tpl));
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -148,7 +140,73 @@ class assetManager {
      */
     public static function create() {
         (null !== self::$_BehaviorInstance) OR self::$_BehaviorInstance = new self();
+        self::$_BehaviorInstance->callMapp = debug_backtrace();
         return self::$_BehaviorInstance;
+    }
+
+    /**
+     * @param string
+     * @return array
+     * @access public
+     * @author cutter
+     */
+    private function getTrace($list = 'first_file') {
+        if ($list == 'first_file') {
+            $paths = explode(DIRECTORY_SEPARATOR, $this->callMapp[0]['file']);
+            return $paths[count($paths) - 2];
+        }
+
+        if ($list == 'first') {
+            return $this->callMapp[0];
+        }
+
+        if ($list == 'all') {
+            return $this->callMapp;
+        }
+        if (is_numeric($list)) {
+            return $this->callMapp[$list];
+        }
+        return false;
+    }
+
+    /**
+     * Return formated path
+     * @return string
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    private function buildTemplatePath($tpl) {
+        return sprintf('%smodules/%s/assets/%s', APPPATH, $this->getTrace(), $tpl);
+    }
+
+    /**
+     * Return formated path
+     * @return string
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    private function buildAdminTemplatePath($tpl) {
+        return sprintf('%smodules/%s/assets/admin/%s', APPPATH, $this->getTrace(), $tpl);
+    }
+
+    /**
+     * Return formated path for JS - script files
+     * @return string
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    private function buildScriptPath($tpl) {
+        return sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
+    }
+
+    /**
+     * Return formated path for css
+     * @return string
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    private function buildStylePath($tpl) {
+        return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
     }
 
 }

@@ -761,14 +761,8 @@ $(document).ready(function() {
     $('.delete_image').live('click', function() {
         var container = $(this).closest('td');
         //container.find('[name="variants[MainImageForDel][]"]');
-        if (container.find('[name="variants[MainImageForDel][]"]').length) {
-            container.find('[name="variants[MainImageForDel][]"]').attr('value', 1);
-            container.find('[name="variants[mainPhoto][]"]').attr('value', '');
-        }
-        if (container.find('[name="variants[SmallImageForDel][]"]').length) {
-            container.find('[name="variants[SmallImageForDel][]"]').attr('value', 1);
-            container.find('[name="variants[smallPhoto][]"]').attr('value', '');
-        }
+        container.find(".deleteImage").attr("value", 1);
+        container.find('[name="variants[mainPhoto][]"]').attr('value', '');
         container.find('img').attr('src', "/templates/administrator/images/select-picture.png");
         container.find('img').css('width', '50px');
     });
@@ -781,7 +775,7 @@ $(document).ready(function() {
         event.preventDefault();
         var container = $(this).parents("div.control-group");
         container.find("img").attr("src", "/templates/administrator/images/select-picture.png");
-        container.find("input[type=hidden]").attr("value", 1);
+        container.find(".deleteImage").attr("value", 1);
         container.find("input[type=file]").attr("value", "");
         return false;
     });
@@ -815,12 +809,81 @@ $(document).ready(function() {
     $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
-
-    $('[name="makeResize"]').live('click', function() {
+    
+    $('#resizeAll').live('click', function() {
+        
+        window.onbeforeunload = ( function(){
+            return 'Дождитесь завершения ресайза!';
+        });
+        
         $.ajax({
-            url: "/admin/components/run/shop/settings/runResize",
+            url: "/admin/components/run/shop/settings/getAllProductsVariantsIds",
             type: "post",
             success: function(data) {
+                try {
+                    var ids = $.parseJSON(data);
+                    var countAll = ids.length;
+                    var portion = 0;
+                    var arrayForProcess = new Array();
+                    var done = 0;
+                   
+                    $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : 0 )');
+                    $('#progressBlock').fadeIn(100);
+                    
+                    //Prepare portion of images
+                    if ((countAll / 50) < 0){
+                        portion = 1; 
+                    }else {
+                        portion = Math.ceil(countAll / 50);
+                    }
+                    
+                    //Disable page
+                    $('#fixPage').fadeIn(100);
+                    //Make resize 
+                    while (ids.length > 0){
+                        arrayForProcess = ids.splice(0,portion);
+                        makeResize(arrayForProcess);
+                    }
+                    
+                    //Resize by array 
+                    function makeResize(array){
+                        data = JSON.stringify(array); 
+                        $.ajax({
+                            url: "/admin/components/run/shop/settings/runResizeAllJsone",
+                            type: "post",
+                            dataType: 'jsone',
+                            data: 'array=' + data,
+                            complete: function() {
+                                done += array.length;
+                                $('.bar').css('width',((done / countAll) * 100)+'%');
+                                $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : ' + done + ' )');
+                                console.log((done / countAll) * 100);
+                                if (done == countAll){
+                                    $('#fixPage').fadeOut(100);
+                                    $('#progressLabel').html('Ресайз завершен!!');
+                                    $('#progressBlock').fadeOut(2000);
+                                    
+                                    window.onbeforeunload = null;
+                                }
+                            }
+                        });
+                    } 
+                }catch(e) {
+                    console.log(e);
+                }
+            }
+        });
+    });
+    
+    $('#resizeById').live('click', function() {
+        id = $('#product_variant_name').val();
+        console.log(id);
+        $('#loading').fadeIn(100);
+        $.ajax({
+            url: "/admin/components/run/shop/settings/runResizeById/"+id,
+            type: "post",
+            success: function(data) {
+                $('#loading').fadeIn(100);
                 $('.notifications').append(data);
             }
         });
