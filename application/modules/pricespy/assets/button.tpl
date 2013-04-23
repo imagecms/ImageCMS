@@ -1,6 +1,5 @@
-
-<input type="submit" class="btn" value="Уведомить о снижении цены" onclick="spy({echo $Id},{echo $varId}, this);
-        return false"/>
-<br>
-<input type="submit" class="btn" value="Отписаться " onclick="unspy({$product[hash]});
-        return false"/>
+<input type="submit" 
+       class="{$class}" 
+       id='{echo $data[varId]}' 
+       value="{$value}" 
+       onclick="spy({echo $data[Id]},{echo $data[varId]})"/>
