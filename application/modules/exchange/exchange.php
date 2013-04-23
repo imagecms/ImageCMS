@@ -35,6 +35,9 @@ class Exchange {
     /* contains shop products variants name */
     private $product_variants_table = 'shop_product_variants';
 
+    /* contains shop products variants images */
+    private $shop_images = array();
+
     /* table which contains module settings if modules is installed */
     private $settings_table = 'components';
     private $allowed_image_extensions = array();
@@ -330,7 +333,8 @@ class Exchange {
             }
 
             //rename import xml file after import finished
-            rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+            if (!$this->config[debug])
+                rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
             //returns success status to 1c
             echo "success";
         }
@@ -569,6 +573,7 @@ class Exchange {
         }
         unset($temp_properties);
 
+        $i = 0;
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
 
             $searchedProduct = is_prod($product->Ид, $this->prod);
@@ -589,8 +594,6 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
 
-
-
                 $data['active'] = true;
                 $data['hit'] = false;
                 $data['brand_id'] = 0;
@@ -604,7 +607,6 @@ class Exchange {
                 $data['enable_comments'] = true;
                 $data['url'] = translit_url($product->Наименование);
 
-
                 //inserting prepared data to shop_products table
                 $this->ci->db->insert($this->products_table, $data);
 
@@ -613,26 +615,17 @@ class Exchange {
                 $insert_id = $this->ci->db->insert_id();
                 $data = array();
 
-
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+
                     $image = explode('/', $product->Картинка);
-                    $ext = explode('.', $image[count($image) - 1]);
+                    $image = $image[count($image) - 1];
 
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-
-                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
-
-                    $data['mainImage'] = $insert_id . '_main.jpg';
-                    $data['smallImage'] = $insert_id . '_small.jpg';
-                    $data['mainModImage'] = $insert_id . '_mainMod.jpg';
-                    $data['smallModImage'] = $insert_id . '_smallMod.jpg';
+                    @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
+                    $img[$i] = $image;
                 }
-                $this->ci->db->where('id', $insert_id)->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
-                $data = array();
                 $data['id'] = $insert_id;
                 $data['locale'] = $this->locale;
                 $data['name'] = $product->Наименование . "";
@@ -653,6 +646,7 @@ class Exchange {
 
                 //preparing insert data for shop_product_variants
                 $data = array();
+                $data['mainImage'] = $img[$i];
                 $data['product_id'] = $insert_id;
                 $data['price'] = '0.00000';
                 $data['external_id'] = $product->Ид . "";
@@ -743,23 +737,15 @@ class Exchange {
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //setting images if $product->Картинка not empty
-                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                if ($product->Картинка != '' OR $product->Картинка != null) {
+
                     $image = explode('/', $product->Картинка);
-                    $ext = explode('.', $image[count($image) - 1]);
+                    $image = $image[count($image) - 1];
 
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+                    @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
 
-                    $data = array();
-
-                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
-                    $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
-                    $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
-                    $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
-                    $data['smallModImage'] = $searchedProduct['id'] . '_smallMod.jpg';
+                    $img[$i] = $image;
                 }
-
-                $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
                 $data = array();
@@ -784,6 +770,7 @@ class Exchange {
                 $data = array();
                 $data['number'] = $product->Артикул . "";
                 $data['external_id'] = $product->Ид . "";
+                $data['mainImage'] = $img[$i];
 
                 //updating prepared data in shop_product_variants
                 $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'position' => 0))->update($this->product_variants_table, $data);
@@ -839,7 +826,11 @@ class Exchange {
                     }
                 }
             }
+            $i++;
         }
+
+        $this->shop_images = array_diff($img, array(null));
+
         //serializing and saving property values to database
         foreach ($properties_data as $key => $item) {
             $data = array();
@@ -863,7 +854,7 @@ class Exchange {
      * uses SWatermark class to carry out image resize and adding watermark
      */
     private function startImagesResize() {
-        ShopCore::app()->SWatermark->updateWatermarks(true);
+        \MediaManager\Image::create()->resizeByName($this->shop_images);
     }
 
     /**
@@ -952,7 +943,8 @@ class Exchange {
                     echo "fail. order not found";
                 }
             }
-            rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
+            if (!$this->config[debug])
+                rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
         }
         exit();
     }

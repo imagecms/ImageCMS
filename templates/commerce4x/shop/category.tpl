@@ -16,7 +16,7 @@
 #}
 
 {$Comments = $CI->load->module('comments')->init($products)}
-{$CI->load->module('pricespy')->init()}
+{$CI->load->module('pricespy')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
@@ -129,7 +129,7 @@
                                             {echo $Comments[$product->getId()]}
                                         </a>
                                     {/if}
-                                    {$CI->load->module('pricespy')->renderButton($product->getid(),$product->firstVariant->getid())}
+                                    {$CI->load->module('pricespy')->renderButton($product->getid(), $product->firstVariant->getid())}
                                 </div>
 
                                 <!-- displaying product name -->
