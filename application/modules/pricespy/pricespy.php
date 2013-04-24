@@ -10,17 +10,11 @@
 class Pricespy extends MY_Controller {
 
     public $product;
+    public $isInSpy;
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-
-        $this->settings = $this->db
-                ->select('settings')
-                ->where('identif', 'socauth')
-                ->get('components')
-                ->row_array();
-        $this->settings = unserialize($this->settings[settings]);
     }
 
     private static function sendNotificationByEmail($email, $name, $hash) {
@@ -46,7 +40,8 @@ class Pricespy extends MY_Controller {
 
     public function index() {
         if ($this->dx_auth->is_logged_in()) {
-            $this->init();
+            \CMSFactory\assetManager::create()
+                    ->registerScript('spy');
             $this->renderUserSpys();
         }
         else
@@ -107,7 +102,7 @@ class Pricespy extends MY_Controller {
                 ->set('productVariantId', $varId)
                 ->set('productPrice', $product->price)
                 ->set('oldProductPrice', $product->price)
-                ->set('hash', random_string('numeric', 15))
+                ->set('hash', random_string('unique', 15))
                 ->insert('mod_price_spy');
 
         echo json_encode(array(
@@ -123,8 +118,27 @@ class Pricespy extends MY_Controller {
         ));
     }
 
-    public function init() {
+    public function init($model) {
         if ($this->dx_auth->is_logged_in()) {
+            if (!$model instanceof SProducts) {
+                foreach ($model as $key => $m) {
+                    $id[$key] = $m->getid();
+                    $varId[$key] = $m->firstVariant->getid();
+                }
+            } else {
+                $id = $model->getid();
+                $varId = $model->firstVariant->getid();
+            }
+            
+            $products = $this->db
+                    ->where_in('productVariantId', $varId)
+                    ->where('userId', $this->dx_auth->get_user_id())
+                    ->get('mod_price_spy')
+                    ->result_array();
+
+            foreach ($products as $p)
+                $this->isInSpy[$p[productVariantId]] = $p;
+
             \CMSFactory\assetManager::create()
                     ->registerScript('spy');
         }
@@ -132,18 +146,13 @@ class Pricespy extends MY_Controller {
 
     public function renderButton($id, $varId) {
         if ($this->dx_auth->is_logged_in()) {
-            $product = $this->db
-                    ->where('productVariantId', $varId)
-                    ->where('userId', $this->dx_auth->get_user_id())
-                    ->get('mod_price_spy')
-                    ->row();
 
             $data = array(
                 'Id' => $id,
                 'varId' => $varId,
             );
 
-            if (count($product) == 0)
+            if ($this->isInSpy[$varId] == '')
                 \CMSFactory\assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', 'Уведомить о снижении цены')

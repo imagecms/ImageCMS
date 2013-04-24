@@ -49,13 +49,17 @@ class Sitemap extends MY_Controller {
         \CMSFactory\Events::create()->onShopProductCreate()->setListener('ping_google');
         \CMSFactory\Events::create()->onShopProductUpdate()->setListener('ping_google');
         \CMSFactory\Events::create()->onShopProductDelete()->setListener('ping_google');
+        
+        \CMSFactory\Events::create()->on('ShopAdminProducts:preEdit')->setListener('myVD');
+        
+        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('after');
 
         \CMSFactory\Events::create()->onAdminPageCreate()->setListener('ping_google');
         \CMSFactory\Events::create()->onAdminPageUpdate()->setListener('ping_google');
         \CMSFactory\Events::create()->onAdminPageDelete()->setListener('ping_google');
 
-        \CMSFactory\Events::create()->onAdminСategoryCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onAdminСategoryUpdate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onAdminCategoryCreate()->setListener('ping_google');
+        \CMSFactory\Events::create()->onAdminCategoryUpdate()->setListener('ping_google');
     }
 
     public function initialize($settings = array()) {
@@ -67,6 +71,17 @@ class Sitemap extends MY_Controller {
             $this->categories_changefreq = $settings['categories_changefreq'];
             $this->pages_changefreq = $settings['pages_changefreq'];
         }
+    }
+    
+    public function after($data) {
+        
+        
+        
+    }
+
+        public function myVD($data) {
+//        $model = $data['model'];
+//        \CMSFactory\assetManager::create()->appendData('customAdminInterface', ShopCore::app()->CustomFieldsHelper->getCustomFields('product', $model->getId())->asAdminHtml() );
     }
 
     /**
