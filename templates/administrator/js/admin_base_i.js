@@ -826,25 +826,6 @@ $(document).ready(function() {
                     var portion = 0;
                     var arrayForProcess = new Array();
                     var done = 0;
-                   
-                    $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : 0 )');
-                    $('#progressBlock').fadeIn(100);
-                    
-                    //Prepare portion of images
-                    if ((countAll / 50) < 0){
-                        portion = 1; 
-                    }else {
-                        portion = Math.ceil(countAll / 50);
-                    }
-                    
-                    //Disable page
-                    $('#fixPage').fadeIn(100);
-                    //Make resize 
-                    while (ids.length > 0){
-                        arrayForProcess = ids.splice(0,portion);
-                        makeResize(arrayForProcess);
-                    }
-                    
                     //Resize by array 
                     function makeResize(array){
                         data = JSON.stringify(array); 
@@ -868,6 +849,23 @@ $(document).ready(function() {
                             }
                         });
                     } 
+                    $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : 0 )');
+                    $('#progressBlock').fadeIn(100);
+                    
+                    //Prepare portion of images
+                    if ((countAll / 50) < 0){
+                        portion = 1; 
+                    }else {
+                        portion = Math.ceil(countAll / 50);
+                    }
+                    
+                    //Disable page
+                    $('#fixPage').fadeIn(100);
+                    //Make resize 
+                    while (ids.length > 0){
+                        arrayForProcess = ids.splice(0,portion);
+                        makeResize(arrayForProcess);
+                    }
                 }catch(e) {
                     console.log(e);
                 }
