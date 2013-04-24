@@ -53,6 +53,7 @@
                     <div class="frame_response">
                         <div class="star">
                             {$CI->load->module('star_rating')->show_star_rating($model)}
+                            {$CI->load->module('found_less_expensive')->showButtonWithForm()}
                         </div>
                     </div>
                     <!-- Output rating for the old product End -->
