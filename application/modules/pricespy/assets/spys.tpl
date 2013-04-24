@@ -20,7 +20,7 @@
                             <input type="submit" 
                                    class="btn" 
                                    value="Отписаться"
-                                   onclick="unspy({$product[hash]})"/>
+                                   onclick="unspy('{$product[hash]}')"/>
                         </td>
                         <td>
                             <a href="{shop_url($product[url])}" 

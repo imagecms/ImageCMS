@@ -29,6 +29,7 @@ class Admin extends BaseAdminController {
                 ->result();
 
         $this->template->add_array(array('spys' => $spys));
+        
         if (!$this->ajaxRequest)
             $this->display_tpl('list');
     }
