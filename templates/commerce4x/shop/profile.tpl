@@ -163,52 +163,6 @@
                     </table>
                 </div>
                 <!-- End orders history tab block -->
-                <!-- Start waiting block -->
-                {if count($goodsInSpy) != 0}
-                    <div id="wait_tov">
-                        <table class="table v-a_m">
-                            <colgroup>
-                                <col width="25"/>
-                                <col width="45"/>
-                                <col width="90"/>
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>№</th>
-                                    <th></th>
-                                    <th>{lang('s_naz')}</th>
-                                    <th>{lang('s_to_falitem_difference')}</th>
-                                    <th>{lang('s_to_falitem_difference_perc')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach $goodsInSpy as $good}
-                                    {$product = $good->getProduct()}
-                                    <tr>
-                                        <td><span class="times f-s_18"><a href="{echo $good->getLink()}">&times;</a></span></td>
-                                        <td>{echo $product[0]->getId()}</td>
-                                        <td>
-                                            <a href="{$BASE_URL}shop/product/{echo $product[0]->geturl()}" class="photo">
-                                                <figure>
-                                                    <img src="{productImageUrl($product[0]->smallmodimage)}" alt="{echo $product[0]->getId()}"/>
-                                                </figure>
-                                            </a>
-                                        </td>
-                                        <td><a href="{$BASE_URL}shop/product/{echo $product[0]->geturl()}">{echo $product[0]->getName()}</td>
-                                        <td>
-                                            {echo $good->getdist()}
-                                        </td>
-                                        <td>
-                                            {echo $good->getpercentdist()}
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {/if}
-                <!-- End waiting block -->
             </div>
         </div>
     </div>

@@ -594,7 +594,11 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
 
-                $data['active'] = true;
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
+
                 $data['hit'] = false;
                 $data['brand_id'] = 0;
                 $data['created'] = time();
@@ -732,6 +736,11 @@ class Exchange {
                 }
                 $data['updated'] = time();
                 $data['url'] = translit_url($product->Наименование . "");
+
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
 
                 //updating prepared data in shop_products table
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
