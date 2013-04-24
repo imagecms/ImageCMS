@@ -34,6 +34,24 @@ class assetManager {
         (empty($data)) OR \CI_Controller::get_instance()->template->add_array((array) $data);
         return $this;
     }
+    
+    public function appendData($item, $value) {
+        $this->setData($item, \CI_Controller::get_instance()->template->get_var($item) . $value);
+        return $this;
+    }
+
+    
+
+    /**
+     * @param 
+     * @return assetManager
+     * @access public
+     * @author 
+     * @copyright 
+     */
+    public function getData($item) {
+        return \CI_Controller::get_instance()->template->get_var($item);
+    }
 
     /**
      * @return assetManager

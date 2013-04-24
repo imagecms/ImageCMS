@@ -91,10 +91,20 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
+    
     final public function onAdminPageCreate() {
         $this->key = 'Page:create';
         return $this;
     }
+      
+    /*
+     * 
+     */
+    final public function on($key) {
+        $this->key = $key;
+        return $this;
+    }
+    
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
@@ -142,7 +152,7 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    final public function onAdminСategoryCreate() {
+    final public function onAdminCategoryCreate() {
         $this->key = 'Categories:create';
         return $this;
     }
@@ -159,7 +169,7 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    final public function onAdminСategoryUpdate() {
+    final public function onAdminCategoryUpdate() {
         $this->key = 'Categories:update';
         return $this;
     }
