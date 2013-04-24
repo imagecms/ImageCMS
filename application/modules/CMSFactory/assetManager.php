@@ -35,7 +35,13 @@ class assetManager {
         return $this;
     }
     
+    public function appendData($item, $value) {
+        $this->setData($item, \CI_Controller::get_instance()->template->get_var($item) . $value);
+        return $this;
+    }
+
     
+
     /**
      * @param 
      * @return assetManager
