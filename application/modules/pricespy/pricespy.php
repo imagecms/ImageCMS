@@ -15,13 +15,6 @@ class Pricespy extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-
-        $this->settings = $this->db
-                ->select('settings')
-                ->where('identif', 'socauth')
-                ->get('components')
-                ->row_array();
-        $this->settings = unserialize($this->settings[settings]);
     }
 
     private static function sendNotificationByEmail($email, $name, $hash) {

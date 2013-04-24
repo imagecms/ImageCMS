@@ -80,14 +80,8 @@ class Sitemap extends MY_Controller {
     }
 
         public function myVD($data) {
-        $customAdminInterface = \CMSFactory\assetManager::create()->getData('customAdminInterface');
-        $customAdminInterface .= '<label> safdsafsdf <input type="text" name="myMegaVar" > </label> ';
-        $model = $data['model'];
-        $customAdminInterface .= ShopCore::app()->CustomFieldsHelper->getCustomFields('product', $model->getId())->asAdminHtml(); // CustomFieldsHelper::create()->getCustomFields('product', $model->getId())->asAdminHtml();
-        
-        
-        
-        \CMSFactory\assetManager::create()->setData('customAdminInterface', $customAdminInterface);
+//        $model = $data['model'];
+//        \CMSFactory\assetManager::create()->appendData('customAdminInterface', ShopCore::app()->CustomFieldsHelper->getCustomFields('product', $model->getId())->asAdminHtml() );
     }
 
     /**
