@@ -51,7 +51,7 @@
                     <div class="f-align_center">
                         <input type="submit" value="Отправить"  class="btnF btnF_Send"/>
                     </div>
-                    <input type="hidden" name="productId" value="{echo $CI->core->core_data['id']}">
+                    <input type="hidden" name="productUrl" value="{echo 'http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']}">
                     {form_csrf()}
                 </form>
 <!--               End. Form with name, phone, email, link, question  -->
