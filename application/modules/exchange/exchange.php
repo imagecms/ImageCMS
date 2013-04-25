@@ -594,7 +594,11 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
 
-                $data['active'] = true;
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
+
                 $data['hit'] = false;
                 $data['brand_id'] = 0;
                 $data['created'] = time();
@@ -619,7 +623,7 @@ class Exchange {
                 if ($product->Картинка . "" != '' OR $product->Картинка != null) {
 
                     $image = explode('/', $product->Картинка);
-                    $image = $image[count($image) - 1];
+                    $image = end($image);
 
                     @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
                     $img[$i] = $image;
@@ -733,6 +737,11 @@ class Exchange {
                 $data['updated'] = time();
                 $data['url'] = translit_url($product->Наименование . "");
 
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
+
                 //updating prepared data in shop_products table
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
@@ -740,7 +749,7 @@ class Exchange {
                 if ($product->Картинка != '' OR $product->Картинка != null) {
 
                     $image = explode('/', $product->Картинка);
-                    $image = $image[count($image) - 1];
+                    $image = end($image);
 
                     @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
 
@@ -835,7 +844,9 @@ class Exchange {
         foreach ($properties_data as $key => $item) {
             $data = array();
             $data = array('data' => serialize($item));
-            $this->ci->db->where(array('id' => $key, 'locale' => $this->locale))->update('shop_product_properties_i18n', $data);
+            $this->ci->db
+                    ->where(array('id' => $key, 'locale' => $this->locale))
+                    ->update('shop_product_properties_i18n', $data);
         }
     }
 
@@ -846,7 +857,9 @@ class Exchange {
             $data['price'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
             $data['price_in_main'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
             $data['stock'] = (int) $offer->Количество;
-            $this->ci->db->where('external_id', $offer->Ид . "")->update($this->product_variants_table, $data);
+            $this->ci->db
+                    ->where('external_id', $offer->Ид . "")
+                    ->update($this->product_variants_table, $data);
         }
     }
 
