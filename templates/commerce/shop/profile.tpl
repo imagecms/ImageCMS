@@ -136,45 +136,6 @@
                 </table>
             </div>
 
-            <div class="history_order f_r">
-                <div class="block_title_18"><span class="title_18">{lang('s_to_fal_do')}</span></div>
-
-                {lang('s_to_fal_mo_ti')}:
-                <span style="font-weight: bold;">
-                    {echo count($goodsInSpy)}
-                </span>
-                {if count($goodsInSpy)>0}
-                    <table cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>{lang('s_to_falitem_number')}</th>
-                                <th>{lang('s_to_falo_product_name')}</th>
-                                <th>{lang('s_to_falitem_difference')}</th>
-                                <th>{lang('s_to_falitem_difference_perc')}</th>
-                                <th>{lang('s_to_unsubscribe')}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach $goodsInSpy as $good}
-                                {$product = $good->getProduct()}
-                                <tr>
-                                    <td>{echo $product[0]->getId()}</td>
-                                    <td><a href="{$BASE_URL}shop/product/{echo $product[0]->getUrl()}">{echo $product[0]->getName()}</td>
-                                    <td>
-                                        {echo $good->getdist()}
-                                    </td>
-                                    <td>
-                                        {echo $good->getpercentdist()}
-                                    </td>
-                                    <td>
-                                        <a href="{echo $good->getLink()}">{lang('s_to_unsubscribe')}</a>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                {/if}
-            </div>
         </div>
         <div class="center">
         </div>

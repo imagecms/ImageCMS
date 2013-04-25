@@ -120,13 +120,13 @@
                                         </span>
                                     </span>
                                 </div>
-                            </div>
+                            </div><!--
                             <div class="control-group">
                                 <label class="control-label">Ручной запуск ресайза</label>
                                 <div class="controls">
                                     <a class="btn runResize"><i class="icon-play"></i>&nbsp;Запустить</a>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="control-group">
                                 <span class="control-label">
