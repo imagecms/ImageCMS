@@ -50,7 +50,12 @@
                 <li class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     <span class="c_97" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
-
+                                            {$CI->load->module('print_data')->render_button(
+                                                array(
+                                                    'id'=>$model->getid(),
+                                                    'var'=>$model->firstVariant->getId()
+                                                 )
+                                          )}
                     <!-- Output rating for the old product Start -->
                     <div class="frame_response">
                         <div class="star">
@@ -160,6 +165,7 @@
                                 {lang('s_buy')}
                             </button>
                         {/if}
+
 
                         {foreach $model->getProductVariants() as $key => $pv}
                             {if $pv->getStock() > 0}

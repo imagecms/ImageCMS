@@ -917,7 +917,7 @@ class Core extends MY_Controller {
             if ($this->settings['add_site_name'] == 1 && $showsitename != 1) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
-
+            
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => $description,

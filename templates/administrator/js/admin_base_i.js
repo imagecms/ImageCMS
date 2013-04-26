@@ -425,26 +425,26 @@ $(document).ready(function() {
     });
     //////////////sorting on site
     $('.edit_field_sort').live('click', function() {
-         $(this).next(".text_field_block").toggle();
+        $(this).next(".text_field_block").toggle();
     });
     $('.save_button_field').live('click', function() {
         obj = $(this);
         id = $(this).attr('data-id');
         name = $(this).attr('data-name');
-        text= $(this).prev('textarea').val();
+        text = $(this).prev('textarea').val();
         $.ajax({
             type: 'post',
             url: '/admin/components/run/shop/settings/ajaxUpdateFieldName',
-            data: 'id=' + id + '&name=' +name+ '&text=' +text,
+            data: 'id=' + id + '&name=' + name + '&text=' + text,
             success: function(data) {
                 obj.parent('.text_field_block').prev().html(text);
                 obj.parent('.text_field_block').hide();
             }
         });
-        
+
     });
-    
-    
+
+
     //////////////end sorting on site
     function display_edit_fields(id)
     {
@@ -461,6 +461,18 @@ $(document).ready(function() {
             data: 'str=' + str,
             success: function(data) {
                 $('#inputUrl').attr('value', data);
+            }
+        });
+    });
+
+    $('#translateProductUrl').live('click', function() {
+        var str = $('#Name').attr('value');
+        $.ajax({
+            type: 'post',
+            url: '/admin/components/run/shop/products/ajax_translit',
+            data: 'str=' + str,
+            success: function(data) {
+                $('#Url').attr('value', data);
             }
         });
     });
@@ -809,13 +821,13 @@ $(document).ready(function() {
     $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
-    
+
     $('#resizeAll').live('click', function() {
-        
-        window.onbeforeunload = ( function(){
+
+        window.onbeforeunload = (function() {
             return 'Дождитесь завершения ресайза!';
         });
-        
+
         $.ajax({
             url: "/admin/components/run/shop/settings/getAllProductsVariantsIds",
             type: "post",
@@ -827,8 +839,8 @@ $(document).ready(function() {
                     var arrayForProcess = new Array();
                     var done = 0;
                     //Resize by array 
-                    function makeResize(array){
-                        data = JSON.stringify(array); 
+                    function makeResize(array) {
+                        data = JSON.stringify(array);
                         $.ajax({
                             url: "/admin/components/run/shop/settings/runResizeAllJsone",
                             type: "post",
@@ -836,49 +848,49 @@ $(document).ready(function() {
                             data: 'array=' + data,
                             complete: function() {
                                 done += array.length;
-                                $('.bar').css('width',((done / countAll) * 100)+'%');
-                                $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : ' + done + ' )');
+                                $('.bar').css('width', ((done / countAll) * 100) + '%');
+                                $('#progressLabel').html('Всего найдено товаров: ' + countAll + '  (Обработано : ' + done + ' )');
                                 console.log((done / countAll) * 100);
-                                if (done == countAll){
+                                if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
                                     $('#progressLabel').html('Ресайз завершен!!');
                                     $('#progressBlock').fadeOut(2000);
-                                    
+
                                     window.onbeforeunload = null;
                                 }
                             }
                         });
-                    } 
-                    $('#progressLabel').html('Всего найдено товаров: '+ countAll + '  (Обработано : 0 )');
+                    }
+                    $('#progressLabel').html('Всего найдено товаров: ' + countAll + '  (Обработано : 0 )');
                     $('#progressBlock').fadeIn(100);
-                    
+
                     //Prepare portion of images
-                    if ((countAll / 50) < 0){
-                        portion = 1; 
-                    }else {
+                    if ((countAll / 50) < 0) {
+                        portion = 1;
+                    } else {
                         portion = Math.ceil(countAll / 50);
                     }
-                    
+
                     //Disable page
                     $('#fixPage').fadeIn(100);
                     //Make resize 
-                    while (ids.length > 0){
-                        arrayForProcess = ids.splice(0,portion);
+                    while (ids.length > 0) {
+                        arrayForProcess = ids.splice(0, portion);
                         makeResize(arrayForProcess);
                     }
-                }catch(e) {
+                } catch (e) {
                     console.log(e);
                 }
             }
         });
     });
-    
+
     $('#resizeById').live('click', function() {
         id = $('#product_variant_name').val();
         console.log(id);
         $('#loading').fadeIn(100);
         $.ajax({
-            url: "/admin/components/run/shop/settings/runResizeById/"+id,
+            url: "/admin/components/run/shop/settings/runResizeById/" + id,
             type: "post",
             success: function(data) {
                 $('#loading').fadeIn(100);
