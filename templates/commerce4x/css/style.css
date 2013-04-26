@@ -761,6 +761,8 @@ a.activeSlide{background-position: -66px 0;}
 .frame_brand .btn_next{right: 0;background-position: -240px 0;}
 .frame_brand .btn_next:hover{background-position: -240px -25px;}
 .frame_brand .jcarousel-prev-disabled-horizontal.btn_prev, .frame_brand .jcarousel-next-disabled-horizontal.btn_next{opacity: 0.2;cursor: default;}
+.frame_brand.main .items-list > li a{font-size: 12px;}
+.frame_brand.main .items-list ul{margin-top: 5px;}
 
 .frame_func_catalog{position: relative;z-index: 2;}
 .frame_func_catalog .groupButton, .frame_func_catalog > div{margin: 6px 20px 15px;}
@@ -1039,6 +1041,7 @@ body.vertical_template .frameSet .jcarousel-item{width: 748px !important;}
 .frame_brand.main{border-top: 0;}
 .frame_brand.main .items{margin-left: -23px;padding-bottom: 50px;}
 .frame_brand.main .items > li{display: inline-block;margin-left: 23px;margin-bottom: 18px;width: 175px !important;float: none;}
+.frame_brand.main .items-list > li{text-align: left;float: none;vertical-align: top;}
 .frame_brand.main .items > li .photo{border: 3px solid #e6e6e6;}
 
 .hFooter{height: 432px;}
