@@ -6,8 +6,17 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#exchange_settings_form" data-action="tomain"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <a href="{$BASE_URL}admin/components/modules_table" 
+                   class="t-d_n m-r_15 pjax">
+                    <span class="f-s_14">←</span> 
+                    <span class="t-d_u">{lang('a_back')}</span>
+                </a>
+                <button type="button" 
+                        class="btn btn-small btn-primary action_on formSubmit" 
+                        data-form="#exchange_settings_form" 
+                        data-action="tomain">
+                    <i class="icon-ok"></i>{lang('a_save')}
+                </button>
             </div>
         </div>                            
     </div>
@@ -98,7 +107,7 @@
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[brand]" value = "{$settings['brand']}" id="brand"/>
                                 </div>
-                            </div>        
+                            </div>   
                             <div class="control-group">
                                 <label class="control-label" for="status_after">Статус после обработки:</label>
                                 <div class="controls">
@@ -110,7 +119,7 @@
                                         {/foreach}
                                     </select>
                                 </div>
-                            </div>        
+                            </div>  
                             <div class="control-group">
                                 <label class="control-label" for="autores">Запускать ресайз изображений автоматически?</label>
                                 <div class="controls">

@@ -442,6 +442,18 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $('#translateProductUrl').live('click', function() {
+        var str = $('#Name').attr('value');
+        $.ajax({
+            type: 'post',
+            url: '/admin/components/run/shop/products/ajax_translit',
+            data: 'str=' + str,
+            success: function(data) {
+                $('#Url').attr('value', data);
+            }
+        });
+    });
 
     $('.cat_change_active').live('click', function() {
         var id = $(this).attr('data-id');
