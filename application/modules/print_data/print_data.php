@@ -27,10 +27,10 @@ class Print_data extends MY_Controller {
         \CMSFactory\assetManager::create()->registerStyle('style');
         switch ($type) {
             case 'product':
-                $href = "/print_data/print_" . $type . "/" . $data['id'] . "/" . $data['var'];
+                $href = "/" . get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'] . "/" . $data['var'];
                 break;
             case 'page':
-                $href = "/print_data/print_" . $type . "/" . $data['id'];
+                $href = "/" . get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'];
                 break;
 
             default:
@@ -43,17 +43,16 @@ class Print_data extends MY_Controller {
         if (!$this->no_install) return false;
         $product = SProductsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($id);
         $variant = SProductVariantsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($var);
-       // \CMSFactory\assetManager::create()->registerStyle('style');
-        \CMSFactory\assetManager::create()->setData(array('product' => $product, 'variant' => $variant))->render('print_product', TRUE);
+        $style =  '/application/modules/print_data/assets/css/style.css';
+        \CMSFactory\assetManager::create()->setData(array('style'=>$style,'product' => $product, 'variant' => $variant))->render('print_product', TRUE);
     }
     public function print_page($id) {
         if (!$this->no_install) return false;
         $page = get_page($id);
-       // \CMSFactory\assetManager::create()->registerStyle('style');
-        \CMSFactory\assetManager::create()->setData(array('page' => $page))->render('print_page', TRUE);
+        $style =  '/application/modules/print_data/assets/css/style.css';
+        \CMSFactory\assetManager::create()->setData(array('style'=>$style,'page' => $page))->render('print_page', TRUE);
     }
 
-    // Create new ticket
 
 
     public function _install() {
@@ -66,8 +65,6 @@ class Print_data extends MY_Controller {
     public function _deinstall() {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
-
-        $this->load->dbforge();
     }
 
 }
