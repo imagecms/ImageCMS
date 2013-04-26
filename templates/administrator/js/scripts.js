@@ -1083,10 +1083,10 @@ function ch_lan(el) {
 }
 
 function change_per_page(el){
-    if ($.isNumeric($(el).prev().val()))
+    if ($.isNumeric($(el).val()))
         $.ajax({
             url: '/admin/components/run/shop/search/per_page_cookie',
-            data: 'count_items='+$(el).prev().val(),
+            data: 'count_items='+$(el).val(),
             type: 'get',
             success: function(){
                 window.location.reload();
