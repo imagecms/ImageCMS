@@ -321,7 +321,10 @@ class Pages extends BaseAdminController {
                 $data = FALSE;
             }
         }
-
+        /** Init Event. Pre Edit Page*/
+            \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id), 'BaseAdminPage:preEdit');
+            \CMSFactory\Events::runFactory();
+            
         ($hook = get_hook('admin_page_edit_found')) ? eval($hook) : NULL;
 
         if ($data) {
