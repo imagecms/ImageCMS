@@ -275,6 +275,8 @@
         <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
         <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>               
         <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
+        <script src="{$THEME}/js/autosearch.js" type="text/javascript"></script>  
+        
         <script>
             {if $CI->uri->segment('4') == 'shop'}
                 var isShop = true;
