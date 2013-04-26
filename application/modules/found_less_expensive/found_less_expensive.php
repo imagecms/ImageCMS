@@ -15,7 +15,8 @@ class Found_less_expensive extends MY_Controller {
     
     public function __construct() {
         parent::__construct();
-        $this->load->model('Found_less_expensive_model');
+        $this->load->model('found_less_expensive_model');
+        $this->load->library('email');
     }
 
     public static function adminAutoload() {
@@ -31,11 +32,46 @@ class Found_less_expensive extends MY_Controller {
  
     public function save_message(){
         $data = $this->input->post();
+        $data['date'] = time();
+        $data['status'] = 0;
         unset($data['cms_token']);
         if ($this->db->insert('mod_found_less_expensive',$data)){
+            $this->prepareEmailData($data);
             return 'success';
         }
+    }
+    
+    public function prepareEmailData($messageData){
+        $data = $this->found_less_expensive_model->getModuleSettings();
+        $this->sendEmail($data['emailTo'], $data['emailFrom'], $data['emailSubject'], $data['emailTemplate'],$messageData);
         
+    }
+
+    /**
+     * 
+     * @param type $email
+     */
+    public function sendEmail($fromEmail, $toEmail, $subject , $message, $messageData){
+        // Init email config
+            
+            $config['wordwrap'] = TRUE;
+            $config['charset'] = 'UTF-8';
+            $config['mailtype'] = 'html';
+            
+            $this->email->initialize($config);
+                            
+            $message = "<html><body>" .$message. "</body></html>";
+            
+            // Replace %linkPage%, %linkProduct%
+            $message = str_replace('%linkPage%', $messageData['productUrl'], $message);
+            $message = str_replace('%linkProduct%', $messageData['link'], $message);
+            
+            $this->email->from($fromEmail);
+            $this->email->to($toEmail);
+            $this->email->subject($subject);
+            $this->email->message($message);
+
+            $this->email->send();
     }
 
     /**
@@ -74,7 +110,16 @@ class Found_less_expensive extends MY_Controller {
                 'constraint' => '150',
                 'null' => TRUE,
             ),
-            'processed' => array(
+            'productUrl' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '250',
+                'null' => TRUE,
+            ),
+            'date' => array(
+                'type' => 'INT',
+                'null' => TRUE,
+            ),
+            'status' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '150',
                 'null' => TRUE,
