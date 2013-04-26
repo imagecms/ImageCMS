@@ -250,6 +250,20 @@ abstract class BaseEvents {
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function onShopCategoryDelete() {
+        $this->key = 'ShopAdminCategories:delete';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
      * <tr valign="top"><td>['commentId']</td><td>Comment ID</td></tr>
      * </table>
      * @return BehaviorFactory
