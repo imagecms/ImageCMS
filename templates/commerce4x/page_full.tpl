@@ -6,6 +6,12 @@
         <div class="span6">
             <article>
                 <h1>{echo encode($page.title)}</h1>
+                                {$CI->load->module('print_data')->render_button(
+                                                array(
+                                                    'id'=>$page['id'],
+                                                 ), 'page'
+                                          )}
+
                 <div class="text">
                     {if $page.id == 68 || $page.lang_alias == 68}
                         <div class="f_l map">
