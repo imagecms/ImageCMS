@@ -549,3 +549,6 @@
 {widget('similar')}
 </article>
 </div>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>

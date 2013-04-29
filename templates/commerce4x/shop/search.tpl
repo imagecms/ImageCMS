@@ -18,7 +18,7 @@
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
     <div class="container">
-    <div class="row">
+    <div class="row-fluid">
     <aside class="span3">
         <div class="filter">
             <!-- Start. Categories tree with navigation -->
@@ -255,3 +255,8 @@
     <!-- End. Show message -->
 {/if}
 
+<script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{ if $productSliderEnabled  }
+<script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+{/if}

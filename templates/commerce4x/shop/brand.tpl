@@ -22,7 +22,7 @@
 
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
-    <div class="row">
+    <div class="row-fluid">
         {include_tpl('filter')}
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>

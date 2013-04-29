@@ -5,12 +5,12 @@
             <div class="frame_carousel_product carousel_js">
                 <div class="m-b_20">
                     <div class="title_h1 d_i-b v-a_m">{$title}</div>
-                    <div class="d_i-b groupButton v-a_m">
+                    <div class="d_i-b groupButton v-a_m frame_carousel_button">
                         <button type="button" class="btn btn_prev"><span class="icon prev"></span><span class="text-el"></span></button>
                         <button type="button" class="btn btn_next"><span class="icon next"></span><span class="text-el"></span></button>
                     </div>
                 </div>
-                <div class="carousel bot_border_grey">
+                <div class="carousel">
                     <ul class="items items_catalog">
                         {foreach $products as $hotProduct}
                             <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">

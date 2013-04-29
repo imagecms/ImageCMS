@@ -1,12 +1,4 @@
-
-
 $(document).ready(function() {
-    $('.item_href').hover(function() {
-        $(this).next().slideToggle();
-        return false;
-    })
-
-    
     $(document).on('cart_changed cart_rm', function() {
         $('#topCartCountModule').html(' ('+Shop.Cart.totalCount+')');
     })
@@ -18,10 +10,6 @@ $(document).ready(function() {
     $(document).on('compare_list_add compare_list_rm', function() {       
         change_cnt_active_comp(Shop.CompareList.items.length);
     })
-
-
-     
-
 })
 
 function change_cnt_active_comp(cnt){

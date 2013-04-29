@@ -1,7 +1,7 @@
 <div class="frame_brand carousel_js">
     <div class="container p_r">
         <div class="carousel">
-            <ul class="items">
+            <ul class="items items_brands">
                 {foreach $brands as $brand}
                     <li>
                         <a href="{shop_url($brand.full_url)}">

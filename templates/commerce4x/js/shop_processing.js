@@ -1,5 +1,3 @@
-
-
 $(document).ready(
     function () {
         processPage();
@@ -10,7 +8,7 @@ $(document).ready(
             changeDeliveryMethod($('#method_deliv').val());
         $('#popupCart').html(Shop.Cart.renderPopupCart())
         //click 'add to cart'
-        $('button.btn_buy').not('.psPay').on('click', function () {
+        $('button.btn_buy:not(.psPay)').live('click', function () {
             Shop.Cart.countChanged = false;
             $(this).attr('disabled', 'disabled');
             var cartItem = Shop.composeCartItem($(this));

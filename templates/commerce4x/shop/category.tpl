@@ -45,7 +45,7 @@
     {widget('path')}
 
     <!-- main category page content -->
-    <div class="row">
+    <div class="row-fluid">
         <!-- here filter tpl is including -->
         {include_tpl('filter')}
 
@@ -253,7 +253,7 @@
                 </div>
             {/if}
                 <div style="display: none;">
-                { if $CI->product_slider}
+                { if $CI->product_slider && count($products)}
                 { echo implode($CI->product_slider->links($category->getId(), $inPageIds))}
                 { /if}
                 </div>
@@ -263,3 +263,8 @@
     </div>
 
 </article>
+<script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{ if $productSliderEnabled  }
+<script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+{/if}

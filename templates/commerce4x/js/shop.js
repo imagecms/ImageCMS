@@ -353,7 +353,7 @@ var Shop = {
         /*find url*/
         var anchors = false;
         if (anchors = $context.closest('li').find('a')) {
-            console.log(typeof anchors);
+            //console.log(typeof anchors);
             _.each(anchors, function(anchor){
                 if (typeof $(anchor).attr('href') != 'undefined')
                     if ($(anchor).attr('href').match('/product/'))
