@@ -50,7 +50,7 @@
     {$prev_img.full_name} / {$prev_img.width}x{$prev_img.height} / {$prev_img.file_size} / {date('Y-m-d H:i', $prev_img.uploaded)}
 -->
 
-<!-- Thumbs list
+ <!--Thumbs list
 <div class="gallery_thumbs" align="center">
     <ul>
         {foreach $album.images as $image}
@@ -60,6 +60,6 @@
            </li>
         {/foreach}
     </ul>
-</div>
--->
+</div>-->
+
 

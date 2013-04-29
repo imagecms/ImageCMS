@@ -35,9 +35,9 @@ class Gallery extends MY_Controller {
     /**
      * List categories and get albums from first category
      */
-    function index() {        
+    function index() {
         $this->core->set_meta_tags('Галерея');
-        
+
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
@@ -45,7 +45,8 @@ class Gallery extends MY_Controller {
         if (is_array($albums)) {
             $this->template->add_array(array(
                 'albums' => $this->create_albums_covers($albums),
-                'gallery_category' => $categories
+                'gallery_category' => $categories,
+                'total' => $this->gallery_m->getTotalImages()
             ));
         }
 
@@ -150,13 +151,24 @@ class Gallery extends MY_Controller {
         }
     }
 
-    function thumbnails($id = 0) {
-        $album = $this->gallery_m->get_album($id);
+    function thumbnails($id = 0, $page = 0) {
+        $album = $this->gallery_m->get_album($id, true, 15, $page * 15);
 
         if ($album == FALSE) {
             $this->core->error_404();
             exit;
         }
+        $this->load->library('Pagination');
+        $this->pagination = new \CI_Pagination();
+        $config['uri_segment'] = 4;
+        $config['base_url'] = site_url('gallery/thumbnails/' . $id);
+        $config['page_query_string'] = false;
+        $config['total_rows'] = ceil($album[count] / 15);
+        $config['last_link'] = ceil($album[count] / 15);
+        $config['per_page'] = 1;
+
+        $this->pagination->num_links = 3;
+        $this->pagination->initialize($config);
 
         $this->template->add_array(array(
             'album' => $album,
@@ -164,6 +176,7 @@ class Gallery extends MY_Controller {
             'album_link' => 'gallery/album/' . $album['id'] . '/',
             'album_url' => $this->conf['upload_url'] . $album['id'] . '/',
             'current_category' => $this->gallery_m->get_category($album['category_id']),
+            'pagination' => $this->pagination->create_links(),
         ));
 
         $this->core->set_meta_tags(array($album['name']));
