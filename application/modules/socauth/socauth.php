@@ -105,27 +105,29 @@ class Socauth extends MY_Controller {
         }
 //        var_dump($_COOKIE['serverPosition']);
 //        redirect($_COOKIE['serverPosition']);
-        redirect('/shop/profile');
+        redirect('');
     }
 
     public function index() {
         if (!$this->dx_auth->is_logged_in())
-            \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->render('login');
+//            \CMSFactory\assetManager::create()
+//                    ->setData($this->settings)
+//                    ->render('login');
+            redirect('/auth/login');
         else
-            redirect('/shop/profile');
+            redirect('');
     }
 
     public function error($error = "") {
         $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in())
-            \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->render('login');
+//            \CMSFactory\assetManager::create()
+//                    ->setData($this->settings)
+//                    ->render('login');
+        redirect('/auth/login');
         else
-            redirect('/shop/profile');
+            redirect('');
     }
 
     public function renderLogin() {
