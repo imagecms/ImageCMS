@@ -10,7 +10,6 @@ class Shop_news extends MY_Controller {
    
     public function __construct() {
         parent::__construct();
-        //$this->load->model('shop_news_model');
     }
    
     public static function adminAutoload() {
@@ -25,36 +24,50 @@ class Shop_news extends MY_Controller {
                 ->appendData('moduleAdditions', $view);
     }
 
-    
+    public function getShopNews($limit = 20){
+
+        $this->load->model('shop_news_model');
+        if ($this->core->core_data['data_type'] == 'shop_category'){
+            $categoryId = $this->core->core_data['id']; 
+        }elseif ($this->core->core_data['data_type'] == 'product'){
+            $productId = $this->core->core_data['id'];
+            $categoryId = $this->shop_news_model->getProductCategory($productId);
+        }
+        
+        $contentIds = $this->shop_news_model->getContentIds($categoryId);
+        $ids = array();
+        foreach ($contentIds as $contentId){
+            $ids[] .= $contentId['content_id'];
+        }
+        $content = $this->shop_news_model->getContent($ids, $limit);
+        
+        CMSFactory\assetManager::create()
+                    ->setData(array('contentShopNews' => $content))
+                    ->registerStyle('style')
+                    ->registerScript('scripts')
+                    ->render('content', true);
+        
+    }
+
     public function prepareInterface($data, $pageId){
         $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
         
         return \CMSFactory\assetManager::create()
                 ->setData(array('shopNews' => $data, 'categories' => ShopCore::app()->SCategoryTree->getTree(),'currentCategories' => $currentCategories))
-                ->registerScript('script')
+                ->registerScript('scripts')
                 ->fetchTemplate('/admin/adminModuleInterface');
     }
     
     public function ajaxSaveShopCategories(){
         $data  = $this->input->post('data');
         $contentId = $this->input->post('contentId');
-        $this->saveCategories($contentId, $data);
+        $this->load->model('shop_news_model');
+        
+        $this->shop_news_model->saveCategories($contentId, $data);
         showMessage('Сохранено');
         
     }
-    /**
-     * To model!!!!!!!!!!!!!!!
-     */
-    public function saveCategories($contentId, $categories){
-        if($this->db->where('content_id',$contentId)->get('mod_shop_news')->result_array() != null ){
-            $this->db->where('content_id',$contentId)->update('mod_shop_news',  array('shop_categories_ids' => $categories));
-        }else{
-            $this->db->insert('mod_shop_news',  array('content_id'=>$contentId,'shop_categories_ids' => $categories));
-        }
-        return TRUE;
-    }
-   
     public function _install() {
        
         /** Create module's table **/
