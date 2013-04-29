@@ -15,18 +15,23 @@ class Admin extends BaseAdminController {
         parent::__construct();
         
     }
-    
+    /**
+     * Init 
+     */
     private function init() {
         \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
         $this->load->model('found_less_expensive_model');
     }
-    
+    /*
+     * Show list of notifications about found less expensive
+     */
     public function index() {
         $this->init();
         $status = $this->uri->segment(7);
         $off_set = $this->uri->segment(8);
        
+        //Prepare data
         switch ($status) {
             case 'all':
                 $status_all = array('0','1');
@@ -48,6 +53,7 @@ class Admin extends BaseAdminController {
         $data = $this->found_less_expensive_model->allByStatus($this->per_page, $off_set, $status_all);
         $total = $this->found_less_expensive_model->getCountAll($status_all);
         
+        //Pagination
         if ($total > $this->per_page) {
                 $this->load->library('pagination');
 
@@ -77,7 +83,7 @@ class Admin extends BaseAdminController {
                 $this->pagination->initialize($config);
                 $pagination = $this->pagination->create_links_ajax();
             }
-            // End pagination
+        // End pagination
         
         $this->template->
                 add_array(array('data' => $data,

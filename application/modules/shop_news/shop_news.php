@@ -5,6 +5,13 @@
 /**
  * Image CMS
  * Shop news
+ * 
+ * News can be displaying on category and product pages
+ * 
+ * in order to display news insert in product.tpl or category.tpl:
+ * 
+ * {$CI->load->module('shop_news')->getShopNews()}
+ * 
  */
 class Shop_news extends MY_Controller {
    
@@ -15,7 +22,10 @@ class Shop_news extends MY_Controller {
     public static function adminAutoload() {
          \CMSFactory\Events::create()->on('BaseAdminPage:preEdit')->setListener('_extendPageAdmin');
     }
-   
+   /**
+    * Display module template on tab "Modules additions" when edit page. 
+    * @param type $shopNewsData
+    */
     public function _extendPageAdmin($shopNewsData){
         $shopNews = new Shop_news();
         
@@ -23,10 +33,14 @@ class Shop_news extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->appendData('moduleAdditions', $view);
     }
-
+    /**
+     * Get shop news for shop category or product
+     * @param int $limit
+     */
     public function getShopNews($limit = 20){
 
         $this->load->model('shop_news_model');
+        //Prepare category id
         if ($this->core->core_data['data_type'] == 'shop_category'){
             $categoryId = $this->core->core_data['id']; 
         }elseif ($this->core->core_data['data_type'] == 'product'){
@@ -34,11 +48,15 @@ class Shop_news extends MY_Controller {
             $categoryId = $this->shop_news_model->getProductCategory($productId);
         }
         
+        // Get content ids by category 
         $contentIds = $this->shop_news_model->getContentIds($categoryId);
+        
+        // Prepare array with content ids
         $ids = array();
         foreach ($contentIds as $contentId){
             $ids[] .= $contentId['content_id'];
         }
+        
         $content = $this->shop_news_model->getContent($ids, $limit);
         
         CMSFactory\assetManager::create()
@@ -48,7 +66,12 @@ class Shop_news extends MY_Controller {
                     ->render('content', true);
         
     }
-
+    /**
+     * Prepare and return template for module 
+     * @param type $data
+     * @param type $pageId
+     * @return type
+     */
     public function prepareInterface($data, $pageId){
         $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
@@ -58,7 +81,9 @@ class Shop_news extends MY_Controller {
                 ->registerScript('scripts')
                 ->fetchTemplate('/admin/adminModuleInterface');
     }
-    
+    /**
+     * Save categories for displaying page content
+     */
     public function ajaxSaveShopCategories(){
         $data  = $this->input->post('data');
         $contentId = $this->input->post('contentId');
@@ -68,6 +93,9 @@ class Shop_news extends MY_Controller {
         showMessage('Сохранено');
         
     }
+    /**
+     * Install
+     */
     public function _install() {
        
         /** Create module's table **/
@@ -87,7 +115,9 @@ class Shop_news extends MY_Controller {
                  ->update('components', array('autoload' => '1', 'enabled' => '1'));
 
     }
-
+    /**
+     * Uninstall
+     */
     public function _deinstall() {
         
         $this->load->dbforge();
