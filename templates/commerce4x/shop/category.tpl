@@ -247,7 +247,7 @@
                 <div class="title_h2 t-a_c">Категория пуста</div>
             </div>
         {/if}
-
+        {$CI->load->module('shop_news')->getShopNews()}
         <!-- pagination variable from category.php controller -->
         {$pagination}
     </div>

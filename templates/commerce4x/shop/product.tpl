@@ -398,6 +398,7 @@
         </li>
     </ul>
 </div>
+{$CI->load->module('shop_news')->getShopNews()}
 <!--Kit start-->
 {if $model->getShopKits()->count() > 0}
     <div class="frame_carousel_product carousel_js c_b frameSet">
