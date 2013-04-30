@@ -9,6 +9,5 @@
     <input type="hidden" name="return_url" value="{$SUCCESS_URL}" />
     <input type="hidden" name="server_url" value="{$RESULT_URL}" />
     <button type="submit" class="btn btn_buy psPay">Оплатить</button>
-    {form_csrf()}
 </form>
      
