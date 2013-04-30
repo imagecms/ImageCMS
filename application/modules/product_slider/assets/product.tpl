@@ -20,7 +20,7 @@
             <!--Photo block for main product-->
             <li class="span5 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                <a rel="group" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo">
+                <a rel="position: 'xBlock', adjustX: 10" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo cloud-zoom">
                     <figure >
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                         <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
@@ -31,10 +31,10 @@
                     { if sizeof($productImages = $model->getSProductImagess()) > 0}
                     { foreach $productImages as $key => $image}
                     <li>
-                        <a rel="group" href="{ echo $image->getThumbUrl()}" class="photo">
+                        <a  rel="useZoom: 'photoGroup', smallImage: '{echo $image->getThumbUrl()}'" href="{echo $image->getThumbUrl()}" class="photo cloud-zoom-gallery">
                             <figure>
                                 <span class="helper"></span>
-                                <img src="{ productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                             </figure>
                         </a>                                
                     </li>
@@ -42,19 +42,24 @@
                     { /if}        
                     <!-- End. Show additional images -->
                 </ul>
-            </li>
-            <!--Photo block for main product end-->
-            <li class="span7">
-                <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
-                <span class="c_97" id="number">{ if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
-
                 <!-- Output rating for the old product Start -->
-                <div class="frame_response">
+                <div class="frame_response c_b">
                     <div class="star">
                         { $CI->load->module('star_rating')->show_star_rating($model)}
                     </div>
+                    <!-- displaying comments count -->
+                    {if $Comments[$model->getId()][0] != '0' && $model->enable_comments}
+                    <a href="{shop_url('product/'.$model->url.'#comment')}" class="count_response">
+                        {echo $Comments[$model->getId()]}
+                    </a>
+                    {/if}
                 </div>
                 <!-- Output rating for the old product End -->
+            </li>
+            <!--Photo block for main product end-->
+            <li class="span7">
+                <div id="xBlock"></div>
+                <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                 <div class="clearfix frame_buy">
                     <div class="d_i-b v-a_b m-b_20">
                         <!-- Start. Output of all the options -->
@@ -95,7 +100,7 @@
                         {/foreach}
                         <!-- End. Collect information about Variants, for future processing -->
                         {/if}
-                        <div class=" d_i-b v-a_b m-r_45">
+                        <div class=" d_i-b v-a_b">
                             <div class="price price_f-s_24">
                                 <!-- $model->hasDiscounts() - check for a discount. -->
                                 {if $model->hasDiscounts()}
@@ -188,103 +193,47 @@
                             </button>
                             {/if}
                             {/foreach}
+                            <a href="#" class="btn ref">Подробнее</a>
+                            <div class="d_i-b v-a_m add_func_btn">
+
+                                <!-- Start. Block "Add to Compare" -->
+                                <button class="toCompare"  
+                                        data-prodid="{echo $model->getId()}"  
+                                        type="button" 
+                                        data-title="{lang('s_add_to_compare')}"
+                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-rel="tooltip"
+                                        >
+                                    <span class="icon-comprasion"></span>
+                                    <span class="text-el d_l_b">Сравнить</span>
+                                </button>
+                                <!-- End. Block "Add to Compare" -->
+
+                                <!--Block Wishlist Start-->
+                                <button class="toWishlist" 
+                                        data-prodid="{echo $model->getId()}" 
+                                        data-varid="{echo $model->firstVariant->getId()}"  
+                                        type="button" 
+                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-sectitle="{lang('s_in_wish_list')}"
+                                        data-rel="tooltip"
+                                        >
+                                    <span class="icon-wish"></span>
+                                    <span class="text-el d_l_b">{lang('s_slw')}</span>
+                                </button>
+                                <!-- Stop. Block "Add to Wishlist" -->
+                                <!--Block Follow the price Start-->
+                            </div>
                         </div>
                     </div>
-                    <div class="d_i-b v-a_b m-b_20 add_func_btn">
-
-                        <!-- Start. Block "Add to Compare" -->
-                        <button class="btn btn_small_p toCompare"  
-                                data-prodid="{echo $model->getId()}"  
-                                type="button" 
-                                data-title="{lang('s_add_to_compare')}"
-                                data-sectitle="{lang('s_in_compare')}"
-                                data-rel="tooltip"
-                                >
-                            <span class="icon-comprasion_2"></span>
-                            <span class="text-el">{lang('s_add_to_compare')}</span>
-                        </button>
-                        <!-- End. Block "Add to Compare" -->
-
-                        <br/>
-                        <!--Block Wishlist Start-->
-                        <button class="btn btn_small_p toWishlist" 
-                                data-prodid="{echo $model->getId()}" 
-                                data-varid="{echo $model->firstVariant->getId()}"  
-                                type="button" 
-                                data-title="{lang('s_add_to_wish_list')}"
-                                data-sectitle="{lang('s_in_wish_list')}"
-                                data-rel="tooltip"
-                                >
-                            <span class="icon-wish_2"></span>
-                            <span class="text-el">{lang('s_slw')}</span>
-                        </button>
-                        <!-- Stop. Block "Add to Wishlist" -->
-                        <br/>
-                        <!--Block Follow the price Start-->
-                    </div>
                 </div>
-
+                <div class="pos_cloud_big"></div>
                 <!-- Start. Withdraw button to "share" -->
                 <div class="share_tov">
                     {echo $CI->load->module('share')->_make_share_form()}
                 </div>
-                <!-- End. Withdraw button to "share" -->
-
-                <ul class="tabs clearfix">
-                    <!-- Start. Show the block information if available -->
-                    {if $model->getFullDescription()        != ''}
-                    <li>
-                        <button type="button" data-href="#info">
-                            <span class="icon-info"></span>
-                            <span class="text-el">Информация</span>
-                        </button>
-                    </li>
-                    {/if}
-                    <!-- End. Show the block information if available -->
-
-                    <!-- Start. Display characteristics block if you have one -->
-                    {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                    <li>
-                        <button type="button" data-href="#characteristic">
-                            <span class="icon-charack"></span>
-                            <span class="text-el">{lang('s_properties')}</span>
-                        </button>
-                    </li>
-                    {/if}
-                    <!-- End. Display characteristics block if you have one -->
-
-                    <!--Output of the block if there is one accessory-->
-                    {if $accessories = $model->getRelatedProductsModels()}            
-                    <li>
-                        <button type="button" data-href="#accessories">
-                            <span class="icon-accss"></span>
-                            <span class="text-el">{lang('s_accessories')}</span>
-                        </button>
-                    </li>
-                    {/if}
-                    <!--Output of the block if there is one accessory END-->
-                    <!--Output of the block comments-->
-                    {if $Comments && $model->enable_comments}
-                    <li>
-                        <button type="button" data-href="#comment" onclick="renderPosts(this)">
-                            <span class="icon-comment-tab"></span>
-                            <span class="text-el">                    
-                                <span id="cc">
-                                    {if $Comments[$model->getId()][0] !== '0'}
-                                    {echo $Comments[$model->getId()]}
-                                    {else:}
-                                    Оставить отзыв
-                                    {/if}
-                                </span>
-                            </span>
-                        </button>
-                    </li>
-                    {/if}
-                    <!--Output of the block comments END-->
-                </ul>
-
                 <div class="frame_tabs">
-                    <!--Piece of information about the product Start-->
+                    <!-- End. Withdraw button to "share" -->
                     {if $model->getFullDescription() != ''}
                     <div id="info">
                         <div class="text">
@@ -292,22 +241,32 @@
                         </div>
                     </div>
                     {/if}
-                    <!--Piece of information about the product End-->
-                    <!--The unit features product Start-->
+                    {$prop_tip = $model->getPropertiesWithTip()}
+                    {if count($prop_tip) > 0}
+                    <div class="clearfix">
+                        {foreach $prop_tip as $prop}
+                        <div class="item_add clearfix">
+                            <div class="f_l">{echo $prop.Name}<span class="tip">&nbsp</span></div>
+                            <div class="f_l"> - {echo $prop.Value}</div>
+                            <div class="drop drop_down">
+                                <div class="drop-content">
+                                    {echo $prop.Desc}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/foreach}
+                    </div>
+                    {/if}
+                    {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
                     {if $renderProperties}
                     <div id="characteristic">   
                         {echo $renderProperties}  
                     </div>
                     {/if}
-                    <!--The unit features product End-->
-                    <!--Block Accessories Start-->
-
-                    <!--Block Accessories End-->
-                    <!--
-                    <div id="comment">
-                        <div id="for_comments" name="for_comments"></div>
-                    </div>
-                    -->
+                </div>
+                <div class="t-a_r m-t_20">
+                    {/*}<a href="{shop_url('product/'.$model->url')}">Подробнее о товаре</a>{*/}
                 </div>
             </li>
         </ul>

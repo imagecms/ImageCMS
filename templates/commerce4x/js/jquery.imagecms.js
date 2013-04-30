@@ -19,10 +19,10 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-    ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+        ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+        ((path) ? ";path=" + path : "") +
+        ((domain) ? ";domain=" + domain : "") +
+        ((secure) ? ";secure" : "");
 }
 
 var ie = jQuery.browser.msie,
@@ -100,8 +100,8 @@ ltie8 = ie && (ieV <= 8);
                             scroll: 1
                         }
                         $this_carousel[index].jcarousel($.extend(
-                            adding
-                            , main_obj));
+                        adding
+                        , main_obj));
 
                         $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
                     }
@@ -344,8 +344,8 @@ ltie8 = ie && (ieV <= 8);
                 drop: 'li > ul',
                 countColumn: 'none'
             }, options);
-            var sH = 0;
-            var menu = $(this),
+            var sH = 0,
+            menu = $(this),
             menuW = menu.width(),
             menuItem = settings.item,
             drop = settings.drop,
@@ -383,34 +383,34 @@ ltie8 = ie && (ieV <= 8);
             $('.not-js').removeClass('not-js');
             var hover_t_o = '';
             menuItem.hover(
-                function() {
-                    var $this = $(this),
-                    $thisDrop = $this.find(settings.drop);
-                    if ($this.index() == 0)
-                        $this.addClass('first_h');
-                    if ($this.index() == item_menu_l - 1)
-                        $this.addClass('last_h');
-                    hover_t_o = setTimeout(function() {
-                        $thisDrop[effOn](duration);
-                        if ($thisDrop.length != 0)
-                            menu.addClass('hover');
-                    }, time_dur_m);
-                }, function() {
-                    var $this = $(this),
-                    $thisDrop = $this.find(settings.drop);
-                    $(settings.drop).stop()[effOff](duration);
-                    $('.first_h, .last_h').removeAttr('class');
-                    clearTimeout(hover_t_o);
+            function() {
+                var $this = $(this),
+                $thisDrop = $this.find(settings.drop);
+                if ($this.index() == 0)
+                    $this.addClass('first_h');
+                if ($this.index() == item_menu_l - 1)
+                    $this.addClass('last_h');
+                hover_t_o = setTimeout(function() {
+                    $thisDrop[effOn](duration);
                     if ($thisDrop.length != 0)
-                        menu.removeClass('hover');
-                });
+                        menu.addClass('hover');
+                }, time_dur_m);
+            }, function() {
+                var $this = $(this),
+                $thisDrop = $this.find(settings.drop);
+                $(settings.drop).stop()[effOff](duration);
+                $('.first_h, .last_h').removeAttr('class');
+                clearTimeout(hover_t_o);
+                if ($thisDrop.length != 0)
+                    menu.removeClass('hover');
+            });
             menu.hover(
-                function() {
-                    return time_dur_m = 0;
-                },
-                function() {
-                    return time_dur_m = duration;
-                });
+            function() {
+                return time_dur_m = 0;
+            },
+            function() {
+                return time_dur_m = duration;
+            });
         }
     };
     $.fn.menuImageCms = function(method) {
@@ -995,6 +995,16 @@ ltie8 = ie && (ieV <= 8);
                 event.stopPropagation();
                 event.preventDefault();
                 
+                $(this).each(function() {
+                    var $this = $(this),
+                    $thisS = $this.data('effect-off') || effoff,
+                    $thisD = $this.data('duration') || effdur,
+                    $thisSource = $this.data('drop'),
+                    dataSource2 = $($thisSource);
+
+                    dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                });
+                
                 if ($(event.target).parents('[data-simple="yes"]').length == 0){
 
                     $this = $(this);
@@ -1061,17 +1071,8 @@ ltie8 = ie && (ieV <= 8);
                     }
                     $(cloned).remove();
                 }
-            }).each(function() {
-                var $this = $(this),
-                $thisS = $this.data('effect-off') || effoff,
-                $thisD = $this.data('duration') || effdur,
-                $thisSource = $this.data('drop'),
-                dataSource2 = $($thisSource);
+            })
 
-                dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-            });
-
-            
             exit.live('click', function() {
                 var $this = $(this);
                 $('[data-drop="' + $this.closest('.drop').data('elrun') + '"]').click().parent().removeClass('active');
@@ -1349,41 +1350,41 @@ ltie8 = ie && (ieV <= 8);
                 var $this = $(this);
                 if (!$this.hasClass('disabled')){
                     $this.hover (
-                        function(){
-                            $(this).append("<span></span>");
-                        },
-                        function()
-                        {
-                            $(this).find("span").remove();
-                        });
+                    function(){
+                        $(this).append("<span></span>");
+                    },
+                    function()
+                    {
+                        $(this).find("span").remove();
+                    });
 
                     var rating;
 
                     $this.mousemove (
-                        function(e){
-                            if (!e) e = window.event;
-                            if (e.pageX){
-                                x = e.pageX;
-                            } else if (e.clientX){
-                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                    function(e){
+                        if (!e) e = window.event;
+                        if (e.pageX){
+                            x = e.pageX;
+                        } else if (e.clientX){
+                            x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 	     
-                            }
-                            var posLeft = 0;
-                            var obj = this;
-                            while (obj.offsetParent)
-                            {
-                                posLeft += obj.offsetLeft;
-                                obj = obj.offsetParent;
-                            }
-                            var offsetX = x-posLeft,
-                            modOffsetX = 5*offsetX%this.offsetWidth;
-                            rating = parseInt(5*offsetX/this.offsetWidth);
+                        }
+                        var posLeft = 0;
+                        var obj = this;
+                        while (obj.offsetParent)
+                        {
+                            posLeft += obj.offsetLeft;
+                            obj = obj.offsetParent;
+                        }
+                        var offsetX = x-posLeft,
+                        modOffsetX = 5*offsetX%this.offsetWidth;
+                        rating = parseInt(5*offsetX/this.offsetWidth);
 
-                            if(modOffsetX > 0) rating+=1;
+                        if(modOffsetX > 0) rating+=1;
 		
-                            jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                        jQuery(this).find("span").eq(0).css("width",rating*width+"px");
 
-                        });
+                    });
 
                     $this.click (function(){
                         settings.afterClick($this, rating);

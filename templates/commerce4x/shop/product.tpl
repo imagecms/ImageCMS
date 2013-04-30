@@ -252,11 +252,13 @@
              {if count($prop_tip) > 0}
                  <div class="clearfix">
                      {foreach $prop_tip as $prop}
-                         <div class="caract clearfix">
+                         <div class="item_add clearfix">
                              <div class="f_l">{echo $prop.Name}<span class="tip">&nbsp</span></div>
                              <div class="f_l"> - {echo $prop.Value}</div>
-                             <div class="info_prop">
+                             <div class="drop drop_down">
+                                 <div class="drop_content">
                                  {echo $prop.Desc}
+                                 </div>
                              </div>
                          </div>
 
