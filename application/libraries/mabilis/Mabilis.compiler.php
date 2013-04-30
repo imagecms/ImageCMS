@@ -55,9 +55,9 @@ class Mabilis_Compiler extends Mabilis {
 
             $tpl_data = preg_replace('/\{(.*?)(\$\w*)\.(\w*)\.(\w*)(.*?)\s*\}/', '{ $1 $2[\'$3\'][\'$4\'] $5 }', $tpl_data);
 
-//            for ($i = 0; $i < 15; $i++) {
+            for ($i = 0; $i < 15; $i++) {
             $tpl_data = preg_replace('/\{(.*?)(\$\w*)\.(\w*)(.*?)\}/', '{ $1 $2[\'$3\'] $4 }', $tpl_data);//mother of god
-//            }
+            }
             // Find end replace template functions
             foreach ($this->func_array as $func) {
                 // Replace { function(params) } as { echo functon(params); }
