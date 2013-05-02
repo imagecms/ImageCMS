@@ -177,34 +177,6 @@ class Lib_seo {
           _gaq.push (['_addOrganic', 'all.by', 'query']);
           _gaq.push(['_trackPageview']);
         </script>";
-            if ($model && $this->session->flashdata('makeOrder') === true) {
-                $ga .= "
-                    <script type='text/javascript'>
-            _gaq.push(['_addTrans',
-                '" . $model->id . "',
-                '',
-                '" . $model->getTotalPrice() . "',
-                '',
-                '" . $model->getSDeliveryMethods()->name . "',
-                '',
-                '',
-                ''
-            ]);";
-
-                foreach ($model->getSOrderProductss() as $item) {
-                    $total = $total + $item->getQuantity() * $item->toCurrency();
-                    $product = $item->getSProducts();
-
-                    $ga .="_gaq.push(['_addItem',
-                '" . $model->id . "',
-                '" . $product->getUrl() . "',
-                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-                '" . encode($product->getMainCategory()->name) . "',
-                '" . $item->toCurrency() . "',
-                '" . $item->getQuantity() . "']);";
-                }
-                $ga .="_gaq.push(['_trackTrans']);</script>";
-            }
 
             $ga .= "
 <script type = 'text/javascript'>
@@ -217,6 +189,40 @@ var s = document.getElementsByTagName('script')[0];
 s.parentNode.insertBefore(ga, s);
 })();
 </script>";
+            return $ga;
+        }
+    }
+
+    function makeOrderForGoogle($model) {
+        $CI = & get_instance();
+        if ($model && $CI->session->flashdata('makeOrder') === true) {
+            $ga = "
+                    <script type='text/javascript'>
+            _gaq.push(['_addTrans',
+                '" . $model->id . "',
+                '',
+                '" . $model->getTotalPrice() . "',
+                '',
+                '" . $model->getSDeliveryMethods()->name . "',
+                '',
+                '',
+                ''
+            ]);";
+
+            foreach ($model->getSOrderProductss() as $item) {
+                $total = $total + $item->getQuantity() * $item->toCurrency();
+                $product = $item->getSProducts();
+
+                $ga .="_gaq.push(['_addItem',
+                '" . $model->id . "',
+                '" . $product->getUrl() . "',
+                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+                '" . encode($product->getMainCategory()->name) . "',
+                '" . $item->toCurrency() . "',
+                '" . $item->getQuantity() . "']);";
+            }
+            $ga .="_gaq.push(['_trackTrans']);</script>";
+            
             return $ga;
         }
     }

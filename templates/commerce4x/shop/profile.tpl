@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="span9 item_tovar">
+        <div class="span9 item_tovar">{$CI->load->module('socauth')->renderLink()}
             <h1>{lang('s_private_office')}</h1>
             <!-- Start errors block -->
             <div  class="msg_form_edit">

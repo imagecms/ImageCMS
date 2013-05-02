@@ -157,26 +157,6 @@
                         {/if}
                     </span>
             </div>
-            {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
-                    <span data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" 
-                          data-price="{echo $model->firstVariant->toCurrency()}" 
-                          data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
-                          data-varid="{echo $model->firstVariant->getId()}" 
-                          data-prodid="{echo $model->getId()}" 
-                          class="js gray addtoSpy">
-                        {lang('s_sle_product')}
-                    </span>
-                {else:}
-                    <span data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" 
-                          data-varid="{echo $model->firstVariant->getId()}" 
-                          data-prodid="{echo $model->getId()}" 
-                          class="deleteFromSpy js gray">
-                        {lang('s_sle_product_alerady')}
-                    </span>
-                {/if}
-                </span>
-            {/if}
             {if $model->getFullDescription() != ''}
                 <p class="c_b">{echo $model->getFullDescription()}</p>
             {/if}

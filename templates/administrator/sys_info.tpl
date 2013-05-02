@@ -52,6 +52,14 @@
                             {/foreach}
                         </td>
                     </tr>
+                    <tr>
+                        <td class="span2">
+                            Проверка отправки почты
+                        </td>
+                        <td>
+                            <a href="sys_info/mailTest">Проверить</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>    
