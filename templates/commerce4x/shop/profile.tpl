@@ -74,7 +74,7 @@
                             </label>
                             {if $profile->getdiscount()}
                                 <label>
-                                    <span class="title">{lang('s_disk')}:</span>
+                                    <span class="title">Скидка:</span>
                                     <span class="frame_form_field">
                                         <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
 
