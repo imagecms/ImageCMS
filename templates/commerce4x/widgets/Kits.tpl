@@ -1,7 +1,7 @@
 {if $kits->count() > 0}
 <div class="container">
     <div class="frame_carousel_product carousel_js vertical_carousel">
-        <div>
+        <div class="m-b_10">
             <div class="title_h1 d_i-b v-a_m">{$title}</div>
         </div>
         <div class="carousel bot_border_grey">
@@ -57,14 +57,14 @@
                                         <span class="old_price v-a_m">
                                             <!--$kitProduct->getBeforePrice() - Price before discount-->
                                             <span class="f-w_b">{echo $kitProduct->getBeforePrice()} </span>
-                                            {$CS}
+                                            <span class="cur">{$CS}</span>
                                         </span>
                                         {/if}
                                         <!--$kitProduct->getDiscountProductPrice() - discount price-->
-                                        <span class="f-s_21 v-a_m">
+                                        <span class="price_f-s_16 v-a_m">
                                             <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()} </span>
+                                            <span class="cur">{$CS}</span>
                                         </span>
-                                        {$CS}
                                     </div>
                                 </div>
                                 <div class="photo-block">
@@ -78,7 +78,7 @@
                                 <span class="top_tovar discount">-{echo $kitProduct->getDiscount()}%</span>
                             </div>
                             <div class="d_i-b">
-                                {if $kitProducts->countProducts() == $key}={else:}+{/if}
+                                {if $kitProducts->countProducts() == $key}{else:}+{/if}
                             </div>
                         </li>                                            
                         {/foreach}                       
@@ -92,7 +92,7 @@
                                     <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()} </span> <span class="cur">{$CS}</span>
                                 </span>
                                 <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
-                                <span class="f-s_21 v-a_m">
+                                <span class="v-a_m f-s_21">
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> <span class="cur">{$CS}</span>
                                 </span>
                             </div>

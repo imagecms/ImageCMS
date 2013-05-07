@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row-fluid">
         <div class="span9 item_tovar">
             <h1>{lang('s_private_office')}</h1>
             <!-- Start errors block -->
@@ -41,7 +41,7 @@
                                 return false;">
                             <label>
                                 <span class="title">{lang('s_c_uoy_name_u')}:</span>
-                                <span class="row">
+                                <span class="row-fluid">
                                     <span class="frame_form_field">
                                         <input type="text" value="{echo encode($profile->getName())}" name="name"/>
                                         <label id="for_name" class="for_validations"></label>

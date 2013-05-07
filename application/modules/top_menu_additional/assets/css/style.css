@@ -4,7 +4,7 @@
 #frame_additional_menu .icon-phoneM{width: 29px;height: 27px;margin-right: 5px;background: url("../images/phone.png") no-repeat;top: 4px;}
 #frame_additional_menu .icon-wish{width: 36px;height: 32px;margin-right: 14px;background: url("../images/wish_list.png") no-repeat;}
 #frame_additional_menu .icon-comprasion{display: none !important;}
-#frame_additional_menu .icon-bask{width: 34px;height: 31px;margin-right: 8px;background: url("../images/bask.png") no-repeat;}
+#frame_additional_menu .icon-bask{width: 34px;height: 31px;margin-right: 8px;background: url("../images/bask.png") no-repeat;top: -3px;}
 #frame_additional_menu .phone{font-weight: bold;font-size: 14px;color: #333;}
 #frame_additional_menu .phone_pref{color: #676767;}
 

@@ -103,7 +103,7 @@
 
 
             <!-- product list container -->
-            <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
+            <ul class="items items_catalog  {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
 
                 <!-- starts loop for array with products -->
                 { $inPageIds = array()}

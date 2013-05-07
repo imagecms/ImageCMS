@@ -36,7 +36,7 @@
         <!--[if lt IE 9]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/lt_ie8.css" />
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-            <script src="js/css3-mediaqueries.js"></script>
+            <script src="{$THEME}js/css3-mediaqueries.js"></script>
             <script src="/js/localStorageIE.js"></script>
         <![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
@@ -49,95 +49,6 @@
         <div class="mainBody">
             <div class="container clearfix" id="frame_additional_menu">{$CI->load->module('top_menu_additional')->render()}</div>
             <div class="header">
-                {/*}<header>
-                    <div class="container">
-                        <section class="row-fluid">
-                            <div class="f_r m-l_25">
-                                <nav class="f_l">
-                                    <ul class="nav navHorizontal frameEnterReg">
-                                        <!--Start. If not logged in then show links for registration and enter to the system-->
-                                        {if !$CI->dx_auth->is_logged_in()}
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <button type="button"
-                                                        id="loginButton"
-                                                        data-drop=".drop-enter"
-                                                        data-effect-on="fadeIn"
-                                                        data-effect-off="fadeOut"
-                                                        data-duration="300"
-                                                        data-place="noinherit"
-                                                        data-placement="top right">
-                                                    <span class="icon-enter"></span>
-                                                    <span class="d_l_g">Вход</span>
-                                                </button>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <span>
-                                                    <a href="/auth/register" class="t-d_n c_5c f-s_0 register">
-                                                        <span class="icon-registration"></span>
-                                                        <span class="text-el">Регистрация</span>
-                                                    </a>
-                                                </span>
-                                            </span>
-                                        </li>
-                                        <!--Else show link for personal cabinet -->
-                                        {else:}
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <span>
-                                                    <a href="/shop/profile" class="t-d_u c_5c">
-                                                        <span class="text-el">Личный кабинет</span>
-                                                    </a>
-                                                </span>
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span class="f-s_0">
-                                                <span class="helper"></span>
-                                                <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
-                                                    <span class="icon-exit"></span>
-                                                    <span class="d_l_g">Выход</span>
-                                                </button>
-                                            </span>
-                                        </li>
-                                        {/if}
-                                        <!--End. ***-->
-                                    </ul>
-                                </nav>
-                                <!-- Start. Block with link for basket with count of products -->
-                                <div class="cleaner f_l f-s_0 isAvail">
-                                    <span class="helper"></span>
-                                    <span class="f-s_0">
-                                        <span class="icon-bask"></span>
-                                        <span>Корзина</span>
-                                        <span id="topCartCount">&nbsp;(0)</span>
-                                    </span>
-                                </div>
-                                <!--End-->
-                            </div>
-                            <!--Start. Top menu block-->
-                            <nav class="frameHeaderMenu">
-                                <button type="button" class="btn btn-navbar f_l">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <div class="f_l">
-                                    <div class="frame-navbar">
-                                        {load_menu('top_menu')}
-                                    </div>
-                                </div>
-                            </nav>
-                            <!--End-->
-                        </section>
-                    </div>
-                </header>
-                {*/}
                 <section class="container">
                     <section class="headerContent row-fluid">
                         <div class="span3">
@@ -207,7 +118,7 @@
                                             </li>
                                             <!--Else show link for personal cabinet -->
                                             {else:}
-                                            <li>
+                                            <li class="m-r_40">
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
                                                     <span>
@@ -334,6 +245,7 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>

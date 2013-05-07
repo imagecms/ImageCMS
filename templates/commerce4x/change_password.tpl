@@ -6,7 +6,7 @@
         </div>
     {/if}
     <div class="t-a_c">
-        <div class="row d_i-b t-a_l">
+        <div class="row-fluid d_i-b t-a_l">
             <div class="span6">
                 <div class="frameGroupsForm">
                     <div class="header_title">Смена пароля</div>

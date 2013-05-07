@@ -68,7 +68,7 @@
                     {echo $model->getDescription()}
                 </div>
             {/if}
-            <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
+            <ul class="items items_catalog  {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
                 <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
                     <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">

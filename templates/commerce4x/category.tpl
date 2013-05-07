@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row">
+    <div class="row-fluid">
         <div class="span3">
             {load_menu('left_menu')}
         </div>

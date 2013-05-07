@@ -12,7 +12,7 @@
 */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
-<div class="popup_product">
+<div class="popup_product" data-width="57.4">
     <!-- Making bread crumbs -->
     { widget('path')}
     <div class="item_tovar">
@@ -58,7 +58,6 @@
             </li>
             <!--Photo block for main product end-->
             <li class="span7">
-                <div id="xBlock"></div>
                 <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                 <div class="clearfix frame_buy">
                     <div class="d_i-b v-a_b m-b_20">
@@ -227,46 +226,51 @@
                         </div>
                     </div>
                 </div>
-                <div class="pos_cloud_big"></div>
+                <div id="xBlock"></div>
                 <!-- Start. Withdraw button to "share" -->
                 <div class="share_tov">
                     {echo $CI->load->module('share')->_make_share_form()}
                 </div>
-                <div class="frame_tabs">
+                <div class="frame_tabs" data-height="372">
                     <!-- End. Withdraw button to "share" -->
                     {if $model->getFullDescription() != ''}
-                    <div id="info">
+                    <div id="info" data-height="175">
                         <div class="text">
                             { echo $model->getFullDescription()}                      
                         </div>
                     </div>
                     {/if}
-                    {$prop_tip = $model->getPropertiesWithTip()}
-                    {if count($prop_tip) > 0}
-                    <div class="clearfix">
-                        {foreach $prop_tip as $prop}
-                        <div class="item_add clearfix">
-                            <div class="f_l">{echo $prop.Name}<span class="tip">&nbsp</span></div>
-                            <div class="f_l"> - {echo $prop.Value}</div>
-                            <div class="drop drop_down">
-                                <div class="drop-content">
-                                    {echo $prop.Desc}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/foreach}
+                    <div id="characteristic" data-height="200">
+                        {$prop_tip = $model->getPropertiesWithTip()}
+                        {if count($prop_tip) > 0}
+                        <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
+                            <tbody>
+                                {foreach $prop_tip as $prop}
+                                <tr>
+                                    <td>
+                                        <div class="item_add d_i-b">
+                                            <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
+                                            <div class="drop drop_down">
+                                                <div class="drop-content">
+                                                    {echo $prop.Desc}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{echo $prop.Value}</td>
+                                </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                        {/if}
+                        {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
+                        {if $renderProperties}
+                        {echo $renderProperties}
+                        {/if}
                     </div>
-                    {/if}
-                    {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                    {if $renderProperties}
-                    <div id="characteristic">   
-                        {echo $renderProperties}  
-                    </div>
-                    {/if}
                 </div>
                 <div class="t-a_r m-t_20">
-                    {/*}<a href="{shop_url('product/'.$model->url')}">Подробнее о товаре</a>{*/}
+                    <a href="">Подробнее о товаре</a>
                 </div>
             </li>
         </ul>

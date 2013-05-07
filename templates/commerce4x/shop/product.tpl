@@ -17,7 +17,7 @@
         <!-- Making bread crumbs -->
         {widget('path')}
         <div class="item_tovar">
-            <ul class="row">
+            <ul class="row-fluid">
                 <!--Photo block for main product-->
                 <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
@@ -341,7 +341,7 @@
                 <!--Block Accessories Start-->
                 {if $accessories}
                     <div id="accessories">
-                        <ul class="items items_catalog" data-radio-frame>
+                        <ul class="items items_catalog " data-radio-frame>
                             {foreach $accessories as $p}  
                                 <li class="span3 {if $p->firstvariant->getStock() == 0}not-avail{/if}">
                                     <div class="description">
@@ -447,8 +447,8 @@
             </div>
         </div>
         <div class="carousel">
-            <div class="row">
-                <ul class="items items_catalog">
+            <div class="row-fluid">
+                <ul class="items items_catalog ">
                     {foreach $model->getShopKits() as $kitProducts}                                     
                         <li class="container">
                             <ul class="items items_middle">
