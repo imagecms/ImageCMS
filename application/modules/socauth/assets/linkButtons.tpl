@@ -5,10 +5,11 @@
             <img src="/application/modules/socauth/assets/images/g.png"/>
         </a>
     {/if}
-{else:}
+{elseif $useGoogle == 'on'}
     <img src="/application/modules/socauth/assets/images/g.png" 
          onclick="unlinkSocial('google')"
-         style="opacity: 0.3;"/>
+         style="opacity: 0.3;"
+         title="Отписатся"/>
 {/if}
 
 {if $useVk == 'on' && $vk != 'linked'}
@@ -18,10 +19,11 @@
             <img src="/application/modules/socauth/assets/images/vk.png"/>
         </a>
     {/if}
-{else:}
+{elseif $useVk == 'on'}
     <img src="/application/modules/socauth/assets/images/vk.png" 
          onclick="unlinkSocial('vk')"
-         style="opacity: 0.3;"/>
+         style="opacity: 0.3;"
+         title="Отписатся"/>
 {/if}
 
 {if $useFaceBook == 'on' && $fb != 'linked'}
@@ -31,10 +33,11 @@
             <img src="/application/modules/socauth/assets/images/fb.png"/>
         </a>
     {/if}
-{else:}
+{elseif $useFaceBook == 'on'}
     <img src="/application/modules/socauth/assets/images/fb.png" 
          onclick="unlinkSocial('fb')"
-         style="opacity: 0.3;"/>
+         style="opacity: 0.3;"
+         title="Отписатся"/>
 {/if}
 
 {if $useYandex == 'on' && $ya != 'linked'}
@@ -44,8 +47,9 @@
             <img src="/application/modules/socauth/assets/images/ya.png"/>
         </a>
     {/if}
-{else:}
+{elseif $useYandex == 'on'}
     <img src="/application/modules/socauth/assets/images/ya.png" 
          onclick="unlinkSocial('ya')"
-         style="opacity: 0.3;"/>
+         style="opacity: 0.3;"
+         title="Отписатся"/>
 {/if}
