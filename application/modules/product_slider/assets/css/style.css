@@ -52,4 +52,4 @@
 .product_slider_PN#fancybox-left{left: -46px;}
 .product_slider_PN#fancybox-right{right: -46px;}
 .product_slider_PN#fancybox-left span{left: 0;}
-.product_slider_PN#fancybox-right span{right: 0;}
+.product_slider_PN#fancybox-right span{right: 0;left: auto;}

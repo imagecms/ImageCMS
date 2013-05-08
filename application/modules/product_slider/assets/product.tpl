@@ -12,7 +12,7 @@
 */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
-<div class="popup_product" data-width="57.4">
+<div class="popup_product">
     <!-- Making bread crumbs -->
     { widget('path')}
     <div class="item_tovar">
@@ -57,7 +57,7 @@
                 <!-- Output rating for the old product End -->
             </li>
             <!--Photo block for main product end-->
-            <li class="span7">
+            <li class="span7" id="right_popup_product" data-width="57.4">
                 <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                 <div class="clearfix frame_buy">
                     <div class="d_i-b v-a_b m-b_20">
@@ -234,7 +234,7 @@
                 <div class="frame_tabs" data-height="372">
                     <!-- End. Withdraw button to "share" -->
                     {if $model->getFullDescription() != ''}
-                    <div id="info" data-height="175">
+                    <div id="info" data-height="172">
                         <div class="text">
                             { echo $model->getFullDescription()}                      
                         </div>

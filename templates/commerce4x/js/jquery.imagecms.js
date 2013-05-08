@@ -1,8 +1,15 @@
+/*gloabal variables*/
 var isTouch = 'ontouchstart' in document.documentElement,
 wnd = $(window),
 body = $('body'),
 mainBody = $('.mainBody');
+var ie = jQuery.browser.msie,
+ieV = jQuery.browser.version,
+ltie7 = ie && (ieV <= 7),
+ltie8 = ie && (ieV <= 8);
+/*gloabal variables end*/
 
+/*gloabal functions and plugins*/
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
 }
@@ -19,17 +26,32 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-        ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-        ((path) ? ";path=" + path : "") +
-        ((domain) ? ";domain=" + domain : "") +
-        ((secure) ? ";secure" : "");
+    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+    ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
 }
 
-var ie = jQuery.browser.msie,
-ieV = jQuery.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
+/*plugin actual size*/
+(function($) {
+    $.fn.actual = function() {
+        $('.cloned').remove();
+        if (arguments.length && typeof arguments[0] == 'string') {
+            var dim = arguments[0];
+            var clone = $(this).clone().css({
+                position: 'absolute',
+                top: '-9999px',
+                display: 'block'
+            }).addClass('cloned').appendTo('body');
+            return clone[dim]();
+        }
+        return undefined;
+    };
+}(jQuery));
+/*plugin actual size end*/
+/*global functions end*/
 
+/*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -100,8 +122,8 @@ ltie8 = ie && (ieV <= 8);
                             scroll: 1
                         }
                         $this_carousel[index].jcarousel($.extend(
-                        adding
-                        , main_obj));
+                            adding
+                            , main_obj));
 
                         $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
                     }
@@ -123,7 +145,9 @@ ltie8 = ie && (ieV <= 8);
         }
     }
 })(jQuery);
+/*plugin myCarousel end*/
 
+/*plugin autocomplete*/
 (function($){
     var methods = {
         init : function(options) {
@@ -259,6 +283,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin autocomplete end*/
+
+/*plugin tooltip*/
 (function($){
     var methods = {
         init : function(options) {
@@ -333,30 +360,41 @@ ltie8 = ie && (ieV <= 8);
         $(this).tooltip('remove');
     })
 })(jQuery);
+/*plugin tooltip end*/
+
+/*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
         init: function(options) {
+            var sH = 0,
+            menu = $(this);
             var settings = $.extend({
                 item: this.find('li'),
                 effectOn: 'fadeIn',
                 effectOff: 'fadeOut',
                 duration: 0,
                 drop: 'li > ul',
-                countColumn: 'none'
+                countColumn: 'none',
+                durationOn: 0,
+                durationOff: 0,
+                dropWidth: null
             }, options);
-            var sH = 0,
-            menu = $(this),
-            menuW = menu.width(),
+            
+            var menuW = menu.width(),
             menuItem = settings.item,
             drop = settings.drop,
             effOn = settings.effectOn,
             effOff = settings.effectOff,
             drop = settings.drop,
-            countColumn = settings.countColumn;
-
+            countColumn = settings.countColumn,
             item_menu_l = menuItem.length,
             dropW = settings.dropWidth,
-            duration = time_dur_m = settings.duration;
+            duration = time_dur_m = settings.duration,
+            durationOn = settings.durationOn,
+            durationOff = settings.durationOff;
+            
+            if (!dropW) dropW = parseInt(menuW/3);
+
             menuItem.each(function(index) {
                 var $this = $(this),
                 $thisW = $this.width(),
@@ -383,34 +421,34 @@ ltie8 = ie && (ieV <= 8);
             $('.not-js').removeClass('not-js');
             var hover_t_o = '';
             menuItem.hover(
-            function() {
-                var $this = $(this),
-                $thisDrop = $this.find(settings.drop);
-                if ($this.index() == 0)
-                    $this.addClass('first_h');
-                if ($this.index() == item_menu_l - 1)
-                    $this.addClass('last_h');
-                hover_t_o = setTimeout(function() {
-                    $thisDrop[effOn](duration);
+                function() {
+                    var $this = $(this),
+                    $thisDrop = $this.find(settings.drop);
+                    if ($this.index() == 0)
+                        $this.addClass('first_h');
+                    if ($this.index() == item_menu_l - 1)
+                        $this.addClass('last_h');
+                    hover_t_o = setTimeout(function() {
+                        $thisDrop[effOn](durationOn);
+                        if ($thisDrop.length != 0)
+                            menu.addClass('hover');
+                    }, time_dur_m);
+                }, function() {
+                    var $this = $(this),
+                    $thisDrop = $this.find(settings.drop);
+                    $(settings.drop).stop()[effOff](durationOff);
+                    $('.first_h, .last_h').removeAttr('class');
+                    clearTimeout(hover_t_o);
                     if ($thisDrop.length != 0)
-                        menu.addClass('hover');
-                }, time_dur_m);
-            }, function() {
-                var $this = $(this),
-                $thisDrop = $this.find(settings.drop);
-                $(settings.drop).stop()[effOff](duration);
-                $('.first_h, .last_h').removeAttr('class');
-                clearTimeout(hover_t_o);
-                if ($thisDrop.length != 0)
-                    menu.removeClass('hover');
-            });
+                        menu.removeClass('hover');
+                });
             menu.hover(
-            function() {
-                return time_dur_m = 0;
-            },
-            function() {
-                return time_dur_m = duration;
-            });
+                function() {
+                    return time_dur_m = 0;
+                },
+                function() {
+                    return time_dur_m = duration;
+                });
         }
     };
     $.fn.menuImageCms = function(method) {
@@ -423,6 +461,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin menuImageCms end*/
+
+/*plugin sliderinit which use uislider for additional opportunities*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -500,6 +541,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin sliderinit end*/
+
+/*plugin tabs*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -724,6 +768,9 @@ ltie8 = ie && (ieV <= 8);
         }
     }
 })(jQuery);
+/*plugin tabs end*/
+
+/*plugin equalHorizCell for comparison*/
 (function($){
     var methods = {
         init : function(options) {
@@ -945,21 +992,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
-(function($) {
-    $.fn.actual = function() {
-        $('.cloned').remove();
-        if (arguments.length && typeof arguments[0] == 'string') {
-            var dim = arguments[0];
-            var clone = $(this).clone().css({
-                position: 'absolute',
-                top: '-9999px',
-                display: 'block'
-            }).addClass('cloned').appendTo('body');
-            return clone[dim]();
-        }
-        return undefined;
-    };
-}(jQuery));
+/*plugin equalHorizCell for comparison end*/
+
+/*plugin drops*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -1167,6 +1202,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin drops end*/
+
+/*plugin plusminus for buttons in cart*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -1261,6 +1299,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin plusminus end*/
+
+/*plugin min value*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -1307,8 +1348,9 @@ ltie8 = ie && (ieV <= 8);
         $(this).minValue();
     })
 })(jQuery);
+/*plugin min value end*/
 
-
+/*plugin max value*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -1334,8 +1376,9 @@ ltie8 = ie && (ieV <= 8);
         }
     };
 })(jQuery);
+/*plugin max value end*/
 
-
+/*plugin starrating*/
 (function($){
     var methods = {
         init : function(options) {
@@ -1350,41 +1393,41 @@ ltie8 = ie && (ieV <= 8);
                 var $this = $(this);
                 if (!$this.hasClass('disabled')){
                     $this.hover (
-                    function(){
-                        $(this).append("<span></span>");
-                    },
-                    function()
-                    {
-                        $(this).find("span").remove();
-                    });
+                        function(){
+                            $(this).append("<span></span>");
+                        },
+                        function()
+                        {
+                            $(this).find("span").remove();
+                        });
 
                     var rating;
 
                     $this.mousemove (
-                    function(e){
-                        if (!e) e = window.event;
-                        if (e.pageX){
-                            x = e.pageX;
-                        } else if (e.clientX){
-                            x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                        function(e){
+                            if (!e) e = window.event;
+                            if (e.pageX){
+                                x = e.pageX;
+                            } else if (e.clientX){
+                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 	     
-                        }
-                        var posLeft = 0;
-                        var obj = this;
-                        while (obj.offsetParent)
-                        {
-                            posLeft += obj.offsetLeft;
-                            obj = obj.offsetParent;
-                        }
-                        var offsetX = x-posLeft,
-                        modOffsetX = 5*offsetX%this.offsetWidth;
-                        rating = parseInt(5*offsetX/this.offsetWidth);
+                            }
+                            var posLeft = 0;
+                            var obj = this;
+                            while (obj.offsetParent)
+                            {
+                                posLeft += obj.offsetLeft;
+                                obj = obj.offsetParent;
+                            }
+                            var offsetX = x-posLeft,
+                            modOffsetX = 5*offsetX%this.offsetWidth;
+                            rating = parseInt(5*offsetX/this.offsetWidth);
 
-                        if(modOffsetX > 0) rating+=1;
+                            if(modOffsetX > 0) rating+=1;
 		
-                        jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                            jQuery(this).find("span").eq(0).css("width",rating*width+"px");
 
-                    });
+                        });
 
                     $this.click (function(){
                         settings.afterClick($this, rating);
@@ -1404,3 +1447,4 @@ ltie8 = ie && (ieV <= 8);
         }
     }
 })(jQuery);
+/*plugin starrating end*/
