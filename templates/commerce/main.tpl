@@ -6,7 +6,6 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        {$meta_noindex}
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/> 
@@ -30,7 +29,6 @@
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}/js/jquery-ui-1.8.15.custom.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/autocomplete.js"></script>
-        {$renderGA}
     </head>
     <body>        
         <div class="main_body">

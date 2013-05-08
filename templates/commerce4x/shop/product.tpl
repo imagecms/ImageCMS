@@ -242,7 +242,7 @@
 
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
-                {if $model->getFullDescription()        != ''}
+                {if $model->getFullDescription() != ''}
                     <li>
                         <button type="button" data-href="#info">
                             <span class="icon-info"></span>

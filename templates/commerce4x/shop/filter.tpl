@@ -126,7 +126,7 @@
 
         {//form for submiting checked filters}
         <form id="filter" method="get" action="">
-            {if (int)$priceRange.minCost != 0 && (int)$priceRange.maxCost != 0}
+            {if (int)$priceRange.minCost >= 0 && (int)$priceRange.maxCost != 0}
                 <div class="boxFilter">
                     {//meet slider}
                     <div class="title">{lang('s_price')}</div>

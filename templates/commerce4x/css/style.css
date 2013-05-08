@@ -830,7 +830,7 @@ a.activeSlide{background-position: -66px 0;}
 .crumbs a{color: #333;}
 .crumbs span{color: #979797;}
 
-.item_tovar .photo{margin-top: 15px;}
+.item_tovar #photoGroup{margin-top: 15px;}
 .frame_buy .btn_buy, .frame_buy .price+.btn_cart{font-size: 18px;}
 .vertical_template .frame_buy .m-r_45{margin-right: 34px !important;}
 .vertical_template .frame_buy .m-r_30{margin-right: 20px !important;}
@@ -1257,7 +1257,7 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .start_page > *:last-child .bot_border_grey{border-bottom: 0;}
 #accessories .photo-block{height: 100px;}
 
-#accessories .items_catalog .description{margin-top: 100px;}
+#accessories .items_catalog .description{margin-top: 120px;}
 
 .drop h1{line-height: 1;}
 .vertical_template .span3.f_r{position: relative;z-index: 2;}

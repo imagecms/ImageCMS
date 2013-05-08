@@ -6,7 +6,6 @@
         <meta name="description" content="{if (int)$page_number>1}{echo $page_number} - {/if}{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" /> 
         <meta name="generator" content="ImageCMS" />
-        {$meta_noindex}
         {$canonical}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css" media="all" />
         <!--
@@ -37,12 +36,6 @@
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
         
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
-        {$gmeta}
-
-        {$yameta}
-        {$renderGA}
-
-        {$ymetric}
     </head>
     <body>
         <div class="main_body">

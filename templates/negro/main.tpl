@@ -3,7 +3,6 @@
 * @main.tpl - template for displaying shop main page
 * Variables
 *   $site_title: variable for insert site title
-*   $meta_noindex: variable for insert meta noindex
 *   $canonical: variable for insert canonical
 *   $site_description: variable for insert site description
 *   $THEME: variable for template path
@@ -20,12 +19,11 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        {$meta_noindex}
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png" />
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}/css/lte_ie_8.css" /><![endif]-->
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie_7.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.pluginssiteimage.min.js"></script>
