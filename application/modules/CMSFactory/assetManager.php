@@ -34,8 +34,7 @@ class assetManager {
         (empty($data)) OR \CI_Controller::get_instance()->template->add_array((array) $data);
         return $this;
     }
-    
-    
+
     /**
      * @param 
      * @return assetManager
@@ -45,6 +44,17 @@ class assetManager {
      */
     public function getData($item) {
         return \CI_Controller::get_instance()->template->get_var($item);
+    }
+
+    /**
+     * @param 
+     * @return assetManager
+     * @access public
+     * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
+     */
+    public function appendData($item, $value) {
+        $this->setData($item, \CI_Controller::get_instance()->template->get_var($item) . $value);
+        return $this;
     }
 
     /**
