@@ -37,6 +37,8 @@
 #frame_additional_menu > .menu_additional > .box-2, #frame_additional_menu .menu_additional .box-3{border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #c8c8c8;}
 #frame_additional_menu > .menu_additional > .box-2{width: 303px;position: relative;top: -2px;}
 #frame_additional_menu > .menu_additional > .box-3{width: 362px;}
-#frame_additional_menu .cleaner > span{color:#f44524;text-decoration: underline;position: relative;top: 1px;}
+#frame_additional_menu .cleaner > span{color:#f44524;position: relative;top: 1px;}
+.cleaner .text-el{text-decoration: none;cursor: default;}
+.cleaner.isAvail .text-el{text-decoration: underline;cursor: pointer;}
 #frame_additional_menu a{text-decoration: none;}
 .divider_compr_wish{border-width: 0 1px;border-style: solid;border-left-color: #d0d0d0;border-right-color: #e0e0e0;margin: 0 10px;}
