@@ -19,7 +19,7 @@
                         <label class="control-label" for="category_id">{lang("Categories")}:</label>
                         <div class="controls">
                             <select name="category_id" id="category_id">
-                                <!-- <option value="0">Нет</option> -->
+                                <!-- <option value="0">{lang('No')}</option> -->
                                 {foreach $categories as $item}
                                     <option value="{$item.id}">{$item.name}</option>
                                 {/foreach}

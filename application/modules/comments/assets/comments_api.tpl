@@ -118,7 +118,7 @@
                             <span class="frame_form_field__icsi-css">
                                 <div class="msg">
                                     <div class="success">
-                                        Коментарий будет отправлен на модерацию
+                                        {lang("Comment will be sent for moderation")}
                                     </div>
                                 </div>
                             </span>
@@ -214,14 +214,14 @@
                         <span class="frame_form_field__icsi-css">
                             <div class="msg">
                                 <div class="success">
-                                    Коментарий будет отправлен на модерацию
+                                    {lang("Comment will be sent for moderation")}
                                 </div>
                             </div>
                         </span>
                     </label>
                 {/if}
                 <label>
-                    <span class="title__icsi-css">Комментарий</span>
+                    <span class="title__icsi-css">{lang("Comment")}</span>
                     <span class="frame_form_field__icsi-css">
                         <textarea id="comment_text" name="comment_text"></textarea>
                     </span>

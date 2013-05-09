@@ -26,14 +26,14 @@ class Filter extends MY_Controller {
 	public function no_pages_found()
 	{
 		$this->load->module('core');
-		$this->core->error('По Вашему запросу, страниц не найдено.');
+		$this->core->error(lang('At your request, page not found.'));
 		exit;
 	}
 
 	// Фильтр страниц
 	public function pages()
 	{
-		$this->load->module('core')->set_meta_tags('Поиск');
+                $this->load->module('core')->set_meta_tags(lang('Search'));
 
 		// Удалим из строки запроса /filter/pages
 		$segments = array_slice($this->uri->segment_array(), 2);
@@ -139,7 +139,7 @@ class Filter extends MY_Controller {
 	{
 		if (!($form = $this->create_filter_form($group_id)))
 		{
-			$this->core->error('В группе нет полей.');
+			$this->core->error(lang('Group has not fields'));
 			exit;
 		}
 
@@ -159,7 +159,7 @@ class Filter extends MY_Controller {
 		$form_html = form_open('filter/group/'.(int)$group_id);
 		$form_html .= $form->render();
 		$form_html .= form_csrf();
-		$form_html .= form_submit('submit', 'Поиск');
+		$form_html .= form_submit('submit', lang('Search'));
 		$form_html .= form_close();
 
 		$this->template->add_array(array(

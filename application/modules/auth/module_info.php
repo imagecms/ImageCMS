@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => 'Авторизация',
-	'description' => 'Модуль авторизации и регистрации пользователей',
+	'menu_name' => lang("Authorization"),
+	'description' => lang("The authorization module and user registration"),
 	'admin_type' => 'window',
 	'window_type' => 'xhr',
 	'w' => 490,

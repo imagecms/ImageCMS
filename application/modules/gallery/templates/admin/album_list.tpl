@@ -28,7 +28,7 @@
                                             <img src="{$THEME}/img/no_image.png"/>
                                         {/if}
                                         <div class="m-t_10">
-                                            <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn btn-small" data-rel="tooltip" data-title="{lang("View images")}"><i class="icon-fullscreen"></i> Просмотр фото</a>
+                                            <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn btn-small" data-rel="tooltip" data-title="{lang("View images")}"><i class="icon-fullscreen"></i> {lang('View images')}</a>
                                         </div>
                                     </div>
                                 </td>
@@ -58,8 +58,8 @@
                                             <tr>
                                                 <th></th>
                                                 <td>
-                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn btn-small   " data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i> Редактировать альбом</a>
-                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" data-title="{lang("Delete")}" data-remove=""><i class="icon-trash icon-white"></i> Удалить альбом</button>
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn btn-small   " data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i> {lang('Edit albums')}</a>
+                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" data-title="{lang("Delete")}" data-remove=""><i class="icon-trash icon-white"></i> {lang('Delete album')}</button>
                                                 </td>
                                             </tr>
                                         </tbody>

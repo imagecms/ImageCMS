@@ -177,7 +177,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if(($fh = @fopen($this->upgrade_server.'migrates.xml', 'r')) == FALSE)
         {
-            //die('Ошибка загрузки файла версий.');
+            //die(lang('Error loading file versions') . '.');
             $is_update = FALSE;
         }
         else

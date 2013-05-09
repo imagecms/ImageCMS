@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки интеграции с 1С</span>
+            <span class="title">{lang('Settings integration with 1C')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки интеграции с 1С
+                        {lang('Settings integration with 1C')}
                     </th>
                 </tr>
             </thead>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>    
                             <div class="control-group">
-                                <label class="control-label" for="autores">Запускать ресайз изображений автоматически?</label>
+                                <label class="control-label" for="autores">{lang('Run automatically resize images?')}</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">
@@ -84,9 +84,9 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Ручной запуск ресайза</label>
+                                <label class="control-label">{lang('Manual start resizing')}</label>
                                 <div class="controls">
-                                    <a class="btn runResize"><i class="icon-play"></i>&nbsp;Запустить</a>
+                                    <a class="btn runResize"><i class="icon-play"></i>&nbsp;{lang('Run')}</a>
                                 </div>
                             </div>
                         </div>

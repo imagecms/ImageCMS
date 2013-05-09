@@ -349,7 +349,7 @@ class Authapi extends MY_Controller {
     public function email_check_for_login($email) {
         $result = $this->dx_auth->is_email_available($email);
         if ($result) {
-            $this->form_validation->set_message('email_check_for_login', "Пользователь с такой почтой не найден в базе");
+            $this->form_validation->set_message('email_check_for_login', lang('A user with such mail is not found in the database'));
             return false;
         } else {
             return true;

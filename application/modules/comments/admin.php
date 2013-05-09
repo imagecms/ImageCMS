@@ -198,10 +198,10 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-//        $resp = "<script type='text/javascript'> showMessage('Измения сохранены','Успех<br/><strong>Запросов к базе: 6</strong>',''); </script>";
+//        $resp = "<script type='text/javascript'> showMessage(lang('Change saved'), lang('Success') . '<br/><strong>' . lang('Queries to the database') . ': 6</strong>',''); </script>";
 //
 //        echo json_encode(array('response'=> $resp, 'result'=> 'success'));
-        showMessage('Успех', 'Измениния сохранены');
+        showMessage(lang('Success'), lang('Change saved'));
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -221,7 +221,7 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
         */
-        showMessage("Успех", "Статус обновлен");
+        showMessage(lang('Success'), lang('Status updated'));
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -244,7 +244,7 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
         
-        showMessage('Комментарий(и) успешно удален(ы)');
+        showMessage(lang('Comment (s) has been successfully deleted'));
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -302,7 +302,7 @@ class Admin extends BaseAdminController {
 
         $this->comments->save_settings($data);
 
-        showMessage('Изменения сохранены');
+        showMessage(lang('Changes saved'));
         pjax('/admin/components/cp/comments');
     }
 

@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Комментарии</span>
+            <span class="title">{lang('Comments')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -13,13 +13,13 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="to_pspam">В спам</a></li>
-                        <li><a href="#" class="to_wait">В ожидающие</a></li>
-                        <li><a href="#" class="to_approved">В одобреные</a></li>
+                        <li><a href="#" class="to_pspam">{lang('Into spam')}</a></li>
+                        <li><a href="#" class="to_wait">{lang('In the waiting')}</a></li>
+                        <li><a href="#" class="to_approved">{lang('In approve')}</a></li>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>Настройки</a>
+                <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>{lang('Settings')}</a>
             </div>
         </div>    
     </div>
@@ -68,9 +68,9 @@
                                 </th>
                                 <th class="span1">{lang("ID")}</th>
                                 <th class="span5">{lang("Text")}</th>
-                                <th class="span2">Оценка</th>
+                                <th class="span2">{lang('Mark')}</th>
                                 <th class="span2">{lang("User")}</th>
-                                <th class="span2">Email пользователя</th>
+                                <th class="span2">{lang('User Email')}</th>
                                 <th class="span2">{lang("Page")}</th>
                             </tr>
                         </thead>
@@ -92,18 +92,18 @@
                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
                                                
-                                                <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">Сохранить</span>
+                                                <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('Save')}</span>
                                                 &nbsp;&nbsp;
-                                                <span class="js ref comment_update_cancel" data-cid="{$item.id}">Отменить</span>
+                                                <span class="js ref comment_update_cancel" data-cid="{$item.id}">{lang('Cancel')}</span>
                                                 {if $item.status == 1}
-                                                    <a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>
+                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve')}</a>
                                                 {/if}
                                                 {if $item.status != 2}
-                                                    <a href="#" class="to_spam" data-id="{$item.id}">В спам</a>
+                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam')}</a>
                                                 {else:}
-                                                    <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
+                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Waiting moderation')}</a>
                                                 {/if}
-                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
+                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete')}</a>
                                             </span>
                                         </td>
                                         <td>
@@ -188,20 +188,20 @@
                                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>                                                                
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
-                                                                    Сохранить
+                                                                    {lang('Save')}
                                                                 </span>
                                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">
-                                                                    Отменить
+                                                                   {lang('Cancel')}
                                                                 </span>
                                                                 {if $item.status == 1}
-                                                                    <a href="#" class="to_approved" data-id="{$item.id}">В одобренные</a>
+                                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve')}</a>
                                                                 {/if}
                                                                 {if $item.status != 2}
-                                                                    <a href="#" class="to_spam" data-id="{$item.id}">В спам</a>
+                                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam')}</a>
                                                                 {else:}
-                                                                    <a href="#" class="to_waiting" data-id="{$item.id}">В ожидающие модерации</a>
+                                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Wait moderation')}</a>
                                                                 {/if}
-                                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">Удалить</a>
+                                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete')}</a>
                                                                 </div>
                                                                 </div>
                                                         </td>
@@ -284,15 +284,15 @@
                                                                                     <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
                                                                                     <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
                                                                                         <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
-                                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">Сохранить</span>
-                                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">Отменить</span>
-                                                                                    {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">В одобренные</a>{/if}
+                                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">{lang('Save')}</span>
+                                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">{lang('Cancel')}</span>
+                                                                                    {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">{lang('In approve')}</a>{/if}
                                                                                     {if $ic.status != 2}
-                                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">В спам</a>
+                                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">{lang('Into spam')}</a>
                                                                                     {else:}
-                                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">В ожидающие модерации</a>
+                                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">{lang('Wait moderation')}</a>
                                                                                     {/if}
-                                                                                    <a href="#" class="ref_remove com_del" data-id="{$ic.id}">Удалить</a>
+                                                                                    <a href="#" class="ref_remove com_del" data-id="{$ic.id}">{lang('Delete')}</a>
                                                                                 </span>
                                                                             </div>
                                                                         </td>

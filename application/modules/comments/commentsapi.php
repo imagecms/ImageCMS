@@ -98,7 +98,7 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : 'Оставить отзыв',
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : lang('Leave a comment'),
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -196,7 +196,7 @@ class Commentsapi extends Comments {
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => "Время для оставления нового коментария еще не пришло"
+                            'validation_errors' => lang('Time for new  comment has not yet come')
                         )
                 );
                 return;

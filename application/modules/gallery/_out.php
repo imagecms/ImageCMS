@@ -49,7 +49,7 @@
             </form>
         </div>
     </div>
-</section><div id="titleExt"><h5> <?php widget('path') ?> <span class="ext">Галерея</span></h5></div>
+</section><div id="titleExt"><h5> <?php widget('path') ?> <span class="ext"><?php  lang('Gallery') ?></span></h5></div>
 
  <?php if is_array($albums) ?> 
 <ul class="products">
@@ -64,7 +64,7 @@
 </ul>
 
  <?php else: ?> 
-    Альбомов не найдено.
+    <?php lang('Albums not found.') ?>
  <?php /if ?> 
 <script src=" <?php $THEME ?> /js/lightBox/js/jquery.lightbox-0.5-min.js"></script>
 <link rel="stylesheet" type="text/css" href=" <?php $THEME ?> /js/lightBox/css/jquery.lightbox-0.5-min.css" />
@@ -75,7 +75,7 @@
      ?> )
     </script>
  <?php /literal ?> 
-<div id="titleExt"><h5><a href=" <?php site_url('gallery') ?> ">Галерея</a> &gt;&gt; <span class="ext"> <?php $album.name ?> </span></h5></div>
+<div id="titleExt"><h5><a href=" <?php site_url('gallery') ?> "><?php lang('Gallery')) ?></a> &gt;&gt; <span class="ext"> <?php $album.name ?> </span></h5></div>
 
 <div align="center">
 <table cellpadding="1" cellspacing="1" border="0">
@@ -88,16 +88,16 @@
     </tr>
     <tr>
         <td>
-            <span class="g_small">Изображение  <?php $current_pos ?>  из  <?php count($album.images) ?> </span>
+            <span class="g_small"><?php lang('Image') ?><?php $current_pos ?><?php lang('from') ?><?php count($album.images) ?> </span>
         </td>
         <td align="right">
-            <span class="g_small"><a href=" <?php site_url('gallery/thumbnails/' . $album.id) ?> ">Все изображения</a></span>
+            <span class="g_small"><a href=" <?php site_url('gallery/thumbnails/' . $album.id) ?> "><?php lang('All images') ?></a></span>
         </td>
     </tr>
 </table>
 
-     <?php if $prev ?> <a id="gallery_nav" href=" <?php site_url($album_link . 'image/'. $prev.id) ?> "#image>&lt;&lt;&nbsp;Предыдущая</a>&nbsp;&nbsp; <?php /if ?> 
-     <?php if $next ?> &nbsp;&nbsp;<a id="gallery_nav" href=" <?php site_url($album_link . 'image/'. $next.id) ?> "#image>Следующая&nbsp;&gt;&gt;</a> <?php /if ?> 
+     <?php if $prev ?> <a id="gallery_nav" href=" <?php site_url($album_link . 'image/'. $prev.id) ?> "#image>&lt;&lt;&nbsp;<?php lang('Previous') ?></a>&nbsp;&nbsp; <?php /if ?> 
+     <?php if $next ?> &nbsp;&nbsp;<a id="gallery_nav" href=" <?php site_url($album_link . 'image/'. $next.id) ?> "#image><?php lang('Naxt') ?>&nbsp;&gt;&gt;</a> <?php /if ?> 
 </div>
 
 <br />
@@ -123,7 +123,7 @@
 </div>
 -->
 
-<div id="titleExt"><h5><a href=" <?php site_url('gallery') ?> ">Галерея</a> &gt;&gt; <span class="ext"> <?php $album.name ?> </span></h5></div>
+<div id="titleExt"><h5><a href=" <?php site_url('gallery') ?> "><?php lang('Gallery')?></a> &gt;&gt; <span class="ext"> <?php $album.name ?> </span></h5></div>
 <ul class="products thumbs">
 	  <?php $counter = 1 ?> 
      <?php foreach $album.images as $image ?> 
@@ -264,9 +264,9 @@
 
         <div class="menu">
             <ul>
-                <li><a href=" <?php site_url('gallery') ?> ">Все альбомы</a><li>
+                <li><a href=" <?php site_url('gallery') ?> "><?php lang('All albums') ?></a><li>
                 <li class="empty"></li>
-                <li>Категрии:<li>
+                <li><?php lang('Categories') ?>:<li>
                  <?php foreach $gallery_category as $category ?> 
                 <li><a href=" <?php site_url('gallery/category/' . $category.id) ?> "> <?php $category.name ?> </a></li>
                  <?php /foreach ?> 
@@ -656,7 +656,7 @@
                                             <img src=" <?php $THEME ?> /img/no_image.png"/>
                                          <?php /if ?> 
                                         <div class="m-t_10">
-                                            <a href="/admin/components/init_window/gallery/edit_album/ <?php $item.id ?> " class="btn btn-small" data-rel="tooltip" data-title=" <?php lang("View images") ?> "><i class="icon-fullscreen"></i> Просмотр фото</a>
+                                            <a href="/admin/components/init_window/gallery/edit_album/ <?php $item.id ?> " class="btn btn-small" data-rel="tooltip" data-title=" <?php lang("View images") ?> "><i class="icon-fullscreen"></i><?php lang('Photo view') ?></a>
                                         </div>
                                     </div>
                                 </td>
@@ -686,8 +686,8 @@
                                             <tr>
                                                 <th></th>
                                                 <td>
-                                                    <a href="/admin/components/init_window/gallery/edit_album_params/ <?php $item.id ?> " class="btn btn-small   " data-rel="tooltip" data-title=" <?php lang('a_to_edit') ?> "><i class="icon-edit"></i> Редактировать альбом</a>
-                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/ <?php echo $item.id ?> / <?php echo $item.category_id ?> ')" data-title=" <?php lang("Delete") ?> " data-remove=""><i class="icon-trash icon-white"></i> Удалить альбом</button>
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/ <?php $item.id ?> " class="btn btn-small   " data-rel="tooltip" data-title=" <?php lang('a_to_edit') ?> "><i class="icon-edit"></i> <?php lang('Edit album') ?></a>
+                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/ <?php echo $item.id ?> / <?php echo $item.category_id ?> ')" data-title=" <?php lang("Delete") ?> " data-remove=""><i class="icon-trash icon-white"></i><?php lang('Delete album') ?></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -855,10 +855,10 @@
 <div class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Удаление категорий</h3>
+        <h3><?php lang('Delete categories') ?></h3>
     </div>
     <div class="modal-body">
-        <p>Удалить выбранные категории?</p>
+        <p><?php lang('Delete selected categories') ?>?</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');"> <?php lang("Cancel") ?> </a>
@@ -909,10 +909,10 @@
 <div class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Удаление категорий</h3>
+        <h3><?php lang('Removing categories') ?></h3>
     </div>
     <div class="modal-body">
-        <p>Удалить выбранные категории?</p>
+        <p><?php lang('Delete selected categories') ?>?</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');"> <?php lang("Cancel") ?> </a>
@@ -965,7 +965,7 @@
                         </td>
                         <td>
                              <?php if $category.albums_count ?> 
-                                <a href="/admin/components/init_window/gallery/category/ <?php $category.id ?> " class="pjax" data-rel="tooltip" data-placement="top" data-original-title=" <?php lang("View albums") ?> " >(Просмотр альбомов)</a>
+                                <a href="/admin/components/init_window/gallery/category/ <?php $category.id ?> " class="pjax" data-rel="tooltip" data-placement="top" data-original-title=" <?php lang("View albums") ?> " >(<?php lang('View albums')?>)</a>
                              <?php /if ?> 
                              <?php $category.albums_count ?> 
                         </td>
@@ -1086,7 +1086,7 @@
                         <label class="control-label" for="category_id"> <?php lang("Categories") ?> :</label>
                         <div class="controls">
                             <select name="category_id" id="category_id">
-                                <!-- <option value="0">Нет</option> -->
+                                <!-- <option value="0"><?php lang('No')?></option> -->
                                  <?php foreach $categories as $item ?> 
                                     <option value=" <?php $item.id ?> "> <?php $item.name ?> </option>
                                  <?php /foreach ?> 
@@ -1159,7 +1159,7 @@
         </div>
         <div class="pull-right">                
             <div class="d-i_b">
-                <a  href="/admin/components/cp/gallery/edit_album/ <?php $album.id ?> "  class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <a  href="/admin/components/cp/gallery/edit_album/ <?php $album.id ?> "  class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u"><?php lang('Return') ?></span></a>
             </div>
         </div>            
             

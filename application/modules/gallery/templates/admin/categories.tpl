@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             {if $category.albums_count}
-                                <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang("View albums")}" >(Просмотр альбомов)</a>
+                                <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang("View albums")}" >({lang("View albums")})</a>
                             {/if}
                             {$category.albums_count}
                         </td>

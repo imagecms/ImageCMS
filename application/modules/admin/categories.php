@@ -56,7 +56,7 @@ class Categories extends BaseAdminController {
                 $this->db->query($query);
             }
 
-            showMessage('Позиция успешно сохранена');
+            showMessage(lang("The position has been successfully saved"));
         }
     }
 

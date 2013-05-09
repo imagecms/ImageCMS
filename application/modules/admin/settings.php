@@ -29,9 +29,9 @@ class Settings extends BaseAdminController {
 
         #Tiny MCE themes in lib_editor
 //        $themes_arr = array(
-//            'simple' => 'Простая',
-//            'advanced' => 'Расширеная',
-//            'full' => 'Полная'
+//            'simple' => lang('Simple'),
+//            'advanced' => lang('Extended'),
+//            'full' => lang('Full')
 //        );
 //
 //        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
@@ -39,7 +39,7 @@ class Settings extends BaseAdminController {
 //        $this->template->assign('editor_themes', $themes_arr);
 //        $this->template->assign('theme_selected', $settings['editor_theme']);
 
-        $this->template->assign('work_values', array('yes' => 'Да', 'no' => 'Нет'));
+        $this->template->assign('work_values', array('yes' => lang("Yes"), 'no' => lang("No")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
 
