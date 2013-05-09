@@ -119,7 +119,7 @@
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="photo">
                                         <figure>
-                                            <img src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}" 
+                                            <img src="{$orderProduct->getSProducts()->firstVariant->getSmallPhoto()}" 
                                                  alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
                                         </figure>
                                     </a>
