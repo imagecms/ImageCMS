@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => 'Filter',     
-	'description' => 'Поиск страниц и категорий по доп. полях.',                  
+	'description' => lang('Search pages and categories to add. fields'),                  
 	'admin_type'  => 'window',            
 	'window_type' => 'xhr',               
         'w'           => 600,                 	

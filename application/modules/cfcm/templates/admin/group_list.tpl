@@ -9,16 +9,16 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>{lang("Save")}</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>{lang("Save and exit")}</button>
 
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        Русский
+                        {lang("Russian")}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Английский</a></li>
+                        <li><a href="#">{lang("English")}</a></li>
                     </ul>
                 </div>
 

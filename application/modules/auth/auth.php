@@ -71,7 +71,7 @@ class Auth extends MY_Controller {
     function validate_username($str) {
 //         $result = (!preg_match("/^([@.-a-z0-9_-])+$/i", $str)) ? false : true;
 //         if ($result === false)
-//             $this->form_validation->set_message('validate_username', 'Поле Логин может содержать только буквы, цифры, подчеркивания тире или e-mail адрес.');
+//             $this->form_validation->set_message('validate_username',  lang('Login field can only contain letters, numbers, underscores, dashes, or e-mail address'). '.');
 //         return $result;
     }
 
@@ -124,7 +124,7 @@ class Auth extends MY_Controller {
                     $template = $this->template->fetch('shop/default/auth_data');
                     return json_encode(array(
                         'close' => true,
-                        'msg' => "<div class='fancy authcomplete'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
+                        'msg' => "<div class='fancy authcomplete'><h1>" . lang('Authorization') . "</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>" . lang('Authorization successfully completed') . "</div></div></div>",
                         'header' => $template,
                         'reload' => 1,
                             ));

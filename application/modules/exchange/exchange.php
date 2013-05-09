@@ -153,7 +153,7 @@ class Exchange {
         if (md5(session_id()) == $string) {
         return true;
         } else {
-            die("Ошибка безопасности!!!");
+            die(lang('Security Error!!!'));
         }
     }
 

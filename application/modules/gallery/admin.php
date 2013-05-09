@@ -284,7 +284,7 @@ class Admin extends BaseAdminController {
             // Create folder for admin thumbs 
             @mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
-            showMessage('Альбом создан');
+            showMessage(lang('Album created'));
 
             pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
         }
@@ -511,7 +511,7 @@ class Admin extends BaseAdminController {
                 $this->gallery_m->set_album_cover($image['album_id'], NULL);
             }
 
-            //showMessage('Изменения сохранены');
+            //showMessage(lang('Changes are saved'));
 
             pjax('/admin/components/cp/gallery/edit_album/' . $image['album_id']);
         } else {

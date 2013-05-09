@@ -7,9 +7,9 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>                   
+                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>                   
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang("Save")}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>Создать и выйти</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Create and exit')}</button>
                 </div>
             </div>                            
         </div>

@@ -44,7 +44,7 @@
                                             {$arr = array()}
                                             {foreach $groupRels as $gr}
                                                 {if $gr['field_name'] == $f.field_name}
-                                                    {if $gr.group_id == -1}{$arr[] = 'Без категории'}{/if}
+                                                    {if $gr.group_id == -1}{$arr[] = lang('Without catagory')}{/if}
                                                     {if $arr[] = $gr['name']}
                                                         {$i++}
                                                     {/if}
@@ -66,7 +66,7 @@
                         </table>
                     {else:}        
                         <div class="alert alert-info">
-                            Список дополнительных полей пуст
+                            {lang('List of additional fields is empty')}
                         </div>
                     {/if}
                 </div>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <h4>{lang('a_field_groups')}</h4>
-                    {if $groups[0] == 'Без группы'}
+                    {if $groups[0] == lang('Without group')}
                         <div class="alert alert-info">
                             {echo $groups[0]}
                         </div>

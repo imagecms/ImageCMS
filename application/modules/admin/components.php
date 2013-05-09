@@ -131,7 +131,7 @@ class Components extends BaseAdminController {
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
                 $this->lib_admin->log(lang("Deleted a module") . $module);
-                showMessage('Модуль успешно деинсталирован');
+                showMessage(lang("The module successfully uninstall"));
                 pjax('/admin/components/modules_table');
             } else {
                 showMessage(lang("Module deletion error"), false, 'r');
@@ -233,7 +233,7 @@ class Components extends BaseAdminController {
 
             $this->lib_admin->log(lang("Changed the module settings") . $com['name']);
 
-            //showMessage('Настройки сохранены');
+            //showMessage(lang('Settings are saved'));
         } else {
             // Error, module not found
         }
@@ -252,7 +252,7 @@ class Components extends BaseAdminController {
 
             switch ($com_info['admin_type']) {
                 case 'window':
-                    //buildWindow($module . '_window', 'Модуль: ' . $com_info['menu_name'], site_url('admin/components/cp/' . $module), $com_info['w'], $com_info['h'], $com_info['window_type']);
+                    //buildWindow($module . '_window', lang('Module') . ': ' . $com_info['menu_name'], site_url('admin/components/cp/' . $module), $com_info['w'], $com_info['h'], $com_info['window_type']);
                     //pjax('/admin/components/cp/'.$module, '.row-fluid');
                     $this->cp($module);
                     break;

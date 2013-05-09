@@ -144,7 +144,7 @@ class Widgets_manager extends BaseAdminController {
                 $this->lib_admin->log(lang("Created a widget") . $data['name']);
 
                 $conf_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '_form.tpl';
-                showMessage('Виджет создан.');
+                showMessage(lang("Widget created") . '.');
 
                 if (file_exists($conf_file))
                     pjax('/admin/widgets_manager/edit/' . $data['id']);
@@ -178,7 +178,7 @@ class Widgets_manager extends BaseAdminController {
 
                 $findId = $this->db->insert_id();
 
-                showMessage('Виджет создан.');
+                showMessage(lang("Widget created") . '.');
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 //pjax('/admin/widgets_manager/edit_html_widget/'.$findId);

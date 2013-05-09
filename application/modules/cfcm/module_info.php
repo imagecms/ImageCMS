@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Конструктор полей',     // Menu name
-	'description' => 'Конструктор доп. полей для страниц и категорий',                  // Module Description
+	'menu_name'   => lang('Fields designer'),     // Menu name
+	'description' => lang('Additional fields designer for pages and categories'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
     'w'           => 600,                 // Window width

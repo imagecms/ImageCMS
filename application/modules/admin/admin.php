@@ -73,7 +73,7 @@ class Admin extends MY_Controller {
                     $message = lang("Cache has been cleared");
                 break;
             default: {
-                    $message = 'Ошибка очистки кэша';
+                    $message = lang("Clearing cache error");
                     $result = false;
                 }
         }
@@ -155,6 +155,7 @@ class Admin extends MY_Controller {
         $this->lib_admin->log(lang("exited the control panel"));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
+        
     }
 
     public function report_bug() {
@@ -167,7 +168,7 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-        $message .= 'Адрес сайта: ' . trim(strip_tags($_GET['hostname'])) . '; стораница: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; <br/> Сообщение: ' . trim(strip_tags($_GET['text']));
+        $message .= lang("Site address") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page") .': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message") . ': ' . trim(strip_tags($_GET['text']));
 
         /* send message */
         $this->email->from('bugs@imagecms.net', 'Admin Robot');

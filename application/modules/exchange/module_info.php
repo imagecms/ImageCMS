@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 $com_info = array(
     'menu_name' => '1C exchange',
-    'description' => 'Модуль для 1C импорта/експорта',
+    'description' => lang('1C module for Import / Export'),
     'admin_type' => 'inside',
     'window_type' => 'xhr',
     'w' => 600,

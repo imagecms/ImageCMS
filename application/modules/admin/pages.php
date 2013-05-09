@@ -690,7 +690,7 @@ class Pages extends BaseAdminController {
             }
         }
 
-        showMessage('Удаление прошло успешно');
+        showMessage(lang("Successful delete"));
         pjax($_SERVER["HTTP_REFERER"]);
     }
 
@@ -771,13 +771,13 @@ class Pages extends BaseAdminController {
             }
 
             if ($action == 'copy')
-                showMessage('Копирование прошло успешно');
+                showMessage('Successful copying');
             else if ($action == 'move')
-                showMessage('Перемещение прошло успешно');
+                showMessage(lang("Successful moving"));
             pjax($_SERVER["HTTP_REFERER"]);
         }
         else
-            showMessage('Ошибка операции');
+            showMessage(lang("The operation error"));
     }
 
     /**
