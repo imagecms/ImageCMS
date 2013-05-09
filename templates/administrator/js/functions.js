@@ -840,8 +840,103 @@ var orders = new Object({
         $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
             $('.notifications').append(data);
         });
+    },
+    getProductsInCategory: function(categoryId){
+        $('#variantInfoBlock').hide();
+        $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
+            type: "post",
+            data: 'categoryId='+categoryId,
+            async: false,
+            success: function(data) {
+                products = JSON.parse(data)
+                $("#productsForOrders").empty();
+                $("#variantsForOrders").empty();
+                for (i=0; i< products.length; i++){
+                    $("#productsForOrders").append( $('<option data-productName=\''+products[i]['name']+'\' value='+products[i]['id']+'>'+products[i]['name']+'</option>'));
+                }
+            }
+        });
+    },
+    getProductVariantsByProduct: function(productId, productName){
+        $('#variantInfoBlock').hide();
+        $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetProductVariants/',
+            type: "post",
+            data: 'productId='+productId,
+            complete: function(data) {
+                productVariants = JSON.parse(data.responseText);
+                $("#variantsForOrders").empty();
+                for (i=0; i< productVariants.length; i++){
+                    var variantName = 'noName';
+                    if (productVariants[i]['name'] != ''){
+                        variantName = productVariants[i]['name'];
+                    }
+                    $("#variantsForOrders").append($('<option data-stock='+productVariants[i]['stock']+' data-price='+productVariants[i]['price']+' data-variantName=\''+variantName+
+                        '\' data-productId='+productId+' data-productName=\''+productName+'\' data-productCurrency='+curr+' data-variantId='+productVariants[i]['id']+
+                        ' value='+productVariants[i]['id']+'>'+variantName+' - '+productVariants[i]['price']+' '+curr+'</option>'));
+                }
+            }
+        });
+    },
+    //Add product to cart in admin
+    addToCartAdmin: function(element){
+        var clonedElement = $('.addNewProductBlock').clone(true).removeClass('addNewProductBlock');
+        var data = element.data();
+        var variantName = '-';
+        
+        if (data.variantname != 'noName'){
+            variantName = data.variantname;
+        }
+        clonedElement.find('.variantCartName').html(variantName);
+        clonedElement.find('.productCartName').html(data.productname);
+        clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
+        clonedElement.find('.productCartPriceSymbol').html(data.productcurrency);
+        
+        //Input values
+        clonedElement.find('.inputProductId').val(data.productid);
+        clonedElement.find('.inputProductName').val(data.productname);
+        clonedElement.find('.inputVariantId').val(data.variantid);
+        clonedElement.find('.inputVariantName').val(variantName);
+        clonedElement.find('.inputPrice').val(data.price);
+        clonedElement.find('.inputQuantity').val(1);
+        
+        
+        $('#insertHere').append(clonedElement);
+        
+        inputUpdatePrice = clonedElement.find('.productCartQuantity');
+        inputUpdatePrice.data('stock',data.stock);
+        orders.updateQuantityAdmin(inputUpdatePrice);
+        
+    },
+    deleteCartProduct: function(element){
+        $(element).closest('tr').remove();
+        orders.updateTotalCartSum();
+    },
+    updateQuantityAdmin: function(element){
+        var stock = $(element).data('stock');
+        var row = $(element).closest('tr');
+        var quantity = $(element).val();
+        var price = row.find('.productCartPrice').html();
+        
+        if (quantity > stock){
+            $(element).val(stock);
+            quantity = stock;
+        }
+        total = price * quantity;
+        row.find('.productCartTotal').html(total.toFixed(2));
+        
+        orders.updateTotalCartSum();
+        
+    },
+    updateTotalCartSum: function(){
+        var total = parseFloat(0);
+        allPrices = $('#insertHere').find('.productCartTotal')
+        allPrices.each(function(i,element){
+            total = total + parseFloat($(element).html());
+        })
+        $('#totalCartSum').html(parseFloat(total).toFixed(2));
     }
-
 });
 
 var orderStatuses = new Object({
@@ -1070,4 +1165,20 @@ function clone_object() {
         })
     }
 }
+var variantInfo = new Object({
+    getImage: function(variantId) {
+        var imageName = '';
+        $.ajax({
+            url: "/admin/components/run/shop/orders/getImageName",
+            async: false,
+            type: "post",
+            data : 'variantId='+variantId,
+            success: function(data) {
+                imageName = data;
+            }
+        });
+        return imageName;
+    }
+})
+
 window.onload = clone_object();

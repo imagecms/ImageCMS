@@ -16,7 +16,7 @@ class Sample_Module extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-//        \CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
+        //\CMSFactory\Events::create()->registerEvent(array('commentId' => 144));
 
         /** Запускаем инициализацию переменых. Значения будут взяты з
          *  Базы Данных, и присвоены соответствующим переменным */
@@ -34,8 +34,9 @@ class Sample_Module extends MY_Controller {
      * уплавнеия модулями.
      */
     public function autoload() {
-        if (TRUE == $this->useEmailNotification)
-            \CMSFactory\Events::create()->setListener('handler', 'Sample_Module:__construct');
+        if ('TRUE' == $this->useEmailNotification)
+//            \CMSFactory\Events::create()->setListener('handler', 'Sample_Module:__construct');
+            \CMSFactory\Events::create()->setListener('handler', 'Commentsapi:newPost');
     }
 
     public function changeStatus($commentId, $status, $key) {
@@ -81,18 +82,16 @@ class Sample_Module extends MY_Controller {
 
         /** Теперь переменная содержит HTML тело нашего письма */
         $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment, 'key' => $this->key))->fetchTemplate('emailPattern');
-        echo $message;
 
         /** Настроявием отправку Email http://ellislab.com/codeigniter/user-guide/libraries/email.html */
-        $this->mailTo = 'grooteam@gmail.com';
         $this->load->library('email');
         $this->email->initialize(array('mailtype' => 'html'));
         $this->email->from('robot@sitename.com', 'Comments Robot');
         $this->email->to($this->mailTo);
         $this->email->subject('New Comment received');
         $this->email->message($message);
-//        $this->email->send();
-        echo $this->email->print_debugger();
+        $this->email->send();
+//        echo $this->email->print_debugger();
     }
 
     private function initSettings() {
