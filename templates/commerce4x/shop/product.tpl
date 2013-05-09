@@ -23,10 +23,10 @@
                 <!--Photo block for main product-->
                 <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo">
+                    <a rel="group" id="photoGroup" href="{$model->firstVariant->getMainPhoto()}" class="photo">
                         <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                            <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{$model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">
@@ -34,10 +34,10 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
-                                    <a rel="group" href="{echo $image->getThumbUrl()}" class="photo">
+                                    <a rel="group" href="{productImageUrl('/products/additional/'.$image->getImageName())}" class="photo">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                            <img src="{productImageUrl('/products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
                                 </li>
@@ -87,17 +87,15 @@
                                 <!-- End. Output of all the options -->
 
                                 <!-- Start. Collect information about Variants, for future processing -->
-                                {foreach $model->getProductVariants() as $key => $pv}
-                            {if $pv->getMainImage()}{$mainImage = productImageUrl($pv->getMainImage())}{else:}{$mainImage = productImageUrl($model->getMainimage())}{/if}
-
+                        {foreach $model->getProductVariants() as $key => $pv}
                             <span class="variant_{echo $pv->getId()}" 
                                   data-id="{echo $pv->getId()}"
                                   data-name="{echo ShopCore::encode($pv->getName())}"
                                   data-price="{echo $pv->toCurrency()}"
                                   data-number="{echo $pv->getNumber()}"
                                   data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                  data-mainImage="{echo $mainImage}"
-                                  data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                  data-mainImage="{$pv->getMainPhoto()}"
+                                  data-smallImage="{echo productImageUrl($pv->getSmallPhoto())}"
                                   data-stock="{echo $pv->getStock()}"
                                   style="display: none;">
                             </span>
@@ -379,7 +377,7 @@
                                         <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
                                             <figure>
                                                 <span class="helper"></span>
-                                                <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                                <img src="{$p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
                                             </figure>
                                         </a>
                                     </div>
