@@ -49,6 +49,7 @@ class Exchange {
     private $brand = array();
     private $prop = array();
     private $prop_data = array();
+    private $urls = array();
 
     public function __construct() {
         set_time_limit(0);
@@ -68,6 +69,7 @@ class Exchange {
         $this->prod = load_product();
         $this->prop = load_prop();
         $this->prop_data = load_prop_data();
+        $this->urls = load_urls();
 
         $this->locale = $this->getCurrentLocale();    //getting current locale
 
@@ -609,7 +611,13 @@ class Exchange {
                 $data['action'] = false;
                 $data['added_to_cart_count'] = 0;
                 $data['enable_comments'] = true;
-                $data['url'] = translit_url($product->Наименование);
+
+                if (in_array(translit_url($product->Наименование), $this->urls)) {
+                    $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
+                } else {
+                    $data['url'] = translit_url($product->Наименование);
+                    $this->urls[] .= $data['url'];
+                }
 
                 //inserting prepared data to shop_products table
                 $this->ci->db->insert($this->products_table, $data);
@@ -620,13 +628,35 @@ class Exchange {
                 $data = array();
 
                 //setting images if $product->Картинка not empty
-                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
+                if ($product->Картинка != '' OR $product->Картинка != null) {
 
-                    $image = explode('/', $product->Картинка);
-                    $image = end($image);
+                    $picture = null;
+                    foreach ($product->Картинка as $p) {
+                        $p = explode('/', $p);
+                        $p = end($p);
+                        $picture[] .= $p;
+                    }
 
-                    @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
-                    $img[$i] = $image;
+                    if (count($picture) > 1) {
+                        $this->db->delete('shop_product_images', array('product_id' => $insert_id));
+
+                        foreach ($picture as $key => $pic) {
+                            if ($key == '0') {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
+                            } else {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/additional/' . $pic);
+
+                                $this->db->set('product_id', $insert_id);
+                                $this->db->set('image_name', $img);
+                                $this->db->set('position', $key - 1);
+                                $this->db->insert('shop_product_images');
+                            }
+                        }
+                    }
+                    else
+                        @copy($this->tempDir . 'images/' . $picture[0], './uploads/shop/products/origin/' . $picture[0]);
+
+                    $img[$i] = $picture[0];
                 }
 
                 //preparing data for shop_products_i18n table
@@ -735,7 +765,6 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
                 $data['updated'] = time();
-                $data['url'] = translit_url($product->Наименование . "");
 
                 if ($product->Статус == 'Удален')
                     $data['active'] = false;
@@ -748,12 +777,33 @@ class Exchange {
                 //setting images if $product->Картинка not empty
                 if ($product->Картинка != '' OR $product->Картинка != null) {
 
-                    $image = explode('/', $product->Картинка);
-                    $image = end($image);
+                    $picture = null;
+                    foreach ($product->Картинка as $p) {
+                        $p = explode('/', $p);
+                        $p = end($p);
+                        $picture[] .= $p;
+                    }
 
-                    @copy($this->tempDir . 'images/' . $image, './uploads/shop/products/origin/' . $image);
+                    if (count($picture) > 1) {
+                        $this->db->delete('shop_product_images', array('product_id' => $searchedProduct['id']));
 
-                    $img[$i] = $image;
+                        foreach ($picture as $key => $pic) {
+                            if ($key == '0') {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
+                            } else {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/additional/' . $pic);
+
+                                $this->db->set('product_id', $searchedProduct['id']);
+                                $this->db->set('image_name', $img);
+                                $this->db->set('position', $key - 1);
+                                $this->db->insert('shop_product_images');
+                            }
+                        }
+                    }
+                    else
+                        @copy($this->tempDir . 'images/' . $picture[0], './uploads/shop/products/origin/' . $picture[0]);
+
+                    $img[$i] = $picture[0];
                 }
 
                 //preparing data for shop_products_i18n table
