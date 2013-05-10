@@ -181,7 +181,7 @@ span.top_frame_tov .title{color:#333;}
 .frame_search .frame_input span{height: 100%;top: 0;position: absolute;width: 21px;}
 .frame_search span.l_p{left: 0;background-position: -462px 0;}
 .frame_search span.r_p{right: -12px;background-position: -436px 0;}
-.frame_search .frame_input input{background-position: 0 -188px;height: 44px;border: 0;padding: 0;font-size: 16px;padding-left: 12px;}
+.frame_search .frame_input input{background-position: 0 -188px;height: 44px;border: 0;padding: 0;font-size: 16px;padding-left: 20px;-moz-border-radius: 0 10px 10px 0;-webkit-border-radius: 0 10px 10px 0;-moz-border-radius: 0 10px 10px 0;}
 .search_button{background-position: 0 -283px;height: 47px;line-height: 47px;color: #343434;font-size: 22px;width: 100px;text-align: center;}
 .map .figure{max-width: 100%;}
 
