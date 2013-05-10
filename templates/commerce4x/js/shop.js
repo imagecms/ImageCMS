@@ -370,8 +370,7 @@ var Shop = {
                     cartItem.img = $(images[0]).attr('src');
             });
         delete  images;
-
-
+        
         //check for product page
         if ($context.data('prodpage')) {
             if (!cartItem.kit){
@@ -379,11 +378,19 @@ var Shop = {
                 smallImage = $('span.variant_' + variantId).attr('data-smallImage');
                 cartItem.img = smallImage;
             }
-            
             if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)
                 cartItem.img = $context.closest('.container').find('img').first().attr('src');
+        }
+        /** Prepare kits images */
+        if (cartItem.kit){
+            kitImages = [];
+            img = $context.closest('ul').find('img');
+            img.each(function (i,image){
+                kitImages.push(image.src);
+            })
+           cartItem.img = kitImages;
         }
 
 
