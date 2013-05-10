@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 4.0.0deb0ubuntu1ppa1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 19 2013 р., 11:34
--- Версія сервера: 5.5.29
--- Версія PHP: 5.4.6-1ubuntu1.2
+-- Час створення: Трв 10 2013 р., 14:39
+-- Версія сервера: 5.5.31-0ubuntu0.13.04.1
+-- Версія PHP: 5.4.9-4ubuntu2
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- БД: `premium`
+-- База даних: `premium`
 --
 
 -- --------------------------------------------------------
@@ -580,7 +580,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
 -- --------------------------------------------------------
 
@@ -597,7 +597,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=756 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=759 ;
 
 --
 -- Дамп даних таблиці `logs`
@@ -618,7 +618,10 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (752, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608759),
 (753, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/71"> Архив</a>', 1363608777),
 (754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618),
-(755, 1, 'admin', 'Вышел из панели управления', 1363617075);
+(755, 1, 'admin', 'Вышел из панели управления', 1363617075),
+(756, 47, 'admin', 'Вышел из панели управления', 1368174639),
+(757, 47, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1368174783),
+(758, 47, 'admin', 'Очистил кеш', 1368174887);
 
 -- --------------------------------------------------------
 
@@ -838,10 +841,6 @@ DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
-  `site_title` varchar(200) NOT NULL,
-  `site_short_title` varchar(50) NOT NULL,
-  `site_description` varchar(200) NOT NULL,
-  `site_keywords` varchar(200) NOT NULL,
   `create_keywords` varchar(25) NOT NULL,
   `create_description` varchar(25) NOT NULL,
   `create_cat_keywords` varchar(25) NOT NULL,
@@ -874,8 +873,32 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `settings_i18n`
+--
+
+DROP TABLE IF EXISTS `settings_i18n`;
+CREATE TABLE IF NOT EXISTS `settings_i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lang_ident` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `short_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `keywords` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `settings_i18n`
+--
+
+INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
+(1, 3, 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
 
 -- --------------------------------------------------------
 
@@ -10024,6 +10047,40 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `shop_sorting`
+--
+
+DROP TABLE IF EXISTS `shop_sorting`;
+CREATE TABLE IF NOT EXISTS `shop_sorting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pos` int(11) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `name_front` varchar(50) DEFAULT NULL,
+  `tooltip` varchar(50) NOT NULL,
+  `get` varchar(15) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Дамп даних таблиці `shop_sorting`
+--
+
+INSERT INTO `shop_sorting` (`id`, `pos`, `name`, `name_front`, `tooltip`, `get`, `active`) VALUES
+(1, 3, 'По рейтингу', 'Рейтинг', 'sdfsadf', 'rating', 1),
+(2, 0, 'От дешевих к дорогим', 'От дешевих к дорогим', 'gdsgsdfg', 'price', 1),
+(3, 2, 'От дорогих к дешевым', 'От дорогих к дешевим', 'fdghdfgh', 'price_desc', 1),
+(4, 1, 'Популярные', 'Популярние', '', 'hit', 1),
+(5, 4, 'Новинки', 'Новинки', 'fhdfh', 'hot', 1),
+(6, 5, 'Акции', 'Акции', '', 'action', 1),
+(7, 6, 'А-Я', 'Имени', '', 'name', 1),
+(8, 7, 'Я-А', 'Имени(Я-А)', '', 'name_desc', 1),
+(9, 7, 'Просмотров', 'Количеству просмотров', '', 'views', 1),
+(10, 9, 'Топ продаж', 'Топ продаж', '', 'topsales', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `shop_spy`
 --
 
@@ -10220,7 +10277,38 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+
+--
+-- Дамп даних таблиці `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`) VALUES
+(1, 1, 'admin1', '$6$17LKhkPw/gb3$3ljfZJYgwWM8Zp7tebTQoCTWJplTO8SJIOmzQUcN190lVURcVWcZIjP51Cto9HGylJL/MUW8cllLjajX6Hv74/', 'ad1@min.com', 0, '', '', '', NULL, '127.0.0.1', 2013, 2012, '0000-00-00 00:00:00', 'lviv', 'a:1:{s:17:"SProducts_740_849";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:740;s:9:"variantId";i:849;s:8:"quantity";i:1;s:5:"price";d:882.5;s:11:"variantName";s:0:"";}}', 'a:1:{i:739;a:2:{i:0;i:739;i:1;i:848;}}', '3', 0.00, '7', '123456789'),
+(45, NULL, 'плгпгоп', '$1$9x9zuc5H$ca.kSMwgCo3O3iGYchTXg.', 'hyftn@yfhy.com', NULL, NULL, '$6$jcT7EAR1m5fW$ynjoMgG7Rs/Oq0VYQ8N2jyonLx5znStADNS2lRs3aywZAgR0rba/bZK5iVFOPyu41cbd96AnjWUFtBFgPno5S.', '01c98d027c780c403f1eb2ad1caeca17', 2013, '95.133.123.99', 2013, 1362172515, NULL, '', 'a:1:{s:17:"SProducts_191_219";a:6:{s:8:"instance";s:9:"SProducts";s:9:"productId";i:191;s:9:"variantId";i:219;s:8:"quantity";i:1;s:5:"price";d:824;s:11:"variantName";s:0:"";}}', NULL, '', 0.00, NULL, 'thfghfh'),
+(43, NULL, 'asd', '$1$iX0.D40.$3KQvRugPWnG.ww.7YhMYA.', 'same_one@mail.ru', NULL, NULL, '$6$j0ScZl62SQHd$FqJ/LqrTl3FVPfA.nd0yOPANP/DVtcf3VshCEuRWwwtDe6KhRq/QVBYUTAc4QO5qGW6x2fDFgmWPAIrOocl4g0', '40bd170d1e69319030d88ee650dfacfe', 2013, '127.0.0.1', 2013, 1358358993, NULL, '', NULL, NULL, 'NvJLj', 0.00, NULL, ''),
+(2, NULL, 'Василий Пупкин', '$1$fCYNXvZ/$8XtmYCvq/zhA3Fc//ou00.', 'vasil.pypkin@mail.ru', NULL, NULL, '$6$tk11RlNJArve$aAWw09vkiUkmfmRZhq8ROYjMjFinpMwCvWIISi.ZLC4gahdDuIs7qkMqKRstX4UJ2hlJkpOjKuIs42wQ9RdBT/', '80551cfc2daf497f1392c5489a0d7759', 2013, '127.0.0.1', NULL, 944006400, NULL, 'г. Москва', NULL, NULL, 'Rw9x4', 0.00, NULL, '+38050 123 45 67'),
+(3, 2, 'Оксана', '$1$LjN2NDGo$pm.0w5ad56jcfU7d7lrMP1', 'oksana@mail.ru', NULL, NULL, '$6$X8pz/sNPCf6F$7R2lM9I05HLJUeOCbRzGsKSP3dMwOta5JzMDzT4ldQsLenTyCFenRYocC/g4SBbU.T3EODyPE5WeBwwaYINcU/', '8b7de9e7f5685379bc9fb183f41950f1', 2013, '127.0.0.1', NULL, 1116806400, NULL, 'г. Тула', NULL, NULL, 'iZkSk', 0.00, NULL, '+3 098 357 78 54'),
+(4, NULL, 'Валентин', '$1$5E22OQfO$LSChb/.1d0am5RWhTVom10', 'valentin@rambler.ru', NULL, NULL, '$6$CxWSXAUK5nPg$vmLqKSayukD0/ZUcny9jBsKuuhNF4Ytkx588cFNzwBnSYS/j9XjodAybl4CNfRqziGEuS.oHgtrDRx9Ga3jfj.', '6dbf9fcd0e696b1ea413984373e4ce7f', 2013, '127.0.0.1', NULL, 1186963200, NULL, 'м. Львів', NULL, NULL, 'jzgdZ', 0.00, NULL, '+ 067 546 87 54'),
+(5, NULL, 'Игор Петрович', '$1$SBeN16qQ$oaDnHR7lNu2RvEygOUpxq.', 'kalmar@gmail.com', 0, NULL, '$6$OyP14QGScXZq$lCpHSs.9gUqbKttUGUthhQGy4duO.az3A7i24MJae.DSzx2AYXQcVU56f1l5yDF3MQvVEGDnbfpVDCjTCD67f.', '2e971973091c49a319a51cd630821ca0', 2013, '127.0.0.1', NULL, 1300147200, NULL, 'г. Тверь', NULL, NULL, 'BHElK', 0.00, NULL, '054 245 64 34'),
+(6, NULL, 'Валентина', '$1$mnMRiwMI$WAjrtxf8CuYzFCNKrgvvH0', 'geg@g.com', NULL, NULL, '$6$UtqtedvjJ4Ne$VhYr7wJt9/1GL2OpQTAIu4vG62YRtKbFCD6jauSEJ/qSvt8FBAQNNDYbjhlp9UY2EItnKkrNZvMQIS8OZRJOO.', '1288d81c25a8842a3766785c8e0cb2fd', 2013, '127.0.0.1', 2012, 1336867200, NULL, '', NULL, NULL, 'apgKh', 0.00, NULL, ''),
+(7, NULL, 'Юлия', '$1$jpThhaAT$5rhMF1hVH/bU4SUboGAqY.', 'gola@go.go', NULL, NULL, '$6$Z0UXTwvtAcJ3$XbXS.qYJKuqZFfQI.YucNR5C5yUtpxMbgvgIw4bJ8DN1aAzv7XuXI9O6qLmfdWoPlqCuGySXeE7SD7RXMdhLf0', '80bbaa26c7b1feeac4df9faba277c5b2', 2013, '127.0.0.1', 2012, 923961600, NULL, '', NULL, NULL, 'PDO2h', 450.00, NULL, ''),
+(8, NULL, 'Микола', '$1$LZwk8Zeq$FtEgH7kznQhfM/DYQp5Xt0', 'hi@hello.com', NULL, NULL, '$6$av8sqSRFR9RO$4b762lr8ozGDTRrIa9zDfN1EyE//tz0Nliaxwpyd2HpJ0hYn2nyUOa0l76y0rOIwfsVpC2no9FPlMmioGfeQh.', 'fe83def6999fd952eec34ee3cf5b0f32', 2013, '127.0.0.1', 2012, 1204588800, NULL, '', NULL, NULL, 'v7AL9', 372.00, NULL, ''),
+(9, NULL, 'Петр', '$1$rtOiO.Kb$DoOEPmufZ0QoH6ALhIW8K/', 'go@gmail.com', NULL, NULL, '$6$jSkbj3WsvZVA$j0VH6mtUKo/i9rtV7kdDgonKz6uHSHT5vTPwhV5X2r3kwZ6uOarARdKk1E8wYq.OqHAhl5e0jt7nU6KJUQiNo.', '6d571143d02452ab12679a223a96ae44', 2013, '127.0.0.1', 2012, 1179878400, NULL, '', NULL, NULL, 'DfFay', 534.61, NULL, ''),
+(10, NULL, 'Юрий', '$1$7WY/C71c$yWo/60KT8o1Gpgz8NoR6g0', 'hell@hi.com', NULL, NULL, '$6$mgMKF2pVPd41$KT6jbbVZs0RP.eH5989IxH6Q.4r7PW0RVohcO3lS6nxh7HfSQa4sO8gGFU1ZjGAi1yHxLwmEImoA4mQDrje6d1', '79954f0d6b2020aa98e00f40022dca3f', 2013, '127.0.0.1', 2012, 1080000000, NULL, '', NULL, NULL, 'nnwHi', 1032.00, NULL, ''),
+(11, NULL, 'Артур', '$1$fqe/B31z$SCEUoyGht45BD7P7sGntB1', 'joker@g.com', NULL, NULL, '$6$WAoXG0patfNZ$Umw9QcEz./IrKoFWYSPp1PiGiVW2jwQRKXdZ5HyBN.Y7gGbPD4fD5MRnlc0jne45I6mupk6c3Yg1DQJj2CZ4U1', '313d38f7c0d9ea41500bfe24268879f2', 2013, '127.0.0.1', 2012, 1174608000, NULL, '', NULL, NULL, 'ZQMgY', 500.00, NULL, ''),
+(12, NULL, 'Роман', '$1$Q5OGVHIL$EdIFtjfNZS0esJhNJBT4S/', 'h@g.com', NULL, NULL, '$6$quLL8QG1ZPwn$rl41MAi0pZOljMWxzFSnYDM62n76U0RjrtelS6sZgHb5r7sfQtVUBcoNwgZt6YFy9Dgs15umtiHhW42.gW8GN.', 'f5986b28f78d0c8af46812f61920626c', 2013, '127.0.0.1', 2012, 1139097600, NULL, '', NULL, NULL, 'vBYt5', 777.65, NULL, ''),
+(13, NULL, 'Иван', '$1$NuYcOL2u$DT9IMVrhso30lkt.KjX3R0', 't@com.com', NULL, NULL, '$6$q8ucLZKwvs86$Ql6T7WgJt2fhVSIaJCKrGBR0mJonpmjNEGHo.QUW.KZIRBtUrKthF1B4tL26.au8oVK2KHtga6iXhLjFH2iWd1', 'bce2c8906a95d795cf259daadd4624d0', 2013, '127.0.0.1', 2012, 1131148800, NULL, '', NULL, NULL, 'GvaoX', 39.95, NULL, ''),
+(14, NULL, 'roman', '$1$O4xM5INE$xXS1VKjNGADRAQ2ECq.fb/', 'hh@f.com', NULL, NULL, '$6$iQ0as36StqDT$eREVkAnVOHd3Ly9kidfQQQDeYGjeXR2xv6xKoxChwOw14asKxD9c/Do1.L2QiKPYmpGqLTCiIhBGJsRbH.yv31', 'd5d6025d7b1104e82b5120bb129dda04', 2013, '127.0.0.1', 2012, 1103760000, NULL, '', NULL, NULL, '4vuGR', 60.99, NULL, ''),
+(15, NULL, 'Степа', '$1$0URQeiKO$51AjUbMLddI89Q00wxbBd/', 'w@go.com', NULL, NULL, '$6$kI7saIAgNlh2$z0VIbXNQrQHCsYwKST7/OkrBMdcOUV/XizkXWDX0adXRBxN3U9xrLkxU8CHsWd7qyEw4gMdLEhY2dbB5p2KjU0', 'ed8c47decc43a74642d4d2d36edf8efa', 2013, '127.0.0.1', 2012, 1086307200, NULL, '', NULL, NULL, 'xjWwZ', 42.00, NULL, ''),
+(16, NULL, 'Катерина', '$1$K4BWApqA$78xLQXHIxL6MjnGsXHr/40', 'd@com.ua', NULL, NULL, '$6$TNGxr9mxvA8F$Tr5nT.IT/tsnFevnVXWuhQfjAPNm4ronGDYoyQLlw/Xq7mdivZ0ChtL3TSzacbRYteE/cIiVKKs0N2R.y/fvM0', '74d37fd410f5972eb4e9e350e9fecaf3', 2013, '127.0.0.1', 2012, 1094342400, NULL, '', NULL, NULL, 'L4TGA', 1000.00, NULL, ''),
+(17, NULL, 'Валерия', '$1$K7RfsI0I$H51xxHN4K41e3bYNnwkK7/', 'q@w.com', NULL, NULL, '$6$0iYLYlfc6fT5$Jn0uNZANZQNLmPWf3nXWQP4T6UYIyrdzb3R1FyVM82vF2oceiTGgxj7WXTJ8DHAIvWCFIuW4DsnyB9ceBp4Gl/', 'ae2ae2a2cbe6e972e342d8412b834710', 2013, '127.0.0.1', 2012, 984441600, NULL, '', NULL, NULL, 'MAWZm', 1178.99, NULL, ''),
+(37, NULL, '11111111', '$1$8L/.vA..$HbLCBTdFOqAXiw/IBJtYb.', 'ad4444444@min.com', NULL, NULL, '$6$tlknVXofyO1n$bObAJrKQlyEGW0q7m6bk0FcWygmLxqtFv9VmhR2uaBxlKXn.0mfzhyZ76wn7yhlzCEI3cTi4AeEFksQ2WERay/', '7573fba1d4369b3789a9bf02f4e264c9', 2013, '127.0.0.1', NULL, 1358270077, NULL, 'aaaaaa', NULL, NULL, '', 300.00, NULL, 'aa'),
+(38, NULL, 'mfmfmf', '$1$D23.QK2.$CnNcL.twaRCHkWFH5o9Ux0', 'mf@mf.mf', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358270150, NULL, 'mf', NULL, NULL, '', 0.00, NULL, 'mf'),
+(36, NULL, 'aaaaaaaaaaaaaa', '$1$jc5.wU..$xUAQH2lLNtWZpEyAAvm7p1', 'a111111111111d@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358269947, NULL, 'aaaaaaaaaaa', NULL, NULL, '', 0.00, NULL, 'aaaaaaaaaaaa'),
+(44, NULL, 'fghjghgfhfg', '$1$tV..ya0.$cqxP9PbWHid5r0LZzpzTa/', 'hghfgh@chgch.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', NULL, 1358963553, NULL, '', NULL, NULL, '', 10500.00, NULL, ''),
+(46, NULL, 'ad@midn.com', '$6$7Lu2z1WseB3n$PBBfGFyUtGA0rX3UtC36dGW.4KBtmi3BZaQmzNRelOKp1autu18dbEo6khBw.WnDKyyvwKaAF5Apyx9USA1kL1', 'ad@midn.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1365762205, NULL, '', NULL, NULL, '2kCcA', 0.00, NULL, ''),
+(47, 1, 'admin', '$6$KLDbaLEoQUIv$WVAVYnKChbFvK.dd.L5oDgAxzNK.Vkhm/jzqftNT1W60McZHOOIuSyTyZHpyG02zAf9ycmrf53pSmdZQzufw5/', 'ad@min.com', NULL, NULL, NULL, NULL, NULL, '127.0.0.1', 2013, 1367231597, NULL, '', 'a:0:{}', NULL, 'QB1VH', 2860.00, '10', '');
 
 -- --------------------------------------------------------
 
