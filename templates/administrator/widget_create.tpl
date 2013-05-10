@@ -53,7 +53,7 @@
                                     <div class="control-group" id="mod_name">
                                         <label class="control-label">{lang("Module name")}:</label>
                                         <div class="controls">
-                                            <span class="selmod">Выберите тип модуля с таблицы ниже</span>
+                                            <span class="selmod">{lang('Select the module type to the table below')}</span>
                                             <input type="hidden" class="required" name="module" value="" id="sw">
                                             <input type="hidden" name="method" value="" id="swm">
                                         </div>

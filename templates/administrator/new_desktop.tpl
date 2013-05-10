@@ -23,8 +23,8 @@
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
-                            <div class="pull-left m-r_10">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
-                            <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
+                            <div class="pull-left m-r_10">{lang('Hello')}, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
+                            <div class="pull-right m-l_10">{lang('View')} <a href="{$BASE_URL}" target="_blank">{lang('site')} <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
                             <div class="input-append search">
@@ -58,12 +58,12 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>{lang('Main')}</span></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang("Content")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/admin/pages">{lang("Create")}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">Все содержимое по категориях</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('All content by categories')}</a></li>
                                     <li><a href="/admin/pages/GetPagesByCategory/0">{lang("Without a category")}</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/admin/components/cp/cfcm">{lang("Field constructor")}</a></li>
@@ -128,7 +128,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" href="#">Администрировать сайт <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info" href="#">{lang('Administer the site')} <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
             </div>
@@ -141,25 +141,25 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span4">
-                        Интерфейс:
+                        {lang('Interface')}:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                Русский
+                                {lang('Russian')}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Английский</a></li>
-                                <li><a href="#">Русский</a></li>
+                                <li><a href="#">{lang('English')}</a></li>
+                                <li><a href="#">{lang('Russian')}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        Версия: <b>3.01.26</b>
-                        <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
+                        {lang('Version')}: <b>3.01.26</b>
+                        <div class="muted">{lang('Help us get better')} - <a href="#">{lang('report an error')}</a></div>
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © imageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">Документация</a>
+                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation')}</a>
                     </div>
                 </div>
             </div>

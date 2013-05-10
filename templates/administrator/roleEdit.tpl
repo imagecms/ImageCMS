@@ -60,7 +60,7 @@
                                 </div>
                             </div>          
                             <div class="control-group">
-                                <label class="control-label" for="Description">Полное описание:</label>
+                                <label class="control-label" for="Description">{lang('Full description')}:</label>
                                 <div class="controls">
                                     <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                 </div>
@@ -78,9 +78,9 @@
         </tbody>
     </table>
     <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-        {if strpos(getCmsNumber(), 'Premium')}<a href="#shop" class="btn btn-small">Магазин</a>{/if}
-        <a href="#base" class="btn btn-small active">Базовая</a>
-        <a href="#module" class="btn btn-small">Модули</a>
+        {if strpos(getCmsNumber(), 'Premium')}<a href="#shop" class="btn btn-small">{lang('Shop')}</a>{/if}
+        <a href="#base" class="btn btn-small active">{lang('Basic')}</a>
+        <a href="#module" class="btn btn-small">{lang('Modules')}</a>
     </div> 
     <div class="tab-content">
         {foreach $types as $key => $type}
@@ -116,7 +116,7 @@
                                     <td style="word-wrap : break-word;">
                                         <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
                                     </td>
-                                    <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" class="pjax">удаление</a></td>-->
+                                    <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" class="pjax">{lang('removing')}</a></td>-->
                                 </tr>
                             {/foreach}
                         </tbody>

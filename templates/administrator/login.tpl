@@ -32,7 +32,7 @@
                 <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
                     {if $login_failed}
                         <label>
-                            Пользователя с таким Е-mail не найден
+                            {lang('Users with such Email not found')}
                         </label>
                         {$login_failed}
                     {/if}

@@ -53,7 +53,7 @@
                 <div class="span3">
                     <ul class="nav nav-tabs nav-stacked m-t_10">
                         <li {if '0'==$cat_id} class="active" {/if} ><a href="/admin/pages/GetPagesByCategory/0" class="pjax">{lang("Without a category")}</a></li>
-                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">Все категории</a></li>
+                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All catagories')}</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-stacked">
                         {foreach $tree as $cat}
@@ -114,8 +114,8 @@
                     {if $show_cat_list != 'yes'}
                         <td>
                             <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                <option value="">Все категории</option>
-                                <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                <option value="">{lang('All catagories')}</option>
+                                <option value="0" {if $cat_id === "0"}selected="selected"{/if}>{lang('Without category')}</option>
                                 { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id'])); }
                             </select>
                         </td>{/if}
@@ -176,7 +176,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничего не найдено</div>
+                                                <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found')}</div>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -6,10 +6,10 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/groupList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <a href="{$BASE_URL}admin/rbac/groupList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#group_cr_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Have been saved")}</button>
-                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="tocreate"><i class="icon-check"></i>Сохранить и создать новую групу</button>
-                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="toedit"><i class="icon-check"></i>Сохранить и редактировать</button>
+                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="tocreate"><i class="icon-check"></i>{lang('Save and create a new group')}</button>
+                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="toedit"><i class="icon-check"></i>{lang('Save and edit')}</button>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">Группа:</label>
+                                        <label class="control-label" for="Description">{lang('Group')}:</label>
                                         <div class="controls">
                                             <select name="type">
                                                 <option value="shop">Shop</option>

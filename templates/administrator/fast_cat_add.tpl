@@ -17,8 +17,8 @@
 
     <div class="form_text"></div>
 	<div class="form_input">
-    	<input type="submit" name="button" class="button" value="Создать" onclick="ajax_me('fast_add_form');" />
-    	<input type="button" name="button" class="button" value="Отмена"  onclick="MochaUI.closeWindow($('fast_add_cat_w')); return false;" />
+    	<input type="submit" name="button" class="button" value="{lang('Create')}" onclick="ajax_me('fast_add_form');" />
+    	<input type="button" name="button" class="button" value="{lang('Cancel')}"  onclick="MochaUI.closeWindow($('fast_add_cat_w')); return false;" />
 	</div>
 
 </form>

@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                <a class="btn btn-small btn-success pjax" href="/admin/components/run/shop/rbac/group_create" ><i class="icon-plus-sign icon-white"></i>Создать групу ролей</a>
+                <a class="btn btn-small btn-success pjax" href="/admin/components/run/shop/rbac/group_create" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group')}</a>
             </div>
         </div>  
     </div>

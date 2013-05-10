@@ -83,9 +83,9 @@
 		<div id="topNav">
 			<ul class="menu-right">
             <li>
-                <img src="{$THEME}/images/left.png" style="cursor:pointer" title="Назад (Ctrl + Left)" onclick="history_back();">
-				<img src="{$THEME}/images/right.png" style="cursor:pointer" title="Вперед (Ctrl + Right)" onclick="history_forward();">
-				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" class="refresh" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
+                <img src="{$THEME}/images/left.png" style="cursor:pointer" title="{lang('Back')} (Ctrl + Left)" onclick="history_back();">
+				<img src="{$THEME}/images/right.png" style="cursor:pointer" title="{lang('Forward')} (Ctrl + Right)" onclick="history_forward();">
+				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" class="refresh" title="{lang('Update')}  (Ctrl + R)" onclick="history_refresh();">
             </li>
 			</ul>
 		</div>
@@ -149,7 +149,7 @@
 	<a class="returnFalse" href="">{lang("System")}</a>
 		<ul>
 			<li><a id="settings_link" class="returnFalse" href="#">{lang("Site settings")}</a></li>
-            <!-- <li><a id="main_page_link" href="">Главная Страница</a></li> -->
+            <!-- <li><a id="main_page_link" href="">{lang('Main page')}</a></li> -->
 			<li><a id="languages_link" href="">{lang("Languages")}</a></li> 
 			<li><a class="returnFalse arrow-right" href="">{lang("Cache")}</a>
 				<ul>

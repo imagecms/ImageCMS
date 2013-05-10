@@ -28,7 +28,7 @@
                         <th class="span1">ID</th>
                         <th class="span4">{lang("Title")}</th>
                         <th class="span3">{lang("URL")}</th>
-                        <th class="span2">Категория</th>
+                        <th class="span2">{lang('Category')}</th>
                         <th class="span1">{lang("Status")}</th>
                     </tr>
                 </thead>

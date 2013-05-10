@@ -34,7 +34,7 @@
                             </td>
                             <td>
                                 <a href="{$BASE_URL}admin/pages/GetPagesByCategory/{$l.category}" class="pjax">
-                                    {truncate(get_category_name($l.category), 20, '...Без категории')}
+                                    {truncate(get_category_name($l.category), 20, '...' . lang('Uncategorized'))}
                                 </a>
                             </td>
                             <td>
@@ -52,8 +52,8 @@
                         <tr>
                             <td>
                                 <div class="alert alert-block">
-                                    <h4>Ошибка</h4>
-                                    Нет недавно добавленых страниц
+                                    <h4>{lang('Error')}</h4>
+                                    {lang('No recently added pages')}
                                 </div>
                             </td>
                         </tr>
@@ -98,8 +98,8 @@
                         <tr>
                             <td>
                                 <div class="alert alert-block">
-                                    <h4>Ошибка</h4>
-                                    Нет недавно обновлённых страниц
+                                    <h4>{lang('Error')}</h4>
+                                    {lang('No recently updated pages')}
                                 </div>
                             </td>
                         </tr>
