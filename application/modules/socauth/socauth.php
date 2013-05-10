@@ -143,7 +143,6 @@ class Socauth extends MY_Controller {
     public function renderLogin() {
         if (!$this->dx_auth->is_logged_in()) {
             $this->writeCookies();
-
             \CMSFactory\assetManager::create()
                     ->setData($this->settings)
                     ->render('loginButtons', TRUE);
