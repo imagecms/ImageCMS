@@ -379,4 +379,7 @@ $lang['s_properties_in_cat'] = 'Свойства';
 
 $lang['s_follow_prod'] = 'Следить за ценой';
 $lang['s_followprod'] = 'В слежении';
+$lang['s_show_products'] = 'Посмотреть товары';
+$lang['s_article'] = 'Артикул';
+$lang['s_variant'] = 'Вариант';
 /* End of file main_lang.php */

@@ -19,26 +19,39 @@
         <script src="{$SHOP_THEME}../js/jquery.main.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="inder"></div>
-        <div class="header">
-            <ul>
-                <li>
-                    <a href="{shop_url('search')}" tabindex="1">
-                        <span class="icon search_icon"></span><br/>
-                        Поиск
-                    </a>
-                </li>
-                <li>
-                    {include_tpl('shop/cart_data')}
-                </li>
-            </ul>
-            <a href="/" class="f_l logo">
-                <span class="helper"></span>
-                <img src="{$SHOP_THEME}../images/logo.png" class="v-a_m"/>
-            </a>
+        <div class="mainBody">
+            <div id="inder"></div>
+            <div class="header">
+                <ul>
+                    <li>
+                        <a href="{shop_url('search')}" tabindex="1">
+                            <span class="icon search_icon"></span><br/>
+                            Поиск
+                        </a>
+                    </li>
+                    <li>
+                        {include_tpl('shop/cart_data')}
+                    </li>
+                </ul>
+                <a href="/" class="f_l logo">
+                    <span class="helper"></span>
+                    <img src="{$THEME}/images/logo.png" class="v-a_m"/>
+                </a>
+            </div>
+            <div class="o_h">
+                {if !$CI->dx_auth->is_logged_in()}
+                <div class="f_r frame_enter_soc_net">
+                    <div class="helper"></div>
+                    <div class="d-i_b">
+                        <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
+                    </div>
+                </div>
+                {/if}
+            </div>
+            <span class="head_foot"></span>
+            {$content}
+            <div class="hFooter"></div>
         </div>
-        <span class="head_foot"></span>
-        {$content}
         <div class="footer">
             {load_menu('footer_menu')}
             <div class="p_r">

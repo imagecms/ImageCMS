@@ -26,9 +26,9 @@ function resetPie(nabir){
 
 $(document).ready(function(){
     $('.refresh_price').live('click', function() {
-               $('#recount').val('1')
-               $('#form').submit();
-            });
+        $('#recount').val('1')
+        $('#form').submit();
+    });
     $('.main_menu > li').click(function(){
         $this = $(this);
         $this.siblings().filter('.active').toggleClass('active').find('ul').slideToggle('fast');
@@ -79,6 +79,16 @@ $(document).ready(function(){
         el.removeClass('b_n');
     }
     //close_not_standart_checks----------------------
+    
+    $('#method_deliv').change(function(){
+        $('[id*="paymentMethod"]').hide();
+        $('#paymentMethod'+$(this).val()).show().change();
+    }).change();
+    
+    $('[id*="paymentMethod"]').change(function(){
+        $('[name="paymentMethodId"]').val($(this).val())
+    }).change();
+    
     if (ltie7){
         $('.head_cle_foot').replaceWith('<div class="'+$('.head_cle_foot').attr('class')+'"></div>');
     }

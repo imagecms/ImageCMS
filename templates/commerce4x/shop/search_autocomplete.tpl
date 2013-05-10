@@ -22,11 +22,11 @@
                         <a href="{shop_url('product')}/{literal}<%- item.url %>">
                             <span class="photo">
                                 <span class="helper"></span>
-                            {/literal}<img src="{base_url()}uploads/shop/{literal}<%- item.smallModImage %>">
+                            {/literal}<img src="{base_url()}uploads/shop/products/small/{literal}<%- item.mainImage %>">
                             </span>
                             <span class="title"><% print( item.name)  %></span>
                              <!-- End. Photo Block and name -->
-
+                            <%console.log(item)%>
                         <!-- Start. Product price  -->
                             <span class="price price_f-s_16"><span class="f-w_b"><%- Math.round(item.price) %></span>{/literal}<span class="curr"> {$CS}</span>{literal}</span>
                         <!-- End. Product price  -->
