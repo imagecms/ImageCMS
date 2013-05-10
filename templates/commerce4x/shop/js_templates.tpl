@@ -68,8 +68,8 @@
                             <% var names = item.name %>
                             <% var ids = item.id %>
                             <% var prices = item.prices %>
-
-
+                            <% var images = item.img %>
+                            
 
                             <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
                                 <td colspan="5">
@@ -86,13 +86,13 @@
                                             <% _.each(ids, function(id){  %>
 
                                             <% if (0==i) { %>
-                                            <% console.log(item) %>
+
                                             <tr>
                                                 <td rowspan="<%- names.length %>"><span class="times d_i-b" onclick="rmFromPopupCart(this, true);">×</span></td>
                                                 <td>
                                                     <a class="photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -130,7 +130,7 @@
                                                 <td>
                                                     <a class="d_i-b photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -254,7 +254,7 @@
                     <% var names = item.name %>
                     <% var ids = item.id %>
                     <% var prices = item.prices %>
-
+                    <% var images = item.img %>
 
 
                     <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
@@ -278,7 +278,7 @@
                                         <td>
                                             <a class="photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>
@@ -305,7 +305,7 @@
                                         <td>
                                             <a class="d_i-b photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_smallMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>
