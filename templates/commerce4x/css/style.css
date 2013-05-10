@@ -205,7 +205,7 @@ table th{text-align: left;}
 .table_order .items > li{display: block;text-align: center;}
 .table_order .items_middle > li{display: inline-block;float: none;font-size: 0;}
 .table_order .items_catalog{margin-left: 30px;margin-top: 30px;}
-.table_order .photo{padding: 0;max-width: 80px;max-height: 80px;}
+.table_order .photo{padding: 0;width: 100%;height: 63px;}
 .table_order .item_set{font-size: 12px;width: 121px;}
 
 tr.cartKit table td {border: 0;}

@@ -1311,16 +1311,17 @@ function ieInput(els) {
                     $thisNext.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
-                        if ($this.closest('div.frame_count').find('input').data('max') > inputVal) {
-                            if (isNaN(inputVal))
-                                input.val(1)
-                            else
-                                input.val(inputVal + 1)
-                            if (input.val() > 1)
-                                $thisPrev.removeAttr('disabled');
-                            else
-                                $thisPrev.attr('disabled', 'disabled');
-                        }
+
+                        if (isNaN(inputVal))
+                            input.val(1);
+                        else
+                            input.val(inputVal + 1);
+                        
+                        if (input.val() > 1)
+                            $thisPrev.removeAttr('disabled');
+                        else
+                            $thisPrev.attr('disabled', 'disabled');
+                        
                         if (checkProdStock)
                             if (input.maxValue())
                                 $thisNext.attr('disabled', 'disabled');

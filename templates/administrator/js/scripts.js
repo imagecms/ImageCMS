@@ -1404,4 +1404,7 @@ $('#addVariantToCart').die().live('click', function(){
     }
     
 })
-    
+//Remove image type
+$('.removeImageType').live('click', function() {
+    $(this).closest('tr').remove();
+})

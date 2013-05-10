@@ -83,7 +83,7 @@
                                 <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{productImageUrl($item.model->getMainModimage())}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                                        <img src="{$item.model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                                     </figure>
                                 </a>
                             </div>
