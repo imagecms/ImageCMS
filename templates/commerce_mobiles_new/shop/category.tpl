@@ -23,12 +23,12 @@
                 <span class="title">{echo ShopCore::encode($product->name)}</span>
                 {if $product->firstVariant->name}
                 <span class="code_v">
-                    Вариант: {echo ShopCore::encode($product->firstVariant->name)}
+                    {lang('s_variant')}: {echo ShopCore::encode($product->firstVariant->name)}
                 </span>
                 {/if}
                 {if $product->firstVariant->number}
                 <span class="divider">/</span>
-                <span class="code">Артикул {echo $product->firstVariant->number}</span>
+                <span class="code">{lang('s_article')}: {echo $product->firstVariant->number}</span>
                 {/if}
                 <span class="d_b price">{echo $product->firstVariant->toCurrency()} {$CS}</span>
             </span>
@@ -45,12 +45,12 @@
                         </span>
                         {if $p->name}
                         <span class="code_v">
-                            Вариант: {echo ShopCore::encode($p->name)}
+                            {lang('s_variant')}: {echo ShopCore::encode($p->name)}
                         </span>
                         {/if}
                         {if $p->number}
                         <span class="divider">/</span>
-                        <span class="code">Артикул {echo $p->number}</span>
+                        <span class="code">{lang('s_article')}: {echo $p->number}</span>
                         {/if}
                         <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
                     </span>
@@ -59,18 +59,18 @@
             {/if}
             {/foreach}
         </ul>
-        <a href="{shop_url('product/' . $product->getUrl())}" class="show_all_variant">Промотреть товары &#8594;</a>
+        <a href="{shop_url('product/' . $product->getUrl())}" class="show_all_variant">{lang('s_show_products')} &#8594;</a>
         {else:}
         <a href="{shop_url('product/' . $product->getUrl())}" class="top_frame_tov">
             <span class="figure"><img src="{productImageUrl($product->getMainModimage())}"/></span>
             <span class="descr">
                 <span class="title">{echo ShopCore::encode($product->name)}</span>
                 {if $product->firstVariant->name}
-                <span class="code_v">Вариант: {echo $product->firstVariant->name}</span>
+                <span class="code_v">{lang('s_variant')}: {echo $product->firstVariant->name}</span>
                 {/if}
                 {if $product->firstVariant->getNumber()}
                 <span class="divider">/</span>
-                <span class="code">Артикул {echo $product->firstVariant->getNumber()}</span>
+                <span class="code">{lang('s_article')}: {echo $product->firstVariant->getNumber()}</span>
                 {/if}
                 <span class="d_b price">{echo $product->firstVariant->toCurrency()} {$CS}</span>
             </span>

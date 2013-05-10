@@ -16,11 +16,11 @@
                     {echo ShopCore::encode($model->getName())}
                 </span>
                 {if $p->getName()}
-                <span class="code_v">Вариант: {echo $p->getName()}</span>
+                <span class="code_v">{lang('s_variant')}: {echo $p->getName()}</span>
                 {/if}
                 {if $p->number}
                 <span class="divider">/</span>
-                <span class="code">Артикул {echo $p->number}</span>
+                <span class="code">{lang('s_article')}: {echo $p->number}</span>
                 {/if}
                 <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
                 <div class="but_buy">

@@ -136,6 +136,7 @@ span.top_frame_tov .title{color:#333;}
 .code_v{color: #84b913;font-size: 80%;}
 .divider{color: #111;font-size: 75%;}
 .pagination{margin: 0 16px;padding: 16px 0;}
+.pagination .last{display: none;}
 .pagination .helper{height: 82px;}
 .pagination li{display: inline-block;margin: 10px 0 0 12px;white-space: nowrap;}
 .pagination li span, .pagination li a{width: 75px;height: 82px;line-height: 82px;display: inline-block;text-align: center;vertical-align: middle;font-size: 32px;}
