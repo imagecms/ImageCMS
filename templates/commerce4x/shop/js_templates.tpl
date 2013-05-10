@@ -86,7 +86,7 @@
                                             <% _.each(ids, function(id){  %>
 
                                             <% if (0==i) { %>
-
+                                            <% console.log(item) %>
                                             <tr>
                                                 <td rowspan="<%- names.length %>"><span class="times d_i-b" onclick="rmFromPopupCart(this, true);">×</span></td>
                                                 <td>
