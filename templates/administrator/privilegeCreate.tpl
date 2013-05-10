@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/privilegeList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <a href="{$BASE_URL}admin/rbac/privilegeList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#priv_cr_form" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#priv_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit")}</button>                
             </div>
@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">Полное описание:</label>
+                                        <label class="control-label" for="Description">{lang('Full description')}:</label>
                                         <div class="controls">
                                             <textarea type="text" name="Description" id="Description" value=""></textarea>
                                         </div>

@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    var lang = new Object();
+        lang.moduleInstall = "{lang('Module installed')}";
+        lang.moduleSuccessInstall = "{lang('Module successfully installed')}";
+        lang.error = "{lang('Error')}";
+        lang.errorSomethingWereWrong = "{lang('Something went wrong. Startup status is not changed.')}";
+        lang.errorUrlAccess = "{lang('Something went wrong. URL access is not changed.')}";
+        lang.turnOn = "{lang('Turn on')}";
+        lang.turnOff = "{lang('Turn off')}";
+        lang.haveNotModulesToInstall = "{lang('Have not modules to install')}";
+        lang.creatingWidget = "{lang('Widget creating')}";
+        lang.createdSuccessfullyWidget = "{lang('Widget successfully created')}";
+        lang.deleteGroup = "{lang('Delete group')}";
+        lang.enterTemplateName = "{lang('Enter template name')}";
+        lang.categoryHaveNotPage = "{lang('No pages in category')}";
+        lang.categorySuccessfullyAdd = "{lang('Category successfully added')}";
+        lang.name = "{lang('Name')}";
+        lang.discount = "{lang('Discount')}";
+        lang.needToEnterName = "{lang('You need to enter a string')}";
+        lang.needToFillField = "{lang('This field is required.')}";
+        lang.please = "{lang('Please')}";
+        lang.enterCorrectValue = "{lang('enter the correct value')}";
+        lang.enterValidEmailAddress = "{lang('enter a valid email address')}";
+        lang.enterCorrectURL = "{lang('enter the correct URL')}";
+        lang.enterCorrectDate = "{lang('enter correct date')}";
+        lang.enterCorrectDateFormatISO= "{lang('enter correct date in format ISO')}";
+        lang.enterNumber = "{lang('enter number')}";
+        lang.enterOnlyNumbers = "{lang('enter only numbers')}";
+        lang.enterValidCreditCardNumber = "{lang('enter a valid credit card number')}";
+        lang.enterTheSameValueAgain = "{lang('enter the same value again')}";
+        lang.selectFileWwithCorrectExtension = "{lang('Select the file with the correct extension')}";
+        lang.enterNoMore = "{lang('Enter no more')}";
+        lang.characters = "{lang('characters')}";
+        lang.enterAtLeast = "{lang('enter at least')}";
+        lang.enterValueFrom = "{lang('enter value from')}";
+        lang.to = "{lang('to')}";
+        lang.enterNumberFrom = "{lang('enter number from')}";
+        lang.enterNumberLessThanOrEqualTo = "{lang('enter a number less than or equal to')}";
+        lang.enterNumberMoreThanOrEqualTo = "{lang('enter a number more than or equal to')}";
+        // shop module
+        lang.administrateShop = "{lang('Administer shop')}";
+        lang.backToTheSystem = "{lang('Back to the system')}";
+        lang.errorConversion = "{lang('Conversion error')}";
+        lang.userAlreadyNotifiedViaEmail = "{lang('User already notified via E-mail upon availability! Notify again')}";
+        lang.notifyUserViaEmailUponAvailability = "{lang('Notify the user via E-mail upon availability')}";
+        lang.errorOptionsRemoving = "{lang('Error removing options')}";
+        lang.deleteCanceledOrders = "{lang('Delete canceled orders')}";
+        lang.deleteCanceledMessages = "{lang('Delete canceled messages')}";
+        lang.deleteOredrID =  "{lang('Delete order ID')}";
+        lang.productChanges = "{lang('Product changes')}";
+        lang.success = "{lang('Success')}";
+        lang.fileIsLoadedSlot = "{lang('File is loaded. Slot')}";
+        lang.scriptErrorNotifyAdministrator = "{lang('Script error. Notify administrator.')}";
+</script>
+
+    

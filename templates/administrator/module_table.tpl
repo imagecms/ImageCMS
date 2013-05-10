@@ -82,7 +82,7 @@
                                                 {else:}
                                                     {$module.menu_name}
                                                 {/if}
-                                                <!--                                    <a href="#">Пользователи</a>-->
+                                                <!--                                    <a href="#">{lang('Users')}</a>-->
                                             </td>
                                             <td>
                                                 <p>{$module.description}</p>

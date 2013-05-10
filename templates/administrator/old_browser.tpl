@@ -25,9 +25,9 @@
                 <a href="/admin/dashboard" class="d-i_b">
                     <img src="{$THEME}/img/logo.png"/>
                 </a><br/>
-                Извините но у вас устаревший браузер.<br />
+                {lang('Sorry but you have an old browser')}.<br />
 
-                Обновить или скачать новые браузеры можно здесь:
+                {lang('Update or download new browsers here')}:
                 <div>
                     <a href="http://www.mozilla.org/ru/firefox/new/" target="_blank"><img title="FireFox" src="{$THEME}/img/firefox.png"/></a>
                     <a href="http://ru.opera.com/" target="_blank"><img title="Opera" src="{$THEME}/img/opera.png"/></a>

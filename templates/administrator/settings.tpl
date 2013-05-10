@@ -18,7 +18,7 @@
                     <li class="active"><a href="#setings">{lang("Settings")}</a></li>
                     <li><a href="#seo">SEO</a></li>
                     <li><a href="#homePage">{lang("Main page")}</a></li>
-                    <li><a href="#metatag">Управление Мета-тегами</a></li>                          
+                    <li><a href="#metatag">{lang('Management of Meta Tags')}</a></li>                          
                 </ul>
             </div>
             <div class="span9 content_big_td">
@@ -83,17 +83,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="cat_list">Отображать дерево категорий в списке содержимого:</label>
+                                                            <label class="control-label" for="cat_list">{lang('Display category tree in the content')}:</label>
                                                             <div class="controls">
                                                                 <select name="cat_list" id="cat_list">
-                                                                    <option value="yes" {if $cat_list == 'yes'} selected="selected" {/if} >Да</option>
-                                                                    <option value="no" {if $cat_list == 'no'} selected="selected" {/if} >Нет</option>
+                                                                    <option value="yes" {if $cat_list == 'yes'} selected="selected" {/if} >{lang('Yes')}</option>
+                                                                    <option value="no" {if $cat_list == 'no'} selected="selected" {/if} >{lang('No')}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="textEditor">Текстовый редактор:</label>
+                                                            <label class="control-label" for="textEditor">{lang('Text editor')}:</label>
                                                             <div class="controls">
                                                                 <select name="text_editor" id="textEditor">
                                                                     <option value="tinymce" {if $text_editor == 'tinymce'} selected="selected" {/if} >TinyMCE</option>
@@ -116,7 +116,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            Параметры
+                                            {lang('Options')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -271,7 +271,7 @@
                                                                     <option value="0" {if $add_site_name == "0"}selected="selected"{/if} >{lang("No")}</option>
                                                                 </select>
                                                                 <span class="help-block">
-                                                                    Будет ли отображатся название сайта в тайтле страницы
+                                                                    {lang('Whether to display the site name in the title page')}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -284,7 +284,7 @@
                                                                     <option value="0" {if $add_site_name_to_cat == "0"}selected="selected"{/if}>{lang("No")}</option>
                                                                 </select>
                                                                 <span class="help-block">
-                                                                    Будет ли отображатся название категории в тайтле страницы
+                                                                    {lang('Whether to display the category name in the title page')}
                                                                 </span>
                                                             </div>
                                                         </div>

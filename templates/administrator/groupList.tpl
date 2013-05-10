@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>Создать групу ролей</a>
+                <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group')}</a>
             </div>
         </div>  
     </div>
@@ -65,14 +65,14 @@
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Удаление выбраних групп</h3>
+        <h3>{lang('Delete selected groups')}</h3>
     </div>
     <div class="modal-body">
-        <p>Удалить группу?</p>
+        <p>{lang('Delete group')}?</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}groupDelete')" >{lang("Delete")}</a>
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
     </div>
 </div>
 

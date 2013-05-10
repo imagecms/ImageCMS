@@ -39,9 +39,9 @@ function show_m_install_window(id)
 <div class="top-navigation">
     <ul>
         <li>
-        <form style="width:100%;" onsubmit="pages_table.filter(this.id); return false;">Поиск:
+        <form style="width:100%;" onsubmit="pages_table.filter(this.id); return false;">{lang('Search')}:
                 <input type="text" name="keyword"  />
-                <input type="submit" value="Поиск" class="button_green" onclick="showMessage('{lang("message")}', '{lang("Module search is being developed")}'); return false;" />
+                <input type="submit" value="{lang('Search')}" class="button_green" onclick="showMessage('{lang("message")}', '{lang("Module search is being developed")}'); return false;" />
          {form_csrf()}
          </form>
         </li>

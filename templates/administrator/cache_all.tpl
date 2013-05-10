@@ -30,13 +30,13 @@
                                         <div class="control-group m-t_10">
                                             <label class="control-label" for="inputLocal">{lang("Clear old or Delete outdated posts or information")}</label>
                                             <div class="controls">                                                        
-                                                <button type="button" data-target="/admin/delete_cache" data-param="expried" id="inputLocal" class="btn btn-small clearCashe btn-danger" ><i class="icon-trash icon-white" ></i> Очистить</button>
+                                                <button type="button" data-target="/admin/delete_cache" data-param="expried" id="inputLocal" class="btn btn-small clearCashe btn-danger" ><i class="icon-trash icon-white" ></i> {lang('Clean')}</button>
                                             </div>
                                         </div>
                                         <div class="control-group m-t_10">
                                             <label class="control-label" for="inputLocal2">{lang("Clear all")}</label>
                                             <div class="controls">                                                        
-                                                <button type="button" data-target="/admin/delete_cache" data-param="all" id="inputLocal2" class="btn btn-small clearCashe btn-danger"><i class="icon-trash icon-white" ></i> Очистить</button>
+                                                <button type="button" data-target="/admin/delete_cache" data-param="all" id="inputLocal2" class="btn btn-small clearCashe btn-danger"><i class="icon-trash icon-white" ></i> {lang('Clean')}</button>
                                             </div>
                                         </div>
                                     </div>

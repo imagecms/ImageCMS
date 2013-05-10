@@ -11,7 +11,7 @@
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}roleDelete')" >{lang("Delete")}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
         </div>
     </div>
 

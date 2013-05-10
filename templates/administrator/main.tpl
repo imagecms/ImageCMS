@@ -28,6 +28,8 @@
 
     </head>
     <body>
+    {include_tpl('inc/javascriptVars.tpl');}
+    
     {$langDomain = $CI->land->gettext_domain}
     {$CI->lang->load('admin')}
         <div class="main_body">
@@ -75,7 +77,7 @@
                             {if SHOP_INSTALLED}
                                 <div class="btn-group" id="topPanelNotifications" style="display: none;">
                                     <div class="span4 d-i_b">
-                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
+                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="{lang('Orders')}" data-rel="tooltip" data-original-title="{lang('Orders')}">
                                             <i class="icon-bask "></i>
                                         </a>
                                         <a href="#" class="btn btn-large pjax" data-title="{lang("Products without icons")}" data-rel="tooltip" data-original-title="">
@@ -198,7 +200,7 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span4">
-                        Интерфейс:
+                        {lang('Interface')}:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 {lang('a_'.$this->CI->config->item('language'))}
@@ -212,11 +214,11 @@
                     </div>
                     <div class="span4 t-a_c">
                         {lang("Version")}: <b>{echo getCMSNumber()}</b>
-                        <div class="muted">Помогите нам стать еще лучше - <a href="#" id="rep_bug">сообщите об ошибке</a></div>
+                        <div class="muted">{lang('Help us get better')} - <a href="#" id="rep_bug">{lang('report an error')}</a></div>
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © ImageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">Документация</a>
+                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation')}</a>
                     </div>
                 </div>
             </div>

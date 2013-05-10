@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="Description">Полное описание:</label>
+                                            <label class="control-label" for="Description">{lang('Full description')}:</label>
                                             <div class="controls">
                                                 <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                             </div>

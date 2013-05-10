@@ -7,7 +7,7 @@
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
+                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
                 <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back")}</button>
             </div>
@@ -100,7 +100,7 @@
                                             {lang("URL")}:
                                         </label>
                                         <div class="controls">
-                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite')}</button>
                                             <div class="o_h">
                                                 <input type="text" name="page_url" value="" id="page_url"/>
                                             </div>
@@ -132,7 +132,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" rows="8"></textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite')}</button>
                                         </div>
                                     </div>
 
@@ -142,7 +142,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite words')}</button>
                                             <div style="max-width:600px" id="keywords_list">
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
-                                                <input id="create_date" name="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small"/>
+                                                <input id="create_date" name="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date')}" data-rel="tooltip" class="datepicker input-small"/>
                                                 <i class="icon-calendar"></i>
                                             </span>
                                             <input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />			             	
@@ -243,7 +243,7 @@
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
-                                                <input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small" />
+                                                <input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date')}" data-rel="tooltip" class="datepicker input-small" />
                                                 <i class="icon-calendar"></i>
                                             </span>
                                             <input name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
@@ -306,8 +306,8 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">Создать</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
+        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create')}</a>
     </div>
 </div>
 
