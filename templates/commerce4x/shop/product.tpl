@@ -12,8 +12,6 @@
  */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
-{$CI->load->module('pricespy')->init($model)}
-{$CI->load->module('pricespy')->renderButton($model->getid(), $model->firstVariant->getid())}
 <div>
     <article class="container">       
         <!-- Making bread crumbs -->
@@ -50,17 +48,10 @@
                 <li class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     <span class="c_97" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
-                    {$CI->load->module('print_data')->render_button(
-                                                array(
-                                                    'id'=>$model->getid(),
-                                                    'var'=>$model->firstVariant->getId()
-                                                 )
-                                          )}
                     <!-- Output rating for the old product Start -->
                     <div class="frame_response">
                         <div class="star">
                             {$CI->load->module('star_rating')->show_star_rating($model)}
-                            {$CI->load->module('found_less_expensive')->showButtonWithForm()}
                         </div>
                     </div>
                     <!-- Output rating for the old product End -->
@@ -397,7 +388,6 @@
                 </li>
             </ul>
         </div>
-        {$CI->load->module('shop_news')->getShopNews()}
         <!--Kit start-->
         {if $model->getShopKits()->count() > 0}
             <div class="frame_carousel_product carousel_js c_b frameSet">
