@@ -353,7 +353,7 @@ var Shop = {
         /*find url*/
         var anchors = false;
         if (anchors = $context.closest('li').find('a')) {
-            console.log(typeof anchors);
+//            console.log(typeof anchors);
             _.each(anchors, function(anchor){
                 if (typeof $(anchor).attr('href') != 'undefined')
                     if ($(anchor).attr('href').match('/product/'))
@@ -366,7 +366,7 @@ var Shop = {
         var images = false;
         if (images = $context.closest('li').find('img'))
             $(images).each(function(){
-                if ( $(this).attr('src').match(cartItem.id))
+//                if ( $(this).attr('src').match(cartItem.id))
                     cartItem.img = $(images[0]).attr('src');
             });
         delete  images;
@@ -374,6 +374,12 @@ var Shop = {
 
         //check for product page
         if ($context.data('prodpage')) {
+            if (!cartItem.kit){
+                variantId = $context.data('varid');
+                smallImage = $('span.variant_' + variantId).attr('data-smallImage');
+                cartItem.img = smallImage;
+            }
+            
             if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)

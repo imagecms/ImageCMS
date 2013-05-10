@@ -56,9 +56,7 @@
         {/foreach}
         </ul>
        {if $pagination}
-	   <div class="pagination">
             {echo $pagination}
-        </div>
        {/if}
     {else:}
     <h1>{echo ShopCore::t('По вашему запросу ничего не найдено')}.</h1>

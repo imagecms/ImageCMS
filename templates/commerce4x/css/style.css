@@ -48,7 +48,7 @@ blockquote:before, blockquote:after, q:before, q:after {content:  none;}
 .v_f, .drop, .drop .drop-content, .drop .drop-footer{background: url("../images/v_f.png") repeat-y;}
 .h_f, .frameNav td, .ui-widget-header{background: url("../images/h_f.png") repeat-x;}
 
-.mainBody{min-height: 100%;margin: 0 auto;position: relative;}
+.mainBody{min-height: 100%;margin: 0 auto;position: relative;z-index: 2;}
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display: block;}
 .container{margin: 0 auto;width: 980px;clear: both;}
 .container .container{width: auto;}
