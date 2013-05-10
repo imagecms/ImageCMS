@@ -105,6 +105,8 @@ a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -86px -42px;}
 .main_menu ul li .helper{height: 70px;}
 .arrow_frame{position: absolute;right: 15px;top: 50%;margin-top: -37px;}
 
+.mainBody{min-height: 100%;}
+.hFooter{height: 322px;}
 .content_head{padding: 0 25px;overflow: hidden;}
 .crumbs{padding-top: 20px;}
 .crumbs a{padding: 6px 0;display: inline-block;}
@@ -187,7 +189,7 @@ span.top_frame_tov .title{color:#333;}
 .b_n.niceCheck{background: none;}
 .b_n.niceCheck input {display: block;}
 
-.footer{padding-top: 40px;clear: both;}
+.footer{padding-top: 40px;clear: both;margin-top: -322px;}
 .footer .p_r{margin-top: 20px;}
 .footer ul{text-align: center;}
 .footer li{display: inline-block;margin: 0 16px 18px;}
