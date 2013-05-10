@@ -43,7 +43,6 @@
                 <div class="f_r frame_enter_soc_net">
                     <div class="helper"></div>
                     <div class="d-i_b">
-                        <span class="title v-a_m">Войти как пользователь</span>
                         <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
                     </div>
                 </div>
