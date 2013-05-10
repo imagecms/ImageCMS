@@ -34,8 +34,19 @@
             </ul>
             <a href="/" class="f_l logo">
                 <span class="helper"></span>
-                <img src="{$SHOP_THEME}../images/logo.png" class="v-a_m"/>
+                <img src="{$THEME}/images/logo.png" class="v-a_m"/>
             </a>
+        </div>
+        <div class="o_h">
+            {if !$CI->dx_auth->is_logged_in()}
+            <div class="f_r frame_enter_soc_net">
+                <div class="helper"></div>
+                <div class="d-i_b">
+                    <span class="title v-a_m">Войти как пользователь</span>
+                    <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
+                </div>
+            </div>
+            {/if}
         </div>
         <span class="head_foot"></span>
         {$content}
