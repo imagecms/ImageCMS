@@ -2,7 +2,7 @@
              {$banners = ShopCore::app()->SBannerHelper->getBanners(1)}
              {foreach $banners as $banner}
             <a href="" class="figure">
-                <img src="/uploads/shop/banners/{echo $banner['image']}"/>
+                <img src="{echo $banner['image']}"/>
             </a>
             {/foreach}
         </div>
