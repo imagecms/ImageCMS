@@ -67,6 +67,10 @@ class Top_menu_additional extends MY_Controller {
             $cart = $this->get_content('cart');
             $template = str_replace('#cart_data', $cart, $template);
         }
+        if (strstr($template, '#tel_block')){
+            $tel = $this->get_content('phone');
+            $template = str_replace('#tel_block', $tel, $template);
+        }
         
         if (strstr($template, '#wish_data')){
             $wish = $this->get_content('wish');
