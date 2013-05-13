@@ -33,7 +33,16 @@
     <div>
         {$item.link}
     </div>
+    {/*}
     <div>
         {$item.item_type}
+    </div>
+    {*/}
+    <div>
+        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $item.hidden != 1}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" >
+                                            <span class="prod-on_off {if $item.hidden == 1 }disable_tovar{/if}" style="{if $item.hidden == 1 }left: -28px;{/if}" {if $item.hidden != 1 }rel="true"{else:}rel="false"{/if}
+                                                  onclick="ChangeMenuItemActive(this,{echo $item.id});"></span>
+                                        </div>
+        
     </div>
 </div>

@@ -466,7 +466,7 @@ class Menu extends MY_Controller {
      */
     private function get_expand_items($url) {
         foreach ($this->sub_menu_array as $item) {
-            if (site_url($item['link']) == $url AND $item['parent_id'] != 0) {
+            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and !empty($item['link'])) {
                 $this->expand[$item['parent_id']] = TRUE;
                 $this->get_expand_items(site_url($this->sub_menu_array[$item['parent_id']]['link']));
             }

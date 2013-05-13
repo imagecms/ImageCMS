@@ -1,4 +1,6 @@
 function autosearch(el, path, div, tpl) {
+    if ($(el).val() == 'default')
+        return false;
     selector = div;
     $.post(path, {
         queryString: $(el).val(),
