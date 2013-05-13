@@ -36,6 +36,13 @@ class Admin extends BaseAdminController {
         $root_menus = $this->db->get('menus')->result_array();
         $this->render('menu_list', array('menus' => $root_menus), true);
     }
+    
+   public function chose_hidden() {
+        $status = $_POST['status'] === 'false' ? 0: 1;
+        $id = $_POST['id'];
+        $this->db->query("update menus_data set hidden = '$status' where id = '$id'");
+        
+    }
 
     /**
      * List all menu items
