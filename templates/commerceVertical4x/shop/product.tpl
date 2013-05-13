@@ -21,10 +21,10 @@
                 <!--Photo block for main product-->
                 <li class="span3 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo">
+                    <a rel="group" id="photoGroup" href="{$model->firstVariant->getLargePhoto()}" class="photo">
                         <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                            <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{$model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">
@@ -32,10 +32,10 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
-                                    <a rel="group" href="{echo $image->getThumbUrl()}" class="photo">
+                                    <a rel="group" href="{productImageUrl('/products/additional/'.$image->getImageName())}" class="photo">
                                         <span class="helper"></span>
                                         <figure>
-                                            <img src="{productImageUrl($image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                            <img src="{productImageUrl('/products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
                                 </li>
@@ -88,8 +88,8 @@
                                   data-price="{echo $pv->toCurrency()}"
                                   data-number="{echo $pv->getNumber()}"
                                   data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                  data-mainImage="{echo $mainImage}"
-                                  data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                  data-mainImage="{$pv->getLargePhoto()}"
+                                  data-smallImage="{echo $pv->getMediumPhoto()}"
                                   data-stock="{echo $pv->getStock()}"
                                   style="display: none;">
                             </span>
@@ -367,7 +367,7 @@
                                         <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
                                             <figure>
                                                 <span class="helper"></span>
-                                                <img src="{productImageUrl($p->getSmallModImage())}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                                <img src="{$p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
                                             </figure>
                                         </a>
                                     </div>
@@ -425,7 +425,7 @@
                                             <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
                                                 <figure>
                                                     <span class="helper"></span>
-                                                    <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                    <img src="{$kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                 </figure>
                                             </a>
                                         </div>
@@ -458,7 +458,7 @@
                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
                                                     <figure>
                                                         <span class="helper"></span>
-                                                        <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                        <img src="{$kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                     </figure>
                                                 </a>
                                             </div>

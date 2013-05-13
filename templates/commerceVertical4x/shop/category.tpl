@@ -212,12 +212,12 @@
 
                             </div>
 
-                            <!-- displaying products small mod image -->
+                            <!-- displaying products small image -->
                             <div class="photo-block">
                                 <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{productSmallImageUrl($product)}" 
+                                        <img src="{$product->firstVariant->getSmallPhoto()}" 
                                              alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
                                     </figure>
                                 </a>

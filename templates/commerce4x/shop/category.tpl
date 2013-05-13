@@ -183,7 +183,7 @@
                             {if count($product->getProductVariants()) > 1}
                                 <div class=" d_i-b v-a_b m-r_30" id="variantProd">
                                     <div class="lineForm w_170">
-                                        <select id="variantSwitcher" name="variant">
+                                        <select id="variantSwitcherCategory" name="variant">
                                             {foreach $product->getProductVariants() as $key => $pv}
                                                 <option value="{echo $pv->getId()}">
                                                     {if $pv->getName()}
@@ -212,8 +212,8 @@
                                           data-price="{echo $pv->toCurrency()}"
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                          data-mainImage="{echo $mainImage}"
-                                          data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                          data-mainImage="{$pv->getLargePhoto()}"
+                                          data-smallImage="{echo $pv->getSmallPhoto()}"
                                           data-stock="{echo $pv->getStock()}"
                                           style="display: none;">
                                     </span>
