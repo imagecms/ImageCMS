@@ -220,14 +220,14 @@ $('#variantSwitcher').live('change', function () {
 
 
     $('#photoGroup').attr('href', vMainImage);
-    $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
+    $('#imageGroup').attr('src', vSmallImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
     
-    var href = $('#print_btn').attr('data-href');
-    var arr_href = href.split('/');
-    arr_href[arr_href.length - 1] = vId;
-    $('#print_btn').attr('data-href',arr_href.join('/'));
+//    var href = $('#print_btn').attr('data-href');
+//    var arr_href = href.split('/');
+//    arr_href[arr_href.length - 1] = vId;
+//    $('#print_btn').attr('data-href',arr_href.join('/'));
     
     if ($.trim(vNumber) != '') {
         $('#number').html('(Артикул ' + vNumber + ')');
