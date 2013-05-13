@@ -1,13 +1,14 @@
 <html>
     <head>
+        <title>Print {echo $product->getname()}</title>
         <link rel="stylesheet" type="text/css" href="{echo $style}">
     </head>
     <body>
         <div class="main_content">
             <div class="clearfix">
-                <div class="desc f_l">
-                    <strong>Назва:</strong> {echo $product->getname()}{if $variant->getname()} - {echo $variant->getname()}{/if}<br/>
-                    <strong>Бренд:</strong> {if $product->getbrand()}{echo $product->getbrand()->getname()}{/if}<br/>
+                <h2>{echo $product->getname()}{if $variant->getname()} - {echo $variant->getname()}{/if}</h2>
+                <div class="desc f_l">            
+                    {if $product->getbrand()}<strong>Бренд:</strong> {echo $product->getbrand()->getname()}<br/>{/if}
                     <strong>Категория:</strong> {echo $product->getmaincategory()->getname()}<br/>
                     <strong>Цена:</strong> {echo $variant->getPrice()} {$CS}<br/>
                     <strong>Количество:</strong> {echo $variant->getStock()}<br/>

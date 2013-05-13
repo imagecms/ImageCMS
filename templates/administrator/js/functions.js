@@ -1,5 +1,18 @@
 var editorsEnabled = false;
 //temporary
+
+
+function ChangeMenuItemActive(obj, id) {
+    $.post('/admin/components/cp/menu/chose_hidden', {status: $(obj).attr('rel'), id: id}, function() {
+        if ($(obj).attr('rel') == 'true')
+            $(obj).addClass('disable_tovar').attr('rel', false);
+        else
+            $(obj).removeClass('disable_tovar').attr('rel', true);
+    })
+
+}
+
+
 function ChangeBannerActive(el, bannerId)
 {
     var currentActiveStatus = $(el).attr('rel');

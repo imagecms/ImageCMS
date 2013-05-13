@@ -46,7 +46,8 @@
                             <div>{lang('amt_id')}</div>
                             <div>{lang('amt_tname')}</div>
                             <div>{lang('amt_link')}</div>
-                            <div>{lang('amt_type')}</div>
+                            {/*}<div>{lang('amt_type')}</div>{*/}
+                            <div>Показывать</div>
                         </div>
                         <div class=" body_category frame_level">
                             <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
