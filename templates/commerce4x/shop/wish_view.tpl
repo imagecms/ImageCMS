@@ -9,7 +9,7 @@
 #}
 <article class="container">
     <h1>{lang('s_WL')}</h1>
-    <div class="row">
+    <div class="row-fluid">
         <div class="text span8"><!-- Some text --></div>
     </div>
     <div class="frame_carousel_product">
@@ -21,7 +21,7 @@
         {else:}
             <!--If not empty list show list of products -->
             <div class="">
-                <ul class="items items_catalog itemsFrameNS">
+                <ul class="items items_catalog  itemsFrameNS">
                     {foreach $items as $key=>$item}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             <!-- Descritpion block -->

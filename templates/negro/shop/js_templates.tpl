@@ -5,8 +5,7 @@
 <script type="text/template" id="cartPopupTemplate">
     {literal}   
         <div class="fancy_cleaner frame_head_content">
-            <div class="header_title">Ваша корзина
-            </div>
+            <div class="header_title">Ваша корзина</div>
             <button type="button" class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></button>
             <div class="drop-content">
                 <div class="inside_padd">

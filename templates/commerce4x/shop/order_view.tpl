@@ -130,7 +130,7 @@
                                         {echo ShopCore::encode($orderProduct->product_name)}&nbsp;
                                         {echo ShopCore::encode($orderProduct->variant_name)}
                                     </a>&nbsp;
-                                    {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
+                                    {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row-fluid()->number)}
                                     {if $number}
                                         - ({echo $number})
                                     {/if}
@@ -155,7 +155,7 @@
                         {foreach $model->getOrderKits() as $orderProduct}
                             <tr>
                                 <td colspan="4">
-                                    <ul class="items items_catalog">
+                                    <ul class="items items_catalog ">
                                         <li>
                                             <ul class="items items_middle">
 
@@ -166,7 +166,7 @@
                                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
                                                                 {echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}
                                                             </a>&nbsp;
-                                                            {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
+                                                            {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row-fluid()->number)}
                                                             {if $number}
                                                                 - ({echo $number})
                                                             {/if}
@@ -198,7 +198,7 @@
                                                                 <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">
                                                                     {echo ShopCore::encode($kitProducts->getSProducts()->getName())}
                                                                 </a>&nbsp;
-                                                                {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('product_id' => $kitProducts->product_id))->row()->number)}
+                                                                {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('product_id' => $kitProducts->product_id))->row-fluid()->number)}
                                                                 {if $number}
                                                                     - ({echo $number})
                                                                 {/if}

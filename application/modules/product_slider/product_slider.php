@@ -20,7 +20,9 @@ class Product_slider extends MY_Controller {
         if (!$this->input->is_ajax_request())
         \CMSFactory\assetManager::create()
             ->setData ('productSliderEnabled', true)
-            ->registerScript('script');
+            ->registerScript('script')
+            ->registerScript('cloud-zoom.1.0.2.min')
+            ->registerStyle('style');
     }
 
     public function _install() {

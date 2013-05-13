@@ -56,12 +56,12 @@
                                 <!--End. Product properties names -->
                             </div>
                             <div class="rightDescription">
-                                <ul class="comprasion_tovars_frame row itemsFrameNS">
+                                <ul class="comprasion_tovars_frame row-fluid itemsFrameNS">
                                     {foreach $products as $product}
                                         {if $product->category_id == $category['Id']}
                                             {$product->firstVariant}
                                             <li class="span3">
-                                                <ul class="items items_catalog">
+                                                <ul class="items items_catalog ">
                                                     <li>
                                                         <button class="btn btn_small btn_small_p"  onclick="Shop.CompareList.rm({echo $product->id}, this)">
                                                             <span class="icon-remove_comprasion"></span>

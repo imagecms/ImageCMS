@@ -2,7 +2,7 @@
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
             <div class="title_h1 d_i-b v-a_m">{$settings[title]}</div>
-            <div class="d_i-b groupButton v-a_m">
+            <div class="d_i-b groupButton v-a_m frame_carousel_button">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
                     <span class="icon-info"></span>

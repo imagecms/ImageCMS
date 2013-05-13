@@ -216,9 +216,9 @@
                 <thead class="v_h">
                     <tr>
                         <td class="span1"></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="span3"></td>
+                        <td class="span1"></td>
+                        <td class="span1"></td>
                     </tr>
                 </thead>
                 <tbody>

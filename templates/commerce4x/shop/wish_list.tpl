@@ -27,7 +27,7 @@
             <h1>{lang('s_WL')}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
-                <ul class="items items_catalog itemsFrameNS">
+                <ul class="items items_catalog  itemsFrameNS">
                     {foreach $items as $key=>$item}
                         <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
                             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
@@ -100,7 +100,7 @@
                     {/foreach}
                 </ul>
             </div>
-            <div class="row footer_wish-list">
+            <div class="row-fluid footer_wish-list">
                 <div class="span6">
                     <div class="d_i-b title">{lang('s_summ')}:</div>
                     <div class="price price_f-s_24 d_i-b">

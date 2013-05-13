@@ -12,7 +12,7 @@
     {if count($items) > 0}
         <div id="shopCartPage">
             <h1>Оформление заказа</h1>
-            <div class="row">
+            <div class="row-fluid">
                 <div class="span6">
                     <div class="frameGroupsForm">
                         <div class="header_title">Данные заказа</div>
@@ -186,3 +186,4 @@
 </article>
 
 {/if}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
