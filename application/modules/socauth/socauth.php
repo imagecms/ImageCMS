@@ -155,8 +155,13 @@ class Socauth extends MY_Controller {
 
             $socials = $this->db
                     ->where('userId', $this->dx_auth->get_user_id())
-                    ->get('mod_social')
-                    ->result_array();
+                    ->get('mod_social');
+
+            if (!$socials)
+                return;
+
+            $socials = $socials->result_array();
+
 
             foreach ($socials as $soc)
                 if (!$soc[isMain])
