@@ -127,7 +127,7 @@ class Auth extends MY_Controller {
                         'msg' => "<div class='fancy authcomplete'><h1>Авторизация</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>Авторизация успешно завершена</div></div></div>",
                         'header' => $template,
                         'reload' => 1,
-                            ));
+                    ));
                 }
             } else {
 
@@ -189,6 +189,7 @@ class Auth extends MY_Controller {
 
     public function register() {
         $this->core->set_meta_tags(lang('lang_register'));
+        $this->template->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />');
 
         $this->load->library('Form_validation');
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
@@ -288,6 +289,7 @@ class Auth extends MY_Controller {
     function forgot_password() {
 //         ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('lang_forgot_pass'));
+        $this->template->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />');
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;

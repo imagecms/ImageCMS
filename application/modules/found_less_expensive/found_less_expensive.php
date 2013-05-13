@@ -7,6 +7,9 @@ if (!defined('BASEPATH'))
  * @author Igor R.
  * @copyright ImageCMS (c) 2013, Igor R. <dev@imagecms.net>
  * 
+ * In order to render button and link insert into product template
+ * {$CI->load->module('found_less_expensive')->showButtonWithForm()}
+ * 
  * Нашли дешевле
  */
 
@@ -22,14 +25,19 @@ class Found_less_expensive extends MY_Controller {
     public static function adminAutoload() {
         parent::adminAutoload();
     }
-
+    /**
+     * Display button and form 
+     */
     public function showButtonWithForm(){
        \CMSFactory\assetManager::create()
                 ->registerStyle('style')
                 ->registerScript('scripts')
                 ->render('buttonWithForm', true);
     }
- 
+    /**
+     * Save data from form
+     * @return string
+     */
     public function save_message(){
         $data = $this->input->post();
         $data['date'] = time();
@@ -40,7 +48,10 @@ class Found_less_expensive extends MY_Controller {
             return 'success';
         }
     }
-    
+    /**
+     * Get email settings
+     * @param type $messageData
+     */
     public function prepareEmailData($messageData){
         $data = $this->found_less_expensive_model->getModuleSettings();
         $this->sendEmail($data['emailTo'], $data['emailFrom'], $data['emailSubject'], $data['emailTemplate'],$messageData);
@@ -48,7 +59,7 @@ class Found_less_expensive extends MY_Controller {
     }
 
     /**
-     * 
+     * Send email
      * @param type $email
      */
     public function sendEmail($fromEmail, $toEmail, $subject , $message, $messageData){

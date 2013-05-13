@@ -12,7 +12,7 @@ if ( ! function_exists('get_page'))
 
 		$ci->db->limit(1);
 		$ci->db->select('content.*');
-		//$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+		$ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
 
                 if ($lang_identif == $ci->uri->segment(1)){
                     $ci->db->where('lang_alias', $id);

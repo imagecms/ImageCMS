@@ -35,7 +35,7 @@
                     <div class="control-group">
                         <label class="control-label" for="description">{lang('amt_description')}:</label>
                         <div class="controls">
-                            <textarea name="description" id="description" class="elRTE"></textarea>
+                            <textarea name="description" id="description" class="smallTextarea elRTE"></textarea>
                         </div>
                     </div>
                     <div class="control-group">

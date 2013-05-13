@@ -16,7 +16,6 @@
 #}
 
 {$Comments = $CI->load->module('comments')->init($products)}
-{$CI->load->module('pricespy')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
@@ -129,7 +128,6 @@
                                             {echo $Comments[$product->getId()]}
                                         </a>
                                     {/if}
-                                    {$CI->load->module('pricespy')->renderButton($product->getid(), $product->firstVariant->getid())}
                                 </div>
 
                                 <!-- displaying product name -->
@@ -182,6 +180,47 @@
                                 </button>
                             {/if}
 
+                            {if count($product->getProductVariants()) > 1}
+                                <div class=" d_i-b v-a_b m-r_30" id="variantProd">
+                                    <div class="lineForm w_170">
+                                        <select id="variantSwitcher" name="variant">
+                                            {foreach $product->getProductVariants() as $key => $pv}
+                                                <option value="{echo $pv->getId()}">
+                                                    {if $pv->getName()}
+                                                        {echo ShopCore::encode($pv->getName())}
+                                                    {else:}
+                                                        {echo ShopCore::encode($product->getName())}
+                                                    {/if}                                                   
+                                                </option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- End. Output of all the options -->
+
+                                <!-- Start. Collect information about Variants, for future processing -->
+                                {foreach $product->getProductVariants() as $key => $pv}
+                                    {if $pv->getMainImage()}
+                                        {$mainImage = productImageUrl($pv->getMainImage())}
+                                    {else:}
+                                        {$mainImage = productImageUrl($product->getMainimage())}
+                                    {/if}
+
+                                    <span class="variant_{echo $pv->getId()}" 
+                                          data-id="{echo $pv->getId()}"
+                                          data-name="{echo ShopCore::encode($pv->getName())}"
+                                          data-price="{echo $pv->toCurrency()}"
+                                          data-number="{echo $pv->getNumber()}"
+                                          data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                          data-mainImage="{echo $mainImage}"
+                                          data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                          data-stock="{echo $pv->getStock()}"
+                                          style="display: none;">
+                                    </span>
+                                {/foreach}
+                                <!-- End. Collect information about Variants, for future processing -->
+                            {/if}
+
                             <div class="d_i-b">
 
                                 <!-- to compare button -->
@@ -215,11 +254,12 @@
                         </div>
 
                         <!-- displaying products small mod image -->
+ 
                         <div class="photo-block">
                             <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
                                 <figure>
                                     <span class="helper"></span>
-                                    <img src="{productSmallImageUrl($product)}" 
+                                    <img src="{$product->firstVariant->getSmallPhoto()}" 
                                          alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
                                 </figure>
                             </a>
@@ -247,7 +287,6 @@
                 <div class="title_h2 t-a_c">Категория пуста</div>
             </div>
         {/if}
-
         <!-- pagination variable from category.php controller -->
         {$pagination}
     </div>

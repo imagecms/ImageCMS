@@ -30,7 +30,7 @@
             </div>
         </div>                            
     </div>  
-
+                    
     <div class="clearfix">
         <div class="m-t_20 pull-right">
             <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
@@ -40,6 +40,7 @@
             <a href="#parameters_article" class="btn btn-small ">{lang('a_param')}</a>
             <a href="#addfields_article" class="btn btn-small">{lang('a_additional_fields')}</a>
             <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>
+            <a href="#modules_additions" class="btn btn-small">Modules additions</a>
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
@@ -230,7 +231,7 @@
 
 
             </div>
-
+                                    
             <div class="tab-pane" id="addfields_article">
                 <div id="cfcm_fields_block"></div>
             </div>
@@ -309,8 +310,8 @@
                 </table>
 
             </div>
+            {include_tpl('modules_additions')}
         </div>
-
         {form_csrf()}
     </form>
 </section>

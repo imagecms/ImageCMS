@@ -95,12 +95,12 @@ class Template extends Mabilis {
     }
 
     public function get_var($var) {
-        return isset($this->template_vars[$var])?$this->template_vars[$var]:false;
+        return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
     }
 
     public function run_info() {
         /*         * ********************* */
-        echo '<!--';
+//        echo '<!--';
         echo '<div align="center">';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
         echo 'Queries: ' . $this->CI->db->total_queries();
@@ -108,7 +108,7 @@ class Template extends Mabilis {
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
         echo '</div>';
-        echo ' -->';
+//        echo ' -->';
         /*         * ********************* */
     }
 
@@ -298,10 +298,12 @@ class Template extends Mabilis {
 //                }
 //            }
 //        }
-
         if (sizeof($this->_metas) > 0) {
-            foreach ($this->_metas as $code)
-                self::$result_before .= "$code\n";
+            foreach ($this->_metas as $code) {
+                if (!strstr(self::$result_before, $code)) {
+                    self::$result_before .= "$code\n";
+                }
+            }
         }
 
 //        $js_tpl_begin = "window.addEvent('domready', function() { ";
