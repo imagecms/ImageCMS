@@ -127,7 +127,7 @@
                                                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                                                 <figure>
                                                                     <span class="helper"></span>
-                                                                    <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo $product->id}"/>
+                                                                    <img src="{$product->firstVariant->getSmallPhoto()}" alt="{echo $product->id}"/>
                                                                 </figure>
                                                             </a>
                                                         </div>

@@ -34,13 +34,6 @@ class assetManager {
         (empty($data)) OR \CI_Controller::get_instance()->template->add_array((array) $data);
         return $this;
     }
-    
-    public function appendData($item, $value) {
-        $this->setData($item, \CI_Controller::get_instance()->template->get_var($item) . $value);
-        return $this;
-    }
-
-    
 
     /**
      * @param 
@@ -54,14 +47,37 @@ class assetManager {
     }
 
     /**
+     * @param 
+     * @return assetManager
+     * @access public
+     * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
+     */
+    public function appendData($item, $value) {
+        $this->setData($item, \CI_Controller::get_instance()->template->get_var($item) . $value);
+        return $this;
+    }
+
+    /**
      * @return assetManager
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function registerScript($name) {
-        /** Start. Load file into template */
+        /** Start. Load JS file into template */
         \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
+        return $this;
+    }
+
+    /**
+     * @return assetManager
+     * @access public
+     * @author a.gula
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
+    public function registerJsScript($script) {
+        /** Start. Load JS script into template */
+        \CI_Controller::get_instance()->template->registerJsScript($script, 'after');
         return $this;
     }
 

@@ -61,7 +61,7 @@
                                 <figure>
                                     <span class="helper"></span>
                                     <!--$product->getMainImage() - product image-->
-                                    <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
+                                    <img src="{$product->->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())}"/>
                                 </figure>
                             </a>
                         </div>

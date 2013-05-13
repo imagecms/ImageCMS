@@ -888,8 +888,7 @@ class Core extends MY_Controller {
             $this->template->add_array(array(
                 'site_title' => empty($title) ? $this->settings['site_title'] : $title,
                 'site_description' => empty($description) ? $this->settings['site_description'] : $description,
-                'site_keywords' => empty($keywords) ? $this->settings['site_keywords'] : $keywords,
-                'meta_noindex' => $this->_for_meta_noindex(),
+                'site_keywords' => empty($keywords) ? $this->settings['site_keywords'] : $keywords
             ));
         } else {
             if ($this->settings['add_site_name_to_cat'])
@@ -922,37 +921,9 @@ class Core extends MY_Controller {
                 'site_title' => $title,
                 'site_description' => $description,
                 'site_keywords' => $keywords,
-                'page_number' => $page_number,
-                'meta_noindex' => $this->_for_meta_noindex(),
+                'page_number' => $page_number
             ));
         }
-    }
-
-    public function _for_meta_noindex() {
-        $meta_no_index = '<meta name="robots" content="noindex, nofollow" />';
-        switch ($this->uri->uri_string()) {
-            case 'shop/search':
-                $result = $meta_no_index;
-                break;
-            case 'auth/register':
-                $result = $meta_no_index;
-                break;
-            case 'shop/compare':
-                $result = $meta_no_index;
-                break;
-            case 'shop/cart':
-                $result = $meta_no_index;
-                break;
-            case 'shop/wish_list':
-                $result = $meta_no_index;
-                break;
-            case 'auth/forgot_password':
-                $result = $meta_no_index;
-                break;
-            default:
-                $result = Null;
-        }
-        return $result;
     }
 
 }

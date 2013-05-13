@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="span9 item_tovar">
+        <div class="span9 item_tovar">{$CI->load->module('socauth')->renderLink()}
             <h1>{lang('s_private_office')}</h1>
             <!-- Start errors block -->
             <div  class="msg_form_edit">
@@ -74,7 +74,7 @@
                             </label>
                             {if $profile->getdiscount()}
                                 <label>
-                                    <span class="title">{lang('s_disk')}:</span>
+                                    <span class="title">Скидка:</span>
                                     <span class="frame_form_field">
                                         <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
 

@@ -34,18 +34,35 @@ class Socauth extends MY_Controller {
     }
 
     public function writeCookies() {
-//        $this->load->helper('cookie');
-//        set_cookie("serverPosition", 'sdfsd', 600, '/');
-//        SetCookie("serverPosition", $this->uri->uri_string());
-//        
-//        var_dumps($_COOKIE['serverPosition']);
-//        var_dumps($this->uri->uri_string());
+        $this->load->helper('cookie');
+        if (!strstr($this->uri->uri_string(), 'socauth/vk')) {
+            $cookie = array(
+                'name' => 'url',
+                'value' => $this->uri->uri_string(),
+                'expire' => '15000000',
+                'prefix' => ''
+            );
+            $this->input->set_cookie($cookie);
+        }
+    }
+
+    private function link($soc, $socId) {
+        $this->db->set('socialId', $socId);
+        $this->db->set('userId', $this->dx_auth->get_user_id());
+        $this->db->set('social', $soc);
+        $this->db->insert('mod_social');
+
+        redirect($this->input->cookie('url'));
+    }
+
+    public function unlink($soc) {
+        if ($this->dx_auth->is_logged_in())
+            if ($this->db->delete('mod_social', array('social' => $soc, 'userId' => $this->dx_auth->get_user_id())))
+                echo json_encode(array('answer' => 'sucesfull'));
     }
 
     private function socAuth($social, $id, $username, $email, $address, $key, $phone) {
-//        var_dumps($_COOKIE['serverPosition']);
-
-        if ($email == '')
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             redirect('/socauth/error');
 
         $user = $this->db
@@ -81,12 +98,13 @@ class Socauth extends MY_Controller {
             $this->db->set('socialId', $id);
             $this->db->set('userId', $userId->id);
             $this->db->set('social', $social);
+            $this->db->set('isMain', '1');
             $this->db->insert('mod_social');
         }else {
             $data = new stdClass;
             $userData = $this->db
                     ->join('mod_social', 'users.id=mod_social.userId')
-                    ->where('email', $email)
+//                    ->where('email', $email)
                     ->where('socialId', $id)
                     ->get('users', 1)
                     ->row();
@@ -103,38 +121,54 @@ class Socauth extends MY_Controller {
             $this->dx_auth->_clear_login_attempts();
             $this->dx_auth_event->user_logged_in($userData->id);
         }
-//        var_dump($_COOKIE['serverPosition']);
-//        redirect($_COOKIE['serverPosition']);
-        redirect('/shop/profile');
+        redirect($this->input->cookie('url'));
     }
 
     public function index() {
         if (!$this->dx_auth->is_logged_in())
-            \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->render('login');
+            redirect('/auth/login');
         else
-            redirect('/shop/profile');
+            redirect($this->input->cookie('url'));
     }
 
     public function error($error = "") {
         $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in())
-            \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->render('login');
+            redirect('/auth/login');
         else
-            redirect('/shop/profile');
+            redirect($this->input->cookie('url'));
     }
 
     public function renderLogin() {
         if (!$this->dx_auth->is_logged_in()) {
             $this->writeCookies();
+            \CMSFactory\assetManager::create()
+                    ->setData($this->settings)
+                    ->render('loginButtons', TRUE);
+        }
+    }
+
+    public function renderLink() {
+        if ($this->dx_auth->is_logged_in()) {
+            $this->writeCookies();
+
+            $socials = $this->db
+                    ->where('userId', $this->dx_auth->get_user_id())
+                    ->get('mod_social')
+                    ->result_array();
+
+            foreach ($socials as $soc)
+                if (!$soc[isMain])
+                    $social[$soc[social]] = 'linked';
+                else
+                    $social[$soc[social]] = 'main';
 
             \CMSFactory\assetManager::create()
                     ->setData($this->settings)
-                    ->render('buttons', TRUE);
+                    ->setData($social)
+                    ->registerScript('socauth')
+                    ->render('linkButtons', TRUE);
         }
     }
 
@@ -166,7 +200,10 @@ class Socauth extends MY_Controller {
             $res = json_decode($res);
             curl_close($curl);
 
-            $this->socAuth('ya', $res->id, $res->display_name, $res->default_email, '', '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('ya', $res->id, $res->display_name, $res->default_email, '', '', '');
+            else
+                $this->link('ya', $res->id);
         }
         else
             $this->core->error_404();
@@ -199,7 +236,10 @@ class Socauth extends MY_Controller {
 
             $res = json_decode($res);
 
-            $this->socAuth('fb', $res->id, $res->name, $res->email, $res->location->name, '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('fb', $res->id, $res->name, $res->email, $res->location->name, '', '');
+            else
+                $this->link('fb', $res->id);
         }
         else
             $this->core->error_404();
@@ -230,6 +270,9 @@ class Socauth extends MY_Controller {
             $res = json_decode($res);
             curl_close($curl);
 
+            if ($res->error)
+                $this->error();
+
             $isRegistereg = $this->db
                     ->join('users', 'mod_social.userId=users.id')
                     ->where('socialId', $res->response[0]->uid)
@@ -249,8 +292,12 @@ class Socauth extends MY_Controller {
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean|trim');
             $this->form_validation->run();
 
-            if (!validation_errors())
-                $this->socAuth('vk', $this->input->post(uid), $this->input->post(name), $this->input->post(email), '', '', '');
+            if (!validation_errors()) {
+                if (!$this->dx_auth->is_logged_in())
+                    $this->socAuth('vk', $this->input->post(uid), $this->input->post(name), $this->input->post(email), '', '', '');
+                else
+                    $this->link('vk', $this->input->post(uid));
+            }
             else
                 redirect();
         }
@@ -303,7 +350,10 @@ class Socauth extends MY_Controller {
 
             curl_close($curl);
 
-            $this->socAuth('google', $res->id, $res->name, $res->email, '', '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('google', $res->id, $res->name, $res->email, '', '', '');
+            else
+                $this->link('google', $res->id);
         }
         else
             $this->core->error_404();
@@ -327,6 +377,10 @@ class Socauth extends MY_Controller {
             'social' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '20',
+                'null' => TRUE),
+            'isMain' => array(
+                'type' => 'INT',
+                'constraint' => '1',
                 'null' => TRUE)
         );
 

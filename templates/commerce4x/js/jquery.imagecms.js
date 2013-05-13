@@ -1,7 +1,7 @@
 var isTouch = 'ontouchstart' in document.documentElement,
-wnd = $(window),
-body = $('body'),
-mainBody = $('.mainBody');
+        wnd = $(window),
+        body = $('body'),
+        mainBody = $('.mainBody');
 
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
@@ -19,54 +19,56 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-    ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+            ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+            ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
 }
-function navPortait(){
+function navPortait() {
     var frameM = $('.frame-menu-main');
     headerMenu = $('.headerMenu');
-    
-    $('.headerMenu').each(function(){
-        var $this= $(this);
-        if ($this.hasClass('navHorizontal')){
+
+    $('.headerMenu').each(function() {
+        var $this = $(this);
+        if ($this.hasClass('navHorizontal')) {
             $('.frame-navbar').addClass('in');
             var headerFon = $('.headerFon'),
-            heightFon = 0,
-            temp_height = $this.find('> li').outerHeight();
-            
-            if ($this.hasClass('navVertical')){
+                    heightFon = 0,
+                    temp_height = $this.find('> li').outerHeight();
+
+            if ($this.hasClass('navVertical')) {
                 $('.btn-navbar').hide();
                 $this.removeClass('navVertical');
                 $('.frame-navbar').addClass('in').show();
             }
-            if (temp_height < $this.outerHeight()){
+            if (temp_height < $this.outerHeight()) {
                 $('.btn-navbar').show();
                 $('.frame-navbar').removeClass('in');
                 $this.addClass('navVertical');
             }
-                
-            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')){
-                heightFon = frameM.offset().top+frameM.outerHeight(true)
-                if ($.exists('.frame_baner')) heightFon = $('.frame_baner').height()/2+$('.frame_baner').offset().top;
+
+            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
+                heightFon = frameM.offset().top + frameM.outerHeight(true)
+                if ($.exists('.frame_baner'))
+                    heightFon = $('.frame_baner').height() / 2 + $('.frame_baner').offset().top;
                 headerFon.css({
                     'height': heightFon,
-                    'top':0
+                    'top': 0
                 });
             }
-            else headerFon.css({
-                'height': $('.headerContent').outerHeight(true)+$('header').height(),
-                'top':0
-            });
+            else
+                headerFon.css({
+                    'height': $('.headerContent').outerHeight(true) + $('header').height(),
+                    'top': 0
+                });
         }
     });
 }
 
 var ie = jQuery.browser.msie,
-ieV = jQuery.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
+        ieV = jQuery.browser.version,
+        ltie7 = ie && (ieV <= 7),
+        ltie8 = ie && (ieV <= 8);
 
 function ieInput(els) {
     els = $('input[type="text"], textarea, input[type="password"]');
@@ -83,24 +85,25 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-(function($){
+(function($) {
     var methods = {
-        init : function(options) {
+        init: function(options) {
             var settings = $.extend({
-                item : 'ul > li',
+                item: 'ul > li',
                 duration: 300,
                 searchPath: "/shop/search/ac",
                 inputString: $('#inputString')
             }, options);
-                
+
             $thisS = $(this);
             itemA = settings.item;
             durationA = settings.duration;
             searchPath = settings.searchPath;
             selectorPosition = -1;
-            inputString = settings.inputString.keyup(function(event){
-                if (event.keyCode != 27) methods.lookup(event);
-            }).blur(function(){
+            inputString = settings.inputString.keyup(function(event) {
+                if (event.keyCode != 27)
+                    methods.lookup(event);
+            }).blur(function() {
                 $thisS.fadeOut(durationA);
             });
             body.live('click', function(event) {
@@ -125,33 +128,33 @@ function ieInput(els) {
                 }
             });
         },
-        lookup: function(event){
-            try{
+        lookup: function(event) {
+            try {
                 var code = event.keyCode;
 
-                if(code == 38 || code == 40)
+                if (code == 38 || code == 40)
                 {
-                    if(code == 38)
+                    if (code == 38)
                     {
                         selectorPosition -= 1;
                     }
-                    if(code == 40)
+                    if (code == 40)
                     {
                         selectorPosition += 1;
                     }
 
-                    if(selectorPosition < 0)
+                    if (selectorPosition < 0)
                     {
-                        selectorPosition = itemserch.length-1;
+                        selectorPosition = itemserch.length - 1;
                     }
-                    if(selectorPosition > itemserch.length-1)
+                    if (selectorPosition > itemserch.length - 1)
                     {
                         selectorPosition = 0;
                     }
 
                     itemserch.each(function(i, el) {
                         $(el).removeClass('selected');
-                        if(i == selectorPosition)
+                        if (i == selectorPosition)
                         {
                             $(el).addClass('selected');
                         }
@@ -164,7 +167,7 @@ function ieInput(els) {
                 if (code == 13)
                 {
                     itemserch.each(function(i, el) {
-                        if($(el).hasClass('selected'))
+                        if ($(el).hasClass('selected'))
                         {
                             window.location = $(el).attr('href');
                             window.location = $(el).find('a').attr('href');
@@ -172,9 +175,10 @@ function ieInput(els) {
                     });
                 }
             }
-            catch(err){}
-                
-            if(inputString.val().length == 0)
+            catch (err) {
+            }
+
+            if (inputString.val().length == 0)
             {
                 $thisS.fadeOut(durationA);
             }
@@ -187,18 +191,18 @@ function ieInput(els) {
                     try {
                         var dataObj = JSON.parse(data);
                         var html = _.template($('#searchResultsTemplate').html(), {
-                            'items' : dataObj
+                            'items': dataObj
                         });
-                    } catch (e){
+                    } catch (e) {
                         var html = e.toString();
-                            
+
                     }
                     $thisS.html(html);
                     selectorPosition = -1;
 
                     itemserch = $thisS.find(itemA);
                     itemserch.each(function(i, el) {
-                        $(el).mouseover(function(){
+                        $(el).mouseover(function() {
                             itemserch.removeClass('selected');
                             $(this).addClass('selected');
                             selectorPosition = i;
@@ -208,87 +212,90 @@ function ieInput(els) {
             }
         }
     }
-    $.fn.autocomlete = function( method ) {
-        if ( methods[method] ) {
-            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
+    $.fn.autocomlete = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.autocomlete');
+            $.error('Method ' + method + ' does not exist on jQuery.autocomlete');
         }
     };
 })(jQuery);
-(function($){
+(function($) {
     var methods = {
-        init : function(options) {
+        init: function(options) {
             var settings = $.extend({
-                title : this.attr('data-title'),
+                title: this.attr('data-title'),
                 otherClass: false,
                 effect: 'notalways'
             }, options);
-                
+
             $.ajaxSetup({
-                success: function(){
+                success: function() {
                     $('.tooltip').remove();
                 }
             })
             var $this = $(this),
-            text_el = $this.find('.text-el');
-            
-            if (!text_el.is(':visible') && $.exists_nabir(text_el)){
+                    text_el = $this.find('.text-el');
+
+            if (!text_el.is(':visible') && $.exists_nabir(text_el)) {
                 if (settings.effect == 'notalways') {
                     $('.tooltip').remove();
-                    body.append('<span class="tooltip">'+settings.title+'</span>');
-                }
-            
-                var tooltip = $('.tooltip').not('.cloned');
-            
-                if (settings.effect == 'always') {
-                    if (!$.exists_nabir(tooltip)) {
-                        body.append('<span class="tooltip">'+settings.title+'</span>');
-                    }
-                    else tooltip.text(settings.title)
+                    body.append('<span class="tooltip">' + settings.title + '</span>');
                 }
 
-                if (settings.otherClass !== false) tooltip.addClass(settings.otherClass);
-                if (settings.effect == 'notalways') tooltip.hide();
-                
+                var tooltip = $('.tooltip').not('.cloned');
+
+                if (settings.effect == 'always') {
+                    if (!$.exists_nabir(tooltip)) {
+                        body.append('<span class="tooltip">' + settings.title + '</span>');
+                    }
+                    else
+                        tooltip.text(settings.title)
+                }
+
+                if (settings.otherClass !== false)
+                    tooltip.addClass(settings.otherClass);
+                if (settings.effect == 'notalways')
+                    tooltip.hide();
+
                 tooltip.css({
-                    'left': Math.ceil(this.offset().left-(tooltip.actual('outerWidth')-this.outerWidth())/2),
-                    'top': this.offset().top-tooltip.actual('outerHeight')
+                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                    'top': this.offset().top - tooltip.actual('outerHeight')
                 }).fadeIn(300);
-                
-                this.blur(function(){
-                    $('.tooltip').fadeOut(300, function(){
+
+                this.blur(function() {
+                    $('.tooltip').fadeOut(300, function() {
                         $(this).remove()
                     });
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    $('.tooltip').fadeOut(300, function(){
+                    $('.tooltip').fadeOut(300, function() {
                         $(this).remove()
                     });
                 })
             }
         },
-        remove : function( ) {
-            $('.tooltip').fadeOut(300, function(){
+        remove: function( ) {
+            $('.tooltip').fadeOut(300, function() {
                 $(this).remove()
             });
         }
     };
-    $.fn.tooltip = function( method ) {
-        if ( methods[method] ) {
-            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
+    $.fn.tooltip = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
+            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
         }
     };
-    $('[data-rel="tooltip"]').live('mouseenter', function(){
+    $('[data-rel="tooltip"]').live('mouseenter', function() {
         $(this).tooltip();
-    }).live('mouseleave', function(){
+    }).live('mouseleave', function() {
         $(this).tooltip('remove');
     })
 })(jQuery);
@@ -309,7 +316,7 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
             var sH = 0,
-            menu = "";
+                    menu = "";
 
             if (options.menu == undefined)
                 menu = $(this)
@@ -317,18 +324,18 @@ function ieInput(els) {
                 menu = settings.menu;
 
             var menuW = menu.width(),
-            menuItem = settings.item,
-            vertical = false,
-            menuItemSub = settings.itemSub,
-            item_menu_l = menuItem.length,
-            frameSub = $(settings.frameSub),
-            dropW = 520;
+                    menuItem = settings.item,
+                    vertical = false,
+                    menuItemSub = settings.itemSub,
+                    item_menu_l = menuItem.length,
+                    frameSub = $(settings.frameSub),
+                    dropW = 520;
             duration = time_dur_m = settings.duration;
             drop = menuItem.next(settings.drop);
             menuItemCltd = menuItem.closest('td');
             effecton = settings.effecton;
             effectoff = settings.effectoff;
-            
+
             if (menu.hasClass('vertical'))
                 vertical = true;
 
@@ -337,10 +344,10 @@ function ieInput(els) {
             $thisOH = 0;
             menuItemCltd.each(function(index) {
                 var $this = $(this),
-                $thisW = $this.width(),
-                $thisL = $this.position().left,
-                $drop = $this.find(drop).first(),
-                $thisH = $this.height();
+                        $thisW = $this.width(),
+                        $thisL = $this.position().left,
+                        $drop = $this.find(drop).first(),
+                        $thisH = $this.height();
                 if ($thisH > sH) {
                     sH = $thisH;
                 }
@@ -395,7 +402,7 @@ function ieInput(els) {
 
             function itemSubEv(el, event) {
                 var $this = el,
-                cond = $.exists_nabir($this.next('div'))
+                        cond = $.exists_nabir($this.next('div'))
                 if (cond) {
                     event.preventDefault();
                     $thisP = $this.parent();
@@ -424,16 +431,16 @@ function ieInput(els) {
             }, function(event) {
                 itemSubEv($(this), event);
             });
-            
+
             hover_t_o = '';
-            
+
             function unhov(el) {
                 var $this = el,
-                $thisDrop = $this.next();
+                        $thisDrop = $this.next();
                 $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
-                
+
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-                                
+
                 clearTimeout(hover_t_o);
                 if ($thisDrop.length != 0)
                     menu.removeClass('hover');
@@ -441,12 +448,12 @@ function ieInput(els) {
             function hov(el) {
                 drop.removeClass('d_n');
                 var $this = el,
-                $thisDrop = $this.next();
+                        $thisDrop = $this.next();
 
                 menuItemCltd.removeClass('hover');
-                
+
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-                
+
                 $this = $this.closest('td').addClass('hover');
 
                 if ($this.index() == 0)
@@ -462,32 +469,32 @@ function ieInput(els) {
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
-                    function() {
-                        hov($(this));
-                    }, function() {
-                        unhov($(this));
-                    });
+                        function() {
+                            hov($(this));
+                        }, function() {
+                    unhov($(this));
+                });
                 menu[evDrop](
-                    function(event) {
-                        time_dur_m = 0;
-                    },
-                    function(event) {
-                        time_dur_m = duration;
-                    });
+                        function(event) {
+                            time_dur_m = 0;
+                        },
+                        function(event) {
+                            time_dur_m = duration;
+                        });
             }
             else {
                 menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
-                    }).unbind(evDropS)[evDropS](function() {
+                }).unbind(evDropS)[evDropS](function() {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
                     return time_dur_m = 0;
-                    }).unbind(evDropS)[evDropS](
-                    function() {
-                        methods.fadeDrop();
-                        return time_dur_m = duration;
-                    });
+                }).unbind(evDropS)[evDropS](
+                        function() {
+                            methods.fadeDrop();
+                            return time_dur_m = duration;
+                        });
             }
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
@@ -504,11 +511,11 @@ function ieInput(els) {
         },
         fadeDrop: function() {
             time_dur_m = 0;
-            
+
             clearTimeout(hover_t_o);
-            
+
             drop.stop()[effectoff](duration).addClass('d_n');
-            
+
             menuItemCltd.removeClass('hover')
             $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }
@@ -530,8 +537,8 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
                 var rel = $(this),
-                minCost = settings.minCost,
-                maxCost = settings.maxCost;
+                        minCost = settings.minCost,
+                        maxCost = settings.maxCost;
 
                 if (options.minCost == undefined || options.maxCost == undefined) {
                     minCost = $('<input type="text"/>', {
@@ -552,12 +559,12 @@ function ieInput(els) {
                         maxCost.val(ui.values[1]);
                     }
                 });
-                minCost.change(function(){
-                    var value1=minCost.val(),
-                    value2=maxCost.val(),
-                    minS = minCost.data('mins');
+                minCost.change(function() {
+                    var value1 = minCost.val(),
+                            value2 = maxCost.val(),
+                            minS = minCost.data('mins');
 
-                    if(parseInt(value1) > parseInt(value2)){
+                    if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
                         maxCost.val(value1);
                     }
@@ -565,19 +572,19 @@ function ieInput(els) {
                         minCost.val(minS);
                         value1 = minS;
                     }
-                    rel.slider("values",0,value1);
-                }); 
-                maxCost.change(function(){
-                    var value1=minCost.val(),
-                    value2=maxCost.val(),
-                    maxS = maxCost.data('maxs');
+                    rel.slider("values", 0, value1);
+                });
+                maxCost.change(function() {
+                    var value1 = minCost.val(),
+                            value2 = maxCost.val(),
+                            maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
                         maxCost.val(def_max)
                     }
 
-                    if(parseInt(value1) > parseInt(value2)){
+                    if (parseInt(value1) > parseInt(value2)) {
                         value2 = value1;
                         maxCost.val(value2);
                     }
@@ -585,7 +592,7 @@ function ieInput(els) {
                         maxCost.val(maxS);
                         value2 = maxS;
                     }
-                    rel.slider("values",1,value2);
+                    rel.slider("values", 1, value2);
                 });
             }
         }
@@ -613,8 +620,8 @@ function ieInput(els) {
             }, options);
             $this = this;
             var tabs_div = [],
-            nav_tabs_li = [],
-            reg_refs = [];
+                    nav_tabs_li = [],
+                    reg_refs = [];
             refs = [];
             attrOrdata = [];
             this_l = this.length;
@@ -678,7 +685,8 @@ function ieInput(els) {
                                 k = false;
                             }
                         }
-                    };
+                    }
+                    ;
                     if (event.which || event.button == 0) {
                         settings.after($thiss);
                     }
@@ -711,11 +719,11 @@ function ieInput(els) {
             if (location.hash == '')
             {
                 var i = 0,
-                j = 0;
+                        j = 0;
                 $(refs).each(function(index) {
                     var index = index;
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs[i] = $this[attrOrdataL]('href');
@@ -731,10 +739,10 @@ function ieInput(els) {
             else {
                 $(refs).each(function(index) {
                     var index = index,
-                    j = 0;
+                            j = 0;
 
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -742,10 +750,10 @@ function ieInput(els) {
                     }
                 });
                 var t = location.hash,
-                s = '#',
-                m = s.length,
-                res = 0,
-                i = 0;
+                        s = '#',
+                        m = s.length,
+                        res = 0,
+                        i = 0;
                 pos = [];
 
                 while (i < t.length - 1)
@@ -774,7 +782,7 @@ function ieInput(els) {
             });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
+                        attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
@@ -791,60 +799,60 @@ function ieInput(els) {
         }
     }
 })(jQuery);
-(function($){
+(function($) {
     var methods = {
-        init : function(options) {
+        init: function(options) {
             var settings = $.extend({}, options),
-            mouseWhell = settings.mouseWhell;
+                    mouseWhell = settings.mouseWhell;
             elEven = settings.elEven;
             elEvens = $(settings.right).find(elEven);
 
             onlyDif = settings.onlyDif;
             allParams = settings.allParams;
             hoverParent = settings.hoverParent;
-            
+
             this.each(function(index) {
                 var $this = $(this),
-                visThis = $this.is(':visible');
-                if (visThis){
+                        visThis = $this.is(':visible');
+                if (visThis) {
                     var left = $this.find(settings.left),
-                    right = $this.find(settings.right);
+                            right = $this.find(settings.right);
                     li_i_length = left.length;
                 }
-				
-                if (visThis && !$this.is('[data-equalHorizCell]')){
-                    var h=0,
-                    li_i_h = [],
-                    frameScroll = $this.find(settings.frameScroll),
-                    frame_scrollC = frameScroll.children(),
-                    frame_scrollCL = frame_scrollC.length;
-                        
+
+                if (visThis && !$this.is('[data-equalHorizCell]')) {
+                    var h = 0,
+                            li_i_h = [],
+                            frameScroll = $this.find(settings.frameScroll),
+                            frame_scrollC = frameScroll.children(),
+                            frame_scrollCL = frame_scrollC.length;
+
                     scrollNSP = settings.scrollNSP && $.exists(frameScroll);
                     scrollNSPT = settings.scrollNSPT;
 
-                    for (var j = 0; j < li_i_length; j++){
+                    for (var j = 0; j < li_i_length; j++) {
                         nab = $([]);
-                        right.each(function(){
+                        right.each(function() {
                             nab = nab.add($(this).find(elEven).eq(j))
                         })
                         var tempNabir = left.eq(j).add(nab);
-                        tempNabir.each(function(index){
+                        tempNabir.each(function(index) {
                             var this_ch = $(this);
                             li_i_h[index] = this_ch.outerHeight();
                             li_i_h[index] > h ? h = li_i_h[index] : h = h;
                         });
-                        
-                        tempNabir.add(tempNabir.find('.helper')).css('height',h).attr('data-equalHorizCell','');
-                        
+
+                        tempNabir.add(tempNabir.find('.helper')).css('height', h).attr('data-equalHorizCell', '');
+
                         li_i_h = [];
-                        h=0;
+                        h = 0;
                     }
                     var w = 0;
-                    frameScroll.children().each(function(){
+                    frameScroll.children().each(function() {
                         w += $(this).outerWidth(true);
                     })
                     frameScroll.css('width', w);
-                    try{
+                    try {
                         frameScrollP = frameScroll.parent();
                         frameScrollPW = frameScrollP.width();
                         var scrollW = w - frameScroll.parent().width();
@@ -852,163 +860,179 @@ function ieInput(els) {
                             scrollNSPT = $this.find(scrollNSPT);
                             topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
                             $this.children('.scrollNSP').remove();
-                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:'+w+'px;"></div></div>')
+                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                         }
-                    }catch(err){}
-                    
+                    } catch (err) {
+                    }
+
                     var firstScrl = frameScroll.parent(),
-                    secScrl = $([]);
-                    try{
-                        if (scrollNSP){
+                            secScrl = $([]);
+                    try {
+                        if (scrollNSP) {
                             secScrl = $this.children('.scrollNSP');
                             secScrl.css({
-                                'width':frameScrollPW, 
+                                'width': frameScrollPW,
                                 'top': topScrollNSP
                             })
                         }
-                    }catch(err){}
-                        
-                    if (mouseWhell){
+                    } catch (err) {
+                    }
+
+                    if (mouseWhell) {
                         firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
                             $thisSL = $(this).scrollLeft();
-                            if ($thisSL != scrollW && deltaY < 0){
-                                firstScrl.add(secScrl).scrollLeft($thisSL+w/frame_scrollCL);
+                            if ($thisSL != scrollW && deltaY < 0) {
+                                firstScrl.add(secScrl).scrollLeft($thisSL + w / frame_scrollCL);
                                 return false;
                             }
-                            if ($thisSL > 0 && deltaY > 0){
-                                firstScrl.add(secScrl).scrollLeft($thisSL-w/frame_scrollCL);
+                            if ($thisSL > 0 && deltaY > 0) {
+                                firstScrl.add(secScrl).scrollLeft($thisSL - w / frame_scrollCL);
                                 return false;
                             }
                         });
                     }
                     firstScrl.add(secScrl).scrollLeft('0');
-                        
+
                     secScrl.unbind('scroll').bind('scroll', function() {
                         $thisSL = $(this).scrollLeft();
                         firstScrl.add(secScrl).scrollLeft($thisSL);
                     });
-                    $this.attr('data-equalHorizCell','');
+                    $this.attr('data-equalHorizCell', '');
                 }
-                if (visThis){
+                if (visThis) {
                     var right = right.find(hoverParent),
-                    left = left.parent(hoverParent).children();
-					
-                    left.each(function(ind){
-                        if (ind%2==0) $(this).addClass('oddC');
-                        else $(this).addClass('evenC')
+                            left = left.parent(hoverParent).children();
+
+                    left.each(function(ind) {
+                        if (ind % 2 == 0)
+                            $(this).addClass('oddC');
+                        else
+                            $(this).addClass('evenC')
                     });
 
-                    right.each(function(){
-                        $(this).find(elEven).each(function(ind){
-                            if (ind%2==0) $(this).addClass('oddC');
-                            else $(this).addClass('evenC')
+                    right.each(function() {
+                        $(this).find(elEven).each(function(ind) {
+                            if (ind % 2 == 0)
+                                $(this).addClass('oddC');
+                            else
+                                $(this).addClass('evenC')
                         });
                     });
-					
+
                     methods.hoverComprasion(left, right);
-                        
-                    onlyDif.die('click').live('click', function(){
+
+                    onlyDif.die('click').live('click', function() {
                         methods.onlyDifM(left, right);
                     })
-                    allParams.die('click').live('click', function(){
+                    allParams.die('click').live('click', function() {
                         methods.allParamsM(left, right);
                     })
                 }
             })
         },
-        refresh : function() {
+        refresh: function() {
             $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
             $(this).equalHorizCell(optionCompare)
         },
-        headComprasion: function(){
+        headComprasion: function() {
             compHead = $('.comprasion_head');
-            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height()>left.first().height()-70)
-                compHead.find('.tabs').css('height', left.first().height()-70);
+            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
+                compHead.find('.tabs').css('height', left.first().height() - 70);
             else
-                compHead.find('.tabs').css('height', left.first().height()-70).attr('data-equalHorizCell');
+                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
         },
-        hoverComprasion: function(left, right){
-            left.add(right.find(elEven)).hover(function(){
+        hoverComprasion: function(left, right) {
+            left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
-				
-                right.each(function(){
+                        index = $this.index(),
+                        nab = $([]);
+
+                right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(index))
                 })
                 $([]).add(left.eq(index)).add(nab).addClass('hover')
             },
-            function(){
-                var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
-                right.each(function(){
-                    nab = nab.add($(this).find(elEven).eq(index))
-                })
-                $([]).add(left.eq(index)).add(nab).removeClass('hover')
-            });
+                    function() {
+                        var $this = $(this),
+                                index = $this.index(),
+                                nab = $([]);
+                        right.each(function() {
+                            nab = nab.add($(this).find(elEven).eq(index))
+                        })
+                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
+                    });
         },
-        onlyDifM: function(left, right){
+        onlyDifM: function(left, right) {
             li_i_h = [];
             genObj = $([]);
             tempText = '';
-            k = 0; 
-            for (var j = 0; j < li_i_length; j++){
+            k = 0;
+            for (var j = 0; j < li_i_length; j++) {
                 nab = $([]);
-                right.each(function(){
+                right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(j))
                 })
                 var tempNabir = nab;
-                tempNabir.each(function(index){
+                tempNabir.each(function(index) {
                     var this_ch = $(this);
                     li_i_h[index] = $.trim(this_ch.text());
 
-                    if (tempText == li_i_h[index]) k++;
+                    if (tempText == li_i_h[index])
+                        k++;
                     tempText = li_i_h[index];
                 });
-				
-                if (k == tempNabir.length-1 && k!=0) genObj = genObj.add(left.eq(j)).add(tempNabir);
-				  
+
+                if (k == tempNabir.length - 1 && k != 0)
+                    genObj = genObj.add(left.eq(j)).add(tempNabir);
+
                 li_i_h = [];
                 k = 0;
                 tempText = '';
             }
-			
-            right.each(function(){
-                $(this).find(elEven).not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind){
-                    if (ind%2==0) $(this).addClass('oddC');
-                    else $(this).addClass('evenC')
+
+            right.each(function() {
+                $(this).find(elEven).not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+                    if (ind % 2 == 0)
+                        $(this).addClass('oddC');
+                    else
+                        $(this).addClass('evenC')
                 });
             });
-            left.not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind){
-                if (ind%2==0) $(this).addClass('oddC');
-                else $(this).addClass('evenC')
+            left.not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+                if (ind % 2 == 0)
+                    $(this).addClass('oddC');
+                else
+                    $(this).addClass('evenC')
             });
-		
+
             genObj.hide();
         },
-        allParamsM: function(left, right){
-            left.removeClass('evenC').removeClass('oddC').each(function(ind){
-                if (ind%2==0) $(this).addClass('oddC');
-                else $(this).addClass('evenC')
+        allParamsM: function(left, right) {
+            left.removeClass('evenC').removeClass('oddC').each(function(ind) {
+                if (ind % 2 == 0)
+                    $(this).addClass('oddC');
+                else
+                    $(this).addClass('evenC')
             }).show();
-			
-			
-            right.each(function(){
-                $(this).find(elEven).removeClass('evenC').removeClass('oddC').each(function(ind){
-                    if (ind%2==0) $(this).addClass('oddC');
-                    else $(this).addClass('evenC')
+
+
+            right.each(function() {
+                $(this).find(elEven).removeClass('evenC').removeClass('oddC').each(function(ind) {
+                    if (ind % 2 == 0)
+                        $(this).addClass('oddC');
+                    else
+                        $(this).addClass('evenC')
                 }).show();
             });
         }
     };
-    $.fn.equalHorizCell = function( method ) {
-        if ( methods[method] ) {
-            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
+    $.fn.equalHorizCell = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.equalHorizCell' );
+            $.error('Method ' + method + ' does not exist on jQuery.equalHorizCell');
         }
     };
 })(jQuery);
@@ -1046,33 +1070,33 @@ function ieInput(els) {
             }, options);
 
             var $thisD = this,
-            selector = $thisD.selector,
-            dataSource = $('[data-drop]'),
-            cloned = settings.cloned,
-            exit = $(settings.exit),
-            effon = settings.effon,
-            effoff = settings.effoff,
-            effdur = settings.effdur,
-            overlayColor = settings.overlayColor,
-            overlayOpacity = settings.overlayOpacity;
+                    selector = $thisD.selector,
+                    dataSource = $('[data-drop]'),
+                    cloned = settings.cloned,
+                    exit = $(settings.exit),
+                    effon = settings.effon,
+                    effoff = settings.effoff,
+                    effdur = settings.effdur,
+                    overlayColor = settings.overlayColor,
+                    overlayOpacity = settings.overlayOpacity;
 
             activeClass = settings.activeClass;
 
             dataSource.live('click', function(event) {
                 event.stopPropagation();
                 event.preventDefault();
-                
-                if ($(event.target).parents('[data-simple="yes"]').length == 0){
+
+                if ($(event.target).parents('[data-simple="yes"]').length == 0) {
 
                     $this = $(this);
                     elSet = $this.data();
                     elSetSource = $(elSet.drop);
-                
+
                     var elSetOn = elSet.effectOn || effon,
-                    elSetOff = elSet.effectOff || effoff,
-                    elSetDuration = elSet.duration || effdur,
-                    overlayColor = elSet.overlaycolor || settings.overlayColor,
-                    overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                            elSetOff = elSet.effectOff || effoff,
+                            elSetDuration = elSet.duration || effdur,
+                            overlayColor = elSet.overlaycolor || settings.overlayColor,
+                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
                     if (overlayColor != undefined || overlayOpacity != undefined) {
                         if (!$.exists('.overlayDrop')) {
@@ -1096,8 +1120,8 @@ function ieInput(els) {
                         $thisHref = $(this).attr('href');
                         if ($thisHref != undefined) {
                             var $thisHrefL = $thisHref.length,
-                            wLH = location.hash,
-                            wLHL = wLH.length;
+                                    wLH = location.hash,
+                                    wLHL = wLH.length;
                             try {
                                 indH = wLH.match($thisHref + '(?![a-z])').index;
                                 location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -1107,12 +1131,15 @@ function ieInput(els) {
                     }
                     else {
                         $newthis = settings.before(this, elSetSource);
-                        if ($newthis != undefined) $this = $newthis;
+                        if ($newthis != undefined)
+                            $this = $newthis;
 
                         var wndW = wnd.width();
-                        if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                        else elSetSource.removeAttr('style');
-                    
+                        if (elSetSource.actual('width') > wnd.width())
+                            elSetSource.css('width', wndW - 40);
+                        else
+                            elSetSource.removeAttr('style');
+
                         methods.positionDrop($this, elSet, elSetSource);
 
                         $this.addClass(activeClass);
@@ -1128,20 +1155,20 @@ function ieInput(els) {
                 }
             }).each(function() {
                 var $this = $(this),
-                $thisS = $this.data('effect-off') || effoff,
-                $thisD = $this.data('duration') || effdur,
-                $thisSource = $this.data('drop'),
-                dataSource2 = $($thisSource);
+                        $thisS = $this.data('effect-off') || effoff,
+                        $thisD = $this.data('duration') || effdur,
+                        $thisSource = $this.data('drop'),
+                        dataSource2 = $($thisSource);
 
                 dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
             });
 
-            
+
             exit.live('click', function() {
                 var $this = $(this);
                 $('[data-drop="' + $this.closest('.drop').data('elrun') + '"]').click().parent().removeClass('active');
             })
-            
+
             body.live('click', function(event) {
                 event.stopPropagation();
                 if ($(event.target).parents().is(selector) || $(event.target).is(selector))
@@ -1169,19 +1196,20 @@ function ieInput(els) {
                 $('[data-drop = "' + $(this).attr('data-elrun') + '"]').click().parent().removeClass('active');
             });
         },
-        positionDrop: function($this){
+        positionDrop: function($this) {
             var $this = $this;
-            if ($this == undefined) $this = $(this);
-            
+            if ($this == undefined)
+                $this = $(this);
+
             var elSet = $this.data(),
-            elSetSource = $(elSet.drop);
-            
+                    elSetSource = $(elSet.drop);
+
             var $thisP = $this.attr('data-place');
             dataSourceH = 0,
-            dataSourceW = 0,
-            $thisW = $this.width();
+                    dataSourceW = 0,
+                    $thisW = $this.width();
             $thisH = $this.height();
-            
+
             if ($thisP == 'noinherit') {
                 var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
 
@@ -1196,17 +1224,19 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
-                
+
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0) $thisL = 0;
+                if ($thisL < 0)
+                    $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0) elSetSource.css('margin-left', 0);
+                if ($thisL == 0)
+                    elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
                 function dropScroll() {
@@ -1241,12 +1271,12 @@ function ieInput(els) {
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                    prev = settings.prev.split('.'),
-                    next = settings.next.split('.'),
-                    $thisPrev = $this,
-                    $thisNext = $this,
-                    regS = '',
-                    regM = '';
+                            prev = settings.prev.split('.'),
+                            next = settings.next.split('.'),
+                            $thisPrev = $this,
+                            $thisNext = $this,
+                            regS = '',
+                            regM = '';
 
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
@@ -1272,27 +1302,29 @@ function ieInput(els) {
                         $thisNext = $thisNext[regM](regS);
 
                     })
-                    
+
                     if ($this.focus().val() == 1)
-                            $thisPrev.attr('disabled', 'disabled');
-                        else
-                            $thisPrev.removeAttr('disabled');
+                        $thisPrev.attr('disabled', 'disabled');
+                    else
+                        $thisPrev.removeAttr('disabled');
 
                     $thisNext.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
 
                         if (isNaN(inputVal))
-                            input.val(1)
+                            input.val(1);
                         else
-                            input.val(inputVal + 1)
+                            input.val(inputVal + 1);
+                        
                         if (input.val() > 1)
                             $thisPrev.removeAttr('disabled');
                         else
                             $thisPrev.attr('disabled', 'disabled');
-
+                        
                         if (checkProdStock)
-                            if (input.maxValue()) $thisNext.attr('disabled', 'disabled');
+                            if (input.maxValue())
+                                $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
@@ -1305,9 +1337,9 @@ function ieInput(els) {
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
 
-                        
+
                     })
-                    $this.die('keyup').live('keyup', function(){
+                    $this.die('keyup').live('keyup', function() {
                         if (checkProdStock)
                             $(this).maxValue();
                     })
@@ -1330,7 +1362,7 @@ function ieInput(els) {
         init: function(options) {
             var $this = $(this);
             var $min = $(this).attr('data-min');
-            var $max = parseInt( $(this).attr('data-max'));
+            var $max = parseInt($(this).attr('data-max'));
 
             $thisVal = $this.val();
             if ($thisVal == '') {
@@ -1351,8 +1383,8 @@ function ieInput(els) {
             }
             else if ($thisVal <= $min)
                 $this.val($min);
-            
-            if (typeof $max == 'integer' && $max != 0)  
+
+            if (typeof $max == 'integer' && $max != 0)
                 if ($thisVal > $max)
                     $thisVal = $max;
         }
@@ -1377,15 +1409,16 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-            $max = parseInt( $(this).attr('data-max'));
+                    $max = parseInt($(this).attr('data-max'));
 
             $thisVal = $this.val();
 
-            if ($thisVal >  $max) {
+            if ($thisVal > $max) {
                 $this.val($max);
                 return true;
             }
-            else return false;
+            else
+                return false;
         }
     };
     $.fn.maxValue = function(method) {
@@ -1400,57 +1433,59 @@ function ieInput(els) {
 })(jQuery);
 
 
-(function($){
+(function($) {
     var methods = {
-        init : function(options) {
+        init: function(options) {
             var settings = $.extend({
-                width:0,
-                afterClick: function(){
+                width: 0,
+                afterClick: function() {
                     return true;
                 }
             }, options);
             var width = settings.width;
-            this.each(function(){
+            this.each(function() {
                 var $this = $(this);
-                if (!$this.hasClass('disabled')){
-                    $this.hover (
-                        function(){
-                            $(this).append("<span></span>");
-                        },
-                        function()
-                        {
-                            $(this).find("span").remove();
-                        });
+                if (!$this.hasClass('disabled')) {
+                    $this.hover(
+                            function() {
+                                $(this).append("<span></span>");
+                            },
+                            function()
+                            {
+                                $(this).find("span").remove();
+                            });
 
                     var rating;
 
-                    $this.mousemove (
-                        function(e){
-                            if (!e) e = window.event;
-                            if (e.pageX){
-                                x = e.pageX;
-                            } else if (e.clientX){
-                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
-	     
-                            }
-                            var posLeft = 0;
-                            var obj = this;
-                            while (obj.offsetParent)
-                            {
-                                posLeft += obj.offsetLeft;
-                                obj = obj.offsetParent;
-                            }
-                            var offsetX = x-posLeft,
-                            modOffsetX = 5*offsetX%this.offsetWidth;
-                            rating = parseInt(5*offsetX/this.offsetWidth);
+                    $this.mousemove(
+                            function(e) {
+                                if (!e)
+                                    e = window.event;
+                                if (e.pageX) {
+                                    x = e.pageX;
+                                } else if (e.clientX) {
+                                    x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 
-                            if(modOffsetX > 0) rating+=1;
-		
-                            jQuery(this).find("span").eq(0).css("width",rating*width+"px");
+                                }
+                                var posLeft = 0;
+                                var obj = this;
+                                while (obj.offsetParent)
+                                {
+                                    posLeft += obj.offsetLeft;
+                                    obj = obj.offsetParent;
+                                }
+                                var offsetX = x - posLeft,
+                                        modOffsetX = 5 * offsetX % this.offsetWidth;
+                                rating = parseInt(5 * offsetX / this.offsetWidth);
 
-                        });
+                                if (modOffsetX > 0)
+                                    rating += 1;
 
-                    $this.click (function(){
+                                jQuery(this).find("span").eq(0).css("width", rating * width + "px");
+
+                            });
+
+                    $this.click(function() {
                         settings.afterClick($this, rating);
                         return false;
                     });
@@ -1458,13 +1493,13 @@ function ieInput(els) {
             })
         }
     }
-    $.fn.starRating = function( method ) {
-        if ( methods[method] ) {
-            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof method === 'object' || ! method ) {
-            return methods.init.apply( this, arguments );
+    $.fn.starRating = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.starRating' );
+            $.error('Method ' + method + ' does not exist on jQuery.starRating');
         }
     }
 })(jQuery);
