@@ -36,7 +36,7 @@
                                     <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                            <img src="{echo $kitProducts->getMainProduct()->firstvariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                         </figure>
                                     </a>
                                 </div>
@@ -71,7 +71,7 @@
                                     <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                            <img src="{echo $kitProduct->getSProducts()->firstvariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                         </figure>
                                     </a>
                                 </div>

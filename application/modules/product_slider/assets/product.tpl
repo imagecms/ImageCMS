@@ -20,10 +20,10 @@
             <!--Photo block for main product-->
             <li class="span5 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                <a rel="position: 'xBlock', adjustX: 10" id="photoGroup" href="{productMainImageUrl($model->firstVariant)}" class="photo cloud-zoom">
+                <a rel="position: 'xBlock', adjustX: 10" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photo cloud-zoom">
                     <figure >
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                        <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                        <img id="imageGroup" src="{echo $model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </figure>                        
                 </a>              
                 <ul class="frame_thumbs">                    
@@ -41,10 +41,10 @@
                     { /foreach}
                     { /if}   
                     <li>
-                        <a  rel="useZoom: 'photoGroup', smallImage: '{productMainImageUrl($model->firstVariant)}'" href="{productMainImageUrl($model->firstVariant)}" class="photo cloud-zoom-gallery">
+                        <a  rel="useZoom: 'photoGroup', smallImage: '{echo $model->firstVariant->getLargePhoto()}'" href="{echo $model->firstVariant->getMediumPhoto()}" class="photo cloud-zoom-gallery">
                             <figure>
                                 <span class="helper"></span>
-                                <img src="{productSmallImageUrl($model)}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                             </figure>
                         </a>                                
                     </li>

@@ -222,7 +222,7 @@
                                 { /if}
                                 <figure>
                                     <span class="helper"></span>
-                                    <img src="{productSmallImageUrl($product)}" 
+                                    <img src="{echo $product->firstvariant->getSmallPhoto()}" 
                                          alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
                                 </figure>
                             </a>

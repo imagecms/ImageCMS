@@ -180,8 +180,8 @@
                                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="photo">
                                                                 <figure>
                                                                     <span class="helper"></span>
-                                                                    <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
-                                                                         alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
+                                                                    <img src="{$orderProduct->getKit()->getMainProduct()->firstVariant->getSmallPhoto()}" 
+                                                                          alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
                                                                 </figure>
                                                             </a>
                                                         </div>
@@ -212,8 +212,8 @@
                                                                 <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
                                                                     <figure>
                                                                         <span class="helper"></span>
-                                                                        <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
-                                                                             alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
+                                                                        <img src="{$kitProducts->getSProducts()->firstVariant->getSmallPhoto()}" 
+                                                                              alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
                                                                     </figure>
                                                                 </a>
                                                             </div>
