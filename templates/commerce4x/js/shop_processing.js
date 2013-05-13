@@ -220,7 +220,7 @@ $('#variantSwitcher').live('change', function () {
 
 
     $('#photoGroup').attr('href', vMainImage);
-    $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
+    $('#imageGroup').attr('src', vSmallImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
     
