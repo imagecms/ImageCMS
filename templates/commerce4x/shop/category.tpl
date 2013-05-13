@@ -245,6 +245,11 @@
                 </li>
                 {/foreach}
             </ul>
+            {if $productSliderEnabled}
+                {foreach $product_all as $prod}
+                    <a class="d_n various fancybox.ajax photo" href="/product_slider/show/{echo $prod}" rel="productSlider"></a>
+                {/foreach}
+            {/if}
             {else:}
             <div class="alert alert-search-result">
                 <div class="title_h2 t-a_c">Категория пуста</div>

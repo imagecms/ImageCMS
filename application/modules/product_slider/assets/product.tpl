@@ -26,7 +26,7 @@
                         <img id="imageGroup" src="{productMainImageUrl($model->firstVariant)}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </figure>                        
                 </a>              
-                <ul class="frame_thumbs">
+                <ul class="frame_thumbs">                    
                     <!-- Start. Show additional images -->
                     { if sizeof($productImages = $model->getSProductImagess()) > 0}
                     { foreach $productImages as $key => $image}
@@ -39,7 +39,15 @@
                         </a>                                
                     </li>
                     { /foreach}
-                    { /if}        
+                    { /if}   
+                    <li>
+                        <a  rel="useZoom: 'photoGroup', smallImage: '{productMainImageUrl($model->firstVariant)}'" href="{productMainImageUrl($model->firstVariant)}" class="photo cloud-zoom-gallery">
+                            <figure>
+                                <span class="helper"></span>
+                                <img src="{productSmallImageUrl($model)}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                            </figure>
+                        </a>                                
+                    </li>
                     <!-- End. Show additional images -->
                 </ul>
                 <!-- Output rating for the old product Start -->
@@ -192,7 +200,7 @@
                             </button>
                             {/if}
                             {/foreach}
-                            <a href="#" class="btn ref">Подробнее</a>
+                            <a href="{shop_url('product/' . $model->geturl())}" class="btn ref">Подробнее</a>
                             <div class="d_i-b v-a_m add_func_btn">
 
                                 <!-- Start. Block "Add to Compare" -->
@@ -270,7 +278,7 @@
                     </div>
                 </div>
                 <div class="t-a_r m-t_20">
-                    <a href="">Подробнее о товаре</a>
+                    <a href="{shop_url('product/' . $model->geturl())}">Подробнее о товаре</a>
                 </div>
             </li>
         </ul>
