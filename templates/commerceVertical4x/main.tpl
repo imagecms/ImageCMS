@@ -224,9 +224,9 @@
                     <!-- End. Show content -->
                 </div>
             </div>
+        </div>
             {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
             <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
-        </div>
         <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
             {if $exists_brands}
