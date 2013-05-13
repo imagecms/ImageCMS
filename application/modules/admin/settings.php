@@ -185,7 +185,7 @@ class Settings extends BaseAdminController {
 
             $this->session->set_userdata('language', $lang);
         }
-        
+               
         redirect($_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:'/admin/dashboard');
     }
 
