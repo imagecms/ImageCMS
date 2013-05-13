@@ -212,7 +212,7 @@
                 </section>
             </div>
 
-            <div
+            <div>
                 <!-- Start. Render Category Tree. Menu frame -->
                 <div class="mainFrameMenu">
                     {\Category\RenderMenu::create()->load('category_menu')}
@@ -226,8 +226,8 @@
                 <!-- End. Show content -->
             </div>
             {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
-            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         </div>
+        <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
             {if $exists_brands}

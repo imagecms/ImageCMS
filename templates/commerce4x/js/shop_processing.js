@@ -206,7 +206,7 @@ $(function(){
     })
 
 //variants
-$('#variantSwitcher').live('change', function () {
+$('#variantSwitcherCategory').live('change', function () {
     var productId = $(this).attr('value');
 
     var vId = $('span.variant_' + productId).attr('data-id');
@@ -223,12 +223,7 @@ $('#variantSwitcher').live('change', function () {
     $('#imageGroup').attr('src', vSmallImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    
-//    var href = $('#print_btn').attr('data-href');
-//    var arr_href = href.split('/');
-//    arr_href[arr_href.length - 1] = vId;
-//    $('#print_btn').attr('data-href',arr_href.join('/'));
-    
+
     if ($.trim(vNumber) != '') {
         $('#number').html('(Артикул ' + vNumber + ')');
     } else {
@@ -238,3 +233,14 @@ $('#variantSwitcher').live('change', function () {
     $('.variant').hide();
     $('.variant_' + vId).show();
 });
+
+/**Variants in Category*/
+//$('#variantSwitcherCategory').live('change', function () {
+//    var productId = $(this).attr('value');
+//    var liBlock = $(this).closest('li');
+//    console.log(liBlock);
+//    
+//    liBlock.find('.variant').hide();
+//    liBlock.find('.variant_' + productId).show();
+//    
+//});
