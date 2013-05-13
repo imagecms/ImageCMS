@@ -12,8 +12,6 @@
  */
 #}
 {$Comments = $CI->load->module('comments')->init($model)}
-{$CI->load->module('pricespy')->init($model)}
-{$CI->load->module('pricespy')->renderButton($model->getid(), $model->firstVariant->getid())}
 <div>
     <article class="container">       
         <!-- Making bread crumbs -->
@@ -23,10 +21,10 @@
                 <!--Photo block for main product-->
                 <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" id="photoGroup" href="{$model->firstVariant->getMainPhoto()}" class="photo">
+                    <a rel="group" id="photoGroup" href="{$model->firstVariant->getLargePhoto()}" class="photo">
                         <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                            <img id="imageGroup" src="{$model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{$model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">
@@ -50,17 +48,10 @@
                 <li class="span7">
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     <span class="c_97" id="number">{if $model->firstVariant->getNumber() != ''}(Артикул {echo $model->firstVariant->getNumber()}) {/if}</span>
-                    {$CI->load->module('print_data')->render_button(
-                                                array(
-                                                    'id'=>$model->getid(),
-                                                    'var'=>$model->firstVariant->getId()
-                                                 )
-                                          )}
                     <!-- Output rating for the old product Start -->
                     <div class="frame_response">
                         <div class="star">
                             {$CI->load->module('star_rating')->show_star_rating($model)}
-                            {$CI->load->module('found_less_expensive')->showButtonWithForm()}
                         </div>
                     </div>
                     <!-- Output rating for the old product End -->
@@ -94,8 +85,8 @@
                                           data-price="{echo $pv->toCurrency()}"
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                          data-mainImage="{$pv->getMainPhoto()}"
-                                          data-smallImage="{echo productImageUrl($pv->getSmallPhoto())}"
+                                          data-mainImage="{$pv->getLargePhoto()}"
+                                          data-smallImage="{echo $pv->getMediumPhoto()}"
                                           data-stock="{echo $pv->getStock()}"
                                           style="display: none;">
                                     </span>
@@ -158,6 +149,7 @@
                                             data-name="{echo ShopCore::encode($model->getName())}"
                                             data-number="{echo $model->firstVariant->getnumber()}"
                                             data-maxcount="{echo $model->firstVariant->getstock()}"
+                                            
                                             data-prodpage="true"
                                             >
                                         {lang('s_buy')}
@@ -396,7 +388,6 @@
                 </li>
             </ul>
         </div>
-        {$CI->load->module('shop_news')->getShopNews()}
         <!--Kit start-->
         {if $model->getShopKits()->count() > 0}
             <div class="frame_carousel_product carousel_js c_b frameSet">
@@ -436,7 +427,7 @@
                                                     <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
                                                         <figure>
                                                             <span class="helper"></span>
-                                                            <img src="{productImageUrl($kitProducts->getMainProduct()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                            <img src="{$kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                         </figure>
                                                     </a>
                                                 </div>
@@ -469,7 +460,7 @@
                                                         <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
                                                             <figure>
                                                                 <span class="helper"></span>
-                                                                <img src="{productImageUrl($kitProduct->getSProducts()->getSmallModImage())}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                                <img src="{$kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                             </figure>
                                                         </a>
                                                     </div>
