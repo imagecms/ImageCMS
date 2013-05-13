@@ -86,7 +86,7 @@
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                           data-mainImage="{$pv->getLargePhoto()}"
-                                          data-smallImage="{echo $pv->getSmallPhoto()}"
+                                          data-smallImage="{echo $pv->getMediumPhoto()}"
                                           data-stock="{echo $pv->getStock()}"
                                           style="display: none;">
                                     </span>
