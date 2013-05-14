@@ -11,7 +11,7 @@ if (!defined('BASEPATH'))
  */
 class Print_data extends MY_Controller {
 
-    public $no_install = true;
+    public $no_install = false;
 
     public function __construct() {
         parent::__construct();
@@ -20,13 +20,16 @@ class Print_data extends MY_Controller {
 
         $this->load->module('core');
     }
-
+    /**
+     * Get rating rom database
+     * @param array $data 
+     */
     public function render_button($data) {
 
         $type = $this->core->core_data['data_type'];
         /*
-         * $type - тип сторінки для друку
          * $data - масив даних для друку (для товару id, var) (для сторінок id)
+         * $type - тип сторінки для друку
          */
         if (!$this->no_install)
             return false;
@@ -64,8 +67,6 @@ class Print_data extends MY_Controller {
     }
 
     public function _install() {
-
-
         $this->db->where('name', 'print_data');
         $this->db->update('components', array('enabled' => 1));
     }
