@@ -10,6 +10,9 @@ class Admin extends BaseAdminController {
         $this->load->library('DX_Auth');
     }
 
+    /**
+     * get settings from db and display settings.tpl
+     */
     public function index() {
         $settings = $this->db->select('settings')
                 ->where('identif', 'socauth')
@@ -21,9 +24,12 @@ class Admin extends BaseAdminController {
             $this->display_tpl('settings');
     }
 
+    /**
+     * update settings
+     */
     public function update_settings() {
         $result = array_map('trim', $_POST);
-        
+
         $this->db->where('identif', 'socauth')
                 ->update('components', array('settings' => serialize($result)));
 
@@ -31,6 +37,10 @@ class Admin extends BaseAdminController {
         pjax($_SERVER[HTTP_REFERER]);
     }
 
+    /**
+     * 
+     * @param string $file
+     */
     private function display_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
