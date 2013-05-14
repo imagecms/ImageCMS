@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  *
- * User support module
+ * Banners module
  *
  */
 class Banners extends MY_Controller {
@@ -139,4 +139,4 @@ class Banners extends MY_Controller {
 
 }
 
-/* End of file user_support.php */
+/* End of file banners.php */
