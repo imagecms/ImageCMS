@@ -111,6 +111,7 @@ h1 + .bot_border_grey{margin-top: 10px;}
 .p-t_40{padding-top: 40px;}
 .p_lr_10{padding: 0 10px;}
 .err_404{max-width: 650px;margin: 0 auto;}
+.p-b_10{padding-bottom: 10px !important;}
 
 .c_w{color: #fff;}
 .c_5c{color: #5c5c5c;}
