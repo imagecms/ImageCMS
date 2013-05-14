@@ -162,7 +162,6 @@ class Socauth extends MY_Controller {
 
             $socials = $socials->result_array();
 
-
             foreach ($socials as $soc)
                 if (!$soc[isMain])
                     $social[$soc[social]] = 'linked';

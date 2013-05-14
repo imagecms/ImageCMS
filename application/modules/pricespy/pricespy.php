@@ -85,7 +85,8 @@ class Pricespy extends MY_Controller {
                 $CI->db->where('productVariantId', $spy->productVariantId);
                 $CI->db->update('mod_price_spy');
 
-                self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
+                if ($spy->price < $spy->productPrice)
+                    self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
             }
         }
     }
@@ -129,7 +130,7 @@ class Pricespy extends MY_Controller {
                 $id = $model->getid();
                 $varId = $model->firstVariant->getid();
             }
-            
+
             $products = $this->db
                     ->where_in('productVariantId', $varId)
                     ->where('userId', $this->dx_auth->get_user_id())
