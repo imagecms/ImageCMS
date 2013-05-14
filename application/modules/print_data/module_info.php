@@ -8,7 +8,7 @@ $com_info = array(
     'w'           => 600,                 // Window width
 	'h'           => 550,                 // Window height
 	'version'     => '0.1 Beta',               // Module version
-	'author'      => 'l.andriy@siteimage.com.ua' // Author info
+	'author'      => 'l.andriy@siteimage.com.ua' // Author info Andriy Leshko
 );
 
 /* End of file module_info.php */
