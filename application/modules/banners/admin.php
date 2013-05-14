@@ -23,10 +23,11 @@ class Admin extends MY_Controller {
             $this->is_shop = true;
     }
 
-    /**
-     * Display list of tickets
-     */
+
     public function index() {
+        /*
+         * вывод всех баннеров
+         */
         $locale = $this->def_locale;
         $banners = $this->banner_model->get_all_banner($locale);
         
@@ -34,11 +35,18 @@ class Admin extends MY_Controller {
     }
 
     public function chose_active() {
+        
+        /*
+         * активность баннера (вкл / выкл)
+         */
         $status = $_POST['status'] === 'false' ? 1 : 0;
         $this->banner_model->chose_active($_POST['id'], $status);
     }
 
     public function delete() {
+        /*
+         * удаление баннеров
+         */
         $ids = $_POST['id'];
         foreach (json_decode($ids) as $key)
             $this->banner_model->del_banner($key);
@@ -46,6 +54,9 @@ class Admin extends MY_Controller {
     
     
     public function create(){
+        /*
+         * создание баннера
+         */
          if ($_POST) {
             
             $this->load->library('Form_validation');
@@ -88,6 +99,9 @@ class Admin extends MY_Controller {
 
 
     public function edit($id, $locale = null) {  
+        /*
+         * редактирования баннера
+         */
         
         if ($locale == null)
             $locale = $this->def_locale;
@@ -129,6 +143,10 @@ class Admin extends MY_Controller {
     }
 
     public function autosearch() {
+        
+        /*
+         * вывод объектов где будет отображаться баннер в автокомплити
+         */
 
             switch ($_POST['queryString']) {
                 case 'product':
