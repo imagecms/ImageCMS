@@ -13,8 +13,6 @@ class Admin extends MY_Controller {
 	function __construct()
 	{
             parent::__construct();
-
-
 	}
 
 
@@ -24,12 +22,7 @@ class Admin extends MY_Controller {
     public function index()
     {
        
-    }
-
- 
-
-
-   
+    }  
 
 }
 

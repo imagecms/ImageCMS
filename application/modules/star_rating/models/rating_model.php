@@ -58,10 +58,7 @@ class Rating_model extends CI_Model {
     {
         $res = $this->db->where('name','star_rating')->get('components')->row();
         return $res; 
-    }
-    
-    
-    
+    }   
     
 }
 ?>
