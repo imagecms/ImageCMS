@@ -44,7 +44,7 @@ class Comments extends MY_Controller {
             return;
 
         $CI = &get_instance();
-        
+
         $array = $CI->db
                 ->select('item_id')
                 ->join('shop_products', 'comments.item_id=shop_products.id')
@@ -62,7 +62,7 @@ class Comments extends MY_Controller {
         $CI->db->where('module', 'shop');
         $CI->db->delete('comments');
     }
-    
+
     public function commentsDeleteFromProduct($product) {
         if (!$product)
             return;
@@ -82,7 +82,10 @@ class Comments extends MY_Controller {
 
     public function init($model) {
         \CMSFactory\assetManager::create()
-                ->registerScript('comments');
+                ->startCompress()
+                ->registerScript('comments')
+                ->endCompress()
+                ;
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());

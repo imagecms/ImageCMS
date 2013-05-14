@@ -24,15 +24,15 @@ class Smart_filter extends \Category\BaseCategory {
 
     public function init() {
         return \CMSFactory\assetManager::create()
-            ->registerScript('jquery.ui-slider')
-            ->registerScript('filter')
-            ->render('main', true);
+                        ->registerScript('jquery.ui-slider')
+                        ->registerScript('filter')
+                        ->render('main', true);
     }
 
     public function filter() {
         return \CMSFactory\assetManager::create()
-            ->setData($this->data)
-            ->render('filter', true);
+                        ->setData($this->data)
+                        ->render('filter', true);
     }
 
 //    public function ()
