@@ -63,9 +63,12 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerScript($name) {
+    public function registerScript($name, $withCompres = FALSE) {
         /** Start. Load JS file into template */
-        \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
+        if ($withCompres)
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', 'after');
+        else
+            \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
         return $this;
     }
 
@@ -75,9 +78,13 @@ class assetManager {
      * @author a.gula
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
-    public function registerJsScript($script) {
+    public function registerJsScript($script, $withCompres = FALSE) {
         /** Start. Load JS script into template */
-        \CI_Controller::get_instance()->template->registerJsScript($script, 'after');
+        if ($withCompres)
+            \CI_Controller::get_instance()->template->registerJsScript($this->compressJs($script), 'after');
+        else
+            \CI_Controller::get_instance()->template->registerJsScript($script, 'after');
+
         return $this;
     }
 
@@ -229,6 +236,39 @@ class assetManager {
      */
     private function buildStylePath($tpl) {
         return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
+    }
+
+    private function compressJs($js) {
+        /* remove comments */
+        $js = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $js);
+        /* remove tabs, spaces, newlines, etc. */
+        $js = str_replace(array("\r\n", "\r", "\t", "\n", '  ', '    ', '     '), '', $js);
+        /* remove other spaces before/after ) */
+        $js = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $js);
+
+        return $js;
+
+        $fp = fopen('min.js', 'w');
+        fwrite($fp, $js);
+        fclose($fp);
+//        echo $buffer;
+    }
+
+    private function compressCss($css) {
+        $css = preg_replace('#\s+#', ' ', $css);
+        $css = preg_replace('#/\*.*?\*/#s', '', $css);
+        $css = str_replace('; ', ';', $css);
+        $css = str_replace(': ', ':', $css);
+        $css = str_replace(' {', '{', $css);
+        $css = str_replace('{ ', '{', $css);
+        $css = str_replace(', ', ',', $css);
+        $css = str_replace('} ', '}', $css);
+        $css = str_replace(';}', '}', $css);
+
+        $fp = fopen('min.css', 'w');
+        fwrite($fp, trim($css));
+        fclose($fp);
+//        echo $buffer;
     }
 
 }
