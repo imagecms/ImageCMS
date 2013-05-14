@@ -45,7 +45,12 @@ class Banners extends MY_Controller {
 
             if (count($ban) > 0){
                 
-                //$tpl = $type . '_slider'; // якщо потрібно для різних сторінок - різні тпл.
+                
+                /*
+                 * $tpl = $type . '_slider'; // если нужно для различных страниц - разные тпл - раскомментировать, строка 54 закомментировать.
+                 * Для этого нужно будет в папке assets создать соответствующие тпл (product_slider, brand_slider, main_slider, 
+                 *  page_slider, category_slider, shop_category_slider)
+                 */
                 $tpl = 'slider'; // по дефолту
                  
                 \CMSFactory\assetManager::create()
