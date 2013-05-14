@@ -27,7 +27,10 @@ class Banners extends MY_Controller {
     }
 
     public function render($id = 0) {
-        /* $id - це ід сущности, тобто iд бренду, категорії, товару, сторінки .... для головної ід = 0 */
+        /*
+         * метод которой выводит баннер
+         */
+        /* $id - это ид сущности, то есть ид бренда, категории, товара, страницы .... для главной ид = 0 */
         if ($this->no_install === false)
             return false;
 
@@ -63,6 +66,9 @@ class Banners extends MY_Controller {
     }
 
     public function _install() {
+        /*
+         * инсталляция модуля и создания таблиц
+         */
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
           `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -92,6 +98,9 @@ class Banners extends MY_Controller {
     }
 
     public function _deinstall() {
+        /*
+         * деинсталляция модуля и удаление таблиц
+         */
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
 
@@ -101,6 +110,9 @@ class Banners extends MY_Controller {
     }
 
     public function get_main_lang($flag = null) {
+        /*
+         * метод которой определяет текущую локализацию
+         */
         $lang = $this->db->get('languages')->result_array();
         $lan_array = array();
         foreach ($lang as $l) {
