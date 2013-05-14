@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  *
- * User support module.
+ * Banners module.
  */
 class Admin extends MY_Controller {
 
