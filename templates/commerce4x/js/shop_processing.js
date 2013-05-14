@@ -206,7 +206,7 @@ $(function(){
     })
 
 //variants
-$('#variantSwitcherCategory').live('change', function () {
+$('#variantSwitcher').live('change', function () {
     var productId = $(this).attr('value');
 
     var vId = $('span.variant_' + productId).attr('data-id');
@@ -219,6 +219,12 @@ $('#variantSwitcherCategory').live('change', function () {
     var vStock = $('span.variant_' + productId).attr('data-stock');
 
 
+    $(document).trigger({
+        type: 'afrer_change_variant',
+        vId: vId
+    })
+    
+    
     $('#photoGroup').attr('href', vMainImage);
     $('#imageGroup').attr('src', vSmallImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
