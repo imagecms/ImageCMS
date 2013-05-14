@@ -45,7 +45,7 @@ class Core extends MY_Controller {
 //            $this->settings = $this->cms_base->get_settings();
 //            $this->cache->store('main_site_settings', $this->settings);
 //        }
-        
+
         $this->settings = $this->cms_base->get_settings(); //++
 //+++++++++++++++++++++++++++++++++++        
         ($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;
@@ -891,15 +891,19 @@ class Core extends MY_Controller {
                 'site_keywords' => empty($keywords) ? $this->settings['site_keywords'] : $keywords
             ));
         } else {
+            if (($page_number > 1) && ($page_number != ''))
+                $title = $page_number . ' - ' . $title;
+
+            if ($description != '')
+                $description .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
+
             if ($this->settings['add_site_name_to_cat'])
                 if ($category != '')
                     $title .= ' - ' . $category;
 
-
             if ($this->core_data['data_type'] == 'page' AND $this->page_content['category'] != 0 AND $this->settings['add_site_name_to_cat']) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->cat_content['name'];
             }
-
 
             if (is_array($title)) {
                 $n_title = '';
@@ -916,7 +920,7 @@ class Core extends MY_Controller {
             if ($this->settings['add_site_name'] == 1 && $showsitename != 1) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
-            
+
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => $description,
