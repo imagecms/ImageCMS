@@ -24,46 +24,43 @@ class Banners extends MY_Controller {
     public function index() {
         if ($this->no_install === false)
             return false;
-
-
     }
 
     public function render($id = 0) {
-        /* $id - це ід сущности, тобто iд бренду, категорії, товару, сторінки .... для головної ід = 0*/
-            if ($this->no_install === false)
-                return false;
+        /* $id - це ід сущности, тобто iд бренду, категорії, товару, сторінки .... для головної ід = 0 */
+        if ($this->no_install === false)
+            return false;
 
-            $type = $this->core->core_data['data_type'];
-            $lang = get_main_lang('identif');
-            $painting = $type . '_' . $id;
-            $banners = $this->banner_model->get_all_banner($lang);
-            foreach ($banners as $banner) {
-                $data = unserialize($banner['where_show']);
-                if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
-                    $ban[] = $banner;
-            }
-
-            if (count($ban) > 0){
-                
-                
-                /*
-                 * $tpl = $type . '_slider'; // если нужно для различных страниц - разные тпл - раскомментировать, строка 54 закомментировать.
-                 * Для этого нужно будет в папке assets создать соответствующие тпл (product_slider, brand_slider, main_slider, 
-                 *  page_slider, category_slider, shop_category_slider)
-                 */
-                $tpl = 'slider'; // по дефолту
-                 
-                \CMSFactory\assetManager::create()
-                        ->registerStyle('style')
-                        ->registerScript('main')
-                        ->registerScript('cycle')
-                        ->setData(array('banners' => $ban))
-                        ->render($tpl, TRUE);
-            } else
-                return fales;
+        $type = $this->core->core_data['data_type'];
+        $lang = $this->get_main_lang('identif');
+        $painting = $type . '_' . $id;
+        $banners = $this->banner_model->get_all_banner($lang);
+        foreach ($banners as $banner) {
+            $data = unserialize($banner['where_show']);
+            if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
+                $ban[] = $banner;
         }
 
+        if (count($ban) > 0) {
 
+
+            /*
+             * $tpl = $type . '_slider'; // если нужно для различных страниц - разные тпл - раскомментировать, строка 54 закомментировать.
+             * Для этого нужно будет в папке assets создать соответствующие тпл (product_slider, brand_slider, main_slider, 
+             *  page_slider, category_slider, shop_category_slider)
+             */
+            $tpl = 'slider'; // по дефолту
+
+            \CMSFactory\assetManager::create()
+                    ->registerStyle('style')
+                    ->registerScript('main')
+                    ->registerScript('cycle')
+                    ->setData(array('banners' => $ban))
+                    ->render($tpl, TRUE);
+        }
+        else
+            return fales;
+    }
 
     public function _install() {
 
@@ -101,6 +98,31 @@ class Banners extends MY_Controller {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_banner');
         $this->dbforge->drop_table('mod_banner_i18n');
+    }
+
+    public function get_main_lang($flag = null) {
+        $lang = $this->db->get('languages')->result_array();
+        $lan_array = array();
+        foreach ($lang as $l) {
+            $lan_array[$l['identif']] = $l['id'];
+            $lan_array_rev[$l['id']] = $l['identif'];
+        }
+
+        $lang_uri = $this->uri->segment(1);
+        if (in_array($lang_uri, $lan_array_rev)) {
+            $lang_id = $lan_array[$lang_uri];
+            $lang_ident = $lang_uri;
+        } else {
+            $lang = $this->db->where('default', 1)->get('languages')->result_array();
+            $lang_id = $lang[0]['id'];
+            $lang_ident = $lang[0]['identif'];
+        }
+        if ($flag == 'id')
+            return $lang_id;
+        if ($flag == 'identif')
+            return $lang_ident;
+        if ($flag == null)
+            return array('id' => $lang_id, 'identif' => $lang_ident);
     }
 
 }
