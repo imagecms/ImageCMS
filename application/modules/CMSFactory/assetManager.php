@@ -9,6 +9,7 @@ class assetManager {
 
     protected static $_BehaviorInstance;
     protected $callMapp = null;
+    protected $useCompress = false;
 
     private function __construct() {
         
@@ -63,9 +64,9 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerScript($name, $withCompres = FALSE) {
+    public function registerScript($name) {
         /** Start. Load JS file into template */
-        if ($withCompres)
+        if ($this->useCompress)
             \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', 'after');
         else
             \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
@@ -78,12 +79,12 @@ class assetManager {
      * @author a.gula
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
-    public function registerJsScript($script, $withCompres = FALSE) {
+    public function registerJsScript($script) {
         /** Start. Load JS script into template */
-        if ($withCompres)
-            \CI_Controller::get_instance()->template->registerJsScript($this->compressJs($script), 'after');
+        if ($this->useCompress)
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs($script) . '</script>', 'after');
         else
-            \CI_Controller::get_instance()->template->registerJsScript($script, 'after');
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $script . '</script>', 'after');
 
         return $this;
     }
@@ -96,7 +97,28 @@ class assetManager {
      */
     public function registerStyle($name) {
         /** Start. Load file into template */
-        \CI_Controller::get_instance()->template->registerCssFile($this->buildStylePath($name), 'before');
+        if ($this->useCompress)
+            \CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss(file_get_contents($this->buildStylePath($name))) . '</style>', 'before');
+        else
+            \CI_Controller::get_instance()->template->registerCssFile($this->buildStylePath($name), 'before');
+
+        return $this;
+    }
+
+    /**
+     * Put css string into template
+     * @return assetManager
+     * @access public
+     * @author a.gula
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
+    public function registerStyleStr($css) {
+        /** Start. Load file into template */
+        if ($this->useCompress)
+            \CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss($css) . '</style>', 'before');
+        else
+            \CI_Controller::get_instance()->template->registerCss('<style>' . $css . '</style>', 'before');
+
         return $this;
     }
 
@@ -238,6 +260,29 @@ class assetManager {
         return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
     }
 
+    /**
+     * Start using conpression for js/css
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
+    public function startCompress() {
+        $this->useCompress = TRUE;
+        return $this;
+    }
+
+    /**
+     * End using conpression for js/css
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
+    public function endCompress() {
+        $this->useCompress = FALSE;
+        return $this;
+    }
+
+    /**
+     * Compressing js file
+     * @param type $js text of js
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
     private function compressJs($js) {
         /* remove comments */
         $js = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $js);
@@ -247,13 +292,13 @@ class assetManager {
         $js = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $js);
 
         return $js;
-
-        $fp = fopen('min.js', 'w');
-        fwrite($fp, $js);
-        fclose($fp);
-//        echo $buffer;
     }
 
+    /**
+     * Compressing css file
+     * @param type $css text of css file
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
     private function compressCss($css) {
         $css = preg_replace('#\s+#', ' ', $css);
         $css = preg_replace('#/\*.*?\*/#s', '', $css);
@@ -265,10 +310,7 @@ class assetManager {
         $css = str_replace('} ', '}', $css);
         $css = str_replace(';}', '}', $css);
 
-        $fp = fopen('min.css', 'w');
-        fwrite($fp, trim($css));
-        fclose($fp);
-//        echo $buffer;
+        return $css;
     }
 
 }
