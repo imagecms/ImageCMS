@@ -62,11 +62,14 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author Kaero
+     * @param type $name
+     * @param type $useCompress
+     * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerScript($name) {
+    public function registerScript($name, $useCompress = FALSE) {
         /** Start. Load JS file into template */
-        if ($this->useCompress)
+        if ($useCompress)
             \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', 'after');
         else
             \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
@@ -77,11 +80,14 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author a.gula
+     * @param type $script
+     * @param type $useCompress
+     * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
-    public function registerJsScript($script) {
+    public function registerJsScript($script, $useCompress = FALSE) {
         /** Start. Load JS script into template */
-        if ($this->useCompress)
+        if ($useCompress)
             \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs($script) . '</script>', 'after');
         else
             \CI_Controller::get_instance()->template->registerJsScript('<script>' . $script . '</script>', 'after');
@@ -93,11 +99,14 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author Kaero
+     * @param type $name
+     * @param type $useCompress
+     * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerStyle($name) {
+    public function registerStyle($name, $useCompress = FALSE) {
         /** Start. Load file into template */
-        if ($this->useCompress)
+        if ($useCompress)
             \CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss(file_get_contents($this->buildStylePath($name))) . '</style>', 'before');
         else
             \CI_Controller::get_instance()->template->registerCssFile($this->buildStylePath($name), 'before');
@@ -109,12 +118,14 @@ class assetManager {
      * Put css string into template
      * @return assetManager
      * @access public
-     * @author a.gula
+     * @author a.gula    
+     * @param type $css
+     * @param type $useCompress
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
-    public function registerStyleStr($css) {
+    public function registerStyleStr($css, $useCompress = FALSE) {
         /** Start. Load file into template */
-        if ($this->useCompress)
+        if ($useCompress)
             \CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss($css) . '</style>', 'before');
         else
             \CI_Controller::get_instance()->template->registerCss('<style>' . $css . '</style>', 'before');
@@ -258,24 +269,6 @@ class assetManager {
      */
     private function buildStylePath($tpl) {
         return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
-    }
-
-    /**
-     * Start using conpression for js/css
-     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
-     */
-    public function startCompress() {
-        $this->useCompress = TRUE;
-        return $this;
-    }
-
-    /**
-     * End using conpression for js/css
-     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
-     */
-    public function endCompress() {
-        $this->useCompress = FALSE;
-        return $this;
     }
 
     /**
