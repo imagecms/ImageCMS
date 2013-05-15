@@ -58,6 +58,55 @@
                                 </div>
 
 
+
+
+                                <div class="control-group">
+                                    <label class="control-label" for="data">Вибраные обекти:</label>
+                                    <div class="controls">
+                                        <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
+                                            {foreach unserialize($banner['where_show']) as $w}
+                                                <option disabled selected='selected' ondblclick='delEntity(this)' value="{echo $w}">{get_entity_mod($w)}</option>
+                                            {/foreach}
+
+
+                                        </select> 
+                                        <span class="help-block">Для удаления двойной клик мыши</span>
+                                    </div>
+                                </div>        
+
+                                <div class="control-group">
+                                    <label class="control-label" for="banner_type">Отображать в категориях (выберите объекты):</label>
+                                    <div class="controls">
+                                        <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
+
+                                            <option value="default">--выберите сущность--</option>
+                                            <option value="main">Главная</option>
+                                            {if $is_shop}
+                                                <option value="product">Продукты</option>                                           
+                                                <option value="shop_category">Категории продуктов</option>
+                                                <option value="brand">Бренды</option>
+                                            {/if}
+                                            <option value="category">Категории страниц</option>
+                                            <option value="page">Страницы</option>
+
+
+                                        </select>
+                                        <div id="autodrop">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="control-group">
+                                    <label class="control-label">{lang('a_active_to')}:</label>
+                                    <div class="controls">
+                                        <input class="datepicker" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
+                                    </div>
+                                </div>  
+
                                 <div class="control-group">
                                     <label class="control-label" for="Img">
                                         {lang('a_image')}:
@@ -65,7 +114,7 @@
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
                                             <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                    return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                        return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
                                         </div>
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}">					
@@ -77,51 +126,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="banner_type">Отображать в категориях:</label>
-                                    <div class="controls">
-                                        <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
-                                            
-                                            <option value="default">--выберите сущность--</option>
-                                            <option value="main">Главная</option>
-                                            {if $is_shop}
-                                                <option value="product">Продукты</option>                                           
-                                                <option value="shop_category">Категории продуктов</option>
-                                                <option value="brand">Бренды</option>
-                                            {/if}
-                                            <option value="category">Категории страниц</option>
-                                            <option value="page">Страницы</option>
-                                            
-
-                                        </select>
-                                        <div id="autodrop">
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="data">Вибраные обекти:</label>
-                                    <div class="controls">
-                                        <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
-                                            {foreach unserialize($banner['where_show']) as $w}
-                                                <option disabled selected='selected' ondblclick='delEntity(this)' value="{echo $w}">{get_entity_mod($w)}</option>
-                                            {/foreach}
-                                            
-
-                                        </select> 
-                                        <span class="help-block">Для удаления двойной клик мыши</span>
-                                    </div>
-                                </div>
-
-
-                                <div class="control-group">
-                                    <label class="control-label">{lang('a_active_to')}:</label>
-                                    <div class="controls">
-                                        <input class="datepicker" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
-                                    </div>
-                                </div>                  
                             </div>
 
 
