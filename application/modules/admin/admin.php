@@ -170,7 +170,6 @@ class Admin extends MY_Controller {
         $message .= 'Адрес сайта: ' . trim(strip_tags($_GET['hostname'])) . ';<br /> стораница: ' . trim(strip_tags($_GET['pathname'])) . ';<br /> ip-address: ' . trim(strip_tags($_GET['ip_address'])) . ';<br /> ім\'я користувача: ' . trim(strip_tags($_GET['name'])) . ';<br /> Email користувача: ' . trim(strip_tags($_GET['email'])) . '; <br/> Сообщение: ' . trim(strip_tags($_GET['text']));
         $text = trim($_GET['text']);
         if (!empty($text)) {
-            echo 'asdas';
             /* send message */
             $this->email->from('bugs@imagecms.net', 'Admin Robot');
             $this->email->to('report@imagecms.net');
