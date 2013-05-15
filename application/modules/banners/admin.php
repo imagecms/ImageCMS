@@ -60,7 +60,7 @@ class Admin extends MY_Controller {
          if ($_POST) {
             
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
+            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]'); 
             $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean'); 
 
 
@@ -109,7 +109,7 @@ class Admin extends MY_Controller {
         if ($_POST) {
             
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', lang('amt_dep_name'), 'required|xss_clean|max_length[45]'); 
+            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]'); 
             $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean'); 
 
 
