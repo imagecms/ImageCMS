@@ -167,17 +167,27 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-        $message .= 'Адрес сайта: ' . trim(strip_tags($_GET['hostname'])) . '; стораница: ' . trim(strip_tags($_GET['pathname'])) . '; ip-address: ' . trim(strip_tags($_GET['ip_address'])) . '; ім\'я користувача: ' . trim(strip_tags($_GET['user_name'])) . '; <br/> Сообщение: ' . trim(strip_tags($_GET['text']));
+        $message .= 'Адрес сайта: ' . trim(strip_tags($_GET['hostname'])) . ';<br /> стораница: ' . trim(strip_tags($_GET['pathname'])) . ';<br /> ip-address: ' . trim(strip_tags($_GET['ip_address'])) . ';<br /> ім\'я користувача: ' . trim(strip_tags($_GET['name'])) . ';<br /> Email користувача: ' . trim(strip_tags($_GET['email'])) . '; <br/> Сообщение: ' . trim(strip_tags($_GET['text']));
+        $text = trim($_GET['text']);
+        if (!empty($text)) {
+            echo 'asdas';
+            /* send message */
+            $this->email->from('bugs@imagecms.net', 'Admin Robot');
+            $this->email->to('report@imagecms.net');
+            $this->email->bcc('dev@imagecms.net');
+            $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
+            $this->email->message(stripslashes($message));
+            if (!$this->email->send()){
+                echo '<div class="alert alert-error"> Произашла ошибка отправки сообщения </div>';
+                exit;
+            }
+            echo '<div class="alert alert-success">Ваше сообщение отправено</div>';
+        }
+        else
+            echo '<div class="alert alert-error"> Ваше замечание обязательное поле </div>' ;
+        
 
-        /* send message */
-        $this->email->from('bugs@imagecms.net', 'Admin Robot');
-        $this->email->to('report@imagecms.net');
-        $this->email->bcc('dev@imagecms.net');
-        $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
-        $this->email->message(stripslashes($message));
-        $this->email->send();
-
-        echo $message;
+        
     }
 
 }

@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_s_banner_text_edit_b')}</span>
+            <span class="title">Создания баннера</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

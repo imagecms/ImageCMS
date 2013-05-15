@@ -1219,13 +1219,13 @@ $(document).ready(
             });
             $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
                 var overlay = $('.overlay');
-                var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&user_name=' + $('#user_name').text() + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val();
+                var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val() + '&name=' + $('.frame_rep_bug [name=name]').val() + '&email=' + $('.frame_rep_bug [name=email]').val();
                 $.ajax({
                     type: 'GET',
                     url: '/admin/report_bug',
                     data: url,
                     success: function(data) {
-                        $('.frame_rep_bug').prepend('<div class="alert alert-success">Ваше сообщение отправено</div>');
+                        $('.frame_rep_bug').prepend(data);
                         setTimeout(function() {
                             overlay.trigger('click')
                         }, 2000)
