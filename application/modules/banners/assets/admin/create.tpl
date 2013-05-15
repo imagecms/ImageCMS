@@ -9,7 +9,7 @@
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
-                    
+
             </div>
         </div>                            
     </div>
@@ -58,28 +58,21 @@
                                 </div>
 
 
+
+
                                 <div class="control-group">
-                                    <label class="control-label" for="Img">
-                                        {lang('a_image')}:
-                                    </label>
+                                    <label class="control-label" for="data">Вибраные обекти:</label>
                                     <div class="controls">
-                                        <div class="group_icon pull-right">            
-                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                    return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
-                                        </div>
-                                        <div class="o_h">		            
-                                            <input type="text" name="photo" id="Img" value="">					
-                                        </div>
-                                        <div id="Img-preview" style="width: 400px;" >
+                                        <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
 
-                                                <img src="" class="img-polaroid" style="width: 100px;">
 
-                                        </div>
+                                        </select> 
+                                        <span class="help-block">Для удаления двойной клик мыши</span>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="banner_type">Отображать в категориях:</label>
+                                    <label class="control-label" for="banner_type">Отображать в категориях (выберите объекты):</label>
                                     <div class="controls">
                                         <select id="banner_type" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
                                             <option value="default">--выберите сущность--</option>
@@ -91,7 +84,7 @@
                                             {/if}
                                             <option value="category">Категории страниц</option>
                                             <option value="page">Страницы</option>
-                                            
+
 
                                         </select>
                                         <div id="autodrop">
@@ -100,16 +93,7 @@
                                     </div>
                                 </div>
 
-                                <div class="control-group">
-                                    <label class="control-label" for="data">Вибраные обекти:</label>
-                                    <div class="controls">
-                                        <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
-                                           
 
-                                        </select> 
-                                        <span class="help-block">Для удаления двойной клик мыши</span>
-                                    </div>
-                                </div>
 
 
                                 <div class="control-group">
@@ -117,7 +101,27 @@
                                     <div class="controls">
                                         <input class="datepicker" type="text" value="" name="active_to" />
                                     </div>
-                                </div>                  
+                                </div>    
+
+                                <div class="control-group">
+                                    <label class="control-label" for="Img">
+                                        {lang('a_image')}:
+                                    </label>
+                                    <div class="controls">
+                                        <div class="group_icon pull-right">            
+                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                        </div>
+                                        <div class="o_h">		            
+                                            <input type="text" name="photo" id="Img" value="">					
+                                        </div>
+                                        <div id="Img-preview" style="width: 400px;" >
+
+                                            <img src="" class="img-polaroid" style="width: 100px;">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
