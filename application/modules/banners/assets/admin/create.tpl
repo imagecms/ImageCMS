@@ -117,7 +117,7 @@
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
 
-                                            <img src="" class="img-polaroid" style="width: 100px;">
+                                            
 
                                         </div>
                                     </div>
