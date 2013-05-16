@@ -46,21 +46,21 @@ function deleteComprasionItem(el){
         btn.remove();
     }
     if (gen_count_products == 1){
-        $('[data-body="body"]').hide()
-        $('[data-body="message"]').show()
+        $('[data-body="body"]').hide();
+        $('[data-body="message"]').show();
     }
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
 function deleteWishListItem(el){
     if (el.parent().siblings().length == 0){
-        $('[data-body="body"]').hide()
-        $('[data-body="message"]').show()
+        $('[data-body="body"]').hide();
+        $('[data-body="message"]').show();
     }
     el.parent().remove();
 }
 
-jQuery(document).ready(function() {
+(function($) {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
         if (!event)
@@ -83,7 +83,7 @@ jQuery(document).ready(function() {
             $(this).tooltip('remove');
     });
     if (ltie7) {
-        ieInput()
+        ieInput();
     }
 
     $('#slider').sliderInit({

@@ -149,6 +149,7 @@ $('.formSubmit').live('click', function() {
                     name: "action",
                     value: action
                 });
+                
             },
             success: function(data) {
                 $('#loading').fadeOut(100);
