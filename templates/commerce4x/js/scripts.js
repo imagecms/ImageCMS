@@ -46,16 +46,16 @@ function deleteComprasionItem(el){
         btn.remove();
     }
     if (gen_count_products == 1){
-        $('[data-body="body"]').hide();
-        $('[data-body="message"]').show();
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
     }
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
 function deleteWishListItem(el){
     if (el.parent().siblings().length == 0){
-        $('[data-body="body"]').hide();
-        $('[data-body="message"]').show();
+        $('[data-body="body"]').hide()
+        $('[data-body="message"]').show()
     }
     el.parent().remove();
 }
@@ -83,7 +83,7 @@ function deleteWishListItem(el){
             $(this).tooltip('remove');
     });
     if (ltie7) {
-        ieInput();
+        ieInput()
     }
 
     $('#slider').sliderInit({
@@ -177,7 +177,7 @@ function deleteWishListItem(el){
             alert(1)
         })
     }
-});
+})($);
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
         $('.cycle').cycle({
