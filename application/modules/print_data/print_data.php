@@ -37,10 +37,10 @@ class Print_data extends MY_Controller {
         \CMSFactory\assetManager::create()->registerStyle('style');
         switch ($type) {
             case 'product':
-                $href = "/" . get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'] . "/" . $data['var'];
+                $href = "/" . $this->get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'] . "/" . $data['var'];
                 break;
             case 'page':
-                $href = "/" . get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'];
+                $href = "/" . $this->get_main_lang('identif') . "/print_data/print_" . $type . "/" . $data['id'];
                 break;
 
             default:
@@ -86,6 +86,33 @@ class Print_data extends MY_Controller {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
     }
+
+    public function get_main_lang($flag = null) {
+        $lang = $this->db->get('languages')->result_array();
+        $lan_array = array();
+        foreach ($lang as $l) {
+            $lan_array[$l['identif']] = $l['id'];
+            $lan_array_rev[$l['id']] = $l['identif'];
+        }
+
+        $lang_uri = $this->uri->segment(1);
+        if (in_array($lang_uri, $lan_array_rev)) {
+            $lang_id = $lan_array[$lang_uri];
+            $lang_ident = $lang_uri;
+        } else {
+            $lang = $this->db->where('default', 1)->get('languages')->result_array();
+            $lang_id = $lang[0]['id'];
+            $lang_ident = $lang[0]['identif'];
+        }
+        if ($flag == 'id')
+            return $lang_id;
+        if ($flag == 'identif')
+            return $lang_ident;
+        if ($flag == null)
+            return array('id' => $lang_id, 'identif' => $lang_ident);
+    }
+
+
 }
 
 /* End of file user_support.php */
