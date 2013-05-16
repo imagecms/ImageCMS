@@ -46,7 +46,6 @@
             </style>
         {/literal}
         {$canonical}
-        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body class="vertical_template">        

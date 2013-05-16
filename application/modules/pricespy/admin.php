@@ -10,6 +10,9 @@ class Admin extends BaseAdminController {
         $this->load->library('DX_Auth');
     }
 
+    /**
+     * register spy script for admin
+     */
     private function init() {
         \CMSFactory\assetManager::create()
                 ->registerScript('spy');
@@ -17,7 +20,7 @@ class Admin extends BaseAdminController {
 
     public function index() {
         $this->init();
-        
+
         $spys = $this->db
                 ->from('users')
                 ->join('mod_price_spy', 'mod_price_spy.userId=users.id')
@@ -29,7 +32,7 @@ class Admin extends BaseAdminController {
                 ->result();
 
         $this->template->add_array(array('spys' => $spys));
-        
+
         if (!$this->ajaxRequest)
             $this->display_tpl('list');
     }

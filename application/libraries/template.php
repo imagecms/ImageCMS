@@ -160,6 +160,7 @@ class Template extends Mabilis {
     private $_js_files = array();
     private $_js_code = array();
     private $_css_code = array();
+    private $_css_str = array();
     private $_css_code_pos = array();
     private $_js_code_pos = array();
     private $_metas = array();
@@ -182,6 +183,11 @@ class Template extends Mabilis {
     public function registerCssFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_css_files[media_url($url)] = $position;
+    }
+
+    public function registerCss($css, $position = 'before') {
+        $position = $this->_check_postion($position);
+        $this->_css_str[$css] = $position;
     }
 
     public function registerJsFile($url, $position = 'before') {
@@ -266,6 +272,25 @@ class Template extends Mabilis {
                             break;
                     }
                     self::$arr[] = $script;
+                }
+            }
+        }
+
+        if (sizeof($this->_css_str) > 0) {
+            foreach ($this->_css_str as $css => $pos) {
+                if (!in_array($css, self::$arr)) {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= $css;
+                            break;
+                        case 'after':
+                            self::$result_after .= $css;
+                            break;
+                        default :
+                            self::$result_before .= $css;
+                            break;
+                    }
+                    self::$arr[] = $css;
                 }
             }
         }
