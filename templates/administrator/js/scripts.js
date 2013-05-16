@@ -1223,8 +1223,22 @@ $(document).ready(
                 'height': $(document).height(),
                 'opacity': 0.5
             });
-            overlay.fadeIn(function() {
-                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+
+            $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
+                var overlay = $('.overlay');
+                var url = 'hostname=' + location.hostname + '&pathname=' + location.pathname + '&text=' + $('.frame_rep_bug textarea').val() + '&ip_address=' + $('.frame_rep_bug #ip_address').val() + '&name=' + $('.frame_rep_bug [name=name]').val() + '&email=' + $('.frame_rep_bug [name=email]').val();
+                $.ajax({
+                    type: 'GET',
+                    url: '/admin/report_bug',
+                    data: url,
+                    success: function(data) {
+                        $('.frame_rep_bug').prepend(data);
+                        setTimeout(function() {
+                            overlay.trigger('click')
+                        }, 2000)
+                    }
+                })
+                return false;
             });
             overlay.die('click').live('click', function() {
                 $('.frame_rep_bug').fadeOut(function() {

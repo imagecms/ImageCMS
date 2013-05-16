@@ -54,9 +54,9 @@ $(document).ready(function(){
                             return false;
                         });
                     }
-                })
+                });
             }
-        }
+        };
         $.fn.starRating = function( method ) {
             if ( methods[method] ) {
                 return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));

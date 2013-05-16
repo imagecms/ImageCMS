@@ -93,7 +93,6 @@
                                 {/foreach}
                                 <!-- End. Collect information about Variants, for future processing -->
                             {/if}
-                            {$CI->load->module('print_data')->render_button(array('id' => $model->getid(),'var' => $model->firstvariant->getId()))}
                             <div class=" d_i-b v-a_b m-r_45">
                                 <div class="price price_f-s_24">
                                     <!-- $model->hasDiscounts() - check for a discount. -->

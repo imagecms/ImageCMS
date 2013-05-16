@@ -17,6 +17,12 @@ class Pricespy extends MY_Controller {
         $this->load->module('core');
     }
 
+    /**
+     * send email to user
+     * @param type $email
+     * @param type $name
+     * @param type $hash
+     */
     private static function sendNotificationByEmail($email, $name, $hash) {
         $CI = &get_instance();
         $CI->load->library('email');
@@ -38,6 +44,9 @@ class Pricespy extends MY_Controller {
         \CMSFactory\Events::create()->onShopProductDelete()->setListener('priceDelete');
     }
 
+    /**
+     * 
+     */
     public function index() {
         if ($this->dx_auth->is_logged_in()) {
             \CMSFactory\assetManager::create()
@@ -48,6 +57,10 @@ class Pricespy extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * deleting from spy if product deleted
+     * @param type $product
+     */
     public function priceDelete($product) {
         if (!$product)
             return;
@@ -63,6 +76,10 @@ class Pricespy extends MY_Controller {
         $CI->db->delete('mod_price_spy');
     }
 
+    /**
+     * updating price
+     * @param type $product
+     */
     public function priceUpdate($product) {
         if (!$product)
             return;
@@ -85,11 +102,17 @@ class Pricespy extends MY_Controller {
                 $CI->db->where('productVariantId', $spy->productVariantId);
                 $CI->db->update('mod_price_spy');
 
-                self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
+                if ($spy->price < $spy->productPrice)
+                    self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
             }
         }
     }
 
+    /**
+     * set spy for product
+     * @param type $id product ID
+     * @param type $varId variant ID
+     */
     public function spy($id, $varId) {
         $product = $this->db
                 ->where('id', $varId)
@@ -110,6 +133,10 @@ class Pricespy extends MY_Controller {
         ));
     }
 
+    /**
+     * 
+     * @param type $hash 
+     */
     public function unSpy($hash) {
         $this->db->delete('mod_price_spy', array('hash' => $hash));
 
@@ -129,7 +156,7 @@ class Pricespy extends MY_Controller {
                 $id = $model->getid();
                 $varId = $model->firstVariant->getid();
             }
-            
+
             $products = $this->db
                     ->where_in('productVariantId', $varId)
                     ->where('userId', $this->dx_auth->get_user_id())
@@ -144,6 +171,11 @@ class Pricespy extends MY_Controller {
         }
     }
 
+    /**
+     * render spy buttons
+     * @param type $id product ID
+     * @param type $varId variant ID
+     */
     public function renderButton($id, $varId) {
         if ($this->dx_auth->is_logged_in()) {
 
@@ -167,6 +199,9 @@ class Pricespy extends MY_Controller {
         }
     }
 
+    /**
+     * render spys for user
+     */
     private function renderUserSpys() {
         $products = $this->db
                 ->where('userId', $this->dx_auth->get_user_id())

@@ -23,7 +23,12 @@ class Socauth extends MY_Controller {
         $this->settings = unserialize($this->settings[settings]);
     }
 
-    public function sendPassByEmail($email, $pass) {
+    /**
+     * Send email to user
+     * @param type $email
+     * @param type $pass
+     */
+    private function sendPassByEmail($email, $pass) {
         $this->load->library('email');
 
         $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
@@ -33,7 +38,10 @@ class Socauth extends MY_Controller {
         $this->email->send();
     }
 
-    public function writeCookies() {
+    /**
+     * Write cookies for auth
+     */
+    private function writeCookies() {
         $this->load->helper('cookie');
         if (!strstr($this->uri->uri_string(), 'socauth/vk')) {
             $cookie = array(
@@ -46,7 +54,12 @@ class Socauth extends MY_Controller {
         }
     }
 
-    private function link($soc, $socId) {
+    /**
+     * 
+     * @param type $soc type of social service
+     * @param type $socId social service ID
+     */
+    public function link($soc, $socId) {
         $this->db->set('socialId', $socId);
         $this->db->set('userId', $this->dx_auth->get_user_id());
         $this->db->set('social', $soc);
@@ -55,12 +68,26 @@ class Socauth extends MY_Controller {
         redirect($this->input->cookie('url'));
     }
 
+    /**
+     * 
+     * @param type $soc type of social service
+     */
     public function unlink($soc) {
         if ($this->dx_auth->is_logged_in())
             if ($this->db->delete('mod_social', array('social' => $soc, 'userId' => $this->dx_auth->get_user_id())))
                 echo json_encode(array('answer' => 'sucesfull'));
     }
 
+    /**
+     * 
+     * @param type $social social service ID
+     * @param type $id social service ID
+     * @param type $username name in social service
+     * @param type $email email in social service
+     * @param type $address address in social service
+     * @param type $key
+     * @param type $phone phone in social service
+     */
     private function socAuth($social, $id, $username, $email, $address, $key, $phone) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             redirect('/socauth/error');
@@ -131,6 +158,10 @@ class Socauth extends MY_Controller {
             redirect($this->input->cookie('url'));
     }
 
+    /**
+     * 
+     * @param type $error type of error
+     */
     public function error($error = "") {
         $this->core->set_meta_tags('SocAuts');
 
@@ -140,6 +171,9 @@ class Socauth extends MY_Controller {
             redirect($this->input->cookie('url'));
     }
 
+    /**
+     * rendering login buttons
+     */
     public function renderLogin() {
         if (!$this->dx_auth->is_logged_in()) {
             $this->writeCookies();
@@ -149,6 +183,9 @@ class Socauth extends MY_Controller {
         }
     }
 
+    /**
+     * rendering link buttons
+     */
     public function renderLink() {
         if ($this->dx_auth->is_logged_in()) {
             $this->writeCookies();
@@ -161,7 +198,6 @@ class Socauth extends MY_Controller {
                 return;
 
             $socials = $socials->result_array();
-
 
             foreach ($socials as $soc)
                 if (!$soc[isMain])
@@ -177,6 +213,9 @@ class Socauth extends MY_Controller {
         }
     }
 
+    /**
+     * get data from yandex
+     */
     public function ya() {
 
         if ($this->input->get()) {
@@ -214,6 +253,9 @@ class Socauth extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * get data from facebook
+     */
     public function facebook() {
         if ($this->input->get()) {
             $curl = curl_init();
@@ -250,6 +292,9 @@ class Socauth extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * get data from Vkontakte
+     */
     public function vk() {
         $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
@@ -310,6 +355,9 @@ class Socauth extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * get data from google
+     */
     public function google() {
 
         if ($this->input->get()) {
@@ -364,6 +412,9 @@ class Socauth extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * install method
+     */
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
@@ -399,6 +450,9 @@ class Socauth extends MY_Controller {
             'autoload' => 0));
     }
 
+    /**
+     * deinstall method
+     */
     public function _deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
