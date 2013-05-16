@@ -378,7 +378,7 @@ var Shop = {
                 smallImage = $('span.variant_' + variantId).attr('data-smallImage');
                 cartItem.img = smallImage;
             }
-            if (!cartItem.url)
+            //if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)
                 cartItem.img = $context.closest('.container').find('img').first().attr('src');
