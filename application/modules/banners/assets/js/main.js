@@ -25,6 +25,14 @@ function selectEntity(obj){
     var type = $('#banner_type').val();
     var html = "<option disabled selected='selected' value='"+type+"_"+id+"' ondblclick='delEntity(this)'>"+type+' - '+name+"</option>";
     $('#data').append(html);
+    
+    var $s = $('#data');
+
+    var optionTop = $s.find('[value="'+type+"_"+id+'"]').offset().top;
+    var selectTop = $s.offset().top;
+
+    $s.scrollTop($s.scrollTop() + (optionTop - selectTop));
+
     return false;
 }
 

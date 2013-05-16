@@ -93,6 +93,7 @@ $(document).ready(
         });
 
         $('button.toWishlist').on('click', function () {
+            
             var id = $(this).data('prodid');
             var vid = $(this).data('varid');
             Shop.WishList.add(id, vid);
