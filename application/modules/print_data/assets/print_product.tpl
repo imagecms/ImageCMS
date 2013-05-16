@@ -7,7 +7,10 @@
         <div class="main_content">
             <div class="clearfix">
                 <h2>{echo $product->getname()}{if $variant->getname()} - {echo $variant->getname()}{/if}</h2>
-                <div class="desc f_l">            
+                <div class="desc"> 
+                    <div class="f_r image">
+                        <img src="{productMainImageUrl($variant)}" /><br/>
+                    </div>
                     {if $product->getbrand()}<strong>Бренд:</strong> {echo $product->getbrand()->getname()}<br/>{/if}
                     <strong>Категория:</strong> {echo $product->getmaincategory()->getname()}<br/>
                     <strong>Цена:</strong> {echo $variant->getPrice()} {$CS}<br/>
