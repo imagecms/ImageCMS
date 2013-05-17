@@ -1316,12 +1316,12 @@ function ieInput(els) {
                             input.val(1);
                         else
                             input.val(inputVal + 1);
-                        
+
                         if (input.val() > 1)
                             $thisPrev.removeAttr('disabled');
                         else
                             $thisPrev.attr('disabled', 'disabled');
-                        
+
                         if (checkProdStock)
                             if (input.maxValue())
                                 $thisNext.attr('disabled', 'disabled');
