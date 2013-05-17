@@ -60,14 +60,14 @@
                     </label>
 
                     <!--        User custom fields      -->
-                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml()}
+                    {//echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml()}
 
 
                 </div>
 
                 <!--        Order custom fields      -->
 
-                {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('order')->asHtml()}
+                {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFieldsOrders($profile.id)->asHtml()}
                     <div class="groups_form">
                         {$orderCustomFields}
                     </div>

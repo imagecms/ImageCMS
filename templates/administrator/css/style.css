@@ -697,3 +697,5 @@ border-right: none !important;
 .bootstrapSkin table.mceLayout tr.mceFirst td {border: none !important;}
 
 .save_button_field{color:blue;cursor:pointer;}
+.w_150 {width:150px !important;}
+.center { display:block; text-align:center; margin:0 auto}
