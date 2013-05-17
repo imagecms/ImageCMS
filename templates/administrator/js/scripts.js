@@ -122,6 +122,7 @@ function init_2() {
             $('#userNameforOrder').html(userData.name);
             $('#userNameforOrder').attr('href','/admin/components/run/shop/users/edit/'+userData.id);
             $('#userPhoneforOrder').html(userData.phone);
+            $('#userAddressforOrder').html(userData.address);
         }
     });
    
@@ -1441,7 +1442,41 @@ $('.removeImageType').live('click', function() {
 
 /* Create user in order */
 $('#createUserButton').bind('click', function() {
-   $("#ordersCreateUserForm").ajaxForm({url: '111111', type: 'post'})
+    var userName = $('#createUserName').val();
+    var userEmail = $('#createUserEmail').val();
+    var userPhone = $('#createUserPhone').val();
+    var userAddress = $('#createUserAddress').val();
+    var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+    
+    console.log(userName);
+    console.log(userEmail);
+    console.log(userPhone);
+    console.log(userAddress);
+    
+    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0){
+        $.ajax({
+          url: '/admin/components/run/shop/orders/createNewUser',
+          type: "POST",
+          data: "name="+userName+"&email="+userEmail+"&phone="+userPhone+"&address="+userAddress,
+          success: function(response) {
+            if (response == 'true'){ 
+                $('#createUserAddress').val('');
+                $('#createUserAddress').val('');
+                $('#createUserAddress').val('');
+                $('#createUserAddress').val('');
+            }else{
+                showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+            }
+          }
+        });
+    }else{
+        showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
+    }
+    
+    
+        
+    
+
 })
 
 
