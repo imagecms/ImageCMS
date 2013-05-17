@@ -24,6 +24,7 @@ class Pages extends BaseAdminController {
     }
 
     function index($params = array()) {
+
         ////cp_check_perm('page_create');
         // Set roles
         $locale = $this->cms_admin->get_default_lang();
@@ -40,6 +41,9 @@ class Pages extends BaseAdminController {
             'cur_date' => date('Y-m-d'),
             'sel_cat' => $uri_segs['category']
         ));
+        /** Init Event. Pre Create Page */
+        \CMSFactory\Events::create()->registerEvent('', 'BaseAdminPage:preCreate');
+        \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_show_add_page')) ? eval($hook) : NULL;
 
@@ -309,7 +313,6 @@ class Pages extends BaseAdminController {
 
 
         if ($data['lang_alias'] != 0)
-//         	echo 'aaaaaa'; exit;
             redirect('/admin/pages/edit/' . $data['lang_alias'] . '/' . $data['lang']);
 
         if ($lang != 0 AND $lang != $data['lang']) {
@@ -321,10 +324,10 @@ class Pages extends BaseAdminController {
                 $data = FALSE;
             }
         }
-        /** Init Event. Pre Edit Page*/
-            \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id), 'BaseAdminPage:preEdit');
-            \CMSFactory\Events::runFactory();
-            
+        /** Init Event. Pre Edit Page */
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id), 'BaseAdminPage:preUpdate');
+        \CMSFactory\Events::runFactory();
+
         ($hook = get_hook('admin_page_edit_found')) ? eval($hook) : NULL;
 
         if ($data) {
