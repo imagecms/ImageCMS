@@ -19,6 +19,9 @@
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#parameters" class="btn btn-small active">{lang('param')}</a>
                     <a href="#metatag" class="btn btn-small">{lang('a_meta_tags')}</a>
+                    {if $moduleAdditions}
+                        <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+                    {/if}
                 </div>                    
             </div>
             <form method="post" id="save" action="{$BASE_URL}admin/categories/create/new" >
@@ -76,7 +79,7 @@
                                                         <select name="category_field_group" id="category_field_group">
                                                             <option value="-1">{lang('a_no')}</option>
                                                             {foreach $f_groups as $k => $v}
-                                                            <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
+                                                                <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
 
@@ -97,7 +100,7 @@
                                                         <select name="field_group" id="field_group">
                                                             <option value="-1">{lang('a_no')}</option>
                                                             {foreach $f_groups as $k => $v}
-                                                            <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
+                                                                <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
                                                         <span class="help-block">{lang('a_select_fields_group')}.</span>
@@ -109,14 +112,18 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                         
+
                                                 <div class="control-group">
                                                     <label class="control-label" for="Img">
                                                         {lang('a_image')}:                            
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                        return false;">
+                                                                <i class="icon-picture"></i>  
+                                                                {lang('a_select_image')}
+                                                            </button>
                                                         </div>
                                                         <div class="o_h">
                                                             <input type="text" name="image" id="Img"/>
@@ -193,7 +200,7 @@
                                                         <div class="o_h">
                                                             <select name="fetch_pages[]"  multiple="multiple" size="5" id="fetch_pages">
                                                                 {foreach $include_cats as $c}
-                                                                <option value="{$c.id}"> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
+                                                                    <option value="{$c.id}"> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
                                                                 {/foreach}
                                                             </select>
 
@@ -272,9 +279,9 @@
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> 
                     </div>   
-                    {($hook = get_hook('admin_tpl_create_category')) ? eval($hook) : NULL;}
+                    {include_tpl('modules_additions')}
                     {form_csrf()}
             </form>
             <div class="tab-pane">
