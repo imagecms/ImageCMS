@@ -20,17 +20,20 @@ class Print_data extends MY_Controller {
 
         $this->load->module('core');
     }
-
+    /**
+     * Render Print Button
+     * @param array $data 
+     */
     public function render_button($data) {
-
-        $type = $this->core->core_data['data_type'];
         /*
-         * $type - тип сторінки для друку
          * $data - масив даних для друку (для товару id, var) (для сторінок id)
+         * $type - тип сторінки для друку
          */
+        $type = $this->core->core_data['data_type'];
+        
         if (!$this->no_install)
             return false;
-        \CMSFactory\assetManager::create()->registerScript('main');
+        \CMSFactory\assetManager::create()->registerScript('script');
         \CMSFactory\assetManager::create()->registerStyle('style');
         switch ($type) {
             case 'product':
@@ -45,7 +48,11 @@ class Print_data extends MY_Controller {
         }
         \CMSFactory\assetManager::create()->setData(array('href' => $href))->render('button', TRUE);
     }
-
+     /**
+     * Print Product
+     * @param int $id
+     * @param int $var  
+     */
     public function print_product($id, $var) {
         if (!$this->no_install)
             return false;
@@ -54,7 +61,10 @@ class Print_data extends MY_Controller {
         $style = '/application/modules/print_data/assets/css/style.css';
         \CMSFactory\assetManager::create()->setData(array('style' => $style, 'product' => $product, 'variant' => $variant))->render('print_product', TRUE);
     }
-
+    /**
+     * Print Page
+     * @param int $id
+     */
     public function print_page($id) {
         if (!$this->no_install)
             return false;
@@ -62,14 +72,16 @@ class Print_data extends MY_Controller {
         $style = '/application/modules/print_data/assets/css/style.css';
         \CMSFactory\assetManager::create()->setData(array('style' => $style, 'page' => $page))->render('print_page', TRUE);
     }
-
+    /**
+     * Install module
+     */
     public function _install() {
-
-
         $this->db->where('name', 'print_data');
         $this->db->update('components', array('enabled' => 1));
     }
-
+    /**
+     * Deinstall module
+     */
     public function _deinstall() {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
@@ -99,6 +111,7 @@ class Print_data extends MY_Controller {
         if ($flag == null)
             return array('id' => $lang_id, 'identif' => $lang_ident);
     }
+
 
 }
 
