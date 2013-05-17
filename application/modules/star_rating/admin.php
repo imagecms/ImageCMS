@@ -31,7 +31,7 @@ class Admin extends BaseAdminController {
         $this->rating_model->update_settings($settings);
         
         if ($this->input->post('action') == 'tomain')
-            pjax('/admin/components/modules_table');
+            pjax('/admin/components/modules_table'); 
         showMessage("Настройки успешно сохранены");
     }
 

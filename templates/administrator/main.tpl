@@ -221,6 +221,14 @@
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
                 <label>
+                    Ваше Имя:
+                    <input type=text name="name"/>
+                </label>
+                <label>
+                    Ваш Email:
+                    <input type=text name="email"/>
+                </label>
+                <label>
                     {lang('a_your_remark')}:
                     <textarea></textarea>
                 </label>
