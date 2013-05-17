@@ -23,20 +23,13 @@
                     {else:}
                         {echo $product->getshortdescription()}
                     {/if}
-
                 </div>
-
-
-
+                <div class="f_r image">
+                    <img src="{productMainImageUrl($variant)}" /><br/>
+                </div>
+            </div>
         </div>
-
-
-
-
-
-
-    </div>
-</body>
+    </body>
 </html>
 
 

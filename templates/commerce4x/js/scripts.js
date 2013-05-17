@@ -60,7 +60,7 @@ function deleteWishListItem(el){
     el.parent().remove();
 }
 
-jQuery(document).ready(function() {
+(function($) {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
         if (!event)
@@ -177,7 +177,7 @@ jQuery(document).ready(function() {
             alert(1)
         })
     }
-});
+})($);
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
         $('.cycle').cycle({

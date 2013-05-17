@@ -134,7 +134,6 @@ class Star_rating extends MY_Controller {
             }
             //Change rating for product
             if ($type == 'product') {
-
                 if (SProductsQuery::create()->findPk($id) !== null) {
                     $model = SProductsRatingQuery::create()->findPk($id);
                     if ($model === null) {

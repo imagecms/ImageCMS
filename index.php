@@ -16,7 +16,7 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
- *
+ * 
  */
 
 /**
@@ -195,8 +195,11 @@ if (is_dir($application_folder)) {
 
 
 define('IMAGECMS_NUMBER', '4.4 Premium');
+define('Build', 'RC#2');
 
 define('IMAGECMS_VERSION', '20130116');
+
+define('IMAGECMS_BUILD_ID', '');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*
