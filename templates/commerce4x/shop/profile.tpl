@@ -80,13 +80,17 @@
 
                                     </span>
                                 </label>
-                            {/if}                                    
+                            {/if} 
+                            
+                            {echo ShopCore::app()->CustomFieldsHelper->getCustomFields('user', $profile->getId())->asAdminHtml()}
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
                                     <input type="submit" value="{lang('s_edit')}" class="btn"/>
                                 </span>
                             </div>
+                                
+                            
                             {form_csrf()}
                         </form>
                     </div>
