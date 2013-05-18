@@ -1498,6 +1498,56 @@ $('#getAllOrderInfoButton').live('click', function() {
             
         }
     })
+/** Get payments methds for delivery method **/
+    $('#shopOrdersdeliveryMethod').live('click', function(){
+        id = $(this).val();
+        $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function (dataStr) {
+            data = JSON.parse(dataStr);
+            $('#shopOrdersPaymentMethod').empty();
+            console.log(data);
+            jQuery.each( data, function(index,el){
+               $("#shopOrdersPaymentMethod").append( $('<option value="'+el.id+'">'+el.name+'</option>'));
+            });
+            
+            
+        });
+    })
+/** When change discount recount total price**/
+    $('#shopOrdersComulativ').live('keyup', function(){
+        var inputDiscount = $(this);
+        var userDiscount = $(this).val();
+        var totalCartSum = $('#totalCartSum').html();
+        var totalProductPrice = $('#shopOrdersTotalPrice').val();
+        if (inputDiscount.val() > 100){
+            inputDiscount.val(99);
+            userDiscount = 99;
+        }
+        if ($('#shopOrdersGiftCertPrice').val() == null){
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+            $('#shopOrdersTotalPrice').val(totalProductPrice);
+        }else{
+            totalProductPrice = ((totalCartSum -$('#shopOrdersGiftCertPrice').val())  / 100 * (100 - userDiscount)).toFixed(2);
+            $('#shopOrdersTotalPrice').val(totalProductPrice);
+        }
+    })
+/** Chech gift Certificate **/
+    $('#checkOrderGiftCert').live('click', function(){
+        var key = $('#shopOrdersCheckGiftCert').val();
+        var userDiscount = $('#shopOrdersComulativ').val();
+        var totalCartSum = $('#totalCartSum').html();
+        $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function (dataStr) {
+            data = JSON.parse(dataStr);
+            if (data != null){
+                $('#shopOrdersGiftCertPrice').val(data.price);
+                $('#shopOrdersGiftCertKey').val(data.key);
+                totalCartSum = totalCartSum - data.price;
+                totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+                $('#shopOrdersTotalPrice').val(totalProductPrice);
+                $('#shopOrdersCheckGiftCert').attr('disabled','disabled');
+                $('#currentGiftCertInfo').html('Текущий сертификат (сумма):'+data.price);
+            }
+        })
+    })
 });
 
 $(window).load(function() {
