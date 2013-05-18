@@ -1537,7 +1537,7 @@ $('#getAllOrderInfoButton').live('click', function() {
         var totalCartSum = $('#totalCartSum').html();
         $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function (dataStr) {
             data = JSON.parse(dataStr);
-            if (data != null){
+            if (data.price != null){
                 $('#shopOrdersGiftCertPrice').val(data.price);
                 $('#shopOrdersGiftCertKey').val(data.key);
                 totalCartSum = totalCartSum - data.price;
