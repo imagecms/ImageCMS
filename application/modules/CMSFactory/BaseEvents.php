@@ -97,7 +97,7 @@ abstract class BaseEvents {
     }
 
     final public function onAdminPagePreEdit() {
-        $this->key = 'BaseAdminPage:preEdit';
+        $this->key = 'BaseAdminPage:preUpdate';
         return $this;
     }
 
