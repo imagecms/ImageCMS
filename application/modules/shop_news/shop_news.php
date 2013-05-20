@@ -28,6 +28,7 @@ class Shop_news extends MY_Controller {
      * @param type $shopNewsData
      */
     public function _extendPageAdmin($shopNewsData) {
+        var_dump($shopNewsData);exit;
         $shopNews = new Shop_news();
 
         $view = $shopNews->prepareInterface($shopNewsData, $shopNewsData['pageId']);
