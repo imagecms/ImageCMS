@@ -32,10 +32,10 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
-                                    <a rel="group" href="{productImageUrl('/products/additional/'.$image->getImageName())}" class="photo">
+                                    <a rel="group" href="{productImageUrl('products/additional/'.$image->getImageName())}" class="photo">
                                         <span class="helper"></span>
                                         <figure>
-                                            <img src="{productImageUrl('/products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                            <img src="{productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
                                 </li>
