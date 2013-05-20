@@ -109,6 +109,7 @@ cur_max = $('span#opt4').data('cur_max');
         overlayOpacity: '0.6',
         before: function(el, dropEl) {
             //check for drop-report
+           
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
                 
@@ -134,6 +135,11 @@ cur_max = $('span#opt4').data('cur_max');
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
+                
+                $('.icon-times-enter').live('click', function(){
+                    dropEl.parent().fadeOut(300);
+                    $('.overlayDrop').fadeOut(100);
+                });
 
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
