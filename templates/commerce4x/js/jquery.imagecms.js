@@ -1058,162 +1058,165 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            settings = $.extend({
-                cloned: '.cloned',
-                activeClass: 'active',
-                exit: '[data-closed = "closed-js"]',
-                effon: 'show',
-                effoff: 'hide',
-                effdur: 500,
-                before: function() {
-                    return true;
-                },
-                after: function() {
-                    return true;
-                }
-            }, options);
-
-            var $thisD = this,
-                    selector = $thisD.selector,
-                    dataSource = $('[data-drop]'),
-                    cloned = settings.cloned,
-                    exit = $(settings.exit),
-                    effon = settings.effon,
-                    effoff = settings.effoff,
-                    effdur = settings.effdur,
-                    overlayColor = settings.overlayColor,
-                    overlayOpacity = settings.overlayOpacity;
-
-            activeClass = settings.activeClass;
-
-            dataSource.live('click', function(event) {
-                event.stopPropagation();
-                event.preventDefault();
-
-                if ($(event.target).parents('[data-simple="yes"]').length == 0) {
-
-                    $this = $(this);
-                    elSet = $this.data();
-                    elSetSource = $(elSet.drop);
-
-                    var elSetOn = elSet.effectOn || effon,
-                            elSetOff = elSet.effectOff || effoff,
-                            elSetDuration = elSet.duration || effdur,
-                            overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
-
-                    if (overlayColor != undefined || overlayOpacity != undefined) {
-                        if (!$.exists('.overlayDrop')) {
-                            mainBody.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
-                        }
-                        drop_over = $('.overlayDrop');
-                        drop_over.css({
-                            'background-color': overlayColor,
-                            'opacity': overlayOpacity
-                        });
+            if ($.exists_nabir($(this))){
+                settings = $.extend({
+                    cloned: '.cloned',
+                    activeClass: 'active',
+                    exit: '[data-closed = "closed-js"]',
+                    effon: 'show',
+                    effoff: 'hide',
+                    effdur: 500,
+                    before: function() {
+                        return true;
+                    },
+                    after: function() {
+                        return true;
                     }
-                    else
-                        drop_over = $([]);
+                }, options);
 
-                    if (elSetSource.is('.' + activeClass)) {
-                        $this.removeClass(activeClass)
-                        elSetSource[elSetOff](elSetDuration, function() {
-                            elSetSource.removeClass(activeClass).removeAttr('style')
-                            drop_over[elSetOff](elSetDuration);
-                        });
-                        $thisHref = $(this).attr('href');
-                        if ($thisHref != undefined) {
-                            var $thisHrefL = $thisHref.length,
-                                    wLH = location.hash,
-                                    wLHL = wLH.length;
-                            try {
-                                indH = wLH.match($thisHref + '(?![a-z])').index;
-                                location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                            } catch (err) {
-                            }
-                        }
-                    }
-                    else {
-                        $newthis = settings.before(this, elSetSource);
-                        if ($newthis != undefined)
-                            $this = $newthis;
+                var $thisD = this,
+                selector = $thisD.selector,
+                dataSource = $('[data-drop]'),
+                cloned = settings.cloned,
+                exit = $(settings.exit),
+                effon = settings.effon,
+                effoff = settings.effoff,
+                effdur = settings.effdur,
+                overlayColor = settings.overlayColor,
+                overlayOpacity = settings.overlayOpacity;
 
-                        var wndW = wnd.width();
-                        if (elSetSource.actual('width') > wnd.width())
-                            elSetSource.css('width', wndW - 40);
-                        else
-                            elSetSource.removeAttr('style');
+                activeClass = settings.activeClass;
 
-                        methods.positionDrop($this, elSet, elSetSource);
-
-                        $this.addClass(activeClass);
-                        drop_over.show();
-                        elSetSource[elSetOn](elSetDuration, function() {
-                            elSetSource.addClass(activeClass);
-                            if (ltie7)
-                                ieInput();
-                        });
-                        settings.after(this, elSetSource);
-                    }
-                    $(cloned).remove();
-                }
-            }).each(function() {
-                var $this = $(this),
+                dataSource.live('click', function(event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                
+                    $(this).each(function() {
+                        var $this = $(this),
                         $thisS = $this.data('effect-off') || effoff,
                         $thisD = $this.data('duration') || effdur,
-                        $thisSource = $this.data('drop'),
-                        dataSource2 = $($thisSource);
+                        $thisSource = $this.data('drop');
+                        $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                    });
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
 
-                dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-            });
+                        $this = $(this);
+                        elSet = $this.data();
+                        elSetSource = $(elSet.drop);
+                
+                        var elSetOn = elSet.effectOn || effon,
+                        elSetOff = elSet.effectOff || effoff,
+                        elSetDuration = elSet.duration || effdur,
+                        overlayColor = elSet.overlaycolor || settings.overlayColor,
+                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
+                        if (overlayColor != undefined || overlayOpacity != undefined) {
+                            if (!$.exists('.overlayDrop')) {
+                                mainBody.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                            }
+                            drop_over = $('.overlayDrop');
+                            drop_over.css({
+                                'background-color': overlayColor,
+                                'opacity': overlayOpacity
+                            });
+                        }
+                        else
+                            drop_over = $([]);
 
-            exit.live('click', function() {
-                var $this = $(this);
-                $('[data-drop="' + $this.closest('.drop').data('elrun') + '"]').click().parent().removeClass('active');
-            })
+                        if (elSetSource.is('.' + activeClass)) {
+                            $this.removeClass(activeClass)
+                            elSetSource[elSetOff](elSetDuration, function() {
+                                elSetSource.removeClass(activeClass).removeAttr('style')
+                                drop_over[elSetOff](elSetDuration);
+                            });
+                            $thisHref = $(this).attr('href');
+                            if ($thisHref != undefined) {
+                                var $thisHrefL = $thisHref.length,
+                                wLH = location.hash,
+                                wLHL = wLH.length;
+                                try {
+                                    indH = wLH.match($thisHref + '(?![a-z])').index;
+                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                } catch (err) {
+                                }
+                            }
+                        }
+                        else {
+                            $newthis = settings.before(this, elSetSource);
+                            if ($newthis != undefined) $this = $newthis;
 
-            body.live('click', function(event) {
-                event.stopPropagation();
-                if ($(event.target).parents().is(selector) || $(event.target).is(selector))
-                    return;
-                else
-                    methods.triggerBtnClick();
+                            var wndW = wnd.width();
+                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                            else elSetSource.removeAttr('style');
+                    
+                            methods.positionDrop($this, elSet, elSetSource);
 
-            }).live('keydown', function(e) {
-                var key, keyChar;
-                if (!e)
-                    var e = window.event;
+                            $this.addClass(activeClass);
+                            drop_over.show();
+                            elSetSource[elSetOn](elSetDuration, function() {
+                                elSetSource.addClass(activeClass);
+                                if (ltie7)
+                                    ieInput();
+                            });
+                            settings.after(this, elSetSource);
+                        }
+                        $(cloned).remove();
+                    }
+                })
+                exit.click(function(){
+                    methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                })
+                body.live('click', function(event) {
+                    event.stopPropagation();
+                    if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
+                        return;
+                    else
+                        methods.triggerBtnClick();
 
-                if (e.keyCode)
-                    key = e.keyCode;
-                else if (e.which)
-                    key = e.which;
+                }).live('keydown', function(e) {
+                    var key, keyChar;
+                    if (!e)
+                        var e = window.event;
 
-                if (key == 27) {
-                    methods.triggerBtnClick();
-                }
-            });
+                    if (e.keyCode)
+                        key = e.keyCode;
+                    else if (e.which)
+                        key = e.which;
+
+                    if (key == 27) {
+                        methods.triggerBtnClick();
+                    }
+                });
+            }
         },
-        triggerBtnClick: function() {
-            $('[data-elrun].' + activeClass).each(function() {
+        triggerBtnClick: function(sel) {
+            if (!sel) sel = '[data-elrun].' + activeClass
+            $(sel).each(function() {
                 $('[data-drop = "' + $(this).attr('data-elrun') + '"]').click().parent().removeClass('active');
+            }).removeClass('active');
+            wnd.unbind('scroll resize', methods.dropScroll)
+        },
+        dropScroll: function() {
+            elSetSource.animate({
+                'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
+            }, {
+                queue: false
             });
         },
-        positionDrop: function($this) {
+        positionDrop: function($this){
             var $this = $this;
-            if ($this == undefined)
-                $this = $(this);
-
+            if ($this == undefined) $this = $(this);
+            
             var elSet = $this.data(),
-                    elSetSource = $(elSet.drop);
-
+            elSetSource = $(elSet.drop);
+            
             var $thisP = $this.attr('data-place');
             dataSourceH = 0,
-                    dataSourceW = 0,
-                    $thisW = $this.width();
+            dataSourceW = 0,
+            $thisW = $this.width();
             $thisH = $this.height();
-
+            
             if ($thisP == 'noinherit') {
                 var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
 
@@ -1228,30 +1231,21 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
-
+                
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0)
-                    $thisL = 0;
+                if ($thisL < 0) $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0)
-                    elSetSource.css('margin-left', 0);
+                if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                function dropScroll() {
-                    elSetSource.animate({
-                        'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
-                        'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
-                    }, {
-                        queue: false
-                    });
-                }
-                wnd.unbind('scroll resize', dropScroll).bind('scroll resize', dropScroll).scroll();
+                wnd.unbind('scroll resize', methods.dropScroll).bind('scroll resize', methods.dropScroll);
+                methods.dropScroll();
             }
         }
     };

@@ -58,8 +58,8 @@ class Print_data extends MY_Controller {
             return false;
         $product = SProductsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($id);
         $variant = SProductVariantsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($var);
-        $style = '/application/modules/print_data/assets/css/style.css';
-        \CMSFactory\assetManager::create()->setData(array('style' => $style, 'product' => $product, 'variant' => $variant))->render('print_product', TRUE);
+        \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
+        \CMSFactory\assetManager::create()->setData(array('product' => $product, 'variant' => $variant))->render('print_product', TRUE);
     }
     /**
      * Print Page
@@ -69,8 +69,8 @@ class Print_data extends MY_Controller {
         if (!$this->no_install)
             return false;
         $page = get_page($id);
-        $style = '/application/modules/print_data/assets/css/style.css';
-        \CMSFactory\assetManager::create()->setData(array('style' => $style, 'page' => $page))->render('print_page', TRUE);
+        \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
+        \CMSFactory\assetManager::create()->setData(array('page' => $page))->render('print_page', TRUE);
     }
     /**
      * Install module
