@@ -60,7 +60,7 @@
                     <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
             </div>
-            {if str_replace(' ', '', $model->getDescription()) != ''}
+            {if $page_number == 1 && str_replace(' ', '', $model->getDescription()) != ''}
                 <div class="grey-b_r-bord">
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}" alt="{$model->getName()}"/>
