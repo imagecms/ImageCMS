@@ -34,6 +34,10 @@ class Categories extends BaseAdminController {
         $this->template->assign('parent_id', $parent_id);
         $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
 
+        /** Init Event. Pre Create Category */
+        \CMSFactory\Events::create()->registerEvent('', 'BaseAdminCategory:preCreate');
+        \CMSFactory\Events::runFactory();
+
         $this->template->show('create_cat', FALSE);
     }
 
@@ -379,6 +383,10 @@ class Categories extends BaseAdminController {
         //cp_check_perm('category_edit');
 
         $cat = $this->cms_admin->get_category($id);
+
+        /** Init Event. Pre Create Category */
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id), 'Categories:preUpdate');
+        \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL;
 

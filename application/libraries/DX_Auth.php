@@ -1260,7 +1260,7 @@ class DX_Auth {
     private function _get_recaptcha_data() {
         return $this->get_recaptcha_html();
     }
-
+    
     /* End of Recaptcha function */
 }
 
