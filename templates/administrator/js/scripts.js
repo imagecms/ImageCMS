@@ -1332,7 +1332,6 @@ $(document).ready(
             })
 
             $('.btn').live('click', function() {
-
                 $('.tooltip').remove();
             })
             $('#settings_form .control-label').live('click', function() {
@@ -1573,7 +1572,7 @@ $('#getAllOrderInfoButton').live('click', function() {
             }
         })
     })
-});
+;
 
 $(window).load(function() {
     $(window).scroll(function() {
