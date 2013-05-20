@@ -59,7 +59,10 @@ function deleteWishListItem(el){
     }
     el.parent().remove();
 }
-
+def_min = $('span#opt1').data('def_min');
+def_max = $('span#opt2').data('def_max');
+cur_min = $('span#opt3').data('cur_min');
+cur_max = $('span#opt4').data('cur_max');
 (function($) {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
@@ -323,10 +326,7 @@ wnd.load(function() {
     /*fancybox-based imagebox initialization*/
     $('a.fancybox').fancybox();
 });
-def_min = $('span#opt1').data('def_min');
-def_max = $('span#opt2').data('def_max');
-cur_min = $('span#opt3').data('cur_min');
-cur_max = $('span#opt4').data('cur_max');
+
 
 /*$(".star-big").starRating({
         width: 26,
