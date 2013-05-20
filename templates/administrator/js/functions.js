@@ -942,10 +942,6 @@ var orders = new Object({
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
         
-        if (quantity > stock){
-            $(element).val(stock);
-            quantity = stock;
-        }
         total = price * quantity;
         row.find('.productCartTotal').html(total.toFixed(2));
         
