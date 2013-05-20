@@ -959,6 +959,22 @@ var orders = new Object({
             total = total + parseFloat($(element).html());
         })
         $('#totalCartSum').html(parseFloat(total).toFixed(2));
+    },
+    isInCart : function (variantId){
+        var productBlocksInCart = $('#insertHere').find('.inputVariantId');
+        var countProductsInCart = productBlocksInCart.length;
+        var checkResult = 'false';
+        
+        if (countProductsInCart > 0){
+           productBlocksInCart.each(function(index,el){
+               if(variantId == el.value){
+                   checkResult = 'true';
+                   return false;
+               }
+           });
+        }
+        return checkResult;
+    
     }
 });
 

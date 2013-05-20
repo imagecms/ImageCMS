@@ -1432,7 +1432,11 @@ $('#variantsForOrders').live('change', function() {
     } else {
         $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger').html('В корзину');
     }
-
+    // Check is element in cart
+    if (orders.isInCart(variantId) == 'true'){
+        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html('В корзине');
+    }
+    
     dataForButton = $('#variantsForOrders option:selected').data();
 
     $('#addVariantToCart').data(dataForButton);
@@ -1451,42 +1455,144 @@ $('.removeImageType').live('click', function() {
 })
 
 /* Create user in order */
-$('#createUserButton').bind('click', function() {
+$('#createUserButton').live('click', function() {
     var userName = $('#createUserName').val();
     var userEmail = $('#createUserEmail').val();
     var userPhone = $('#createUserPhone').val();
     var userAddress = $('#createUserAddress').val();
     var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
-
-    console.log(userName);
-    console.log(userEmail);
-    console.log(userPhone);
-    console.log(userAddress);
-
-    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0) {
+    
+    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0){
         $.ajax({
-            url: '/admin/components/run/shop/orders/createNewUser',
-            type: "POST",
-            data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
-            success: function(response) {
-                if (response == 'true') {
-                    $('#createUserAddress').val('');
-                    $('#createUserAddress').val('');
-                    $('#createUserAddress').val('');
-                    $('#createUserAddress').val('');
-                } else {
-                    showMessage("Ошибка", "Не удалось создать пользователя,", "error");
-                }
+          url: '/admin/components/run/shop/orders/createNewUser',
+          type: "POST",
+          data: "name="+userName+"&email="+userEmail+"&phone="+userPhone+"&address="+userAddress,
+          success: function(response) {
+            if (response == 'true'){ 
+                $('#createUserName').val('');
+                $('#createUserEmail').val('');
+                $('#createUserPhone').val('');
+                $('#createUserAddress').val('');
+                showMessage("Сообщение", "Создан новый пользователь", "success");
+            }else{
+                showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+            }
             }
         });
     } else {
         showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
     }
-
-
-
-
-
 })
+
+/** Update data in orders*/
+$('#getAllOrderInfoButton').live('click', function() {
+    var userId =  $('#userIdforOrder').html();
+    var userName = $('#userNameforOrder').html();
+    var userEmail = $('#userEmailforOrder').html();
+    var userPhone = $('#userPhoneforOrder').html();
+    var userAddress =  $('#userAddressforOrder').html();
+    var totalCartSum = $('#totalCartSum').html();
+    var totalProductPrice = totalCartSum;
+    var userDiscount = 0;
+        
+        if(userId != undefined){
+            $('#shopOrdersUserid').val(userId);
+            $('#shopOrdersUserFullName').val(userName);
+            $('#shopOrdersUserEmail').val(userEmail);
+            $('#shopOrdersUserPhone').val(userPhone);
+            $('#shopOrdersUserAddress').val(userAddress);
+            
+            //Get user discount
+            $.ajax({
+                url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
+                async: false,
+                data: 'userId='+userId,
+                type: "post",
+                success: function(data) {
+                    if(data !=''){
+                        userDiscount = data;
+                    }
+                }
+            });
+            $('#shopOrdersComulativ').val(userDiscount);
+            
+            if (userDiscount != 0)
+                totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+                
+                $('#shopOrdersTotalPrice').val(totalProductPrice);
+            
+        }
+    })
+/** Get payments methds for delivery method **/
+    $('#shopOrdersdeliveryMethod').live('click', function(){
+        id = $(this).val();
+        $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function (dataStr) {
+            data = JSON.parse(dataStr);
+            $('#shopOrdersPaymentMethod').empty();
+            console.log(data);
+            jQuery.each( data, function(index,el){
+               $("#shopOrdersPaymentMethod").append( $('<option value="'+el.id+'">'+el.name+'</option>'));
+            });
+            
+            
+        });
+    })
+/** When change discount recount total price**/
+    $('#shopOrdersComulativ').live('keyup', function(){
+        var inputDiscount = $(this);
+        var userDiscount = $(this).val();
+        var totalCartSum = $('#totalCartSum').html();
+        var totalProductPrice = $('#shopOrdersTotalPrice').val();
+        if (inputDiscount.val() > 100){
+            inputDiscount.val(99);
+            userDiscount = 99;
+        }
+        if ($('#shopOrdersGiftCertPrice').val() == null){
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+            $('#shopOrdersTotalPrice').val(totalProductPrice);
+        }else{
+            totalProductPrice = ((totalCartSum -$('#shopOrdersGiftCertPrice').val())  / 100 * (100 - userDiscount)).toFixed(2);
+            $('#shopOrdersTotalPrice').val(totalProductPrice);
+        }
+    })
+/** Chech gift Certificate **/
+    $('#checkOrderGiftCert').live('click', function(){
+        var key = $('#shopOrdersCheckGiftCert').val();
+        var userDiscount = $('#shopOrdersComulativ').val();
+        var totalCartSum = $('#totalCartSum').html();
+        $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function (dataStr) {
+            data = JSON.parse(dataStr);
+            if (data.price != null){
+                $('#shopOrdersGiftCertPrice').val(data.price);
+                $('#shopOrdersGiftCertKey').val(data.key);
+                totalCartSum = totalCartSum - data.price;
+                totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+                $('#shopOrdersTotalPrice').val(totalProductPrice);
+                $('#shopOrdersCheckGiftCert').attr('disabled','disabled');
+                $('#currentGiftCertInfo').html('Текущий сертификат (сумма):'+data.price);
+            }
+        })
+    })
+});
+
+$(window).load(function() {
+    $(window).scroll(function() {
+        fixed_frame_title();
+    })
+    $(window).resize(function(event) {
+        $(this).trigger('scroll');
+
+        $('.fade.in').remove();
+        difTooltip();
+    }).resize();
+
+    if (window.hasOwnProperty('userLogined') && !notificationsInitialized)
+    {
+        window.setInterval('updateNotificationsTotal()', 20000);
+        notificationsInitialized = true;
+    }
+})
+
+
 
 
