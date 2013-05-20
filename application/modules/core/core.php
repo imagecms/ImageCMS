@@ -29,6 +29,7 @@ class Core extends MY_Controller {
     }
 
     public function index() {
+
         $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
@@ -279,6 +280,9 @@ class Core extends MY_Controller {
         // Assign template variables and load modules
         $this->_process_core_data();
 
+        if (strstr($_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI], '//'))
+            $this->error_404();
+
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE)
             return TRUE;
@@ -296,7 +300,6 @@ class Core extends MY_Controller {
 
                 break;
         }
-
         if ($this->core_data['data_type'] == 'main') {
             $this->core->core_data['id'] = $main_id;
             $this->_mainpage();
