@@ -1,7 +1,16 @@
 var editorsEnabled = false;
 //temporary
 
+function changeDefaultValute(id){
 
+    $.post('/admin/components/run/shop/currencies/makeCurrencyDefault',{id: id})
+    
+}
+function changeMainValute(id){
+
+    $.post('/admin/components/run/shop/currencies/makeCurrencyMain',{id: id})
+    
+}
 function ChangeMenuItemActive(obj, id) {
     $.post('/admin/components/cp/menu/chose_hidden', {status: $(obj).attr('rel'), id: id}, function() {
         if ($(obj).attr('rel') == 'true')
