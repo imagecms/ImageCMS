@@ -103,7 +103,7 @@
                                             output price without discount
                                              To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                             -->
-                                            <span class="f-w_b" id="priceOrigVariant">{printf("%.2f", (float)$model->firstVariant->getPriceInMain())} </span>
+                                            <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice'); } </span>
                                             {$CS}
                                         </span>                           
                                     {/if}
@@ -111,7 +111,7 @@
                                     If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                                     will display the price already discounted
                                     -->
-                                    <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency()} </span>{$CS}
+                                    <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency();}</span>{$CS}
                                     <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
                                 </div>    
                                 <!--
