@@ -28,7 +28,7 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('shop_category_i18n');
             $this->template->add_array(array('category' => $query->result()));
         }
-        
+
         $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
         $this->template->add_array(array('category_base' => $query->result()));
@@ -44,7 +44,7 @@ class Admin extends BaseAdminController {
                         'trash_url' => ltrim($this->input->post('url'), '/'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => $this->input->post('redirect_url')
+                        'trash_redirect' => 'http://' . ltrim($this->input->post('redirect_url'), 'http://')
                     );
                     break;
 

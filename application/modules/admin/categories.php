@@ -274,6 +274,7 @@ class Categories extends BaseAdminController {
             $this->db->where('category', $category['id']);
             $this->db->update('content', array('cat_url' => $category['path_url']));
         }
+        $this->cache->delete_all();
     }
 
     function category_exists($str) {
@@ -381,7 +382,7 @@ class Categories extends BaseAdminController {
      */
     function edit($id) {
         //cp_check_perm('category_edit');
-
+    
         $cat = $this->cms_admin->get_category($id);
 
         /** Init Event. Pre Create Category */
