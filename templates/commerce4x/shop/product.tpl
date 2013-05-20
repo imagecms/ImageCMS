@@ -32,10 +32,10 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                             {foreach $productImages as $key => $image}
                                 <li>
-                                    <a rel="group" href="{productImageUrl('/products/additional/'.$image->getImageName())}" class="photo">
+                                    <a rel="group" href="{productImageUrl('products/additional/'.$image->getImageName())}" class="photo">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{productImageUrl('/products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                            <img src="{productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                         </figure>
                                     </a>                                
                                 </li>
@@ -103,7 +103,7 @@
                                             output price without discount
                                              To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                             -->
-                                            <span class="f-w_b" id="priceOrigVariant">{printf("%.2f", (float)$model->firstVariant->getPriceInMain())} </span>
+                                            <span class="f-w_b" id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
                                             {$CS}
                                         </span>                           
                                     {/if}
