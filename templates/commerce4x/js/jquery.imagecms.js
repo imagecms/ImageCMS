@@ -531,6 +531,10 @@ function ieInput(els) {
     };
 })(jQuery);
 (function($) {
+    def_min = $('span#opt1').data('def_min');
+    def_max = $('span#opt2').data('def_max');
+    cur_min = $('span#opt3').data('cur_min');
+    cur_max = $('span#opt4').data('cur_max');
     var methods = {
         init: function(options) {
             if ($.exists_nabir(this)) {
@@ -1316,12 +1320,12 @@ function ieInput(els) {
                             input.val(1);
                         else
                             input.val(inputVal + 1);
-                        
+
                         if (input.val() > 1)
                             $thisPrev.removeAttr('disabled');
                         else
                             $thisPrev.attr('disabled', 'disabled');
-                        
+
                         if (checkProdStock)
                             if (input.maxValue())
                                 $thisNext.attr('disabled', 'disabled');

@@ -104,12 +104,13 @@
                                                 <span class="help-block">{lang('amt_page')}</span>
                                             </div>
                                         </div>
+                                            
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_id')}:</label>
                                             <div class="controls">
                                                 <span id="page_id_holder" class="help-block">{$item.id}</span>
                                             </div>
-                                        </div>    
+                                        </div>   
                                         <div class="control-group">
                                             <label class="control-label">{lang('amt_title')}:</label>
                                             <div class="controls">

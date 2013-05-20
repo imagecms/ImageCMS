@@ -25,7 +25,7 @@ class Lib_seo {
         $CI->template->registerJsScript($this->renderGA('', $settings));
         $CI->template->registerJsScript($this->renderGoogleWebmaster($settings));
         $CI->template->registerJsScript($this->renderYaMetrica($settings), 'after');
-        $CI->template->registerJsScript($this->renderYandexWebmaster($settings), 'after');
+        $CI->template->registerJsScript($this->renderYandexWebmaster($settings));
     }
 
     /**

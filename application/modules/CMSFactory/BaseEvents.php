@@ -91,20 +91,29 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    
     final public function onAdminPageCreate() {
         $this->key = 'Page:create';
         return $this;
     }
-      
+
+    final public function onAdminPagePreEdit() {
+        $this->key = 'BaseAdminPage:preUpdate';
+        return $this;
+    }
+
+    final public function onAdminPagePreCreate() {
+        $this->key = 'BaseAdminPage:preCreate';
+        return $this;
+    }
+
     /*
      * 
      */
+
     final public function on($key) {
         $this->key = $key;
         return $this;
     }
-    
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
@@ -157,6 +166,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onAdminCategoryPreCreate() {
+        $this->key = 'BaseAdminCategory:preCreate';
+        return $this;
+    }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
@@ -171,6 +185,31 @@ abstract class BaseEvents {
      */
     final public function onAdminCategoryUpdate() {
         $this->key = 'Categories:update';
+        return $this;
+    }
+
+    final public function onAdminCategoryPreUpdate() {
+        $this->key = 'Categories:preUpdate';
+        return $this;
+    }
+
+    final public function onWidgetModulePreUpdate() {
+        $this->key = 'WidgetModule:preUpdate';
+        return $this;
+    }
+
+    final public function onWidgetHTMLPreUpdate() {
+        $this->key = 'WidgetHTML:preUpdate';
+        return $this;
+    }
+
+    final public function onAdminDashboardShow() {
+        $this->key = 'Dashboard:show';
+        return $this;
+    }
+
+    final public function onShopDashboardShow() {
+        $this->key = 'ShopDashboard:show';
         return $this;
     }
 
@@ -189,6 +228,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopProductPreUpdate() {
+        $this->key = 'ShopAdminProducts:preEdit';
+        return $this;
+    }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
@@ -201,6 +245,11 @@ abstract class BaseEvents {
      */
     final public function onShopProductCreate() {
         $this->key = 'ShopAdminProducts:create';
+        return $this;
+    }
+
+    final public function onShopProductPreCreate() {
+        $this->key = 'ShopAdminProducts:preCreate';
         return $this;
     }
 
@@ -233,6 +282,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onShopCategoryPreCreate() {
+        $this->key = 'ShopAdminCategories:preCreate';
+        return $this;
+    }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
@@ -244,6 +298,11 @@ abstract class BaseEvents {
      */
     public function onShopCategoryEdit() {
         $this->key = 'ShopAdminCategories:edit';
+        return $this;
+    }
+
+    public function onShopCategoryPreEdit() {
+        $this->key = 'ShopAdminCategories:preEdit';
         return $this;
     }
 
