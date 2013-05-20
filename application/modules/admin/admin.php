@@ -95,6 +95,8 @@ class Admin extends MY_Controller {
 
         if ($this->input->get('path'))
             $path = $this->input->get('path');
+      
+       
 
         $opts = array(
             // 'debug' => true,
