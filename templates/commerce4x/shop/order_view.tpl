@@ -128,11 +128,13 @@
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" 
                                        class="c_97">
                                         {echo ShopCore::encode($orderProduct->product_name)}&nbsp;
-                                        {echo ShopCore::encode($orderProduct->variant_name)}
+                                        {if ShopCore::encode($orderProduct->variant_name) != null}
+                                            - {echo ShopCore::encode($orderProduct->variant_name)}
+                                        {/if}
                                     </a>&nbsp;
                                     {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
                                     {if $number}
-                                        - ({echo $number})
+                                       ({echo $number})
                                     {/if}
                                     <div class="price price_f-s_16">
                                         <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getPrice()}</span> {$CS}</span>

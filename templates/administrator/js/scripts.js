@@ -99,14 +99,21 @@ function init_2() {
         source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
         select: function(event, ui) {
             productName = ui.item.label;
-            productId = ui.item.value;
+            productId = ui.item.id;
             categoryId = ui.item.category;
         },
         close: function() {
+            $('#categoryForOrders option:selected').each(function(){
+                this.selected=false;
+            });
+            $("#categoryForOrders [value='"+categoryId+"']").attr("selected", "selected");
             orders.getProductsInCategory(categoryId);
+             $('#productsForOrders option:selected').each(function(){
+                this.selected=false;
+            });
+            $("#productsForOrders [value='"+productId+"']").attr("selected", "selected");
             orders.getProductVariantsByProduct(productId, productName);
             $('#productNameForOrders').val(productName);
-
         }
     });
     /* Autocomplete users in orders */
@@ -1451,12 +1458,14 @@ $('#createUserButton').live('click', function() {
           type: "POST",
           data: "name="+userName+"&email="+userEmail+"&phone="+userPhone+"&address="+userAddress,
           success: function(response) {
-            if (response == 'true'){ 
+            if (response == 'email'){
+                showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
+            }else if (response == 'true'){ 
                 $('#createUserName').val('');
                 $('#createUserEmail').val('');
                 $('#createUserPhone').val('');
                 $('#createUserAddress').val('');
-                showMessage("Сообщение", "Создан новый пользователь", "success");
+                showMessage("Сообщение", "Создан новый пользователь", "success"); 
             }else{
                 showMessage("Ошибка", "Не удалось создать пользователя,", "error");
             }
