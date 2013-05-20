@@ -79,6 +79,7 @@ class Modules
 
 				$output = call_user_func_array(array($class, $method), $args);
 				$buffer = ob_get_clean();
+                              
 				return ($output !== NULL) ? $output : $buffer;
 			}
 		}
