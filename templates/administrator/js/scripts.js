@@ -1528,7 +1528,6 @@ $('#getAllOrderInfoButton').live('click', function() {
         $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function (dataStr) {
             data = JSON.parse(dataStr);
             $('#shopOrdersPaymentMethod').empty();
-            console.log(data);
             jQuery.each( data, function(index,el){
                $("#shopOrdersPaymentMethod").append( $('<option value="'+el.id+'">'+el.name+'</option>'));
             });
@@ -1568,11 +1567,28 @@ $('#getAllOrderInfoButton').live('click', function() {
                 totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
                 $('#shopOrdersTotalPrice').val(totalProductPrice);
                 $('#shopOrdersCheckGiftCert').attr('disabled','disabled');
-                $('#currentGiftCertInfo').html('Текущий сертификат (сумма):'+data.price);
+                $('#giftPrice').html('Текущий сертификат (сумма):'+data.price);
+                $('#currentGiftCertInfo').show();
             }
         })
-    })
-;
+    });
+    /** Chech gift Certificate **/
+    $('.removeGiftCert').live('click', function(){
+        var userDiscount = $('#shopOrdersComulativ').val();
+        var totalCartSum = $('#totalCartSum').html();
+        
+        $('#shopOrdersGiftCertPrice').val('');
+        $('#shopOrdersGiftCertKey').val('');
+        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+       
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+        $('#shopOrdersCheckGiftCert').removeAttr('disabled');
+        $('#shopOrdersCheckGiftCert').val('');
+        $('#giftPrice').html('');
+        $('#currentGiftCertInfo').hide();
+      
+       
+    });
 
 $(window).load(function() {
     $(window).scroll(function() {
@@ -1591,7 +1607,3 @@ $(window).load(function() {
         notificationsInitialized = true;
     }
 })
-
-
-
-
