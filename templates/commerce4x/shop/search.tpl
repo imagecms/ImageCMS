@@ -61,7 +61,7 @@
     </aside>
     <div class="span9 right">
         {if !empty(ShopCore::$_GET['text'])}
-            <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+            <h1 class="d_i">  {lang('s_sea_search_for')}: "{encode(trim($_GET['text']))}" </h1>
         {/if}
         <span class="c_97">
                Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}

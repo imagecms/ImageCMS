@@ -1,5 +1,5 @@
 {if $tree}
-    <ul >
+    <ul>
         {foreach $tree as $item}
         <li ><a style="display:block;width:100%;"><div style="display:block;width:100%;"><div onclick="cats_options({$item.id},'{$page_lang}');" >{$item.name}</div>
 <img onclick="edit_category({$item.id}); return false;" class="penedit" src="{$THEME}/images/tree/edit_dir.png" align="right" border="0" alt="{lang('a_change_cat_data')}" title="{lang('a_change_cat_data')}">
