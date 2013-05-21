@@ -205,7 +205,7 @@
             <div class="boxFilter">
 
                 {//displaying property name}
-                <div class="title">{echo ShopCore::encode($prop->name)}</div>
+                <div class="title">{echo ShopCore::encode($prop->name) }</div>
 
                 <div class="clearfix check_form">
 

@@ -1,7 +1,16 @@
 var editorsEnabled = false;
 //temporary
 
+function changeDefaultValute(id){
 
+    $.post('/admin/components/run/shop/currencies/makeCurrencyDefault',{id: id})
+    
+}
+function changeMainValute(id){
+
+    $.post('/admin/components/run/shop/currencies/makeCurrencyMain',{id: id})
+    
+}
 function ChangeMenuItemActive(obj, id) {
     $.post('/admin/components/cp/menu/chose_hidden', {status: $(obj).attr('rel'), id: id}, function() {
         if ($(obj).attr('rel') == 'true')
@@ -149,6 +158,7 @@ $('.formSubmit').live('click', function() {
                     name: "action",
                     value: action
                 });
+                
             },
             success: function(data) {
                 $('#loading').fadeOut(100);
@@ -932,10 +942,6 @@ var orders = new Object({
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
         
-        if (quantity > stock){
-            $(element).val(stock);
-            quantity = stock;
-        }
         total = price * quantity;
         row.find('.productCartTotal').html(total.toFixed(2));
         
@@ -949,6 +955,22 @@ var orders = new Object({
             total = total + parseFloat($(element).html());
         })
         $('#totalCartSum').html(parseFloat(total).toFixed(2));
+    },
+    isInCart : function (variantId){
+        var productBlocksInCart = $('#insertHere').find('.inputVariantId');
+        var countProductsInCart = productBlocksInCart.length;
+        var checkResult = 'false';
+        
+        if (countProductsInCart > 0){
+           productBlocksInCart.each(function(index,el){
+               if(variantId == el.value){
+                   checkResult = 'true';
+                   return false;
+               }
+           });
+        }
+        return checkResult;
+    
     }
 });
 

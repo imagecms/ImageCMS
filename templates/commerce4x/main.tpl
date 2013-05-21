@@ -29,10 +29,10 @@
             <link rel="stylesheet" type="text/css" href="{$THEME}css/lt_ie8.css" />
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
             <script src="{$THEME}js/css3-mediaqueries.js"></script>
-            <script src="{$THEME}js/localStorageIE.js"></script>
         <![endif]-->
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
+            <script src="js/localStorageIE.js"></script>
         <![endif]-->
         {literal}
             <style>
@@ -48,7 +48,6 @@
             </style>
         {/literal}
         {$canonical}
-        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body>
@@ -212,7 +211,7 @@
                 </section>
             </div>
 
-            <div
+            <div>
                 <!-- Start. Render Category Tree. Menu frame -->
                 <div class="mainFrameMenu">
                     {\Category\RenderMenu::create()->load('category_menu')}
@@ -226,8 +225,8 @@
                 <!-- End. Show content -->
             </div>
             {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
-            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         </div>
+        <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
             {if $exists_brands}

@@ -34,13 +34,13 @@
                     <span class="v-a_m">{lang('s_order_by')}:</span>
                     <div class="lineForm w_170 sort">
                         <select id="sort" name="order">
-                            <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                            <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                            <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                            <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                            <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                            <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                            <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                            <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
+                            <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                            <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                            <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                            <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                            <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                            <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                         </select>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                 </div>
             </div>
-            {if str_replace(' ', '', $model->getDescription()) != ''}
+            {if $page_number == 1 && str_replace(' ', '', $model->getDescription()) != ''}
                 <div class="grey-b_r-bord">
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}" alt="{$model->getName()}"/>

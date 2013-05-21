@@ -353,7 +353,7 @@ var Shop = {
         /*find url*/
         var anchors = false;
         if (anchors = $context.closest('li').find('a')) {
-            console.log(typeof anchors);
+//            console.log(typeof anchors);
             _.each(anchors, function(anchor){
                 if (typeof $(anchor).attr('href') != 'undefined')
                     if ($(anchor).attr('href').match('/product/'))
@@ -365,16 +365,32 @@ var Shop = {
         /*find image*/
         var images = false;
         if (images = $context.closest('li').find('img'))
-            cartItem.img = $(images[0]).attr('src');
+            $(images).each(function(){
+//                if ( $(this).attr('src').match(cartItem.id))
+                    cartItem.img = $(images[0]).attr('src');
+            });
         delete  images;
-
-
+        
         //check for product page
         if ($context.data('prodpage')) {
+            if (!cartItem.kit){
+                variantId = $context.data('varid');
+                smallImage = $('span.variant_' + variantId).attr('data-smallImage');
+                cartItem.img = smallImage;
+            }
             if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)
                 cartItem.img = $context.closest('.container').find('img').first().attr('src');
+        }
+        /** Prepare kits images */
+        if (cartItem.kit){
+            kitImages = [];
+            img = $context.closest('ul').find('img');
+            img.each(function (i,image){
+                kitImages.push(image.src);
+            })
+           cartItem.img = kitImages;
         }
 
 
@@ -1032,15 +1048,16 @@ $('#variantSwitcher').live('change', function () {
     var vSmallImage = $('span.variant_' + productId).attr('data-smallImage');
     var vStock = $('span.variant_' + productId).attr('data-stock');
 
-
+    $(document).trigger({
+        type: 'afrer_change_variant',
+        vId: vId
+    })
+    
     $('#photoGroup').attr('href', vMainImage);
     $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-//    var href = $('#print_btn').attr('data-href');
-//    var arr_href = href.split('/');
-//    arr_href[arr_href.length - 1] = vId;
-//    $('#print_btn').attr('data-href',arr_href.join('/'));
+
     if ($.trim(vNumber) != '') {
         $('#number').html('(Артикул ' + vNumber + ')');
     } else {

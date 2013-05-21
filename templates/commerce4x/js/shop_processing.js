@@ -93,6 +93,7 @@ $(document).ready(
         });
 
         $('button.toWishlist').on('click', function () {
+            
             var id = $(this).data('prodid');
             var vid = $(this).data('varid');
             Shop.WishList.add(id, vid);
@@ -177,7 +178,7 @@ $(function(){
             $('input[name=makeOrder]').val(0);
             $('input[name=checkCert]').val(1);
             $('#makeOrderForm').ajaxSubmit({
-                url:'/shop/cart_api',
+                url:'/shop/cart_api/getGiftCert',
                 success : function(data){
                     try {
                         var dataObj = JSON.parse(data);
@@ -219,16 +220,17 @@ $('#variantSwitcher').live('change', function () {
     var vStock = $('span.variant_' + productId).attr('data-stock');
 
 
+    $(document).trigger({
+        type: 'afrer_change_variant',
+        vId: vId
+    })
+    
+    
     $('#photoGroup').attr('href', vMainImage);
     $('#imageGroup').attr('src', vSmallImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
-    
-//    var href = $('#print_btn').attr('data-href');
-//    var arr_href = href.split('/');
-//    arr_href[arr_href.length - 1] = vId;
-//    $('#print_btn').attr('data-href',arr_href.join('/'));
-    
+
     if ($.trim(vNumber) != '') {
         $('#number').html('(Артикул ' + vNumber + ')');
     } else {
@@ -237,4 +239,29 @@ $('#variantSwitcher').live('change', function () {
 
     $('.variant').hide();
     $('.variant_' + vId).show();
+});
+
+/**Variants in Category*/
+$('#variantSwitcherCategory').live('change', function () {
+    var productId = $(this).attr('value');
+    var liBlock = $(this).closest('li');
+    var vSmallImage = liBlock.find('span.variant_' + productId).attr('data-smallImage');
+    var vName = liBlock.find('span.variant_' + productId).attr('data-name');
+    var vPrice = liBlock.find('span.variant_' + productId).attr('data-price');
+    var vOrigPrice = liBlock.find('span.variant_' + productId).attr('data-origPrice');
+    var vNumber = liBlock.find('span.variant_' + productId).attr('data-number');
+    
+    liBlock.find('.variant').hide();
+    liBlock.find('.variant_' + productId).show();
+    liBlock.find('.variant').attr('src', vSmallImage).attr('alt', vName);
+    liBlock.find('.priceOrigVariant').html(vOrigPrice);
+    liBlock.find('.priceVariant').html(vPrice);
+    liBlock.find('img').attr('src',vSmallImage);
+    
+    if ($.trim(vNumber) != '') {
+        liBlock.find('.numberCP').html('(Артикул ' + vNumber + ')');
+    } else {
+        liBlock.find('.numberCP').html('');
+    }
+    
 });

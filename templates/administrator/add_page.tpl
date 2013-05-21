@@ -18,7 +18,10 @@
             <a href="#content_article" class="btn btn-small active">{lang('a_content')}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang('a_param')}</a>
             <a href="#addfields_article" class="btn btn-small">{lang('a_additional_fields')}</a>
-            <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>
+            <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>            
+            {if $moduleAdditions}
+                <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+            {/if}
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
@@ -41,7 +44,8 @@
                                             {lang('a_category')}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang('a_create_cat')}</a>
+                                            <a onclick="$('.modal').modal();
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang('a_create_cat')}</a>
                                             <div class="o_h">
                                                 <select name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()"> 
                                                     <option value="0" selected="selected">{lang('a_no')}</option>
@@ -132,7 +136,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" rows="8"></textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description');" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                                         </div>
                                     </div>
 
@@ -142,7 +146,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords" rows="8" class="textarea" cols="28"></textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list');"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
                                             <div style="max-width:600px" id="keywords_list">
                                             </div>
                                         </div>
@@ -258,7 +262,7 @@
                                             <select multiple="multiple" name="roles[]" id="roles">
                                                 <option value="0">{lang('a_all')}</option>
                                                 {foreach $roles as $role}
-                                                <option value ="{$role.id}">{$role.name}</option>
+                                                    <option value ="{$role.id}">{$role.name}</option>
                                                 {/foreach}
                                             </select>        	
                                         </div>
@@ -269,6 +273,7 @@
                     </tbody>
                 </table>
             </div>
+            {include_tpl('modules_additions')}
         </div>
         {form_csrf()}
     </form>
@@ -313,5 +318,5 @@
 
 <script>
     if (window.hasOwnProperty('pagesAdmin'))
-        pagesAdmin.initialize();
+    pagesAdmin.initialize();
 </script>
