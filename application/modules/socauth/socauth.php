@@ -99,12 +99,12 @@ class Socauth extends MY_Controller {
 
         if (count($user) == 0) {
 
-            $emailChack = $this->db
+            $emailCheck = $this->db
                     ->where('email', $email)
                     ->get('users', 1)
                     ->row();
 
-            if (count($emailChack) > 0)
+            if (count($emailCheck) > 0)
                 redirect('/socauth/error');
 
             $pass = random_string('alnum', 20);

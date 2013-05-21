@@ -38,12 +38,14 @@ class Banners extends MY_Controller {
         $lang = $this->get_main_lang('identif');
         $painting = $type . '_' . $id;
         $banners = $this->banner_model->get_all_banner($lang);
+       
         foreach ($banners as $banner) {
             $data = unserialize($banner['where_show']);
+            
             if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
                 $ban[] = $banner;
         }
-
+       
         if (count($ban) > 0) {
 
 
@@ -56,8 +58,9 @@ class Banners extends MY_Controller {
 
             \CMSFactory\assetManager::create()
                     ->registerStyle('style')
-                    ->registerScript('main')
+                    
                     ->registerScript('cycle')
+                    ->registerScript('main')
                     ->setData(array('banners' => $ban))
                     ->render($tpl, TRUE);
         }
