@@ -20,8 +20,8 @@ class Admin extends BaseAdminController {
         $locale = $this->db->where('default', 1)->get('languages')->result_array();
         $this->def_locale = $locale[0]['identif'];
 
-        if (count($this->db->query("select * from components where name='shop'")->result_array()) > 0)
-            $this->is_shop = true;
+        
+        $this->is_shop = SHOP_INSTALLED;
     }
 
     /**
@@ -101,7 +101,6 @@ class Admin extends BaseAdminController {
                         $this->banner_model->add_empty_banner($lid, $lan['identif']);
 
                 /** Show successful message and redirect */
-                showMessage('Даные сохранены перегрузите страницу');
                 pjax('/admin/components/init_window/banners');
             }else {
                 /** Show validation error message */
@@ -163,10 +162,8 @@ class Admin extends BaseAdminController {
             }
         } else {
 
-            //TODO: Write less code here
             $banner = $this->banner_model->get_one_banner($id, $locale);
-            if (count($banner) == 0)
-                $banner = $this->banner_model->get_one_banner_no_locale($id);
+
 
             /** Show Banner edit template */
             CMSFactory\assetManager::create()
