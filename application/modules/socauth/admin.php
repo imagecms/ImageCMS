@@ -2,38 +2,54 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+/**
+ * Admin Class for Social Auth Module
+ * @uses BaseAdminController
+ * @author A.Gula <a.gula@imagecms.net>
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
+ */
 class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->library('DX_Auth');
     }
 
+    /**
+     * Get settings from DB and display settings page
+     * @author A.Gula <a.gula@imagecms.net>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function index() {
-        $settings = $this->db->select('settings')
+        /** Get Settings from DB */
+        $settings = $this->db
+                ->select('settings')
                 ->where('identif', 'socauth')
                 ->get('components')
                 ->row_array();
 
-        $this->template->add_array(array('settings' => unserialize($settings[settings])));
-        if (!$this->ajaxRequest)
-            $this->display_tpl('settings');
+        /** Show template file */
+        \CMSFactory\assetManager::create()
+                ->setData('settings', unserialize($settings[settings]))
+                ->renderAdmin('settings');
     }
 
+    /**
+     * Update settings from POST
+     * @param $_POST
+     * @author A.Gula <a.gula@imagecms.net>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function update_settings() {
         $result = array_map('trim', $_POST);
-        
-        $this->db->where('identif', 'socauth')
+
+        /** Save input data */
+        $this->db
+                ->where('identif', 'socauth')
                 ->update('components', array('settings' => serialize($result)));
 
         showMessage("Настройки сохранены");
         pjax($_SERVER[HTTP_REFERER]);
-    }
-
-    private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
-        $this->template->show('file:' . $file);
     }
 
 }

@@ -76,6 +76,12 @@
                                          {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
                                     </div>
                                 </div>    
+                                <div class="control-group">
+                                    <label class="control-label" for="sppri">Страница продукта:</label>
+                                    <div class="controls">
+                                         {form_dropdown('product_changefreq', $changefreq_options, $settings.pages_changefreq)}
+                                    </div>
+                                </div>    
                             </div>
                         </td>
                     </tr>

@@ -61,7 +61,7 @@
     </aside>
     <div class="span9 right">
         {if !empty(ShopCore::$_GET['text'])}
-            <h1 class="d_i">  {lang('s_sea_search_for')}:"{encode($_GET['text'])}" </h1>
+            <h1 class="d_i">  {lang('s_sea_search_for')}: "{encode(trim($_GET['text']))}" </h1>
         {/if}
         <span class="c_97">
                Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
@@ -74,13 +74,13 @@
                         <span class="v-a_m">Фильтровать по:</span>
                         <div class="lineForm w_170">
                             <select class="sort" id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
+                                <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                             </select>
                         </div>
                     </div>

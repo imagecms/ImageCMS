@@ -13,24 +13,26 @@
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                         {foreach $langs as $l}
-                        {if $page_lang == $l.id}
-                        {$l.lang_name}
-                        {/if}
+                            {if $page_lang == $l.id}
+                                {$l.lang_name}
+                            {/if}
                         {/foreach}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         {foreach $langs as $l}
-                        {if $l.id != $page_lang}
-                        <li><a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a></li>
-                        {/if}
+                            {if $l.id != $page_lang}
+                                <li>
+                                    <a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a>
+                                </li>
+                            {/if}
                         {/foreach}
                     </ul>
                 </div>
             </div>
         </div>                            
     </div>  
-                    
+
     <div class="clearfix">
         <div class="m-t_20 pull-right">
             <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
@@ -40,7 +42,9 @@
             <a href="#parameters_article" class="btn btn-small ">{lang('a_param')}</a>
             <a href="#addfields_article" class="btn btn-small">{lang('a_additional_fields')}</a>
             <a href="#setings_article" class="btn btn-small">{lang('a_sett')}</a>
-            <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+            {if $moduleAdditions}
+                <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+            {/if}
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
@@ -67,7 +71,8 @@
                                             {lang('a_category')}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang('a_create_cat')}</a>
+                                            <a onclick="$('.modal').modal();
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang('a_create_cat')}</a>
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('a_no')}</option>
@@ -135,12 +140,12 @@
                                         </label>
                                         <div class="controls">
                                             {if $defLang.id == $page_lang}
-                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
-                                            <div class="o_h">
-                                                <input type="text" name="page_url" value="{$url}" id="page_url" />
-                                            </div>
+                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                                <div class="o_h">
+                                                    <input type="text" name="page_url" value="{$url}" id="page_url" />
+                                                </div>
                                             {else:}
-                                            <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
+                                                <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
                                             {/if}
                                             <div class="help-block">({lang('a_just_lat')})</div>
                                         </div>
@@ -170,7 +175,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" >{$description}</textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description');" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор</button>
                                         </div>
                                     </div>
 
@@ -180,7 +185,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords">{$keywords}</textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list');"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;Автоподбор слов</button>
                                             <div id="keywords_list">
                                             </div>
                                         </div>
@@ -231,7 +236,7 @@
 
 
             </div>
-                                    
+
             <div class="tab-pane" id="addfields_article">
                 <div id="cfcm_fields_block"></div>
             </div>
@@ -298,7 +303,7 @@
                                             <select multiple="multiple" name="roles[]" id="roles[]">
                                                 <option value="0" {$all_selected} >{lang('a_all')}</option>
                                                 {foreach $roles as $role}
-                                                <option {$role.selected} value="{$role.id}">{$role.name}</option>
+                                                    <option {$role.selected} value="{$role.id}">{$role.name}</option>
                                                 {/foreach}
                                             </select>        	
                                         </div>
@@ -308,7 +313,6 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
             {include_tpl('modules_additions')}
         </div>
@@ -356,5 +360,5 @@
 </div>
 <script>
     if (window.hasOwnProperty('pagesAdmin'))
-        pagesAdmin.initialize();
+    pagesAdmin.initialize();
 </script>

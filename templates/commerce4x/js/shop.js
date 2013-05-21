@@ -130,7 +130,7 @@ var Shop = {
 
                 var postData = {recount:1};
                 postData[postName] = cartItem.count;
-                $.post('/shop/cart_api', postData, function(data){
+                $.post('/shop/cart_api/recount', postData, function(data){
 
                     var dataObj = JSON.parse(data);
                     if (dataObj.hasOwnProperty('count'))
@@ -378,7 +378,7 @@ var Shop = {
                 smallImage = $('span.variant_' + variantId).attr('data-smallImage');
                 cartItem.img = smallImage;
             }
-            if (!cartItem.url)
+            //if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)
                 cartItem.img = $context.closest('.container').find('img').first().attr('src');

@@ -32,7 +32,7 @@
                             'title':ui.values[1], 
                             'effect':'always', 
                             'otherClass':'tooltip-slider'
-                        })
+                        });
                         minCost.val(ui.values[0]);
                         maxCost.val(ui.values[1]);
                     },
@@ -59,7 +59,7 @@
 
                     if (value2 > def_max) {
                         value2 = def_max;
-                        maxCost.val(def_max)
+                        maxCost.val(def_max);
                     }
 
                     if(parseInt(value1) > parseInt(value2)){
@@ -71,10 +71,10 @@
                 });
                 minCost.add(maxCost).change(function(){
                     ajaxRecount(slider.attr('id'), true);
-                })
+                });
             }
         }
-    }
+    };
     $.fn.sliderInit = function( method ) {
         if ( methods[method] ) {
             return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
@@ -212,4 +212,4 @@ function ajaxRecount(el, slChk) {
 
 $(window).load(function(){
     afterAjaxInitializeFilter();
-})
+});

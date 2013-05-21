@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="span9 item_tovar">{$CI->load->module('socauth')->renderLink()}
+        <div class="span9 item_tovar">
             <h1>{lang('s_private_office')}</h1>
             <!-- Start errors block -->
             <div  class="msg_form_edit">
@@ -80,13 +80,17 @@
 
                                     </span>
                                 </label>
-                            {/if}                                    
+                            {/if} 
+                            
+                            {echo ShopCore::app()->CustomFieldsHelper->getCustomFields('user', $profile->getId())->asAdminHtml()}
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
                                     <input type="submit" value="{lang('s_edit')}" class="btn"/>
                                 </span>
                             </div>
+                                
+                            
                             {form_csrf()}
                         </form>
                     </div>

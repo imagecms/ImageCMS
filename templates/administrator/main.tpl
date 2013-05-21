@@ -49,7 +49,7 @@
                                     <span class="m-r_10">
                                         {lang('a_wellcome')},
                                         {if $CI->dx_auth->get_username()}
-                                            <a href="{echo base_url()}admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}" id="user_name">
+                                            <a href="{echo base_url()}admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}" id="user_name">
                                                 {echo $CI->dx_auth->get_username()}
                                             </a>
                                             <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
@@ -220,6 +220,14 @@
         <div id="elfinder"></div>
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
+                <label>
+                    Ваше Имя:
+                    <input type=text name="name"/>
+                </label>
+                <label>
+                    Ваш Email:
+                    <input type=text name="email"/>
+                </label>
                 <label>
                     {lang('a_your_remark')}:
                     <textarea></textarea>

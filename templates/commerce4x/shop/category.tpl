@@ -63,13 +63,13 @@
                         <span class="v-a_m">{lang('s_order_by')}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
+                                <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                             </select>
                         </div>
                     </div>
@@ -131,8 +131,8 @@
                                 </div>
 
                                 <!-- displaying product name -->
-                                <a href="{shop_url('product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
-                            {if $product->firstVariant->getNumber() != ''}<span class="c_97" id="number">(Артикул: {echo $product->firstVariant->getNumber()}) </span>{/if}
+                                <a href="{shop_url('product/'.$product->getUrl())}" class="prodName">{echo ShopCore::encode($product->getName())}</a>
+                            {if $product->firstVariant->getNumber() != ''}<span class="c_97 numberCP" id="number">(Артикул: {echo $product->firstVariant->getNumber()}) </span>{/if}
                             {if $product->hasDiscounts()}
                                 <span class="d_b old_price">
                                     <!--
@@ -140,50 +140,18 @@
                                     output price without discount
                                      To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                     -->
-                                    <span class="f-w_b" id="priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
+                                    <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')}</span>
+
                                     {$CS}
                                 </span>                           
                             {/if}
                             <!-- displaying products first variant price and currency symbol -->
-                            <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
-
-                            <!-- displaying buy button according to its availability in stock -->
-
-                            {if (int)$product->getallstock() == 0}
-
-                                <!-- displaying notify button -->
-                                <button data-placement="bottom right"
-                                        data-place="noinherit"
-                                        data-duration="500"
-                                        data-effect-off="fadeOut"
-                                        data-effect-on="fadeIn"
-                                        data-drop=".drop-report"
-                                        data-prodid="{echo $product->getId()}"
-                                        type="button"
-                                        class="btn btn_not_avail">
-                                    <span class="icon-but"></span>
-                                    <span class="text-el">{lang('s_message_o_report')}</span>
-                                </button>
-                            {else:}
-
-                                <!-- displaying buy or in cart button -->
-                                <button class="btn btn_buy" type="button"
-                                        data-prodid="{echo $product->getId()}"
-                                        data-varid="{echo $product->firstVariant->getId()}"
-                                        data-price="{echo $product->firstVariant->toCurrency()}"
-                                        data-name="{echo ShopCore::encode($product->getName())}"
-                                        data-number="{echo $product->firstVariant->getnumber()}"
-                                        data-maxcount="{echo $product->firstVariant->getstock()}"
-                                        data-vname="{echo $product->firstVariant->getName()}"
-                                        >
-                                    {lang('s_buy')}
-                                </button>
-                            {/if}
+                            <div class="price price_f-s_16"><span class="f-w_b priceVariant">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
 
                             {if count($product->getProductVariants()) > 1}
-                                <div class=" d_i-b v-a_b m-r_30" id="variantProd">
+                                <div class=" d_i-b v-a_b m-r_30 p-b_10" id="variantProd">
                                     <div class="lineForm w_170">
-                                        <select id="variantSwitcher" name="variant">
+                                        <select id="variantSwitcherCategory" name="variant">
                                             {foreach $product->getProductVariants() as $key => $pv}
                                                 <option value="{echo $pv->getId()}">
                                                     {if $pv->getName()}
@@ -196,30 +164,85 @@
                                         </select>
                                     </div>
                                 </div>
+                            {/if}
                                 <!-- End. Output of all the options -->
+                                <!-- displaying buy button according to its availability in stock -->
 
+                                {if (int)$product->getallstock() == 0}
+
+                                    <!-- displaying notify button -->
+                                    <button data-placement="bottom right"
+                                            data-place="noinherit"
+                                            data-duration="500"
+                                            data-effect-off="fadeOut"
+                                            data-effect-on="fadeIn"
+                                            data-drop=".drop-report"
+                                            data-prodid="{echo $product->getId()}"
+                                            type="button"
+                                            class="btn btn_not_avail variant">
+                                        <span class="icon-but"></span>
+                                        <span class="text-el">{lang('s_message_o_report')}</span>
+                                    </button>
+                                {else:}
+
+                                    <!-- displaying buy or in cart button -->
+                                    <button class="btn btn_buy variant" type="button"
+                                            data-prodid="{echo $product->getId()}"
+                                            data-varid="{echo $product->firstVariant->getId()}"
+                                            data-price="{echo $product->firstVariant->toCurrency()}"
+                                            data-name="{echo ShopCore::encode($product->getName())}"
+                                            data-number="{echo $product->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $product->firstVariant->getstock()}"
+                                            data-vname="{echo $product->firstVariant->getName()}"
+                                            >
+                                        {lang('s_buy')}
+                                    </button>
+                                {/if}
                                 <!-- Start. Collect information about Variants, for future processing -->
                                 {foreach $product->getProductVariants() as $key => $pv}
-                                    {if $pv->getMainImage()}
-                                        {$mainImage = productImageUrl($pv->getMainImage())}
+                                    {if $pv->getStock() > 0}
+                                        <button style="display: none;" 
+                                                class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                                type="button" 
+                                                data-prodid="{echo $product->getId()}"
+                                                data-varid="{echo $pv->getId()}" 
+                                                data-price="{echo $pv->toCurrency()}" 
+                                                data-name="{echo ShopCore::encode($product->getName())}"
+                                                data-vname="{echo ShopCore::encode($pv->getName())}"
+                                                data-maxcount="{echo $pv->getstock()}"
+                                                data-prodpage="true">
+                                            {lang('s_buy')}
+                                        </button>
                                     {else:}
-                                        {$mainImage = productImageUrl($product->getMainimage())}
+                                        <button
+                                            style="display: none;" 
+                                            data-placement="top right"
+                                            data-place="noinherit"
+                                            data-duration="500"
+                                            data-effect-off=    "fadeOut"
+                                            data-effect-on="fadeIn"
+                                            data-drop=".drop-report"
+                                            data-prodid="{echo $product->getId()}" 
+                                            type="button"
+                                            class="btn btn_not_avail variant_{echo $pv->getId()} variant">
+                                            <span class="icon-but"></span>
+                                            <span class="text-el">{lang('s_message_o_report')}</span>
+                                        </button>
                                     {/if}
-
                                     <span class="variant_{echo $pv->getId()}" 
                                           data-id="{echo $pv->getId()}"
                                           data-name="{echo ShopCore::encode($pv->getName())}"
                                           data-price="{echo $pv->toCurrency()}"
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                          data-mainImage="{echo $mainImage}"
-                                          data-smallImage="{echo productImageUrl($pv->getSmallImage())}"
+                                          data-mainImage="{$pv->getLargePhoto()}"
+                                          data-smallImage="{echo $pv->getSmallPhoto()}"
                                           data-stock="{echo $pv->getStock()}"
                                           style="display: none;">
                                     </span>
                                 {/foreach}
                                 <!-- End. Collect information about Variants, for future processing -->
-                            {/if}
+                            
 
                             <div class="d_i-b">
 
