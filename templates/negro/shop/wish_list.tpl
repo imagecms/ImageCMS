@@ -11,11 +11,11 @@
 <div class="frame-inside">
     <div class="container">
         {if count($items) > 0}
-            <div class="clearfix m-b_15">
+            <div class="clearfix">
                 <div class="title_h1 f_l">Список желаний</div>
             </div>
 <!--            Start. Show products in wish list-->
-            <ul class="items-catalog items-wish-list" id="items-catalog-main">
+            <ul class="items items-catalog items items-wish-list" id="items-catalog-main">
                 {foreach $items as $key => $item}
                     {$promos[0] = $item.model}
                     {$CI->template->assign('promos', $promos)}
@@ -27,9 +27,9 @@
             {if ShopCore::$ci->dx_auth->is_logged_in() === true}
                 <form action="" method="post" name="editForm">
                     <div class="left-order">
-                        <input type="text" placeholder="E-mail получателя" name="friendsMail" class="f_l" />
+                        <input type="text" placeholder="E-mail получателя" name="friendsMail"/>
                     </div>
-                    <div class="btn btn-order">
+                    <div class="btn-order">
                         <button type="submit"  name="sendwish"> Отправить другу </button>
                     </div>
                     {form_csrf()}
@@ -38,8 +38,8 @@
             <!--            End. Show form "send wish list to friend" if logged in-->
         {else:}
 <!--      Start. Empty wish list-->
-            <div class="clearfix m-b_15">
-                <div class="title_h3 f_l">Список желаний пуст</div>
+            <div class="clearfix">
+                <div class="title_h3">Список желаний пуст</div>
             </div>
 <!--      End. Empty wishlist-->
         {/if}
