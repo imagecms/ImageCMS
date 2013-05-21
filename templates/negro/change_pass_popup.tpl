@@ -23,7 +23,7 @@
 <div class="control-group">
     <span class="control-label">&nbsp;</span>
     <span class="controls">
-        <span class="btn btn-order-product">
+        <span class="btn-order-product">
         <input type="submit" value="{lang('s_save')}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
     return false;"/>
         </span>

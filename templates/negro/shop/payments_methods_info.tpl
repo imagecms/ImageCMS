@@ -1,6 +1,6 @@
 <ul class="delivery-payment_product clearfix">
     <li>
-        <span class="icon-delivery"></span>
+        <span class="icon_delivery"></span>
         <div>
             <div class="title">Доставка</div>
             <ul>
@@ -21,7 +21,7 @@
         </div>
     </li>
     <li>
-        <span class="icon-payment"></span>
+        <span class="icon_payment"></span>
         <div>
             <div class="title">Оплата</div>
             <ul>
