@@ -178,7 +178,7 @@ $(function(){
             $('input[name=makeOrder]').val(0);
             $('input[name=checkCert]').val(1);
             $('#makeOrderForm').ajaxSubmit({
-                url:'/shop/cart_api',
+                url:'/shop/cart_api/getGiftCert',
                 success : function(data){
                     try {
                         var dataObj = JSON.parse(data);

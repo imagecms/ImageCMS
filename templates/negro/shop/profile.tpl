@@ -1,7 +1,3 @@
-<div class="frame-crumbs">
-    <div class="container">
-    </div>
-</div>
  <div class="frame-inside">
     <div class="container">
         <h1>{echo encode($profile->getName())}, добро пожаловать!</h1>

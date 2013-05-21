@@ -586,16 +586,22 @@ function processPage() {
     //update products count
     Shop.Cart.totalRecount();
     //console.log(Shop.Cart.totalCount);
-    $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
+    $('#topCartCount').html(Shop.Cart.totalCount);
     $('#topCartTotalPrice').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
-    if (!Shop.Cart.totalCount)
-        $('div.cleaner.isAvail').removeClass('isAvail');
-    else if (Shop.Cart.totalCount && !$('div.cleaner').hasClass('isAvail')) {
-        $('div.cleaner').addClass('isAvail').on('click', function () {
+    
+    if (!Shop.Cart.totalCount){
+        $('.'+genObj.tinyCartClass).addClass('disabled')
+        $('.'+genObj.tinyCartClass+'.'+genObj.tinyCartIsClass).removeClass(genObj.tinyCartIsClass);
+        $(genObj.cleaner_no_empty).hide();
+        $(genObj.cleaner_empty).show();
+    }
+    else if (Shop.Cart.totalCount && !$('.'+genObj.tinyCartClass).hasClass(genObj.tinyCartIsClass)) {
+        $('.'+genObj.tinyCartClass).addClass(genObj.tinyCartIsClass).removeClass('disabled').on('click', function () {
             location.href = '/shop/cart';
         })
+        $(genObj.cleaner_no_empty).show();
+        $(genObj.cleaner_empty).hide();
     }
-
 
     var keys = [];
     _.each(Shop.Cart.getAllItems(), function (item) {
@@ -606,17 +612,17 @@ function processPage() {
     $('button.'+btnToCartClass).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) != -1) {
-            $(this).removeClass(btnToCartClass).addClass(btnInCartClass).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
+            $(this).removeClass(btnToCartClass).addClass(btnInCartClass).removeAttr('disabled').find(genObj.textEl).remove().end().append(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
-            }).closest('div').removeClass('btn-buy').addClass('btn-order').closest('li').addClass('in_cart');
+            }).closest('[class*=btn-]').removeClass('btn-buy').addClass('btn-order').closest('li').addClass('in_cart');
         }
     });
 
     $('button.'+btnInCartClass).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) == -1) {
-            $(this).removeClass(btnInCartClass).addClass(btnToCartClass).html(toCart).removeAttr('disabled').unbind('click').on('click', function(){
+            $(this).removeClass(btnInCartClass).addClass(btnToCartClass).find(genObj.textEl).remove().end().append(toCart).removeAttr('disabled').unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem);
@@ -737,7 +743,7 @@ function recountCartPage() {
     $('span#fullPrice').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
     $('span#deliveryPrice').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 
-    $('span.curr').html(curr);
+    $('.curr').html(curr);
 }
 
 function emptyPopupCart() {
@@ -798,7 +804,7 @@ $(document).ready(
         processWish();
         recountCartPage();
         if (window.location.href.match(/cart/)) {
-            $('input[name=deliveryMethodId]').on('change', function(){ changeDeliveryMethod(  $('input[name=deliveryMethodId]:checked').val()  ) } ).val()
+            $('input[name=deliveryMethodId]').on('change', function(){changeDeliveryMethod(  $('input[name=deliveryMethodId]:checked').val()  )} ).val()
             $('input[name=deliveryMethodId]').first().click();
             changeDeliveryMethod($('input[name=deliveryMethodId]:checked').val());
         }

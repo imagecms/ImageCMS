@@ -1,5 +1,5 @@
 <div class="drop-order-call drop drop-popup" id="ordercall">
-    <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
+    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
     <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
         <div class="header_title">
             Заказ звонка
@@ -11,7 +11,7 @@
                     <label>
                         <span class="title">Ваше имя</span>
                         <span class="frame_form_field">
-                            <span class="icon-person"></span>
+                            <span class="icon_person"></span>
                             <input type="text" name="Name"/>
                             <label id="for_Name" class="for_validations"></label>
                         </span>
@@ -19,7 +19,7 @@
                     <label>
                         <span class="title">Номер телефона</span>
                         <span class="frame_form_field">
-                            <span class="icon-phone"></span>
+                            <span class="icon_phone"></span>
                             <input type="text" name="Phone"/>
                             <label id="for_Phone" class="for_validations"></label>
                         </span>
@@ -34,7 +34,7 @@
                     <div class="frameLabel">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
-                            <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
+                            <input type="submit" value="Позвоните мне" class="btn_cart f_r"/>
                         </span>
                     </div>
                 </form>

@@ -130,7 +130,7 @@ var Shop = {
 
                 var postData = {recount:1};
                 postData[postName] = cartItem.count;
-                $.post('/shop/cart_api', postData, function(data){
+                $.post('/shop/cart_api/recount', postData, function(data){
 
                     var dataObj = JSON.parse(data);
                     if (dataObj.hasOwnProperty('count'))
