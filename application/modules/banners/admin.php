@@ -1,190 +1,215 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+(defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS
- *
- * Banners module.
+ * Admin Class for Banners module
+ * @uses BaseAdminController
+ * @author L.Andriy <l.andriy@siteimage.com.ua>
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
  */
-class Admin extends MY_Controller {
+class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
         $this->load->model('banner_model');
-        include 'application/modules/banners/helpers/banners.php';
+        $this->load->helper('banners');
 
         $locale = $this->db->where('default', 1)->get('languages')->result_array();
         $this->def_locale = $locale[0]['identif'];
-        
-        
-        if(count($this->db->query("select * from components where name='shop'")->result_array())>0)
+
+        if (count($this->db->query("select * from components where name='shop'")->result_array()) > 0)
             $this->is_shop = true;
     }
 
-
+    /**
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function index() {
-        /*
-         * вывод всех баннеров
-         */
+        /** Get all Banners from DB */
         $locale = $this->def_locale;
         $banners = $this->banner_model->get_all_banner($locale);
-        
-        CMSFactory\assetManager::create()->setData(array('banners' => $banners, 'locale' => $locale))->renderAdmin('list');
+
+        /** Show Banners list */
+        \CMSFactory\assetManager::create()
+                ->setData(array('banners' => $banners, 'locale' => $locale))
+                ->renderAdmin('list');
     }
 
+    /**
+     * Switch Banners activity status
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function chose_active() {
-        
-        /*
-         * активность баннера (вкл / выкл)
-         */
-        $status = $_POST['status'] === 'false' ? 1 : 0;
-        $this->banner_model->chose_active($_POST['id'], $status);
+        $status = ($this->input->post('status')) === 'false' ? 1 : 0;
+        $this->banner_model->chose_active($this->input->post('id'), $status);
     }
 
+    /**
+     * Banners remove method
+     * @access public
+     * @param $_POST $id
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function delete() {
-        /*
-         * удаление баннеров
-         */
-        $ids = $_POST['id'];
+        /** Remove Banners by Ids */
+        $ids = $this->input->post('id');
         foreach (json_decode($ids) as $key)
             $this->banner_model->del_banner($key);
     }
-    
-    
-    public function create(){
-        /*
-         * создание баннера
-         */
-         if ($_POST) {
-            
+
+    /**
+     * Сreate new Banner
+     * @access public
+     * @param $_POST
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function create() {
+        if ($this->input->post()) {
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]'); 
-            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean'); 
 
+            /** Set Validation reles */
+            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]');
+            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean');
 
-            if ($this->form_validation->run($this) == FALSE)
-                showMessage(validation_errors(),false,'r');
-            
-            else{
-                $data['name'] = $_POST['name'];
-                $data['active'] = (int)$_POST['active'];
-                $data['description'] = $_POST['description'];
-                $data['active_to'] = (int)strtotime($_POST['active_to']);
-                $data['where_show'] = count($_POST['data']) ? serialize(array_unique($_POST['data'])) : serialize(array());
-                $data['photo'] = $_POST['photo'];
-                $data['url'] = $_POST['url'];
-                $data['locale'] = $this->def_locale;
-
-                
+            if ($this->form_validation->run($this) !== FALSE) {
+                /** Set Instart data */
+                $data = array(
+                    'name' => $this->input->post('name'),
+                    'active' => (int) $this->input->post('active'),
+                    'description' => $this->input->post('description'),
+                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
+                    'photo' => $this->input->post('photo'),
+                    'url' => $this->input->post('url'),
+                    'locale' => $this->def_locale,
+                );
+                /** Create new banner from data-array */
                 $lid = $this->banner_model->add_banner($data);
-                foreach($lan = $this->db->get('languages')->result_array() as $lan)
+
+                /** Reupdate banner info for each lang */
+                foreach ($lan = $this->db->get('languages')->result_array() as $lan)
                     if ($lan['identif'] != $this->def_locale)
                         $this->banner_model->add_empty_banner($lid, $lan['identif']);
+
+                /** Show successful message and redirect */
                 showMessage('Даные сохранены перегрузите страницу');
                 pjax('/admin/components/init_window/banners');
-
+            }else {
+                /** Show validation error message */
+                showMessage(validation_errors(), false, 'r');
             }
-            exit;
+        } else {
+
+            /** Show empty form for create */
+            \CMSFactory\assetManager::create()
+                    ->registerScript('main')
+                    ->registerStyle('style')
+                    ->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))
+                    ->renderAdmin('create');
         }
-        
-        CMSFactory\assetManager::create()->registerScript('main')->registerStyle('style');
-
-
-        CMSFactory\assetManager::create()->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))->renderAdmin('create');
-        
     }
-    
 
-
-    public function edit($id, $locale = null) {  
-        /*
-         * редактирования баннера
-         */
-        
-        if ($locale == null)
-            $locale = $this->def_locale;
+    /**
+     * Edit Banner by Id Banner
+     * @access public
+     * @param int $id
+     * @param string $locale
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function edit($id, $locale = null) {
+        /** Locale value is necessary */
+        ($locale != null) OR $locale = $this->def_locale;
 
         if ($_POST) {
-            
+
             $this->load->library('Form_validation');
-            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]'); 
-            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean'); 
+            $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]');
+            $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean');
 
 
-            if ($this->form_validation->run($this) == FALSE)
-                showMessage(validation_errors(),false,'r');
-            
-            else{
-                $data['name'] = $_POST['name'];
-                $data['active'] = (int)$_POST['active'];
-                $data['description'] = $_POST['description'];
-                $data['active_to'] = (int)strtotime($_POST['active_to']);
-                $data['where_show'] = count($_POST['data']) ? serialize(array_unique($_POST['data'])) : serialize(array());
-                $data['photo'] = $_POST['photo'];
-                $data['url'] = $_POST['url'];
-                $data['locale'] = $locale;
-                $data['id'] = (int)$id;
-                
+            if ($this->form_validation->run($this) != FALSE) {
+
+                /** Set Update data */
+                $data = array(
+                    'name' => $_POST['name'],
+                    'active' => (int) $this->input->post('active'),
+                    'description' => $this->input->post('description'),
+                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'where_show' => count($_POST['data']) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
+                    'photo' => $this->input->post('photo'),
+                    'url' => $this->input->post('url'),
+                    'locale' => $locale,
+                    'id' => (int) $id,
+                );
+
+                /** Update banner from data-array */
                 $this->banner_model->edit_banner($data);
+
+                /** Show successful message and redirect */
                 showMessage('Даные сохранены');
+            } else {
+                /** Show validation error message */
+                showMessage(validation_errors(), false, 'r');
             }
-            exit;
+        } else {
+
+            //TODO: Write less code here
+            $banner = $this->banner_model->get_one_banner($id, $locale);
+            if (count($banner) == 0)
+                $banner = $this->banner_model->get_one_banner_no_locale($id);
+
+            /** Show Banner edit template */
+            CMSFactory\assetManager::create()
+                    ->registerScript('main')
+                    ->registerStyle('style')
+                    ->setData(array('is_shop' => $this->is_shop, 'banner' => $banner, 'locale' => $locale, 'languages' => $this->db->get('languages')->result_array()))
+                    ->renderAdmin('edit');
         }
-
-        $banner = $this->banner_model->get_one_banner($id, $locale);
-        if (count($banner) == 0)
-            $banner = $this->banner_model->get_one_banner_no_locale($id);
-        
-        CMSFactory\assetManager::create()->registerScript('main')->registerStyle('style');
-
-        CMSFactory\assetManager::create()->setData(array('is_shop' => $this->is_shop,'banner' => $banner, 'locale' => $locale, 'languages' => $this->db->get('languages')->result_array()))->renderAdmin('edit');
     }
 
+    /**
+     * Data Autocomplete
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function autosearch() {
-        
-        /*
-         * вывод объектов где будет отображаться баннер в автокомплити
-         */
+        switch ($this->input->post('queryString')) {
+            case 'product':
+                $entity = SProductsQuery::create()->joinWithI18n($this->def_locale)->filterByActive(true)->withColumn('SProductsI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                break;
+            case 'shop_category':
+                $entity = SCategoryQuery::create()->joinWithI18n($this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                break;
+            case 'brand':
+                $entity = SBrandsQuery::create()->joinWithI18n($this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                break;
+            case 'category':
+                $entity = $this->db->select('id as Id')->select('name as Name')->get('category')->result_array();
+                break;
+            case 'page':
+                $entity = $this->db->select('id as Id')->select('title as Name')->get('content')->result_array();
+                break;
+            case 'main':
+                $entity = array(array('Id' => 0, 'Name' => 'Главная'));
+                break;
+            default:
+                break;
+        }
 
-            switch ($_POST['queryString']) {
-                case 'product':
-                    $products = SProductsQuery::create()
-                            ->joinWithI18n( $this->def_locale)
-                            ->filterByActive(true)
-                            ->withColumn('SProductsI18n.Name', 'Name')
-                            ->select(array('Id','Name'))->find()->toArray();
-
-                    $this->template->assign('entity', $products);                    
-                    break;
-                case 'shop_category':
-                    $category_shop = SCategoryQuery::create()->joinWithI18n( $this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(array('Id','Name'))->find()->toArray();
-                    $this->template->assign('entity', $category_shop);                    
-                    break;
-                case 'brand':
-                    $brand = SBrandsQuery::create()->joinWithI18n( $this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(array('Id','Name'))->find()->toArray();
-                    $this->template->assign('entity', $brand);                    
-                    break;
-                case 'category':
-                    $category = $this->db->select('id as Id')->select('name as Name')->get('category')->result_array();
-                    $this->template->assign('entity', $category);                    
-                    break;
-                case 'page':
-                    $page = $this->db->select('id as Id')->select('title as Name')->get('content')->result_array();
-                    $this->template->assign('entity', $page);                    
-                    break;
-                case 'main':
-                    $main = array(array('Id' => 0, 'Name' => 'Главная'));
-                    $this->template->assign('entity', $main);                    
-                    break;
-
-                default:
-                    break;
-            }
-            \CMSFactory\assetManager::create()->render($_POST['tpl'], TRUE);
-            exit();
-        
+        /** Show template with data */
+        \CMSFactory\assetManager::create()
+                ->setData('entity', $entity)
+                ->render($this->input->post('tpl'), TRUE);
     }
 
 }
