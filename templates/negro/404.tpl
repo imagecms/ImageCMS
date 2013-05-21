@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         <div class="text">
             <div class="t-a_c m-t_20">

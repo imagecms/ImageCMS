@@ -40,7 +40,7 @@ function delEntity(obj){
    
     $(obj).remove();
     return false;
-    
+   
 }
 
 $(document).ready(function(){

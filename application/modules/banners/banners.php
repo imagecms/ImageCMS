@@ -4,10 +4,12 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 /**
- * Image CMS
- *
- * Banners module
- *
+ * Class for Banners module
+ * @uses MY_Controller
+ * @author L.Andriy <l.andriy@siteimage.com.ua>
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
+ * @property Banner_model $banner_model
  */
 class Banners extends MY_Controller {
 
@@ -21,16 +23,20 @@ class Banners extends MY_Controller {
         $this->load->model('banner_model');
     }
 
+    
     public function index() {
         if ($this->no_install === false)
             return false;
     }
-
+    /**
+     * Render banner into template
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function render($id = 0) {
-        /*
-         * метод которой выводит баннер
-         */
-        /* $id - это ид сущности, то есть ид бренда, категории, товара, страницы .... для главной ид = 0 */
+
+        /* $id - is id entity (brand, category, product, page) .... for main id = 0 */
         if ($this->no_install === false)
             return false;
 
@@ -50,11 +56,11 @@ class Banners extends MY_Controller {
 
 
             /*
-             * $tpl = $type . '_slider'; // если нужно для различных страниц - разные тпл - раскомментировать, строка 54 закомментировать.
-             * Для этого нужно будет в папке assets создать соответствующие тпл (product_slider, brand_slider, main_slider, 
+             * $tpl = $type . '_slider'; // different template for different entity.
+             * For this into directory assets create template (product_slider, brand_slider, main_slider, 
              *  page_slider, category_slider, shop_category_slider)
              */
-            $tpl = 'slider'; // по дефолту
+            $tpl = 'slider'; // in default
 
             \CMSFactory\assetManager::create()
                     ->registerStyle('style')
@@ -67,15 +73,17 @@ class Banners extends MY_Controller {
         else
             return fales;
     }
-
+    /**
+     * install module and create table
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function _install() {
-        /*
-         * инсталляция модуля и создания таблиц
-         */
+
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,
-          `url` text CHARACTER SET utf8,
+          `id` int(11) NOT NULL AUTO_INCREMENT,          
           `active` tinyint(4) NOT NULL,
           `active_to` int(11) DEFAULT NULL,
           `where_show` text CHARACTER SET utf8,
@@ -86,6 +94,7 @@ class Banners extends MY_Controller {
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
           `id` int(11) NOT NULL,
+          `url` text CHARACTER SET utf8,
           `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
           `name` varchar(25) CHARACTER SET utf8 DEFAULT NULL,
           `description` text CHARACTER SET utf8,
@@ -99,11 +108,14 @@ class Banners extends MY_Controller {
         $this->db->where('name', 'banners');
         $this->db->update('components', array('enabled' => 1));
     }
-
+    /**
+     * deinstall module and drop tables
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function _deinstall() {
-        /*
-         * деинсталляция модуля и удаление таблиц
-         */
+
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
 
@@ -111,11 +123,14 @@ class Banners extends MY_Controller {
         $this->dbforge->drop_table('mod_banner');
         $this->dbforge->drop_table('mod_banner_i18n');
     }
-
+    /**
+     * check current language
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
     public function get_main_lang($flag = null) {
-        /*
-         * метод которой определяет текущую локализацию
-         */
+
         $lang = $this->db->get('languages')->result_array();
         $lan_array = array();
         foreach ($lang as $l) {
