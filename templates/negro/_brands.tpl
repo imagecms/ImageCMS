@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         {getPageCategoryPath($page.id, $delim = " / ", $is_page = true)}
         <div class="clearfix head-category">
@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="clearfix">
-            <ul class="items-brands main">
+            <ul class="items items-brands main">
                 {foreach ShopCore::app()->SBrandsHelper->mostProductBrands(500, TRUE) as $brand}
                     <li>
                         <a href="{shop_url($brand.full_url)}">

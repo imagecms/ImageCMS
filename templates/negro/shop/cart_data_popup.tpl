@@ -53,10 +53,10 @@
                                         {/if}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon-times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
-                                                <ul class="items-complect item-order">
+                                                <ul class="items items-complect item-order">
                                                     <li>
                                                         <a href="{shop_url('product/' . $p->getUrl())}">
                                                             <span class="photo-block">
@@ -89,11 +89,11 @@
                                                 </ul>
                                             </td>
                                             <td class="t-a_c f-s_0 frame-plus-minus">
-                                                <div class="btn btn-def2 minus disabled">
+                                                <div class="btn-def2 minus disabled">
                                                     <button type="button" {if $item.quantity <= 1}disabled="disabled"{/if}><span class="helper"></span><span>-</span></button>
                                                 </div>
                                                 <span class="d_i-b number v-a_m" style="width: 43px;"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
-                                                <div class="btn btn-def2 plus">
+                                                <div class="btn-def2 plus">
                                                     <button type="button"><span class="helper"></span><span>+</span></button>
                                                 </div>
                                             </td>
@@ -114,10 +114,10 @@
                                         {$kit_price = $k_main->firstVariant->getPrice()}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon-times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
-                                                <ul class="items-complect">
+                                                <ul class="items items-complect">
                                                     <li>
                                                         <div class="f_l">
                                                             <a href="{shop_url('product/' . $k_main->getUrl())}">
@@ -178,11 +178,11 @@
                                                 </ul>
                                             </td>
                                             <td class="t-a_c f-s_0 frame-plus-minus">
-                                                <div class="btn btn-def2 minus disabled">
+                                                <div class="btn-def2 minus disabled">
                                                     <button type="button" {if $item.quantity <= 1}disabled="disabled"{/if}><span class="helper"></span><span>-</span></button>
                                                 </div>
                                                 <span class="d_i-b number v-a_m" style="width: 43px;"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
-                                                <div class="btn btn-def2 plus">
+                                                <div class="btn-def2 plus">
                                                     <button type="button"><span class="helper"></span><span>+</span></button>
                                                 </div>
                                                 <div class="c_9 m-t_10">Комплект</div>
@@ -212,7 +212,7 @@
                         {shuffle($related_products);} 
                         <div class="footer-fancy-cleaner">
                             <div class="title_h2 m-l_42">Рекомендуем добавить к заказу</div>
-                            <ul class="items-complect items-recomedet clearfix">
+                            <ul class="items items-complect items items-recomedet clearfix">
                                 {$rcnt = 4}
                                 {foreach $related_products as $id}
                                     {if $rcnt != 0}
@@ -295,7 +295,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="v-a_b m-l_20 btn btn-order-product">
+                                <div class="v-a_b m-l_20 btn-order-product">
                                     <input type="submit" value="Оформить заказ"/>
                                 </div>
                             </td>

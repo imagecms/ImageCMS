@@ -11,14 +11,14 @@
     <label class="control-group">
         <span class="control-label" for="passwordrecovery">Ваш Email</span>
         <span class="controls">
-            <span class="icon-input-email"></span>
+            <span class="icon_input-email"></span>
             <input type="text" id="passwordrecovery" name="email" class="required email" value="{$_POST['email']}"/>
         </span>
     </label>
     <div class="control-group">
         <span class="control-label">&nbsp;</span>
         <span class="controls c_n">
-            <span class="btn btn-drop">
+            <span class="btn-drop">
                 <input type="submit" value="Отправить мне пароль"/>
             </span>
         </span>
