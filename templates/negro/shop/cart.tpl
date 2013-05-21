@@ -100,7 +100,7 @@
                                     <input type="text" name="giftcert" placeholder="Введите номер сертификата"/>
                                     <input type="hidden" value="0" name="checkCert">
                                 </div>
-                                <div class="btn btn-def2 v-a_b">
+                                <div class="btn-def2 v-a_b">
                                     <button type="button" id="applyGiftCert" class="c_3 giftCertCheck">ОК</button>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="btn btn-order-product m-t_10">
+                            <div class="btn-order-product m-t_10">
                                 <input type="submit" value="Оформить заказ"/>
                             </div>
                         </div>

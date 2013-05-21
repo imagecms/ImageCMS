@@ -4,7 +4,7 @@
 */
 #}
 <div class="drop-enter drop">
-    <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
+    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
     <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
         <div class="header_title">
             {lang('lang_login_page')}
@@ -16,7 +16,7 @@
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame_form_field">
-                            <span class="icon-email"></span>
+                            <span class="icon_email"></span>
                             <input type="text" name="email"/>
                             <label id="for_email" class="for_validations"></label>
                         </span>
@@ -24,7 +24,7 @@
                     <label>
                         <span class="title">{lang('lang_password')}</span>
                         <span class="frame_form_field">
-                            <span class="icon-password"></span>
+                            <span class="icon_password"></span>
                             <input type="password" name="password"/>
                             <label id="for_password" class="for_validations"></label>
                         </span>
@@ -37,7 +37,7 @@
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
-                            <input type="submit" value="Войти" class="btn btn_cart f_r" style="padding: 10px;" />
+                            <input type="submit" value="Войти" class="btn_cart f_r" style="padding: 10px;" />
                         </span>
                     </div>
                 </form>

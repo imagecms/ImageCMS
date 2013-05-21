@@ -128,7 +128,7 @@
                 <div class="title_h3">Ваш заказ</div>
                 {foreach $model->getSOrderProductss() as $orderProduct}
          <!-- Start. Render Ordered Products -->            
-                        <ul class="items-complect item-order">
+                        <ul class="items items-complect item-order">
                             <li>
                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">
                                     <span class="photo-block">
@@ -149,7 +149,7 @@
             <!-- End. Render Ordered Products -->
         <!-- Start. Render Ordered kit products  -->
                 {foreach $model->getOrderKits() as $orderProduct}                        
-                                    <ul class="items-complect items-complect-order-view">
+                                    <ul class="items items-complect items items-complect-order-view">
                                         <li>
                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
                                                 <span class="photo-block">

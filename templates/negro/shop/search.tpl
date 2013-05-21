@@ -1,6 +1,6 @@
 <div class="frame-crumbs">
     <div class="container">
-        {//myCrumbs(0, " / ", "Поиск")}
+        {widget('path')}
     </div>
 </div>
 <div class="frame-inside">
@@ -16,7 +16,7 @@
             </div>
             {include_tpl('catalogue_header')}
             {if count($products) > 0}
-                <ul class="items-catalog {if $_COOKIE['listtable'] == 1}list{/if}" id="items-catalog-main">
+                <ul class="items items-catalog {if $_COOKIE['listtable'] == 1}list{/if}" id="items-catalog-main">
                     {include_tpl('one_product_item')}
                 </ul>
             {else:}
