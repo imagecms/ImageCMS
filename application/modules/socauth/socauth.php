@@ -4,8 +4,8 @@
 
 /**
  * Image CMS
- *
  * Класс авторизации через посторонние сервисы
+ * @property socauth_model $socauth_model
  */
 class Socauth extends MY_Controller {
 
@@ -14,13 +14,9 @@ class Socauth extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->load->model('socauth_model');
 
-        $this->settings = $this->db
-                ->select('settings')
-                ->where('identif', 'socauth')
-                ->get('components')
-                ->row_array();
-        $this->settings = unserialize($this->settings[settings]);
+        $this->settings = $this->socauth_model->getSettings();
     }
 
     /**
@@ -60,10 +56,7 @@ class Socauth extends MY_Controller {
      * @param type $socId social service ID
      */
     public function link($soc, $socId) {
-        $this->db->set('socialId', $socId);
-        $this->db->set('userId', $this->dx_auth->get_user_id());
-        $this->db->set('social', $soc);
-        $this->db->insert('mod_social');
+        $this->socauth_model->setLink($soc, $socId);
 
         redirect($this->input->cookie('url'));
     }
@@ -74,7 +67,7 @@ class Socauth extends MY_Controller {
      */
     public function unlink($soc) {
         if ($this->dx_auth->is_logged_in())
-            if ($this->db->delete('mod_social', array('social' => $soc, 'userId' => $this->dx_auth->get_user_id())))
+            if ($this->socauth_model->delUserSocial($soc))
                 echo json_encode(array('answer' => 'sucesfull'));
     }
 
@@ -92,17 +85,11 @@ class Socauth extends MY_Controller {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             redirect('/socauth/error');
 
-        $user = $this->db
-                ->where('socialId', $id)
-                ->get('mod_social')
-                ->row();
+        $user = $this->socauth_model->getUserSocInfoBySocId($id);
 
         if (count($user) == 0) {
 
-            $emailChack = $this->db
-                    ->where('email', $email)
-                    ->get('users', 1)
-                    ->row();
+            $emailChack = $this->socauth_model->getUserByEmail($email);
 
             if (count($emailChack) > 0)
                 redirect('/socauth/error');
@@ -111,27 +98,18 @@ class Socauth extends MY_Controller {
 
             $this->sendPassByEmail($email, $pass);
 
-            $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone);
+            $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone, TRUE);
 
             if (!$register)
                 redirect('/socauth/error');
 
-            $userId = $this->db
-                    ->select('id')
-                    ->where('email', $email)
-                    ->get('users', 1)
-                    ->row();
-
-            $this->db->set('socialId', $id);
-            $this->db->set('userId', $userId->id);
-            $this->db->set('social', $social);
-            $this->db->set('isMain', '1');
-            $this->db->insert('mod_social');
+            $userId = $this->socauth_model->getUserByEmail($email);
+            
+            $this->socauth_model->setUserSoc($id, $social, $userId->id);
         }else {
             $data = new stdClass;
             $userData = $this->db
                     ->join('mod_social', 'users.id=mod_social.userId')
-//                    ->where('email', $email)
                     ->where('socialId', $id)
                     ->get('users', 1)
                     ->row();
