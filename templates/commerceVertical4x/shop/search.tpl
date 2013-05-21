@@ -206,7 +206,7 @@
                                     <a class="photo" href="{shop_url('product/' . $p->getUrl())}">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{$p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
+                                            <img src="{echo $p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->name)} - {echo $p->getId()}" />
                                         </figure>
                                     </a>
                                 </div>
