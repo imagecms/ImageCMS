@@ -17,8 +17,6 @@
                         value: cur_max
                     }).insertAfter(body).hide();
                 }
-
-                console.log(def_min)
                 rel.slider({
                     min: def_min,
                     max: def_max,
@@ -168,8 +166,6 @@ function afterAjaxInitializeFilter(){
         evCond:true,
         before: function(a, b, c){
             c.nStCheck('changeCheck');
-            console.log(b);
-//            window.setTimeout( function(){ ajaxRecount(b.attr('id'), false) }, 500 );
             ajaxRecount(b.attr('id'), false);
         }
     });
@@ -196,7 +192,6 @@ function ajaxRecount(el, slChk) {
         url: catUrl,
         data: data,
         beforeSend: function(){
-            console.log(data);
             $.fancybox.showActivity();
         },
 

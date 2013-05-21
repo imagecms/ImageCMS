@@ -1,7 +1,7 @@
 <div class="drop drop-report">
-    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
+    <div class="drop-content">
         <div class="title_h2">Сообщить когда появится</div>
-        <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
+        <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
     </div>
     <div class="drop-footer"></div>
 </div>
@@ -37,7 +37,7 @@
             </label>
         </div>
         <div class="t-a_r">
-            <input type="submit" value="Отправить"  class="btn btn_cart"/>
+            <input type="submit" value="Отправить"  class="btn_cart"/>
         </div>
     </form>
 </div>
