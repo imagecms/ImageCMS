@@ -44,5 +44,7 @@ function delEntity(obj){
 }
 
 $(document).ready(function(){
-    $('.slider').cycle();  
-})
+    if($('.slider').length){
+       $('.slider').cycle();
+    }
+});

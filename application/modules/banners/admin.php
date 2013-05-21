@@ -76,7 +76,7 @@ class Admin extends MY_Controller {
                 $data['photo'] = $_POST['photo'];
                 $data['url'] = $_POST['url'];
                 $data['locale'] = $this->def_locale;
-
+            
                 
                 $lid = $this->banner_model->add_banner($data);
                 foreach($lan = $this->db->get('languages')->result_array() as $lan)
@@ -89,7 +89,7 @@ class Admin extends MY_Controller {
             exit;
         }
         
-        CMSFactory\assetManager::create()->registerScript('main')->registerStyle('style');
+        CMSFactory\assetManager::create()->registerScript('cycle')->registerScript('main')->registerStyle('style');
 
 
         CMSFactory\assetManager::create()->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))->renderAdmin('create');
