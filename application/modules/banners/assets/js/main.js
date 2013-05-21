@@ -44,5 +44,6 @@ function delEntity(obj){
 }
 
 $(document).ready(function(){
-    $('.slider').cycle();  
+    if ($.exists('.slider'))
+        $('.slider').cycle();  
 })
