@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         <div class="title_h2">Вход</div>
         <div class="frame-register">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <div class="btn btn-order f_l">
+                            <div class="btn-order f_l">
                                 <input type="submit" value="Войти"/>
                             </div>
                             <span class="f_r d_l_b" onclick="location.href='{site_url('auth/forgot_password')}'">
