@@ -91,7 +91,7 @@ class Socauth extends MY_Controller {
 
             $emailChack = $this->socauth_model->getUserByEmail($email);
 
-            if (count($emailChack) > 0)
+            if (count($emailCheck) > 0)
                 redirect('/socauth/error');
 
             $pass = random_string('alnum', 20);

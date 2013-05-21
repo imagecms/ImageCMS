@@ -2,7 +2,7 @@
 
 $com_info = array(
 	'menu_name'   => 'Баннер',     // Menu name
-	'description' => 'Модуль слайдер банеров.',                  // Module Description
+	'description' => 'Модуль управления баннерами',                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
         'w'           => 600,                 // Window width

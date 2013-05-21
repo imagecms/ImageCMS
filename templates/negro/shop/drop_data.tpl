@@ -1,6 +1,6 @@
 <!-- Order call form -->
 <div class="drop-popup drop drop-order-call">
-    <div class="icon-times-drop" data-closed="closed-js"></div>
+    <div class="icon_times-drop" data-closed="closed-js"></div>
     <div class="header-title">
         Заказ звонка
     </div>
@@ -24,7 +24,7 @@
 
 <!-- Enter form -->
 <div class="drop-popup drop drop-enter">
-    <div class="icon-times-drop" data-closed="closed-js"></div>
+    <div class="icon_times-drop" data-closed="closed-js"></div>
     <div class="header-title">
         Вход в магазин
     </div>
@@ -40,7 +40,7 @@
                             <span class="control-label">&nbsp;</span>
                             <span class="controls c_n">
                                 <span class="d_i-b">
-                                    <span class="btn btn-drop">
+                                    <span class="btn-drop">
                                         <input type="submit" value="Войти"/>
                                     </span>
                                 </span>
@@ -58,7 +58,7 @@
 
 <!-- Register form -->
 <div class="drop-popup drop drop-register">
-    <div class="icon-times-drop" data-closed="closed-js"></div>
+    <div class="icon_times-drop" data-closed="closed-js"></div>
     <div class="header-title">
         Регистрация
     </div>
@@ -81,7 +81,7 @@
 
 <!-- Forgot Password form -->
 <div class="drop-popup drop drop-forget">
-    <div class="icon-times-drop" data-closed="closed-js"></div>
+    <div class="icon_times-drop" data-closed="closed-js"></div>
     <div class="header-title">
         Напоминание пароля
     </div>
@@ -103,7 +103,7 @@
 
 <!-- Report Appearance form -->                        
 <div class="drop-popup drop drop-report">
-    <button type="button" class="icon-times-drop" data-closed="closed-js"></button>
+    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header-title">Сообщить о появлении</div>
         <div class="drop-content-inside">
@@ -147,7 +147,7 @@
                 <div class="control-group">
                     <span class="control-label">&nbsp;</span>
                     <span class="controls">
-                        <span class="btn btn-order-product">
+                        <span class="btn-order-product">
                             <input type="submit" value="Отправить"/>
                         </span>
                     </span>
@@ -167,12 +167,12 @@
         <div class="description">Найдено <span id="apply-count">5</span> тов.</div>
         <a href="#">Показать</a>
     </div>
-    <span class="icon-times-apply"></span>
+    <span class="icon_times-apply"></span>
 </div>
 
 {if $CI->uri->segment(2) == "profile"}
     <div class="drop-popup drop drop-comulativ-discounts">
-        <div class="icon-times-drop" data-closed="closed-js"></div>
+        <div class="icon_times-drop" data-closed="closed-js"></div>
         <div class="header-title">Накопительные скидки</div>
         <div class="drop-content">
             <div class="drop-content-inside">
@@ -209,7 +209,7 @@
 
 {if $CI->uri->segment(2) == "wish_list"}
     <div class="drop-popup drop drop-show-friend">
-        <button type="button" class="icon-times-drop" data-closed="closed-js"></button>
+        <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
         <div class="header-title">Сообщить другу</div>
         <div class="drop-content">
             <div class="drop-content-inside">

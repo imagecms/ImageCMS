@@ -225,7 +225,7 @@
                             <!--Block Follow the price Start-->
                         </div>
                     </div>
-
+          
                     <!-- Start. Withdraw button to "share" -->
                     <div class="share_tov">
                         {echo $CI->load->module('share')->_make_share_form()}

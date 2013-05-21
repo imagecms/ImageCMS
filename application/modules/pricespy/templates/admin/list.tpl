@@ -31,7 +31,7 @@
                         <input type="submit" 
                                class="btn my_btn_s btn-small pull-left btn-danger m-r_5" 
                                value="Отписать"
-                               onclick="unspy({echo $product->hash})"/>
+                               onclick="unspy('{echo $product->hash}')"/>
                     </td>
                     <td>
                         <a href="{shop_url($product->url)}" 

@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <title>Print {echo $page.title}</title>

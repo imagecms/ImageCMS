@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         {getPageCategoryPath($page.id, $delim = " / ", $is_page = true)}
         <div class="clearfix">

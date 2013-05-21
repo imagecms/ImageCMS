@@ -1,5 +1,5 @@
 <td>
     <div class="frame-item-menu active">
-        <div><a href="{$link}" title="{$title}" class="title"><span class="helper"></span><span class="title-text">{$title}</span></a></div>{$wrapper}
+        <div class="frame-title"><span class="title active"><span class="helper"></span><span class="text-el">{$title}</span></span></div>{$wrapper}
     </div>
 </td>
