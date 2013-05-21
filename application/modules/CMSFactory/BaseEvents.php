@@ -354,6 +354,21 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onBrandPageLoad() {
+        $this->key = 'brand:load';
+        return $this;
+    }
+
+    public function onCategoryPageLoad() {
+        $this->key = 'category:load';
+        return $this;
+    }
+
+    public function onProductPageLoad() {
+        $this->key = 'product:load';
+        return $this;
+    }
+
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
