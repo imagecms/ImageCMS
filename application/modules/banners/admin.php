@@ -8,6 +8,7 @@
  * @author L.Andriy <l.andriy@siteimage.com.ua>
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
+ * @property Banner_model $banner_model
  */
 class Admin extends BaseAdminController {
 
