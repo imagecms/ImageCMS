@@ -8,7 +8,7 @@
 #}
 
 
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+{$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 <script type="text/javascript" src="/templates/commerce/shop/default/js/cart.js"></script>
 
 <script type="text/javascript">
