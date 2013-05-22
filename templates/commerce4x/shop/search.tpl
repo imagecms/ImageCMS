@@ -53,7 +53,6 @@
                             </ul>
                         {/foreach}
                     </ul>
-                    {widget('latest_news')}
                 </nav>
             </div>
             <!-- End. Categories tree with navigation -->
@@ -143,7 +142,7 @@
                             <!-- End. Price -->
                             <!--Start. Check amount of goods -->
                             {if $p->firstvariant->getstock() != 0}
-                                <button class="btn btn_buy"
+                                <button class="btn btn_buy btnBuy"
                                         type="button"
                                         data-prodId="{echo $p->getId()}"
                                         data-varId="{echo $p->firstVariant->getId()}"
@@ -255,3 +254,8 @@
     <!-- End. Show message -->
 {/if}
 
+{widget('view_product')}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{if widget('view_product') != NULL}
+<script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+{/if}
