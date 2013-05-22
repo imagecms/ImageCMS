@@ -53,7 +53,6 @@
                             </ul>
                         {/foreach}
                     </ul>
-                    {widget('latest_news')}
                 </nav>
             </div>
             <!-- End. Categories tree with navigation -->
@@ -255,3 +254,8 @@
     <!-- End. Show message -->
 {/if}
 
+{widget('view_product')}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{if widget('view_product') != NULL}
+<script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+{/if}
