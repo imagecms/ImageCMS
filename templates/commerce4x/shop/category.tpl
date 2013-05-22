@@ -200,6 +200,11 @@
                             data-number="{echo $pv->getNumber()}"
                             data-img="{echo $pv->getSmallPhoto()}"
                             data-url="{echo shop_url('product/'.$product->getUrl())}"
+                                
+                                data-id="{echo $pv->getId()}"
+                              data-name="{echo ShopCore::encode($pv->getName())}"
+                              data-price="{echo $pv->toCurrency()}"
+                              data-number="{echo $pv->getNumber()}"
                             data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                             data-stock="{echo $pv->getStock()}"
                             >
@@ -221,6 +226,17 @@
                         <span class="text-el">{lang('s_message_o_report')}</span>
                     </button>
                     {/if}
+                    <span class="variant_{echo $pv->getId()}" 
+                          data-id="{echo $pv->getId()}"
+                          data-name="{echo ShopCore::encode($pv->getName())}"
+                          data-price="{echo $pv->toCurrency()}"
+                          data-number="{echo $pv->getNumber()}"
+                          data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                          data-mainImage="{$pv->getLargePhoto()}"
+                          data-smallImage="{echo $pv->getSmallPhoto()}"
+                          data-stock="{echo $pv->getStock()}"
+                          style="display: none;">
+                    </span>
                     {/foreach}
                     <!-- End. Collect information about Variants, for future processing -->
 

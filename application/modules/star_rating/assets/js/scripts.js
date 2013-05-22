@@ -65,7 +65,7 @@ $(document).ready(function(){
             } else {
                 $.error( 'Method ' +  method + ' does not exist on jQuery.starRating' );
             }
-        }
+        };
     })(jQuery);
     $(".star-big").starRating({
         width:26,
@@ -85,5 +85,5 @@ $(document).ready(function(){
             );
         }
     });
-})
+});
 

@@ -4,7 +4,7 @@
 # @var profile
 #}
 
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+{$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 
 <h5>Список пожеланий {if $items}({count($items)}){/if}</h5>
 <div class="spLine"></div>

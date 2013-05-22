@@ -18,7 +18,7 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>Отображать на страницах:</th>
+                            <th>Отображать на страницах:</th>
                         </thead>
                         <tbody>
                             <tr>
