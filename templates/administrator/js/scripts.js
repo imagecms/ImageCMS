@@ -30,6 +30,214 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
         $('#loading').stop().fadeOut(200);
     }
 });
+function share_alt_init() {
+    $('.share_alt').hover(function() {
+        $(this).find('.go_to_site').css('visibility', 'visible');
+    }, function() {
+        $(this).find('.go_to_site').css('visibility', 'hidden');
+    });
+}
+function initNiceCheck() {
+    if ($.exists('.niceCheck')) {
+        $(".niceCheck").each(function() {
+            active_b_p = '-46px -17px';
+            n_active_b_p = '-46px 0';
+            changeCheckStart($(this));
+        });
+    }
+}
+function check1(el, input) {
+    console.log(1)
+    var el = el;
+    var input = input;
+    el.css("background-position", active_b_p);
+    el.parent().addClass('active');
+    input.attr("checked", true);
+
+    if (el.closest('.sortable').children('tr').length > 0)
+        el.closest('.sortable').children('tr').has(el).addClass('active');
+
+    else if (el.closest('.sortable2').find('tr').length > 0)
+        el.closest('.sortable2').find('tr').has(el).addClass('active');
+
+    else if (el.closest('.simple_tr').length > 0)
+        el.closest('.simple_tr').addClass('active');
+
+    else if (el.closest('[data-tree]').length > 0)
+        el.closest('tr').addClass('active');
+
+    else if (el.closest('.comments').length > 0)
+        el.closest('tr').addClass('active');
+
+    else {
+        if (el.closest('.frame_level_3').length > 0)
+            el.closest('.row-category').addClass('active');
+
+        else
+        {
+            temp_nabir = el.closest('.row-category').parent().find('.row-category');
+            temp_nabir.addClass('active');
+            temp_nabir.find('.frame_label').each(function() {
+                changeCheckallchecks($(this).find('> span:eq(0)'));
+            })
+        }
+    }
+    if (el.closest('.comments').next('tr').length > 0) {
+        temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
+            changeCheckallchecks($(this).find('> span:eq(0)'));
+        })
+    }
+}
+function check2(el, input) {
+    var el = el;
+    var input = input;
+    el.css("background-position", n_active_b_p);
+    el.parent().removeClass('active');
+    input.attr("checked", false);
+
+    if (el.closest('.sortable').children('tr').length > 0)
+        el.closest('.sortable').children('tr').has(el).removeClass('active')
+
+    else if (el.closest('.sortable2').find('tr').length > 0)
+        el.closest('.sortable2').find('tr').has(el).removeClass('active')
+
+    else if (el.closest('.simple_tr').length > 0)
+        el.closest('.simple_tr').removeClass('active');
+
+    else if (el.closest('[data-tree]').length > 0)
+        el.closest('tr').removeClass('active');
+
+    else if (el.closest('.comments').length > 0)
+        el.closest('tr').removeClass('active');
+
+    else {
+        if (el.closest('.frame_level_3').length > 0)
+            el.closest('.row-category').removeClass('active');
+
+        else
+        {
+            temp_nabir = el.closest('.row-category').parent().find('.row-category');
+            temp_nabir.removeClass('active');
+            temp_nabir.find('.frame_label').each(function() {
+                changeCheckallreset($(this).find('> span:eq(0)'));
+            })
+        }
+    }
+    if (el.closest('.comments').next('tr').length > 0) {
+        temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
+            changeCheckallreset($(this).find('> span:eq(0)'));
+        })
+    }
+}
+function check3(el, input) {
+    var el = el;
+    var input = input;
+    el.css("background-position", active_R_b_p);
+    el.parent().addClass('active');
+    input.attr("checked", true);
+    el.parents('.row-category, tr').addClass('active');
+    $('[name=' + input.attr('name') + ']').not(input).each(function() {
+        check4($(this).parent(), $(this))
+    })
+}
+function check4(el, input) {
+    var el = el;
+    var input = input;
+    el.css("background-position", n_active_R_b_p);
+    el.parent().removeClass('active');
+    el.parents('.row-category, tr').removeClass('active');
+    input.attr("checked", false);
+}
+function changeCheck(el)
+{
+    var el = el;
+    var input = el.find("input");
+    if (!input.attr("checked")) {
+        check1(el, input);
+        //textcomment_s_h('s', el);
+    }
+    else {
+        check2(el, input);
+        //textcomment_s_h('h', el);
+    }
+}
+function changeRadio(el)
+{
+    var el = el;
+    var input = el.find("input");
+    check3(el, input);
+}
+function changeCheckallchecks(el)
+{
+    var el = el,
+            input = el.find("input");
+    el.css("background-position", active_b_p);
+    el.parent().addClass('active');
+    input.attr("checked", true);
+    el.parents('.sortable').children('tr').addClass('active');
+    el.closest('.simple_tr').addClass('active');
+    if (el.closest('[data-tree]').length > 0)
+        el.closest('tr').addClass('active');
+    else if (el.closest('.sortable2').find('tr').length > 0)
+        el.closest('.sortable2').find('tr').has(el).addClass('active')
+    else if (el.closest('.comments').length > 0)
+        el.closest('tbody').find('.comments').has(el).addClass('active');
+
+    dis_un_dis();
+    //textcomment_s_h('s', el);
+}
+function changeCheckallreset(el)
+{
+    var el = el,
+            input = el.find("input");
+    el.css("background-position", n_active_b_p);
+    el.parent().removeClass('active');
+    input.attr("checked", false);
+    el.parents('.sortable').children('tr').removeClass('active');
+    el.closest('.simple_tr').removeClass('active');
+    if (el.closest('[data-tree]').length > 0)
+        el.closest('tr').removeClass('active');
+    else if (el.closest('.sortable2').find('tr').length > 0)
+        el.closest('.sortable2').find('tr').has(el).removeClass('active')
+    else if (el.closest('.comments').length > 0)
+        el.closest('tbody').find('.comments').has(el).removeClass('active');
+
+    dis_un_dis();
+    //textcomment_s_h('h', el);
+}
+
+function changeCheckStart(el)
+{
+    var el = el,
+            input = el.find("input");
+    if (input.attr("checked")) {
+        check1(el, input);
+    }
+    else {
+        check2(el, input);
+    }
+    el.removeClass('b_n');
+}
+function changeRadioStart(el)
+{
+    var el = el,
+            input = el.find("input");
+    el.removeClass('b_n');
+    if (input.attr("checked")) {
+        check3(el, input);
+    }
+    return false;
+}
+function dis_un_dis() {
+    var label_act = $('.frame_label.active');
+    if (label_act.length > 0) {
+        $('.action_on').removeClass('disabled').attr('disabled', false);
+    }
+    else
+    {
+        $('.action_on').addClass('disabled').attr('disabled', true);
+    }
+}
 
 function init_2() {
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
@@ -54,28 +262,12 @@ function init_2() {
         })
     }
     //not_standart_checks----------------------
-    function dis_un_dis() {
-        var label_act = $('.frame_label.active');
-        if (label_act.length > 0) {
-            $('.action_on').removeClass('disabled').attr('disabled', false);
-        }
-        else
-        {
-            $('.action_on').addClass('disabled').attr('disabled', true);
-        }
-    }
+
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     })
 
-
-    if ($.exists('.niceCheck')) {
-        $(".niceCheck").each(function() {
-            active_b_p = '-46px -17px';
-            n_active_b_p = '-46px 0';
-            changeCheckStart($(this));
-        });
-    }
+    initNiceCheck()
 
     //autocomplete for resize in settings
     $('#product_name').autocomplete({
@@ -103,15 +295,15 @@ function init_2() {
             categoryId = ui.item.category;
         },
         close: function() {
-            $('#categoryForOrders option:selected').each(function(){
-                this.selected=false;
+            $('#categoryForOrders option:selected').each(function() {
+                this.selected = false;
             });
-            $("#categoryForOrders [value='"+categoryId+"']").attr("selected", "selected");
+            $("#categoryForOrders [value='" + categoryId + "']").attr("selected", "selected");
             orders.getProductsInCategory(categoryId);
-             $('#productsForOrders option:selected').each(function(){
-                this.selected=false;
+            $('#productsForOrders option:selected').each(function() {
+                this.selected = false;
             });
-            $("#productsForOrders [value='"+productId+"']").attr("selected", "selected");
+            $("#productsForOrders [value='" + productId + "']").attr("selected", "selected");
             orders.getProductVariantsByProduct(productId, productName);
             $('#productNameForOrders').val(productName);
         }
@@ -217,187 +409,7 @@ function init_2() {
         var $this = $(this);
         changeRadio($this.find('> span:eq(0)'));
     });
-    function check1(el, input) {
-        var el = el;
-        var input = input;
-        el.css("background-position", active_b_p);
-        el.parent().addClass('active');
-        input.attr("checked", true);
 
-        if (el.closest('.sortable').children('tr').length > 0)
-            el.closest('.sortable').children('tr').has(el).addClass('active');
-
-        else if (el.closest('.sortable2').find('tr').length > 0)
-            el.closest('.sortable2').find('tr').has(el).addClass('active');
-
-        else if (el.closest('.simple_tr').length > 0)
-            el.closest('.simple_tr').addClass('active');
-
-        else if (el.closest('[data-tree]').length > 0)
-            el.closest('tr').addClass('active');
-
-        else if (el.closest('.comments').length > 0)
-            el.closest('tr').addClass('active');
-
-        else {
-            if (el.closest('.frame_level_3').length > 0)
-                el.closest('.row-category').addClass('active');
-
-            else
-            {
-                temp_nabir = el.closest('.row-category').parent().find('.row-category');
-                temp_nabir.addClass('active');
-                temp_nabir.find('.frame_label').each(function() {
-                    changeCheckallchecks($(this).find('> span:eq(0)'));
-                })
-            }
-        }
-        if (el.closest('.comments').next('tr').length > 0) {
-            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
-                changeCheckallchecks($(this).find('> span:eq(0)'));
-            })
-        }
-    }
-    function check2(el, input) {
-        var el = el;
-        var input = input;
-        el.css("background-position", n_active_b_p);
-        el.parent().removeClass('active');
-        input.attr("checked", false);
-
-        if (el.closest('.sortable').children('tr').length > 0)
-            el.closest('.sortable').children('tr').has(el).removeClass('active')
-
-        else if (el.closest('.sortable2').find('tr').length > 0)
-            el.closest('.sortable2').find('tr').has(el).removeClass('active')
-
-        else if (el.closest('.simple_tr').length > 0)
-            el.closest('.simple_tr').removeClass('active');
-
-        else if (el.closest('[data-tree]').length > 0)
-            el.closest('tr').removeClass('active');
-
-        else if (el.closest('.comments').length > 0)
-            el.closest('tr').removeClass('active');
-
-        else {
-            if (el.closest('.frame_level_3').length > 0)
-                el.closest('.row-category').removeClass('active');
-
-            else
-            {
-                temp_nabir = el.closest('.row-category').parent().find('.row-category');
-                temp_nabir.removeClass('active');
-                temp_nabir.find('.frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
-                })
-            }
-        }
-        if (el.closest('.comments').next('tr').length > 0) {
-            temp_nabir = el.closest('.comments').next('tr:not(.comments)').find('.frame_label').each(function() {
-                changeCheckallreset($(this).find('> span:eq(0)'));
-            })
-        }
-    }
-    function check3(el, input) {
-        var el = el;
-        var input = input;
-        el.css("background-position", active_R_b_p);
-        el.parent().addClass('active');
-        input.attr("checked", true);
-        el.parents('.row-category, tr').addClass('active');
-        $('[name=' + input.attr('name') + ']').not(input).each(function() {
-            check4($(this).parent(), $(this))
-        })
-    }
-    function check4(el, input) {
-        var el = el;
-        var input = input;
-        el.css("background-position", n_active_R_b_p);
-        el.parent().removeClass('active');
-        el.parents('.row-category, tr').removeClass('active');
-        input.attr("checked", false);
-    }
-    function changeCheck(el)
-    {
-        var el = el;
-        var input = el.find("input");
-        if (!input.attr("checked")) {
-            check1(el, input);
-            //textcomment_s_h('s', el);
-        }
-        else {
-            check2(el, input);
-            //textcomment_s_h('h', el);
-        }
-    }
-    function changeRadio(el)
-    {
-        var el = el;
-        var input = el.find("input");
-        check3(el, input);
-    }
-    function changeCheckallchecks(el)
-    {
-        var el = el,
-                input = el.find("input");
-        el.css("background-position", active_b_p);
-        el.parent().addClass('active');
-        input.attr("checked", true);
-        el.parents('.sortable').children('tr').addClass('active');
-        el.closest('.simple_tr').addClass('active');
-        if (el.closest('[data-tree]').length > 0)
-            el.closest('tr').addClass('active');
-        else if (el.closest('.sortable2').find('tr').length > 0)
-            el.closest('.sortable2').find('tr').has(el).addClass('active')
-        else if (el.closest('.comments').length > 0)
-            el.closest('tbody').find('.comments').has(el).addClass('active');
-
-        dis_un_dis();
-        //textcomment_s_h('s', el);
-    }
-    function changeCheckallreset(el)
-    {
-        var el = el,
-                input = el.find("input");
-        el.css("background-position", n_active_b_p);
-        el.parent().removeClass('active');
-        input.attr("checked", false);
-        el.parents('.sortable').children('tr').removeClass('active');
-        el.closest('.simple_tr').removeClass('active');
-        if (el.closest('[data-tree]').length > 0)
-            el.closest('tr').removeClass('active');
-        else if (el.closest('.sortable2').find('tr').length > 0)
-            el.closest('.sortable2').find('tr').has(el).removeClass('active')
-        else if (el.closest('.comments').length > 0)
-            el.closest('tbody').find('.comments').has(el).removeClass('active');
-
-        dis_un_dis();
-        //textcomment_s_h('h', el);
-    }
-
-    function changeCheckStart(el)
-    {
-        var el = el,
-                input = el.find("input");
-        if (input.attr("checked")) {
-            check1(el, input);
-        }
-        else {
-            check2(el, input);
-        }
-        el.removeClass('b_n');
-    }
-    function changeRadioStart(el)
-    {
-        var el = el,
-                input = el.find("input");
-        el.removeClass('b_n');
-        if (input.attr("checked")) {
-            check3(el, input);
-        }
-        return false;
-    }
     $('.all_select').toggle(function() {
         $(this).parents('table').find('tbody .frame_label').each(function() {
             changeCheckallchecks($(this).find('> span:eq(0)'));
@@ -928,11 +940,7 @@ function initAdminArea() {
             return false;
         }
     });
-    $('.share_alt').hover(function() {
-        $(this).find('.go_to_site').css('visibility', 'visible');
-    }, function() {
-        $(this).find('.go_to_site').css('visibility', 'hidden');
-    });
+    share_alt_init();
     $('.variants').die('click').live('click', function() {
         var $this = $(this);
         var variants = $this.closest('tr').next();
@@ -1423,10 +1431,10 @@ $('#variantsForOrders').live('change', function() {
         $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger').html('В корзину');
     }
     // Check is element in cart
-    if (orders.isInCart(variantId) == 'true'){
+    if (orders.isInCart(variantId) == 'true') {
         $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html('В корзине');
     }
-    
+
     dataForButton = $('#variantsForOrders option:selected').data();
 
     $('#addVariantToCart').data(dataForButton);
@@ -1451,24 +1459,24 @@ $('#createUserButton').live('click', function() {
     var userPhone = $('#createUserPhone').val();
     var userAddress = $('#createUserAddress').val();
     var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
-    
-    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0){
+
+    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0) {
         $.ajax({
-          url: '/admin/components/run/shop/orders/createNewUser',
-          type: "POST",
-          data: "name="+userName+"&email="+userEmail+"&phone="+userPhone+"&address="+userAddress,
-          success: function(response) {
-            if (response == 'email'){
-                showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
-            }else if (response == 'true'){ 
-                $('#createUserName').val('');
-                $('#createUserEmail').val('');
-                $('#createUserPhone').val('');
-                $('#createUserAddress').val('');
-                showMessage("Сообщение", "Создан новый пользователь", "success"); 
-            }else{
-                showMessage("Ошибка", "Не удалось создать пользователя,", "error");
-            }
+            url: '/admin/components/run/shop/orders/createNewUser',
+            type: "POST",
+            data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
+            success: function(response) {
+                if (response == 'email') {
+                    showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
+                } else if (response == 'true') {
+                    $('#createUserName').val('');
+                    $('#createUserEmail').val('');
+                    $('#createUserPhone').val('');
+                    $('#createUserAddress').val('');
+                    showMessage("Сообщение", "Создан новый пользователь", "success");
+                } else {
+                    showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+                }
             }
         });
     } else {
@@ -1478,110 +1486,110 @@ $('#createUserButton').live('click', function() {
 
 /** Update data in orders*/
 $('#getAllOrderInfoButton').live('click', function() {
-    var userId =  $('#userIdforOrder').html();
+    var userId = $('#userIdforOrder').html();
     var userName = $('#userNameforOrder').html();
     var userEmail = $('#userEmailforOrder').html();
     var userPhone = $('#userPhoneforOrder').html();
-    var userAddress =  $('#userAddressforOrder').html();
+    var userAddress = $('#userAddressforOrder').html();
     var totalCartSum = $('#totalCartSum').html();
     var totalProductPrice = totalCartSum;
     var userDiscount = 0;
-        
-        if(userId != undefined){
-            $('#shopOrdersUserid').val(userId);
-            $('#shopOrdersUserFullName').val(userName);
-            $('#shopOrdersUserEmail').val(userEmail);
-            $('#shopOrdersUserPhone').val(userPhone);
-            $('#shopOrdersUserAddress').val(userAddress);
-            
-            //Get user discount
-            $.ajax({
-                url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
-                async: false,
-                data: 'userId='+userId,
-                type: "post",
-                success: function(data) {
-                    if(data !=''){
-                        userDiscount = data;
-                    }
+
+    if (userId != undefined) {
+        $('#shopOrdersUserid').val(userId);
+        $('#shopOrdersUserFullName').val(userName);
+        $('#shopOrdersUserEmail').val(userEmail);
+        $('#shopOrdersUserPhone').val(userPhone);
+        $('#shopOrdersUserAddress').val(userAddress);
+
+        //Get user discount
+        $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
+            async: false,
+            data: 'userId=' + userId,
+            type: "post",
+            success: function(data) {
+                if (data != '') {
+                    userDiscount = data;
                 }
-            });
-            $('#shopOrdersComulativ').val(userDiscount);
-            
-            if (userDiscount != 0)
-                totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
-                
-                $('#shopOrdersTotalPrice').val(totalProductPrice);
-            
-        }
-    })
-/** Get payments methds for delivery method **/
-    $('#shopOrdersdeliveryMethod').live('click', function(){
-        id = $(this).val();
-        $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function (dataStr) {
-            data = JSON.parse(dataStr);
-            $('#shopOrdersPaymentMethod').empty();
-            jQuery.each( data, function(index,el){
-               $("#shopOrdersPaymentMethod").append( $('<option value="'+el.id+'">'+el.name+'</option>'));
-            });
-            
-            
+            }
         });
-    })
+        $('#shopOrdersComulativ').val(userDiscount);
+
+        if (userDiscount != 0)
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+
+    }
+})
+/** Get payments methds for delivery method **/
+$('#shopOrdersdeliveryMethod').live('click', function() {
+    id = $(this).val();
+    $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function(dataStr) {
+        data = JSON.parse(dataStr);
+        $('#shopOrdersPaymentMethod').empty();
+        jQuery.each(data, function(index, el) {
+            $("#shopOrdersPaymentMethod").append($('<option value="' + el.id + '">' + el.name + '</option>'));
+        });
+
+
+    });
+})
 /** When change discount recount total price**/
-    $('#shopOrdersComulativ').live('keyup', function(){
-        var inputDiscount = $(this);
-        var userDiscount = $(this).val();
-        var totalCartSum = $('#totalCartSum').html();
-        var totalProductPrice = $('#shopOrdersTotalPrice').val();
-        if (inputDiscount.val() > 100){
-            inputDiscount.val(99);
-            userDiscount = 99;
-        }
-        if ($('#shopOrdersGiftCertPrice').val() == null){
+$('#shopOrdersComulativ').live('keyup', function() {
+    var inputDiscount = $(this);
+    var userDiscount = $(this).val();
+    var totalCartSum = $('#totalCartSum').html();
+    var totalProductPrice = $('#shopOrdersTotalPrice').val();
+    if (inputDiscount.val() > 100) {
+        inputDiscount.val(99);
+        userDiscount = 99;
+    }
+    if ($('#shopOrdersGiftCertPrice').val() == null) {
+        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+    } else {
+        totalProductPrice = ((totalCartSum - $('#shopOrdersGiftCertPrice').val()) / 100 * (100 - userDiscount)).toFixed(2);
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+    }
+})
+/** Chech gift Certificate **/
+$('#checkOrderGiftCert').live('click', function() {
+    var key = $('#shopOrdersCheckGiftCert').val();
+    var userDiscount = $('#shopOrdersComulativ').val();
+    var totalCartSum = $('#totalCartSum').html();
+    $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function(dataStr) {
+        data = JSON.parse(dataStr);
+        if (data.price != null) {
+            $('#shopOrdersGiftCertPrice').val(data.price);
+            $('#shopOrdersGiftCertKey').val(data.key);
+            totalCartSum = totalCartSum - data.price;
             totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
-        }else{
-            totalProductPrice = ((totalCartSum -$('#shopOrdersGiftCertPrice').val())  / 100 * (100 - userDiscount)).toFixed(2);
-            $('#shopOrdersTotalPrice').val(totalProductPrice);
+            $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
+            $('#giftPrice').html('Текущий сертификат (сумма):' + data.price);
+            $('#currentGiftCertInfo').show();
         }
     })
+});
 /** Chech gift Certificate **/
-    $('#checkOrderGiftCert').live('click', function(){
-        var key = $('#shopOrdersCheckGiftCert').val();
-        var userDiscount = $('#shopOrdersComulativ').val();
-        var totalCartSum = $('#totalCartSum').html();
-        $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function (dataStr) {
-            data = JSON.parse(dataStr);
-            if (data.price != null){
-                $('#shopOrdersGiftCertPrice').val(data.price);
-                $('#shopOrdersGiftCertKey').val(data.key);
-                totalCartSum = totalCartSum - data.price;
-                totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
-                $('#shopOrdersTotalPrice').val(totalProductPrice);
-                $('#shopOrdersCheckGiftCert').attr('disabled','disabled');
-                $('#giftPrice').html('Текущий сертификат (сумма):'+data.price);
-                $('#currentGiftCertInfo').show();
-            }
-        })
-    });
-    /** Chech gift Certificate **/
-    $('.removeGiftCert').live('click', function(){
-        var userDiscount = $('#shopOrdersComulativ').val();
-        var totalCartSum = $('#totalCartSum').html();
-        
-        $('#shopOrdersGiftCertPrice').val('');
-        $('#shopOrdersGiftCertKey').val('');
-        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
-       
-        $('#shopOrdersTotalPrice').val(totalProductPrice);
-        $('#shopOrdersCheckGiftCert').removeAttr('disabled');
-        $('#shopOrdersCheckGiftCert').val('');
-        $('#giftPrice').html('');
-        $('#currentGiftCertInfo').hide();
-      
-       
-    });
+$('.removeGiftCert').live('click', function() {
+    var userDiscount = $('#shopOrdersComulativ').val();
+    var totalCartSum = $('#totalCartSum').html();
+
+    $('#shopOrdersGiftCertPrice').val('');
+    $('#shopOrdersGiftCertKey').val('');
+    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+
+    $('#shopOrdersTotalPrice').val(totalProductPrice);
+    $('#shopOrdersCheckGiftCert').removeAttr('disabled');
+    $('#shopOrdersCheckGiftCert').val('');
+    $('#giftPrice').html('');
+    $('#currentGiftCertInfo').hide();
+
+
+});
 
 $(window).load(function() {
     $(window).scroll(function() {

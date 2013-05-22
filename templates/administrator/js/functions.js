@@ -8,6 +8,8 @@ function ajaxLoadChildCategory(el,id){
     if (container.next().attr('class') != 'frame_level sortable save_positions')
         $.post('/admin/components/run/shop/categories/ajax_load_parent', { id: id}, function(data) {
             $(data).insertAfter(container);
+            initNiceCheck();
+            share_alt_init();
         })
     
     
