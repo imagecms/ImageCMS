@@ -1060,6 +1060,21 @@ var delete_currency_function = new Object({
         });
         $('#recount').modal('hide');
         return true;
+    },
+    showOnSite: function(id){
+        $.ajax({
+            type: "post",
+            data: id,
+            url: '/admin/components/run/shop/currencies/showOnSite',
+            success: function(data) {
+                alert(data)
+            },
+            error: function (){
+                alert('error');
+            }
+        });
+       
+        return true;
     }
 
 

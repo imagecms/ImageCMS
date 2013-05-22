@@ -1,5 +1,6 @@
 <div class="content_head">
-    <div class="crumbs">{renderCategoryPathNoSeo($category)}
+    {widget('path')}
+    <div class="crumbs">
         <h1>Подбор по параметрам</h1>
     </div>       
 </div>
