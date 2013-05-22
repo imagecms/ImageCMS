@@ -11,5 +11,3 @@ $(document).on('afrer_change_variant', function(event) {
     $('#print_btn').attr('data-href', arr_href.join('/'));
 
 });
-
-

@@ -36,6 +36,7 @@ class Admin extends BaseAdminController {
 
         /** Show Banners list */
         \CMSFactory\assetManager::create()
+                ->registerScript('main')
                 ->setData(array('banners' => $banners, 'locale' => $locale))
                 ->renderAdmin('list');
     }
@@ -75,7 +76,6 @@ class Admin extends BaseAdminController {
     public function create() {
         if ($this->input->post()) {
             $this->load->library('Form_validation');
-
             /** Set Validation reles */
             $this->form_validation->set_rules('name', 'Имя баннера', 'required|xss_clean|max_length[45]');
             $this->form_validation->set_rules('photo', 'Фото', 'required|xss_clean');
@@ -93,6 +93,7 @@ class Admin extends BaseAdminController {
                     'locale' => $this->def_locale,
                 );
                 /** Create new banner from data-array */
+
                 $lid = $this->banner_model->add_banner($data);
 
                 /** Reupdate banner info for each lang */
@@ -115,6 +116,9 @@ class Admin extends BaseAdminController {
                     ->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))
                     ->renderAdmin('create');
         }
+        
+       
+
     }
 
     /**

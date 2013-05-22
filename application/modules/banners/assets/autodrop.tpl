@@ -10,11 +10,9 @@
 
     <div class="finder">
         <ul class="auto_entity">
-            
             {foreach $entity as $e}
                 <li onclick="selectEntity(this)" data-id="{echo (int)$e['Id']}">{echo $e['Name']}</li>
             {/foreach}
-            
         </ul>
     </div>
 {/if}

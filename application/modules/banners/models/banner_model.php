@@ -8,7 +8,7 @@ class Banner_model extends CI_Model {
     }
     
     public function add_banner($data){
-        
+       // var_dumps($data);
         $sql = "insert into mod_banner(active,active_to,where_show) values('" . $data['active'] . "','" . $data['active_to'] . "','" . $data['where_show'] . "')";
         $this->db->query($sql);
         $lid = $this->db->insert_id();
@@ -53,7 +53,7 @@ class Banner_model extends CI_Model {
     
     public function get_all_banner($locale){
         
-       return $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '$locale'")->result_array();
+       return $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '". $locale ."'")->result_array();
         
     }
     
