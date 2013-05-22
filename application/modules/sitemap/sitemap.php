@@ -38,7 +38,7 @@ class Sitemap extends MY_Controller {
     }
 
     public function index() {
-        $categories = $this->lib_category->build();
+        $categories = $this->lib_category->_build();
         
         $this->template->assign('content', $this->sitemap_ul($categories));
         $this->template->show();
