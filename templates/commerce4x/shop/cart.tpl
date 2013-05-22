@@ -186,3 +186,5 @@
 </article>
 
 {/if}
+
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

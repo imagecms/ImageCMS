@@ -21,9 +21,64 @@ var optionCompare = {
     hoverParent: '.characteristic'
 };
 var genObj = {
-    wishListIn: 'btn_cart',
-    compareIn: 'btn_cart',
-    textEl: '.text-el'
+    textEl: '.text-el',//селектор
+    frameCount: '.frame_count',//селектор
+    parentBtnBuy: 'li',//селектор
+    wishListIn: 'btn_cart',//назва класу
+    compareIn: 'btn_cart',//назва класу
+    toWishlist: 'toWishlist',//назва класу
+    inWishlist: 'inWishlist',//назва класу
+    toCompare: 'toCompare',//назва класу
+    inCompare: 'inCompare',//назва класу
+    tinyBask: 'tiny_bask',//назва класу
+    isAvail: 'isAvail',//назва класу
+    loginButton: '#loginButton',//селектор
+    inCart: 'in_cart',//назва класу
+    notAvail: 'not_avail',//назва класу
+    btnBuy: 'btnBuy',//назва класу кнопка купити
+    btnBuyCss: 'btn_buy',//назва класу
+    btnCartCss: 'btn_cart'//назва класу
+}
+
+function navPortait() {
+    var frameM = $('.frame-menu-main');
+    headerMenu = $('.headerMenu');
+
+    $('.headerMenu').each(function() {
+        var $this = $(this);
+        if ($this.hasClass('navHorizontal')) {
+            $('.frame-navbar').addClass('in');
+            var headerFon = $('.headerFon'),
+                    heightFon = 0,
+                    temp_height = $this.find('> li').outerHeight();
+
+            if ($this.hasClass('navVertical')) {
+                $('.btn-navbar').hide();
+                $this.removeClass('navVertical');
+                $('.frame-navbar').addClass('in').show();
+            }
+            if (temp_height < $this.outerHeight()) {
+                $('.btn-navbar').show();
+                $('.frame-navbar').removeClass('in');
+                $this.addClass('navVertical');
+            }
+
+            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
+                heightFon = frameM.offset().top + frameM.outerHeight(true)
+                if ($.exists('.frame_baner'))
+                    heightFon = $('.frame_baner').height() / 2 + $('.frame_baner').offset().top;
+                headerFon.css({
+                    'height': heightFon,
+                    'top': 0
+                });
+            }
+            else
+                headerFon.css({
+                    'height': $('.headerContent').outerHeight(true) + $('header').height(),
+                    'top': 0
+                });
+        }
+    });
 }
     
 function deleteComprasionItem(el){
@@ -330,5 +385,8 @@ wnd.load(function() {
     /* End. Refresh when remove item from Compare */
 
     /*fancybox-based imagebox initialization*/
-    $('a.fancybox').fancybox();
+    try{
+        $('a.fancybox').fancybox();
+    }catch(err){}
+    
 });
