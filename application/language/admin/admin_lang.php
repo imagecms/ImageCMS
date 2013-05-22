@@ -65,7 +65,6 @@ $lang['a_select_image'] = 'Выбрать Изображение';
 $lang['a_desc'] = 'Описание';
 //$lang['a_meta_title']       =       'Meta title';
 //$lang['a_meta description'] =       'Meta description';
-//$lang['a_meta_keywords']    =       'Meta keywords';
 $lang['a_save'] = 'Сохранить';
 $lang['a_cancel'] = 'Отмена';
 
@@ -104,7 +103,6 @@ $lang['a_pages_view_tpl_by_def'] = 'Шаблон просмотра страни
 $lang['a_meta_tags'] = 'Мета Теги';
 //$lang['a_meta_title'] = 'Meta title';
 //$lang['a_meta_description'] = 'Meta description';
-//$lang['a_meta_keywords']    = 'Meta keywords';
 //$lang['a_save'] = 'Сохранить';
 //$lang['a_cancel'] = 'Отмена';
 
@@ -168,7 +166,6 @@ $lang['a_add_to_menu'] = 'Добавить в меню';
 //$lang['a_meta_tags'] = 'Мета Теги';
 //$lang['a_meta_title'] = 'Meta title';
 //$lang['a_meta_description'] = 'Meta description';
-//$lang['a_meta_keywords'] = 'Meta keywords';
 //$lang['a_create'] = 'Создать';
 
 //dashboard.tpl
@@ -235,7 +232,6 @@ $lang['a_exit'] = 'Выход';
 //$lang['a_meta_title'] = 'Meta title';
 //$lang['a_meta_description'] = 'Meta description';
 //$lang['a_gen_desc'] = 'Сгенерировать описание';
-//$lang['a_meta_keywords'] = 'Meta keywords';
 //$lang['a_gen_key_words'] = 'Сгенерировать ключевые слова';
 //$lang['a_main_tpl'] = 'Главный шаблон';
 //$lang['a_by_default'] = 'По умолчанию';
@@ -448,7 +444,6 @@ $lang['a_yes'] = 'Да';
 $lang['a_cat_name'] = 'Название категории';
 $lang['a_separator'] = 'Разделитель';
 $lang['a_page_meta_tags'] = 'Мета-теги страниц';
-//$lang['a_meta_keywords'] = 'Meta keywords';
 $lang['a_if_not_pointed'] = 'Если не указаны';
 $lang['a_auto_form'] = 'Формировать атоматически';
 $lang['a_leave_empty'] = 'Оставить пустым';
@@ -571,7 +566,6 @@ $lang['a_widget_sett'] = 'Настройки Виджета';
     $lang['a_description']      =	'Описание';
     $lang['a_meta_title']       =	'Meta Title';
     $lang['a_meta_description'] =	'Meta Description';
-    $lang['a_meta_keywords']    =	'Meta Keywords';
     $lang['a_select_file']      =	'Выбрать файл';
     $lang['a_footer_save_create']   =	'Сохранить и создать новую запись';
     $lang['a_footer_save_edit'] =	'Сохранить и редактировать';
