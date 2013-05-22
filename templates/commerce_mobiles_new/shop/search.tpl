@@ -11,7 +11,7 @@
 {# Display sidebar.tpl #}
 {if !isset($_GET['text'])}
         <div class="frame_search">
-            <form method="get" action="/shop/search">
+            <form method="get" action="/mobile/search">
                 <input type="submit" class="f_r search_button" value="Искать"/>
                 <div class="frame_frame_input">
                     <span class="icon search_ico"></span>
@@ -26,7 +26,7 @@
 {else:}
        {if !empty(ShopCore::$_GET['text'])}
        <div class="frame_search">
-            <form method="get" action="/shop/search">
+            <form method="get" action="/mobile/search">
                 <input type="submit" class="f_r search_button" value="Искать"/>
                 <div class="frame_frame_input">
                     <span class="icon search_ico"></span>
@@ -45,7 +45,7 @@
              {foreach $products as $p}
              {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
             <li>
-                <a href="{shop_url('product/' . $p->getUrl())}" class="top_frame_tov">
+                <a href="{mobile_url('product/' . $p->getUrl())}" class="top_frame_tov">
                     <span class="figure"><img src="{productImageUrl($p->getMainModimage())}"/></span>
                     <span class="descr">
                         <span class="title">{echo ShopCore::encode($p->getName())}</span>
