@@ -1,6 +1,18 @@
 var editorsEnabled = false;
 //temporary
 
+function ajaxLoadChildCategory(el,id){
+
+    var container = $(el).closest('.row-category');
+
+    if (container.next().attr('class') != 'frame_level sortable save_positions')
+        $.post('/admin/components/run/shop/categories/ajax_load_parent', { id: id}, function(data) {
+            $(data).insertAfter(container);
+        })
+    
+    
+}
+
 function changeDefaultValute(id){
 
     $.post('/admin/components/run/shop/currencies/makeCurrencyDefault',{id: id})

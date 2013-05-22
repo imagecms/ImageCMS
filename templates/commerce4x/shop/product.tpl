@@ -21,10 +21,10 @@
                 <!--Photo block for main product-->
                 <li class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" id="photoGroup" href="{$model->firstVariant->getLargePhoto()}" class="photo">
+                    <a rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photo">
                         <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                            <img id="imageGroup" src="{$model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img id="imageGroup" src="{echo $model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                         </figure>                        
                     </a>              
                     <ul class="frame_thumbs">
@@ -85,7 +85,7 @@
                                           data-price="{echo $pv->toCurrency()}"
                                           data-number="{echo $pv->getNumber()}"
                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                          data-mainImage="{$pv->getLargePhoto()}"
+                                          data-mainImage="{echo $pv->getLargePhoto()}"
                                           data-smallImage="{echo $pv->getMediumPhoto()}"
                                           data-stock="{echo $pv->getStock()}"
                                           style="display: none;">
@@ -113,7 +113,7 @@
                                     If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                                     will display the price already discounted
                                     -->
-                                    <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency();}</span>{$CS}
+                                    <span class="f-w_b" id="priceVariant">{echo $model->firstVariant->toCurrency();}{$NextCS}</span>{$CS}
                                     <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
                                 </div>    
                                 <!--
@@ -371,7 +371,7 @@
                                                 <a href="{shop_url('product/' . $p->getUrl())}" class="photo">
                                                     <figure>
                                                         <span class="helper"></span>
-                                                        <img src="{$p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                                        <img src="{echo $p->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
                                                     </figure>
                                                 </a>
                                             </div>
@@ -429,7 +429,7 @@
                                                     <a href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}" class="photo">
                                                         <figure>
                                                             <span class="helper"></span>
-                                                            <img src="{$kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                            <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                         </figure>
                                                     </a>
                                                 </div>
@@ -462,7 +462,7 @@
                                                         <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="photo">
                                                             <figure>
                                                                 <span class="helper"></span>
-                                                                <img src="{$kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                                <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
                                                             </figure>
                                                         </a>
                                                     </div>

@@ -75,7 +75,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="banner_type">Отображать в категориях (выберите объекты):</label>
                                     <div class="controls">
-                                        <select id="banner_type" name="data[]" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
+                                        <select id="banner_type" name="" onchange="autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')">
                                             <option value="default">--выберите сущность--</option>
                                             <option value="main">Главная</option>
                                             {if $is_shop}
