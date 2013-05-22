@@ -403,10 +403,7 @@ var Shop = {
                         }
                         else {
                             if (dataObj.errors.match('not_logged_in')) {
-                                $('#loginButton').click();
-                                $('html, body').animate({
-                                    scrollTop:0
-                                }, 300);
+                                $(loginButton).click();
                             }
                         }
                     } catch (e) {

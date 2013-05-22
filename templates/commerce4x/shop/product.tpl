@@ -130,7 +130,7 @@
                                 {foreach $model->getProductVariants() as $key => $pv}
                                 {if $pv->getStock() > 0}
                                 <button {if $key != 0}style="display:none"{/if} 
-                                    class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                    class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
                                     type="button" 
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
@@ -305,7 +305,7 @@
                                                 data-name - name product
                                                 these are the main four options for the button to "buy"
                                     -->
-                                    <button class="btn btn_buy" 
+                                    <button class="btn btn_buy btnBuy" 
                                             data-varid="{echo $p->firstVariant->getId()}" 
                                             data-prodid="{echo $p->getId()}" 
                                             data-price="{echo $p->firstvariant->toCurrency()}" 
@@ -466,7 +466,7 @@
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>    
-                                <button class="btn btn_buy" type="button"                                    
+                                <button class="btn btn_buy btnBuy" type="button"                                    
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
@@ -634,7 +634,7 @@
                                 {foreach $model->getProductVariants() as $key => $pv}
                                 {if $pv->getStock() > 0}
                                 <button {if $key != 0}style="display:none"{/if} 
-                                    class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                                    class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
                                     type="button" 
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
@@ -809,7 +809,7 @@
                                                 data-name - name product
                                                 these are the main four options for the button to "buy"
                                     -->
-                                    <button class="btn btn_buy" 
+                                    <button class="btn btn_buy btnBuy" 
                                             data-varid="{echo $p->firstVariant->getId()}" 
                                             data-prodid="{echo $p->getId()}" 
                                             data-price="{echo $p->firstvariant->toCurrency()}" 
@@ -970,7 +970,7 @@
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>    
-                                <button class="btn btn_buy" type="button"                                    
+                                <button class="btn btn_buy btnBuy" type="button"                                    
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 

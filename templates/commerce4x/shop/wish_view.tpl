@@ -51,7 +51,7 @@
                                 <!-- Start. Check is product available -->
                                 {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                                     {if $item.model->firstvariant->stock != 0}
-                                        <button class="btn btn_buy" 
+                                        <button class="btn btn_buy btnBuy" 
                                                 type="button" 
                                                 data-prodId="{echo $item.model->getId()}" 
                                                 data-varId="{echo $item.model->firstVariant->getId()}" 

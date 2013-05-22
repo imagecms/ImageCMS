@@ -11,9 +11,9 @@
 <input type="hidden" name="notify_url" value="{$notifyUrlrl}">
 <input type="hidden" name="tax_rate" value="2.000">
 <input type="hidden" name="shipping" value="5.00">
-<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buy btnBuynowCC_LG.gif:NonHostedGuest">
 <input type="hidden" name="on0" value="asdda">asdda<input type="text" name="os0" maxlength="200">
 
-<input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!">
+<input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_buy btnBuynowCC_LG.gif" border="0" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!">
 <img alt="" border="0" src="https://www.paypalobjects.com/ru_RU/i/scr/pixel.gif" width="1" height="1">
 </form>

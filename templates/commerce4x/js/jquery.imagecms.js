@@ -1068,8 +1068,8 @@ function ieInput(els) {
                         $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                     });
                     if ($(event.target).parents('[data-simple="yes"]').length == 0){
-
                         $this = $(this);
+                        if (event.button == undefined) body.scrollTop($this.offset().top)
                         elSet = $this.data();
                         elSetSource = $(elSet.drop);
                 
@@ -1081,7 +1081,7 @@ function ieInput(els) {
 
                         if (overlayColor != undefined || overlayOpacity != undefined) {
                             if (!$.exists('.overlayDrop')) {
-                                body.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                                body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
                             }
                             drop_over = $('.overlayDrop');
                             drop_over.css({
@@ -1122,8 +1122,15 @@ function ieInput(els) {
 
                             $this.addClass(activeClass);
                             drop_over.show();
+                            if (drop_over.length) body.css('margin-right', function(){
+                                if ($(document).height()-wnd.height() > 0){
+                                    body.addClass('o_h');
+                                    drop_over.addClass('drop_overlay_fixed');
+                                    return 16
+                                }
+                            })
                             drop_over.unbind('click').bind('click', function(){
-                                 methods.triggerBtnClick();
+                                methods.triggerBtnClick();
                             })
                             elSetSource[elSetOn](elSetDuration, function() {
                                 elSetSource.addClass(activeClass);
@@ -1168,12 +1175,13 @@ function ieInput(els) {
             $(sel).each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
-                if ($this.data('place') == 'center') body.css('margin-right', function(){
+                if (drop_over.length) body.css('margin-right', function(){
                     if ($(document).height()-wnd.height() > 0){
                         body.removeClass('o_h');
                         drop_over.removeClass('drop_overlay_fixed');
                         return 0
                     }
+                    drop_over.remove();
                 })
             }).removeClass('active');
         //wnd.unbind('scroll resize', methods.dropScroll)
@@ -1185,13 +1193,6 @@ function ieInput(els) {
             }, {
                 queue: false
             });
-            body.css('margin-right', function(){
-                if ($(document).height()-wnd.height() > 0){
-                    body.addClass('o_h');
-                    drop_over.addClass('drop_overlay_fixed');
-                    return 16
-                }
-            })
         },
         positionDrop: function($this){
             var $this = $this;
