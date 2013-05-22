@@ -269,8 +269,33 @@ var delete_currency_function = new Object({
         });
         $('#recount').modal('hide');
         return true;
-    }
+    },
+    
 
 
 
 });
+function showOnSite(id, currentEl){
+        var showStatus = currentEl.attr('rel');
+        if(showStatus == 1){
+            showStatus = 0;
+            currentEl.attr('rel', '0');
+        }else{
+            showStatus = 1;
+            currentEl.attr('rel', '1');
+        }
+            
+        $.ajax({
+            type: "post",
+            data: {id: id, showOnSite: showStatus},
+            url: '/admin/components/run/shop/currencies/showOnSite',
+            success: function(data) {
+                //alert(data)
+            },
+            error: function (){
+                
+            }
+        });
+       
+        return true;
+    }
