@@ -3,7 +3,7 @@
 # @var capImage
 # @var profile
 #}
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+{$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 <div class="content">
     <div class="center">
         <h1>Список пожеланий</h1>

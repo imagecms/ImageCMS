@@ -11,7 +11,7 @@
     <div class="crumbs">{renderCategoryPathNoSeo($category)}
         <h1>{echo ShopCore::encode($category->getTitle())}</h1>
     </div>
-    <a href="{shop_url('category/'.$category->getFullPath())}?filtermobile=1" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
+    <a href="{mobile_url('category/'.$category->getFullPath())}?filtermobile=1" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
 </div>
 <ul class="catalog">
     {foreach $products as $product}
@@ -59,9 +59,9 @@
             {/if}
             {/foreach}
         </ul>
-        <a href="{shop_url('product/' . $product->getUrl())}" class="show_all_variant">{lang('s_show_products')} &#8594;</a>
+        <a href="{mobile_url('product/' . $product->getUrl())}" class="show_all_variant">{lang('s_show_products')} &#8594;</a>
         {else:}
-        <a href="{shop_url('product/' . $product->getUrl())}" class="top_frame_tov">
+        <a href="{mobile_url('product/' . $product->getUrl())}" class="top_frame_tov">
             <span class="figure"><img src="{productImageUrl($product->getMainModimage())}"/></span>
             <span class="descr">
                 <span class="title">{echo ShopCore::encode($product->name)}</span>

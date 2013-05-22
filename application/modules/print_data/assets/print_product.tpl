@@ -24,7 +24,6 @@
                         {echo $product->getshortdescription()}
                     {/if}
                 </div>
-
             </div>
         </div>
     </body>

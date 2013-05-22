@@ -5,8 +5,14 @@ if (!defined('BASEPATH'))
 
 /**
  * Image CMS
- *
- * User support module
+ * 
+ * To add the button "Print" for the page you want to place in the template:
+ * {$CI->load->module('print_data')->render_button(array('id' => $page_id))}
+ * 
+ * To add the button "Print" for the product you want to place in the template:
+ * {$CI->load->module('print_data')->render_button(array('id' => $product_id,'var' => $variant_id))}
+ * 
+ * Print data module
  *
  */
 class Print_data extends MY_Controller {
