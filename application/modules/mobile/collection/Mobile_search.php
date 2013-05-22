@@ -46,10 +46,10 @@ class Mobile_search extends \Search\BaseSearch {
 
         /** Register cannonical link if we are in search */
         if (isset(\ShopCore::$_GET['text']) or \ShopCore::$_GET['category'])
-            $this->template->registerMeta("<link href='" . site_url($this->uri->uri_string()) . "' rel='canonical'>");
+            $this->template->registerCanonical(site_url($this->uri->uri_string()));
 
         /** And say to robot: don't index search pages */
-        $this->template->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />');
+        $this->template->registerMeta('ROBOTS', "NOINDEX, NOFOLLOW");
 
         /** Set view data */
         $this->data[pagination] = $this->pagination->create_links();
