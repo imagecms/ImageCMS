@@ -36,6 +36,7 @@ class Admin extends BaseAdminController {
 
         /** Show Banners list */
         \CMSFactory\assetManager::create()
+                ->registerScript('main')
                 ->setData(array('banners' => $banners, 'locale' => $locale))
                 ->renderAdmin('list');
     }
@@ -116,9 +117,7 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('create');
         }
         
-        CMSFactory\assetManager::create()->registerScript('cycle')->registerScript('main')->registerStyle('style');
-
-        CMSFactory\assetManager::create()->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))->renderAdmin('create');
+       
 
     }
 
