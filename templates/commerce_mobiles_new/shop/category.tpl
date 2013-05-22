@@ -8,7 +8,8 @@
 # @var cart_data
 #}
 <div class="content_head">
-    <div class="crumbs">{renderCategoryPathNoSeo($category)}
+    {widget('path')}
+    <div class="crumbs">
         <h1>{echo ShopCore::encode($category->getTitle())}</h1>
     </div>
     <a href="{mobile_url('category/'.$category->getFullPath())}?filtermobile=1" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
