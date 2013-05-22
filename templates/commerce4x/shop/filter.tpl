@@ -266,3 +266,4 @@
 </form>
 </div>
 </aside>
+<script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
