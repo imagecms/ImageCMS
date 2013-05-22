@@ -116,7 +116,7 @@
                                     </ul>
                                 </nav>
                                 <!-- Start. Block with link for basket with count of products -->
-                                <div class="cleaner f_l f-s_0 isAvail">
+                                <div class="tiny_bask f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
@@ -223,12 +223,13 @@
                 <!-- Start. Show content -->
                 <div>
                     {$content}
+                    {widget('latest_news')}
                 </div>
                 <!-- End. Show content -->
             </div>
             {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
+            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         </div>
-        <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
             {if $exists_brands}
@@ -309,19 +310,14 @@
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
-        <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <script type="text/javascript" src="{$THEME}js/shop_processing.js"></script>
 
 
