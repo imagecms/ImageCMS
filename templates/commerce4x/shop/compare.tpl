@@ -88,6 +88,7 @@
                                                             {if $product->firstvariant->getstock() != 0}
                                                                 <button class="btn btn_buy btnBuy" 
                                                                         type="button" 
+                                                        
                                                                         data-prodId="{echo $product->getId()}" 
                                                                         data-varId="{echo $product->firstVariant->getId()}" 
                                                                         data-price="{echo $product->firstVariant->toCurrency()}" 
