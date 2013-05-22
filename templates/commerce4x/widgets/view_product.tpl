@@ -40,7 +40,7 @@
                                         If there is a discount of "$hotProduct->firstVariant->toCurrency()" or "$hotProduct->firstVariant->getPrice"
                                         will display the price already discounted
                                         -->
-                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()}</span>{$CS}
+                                        <span class="f-w_b" id="priceVariant">{echo $hotProduct->firstVariant->toCurrency()}</span> {$CS}
                                         <!--To display the amount of discounts you can use $hotProduct->firstVariant->getNumDiscount()-->
                                     </div>  
                                     {if $hotProduct->firstvariant->getstock()!=0}
@@ -72,9 +72,9 @@
                                 </div>
                                 <div class="photo-block">
                                     <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
-                                        <figure>
-                                            <span class="helper"></span>
-                                            <img src="{$hotProduct->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
+                                        <span class="helper"></span>
+                                        <figure class="w_200 h_180">
+                                            <img src="{productImageUrl($hotProduct->getMainModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
                                         </figure>
                                     </a>
                                 </div>
