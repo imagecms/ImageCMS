@@ -45,7 +45,7 @@
                                 {$CS}
                             </div>
 
-                            <button class="btn btn_buy" 
+                            <button class="btn btn_buy btnBuy" 
                                     type="button" 
                                     data-prodid="{echo $product->getId()}" 
                                     data-varid="{echo $product->firstVariant->getId()}" 

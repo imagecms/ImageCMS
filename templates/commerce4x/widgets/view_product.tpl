@@ -45,7 +45,7 @@
                             </div>  
                             {if $hotProduct->firstvariant->getstock()!=0}
 
-                            <button class="btn btn_buy" 
+                            <button class="btn btn_buy btnBuy" 
                                     type="button" 
                                     data-prodId="{echo $hotProduct->getId()}" 
                                     data-varId="{echo $hotProduct->firstVariant->getId()}" 

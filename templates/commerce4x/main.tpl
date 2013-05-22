@@ -309,7 +309,7 @@
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/shop.js"></script>
 
         <!-- Dev. scripts -->
