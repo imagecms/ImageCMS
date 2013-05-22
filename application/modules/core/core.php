@@ -898,7 +898,11 @@ class Core extends MY_Controller {
                 $title = $page_number . ' - ' . $title;
 
             if ($description != '')
-                $description = "$page_number - $description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
+                if ($page_number != '')
+                    $description = "$page_number - $description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
+                else
+                    $description = "$description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
+
 
             if ($this->settings['add_site_name_to_cat'])
                 if ($category != '')
