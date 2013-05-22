@@ -60,7 +60,9 @@
                                 <nav class="f_l">
                                     <ul class="nav navHorizontal frameEnterReg">
                                         <!--Start. If not logged in then show links for registration and enter to the system-->
+                                           
                                         {if !$CI->dx_auth->is_logged_in()}
+                                            
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
