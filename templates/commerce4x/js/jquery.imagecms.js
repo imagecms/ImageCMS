@@ -1126,7 +1126,7 @@ function ieInput(els) {
                                 if ($(document).height()-wnd.height() > 0){
                                     body.addClass('o_h');
                                     drop_over.addClass('drop_overlay_fixed');
-                                    return 16
+                                    return 17
                                 }
                             })
                             drop_over.unbind('click').bind('click', function(){
