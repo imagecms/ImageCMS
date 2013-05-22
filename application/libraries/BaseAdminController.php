@@ -54,9 +54,9 @@ class BaseAdminController extends MY_Controller {
     private function autoloadModules() {
         /** Search module with autoload */
         $query = $this->db
-            ->select('name')
-            ->where('autoload', 1)
-            ->get('components');
+                ->select('name')
+                ->where('autoload', 1)
+                ->get('components');
 
         if ($query) {
             $moduleName = null;
