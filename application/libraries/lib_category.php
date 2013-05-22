@@ -31,12 +31,14 @@ class Lib_category {
      * @return array
      */
     function build() {
+    return $this->_build();
+
         // check cache file
-        if (($cache = $this->CI->cache->fetch_func($this, '_build')) !== false) {
-            return $cache;
-        } else {
-            return $this->CI->cache->call(array($this, '_build'));
-        }
+//        if (($cache = $this->CI->cache->fetch_func($this, '_build')) !== false) {
+//            return $cache;
+//        } else {
+//            return $this->CI->cache->call(array($this, '_build'));
+//        }
     }
 
     function buildForAdmin() {
@@ -150,7 +152,7 @@ class Lib_category {
         $this->categories = $this->CI->cms_base->get_categories();
         if ($this->categories)
             $this->create_path();
-
+        
         $new_cats = array();
         
         if ($this->categories)
@@ -172,6 +174,7 @@ class Lib_category {
             }
 
         unset($this->categories);
+         
         return $new_cats;
     }
 
@@ -200,6 +203,7 @@ class Lib_category {
         }
 
         $this->level--;
+       
         return $new_sub_cats;
     }
 

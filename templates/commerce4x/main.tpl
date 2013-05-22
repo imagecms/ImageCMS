@@ -262,6 +262,7 @@
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}
+                                
                             </ul>
                         </div>
                         <!-- End. Block with contacts -->
