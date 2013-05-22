@@ -132,6 +132,8 @@
                                 <button {if $key != 0}style="display:none"{/if} 
                                     class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
                                     type="button" 
+                                     data-id="{echo $pv->getId()}"
+                           
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
                                     data-price="{echo $pv->toCurrency()}" 
@@ -139,8 +141,10 @@
                                     {if trim(ShopCore::encode($pv->getName())) != ''} data-vname="{echo ShopCore::encode($pv->getName())}"{/if}
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
+                                    data-url="{echo shop_url('product/'.$pv->getUrl())}"
 
-                                    data-id="{echo $pv->getId()}"
+                                    data-name="{echo ShopCore::encode($pv->getName())}"
+                                    data-price="{echo $pv->toCurrency()}"
                                     data-number="{echo $pv->getNumber()}"
                                     data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-stock="{echo $pv->getStock()}"
@@ -306,15 +310,20 @@
                                                 these are the main four options for the button to "buy"
                                     -->
                                     <button class="btn btn_buy btnBuy" 
+                                           
+                                            data-id="{echo $p->getId()}"
                                             data-varid="{echo $p->firstVariant->getId()}" 
                                             data-prodid="{echo $p->getId()}" 
                                             data-price="{echo $p->firstvariant->toCurrency()}" 
                                             data-name="{echo ShopCore::encode($p->getName())}" 
                                             type="button"
+                                            data-vname="{echo ShopCore::encode($pv->getName())}"
                                             data-number="{echo $p->firstVariant->getnumber()}"
                                             data-maxcount="{echo $p->firstVariant->getstock()}"
                                             data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                             data-url="{echo shop_url('product/' . $p->getUrl())}"
+                                            data-origPrice="{if $product->hasDiscounts()}{echo $p->toCurrency('OrigPrice')}{/if}"
+                                            data-stock="{echo $p->getStock()}"
                                             >
                                         {lang('s_buy')}
                                     </button>
@@ -466,7 +475,8 @@
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>    
-                                <button class="btn btn_buy btnBuy" type="button"                                    
+                                <button class="btn btn_buy btnBuy" type="button"
+                                        
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
