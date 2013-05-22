@@ -382,4 +382,5 @@ $lang['s_followprod'] = 'В слежении';
 $lang['s_show_products'] = 'Посмотреть товары';
 $lang['s_article'] = 'Артикул';
 $lang['s_variant'] = 'Вариант';
+$lang['s_variant_name'] = 'Название варианта';
 /* End of file main_lang.php */
