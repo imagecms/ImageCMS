@@ -26,7 +26,7 @@ class Pricespy_model extends CI_Model {
      */
     public function delSpysbyIds($ids) {
         $this->db->where_in('productId', $ids);
-        return $CI->db->delete('mod_price_spy');
+        return $this->db->delete('mod_price_spy');
     }
 
     /**
@@ -39,7 +39,7 @@ class Pricespy_model extends CI_Model {
     }
 
     /**
-     * 
+     *
      * @param type $id
      * @return type
      */

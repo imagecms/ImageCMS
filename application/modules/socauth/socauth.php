@@ -5,6 +5,7 @@
 /**
  * Image CMS
  * Класс авторизации через посторонние сервисы
+ * @author a.gula <a.gula@imagecms.net>
  * @property socauth_model $socauth_model
  */
 class Socauth extends MY_Controller {
@@ -51,7 +52,7 @@ class Socauth extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param type $soc type of social service
      * @param type $socId social service ID
      */
@@ -62,7 +63,7 @@ class Socauth extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param type $soc type of social service
      */
     public function unlink($soc) {
@@ -72,7 +73,7 @@ class Socauth extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param type $social social service ID
      * @param type $id social service ID
      * @param type $username name in social service
@@ -104,7 +105,7 @@ class Socauth extends MY_Controller {
                 redirect('/socauth/error');
 
             $userId = $this->socauth_model->getUserByEmail($email);
-            
+
             $this->socauth_model->setUserSoc($id, $social, $userId->id);
         }else {
             $data = new stdClass;
@@ -137,7 +138,7 @@ class Socauth extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param type $error type of error
      */
     public function error($error = "") {
@@ -466,7 +467,7 @@ class Socauth extends MY_Controller {
 //
 //        $response = file_get_contents($url);
 //        var_dump($response);
-//        
+//
 //          $postdata = array(
 //          'code' => $this->input->get(code),
 //          'client_id' => "{$this->settings[googleClientID]}",
@@ -495,7 +496,7 @@ class Socauth extends MY_Controller {
 //          $res = json_decode($res);
 //          var_dumps($res);
 //
-//          curl_close($curl); 
+//          curl_close($curl);
     }
 
 }

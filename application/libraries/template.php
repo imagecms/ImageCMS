@@ -215,7 +215,7 @@ class Template extends Mabilis {
      * @param type $url canonical url
      */
     public function registerCanonical($url) {
-        $this->_canonicals[] = "<link href=" . $url . "' rel='canonical'>";
+        $this->_canonicals[] = "<link href='" . $url . "' rel='canonical'>";
     }
 
     /**
