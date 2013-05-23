@@ -42,7 +42,7 @@
                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                 </div>
                                 <div class="price price_f-s_16">
-                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
+                                    <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
                                 </div>
                             </td>
                             <td>
@@ -57,12 +57,12 @@
                                     </div>
                                     <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                 </div>
-                                <span class="v-a_m"><%-pcs%></span>
+                                <span class="v-a_m countOrCompl"><%-pcs%></span>
                             </td>
                             <td>
                                 <span class="d_b">Сумма: </span>
                                 <div class="price price_f-s_16 d_i-b">
-                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span> <%-curr%></span>
+                                    <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span> <%-curr%></span>
                                 </div>
                             </td>
                         </tr>
@@ -107,7 +107,7 @@
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
-                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+                                                    <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                             <td rowspan="<%- names.length %>">
@@ -122,12 +122,12 @@
                                                     </div>
                                                     <input type="text" data-min="1" data-title="только цифры" data-rel="plusminus" value="<%-item.count%>">
                                                 </div>
-                                                <span class="v-a_m"><%-kits%></span>
+                                                <span class="v-a_m countOrCompl"><%-kits%></span>
                                             </td>
                                             <td rowspan="<%- names.length %>">
                                                 <span>Сумма: </span>
                                                 <div class="price price_f-s_16 d_i-b">
-                                                    <span class="first_cash"><span class="f-w_b"><%-parseFloat(item.price*item.count).toFixed(pricePrecision)%></span> <%-curr%></span>
+                                                    <span class="first_cash"><span class="f-w_b priceOrder"><%-parseFloat(item.price*item.count).toFixed(pricePrecision)%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -149,7 +149,7 @@
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
-                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+                                                    <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -205,7 +205,7 @@
                                 <div class="t-a_l d_i-b v-a_m">
                                     <span class="d_b">Итого:</span>
                                     <div class="price price_f-s_24">
-                                        <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%-curr%></span>
+                                        <span class="first_cash"><span class="f-w_b priceOrder" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%-curr%></span>
                                     </div>
                                 </div>
                             </td>
@@ -251,7 +251,7 @@
                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span><% } %>
                         </div>
                         <div class="price price_f-s_16">
-                            <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
+                            <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                         </div>
                     </td>
                     <td>
@@ -259,7 +259,7 @@
                     </td>
                     <td>
                         <div class="price price_f-s_16">
-                            <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
+                            <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
                         </div>
                     </td>
                 </tr>
@@ -306,7 +306,7 @@
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                     <td rowspan="<%- names.length %>" class="v-a_m">
@@ -315,7 +315,7 @@
                                     <td rowspan="<%- names.length %>" class="v-a_m">
                                         <span>Сумма: </span>
                                         <div class="price price_f-s_16 d_i-b">
-                                            <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
+                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
                                         </div>
                                     </td>
                                 </tr>
@@ -337,7 +337,7 @@
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                 </tr>
@@ -366,7 +366,7 @@
                         <div class="f_r">
                             <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
                             <span class="price price_f-s_24 v-a_m d_i-b">
-                                <span class="first_cash"><span class="f-w_b"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
+                                <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
                             </span>
                         </div>
                     </td>
