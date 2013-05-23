@@ -57,7 +57,7 @@
             {if count($products)>0}
             <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
             <div class="clearfix t-a_c frame_func_catalog">
-
+                <form method="get" id="searchSortForm" action="">
                 <!-- sort block -->
                 <div class="f_l">
                     <span class="v-a_m">{lang('s_order_by')}:</span>
@@ -86,6 +86,7 @@
                         </select>
                     </div>
                 </div>
+                </form>
 
                 <!-- selecting product list type -->
                 <div class="groupButton list_pic_btn">
