@@ -1170,14 +1170,16 @@ function ieInput(els) {
             $(sel).each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
-                if ($this.data('place') == 'center') body.css('margin-right', function(){
-                    if ($(document).height()-wnd.height() > 0){
-                        body.removeClass('o_h');
-                        drop_over.removeClass('drop_overlay_fixed');
-                        return 0
-                    }
-                    drop_over.remove();
-                })
+                if ($this.data('place') == 'center') {
+                    body.removeClass('o_h');
+                    body.css('margin-right', function(){
+                        if ($(document).height()-wnd.height() > 0){
+                            drop_over.removeClass('drop_overlay_fixed');
+                            return 0
+                        }
+                    })
+                }
+                drop_over.remove();
             }).removeClass('active');
         //wnd.unbind('scroll resize', methods.dropScroll)
         },

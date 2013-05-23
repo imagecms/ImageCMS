@@ -89,7 +89,7 @@
                                     <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
                                         <figure>
                                             <span class="helper"></span>
-                                            <img src="{echo $hotProduct->firstVariant->getSmallPhoto()}"/>
+                                            <img src="{echo $hotProduct->firstVariant->getMediumPhoto()}"/>
                                         </figure>
                                     </a>
                                 </div>
