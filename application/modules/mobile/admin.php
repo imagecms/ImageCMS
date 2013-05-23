@@ -16,9 +16,9 @@ class Admin extends BaseAdminController {
     }
 
     public function get_settings() {
-        $settings = $this->db->get('mod_mobile')->result_array();
+        $settings = $this->db->where('name','mobile')->get('components')->result_array();
 
-            $this->settings = $settings[0]['mobile_setings'];
+            $this->settings = $settings[0]['settings'];
 
         
     }
@@ -40,9 +40,7 @@ class Admin extends BaseAdminController {
      * @copyright (c) 2013, ImageCMS
      */
     public function update(){
-        $sql = "delete from mod_mobile";
-        $this->db->query($sql);
-        $sql = "insert into mod_mobile(mobile_setings) values('" . serialize($_POST) . "')";
+        $sql = "update components set settings = '" . serialize($_POST) . "' where name = 'mobile'";
         $this->db->query($sql);
         showMessage('Даные сохранены');
     }
