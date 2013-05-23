@@ -111,7 +111,7 @@
                 {foreach $products as $product}
                 <!-- product block -->
                 <!-- check if product is in stock -->
-                <li class="{if (int)$product->getallstock() == 0}not-avail{/if} span3">
+                <li class="{if (int)$product->getallstock() == 0}not_avail{/if} span3">
 
                     <!-- product info block -->
                     <div class="description">

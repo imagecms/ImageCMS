@@ -71,7 +71,7 @@
             <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
                 <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
-                <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
+                <li class="span3{if $product->getFirstVariant()->getStock() == 0} not_avail{/if}">
                     <div class="description">
                         <div class="frame_response">
                             <!--    Star reiting    -->
@@ -121,13 +121,22 @@
                         <!-- displaying buy or in cart button -->
                         <button class="btn btn_buy btnBuy" 
                                 type="button"
+                                data-id="{echo $product->getId()}"
                                 data-prodid="{echo $product->getId()}"
-                                data-varid="{echo $product->firstVariant->getId()}"
-                                data-price="{echo $product->firstVariant->toCurrency()}"
+                                data-varid="{echo $product->getId()}" 
+                                data-price="{echo $product->toCurrency()}" 
                                 data-name="{echo ShopCore::encode($product->getName())}"
-                                data-number="{echo $product->firstVariant->getnumber()}"
-                                data-maxcount="{echo $product->firstVariant->getstock()}"
-                                data-vname="{echo $product->firstVariant->getName()}"
+                                data-vname="{echo ShopCore::encode($pv->getName())}"
+                                data-maxcount="{echo $product->getstock()}"
+                                data-number="{echo $product->getNumber()}"
+                                data-img="{echo $product->getSmallPhoto()}"
+                                data-url="{echo shop_url('product/'.$product->getUrl())}"
+
+                                data-name="{echo ShopCore::encode($product->getName())}"
+                                data-price="{echo $product->toCurrency()}"
+                                data-number="{echo $product->getNumber()}"
+                                data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                data-stock="{echo $product->getStock()}"
                                 >
                             {lang('s_buy')}
                         </button>

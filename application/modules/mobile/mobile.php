@@ -58,11 +58,11 @@ class Mobile extends ShopController {
      * @return view
      * @author Kaero <dev@imagecms.net>
      * @copyright (c) 2013, ImageCMS
-     */    
+     */  
     public function get_settings(){
-        $settings = $this->db->get('mod_mobile')->result_array();
+        $settings = $this->db->where('name','mobile')->get('components')->result_array();
         if ($settings)
-            $this->settings = $settings[0]['mobile_setings'];
+            $this->settings = $settings[0]['settings'];
         else{
             'Ошибка настроек';
             exit;
@@ -92,17 +92,9 @@ class Mobile extends ShopController {
      * Install module
      */
     public function _install() {
+              
         
-        $sql = "CREATE TABLE IF NOT EXISTS `mod_mobile` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,          
-          `mobile_setings` text CHARACTER SET utf8,
-          PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
-
-        $this->db->query($sql);
-        
-        
-        $this->db->where('name', 'mobile_version');
+        $this->db->where('name', 'mobile');
         $this->db->update('components', array('autoload' => 1));
     }
     
@@ -113,7 +105,7 @@ class Mobile extends ShopController {
             exit;
 
         $this->load->dbforge();
-        $this->dbforge->drop_table('mod_mobile');
+
     }
 
 }
