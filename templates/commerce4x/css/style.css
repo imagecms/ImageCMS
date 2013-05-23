@@ -770,8 +770,8 @@ a.activeSlide{background-position: -66px 0;}
 .frame_brand.main .items-list > li a{font-size: 12px;}
 .frame_brand.main .items-list ul{margin-top: 5px;}
 
-.frame_func_catalog{position: relative;z-index: 2;}
-.frame_func_catalog .groupButton, .frame_func_catalog > div{margin: 6px 20px 15px;}
+.frame_func_catalog{position: relative;z-index: 2;padding: 10px 0;}
+.frame_func_catalog .groupButton, .frame_func_catalog > div{margin: 0 20px 15px;}
 .frame_func_catalog > div:first-child{margin-left: 0;}
 
 .sliderCont{}

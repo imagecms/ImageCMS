@@ -20,15 +20,19 @@ class Cms_base extends CI_Model {
         $query = $this->db->get('settings', 1);
 
         if ($query->num_rows() == 1) {
-//+++++++++++++++++++++++++++            
-            $arr = $query->row_array(); 
+//+++++++++++++++++++++++++++
+            $arr = $query->row_array();
             $lang_arr = get_main_lang();
-            $meta = $this->db->where('lang_ident',$lang_arr['id'])->limit(1)->get('settings_i18n')->result_array();
+            $meta = $this->db
+                    ->where('lang_ident', $lang_arr['id'])
+                    ->limit(1)
+                    ->get('settings_i18n')
+                    ->result_array();
             $arr['site_short_title'] = $meta[0]['short_name'];
             $arr['site_title'] = $meta[0]['name'];
             $arr['site_description'] = $meta[0]['description'];
             $arr['site_keywords'] = $meta[0]['keywords'];
-            
+
             return $arr;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
@@ -105,12 +109,12 @@ class Cms_base extends CI_Model {
     public function get_categories() {
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
-        
+
         if ($query->num_rows() > 0) {
             $categories = $query->result_array();
 
             ($hook = get_hook('cmsbase_return_categories')) ? eval($hook) : NULL;
-            
+
             return $categories;
         }
 
