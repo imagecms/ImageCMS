@@ -5,7 +5,7 @@
 class Admin extends BaseAdminController {
 
     public function __construct() {
-        $this->locale = BaseAdminController::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
     }
 
     public function index() {
@@ -23,8 +23,8 @@ class Admin extends BaseAdminController {
     }
 
     private function get_orders_statuses() {
-        return $this->db->query("SELECT * FROM `shop_order_statuses` 
-            JOIN `shop_order_statuses_i18n` ON shop_order_statuses.id=shop_order_statuses_i18n.id 
+        return $this->db->query("SELECT * FROM `shop_order_statuses`
+            JOIN `shop_order_statuses_i18n` ON shop_order_statuses.id=shop_order_statuses_i18n.id
             WHERE `locale`='" . $this->locale . "'")->result_array();
     }
 
@@ -52,7 +52,7 @@ class Admin extends BaseAdminController {
             $config['brand'] = $for_update['brand'];
             $config['userstatuses_after'] = $for_update['userstatuses_after'];
             $config['backup'] = $for_update['backup'];
-            
+
             if ($this->form_validation->run() == false) {
                 showMessage(validation_errors(), '', 'r');
             } else {
@@ -62,7 +62,7 @@ class Admin extends BaseAdminController {
             }
         }
     }
-    
+
     public function startImagesResize() {
         ShopCore::app()->SWatermark->updateWatermarks(true);
         showMessage("Изображения обновлены");
