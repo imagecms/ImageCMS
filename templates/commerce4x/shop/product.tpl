@@ -487,6 +487,7 @@
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
                                         data-url='{echo json_encode($arrUrl)}'
                                         data-img='{echo json_encode($arrImg)}'
+                                        data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                         >
                                     {lang('s_buy')}
                                 </button>

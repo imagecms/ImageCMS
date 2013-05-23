@@ -341,7 +341,6 @@ var Shop = {
         cartItem.vname = $context.data('vname');
         cartItem.url = $context.data('url'); 
         cartItem.img = $context.data('img');
-        
         return cartItem;
     },
 
