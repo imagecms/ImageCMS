@@ -164,7 +164,7 @@ $(document).ready(function() {
         orderSelect.addHiddenFields();
     });
 
-    $('#sort, #sort2').on('change', function(){
+    $('#sort, #sort2').live('change', function(){
         $('form#searchSortForm').submit();
     });
 });

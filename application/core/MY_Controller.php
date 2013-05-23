@@ -94,10 +94,7 @@ class MY_Controller extends MX_Controller {
         $lang_id = $ci->config->item('cur_lang');
 
         if ($lang_id) {
-            $query = $ci->db
-                    ->select('identif')
-                    ->get_where('languages', array('id' => $lang_id))
-                    ->result();
+            $query = $ci->db->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")->result();
 
             if ($query) {
                 self::$currentLocale = $query[0]->identif;
@@ -109,7 +106,6 @@ class MY_Controller extends MX_Controller {
             $defaultLanguage = self::getDefaultLanguage();
             self::$currentLocale = $defaultLanguage['identif'];
         }
-
         return self::$currentLocale;
     }
 
