@@ -132,7 +132,7 @@
                                 <button {if $key != 0}style="display:none"{/if} 
                                     class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
                                     type="button" 
-                                     data-id="{echo $pv->getId()}"
+                                    data-id="{echo $pv->getId()}"
                            
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}" 
@@ -142,7 +142,7 @@
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$pv->getUrl())}"
-
+                                    data-vname="{echo ShopCore::encode($pv->getName())}"
                                     data-name="{echo ShopCore::encode($pv->getName())}"
                                     data-price="{echo $pv->toCurrency()}"
                                     data-number="{echo $pv->getNumber()}"
@@ -322,6 +322,10 @@
                                             data-maxcount="{echo $p->firstVariant->getstock()}"
                                             data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                             data-url="{echo shop_url('product/' . $p->getUrl())}"
+                                            
+                                            data-name="{echo ShopCore::encode($p->getName())}"
+                                            data-price="{echo $p->toCurrency()}"
+                                            data-number="{echo $p->getNumber()}"
                                             data-origPrice="{if $product->hasDiscounts()}{echo $p->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $p->getStock()}"
                                             >
@@ -477,15 +481,24 @@
                                 </div>    
                                 <button class="btn btn_buy btnBuy" type="button"
                                         
+
+                                        data-name="{echo ShopCore::encode($pv->getName())}"
+                                        data-price="{echo $pv->toCurrency()}"
+                                        data-number="{echo $pv->getNumber()}"
+                                        data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        
+                                        
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                        data-vname="{echo ShopCore::encode($kitProducts->getName())}"
                                         data-kit="true"
                                         data-kitId="{echo $kitProducts->getId()}"
                                         data-number="{echo $model->firstVariant->getnumber()}"
                                         data-maxcount="{echo $model->firstVariant->getstock()}"
+                                        data-stock="{echo $kitProducts->getStock()}" 
                                         data-url='{echo json_encode($arrUrl)}'
                                         data-img='{echo json_encode($arrImg)}'
                                         >
