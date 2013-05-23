@@ -102,11 +102,11 @@ class MY_Controller extends MX_Controller {
             if ($query) {
                 self::$currentLocale = $query[0]->identif;
             } else {
-                $defaultLanguage = $this->getDefaultLanguage();
+                $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
         } else {
-            $defaultLanguage = $this->getDefaultLanguage();
+            $defaultLanguage = self::getDefaultLanguage();
             self::$currentLocale = $defaultLanguage['identif'];
         }
 
@@ -118,7 +118,8 @@ class MY_Controller extends MX_Controller {
      */
     private function getDefaultLanguage() {
         $default = NULL;
-        $languages = $this->db
+        $ci = get_instance();
+        $languages = $ci->db
                 ->where('default', 1)
                 ->get('languages');
 
