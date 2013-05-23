@@ -92,7 +92,7 @@
                                 output price without discount
                                  To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                 -->
-                                <span class="f-w_b" id="priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
+                                <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                 {$CS}
                             </span>                           
                             {/if}

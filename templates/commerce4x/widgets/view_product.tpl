@@ -32,7 +32,7 @@
                                     "$hotProduct->firstVariant->toCurrency('OrigPrice')" or $hotProduct->firstVariant->getOrigPrice()
                                     output price without discount
                                     -->
-                                    <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
+                                    <span class="f-w_b priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
                                     {$CS}
                                 </span>                           
                                 {/if}
