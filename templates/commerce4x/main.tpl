@@ -51,7 +51,6 @@
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body>
-             {$CI->load->module('star_rating')->show_star_rating()}
         <div class="mainBody">
             <div class="header">
                 <header>
@@ -263,7 +262,7 @@
                                     <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
                                 </li>
                                 <!--Load star rating-->
-                           
+                                {$CI->load->module('star_rating')->show_star_rating()}
                                 
                             </ul>
                         </div>
