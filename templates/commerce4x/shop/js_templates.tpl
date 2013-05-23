@@ -111,7 +111,7 @@
                                                 </div>
                                             </td>
                                             <td rowspan="<%- names.length %>">
-                                                <div class="frame_count number d_i-b v-a_m">
+                                                <div class="frame_count number d_i-b v-a_m" data-title="количество на складе <%-item.maxcount%>">
                                                     <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit%>">
                                                         <button id="plus" class="d_b btn_small btn plus" type="button">
                                                             <span class="icon-plus"></span>
@@ -120,7 +120,8 @@
                                                             <span class="icon-minus"></span>
                                                         </button>
                                                     </div>
-                                                    <input type="text" data-min="1" data-title="только цифры" data-rel="plusminus" value="<%-item.count%>">
+                                                    
+                                                    <input type="text" data-min="1" data-title="только цифры" data-rel="plusminus" value="<%-item.count%>" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                                 </div>
                                                 <span class="v-a_m"><%-kits%></span>
                                             </td>
