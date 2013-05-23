@@ -274,7 +274,7 @@
                         <figure>
                             <span class="helper"></span>
                             <img src="{echo $product->firstVariant->getMediumPhoto()}" 
-                                 alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
+                                 alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}" class="vimg"/>
                         </figure>
                     </a>
                 </div>
