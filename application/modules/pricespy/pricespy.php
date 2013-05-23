@@ -16,6 +16,7 @@ class Pricespy extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->load->model('pricespy_model');
     }
 
     /**
@@ -46,7 +47,7 @@ class Pricespy extends MY_Controller {
     }
 
     /**
-     * 
+     *
      */
     public function index() {
         if ($this->dx_auth->is_logged_in()) {
@@ -67,13 +68,14 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
+        $CI->load->model('pricespy_model');
 
         $product = $product[model];
         $ids = array();
         foreach ($product as $key => $p)
             $ids[$key] = $p->id;
 
-        $this->pricespy_model->delSpysbyIds($ids);
+        $CI->pricespy_model->delSpysbyIds($ids);
     }
 
     /**
@@ -85,6 +87,7 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
+        $CI->load->model('pricespy_model');
 
         $spys = $CI->db
                 ->from('mod_price_spy')
@@ -127,8 +130,8 @@ class Pricespy extends MY_Controller {
     }
 
     /**
-     * 
-     * @param type $hash 
+     *
+     * @param type $hash
      */
     public function unSpy($hash) {
         if ($this->pricespy_model->delSpyByHash($hash))
