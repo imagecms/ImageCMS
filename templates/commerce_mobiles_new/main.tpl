@@ -6,6 +6,8 @@
         <meta name = "format-detection" content = "telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
         <title>{$site_title}</title>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt_ie_8.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="css/lt_ie_7.css" /><![endif]-->
