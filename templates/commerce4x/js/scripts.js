@@ -22,8 +22,16 @@ var optionCompare = {
 };
 var genObj = {
     textEl: '.text-el',//селектор
+    emptyCarthideElement: '#popupCart .inside_padd table, #shopCartPage',
+    emptyCartshowElement: '#popupCart .inside_padd div.msg, #shopCartPageEmpty',
+    pM: '.paymentMethod',
+    trCartKit: 'tr.cartKit',
     frameCount: '.frame_count',//селектор
-    parentBtnBuy: 'li',//селектор
+    countOrCompl: '.countOrCompl',//селектор
+    priceOrder: '.priceOrder',
+    minus: '.minus',
+    plus: '.plus',
+    parentBtnBuy: 'li, [data-rel="frameP"]',//селектор
     wishListIn: 'btn_cart',//назва класу
     compareIn: 'btn_cart',//назва класу
     toWishlist: 'toWishlist',//назва класу
@@ -37,7 +45,18 @@ var genObj = {
     notAvail: 'not_avail',//назва класу
     btnBuy: 'btnBuy',//назва класу кнопка купити
     btnBuyCss: 'btn_buy',//назва класу
-    btnCartCss: 'btn_cart'//назва класу
+    btnCartCss: 'btn_cart',//назва класу
+    descr: '.description',
+    frameNumber: '.frame_number',
+    frameVName: '.frame_variant_name',
+    code: '.code',
+    prefV: ".variant_",
+    selVariant: '.variant',
+    imgVC: '.vimg',
+    imgVP: '.vimg',
+    priceVariant: '.priceVariant',
+    priceOrigVariant: 'priceOrigVariant',
+    photoProduct: '.photoProduct'
 }
 
 function navPortait() {
@@ -49,8 +68,8 @@ function navPortait() {
         if ($this.hasClass('navHorizontal')) {
             $('.frame-navbar').addClass('in');
             var headerFon = $('.headerFon'),
-                    heightFon = 0,
-                    temp_height = $this.find('> li').outerHeight();
+            heightFon = 0,
+            temp_height = $this.find('> li').outerHeight();
 
             if ($this.hasClass('navVertical')) {
                 $('.btn-navbar').hide();
@@ -180,8 +199,8 @@ $(document).ready(function() {
                     $(dropEl).addClass('top-right-report');
                 }
             
-                $(dropEl).find('li').remove();
-                var elWrap = $(el).closest('li').clone().removeAttr('style').removeAttr('class'),
+                $(dropEl).find(genObj.parentBtnBuy).remove();
+                var elWrap = $(el).closest(genObj.parentBtnBuy).clone().removeAttr('style').removeAttr('class'),
                 dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
@@ -199,7 +218,7 @@ $(document).ready(function() {
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, #variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
                 return $(el);
             }
@@ -236,11 +255,6 @@ $(document).ready(function() {
         })
     } catch (err) {
     }
-    if (isTouch){
-        $('.jcarousel-clip-horizontal').touchstart(function(){
-            alert(1)
-        })
-    }
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
@@ -264,63 +278,24 @@ wnd.load(function() {
         });
     }
 
-
-    var $js_carousel = $('.carousel_js'),
-    $frame_button = new Array();
-    $item = new Array();
-    $item_l = new Array();
-    $item_w = new Array();
-    $this_carousel = new Array();
-    $this_prev = new Array();
-    $this_next = new Array();
-
-    $js_carousel.each(function(index) {
-        var index = index,
-        $this = $(this);
-
-        $frame_button[index] = $this.find('.groupButton')
-        $item[index] = $this.find('.items:first > li');
-        $item_l[index] = $item[index].length;
-        $item_w[index] = $item[index].outerWidth(true);
-        $this_carousel[index] = $this.find('.carousel');
-        $this_prev[index] = $this.find('.btn_prev');
-        $this_next[index] = $this.find('.btn_next');
-    })
-    function carousel() {
-        var cont_width = $('.container').width();
-        $js_carousel.each(function(index) {
-            var index = index,
-            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
-            if ($item_w[index] * $item_l[index] - ($item_w[index] - $item[index].width()) > cont_width) {
-                $this_carousel[index].jcarousel({
-                    buttonNextHTML: $this_next[index],
-                    buttonPrevHTML: $this_prev[index],
-                    visible: $count_visible,
-                    scroll: 1
-                })
-                $this_next[index].add($this_prev[index]).css('display', 'inline-block').appendTo($frame_button[index]);
-            }
-            else {
-                $this_carousel[index].width($item_w[index] * $item_l[index])
-                $this_next[index].add($this_prev[index]).css('display', 'none');
-            }
-            if ($(this).hasClass('frame_brand')) {
-                var sH = 0;
-                var brandsImg = $('.frame_brand img')
-                brandsImg.each(function() {
+    $('.carousel_js:not(.vertical_carousel)').myCarousel({
+        item: 'li',
+        prev: '.btn_prev',
+        next: '.btn_next',
+        content: '.carousel',
+        before: function(){
+            var sH = 0;
+            var brandsImg = $('.frame_brand img')
+            if ($.exists_nabir(brandsImg.closest('.carousel_js'))){
+                brandsImg.each(function(){
                     var $thisH = $(this).height()
-                    if ($thisH > sH)
-                        sH = $thisH;
+                    if ($thisH > sH) sH = $thisH;
                 })
-                brandsImg.prev('.helper').css('height', sH);
+                $('.frame_brand .helper').css('height', sH);
             }
-        });
-    }
-
-    carousel();
-
+        }
+    });
     wnd.resize(function() {
-        carousel();
         navPortait();
         $('.frame_tabsc > div').equalHorizCell('refresh');
         $('.menu-main').menuPacket2('refresh');
