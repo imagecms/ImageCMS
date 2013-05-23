@@ -72,8 +72,6 @@
                         {$orderCustomFields}
                     </div>
                 {/if}
-
-
                 <div class="groups_form">
                     <div class="frameLabel" style="position: relative; z-index: 6;">
                         <span class="title">Способ доставки</span>
@@ -110,7 +108,7 @@
                         <div class="frameLabel" style="position: relative; z-index: 5;">
                             <span class="title">Способ оплаты</span>
                             <div class="frame_form_field">
-                                <div class="row-fluid" id="paymentMethod">
+                                <div class="row-fluid paymentMethod">
                                     <div class="lineForm">
                                         <select name="paymentMethodId"  id="paymentMethod">
                                             {$counter = true}

@@ -24,7 +24,7 @@ var genObj = {
     textEl: '.text-el',//селектор
     emptyCarthideElement: '#popupCart .inside_padd table, #shopCartPage',
     emptyCartshowElement: '#popupCart .inside_padd div.msg, #shopCartPageEmpty',
-    pM: '#paymentMethod',
+    pM: '.paymentMethod',
     trCartKit: 'tr.cartKit',
     frameCount: '.frame_count',//селектор
     countOrCompl: '.countOrCompl',//селектор
