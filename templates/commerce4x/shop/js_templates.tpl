@@ -38,7 +38,7 @@
                             <td class="description">
                                 <a href="<%-item.url%>"><%- item.name %></a>
                                 <div>
-                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
+                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                 </div>
                                 <div class="price price_f-s_16">
@@ -103,7 +103,7 @@
                                             <td class="description">
                                                 <a href="<%- urls[i]%>"><%- names[i] %></a>
                                                 <div>
-                                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
+                                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
@@ -145,7 +145,7 @@
                                             <td class="description">
                                                 <a href="<%- urls[i]%>"><%-names[i]%></a>
                                                 <div>
-                                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
+                                                    <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
@@ -247,7 +247,7 @@
                     <td class="description">
                         <a href="<%-item.url%>"><%- item.name %></a>
                         <div>
-                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal} <span class="code">(<%- item.vname%>)</span></span><% } %>
+                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span><% } %>
                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span><% } %>
                         </div>
                         <div class="price price_f-s_16">
@@ -302,7 +302,7 @@
                                     <td class="description">
                                         <a href="<%- urls[i] %>"><%- names[i] %></a>
                                         <div>
-                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
+                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
@@ -333,7 +333,7 @@
                                     <td class="description">
                                         <a href="<%- urls[i]%>"><%-names[i]%></a>
                                         <div>
-                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant_name)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
+                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
