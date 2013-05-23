@@ -59,7 +59,7 @@ class Navigation_Widgets extends MY_Controller {
                     $ci = &get_instance();
                     $shop_category = $ci->db->select(array('full_path_ids', 'url', 'name'))
                             ->where(array('shop_category.id' => $this->core->core_data['id'],
-                                'shop_category_i18n.locale' => BaseAdminController::getCurrentLocale()))
+                                'shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
                             ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                             ->limit(1)
                             ->get('shop_category');
@@ -70,7 +70,7 @@ class Navigation_Widgets extends MY_Controller {
                         $result = array();
                         if (is_array($full_path_ids) && !empty($full_path_ids)) {
                             $result = $ci->db->select(array('full_path', 'name'))
-                                    ->where('locale', BaseAdminController::getCurrentLocale())
+                                    ->where('locale', MY_Controller::getCurrentLocale())
                                     ->where_in('shop_category.id', $full_path_ids)
                                     ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                     ->get('shop_category');
@@ -100,7 +100,7 @@ class Navigation_Widgets extends MY_Controller {
                     //get product model
                     $product = $ci->db->select(array('name', 'category_id'))
                             ->where(array('shop_products.id' => $this->core->core_data['id'],
-                                'locale' => BaseAdminController::getCurrentLocale()))
+                                'locale' => MY_Controller::getCurrentLocale()))
                             ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                             ->get('shop_products');
                     if ($product) {
@@ -110,7 +110,7 @@ class Navigation_Widgets extends MY_Controller {
                         if ($product['category_id'] != null && $product['category_id'] > 0) {
                             $shop_category = $ci->db->select(array('full_path_ids', 'full_path', 'name'))
                                     ->where(array('shop_category.id' => $product['category_id'],
-                                        'shop_category_i18n.locale' => BaseAdminController::getCurrentLocale()))
+                                        'shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
                                     ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                     ->limit(1)
                                     ->get('shop_category');
@@ -121,7 +121,7 @@ class Navigation_Widgets extends MY_Controller {
                                 $full_path_ids = unserialize($full_path_ids);
                                 if (is_array($full_path_ids) && !empty($full_path_ids)) {
                                     $result = $ci->db->select(array('full_path', 'name'))
-                                            ->where('locale', BaseAdminController::getCurrentLocale())
+                                            ->where('locale', MY_Controller::getCurrentLocale())
                                             ->where_in('shop_category.id', $full_path_ids)
                                             ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                             ->get('shop_category');
