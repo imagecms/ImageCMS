@@ -40,15 +40,9 @@ class Core extends MY_Controller {
         $cat_path = $this->uri->uri_string();
 
         ($hook = get_hook('core_init')) ? eval($hook) : NULL;
-//+++++++++++++++++++++++++++++++++++++++++++++++++
-        // Load settings
-//        if (($this->settings = $this->cache->fetch('main_site_settings')) === FALSE) { //--
-//            $this->settings = $this->cms_base->get_settings();
-//            $this->cache->store('main_site_settings', $this->settings);
-//        }
 
-        $this->settings = $this->cms_base->get_settings(); //++
-//+++++++++++++++++++++++++++++++++++        
+        $this->settings = $this->cms_base->get_settings();
+
         ($hook = get_hook('core_settings_loaded')) ? eval($hook) : NULL;
 
         // Set site main template
