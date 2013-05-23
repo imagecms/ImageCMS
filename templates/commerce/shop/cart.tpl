@@ -63,16 +63,16 @@
                                         {if $item.model->getMainProduct()->getMainImage()}
                                             <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
                                                 <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
-                                            </a>                                        
-                                        {/if}                                   
+                                            </a>
+                                        {/if}
                                     </td>
                                     <td>
                                         <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
                                         <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}">
-                                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
-                                        {echo $item.price} {$CS}                              
+                                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}
+                                        {echo $item.price} {$CS}
                                     </td>
                                     <td rowspan="{echo $item.model->countProducts()}">
                                         <div class="count">
@@ -90,18 +90,18 @@
                                 </tr>
                                 {foreach $item.model->getShopKitProducts() as $shopKitProduct}
                                     {$ap = $shopKitProduct->getSProducts()}
-                                    {$ap->setLocale(ShopController::getCurrentLocale())}
+                                    {$ap->setLocale(MY_Controller::getCurrentLocale())}
                                     {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                     <tr>
                                         <td style="width:90px;padding:2px;">
                                             {if $ap->getMainImage()}
                                                 <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
-                                                    <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
+                                                    <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />
                                                 </a>
-                                            {/if}                      
+                                            {/if}
                                         </td>
                                         <td>
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
+                                            <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
                                             {echo ShopCore::encode($kitFirstVariant->getName())}
                                             {if $kitFirstVariant->getEconomy() > 0}
                                     <br /><s style="font-size:14px;">{//echo $kitFirstVariant->toCurrency()} {$CS}</s>
@@ -146,21 +146,21 @@
                         </label>
                     {/if}
                     <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
-                    {$counter = true}
-                    {foreach $deliveryMethods as $deliveryMethod}
-                        {$del_id = $deliveryMethod->getId()}
+                        {$counter = true}
+                        {foreach $deliveryMethods as $deliveryMethod}
+                            {$del_id = $deliveryMethod->getId()}
                         <label>
-                            <input type="radio" 
-                                   {if $counter} checked="checked" 
-                                       {$del_id = $deliveryMethod->getId()} 
+                            <input type="radio"
+                                   {if $counter} checked="checked"
+                                       {$del_id = $deliveryMethod->getId()}
                                        {$counter = false}
                                        {$del_price = ceil($deliveryMethod->getPrice())}
                                        {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                                   {/if} 
-                                   name="met_del" 
-                                   class="met_del" 
-                                   value="{echo $del_id}" 
-                                   data-price="{echo ceil($deliveryMethod->getPrice())}" 
+                                   {/if}
+                                   name="met_del"
+                                   class="met_del"
+                                   value="{echo $del_id}"
+                                   data-price="{echo ceil($deliveryMethod->getPrice())}"
                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
                             {echo $deliveryMethod->getName()}
                         </label>
@@ -177,15 +177,15 @@
                                            {if $counter} checked="checked"
                                                {$counter = false}
                                                {$pay_id = $paymentMethod->getId()}
-                                           {/if} 
-                                           name="met_buy" 
-                                           class="met_buy" 
+                                           {/if}
+                                           name="met_buy"
+                                           class="met_buy"
                                            value="{echo $pay_id}" />
                                     {echo $paymentMethod->getName()}
-                                </label>                        
+                                </label>
                             {/foreach}
                         </div>
-                    {/if}            
+                    {/if}
                     <!--    Show payment methods    -->
                 </div>
                 <div class="addres_recip f_r">
@@ -230,7 +230,7 @@
                             <span class="red">*</span>
                         {/if}
                         {lang('s_comment')}
-                        <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
+                        <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea>
                     </label>
                     <div class="label_block">
                         {echo ShopCore::app()->CustomFieldsHelper->setPattern($pattern)->getCustomFields('order')->asHtml() }
@@ -252,11 +252,11 @@
             <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}" />
             <input type="hidden" name="paymentMethod" value="5" />
             <input type="hidden" name="makeOrder" value="1" />
-            {form_csrf()}
+                        {form_csrf()}
         </form>
-    {else:}
+                        {else:}
         <div class="comparison_slider">
             <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
         </div>
-    {/if}
+                            {/if}
 </div>
