@@ -478,17 +478,15 @@
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>    
                                 <button class="btn btn_buy btnBuy" type="button"
-
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
-                                        data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                        data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
                                         data-kit="true"
                                         data-kitId="{echo $kitProducts->getId()}"
-                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
+                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
                                         data-url='{echo json_encode($arrUrl)}'
                                         data-img='{echo json_encode($arrImg)}'
-                                        
                                         >
                                     {lang('s_buy')}
                                 </button>
