@@ -128,6 +128,7 @@
 
 
                                 {foreach $model->getProductVariants() as $key => $pv}
+
                                     {if $pv->getStock() > 0}
                                         <button {if $key != 0}style="display:none"{/if} 
                                                               class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
@@ -295,40 +296,43 @@
                                                         "$p->firstVariant->toCurrency('OrigPrice')" or $p->firstVariant->getOrigPrice()
                                                         output price without discount
                                                         -->
-                                                        <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')} </span>
-                                                        {$CS}
-                                                    </span>                                              
-                                                {/if}
-                                                <span class="f-w_b">{echo $p->firstvariant->toCurrency()} </span>{$CS}
-                                            </div>
-                                            <!--
-                                                        Buy button applies the 
-                                                        data-prodid - product ID
-                                                        data-varid - variant ID
-                                                        data-price - price Product
-                                                        data-name - name product
-                                                        these are the main four options for the button to "buy"
-                                            -->
-                                            <button class="btn btn_buy btnBuy" 
-
-                                                    data-id="{echo $p->getId()}"
-                                                    data-varid="{echo $p->firstVariant->getId()}" 
-                                                    data-prodid="{echo $p->getId()}" 
-                                                    data-price="{echo $p->firstvariant->toCurrency()}" 
-                                                    data-name="{echo ShopCore::encode($p->getName())}" 
-                                                    type="button"
-                                                    data-vname="{echo ShopCore::encode($pv->getName())}"
-                                                    data-number="{echo $p->firstVariant->getnumber()}"
-                                                    data-maxcount="{echo $p->firstVariant->getstock()}"
-                                                    data-img="{echo $p->firstVariant->getSmallPhoto()}"
-                                                    data-url="{echo shop_url('product/' . $p->getUrl())}"
-                                                    data-origPrice="{if $product->hasDiscounts()}{echo $p->toCurrency('OrigPrice')}{/if}"
-                                                    data-stock="{echo $p->getStock()}"
-                                                    >
-                                                {lang('s_buy')}
-                                            </button>
-
-
+                                                   
+                                            <span class="f-w_b" id="priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')} </span>
+                                            {$CS}
+                                        </span>                                              
+                                        {/if}
+                                        <span class="f-w_b">{echo $p->firstvariant->toCurrency()} </span>{$CS}
+                                    </div>
+                                    <!--
+                                                Buy button applies the 
+                                                data-prodid - product ID
+                                                data-varid - variant ID
+                                                data-price - price Product
+                                                data-name - name product
+                                                these are the main four options for the button to "buy"
+                                    -->
+                                    <button class="btn btn_buy btnBuy" 
+                                           
+                                            data-id="{echo $p->getId()}"
+                                            data-varid="{echo $p->firstVariant->getId()}" 
+                                            data-prodid="{echo $p->getId()}" 
+                                            data-price="{echo $p->firstvariant->toCurrency()}" 
+                                            data-name="{echo ShopCore::encode($p->getName())}" 
+                                            type="button"
+                                            data-vname="{echo ShopCore::encode($pv->getName())}"
+                                            data-number="{echo $p->firstVariant->getnumber()}"
+                                            data-maxcount="{echo $p->firstVariant->getstock()}"
+                                            data-img="{echo $p->firstVariant->getSmallPhoto()}"
+                                            data-url="{echo shop_url('product/' . $p->getUrl())}"
+                                            
+                                            data-name="{echo ShopCore::encode($p->getName())}"
+                                            data-price="{echo $p->toCurrency()}"
+                                            data-number="{echo $p->getNumber()}"
+                                            data-origPrice="{if $product->hasDiscounts()}{echo $p->toCurrency('OrigPrice')}{/if}"
+                                            data-stock="{echo $p->getStock()}"
+                                            >
+                                        {lang('s_buy')}
+                                    </button>
                                             <div class="d_i-b"> 
                                                 <!-- to compare button -->
                                                 <button class="btn btn_small_p toCompare"
@@ -477,15 +481,22 @@
                                 </div>    
                                 <button class="btn btn_buy btnBuy" type="button"
 
+                                        data-name="{echo ShopCore::encode($pv->getName())}"
+                                        data-price="{echo $pv->toCurrency()}"
+                                        data-number="{echo $pv->getNumber()}"
+                                        data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                        data-vname="{echo ShopCore::encode($kitProducts->getName())}"
                                         data-kit="true"
                                         data-kitId="{echo $kitProducts->getId()}"
                                         data-number="{echo $model->firstVariant->getnumber()}"
                                         data-maxcount="{echo $model->firstVariant->getstock()}"
+                                        data-stock="{echo $kitProducts->getStock()}" 
                                         data-url='{echo json_encode($arrUrl)}'
                                         data-img='{echo json_encode($arrImg)}'
                                         >
