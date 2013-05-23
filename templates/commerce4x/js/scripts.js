@@ -22,7 +22,15 @@ var optionCompare = {
 };
 var genObj = {
     textEl: '.text-el',//селектор
+    emptyCarthideElement: '#popupCart .inside_padd table, #shopCartPage',
+    emptyCartshowElement: '#popupCart .inside_padd div.msg, #shopCartPageEmpty',
+    pM: '.paymentMethod',
+    trCartKit: 'tr.cartKit',
     frameCount: '.frame_count',//селектор
+    countOrCompl: '.countOrCompl',//селектор
+    priceOrder: '.priceOrder',
+    minus: '.minus',
+    plus: '.plus',
     parentBtnBuy: 'li, [data-rel="frameP"]',//селектор
     wishListIn: 'btn_cart',//назва класу
     compareIn: 'btn_cart',//назва класу
@@ -41,7 +49,14 @@ var genObj = {
     descr: '.description',
     frameNumber: '.frame_number',
     frameVName: '.frame_variant_name',
-    code: '.code'
+    code: '.code',
+    prefV: ".variant_",
+    selVariant: '.variant',
+    imgVC: '.vimg',
+    imgVP: '.vimg',
+    priceVariant: '.priceVariant',
+    priceOrigVariant: 'priceOrigVariant',
+    photoProduct: '.photoProduct'
 }
 
 function navPortait() {

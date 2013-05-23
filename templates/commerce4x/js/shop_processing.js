@@ -89,28 +89,28 @@ function initShopPage(showWindow) {
             cartItem.count = pd.closest(genObj.frameCount).find('input').val();
 
             var word = cartItem.kit ? kits : pcs;
-            pd.closest(genObj.frameCount).next('span').html(word);
+            pd.closest('tr').find(genObj.countOrCompl).html(word);
 
             Shop.Cart.chCount(cartItem, function(){});
 
 
             $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
             totalPrice = cartItem.count * cartItem.price;
-            pd.closest('tr').find('span.first_cash>span').last().html(totalPrice.toFixed(pricePrecision));
+            pd.closest('tr').find(genObj.priceOrder).html(totalPrice.toFixed(pricePrecision));
 
             $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
             
             if (pd.closest(genObj.frameCount).find('input').val() == 1)
-                pd.closest(genObj.frameCount).find('.minus').attr('disabled', 'disabled');
+                pd.closest(genObj.frameCount).find(genObj.minus).attr('disabled', 'disabled');
             else
-                pd.closest(genObj.frameCount).find('.minus').removeAttr('disabled');
+                pd.closest(genObj.frameCount).find(genObj.minus).removeAttr('disabled');
         }
         // change count
-        $('div.frame_change_count>button').die('click').live('click', function(){
+        $(genObj.frameCount +' '+ genObj.minus +', '+ genObj.frameCount +' '+ genObj.plus).die('click').live('click', function(){
             chCountInCart($(this).closest('div'));
         });
 
-        $('div.frame_change_count+input[type=text]').die('keyup').live('keyup', function(){
+        $(genObj.frameCount +'input').die('keyup').live('keyup', function(){
             chCountInCart($(this).prev('div'));
         });
 
@@ -121,7 +121,7 @@ function initShopPage(showWindow) {
 
 function rmFromPopupCart(context, isKit) {
     if (typeof isKit != 'undefined' && isKit == true)
-        var tr = $(context).closest('tr.cartKit');
+        var tr = $(context).closest(genObj.trCartKit);
     else
         var tr = $(context).closest('tr');
 
@@ -149,7 +149,7 @@ function changeDeliveryMethod(id) {
         var replaceStr = _.template('<select id="paymentMethod" name="paymentMethodId"><% _.each(data, function(item) { %><option value="<%-item.id%>"><%-item.name%></option> <% }) %></select> ', {
             data:data
         });
-        $('div.pmDiv').closest('div').html(replaceStr);
+        $(genObj.pM).html(replaceStr);
 
         cuSel({
             changedEl:'#paymentMethod'
@@ -172,8 +172,8 @@ function recountCartPage() {
 }
 
 function emptyPopupCart() {
-    $('#popupCart .inside_padd table, #shopCartPage').hide();
-    $('#popupCart .inside_padd div.msg, #shopCartPageEmpty').removeClass('d_n').show();
+    $(genObj.emptyCarthideElement).hide();
+    $(genObj.emptyCartshowElement).removeClass('d_n').show();
 }
 
 function checkCompareWishLink() {
@@ -424,27 +424,27 @@ $(document).ready(function () {
         var productId = $(this).attr('value'),
         liBlock = $(this).closest(genObj.parentBtnBuy);
         
-        var vId = $('.variant_' + productId).attr('data-id'),
-        vName = $('.variant_' + productId).attr('data-vname'),
-        vPrice = $('.variant_' + productId).attr('data-price'),
-        vOrigPrice = $('.variant_' + productId).attr('data-origPrice'),
-        vNumber = $('.variant_' + productId).attr('data-number'),
-        vLargeImage = $('.variant_' + productId).attr('data-largeImage'),
-        vMainImage = $('.variant_' + productId).attr('data-mainImage'),
-        vStock = $('.variant_' + productId).attr('data-stock');
+        var vId = $(genObj.prefV + productId).attr('data-id'),
+        vName = $(genObj.prefV + productId).attr('data-vname'),
+        vPrice = $(genObj.prefV + productId).attr('data-price'),
+        vOrigPrice = $(genObj.prefV + productId).attr('data-origPrice'),
+        vNumber = $(genObj.prefV + productId).attr('data-number'),
+        vLargeImage = $(genObj.prefV + productId).attr('data-largeImage'),
+        vMainImage = $(genObj.prefV + productId).attr('data-mainImage'),
+        vStock = $(genObj.prefV + productId).attr('data-stock');
 
-        $('.photoGroup').attr('href', vLargeImage);
-        $('.photoGroup img').attr('src', vMainImage).attr('alt', vName);
-        $('.priceOrigVariant').html(vOrigPrice);
-        $('.priceVariant').html(vPrice);
+        $(genObj.photoProduct).attr('href', vLargeImage);
+        $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
+        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
+        liBlock.find(genObj.priceVariant).html(vPrice);
 
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find('.variant_' + productId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+'.'+genObj.btnBuy));
 
-        $('.variant').hide();
-        $('.variant_' + vId).show();
+        liBlock.find(genObj.selVariant).hide();
+        liBlock.find(genObj.prefV + vId).show();
     });
 
     /**Variants in Category*/
@@ -452,25 +452,25 @@ $(document).ready(function () {
         var productId = $(this).attr('value'),        
         liBlock = $(this).closest(genObj.parentBtnBuy);
         
-        var vMediumImage = liBlock.find('.variant_' + productId).attr('data-mediumImage'),
-        vId = $('.variant_' + productId).attr('data-id'),
-        vName = liBlock.find('.variant_' + productId).attr('data-vname'),
-        vPrice = liBlock.find('.variant_' + productId).attr('data-price'),
-        vOrigPrice = liBlock.find('.variant_' + productId).attr('data-origPrice'),
-        vNumber = liBlock.find('.variant_' + productId).attr('data-number');
-        vStock = liBlock.find('.variant_' + productId).attr('data-stock');
+        var vMediumImage = liBlock.find(genObj.prefV + productId).attr('data-mediumImage'),
+        vId = $(genObj.prefV + productId).attr('data-id'),
+        vName = liBlock.find(genObj.prefV + productId).attr('data-vname'),
+        vPrice = liBlock.find(genObj.prefV + productId).attr('data-price'),
+        vOrigPrice = liBlock.find(genObj.prefV + productId).attr('data-origPrice'),
+        vNumber = liBlock.find(genObj.prefV + productId).attr('data-number'),
+        vStock = liBlock.find(genObj.prefV + productId).attr('data-stock');
         
     
-        liBlock.find('.variant').hide();
-        liBlock.find('.variant_' + vId).show();
+        liBlock.find(genObj.selVariant).hide();
+        liBlock.find(genObj.prefV + vId).show();
         
-        liBlock.find('.priceOrigVariant').html(vOrigPrice);
-        liBlock.find('.priceVariant').html(vPrice);
-        liBlock.find('img').attr('src',vMediumImage).attr('alt', vName);
+        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
+        liBlock.find(genObj.priceVariant).html(vPrice);
+        liBlock.find(genObj.imgVC).attr('src',vMediumImage).attr('alt', vName);
     
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find('.variant_' + vId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+'.'+genObj.btnBuy));
     });
 });

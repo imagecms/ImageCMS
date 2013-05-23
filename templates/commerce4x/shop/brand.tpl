@@ -121,17 +121,18 @@
                         <!-- displaying buy or in cart button -->
                         <button class="btn btn_buy btnBuy" 
                                 type="button"
+                                
                                 data-id="{echo $product->getId()}"
-                                data-price="{echo $product->toCurrency()}" 
+                                data-varid="{echo $p->firstVariant->getId()}"
+                                data-prodid="{echo $product->getId()}"
+                                data-price="{echo $product->firstVariant->toCurrency()}" 
                                 data-name="{echo ShopCore::encode($product->getName())}"
-                                data-vname="{echo ShopCore::encode($pv->getName())}"
-                                data-maxcount="{echo $product->getstock()}"
-                                data-number="{echo $product->getNumber()}"
-                                data-img="{echo $product->getSmallPhoto()}"
+                                data-maxcount="{echo $product->firstVariant->getstock()}"
+                                data-number="{echo $product->firstVariant->getNumber()}"
+                                data-img="{echo $product->firstVariant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$product->getUrl())}"
-
-                                data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                data-stock="{echo $product->getStock()}"
+                                data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-stock="{echo $product->firstVariant->getStock()}"
                                 >
                             {lang('s_buy')}
                         </button>
