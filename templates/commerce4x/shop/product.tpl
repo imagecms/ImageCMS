@@ -32,7 +32,7 @@
                         {if sizeof($productImages = $model->getSProductImagess()) > 0}
                         {foreach $productImages as $key => $image}
                         <li>
-                            <a rel="group" href="{productImageUrl('products/additional/'.$image->getImageName())}" class="photo imageGroup">
+                            <a rel="group" href="{productImageUrl('products/additional/'.$image->getImageName())}" class="photo">
                                 <figure>
                                     <span class="helper"></span>
                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
@@ -172,7 +172,6 @@
                                 </div>
                             </div>
                             <div class="d_i-b v-a_b m-b_20 add_func_btn">
-
                                 <!-- Start. Block "Add to Compare" -->
                                 <button class="btn btn_small_p toCompare"  
                                         data-prodid="{echo $model->getId()}"  
@@ -284,11 +283,13 @@
                     {/if}
                     <!--The unit features product End-->
                     <!--Block Accessories Start-->
+
                     {if $accessories}
+
                     <div id="accessories">
                         <ul class="items items_catalog" data-radio-frame>
                             {foreach $accessories as $p}  
-                            <li class="span3 {if $p->firstvariant->getStock() == 0}not-avail{/if}">
+                            <li class="span3 {if $p->firstvariant->getStock() == 0}not_avail{/if}">
                                 <div class="description">
                                     <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                     <div class="price price_f-s_16">
@@ -313,20 +314,23 @@
                                                 these are the main four options for the button to "buy"
                                     -->
                                     <button class="btn btn_buy btnBuy" 
+
+                                            data-id="{echo $p->getId()}"
                                             data-varid="{echo $p->firstVariant->getId()}" 
                                             data-prodid="{echo $p->getId()}" 
                                             data-price="{echo $p->firstvariant->toCurrency()}" 
                                             data-name="{echo ShopCore::encode($p->getName())}" 
                                             type="button"
+                                            data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
                                             data-number="{echo $p->firstVariant->getnumber()}"
                                             data-maxcount="{echo $p->firstVariant->getstock()}"
                                             data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                             data-url="{echo shop_url('product/' . $p->getUrl())}"
+                                            data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                            data-stock="{echo $p->firstVariant->getStock()}"
                                             >
                                         {lang('s_buy')}
                                     </button>
-
-
                                     <div class="d_i-b"> 
                                         <!-- to compare button -->
                                         <button class="btn btn_small_p toCompare"
@@ -473,18 +477,18 @@
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>    
-                                <button class="btn btn_buy btnBuy" type="button"                                    
+                                <button class="btn btn_buy btnBuy" type="button"
+
                                         data-price="{echo $kitProducts->getTotalPrice()}" 
-                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
                                         data-kit="true"
                                         data-kitId="{echo $kitProducts->getId()}"
-                                        data-number="{echo $model->firstVariant->getnumber()}"
-                                        data-maxcount="{echo $model->firstVariant->getstock()}"
+                                        data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
                                         data-url='{echo json_encode($arrUrl)}'
                                         data-img='{echo json_encode($arrImg)}'
+                                        
                                         >
                                     {lang('s_buy')}
                                 </button>

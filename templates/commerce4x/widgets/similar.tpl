@@ -21,7 +21,7 @@
                     Check whether there is product available.
                     If no show it a little lighter.
                     -->
-                    <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
+                    <li class="span3 {if $product->firstVariant->getStock() == 0}not_avail{/if}">
                         <!-- $product->getUrl() - the path to the product-->
                         <div class="description">                            
                             <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>

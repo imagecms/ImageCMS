@@ -111,7 +111,7 @@
             <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
                 {$Comments = $CI->load->module('comments')->init($products)}
                 {foreach $products as $p}
-                    <li class="span3 {if $p->firstvariant->getstock()==0} not-avail{/if}">
+                    <li class="span3 {if $p->firstvariant->getstock()==0} not_avail{/if}">
                         <div class="description">
                             <div class="frame_response">
                                 <!-- Start. Star rating and comments count -->

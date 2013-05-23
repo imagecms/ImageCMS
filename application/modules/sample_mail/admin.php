@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('BASEPATH'))
-    exit('No direct script access allowed'); 
+    exit('No direct script access allowed');
 
 class Admin extends BaseAdminController {
 
@@ -19,8 +19,8 @@ class Admin extends BaseAdminController {
     }
 
     //creating new email template
-     
-     
+
+
 
     public function create() {
         if (empty($_POST)) {
@@ -55,11 +55,11 @@ class Admin extends BaseAdminController {
 
     public function edit($name, $locale = null) {
         if ($locale == null)
-            $locale = parent::getCurrentLocale();
+            $locale = MY_Controller::getCurrentLocale();
         if ($name != '') {
             $model = $this->email_model->getMailArray($name, $locale);
             if (empty($model))
-                $model = $this->email_model->getMailArray($name, parent::getCurrentLocale());
+                $model = $this->email_model->getMailArray($name, MY_Controller::getCurrentLocale());
         }
         $settings = unserialize($model['settings']);
         if (empty($_POST)) {
@@ -106,7 +106,7 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        $locale = parent::getCurrentLocale();
+        $locale = MY_Controller::getCurrentLocale();
         $models = $this->email_model->getList($locale);
         $this->render('list', array('models' => $models, 'locale' => $locale));
     }
@@ -122,4 +122,5 @@ class Admin extends BaseAdminController {
     }
 
 }
+
 ?>
