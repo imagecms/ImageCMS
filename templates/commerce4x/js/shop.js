@@ -52,10 +52,7 @@ var Shop = {
 
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
-                    } catch (e) {
-                        //console.error(e.message);
-                        return;
-                    }
+                    } catch (e) {return;}
                 });
             return;
 
@@ -86,7 +83,6 @@ var Shop = {
         },
         rm:function (cartItem) {
             Shop.currentItem = this.load('cartItem_' + cartItem.id + '_' + cartItem.vId);
-            //console.log(cartItem);
 
             if (Shop.currentItem.kit)
                 var key = 'ShopKit_' + Shop.currentItem.kitId;
@@ -95,7 +91,6 @@ var Shop = {
 
             //Shop.currentItem = cartItem;
             $.getJSON('/shop/cart_api/delete/' + key, function () {
-                //console.log('-- ');console.log(Shop.currentItem);console.log('cartItem_' + Shop.currentItem.id + Shop.currentItem.vId);
                 localStorage.removeItem('cartItem_' + Shop.currentItem.id +'_'+ Shop.currentItem.vId);
 
                 Shop.Cart.totalRecount();
@@ -206,8 +201,6 @@ var Shop = {
 
                 var key = localStorage.key(i);
 
-                //console.log(key);
-
                 if (key.match(pattern))
                     items.push(this.load(key));
             }
@@ -262,11 +255,7 @@ var Shop = {
         },
 
         showPopupCart:function () {
-        //console.log('start rendering');
-        //var start = Date.now();
         //$.fancybox(this.renderPopupCart());
-        //var delta = Date.now() - start;
-        //console.log('stop rendering, elapsed time: ' + delta);
         },
 
         sync: function (){
@@ -288,7 +277,6 @@ var Shop = {
                             kit.count = data.data.items[key].count;
                             Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
                         }
-                    //console.log(data.data.items[key]);
                     });
 
                     $(document).trigger({
@@ -406,10 +394,7 @@ var Shop = {
                                 $(loginButton).click();
                             }
                         }
-                    } catch (e) {
-                    //console.error('Error adding product to wishlist. Server\'s response is not valid JSON.');
-                    //console.log(e)
-                    }
+                    } catch (e) {}
                 });
             }
         },
@@ -431,10 +416,7 @@ var Shop = {
                         });
 
                     }
-                } catch (e) {
-                //console.error('Error remove product from wishlist. Server\'s response is notvalid JSON.');
-                //console.log(e.message);
-                }
+                } catch (e) {}
             });
             deleteWishListItem($(el));
         },
@@ -477,10 +459,7 @@ var Shop = {
                             });
 
                         }
-                    } catch (e) {
-                    //console.error('Error add product to compareList. Server\'s response is notvalid JSON.');
-                    //console.log(e.message);
-                    }
+                    } catch (e) {}
                 });
             }
         },
@@ -507,17 +486,13 @@ var Shop = {
                                 dataObj:dataObj
                             });
                         }
-                    } catch (e) {
-                    //console.error('Error remove product from compareList. Server\'s response is notvalid JSON.');
-                    //console.log(e.message);
-                    }
+                    } catch (e) {}
                 });
             }
             deleteComprasionItem($(el));
         },
         sync: function(){
             $.getJSON('/shop/compare_api/sync', function(data){
-                //console.log(data);
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
 
