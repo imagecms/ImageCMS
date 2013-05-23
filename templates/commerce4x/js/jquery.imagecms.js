@@ -203,7 +203,7 @@ function ieInput(els) {
             text_el = $this.find('.text-el'),
             me = settings.me;
 
-            if (text_el.is(':visible') && $.exists_nabir(text_el) && !me)
+            if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
                 return false;
             
             if (settings.effect == 'notalways') {
@@ -1069,7 +1069,6 @@ function ieInput(els) {
                     });
                     if ($(event.target).parents('[data-simple="yes"]').length == 0){
                         $this = $(this);
-                        if (event.button == undefined) body.scrollTop($this.offset().top)
                         elSet = $this.data();
                         elSetSource = $(elSet.drop);
                 
@@ -1113,6 +1112,8 @@ function ieInput(els) {
                         else {
                             $newthis = settings.before(this, elSetSource);
                             if ($newthis != undefined) $this = $newthis;
+                            
+                            if (event.button == undefined) body.scrollTop($this.offset().top)
 
                             var wndW = wnd.width();
                             if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
@@ -1122,13 +1123,7 @@ function ieInput(els) {
 
                             $this.addClass(activeClass);
                             drop_over.show();
-                            if (drop_over.length) body.css('margin-right', function(){
-                                if ($(document).height()-wnd.height() > 0){
-                                    body.addClass('o_h');
-                                    drop_over.addClass('drop_overlay_fixed');
-                                    return 17
-                                }
-                            })
+
                             drop_over.unbind('click').bind('click', function(){
                                 methods.triggerBtnClick();
                             })
@@ -1175,14 +1170,16 @@ function ieInput(els) {
             $(sel).each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
-                if (drop_over.length) body.css('margin-right', function(){
-                    if ($(document).height()-wnd.height() > 0){
-                        body.removeClass('o_h');
-                        drop_over.removeClass('drop_overlay_fixed');
-                        return 0
-                    }
-                    drop_over.remove();
-                })
+                if ($this.data('place') == 'center') {
+                    body.removeClass('o_h');
+                    body.css('margin-right', function(){
+                        if ($(document).height()-wnd.height() > 0){
+                            drop_over.removeClass('drop_overlay_fixed');
+                            return 0
+                        }
+                    })
+                }
+                drop_over.remove();
             }).removeClass('active');
         //wnd.unbind('scroll resize', methods.dropScroll)
         },
@@ -1234,8 +1231,14 @@ function ieInput(els) {
                 if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                //wnd.unbind('scroll resize', methods.dropScroll).bind('scroll resize', methods.dropScroll());
                 methods.dropScroll();
+                body.css('margin-right', function(){
+                    if ($(document).height()-wnd.height() > 0){
+                        body.addClass('o_h');
+                        drop_over.addClass('drop_overlay_fixed');
+                        return 17
+                    }
+                })
             }
         }
     };
@@ -1473,6 +1476,101 @@ function ieInput(els) {
             return methods.init.apply(this, arguments);
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.starRating');
+        }
+    }
+})(jQuery);
+
+/*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
+(function($) {
+    var methods = {
+        init: function(options) {
+            var settings = $.extend({
+                item: 'li',
+                prev: '.prev',
+                next: '.next',
+                content: '.content-carousel',
+                before: function() {
+                },
+                after: function() {
+                }
+            }, options);
+            var $js_carousel = $(this);
+            if ($.exists_nabir($js_carousel)) {
+                var item = settings.item,
+                prev = settings.prev,
+                next = settings.next,
+                content = settings.content,
+                $item = [],
+                $item_l = [],
+                $item_w = [],
+                $this_carousel = [],
+                $this_prev = [],
+                $this_next = [],
+                $marginR = [],
+                cont_width = [],
+                $item_h = [],
+                $marginT = [],
+                cont_height = [],
+                $frame_button = [],
+                adding = settings.adding;
+						
+                $js_carousel.each(function(index) {
+                    $this = $(this);
+                    $frame_button[index] = $this.find('.groupButton')
+                    $this_carousel[index] = $this;
+                    $item[index] = $this.find(item);
+                    $item_l[index] = $item[index].length;
+                    $item_w[index] = $item[index].outerWidth(true);
+                    $item_h[index] = $item[index].outerHeight(true);
+                    $this_prev[index] = $this.find(prev);
+                    $this_next[index] = $this.find(next);
+                    $marginR[index] = $item_w[index] - $item[index].outerWidth();
+                    $marginT[index] = $item_h[index] - $item[index].outerHeight();
+                    cont_width[index] = $this.find(content).width();
+                    cont_height[index] = $this.find(content).height();
+                })
+
+                settings.before();
+                $js_carousel.each(function(index) {
+                    var index = index,
+                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+                    
+                    var cond = $item_w[index] * $item_l[index] - $marginR[index] > cont_width[index]
+                    try{
+                        if (adding.vertical) {
+                            cond = $item_h[index] * $item_l[index] - $marginT[index] > cont_height[index]
+                            $count_visible = 1;
+                        }
+                    }catch(err){}
+                        
+                    if (cond) {
+                        var main_obj = {
+                            buttonNextHTML: $this_next[index],
+                            buttonPrevHTML: $this_prev[index],
+                            visible: $count_visible,
+                            scroll: 1
+                        }
+                        $this_carousel[index].jcarousel($.extend(
+                            adding
+                            , main_obj));
+
+                        $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
+                    }
+                    else {
+                        $this_next[index].add($this_prev[index]).css('display', 'none');
+                    }
+                });
+                settings.after();
+            }
+        }
+    };
+    $.fn.myCarousel = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.myCarousel');
         }
     }
 })(jQuery);

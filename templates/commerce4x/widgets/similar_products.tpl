@@ -22,7 +22,7 @@
                     Check whether there is product available.
                     If no show it a little lighter.
                     -->
-                    <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
+                    <li class="span3 {if $product->firstVariant->getStock() == 0}not_avail{/if}">
                         <!-- $product->getUrl() - the path to the product-->
                         <div class="description">                            
                             <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
@@ -48,8 +48,6 @@
                             <button class="btn btn_buy btnBuy" 
                                     type="button" 
                                     data-id="{echo $product->getId()}"
-                                    data-prodid="{echo $product->getId()}"
-                                    data-varid="{echo $product->getId()}" 
                                     data-price="{echo $product->toCurrency()}" 
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-vname="{echo ShopCore::encode($pv->getName())}"
@@ -57,13 +55,9 @@
                                     data-number="{echo $product->getNumber()}"
                                     data-img="{echo $product->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$product->getUrl())}"
-
-                                    data-name="{echo ShopCore::encode($product->getName())}"
-                                    data-price="{echo $product->toCurrency()}"
-                                    data-number="{echo $product->getNumber()}"
                                     data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-stock="{echo $product->getStock()}"
-                                   
+                                    >
                                 {lang('s_buy')}
                             </button>
                         </div>

@@ -23,7 +23,7 @@
             <div class="">
                 <ul class="items items_catalog itemsFrameNS">
                     {foreach $items as $key=>$item}
-                        <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
+                        <li class="span3 {if $item.model->firstvariant->stock == 0} not_avail{/if}">
                             <!-- Descritpion block -->
                             <div class="description">
                                 <div class="frame_response">
