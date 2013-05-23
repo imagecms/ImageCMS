@@ -68,7 +68,9 @@
                                             data-price="{echo $item.model->firstVariant->toCurrency()}" 
                                             data-name="{echo $item.model->getName()}"
                                             data-number="{echo $item.model->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $item.model->firstVariant->getstock()}">
+                                            data-maxcount="{echo $item.model->firstVariant->getstock()}"
+                                             data-img="{echo $item.model->firstVariant->getSmallPhoto()}"
+                                            >
                                         {lang('s_buy')}
                                     </button>
                                 {else:}
