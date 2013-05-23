@@ -122,8 +122,6 @@
                         <button class="btn btn_buy btnBuy" 
                                 type="button"
                                 data-id="{echo $product->getId()}"
-                                data-prodid="{echo $product->getId()}"
-                                data-varid="{echo $product->getId()}" 
                                 data-price="{echo $product->toCurrency()}" 
                                 data-name="{echo ShopCore::encode($product->getName())}"
                                 data-vname="{echo ShopCore::encode($pv->getName())}"
@@ -132,9 +130,6 @@
                                 data-img="{echo $product->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$product->getUrl())}"
 
-                                data-name="{echo ShopCore::encode($product->getName())}"
-                                data-price="{echo $product->toCurrency()}"
-                                data-number="{echo $product->getNumber()}"
                                 data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $product->getStock()}"
                                 >

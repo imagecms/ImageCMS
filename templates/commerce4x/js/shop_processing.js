@@ -412,13 +412,11 @@ $(document).ready(function () {
         }
     }
     function condProduct(vStock, liBlock, btnBuy){
-        if (vStock > 0) liBlock.removeClass(genObj.notAvail)
-        else liBlock.addClass(genObj.notAvail)
+        liBlock.removeClass(genObj.notAvail).removeClass(genObj.inCart);
+        
+        if (vStock == 0) liBlock.addClass(genObj.notAvail);
         
         if (btnBuy.hasClass(genObj.btnCartCss)) liBlock.addClass(genObj.inCart)
-        else liBlock.removeClass(genObj.inCart)
-        
-        console.log(liBlock)
     }
     
     $('#variantSwitcher').live('change', function () {
@@ -463,7 +461,7 @@ $(document).ready(function () {
         
     
         liBlock.find('.variant').hide();
-        liBlock.find('.variant_' + productId).show();
+        liBlock.find('.variant_' + vId).show();
         
         liBlock.find('.priceOrigVariant').html(vOrigPrice);
         liBlock.find('.priceVariant').html(vPrice);
@@ -472,6 +470,6 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find('.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find('.variant_' + vId+'.'+genObj.btnBuy));
     });
 });
