@@ -44,7 +44,7 @@
                                 {$CS}
                             </div>
                             {if $product->firstVariant->getStock() != 0}
-                                <button class="btn btn_buy" 
+                                <button class="btn btn_buy btnBuy" 
                                         type="button" 
                                         data-prodid="{echo $product->getId()}" 
                                         data-varid="{echo $product->firstVariant->getId()}" 

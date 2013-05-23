@@ -21,11 +21,23 @@ var optionCompare = {
     hoverParent: '.characteristic'
 };
 var genObj = {
-    wishListIn: 'btn_cart',//клас
-    compareIn: 'btn_cart',//клас
     textEl: '.text-el',//селектор
+    frameCount: '.frame_count',//селектор
     parentBtnBuy: 'li',//селектор
-    frameCount: '.frame_count'
+    wishListIn: 'btn_cart',//назва класу
+    compareIn: 'btn_cart',//назва класу
+    toWishlist: 'toWishlist',//назва класу
+    inWishlist: 'inWishlist',//назва класу
+    toCompare: 'toCompare',//назва класу
+    inCompare: 'inCompare',//назва класу
+    tinyBask: 'tiny_bask',//назва класу
+    isAvail: 'isAvail',//назва класу
+    loginButton: '#loginButton',//селектор
+    inCart: 'in_cart',//назва класу
+    notAvail: 'not_avail',//назва класу
+    btnBuy: 'btnBuy',//назва класу кнопка купити
+    btnBuyCss: 'btn_buy',//назва класу
+    btnCartCss: 'btn_cart'//назва класу
 }
 
 function navPortait() {

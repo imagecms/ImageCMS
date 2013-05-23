@@ -151,7 +151,7 @@
                         {if count($product->getProductVariants()) > 1}
                         <div class=" d_i-b v-a_b m-r_30 p-b_10" id="variantProd">
                             <div class="lineForm w_170">
-                                <select id="variantSwitcherCategory" name="variant">
+                                <select class="variantSwitcher" name="variant">
                                     {foreach $product->getProductVariants() as $key => $pv}
                                     <option value="{echo $pv->getId()}">
                                         {if $pv->getName()}
@@ -188,7 +188,7 @@
                         {foreach $product->getProductVariants() as $key => $pv}
                         {if $pv->getStock() > 0}
                         <button  {if $key != 0}style="display:none"{/if} 
-                            class="btn btn_buy variant_{echo $pv->getId()} variant" 
+                            class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant" 
                             type="button" 
                             data-id="{echo $pv->getId()}"
                             data-prodid="{echo $product->getId()}"
@@ -201,10 +201,9 @@
                             data-img="{echo $pv->getSmallPhoto()}"
                             data-url="{echo shop_url('product/'.$product->getUrl())}"
                                 
-                                data-id="{echo $pv->getId()}"
-                              data-name="{echo ShopCore::encode($pv->getName())}"
-                              data-price="{echo $pv->toCurrency()}"
-                              data-number="{echo $pv->getNumber()}"
+                            data-name="{echo ShopCore::encode($pv->getName())}"
+                            data-price="{echo $pv->toCurrency()}"
+                            data-number="{echo $pv->getNumber()}"
                             data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                             data-stock="{echo $pv->getStock()}"
                             >
