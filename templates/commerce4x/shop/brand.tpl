@@ -71,7 +71,7 @@
             <ul class="items items_catalog {if $_COOKIE['listtable'] == 1}list{/if}" data-radio-frame>
                 <!-- Start. Rendering produts list   -->
                 {foreach $products as $product}
-                <li class="span3{if $product->getFirstVariant()->getStock() == 0} not-avail{/if}">
+                <li class="span3{if $product->getFirstVariant()->getStock() == 0} not_avail{/if}">
                     <div class="description">
                         <div class="frame_response">
                             <!--    Star reiting    -->
@@ -92,7 +92,7 @@
                                 output price without discount
                                  To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                 -->
-                                <span class="f-w_b" id="priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
+                                <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                 {$CS}
                             </span>                           
                             {/if}

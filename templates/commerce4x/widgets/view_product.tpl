@@ -13,7 +13,7 @@
             <div class="carousel bot_border_grey">
                 <ul class="items items_catalog">
                     {foreach $products as $hotProduct}
-                    <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">
+                    <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not_avail{/if}">
                         <div class="description">
                             <div class="frame_response">
                                 <div class="star">
@@ -32,7 +32,7 @@
                                     "$hotProduct->firstVariant->toCurrency('OrigPrice')" or $hotProduct->firstVariant->getOrigPrice()
                                     output price without discount
                                     -->
-                                    <span class="f-w_b" id="priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
+                                    <span class="f-w_b priceOrigVariant">{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}</span>
                                     {$CS}
                                 </span>                           
                                 {/if}
@@ -74,7 +74,7 @@
                             <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="photo">
                                 <figure>
                                     <span class="helper"></span>
-                                    <img src="{echo $hotProduct->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
+                                    <img src="{echo $hotProduct->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($hotProduct->getName())}"/>
                                 </figure>
                             </a>
                         </div>
