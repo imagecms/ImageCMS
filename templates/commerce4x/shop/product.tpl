@@ -21,10 +21,10 @@
                 <!--Photo block for main product-->
                 <div class="span5 clearfix">
                     <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                    <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="photo photoGroup">
+                    <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="photo photoProduct">
                         <figure >
                             <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                            <img src="{echo $model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                            <img src="{echo $model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>
                         </figure>
                     </a>
                     <ul class="frame_thumbs">
