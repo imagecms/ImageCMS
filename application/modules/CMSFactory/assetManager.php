@@ -75,6 +75,18 @@ class assetManager {
             \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
         return $this;
     }
+    
+   
+    public function registerScriptWithoutTemplate($name){
+        $script = '/' . $this->buildScriptPath($name);
+        $this->setData(array($name=>$script));
+        
+    }
+    public function registerStyleWithoutTemplate($name){
+        $script = '/' . $this->buildStylePath($name);
+        $this->setData(array($name=>$script));
+        
+    }
 
     /**
      * @return assetManager

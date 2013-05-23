@@ -21,9 +21,64 @@ var optionCompare = {
     hoverParent: '.characteristic'
 };
 var genObj = {
-    wishListIn: 'btn_cart',
-    compareIn: 'btn_cart',
-    textEl: '.text-el'
+    textEl: '.text-el',//селектор
+    frameCount: '.frame_count',//селектор
+    parentBtnBuy: 'li',//селектор
+    wishListIn: 'btn_cart',//назва класу
+    compareIn: 'btn_cart',//назва класу
+    toWishlist: 'toWishlist',//назва класу
+    inWishlist: 'inWishlist',//назва класу
+    toCompare: 'toCompare',//назва класу
+    inCompare: 'inCompare',//назва класу
+    tinyBask: 'tiny_bask',//назва класу
+    isAvail: 'isAvail',//назва класу
+    loginButton: '#loginButton',//селектор
+    inCart: 'in_cart',//назва класу
+    notAvail: 'not_avail',//назва класу
+    btnBuy: 'btnBuy',//назва класу кнопка купити
+    btnBuyCss: 'btn_buy',//назва класу
+    btnCartCss: 'btn_cart'//назва класу
+}
+
+function navPortait() {
+    var frameM = $('.frame-menu-main');
+    headerMenu = $('.headerMenu');
+
+    $('.headerMenu').each(function() {
+        var $this = $(this);
+        if ($this.hasClass('navHorizontal')) {
+            $('.frame-navbar').addClass('in');
+            var headerFon = $('.headerFon'),
+                    heightFon = 0,
+                    temp_height = $this.find('> li').outerHeight();
+
+            if ($this.hasClass('navVertical')) {
+                $('.btn-navbar').hide();
+                $this.removeClass('navVertical');
+                $('.frame-navbar').addClass('in').show();
+            }
+            if (temp_height < $this.outerHeight()) {
+                $('.btn-navbar').show();
+                $('.frame-navbar').removeClass('in');
+                $this.addClass('navVertical');
+            }
+
+            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
+                heightFon = frameM.offset().top + frameM.outerHeight(true)
+                if ($.exists('.frame_baner'))
+                    heightFon = $('.frame_baner').height() / 2 + $('.frame_baner').offset().top;
+                headerFon.css({
+                    'height': heightFon,
+                    'top': 0
+                });
+            }
+            else
+                headerFon.css({
+                    'height': $('.headerContent').outerHeight(true) + $('header').height(),
+                    'top': 0
+                });
+        }
+    });
 }
     
 function deleteComprasionItem(el){
@@ -59,8 +114,11 @@ function deleteWishListItem(el){
     }
     el.parent().remove();
 }
-
-(function($) {
+def_min = $('span#opt1').data('def_min');
+def_max = $('span#opt2').data('def_max');
+cur_min = $('span#opt3').data('cur_min');
+cur_max = $('span#opt4').data('cur_max');
+$(document).ready(function() {
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
         if (!event)
@@ -106,6 +164,7 @@ function deleteWishListItem(el){
         overlayOpacity: '0.6',
         before: function(el, dropEl) {
             //check for drop-report
+           
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
                 
@@ -131,6 +190,11 @@ function deleteWishListItem(el){
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
+                
+                $('.icon-times-enter').live('click', function(){
+                    dropEl.parent().fadeOut(300);
+                    $('.overlayDrop').fadeOut(100);
+                });
 
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
@@ -177,7 +241,7 @@ function deleteWishListItem(el){
             alert(1)
         })
     }
-})($);
+});
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
         $('.cycle').cycle({
@@ -321,17 +385,8 @@ wnd.load(function() {
     /* End. Refresh when remove item from Compare */
 
     /*fancybox-based imagebox initialization*/
-    $('a.fancybox').fancybox();
+    try{
+        $('a.fancybox').fancybox();
+    }catch(err){}
+    
 });
-def_min = $('span#opt1').data('def_min');
-def_max = $('span#opt2').data('def_max');
-cur_min = $('span#opt3').data('cur_min');
-cur_max = $('span#opt4').data('cur_max');
-
-/*$(".star-big").starRating({
-        width: 26,
-        afterClick: function(el, value) {
-            alert(value)
-            console.log(el)
-        }
-    });*/

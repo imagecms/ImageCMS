@@ -36,12 +36,11 @@ class Admin extends BaseAdminController {
         $root_menus = $this->db->get('menus')->result_array();
         $this->render('menu_list', array('menus' => $root_menus), true);
     }
-    
-   public function chose_hidden() {
-        $status = $_POST['status'] === 'false' ? 0: 1;
+
+    public function chose_hidden() {
+        $status = $_POST['status'] === 'false' ? 0 : 1;
         $id = $_POST['id'];
         $this->db->query("update menus_data set hidden = '$status' where id = '$id'");
-        
     }
 
     /**
@@ -87,7 +86,7 @@ class Admin extends BaseAdminController {
 
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->where('locale', MY_Controller::getCurrentLocale());
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -141,7 +140,8 @@ class Admin extends BaseAdminController {
                     $image = $_POST['module_item_image'];
                 } elseif ($_POST['url_item_image']) {
                     $image = $_POST['url_item_image'];
-                } else
+                }
+                else
                     $image = '';
 
 
@@ -409,7 +409,7 @@ class Admin extends BaseAdminController {
 
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->where('locale', MY_Controller::getCurrentLocale());
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -515,11 +515,11 @@ class Admin extends BaseAdminController {
                     $after_pos = $after_pos['position'];
                     if ($after_pos != FALSE) {
                         $position = $after_pos + 1;
-                        $sql = "UPDATE `menus_data` 
-                            SET `position`=`position` + 1 
-                            WHERE `position` > '$after_pos' 
-                            AND `menu_id`='" . $this->input->post('menu_id') . "' 
-                            AND `parent_id`='" . $this->input->post('parent_id') . "' 
+                        $sql = "UPDATE `menus_data`
+                            SET `position`=`position` + 1
+                            WHERE `position` > '$after_pos'
+                            AND `menu_id`='" . $this->input->post('menu_id') . "'
+                            AND `parent_id`='" . $this->input->post('parent_id') . "'
                             ";
                         $this->db->query($sql);
                     }
@@ -686,11 +686,11 @@ class Admin extends BaseAdminController {
             if ($after_pos != FALSE) {
                 $position = $after_pos + 1;
 
-                $sql = "UPDATE `menus_data` 
-                            SET `position`=`position` + 1 
-                            WHERE `position` > '$after_pos' 
-                            AND `menu_id`='" . $this->input->post('menu_id') . "' 
-                            AND `parent_id`='" . $this->input->post('parent_id') . "' 
+                $sql = "UPDATE `menus_data`
+                            SET `position`=`position` + 1
+                            WHERE `position` > '$after_pos'
+                            AND `menu_id`='" . $this->input->post('menu_id') . "'
+                            AND `parent_id`='" . $this->input->post('parent_id') . "'
                             ";
                 $this->db->query($sql);
             }
@@ -754,7 +754,7 @@ class Admin extends BaseAdminController {
             $item_data['add_data'] = serialize(array('newpage' => $_POST['newpage']));
 
         if ($_POST['update_id'] == 0) {
-            // Insert new item  
+            // Insert new item
             $this->menu_model->insert_item($item_data);
         } else {
             // Update item
@@ -1030,7 +1030,7 @@ class Admin extends BaseAdminController {
         if ($pages->num_rows() > 0) {
             $pages = $pages->result_array();
 
-            // Insert category names     
+            // Insert category names
             $this->load->library('lib_category');
             $cnt = count($pages);
             for ($i = 0; $i < $cnt; $i++) {
@@ -1212,4 +1212,3 @@ class Admin extends BaseAdminController {
 
 /* End of file admin.php */
 
-    

@@ -97,7 +97,7 @@ abstract class BaseEvents {
     }
 
     final public function onAdminPagePreEdit() {
-        $this->key = 'BaseAdminPage:preEdit';
+        $this->key = 'BaseAdminPage:preUpdate';
         return $this;
     }
 
@@ -351,6 +351,21 @@ abstract class BaseEvents {
 
     public function onRemoveFromCart() {
         $this->key = 'SCart:removeOne';
+        return $this;
+    }
+
+    public function onBrandPageLoad() {
+        $this->key = 'brand:load';
+        return $this;
+    }
+
+    public function onCategoryPageLoad() {
+        $this->key = 'category:load';
+        return $this;
+    }
+
+    public function onProductPageLoad() {
+        $this->key = 'product:load';
         return $this;
     }
 

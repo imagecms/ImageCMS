@@ -1,6 +1,6 @@
 {if count($goods_in_spy) > 0}
     <div class="title_h2">Товары за которыми следите:</div>
-    <ul class="items-complect clearfix">
+    <ul class="items items-complect clearfix">
         {foreach $goods_in_spy as $good}
             {$p = getProduct($good->getProductId())}
             {$v = getVariant($good->getVariantId())}
@@ -37,7 +37,7 @@
                         {/if}
                     </div>
                 </div>
-                <span class="icon-times-apply deleteFromSpy" data-uid="{echo $_SESSION[DX_user_id]}" data-vid="{echo $v->getId()}"></span>
+                <span class="icon_times-apply deleteFromSpy" data-uid="{echo $_SESSION[DX_user_id]}" data-vid="{echo $v->getId()}"></span>
             </li>
         {/foreach}
     </ul>

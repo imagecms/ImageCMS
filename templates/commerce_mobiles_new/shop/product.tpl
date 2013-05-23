@@ -4,7 +4,7 @@
 # @var jsCode
 #}
 <div class="content_head">
-    <div class="crumbs">{renderCategoryPathNoSeo($model->getMainCategory())}</div>
+    {widget('path')}
 </div>
 <ul class="catalog tovar_frame">
     {foreach $model->getProductVariants() as $p}

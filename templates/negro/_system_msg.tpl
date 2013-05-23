@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         <div class="clearfix">
             <div class="text">

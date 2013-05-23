@@ -7,7 +7,7 @@
         <div class="fancy_cleaner frame_head_content">
             <div class="header_title">Ваша корзина
             </div>
-            <button type="button" class="icon-times-enter" data-closed="closed-js" onclick="togglePopupCart()"></button>
+            <button type="button" class="icon_times-drop" data-closed="closed-js" onclick="togglePopupCart()"></button>
             <div class="drop-content">
                 <div class="inside_padd">
 
@@ -44,11 +44,11 @@
                                 <td>
                                     <div class="frame_count number d_i-b v-a_m">
                                         <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" >
-                                            <button type="button" class="d_b btn_small btn plus">
-                                                <span class="icon-plus"></span>
+                                            <button type="button" class="d_b btn_small plus">
+                                                <span class="icon_plus"></span>
                                             </button>
-                                            <button type="button" class="d_b btn_small btn minus">
-                                                <span class="icon-minus"></span>
+                                            <button type="button" class="d_b btn_small minus">
+                                                <span class="icon_minus"></span>
                                             </button>
                                         </div>
                                         <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
@@ -103,11 +103,11 @@
                                                 <td rowspan="<%- names.length %>">
                                                     <div class="frame_count number d_i-b v-a_m">
                                                         <div class="frame_change_count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit%>">
-                                                            <button id="plus" class="d_b btn_small btn plus" type="button">
-                                                                <span class="icon-plus"></span>
+                                                            <button id="plus" class="d_b btn_small plus" type="button">
+                                                                <span class="icon_plus"></span>
                                                             </button>
-                                                            <button id="minus" class="d_b btn_small btn minus" type="button">
-                                                                <span class="icon-minus"></span>
+                                                            <button id="minus" class="d_b btn_small minus" type="button">
+                                                                <span class="icon_minus"></span>
                                                             </button>
                                                         </div>
                                                         <input type="text" data-min="1" data-title="только цифры" data-rel="plusminus" value="<%-item.count%>">
@@ -177,11 +177,11 @@
                                 <% setTimeout("location.href = '/';", 2000); %>
                                 <% } %>
                                 <td colspan="4" class="t-a_r">
-<!--                                     <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a> -->
+<!--                                     <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn_cart v-a_m m-r_30">{/literal}{lang('s_close')}{literal}</a> -->
                                 </td>
                                 <% } else { %>
                                 <td colspan="4">
-                                    <a href="/shop/cart" class="btn btn_cart m-r_30 f_r">Оформить заказ</a>
+                                    <a href="/shop/cart" class="btn_cart m-r_30 f_r">Оформить заказ</a>
                                     <button type="button" onclick="togglePopupCart()" class="d_l_b w-s_n-w f_l">← Продолжить покупки</button>
                                 </td>
 
@@ -348,5 +348,5 @@
         <div class="description">Найдено <span id="apply-count">5</span> тов.</div>
         <a href="#">Показать</a>
     </div>
-    <span class="icon-times-apply"></span>
+    <span class="icon_times-apply"></span>
 </div>

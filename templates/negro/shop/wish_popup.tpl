@@ -14,7 +14,7 @@
 <div class="control-group">
     <label class="control-label">&nbsp;</label>
     <div class="controls">
-        <span class="btn btn-drop">
+        <span class="btn-drop">
             <input type="submit" name="sendwish" value="Отправить"/>
         </span>
     </div>

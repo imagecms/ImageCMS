@@ -40,9 +40,11 @@ function delEntity(obj){
    
     $(obj).remove();
     return false;
-    
+   
 }
 
 $(document).ready(function(){
-    $('.slider').cycle();  
-})
+    if($('.slider').length){
+       $('.slider').cycle();
+    }
+});

@@ -1,7 +1,10 @@
+/*
+ *imagecms frontend plugins
+ **/
 var isTouch = 'ontouchstart' in document.documentElement,
-        wnd = $(window),
-        body = $('body'),
-        mainBody = $('.mainBody');
+wnd = $(window),
+body = $('body'),
+mainBody = $('.mainBody');
 
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
@@ -19,56 +22,15 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-            ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-            ((path) ? ";path=" + path : "") +
-            ((domain) ? ";domain=" + domain : "") +
-            ((secure) ? ";secure" : "");
+    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+    ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
 }
-function navPortait() {
-    var frameM = $('.frame-menu-main');
-    headerMenu = $('.headerMenu');
-
-    $('.headerMenu').each(function() {
-        var $this = $(this);
-        if ($this.hasClass('navHorizontal')) {
-            $('.frame-navbar').addClass('in');
-            var headerFon = $('.headerFon'),
-                    heightFon = 0,
-                    temp_height = $this.find('> li').outerHeight();
-
-            if ($this.hasClass('navVertical')) {
-                $('.btn-navbar').hide();
-                $this.removeClass('navVertical');
-                $('.frame-navbar').addClass('in').show();
-            }
-            if (temp_height < $this.outerHeight()) {
-                $('.btn-navbar').show();
-                $('.frame-navbar').removeClass('in');
-                $this.addClass('navVertical');
-            }
-
-            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
-                heightFon = frameM.offset().top + frameM.outerHeight(true)
-                if ($.exists('.frame_baner'))
-                    heightFon = $('.frame_baner').height() / 2 + $('.frame_baner').offset().top;
-                headerFon.css({
-                    'height': heightFon,
-                    'top': 0
-                });
-            }
-            else
-                headerFon.css({
-                    'height': $('.headerContent').outerHeight(true) + $('header').height(),
-                    'top': 0
-                });
-        }
-    });
-}
-
 var ie = jQuery.browser.msie,
-        ieV = jQuery.browser.version,
-        ltie7 = ie && (ieV <= 7),
-        ltie8 = ie && (ieV <= 8);
+ieV = jQuery.browser.version,
+ltie7 = ie && (ieV <= 7),
+ltie8 = ie && (ieV <= 8);
 
 function ieInput(els) {
     els = $('input[type="text"], textarea, input[type="password"]');
@@ -228,7 +190,8 @@ function ieInput(els) {
             var settings = $.extend({
                 title: this.attr('data-title'),
                 otherClass: false,
-                effect: 'notalways'
+                effect: 'notalways',
+                me: true
             }, options);
 
             $.ajaxSetup({
@@ -237,46 +200,52 @@ function ieInput(els) {
                 }
             })
             var $this = $(this),
-                    text_el = $this.find('.text-el');
+            text_el = $this.find('.text-el'),
+            me = settings.me;
 
-            if (!text_el.is(':visible') && $.exists_nabir(text_el)) {
-                if (settings.effect == 'notalways') {
-                    $('.tooltip').remove();
+            if (text_el.is(':visible') && $.exists_nabir(text_el) && !me)
+                return false;
+            
+            if (settings.effect == 'notalways') {
+                $('.tooltip').remove();
+                body.append('<span class="tooltip">' + settings.title + '</span>');
+            }
+
+            var tooltip = $('.tooltip').not('.cloned');
+
+            if (settings.effect == 'always') {
+                if (!$.exists_nabir(tooltip)) {
                     body.append('<span class="tooltip">' + settings.title + '</span>');
                 }
-
-                var tooltip = $('.tooltip').not('.cloned');
-
-                if (settings.effect == 'always') {
-                    if (!$.exists_nabir(tooltip)) {
-                        body.append('<span class="tooltip">' + settings.title + '</span>');
-                    }
-                    else
-                        tooltip.text(settings.title)
-                }
-
-                if (settings.otherClass !== false)
-                    tooltip.addClass(settings.otherClass);
-                if (settings.effect == 'notalways')
-                    tooltip.hide();
-
-                tooltip.css({
-                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
-                    'top': this.offset().top - tooltip.actual('outerHeight')
-                }).fadeIn(300);
-
-                this.blur(function() {
-                    $('.tooltip').fadeOut(300, function() {
-                        $(this).remove()
-                    });
-                })
-                body.live('click', function(event) {
-                    event.stopPropagation();
-                    $('.tooltip').fadeOut(300, function() {
-                        $(this).remove()
-                    });
-                })
+                else
+                    tooltip.text(settings.title)
             }
+
+            if (settings.otherClass !== false)
+                tooltip.addClass(settings.otherClass);
+            if (settings.effect == 'notalways')
+                tooltip.hide();
+
+            tooltip.css({
+                'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                'top': this.offset().top - tooltip.actual('outerHeight')
+            }).fadeIn(300);
+
+            $this.filter(':input').unbind('blur').blur(function() {
+                $('.tooltip').fadeOut(300, function() {
+                    $(this).remove()
+                });
+            })
+            body.unbind('click.tooltip').live('click.tooltip', function(event) {
+                event.stopPropagation();
+                if ($(event.target).parents().is($this) || $(event.target).is($this))
+                    return;
+                else{
+                    $('.tooltip').fadeOut(300, function() {
+                        $(this).remove()
+                    });
+                }
+            })
         },
         remove: function( ) {
             $('.tooltip').fadeOut(300, function() {
@@ -316,7 +285,7 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
             var sH = 0,
-                    menu = "";
+            menu = "";
 
             if (options.menu == undefined)
                 menu = $(this)
@@ -324,12 +293,12 @@ function ieInput(els) {
                 menu = settings.menu;
 
             var menuW = menu.width(),
-                    menuItem = settings.item,
-                    vertical = false,
-                    menuItemSub = settings.itemSub,
-                    item_menu_l = menuItem.length,
-                    frameSub = $(settings.frameSub),
-                    dropW = 520;
+            menuItem = settings.item,
+            vertical = false,
+            menuItemSub = settings.itemSub,
+            item_menu_l = menuItem.length,
+            frameSub = $(settings.frameSub),
+            dropW = 520;
             duration = time_dur_m = settings.duration;
             drop = menuItem.next(settings.drop);
             menuItemCltd = menuItem.closest('td');
@@ -344,10 +313,10 @@ function ieInput(els) {
             $thisOH = 0;
             menuItemCltd.each(function(index) {
                 var $this = $(this),
-                        $thisW = $this.width(),
-                        $thisL = $this.position().left,
-                        $drop = $this.find(drop).first(),
-                        $thisH = $this.height();
+                $thisW = $this.width(),
+                $thisL = $this.position().left,
+                $drop = $this.find(drop).first(),
+                $thisH = $this.height();
                 if ($thisH > sH) {
                     sH = $thisH;
                 }
@@ -402,7 +371,7 @@ function ieInput(els) {
 
             function itemSubEv(el, event) {
                 var $this = el,
-                        cond = $.exists_nabir($this.next('div'))
+                cond = $.exists_nabir($this.next('div'))
                 if (cond) {
                     event.preventDefault();
                     $thisP = $this.parent();
@@ -436,7 +405,7 @@ function ieInput(els) {
 
             function unhov(el) {
                 var $this = el,
-                        $thisDrop = $this.next();
+                $thisDrop = $this.next();
                 $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
 
                 frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
@@ -448,7 +417,7 @@ function ieInput(els) {
             function hov(el) {
                 drop.removeClass('d_n');
                 var $this = el,
-                        $thisDrop = $this.next();
+                $thisDrop = $this.next();
 
                 menuItemCltd.removeClass('hover');
 
@@ -469,32 +438,32 @@ function ieInput(els) {
             }
             if (isTouch) {
                 menuItem.unbind(evDrop)[evDrop](
-                        function() {
-                            hov($(this));
-                        }, function() {
-                    unhov($(this));
-                });
+                    function() {
+                        hov($(this));
+                    }, function() {
+                        unhov($(this));
+                    });
                 menu[evDrop](
-                        function(event) {
-                            time_dur_m = 0;
-                        },
-                        function(event) {
-                            time_dur_m = duration;
-                        });
+                    function(event) {
+                        time_dur_m = 0;
+                    },
+                    function(event) {
+                        time_dur_m = duration;
+                    });
             }
             else {
                 menuItem.unbind(evDropF)[evDropF](function() {
                     hov($(this));
-                }).unbind(evDropS)[evDropS](function() {
+                    }).unbind(evDropS)[evDropS](function() {
                     unhov($(this));
                 })
                 menu.unbind(evDropF)[evDropF](function() {
                     return time_dur_m = 0;
-                }).unbind(evDropS)[evDropS](
-                        function() {
-                            methods.fadeDrop();
-                            return time_dur_m = duration;
-                        });
+                    }).unbind(evDropS)[evDropS](
+                    function() {
+                        methods.fadeDrop();
+                        return time_dur_m = duration;
+                    });
             }
             drop.find('li li a').click(function(event) {
                 event.stopPropagation();
@@ -541,8 +510,8 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
                 var rel = $(this),
-                        minCost = settings.minCost,
-                        maxCost = settings.maxCost;
+                minCost = settings.minCost,
+                maxCost = settings.maxCost;
 
                 if (options.minCost == undefined || options.maxCost == undefined) {
                     minCost = $('<input type="text"/>', {
@@ -565,8 +534,8 @@ function ieInput(els) {
                 });
                 minCost.change(function() {
                     var value1 = minCost.val(),
-                            value2 = maxCost.val(),
-                            minS = minCost.data('mins');
+                    value2 = maxCost.val(),
+                    minS = minCost.data('mins');
 
                     if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
@@ -580,8 +549,8 @@ function ieInput(els) {
                 });
                 maxCost.change(function() {
                     var value1 = minCost.val(),
-                            value2 = maxCost.val(),
-                            maxS = maxCost.data('maxs');
+                    value2 = maxCost.val(),
+                    maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
@@ -624,8 +593,8 @@ function ieInput(els) {
             }, options);
             $this = this;
             var tabs_div = [],
-                    nav_tabs_li = [],
-                    reg_refs = [];
+            nav_tabs_li = [],
+            reg_refs = [];
             refs = [];
             attrOrdata = [];
             this_l = this.length;
@@ -723,11 +692,11 @@ function ieInput(els) {
             if (location.hash == '')
             {
                 var i = 0,
-                        j = 0;
+                j = 0;
                 $(refs).each(function(index) {
                     var index = index;
                     $this = refs[index].first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs[i] = $this[attrOrdataL]('href');
@@ -743,10 +712,10 @@ function ieInput(els) {
             else {
                 $(refs).each(function(index) {
                     var index = index,
-                            j = 0;
+                    j = 0;
 
                     $this = refs[index].first(),
-                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -754,10 +723,10 @@ function ieInput(els) {
                     }
                 });
                 var t = location.hash,
-                        s = '#',
-                        m = s.length,
-                        res = 0,
-                        i = 0;
+                s = '#',
+                m = s.length,
+                res = 0,
+                i = 0;
                 pos = [];
 
                 while (i < t.length - 1)
@@ -786,7 +755,7 @@ function ieInput(els) {
             });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
-                        attrOrdataNew = '';
+                attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
@@ -807,7 +776,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var settings = $.extend({}, options),
-                    mouseWhell = settings.mouseWhell;
+            mouseWhell = settings.mouseWhell;
             elEven = settings.elEven;
             elEvens = $(settings.right).find(elEven);
 
@@ -817,19 +786,19 @@ function ieInput(els) {
 
             this.each(function(index) {
                 var $this = $(this),
-                        visThis = $this.is(':visible');
+                visThis = $this.is(':visible');
                 if (visThis) {
                     var left = $this.find(settings.left),
-                            right = $this.find(settings.right);
+                    right = $this.find(settings.right);
                     li_i_length = left.length;
                 }
 
                 if (visThis && !$this.is('[data-equalHorizCell]')) {
                     var h = 0,
-                            li_i_h = [],
-                            frameScroll = $this.find(settings.frameScroll),
-                            frame_scrollC = frameScroll.children(),
-                            frame_scrollCL = frame_scrollC.length;
+                    li_i_h = [],
+                    frameScroll = $this.find(settings.frameScroll),
+                    frame_scrollC = frameScroll.children(),
+                    frame_scrollCL = frame_scrollC.length;
 
                     scrollNSP = settings.scrollNSP && $.exists(frameScroll);
                     scrollNSPT = settings.scrollNSPT;
@@ -870,7 +839,7 @@ function ieInput(els) {
                     }
 
                     var firstScrl = frameScroll.parent(),
-                            secScrl = $([]);
+                    secScrl = $([]);
                     try {
                         if (scrollNSP) {
                             secScrl = $this.children('.scrollNSP');
@@ -905,7 +874,7 @@ function ieInput(els) {
                 }
                 if (visThis) {
                     var right = right.find(hoverParent),
-                            left = left.parent(hoverParent).children();
+                    left = left.parent(hoverParent).children();
 
                     left.each(function(ind) {
                         if (ind % 2 == 0)
@@ -948,23 +917,23 @@ function ieInput(els) {
         hoverComprasion: function(left, right) {
             left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
-                        index = $this.index(),
-                        nab = $([]);
+                index = $this.index(),
+                nab = $([]);
 
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(index))
                 })
                 $([]).add(left.eq(index)).add(nab).addClass('hover')
             },
-                    function() {
-                        var $this = $(this),
-                                index = $this.index(),
-                                nab = $([]);
-                        right.each(function() {
-                            nab = nab.add($(this).find(elEven).eq(index))
-                        })
-                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
-                    });
+            function() {
+                var $this = $(this),
+                index = $this.index(),
+                nab = $([]);
+                right.each(function() {
+                    nab = nab.add($(this).find(elEven).eq(index))
+                })
+                $([]).add(left.eq(index)).add(nab).removeClass('hover')
+            });
         },
         onlyDifM: function(left, right) {
             li_i_h = [];
@@ -1058,162 +1027,186 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            settings = $.extend({
-                cloned: '.cloned',
-                activeClass: 'active',
-                exit: '[data-closed = "closed-js"]',
-                effon: 'show',
-                effoff: 'hide',
-                effdur: 500,
-                before: function() {
-                    return true;
-                },
-                after: function() {
-                    return true;
-                }
-            }, options);
-
-            var $thisD = this,
-                    selector = $thisD.selector,
-                    dataSource = $('[data-drop]'),
-                    cloned = settings.cloned,
-                    exit = $(settings.exit),
-                    effon = settings.effon,
-                    effoff = settings.effoff,
-                    effdur = settings.effdur,
-                    overlayColor = settings.overlayColor,
-                    overlayOpacity = settings.overlayOpacity;
-
-            activeClass = settings.activeClass;
-
-            dataSource.live('click', function(event) {
-                event.stopPropagation();
-                event.preventDefault();
-
-                if ($(event.target).parents('[data-simple="yes"]').length == 0) {
-
-                    $this = $(this);
-                    elSet = $this.data();
-                    elSetSource = $(elSet.drop);
-
-                    var elSetOn = elSet.effectOn || effon,
-                            elSetOff = elSet.effectOff || effoff,
-                            elSetDuration = elSet.duration || effdur,
-                            overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
-
-                    if (overlayColor != undefined || overlayOpacity != undefined) {
-                        if (!$.exists('.overlayDrop')) {
-                            mainBody.append('<div class="overlayDrop" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
-                        }
-                        drop_over = $('.overlayDrop');
-                        drop_over.css({
-                            'background-color': overlayColor,
-                            'opacity': overlayOpacity
-                        });
+            if ($.exists_nabir($(this))){
+                settings = $.extend({
+                    cloned: '.cloned',
+                    activeClass: 'active',
+                    exit: '[data-closed = "closed-js"]',
+                    effon: 'show',
+                    effoff: 'hide',
+                    effdur: 500,
+                    before: function() {
+                        return true;
+                    },
+                    after: function() {
+                        return true;
                     }
-                    else
-                        drop_over = $([]);
+                }, options);
 
-                    if (elSetSource.is('.' + activeClass)) {
-                        $this.removeClass(activeClass)
-                        elSetSource[elSetOff](elSetDuration, function() {
-                            elSetSource.removeClass(activeClass).removeAttr('style')
-                            drop_over[elSetOff](elSetDuration);
-                        });
-                        $thisHref = $(this).attr('href');
-                        if ($thisHref != undefined) {
-                            var $thisHrefL = $thisHref.length,
-                                    wLH = location.hash,
-                                    wLHL = wLH.length;
-                            try {
-                                indH = wLH.match($thisHref + '(?![a-z])').index;
-                                location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                            } catch (err) {
-                            }
-                        }
-                    }
-                    else {
-                        $newthis = settings.before(this, elSetSource);
-                        if ($newthis != undefined)
-                            $this = $newthis;
+                var $thisD = this,
+                selector = $thisD.selector,
+                dataSource = $('[data-drop]'),
+                cloned = settings.cloned,
+                exit = $(settings.exit),
+                effon = settings.effon,
+                effoff = settings.effoff,
+                effdur = settings.effdur,
+                overlayColor = settings.overlayColor,
+                overlayOpacity = settings.overlayOpacity;
 
-                        var wndW = wnd.width();
-                        if (elSetSource.actual('width') > wnd.width())
-                            elSetSource.css('width', wndW - 40);
-                        else
-                            elSetSource.removeAttr('style');
+                activeClass = settings.activeClass;
 
-                        methods.positionDrop($this, elSet, elSetSource);
-
-                        $this.addClass(activeClass);
-                        drop_over.show();
-                        elSetSource[elSetOn](elSetDuration, function() {
-                            elSetSource.addClass(activeClass);
-                            if (ltie7)
-                                ieInput();
-                        });
-                        settings.after(this, elSetSource);
-                    }
-                    $(cloned).remove();
-                }
-            }).each(function() {
-                var $this = $(this),
+                dataSource.live('click', function(event) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                
+                    $(this).each(function() {
+                        var $this = $(this),
                         $thisS = $this.data('effect-off') || effoff,
                         $thisD = $this.data('duration') || effdur,
-                        $thisSource = $this.data('drop'),
-                        dataSource2 = $($thisSource);
+                        $thisSource = $this.data('drop');
+                        $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                    });
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
+                        $this = $(this);
+                        if (event.button == undefined) body.scrollTop($this.offset().top)
+                        elSet = $this.data();
+                        elSetSource = $(elSet.drop);
+                
+                        var elSetOn = elSet.effectOn || effon,
+                        elSetOff = elSet.effectOff || effoff,
+                        elSetDuration = elSet.duration || effdur,
+                        overlayColor = elSet.overlaycolor || settings.overlayColor,
+                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                dataSource2.attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-            });
+                        if (overlayColor != undefined || overlayOpacity != undefined) {
+                            if (!$.exists('.overlayDrop')) {
+                                body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                            }
+                            drop_over = $('.overlayDrop');
+                            drop_over.css({
+                                'background-color': overlayColor,
+                                'opacity': overlayOpacity
+                            });
+                        }
+                        else
+                            drop_over = $([]);
 
+                        if (elSetSource.is('.' + activeClass)) {
+                            $this.removeClass(activeClass)
+                            elSetSource[elSetOff](elSetDuration, function() {
+                                elSetSource.removeClass(activeClass).removeAttr('style')
+                                drop_over[elSetOff](elSetDuration);
+                            });
+                            $thisHref = $(this).attr('href');
+                            if ($thisHref != undefined) {
+                                var $thisHrefL = $thisHref.length,
+                                wLH = location.hash,
+                                wLHL = wLH.length;
+                                try {
+                                    indH = wLH.match($thisHref + '(?![a-z])').index;
+                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                } catch (err) {
+                                }
+                            }
+                        }
+                        else {
+                            $newthis = settings.before(this, elSetSource);
+                            if ($newthis != undefined) $this = $newthis;
 
-            exit.live('click', function() {
-                var $this = $(this);
-                $('[data-drop="' + $this.closest('.drop').data('elrun') + '"]').click().parent().removeClass('active');
-            })
+                            var wndW = wnd.width();
+                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                            else elSetSource.removeAttr('style');
+                    
+                            methods.positionDrop($this, elSet, elSetSource);
 
-            body.live('click', function(event) {
-                event.stopPropagation();
-                if ($(event.target).parents().is(selector) || $(event.target).is(selector))
-                    return;
-                else
-                    methods.triggerBtnClick();
+                            $this.addClass(activeClass);
+                            drop_over.show();
+                            if (drop_over.length) body.css('margin-right', function(){
+                                if ($(document).height()-wnd.height() > 0){
+                                    body.addClass('o_h');
+                                    drop_over.addClass('drop_overlay_fixed');
+                                    return 17
+                                }
+                            })
+                            drop_over.unbind('click').bind('click', function(){
+                                methods.triggerBtnClick();
+                            })
+                            elSetSource[elSetOn](elSetDuration, function() {
+                                elSetSource.addClass(activeClass);
+                                if (ltie7)
+                                    ieInput();
+                            });
+                            settings.after(this, elSetSource);
+                        }
+                        $(cloned).remove();
+                    }
+                })
+                exit.click(function(){
+                    methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                })
+                body.live('click', function(event) {
+                    event.stopPropagation();
+                    if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
+                        return;
+                    else
+                    {
+                        methods.triggerBtnClick();
+                    }
 
-            }).live('keydown', function(e) {
-                var key, keyChar;
-                if (!e)
-                    var e = window.event;
+                }).live('keydown', function(e) {
+                    var key, keyChar;
+                    if (!e)
+                        var e = window.event;
 
-                if (e.keyCode)
-                    key = e.keyCode;
-                else if (e.which)
-                    key = e.which;
+                    if (e.keyCode)
+                        key = e.keyCode;
+                    else if (e.which)
+                        key = e.which;
 
-                if (key == 27) {
-                    methods.triggerBtnClick();
-                }
+                    if (key == 27) {
+                        methods.triggerBtnClick();
+                    }
+                });
+            }
+        },
+        triggerBtnClick: function(sel) {
+            if (!sel) sel = '[data-elrun].' + activeClass
+            $(sel).each(function() {
+                $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                $this.click().parent().removeClass('active');
+                if (drop_over.length) body.css('margin-right', function(){
+                    if ($(document).height()-wnd.height() > 0){
+                        body.removeClass('o_h');
+                        drop_over.removeClass('drop_overlay_fixed');
+                        return 0
+                    }
+                    drop_over.remove();
+                })
+            }).removeClass('active');
+        //wnd.unbind('scroll resize', methods.dropScroll)
+        },
+        dropScroll: function() {
+            elSetSource.animate({
+                'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
+            }, {
+                queue: false
             });
         },
-        triggerBtnClick: function() {
-            $('[data-elrun].' + activeClass).each(function() {
-                $('[data-drop = "' + $(this).attr('data-elrun') + '"]').click().parent().removeClass('active');
-            });
-        },
-        positionDrop: function($this) {
+        positionDrop: function($this){
             var $this = $this;
-            if ($this == undefined)
-                $this = $(this);
-
+            if ($this == undefined) $this = $(this);
+            
             var elSet = $this.data(),
-                    elSetSource = $(elSet.drop);
-
+            elSetSource = $(elSet.drop);
+            
             var $thisP = $this.attr('data-place');
             dataSourceH = 0,
-                    dataSourceW = 0,
-                    $thisW = $this.width();
+            dataSourceW = 0,
+            $thisW = $this.width();
             $thisH = $this.height();
-
+            
             if ($thisP == 'noinherit') {
                 var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
 
@@ -1228,30 +1221,21 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
-
+                
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0)
-                    $thisL = 0;
+                if ($thisL < 0) $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0)
-                    elSetSource.css('margin-left', 0);
+                if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                function dropScroll() {
-                    elSetSource.animate({
-                        'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
-                        'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
-                    }, {
-                        queue: false
-                    });
-                }
-                wnd.unbind('scroll resize', dropScroll).bind('scroll resize', dropScroll).scroll();
+                //wnd.unbind('scroll resize', methods.dropScroll).bind('scroll resize', methods.dropScroll());
+                methods.dropScroll();
             }
         }
     };
@@ -1275,12 +1259,12 @@ function ieInput(els) {
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                            prev = settings.prev.split('.'),
-                            next = settings.next.split('.'),
-                            $thisPrev = $this,
-                            $thisNext = $this,
-                            regS = '',
-                            regM = '';
+                    prev = settings.prev.split('.'),
+                    next = settings.next.split('.'),
+                    $thisPrev = $this,
+                    $thisNext = $this,
+                    regS = '',
+                    regM = '';
 
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
@@ -1307,11 +1291,6 @@ function ieInput(els) {
 
                     })
 
-                    if ($this.focus().val() == 1)
-                        $thisPrev.attr('disabled', 'disabled');
-                    else
-                        $thisPrev.removeAttr('disabled');
-
                     $thisNext.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
@@ -1320,33 +1299,23 @@ function ieInput(els) {
                             input.val(1);
                         else
                             input.val(inputVal + 1);
-
-                        if (input.val() > 1)
-                            $thisPrev.removeAttr('disabled');
-                        else
-                            $thisPrev.attr('disabled', 'disabled');
-
-                        if (checkProdStock)
-                            if (input.maxValue())
-                                $thisNext.attr('disabled', 'disabled');
                     })
                     $thisPrev.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
-
-                        $thisNext.removeAttr('disabled', 'disabled');
+                                                
                         //alert(inputVal);
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
-
-
+                        
                     })
                     $this.die('keyup').live('keyup', function() {
                         if (checkProdStock)
                             $(this).maxValue();
                     })
+                    $this.closest(genObj.frameCount).tooltip('remove');
                 })
             }
         }
@@ -1413,7 +1382,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-                    $max = parseInt($(this).attr('data-max'));
+            $max = parseInt($(this).attr('data-max'));
 
             $thisVal = $this.val();
 
@@ -1451,43 +1420,43 @@ function ieInput(els) {
                 var $this = $(this);
                 if (!$this.hasClass('disabled')) {
                     $this.hover(
-                            function() {
-                                $(this).append("<span></span>");
-                            },
-                            function()
-                            {
-                                $(this).find("span").remove();
-                            });
+                        function() {
+                            $(this).append("<span></span>");
+                        },
+                        function()
+                        {
+                            $(this).find("span").remove();
+                        });
 
                     var rating;
 
                     $this.mousemove(
-                            function(e) {
-                                if (!e)
-                                    e = window.event;
-                                if (e.pageX) {
-                                    x = e.pageX;
-                                } else if (e.clientX) {
-                                    x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                        function(e) {
+                            if (!e)
+                                e = window.event;
+                            if (e.pageX) {
+                                x = e.pageX;
+                            } else if (e.clientX) {
+                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
 
-                                }
-                                var posLeft = 0;
-                                var obj = this;
-                                while (obj.offsetParent)
-                                {
-                                    posLeft += obj.offsetLeft;
-                                    obj = obj.offsetParent;
-                                }
-                                var offsetX = x - posLeft,
-                                        modOffsetX = 5 * offsetX % this.offsetWidth;
-                                rating = parseInt(5 * offsetX / this.offsetWidth);
+                            }
+                            var posLeft = 0;
+                            var obj = this;
+                            while (obj.offsetParent)
+                            {
+                                posLeft += obj.offsetLeft;
+                                obj = obj.offsetParent;
+                            }
+                            var offsetX = x - posLeft,
+                            modOffsetX = 5 * offsetX % this.offsetWidth;
+                            rating = parseInt(5 * offsetX / this.offsetWidth);
 
-                                if (modOffsetX > 0)
-                                    rating += 1;
+                            if (modOffsetX > 0)
+                                rating += 1;
 
-                                jQuery(this).find("span").eq(0).css("width", rating * width + "px");
+                            jQuery(this).find("span").eq(0).css("width", rating * width + "px");
 
-                            });
+                        });
 
                     $this.click(function() {
                         settings.afterClick($this, rating);

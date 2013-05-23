@@ -61,14 +61,16 @@
 
                                 <!-- Start. Check is product available -->
                                 {if $item.model->firstvariant->stock != 0}
-                                    <button class="btn btn_buy" 
+                                    <button class="btn btn_buy btnBuy" 
                                             type="button" 
                                             data-prodId="{echo $item.model->getId()}" 
                                             data-varId="{echo $item.model->firstVariant->getId()}" 
                                             data-price="{echo $item.model->firstVariant->toCurrency()}" 
                                             data-name="{echo $item.model->getName()}"
                                             data-number="{echo $item.model->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $item.model->firstVariant->getstock()}">
+                                            data-maxcount="{echo $item.model->firstVariant->getstock()}"
+                                             data-img="{echo $item.model->firstVariant->getSmallPhoto()}"
+                                            >
                                         {lang('s_buy')}
                                     </button>
                                 {else:}
@@ -92,7 +94,7 @@
                                 <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{$item.model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                                        <img src="{echo $item.model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                                     </figure>
                                 </a>
                             </div>
