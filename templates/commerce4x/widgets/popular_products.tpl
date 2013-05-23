@@ -59,7 +59,7 @@
 
                                 <!-- displaying notify button -->
                                 {if $hotProduct->firstvariant->getstock()!=0}
-                                    <button class="btn btn_buy" 
+                                    <button class="btn btn_buy btnBuy" 
                                             type="button" 
                                             data-prodId="{echo $hotProduct->getId()}" 
                                             data-varId="{echo $hotProduct->firstVariant->getId()}" 
@@ -87,10 +87,9 @@
                                 <!-- displaying products small mod image -->
                                 <div class="photo-block">
                                     <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
-                                        <span class="helper"></span>
                                         <figure>
-                                            <img src="{$hotProduct->firstVariant->getSmallPhoto()}" 
-                                                 alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}"/>
+                                            <span class="helper"></span>
+                                            <img src="{echo $hotProduct->firstVariant->getSmallPhoto()}"/>
                                         </figure>
                                     </a>
                                 </div>

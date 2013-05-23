@@ -1,6 +1,7 @@
 #comment__icsi-css{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 12px;color: #333;margin:0px; padding:0px; border:0px;outline:none;line-height: 1.5;vertical-align: baseline;background-color: transparent;}
 #comment__icsi-css .title_h2__icsi-css{margin-bottom: 15px;font-size: 18px;font-weight: normal;margin-bottom: 4px;}
-.frame-comments__icsi-css{margin: -15px -25px 0;background-color: #f6f6f6;padding: 24px 20px 15px;border-bottom: 1px solid #e3e3e3;vertical-align: baseline;margin-bottom: 25px;}
+.frame_tabs .frame-comments__icsi-css{margin: -15px -25px 0;}
+.frame-comments__icsi-css{background-color: #f6f6f6;padding: 24px 20px 15px;border-bottom: 1px solid #e3e3e3;vertical-align: baseline;margin-bottom: 25px;}
 .frame-list-comment__icsi-css{padding: 0;margin: 15px -25px 0;list-style-type: none;}
 .frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
 .frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}

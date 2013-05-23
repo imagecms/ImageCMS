@@ -164,6 +164,7 @@ class Template extends Mabilis {
     private $_css_code_pos = array();
     private $_js_code_pos = array();
     private $_metas = array();
+    private $_canonicals = array();
     private static $arr = array();
     private static $result_before = '';
     private static $result_after = '';
@@ -201,16 +202,30 @@ class Template extends Mabilis {
     }
 
     /**
-     * Place custom code before /head
-     * @param $code
+     * Place meta code before /head
+     * @param type $name meta name
+     * @param type $content meta content
      */
-    public function registerMeta($code) {
-        $this->_metas[] = $code;
+    public function registerMeta($name, $content) {
+        $this->_metas[] = '<META NAME="' . $name . '" CONTENT="' . $content . '">';
     }
 
+    /**
+     * Place canonical code before /head
+     * @param type $url canonical url
+     */
+    public function registerCanonical($url) {
+        $this->_canonicals[] = "<link href='" . $url . "' rel='canonical'>";
+    }
+
+    /**
+     * 
+     * @param string $position
+     * @return string
+     */
     private function _check_postion($position) {
-//        if ($position != 'before' AND $position != 'after')
-//            echo '!';
+        if ($position != 'before' AND $position != 'after')
+            return $position = 'before';
         return $position;
     }
 
@@ -325,6 +340,13 @@ class Template extends Mabilis {
 //        }
         if (sizeof($this->_metas) > 0) {
             foreach ($this->_metas as $code) {
+                if (!strstr(self::$result_before, $code)) {
+                    self::$result_before .= "$code\n";
+                }
+            }
+        }
+        if (sizeof($this->_canonicals) > 0) {
+            foreach ($this->_canonicals as $code) {
                 if (!strstr(self::$result_before, $code)) {
                     self::$result_before .= "$code\n";
                 }

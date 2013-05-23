@@ -21,17 +21,6 @@ class Shop_news extends MY_Controller {
 
     public static function adminAutoload() {
         \CMSFactory\Events::create()->onAdminPagePreEdit()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onAdminPagePreCreate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onAdminCategoryPreCreate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onAdminCategoryPreUpdate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onWidgetModulePreUpdate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onWidgetHTMLPreUpdate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onAdminDashboardShow()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onShopDashboardShow()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onShopProductPreCreate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onShopProductPreUpdate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onShopCategoryPreCreate()->setListener('_extendPageAdmin');
-        \CMSFactory\Events::create()->onShopCategoryPreEdit()->setListener('_extendPageAdmin');
     }
 
     /**

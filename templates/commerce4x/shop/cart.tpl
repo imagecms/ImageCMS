@@ -67,7 +67,7 @@
 
                 <!--        Order custom fields      -->
 
-                {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFieldsOrders($profile.id)->asHtml()}
+                   {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFieldsOrders($profile.id)->asHtml()}
                     <div class="groups_form">
                         {$orderCustomFields}
                     </div>
@@ -186,3 +186,5 @@
 </article>
 
 {/if}
+
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

@@ -6,7 +6,9 @@
         <meta name = "format-detection" content = "telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
         <title>{$site_title}</title>
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}../css/style.css"/>
+        <meta name="description" content="{$site_description}" />
+        <meta name="keywords" content="{$site_keywords}" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt_ie_8.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="css/lt_ie_7.css" /><![endif]-->
         <!--[if IE 6]>
@@ -15,8 +17,8 @@
                 DD_belatedPNG.fix('.h_f, .head_foot, .frame_search .frame_input input, .main_f_i_f-r, .logo img, .icon, .but_buy, .but_buy .b_buy_in, .but_buy a, .subm_filter, .subm_filter input, .frame_search .frame_input span, .search_button');
             </script>
         <![endif]-->
-        <script src="{$SHOP_THEME}../js/jquery-1.7.2.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}../js/jquery.main.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}/js/jquery.main.js"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -24,7 +26,7 @@
             <div class="header">
                 <ul>
                     <li>
-                        <a href="{shop_url('search')}" tabindex="1">
+                        <a href="{mobile_url('search')}" tabindex="1">
                             <span class="icon search_icon"></span><br/>
                             Поиск
                         </a>
@@ -40,12 +42,12 @@
             </div>
             <div class="o_h">
                 {if !$CI->dx_auth->is_logged_in()}
-                <div class="f_r frame_enter_soc_net">
-                    <div class="helper"></div>
-                    <div class="d-i_b">
-                        <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
+                    <div class="f_r frame_enter_soc_net">
+                        <div class="helper"></div>
+                        <div class="d-i_b">
+                            <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
+                        </div>
                     </div>
-                </div>
                 {/if}
             </div>
             <span class="head_foot"></span>

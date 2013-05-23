@@ -76,11 +76,33 @@
                                          {form_dropdown('pages_changefreq', $changefreq_options, $settings.pages_changefreq)}
                                     </div>
                                 </div>    
+                                <div class="control-group">
+                                    <label class="control-label" for="sppri">Страница продукта:</label>
+                                    <div class="controls">
+                                         {form_dropdown('product_changefreq', $changefreq_options, $settings.pages_changefreq)}
+                                    </div>
+                                </div>    
                             </div>
                         </td>
                     </tr>
                 </tbody>
-            </table>                                             
+            </table>
+            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    `           <thead>
+                    <th>{lang('a_shop_sett_xml_set_map')}</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="inside_padd">  
+                                <div class="control-group">
+                                    <a href="{site_url('sitemap.xml')}" target="_blank">{lang('a_shop_sett_yandex_market_p')}</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             {form_csrf()}
         </form>
     </div>

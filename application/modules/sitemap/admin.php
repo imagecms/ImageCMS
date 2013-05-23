@@ -45,6 +45,7 @@ class Admin extends BaseAdminController {
                 'main_page_changefreq' => $this->input->post('main_page_changefreq'),
                 'categories_changefreq' => $this->input->post('categories_changefreq'),
                 'pages_changefreq' => $this->input->post('pages_changefreq'),
+                'product_changefreq' => $this->input->post('product_changefreq'),
                 'sendXML' => 'false',
                 'lastSend' => time()
             );
@@ -56,6 +57,7 @@ class Admin extends BaseAdminController {
                 'main_page_changefreq' => $this->input->post('main_page_changefreq'),
                 'categories_changefreq' => $this->input->post('categories_changefreq'),
                 'pages_changefreq' => $this->input->post('pages_changefreq'),
+                'product_changefreq' => $this->input->post('product_changefreq'),
                 'sendXML' => $this->input->post('sendXML'),
                 'lastSend' => time()
             );

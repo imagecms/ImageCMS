@@ -6,6 +6,7 @@
  * Image CMS
  *
  * Класс слежения за ценой
+ * @property pricespy_model $pricespy_model
  */
 class Pricespy extends MY_Controller {
 
@@ -15,6 +16,7 @@ class Pricespy extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->load->model('pricespy_model');
     }
 
     /**
@@ -45,7 +47,7 @@ class Pricespy extends MY_Controller {
     }
 
     /**
-     * 
+     *
      */
     public function index() {
         if ($this->dx_auth->is_logged_in()) {
@@ -66,14 +68,14 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
+        $CI->load->model('pricespy_model');
 
         $product = $product[model];
         $ids = array();
         foreach ($product as $key => $p)
             $ids[$key] = $p->id;
 
-        $CI->db->where_in('productId', $ids);
-        $CI->db->delete('mod_price_spy');
+        $CI->pricespy_model->delSpysbyIds($ids);
     }
 
     /**
@@ -85,6 +87,7 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
+        $CI->load->model('pricespy_model');
 
         $spys = $CI->db
                 ->from('mod_price_spy')
@@ -114,35 +117,31 @@ class Pricespy extends MY_Controller {
      * @param type $varId variant ID
      */
     public function spy($id, $varId) {
-        $product = $this->db
-                ->where('id', $varId)
-                ->get('shop_product_variants')
-                ->row();
+        $product = $this->pricespy_model->getProductById($id);
 
-        $this->db
-                ->set('userId', $this->dx_auth->get_user_id())
-                ->set('productId', $id)
-                ->set('productVariantId', $varId)
-                ->set('productPrice', $product->price)
-                ->set('oldProductPrice', $product->price)
-                ->set('hash', random_string('unique', 15))
-                ->insert('mod_price_spy');
-
-        echo json_encode(array(
-            'answer' => 'sucesfull',
-        ));
+        if ($this->pricespy_model->setSpy($id, $varId, $product->price))
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     /**
-     * 
-     * @param type $hash 
+     *
+     * @param type $hash
      */
     public function unSpy($hash) {
-        $this->db->delete('mod_price_spy', array('hash' => $hash));
-
-        echo json_encode(array(
-            'answer' => 'sucesfull',
-        ));
+        if ($this->pricespy_model->delSpyByHash($hash))
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function init($model) {

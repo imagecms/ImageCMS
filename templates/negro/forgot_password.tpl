@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         {if validation_errors() OR $info_message}
             <div class="errors">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <div class="btn btn-order">
+                            <div class="btn-order">
                                 <input type="submit" value="Отправить"/>
                             </div>
                         </div>

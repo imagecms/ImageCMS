@@ -17,7 +17,6 @@
                         value: cur_max
                     }).insertAfter(body).hide();
                 }
-
                 rel.slider({
                     min: def_min,
                     max: def_max,
@@ -99,7 +98,7 @@
                 location: 'right',
                 elPos: $('.block-filter .frame-label'),
                 cleverFilterFunc: function(elPos, countTov, clas){
-                    cleaverFilterObj.mainWraper.hide();
+                    cleaverFilterObj.mainWraper.hide()
                     var left=0;
         
                     if (cleaverFilterObj.location == 'right') left = elPos.width()+elPos.offset().left;
@@ -117,7 +116,7 @@
             (function (){
                 cleaverFilterObj.elClosed.click(function(){
                     methods.triggerBtnClick();
-                });
+                })
                 $('body').live('click', function(event) {
                     event.stopPropagation();
                     if ($(event.target).parents().is(cleaverFilterObj.mainWraper) || $(event.target).is(cleaverFilterObj.mainWraper) || $(event.target).parents().is(cleaverFilterObj.elPos) || $(event.target).is(cleaverFilterObj.elPos)) return;
@@ -134,7 +133,7 @@
                         methods.triggerBtnClick();
                     }
                 });
-            })();
+            })()
         },
         triggerBtnClick: function(){
             cleaverFilterObj.mainWraper[cleaverFilterObj.effectOff](cleaverFilterObj.duration);
@@ -148,7 +147,7 @@
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.cleaverFilterMethod' );
         }
-    };
+    }
 })(jQuery);
 
 function afterAjaxInitializeFilter(){
@@ -167,7 +166,6 @@ function afterAjaxInitializeFilter(){
         evCond:true,
         before: function(a, b, c){
             c.nStCheck('changeCheck');
-//            window.setTimeout( function(){ ajaxRecount(b.attr('id'), false) }, 500 );
             ajaxRecount(b.attr('id'), false);
         }
     });

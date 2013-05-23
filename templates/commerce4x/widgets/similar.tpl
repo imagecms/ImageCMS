@@ -44,7 +44,7 @@
                                 {$CS}
                             </div>
                             {if $product->firstVariant->getStock() != 0}
-                                <button class="btn btn_buy" 
+                                <button class="btn btn_buy btnBuy" 
                                         type="button" 
                                         data-prodid="{echo $product->getId()}" 
                                         data-varid="{echo $product->firstVariant->getId()}" 
@@ -75,7 +75,7 @@
                                 <figure>
                                     <span class="helper"></span>
                                     <!--$product->getMainImage() - product image-->
-                                    <img src="{$product->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())}"/>
+                                    <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())}"/>
                                 </figure>
                             </a>
                         </div>

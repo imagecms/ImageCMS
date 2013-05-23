@@ -6,7 +6,13 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  *
- * User support module
+ * To add the button "Print" for the page you want to place in the template:
+ * {$CI->load->module('print_data')->render_button(array('id' => $page_id))}
+ *
+ * To add the button "Print" for the product you want to place in the template:
+ * {$CI->load->module('print_data')->render_button(array('id' => $product_id,'var' => $variant_id))}
+ *
+ * Print data module
  *
  */
 class Print_data extends MY_Controller {
@@ -20,9 +26,10 @@ class Print_data extends MY_Controller {
 
         $this->load->module('core');
     }
+
     /**
      * Render Print Button
-     * @param array $data 
+     * @param array $data
      */
     public function render_button($data) {
         /*
@@ -30,7 +37,7 @@ class Print_data extends MY_Controller {
          * $type - тип сторінки для друку
          */
         $type = $this->core->core_data['data_type'];
-        
+
         if (!$this->no_install)
             return false;
         \CMSFactory\assetManager::create()->registerScript('script');
@@ -48,19 +55,21 @@ class Print_data extends MY_Controller {
         }
         \CMSFactory\assetManager::create()->setData(array('href' => $href))->render('button', TRUE);
     }
-     /**
+
+    /**
      * Print Product
      * @param int $id
-     * @param int $var  
+     * @param int $var
      */
     public function print_product($id, $var) {
         if (!$this->no_install)
             return false;
-        $product = SProductsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($id);
-        $variant = SProductVariantsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->findPk($var);
-        $style = '/application/modules/print_data/assets/css/style.css';
-        \CMSFactory\assetManager::create()->setData(array('style' => $style, 'product' => $product, 'variant' => $variant))->render('print_product', TRUE);
+        $product = SProductsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findPk($id);
+        $variant = SProductVariantsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findPk($var);
+        \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
+        \CMSFactory\assetManager::create()->setData(array('product' => $product, 'variant' => $variant))->render('print_product', TRUE);
     }
+
     /**
      * Print Page
      * @param int $id
@@ -69,9 +78,10 @@ class Print_data extends MY_Controller {
         if (!$this->no_install)
             return false;
         $page = get_page($id);
-        $style = '/application/modules/print_data/assets/css/style.css';
-        \CMSFactory\assetManager::create()->setData(array('style' => $style, 'page' => $page))->render('print_page', TRUE);
+        \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
+        \CMSFactory\assetManager::create()->setData(array('page' => $page))->render('print_page', TRUE);
     }
+
     /**
      * Install module
      */
@@ -79,6 +89,7 @@ class Print_data extends MY_Controller {
         $this->db->where('name', 'print_data');
         $this->db->update('components', array('enabled' => 1));
     }
+
     /**
      * Deinstall module
      */
@@ -111,7 +122,6 @@ class Print_data extends MY_Controller {
         if ($flag == null)
             return array('id' => $lang_id, 'identif' => $lang_ident);
     }
-
 
 }
 

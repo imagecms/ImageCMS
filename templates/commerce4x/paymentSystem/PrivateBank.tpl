@@ -8,6 +8,6 @@
     <input type="hidden" name="pay_way" value="privat24" />
     <input type="hidden" name="return_url" value="{$SUCCESS_URL}" />
     <input type="hidden" name="server_url" value="{$RESULT_URL}" />
-    <button type="submit" class="btn btn_buy psPay">Оплатить</button>
+    <button type="submit" class="btn btn_buy btnBuy psPay">Оплатить</button>
 </form>
      

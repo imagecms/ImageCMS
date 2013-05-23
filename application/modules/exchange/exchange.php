@@ -71,7 +71,7 @@ class Exchange {
         $this->prop_data = load_prop_data();
         $this->urls = load_urls();
 
-        $this->locale = $this->getCurrentLocale();    //getting current locale
+        $this->locale = MY_Controller::getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
             //default settings if module is not installed yet
@@ -1165,30 +1165,6 @@ class Exchange {
             echo $xml_order;
         }
         exit();
-    }
-
-    private function getCurrentLocale() {
-        $lang_id = $this->ci->config->item('cur_lang');
-        if ($lang_id) {
-            $this->ci->db->select('identif');
-            $query = $this->ci->db->get_where('languages', array('id' => $lang_id))->result();
-            if ($query) {
-                $currentLocale = $query[0]->identif;
-            } else {
-                $currentLocale = 'ru';
-            }
-        } else {
-            $language = $this->ci->db->where('default', 1)
-                    ->limit(1)
-                    ->get('languages');
-            if ($language)
-                $language = $language->row();
-            else
-                throw new Exception("Default language not found");
-
-            $currentLocale = $language->identif;
-        }
-        return $currentLocale;
     }
 
 }

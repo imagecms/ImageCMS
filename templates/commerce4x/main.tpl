@@ -29,10 +29,10 @@
             <link rel="stylesheet" type="text/css" href="{$THEME}css/lt_ie8.css" />
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
             <script src="{$THEME}js/css3-mediaqueries.js"></script>
-            <script src="{$THEME}js/localStorageIE.js"></script>
         <![endif]-->
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
+            <script src="js/localStorageIE.js"></script>
         <![endif]-->
         {literal}
             <style>
@@ -60,7 +60,9 @@
                                 <nav class="f_l">
                                     <ul class="nav navHorizontal frameEnterReg">
                                         <!--Start. If not logged in then show links for registration and enter to the system-->
+                                           
                                         {if !$CI->dx_auth->is_logged_in()}
+                                            
                                             <li>
                                                 <span class="f-s_0">
                                                     <span class="helper"></span>
@@ -114,7 +116,7 @@
                                     </ul>
                                 </nav>
                                 <!-- Start. Block with link for basket with count of products -->
-                                <div class="cleaner f_l f-s_0 isAvail">
+                                <div class="tiny_bask f_l f-s_0 isAvail">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>
@@ -221,12 +223,13 @@
                 <!-- Start. Show content -->
                 <div>
                     {$content}
+                    {widget('latest_news')}
                 </div>
                 <!-- End. Show content -->
             </div>
             {$exists_brands = !$CI->uri->segment(1) || $CI->uri->segment(1) == 'shop';}
+            <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         </div>
-        <div class="{if !$exists_brands}without_brand{/if} hFooter"></div>
         <footer class="{if !$exists_brands}without_brand{/if}">
             <!-- Start Brands widget for Shop -->
             {if $exists_brands}
@@ -260,6 +263,7 @@
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}
+                                
                             </ul>
                         </div>
                         <!-- End. Block with contacts -->
@@ -307,18 +311,13 @@
         </script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
-        <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <script type="text/javascript" src="{$THEME}js/shop_processing.js"></script>
 
 
