@@ -456,7 +456,7 @@ $(document).ready(function () {
         vName = liBlock.find(genObj.prefV + productId).attr('data-vname'),
         vPrice = liBlock.find(genObj.prefV + productId).attr('data-price'),
         vOrigPrice = liBlock.find(genObj.prefV + productId).attr('data-origPrice'),
-        vNumber = liBlock.find(genObj.prefV + productId).attr('data-number');
+        vNumber = liBlock.find(genObj.prefV + productId).attr('data-number'),
         vStock = liBlock.find(genObj.prefV + productId).attr('data-stock');
         
     
