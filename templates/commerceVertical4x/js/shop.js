@@ -1002,36 +1002,37 @@ $(document).ready(
 
 $(//gift certificate in cart
     function(){
-        $('#applyGiftCert').on('click', function(){
-            $('input[name=makeOrder]').val(0);
-            $('input[name=checkCert]').val(1);
-            $('#makeOrderForm').ajaxSubmit({
-                url:'/shop/cart_api',
-                success : function(data){
-                    try {
-                        var dataObj = JSON.parse(data);
+    $('#applyGiftCert').on('click', function(event){
+        event.preventDefault()
 
-                        Shop.Cart.giftCertPrice = dataObj.cert_price;
+        $('input[name=checkCert]').val(1)
+        $.post('/shop/cart_api/getGiftCert', {giftcert: $('input[name=giftcert]').val(), checkCert:$('input[name=checkCert]').val()}, function(data) {
 
-                        if (Shop.Cart.giftCertPrice > 0)
-                        {// apply certificate
-                            $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
-                            $('#giftCertSpan').show();
-                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
-                        }
+            try {
+                var dataObj = JSON.parse(data);
 
-                        Shop.Cart.totalRecount();
-                        recountCartPage();
-                    } catch (e) {
-                        //console.error('Checking gift certificate filed. '+e.message);
-                    }
+                Shop.Cart.giftCertPrice = dataObj.cert_price;
+
+                if (Shop.Cart.giftCertPrice > 0)
+                {// apply certificate
+                    $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision) + ' ' + curr);
+                    $('#giftCertSpan').show();
+                    //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
                 }
-            });
 
-            $('input[name=makeOrder]').val(1);
+                Shop.Cart.totalRecount();
+                recountCartPage();
+            } catch (e) {
+                //console.error('Checking gift certificate filed. '+e.message);
+            }
 
-            return false;
-        });
+        })
+        
+
+
+
+        return false;
+    });
     }
     )
 
