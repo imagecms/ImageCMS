@@ -116,7 +116,7 @@
                                     </ul>
                                 </nav>
                                 <!-- Start. Block with link for basket with count of products -->
-                                <div class="tiny_bask f_l f-s_0 isAvail">
+                                <div class="tiny_bask f_l f-s_0">
                                     <span class="helper"></span>
                                     <span class="f-s_0">
                                         <span class="icon-bask"></span>

@@ -103,6 +103,7 @@ h1 + .bot_border_grey{margin-top: 10px;}
 .m-r_45{margin-right: 45px !important;}
 .m-r_40{margin-right: 40px !important;}
 .m-r_30{margin-right: 30px !important;}
+.m-r_20{margin-right: 20px !important;}
 .m-l_10{margin-left: 10px !important;}
 .m-b_10{margin-bottom: 10px !important;}
 .m-b_20{margin-bottom: 20px !important;}
@@ -632,7 +633,7 @@ header .helper{height: 32px !important;}
 .frame-item-menu > .right-drop > li:hover > a.is-sub:after, .frame-item-menu > .right-drop > li.hover > a.is-sub:after, .frame-item-menu > .right-drop > li:hover > a.is-sub .ie_21, .frame-item-menu > .right-drop > li.hover > a.is-sub .ie_21{display: block;}
 .frame-item-menu > .right-drop ul{text-align: left;}
 
-.menu-main td > .frame-item-menu > div > .title > span{display: inline-block;padding: 0 15px 4px;white-space: normal;}
+.menu-main td > .frame-item-menu > div > .title > span{display: inline-block;padding: 0 15px 4px;white-space: normal;vertical-align: middle;position: relative;top: 1px;}
 .menu-main td > .frame-item-menu > div{position: relative;height: 100%;}
 
 .vertical td{text-align: left;}
@@ -689,6 +690,7 @@ a.activeSlide{background-position: -66px 0;}
 .price_f-s_16 .d_b.second_cash{margin-top: -4px;}
 .price_f-s_16 .old_price .f-w_b{font-size: 12px;}
 .in_cart .price{color: #1a6d84;}
+.not_avail .price{color: #999;}
 
 .price_f-s_16 .f-w_b{font-size: 16px;}
 .price_f-s_18{font-size: 14px;}
@@ -707,7 +709,9 @@ a.activeSlide{background-position: -66px 0;}
 .photo a, a.photo{padding: 2%;}
 .photo figure img{max-height: 100%;}
 .items .btn{margin-bottom: 10px;}
-.in_cart > .description > a{color: #1a6d84;}
+.in_cart a{color: #1a6d84;}
+.not_avail a{color: #999;}
+
 .top_tovar{width: 47px;height: 47px;position: absolute;left: 0;top: 0;-moz-border-radius: 23px;-webkit-border-radius: 23px;border-radius: 23px;line-height: 47px;color: #fff;text-align: center;}
 .top_tovar + .top_tovar{left: 47px;}
 .top_tovar + .top_tovar + .top_tovar{left: 94px;}
@@ -718,7 +722,7 @@ a.activeSlide{background-position: -66px 0;}
 .item_tovar{padding-bottom: 47px;margin-bottom: 17px;}
 .item_tovar .frame_response{margin-bottom: 9px;}
 .item_tovar .price_f-s_24{margin-bottom: 3px;}
-#variantProd .title{color: 4f4f4f;display: block;margin-bottom: 7px;font-size: 16px;font-weight: bold;}
+.variantProd .title{color: 4f4f4f;display: block;margin-bottom: 7px;font-size: 16px;font-weight: bold;}
 .count_response{color: #333;}
 .star{display: inline-block;margin-right: 9px;}
 
@@ -739,7 +743,7 @@ a.activeSlide{background-position: -66px 0;}
 .itemsFrameNS .description{margin-top: 110px;}
 .items_catalog .helper{vertical-align: bottom;}
 .items_catalog > li .price{margin-bottom: 10px;}
-.items_catalog.list .description, .items_catalog.list > .description{margin-left: 205px;margin-top: 0;min-height: 190px;}
+.items_catalog.list .description{margin: 0 0 0 205px;min-height: 190px;padding-right: 0;}
 .items_catalog.list .photo-block, .items_catalog.list .photo-block{float: left;margin-right: 20px;width: 185px;}
 .items_catalog.list .photo > .helper, .items_catalog.list .photo > .helper{vertical-align: top;}
 .item_set{width: 140px;display: inline-block;vertical-align: middle;position: relative;}
@@ -807,7 +811,7 @@ a.activeSlide{background-position: -66px 0;}
 .neigh_radio.lineForm{margin-top: 4px;}
 .cuselFrameRight {position: absolute;z-index: 2;top: 0;right: 0;height: 100%;width: 23px;background-position: 100% -30px;}
 .cuselText {height: 30px;line-height: 30px;padding-left:10px;cursor: pointer;overflow: hidden;z-index: 1;position: absolute;top: 0;left: 0;font-size: 12px;}
-.cusel span {display: block;cursor: pointer;white-space: nowrap;padding: 3px 0px 3px 5px;margin-right: -3px;color: #666;font-size: 11px;}
+.cusel span {display: block;cursor: pointer;white-space: nowrap;padding: 3px 0px 3px 5px;margin-right: -3px;color: #666;font-size: 11px;text-overflow: ellipsis;overflow: hidden;}
 .cusel span:hover,.cusel .cuselOptHover {background: #003399;color: #fff;}
 .cusel .cuselActive {background: #e5e5e5;color: #333;cursor: default;}
 /*.cuselOpen {z-index: 999;background-position: 0 -224px;}
@@ -832,8 +836,8 @@ a.activeSlide{background-position: -66px 0;}
 .crumbs a{color: #333;}
 .crumbs span{color: #979797;}
 
-.item_tovar #photoGroup{margin-top: 15px;}
-.frame_buy .btn_buy, .frame_buy .price+.btn_cart{font-size: 18px;}
+.item_tovar .photoGroup, .item_tovar #photoGroup{margin-top: 15px;}
+.frame_buy .btnBuy, .frame_buy .btnBuy.btn_cart{font-size: 18px;}
 .vertical_template .frame_buy .m-r_45{margin-right: 34px !important;}
 .vertical_template .frame_buy .m-r_30{margin-right: 20px !important;}
 .item_tovar .frame_thumbs{margin-left: -18px;}
@@ -841,6 +845,7 @@ a.activeSlide{background-position: -66px 0;}
 .item_tovar .frame_thumbs > li > a{display: block;width: 62px;height: 62px;border: 1px solid #adadad;padding: 5px;}
 .item_tovar .frame_thumbs > li > a > .helper{ }
 .item_tovar .frame_thumbs > .active a{border-color: #333;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;}
+.frame_cart_btns{margin-right: 10px;}
 
 .item_tovar .tabs{position: relative;z-index: 1;top: 1px;margin-top: 25px;}
 .tabs > li{cursor: pointer;padding: 0;}
@@ -979,6 +984,8 @@ form + .msg{margin: 15px 15px 0;}
 .drop-report .drop-content{background-position: -323px 0;padding: 0 25px 15px;}
 .drop-report .drop-footer{background-position: -2538px 0;height: 13px;}
 .drop-report .drop-content .header_title{margin: 0 7px;}
+.drop-report h1{font-size: 16px;}
+.drop-report .frame-search-thumbail .photo{margin-right: 0;}
 
 .frameGroupsForm .inside_padd{padding: 26px 28px;}
 .tableOrderData td, .tableOrderData th{padding: 7px 0;}
@@ -1051,7 +1058,7 @@ body.vertical_template .frameSet .jcarousel-item{width: 748px !important;}
 
 .hFooter{height: 432px;}
 .hFooter.without_brand{height: 262px;}
-footer{min-height:432px;margin: -432px auto 0;color: #adadad;position: relative;z-index: 1;}
+footer{min-height:432px;margin: -432px auto 0;color: #adadad;position: relative;z-index: 2;}
 footer.without_brand{min-height: 262px;margin: -262px auto 0;}
 footer > .frame_footer{
     min-height: 275px;
