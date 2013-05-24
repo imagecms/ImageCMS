@@ -72,7 +72,7 @@
 
 
                             {if SHOP_INSTALLED}
-                                <div class="btn-group" id="topPanelNotifications" style="display: none;">
+                                <div class="btn-group" id="topPanelNotifications" style="display: block;">
                                     <div class="span4 d-i_b">
                                         <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                             <i class="icon-bask "></i>
@@ -304,7 +304,7 @@
                     if (!isShop)
                     {
                         $('#shopAdminMenu').hide();
-                        $('#topPanelNotifications').hide();
+                        //$('#topPanelNotifications').hide();
                     }
                     else
                         $('#baseAdminMenu').hide();
