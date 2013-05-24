@@ -72,6 +72,8 @@
                         {$orderCustomFields}
                     </div>
                 {/if}
+
+
                 <div class="groups_form">
                     <div class="frameLabel" style="position: relative; z-index: 6;">
                         <span class="title">Способ доставки</span>
@@ -79,7 +81,6 @@
                             <div class="row-fluid">
                                 <div class="lineForm">
                                     <select id="method_deliv" name="deliveryMethodId">
-
                                         {foreach $deliveryMethods as $deliveryMethod}
                                             {$del_id = $deliveryMethod->getId()}
                                             <option

@@ -310,15 +310,13 @@
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
-        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.min.js"></script>
 
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
         <script type="text/javascript" src="{$THEME}js/my_js_classes_iy.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
-        <script type="text/javascript" src="{$THEME}js/shop_processing.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.min.js"></script>
 
 
         <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
