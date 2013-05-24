@@ -126,7 +126,31 @@ function deleteComprasionItem(el){
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
-function deleteWishListItem(el){
+function recountWishListTotalPrise(deletedItem, id, vid){
+    
+    var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
+    arr = _.without(arr, id+'_'+vid);                        
+    localStorage.setItem('wishList_vid', JSON.stringify(arr));
+    localStorage.removeItem('wishList_'+id+'_'+vid);
+    
+    var itemPrice = parseFloat(deletedItem.text());    
+    var totalPrice = parseFloat(localStorage.getItem('totalPrice')); 
+    if(totalPrice){         
+         localStorage.setItem('totalPrice',(totalPrice-itemPrice).toFixed(3));
+         totalPrice = parseFloat(localStorage.getItem('totalPrice')).toFixed(3);
+         $('#wishListTotal').text(totalPrice);
+    }else{
+       var tmpTotalPrice =  parseFloat($('#wishListTotal').text());
+       tmpTotalPrice = (tmpTotalPrice-itemPrice).toFixed(3);
+       $('#wishListTotal').text(tmpTotalPrice);
+       localStorage.setItem('totalPrice', tmpTotalPrice);
+    }
+   
+} 
+function deleteWishListItem(el, id, vid){
+    var deletedItem = el.parent().find('.old_price').next();
+    recountWishListTotalPrise(deletedItem, id, vid);
+    
     if (el.parent().siblings().length == 0){
         $('[data-body="body"]').hide()
         $('[data-body="message"]').show()
@@ -563,9 +587,11 @@ $(document).ready(function () {
     });
 
     $('.'+genObj.toWishlist).on('click', function () {
+        
         var id = $(this).data('prodid');
         var vid = $(this).data('varid');
-        Shop.WishList.add(id, vid);
+        var price = $(this).data('price');
+        Shop.WishList.add(id, vid, price, $(this));
     });
 
     $('.'+genObj.inWishlist).die('click').live('click', function () {

@@ -188,6 +188,7 @@
 
                             <!-- to wish list button -->
                             <button class="btn btn_small_p toWishlist"
+                                    data-price="{echo $p->firstVariant->toCurrency()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $p->firstVariant->getId()}"
                                     type="button"
