@@ -31,7 +31,7 @@
                 {foreach $items as $key=>$item}
                 <li class="span3 {if $item.model->firstvariant->stock == 0} not_avail{/if}">
                     {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                    <button class="btn btn_small btn_small_p" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this)">
+                    <button class="btn btn_small btn_small_p" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $item.model->firstVariant->getId()})">
                         <span class="icon-remove_comprasion"></span>
                     </button>    
                     {/if}
