@@ -341,7 +341,6 @@ var Shop = {
         cartItem.vname = $context.data('vname');
         cartItem.url = $context.data('url'); 
         cartItem.img = $context.data('img');
-        
         return cartItem;
     },
 
@@ -356,18 +355,19 @@ var Shop = {
         }
     },
 
-    WishList:{
+     WishList:{
         items:[],
         all:function () {
 
             return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
         },
-        add:function (key, vid) {
-
+        add:function (key, vid, price, curentEl) {
+    
             Shop.WishList.items = this.all();
-
+            this.countTotalPrice( price, curentEl);
+             localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({id: key, vid: vid, price: price }) );
             if (this.items.indexOf(key) == -1) {
-
+           
                 $.post('/shop/wish_list_api/add', {
                     productId_:key,
                     variantId_:vid
@@ -378,7 +378,10 @@ var Shop = {
                         if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
                             localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
-
+                            var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
+                            arr.push(key+'_'+vid)
+                            localStorage.setItem('wishList_vid', JSON.stringify(arr));
+                            
                             if (Shop.WishList.items.length != dataObj.count) {
                                 Shop.WishList.sync();
                                 return;
@@ -399,8 +402,10 @@ var Shop = {
             }
         },
 
-        rm:function (key, el) {
+        rm:function (key, el, vid) {
             this.items = this.all();
+            
+            //alert($('#wishListTotal').text());
             $.get('/shop/wish_list_api/delete/' + key, function (data) {
                 try {
                     dataObj = JSON.parse(data);
@@ -418,7 +423,7 @@ var Shop = {
                     }
                 } catch (e) {}
             });
-            deleteWishListItem($(el));
+            deleteWishListItem($(el),key, vid);
         },
         sync: function(){
             $.getJSON('/shop/wish_list_api/sync', function(data){
@@ -433,6 +438,19 @@ var Shop = {
                     type:'wish_list_sync'
                 });
             });
+        },
+        countTotalPrice: function( price, curentEl){
+            var inWishlist = curentEl.hasClass('inWishlist'); 
+            if(!inWishlist){
+                var totalPrice = localStorage.getItem('totalPrice');
+
+                if(!totalPrice){
+                    
+                    localStorage.setItem('totalPrice',  parseFloat(price));
+                }else{
+                    localStorage.setItem('totalPrice', parseFloat(totalPrice) + parseFloat(price));
+                }
+            }
         }
     },
 

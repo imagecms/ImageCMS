@@ -162,6 +162,7 @@
                     <div class="var_{echo $model->firstVariant->getId()} f_l prod_{echo $model->getId()}">
                         <div class="btn-def" data-title="В список желаний" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" data-rel="tooltip">
                             <button class="toWishlist"
+                                    data-price="{echo $model->firstVariant->toCurrency()}"
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $model->firstVariant->getId()}"
                                     type="button"
