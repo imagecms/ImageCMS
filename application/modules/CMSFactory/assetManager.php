@@ -6,8 +6,6 @@ namespace CMSFactory;
  * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
  */
 class assetManager {
-    const REGISTER_FILE_TYPE_STYLE = 'style';
-    const REGISTER_FILE_TYPE_SCRIPT = 'script';
 
     protected static $_BehaviorInstance;
 
@@ -74,7 +72,7 @@ class assetManager {
         if (!is_array($name)) $name = array($name);
 
         foreach ($name as $v) {
-            $this->registerByType(self::REGISTER_FILE_TYPE_SCRIPT, APPPATH . 'modules/' . $paths . '/assets' . $pattern . '/js/' . $v . '.js');
+            \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets' . $pattern . '/js/' . $v . '.js', 'after');
         }
 
         return $this;
@@ -97,25 +95,6 @@ class assetManager {
         }
 
         return $this;
-    }
-
-    /**
-     * Includes some register* functions
-     * @param $type - one of constants assetManager::REGISTER_FILE_TYPE_*
-     * @param $path - path to file
-     * @return $this
-     * @author JohnJ
-     * @copyright Free
-     */
-    private function registerByType($type, $path) {
-        if ($type == self::REGISTER_FILE_TYPE_SCRIPT) {
-            \CI_Controller::get_instance()->template->registerJsFile($path, 'after');
-            return $this;
-        } elseif ($type == self::REGISTER_FILE_TYPE_STYLE) {
-            \CI_Controller::get_instance()->template->registerCssFile($path, 'before');
-            return $this;
-        }
-        throwException('Unknown register file type: "<i>' . $type . '</i>" for path "<i>' . $path . '</i>"');
     }
 
     /**
