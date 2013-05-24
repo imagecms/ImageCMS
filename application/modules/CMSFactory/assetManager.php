@@ -6,6 +6,8 @@ namespace CMSFactory;
  * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
  */
 class assetManager {
+    const REGISTER_FILE_TYPE_STYLE = 'style';
+    const REGISTER_FILE_TYPE_SCRIPT = 'script';
 
     protected static $_BehaviorInstance;
 
@@ -25,23 +27,19 @@ class assetManager {
      */
     public function Get_trace($list = 'first_file') {
         $trace = debug_backtrace();
-        if ($list == 'first_file')
-        {
+        if ($list == 'first_file') {
             $paths = explode(DIRECTORY_SEPARATOR, $trace[0]['file']);           
             return  $paths[count($paths) - 2];
         }
 
-        if ($list == 'first')
-        {
+        if ($list == 'first') {
             return $trace[0];
         }
 
-        if ($list == 'all')
-        {
+        if ($list == 'all') {
             return $trace;
         }
-        if (is_numeric($list))
-        {
+        if (is_numeric($list)) {
             return $trace[$list]; 
         }
         // exit('error get trace file. (assetManager)');
@@ -66,46 +64,69 @@ class assetManager {
     /**
      * @return assetManager
      * @access public
-     * @author Kaero
+     * @author Kaero / modified by JohnJ
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerScript($name) {        
-        $paths = $this->Get_trace('first_file');           
-        if (is_array($name) and count($name) >= 1 )
-        {
-            foreach ($name as $v)
-            {
-                \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $v . '.js', 'after');
-            }
+    public function registerScript($name, $pattern = 'default') {
+        $paths = $this->Get_trace('first_file');
+        $pattern = $this->processingPatternName($pattern);
+
+        if (!is_array($name)) $name = array($name);
+
+        foreach ($name as $v) {
+            $this->registerByType(self::REGISTER_FILE_TYPE_SCRIPT, APPPATH . 'modules/' . $paths . '/assets' . $pattern . '/js/' . $v . '.js');
         }
-        else
-        {
-            \CI_Controller::get_instance()->template->registerJsFile(APPPATH . 'modules/' . $paths . '/assets/js/' . $name . '.js', 'after');
-        }
+
         return $this;
     }
 
     /**
      * @return assetManager
      * @access public
-     * @author Kaero
+     * @author Kaero / modified by JohnJ
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerStyle($name) {
-        $paths = $this->Get_trace('first_file'); 
-        
-        if (is_array($name) and count($name) >= 1 )
-        {
-            foreach ($name as $v)
-            {
-                \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $v . '.css', 'before');
-            }
+    public function registerStyle($name, $pattern = 'default') {
+        $paths = $this->Get_trace('first_file');
+        $pattern = $this->processingPatternName($pattern);
+
+        if (!is_array($name)) $name = array($name);
+
+        foreach ($name as $v) {
+            \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets' . $pattern . '/css/' . $v . '.css', 'before');
         }
-        else
-        {
-        \CI_Controller::get_instance()->template->registerCssFile(APPPATH . 'modules/' . $paths . '/assets/css/' . $name . '.css', 'before');
-        }
+
         return $this;
+    }
+
+    /**
+     * Includes some register* functions
+     * @param $type - one of constants assetManager::REGISTER_FILE_TYPE_*
+     * @param $path - path to file
+     * @return $this
+     * @author JohnJ
+     * @copyright Free
+     */
+    private function registerByType($type, $path) {
+        if ($type == self::REGISTER_FILE_TYPE_SCRIPT) {
+            \CI_Controller::get_instance()->template->registerJsFile($path, 'after');
+            return $this;
+        } elseif ($type == self::REGISTER_FILE_TYPE_STYLE) {
+            \CI_Controller::get_instance()->template->registerCssFile($path, 'before');
+            return $this;
+        }
+        throwException('Unknown register file type: "<i>' . $type . '</i>" for path "<i>' . $path . '</i>"');
+    }
+
+    /**
+     * Change pattern string for using in path
+     * @param $pattern
+     * @return string
+     * @author JohnJ
+     * @copyright Free
+     */
+    private function processingPatternName($pattern) {
+        return !is_string($pattern) || empty($pattern) ? '' : '/' . trim($pattern, '/\\');
     }
 
     /**
