@@ -5,6 +5,36 @@ $.exists_nabir = function(nabir) {
     return (nabir.length > 0);
 }
 
+function sortInit() {
+    if ($.exists('.sortable')) {
+        $('.sortable tr').not(':has(tr)').tooltip({
+            'placement': place_tr_ttp,
+            'delay': {
+                show: 500,
+                hide: 100
+            }
+        }).css('cursor', 'move');
+        $(".sortable").sortable({
+            axis: 'y',
+            cursor: 'move',
+            scroll: false,
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select, td textarea',
+            helper: function(e, tr)
+            {
+                var $originals = tr.children();
+                var $helper = tr.clone();
+                $helper.children().each(function(index)
+                {
+                    $(this).width($originals.eq(index).width())
+                });
+                $helper.addClass('active');
+                return $helper;
+            }
+
+        });
+    }
+}
+
 var notificationsInitialized = false;
 
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
@@ -843,33 +873,7 @@ function initAdminArea() {
     difTooltip();
 
     //sortable
-    if ($.exists('.sortable')) {
-        $('.sortable tr').not(':has(tr)').tooltip({
-            'placement': place_tr_ttp,
-            'delay': {
-                show: 500,
-                hide: 100
-            }
-        }).css('cursor', 'move');
-        $(".sortable").sortable({
-            axis: 'y',
-            cursor: 'move',
-            scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select, td textarea',
-            helper: function(e, tr)
-            {
-                var $originals = tr.children();
-                var $helper = tr.clone();
-                $helper.children().each(function(index)
-                {
-                    $(this).width($originals.eq(index).width())
-                });
-                $helper.addClass('active');
-                return $helper;
-            }
-
-        });
-    }
+    sortInit();
     if ($.exists('.sortable2')) {
         $('.sortable2 tr').not(':has(tr)').tooltip({
             'placement': place_tr_ttp,
