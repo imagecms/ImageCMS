@@ -29,37 +29,41 @@
             <span class="c_97">
                 {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
             </span>
-            <div class="clearfix t-a_c frame_func_catalog">
-                <div class="f_l">
-                    <span class="v-a_m">{lang('s_order_by')}:</span>
-                    <div class="lineForm w_170 sort">
-                        <select id="sort" name="order">
-                            <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
-                            <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                            <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                            <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                            <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                            <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                            <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="f_r">
+            {if count($products) > 0}
+                <div class="clearfix t-a_c frame_func_catalog">
+                    <form method="get" id="searchSortForm" action="">
+                        <div class="f_l">
+                            <span class="v-a_m">{lang('s_order_by')}:</span>
+                            <div class="lineForm w_170 sort">
+                                <select class="sort" id="sort" name="order">
+                                    <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
+                                    <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                    <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                    <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                    <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                    <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                    <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="f_r">
 
-                    <span class="v-a_m">{lang('s_products_per_page')}:</span>
-                    <div class="lineForm w_70 sort">
-                        <select class="sort" id="sort2" name="order2">
-                            <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
-                            <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
-                            <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
-                        </select>
+                            <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                            <div class="lineForm w_70 sort">
+                                <select class="sort" id="sort2" name="user_per_page">
+                                    <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
+                                    <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
+                                    <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="groupButton list_pic_btn">
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
                     </div>
                 </div>
-                <div class="groupButton list_pic_btn">
-                    <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                    <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
-                </div>
-            </div>
+            {/if}
             {if $page_number == 1 && str_replace(' ', '', $model->getDescription()) != ''}
                 <div class="grey-b_r-bord">
                     <figure class="f_l m-t_10 w_150">
@@ -78,7 +82,9 @@
                                 {$CI->load->module('star_rating')->show_star_rating($product)}
                                 <!--    Star reiting    -->
                                 {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
-                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
+
+                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">                                    
+
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 {/if}
@@ -94,11 +100,13 @@
                                         -->
                                         <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                         {$CS}
-                                    </span>
+
+                                    </span>                           
                                 {/if}
                                 <span class="f-w_b">
                                     {echo $product->firstVariant->toCurrency()}
-                                </span>
+                                </span> 
+
                                 {$CS}&nbsp;&nbsp;
                             </div>
                             {if (int)$product->getallstock() == 0}
@@ -119,18 +127,22 @@
                             {else:}
 
                                 <!-- displaying buy or in cart button -->
+
                                 <button class="btn btn_buy btnBuy"
                                         type="button"
                                         data-id="{echo $product->getId()}"
                                         data-varid="{echo $product->firstVariant->getId()}"
                                         data-prodid="{echo $product->getId()}"
                                         data-price="{echo $product->firstVariant->toCurrency()}"
+
                                         data-name="{echo ShopCore::encode($product->getName())}"
                                         data-maxcount="{echo $product->firstVariant->getstock()}"
                                         data-number="{echo $product->firstVariant->getNumber()}"
                                         data-img="{echo $product->firstVariant->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$product->getUrl())}"
+
                                         data-origPrice="{if $product->firstVariant->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+
                                         data-stock="{echo $product->firstVariant->getStock()}"
                                         >
                                     {lang('s_buy')}
@@ -138,9 +150,11 @@
                             {/if}
                             <div class="d_i-b">
                                 <!-- to compare button -->
+
                                 <button class="btn btn_small_p toCompare"
                                         data-prodid="{echo $product->getId()}"
                                         type="button"
+
                                         data-title="{lang('s_add_to_compare')}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
@@ -148,11 +162,13 @@
                                     <span class="text-el">{lang('s_add_to_compare')}</span>
                                 </button>
                                 <!-- to wish list button -->
+
                                 <button class="btn btn_small_p toWishlist"
                                         data-price="{echo $product->firstVariant->toCurrency()}"
                                         data-prodid="{echo $product->getId()}"
                                         data-varid="{echo $product->firstVariant->getId()}"
                                         type="button"
+
                                         data-title="{lang('s_add_to_wish_list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
@@ -160,6 +176,7 @@
                                     <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                 </button>
                             </div>
+
                             <div class="photo-block">
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                     <figure>
@@ -168,6 +185,7 @@
                                     </figure>
                                 </a>
                             </div>
+
                     </li>
                 {/foreach}
                 <!--  End. Rendering produts list   -->
