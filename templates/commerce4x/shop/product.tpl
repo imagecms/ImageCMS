@@ -188,6 +188,7 @@
                                 <br/>
                                 <!--Block Wishlist Start-->
                                 <button class="btn btn_small_p toWishlist" 
+                                        data-price="{echo $model->firstVariant->toCurrency()}"
                                         data-prodid="{echo $model->getId()}" 
                                         data-varid="{echo $model->firstVariant->getId()}"  
                                         type="button" 
@@ -344,6 +345,7 @@
 
                                         <!-- to wish list button -->
                                         <button class="btn btn_small_p toWishlist" 
+                                                data-price="{echo $product->firstVariant->toCurrency()}"
                                                 data-prodid="{echo $p->getId()}" 
                                                 data-varid="{echo $p->firstVariant->getId()}"  
                                                 type="button" 
