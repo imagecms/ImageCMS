@@ -67,7 +67,7 @@
 
                 <!--        Order custom fields      -->
 
-                   {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFieldsOrders($profile.id)->asHtml()}
+                   {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('order',$profile.id,'user')->asHtml()}
                     <div class="groups_form">
                         {$orderCustomFields}
                     </div>
