@@ -4,12 +4,12 @@
 * Variables
 *   $products: (object) instance of SProduct
 *       $product->firstVariant: variable which contains the first variant of product
-*       $product->getStock(): method which returns product availability 
+*       $product->getStock(): method which returns product availability
 *       $product->url(): method which return product url
 *       $product->name(): method which return product name
 *       $product->getmainimage(): method which return product main image
 *       $product->getId(): method which return product id
-*        
+*
 *   $pagination: variale which contains HTML code of page pagination
 *
 *   $totalProducts: variale which contains total count of products in brand category
@@ -82,7 +82,9 @@
                                 {$CI->load->module('star_rating')->show_star_rating($product)}
                                 <!--    Star reiting    -->
                                 {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
+
                                     <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">                                    
+
                                         {echo $Comments[$product->getId()]}
                                     </a>
                                 {/if}
@@ -98,11 +100,13 @@
                                         -->
                                         <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                         {$CS}
+
                                     </span>                           
                                 {/if}
                                 <span class="f-w_b">
                                     {echo $product->firstVariant->toCurrency()}
                                 </span> 
+
                                 {$CS}&nbsp;&nbsp;
                             </div>
                             {if (int)$product->getallstock() == 0}
@@ -123,19 +127,22 @@
                             {else:}
 
                                 <!-- displaying buy or in cart button -->
-                                <button class="btn btn_buy btnBuy" 
-                                        type="button"
 
+                                <button class="btn btn_buy btnBuy"
+                                        type="button"
                                         data-id="{echo $product->getId()}"
                                         data-varid="{echo $product->firstVariant->getId()}"
                                         data-prodid="{echo $product->getId()}"
-                                        data-price="{echo $product->firstVariant->toCurrency()}" 
+                                        data-price="{echo $product->firstVariant->toCurrency()}"
+
                                         data-name="{echo ShopCore::encode($product->getName())}"
                                         data-maxcount="{echo $product->firstVariant->getstock()}"
                                         data-number="{echo $product->firstVariant->getNumber()}"
                                         data-img="{echo $product->firstVariant->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$product->getUrl())}"
-                                        data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+
+                                        data-origPrice="{if $product->firstVariant->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+
                                         data-stock="{echo $product->firstVariant->getStock()}"
                                         >
                                     {lang('s_buy')}
@@ -143,9 +150,11 @@
                             {/if}
                             <div class="d_i-b">
                                 <!-- to compare button -->
-                                <button class="btn btn_small_p toCompare"  
-                                        data-prodid="{echo $product->getId()}"  
-                                        type="button" 
+
+                                <button class="btn btn_small_p toCompare"
+                                        data-prodid="{echo $product->getId()}"
+                                        type="button"
+
                                         data-title="{lang('s_add_to_compare')}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
@@ -153,10 +162,13 @@
                                     <span class="text-el">{lang('s_add_to_compare')}</span>
                                 </button>
                                 <!-- to wish list button -->
-                                <button class="btn btn_small_p toWishlist" 
-                                        data-prodid="{echo $product->getId()}" 
-                                        data-varid="{echo $product->firstVariant->getId()}"  
-                                        type="button" 
+
+                                <button class="btn btn_small_p toWishlist"
+                                        data-price="{echo $product->firstVariant->toCurrency()}"
+                                        data-prodid="{echo $product->getId()}"
+                                        data-varid="{echo $product->firstVariant->getId()}"
+                                        type="button"
+
                                         data-title="{lang('s_add_to_wish_list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
@@ -164,15 +176,16 @@
                                     <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                 </button>
                             </div>
-                        </div>
-                        <div class="photo-block">
-                            <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
-                                <figure>
-                                    <span class="helper"></span>
-                                    <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
-                                </figure>
-                            </a>
-                        </div>
+
+                            <div class="photo-block">
+                                <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
+                                    <figure>
+                                        <span class="helper"></span>
+                                        <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
+                                    </figure>
+                                </a>
+                            </div>
+
                     </li>
                 {/foreach}
                 <!--  End. Rendering produts list   -->

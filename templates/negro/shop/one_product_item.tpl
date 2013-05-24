@@ -85,6 +85,7 @@
                             <div class="var_{echo $p->firstVariant->getId()} f_l prod_{echo $p->getId()}">
                                 <div class="btn-def" data-title="В список желаний" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-rel="tooltip">
                                     <button class="toWishlist"
+                                        data-price="{echo $p->firstVariant->toCurrency()}"
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $p->firstVariant->getId()}"
                                         type="button"
