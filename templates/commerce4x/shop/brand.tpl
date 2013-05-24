@@ -123,7 +123,7 @@
                                 type="button"
                                 
                                 data-id="{echo $product->getId()}"
-                                data-varid="{echo $p->firstVariant->getId()}"
+                                data-varid="{echo $product->firstVariant->getId()}"
                                 data-prodid="{echo $product->getId()}"
                                 data-price="{echo $product->firstVariant->toCurrency()}" 
                                 data-name="{echo ShopCore::encode($product->getName())}"
@@ -131,7 +131,7 @@
                                 data-number="{echo $product->firstVariant->getNumber()}"
                                 data-img="{echo $product->firstVariant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$product->getUrl())}"
-                                data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-origPrice="{if $product->firstVariant->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $product->firstVariant->getStock()}"
                                 >
                             {lang('s_buy')}

@@ -366,7 +366,6 @@ var Shop = {
             return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
         },
         add:function (key, vid) {
-
             Shop.WishList.items = this.all();
 
             if (this.items.indexOf(key) == -1) {
