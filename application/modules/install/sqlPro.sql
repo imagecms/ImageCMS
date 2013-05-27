@@ -1287,6 +1287,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
   `rate` float(6,3) DEFAULT '1.000',
+  `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -9137,7 +9138,9 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('imagesMainSize', 'auto', ''),
 ('additionalImageWidth', '350', ''),
 ('additionalImageHeight', '350', ''),
-('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"12";i:1;s:2:"24";i:2;s:2:"48";}', '');
+('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"12";i:1;s:2:"24";i:2;s:2:"48";}', ''),
+('thumbImageWidth', '100', ''),
+('thumbImageHeight', '100', '');
 
 -- --------------------------------------------------------
 
