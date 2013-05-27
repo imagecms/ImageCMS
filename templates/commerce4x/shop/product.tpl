@@ -209,39 +209,6 @@
                     </div>
                 </div>
             </div>
-            <div class="d_i-b v-a_b m-b_20 add_func_btn">
-                <!-- Start. Block "Add to Compare" -->
-                <button class="btn btn_small_p toCompare"
-                        data-prodid="{echo $model->getId()}"
-                        type="button"
-                        data-title="{lang('s_add_to_compare')}"
-                        data-sectitle="{lang('s_in_compare')}"
-                        data-rel="tooltip"
-                        >
-                    <span class="icon-comprasion_2"></span>
-                    <span class="text-el">{lang('s_add_to_compare')}</span>
-                </button>
-                <!-- End. Block "Add to Compare" -->
-
-                <br/>
-                <!--Block Wishlist Start-->
-                <button class="btn btn_small_p toWishlist"
-                        data-price="{echo $model->firstVariant->toCurrency()}"
-                        data-prodid="{echo $model->getId()}"
-                        data-varid="{echo $model->firstVariant->getId()}"
-                        type="button"
-                        data-title="{lang('s_add_to_wish_list')}"
-                        data-sectitle="{lang('s_in_wish_list')}"
-                        data-rel="tooltip"
-                        >
-                    <span class="icon-wish_2"></span>
-                    <span class="text-el">{lang('s_slw')}</span>
-                </button>
-                <!-- Stop. Block "Add to Wishlist" -->
-                <br/>
-                <!--Block Follow the price Start-->
-            </div>
-
             <!-- Start. Withdraw button to "share" -->
             <div class="share_tov">
                 {echo $CI->load->module('share')->_make_share_form()}
