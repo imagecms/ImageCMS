@@ -43,7 +43,7 @@
                                         {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
                                         {echo $subItem->getName()}
                                         {else:}
-                                        <a href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
+                                        <a class="filter_by_cat" rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
                                         {/if}
                                         <span class="count">({echo $count_item})</span>
                                     </span>
@@ -68,7 +68,9 @@
             <div class=" clearfix t-a_ccatalog_frame">
                 <div class="clearfix t-a_c frame_func_catalog">
                     <!-- Start. Sort by block -->
-                    <form method="get" id="searchSortForm" action="">
+                    <form method="get" id="filter" action="">
+                        <input type=hidden name="order" value="{echo $order_method}"/>
+                        <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>                        
                         <div class="f_l">
                             <span class="v-a_m">Фильтровать по:</span>
                             <div class="lineForm w_170">
@@ -96,6 +98,7 @@
                                 </select>
                             </div>
                         </div>
+                        <input type="hidden" name="category" value="{$_GET['category']}">
                         <input type="hidden" name="text" value="{$_GET['text']}">
                     </form>
                     <!-- End. Per page block -->
