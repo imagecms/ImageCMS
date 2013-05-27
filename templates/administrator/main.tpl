@@ -6,7 +6,7 @@
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
-        
+
         <link rel="icon" type="image/x-icon" href="{$THEME}/images/favicon.png"/>
 
         <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap_complete.css">
@@ -29,12 +29,12 @@
     </head>
     <body>
         <div class="main_body">
-          <div id="fixPage"></div>
+            <div id="fixPage"></div>
             <!-- Here be notifications -->
             <div class="notifications top-right"></div>
 
             <header>
-                <section class="container"> 
+                <section class="container">
                     {if $ADMIN_URL}
                         <a href="{$ADMIN_URL}dashboard" class="logo pull-left pjax">
                         {else:}
@@ -53,9 +53,9 @@
                                                 {echo $CI->dx_auth->get_username()}
                                             </a>
                                             <a href="/admin/logout"><i class="my_icon exit_ico"></i></a>
-                                        {else:}
-                                            {echo lang('a_guest')}
-                                        {/if}
+                                            {else:}
+                                                {echo lang('a_guest')}
+                                            {/if}
                                     </span>
                                     <span class="m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></span>
                                 </div>
@@ -72,7 +72,7 @@
 
 
                             {if SHOP_INSTALLED}
-                                <div class="btn-group" id="topPanelNotifications" style="display: none;">
+                                <div class="btn-group" id="topPanelNotifications" style="display: block;">
                                     <div class="span4 d-i_b">
                                         <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="Заказы" data-rel="tooltip" data-original-title="Заказы">
                                             <i class="icon-bask "></i>
@@ -104,47 +104,50 @@
                             {include('templates/administrator/inc/menus.php');}
 
                             <ul class="nav">
-                            {foreach $baseMenu as $li}
-                                <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                    {if $li.subMenu}
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            {foreach $li.subMenu as $sli}
-                                                {if $sli.menusList}
-                                                    {if !$menus}
-                                                        {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
-                                                    {/if}
-
-                                                    <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
-                                                    <li class="divider"></li>
-                                                    {foreach $menus as $menu}
-                                                        <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
-                                                    {/foreach}
-                                                {/if}
-
-
-                                                {if $sli.modulesList}
-                                                    {if !$components}
-                                                        {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
-                                                    {/if}
-
-                                                    {foreach $components as $component}
-                                                        {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
-                                                            <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
+                                {foreach $baseMenu as $li}
+                                    <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                        {if $li.subMenu}
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                {foreach $li.subMenu as $sli}
+                                                    {if $sli.menusList}
+                                                        {if !$menus}
+                                                            {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                         {/if}
-                                                    {/foreach}
-                                                {/if}
 
-                                                <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>{else:}{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}{/if}</li>
+                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang('a_control')}</a></li>
+                                                        <li class="divider"></li>
+                                                            {foreach $menus as $menu}
+                                                            <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
+                                                            {/foreach}
+                                                        {/if}
 
 
-                                            {/foreach}
-                                        </ul>
-                                    {else:}
-                                        <a href="{$li.link}" class="pjax"><i class="{$li.icon}"></i><span>{$li.text}</span></a>
-                                    {/if}
-                                </li>
-                            {/foreach}
+                                                    {if $sli.modulesList}
+                                                        {if !$components}
+                                                            {$CI->load->module('admin/components'); $components = $CI->components->find_components(TRUE)}
+                                                        {/if}
+
+                                                        {foreach $components as $component}
+                                                            {if $component['installed'] == TRUE AND $component['admin_file'] == 1}
+                                                                <li><a href="/admin/components/cp/{$component.com_name}" class="pjax">{$component.menu_name}</a></li>
+                                                                {/if}
+                                                            {/foreach}
+                                                        {/if}
+
+                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>{if $sli.link}<a href="{$sli.link}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>{else:}{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}{/if}</li>
+
+
+                                                {/foreach}
+                                            </ul>
+                                        {else:}
+                                            <a href="{$li.link}" class="pjax">
+                                                <i class="{$li.icon}"></i>
+                                                <span>{$li.text}</span>
+                                            </a>
+                                        {/if}
+                                    </li>
+                                {/foreach}
                             </ul>
 
                             {if SHOP_INSTALLED}
@@ -156,28 +159,28 @@
                     {if SHOP_INSTALLED}
                         <div style="display:none;" class="container" id="shopAdminMenu"  >
                             <nav class="navbar navbar-inverse">
-                            <ul class="nav">
-                                {foreach $shopMenu as $li}
-                                    <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                        {if $li.subMenu}
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                {foreach $li.subMenu as $sli}
-                                                    <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
-                                                        {if $sli.link}
-                                                            <a href="{site_url($sli.link)}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
-                                                        {else:}
-                                                            {echo (bool)lang($sli.text)?lang($sli.text):$sli.text}
-                                                        {/if}
-                                                    </li>
-                                                {/foreach}
-                                            </ul>
+                                <ul class="nav">
+                                    {foreach $shopMenu as $li}
+                                        <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                            {if $li.subMenu}
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                                <ul class="dropdown-menu">
+                                                    {foreach $li.subMenu as $sli}
+                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
+                                                            {if $sli.link}
+                                                                <a href="{site_url($sli.link)}" class="pjax">{echo (bool)lang($sli.text)?lang($sli.text):$sli.text}</a>
+                                                            {else:}
+                                                                {echo (bool)lang($sli.text)?lang($sli.text):$sli.text}
+                                                            {/if}
+                                                        </li>
+                                                    {/foreach}
+                                                </ul>
                                             {else:}
-                                            <a href="{$li.link}" class="pjax"><i class="{$li.icon}"></i><span>{$li.text}</span></a>
-                                        {/if}
-                                    </li>
-                                {/foreach}
-                            </ul>
+                                                <a href="{$li.link}" class="pjax"><i class="{$li.icon}"></i><span>{$li.text}</span></a>
+                                                    {/if}
+                                        </li>
+                                    {/foreach}
+                                </ul>
                                 <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> Администрировать сайт </a>
                             </nav>
                         </div>
@@ -239,15 +242,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-            var textEditor = '{$settings.text_editor}';
+                                    var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-                var userLogined = true;
+                                    var userLogined = true;
             {else:}
-                var userLogined = false;
+                                    var userLogined = false;
             {/if}
-                
-                var locale = '{echo $this->CI->config->item('language')}';
-                var base_url = "{site_url()}";
+
+                                    var locale = '{echo $this->CI->config->item('language')}';
+                                    var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -255,7 +258,7 @@
         <script src="{$THEME}/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
         <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>        
+        <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
 
         <script async="async" src="{$THEME}/js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
 
@@ -274,87 +277,89 @@
 
 
         <!--
-        <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>       
+        <script src="{$THEME}/js/admin_base.min.js" type="text/javascript"></script>
         -->
 
-        <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>       
-        <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>       
-        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>       
-        <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>       
-        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>               
+        <script src="{$THEME}/js/admin_base_i.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_m.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_r.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_v.js" type="text/javascript"></script>
+        <script src="{$THEME}/js/admin_base_y.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
-        <script src="{$THEME}/js/autosearch.js" type="text/javascript"></script>  
-        
+        <script src="{$THEME}/js/autosearch.js" type="text/javascript"></script>
+
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-                var isShop = true;
+                                    var isShop = true;
             {else:}
-                var isShop = false;
+                                    var isShop = false;
             {/if}
-                var lang_only_number = "{lang('a_numbers_only')}";
-                var show_tovar_text = "{lang('a_show')}";
-                var hide_tovar_text = "{lang('a_dont_show')}";
+                                    var lang_only_number = "{lang('a_numbers_only')}";
+                                    var show_tovar_text = "{lang('a_show')}";
+                                    var hide_tovar_text = "{lang('a_dont_show')}";
             {literal}
 
-            $(document).ready(function(){
-            		
-                if (!isShop)
-                {
-                    $('#shopAdminMenu').hide();
-                    $('#topPanelNotifications').hide();   
-                }
-                else
-                    $('#baseAdminMenu').hide();
-            })
-            
-            function number_tooltip_live(){
-                $('.number input').each(function(){
-                    $(this).attr({
-                        'data-placement':'top', 
-                        'data-title': lang_only_number
-                    });
-                })
-                number_tooltip();
-            }
-            function prod_on_off(){
-                $('.prod-on_off').die('click').live('click', function(){
-                    var $this = $(this);
-                    if (!$this.hasClass('disabled')){
-                        if ($this.hasClass('disable_tovar')){
-                            $this.animate({
-                                'left': '0'
-                            }, 200).removeClass('disable_tovar');
-                            if ($this.parent().data('only-original-title') == undefined){
-                                $this.parent().attr('data-original-title', show_tovar_text)
-                                $('.tooltip-inner').text(show_tovar_text);
-                            }
-                            $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined) $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                        }
-                        else{
-                            $this.animate({
-                                'left': '-28px'
-                            }, 200).addClass('disable_tovar');
-                            if ($this.parent().data('only-original-title') == undefined){
-                                $this.parent().attr('data-original-title', hide_tovar_text)
-                                $('.tooltip-inner').text(hide_tovar_text);
-                            }
-                            $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled','disabled');
-                            if ($this.attr('data-page') != undefined) $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled','disabled')
-                        }
+                $(document).ready(function() {
+
+                    if (!isShop)
+                    {
+                        $('#shopAdminMenu').hide();
+                        //$('#topPanelNotifications').hide();
                     }
-                });
-            }
-            $(window).load(function(){
-                number_tooltip_live();
-                prod_on_off();
-            })
-            base_url = '{/literal}{$BASE_URL}{literal}';
+                    else
+                        $('#baseAdminMenu').hide();
+                })
+
+                function number_tooltip_live() {
+                    $('.number input').each(function() {
+                        $(this).attr({
+                            'data-placement': 'top',
+                            'data-title': lang_only_number
+                        });
+                    })
+                    number_tooltip();
+                }
+                function prod_on_off() {
+                    $('.prod-on_off').die('click').live('click', function() {
+                        var $this = $(this);
+                        if (!$this.hasClass('disabled')) {
+                            if ($this.hasClass('disable_tovar')) {
+                                $this.animate({
+                                    'left': '0'
+                                }, 200).removeClass('disable_tovar');
+                                if ($this.parent().data('only-original-title') == undefined) {
+                                    $this.parent().attr('data-original-title', show_tovar_text)
+                                    $('.tooltip-inner').text(show_tovar_text);
+                                }
+                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                if ($this.attr('data-page') != undefined)
+                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                            }
+                            else {
+                                $this.animate({
+                                    'left': '-28px'
+                                }, 200).addClass('disable_tovar');
+                                if ($this.parent().data('only-original-title') == undefined) {
+                                    $this.parent().attr('data-original-title', hide_tovar_text)
+                                    $('.tooltip-inner').text(hide_tovar_text);
+                                }
+                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                if ($this.attr('data-page') != undefined)
+                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                            }
+                        }
+                    });
+                }
+                $(window).load(function() {
+                    number_tooltip_live();
+                    prod_on_off();
+                })
+                base_url = '{/literal}{$BASE_URL}{literal}';
             {/literal}
 
-            
-            var elfToken = '{echo $CI->lib_csrf->get_token()}';
-            </script>
-        <div id="jsOutput" style="display: none;"></div>    
+
+                var elfToken = '{echo $CI->lib_csrf->get_token()}';
+        </script>
+        <div id="jsOutput" style="display: none;"></div>
     </body>
 </html>
