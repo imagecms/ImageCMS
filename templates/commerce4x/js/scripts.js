@@ -297,6 +297,9 @@ function rmFromPopupCart(context, isKit) {
 };
 
 function togglePopupCart() {
+    
+ 
+    
     $('#showCart').click();
     return false;
 }
