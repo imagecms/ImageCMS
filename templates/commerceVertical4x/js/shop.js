@@ -482,6 +482,7 @@ var Shop = {
             deleteWishListItem($(el));
         },
         sync: function(){
+    alert()
             $.getJSON('/shop/wish_list_api/sync', function(data){
                 if (typeof(data) == 'Array' || typeof(data) == 'object') {
                     localStorage.setItem('wishList', JSON.stringify(data));
