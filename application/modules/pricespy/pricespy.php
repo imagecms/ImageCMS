@@ -68,14 +68,14 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
-        $CI->load->model('pricespy_model');
 
         $product = $product[model];
         $ids = array();
         foreach ($product as $key => $p)
             $ids[$key] = $p->id;
 
-        $CI->pricespy_model->delSpysbyIds($ids);
+        $CI->db->where_in('productId', $ids);
+        $CI->db->delete('mod_price_spy');
     }
 
     /**
@@ -87,8 +87,6 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
-        $CI->load->model('pricespy_model');
-
         $spys = $CI->db
                 ->from('mod_price_spy')
                 ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
