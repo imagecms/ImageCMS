@@ -12,11 +12,11 @@ class assetManager {
     protected $useCompress = false;
 
     private function __construct() {
-        
+
     }
 
     private function __clone() {
-        
+
     }
 
     /**
@@ -37,18 +37,18 @@ class assetManager {
     }
 
     /**
-     * @param 
+     * @param
      * @return assetManager
      * @access public
-     * @author 
-     * @copyright 
+     * @author
+     * @copyright
      */
     public function getData($item) {
         return \CI_Controller::get_instance()->template->get_var($item);
     }
 
     /**
-     * @param 
+     * @param
      * @return assetManager
      * @access public
      * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
@@ -75,17 +75,15 @@ class assetManager {
             \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
         return $this;
     }
-    
-   
-    public function registerScriptWithoutTemplate($name){
+
+    public function registerScriptWithoutTemplate($name) {
         $script = '/' . $this->buildScriptPath($name);
-        $this->setData(array($name=>$script));
-        
+        $this->setData(array($name => $script));
     }
-    public function registerStyleWithoutTemplate($name){
+
+    public function registerStyleWithoutTemplate($name) {
         $script = '/' . $this->buildStylePath($name);
-        $this->setData(array($name=>$script));
-        
+        $this->setData(array($name => $script));
     }
 
     /**
@@ -130,7 +128,7 @@ class assetManager {
      * Put css string into template
      * @return assetManager
      * @access public
-     * @author a.gula    
+     * @author a.gula
      * @param type $css
      * @param type $useCompress
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
