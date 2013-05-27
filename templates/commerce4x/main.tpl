@@ -318,7 +318,7 @@
 
         <script type="text/javascript" src="{$THEME}js/scripts.min.js"></script> -->
 
-     <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
+         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
