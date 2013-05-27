@@ -57,12 +57,12 @@
             {if count($products)>0}
                 <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
-                    <form method="get" id="searchSortForm" action="">
+
                         <!-- sort block -->
                         <div class="f_l">
                             <span class="v-a_m">{lang('s_order_by')}:</span>
                             <div class="lineForm w_170 sort">
-                                <select class="sort" id="sort" name="order">
+                                <select class="sort" id="sort">
                                     <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
                                     <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
                                     <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
@@ -78,7 +78,7 @@
                         <div class="f_r">
                             <span class="v-a_m">{lang('s_products_per_page')}:</span>
                             <div class="lineForm w_70 sort">
-                                <select class="sort" id="sort2" name="user_per_page">
+                                <select class="sort" id="sort2">
                                     <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
                                     <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
                                     <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
@@ -86,7 +86,7 @@
                                 </select>
                             </div>
                         </div>
-                    </form>
+
 
                     <!-- selecting product list type -->
                     <div class="groupButton list_pic_btn">

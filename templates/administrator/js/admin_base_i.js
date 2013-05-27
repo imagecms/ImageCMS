@@ -734,6 +734,7 @@ $(document).ready(function() {
             ids: ids, categoryId: catId
         }, function(data) {
             $('.notifications').append(data);
+            location.reload();
         }
         );
     });

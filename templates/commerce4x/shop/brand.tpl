@@ -31,11 +31,11 @@
             </span>
             {if count($products) > 0}
                 <div class="clearfix t-a_c frame_func_catalog">
-                    <form method="get" id="searchSortForm" action="">
+                    
                         <div class="f_l">
                             <span class="v-a_m">{lang('s_order_by')}:</span>
                             <div class="lineForm w_170 sort">
-                                <select class="sort" id="sort" name="order">
+                                <select class="sort" id="sort" >
                                     <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
                                     <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
                                     <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
@@ -50,14 +50,14 @@
 
                             <span class="v-a_m">{lang('s_products_per_page')}:</span>
                             <div class="lineForm w_70 sort">
-                                <select class="sort" id="sort2" name="user_per_page">
+                                <select class="sort" id="sort2" >
                                     <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
                                     <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
                                     <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
                                 </select>
                             </div>
                         </div>
-                    </form>
+                    
                     <div class="groupButton list_pic_btn">
                         <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
                         <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
