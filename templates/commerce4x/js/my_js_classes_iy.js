@@ -164,8 +164,31 @@ $(document).ready(function() {
         orderSelect.addHiddenFields();
     });
 
-    $('#sort, #sort2').live('change', function(){
-        $('form#searchSortForm').submit();
+    $('#sort').live('change', function(){
+        $('input[name=order]').val($(this).val())
+        $('form#filter').submit();
     });
+    $('#sort2').live('change', function(){
+        $('input[name=user_per_page]').val($(this).val())
+        $('form#filter').submit();
+    });
+    
+    $('.filter_by_cat').live('click', function(){
+        $('input[name=category]').val($(this).attr('data-id'));
+        $('form#filter').submit();      
+        return false;
+    })
+    
+    $('.del_filter_item').bind('click', function(){
+        $('input#'+$(this).attr('data-id')).click();
+        return false;
+    })
+    
+    $('.del_price').bind('click', function(){
+        $('input[name=lp]').val($(this).attr('def_min'));
+        $('input[name=rp]').val($(this).attr('def_max'));
+        $('form#filter').submit();
+        return false;
+    })
 });
 
