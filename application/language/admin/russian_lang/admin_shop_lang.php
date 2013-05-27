@@ -813,6 +813,7 @@ $lang['a_orders_del_title'] = 'Удаление заказов';
 $lang['a_orders_del_title'] = 'Удаление заказов';
 $lang['a_kit_del_title'] = 'Удаление набора';
 $lang['a_products_del_body'] = 'Удалить выбранные товары?';
+$lang['a_products_del_body_warning'] = 'Это может повлиять на работу системы, рекомендуем не удалять товар, а сделать его неактивным';
 $lang['a_category_delete'] = 'Удалить категорию?';
 $lang['a_album_delete'] = 'Удалить альбом?';
 
