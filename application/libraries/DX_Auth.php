@@ -830,7 +830,7 @@ class DX_Auth {
         $this->ci->session->sess_destroy();
     }
 
-    function register($username, $password, $email, $address, $key, $phone, $login_user = TRUE) {
+    function register($username, $password, $email, $address = '', $key, $phone = '', $login_user = TRUE) {
 
         // Load Models
         $this->ci->load->model('dx_auth/users', 'users');
