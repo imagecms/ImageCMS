@@ -300,61 +300,67 @@ function init_2() {
     initNiceCheck()
 
     //autocomplete for resize in settings
-    $('#product_name').autocomplete({
-        source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
-        select: function(event, ui) {
-            productName = ui.item.label;
-            $('#product_id').val(ui.item.value);
-            vKeys = Object.keys(ui.item.variants);
-            $('#product_variant_name').empty();
+    
+   if($('#product_name').length){
+            $('#product_name').autocomplete({
+             source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+             select: function(event, ui) {
+                 productName = ui.item.label;
+                 $('#product_id').val(ui.item.value);
+                 vKeys = Object.keys(ui.item.variants);
+                 $('#product_variant_name').empty();
 
-            for (var i = 0; i < vKeys.length; i++)
-                $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
-        },
-        close: function() {
-            $('#product_name').val(productName);
-        }
-    });
+                 for (var i = 0; i < vKeys.length; i++)
+                     $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+             },
+             close: function() {
+                 $('#product_name').val(productName);
+             }
+         });
+    }
 
     //Autocomplete for orders
-    $('#productNameForOrders').autocomplete({
-        source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
-        select: function(event, ui) {
-            productName = ui.item.label;
-            productId = ui.item.id;
-            categoryId = ui.item.category;
-        },
-        close: function() {
-            $('#categoryForOrders option:selected').each(function() {
-                this.selected = false;
-            });
-            $("#categoryForOrders [value='" + categoryId + "']").attr("selected", "selected");
-            orders.getProductsInCategory(categoryId);
-            $('#productsForOrders option:selected').each(function() {
-                this.selected = false;
-            });
-            $("#productsForOrders [value='" + productId + "']").attr("selected", "selected");
-            orders.getProductVariantsByProduct(productId, productName);
-            $('#productNameForOrders').val(productName);
-        }
-    });
-    /* Autocomplete users in orders */
-    $('#usersForOrders').autocomplete({
-        source: '/admin/components/run/shop/orders/autoComplite/?limit=25',
-        select: function(event, ui) {
-            userData = ui.item;
-        },
-        close: function() {
-            $('#userIdforOrder').html(userData.id);
-            $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
-            $('#userEmailforOrder').html(userData.email);
-            $('#userNameforOrder').html(userData.name);
-            $('#userNameforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
-            $('#userPhoneforOrder').html(userData.phone);
-            $('#userAddressforOrder').html(userData.address);
-        }
-    });
-
+    if($('#productNameForOrders').length){
+        $('#productNameForOrders').autocomplete({
+            source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
+            select: function(event, ui) {
+                productName = ui.item.label;
+                productId = ui.item.id;
+                categoryId = ui.item.category;
+            },
+            close: function() {
+                $('#categoryForOrders option:selected').each(function() {
+                    this.selected = false;
+                });
+                $("#categoryForOrders [value='" + categoryId + "']").attr("selected", "selected");
+                orders.getProductsInCategory(categoryId);
+                $('#productsForOrders option:selected').each(function() {
+                    this.selected = false;
+                });
+                $("#productsForOrders [value='" + productId + "']").attr("selected", "selected");
+                orders.getProductVariantsByProduct(productId, productName);
+                $('#productNameForOrders').val(productName);
+            }
+        });
+    }
+     /* Autocomplete users in orders */
+    if($('#usersForOrders').length){
+        $('#usersForOrders').autocomplete({
+            source: '/admin/components/run/shop/orders/autoComplite/?limit=25',
+            select: function(event, ui) {
+                userData = ui.item;
+            },
+            close: function() {
+                $('#userIdforOrder').html(userData.id);
+                $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
+                $('#userEmailforOrder').html(userData.email);
+                $('#userNameforOrder').html(userData.name);
+                $('#userNameforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
+                $('#userPhoneforOrder').html(userData.phone);
+                $('#userAddressforOrder').html(userData.address);
+            }
+        });
+    }
 
     if ($.exists('.niceRadio')) {
         $(".niceRadio").each(function() {
