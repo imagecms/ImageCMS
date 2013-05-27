@@ -56,6 +56,7 @@ var Notification = {
                         if ($('.btn_not_avail.active').length != 0)
                             $('.btn_not_avail.active').drop('positionDrop');
                         if (obj.close === true) {
+                            if ($('.frame-search-thumbail')[0])  $('.frame-search-thumbail').remove();
                             setTimeout((function() {
                                 $('.drop').drop('triggerBtnClick');
                             }), 3000);
