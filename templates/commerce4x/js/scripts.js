@@ -867,9 +867,3 @@ wnd.load(function() {
         $('a.fancybox').fancybox();
     }catch(err){}
 });
-wnd.focus(function(){
-    processPage();
-    checkSyncs();
-    processWish();
-    recountCartPage();
-})
