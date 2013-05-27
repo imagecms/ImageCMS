@@ -75,7 +75,7 @@ class Shop_news extends MY_Controller {
      * @return type
      */
     public function prepareInterface($data, $pageId) {
-        $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
+        $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array(); 
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
 
         return \CMSFactory\assetManager::create()
