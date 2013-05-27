@@ -4,7 +4,7 @@ $('#foundLessExpensixe').live('click',function(){
        $('.errorMessage').hide();
        $('.badData').removeClass('badData');
        $('.horizontalF_form').show();
-})
+});
 /** Hide form**/
 $('#hideFormButton').live('click',function(){
        $('.forClear').val('');
@@ -12,7 +12,7 @@ $('#hideFormButton').live('click',function(){
        $('.errorMessage').hide();
        $('.badData').removeClass('badData');
        $('.horizontalF_form').show();
-})
+});
 /** On send form **/
 $('.btnF_Send').live('click',function(){
    var data   = $('#fLessExpensiveForm').serialize();
@@ -50,7 +50,7 @@ $('.btnF_Send').live('click',function(){
          });
     }
     return false;
-})
+});
 
 /**
  * Admin part
@@ -67,7 +67,7 @@ var expensive = new Object({
                         expensive.recheckCount(el);
                         row.hide();
                 }
-        })
+        });
     },
     recheckCount: function (obj){
         var tabActive = $('.btn.btn-small.pjax.active').children('span');
@@ -80,7 +80,7 @@ var expensive = new Object({
         }else{
              tabAll.html(parseInt(tabAll.html())-1);
              idForChange = '#' + $(obj).closest('tr').find('.statusSelect').children('option:selected').data('status');
-             $(idForChange).html(parseInt($(idForChange).html())-1)
+             $(idForChange).html(parseInt($(idForChange).html())-1);
         } 
     }
 });
@@ -109,8 +109,8 @@ $('.statusSelect').die().live('change',function(){
                             $('#countAccepted').html(parseInt($('#countAccepted').html())-1);
                         }
                 }
-        })
-})
+        });
+});
 $('#settingsSave').die().live('click',function(event){
     $.ajax({
         type: "POST",
@@ -120,10 +120,10 @@ $('#settingsSave').die().live('click',function(event){
                 $('.notifications').append(res);
 
         }
-    })
+    });
     
     
-})
+});
 
 
 
