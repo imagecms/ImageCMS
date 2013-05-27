@@ -52,7 +52,9 @@ var Shop = {
 
                         //save item to storage
                         Shop.Cart._add(Shop.currentItem);
-                    } catch (e) {return;}
+                    } catch (e) {
+                        return;
+                    }
                 });
             return;
 
@@ -355,19 +357,20 @@ var Shop = {
         }
     },
 
-     WishList:{
+    WishList:{
         items:[],
         all:function () {
-
-            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
+            return JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
         },
         add:function (key, vid, price, curentEl) {
-    
             Shop.WishList.items = this.all();
-            this.countTotalPrice( price, curentEl);
-             localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({id: key, vid: vid, price: price }) );
+            //this.countTotalPrice( price, curentEl);
+            localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({
+                id: key, 
+                vid: vid, 
+                price: price
+            }));
             if (this.items.indexOf(key) == -1) {
-           
                 $.post('/shop/wish_list_api/add', {
                     productId_:key,
                     variantId_:vid
@@ -377,7 +380,7 @@ var Shop = {
                         dataObj.id = key;
                         if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
-                            localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
+                            //localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
                             var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
                             arr.push(key+'_'+vid)
                             localStorage.setItem('wishList_vid', JSON.stringify(arr));
@@ -386,7 +389,6 @@ var Shop = {
                                 Shop.WishList.sync();
                                 return;
                             }
-
                             $(document).trigger({
                                 type:'wish_list_add',
                                 dataObj:dataObj
@@ -405,15 +407,14 @@ var Shop = {
         rm:function (key, el, vid) {
             this.items = this.all();
             
-            //alert($('#wishListTotal').text());
-            $.get('/shop/wish_list_api/delete/' + key, function (data) {
+            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
                 try {
                     dataObj = JSON.parse(data);
                     dataObj.id = key;
 
                     if (dataObj.success == true) {
-                        Shop.WishList.items = _.without(Shop.WishList.items, key);
-                        localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
+                        Shop.WishList.items = _.without(Shop.WishList.items, key + '_' + vid);
+                        localStorage.setItem('wishList_vid', JSON.stringify(Shop.WishList.items));
 
                         $(document).trigger({
                             type:'wish_list_rm',
@@ -428,10 +429,10 @@ var Shop = {
         sync: function(){
             $.getJSON('/shop/wish_list_api/sync', function(data){
                 if (typeof(data) == 'Array' || typeof(data) == 'object') {
-                    localStorage.setItem('wishList', JSON.stringify(data));
+                    localStorage.setItem('wishList_vid', JSON.stringify(data));
                 }
                 if (data === false) {
-                    localStorage.setItem('wishList', []);
+                    localStorage.setItem('wishList_vid', []);
                 }
 
                 $(document).trigger({
@@ -512,7 +513,7 @@ var Shop = {
         sync: function(){
             $.getJSON('/shop/compare_api/sync', function(data){
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.stringify(data));
+                    localStorage.setItem('compareList', JSON.parse(data));
 
                     $(document).trigger({
                         type:'compare_list_sync'

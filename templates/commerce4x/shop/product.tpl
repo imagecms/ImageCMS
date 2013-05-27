@@ -177,6 +177,7 @@
                                         data-prodid="{echo $model->getId()}"  
                                         type="button" 
                                         data-title="{lang('s_add_to_compare')}"
+                                        data-firtitle="{lang('s_add_to_compare')}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip"
                                         >
@@ -185,22 +186,25 @@
                                 </button>
                                 <!-- End. Block "Add to Compare" -->
 
-                                <br/>
                                 <!--Block Wishlist Start-->
-                                <button class="btn btn_small_p toWishlist" 
-                                        data-price="{echo $model->firstVariant->toCurrency()}"
-                                        data-prodid="{echo $model->getId()}" 
-                                        data-varid="{echo $model->firstVariant->getId()}"  
-                                        type="button" 
+                                {foreach $model->getProductVariants() as $key => $pv}
+                                <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
+                                    <!-- to wish list button -->
+                                    <button class="btn btn_small_p toWishlist" 
+                                        data-price="{echo $pv->toCurrency()}"
+                                        data-prodid="{echo $model->getId()}"
+                                        data-varid="{echo $pv->getId()}"
+                                        type="button"
                                         data-title="{lang('s_add_to_wish_list')}"
+                                        data-firtitle="{lang('s_add_to_wish_list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
-                                        data-rel="tooltip"
-                                        >
-                                    <span class="icon-wish_2"></span>
-                                    <span class="text-el">{lang('s_slw')}</span>
-                                </button>
+                                        data-rel="tooltip">
+                                        <span class="icon-wish_2"></span>
+                                        <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                    </button>
+                                </div>
+                                {/foreach}
                                 <!-- Stop. Block "Add to Wishlist" -->
-                                <br/>
                                 <!--Block Follow the price Start-->
                             </div>
                         </div>
@@ -345,7 +349,7 @@
 
                                         <!-- to wish list button -->
                                         <button class="btn btn_small_p toWishlist" 
-                                                data-price="{echo $product->firstVariant->toCurrency()}"
+                                                data-price="{echo $p->firstVariant->toCurrency()}"
                                                 data-prodid="{echo $p->getId()}" 
                                                 data-varid="{echo $p->firstVariant->getId()}"  
                                                 type="button" 
