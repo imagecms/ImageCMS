@@ -127,7 +127,7 @@
                                         {/if}
                                         <!-- End. Star rating and comments count -->
                                     </div>
-                                    <a href="{shop_url('product/'.$p->getUrl().'#comment')}">{echo ShopCore::encode($p->getName())}</a>
+                                    <a href="{shop_url('product/'.$p->getUrl())}">{echo ShopCore::encode($p->getName())}</a>
                                     <!-- Start. Price -->
                                     <div class="price price_f-s_16">
                                         <!--$model->hasDiscounts() - checking for the existence of discounts.
