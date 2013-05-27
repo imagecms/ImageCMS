@@ -83,7 +83,7 @@
                                 <!--    Star reiting    -->
                                 {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
 
-                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">                                    
+                                    <a href="{shop_url('product/'.$product->url.'#comment')}" class="count_response">
 
                                         {echo $Comments[$product->getId()]}
                                     </a>
@@ -101,11 +101,11 @@
                                         <span class="f-w_b priceOrigVariant">{echo $product->firstVariant->toCurrency('OrigPrice')} </span>
                                         {$CS}
 
-                                    </span>                           
+                                    </span>
                                 {/if}
                                 <span class="f-w_b">
                                     {echo $product->firstVariant->toCurrency()}
-                                </span> 
+                                </span>
 
                                 {$CS}&nbsp;&nbsp;
                             </div>
