@@ -1425,8 +1425,10 @@ $('#variantsForOrders').live('change', function() {
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
 
     $('#productText').html('<b>Товар: ' + productName + '</b>');
-    $('#productText').append('<br/>Вариант: ' + variantName + '');
-    $('#productText').append('<br/>Цена: ' + variantPrice + '' + currency);
+    if (variantName != '')
+        $('#productText').append('<br/>Вариант: ' + variantName + '');
+    
+    $('#productText').append('<br/>Цена: ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
     $('#productStock').html('<br/>Остаток: ' + stock);
 
@@ -1436,9 +1438,9 @@ $('#variantsForOrders').live('change', function() {
 
     //Disable button if stock =0
     if (stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger').html('Нет в наличии');
+        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html('Нет в наличии');
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger').html('В корзину');
+        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html('В корзину');
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
@@ -1470,7 +1472,7 @@ $('#createUserButton').live('click', function() {
     var userAddress = $('#createUserAddress').val();
     var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
 
-    if (userName != '' && userEmail != '' && userPhone != '' && userAddress != '' && userEmail.search(emailPattern) == 0) {
+    if (userName != '' && userEmail != '' && userEmail.search(emailPattern) == 0) {
         $.ajax({
             url: '/admin/components/run/shop/orders/createNewUser',
             type: "POST",
@@ -1527,7 +1529,7 @@ $('#getAllOrderInfoButton').live('click', function() {
         $('#shopOrdersComulativ').val(userDiscount);
 
         if (userDiscount != 0)
-            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
 
         $('#shopOrdersTotalPrice').val(totalProductPrice);
 
@@ -1557,10 +1559,10 @@ $('#shopOrdersComulativ').live('keyup', function() {
         userDiscount = 99;
     }
     if ($('#shopOrdersGiftCertPrice').val() == null) {
-        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
         $('#shopOrdersTotalPrice').val(totalProductPrice);
     } else {
-        totalProductPrice = ((totalCartSum - $('#shopOrdersGiftCertPrice').val()) / 100 * (100 - userDiscount)).toFixed(2);
+        totalProductPrice = ((totalCartSum - $('#shopOrdersGiftCertPrice').val()) / 100 * (100 - userDiscount)).toFixed(pricePrecision);
         $('#shopOrdersTotalPrice').val(totalProductPrice);
     }
 })
@@ -1575,7 +1577,7 @@ $('#checkOrderGiftCert').live('click', function() {
             $('#shopOrdersGiftCertPrice').val(data.price);
             $('#shopOrdersGiftCertKey').val(data.key);
             totalCartSum = totalCartSum - data.price;
-            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
             $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
             $('#giftPrice').html('Текущий сертификат (сумма):' + data.price);
@@ -1583,14 +1585,14 @@ $('#checkOrderGiftCert').live('click', function() {
         }
     })
 });
-/** Chech gift Certificate **/
+/** Remove gift Certificate **/
 $('.removeGiftCert').live('click', function() {
     var userDiscount = $('#shopOrdersComulativ').val();
     var totalCartSum = $('#totalCartSum').html();
 
     $('#shopOrdersGiftCertPrice').val('');
     $('#shopOrdersGiftCertKey').val('');
-    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(2);
+    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
 
     $('#shopOrdersTotalPrice').val(totalProductPrice);
     $('#shopOrdersCheckGiftCert').removeAttr('disabled');
