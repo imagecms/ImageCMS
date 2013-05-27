@@ -1453,7 +1453,7 @@ function ieInput(els) {
         },
         onlyDifM: function(left, right) {
             li_i_h = [];
-            genObj = $([]);
+            this.genObj = $([]);
             tempText = '';
             k = 0;
             for (var j = 0; j < li_i_length; j++) {
@@ -1472,7 +1472,7 @@ function ieInput(els) {
                 });
 
                 if (k == tempNabir.length - 1 && k != 0)
-                    genObj = genObj.add(left.eq(j)).add(tempNabir);
+                    this.genObj = this.genObj.add(left.eq(j)).add(tempNabir);
 
                 li_i_h = [];
                 k = 0;
@@ -1480,21 +1480,21 @@ function ieInput(els) {
             }
 
             right.each(function() {
-                $(this).find(elEven).not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+                $(this).find(elEven).not(this.genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
                     if (ind % 2 == 0)
                         $(this).addClass('oddC');
                     else
                         $(this).addClass('evenC')
                 });
             });
-            left.not(genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+            left.not(this.genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
                 if (ind % 2 == 0)
                     $(this).addClass('oddC');
                 else
                     $(this).addClass('evenC')
             });
 
-            genObj.hide();
+            this.genObj.hide();
         },
         allParamsM: function(left, right) {
             left.removeClass('evenC').removeClass('oddC').each(function(ind) {

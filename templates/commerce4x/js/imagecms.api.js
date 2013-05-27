@@ -28,7 +28,7 @@ var ImageCMSApi = {
     debugMode: true,
     returnMsg: function(msg) {
         if (this.debugMode === true) {
-            console.log(msg);
+            //console.log(msg);
         }
     },
     formAction: function(url, selector) {
