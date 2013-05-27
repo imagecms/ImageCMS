@@ -49,13 +49,5 @@ class Shop_news_model extends CI_Model {
     
         return $res['category_id'];
     }
-    /**
-     * Return categories ids for showing news
-     * @param int $pageId
-     * @return string
-     */
-    public function getCurrentCategories ($pageId){
-      return $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
-    }
 }
 ?>
