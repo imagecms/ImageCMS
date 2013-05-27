@@ -68,14 +68,14 @@ class Pricespy extends MY_Controller {
             return;
 
         $CI = &get_instance();
-        $CI->load->model('pricespy_model');
 
         $product = $product[model];
         $ids = array();
         foreach ($product as $key => $p)
             $ids[$key] = $p->id;
 
-        $CI->pricespy_model->delSpysbyIds($ids);
+        $CI->db->where_in('productId', $ids);
+        $CI->db->delete('mod_price_spy');
     }
 
     /**
