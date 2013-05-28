@@ -23,7 +23,7 @@
                 <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="photo photoProduct">
                     <figure >
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
-                        <img src="{echo $model->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>
                     </figure>
                 </a>
                 <ul class="frame_thumbs">
