@@ -871,7 +871,7 @@ wnd.load(function() {
 wnd.focus(function(){
     processPage();
     checkSyncs();
-    processWish();
+    processWish();1
     recountCartPage();
     checkCompareWishLink();
     wishListCount();
