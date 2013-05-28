@@ -65,20 +65,10 @@
                                             <span class="icon-address"></span>
                                             <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                     </label>
+                                    
+                                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getCustomFields('order',$profile.id,'user')->asHtml()}
 
-                                    <!--        User custom fields      -->
-                                    {//echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('user')->asHtml()}
 
-
-                                </div>
-
-                                <!--        Order custom fields      -->
-
-                                {if $orderCustomFields = ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPattern($pattern)->getCustomFields('order',$profile.id,'user')->asHtml()}
-                                    <div class="groups_form">
-                                        {$orderCustomFields}
-                                    </div>
-                                {/if}
 
 
                                 <div class="groups_form">
