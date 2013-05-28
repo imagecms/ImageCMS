@@ -439,7 +439,7 @@ $(document).ready(function () {
            
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
-                
+
                 if ($(el).offset().left < 322 - $(el).outerWidth()) {
                     $(el).attr('data-placement', 'bottom left');
                     $(dropEl).addClass('left-report');
@@ -466,9 +466,11 @@ $(document).ready(function () {
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    
                 }
                 return $(el);
+               
             }
         },
         after: function(el, dropEl){
@@ -682,8 +684,7 @@ $(document).ready(function () {
             var $number = liBlock.find(genObj.frameNumber).show()
             $number.find(genObj.code).html('('+vNumber+')');
         } else {
-            var $number = liBlock.find(genObj.frameNumber).show()
-            $number.find(genObj.code).html(' ');
+            var $number = liBlock.find(genObj.frameNumber).hide()
         }
     }
     function existsVnames(vName, liBlock){
@@ -692,7 +693,6 @@ $(document).ready(function () {
             $vname.find(genObj.code).html('('+vName+')');
         } else {
             var $vname = liBlock.find(genObj.frameVName).hide()
-            $vname.find(genObj.code).html(' ');
         }
     }
     function condProduct(vStock, liBlock, btnBuy){
@@ -724,7 +724,7 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
 
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
@@ -865,9 +865,3 @@ wnd.load(function() {
         $('a.fancybox').fancybox();
     }catch(err){}
 });
-wnd.focus(function(){
-    processPage();
-    checkSyncs();
-    processWish();
-    recountCartPage();
-})

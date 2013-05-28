@@ -127,9 +127,9 @@
                                         data-varid="{echo $pv->getId()}"
                                         data-price="{echo $pv->toCurrency()}"
                                         data-name="{echo ShopCore::encode($model->getName())}"
-                                        {if trim(ShopCore::encode($pv->getName())) != ''} data-vname="{echo ShopCore::encode($pv->getName())}"{/if}
+                                        data-vname="{echo ShopCore::encode($pv->getName())}"
                                         data-maxcount="{echo $pv->getstock()}"
-                                        {if trim(ShopCore::encode($pv->getNumber())) != ''}data-number="{echo $pv->getNumber()}"{/if}
+                                        data-number="{echo $pv->getNumber()}"
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-mainImage="{echo $pv->getMainPhoto()}"
                                         data-largeImage="{echo $pv->getlargePhoto()}"
@@ -154,9 +154,9 @@
                                     data-varid="{echo $pv->getId()}"
                                     data-price="{echo $pv->toCurrency()}"
                                     data-name="{echo ShopCore::encode($model->getName())}"
-                                    {if trim(ShopCore::encode($pv->getName())) != ''} data-vname="{echo ShopCore::encode($pv->getName())}"{/if}
+                                    data-vname="{echo ShopCore::encode($pv->getName())}"
                                     data-maxcount="{echo $pv->getstock()}"
-                                    {if trim(ShopCore::encode($pv->getNumber())) != ''}data-number="{echo $pv->getNumber()}"{/if}
+                                    data-number="{echo $pv->getNumber()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-mainImage="{echo $pv->getMainPhoto()}"
                                     data-largeImage="{echo $pv->getlargePhoto()}"
@@ -172,9 +172,9 @@
                         </div>
                         <div class="d_i-b v-a_b m-b_20 add_func_btn">
                             <!-- Start. Block "Add to Compare" -->
-                            <button class="btn btn_small_p toCompare"  
-                                    data-prodid="{echo $model->getId()}"  
-                                    type="button" 
+                            <button class="btn btn_small_p toCompare"
+                                    data-prodid="{echo $model->getId()}"
+                                    type="button"
                                     data-title="{lang('s_add_to_compare')}"
                                     data-firtitle="{lang('s_add_to_compare')}"
                                     data-sectitle="{lang('s_in_compare')}"
@@ -189,7 +189,7 @@
                             {foreach $model->getProductVariants() as $key => $pv}
                             <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                 <!-- to wish list button -->
-                                <button class="btn btn_small_p toWishlist" 
+                                <button class="btn btn_small_p toWishlist"
                                     data-price="{echo $pv->toCurrency()}"
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}"
@@ -346,11 +346,11 @@
                                     </button>
 
                                     <!-- to wish list button -->
-                                    <button class="btn btn_small_p toWishlist" 
+                                    <button class="btn btn_small_p toWishlist"
                                             data-price="{echo $p->firstVariant->toCurrency()}"
-                                            data-prodid="{echo $p->getId()}" 
-                                            data-varid="{echo $p->firstVariant->getId()}"  
-                                            type="button" 
+                                            data-prodid="{echo $p->getId()}"
+                                            data-varid="{echo $p->firstVariant->getId()}"
+                                            type="button"
                                             data-title="{lang('s_add_to_wish_list')}"
                                             data-sectitle="{lang('s_in_wish_list')}"
                                             data-rel="tooltip">

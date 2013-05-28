@@ -59,7 +59,7 @@
                                     </span>
                                     <span class="m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></span>
                                 </div>
-                                <form method="get" action="{if $ADMIN_URL}admin/components/run/shop/search/advanced{else:}admin/admin_search{/if}" id="adminAdvancedSearch">
+                                <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}admin/admin_search{/if}" id="adminAdvancedSearch">
                                     <div class="input-append search">
                                         <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
                                         <div class="o_h">
@@ -242,15 +242,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-                                    var textEditor = '{$settings.text_editor}';
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-                                    var userLogined = true;
+                var userLogined = true;
             {else:}
-                                    var userLogined = false;
+                var userLogined = false;
             {/if}
 
-                                    var locale = '{echo $this->CI->config->item('language')}';
-                                    var base_url = "{site_url()}";
+            var locale = '{echo $this->CI->config->item('language')}';
+            var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -290,75 +290,75 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-                                    var isShop = true;
+                var isShop = true;
             {else:}
-                                    var isShop = false;
+                var isShop = false;
             {/if}
-                                    var lang_only_number = "{lang('a_numbers_only')}";
-                                    var show_tovar_text = "{lang('a_show')}";
-                                    var hide_tovar_text = "{lang('a_dont_show')}";
+            var lang_only_number = "{lang('a_numbers_only')}";
+            var show_tovar_text = "{lang('a_show')}";
+            var hide_tovar_text = "{lang('a_dont_show')}";
             {literal}
 
                 $(document).ready(function() {
 
-                    if (!isShop)
-                    {
-                        $('#shopAdminMenu').hide();
-                        //$('#topPanelNotifications').hide();
-                    }
-                    else
-                        $('#baseAdminMenu').hide();
+                if (!isShop)
+                {
+                $('#shopAdminMenu').hide();
+                //$('#topPanelNotifications').hide();
+                }
+                else
+                $('#baseAdminMenu').hide();
                 })
 
                 function number_tooltip_live() {
-                    $('.number input').each(function() {
-                        $(this).attr({
-                            'data-placement': 'top',
-                            'data-title': lang_only_number
-                        });
-                    })
-                    number_tooltip();
+                $('.number input').each(function() {
+                $(this).attr({
+                'data-placement': 'top',
+                'data-title': lang_only_number
+                });
+                })
+                number_tooltip();
                 }
                 function prod_on_off() {
-                    $('.prod-on_off').die('click').live('click', function() {
-                        var $this = $(this);
-                        if (!$this.hasClass('disabled')) {
-                            if ($this.hasClass('disable_tovar')) {
-                                $this.animate({
-                                    'left': '0'
-                                }, 200).removeClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', show_tovar_text)
-                                    $('.tooltip-inner').text(show_tovar_text);
-                                }
-                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                            }
-                            else {
-                                $this.animate({
-                                    'left': '-28px'
-                                }, 200).addClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', hide_tovar_text)
-                                    $('.tooltip-inner').text(hide_tovar_text);
-                                }
-                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                            }
-                        }
-                    });
+                $('.prod-on_off').die('click').live('click', function() {
+                var $this = $(this);
+                if (!$this.hasClass('disabled')) {
+                if ($this.hasClass('disable_tovar')) {
+                $this.animate({
+                'left': '0'
+                }, 200).removeClass('disable_tovar');
+                if ($this.parent().data('only-original-title') == undefined) {
+                $this.parent().attr('data-original-title', show_tovar_text)
+                $('.tooltip-inner').text(show_tovar_text);
+                }
+                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                if ($this.attr('data-page') != undefined)
+                $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                }
+                else {
+                $this.animate({
+                'left': '-28px'
+                }, 200).addClass('disable_tovar');
+                if ($this.parent().data('only-original-title') == undefined) {
+                $this.parent().attr('data-original-title', hide_tovar_text)
+                $('.tooltip-inner').text(hide_tovar_text);
+                }
+                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                if ($this.attr('data-page') != undefined)
+                $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                }
+                }
+                });
                 }
                 $(window).load(function() {
-                    number_tooltip_live();
-                    prod_on_off();
+                number_tooltip_live();
+                prod_on_off();
                 })
                 base_url = '{/literal}{$BASE_URL}{literal}';
             {/literal}
 
 
-                var elfToken = '{echo $CI->lib_csrf->get_token()}';
+            var elfToken = '{echo $CI->lib_csrf->get_token()}';
         </script>
         <div id="jsOutput" style="display: none;"></div>
     </body>

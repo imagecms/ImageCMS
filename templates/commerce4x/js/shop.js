@@ -1,3 +1,6 @@
+/*
+ *imagecms shop plugins
+ **/
 if (!Array.indexOf) {
     Array.prototype.indexOf = function (obj, start) {
         for (var i = (start || 0); i < this.length; i++) {

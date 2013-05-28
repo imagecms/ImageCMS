@@ -13,7 +13,7 @@
             <div class="carousel bot_border_grey">
                 <ul class="items items_catalog">
                     {foreach $products as $product}
-                    <li class="span3 {if $product->firstvariant->getStock()==0} not-avail{/if}">
+                    <li class="span3 {if $product->firstvariant->getStock()==0} not_avail{/if}">
                         <div class="description">
                             <div class="frame_response">
                                 <div class="star">
