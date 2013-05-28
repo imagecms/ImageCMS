@@ -22,7 +22,7 @@
                         <a href="{shop_url('product')}/{literal}<%- item.url %>">
                             <span class="photo">
                                 <span class="helper"></span>
-                            {/literal}<img src="{base_url()}uploads/shop/products/small/{literal}<%- item.mainImage %>">
+                            {/literal}<img src="{literal}<%- item.mainImage %>">
                             </span>
                             <span class="title"><% print( item.name)  %></span>
                              <!-- End. Photo Block and name -->
