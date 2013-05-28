@@ -684,8 +684,7 @@ $(document).ready(function () {
             var $number = liBlock.find(genObj.frameNumber).show()
             $number.find(genObj.code).html('('+vNumber+')');
         } else {
-            var $number = liBlock.find(genObj.frameNumber).show()
-            $number.find(genObj.code).html(' ');
+            var $number = liBlock.find(genObj.frameNumber).hide()
         }
     }
     function existsVnames(vName, liBlock){
@@ -694,7 +693,6 @@ $(document).ready(function () {
             $vname.find(genObj.code).html('('+vName+')');
         } else {
             var $vname = liBlock.find(genObj.frameVName).hide()
-            $vname.find(genObj.code).html(' ');
         }
     }
     function condProduct(vStock, liBlock, btnBuy){
@@ -726,7 +724,7 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
 
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
@@ -867,9 +865,3 @@ wnd.load(function() {
         $('a.fancybox').fancybox();
     }catch(err){}
 });
-wnd.focus(function(){
-    processPage();
-    checkSyncs();
-    processWish();
-    recountCartPage();
-})
