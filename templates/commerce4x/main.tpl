@@ -309,15 +309,15 @@
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
-        
+
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
-        
+
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
-        
+
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script> 
-        
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+
 
         <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
         {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
