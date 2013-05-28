@@ -1094,8 +1094,7 @@ function ieInput(els) {
                         if (elSetSource.is('.' + activeClass)) {
                             $this.removeClass(activeClass)
                             elSetSource[elSetOff](elSetDuration, function() {
-                                elSetSource.removeClass(activeClass).removeAttr('style')
-                                drop_over[elSetOff](elSetDuration);
+                               methods.triggerBtnClick();
                             });
                             $thisHref = $(this).attr('href');
                             if ($thisHref != undefined) {
