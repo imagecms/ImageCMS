@@ -81,8 +81,7 @@
                                     </span>
                                 </label>
                             {/if} 
-                            
-                            {echo ShopCore::app()->CustomFieldsHelper->getCustomFields('user', $profile->getId())->asAdminHtml()}
+                            {echo ShopCore::app()->CustomFieldsHelper->setPatternMain('pattern_custom_field')->getCustomFields('user', $profile->getId())->asHtml()}
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
