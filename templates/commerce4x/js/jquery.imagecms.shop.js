@@ -1803,6 +1803,7 @@ var Shop = {
 
             this.totalPrice = 0;
             this.totalCount = 0;
+            
             for (var i = 0; i < items.length; i++) {
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalCount += parseInt(items[i].count);
@@ -1943,7 +1944,6 @@ var Shop = {
         },
         add:function (key, vid, price, curentEl) {
             Shop.WishList.items = this.all();
-            //this.countTotalPrice( price, curentEl);
             localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({
                 id: key, 
                 vid: vid, 
@@ -2018,19 +2018,6 @@ var Shop = {
                     type:'wish_list_sync'
                 });
             });
-        },
-        countTotalPrice: function( price, curentEl){
-            var inWishlist = curentEl.hasClass('inWishlist'); 
-            if(!inWishlist){
-                var totalPrice = localStorage.getItem('totalPrice');
-
-                if(!totalPrice){
-                    
-                    localStorage.setItem('totalPrice',  parseFloat(price));
-                }else{
-                    localStorage.setItem('totalPrice', parseFloat(totalPrice) + parseFloat(price));
-                }
-            }
         }
     },
 
