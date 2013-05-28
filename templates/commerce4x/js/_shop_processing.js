@@ -391,9 +391,6 @@ $(document).ready(function() {
 
         })
 
-
-
-
         return false;
     });
     //variants
@@ -479,10 +476,5 @@ $(document).ready(function() {
 
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + genObj.btnBuy));
     });
+
 });
-wnd.focus(function() {
-    processPage();
-    checkSyncs();
-    processWish();
-    recountCartPage();
-})
