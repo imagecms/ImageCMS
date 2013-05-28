@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-//***************Scripts for modules table***************    
+//***************Scripts for modules table***************
 
     //*****changes autoload for any module*****
     $('.autoload_ch').live('click', function() {
@@ -94,7 +94,7 @@ $(document).ready(function() {
     });
     //*****change module visibility in menu*****
 
-//***************Scripts for modules table***************            
+//***************Scripts for modules table***************
 
 //***************Scripts for languages page***************
 
@@ -534,7 +534,7 @@ $(document).ready(function() {
         });
     }
 
-    //  sortstop blocks end    
+    //  sortstop blocks end
 
     $('.kit_change_active').live('click', function() {
         var id = $(this).attr('data-kid');
@@ -822,7 +822,7 @@ $(document).ready(function() {
     $('.openDlg').live('click', function() {
         $('#addPictures').trigger('click');
     });
-    
+
     /** Resize all */
     $('#resizeAll').live('click', function() {
 
@@ -842,7 +842,7 @@ $(document).ready(function() {
                     var arrayForProcess = new Array();
                     var done = 0;
 
-                    //Resize by array 
+                    //Resize by array
                     function makeResize(array) {
                         data = JSON.stringify(array);
                         $.ajax({
@@ -857,7 +857,7 @@ $(document).ready(function() {
 //                                console.log((done / countAll) * 100);
                                 if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
-                                    if ($('#useAdditionalImages').attr('checked') != 'checked'){
+                                    if ($('#useAdditionalImages').attr('checked') != 'checked') {
                                         $('#progressLabel').html('<b>Ресайз завершен!</b>');
                                         $('#progressBlock').fadeOut(2000);
                                         showMessage("Картинки обновлены", "Завершено");
@@ -866,8 +866,9 @@ $(document).ready(function() {
                                 }
                             }
                         });
-                    };
-                    
+                    }
+                    ;
+
                     $('#progressLabel').html('<b>Ресайз изображений для товаров</b><br/>Всего найдено товаров: ' + countAll + '  (Обработано : 0 )');
                     $('#progressBlock').fadeIn(100);
 
@@ -880,7 +881,7 @@ $(document).ready(function() {
 
                     //Disable page
                     $('#fixPage').fadeIn(100);
-                    //Make resize 
+                    //Make resize
                     while (ids.length > 0) {
                         arrayForProcess = ids.splice(0, portion);
                         makeResize(arrayForProcess);
@@ -891,65 +892,66 @@ $(document).ready(function() {
                 }
             }
         });
-                
-            /* Additional images */
-            if ($('#useAdditionalImages').attr('checked') == 'checked'){
-                $.ajax({
-                    url: "/admin/components/run/shop/settings/getAllProductsIds",
-                    type: "post",
-                    success: function(data) {
-                        var idsAdditional = $.parseJSON(data);
-                        var countAllAdditional = idsAdditional.length;
-                        var portionAdditional = 0;
-                        var arrayForProcessAdditional = new Array();
-                        var doneAdditional = 0;
+
+        /* Additional images */
+        if ($('#useAdditionalImages').attr('checked') == 'checked') {
+            $.ajax({
+                url: "/admin/components/run/shop/settings/getAllProductsIds",
+                type: "post",
+                success: function(data) {
+                    var idsAdditional = $.parseJSON(data);
+                    var countAllAdditional = idsAdditional.length;
+                    var portionAdditional = 0;
+                    var arrayForProcessAdditional = new Array();
+                    var doneAdditional = 0;
 //                        console.log(idsAdditional);
 
-                        function makeResizeAdditional (array){
-                            data = JSON.stringify(array);
-                            $.ajax({
-                                url: "/admin/components/run/shop/settings/runResizeAllAdditionalJsone",
-                                type: "post",
-                                dataType: 'jsone',
-                                data: 'array=' + data,
-                                complete: function() {
-                                    doneAdditional += array.length;
-                                    $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
+                    function makeResizeAdditional(array) {
+                        data = JSON.stringify(array);
+                        $.ajax({
+                            url: "/admin/components/run/shop/settings/runResizeAllAdditionalJsone",
+                            type: "post",
+                            dataType: 'jsone',
+                            data: 'array=' + data,
+                            complete: function() {
+                                doneAdditional += array.length;
+                                $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
+                                $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
 //                                    console.log((doneAdditional / countAllAdditional) * 100);
-                                    if (doneAdditional == countAllAdditional) {
-                                        $('#fixPage').fadeOut(100);
-                                        $('#progressLabel').html('<b>Ресайз завершен!</b>');
-                                        $('#progressBlock').fadeOut(2000);
-                                        showMessage("Картинки обновлены", "Завершено");
-                                        window.onbeforeunload = null;
-                                    }
+                                if (doneAdditional == countAllAdditional) {
+                                    $('#fixPage').fadeOut(100);
+                                    $('#progressLabel').html('<b>Ресайз завершен!</b>');
+                                    $('#progressBlock').fadeOut(2000);
+                                    showMessage("Картинки обновлены", "Завершено");
+                                    window.onbeforeunload = null;
                                 }
-                            });
-                        };
-
-                        $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
-                        $('#progressBlock').fadeIn(100);
-                        $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                        
-                        //Prepare portion of images
-                        if ((countAllAdditional / 50) < 0) {
-                            portionAdditional = 1;
-                        } else {
-                            portionAdditional = Math.ceil(countAllAdditional / 50);
-                        }
-
-                        //Disable page
-                        $('#fixPage').fadeIn(100);
-                        //Make resize 
-                        while (idsAdditional.length > 0) {
-                            arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
-                            makeResizeAdditional(arrayForProcessAdditional);
-                        }
+                            }
+                        });
                     }
-                });
-            }
-        
+                    ;
+
+                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
+                    $('#progressBlock').fadeIn(100);
+                    $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
+
+                    //Prepare portion of images
+                    if ((countAllAdditional / 50) < 0) {
+                        portionAdditional = 1;
+                    } else {
+                        portionAdditional = Math.ceil(countAllAdditional / 50);
+                    }
+
+                    //Disable page
+                    $('#fixPage').fadeIn(100);
+                    //Make resize
+                    while (idsAdditional.length > 0) {
+                        arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
+                        makeResizeAdditional(arrayForProcessAdditional);
+                    }
+                }
+            });
+        }
+
     });
 
     $('#resizeById').live('click', function() {
