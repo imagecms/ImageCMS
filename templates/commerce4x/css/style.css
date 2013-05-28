@@ -883,6 +883,7 @@ a.activeSlide{background-position: -66px 0;}
 .rightDescription{overflow: hidden;position: relative;}
 .comprasion_tovars_frame{width: 10000px;margin-left: 0 !important;}
 .rightDescription {margin-left: 270px;}
+.isSafari .rightDescription {margin-left: 0;}
 .comprasion_scroll{overflow: hidden;}
 .leftDescription{margin-top: 20px;width: 270px !important;float: left;}
 .leftDescription li{font-weight: bold;text-align: right;}
@@ -893,7 +894,7 @@ a.activeSlide{background-position: -66px 0;}
 .rightDescription .characteristic li{padding-right: 20px;}
 .characteristic li{padding: 3px 30px 3px 0;font-size: 0;}
 .characteristic li > span{font-size: 12px;}
-.scrollNSP{right: 0;position: absolute;top: 20px;}
+.scrollNSP{right: 0;position: absolute;top: 20px;margin-top: 10px;}
 .scrollNSP > div{height: 1px;}
 
 .comprasion_title{text-align: center;padding: 0 30px;}
@@ -941,7 +942,7 @@ a.activeSlide{background-position: -66px 0;}
 .frame_count {position: relative;width: 54px;height: 31px;}
 .frame_count input{padding-right: 18px;height: 31px;}
 .frame_change_count{position: absolute;top: 0;right: 0;}
-.frame_change_count .btn{height: 15px;min-height: auto;padding: 0 4px;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
+.frame_change_count .btn{height: 15px;min-height: 0;padding: 0 4px;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 .frame_change_count .plus{-moz-border-radius: 0 3px 0 0;-webkit-border-radius: 0 3px 0 0;border-radius: 0 3px 0 0;}
 .frame_change_count .minus{-moz-border-radius: 0 0 3px 0;-webkit-border-radius: 0 0 3px 0;border-radius: 0 0 3px 0;}
 .fancy_cleaner .inside_padd{padding: 0 33px 0 20px;}
@@ -1281,3 +1282,6 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .frame-news .description{color: #666;}
 
 .code{color: #999;margin-right: 5px;}
+
+.isSafari .navHorizontal, .isSafari .frameUndef_1, .items, .groupButton{letter-spacing: -5px;}
+.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .items > li, .groupButton > li{letter-spacing: normal;}
