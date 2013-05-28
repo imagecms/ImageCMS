@@ -88,7 +88,16 @@
                                                 <p>{$module.description}</p>
                                             </td>
                                             <td class="urlholder">
-                                                <p>{if $module['enabled'] == "1"}{anchor($module.identif,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
+                                                 {if $module['admin_file'] == 1}
+                                                    {if $module.name == 'shop'}
+                                                        {$module.menu_name}
+                                                    {else:}
+                                                         <p>{if $module['enabled'] == "1" }{anchor("/admin/components/init_window/" . $module.name,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
+                                                    {/if}
+                                                {else:}
+                                                    <p>{if $module['enabled'] == "1" }{$module.identif}{else:}-{/if}</p>
+                                                {/if}
+                                               
                                             </td>
                                             <td class="t-a_c">
                                                 <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_turn_on')}"  data-off="{lang('a_turn_off')}">
