@@ -77,7 +77,7 @@ var ImageCMSApi = {
                     }
                 }
                 return this;
-            },
+            }
         }).done(function() {
             ImageCMSApi.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
@@ -211,6 +211,7 @@ var Notification = {
                         if ($('.btn_not_avail.active').length != 0)
                             $('.btn_not_avail.active').drop('positionDrop');
                         if (obj.close === true) {
+                            if ($('.frame-search-thumbail')[0])  $('.frame-search-thumbail').remove();
                             setTimeout((function() {
                                 $('.drop').drop('triggerBtnClick');
                             }), 3000);
@@ -222,7 +223,7 @@ var Notification = {
                     }
                 }
                 return this;
-            },
+            }
         }).done(function() {
             Notification.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
@@ -256,7 +257,7 @@ var Notification = {
         } else {
             return false;
         }
-    },
+    }
 };
 
 /**
@@ -271,7 +272,7 @@ var FilterManipulation = {
     filterSubmit: function() {
         $(FilterManipulation.formId).submit();
         $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
-    },
+    }
 };
 
 /**

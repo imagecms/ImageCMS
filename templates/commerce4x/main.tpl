@@ -25,14 +25,14 @@
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-        <!--[if lte IE 8]>
+                <!--[if lte IE 8]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/lt_ie8.css" />
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
             <script src="{$THEME}js/css3-mediaqueries.js"></script>
         <![endif]-->
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
-            <script src="js/localStorageIE.js"></script>
+            <script src="/js/localStorageIE.js"></script>
         <![endif]-->
         {literal}
         <style>
@@ -50,7 +50,7 @@
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body>
+    <body class="is{echo $agent[0]}">
         <div class="mainBody">
             <div class="header">
                 <header>
@@ -309,12 +309,15 @@
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
             var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
         </script>
-        
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.min.js"></script>
+
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/scripts.min.js"></script> 
+        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+
 
         <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
         {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
