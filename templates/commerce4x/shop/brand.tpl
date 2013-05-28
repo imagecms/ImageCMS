@@ -241,6 +241,3 @@
 {widget('view_product')}
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-{if widget('view_product') != NULL}
-    <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-{/if}
