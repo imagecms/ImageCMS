@@ -125,6 +125,8 @@ function deleteComprasionItem(el){
     }
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
+    if (optionCompare.onlyDif.parent().hasClass('active')) optionCompare.onlyDif.click();
+    else optionCompare.allParams.click();
 }
 function recountWishListTotalPrise(deletedItemPrice, id, vid){
     
@@ -265,6 +267,7 @@ function initShopPage(showWindow) {
 
             $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
             totalPrice = cartItem.count * cartItem.price;
+            
             pd.closest('tr').find(genObj.priceOrder).html(totalPrice.toFixed(pricePrecision));
 
             $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
@@ -871,7 +874,7 @@ wnd.load(function() {
 wnd.focus(function(){
     processPage();
     checkSyncs();
-    processWish();1
+    processWish();
     recountCartPage();
     checkCompareWishLink();
     wishListCount();
