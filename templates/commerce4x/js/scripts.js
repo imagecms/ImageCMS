@@ -33,7 +33,7 @@ var genObj = {
     imgVC: '.vimg',
     imgVP: '.vimg',
     priceVariant: '.priceVariant',
-    priceOrigVariant: 'priceOrigVariant',
+    priceOrigVariant: '.priceOrigVariant',
     photoProduct: '.photoProduct'
 }
 var isTouch = 'ontouchstart' in document.documentElement;
@@ -871,7 +871,7 @@ wnd.load(function() {
 wnd.focus(function(){
     processPage();
     checkSyncs();
-    processWish();1
+    processWish();
     recountCartPage();
     checkCompareWishLink();
     wishListCount();
