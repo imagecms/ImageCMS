@@ -10,7 +10,7 @@
 *       $product->firstVariant->toCurrency(): method which returns price according to current currencya and format
 *   $totalProducts: integer contains products count
 *   $pagination: string variable contains html code for displaying pagination
-*   $pageNumber: integer variable contains the current page number
+*   $page_number: integer variable contains the current page number
 *   $banners: array of (object)s of SBanners which have to be displayed in current page
 */
 #}
