@@ -265,19 +265,10 @@ class Core extends MY_Controller {
             $this->tpl_data['is_logged_in'] = TRUE;
             $this->tpl_data['username'] = $this->dx_auth->get_username();
         }
-        $this->load->library('user_agent');
-        if ($this->agent->is_browser())
-            $agent = $this->agent->browser();
-        elseif ($this->agent->is_robot())
-            $agent = $this->agent->robot();
-        elseif ($this->agent->is_mobile())
-            $agent = $this->agent->mobile();
-        else
-            $agent = 'Unidentified User Agent';
+        $agent = MY_Controller::user_browser($_SERVER['HTTP_USER_AGENT']);
 
         $this->template->add_array(array(
             'agent' => $agent,
-            'platform' => $this->agent->platform(),
         ));
 
         //Assign captcha type
