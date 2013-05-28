@@ -1141,13 +1141,14 @@ function ieInput(els) {
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
-                        return;
-                    else
-                    {
-                        methods.triggerBtnClick();
+                    if (event.button){
+                        if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
+                            return;
+                        else
+                        {
+                            methods.triggerBtnClick();
+                        }
                     }
-
                 }).live('keydown', function(e) {
                     var key, keyChar;
                     if (!e)
@@ -1180,9 +1181,9 @@ function ieInput(els) {
                 }
                 drop_over.remove();
             }).removeClass('active');
-        //wnd.unbind('scroll resize', methods.dropScroll)
+            wnd.unbind('resize.drop');
         },
-        dropScroll: function() {
+        dropScroll: function(elSetSource) {
             elSetSource.animate({
                 'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
                 'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
@@ -1230,7 +1231,6 @@ function ieInput(els) {
                 if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                methods.dropScroll();
                 body.css('margin-right', function(){
                     if ($(document).height()-wnd.height() > 0){
                         body.addClass('o_h');
@@ -1238,6 +1238,7 @@ function ieInput(els) {
                         return 17
                     }
                 })
+                wnd.bind('resize.drop', function(){methods.dropScroll(elSetSource)}).resize();
             }
         }
     };
@@ -1306,7 +1307,6 @@ function ieInput(els) {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
                                                 
-                        //alert(inputVal);
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
