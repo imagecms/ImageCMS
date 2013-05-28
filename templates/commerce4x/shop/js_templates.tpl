@@ -42,7 +42,7 @@
                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                 </div>
                                 <div class="price price_f-s_16">
-                                    <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
+                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
                                 </div>
                             </td>
                             <td>
@@ -107,7 +107,7 @@
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
-                                                    <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
+                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                             <td rowspan="<%- names.length %>">
@@ -150,7 +150,7 @@
                                                     <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                                 </div>
                                                 <div class="price price_f-s_16">
-                                                    <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
+                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -229,7 +229,7 @@
             <thead class="v_h">
                 <tr>
                     <td class="span1"></td>
-                    <td></td>
+                    <td class="span3"></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -252,7 +252,7 @@
                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span><% } %>
                         </div>
                         <div class="price price_f-s_16">
-                            <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
+                            <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                         </div>
                     </td>
                     <td>
@@ -282,8 +282,8 @@
                                 <tr>
                                     <td class="span1"></td>
                                     <td class="span3"></td>
-                                    <td class="span1"></td>
-                                    <td class="span1"></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -307,7 +307,7 @@
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
+                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                     <td rowspan="<%- names.length %>" class="v-a_m">
@@ -338,7 +338,7 @@
                                             <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
                                         </div>
                                         <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-prices[i]%></span> <%-curr%></span>
+                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                 </tr>
