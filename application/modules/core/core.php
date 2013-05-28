@@ -265,6 +265,11 @@ class Core extends MY_Controller {
             $this->tpl_data['is_logged_in'] = TRUE;
             $this->tpl_data['username'] = $this->dx_auth->get_username();
         }
+        $agent = MY_Controller::user_browser($_SERVER['HTTP_USER_AGENT']);
+
+        $this->template->add_array(array(
+            'agent' => $agent,
+        ));
 
         //Assign captcha type
         if ($this->dx_auth->use_recaptcha)
