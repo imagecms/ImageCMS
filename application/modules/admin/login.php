@@ -29,38 +29,13 @@ class Login extends BaseAdminController {
             $this->template->assign('use_captcha', '1');
             $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
         }
-        $browser = $this->user_browser($_SERVER['HTTP_USER_AGENT']);
+        $browser = MY_Controller::user_browser($_SERVER['HTTP_USER_AGENT']);
 
         if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' || ($browser[0] === 'Chrome' && $browser[1] < 17 ) || ($browser[0] === 'Opera' && $browser[1] < 12.11)) {
             $this->template->display('old_browser');
         } else {
             $this->do_login();
         }
-    }
-
-    function user_browser($agent) {
-        preg_match("/(MSIE|Opera|Firefox|Chrome|Version|Opera Mini|Netscape|Konqueror|SeaMonkey|Camino|Minefield|Iceweasel|K-Meleon|Maxthon)(?:\/| )([0-9.]+)/", $agent, $browser_info);
-        list(, $browser, $version) = $browser_info;
-        if (preg_match("/Opera ([0-9.]+)/i", $agent, $opera))
-            return $browserIn = array('0' => 'Opera', '1' => $opera[1]);
-        if ($browser == 'MSIE') {
-            preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // check to see whether the development is based on IE
-            if ($ie)
-                return $browserIn = array('0' => $ie[1], '1' => $version); // If so, it returns an
-            return $browserIn = array('0' => 'IE', '1' => $version); // otherwise just return the IE and the version number
-        }
-        if ($browser == 'Firefox') {
-            preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // check to see whether the development is based on Firefox
-            if ($ff)
-                return $browserIn = array('0' => $ff[1], '1' => $ff[2]); // if so, shows the number and version
-        }
-        if ($browser == 'Opera' && $version == '9.80')
-            return $browserIn = array('0' => 'Opera', '1' => substr($agent, -5));
-        if ($browser == 'Version')
-            return $browserIn = array('0' => 'Safari', '1' => $version); // define Safari
-        if (!$browser && strpos($agent, 'Gecko'))
-            return 'Browser based on Gecko'; // unrecognized browser check to see if they are on the engine, Gecko, and returns a message about this
-        return $browserIn = array('0' => $browser, '1' => $version); // for the rest of the browser and return the version
     }
 
     /**

@@ -39,4 +39,3 @@
 
 </div>
 <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.min.js"></script>
-<script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
