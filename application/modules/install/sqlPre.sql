@@ -1318,6 +1318,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `free_from` float(10,2) NOT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_delivery_methods_I_2` (`enabled`),
   KEY `shop_delivery_methods_I_1` (`enabled`)
