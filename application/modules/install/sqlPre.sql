@@ -10044,7 +10044,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('1CSettingsOS', 'N;', ''),
 ('usegifts', '0;', 'ru'),
 ('ordersCheckStocks', '', ''),
-('imageSizesBlock', 'a:3:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:3:"200";s:5:"width";s:3:"200";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"350";s:5:"width";s:3:"350";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"600";}}', ''),
+('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:3:"200";s:5:"width";s:3:"200";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"400";s:5:"width";s:3:"400";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"600";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:4:"1000";s:5:"width";s:4:"1000";}}', ''),
 ('imagesMainSize', 'auto', ''),
 ('additionalImageWidth', '350', ''),
 ('additionalImageHeight', '350', ''),
