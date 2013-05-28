@@ -684,8 +684,7 @@ $(document).ready(function () {
             var $number = liBlock.find(genObj.frameNumber).show()
             $number.find(genObj.code).html('('+vNumber+')');
         } else {
-            var $number = liBlock.find(genObj.frameNumber).show()
-            $number.find(genObj.code).html(' ');
+            var $number = liBlock.find(genObj.frameNumber).hide()
         }
     }
     function existsVnames(vName, liBlock){
@@ -694,7 +693,6 @@ $(document).ready(function () {
             $vname.find(genObj.code).html('('+vName+')');
         } else {
             var $vname = liBlock.find(genObj.frameVName).hide()
-            $vname.find(genObj.code).html(' ');
         }
     }
     function condProduct(vStock, liBlock, btnBuy){
