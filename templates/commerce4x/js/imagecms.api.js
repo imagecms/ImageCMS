@@ -77,7 +77,7 @@ var ImageCMSApi = {
                     }
                 }
                 return this;
-            },
+            }
         }).done(function() {
             ImageCMSApi.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
@@ -223,7 +223,7 @@ var Notification = {
                     }
                 }
                 return this;
-            },
+            }
         }).done(function() {
             Notification.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
@@ -257,7 +257,7 @@ var Notification = {
         } else {
             return false;
         }
-    },
+    }
 };
 
 /**
@@ -272,7 +272,7 @@ var FilterManipulation = {
     filterSubmit: function() {
         $(FilterManipulation.formId).submit();
         $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
-    },
+    }
 };
 
 /**

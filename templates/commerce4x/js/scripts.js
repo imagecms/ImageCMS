@@ -210,12 +210,18 @@ function processPage() {
 
     //update all product buttons
     $(genObj.btnBuy).each(function () {
-        var key = $(this).data('prodid') + '_' + $(this).data('varid');
+        var $this = $(this);
+        var key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
-            $(this).removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
+            var cusel = $this.closest(genObj.parentBtnBuy).find('[val].cuselActive');
+            
+            $this.removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
-            }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
+            })
+            
+            if ($this.data('varid') != cusel.attr('val') && $.exists_nabir(cusel)) return false;
+            else $this.closest(genObj.parentBtnBuy).addClass(genObj.inCart);
         }
     });
     $(genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
