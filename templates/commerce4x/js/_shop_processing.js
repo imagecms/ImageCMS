@@ -38,7 +38,7 @@ function processPage() {
     });
 
     //update all product buttons
-    $('.'+genObj.btnBuy).each(function () {
+    $(genObj.btnBuy).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) != -1) {
             $(this).removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
@@ -47,7 +47,7 @@ function processPage() {
             }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
         }
     });
-    $('.'+genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
+    $(genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) == -1) {
             $(this).removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).html(toCart).removeAttr('disabled').unbind('click').on('click', function(){
@@ -441,7 +441,7 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+genObj.btnBuy));
 
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
@@ -471,6 +471,12 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+genObj.btnBuy));
     });
 });
+wnd.focus(function(){
+    processPage();
+    checkSyncs();
+    processWish();
+    recountCartPage();
+})

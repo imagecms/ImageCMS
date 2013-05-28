@@ -149,7 +149,7 @@
                         <tbody>
                             <tr>
                                 {foreach $orders as $order}
-                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
+                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('s_order')} №{echo $order->getId()}</a></td>
                                     <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
                                     <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>

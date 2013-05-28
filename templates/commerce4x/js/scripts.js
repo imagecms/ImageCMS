@@ -21,7 +21,7 @@ var genObj = {
     loginButton: '#loginButton',//селектор
     inCart: 'in_cart',//назва класу
     notAvail: 'not_avail',//назва класу
-    btnBuy: 'btnBuy',//назва класу кнопка купити
+    btnBuy: '.btnBuy',//назва класу кнопка купити
     btnBuyCss: 'btn_buy',//назва класу
     btnCartCss: 'btn_cart',//назва класу
     descr: '.description',
@@ -102,7 +102,7 @@ function navPortait() {
     
 function deleteComprasionItem(el){
     var $this = el,
-    $thisI = $this.parents('li'),
+    $thisI = $this.parents(genObj.parentBtnBuy),
     $thisP = $this.parents('[data-equalhorizcell]').last(),
     count_products = $thisP.find(optionCompare.right),
     gen_count_products = count_products.add($thisP.siblings().find(optionCompare.right)).length,
@@ -126,36 +126,29 @@ function deleteComprasionItem(el){
     
     $('.frame_tabsc > div').equalHorizCell('refresh');
 }
-function recountWishListTotalPrise(deletedItem, id, vid){
+function recountWishListTotalPrise(deletedItemPrice, id, vid){
     
-    var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
+    var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [],
+    totalPrice = 0;
+    
     arr = _.without(arr, id+'_'+vid);                        
     localStorage.setItem('wishList_vid', JSON.stringify(arr));
     localStorage.removeItem('wishList_'+id+'_'+vid);
     
-    var itemPrice = parseFloat(deletedItem.text());    
-    var totalPrice = parseFloat(localStorage.getItem('totalPrice')); 
-    if(totalPrice){         
-         localStorage.setItem('totalPrice',(totalPrice-itemPrice).toFixed(3));
-         totalPrice = parseFloat(localStorage.getItem('totalPrice')).toFixed(3);
-         $('#wishListTotal').text(totalPrice);
-    }else{
-       var tmpTotalPrice =  parseFloat($('#wishListTotal').text());
-       tmpTotalPrice = (tmpTotalPrice-itemPrice).toFixed(3);
-       $('#wishListTotal').text(tmpTotalPrice);
-       localStorage.setItem('totalPrice', tmpTotalPrice);
-    }
-   
+    //var totalPrice = parseFloat(localStorage.getItem('totalPrice')); 
+    
+    var wishListTotal = $('#wishListTotal');
+    wishListTotal.text((wishListTotal.text()-deletedItemPrice).toFixed(pricePrecision));
 } 
 function deleteWishListItem(el, id, vid){
-    var deletedItem = el.parent().find('.old_price').next();
-    recountWishListTotalPrise(deletedItem, id, vid);
+    var deletedItemPrice = el.closest(genObj.parentBtnBuy).find(genObj.btnBuy).data('price');
+    recountWishListTotalPrise(deletedItemPrice, id, vid);
     
-    if (el.parent().siblings().length == 0){
+    if (el.closest(genObj.parentBtnBuy).siblings().length == 0){
         $('[data-body="body"]').hide()
         $('[data-body="message"]').show()
     }
-    el.parent().remove();
+    el.closest(genObj.parentBtnBuy).remove();
 }
 def_min = $('span#opt1').data('def_min');
 def_max = $('span#opt2').data('def_max');
@@ -164,11 +157,17 @@ cur_max = $('span#opt4').data('cur_max');
 
 function processWish() {
     //wishlist checking
-    var wishlist = Shop.WishList.all();
+    var WishList = Shop.WishList.all();
     $('.'+genObj.toWishlist).each(function () {
-        if (wishlist.indexOf($(this).data('prodid')) !== -1){
+        if (WishList.indexOf($(this).data('prodid')+'_'+$(this).data('varid')) !== -1){
             var $this = $(this);
             $this.removeClass(genObj.toWishlist).addClass(genObj.inWishlist).addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+        }
+    });
+    $('.'+genObj.inWishlist).each(function () {
+        if (WishList.indexOf($(this).data('prodid')+'_'+$(this).data('varid')) === -1){
+            var $this = $(this);
+            $this.addClass(genObj.toWishlist).removeClass(genObj.inWishlist).removeClass(genObj.wishListIn).attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
         }
     });
 
@@ -178,6 +177,12 @@ function processWish() {
         if (comparelist.indexOf($(this).data('prodid')) !== -1){
             var $this = $(this);
             $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).addClass(genObj.compareIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+        }
+    });
+    $('.'+genObj.inCompare).each(function () {
+        if (comparelist.indexOf($(this).data('prodid')) === -1){
+            var $this = $(this);
+            $this.addClass(genObj.toCompare).removeClass(genObj.inCompare).removeClass(genObj.compareIn).attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
         }
     });
 }
@@ -202,7 +207,7 @@ function processPage() {
     });
 
     //update all product buttons
-    $('.'+genObj.btnBuy).each(function () {
+    $(genObj.btnBuy).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) != -1) {
             $(this).removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
@@ -211,7 +216,7 @@ function processPage() {
             }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
         }
     });
-    $('.'+genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
+    $(genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
         var key = $(this).data('prodid') + '_' + $(this).data('varid');
         if (keys.indexOf(key) == -1) {
             $(this).removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).html(toCart).removeAttr('disabled').unbind('click').on('click', function(){
@@ -434,7 +439,7 @@ $(document).ready(function () {
            
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
-                
+
                 if ($(el).offset().left < 322 - $(el).outerWidth()) {
                     $(el).attr('data-placement', 'bottom left');
                     $(dropEl).addClass('left-report');
@@ -457,18 +462,15 @@ $(document).ready(function () {
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
-                
-                $('.icon-times-enter').live('click', function(){
-                    dropEl.parent().fadeOut(300);
-                    $('.overlayDrop').fadeOut(100);
-                });
 
                 if (!dropEl.parent().hasClass('active')) {
                     if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, .variantProd ').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    
                 }
                 return $(el);
+               
             }
         },
         after: function(el, dropEl){
@@ -581,24 +583,23 @@ $(document).ready(function () {
             $('#popupKit_'+data.cartItem.kitId).remove();
     });
 
-    $('.'+genObj.toCompare).on('click', function () {
+    $('.'+genObj.toCompare).live('click', function () {
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
     });
 
-    $('.'+genObj.toWishlist).on('click', function () {
-        
+    $('.'+genObj.toWishlist).live('click', function () {
         var id = $(this).data('prodid');
         var vid = $(this).data('varid');
         var price = $(this).data('price');
         Shop.WishList.add(id, vid, price, $(this));
     });
 
-    $('.'+genObj.inWishlist).die('click').live('click', function () {
+    $('.'+genObj.inWishlist).live('click', function () {
         document.location.href = '/shop/wish_list';
     });
 
-    $('.'+genObj.inCompare).die('click').live('click', function () {
+    $('.'+genObj.inCompare).live('click', function () {
         document.location.href = '/shop/compare';
     });
 
@@ -607,7 +608,7 @@ $(document).ready(function () {
     $(document).on('wish_list_add', function (e) {
         if (e.dataObj.success == true) {
             $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
-            var $this = $('.'+genObj.toWishlist+'[data-prodid=' + e.dataObj.id + ']')
+            var $this = $('.'+genObj.toWishlist+'[data-varid=' + e.dataObj.varid + ']'+'[data-prodid=' + e.dataObj.id + ']');
             $this.removeClass(genObj.toWishlist).addClass(genObj.inWishlist).addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
             $this.tooltip();
         }
@@ -705,7 +706,7 @@ $(document).ready(function () {
     }
     
     $('#variantSwitcher').live('change', function () {
-        var productId = $(this).attr('value'),
+        var productId = parseInt($(this).attr('value')),
         liBlock = $(this).closest(genObj.parentBtnBuy);
         
         var vId = $(genObj.prefV + productId).attr('data-id'),
@@ -725,7 +726,7 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
 
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
@@ -733,9 +734,9 @@ $(document).ready(function () {
 
     /**Variants in Category*/
     $('[id ^= сVariantSwitcher_]').live('change', function () {
-        var productId = $(this).attr('value'),        
+        var productId = parseInt($(this).attr('value')),
         liBlock = $(this).closest(genObj.parentBtnBuy);
-        
+       
         var vMediumImage = liBlock.find(genObj.prefV + productId).attr('data-mediumImage'),
         vId = $(genObj.prefV + productId).attr('data-id'),
         vName = liBlock.find(genObj.prefV + productId).attr('data-vname'),
@@ -755,7 +756,7 @@ $(document).ready(function () {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+'.'+genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+genObj.btnBuy));
     });
 });
 wnd.load(function() {

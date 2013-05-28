@@ -23,15 +23,24 @@
         <!--End. Show message if compare list is empty -->
     </div>
     {else:}
+                
     <div data-body="body">
         <h1>{lang('s_WL')}</h1>
         <!--If not empty list show list of products -->
         <div class="bot_border_grey">
             <ul class="items items_catalog itemsFrameNS">
                 {foreach $items as $key=>$item}
-                <li class="span3 {if $item.model->firstvariant->stock == 0} not_avail{/if}">
+                
+                {foreach $item.model->getProductVariants() as $variants}
+                    {if $variants->getid() == $item[1]}
+                        {$variant = $variants}
+                        {break}
+                    {/if}
+                {/foreach}
+                <li class="span3 {if $variant->stock == 0} not_avail{/if}">
+
                     {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                    <button class="btn btn_small btn_small_p" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $item.model->firstVariant->getId()})">
+                    <button class="btn btn_small btn_small_p" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $variant->getId()})">
                         <span class="icon-remove_comprasion"></span>
                     </button>    
                     {/if}
@@ -43,37 +52,43 @@
                             </div>
                         </div>
                         <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
+                        <span class="d_b m-b_5">
+                            {$hasCode = $variant->getNumber() == '';}
+                            <span class="frame_number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if})</span></span>
+                            {$hasVariant = $variant->getName() == '';}
+                            <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
+                        </span>
                         <!-- Start. Price -->
                         <div class="price price_f-s_16">
                             <!--$model->hasDiscounts() - checking for the existence of discounts. 
                                  If there is a discount price without discount C-->
                             {if $item.model->hasDiscounts()}
                             <span class="d_b old_price">
-                                <span class="f-w_b">{echo $item.model->firstVariant->toCurrency('OrigPrice')} </span>
+                                <span class="f-w_b">{echo $variant->toCurrency('OrigPrice')} </span>
                                 {$CS}
                             </span>                           
                             {/if}
-                            <!--If there is a discount of "$item.model->firstVariant->toCurrency()" or "$item.model->firstVariant->getPrice"
+                            <!--If there is a discount of "$variant->toCurrency()" or "$variant->getPrice"
                             will display the price already discounted-->
-                            <span class="f-w_b" >{echo $item.model->firstVariant->toCurrency()} </span>{$CS}
+                            <span class="f-w_b" >{echo $variant->toCurrency()} </span>{$CS}
                         </div>
                         <!-- End. Price -->
 
                         <!-- Start. Check is product available -->
-                        {if $item.model->firstvariant->stock != 0}
+                        {if $variant->stock != 0}
                         <button class="btn btn_buy btnBuy" 
                                 type="button"
                                 data-prodid="{echo $item.model->getId()}"
-                                data-varid="{echo $item.model->firstVariant->getId()}"
-                                data-price="{echo $item.model->firstVariant->toCurrency()}" 
+                                data-varid="{echo $variant->getId()}"
+                                data-price="{echo $variant->toCurrency()}" 
                                 data-name="{echo ShopCore::encode($item.model->getName())}"
-                                data-maxcount="{echo $item.model->firstVariant->getstock()}"
-                                data-number="{echo $item.model->firstVariant->getNumber()}"
-                                data-img="{echo $item.model->firstVariant->getSmallPhoto()}"
+                                data-maxcount="{echo $variant->getstock()}"
+                                data-number="{echo $variant->getNumber()}"
+                                data-img="{echo $variant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$item.model->getUrl())}"
 
-                                data-origPrice="{if $item.model->hasDiscounts()}{echo $item.model->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                data-stock="{echo $item.model->firstVariant->getStock()}"
+                                data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
+                                data-stock="{echo $variant->getStock()}"
                                 >
                             {lang('s_buy')}
                         </button>
@@ -98,7 +113,7 @@
                         <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
                             <figure>
                                 <span class="helper"></span>
-                                <img src="{echo $item.model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                                <img src="{echo $variant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                             </figure>
                         </a>
                     </div>

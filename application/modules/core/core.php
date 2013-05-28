@@ -29,7 +29,6 @@ class Core extends MY_Controller {
     }
 
     public function index() {
-
         $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
@@ -52,6 +51,8 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
 
         $this->load->library('template');
+        if (!empty($_GET))
+            $this->template->registerCanonical(site_url());
 
         $last_element = key($this->uri->uri_to_assoc(0));
 
