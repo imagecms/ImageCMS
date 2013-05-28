@@ -1281,3 +1281,6 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 .frame-news .description{color: #666;}
 
 .code{color: #999;margin-right: 5px;}
+
+.isSafari .navHorizontal, .isSafari .frameUndef_1, .items{letter-spacing: -5px;}
+.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .items > li{letter-spacing: normal;}
