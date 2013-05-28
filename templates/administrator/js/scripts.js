@@ -1480,11 +1480,24 @@ $('#createUserButton').live('click', function() {
             success: function(response) {
                 if (response == 'email') {
                     showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
-                } else if (response == 'true') {
+                } else if (response != 'false') {
+                    $('#collapsed').click();
                     $('#createUserName').val('');
                     $('#createUserEmail').val('');
                     $('#createUserPhone').val('');
                     $('#createUserAddress').val('');
+                    console.log(response);
+                    data = JSON.parse(response);
+                    if (data != null){
+                        /*Make created user selected */
+                        $('#userIdforOrder').html(data.id);
+                        $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + data.id);
+                        $('#userEmailforOrder').html(data.email);
+                        $('#userNameforOrder').html(data.username);
+                        $('#userNameforOrder').attr('href', '/admin/components/run/shop/users/edit/' + data.id);
+                        $('#userPhoneforOrder').html(data.phone);
+                        $('#userAddressforOrder').html(data.address);
+                    }
                     showMessage("Сообщение", "Создан новый пользователь", "success");
                 } else {
                     showMessage("Ошибка", "Не удалось создать пользователя,", "error");
