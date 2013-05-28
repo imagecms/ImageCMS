@@ -229,7 +229,7 @@
             <thead class="v_h">
                 <tr>
                     <td class="span1"></td>
-                    <td></td>
+                    <td class="span3"></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -282,8 +282,8 @@
                                 <tr>
                                     <td class="span1"></td>
                                     <td class="span3"></td>
-                                    <td class="span1"></td>
-                                    <td class="span1"></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody>

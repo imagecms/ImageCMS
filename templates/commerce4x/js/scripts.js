@@ -387,6 +387,12 @@ function checkSyncs(){
             Shop.Cart.sync();
     }
 };
+function wishListCount(){
+    $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
+}
+function compareListCount(){
+    $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+}
 
 $(document).ready(function () {
    
@@ -509,8 +515,9 @@ $(document).ready(function () {
     checkSyncs();
     processWish();
     recountCartPage();
-    if (window.location.href.match(/cart/))
-        changeDeliveryMethod($('#method_deliv').val());
+    var methodDeliv = $('#method_deliv');
+    if (window.location.href.match(/cart/) && $.exists_nabir(methodDeliv))
+        changeDeliveryMethod(methodDeliv.val());
     $('#popupCart').html(Shop.Cart.renderPopupCart())
         
     //click 'add to cart'
@@ -530,8 +537,8 @@ $(document).ready(function () {
     //Shop.Cart.countChanged = false;
 
     //shipping changing, re-render cart page
-    if ($('#method_deliv'))
-        $('#method_deliv').on('change', function () {
+    if ($.exists_nabir(methodDeliv))
+        methodDeliv.on('change', function () {
             recountCartPage();
             changeDeliveryMethod($('span.cuselActive').attr('val'));
         });
@@ -540,8 +547,8 @@ $(document).ready(function () {
         renderOrderDetails();
 
     //shipping changing, re-render cart page
-    if ($('#method_deliv'))
-        $('#method_deliv').on('change', function () {
+    if ($.exists_nabir(methodDeliv))
+        methodDeliv.on('change', function () {
             recountCartPage();
         });
 
@@ -560,11 +567,9 @@ $(document).ready(function () {
         //Shop.Cart.totalRecount();
         processPage();
         renderOrderDetails();
-        if ($('#method_deliv'))
+        if ($.exists_nabir(methodDeliv))
             recountCartPage();
-        //update popup cart
-        //$('table.table_order.preview_order td:last-child span:last-child').last().html(Shop.Cart.totalPrice.toFixed(pricePrecision));
-        //
+        
         $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
         if (Shop.Cart.totalCount == 0)
             emptyPopupCart();
@@ -607,7 +612,7 @@ $(document).ready(function () {
 
     $(document).on('wish_list_add', function (e) {
         if (e.dataObj.success == true) {
-            $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
+            wishListCount();
             var $this = $('.'+genObj.toWishlist+'[data-varid=' + e.dataObj.varid + ']'+'[data-prodid=' + e.dataObj.id + ']');
             $this.removeClass(genObj.toWishlist).addClass(genObj.inWishlist).addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
             $this.tooltip();
@@ -619,13 +624,11 @@ $(document).ready(function () {
 
     $(document).on('compare_list_add', function (e) {
         if (e.dataObj.success == true) {
-            $('#compareListCount').html('(' + Shop.WishList.all().length + ')');
             var $this = $('.'+genObj.toCompare+'[data-prodid=' + e.dataObj.id + ']')
             $this.removeClass(genObj.toCompare).addClass(genObj.inCompare).addClass(genObj.wishListIn).attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
             $this.tooltip();
         }
-
-        $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+        compareListCount();
 
         checkCompareWishLink();
         $this.tooltip();
@@ -640,11 +643,11 @@ $(document).ready(function () {
     });
         
     $(document).on('compare_list_rm compare_list_sync', function () {
-        $('#compareCount').html('(' + Shop.CompareList.all().length + ')');
+        compareListCount();
     });
 
     $(document).on('wish_list_rm wish_list_sync', function () {
-        $('#wishListCount').html('(' + Shop.WishList.all().length + ')');
+        wishListCount();
     });
 
     $('#applyGiftCert').on('click', function(){
@@ -865,3 +868,12 @@ wnd.load(function() {
         $('a.fancybox').fancybox();
     }catch(err){}
 });
+wnd.focus(function(){
+    processPage();
+    checkSyncs();
+    processWish();1
+    recountCartPage();
+    checkCompareWishLink();
+    wishListCount();
+    compareListCount();
+})
