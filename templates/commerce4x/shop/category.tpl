@@ -192,7 +192,7 @@
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$product->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
-                                    {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
+                                    data-number="{echo $pv->getNumber()}"
                                     data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-stock="{echo $pv->getStock()}"
                                     >
@@ -219,7 +219,7 @@
                                 data-img="{echo $pv->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$product->getUrl())}"
                                 data-price="{echo $pv->toCurrency()}"
-                                {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
+                                data-number="{echo $pv->getNumber()}"
                                 data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $pv->getStock()}"
 
