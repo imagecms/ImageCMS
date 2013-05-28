@@ -50,7 +50,7 @@
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body>
+    <body class="is{echo $agent[0]}">
         <div class="mainBody">
             <div class="header">
                 <header>
