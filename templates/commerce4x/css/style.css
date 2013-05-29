@@ -1283,5 +1283,5 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 
 .code{color: #999;margin-right: 5px;}
 
-.isSafari .navHorizontal, .isSafari .frameUndef_1, .items, .groupButton{letter-spacing: -5px;}
-.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .items > li, .groupButton > li{letter-spacing: normal;}
+.isSafari .navHorizontal, .isSafari .frameUndef_1, .isSafari .items, .isSafari .groupButton{letter-spacing: -5px;}
+.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .isSafari .items > li, .isSafari .groupButton > li{letter-spacing: normal;}
