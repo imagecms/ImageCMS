@@ -780,7 +780,7 @@ $(document).ready(function() {
         container.find('img').css('width', '50px');
     });
     $('.change_image').live('click', function() {
-        $(this).closest('td').find('[type="file"]').click();
+        $(this).closest('td').find('[type="file"]').attr('accept',"image/gif, image/jpeg, image/png").click();
     })
 
 
