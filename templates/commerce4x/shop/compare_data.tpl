@@ -9,5 +9,9 @@
         <span class="icon-comprasion"></span>
         <span class="text-el">{lang('s_list_comp')} </span>
     </span>
+    {if $CI->session->userdata('shopForCompare')}
         <span id="compareCount" class="c_97">({count($CI->session->userdata('shopForCompare'))})</span>
+        {else:}
+        <span id="compareCount" class="c_97">(0)</span>
+   {/if}
 </div>
