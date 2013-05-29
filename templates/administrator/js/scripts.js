@@ -1437,7 +1437,7 @@ $('#variantsForOrders').live('change', function() {
         $('#variantInfoBlock').show();
 
     //Disable button if stock =0
-    if (stock == 0) {
+    if (checkProdStock == 1 && stock == 0) {
         $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html('Нет в наличии');
     } else {
         $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html('В корзину');
@@ -1453,7 +1453,7 @@ $('#variantsForOrders').live('change', function() {
 })
 //Add product
 $('#addVariantToCart').die().live('click', function() {
-    if ($(this).data('stock') != 0 && !$(this).hasClass('btn-primary')) {
+    if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
         $(this).removeClass('btn-success').addClass('btn-primary').html('В корзине');
     }
