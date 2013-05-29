@@ -26,6 +26,9 @@
             <div class="header">
                 <ul>
                     <li>
+                        {include_tpl('shop/auth_data')}
+                    </li>
+                    <li>
                         <a href="{mobile_url('search')}" tabindex="1">
                             <span class="icon search_icon"></span><br/>
                             Поиск
