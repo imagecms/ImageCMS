@@ -211,7 +211,7 @@ var Notification = {
                         if ($('.btn_not_avail.active').length != 0)
                             $('.btn_not_avail.active').drop('positionDrop');
                         if (obj.close === true) {
-                            if ($('.frame-search-thumbail')[0])  $('.frame-search-thumbail').remove();
+                            if ($('.frame-search-thumbail')[0]) $('.frame-search-thumbail').remove();
                             setTimeout((function() {
                                 $('.drop').drop('triggerBtnClick');
                             }), 3000);
@@ -259,91 +259,3 @@ var Notification = {
         }
     }
 };
-
-/**
- * js object for filter handling
- * @type type
- */
-
-var FilterManipulation = {
-    formId: "#filter",
-    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck, [name='category[]']",
-    OnClickSublitSelectors: ".filterSubmit",
-    filterSubmit: function() {
-        $(FilterManipulation.formId).submit();
-        $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
-    }
-};
-
-/**
- * handle products list order and per page event
- * @type type
- */
-
-var orderSelect = {
-    mainSelector: ".sort",
-    orderSelector: "#sort",
-    perPageSelector: "#sort2",
-    filterForm: "form#filter",
-    addHiddenFields: function() {
-        $(orderSelect.filterForm + ' input[name="order"]').val($(orderSelect.orderSelector).val());
-        $(orderSelect.filterForm + ' input[name="user_per_page"]').val($(orderSelect.perPageSelector).val());
-        $(orderSelect.filterForm).submit();
-
-    }
-
-}
-
-$(document).ready(function() {
-    $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
-        FilterManipulation.filterSubmit();
-    });
-
-    $(FilterManipulation.OnClickSubmitSelectors).on('click', function(event) {
-        event.preventDefault();
-        FilterManipulation.filterSubmit();
-    });
-
-    $('span.filterLable').on('click', function() {
-        var input = $(this).prev('span.niceCheck.b_n').find('input').not('[disabled=disabled]');
-        if (input.is(':checked')) {
-            input.attr('checked', false);
-            input.trigger('change');
-        }
-        else {
-            input.attr('checked', 'checked');
-            input.trigger('change');
-        }
-    });
-
-    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
-        orderSelect.addHiddenFields();
-    });
-
-    $('#sort').live('change', function(){
-        $('input[name=order]').val($(this).val())
-        $('form#filter').submit();
-    });
-    $('#sort2').live('change', function(){
-        $('input[name=user_per_page]').val($(this).val())
-        $('form#filter').submit();
-    });
-    
-    $('.filter_by_cat').live('click', function(){
-        $('input[name=category]').val($(this).attr('data-id'));
-        $('form#filter').submit();      
-        return false;
-    })
-    
-    $('.del_filter_item').bind('click', function(){
-        $('input#'+$(this).attr('data-id')).click();
-        return false;
-    })
-    
-    $('.del_price').bind('click', function(){
-        $('input[name=lp]').val($(this).attr('def_min'));
-        $('input[name=rp]').val($(this).attr('def_max'));
-        $('form#filter').submit();
-        return false;
-    })
-});

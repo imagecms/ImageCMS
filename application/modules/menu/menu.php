@@ -190,7 +190,7 @@ class Menu extends MY_Controller {
                         $active_cur = FALSE;
                     }
                 }
-                
+
                 if ($this->cur_level < ( $item['expand_level'] ))
                     $this->expand[$item['id']] = TRUE; // to expand tree
                 if ($site_url == $this->current_uri OR $active_cur === TRUE) {
@@ -211,7 +211,6 @@ class Menu extends MY_Controller {
 
                 //$item['item_type'] == 'url' ? $href = $item['link'] : $href = site_url($item['link']);
                 //echo $item['item_type'];
-               // var_dump(strstr($item['link'], 'www'));
                 if ($item['item_type'] == 'url' && strstr($item['link'],'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')){
                     $href = $item['link'];
                 }
@@ -274,7 +273,7 @@ class Menu extends MY_Controller {
     /**
      * Натягивает шаблон на данные и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
-     * @param integer $index номер элемента для натягивания шаблона  
+     * @param integer $index номер элемента для натягивания шаблона
      * @param string  $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
@@ -294,7 +293,7 @@ class Menu extends MY_Controller {
     /**
      * Натягивает данные на шаблон и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
-     * @param integer $index номер элемента для натягивания шаблона  
+     * @param integer $index номер элемента для натягивания шаблона
      * @param string  $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
