@@ -1183,6 +1183,7 @@ function ieInput(els) {
                 drop_over.remove();
             }).removeClass('active');
             wnd.unbind('resize.drop');
+            body.tooltip('remove');
         },
         dropScroll: function(elSetSource) {
             elSetSource.animate({
@@ -1500,64 +1501,50 @@ function ieInput(els) {
                 prev = settings.prev,
                 next = settings.next,
                 content = settings.content,
-                $item = [],
-                $item_l = [],
-                $item_w = [],
-                $this_carousel = [],
-                $this_prev = [],
-                $this_next = [],
-                $marginR = [],
-                cont_width = [],
-                $item_h = [],
-                $marginT = [],
-                cont_height = [],
-                $frame_button = [],
-                adding = settings.adding;
-						
-                $js_carousel.each(function(index) {
-                    $this = $(this);
-                    $frame_button[index] = $this.find('.groupButton')
-                    $this_carousel[index] = $this;
-                    $item[index] = $this.find(item);
-                    $item_l[index] = $item[index].length;
-                    $item_w[index] = $item[index].outerWidth(true);
-                    $item_h[index] = $item[index].outerHeight(true);
-                    $this_prev[index] = $this.find(prev);
-                    $this_next[index] = $this.find(next);
-                    $marginR[index] = $item_w[index] - $item[index].outerWidth();
-                    $marginT[index] = $item_h[index] - $item[index].outerHeight();
-                    cont_width[index] = $this.find(content).width();
-                    cont_height[index] = $this.find(content).height();
-                })
+                $item, $item_l, $item_w, $this_carousel, $this_prev, $this_next, $marginR, cont_width, $item_h, $marginT, cont_height, $frame_button, adding = settings.adding;
 
                 settings.before();
                 $js_carousel.each(function(index) {
                     var index = index,
-                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
+                    $this = $(this);
+                    $frame_button = $this.find('.groupButton')
+                    $this_carousel = $this;
+                    $item = $this.find(content).children().children(item);
+                    $item_l = $item.length;
+                    $item_w = $item.outerWidth(true);
+                    $item_h = $item.outerHeight(true);
+                    $this_prev = $this.find(prev);
+                    $this_next = $this.find(next);
+                    $marginR = $item_w - $item.outerWidth();
+                    $marginT = $item_h - $item.outerHeight();
+                    cont_width = $this.find(content).width();
+                    cont_height = $this.find(content).height(),                    
+                    $count_visible = (cont_width / ($item_w)).toFixed(1);
                     
-                    var cond = $item_w[index] * $item_l[index] - $marginR[index] > cont_width[index]
+                    console.log($item.width())
+                    var cond = $item_w * $item_l - $marginR > cont_width
                     try{
                         if (adding.vertical) {
-                            cond = $item_h[index] * $item_l[index] - $marginT[index] > cont_height[index]
+                            cond = $item_h * $item_l - $marginT > cont_height
                             $count_visible = 1;
                         }
                     }catch(err){}
                         
                     if (cond) {
                         var main_obj = {
-                            buttonNextHTML: $this_next[index],
-                            buttonPrevHTML: $this_prev[index],
+                            buttonNextHTML: $this_next,
+                            buttonPrevHTML: $this_prev,
                             visible: $count_visible,
                             scroll: 1
                         }
-                        $this_carousel[index].jcarousel($.extend(
+                        $this_carousel.jcarousel($.extend(
                             adding
                             , main_obj));
 
-                        $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
+                        $this_next.add($this_prev).css('display','inline-block').appendTo($frame_button);
                     }
                     else {
-                        $this_next[index].add($this_prev[index]).css('display', 'none');
+                        $this_next.add($this_prev).css('display', 'none');
                     }
                 });
                 settings.after();
@@ -1940,15 +1927,10 @@ var Shop = {
     WishList:{
         items:[],
         all:function () {
-            return JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
+            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
         },
         add:function (key, vid, price, curentEl) {
             Shop.WishList.items = this.all();
-            localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({
-                id: key, 
-                vid: vid, 
-                price: price
-            }));
             if (this.items.indexOf(key) == -1) {
                 $.post('/shop/wish_list_api/add', {
                     productId_:key,
@@ -1960,9 +1942,9 @@ var Shop = {
                         if (dataObj.success == true) {
                             Shop.WishList.items.push(key);
                             //localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
-                            var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [];
+                            var arr = JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
                             arr.push(key+'_'+vid)
-                            localStorage.setItem('wishList_vid', JSON.stringify(arr));
+                            localStorage.setItem('wishList', JSON.stringify(arr));
                             
                             if (Shop.WishList.items.length != dataObj.count) {
                                 Shop.WishList.sync();
@@ -1993,7 +1975,7 @@ var Shop = {
 
                     if (dataObj.success == true) {
                         Shop.WishList.items = _.without(Shop.WishList.items, key + '_' + vid);
-                        localStorage.setItem('wishList_vid', JSON.stringify(Shop.WishList.items));
+                        localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
 
                         $(document).trigger({
                             type:'wish_list_rm',
@@ -2006,12 +1988,12 @@ var Shop = {
             deleteWishListItem($(el),key, vid);
         },
         sync: function(){
-            $.getJSON('/shop/wish_list_api/sync', function(data){
-                if (typeof(data) == 'Array' || typeof(data) == 'object') {
-                    localStorage.setItem('wishList_vid', JSON.stringify(data));
+            $.post('/shop/wish_list_api/sync', function(data){
+                if (typeof(data) == 'string') {
+                    localStorage.setItem('wishList', data);
                 }
                 if (data === false) {
-                    localStorage.setItem('wishList_vid', []);
+                    localStorage.setItem('wishList', []);
                 }
 
                 $(document).trigger({

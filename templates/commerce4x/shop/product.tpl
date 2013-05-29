@@ -397,8 +397,8 @@
             </button>
         </div>
     </div>
-    <div class="carousel">
-        <div class="row">
+    <div>
+        <div class="row carousel">
             <ul class="items items_catalog">
                 {foreach $model->getShopKits() as $key => $kitProducts}
                 <li class="container">
@@ -471,7 +471,7 @@
                         </li>
                         {/foreach}
                         <!--Output of goods subsidiaries set END-->
-                        <li class="span3 p-t_40">
+                        <li class="span3 p-t_40 gen_sum_kits">
                             <div class="price price_f-s_24">
                                 <span class="d_b old_price">
                                     <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
