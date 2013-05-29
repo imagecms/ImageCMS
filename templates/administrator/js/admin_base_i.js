@@ -858,8 +858,7 @@ $(document).ready(function() {
                                 if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
                                     if ($('#useAdditionalImages').attr('checked') != 'checked') {
-                                        $('#progressLabel').html('<b>Ресайз завершен!</b>');
-                                        $('#progressBlock').fadeOut(2000);
+                                        $('#progressBlock').fadeOut(1000);
                                         showMessage("Картинки обновлены", "Завершено");
                                     }
                                     window.onbeforeunload = null;
@@ -899,54 +898,58 @@ $(document).ready(function() {
                 url: "/admin/components/run/shop/settings/getAllProductsIds",
                 type: "post",
                 success: function(data) {
-                    var idsAdditional = $.parseJSON(data);
-                    var countAllAdditional = idsAdditional.length;
-                    var portionAdditional = 0;
-                    var arrayForProcessAdditional = new Array();
-                    var doneAdditional = 0;
-//                        console.log(idsAdditional);
+                    if (data != 'false'){
+                        var idsAdditional = $.parseJSON(data);
+                        var countAllAdditional = idsAdditional.length;
+                        var portionAdditional = 0;
+                        var arrayForProcessAdditional = new Array();
+                        var doneAdditional = 0;
+    //                        console.log(idsAdditional);
 
-                    function makeResizeAdditional(array) {
-                        data = JSON.stringify(array);
-                        $.ajax({
-                            url: "/admin/components/run/shop/settings/runResizeAllAdditionalJsone",
-                            type: "post",
-                            dataType: 'jsone',
-                            data: 'array=' + data,
-                            complete: function() {
-                                doneAdditional += array.length;
-                                $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                                $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
-//                                    console.log((doneAdditional / countAllAdditional) * 100);
-                                if (doneAdditional == countAllAdditional) {
-                                    $('#fixPage').fadeOut(100);
-                                    $('#progressLabel').html('<b>Ресайз завершен!</b>');
-                                    $('#progressBlock').fadeOut(2000);
-                                    showMessage("Картинки обновлены", "Завершено");
-                                    window.onbeforeunload = null;
+                        function makeResizeAdditional(array) {
+                            data = JSON.stringify(array);
+                            $.ajax({
+                                url: "/admin/components/run/shop/settings/runResizeAllAdditionalJsone",
+                                type: "post",
+                                dataType: 'jsone',
+                                data: 'array=' + data,
+                                complete: function() {
+                                    doneAdditional += array.length;
+                                    $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
+                                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
+    //                                    console.log((doneAdditional / countAllAdditional) * 100);
+                                    if (doneAdditional == countAllAdditional) {
+                                        $('#fixPage').fadeOut(100);
+                                        $('#progressBlock').fadeOut(1000);
+                                        showMessage("Картинки обновлены", "Завершено");
+                                        window.onbeforeunload = null;
+                                    }
                                 }
-                            }
-                        });
-                    }
-                    ;
+                            });
+                        }
+                        ;
 
-                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
-                    $('#progressBlock').fadeIn(100);
-                    $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
+                        $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
+                        $('#progressBlock').fadeIn(100);
+                        $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
 
-                    //Prepare portion of images
-                    if ((countAllAdditional / 50) < 0) {
-                        portionAdditional = 1;
-                    } else {
-                        portionAdditional = Math.ceil(countAllAdditional / 50);
-                    }
+                        //Prepare portion of images
+                        if ((countAllAdditional / 50) < 0) {
+                            portionAdditional = 1;
+                        } else {
+                            portionAdditional = Math.ceil(countAllAdditional / 50);
+                        }
 
-                    //Disable page
-                    $('#fixPage').fadeIn(100);
-                    //Make resize
-                    while (idsAdditional.length > 0) {
-                        arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
-                        makeResizeAdditional(arrayForProcessAdditional);
+                        //Disable page
+                        $('#fixPage').fadeIn(100);
+                        //Make resize
+                        while (idsAdditional.length > 0) {
+                            arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
+                            makeResizeAdditional(arrayForProcessAdditional);
+                        }
+                    }else{
+                        $('#progressBlock').fadeOut(100);
+                        showMessage("Картинки обновлены", "Завершено");
                     }
                 }
             });
