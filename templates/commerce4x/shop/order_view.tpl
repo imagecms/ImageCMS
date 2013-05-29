@@ -127,10 +127,16 @@
                             <td>
                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">{echo ShopCore::encode($orderProduct->product_name)}</a>
                                 <div class="m-b_10">
-                                    {$hasCode = ShopCore::encode($orderProduct->variant_name);}
-                                    {if $hasCode}<span class="frame_number">Артикул: <span class="code">({echo $hasCode})</span></span>{/if}
-                                    {$hasVariant = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number);}
-                                    {if $hasVariant}<span class="frame_variant_name">Вариант: <span class="code">({echo $hasVariant})</span></span>{/if}
+                                    {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                        {if $v->getid() == $orderProduct->variant_id}
+                                            {$Variant = $v}
+                                            {break;}
+                                        {/if}
+                                    {/foreach}
+                                    {if $Variant}                                  
+                                        {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}                                   
+                                        {if $Variant->getname()}<span class="frame_variant_name">Вариант: <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                    {/if}                    
                                 </div>
                                 <div class="price price_f-s_16">
                                     <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getPrice()}</span> {$CS}</span>
@@ -163,11 +169,10 @@
                                                     <div class="description">
                                                         <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
                                                             {echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}
-                                                        </a>&nbsp;
-                                                        {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('id' => $orderProduct->variant_id))->row()->number)}
-                                                        {if $number}
-                                                        - ({echo $number})
-                                                        {/if}
+                                                        </a>                                                                                                                
+                                                        <div class="m-b_10">                                
+                                                            {if $num = $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $num})</span></span>{/if}                                                      
+                                                        </div>
                                                         <div class="price price_f-s_16">
                                                             <span class="f-w_b">
                                                                 {echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}
@@ -195,11 +200,12 @@
                                                     <div class="description">
                                                         <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">
                                                             {echo ShopCore::encode($kitProducts->getSProducts()->getName())}
-                                                        </a>&nbsp;
-                                                        {$number = ShopCore::encode($CI->db->select('number')->get_where('shop_product_variants', array('product_id' => $kitProducts->product_id))->row()->number)}
-                                                        {if $number}
-                                                        - ({echo $number})
-                                                        {/if}
+                                                        </a>
+                                                                                                                
+                                                        <div class="m-b_10">                                
+                                                            {if $num = $kitProducts->getSProducts()->getFirstVariant()->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $num})</span></span>{/if}                                                      
+                                                        </div>
+                                
                                                         <div class="price price_f-s_16">
                                                             <span class="f-w_b">
                                                                 {echo $kitProducts->getDiscountProductPrice()}
