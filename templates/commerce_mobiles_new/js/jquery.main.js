@@ -29,11 +29,14 @@ $(document).ready(function(){
         $('#recount').val('1')
         $('#form').submit();
     });
-    $('.main_menu > li').click(function(){
-        $this = $(this);
-        $this.siblings().filter('.active').toggleClass('active').find('ul').slideToggle('fast');
-        $this.toggleClass('active');
-        $this.find('ul').slideToggle('fast');
+    $('.main_menu li a').click(function(e){
+        var $this = $(this).parent().toggleClass('active');
+        
+        $this.siblings().removeClass('active').children('ul').slideUp('fast');
+        if ($this.children('ul').length > 0){
+            e.preventDefault();
+            $this.children('ul').slideDown('fast');
+        }
     });
     //not_standart_checks----------------------
     if ($.exists('.niceCheck')) {
