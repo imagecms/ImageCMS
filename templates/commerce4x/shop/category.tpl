@@ -250,7 +250,7 @@
 
                                         {foreach $product->getProductVariants() as $key => $pv}
                                             <!-- to wish list button -->
-                                            <button  {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
+                                            <button {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
                                                                    data-price="{echo $pv->toCurrency()}"
                                                                    data-prodid="{echo $product->getId()}"
                                                                    data-varid="{echo $pv->getId()}"
