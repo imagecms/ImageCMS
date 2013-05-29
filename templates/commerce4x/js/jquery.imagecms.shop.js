@@ -1,11 +1,6 @@
 /*
  *imagecms frontend plugins
  **/
-var isTouch = 'ontouchstart' in document.documentElement,
-wnd = $(window),
-body = $('body'),
-mainBody = $('.mainBody');
-
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
 }
@@ -1239,7 +1234,9 @@ function ieInput(els) {
                         return 17
                     }
                 })
-                wnd.bind('resize.drop', function(){methods.dropScroll(elSetSource)}).resize();
+                wnd.bind('resize.drop', function(){
+                    methods.dropScroll(elSetSource)
+                    }).resize();
             }
         }
     };
@@ -1520,7 +1517,6 @@ function ieInput(els) {
                     cont_height = $this.find(content).height(),                    
                     $count_visible = (cont_width / ($item_w)).toFixed(1);
                     
-                    console.log($item.width())
                     var cond = $item_w * $item_l - $marginR > cont_width
                     try{
                         if (adding.vertical) {
@@ -1767,9 +1763,10 @@ var Shop = {
             for (var i = 0; i < localStorage.length; i++) {
 
                 var key = localStorage.key(i);
-
-                if (key.match(pattern))
-                    items.push(this.load(key));
+                try{
+                    if (key.match(pattern))
+                        items.push(this.load(key));
+                }catch(err){}
             }
             return items;
         },
@@ -1841,9 +1838,11 @@ var Shop = {
                             localStorage.setItem(key, JSON.stringify(data.data.items[key]));
                         else
                         {
-                            var kit = Shop.Cart.load('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
-                            kit.count = data.data.items[key].count;
-                            Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
+                            try {
+                                var kit = Shop.Cart.load('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                                kit.count = data.data.items[key].count;
+                                Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
+                            }catch(err){}
                         }
                     });
 
