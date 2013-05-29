@@ -1486,7 +1486,7 @@ $('#createUserButton').live('click', function() {
                     $('#createUserEmail').val('');
                     $('#createUserPhone').val('');
                     $('#createUserAddress').val('');
-                    console.log(response);
+                    
                     data = JSON.parse(response);
                     if (data != null){
                         /*Make created user selected */
