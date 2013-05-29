@@ -97,13 +97,17 @@ a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -86px -42px;}
 .main_menu .pointer .f_l{padding: 8px 35px 8px 0;min-height: 75px;}
 .main_menu .pointer .helper{height: 75px;}
 .main_menu ul{display: none;}
-.main_menu ul li{padding: 0 27px;background-color: #474749;border-top: 1px solid #b6b6b6;overflow: hidden;}
+.main_menu > li > ul{background-color: #474749;}
+.main_menu ul li{border-top: 1px solid #b6b6b6;overflow: hidden;}
 .main_menu ul li:first-child{border-top: 0;}
-.main_menu ul li a{min-height: 70px;position: relative;padding: 7px 0 7px 19px;display: block;color: #fff;}
+.main_menu ul li a{min-height: 70px;position: relative;padding: 7px 0 7px 36px;display: block;color: #fff;}
+.main_menu ul li li a{padding-left: 50px;}
+.main_menu ul li li .list_item{left: 38px;}
 .main_menu ul li a .v-a_m{width: 90%;}
-.main_menu ul li .list_item{position: absolute;left: 0;top: 50%;color: #fff;width: 5px;height: 9px;background-position: -129px -33px;margin-top: -4px;}
+.main_menu ul li .list_item{position: absolute;left: 25px;top: 50%;color: #fff;width: 5px;height: 9px;background-position: -129px -33px;margin-top: -4px;}
 .main_menu ul li .helper{height: 70px;}
 .arrow_frame{position: absolute;right: 15px;top: 50%;margin-top: -37px;}
+.main_menu > li > ul > li > ul{background-color: #3a88cb;}
 
 .mainBody{min-height: 100%;}
 .hFooter{height: 322px;}
@@ -145,6 +149,8 @@ span.top_frame_tov .title{color:#333;}
 .pagination li a > .t-d_u{display: none;}
 .pagination li a:hover, .pagination li a:focus{color: #999;}
 .pagination li span{background-position: -272px 0;position: relative;top: 2px;cursor: default;}
+.next-page, .prev-page, .first-page, .last-page{display: none !important;}
+
 .tovar_frame .top_frame_tov{padding-bottom: 10px;}
 .tovar_frame, .tovar_frame li{border: 0;padding: 0 14px;}
 .tovar_frame{padding-bottom: 20px;}
