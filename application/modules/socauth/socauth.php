@@ -438,67 +438,6 @@ class Socauth extends MY_Controller {
         $this->dbforge->drop_table('mod_social');
     }
 
-    public function twitter() {
-        $this->core->error_404();
-//        $oauth_nonce = md5(uniqid(rand(), true));
-//        $oauth_timestamp = time();
-//
-//        $oauth_base_text = "GET&";
-//        $oauth_base_text .= urlencode($this->settings[twitterRequestTokenURL]) . "&";
-//        $oauth_base_text .= urlencode("oauth_callback=" . urlencode($this->settings[twitterCallbackURL]) . "&");
-//        $oauth_base_text .= urlencode("oauth_consumer_key=" . $this->settings[twitterConsumerKey] . "&");
-//        $oauth_base_text .= urlencode("oauth_nonce=" . $oauth_nonce . "&");
-//        $oauth_base_text .= urlencode("oauth_signature_method=HMAC-SHA1&");
-//        $oauth_base_text .= urlencode("oauth_timestamp=" . $oauth_timestamp . "&");
-//        $oauth_base_text .= urlencode("oauth_version=1.0");
-//
-//        $key = $this->settings[twitterConsumerKey] . "&";
-//
-//        $oauth_signature = base64_encode(hash_hmac("sha1", $oauth_base_text, $key, true));
-//
-//        $url = $this->settings[twitterRequestTokenURL];
-//        $url .= '?oauth_callback=' . urlencode($this->settings[twitterCallbackURL]);
-//        $url .= '&oauth_consumer_key=' . $this->settings[twitterConsumerKey];
-//        $url .= '&oauth_nonce=' . $oauth_nonce;
-//        $url .= '&oauth_signature=' . urlencode($oauth_signature);
-//        $url .= '&oauth_signature_method=HMAC-SHA1';
-//        $url .= '&oauth_timestamp=' . $oauth_timestamp;
-//        $url .= '&oauth_version=1.0';
-//
-//        $response = file_get_contents($url);
-//        var_dump($response);
-//
-//          $postdata = array(
-//          'code' => $this->input->get(code),
-//          'client_id' => "{$this->settings[googleClientID]}",
-//          'client_secret' => "{$this->settings[googleClientSecret]}",
-//          'redirect_uri' => "http://$_SERVER[HTTP_HOST]/socauth/google",
-//          'grant_type' => 'authorization_code'
-//          );
-//
-//          $opts = array(
-//          'http' => array(
-//          'method' => 'POST',
-//          'header' => 'Content-type:application/x-www-form-urlencoded',
-//          'content' => $postdata
-//          )
-//          );
-//
-//          $curl = curl_init();
-//          curl_setopt($curl, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-//          curl_setopt($curl, CURLOPT_HEADER, 0);
-//          curl_setopt($curl, CURLOPT_NOBODY, 0);
-//          curl_setopt($curl, CURLOPT_POST, 1);
-//          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-//          curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-//          curl_setopt($curl, CURLOPT_REFERER, "http://$_SERVER[HTTP_HOST]");
-//          $res = curl_exec($curl);
-//          $res = json_decode($res);
-//          var_dumps($res);
-//
-//          curl_close($curl);
-    }
-
 }
 
 /* End of file socauth.php */

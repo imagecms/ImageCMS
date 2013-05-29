@@ -1,3 +1,8 @@
+var isTouch = 'ontouchstart' in document.documentElement,
+wnd = $(window),
+body = $('body'),
+mainBody = $('.mainBody');
+
 var genObj = {
     textEl: '.text-el',//селектор
     emptyCarthideElement: '#popupCart .inside_padd table, #shopCartPage',
@@ -36,7 +41,6 @@ var genObj = {
     priceOrigVariant: '.priceOrigVariant',
     photoProduct: '.photoProduct'
 }
-var isTouch = 'ontouchstart' in document.documentElement;
 var optionsMenu = {
     item: $('.menu-main td > .frame-item-menu > div'),
     duration: 400,
@@ -58,6 +62,39 @@ var optionCompare = {
     allParams: $('[data-href="#all-params"]'),
     hoverParent: '.characteristic'
 };
+/**
+ * js object for filter handling
+ * @type type
+ */
+
+var FilterManipulation = {
+    formId: "#filter",
+    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck, [name='category[]']",
+    OnClickSublitSelectors: ".filterSubmit",
+    filterSubmit: function() {
+        $(FilterManipulation.formId).submit();
+        $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
+    }
+};
+
+/**
+ * handle products list order and per page event
+ * @type type
+ */
+
+var orderSelect = {
+    mainSelector: ".sort",
+    orderSelector: "#sort",
+    perPageSelector: "#sort2",
+    filterForm: "form#filter",
+    addHiddenFields: function() {
+        $(orderSelect.filterForm + ' input[name="order"]').val($(orderSelect.orderSelector).val());
+        $(orderSelect.filterForm + ' input[name="user_per_page"]').val($(orderSelect.perPageSelector).val());
+        $(orderSelect.filterForm).submit();
+
+    }
+
+}
 
 function navPortait() {
     var frameM = $('.frame-menu-main');
@@ -130,14 +167,10 @@ function deleteComprasionItem(el){
 }
 function recountWishListTotalPrise(deletedItemPrice, id, vid){
     
-    var arr = JSON.parse(localStorage.getItem('wishList_vid')) ? _.compact(JSON.parse(localStorage.getItem('wishList_vid'))) : [],
-    totalPrice = 0;
+    var arr = JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [],
     
     arr = _.without(arr, id+'_'+vid);                        
-    localStorage.setItem('wishList_vid', JSON.stringify(arr));
-    localStorage.removeItem('wishList_'+id+'_'+vid);
-    
-    //var totalPrice = parseFloat(localStorage.getItem('totalPrice')); 
+    localStorage.setItem('wishList', JSON.stringify(arr));
     
     var wishListTotal = $('#wishListTotal');
     wishListTotal.text((wishListTotal.text()-deletedItemPrice).toFixed(pricePrecision));
@@ -210,18 +243,14 @@ function processPage() {
 
     //update all product buttons
     $(genObj.btnBuy).each(function () {
-        var $this = $(this);
-        var key = $this.data('prodid') + '_' + $this.data('varid');
+        var $this = $(this),
+        key = $this.data('prodid') + '_' + $this.data('varid');
+        
         if (keys.indexOf(key) != -1) {
-            var cusel = $this.closest(genObj.parentBtnBuy).find('[val].cuselActive');
-            
             $this.removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
-            })
-            
-            if ($this.data('varid') != cusel.attr('val') && $.exists_nabir(cusel)) return false;
-            else $this.closest(genObj.parentBtnBuy).addClass(genObj.inCart);
+            }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
         }
     });
     $(genObj.btnBuy+'.'+genObj.btnCartCss).each(function () {
@@ -385,10 +414,14 @@ function checkSyncs(){
         if (Shop.CompareList.all().length != inServerCompare)
             Shop.CompareList.sync();
     }
+
     if (inServerWish != NaN)
     {
-        if (Shop.WishList.all().length != inServerWish)
+        
+        if (Shop.WishList.all().length != inServerWish){
             Shop.WishList.sync();
+            
+        }
     }
     if (inServerCart != NaN)
     {
@@ -404,7 +437,6 @@ function compareListCount(){
 }
 
 $(document).ready(function () {
-   
     //////////////
     $('.formCost input[type="text"], .number input').live('keypress', function(event) {
         var key, keyChar;
@@ -530,7 +562,7 @@ $(document).ready(function () {
     $('#popupCart').html(Shop.Cart.renderPopupCart())
         
     //click 'add to cart'
-    $('.'+genObj.btnBuyCss).not('.psPay').on('click', function () {
+    $(genObj.btnBuy).on('click', function () {
         Shop.Cart.countChanged = false;
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
@@ -649,6 +681,7 @@ $(document).ready(function () {
     /*     refresh page after sync      */
     $(document).on('wish_list_sync compare_list_sync', function(){
         processWish();
+        checkCompareWishLink();
     });
         
     $(document).on('compare_list_rm compare_list_sync', function () {
@@ -768,6 +801,58 @@ $(document).ready(function () {
         
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId+genObj.btnBuy));
     });
+    
+    $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
+        FilterManipulation.filterSubmit();
+    });
+
+    $(FilterManipulation.OnClickSubmitSelectors).on('click', function(event) {
+        event.preventDefault();
+        FilterManipulation.filterSubmit();
+    });
+
+    $('span.filterLable').on('click', function() {
+        var input = $(this).prev('.niceCheck').find('input').not('[disabled=disabled]');
+        if (input.is(':checked')) {
+            input.attr('checked', false);
+            input.trigger('change');
+        }
+        else {
+            input.attr('checked', 'checked');
+            input.trigger('change');
+        }
+    });
+
+    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
+        orderSelect.addHiddenFields();
+    });
+
+    $('#sort').live('change', function(){
+        $('input[name=order]').val($(this).val())
+        $('form#filter').submit();
+    });
+    $('#sort2').live('change', function(){
+        $('input[name=user_per_page]').val($(this).val())
+        $('form#filter').submit();
+    });
+    
+    $('.filter_by_cat').live('click', function(){
+        $('input[name=category]').val($(this).attr('data-id'));
+        $('form#filter').submit();      
+        return false;
+    })
+    
+    $('.del_filter_item').bind('click', function(){
+        $('input#'+$(this).attr('data-id')).click();
+        return false;
+    })
+    
+    $('.del_price').bind('click', function(){
+        $('input[name=lp]').val($(this).attr('def_min'));
+        $('input[name=rp]').val($(this).attr('def_max'));
+        $('form#filter').submit();
+        return false;
+    })
 });
 wnd.load(function() {
     if ($('.cycle li').length > 1) {
