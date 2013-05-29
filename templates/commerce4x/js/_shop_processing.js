@@ -205,6 +205,7 @@ function checkCompareWishLink() {
 }
 
 function checkSyncs() {
+    alert()
     if (inServerCompare != NaN)
     {
         if (Shop.CompareList.all().length != inServerCompare)
