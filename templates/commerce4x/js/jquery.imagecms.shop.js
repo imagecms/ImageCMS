@@ -1161,8 +1161,10 @@ function ieInput(els) {
             }
         },
         triggerBtnClick: function(sel) {
-            if (!sel) sel = '[data-elrun].' + activeClass
-            $(sel).each(function() {
+            if (!sel) sel = $('[data-elrun].' + activeClass);
+            else sel = sel.closest('[data-elrun]');
+            
+            sel.each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
                 if ($this.data('place') == 'center') {

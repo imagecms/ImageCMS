@@ -26,7 +26,7 @@
             <div class="header">
                 <ul>
                     <li>
-                        {include_tpl('shop/cart_data')}
+                        {include_tpl('shop/auth_data')}
                     </li>
                     <li>
                         <a href="{mobile_url('search')}" tabindex="1">
