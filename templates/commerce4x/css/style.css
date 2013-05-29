@@ -623,7 +623,7 @@ header .helper{height: 32px !important;}
 .frame-item-menu > ul > li > div > ul > li{padding: 0 20px 8px;}
 .frame-item-menu > ul > li > div > ul > li > a{color: #333;text-decoration: underline;}
 .frame-item-menu > ul > li > div > ul > li > a:hover{color: #0088cc;}
-.frame-item-menu > ul > li > div > ul > li > .title{color: #0088cc;font-size: 16px;font-weight: bold;padding-top: 12px;display: block;}
+.frame-item-menu > ul > li > div > ul > li > .title{color: #0088cc;font-size: 16px;font-weight: bold;padding-top: 12px;display: none;}
 
 .frame-item-menu > .right-drop{-moz-border-radius: 0 3px 7px 0;-webkit-border-radius: 0 3px 7px 0;border-radius: 0 3px 7px 0;}
 .frame-item-menu > .right-drop:hover > li, .frame-item-menu > .right-drop.hover > li{border-left: 1px solid #dbdbdb;border-right-color: transparent;}
@@ -677,9 +677,10 @@ a.activeSlide{background-position: -66px 0;}
 .carousel .span3{width: 270px !important;}
 .carousel .span4{width: 370px !important;}
 .carousel .span5{width: 470px !important;}
-.carousel_js .items_catalog > li{margin: 0 30px 20px 0;float: left !important;}
+.carousel_js .items_catalog > li{margin: 0 30px 20px 0;float: left;}
 .frame_carousel_product .items > li{float: left;}
 .carousel .items{width: 99999px;margin-left: 0;}
+.carousel .items .gen_sum_kits{width: 150px !important;}
 
 .old_price{color: #f44524;position: relative;top: 4px;}
 .old_price .f-w_b{text-decoration: line-through;}
@@ -995,7 +996,8 @@ form + .msg{margin: 15px 15px 0;}
 .tableOrderData th{text-align: right;padding-right: 32px;}
 .promotion_text{color: #f44524;font-size: 27px;}
 .frameSet{padding: 10px 45px;margin-bottom: 40px;border: 1px solid #cdcdcd;-moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px;-moz-box-shadow: 0 1px 2px #949494;-webkit-box-shadow: 0 1px 2px #949494;box-shadow: 0 1px 2px #949494;}
-.frameSet .jcarousel-item{width: 1070px !important;}
+.frameSet .jcarousel-item{width: 1050px;}
+.frameSet .container{width: 1078px;margin-right: 0 !important;overflow: hidden;}
 body.vertical_template .frameSet .jcarousel-item{width: 748px !important;}
 
 .frame_tabs .characteristic {margin-top: 0;}
