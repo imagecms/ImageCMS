@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <spotlight>
-  <current>
-  	<name>ImageCMS Corporate</name>
-  	<export_version>4.3</export_version>
-  	<edition>Corporate</edition>
-  	<timestamp>1363695132</timestamp>
-  </current>
+    <current>
+        <name>ImageCMS Corporate</name>
+        <export_version>4.4b</export_version>
+        <edition>Corporate</edition>
+        <timestamp>1369828800</timestamp>
+    </current>
+    <item>
+        <name>ImageCMS Corporate</name>
+        <export_version>4.3</export_version>
+        <edition>Corporate</edition>
+        <timestamp>1363695132</timestamp>
+    </item>
 </spotlight>

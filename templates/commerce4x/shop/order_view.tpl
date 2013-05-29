@@ -17,6 +17,7 @@
 */
 #}
 <article class="container">
+    
     <div class="m-t_10"></div>
     <div class="">
         <!-- We check, if you come to the page for the first time, after the order -->
@@ -135,7 +136,7 @@
                                     {/foreach}
                                     {if $Variant}                                  
                                         {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}                                   
-                                        {if $Variant->getname()}<span class="frame_variant_name">Вариант: <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                        {if $Variant->getname()}<span class="frame_variant_name">Вариант:sssssssssss <span class="code">({echo $Variant->getname()})</span></span>{/if}
                                     {/if}                    
                                 </div>
                                 <div class="price price_f-s_16">
