@@ -10044,13 +10044,13 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('1CSettingsOS', 'N;', ''),
 ('usegifts', '0;', 'ru'),
 ('ordersCheckStocks', '', ''),
-('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:3:"200";s:5:"width";s:3:"200";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"400";s:5:"width";s:3:"400";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"600";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:4:"1000";s:5:"width";s:4:"1000";}}', ''),
+('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:2:"65";s:5:"width";s:2:"63";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"260";s:5:"width";s:3:"149";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:3:"452";s:5:"width";s:3:"288";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"384";}}', ''),
 ('imagesMainSize', 'auto', ''),
-('additionalImageWidth', '350', ''),
-('additionalImageHeight', '350', ''),
+('additionalImageWidth', '600', ''),
+('additionalImageHeight', '384', ''),
 ('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"12";i:1;s:2:"24";i:2;s:2:"48";}', ''),
-('thumbImageWidth', '100', ''),
-('thumbImageHeight', '100', '');
+('thumbImageWidth', '62', ''),
+('thumbImageHeight', '62', '');
 
 -- --------------------------------------------------------
 
