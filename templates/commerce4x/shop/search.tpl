@@ -75,13 +75,10 @@
                                 <span class="v-a_m">Фильтровать по:</span>
                                 <div class="lineForm w_170">
                                     <select class="sort" id="sort" name="order">
-                                        <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
-                                        <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                        <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                        <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                        <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                        <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                        <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                        {$sort =ShopCore::app()->SSettings->getSortingFront()}
+                                        {foreach $sort as $s}
+                                        <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
+                                        {/foreach}
                                     </select>
                                 </div>
                             </div>
@@ -90,11 +87,15 @@
                             <div class="f_r">
                                 <span class="v-a_m">{lang('s_products_per_page')}:</span>
                                 <div class="lineForm w_70">
-                                    <select class="sort" id="sort2" name="user_per_page">
-                                        <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
-                                        <option value="24" {if ShopCore::$_GET['user_per_page']=='24'}selected="selected"{/if} >24</option>
-                                        <option value="36" {if ShopCore::$_GET['user_per_page']=='36'}selected="selected"{/if} >36</option>
-                                        <option value="48" {if ShopCore::$_GET['user_per_page']=='48'}selected="selected"{/if} >48</option>
+                                    {if ShopCore::$_GET['user_per_page'] == null}
+                                        {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
+                                    {/if}
+                                    <!--                Load settings-->
+                                    {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
+                                    <select id="sort2" name="user_per_page">
+                                        {foreach $per_page_arr as $pp}
+                                        <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                                        {/foreach}
                                     </select>
                                 </div>
                             </div>
