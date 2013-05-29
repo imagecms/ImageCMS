@@ -64,7 +64,7 @@
                     </div>
                 </div>
             {/if}
-            {if $page_number == 1 && str_replace(' ', '', $model->getDescription()) != ''}
+            {if $page_number <= 1 && trim(strip_tags($model->getDescription()))}
                 <div class="grey-b_r-bord">
                     <figure class="f_l m-t_10 w_150">
                         <img src="/uploads/shop/brands/{echo $model->getImage()}" alt="{$model->getName()}"/>
