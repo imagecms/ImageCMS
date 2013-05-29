@@ -1,5 +1,4 @@
 <article class="container">
-
     <div class="{if count($items) > 0}d_n{/if}" id="shopCartPageEmpty">
         <div class="bot_border_grey m-b_10">
             <div class="d_i title_h1">Корзина</div>

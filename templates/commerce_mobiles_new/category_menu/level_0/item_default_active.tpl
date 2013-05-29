@@ -1,5 +1,5 @@
 <li>
-    <span class="pointer">
+    <span>
         <span class="f_l"><span class="helper"></span><span class="v-a_m">{$title}</span></span>
         <span class="arrow_frame">
             <span class="helper"></span>
