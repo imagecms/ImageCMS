@@ -307,7 +307,9 @@
         <script>
             var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
-            var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
+            var count = "{($CI->session->userdata('shopForCompare'))}";
+            if(!count) count = 0; else count = parseInt("{count($CI->session->userdata('shopForCompare'))}");
+            var inServerCompare = count;
         </script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
