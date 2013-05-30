@@ -24,7 +24,7 @@ select{padding-right: 0;}
 input[type="text"], input[type="password"], select{line-height: 39px;font-size: 24px;}
 textarea{overflow: auto;max-width: 100%;}
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{-webkit-opacity: 0.5;-moz-opacity: 0.5;opacity: 0.5;cursor: not-allowed;}
-.errors{background-color: #ffe8e8;border: 1px solid #f27676;color: #e42e2e;}
+.errors{background-color: #ffe8e8;border: 1px solid #f27676;color: #e42e2e;text-align: left;padding: 5px;margin-bottom: 10px;}
 
 a{color: #3a88cc;}
 a:hover, .href_hover{color: #eb3824;}
@@ -64,8 +64,20 @@ blockquote:before, blockquote:after, q:before, q:after {content:  none;}
 .cont_icon{width: 45px;height: 42px;}
 .search_icon{width: 35px;height: 42px;background-position: -48px 0;}
 a:focus .search_icon, a:hover .search_icon{background-position: -48px -42px;}
-.cleaner_icon{width: 40px;height: 42px;background-position: -86px 0;}
-a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -86px -42px;}
+.cleaner_icon{width: 49px;height: 50px;background-position: 0 -330px;position: relative;}
+a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -50px -330px;}
+.count_cleaner{top: -10px;right: -25px;width: 32px;height: 32px;position: absolute;padding: 2px;background-color: #fff;-moz-box-shadow: 0 5px 5px rgba(33,33,33,0.4);-webkit-box-shadow: 0 5px 5px rgba(33,33,33,0.4);box-shadow: 0 5px 5px rgba(33,33,33,0.4);font-weight: bold;color: #fff;font-size: 16px;-moz-border-radius: 18px;-webkit-border-radius: 18px;border-radius: 18px;}
+.count_cleaner > span {
+    width: 32px;height: 32px;line-height: 32px;display: block;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;
+    background: #ef6766; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ef6766 0%, #c70c0c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ef6766), color-stop(100%,#c70c0c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ef6766 0%,#c70c0c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ef6766 0%,#c70c0c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ef6766 0%,#c70c0c 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ef6766 0%,#c70c0c 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ef6766', endColorstr='#c70c0c',GradientType=0 ); /* IE6-9 */
+}
 .profile_icon{width: 38px;height: 38px;background-position: 0 0;}
 a:focus .profile_icon, a:hover .profile_icon{background-position: 0 -39px;}
 .arrow{width: 18px;height: 30px;background-position: -129px 0;}
