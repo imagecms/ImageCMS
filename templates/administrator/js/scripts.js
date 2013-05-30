@@ -77,7 +77,6 @@ function initNiceCheck() {
     }
 }
 function check1(el, input) {
-    console.log(1)
     var el = el;
     var input = input;
     el.css("background-position", active_b_p);

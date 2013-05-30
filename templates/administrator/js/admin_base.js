@@ -645,7 +645,6 @@ $(document).ready(function() {
 
     $('.link_type').live('change', function() {
         var identif = $(this).val();
-        console.log(identif);
         $('.edit_holder').hide();
         $('#' + identif).show();
         $('.submit_link').each(function() {
@@ -869,7 +868,6 @@ $(document).ready(function() {
             data: $('.saveForm').serialize(),
             url: '/admin/components/cp/menu/update_menu/' + idMenu,
             success: function(obj) {
-                console.log(obj.color);
                 if (obj.result == true)
                     showMessage(obj.title, obj.message);
                 else
@@ -1240,7 +1238,6 @@ $(document).ready(function() {
     $('#categorySelect').live('change', function() {
         //$('#mainContent').load($(this).attr('url')+$(this).val());
         $.pjax({url: $(this).attr('url') + $(this).val(), container: '#mainContent'});
-        console.log($(this).val());
         //
         //window.location.href = $(this).attr('url')+$(this).val();
     });
