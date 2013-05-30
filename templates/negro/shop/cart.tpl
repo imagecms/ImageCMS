@@ -75,7 +75,7 @@
                         </div>
                         <div class="box-ordering3">
                             {if count($paymentMethods)}
-                                <div class="frameLabel" style="position: relative; z-index: 5;">
+                                <div class="frame-label">
                                     <span class="title">Способ оплаты</span>
                                     <div class="frame_form_field">
                                         <div class="row-fluid">
@@ -96,7 +96,7 @@
                         <div class="f_l footer-order">
                             <div class="cert_drop_container clearfix m-b_15"></div>
                             <div class="d_i-b v-a_m">
-                                <div style="width: 196px;" class="d_i-b v-a_b">
+                                <div class="d_i-b v-a_b">
                                     <input type="text" name="giftcert" placeholder="Введите номер сертификата"/>
                                     <input type="hidden" value="0" name="checkCert">
                                 </div>

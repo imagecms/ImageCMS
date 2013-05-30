@@ -1,22 +1,13 @@
-<script>
-
-    /*      shop  variables (from PHP to JS)    */
+<!-- php vars to js -->
+<script type="text/javascript">
     var curr = '{$CS}',
     pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
     checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
-    inCart = '<span class="text-el">{lang('already_in_basket')}</span>',
-    toCart = '<span class="text-el">{lang('s_buy')}</span>',
+    inCart = '{lang('already_in_basket')}',
+    toCart = '{lang('s_buy')}',
     pcs = 'шт.',
     kits = 'компл.',
-
-    /*      Shop synchronization data       */
     inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
     inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}"),
-    inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}"),
-
-    /*      custom classNames for shop buttons      */
-    btnBuyClass = 'buyButton',
-    btnToCartClass = 'toCart',
-    btnInCartClass = 'inCart',
-    popupCartSelector = 'script#cartPopupTemplate';
+    inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
 </script>

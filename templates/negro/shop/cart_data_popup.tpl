@@ -53,7 +53,7 @@
                                         {/if}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect item-order">
@@ -92,7 +92,7 @@
                                                 <div class="btn-def2 minus disabled">
                                                     <button type="button" {if $item.quantity <= 1}disabled="disabled"{/if}><span class="helper"></span><span>-</span></button>
                                                 </div>
-                                                <span class="d_i-b number v-a_m" style="width: 43px;"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
+                                                <span class="d_i-b number v-a_m"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
                                                 <div class="btn-def2 plus">
                                                     <button type="button"><span class="helper"></span><span>+</span></button>
                                                 </div>
@@ -114,7 +114,7 @@
                                         {$kit_price = $k_main->firstVariant->getPrice()}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times-order delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect">
@@ -181,7 +181,7 @@
                                                 <div class="btn-def2 minus disabled">
                                                     <button type="button" {if $item.quantity <= 1}disabled="disabled"{/if}><span class="helper"></span><span>-</span></button>
                                                 </div>
-                                                <span class="d_i-b number v-a_m" style="width: 43px;"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
+                                                <span class="d_i-b number v-a_m"><input type="text" value="{$item.quantity}" class="t-a_c f-s_18 cart_pop_quant" data-title="только цифры" data-min="1" name="products[{$key}]"/></span>
                                                 <div class="btn-def2 plus">
                                                     <button type="button"><span class="helper"></span><span>+</span></button>
                                                 </div>
@@ -272,7 +272,7 @@
                 <table>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="v-a_b" style="padding-right: 0;">
+                            <td colspan="2" class="v-a_b">
                                 <div class="f_l m-t_20">
                                     <div class="c_54 pointer f-s_16 fb_close">← <span class="d_l_green">Продолжить покупки</span></div>
                                 </div>

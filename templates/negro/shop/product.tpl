@@ -87,7 +87,7 @@
                     {/foreach}
                     <!-- End. Collect information about Variants, for future processing -->
                     <br />
-                    <div class="btn-buy">
+                    <div class="btn-buy btnBuy">
                         {if (int)$model->firstvariant->getstock() > 0}
                         <!-- displaying buy or in cart button -->
                         <button class="variant buyButton toCart"
@@ -317,7 +317,7 @@
                                         </div>
                                     </div>
                                     <div class="t-a_c">
-                                        <div class="btn-buy goBuy">
+                                        <div class="btn-buy btnBuy goBuy">
                                             <button class="buyButton toCart" type="button"                                    
                                                     data-price="{echo $kitProducts->getTotalPrice()}" 
                                                     data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
