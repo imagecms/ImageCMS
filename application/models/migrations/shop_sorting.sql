@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Структура таблиці `shop_sorting`
 --
 
+DROP TABLE IF EXISTS `shop_sorting`;
 CREATE TABLE IF NOT EXISTS `shop_sorting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pos` int(11) DEFAULT NULL,
@@ -42,11 +43,11 @@ CREATE TABLE IF NOT EXISTS `shop_sorting` (
 --
 
 INSERT INTO `shop_sorting` (`id`, `pos`, `name`, `name_front`, `tooltip`, `get`, `active`) VALUES
-(1, 3, 'По рейтингу', 'Рейтинг', 'sdfsadf', 'rating', 1),
-(2, 0, 'От дешевих к дорогим', 'От дешевих к дорогим', 'gdsgsdfg', 'price', 1),
-(3, 2, 'От дорогих к дешевым', 'От дорогих к дешевим', 'fdghdfgh', 'price_desc', 1),
+(1, 3, 'По рейтингу', 'Рейтинг', '', 'rating', 1),
+(2, 0, 'От дешевих к дорогим', 'От дешевих к дорогим', '', 'price', 1),
+(3, 2, 'От дорогих к дешевым', 'От дорогих к дешевим', '', 'price_desc', 1),
 (4, 1, 'Популярные', 'Популярние', '', 'hit', 1),
-(5, 4, 'Новинки', 'Новинки', 'fhdfh', 'hot', 1),
+(5, 4, 'Новинки', 'Новинки', '', 'hot', 1),
 (6, 5, 'Акции', 'Акции', '', 'action', 1),
 (7, 6, 'А-Я', 'Имени', '', 'name', 1),
 (8, 7, 'Я-А', 'Имени(Я-А)', '', 'name_desc', 1),
