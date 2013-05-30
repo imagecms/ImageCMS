@@ -917,27 +917,43 @@ wnd.load(function() {
         $this.siblings().removeClass('active').end().addClass('active');
     });
     
-    var itemThumbs = $('.item_tovar .frame_thumbs > li');
-    if ($.exists_nabir(itemThumbs)) {
-        itemThumbs.click(function() {
-            var $this = $(this);
-            $this.addClass('active').siblings().removeClass('active');
-        })
-        $('.fancybox-next').live('click', function() {
-            $this = itemThumbs.filter('.active');
-            if (!$this.is(':last-child'))
-                $this.removeClass('active').next().addClass('active')
-            else
-                itemThumbs.first().click()
-        })
-        $('.fancybox-prev').live('click', function() {
-            $this = itemThumbs.filter('.active');
-            if (!$this.is(':first-child'))
-                $this.removeClass('active').prev().addClass('active')
-            else
-                itemThumbs.last().click()
-        })
+    /*function for change activity elements alternate images on page seperate tovar (fancybox)*/
+    function fancyboxProduct(){
+        var itemThumbs = $('.item_tovar .frame_thumbs > li, .photoProduct'),
+        itemThumbsL = itemThumbs.length;
+        if ($.exists_nabir(itemThumbs)) {
+            itemThumbs.click(function() {
+                var $this = $(this);
+                itemThumbs.removeClass('active');
+                $this.addClass('active');
+            })
+            $('.fancybox-next').live('click', function(){
+                var $this = itemThumbs.filter('.active'),
+                $thisI = itemThumbs.index($this);
+            
+                if (itemThumbs.index($this) != itemThumbsL-1){
+                    $this.removeClass('active');
+                    $(itemThumbs[$thisI+1]).addClass('active');
+                }            
+                else
+                    itemThumbs.first().click()
+            });
+            $('.fancybox-prev').live('click', function() {
+                var $this = itemThumbs.filter('.active'),
+                $thisI = itemThumbs.index($this);
+                if (itemThumbs.index($this) != 0){
+                    $this.removeClass('active')
+                    $(itemThumbs[$thisI-1]).addClass('active')
+                }
+                else
+                    itemThumbs.last().click()
+            })
+            $(".fancybox-wrap").unbind('mousewheel.fb');
+        }
     }
+     /*call function fancyboxProduct*/
+    fancyboxProduct();
+    
     var fr_lab_l = $('.frameLabel').length;
     $('.frameLabel').each(function(index) {
         $(this).css({
