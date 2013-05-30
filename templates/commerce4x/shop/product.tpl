@@ -66,12 +66,13 @@
                         <div class="f-s_0 d_i-b v-a_b">
                             <!-- Start. Output of all the options -->
                             <div class="f-s_0 d_i-b v-a_b m-b_20">
-                                {if count($model->getProductVariants()) > 1}
+                                {$variants = $model->getProductVariants()}
+                                {if count($variants) > 1}
                                 <div class=" d_i-b v-a_b m-r_30 variantProd">
                                     <span class="title">Выбор варианта:</span>
                                     <div class="lineForm w_170">
                                         <select id="variantSwitcher" name="variant">
-                                            {foreach $model->getProductVariants() as $key => $pv}
+                                            {foreach $variants as $key => $pv}
                                             {if $pv->getName()}
                                             {$name = ShopCore::encode($pv->getName())}
                                             {else:}
@@ -118,7 +119,7 @@
                                     these are the main four options for the "buy" - button
                                     -->
 
-                                    {foreach $model->getProductVariants() as $key => $pv}
+                                    {foreach $variants as $key => $pv}
                                     {if $pv->getStock() > 0}
                                     <button {if $key != 0}style="display:none"{/if}
                                         class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
@@ -188,7 +189,7 @@
                             <!-- End. Block "Add to Compare" -->
 
                             <!--Block Wishlist Start-->
-                            {foreach $model->getProductVariants() as $key => $pv}
+                            {foreach $variants as $key => $pv}
                             <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                 <!-- to wish list button -->
                                 <button class="btn btn_small_p toWishlist"
