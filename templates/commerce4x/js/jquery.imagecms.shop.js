@@ -774,11 +774,9 @@ function ieInput(els) {
             mouseWhell = settings.mouseWhell;
             elEven = settings.elEven;
             elEvens = $(settings.right).find(elEven);
-
             onlyDif = settings.onlyDif;
             allParams = settings.allParams;
             hoverParent = settings.hoverParent;
-
             this.each(function(index) {
                 var $this = $(this),
                 visThis = $this.is(':visible');
@@ -794,10 +792,8 @@ function ieInput(els) {
                     frameScroll = $this.find(settings.frameScroll),
                     frame_scrollC = frameScroll.children(),
                     frame_scrollCL = frame_scrollC.length;
-
                     scrollNSP = settings.scrollNSP && $.exists(frameScroll);
                     scrollNSPT = settings.scrollNSPT;
-
                     for (var j = 0; j < li_i_length; j++) {
                         nab = $([]);
                         right.each(function() {
@@ -809,9 +805,7 @@ function ieInput(els) {
                             li_i_h[index] = this_ch.outerHeight();
                             li_i_h[index] > h ? h = li_i_h[index] : h = h;
                         });
-
                         tempNabir.add(tempNabir.find('.helper')).css('height', h).attr('data-equalHorizCell', '');
-
                         li_i_h = [];
                         h = 0;
                     }
@@ -820,30 +814,23 @@ function ieInput(els) {
                         w += $(this).outerWidth(true);
                     })
                     frameScroll.css('width', w);
-                    try {
-                        frameScrollP = frameScroll.parent();
-                        frameScrollPW = frameScrollP.width();
-                        var scrollW = w - frameScroll.parent().width();
-                        if (scrollNSP) {
-                            scrollNSPT = $this.find(scrollNSPT);
-                            topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
-                            $this.children('.scrollNSP').remove();
-                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
-                        }
-                    } catch (err) {
+                    frameScrollP = frameScroll.parent();
+                    frameScrollPW = frameScrollP.width();
+                    var scrollW = w - frameScroll.parent().width();
+                    if (scrollNSP) {
+                        scrollNSPT = $this.find(scrollNSPT);
+                        topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
+                        $this.children('.scrollNSP').remove();
+                        $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                     }
-
                     var firstScrl = frameScroll.parent(),
                     secScrl = $([]);
-                    try {
-                        if (scrollNSP) {
-                            secScrl = $this.children('.scrollNSP');
-                            secScrl.css({
-                                'width': frameScrollPW,
-                                'top': topScrollNSP
-                            })
-                        }
-                    } catch (err) {
+                    if (scrollNSP) {
+                        secScrl = $this.children('.scrollNSP');
+                        secScrl.css({
+                            'width': frameScrollPW,
+                            'top': topScrollNSP
+                        })
                     }
 
                     if (mouseWhell) {
@@ -860,7 +847,6 @@ function ieInput(els) {
                         });
                     }
                     firstScrl.add(secScrl).scrollLeft('0');
-
                     secScrl.unbind('scroll').bind('scroll', function() {
                         $thisSL = $(this).scrollLeft();
                         firstScrl.add(secScrl).scrollLeft($thisSL);
@@ -870,25 +856,21 @@ function ieInput(els) {
                 if (visThis) {
                     var right = right.find(hoverParent),
                     left = left.parent(hoverParent).children();
-
                     left.each(function(ind) {
                         if (ind % 2 == 0)
-                            $(this).addClass('oddC');
+                            $(this).removeClass('evenC').addClass('oddC');
                         else
-                            $(this).addClass('evenC')
+                            $(this).removeClass('oddC').addClass('evenC')
                     });
-
                     right.each(function() {
                         $(this).find(elEven).each(function(ind) {
                             if (ind % 2 == 0)
-                                $(this).addClass('oddC');
+                                $(this).removeClass('evenC').addClass('oddC');
                             else
-                                $(this).addClass('evenC')
+                                $(this).removeClass('oddC').addClass('evenC')
                         });
                     });
-
                     methods.hoverComprasion(left, right);
-
                     onlyDif.die('click').live('click', function() {
                         methods.onlyDifM(left, right);
                     })
@@ -914,7 +896,6 @@ function ieInput(els) {
                 var $this = $(this),
                 index = $this.index(),
                 nab = $([]);
-
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(index))
                 })
@@ -932,7 +913,7 @@ function ieInput(els) {
         },
         onlyDifM: function(left, right) {
             li_i_h = [];
-            this.genObj = $([]);
+            var genObjC = $([]);
             tempText = '';
             k = 0;
             for (var j = 0; j < li_i_length; j++) {
@@ -944,36 +925,31 @@ function ieInput(els) {
                 tempNabir.each(function(index) {
                     var this_ch = $(this);
                     li_i_h[index] = $.trim(this_ch.text());
-
                     if (tempText == li_i_h[index])
                         k++;
                     tempText = li_i_h[index];
                 });
-
                 if (k == tempNabir.length - 1 && k != 0)
-                    this.genObj = this.genObj.add(left.eq(j)).add(tempNabir);
-
+                    genObjC = genObjC.add(left.eq(j)).add(tempNabir);
                 li_i_h = [];
                 k = 0;
                 tempText = '';
             }
-
             right.each(function() {
-                $(this).find(elEven).not(this.genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+                $(this).find(elEven).not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
                     if (ind % 2 == 0)
                         $(this).addClass('oddC');
                     else
                         $(this).addClass('evenC')
                 });
             });
-            left.not(this.genObj).removeClass('evenC').removeClass('oddC').each(function(ind) {
+            left.not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
                 if (ind % 2 == 0)
                     $(this).addClass('oddC');
                 else
                     $(this).addClass('evenC')
             });
-
-            this.genObj.hide();
+            genObjC.hide();
         },
         allParamsM: function(left, right) {
             left.removeClass('evenC').removeClass('oddC').each(function(ind) {
@@ -982,8 +958,6 @@ function ieInput(els) {
                 else
                     $(this).addClass('evenC')
             }).show();
-
-
             right.each(function() {
                 $(this).find(elEven).removeClass('evenC').removeClass('oddC').each(function(ind) {
                     if (ind % 2 == 0)

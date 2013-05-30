@@ -43,16 +43,6 @@
                     <img src="{$THEME}/images/logo.png" class="v-a_m"/>
                 </a>
             </div>
-            <div class="o_h">
-                {if !$CI->dx_auth->is_logged_in()}
-                    <div class="f_r frame_enter_soc_net">
-                        <div class="helper"></div>
-                        <div class="d-i_b">
-                            <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
-                        </div>
-                    </div>
-                {/if}
-            </div>
             <span class="head_foot"></span>
             {$content}
             <div class="hFooter"></div>
