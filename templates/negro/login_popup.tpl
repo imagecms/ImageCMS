@@ -4,15 +4,17 @@
 */
 #}
 <div class="drop-enter drop">
-    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
-    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
-        <div class="header_title">
-            {lang('lang_login_page')}
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+    <div class="drop-content">
+        <div class="drop-header">
+            <div class="title">
+                {lang('lang_login_page')}
+            </div>
         </div>
-        <div class="inside_padd">
-            <div class="horizontal_form standart_form">
-                <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                        return false;" style="background-color: #E5E5E5; padding: 10px">
+        <div class="inside-padd">
+            <div class="horizontal-form ">
+                  <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
+                    return false;">
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame_form_field">
@@ -31,13 +33,13 @@
                     </label>
                     <!-- captcha block -->
                     <lable id="captcha_block">
-                        
+
                     </lable>
-                    <div class="frameLabel">
+                    <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
-                            <input type="submit" value="Войти" class="btn_cart f_r" style="padding: 10px;" />
+                            <input type="submit" value="Войти" class="btn_cart f_r"/>
                         </span>
                     </div>
                 </form>

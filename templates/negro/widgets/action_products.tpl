@@ -13,7 +13,7 @@
                         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
                             <span class="photo-block">
                                 <span class="helper"></span>
-                                <img src="{productImageUrl($p->getSmallImage())}" alt="{echo ShopCore::encode($p->getName())}" />
+                                <img src="{echo $p->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($p->getName())}" />
                                 <!-- creating hot bubble for products image if product is hot -->
                                 {if $p->getHot()}
                                 <span class="prod_status nowelty">{lang('s_shot')}</span>
@@ -45,7 +45,7 @@
                                 </span>
                                 {/if}
                                 {if $p->firstVariant->toCurrency() > 0}
-                                <span class="current-prices f-s_0 var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
+                                <span class="current-prices f-s_0">
                                     <span class="price-new">
                                         <span>
                                             <span class="price">{echo $p->firstVariant->toCurrency()}</span>
@@ -66,16 +66,20 @@
                             <div class="f-s_0 func-button">
                                 {if $p->firstvariant->getstock() != 0}
                                 <!-- buy/inCart button -------------------->
-                                <div class="btn-buy">
-                                    <button class="buyButton toCart"
-                                            type="button"
-                                            data-prodId="{echo $p->getId()}"
-                                            data-varId="{echo $p->firstVariant->getId()}"
-                                            data-price="{echo $p->firstVariant->toCurrency()}"
-                                            data-name="{echo $p->getName()}"
-                                            data-number="{echo $p->firstVariant->getnumber()}"
+                                <div class="btn-buy btnBuy">
+                                    <button
+                                            type="button" 
+                                            data-prodid="{echo $p->getId()}"
+                                            data-varid="{echo $p->firstVariant->getId()}"
+                                            data-price="{echo $p->firstVariant->toCurrency()}" 
+                                            data-name="{echo ShopCore::encode($p->getName())}"
                                             data-maxcount="{echo $p->firstVariant->getstock()}"
-                                            data-vname="{echo $p->firstVariant->getName()}">
+                                            data-number="{echo $p->firstVariant->getNumber()}"
+                                            data-img="{echo $p->firstVariant->getSmallPhoto()}"
+                                            data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                            data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                            data-stock="{echo $p->firstVariant->getStock()}"
+                                            >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
                                     </button>
@@ -83,16 +87,7 @@
                                 <!-- end of buy/inCart buttons ------------->
                                 {else:}
                                 <!-- Start. Notify button -->
-                                <div class="d_i-b var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail_wrap">
-                                    <span class="f-s_12 t-a_l">
-                                        <span class="d_b">Товара нет в наличии</span>
-                                        <button type="button" class="d_l_b f-s_12" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="bottom left">Сообщите</button> о появлении
-                                    </span>
-                                    <span class="datas">
-                                        <input type="hidden" name="ProductId" value="{echo $p->getId()}" />
-                                        <input type="hidden" name="VariantId" value="{echo $p->firstVariant->getId()}" />
-                                    </span>
-                                </div>
+                                
                                 <!-- End. Notify button -->
                                 {/if}
                             </div>

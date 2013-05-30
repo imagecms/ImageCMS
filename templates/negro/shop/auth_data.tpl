@@ -5,11 +5,7 @@
             <button type="button"
                     id="loginButton"
                     data-drop=".drop-enter"
-                    data-effect-on="fadeIn"
-                    data-effect-off="fadeOut"
-                    data-duration="300"
-                    data-place="noinherit"
-                    data-placement="top right">
+                    data-placement="">
                 <span class="icon_enter"></span>
                 <span class="text-el">Войти</span>
             </button>

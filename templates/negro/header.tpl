@@ -28,7 +28,7 @@
                         </span>
                     </span>
                     <span class="order-call-btn">
-                        <button type="button" data-event="call" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center">
+                        <button type="button" data-event="call" data-drop=".drop-order-call">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">Заказать звонок</span>
                         </button>
@@ -52,7 +52,7 @@
             </div>
             <div class="frame-search-cleaner">
                 <!--                Start. Include cart data template-->
-                <div id="bask_block" class="frame-cleaner">
+                <div id="bask_block" class="frame-cleaner tiny-bask">
                     {include_shop_tpl('cart_data')}
                 </div>
                 <!--                    End. Include cart data template-->
