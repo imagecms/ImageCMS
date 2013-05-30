@@ -124,6 +124,7 @@ a:focus .profile_icon, a:hover .profile_icon{background-position: 0 -39px;}
 .main_menu ul li li a{padding-left: 50px;}
 .main_menu ul li li .list_item{left: 38px;}
 .main_menu ul li a .v-a_m{width: 90%;}
+.main_menu ul li li{border-top-color: #74b7f2;}
 .main_menu ul li .list_item{position: absolute;left: 25px;top: 50%;color: #fff;width: 5px;height: 9px;background-position: -129px -33px;margin-top: -4px;}
 .main_menu ul li .helper{height: 70px;}
 .arrow_frame{position: absolute;right: 15px;top: 50%;margin-top: -37px;}
