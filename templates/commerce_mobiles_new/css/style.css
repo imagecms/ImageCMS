@@ -36,7 +36,7 @@ a.red:active, a.red:focus{color: #3a88cc;}
 :focus, a:hover, a:active{outline: 0;}
 blockquote:before, blockquote:after, q:before, q:after {content:  none;}
 
-.tovar_description{padding: 0 10px 0 28px;}
+.tovar_description{padding: 0 10px 0 28px;clear: both;padding-top: 20px;}
 .text dt{color: #000;margin: 25px 0 9px;}
 .text dl.t-a_l{padding: 0 30px;}
 .alert{font-size: 20px;margin: 0 -25px;padding: 0 25px 22px;}
