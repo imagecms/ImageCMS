@@ -9,7 +9,7 @@
         {foreach $item as $p}
         <li>
             <a href="{shop_url('product/' . $item.model->getUrl())}" class="top_frame_tov">
-                <span class="figure"><img src="{productImageUrl($item.model->getMainModimage())}"/></span>
+                <span class="figure"><img src="{$item.model->getSmallPhoto()}"/></span>
                 <span class="descr">
                     <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
                     <span class="d_b price">{echo $variant->getPrice()} {$CS}</span>
@@ -28,7 +28,8 @@
             <div class="top_frame_tov">
                 <a href="{shop_url('product/' . $item.model->getUrl())}" class="top_frame_tov">
                     <span class="figure">
-                        <img src="{productImageUrl($item.model->getMainModimage())}"/></span>
+                        <img src="{$item.model->getSmallPhoto()}"/>
+                    </span>
                     <span class="descr">
                         <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
                         <span class="d_b price">{echo $item.price} {$CS}</span>
