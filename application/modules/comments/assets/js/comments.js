@@ -45,12 +45,12 @@ function post($this)
             $('#comment_plus').val('');
             $('#comment_minus').val('');
 
-            if (obj.answer == 'sucesfull') {
+            if (obj.answer === 'sucesfull') {
                 renderPosts();
             }
             else {
-                $('#error_text').html('');
-                $('#error_text').append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
+                $($this).closest('form').find('.error_text').html('');
+                $($this).closest('form').find('.error_text').append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
             }
         }
     });
