@@ -64,8 +64,8 @@ blockquote:before, blockquote:after, q:before, q:after {content:  none;}
 .cont_icon{width: 45px;height: 42px;}
 .search_icon{width: 35px;height: 42px;background-position: -48px 0;}
 a:focus .search_icon, a:hover .search_icon{background-position: -48px -42px;}
-.cleaner_icon{width: 49px;height: 50px;background-position: 0 -330px;position: relative;}
-a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -50px -330px;}
+.cleaner_icon{width: 49px;height: 50px;background-position: -100px -283px;position: relative;}
+a:focus .cleaner_icon, a:hover .cleaner_icon{background-position: -150px -283px;}
 .count_cleaner{top: -10px;right: -25px;width: 32px;height: 32px;position: absolute;padding: 2px;background-color: #fff;-moz-box-shadow: 0 5px 5px rgba(33,33,33,0.4);-webkit-box-shadow: 0 5px 5px rgba(33,33,33,0.4);box-shadow: 0 5px 5px rgba(33,33,33,0.4);font-weight: bold;color: #fff;font-size: 16px;-moz-border-radius: 18px;-webkit-border-radius: 18px;border-radius: 18px;}
 .count_cleaner > span {
     width: 32px;height: 32px;line-height: 32px;display: block;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;
@@ -85,6 +85,7 @@ a:focus .profile_icon, a:hover .profile_icon{background-position: 0 -39px;}
 .phone{width: 30px;height: 54px;background-position: -184px 0;vertical-align: middle;margin: 0 9px;}
 .comp{width: 51px;height: 43px;margin: 0 8px;background-position: -218px 0;vertical-align: middle;}
 .check_filter_ico{width: 30px;height: 29px;background-position: -218px -50px;top: 50%;position: absolute;margin-top: -15px;left: 11px;}
+.check_other_variant{width: 34px;height: 34px;background-position: -200px -283px;top: 50%;position: absolute;margin-top: -17px;left: 11px;}
 .search_ico{width: 22px;height: 22px;background-position: -436px -50px;position: absolute;left: 11px;top: 11px;z-index: 1;}
 
 .header{border-bottom: 1px solid #a5a5a5;background-color: #f2f2f2;overflow: hidden;text-align: center;clear: both;overflow: hidden;}
@@ -132,10 +133,13 @@ a:focus .profile_icon, a:hover .profile_icon{background-position: 0 -39px;}
 h1, .title_h1{font-weight: normal;margin: 9px 0;}
 .content_head h1{margin-top: 24px;}
 .crumbs h1{margin-top: 11px;}
-a.check_filter{background-position: 0 -96px;float: left;color: #fff;padding: 0 11px;margin: 36px 0 14px;position: relative;}
-a.check_filter:focus{color:#fff;}
-a.check_filter .title{display: block;margin-left: 42px;}
-a.check_filter .helper{height: 80px;}
+a.check_filter, div.check_filter{background-position: 0 -96px;float: left;color: #fff;padding: 0 11px;margin: 36px 0 14px;position: relative;}
+div.check_filter{margin-left: 25px;margin-top: 0;}
+.catalog.variants_product{display: none;width: 100%;padding: 0;padding-top: 20px;}
+.catalog.variants_product > li{padding-left: 28px;padding-right: 28px;}
+a.check_filter:focus, div.check_filter:focus{color:#fff;}
+a.check_filter .title, div.check_filter .title{display: block;margin-left: 42px;}
+a.check_filter .helper, div.check_filter .helper{height: 80px;}
 
 .catalog{border-top: 1px solid #999;margin-top: 13px;}
 .catalog > li{border-bottom: 1px solid #999;padding: 23px 14px 23px;}
@@ -146,6 +150,7 @@ a.check_filter .helper{height: 80px;}
 .top_frame_tov .price{margin-bottom: 16px;}
 span.top_frame_tov .title{color:#333;}
 .catalog .figure, .remove_ref{float: left;width: 140px;display: block;padding-right: 25px;}
+.catalog .figure{height: 154px;}
 .remove_ref{margin-top: 12px;display: block;font-size: 24px;}
 .remove_ref span{position: relative;top: 2px;}
 .catalog .descr{display: block;min-width: 120px;overflow: hidden;}
@@ -237,12 +242,12 @@ span.top_frame_tov .title{color:#333;}
 .copy{text-align: center;padding: 25px 0;color: #6d6d6d;}
 
 .figure, .f-s_0, .icon, .header, .header ul, .baner, .main_menu ul li a, .pagination, .but_buy a, .but_buy .b_buy_in, .check_frame, .versions, .main_menu{font-size: 0;}
-.copy, .footer li a, .total_pay, .main_frame_inside .title, .catalog, a.check_filter, .main_menu .pointer .v-a_m{font-size: 26px;}
+.copy, .footer li a, .total_pay, .main_frame_inside .title, .catalog, a.check_filter, div.check_filter, .main_menu .pointer .v-a_m{font-size: 26px;}
 label, .frame_label, .main_menu ul li a .v-a_m, .crumbs, .crumbs a, .remove_ref{font-size: 24px;}
 .text, .check_frame label, .check_frame .frame_label, .neigh_r-o_c-k, .versions .title, .range_price label, .frame_enter_soc_net .title{font-size: 18px;}
 h1, .title_h1, .tovar_frame .price, .gen_sum .price{font-size: 40px;}
 .figure, .map{line-height: 0;}
-.price, h1, .title_h1, a.check_filter .title, .remove_ref span, .neigh_r-o_c-k{line-height: 1;}
+.price, h1, .title_h1, a.check_filter .title, div.check_filter .title, .remove_ref span, .neigh_r-o_c-k{line-height: 1;}
 .main_menu .pointer .v-a_m, .main_menu ul li a .v-a_m, .footer li a, .versions .title{line-height: 1.1;}
 .main_menu .pointer .v-a_m, .total_pay, .main_frame_inside .title, .count, .crumbs h1, label, .frame_label, .text p, .text dd, .price, .header li a{color: #474749;}
 .header li a, .logo, .main_menu ul li a, a.check_filter, .catalog .top_frame_tov, .remove_ref, .pagination li a, .but_buy a, .but_buy .b_buy_in, .versions .desctop, .frame_desctop, a.title{text-decoration: none;}
