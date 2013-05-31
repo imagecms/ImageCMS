@@ -6,9 +6,9 @@
         <title>{lang('a_controll_panel')} - Image CMS</title>
         <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-responsive.css"/>
         
     </head>
     <body>
@@ -20,7 +20,7 @@
             <div class="main_body">
                 <div class="form_login t-a_c" style="min-height: 250px;">
                     <a href="/admin/dashboard" class="d-i_b">
-                        <img src="{$THEME}/img/logo.png"/>
+                        <img src="{$THEME}img/logo.png"/>
                     </a><br/>
                     <div id="titleExt">{widget('path')}<span class="ext">{lang('lang_forgot_password')}</span></div>
 
@@ -41,7 +41,7 @@
                     </form>
                 </div>
             </div>
-            <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
-            <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
     </body>
 </html>

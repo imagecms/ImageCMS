@@ -57,7 +57,7 @@
                     <div class="field_text">{lang('amt_image')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="url_image"  id="url_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'url_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'url_image');" />
                     </div>    
                                         
 
