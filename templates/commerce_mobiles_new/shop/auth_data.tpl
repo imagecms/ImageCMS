@@ -6,6 +6,6 @@
 {else:}
 <a href="/auth/logout" tabindex="2">
     <span class="icon profile_icon"></span><br/>
-    {$CI->dx_auth->get_username()}, Выход
+    {echo $CI->dx_auth->get_username()}, Выход
 </a>
 {/if}

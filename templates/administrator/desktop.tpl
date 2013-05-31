@@ -6,13 +6,13 @@
 	<title>{lang('a_controll_panel')} | Image CMS</title>
 	<meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
 
-	<link rel="stylesheet" href="{$THEME}/css/content.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/rdTree.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/calendar.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/sortableTable.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/alertbox.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/Autocompleter.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/ui.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/content.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/rdTree.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/calendar.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/sortableTable.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/alertbox.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/Autocompleter.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/ui.css" type="text/css" />
 
     
     <script  type="text/javascript">
@@ -65,7 +65,7 @@
          padding:40px;
          border:2px solid #eedddd;
          border-radius:10px;">
-        <img src="{$THEME}/images/logo1.png" width="130px;" />
+        <img src="{$THEME}images/logo1.png" width="130px;" />
         <div style="margin-top:40px;" >{lang('a_use_js')}</div>
     </div>
 </NOSCRIPT>
@@ -76,16 +76,16 @@
 <div id="desktopTitlebarWrapper">
 
 	<div id="desktopTitlebar">
-            <img src="{$THEME}/images/logo1.png" id="cmsLogo" onclick="ajax_div('page', base_url + 'admin/dashboard/index'); return false;" style="cursor:pointer;" width="130px;" /> 
+            <img src="{$THEME}images/logo1.png" id="cmsLogo" onclick="ajax_div('page', base_url + 'admin/dashboard/index'); return false;" style="cursor:pointer;" width="130px;" /> 
         <h2 class="tagline">
  
 		</h2>
 		<div id="topNav">
 			<ul class="menu-right">
             <li>
-                <img src="{$THEME}/images/left.png" style="cursor:pointer" title="Назад (Ctrl + Left)" onclick="history_back();">
-				<img src="{$THEME}/images/right.png" style="cursor:pointer" title="Вперед (Ctrl + Right)" onclick="history_forward();">
-				<img src="{$THEME}/images/refresh.png" style="cursor:pointer" class="refresh" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
+                <img src="{$THEME}images/left.png" style="cursor:pointer" title="Назад (Ctrl + Left)" onclick="history_back();">
+				<img src="{$THEME}images/right.png" style="cursor:pointer" title="Вперед (Ctrl + Right)" onclick="history_forward();">
+				<img src="{$THEME}images/refresh.png" style="cursor:pointer" class="refresh" title="Обновить  (Ctrl + R)" onclick="history_refresh();">
             </li>
 			</ul>
 		</div>
@@ -169,7 +169,7 @@
 
 
 </div>
-<img id="spinner2" src="{$THEME}/images/spinner-placeholder.gif" />
+<img id="spinner2" src="{$THEME}images/spinner-placeholder.gif" />
 </div>
 
 <div id="dockWrapper">

@@ -75,7 +75,6 @@ $(document).ready(function(){
             data: $('.saveForm').serialize(),
             url: '/admin/components/cp/menu/update_menu/' + idMenu,
             success: function(obj) {
-                console.log(obj.color);
                 if (obj.result == true)
                     showMessage(obj.title, obj.message);
                 else
