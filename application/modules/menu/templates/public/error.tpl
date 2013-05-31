@@ -6,14 +6,14 @@
 	.error p b { color: #f00; }
 	.error ul { padding: 10px; margin: 0 0 0 0px; }
 	.error ul li { list-style: decimal; padding: 2px; margin: 0 0 0 10px; color: #000; }
-</style>	
+</style>
 {/literal}
 <div class="error">
 	<h3 align="center">Внимание!</h3>
 	<p>Не обнаружен необходимый файл шаблона для меню <b>{$menu}</b></p>
 	<ul>
 	{foreach $errors as $e}
-	<li>{if $tpl_folder}{$THEME}/{$e.user_template}{else:}{$e.system_template}{/if}</li>
+	<li>{if $tpl_folder}{$THEME}{$e.user_template}{else:}{$e.system_template}{/if}</li>
 	{/foreach}
 	</ul>
 	<p>
@@ -23,4 +23,4 @@
 		Переустановите модуль меню
 		{/if}
 	</p>
-</div>	
+</div>

@@ -6,28 +6,28 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery.fancybox-1.3.4.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery.fancybox-1.3.4.css" media="all" />
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/> 
         <link rel="stylesheet" href="{$THEME}css/smoothness/jquery-ui-1.9.1.custom.min.css" type="text/css" media="screen" />
 
         
-        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie8_7_6.css" /><![endif]-->
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}/css/ie_7.css" /><![endif]-->
-        <script type="text/javascript" src="{$THEME}/js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jScrollPane.min.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/cusel-min-2.4.1.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.ui-slider.js" ></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.fancybox-1.3.4.pack.js" ></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.form.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/scripts.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/shop.js"></script>
+        <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie8_7_6.css" /><![endif]-->
+        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
+        <script type="text/javascript" src="{$THEME}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jScrollPane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/cusel-min-2.4.1.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js" ></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js" ></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.form.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/shop.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery-ui-1.8.15.custom.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-ui-1.8.15.custom.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/autocomplete.js"></script>
     </head>
     <body>        

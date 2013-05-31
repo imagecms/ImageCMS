@@ -8,7 +8,7 @@
         <title>{$site_title}</title>
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt_ie_8.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="css/lt_ie_7.css" /><![endif]-->
         <!--[if IE 6]>
@@ -17,8 +17,8 @@
                 DD_belatedPNG.fix('.h_f, .head_foot, .frame_search .frame_input input, .main_f_i_f-r, .logo img, .icon, .but_buy, .but_buy .b_buy_in, .but_buy a, .subm_filter, .subm_filter input, .frame_search .frame_input span, .search_button');
             </script>
         <![endif]-->
-        <script type="text/javascript" src="{$THEME}/js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="{$THEME}/js/jquery.main.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.main.js"></script>
     </head>
     <body>
         <div class="mainBody">
@@ -40,7 +40,7 @@
                 </ul>
                 <a href="/" class="f_l logo">
                     <span class="helper"></span>
-                    <img src="{$THEME}/images/logo.png" class="v-a_m"/>
+                    <img src="{$THEME}images/logo.png" class="v-a_m"/>
                 </a>
             </div>
             <span class="head_foot"></span>
