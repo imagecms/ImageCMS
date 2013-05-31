@@ -7,11 +7,12 @@
                 {foreach $banners as $banner}
                 <li>
                     <a href="{echo $banner['url']}">
-                        <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
+                        <img data-src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
                     </a>
                 </li>
                 {/foreach}
             </ul>
+            <span class="preloader-baner"></span>
             <div class="group-button-carousel">
                 <button type="button" class="prev arrow"></button>
                 <button type="button" class="next arrow"></button>

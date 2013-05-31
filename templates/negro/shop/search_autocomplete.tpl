@@ -58,7 +58,7 @@
         </ul>
         <!-- Start. Show link see all results if amount products >0  -->
         <div>
-            <div class="btn-form">{/literal}
+            <div class="btn-autocomplete">{/literal}
                 <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0">
                    <span class="icon_show_all"></span><span class="text-el">{lang('s_all_result')} →</span>
                 </a>

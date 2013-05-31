@@ -214,7 +214,8 @@ function processPage() {
         key = $this.data('prodid') + '_' + $this.data('varid');
         
         if (keys.indexOf(key) != -1) {
-            $this.removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).removeAttr('disabled').html(inCart).unbind('click').on('click', function(){
+            $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
+            $this.unbind('click').on('click', function(){
                 Shop.Cart.countChanged = false;
                 togglePopupCart();
             }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
@@ -483,9 +484,8 @@ jQuery(document).ready(function() {
         place: 'center',
         effon: 'fadeIn',
         effoff: 'fadeOut',
-        duration: '300',
+        duration: '0',
         before: function(el, dropEl) {
-            //check for drop-report
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
 
@@ -519,10 +519,12 @@ jQuery(document).ready(function() {
                 }
                 return $(el);
             }
+            $(dropEl).find('.error').hide();
         },
-        after: function(el, dropEl) {
+        after: function(el, dropEl, isajax) {
             var selIcons = $('[class*=icon_]');
             draw_icons($('#popupCart').find(selIcons));
+            if (isajax) draw_icons(dropEl.find(selIcons));
         }
     });
     $('.tabs').tabs({
@@ -597,7 +599,7 @@ jQuery(document).ready(function() {
             sumHeight += $(this).outerHeight(true);
         })
       
-        if (sumHeight > $thisH) $this.next().toggle(function(){
+        if (sumHeight > $thisH) $this.next().addClass('d_i-b').toggle(function(){
             $(this).prev().animate({
                 'height': sumHeight
             }, 300);
@@ -920,24 +922,35 @@ wnd.load(function() {
         //            }
         }
     });
-    if ($('.cycle li').length > 1) {
-        $('.cycle').cycle({
+    var cycle = $('.cycle'),
+    next = '.baner .next',
+    prev = '.baner .prev';
+    
+    if (cycle.find('li').length > 1) {
+        cycle.cycle({
             speed: 600,
-            timeout: 2000,
+            timeout: 5000,
             fx: 'fade',
             pauseOnPagerHover: true,
-            next: '.baner .next',
-            prev: '.baner .prev',
-            pager:      '.pager',
+            next: next,
+            prev: prev,
+            pager: '.pager',
             pagerAnchorBuilder: function(idx, slide) {
                 return '<a href="#"></a>';
             }
         }).hover(function() {
-            $('.cycle').cycle('pause');
+            cycle.cycle('pause');
         }, function() {
-            $('.cycle').cycle('resume');
+            cycle.cycle('resume');
         });
-        $('.baner .next, .baner .prev').show();
+        $(next + ',' + prev).show();
+        cycle.find('img').each(function(){
+            var $this = $(this);
+            $this.attr('src', $this.attr('data-src')).load(function(){
+                $(this).fadeIn();
+                $('.baner .preloader-baner').remove();
+            })
+        })
     }
     
     function fancyboxProduct(){
