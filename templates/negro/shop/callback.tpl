@@ -1,13 +1,15 @@
-<div class="drop-order-call drop drop-popup" id="ordercall">
-    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
-    <div class="drop-content" style="background-color: #E5E5E5; padding: 10px">
-        <div class="header_title">
+<div class="drop-order-call drop" id="ordercall">
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+    <div class="drop-header">
+        <div class="title">
             Заказ звонка
         </div>
-        <div class="inside_padd">
-            <div class="horizontal_form standart_form">
-                <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
-                        return false;">
+    </div>
+    <div class="drop-content">
+        <div class="inside-padd">
+            <div class="horizontal-form ">
+                  <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
+                    return false;">
                     <label>
                         <span class="title">Ваше имя</span>
                         <span class="frame_form_field">
@@ -31,7 +33,7 @@
                             <label id="for_Comment" class="for_validations"></label>
                         </span>
                     </label>
-                    <div class="frameLabel">
+                    <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
                             <input type="submit" value="Позвоните мне" class="btn_cart f_r"/>

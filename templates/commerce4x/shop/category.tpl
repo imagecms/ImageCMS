@@ -64,7 +64,7 @@
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
                                 {foreach $sort as $s}
-                                <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
+                                <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -153,11 +153,12 @@
                                 <div class="price price_f-s_16"><span class="f-w_b priceVariant">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
 
                                 <div class="f-s_0">
-                                    {if count($product->getProductVariants()) > 1}
+                                    {$variants = $product->getProductVariants()}
+                                    {if count($variants) > 1}
                                         <div class=" d_i-b v-a_b m-r_20 p-b_10 variantProd">
                                             <div class="lineForm w_170">
                                                 <select id="сVariantSwitcher_{echo $product->firstVariant->getId()}" name="variant">
-                                                    {foreach $product->getProductVariants() as $key => $pv}
+                                                    {foreach $variants as $key => $pv}
                                                         {if $pv->getName()}
                                                             {$name = ShopCore::encode($pv->getName())}
                                                         {else:}
@@ -175,7 +176,7 @@
                                     <!-- displaying buy button according to its availability in stock -->
                                     <div class="frame_cart_btns d_i-b v-a_b">
                                         <!-- Start. Collect information about Variants, for future processing -->
-                                        {foreach $product->getProductVariants() as $key => $pv}
+                                        {foreach $variants as $key => $pv}
                                             {if $pv->getStock() > 0}
                                                 <button {if $key != 0}style="display:none"{/if}
                                                                       class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
@@ -249,7 +250,7 @@
                                             <span class="text-el">{lang('s_add_to_compare')}</span>
                                         </button>
 
-                                        {foreach $product->getProductVariants() as $key => $pv}
+                                        {foreach $variants as $key => $pv}
                                             <!-- to wish list button -->
                                             <button {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
                                                                    data-price="{echo $pv->toCurrency()}"

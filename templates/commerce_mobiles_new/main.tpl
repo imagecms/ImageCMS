@@ -43,16 +43,6 @@
                     <img src="{$THEME}/images/logo.png" class="v-a_m"/>
                 </a>
             </div>
-            <div class="o_h">
-                {if !$CI->dx_auth->is_logged_in()}
-                    <div class="f_r frame_enter_soc_net">
-                        <div class="helper"></div>
-                        <div class="d-i_b">
-                            <div class="v-a_m d-i_b">{$CI->load->module('socauth')->renderLogin()}</div>
-                        </div>
-                    </div>
-                {/if}
-            </div>
             <span class="head_foot"></span>
             {$content}
             <div class="hFooter"></div>
@@ -66,8 +56,7 @@
                         <span class="icon phone"></span>
                         <span class="title">Мобильная версия</span>
                     </span>
-                    {$settings = ShopCore::app()->SMobileVersion->loadSettings()}
-                    <a href="http://{str_replace('http://', '', $settings[MobileVersionSite])}" class="desctop frame_version">
+                    <a href="http://{echo str_replace('http://', '', $settings[MobileVersionSite])}" class="desctop frame_version">
                         <span class="frame_desctop">
                             <span class="icon comp"></span>
                             <span class="title">Полная версия</span>
