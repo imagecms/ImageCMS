@@ -41,7 +41,7 @@
                         {if $cap_image}
                             <label>
                                 <span class="title">{$cap_image}</span>
-                                <span class="frame_form_field">
+                                <span class="frame-form-field">
                                     <span class="icon_replay"></span>
                                     {if $captcha_type == 'captcha'}
                                         <input type="text" name="captcha" id="captcha" />

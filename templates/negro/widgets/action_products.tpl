@@ -66,20 +66,21 @@
                             <div class="f-s_0 func-button">
                                 {if $p->firstvariant->getstock() != 0}
                                 <!-- buy/inCart button -------------------->
-                                <div class="btn-buy btnBuy">
+                                <div class="btn-buy">
                                     <button
-                                            type="button" 
-                                            data-prodid="{echo $p->getId()}"
-                                            data-varid="{echo $p->firstVariant->getId()}"
-                                            data-price="{echo $p->firstVariant->toCurrency()}" 
-                                            data-name="{echo ShopCore::encode($p->getName())}"
-                                            data-maxcount="{echo $p->firstVariant->getstock()}"
-                                            data-number="{echo $p->firstVariant->getNumber()}"
-                                            data-img="{echo $p->firstVariant->getSmallPhoto()}"
-                                            data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                            data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                            data-stock="{echo $p->firstVariant->getStock()}"
-                                            >
+                                        class="btnBuy"
+                                        type="button" 
+                                        data-prodid="{echo $p->getId()}"
+                                        data-varid="{echo $p->firstVariant->getId()}"
+                                        data-price="{echo $p->firstVariant->toCurrency()}" 
+                                        data-name="{echo ShopCore::encode($p->getName())}"
+                                        data-maxcount="{echo $p->firstVariant->getstock()}"
+                                        data-number="{echo $p->firstVariant->getNumber()}"
+                                        data-img="{echo $p->firstVariant->getSmallPhoto()}"
+                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                        data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                        data-stock="{echo $p->firstVariant->getStock()}"
+                                        >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
                                     </button>
@@ -87,7 +88,7 @@
                                 <!-- end of buy/inCart buttons ------------->
                                 {else:}
                                 <!-- Start. Notify button -->
-                                
+
                                 <!-- End. Notify button -->
                                 {/if}
                             </div>

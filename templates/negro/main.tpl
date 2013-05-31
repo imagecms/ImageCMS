@@ -28,7 +28,7 @@
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
     </head>
-    <body>
+    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])}">
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -61,14 +61,6 @@
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <!-- Dev. scripts -->
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
-
-        <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->
-        {if !$CI->dx_auth->is_logged_in()}{include_tpl('login_popup')}{/if}
-        <!-- End. Including template file for displaying drop-down login form is user is not logged in -->
-
-        <!-- Start. Callback form -->
-        {include_shop_tpl('callback')}
-        <!-- End. Callback form -->
 
         <!-- Start. Block report on appearance -->
         {include_shop_tpl('report_appearance')}
