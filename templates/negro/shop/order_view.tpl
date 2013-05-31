@@ -185,7 +185,7 @@
                                         {/foreach}
                                         <li>
                                             <div class="t-a_c">
-                                                <img src="{$THEME}/images/sum_arrow.png"/>
+                                                <img src="{$THEME}images/sum_arrow.png"/>
                                             </div>
                                             <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}  шт):</span>
                                             <div class="v-a_bl d_i-b">
