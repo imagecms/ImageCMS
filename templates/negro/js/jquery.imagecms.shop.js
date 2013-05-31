@@ -871,9 +871,9 @@ function ieInput(els) {
                     exit: '[data-closed = "closed-js"]',
                     effon: 'show',
                     effoff: 'hide',
-                    duration: 500,
+                    duration: 100,
                     place: 'center',
-                    placement: 'top left',
+                    placement: 'noinherit',
                     before: function() {
                         return true;
                     },
@@ -897,88 +897,109 @@ function ieInput(els) {
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
                     event.preventDefault();
-                
-                    $(this).each(function() {
-                        var $this = $(this),
-                        $thisS = $this.data('effect-off') || effoff,
-                        $thisD = $this.data('duration') || duration,
-                        $thisSource = $this.data('drop');
-                        
-                        $this.attr('data-placement', $this.data('placement') || placement).attr('data-place', $this.data('place') || place);
-                        $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-                    });
-                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
-                        $this = $(this);
+                    
+                    var $this = $(this);
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0){//for propagation with tabs
                         elSet = $this.data();
-                        elSetSource = $(elSet.drop);
-                
-                        var elSetOn = elSet.effectOn || effon,
-                        elSetOff = elSet.effectOff || effoff,
-                        elSetDuration = elSet.duration || duration,
-                        overlayColor = elSet.overlaycolor || settings.overlayColor,
-                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                        
+                        function showDrop(elSetSource, isajax){
+                            $this.each(function() {
+                                var $this = $(this),
+                                $thisEOff = $this.data('effect-off') || effoff,
+                                $thisD = $this.data('duration') || duration,
+                                $thisSource = $this.data('drop');
+                        
+                                $this.attr('data-placement', $this.data('placement') || placement);
+                                $this.attr('data-place', $this.data('place') || place);
+                                $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                            });
+                    
+                            var $thisEOn = elSet.effectOn || effon,
+                            $thisEOff = elSet.effectOff || effoff,
+                            $thisD = elSet.duration || duration,
+                            overlayColor = elSet.overlaycolor || settings.overlayColor,
+                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                        if (overlayColor != undefined || overlayOpacity != undefined) {
-                            if (!$.exists('.overlayDrop')) {
-                                body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                            if (overlayColor != undefined || overlayOpacity != undefined) {
+                                if (!$.exists('.overlayDrop')) {
+                                    body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                                }
+                                drop_over = $('.overlayDrop');
+                                drop_over.css({
+                                    'background-color': overlayColor,
+                                    'opacity': overlayOpacity
+                                });
                             }
-                            drop_over = $('.overlayDrop');
-                            drop_over.css({
-                                'background-color': overlayColor,
-                                'opacity': overlayOpacity
-                            });
-                        }
-                        else
-                            drop_over = $([]);
+                            else
+                                drop_over = $([]);
 
-                        if (elSetSource.is('.' + activeClass)) {
-                            $this.removeClass(activeClass)
-                            elSetSource[elSetOff](elSetDuration, function() {
-                                elSetSource.removeClass(activeClass).removeAttr('style')
-                                drop_over[elSetOff](elSetDuration);
-                            });
-                            $thisHref = $(this).attr('href');
-                            if ($thisHref != undefined) {
-                                var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
-                                try {
-                                    indH = wLH.match($thisHref + '(?![a-z])').index;
-                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                } catch (err) {
+                            if (elSetSource.is('.' + activeClass)) {
+                                methods.triggerBtnClick(elSetSource, selector);
+
+                                $thisHref = $(this).attr('href');
+                                if ($thisHref != undefined) {
+                                    var $thisHrefL = $thisHref.length,
+                                    wLH = location.hash,
+                                    wLHL = wLH.length;
+                                    try {
+                                        indH = wLH.match($thisHref + '(?![a-z])').index;
+                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                    } catch (err) {
+                                    }
                                 }
                             }
-                        }
-                        else {
-                            $newthis = settings.before(this, elSetSource);
-                            if ($newthis != undefined) $this = $newthis;
+                            else {
+                                $newthis = settings.before(this, elSetSource, isajax);
+                                if ($newthis != undefined) $this = $newthis;
                             
-                            if (event.button == undefined) body.scrollTop($this.offset().top)
+                                $thisDrop = $this.closest('[data-elrun]');
+                                if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
+                            
+                                if (event.button == undefined) body.scrollTop($this.offset().top)
 
-                            var wndW = wnd.width();
-                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                            else elSetSource.removeAttr('style');
+                                var wndW = wnd.width();
+                                if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                                else elSetSource.removeAttr('style');
                     
-                            methods.positionDrop($this, placement, place);
+                                methods.positionDrop($this, placement, place);
+                            
+                                if (place == "center") methods.dropScroll(elSetSource);
 
-                            $this.addClass(activeClass);
-                            drop_over.show();
-
-                            drop_over.unbind('click').bind('click', function(){
-                                methods.triggerBtnClick();
-                            })
-                            elSetSource[elSetOn](elSetDuration, function() {
-                                elSetSource.addClass(activeClass);
-                                if (ltie7)
-                                    ieInput();
-                                settings.after(this, elSetSource);
-                            });
+                                $this.addClass(activeClass);
+                                drop_over[$thisEOn]($thisD, function(){
+                                    drop_over.unbind('click').bind('click', function(e){
+                                        e.stopPropagation();
+                                        methods.triggerBtnClick(false,selector);
+                                    })
+                                    elSetSource[$thisEOn]($thisD, function() {
+                                        elSetSource.addClass(activeClass);
+                                        if (ltie7)
+                                            ieInput();
+                                        settings.after(this, elSetSource, isajax);
+                                    });
+                                });
+                            }
+                            $(cloned).remove();
                         }
-                        $(cloned).remove();
+                        
+                        elSetSource = $(elSet.drop);
+                        if ($.exists_nabir(elSetSource)){
+                            showDrop(elSetSource);
+                        }
+                        else{
+                            $.fancybox.showActivity();
+                            $.post(elSet.source, function(data){
+                                $.fancybox.hideActivity();
+                                body.append(data);
+                                elSetSource = $(elSet.drop);
+                                showDrop(elSetSource, true);
+                                dataSource = $('[data-drop]');
+                            })
+                        }
                     }
                 })
-                exit.click(function(){
-                    methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                exit.live('click', function(){
+                    methods.triggerBtnClick($(this).closest('[data-elrun]'), selector);
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
@@ -987,7 +1008,7 @@ function ieInput(els) {
                             return;
                         else
                         {
-                            methods.triggerBtnClick();
+                            methods.triggerBtnClick(false,selector);
                         }
                     }
                 }).live('keydown', function(e) {
@@ -1001,19 +1022,25 @@ function ieInput(els) {
                         key = e.which;
 
                     if (key == 27) {
-                        methods.triggerBtnClick();
+                        methods.triggerBtnClick(false,selector);
                     }
                 });
             }
         },
-        triggerBtnClick: function(sel) {
-            if (!sel) sel = $('[data-elrun].' + activeClass);
-            else sel = sel.closest('[data-elrun]');
+        triggerBtnClick: function(sel, selector) {
+            if (!sel) var drop = $('[data-elrun].' + activeClass);
+            else var drop = sel.closest('[data-elrun]');
             
-            sel.each(function() {
-                $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
-                $this.click().parent().removeClass(activeClass);
-                if ($this.data('place') == 'center') {
+            drop.removeClass(activeClass).removeAttr('style').each(function() {
+                var $this = $(this),
+                $thisEOff = $this.data('effect-off'),
+                $thisD = $this.data('data-duration')
+                $this[$thisEOff]($thisD);
+                
+                var $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                $this.parent().removeClass(activeClass);
+                
+                if ($this.data('place') == 'center' && !$.exists_nabir($(selector+'.'+activeClass))) {
                     body.removeClass('o_h');
                     body.css('margin-right', function(){
                         if ($(document).height()-wnd.height() > 0){
@@ -1021,15 +1048,15 @@ function ieInput(els) {
                             return 0
                         }
                     })
+                    drop_over[$thisEOff]($thisD);
                 }
-                drop_over.remove();
-            }).removeClass(activeClass);
+            });
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {
-            elSetSource.animate({
-                'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
+            elSetSource.css({
+                'top': (wnd.height() - elSetSource.actual('height')) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.actual('width')) / 2 + wnd.scrollLeft()
             }, {
                 queue: false
             });
@@ -1082,7 +1109,7 @@ function ieInput(els) {
                 })
                 wnd.bind('resize.drop', function(){
                     methods.dropScroll(elSetSource)
-                }).resize();
+                });
             }
         }
     };
@@ -1443,6 +1470,7 @@ var Shop = {
         giftCertPrice: 0,
 
         add:function (cartItem) {
+            console.log(cartItem)
             //trigger before_add_to_cart
             $(document).trigger({
                 type:'before_add_to_cart',
