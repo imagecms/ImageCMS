@@ -302,10 +302,15 @@
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
+        {if $comp = $CI->session->userdata('shopForCompare')}
+            {$cnt_comp = count($comp)}
+        {else:}
+            {$cnt_comp = 0}
+        {/if}
         <script>
             var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
-            var inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
+            var inServerCompare = parseInt("{$cnt_comp}");
         </script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.min.js"></script>
@@ -314,7 +319,7 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/scripts.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
 
 
         <!-- Start. Including template file for displaying drop-down login form is user is not logged in -->

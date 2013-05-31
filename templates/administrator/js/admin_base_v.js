@@ -50,7 +50,6 @@ $(document).ready(function() {
     $('#categorySelect').live('change', function() {
         //$('#mainContent').load($(this).attr('url')+$(this).val());
         $.pjax({url: $(this).attr('url') + $(this).val(), container: '#mainContent'});
-        console.log($(this).val());
         //
         //window.location.href = $(this).attr('url')+$(this).val();
     });

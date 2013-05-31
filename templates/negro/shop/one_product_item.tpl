@@ -50,7 +50,7 @@
                 <div class="f-s_0 func-button">
                         {if $p->firstvariant->getstock() != 0}
                         <!-- buy/inCart button -------------------->
-                            <div class="btn-buy">
+                            <div class="btn-buy btnBuy">
                                 <button class="buyButton toCart"
                                         type="button"
                                         data-prodId="{echo $p->getId()}"
@@ -67,7 +67,7 @@
                         <!-- end of buy/inCart buttons ------------->
                         {else:}
                             <!-- Start. Notify button -->
-                            <div class="d_i-b f_l var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail_wrap">
+                            <div class="d_i-b f_l var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail">
                                 <span class="f-s_12 t-a_l">
                                     <span class="d_b">Товара нет в наличии</span>
                                     <button type="button" class="d_l_b f-s_12" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="bottom left">Сообщите</button> о появлении
@@ -133,10 +133,10 @@
         </div>
 <!--        Start. Remove buttons if compare or wishlist-->
         {if $CI->uri->segment(2) == "compare"}
-            <button type="button" class="icon_times-order deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
+            <button type="button" class="icon_times_remove deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
-            <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this)" class="icon_times-order"></button>
+                <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times_remove"></button>
         {/if}
 <!--        End. Remove buttons if compare or wishlist-->
     </li>

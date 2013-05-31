@@ -4,7 +4,7 @@
     </label>
 {/if}
 <div id="comment__icsi-css">
-    {if $comments_arr}        
+    {if $comments_arr}
         <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
         <ul class="frame-list-comment__icsi-css">
             {foreach $comments_arr as $key => $comment}
@@ -13,10 +13,10 @@
                     <div class="author-data-comment__icsi-css">
                         <span class="author-comment__icsi-css">{$comment.user_name}</span>&nbsp;&nbsp;
                         {if $comment.rate != 0}
-                            <div class="star-small d_i-b">   
+                            <div class="star-small d_i-b">
                                 <div class="productRate star-small">
                                     <div style="width: {echo (int)$comment.rate *20}%"></div>
-                                </div>  
+                                </div>
                             </div>&nbsp;&nbsp;
                         {/if}
                         <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
@@ -35,7 +35,7 @@
                                 {$comment.text_minus}
                             </p>
                         {/if}
-                    </div>      
+                    </div>
                     <div class="func-button-comment__icsi-css">
                         {if $can_comment == 0 OR $is_logged_in}
                             <div class="btn__icsi-css f_l__icsi-css">
@@ -53,14 +53,14 @@
                                 <span class="btn__icsi-css like__icsi-css">
                                     <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
                                         {lang('s_like')}
-                                    </button> 
+                                    </button>
                                     <span id="yesholder{$comment.id}">({echo $comment.like})</span>
                                 </span>
                                 <span class="divider_l_dl__icsi-css">|</span>
                                 <span class="btn__icsi-css dis-like__icsi-css">
                                     <button type="button" class="usefullno" data-comid="{echo $comment.id}">
                                         {lang('s_dislike')}
-                                    </button> 
+                                    </button>
                                     <span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                                 </span>
                             </span>
@@ -71,7 +71,7 @@
                             {if $com_ch.parent == $comment.id}
                                 <li>
                                     <div class="author-data-comment__icsi-css">
-                                        <span class="author-comment__icsi-css">{$com_ch.user_name}</span> 
+                                        <span class="author-comment__icsi-css">{$com_ch.user_name}</span>
                                         <span class="date-comment__icsi-css">{date('d-m-Y H:i', $com_ch.date)}</span>
                                     </div>
                                     <div class="frame-comment__icsi-css">
@@ -97,18 +97,18 @@
                 <form method="post">
                     <label>
                         <span class="frame_form_field__icsi-css">
-                            <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
+                            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
                         </span>
                     </label>
                     <!-- Start star reiting -->
                     <div class="frameLabel__icsi-css">
                         <span class="title__icsi-css">{lang('s_you_raiting')}</span>
                         <div class="frame_form_field__icsi-css">
-                            <div class="star">   
+                            <div class="star">
                                 <div class="productRate star-big clicktemprate">
                                     <div class="for_comment"style="width: 0%"></div>
                                     <input id="ratec" name="ratec" type="hidden" value=""/>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                         <span class="frame_form_field__icsi-css">
                             <input type="submit" value="{lang('s_leave_comment')}" class="btn__icsi-css" onclick="post(this)"/>
                         </span>
-                    </div>        
+                    </div>
                 </form>
             </div>
             <!-- End of new comment fild -->
@@ -192,7 +192,7 @@
             <form>
                 <label>
                     <span class="frame_form_field__icsi-css">
-                        <div class="frameLabel__icsi-css" id="error_text" name="error_text"></div>
+                        <div class="frameLabel__icsi-css error_text" name="error_text"></div>
                     </span>
                 </label>
 
@@ -335,7 +335,7 @@
                         $('form').submit(function() {
                             return false;
                         });
-                    },
+                    }
                 });
             })
 

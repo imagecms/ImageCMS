@@ -32,10 +32,10 @@ $(document).ready(function(){
     $('.main_menu li a').click(function(e){
         var $this = $(this).parent().toggleClass('active');
         
-        $this.siblings().removeClass('active').children('ul').slideUp('fast');
+        $this.siblings().removeClass('active').find('ul').slideUp('fast');
         if ($this.children('ul').length > 0){
             e.preventDefault();
-            $this.children('ul').slideDown('fast');
+            $this.children('ul').slideToggle('fast');
         }
     });
     //not_standart_checks----------------------
