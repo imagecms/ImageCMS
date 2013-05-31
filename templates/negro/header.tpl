@@ -28,7 +28,7 @@
                         </span>
                     </span>
                     <span class="order-call-btn">
-                        <button type="button" data-event="call" data-drop=".drop-order-call">
+                        <button type="button" data-event="call" data-drop=".drop-order-call" data-source="shop/callback">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">Заказать звонок</span>
                         </button>
