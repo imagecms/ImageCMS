@@ -65,15 +65,28 @@
     {foreach $model->getSOrderProductss() as $item}
         {$total = $total + $item->getQuantity() * $item->toCurrency()}
         {$product = $item->getSProducts()}
+        {$variants = $product->getProductVariants()}
+        {foreach $variants as $v}
+            {if $v->getId() == $item->variant_id}
+                {$variant = $v}
+            {/if}
+        {/foreach}
         <li>
             <div class="top_frame_tov">
                 <span class="figure">
                     <a href="{mobile_url('product/' . $product->getUrl())}">
-                        <img src="{productImageUrl($product->getSmallModimage())}"/>
+                        <img src="{echo $variant->getMediumPhoto()}"/>
                     </a>
                 </span>
                 <span class="descr">
                     <a href="{mobile_url('product/' . $product->getUrl())}" class="title">{echo ShopCore::encode($product->getName())}</a>
+                    {if $variant->getName()}
+                        <span class="code_v">{lang('s_variant')}: {echo $variant->getName()}</span>
+                    {/if}
+                    {if $variant->getNumber()}
+                        <span class="divider">/</span>
+                        <span class="code">{lang('s_article')}: {echo $variant->getNumber()}</span>
+                    {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
                     <span class="count">{echo $item->getQuantity()} шт.</span>
                 </span>
