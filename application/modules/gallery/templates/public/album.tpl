@@ -1,5 +1,5 @@
-<script src="{$THEME}/js/lightBox/js/jquery.lightbox-0.5-min.js"></script>
-<link rel="stylesheet" type="text/css" href="{$THEME}/js/lightBox/css/jquery.lightbox-0.5-min.css" />
+<script src="{$THEME}js/lightBox/js/jquery.lightbox-0.5-min.js"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}js/lightBox/css/jquery.lightbox-0.5-min.css" />
 {literal}
     <script type="text/javascript">
     $(function(){
@@ -15,7 +15,7 @@
         <td colspan="2">
             <a href="{media_url($album_url . $prev_img.full_name)}" class="lightbox" title="{$prev_img.description}" >
                 <img src="{media_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
-            </a>  
+            </a>
         </td>
     </tr>
     <tr>

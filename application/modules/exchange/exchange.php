@@ -20,25 +20,28 @@ class Exchange {
     /** default directory for saving files from 1c */
     private $tempDir;
 
-    /* contains default locale */
+    /** contains default locale */
     private $locale;
 
-    /* contains shop category table name */
+    /** contains shop category table name */
     private $categories_table = 'shop_category';
 
-    /* contains shop products properties table name */
+    /** contains shop products properties table name */
     private $properties_table = 'shop_product_properties';
 
-    /* contains shop products table name */
+    /** contains shop products table name */
     private $products_table = 'shop_products';
 
-    /* contains shop products variants name */
+    /** contains shop products variants name */
     private $product_variants_table = 'shop_product_variants';
 
-    /* contains shop products variants images */
+    /** contains shop products variants images */
     private $shop_images = array();
 
-    /* table which contains module settings if modules is installed */
+    /** contains shop products additionals images */
+    private $shop_additionals_images = array();
+
+    /** table which contains module settings if modules is installed */
     private $settings_table = 'components';
     private $allowed_image_extensions = array();
     private $login;
@@ -638,18 +641,21 @@ class Exchange {
                     }
 
                     if (count($picture) > 1) {
-                        $this->db->delete('shop_product_images', array('product_id' => $insert_id));
+
+                        $this->ci->db->delete('shop_product_images', array('product_id' => $insert_id));
 
                         foreach ($picture as $key => $pic) {
                             if ($key == '0') {
                                 @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
                             } else {
-                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/additional/' . $pic);
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/additional/' . $pic);
 
-                                $this->db->set('product_id', $insert_id);
-                                $this->db->set('image_name', $img);
-                                $this->db->set('position', $key - 1);
-                                $this->db->insert('shop_product_images');
+                                $this->ci->db->set('product_id', $insert_id);
+                                $this->ci->db->set('image_name', $pic);
+                                $this->ci->db->set('position', $key - 1);
+                                $this->ci->db->insert('shop_product_images');
+
+                                $this->shop_additionals_images[] = $searchedProduct['id'];
                             }
                         }
                     }
@@ -785,18 +791,20 @@ class Exchange {
                     }
 
                     if (count($picture) > 1) {
-                        $this->db->delete('shop_product_images', array('product_id' => $searchedProduct['id']));
+                        $this->ci->db->delete('shop_product_images', array('product_id' => $searchedProduct['id']));
 
                         foreach ($picture as $key => $pic) {
                             if ($key == '0') {
                                 @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
                             } else {
-                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/additional/' . $pic);
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/additional/' . $pic);
 
-                                $this->db->set('product_id', $searchedProduct['id']);
-                                $this->db->set('image_name', $img);
-                                $this->db->set('position', $key - 1);
-                                $this->db->insert('shop_product_images');
+                                $this->ci->db->set('product_id', $searchedProduct['id']);
+                                $this->ci->db->set('image_name', $pic);
+                                $this->ci->db->set('position', $key - 1);
+                                $this->ci->db->insert('shop_product_images');
+
+                                $this->shop_additionals_images[] = $searchedProduct['id'];
                             }
                         }
                     }
@@ -917,7 +925,9 @@ class Exchange {
      * uses SWatermark class to carry out image resize and adding watermark
      */
     private function startImagesResize() {
-        \MediaManager\Image::create()->resizeByName($this->shop_images);
+        \MediaManager\Image::create()
+                ->resizeByName($this->shop_images)
+                ->resizeByIdAdditional(array_unique($this->shop_additionals_images));
     }
 
     /**
