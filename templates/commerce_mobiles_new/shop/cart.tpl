@@ -5,55 +5,43 @@
     <form id="form" method="POST" action="{shop_url('cart')}">
         <ul class="catalog">
             {foreach $items as $key=>$item}
-                {if count($item->ProductVariants) > 1}
-                    {foreach $item as $p}
-                        <li>
-                            <a href="{shop_url('product/' . $item.model->getUrl())}" class="top_frame_tov">
-                                <span class="figure">
-                                    <img src="{//echo $p->getSmallPhoto()}"/>
-                                </span>
-                                <span class="descr">
-                                    <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
-                                    <span class="d_b price">{echo $variant->getPrice()} {$CS}</span>
-                                </span>
-                            </a>
-                            <input name="products[{$key}]" type="text" price="{echo $variant->getPrice()}" value="{$item.quantity}" onblur=""/>
+                {$variants = $item.model->getProductVariants()}
+                {foreach $variants as $v}
+                    {if $v->getId() == $item.variantId}
+                        {$variant = $v}
+                    {/if}
+                {/foreach}
+                <li>
+                    <div class="top_frame_tov">
+                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="top_frame_tov">
+                            <span class="figure">
+                                <img src="{echo $variant->getMediumPhoto()}"/>
+                            </span>
+                            <span class="descr">
+                                <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
+                                {if $item.variantName}
+                                    <span class="code_v">{lang('s_variant')}: {echo $item.variantName}</span>
+                                {/if}
+                                {if $variant->getNumber()}
+                                    <span class="divider">/</span>
+                                    <span class="code">{lang('s_article')}: {echo $variant->getNumber()}</span>
+                                {/if}
+                                <span class="d_b price">{echo $item.price} {$CS}</span>
+                            </span>
+                        </a>
+                        <span class="descr">
+                            <input name="products[{$key}]" type="text" price="{echo $item.price}" value="{$item.quantity}" onblur=""/>
                             <span class="frame_count">
                                 <span class="refresh_price"></span>
                                 <span class="count">шт.</span>
                             </span>
                             <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
-                        </li>
-                    {/foreach}
-                {else:}
-                    <li>
-                        <div class="top_frame_tov">
-                            <a href="{shop_url('product/' . $item.model->getUrl())}" class="top_frame_tov">
-                                <span class="figure">
-                                    <img src="{//echo $item[model]->getMediumPhoto()}"/>
-                                </span>
-                                <span class="descr">
-                                    <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
-                                    {if $item.variantName}
-                                        <span class="code_v">{lang('s_variant')}: {echo $item.variantName}</span>
-                                    {/if}
-                                    <span class="d_b price">{echo $item.price} {$CS}</span>
-                                </span>
-                            </a>
-                            <span class="descr">
-                                <input name="products[{$key}]" type="text" price="{echo $item.price}" value="{$item.quantity}" onblur=""/>
-                                <span class="frame_count">
-                                    <span class="refresh_price"></span>
-                                    <span class="count">шт.</span>
-                                </span>
-                                <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
-                            </span>
-                        </div>
-                    </li>
-                    {$summary = $item.price * $item.quantity}
-                    {$total     += $summary}
-                    {$total_nc  += $summary_nextc}
-                {/if}
+                        </span>
+                    </div>
+                </li>
+                {$summary = $item.price * $item.quantity}
+                {$total     += $summary}
+                {$total_nc  += $summary_nextc}
             {/foreach}
         </ul>
         <div class="main_frame_inside">
