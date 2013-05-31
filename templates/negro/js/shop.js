@@ -731,8 +731,8 @@ function recountCartPage() {
 }
 
 function emptyPopupCart() {
-    $('#popupCart .inside_padd table, #shopCartPage').hide();
-    $('#popupCart .inside_padd div.msg, #shopCartPageEmpty').removeClass('d_n').show();
+    $('#popupCart .inside-padd table, #shopCartPage').hide();
+    $('#popupCart .inside-padd div.msg, #shopCartPageEmpty').removeClass('d_n').show();
 }
 
 

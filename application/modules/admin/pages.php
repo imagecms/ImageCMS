@@ -826,19 +826,18 @@ class Pages extends BaseAdminController {
         $keywords = $this->lib_seo->get_keywords($text, TRUE);
 
         foreach ($keywords as $key => $val) {
-            if ($val < 3) {
+            if ($val < 3) 
                 $size = 14 + $val;
-            }
-            if ($val == 1) {
+            
+            if ($val == 1) 
                 $size = 12;
-            }
-            if ($val == 4) {
+            
+            if ($val == 4) 
                 $size = 13;
-            }
-            if ($val > 3) {
+            
+            if ($val > 3) 
                 $size = 22;
-            }
-
+            
             $append = $key . ', ';
             echo '<a class="underline" onclick="$(\'#page_keywords\').append (\'' . $append . '\' );" style="font-size:' . $size . 'px">' . $key . '</a> &nbsp;';
         }

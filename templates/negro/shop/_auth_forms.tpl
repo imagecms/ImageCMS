@@ -1,13 +1,15 @@
 <!-- Order call form -->
 <div class="drop-popup drop drop-order-call">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
-    <div class="header-title">
-        Заказ звонка
+    <div class="icon_times_drop" data-closed="closed-js"></div>
+    <div class="drop-header">
+        <div class="header-title">
+            Заказ звонка
+        </div>
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="standart_form horizontal-form">
+                <div class=" horizontal-form">
                     <form method="post" action="{site_url('/shop/shop/callback')}" id="callback_form">
                         <div class="popup_container">
                             {include_tpl('callback')}
@@ -24,14 +26,16 @@
 
 <!-- Enter form -->
 <div class="drop-popup drop drop-enter">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
-    <div class="header-title">
-        Вход в магазин
+    <div class="icon_times_drop" data-closed="closed-js"></div>
+    <div class="drop-header">
+        <div class="header-title">
+            Вход в магазин
+        </div>
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/login')}" id="enter_form">
                         <div class="popup_container">
                             {include_tpl('../../login_popup')}
@@ -58,14 +62,16 @@
 
 <!-- Register form -->
 <div class="drop-popup drop drop-register">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
-    <div class="header-title">
-        Регистрация
+    <div class="icon_times_drop" data-closed="closed-js"></div>
+    <div class="drop-header">
+        <div class="header-title">
+            Регистрация
+        </div>
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/login')}" id="register_form">
                         <div class="popup_container">
                             {include_tpl('../../register_popup')}
@@ -81,14 +87,16 @@
 
 <!-- Forgot Password form -->
 <div class="drop-popup drop drop-forget">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
-    <div class="header-title">
-        Напоминание пароля
+    <div class="icon_times_drop" data-closed="closed-js"></div>
+    <div class="drop-header">
+        <div class="header-title">
+            Напоминание пароля
+        </div>
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/forgot_password')}" id="remember_form">
                         <div class="popup_container">
                             {include_tpl('../../forgot_popup')}
@@ -103,12 +111,14 @@
 
 <!-- Report Appearance form -->                        
 <div class="drop-popup drop drop-report">
-    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
-    <div class="drop-content">
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+    <div class="drop-header">
         <div class="header-title">Сообщить о появлении</div>
+    </div>
+    <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="" id="notifMe_form">
                         reportFormData
                     </form>
@@ -127,39 +137,39 @@
 </div>
 
 {if $CI->uri->segment(2) == "product"}    
-    <div class="frame-drop-comment" data-rel="whoCloneAddPaste">
-        <div class="form-comment horizontal-form">
-            <div class="title_h3">Ваш ответ</div>
-            <form method="post" action="/comments/add" class="comment_form">
-                <div class="drop_comm_container"></div>
-                <label class="control-group" for="text_author">
-                    <span class="control-label">Ваше имя:</span>
-                    <span class="controls">
-                        <input type="text" name="comment_author" id="text_author" class="required" />
-                    </span>
-                </label>
-                <label class="control-group">
-                    <span class="control-label">Комментарий</span>
-                    <span class="controls">
-                        <textarea name="comment_text" class="required"></textarea>
-                    </span>
-                </label>
-                <div class="control-group">
-                    <span class="control-label">&nbsp;</span>
-                    <span class="controls">
-                        <span class="btn-order-product">
-                            <input type="submit" value="Отправить"/>
-                        </span>
-                    </span>
-                </div>
-                <span class="datas">
-                    <input type="hidden" name="comment_item_id" value="{echo $model->getId()}" />
-                    <input type="hidden" name="comment_parent" value="0" />
-                    <input type="hidden" name="module" value="shop"/>
+<div class="frame-drop-comment" data-rel="whoCloneAddPaste">
+    <div class="form-comment horizontal-form">
+        <div class="title_h3">Ваш ответ</div>
+        <form method="post" action="/comments/add" class="comment_form">
+            <div class="drop_comm_container"></div>
+            <label class="control-group" for="text_author">
+                <span class="control-label">Ваше имя:</span>
+                <span class="controls">
+                    <input type="text" name="comment_author" id="text_author" class="required" />
                 </span>
-            </form>
-        </div>
+            </label>
+            <label class="control-group">
+                <span class="control-label">Комментарий</span>
+                <span class="controls">
+                    <textarea name="comment_text" class="required"></textarea>
+                </span>
+            </label>
+            <div class="control-group">
+                <span class="control-label">&nbsp;</span>
+                <span class="controls">
+                    <span class="btn-order-product">
+                        <input type="submit" value="Отправить"/>
+                    </span>
+                </span>
+            </div>
+            <span class="datas">
+                <input type="hidden" name="comment_item_id" value="{echo $model->getId()}" />
+                <input type="hidden" name="comment_parent" value="0" />
+                <input type="hidden" name="module" value="shop"/>
+            </span>
+        </form>
     </div>
+</div>
 {/if}
 
 <div class="apply">
