@@ -1,14 +1,16 @@
 <div class="drop drop-report">
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+    <div class="drop-header">
+        <div class="title">Сообщить когда появится</div>
+    </div>
     <div class="drop-content">
-        <div class="title_h2">Сообщить когда появится</div>
-        <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
     </div>
     <div class="drop-footer"></div>
 </div>
 <div class="d_n" data-clone="data-report">
     <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
             return false;">
-        <div class="standart_form">
+        <div class="">
             <label>
                 <span class="title">Ваше имя</span>
                 <span class="frame_form_field">

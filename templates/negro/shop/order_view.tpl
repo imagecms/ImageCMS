@@ -56,7 +56,7 @@
                 {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                     {echo $paymentMethod->getPaymentForm($model)}
                             {if $paymentMethod->getDescription()}
-                                <div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                                <div class="m-t_10 infoOrder">{echo ShopCore::t($paymentMethod->getDescription())}</div>
                             {/if}
                 {/if}
                 <!-- End. Render payment button and payment description -->
@@ -183,7 +183,7 @@
                                                 </div>
                                             </li>
                                         {/foreach}
-                                        <li style="width:100% !important;margin-left:0;">
+                                        <li>
                                             <div class="t-a_c">
                                                 <img src="{$THEME}/images/sum_arrow.png"/>
                                             </div>
