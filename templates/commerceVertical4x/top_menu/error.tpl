@@ -13,7 +13,7 @@
 	<p>Не обнаружен необходимый файл шаблона для меню <b>{$menu}</b></p>
 	<ul>
 	{foreach $errors as $e}
-	<li>{if $tpl_folder}{$THEME}/{$e.user_template}{else:}{$e.system_template}{/if}</li>
+	<li>{if $tpl_folder}{$THEME}{$e.user_template}{else:}{$e.system_template}{/if}</li>
 	{/foreach}
 	</ul>
 	<p>

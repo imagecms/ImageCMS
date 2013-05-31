@@ -30,9 +30,8 @@
                     </ul>
                 </div>
             </div>
-        </div>                            
-    </div>  
-
+        </div>
+    </div>
     <div class="clearfix">
         <div class="m-t_20 pull-right">
             <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
@@ -46,7 +45,7 @@
                 <a href="#modules_additions" class="btn btn-small">Modules additions</a>
             {/if}
         </div>
-    </div>             
+    </div>
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
         <div class="tab-content content_big_td">
 
@@ -76,7 +75,7 @@
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('a_no')}</option>
-                                                    { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id'])); }
+                                                    {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id']));}
                                                 </select>
                                             </div>
                                         </div>
@@ -271,33 +270,33 @@
                                     <hr />
                                     <div class="control-group">
                                         <label class="control-label" for="create_date">
-                                            {lang('a_date_and_time_cr')}:    
+                                            {lang('a_date_and_time_cr')}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-left p_r">
                                                 <input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small"  />
                                                 <i class="icon-calendar"></i>
                                             </div>
-                                            <input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="input-small" />			             	
+                                            <input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="input-small" />
                                         </div>
                                     </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="publish_date">
-                                            {lang('a_date_and_time_p')}:                 
+                                            {lang('a_date_and_time_p')}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-left p_r">
                                                 <input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" data-placement="top" data-original-title="выберите дату" data-rel="tooltip" class="datepicker input-small" />
                                                 <i class="icon-calendar"></i>
                                             </div>
-                                            <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="input-small" />            	
+                                            <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="input-small" />
                                         </div>
                                     </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="roles[]">
-                                            {lang('a_access')}:             
+                                            {lang('a_access')}:
                                         </label>
                                         <div class="controls">
                                             <select multiple="multiple" name="roles[]" id="roles[]">
@@ -305,7 +304,7 @@
                                                 {foreach $roles as $role}
                                                     <option {$role.selected} value="{$role.id}">{$role.name}</option>
                                                 {/foreach}
-                                            </select>        	
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

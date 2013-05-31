@@ -225,7 +225,7 @@
                                                 <!-- End. Display kits products -->
 
                                             </ul>
-                                            <img src="{$THEME}/images/gen_sum.png" alt="gen_sum"/>
+                                            <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
 
                                             <!-- Start. Render kit summary -->
                                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
