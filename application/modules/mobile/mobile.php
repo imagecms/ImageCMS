@@ -52,18 +52,18 @@ class Mobile extends ShopController {
     public function search() {
         \mobile\collection\Mobile_search::init();
     }
-    
+
     /**
      * get settings
      * @return view
      * @author Kaero <dev@imagecms.net>
      * @copyright (c) 2013, ImageCMS
-     */  
-    public function get_settings(){
-        $settings = $this->db->where('name','mobile')->get('components')->result_array();
+     */
+    public function get_settings() {
+        $settings = $this->db->where('name', 'mobile')->get('components')->result_array();
         if ($settings)
             $this->settings = $settings[0]['settings'];
-        else{
+        else {
             'Ошибка настроек';
             exit;
         }
@@ -81,8 +81,8 @@ class Mobile extends ShopController {
                 $this->template->set_config_value('tpl_path', set_realpath($mobPath));
                 $this->template->add_array(array(
                     'SHOP_THEME' => media_url($mobileSettings['mobileTemplatePath']) . '/',
-                    'THEME' => media_url($mobPath) . '/',)
-                );
+                    'THEME' => media_url($mobPath) . '/',
+                    'settings' => $mobileSettings));
                 $this->menu->template->template_dir = $mobPath;
             }
         }
@@ -92,20 +92,18 @@ class Mobile extends ShopController {
      * Install module
      */
     public function _install() {
-              
-        
+
+
         $this->db->where('name', 'mobile');
         $this->db->update('components', array('autoload' => 1));
     }
-    
-    
+
     public function _deinstall() {
 
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
 
         $this->load->dbforge();
-
     }
 
 }
