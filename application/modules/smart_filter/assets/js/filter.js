@@ -2,10 +2,14 @@
     var methods = {
         init : function(options) {
             if ($.exists_nabir(this)){
-                var settings = $.extend({}, options);
+                var def_min = $('span#opt1').data('def_min'),
+                def_max = $('span#opt2').data('def_max'),
+                cur_min = $('span#opt3').data('cur_min'),
+                cur_max = $('span#opt4').data('cur_max'),
+                settings = $.extend({}, options);
                 
                 var rel = $(this),
-                body = $(' body'),
+                body = $('body'),
                 minCost = settings.minCost,
                 maxCost = settings.maxCost;
                 
@@ -43,19 +47,22 @@
                 minCost.change(function(){
                     var value1=minCost.val(),
                     value2=maxCost.val(),
-					minS = minCost.data('mins');
+                    minS = minCost.data('mins');
 					
                     if(parseInt(value1) > parseInt(value2)){
                         value1 = value2;
                         maxCost.val(value1);
                     }
-					if (parseInt(value1) < minS) {minCost.val(minS);value1 = minS;}
+                    if (parseInt(value1) < minS) {
+                        minCost.val(minS);
+                        value1 = minS;
+                    }
                     rel.slider("values",0,value1);
                 }); 
                 maxCost.change(function(){
                     var value1=minCost.val(),
                     value2=maxCost.val(),
-					maxS = maxCost.data('maxs');
+                    maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
@@ -66,7 +73,10 @@
                         value2 = value1;
                         maxCost.val(value2);
                     }
-					if (parseInt(value2) > maxS) {maxCost.val(maxS);value2 = maxS;}
+                    if (parseInt(value2) > maxS) {
+                        maxCost.val(maxS);
+                        value2 = maxS;
+                    }
                     rel.slider("values",1,value2);
                 });
                 minCost.add(maxCost).change(function(){
@@ -152,7 +162,7 @@
 
 function afterAjaxInitializeFilter(){
     var apply = $('.apply'),
-        slider_el = $('#slider');
+    slider_el = $('#slider');
 
     catalogForm = $('#catalog_form');
 
@@ -178,9 +188,9 @@ function afterAjaxInitializeFilter(){
 }
 function ajaxRecount(el, slChk) {
     var $this = el,
-        slChk = slChk;
+    slChk = slChk;
 
-//    $cur_url = $('input[name=requestUri]').val();
+    //    $cur_url = $('input[name=requestUri]').val();
 
     var catUrl = window.location.pathname;// + window.location.search;
     catUrl = catUrl.replace('shop/category', 'smart_filter/filter');

@@ -335,7 +335,7 @@
                         $('form').submit(function() {
                             return false;
                         });
-                    },
+                    }
                 });
             })
 

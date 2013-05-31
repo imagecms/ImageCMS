@@ -40,7 +40,7 @@
                         <div id="tab_{$category[Url]}" class="categoryCompareBlock" data-refresh>
                             <div class="leftDescription">
                                 <ul>
-                                    <li style="height: 350px;"></li>
+                                    <li></li>
                                 </ul>
                                  <!--Start.Product properties names -->
                                 <ul class="characteristic">

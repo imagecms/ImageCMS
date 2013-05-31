@@ -178,7 +178,7 @@
     <body>
         <div class="main_body">
 
-            <div class="order_partner_ship frame_standart_form fonds" id="with_out_article">
+            <div class="order_partner_ship frame_ fonds" id="with_out_article">
                 <h1 class="reRegistration">{lang('s_site_under')}</h1>                    
                 <h2 class="reRegistrationH3">{lang('s_control_site')}</h2>   
                 <div style="text-align: center; margin:70px;">

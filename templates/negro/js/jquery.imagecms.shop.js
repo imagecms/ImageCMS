@@ -1,3 +1,6 @@
+var activeClass = 'active',
+cloned = '.cloned';
+clonedC = 'cloned';
 /*
  *imagecms frontend plugins
  **/
@@ -195,7 +198,7 @@ function ieInput(els) {
                 }
             })
             var $this = $(this),
-            text_el = $this.find('.text-el'),
+            text_el = $this.find(genObj.textEl),
             me = settings.me;
 
             if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
@@ -206,7 +209,7 @@ function ieInput(els) {
                 body.append('<span class="tooltip">' + settings.title + '</span>');
             }
 
-            var tooltip = $('.tooltip').not('.cloned');
+            var tooltip = $('.tooltip').not(cloned);
 
             if (settings.effect == 'always') {
                 if (!$.exists_nabir(tooltip)) {
@@ -263,242 +266,109 @@ function ieInput(els) {
         $(this).tooltip('remove');
     })
 })(jQuery);
+/*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
         init: function(options) {
-            if (options.menu == undefined)
+            if ($.exists_nabir($(this))){
+                var sH = 0,
+                menu = $(this);
                 var settings = $.extend({
                     item: this.find('li'),
-                    duration: 300,
+                    effectOn: 'fadeIn',
+                    effectOff: 'fadeOut',
+                    duration: 0,
                     drop: 'li > ul',
-                    itemSub: this.find('li li'),
-                    effecton: 'show',
-                    effectoff: 'hide',
-                    frameSub: 'li li div'
+                    countColumn: 'none',
+                    durationOn: 0,
+                    durationOff: 0,
+                    dropWidth: null
                 }, options);
-            else
-                var settings = $.extend({}, options);
+            
+                var menuW = menu.width(),
+                menuItem = settings.item,
+                drop = settings.drop,
+                effOn = settings.effectOn,
+                effOff = settings.effectOff,
+                drop = settings.drop,
+                countColumn = settings.countColumn,
+                item_menu_l = menuItem.length,
+                dropW = settings.dropWidth,
+                duration = time_dur_m = settings.duration,
+                durationOn = settings.durationOn,
+                durationOff = settings.durationOff;
+            
+                if (!dropW) dropW = parseInt(menuW/3);
 
-            var sH = 0,
-            menu = "";
-
-            if (options.menu == undefined)
-                menu = $(this)
-            else
-                menu = settings.menu;
-
-            var menuW = menu.width(),
-            menuItem = settings.item,
-            vertical = false,
-            menuItemSub = settings.itemSub,
-            item_menu_l = menuItem.length,
-            frameSub = $(settings.frameSub),
-            dropW = 520;
-            duration = time_dur_m = settings.duration;
-            drop = menuItem.next(settings.drop);
-            menuItemCltd = menuItem.closest('td');
-            effecton = settings.effecton;
-            effectoff = settings.effectoff;
-
-            if (menu.hasClass('vertical'))
-                vertical = true;
-
-            menuItem.find('.helper:first').add(menuItemCltd).removeAttr('style');
-
-            $thisOH = 0;
-            menuItemCltd.each(function(index) {
-                var $this = $(this),
-                $thisW = $this.width(),
-                $thisL = $this.position().left,
-                $drop = $this.find(drop).first(),
-                $thisH = $this.height();
-                if ($thisH > sH) {
-                    sH = $thisH;
-                }
-
-                if (!vertical) {
+                menuItem.each(function(index) {
+                    var $this = $(this),
+                    $thisW = $this.width(),
+                    $thisL = $this.position().left,
+                    drop = $this.find(settings.drop),
+                    $thisH = $this.height();
+                    if ($thisH > sH)
+                        sH = $thisH;
                     if (menuW - $thisL < dropW) {
-                        if ($thisL + $thisW > dropW)
-                            $drop.css('right', menuW - $thisW - $thisL).removeAttr('class').addClass('right-drop');
-                        if ($thisW + $thisL < dropW)
-                            $drop.css({
-                                'right': menuW - $thisW - $thisL,
-                                'left': 'auto'
-                            }).removeAttr('class').addClass('top-drop');
-                    }
-                    else if (menuW - $thisL > dropW) {
-                        $drop.css('left', $thisL).removeAttr('class');
-                    }
-                    if (dropW > wnd.width()) {
-                        if ($thisL > (menuW - $thisW) / 2)
-                            $drop.css({
-                                'right': 0,
-                                'left': 'auto'
-                            }).removeAttr('class').addClass('top-drop');
+                        if (drop.children().length >= countColumn)
+                            drop.css('right', 0).addClass('right-drop');
                         else
-                            $drop.css({
-                                'right': 'auto',
-                                'left': 0
-                            }).removeAttr('class').addClass('top-drop');
+                            drop.css('right', menuW - $thisW - $thisL).addClass('right-drop');
                     }
-                }
-                else {
-                    $drop.css({
-                        'top': $thisOH,
-                        'left': '100%'
-                    }).removeAttr('class');
-                    if (dropW + menuW > wnd.width())
-                        $drop.css({
-                            'left': 0
-                        }).removeAttr('class');
-                    if (dropW > wnd.width())
-                        $drop.removeAttr('style').addClass('top-drop');
-                }
-                $thisOH += $this.outerHeight(true) + 2;
-            }).css('height', sH);
+                    else {
+                        if (drop.children().length >= countColumn)
+                            drop.css('left', 0);
+                        else
+                            drop.css('left', $thisL)
+                    }
+                }).css('height', sH);
+                menuItem.find('.helper:first').css('height', sH)
 
-            menuItem.find('.helper:first').css('height', sH - 4)
-
-            $('.not-js').removeClass('not-js');
-
-            evDrop = '';
-            isTouch ? evDrop = 'toggle' : evDrop = 'mouseenter mouseleave';
-
-            function itemSubEv(el, event) {
-                var $this = el,
-                cond = $.exists_nabir($this.next('div'))
-                if (cond) {
-                    event.preventDefault();
-                    $thisP = $this.parent();
-                    $thisC = $this.next('div');
-                    $thisP.addClass('hover');
-                    $thisC[effecton](duration);
-                    $thisP.siblings().removeClass('hover').children('div').stop()[effectoff](duration)
-                    $thisP.parent().addClass('hover');
-                }
-                else {
-                    $this.parent().siblings().removeClass('hover').children('div').stop()[effectoff](duration)
-                }
-                if (isTouch && !cond)
-                    window.location.href = el.attr('href');
-            }
-
-            if (!isTouch)
-                evDrop2 = 'hover';
-            else
-                evDrop2 = evDrop;
-            var evDropF = evDrop.split(' ')[0];
-            var evDropS = evDrop.split(' ')[1];
-
-            $(menuItemSub + '> a').unbind(evDrop2)[evDrop2](function(event) {
-                itemSubEv($(this), event);
-            }, function(event) {
-                itemSubEv($(this), event);
-            });
-
-            hover_t_o = '';
-
-            function unhov(el) {
-                var $this = el,
-                $thisDrop = $this.next();
-                $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
-
-                frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
-                clearTimeout(hover_t_o);
-                if ($thisDrop.length != 0)
-                    menu.removeClass('hover');
-            }
-            function hov(el) {
-                drop.removeClass('d_n');
-                var $this = el,
-                $thisDrop = $this.next();
-
-                menuItemCltd.removeClass('hover');
-
-                frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
-                $this = $this.closest('td').addClass('hover');
-
-                if ($this.index() == 0)
-                    $this.addClass('first_h');
-                if ($this.index() == item_menu_l - 1)
-                    $this.addClass('last_h');
-
-                hover_t_o = setTimeout(function() {
-                    $thisDrop[effecton](duration);
-                    if ($thisDrop.length != 0)
-                        menu.addClass('hover');
-                }, time_dur_m);
-            }
-            if (isTouch) {
-                menuItem.unbind(evDrop)[evDrop](
+                $('.not-js').removeClass('not-js');
+                var hover_t_o = '';
+                menuItem.hover(
                     function() {
-                        hov($(this));
+                        var $this = $(this),
+                        $thisDrop = $this.find(settings.drop);
+                        if ($this.index() == 0)
+                            $this.addClass('first_h');
+                        if ($this.index() == item_menu_l - 1)
+                            $this.addClass('last_h');
+                        hover_t_o = setTimeout(function() {
+                            $thisDrop[effOn](durationOn);
+                            if ($thisDrop.length != 0)
+                                menu.addClass('hover');
+                        }, time_dur_m);
                     }, function() {
-                        unhov($(this));
+                        var $this = $(this),
+                        $thisDrop = $this.find(settings.drop);
+                        $(settings.drop).stop()[effOff](durationOff);
+                        $('.first_h, .last_h').removeAttr('class');
+                        clearTimeout(hover_t_o);
+                        if ($thisDrop.length != 0)
+                            menu.removeClass('hover');
                     });
-                menu[evDrop](
-                    function(event) {
-                        time_dur_m = 0;
-                    },
-                    function(event) {
-                        time_dur_m = duration;
-                    });
-            }
-            else {
-                menuItem.unbind(evDropF)[evDropF](function() {
-                    hov($(this));
-                    }).unbind(evDropS)[evDropS](function() {
-                    unhov($(this));
-                })
-                menu.unbind(evDropF)[evDropF](function() {
-                    return time_dur_m = 0;
-                    }).unbind(evDropS)[evDropS](
+                menu.hover(
                     function() {
-                        methods.fadeDrop();
+                        return time_dur_m = 0;
+                    },
+                    function() {
                         return time_dur_m = duration;
                     });
             }
-            drop.find('li li a').click(function(event) {
-                event.stopPropagation();
-            })
-            body.click(function() {
-                methods.fadeDrop();
-            })
-        },
-        refresh: function() {
-            $(drop).removeClass('right-drop').removeAttr('style');
-            methods.init($.extend({
-                menu: $('.menu-main')
-            }, optionsMenu));
-        },
-        fadeDrop: function() {
-            time_dur_m = 0;
-
-            clearTimeout(hover_t_o);
-
-            drop.stop()[effectoff](duration).addClass('d_n');
-
-            menuItemCltd.removeClass('hover')
-            $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }
     };
-    $.fn.menuPacket2 = function(method) {
+    $.fn.menuImageCms = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+            $.error('Method ' + method + ' does not exist on jQuery.menuImageCms');
         }
     };
 })(jQuery);
+/*plugin menuImageCms end*/
 (function($) {
-    def_min = $('span#opt1').data('def_min');
-    def_max = $('span#opt2').data('def_max');
-    cur_min = $('span#opt3').data('cur_min');
-    cur_max = $('span#opt4').data('cur_max');
     var methods = {
         init: function(options) {
             if ($.exists_nabir(this)) {
@@ -622,15 +492,15 @@ function ieInput(els) {
                     settings.before();
                     event.preventDefault();
 
-                    if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
+                    if (!$this.parent().hasClass(activeClass) && !$this.parent().hasClass('disabled')) {
 
                         wST = wnd.scrollTop();
                         $thisA = $this[attrOrdata[index]]('href');
                         if ($this.data('drop') == undefined) {
-                            nav_tabs_li[index].removeClass('active');
-                            $this.parent().addClass('active');
-                            tabs_div[index].hide().removeClass('active');
-                            $($thisA).show().addClass('active');
+                            nav_tabs_li[index].removeClass(activeClass);
+                            $this.parent().addClass(activeClass);
+                            tabs_div[index].hide().removeClass(activeClass);
+                            $($thisA).show().addClass(activeClass);
                         }
                         if (attrOrdata[index] != 'data') {
                             if (event.which || event.button == 0) {
@@ -980,14 +850,14 @@ function ieInput(els) {
 })(jQuery);
 (function($) {
     $.fn.actual = function() {
-        $('.cloned').remove();
+        $(cloned).remove();
         if (arguments.length && typeof arguments[0] == 'string') {
             var dim = arguments[0];
             var clone = $(this).clone().css({
                 position: 'absolute',
                 top: '-9999px',
                 display: 'block'
-            }).addClass('cloned').appendTo('body');
+            }).addClass(clonedC).appendTo('body');
             return clone[dim]();
         }
         return undefined;
@@ -998,12 +868,12 @@ function ieInput(els) {
         init: function(options) {
             if ($.exists_nabir($(this))){
                 settings = $.extend({
-                    cloned: '.cloned',
-                    activeClass: 'active',
                     exit: '[data-closed = "closed-js"]',
                     effon: 'show',
                     effoff: 'hide',
-                    effdur: 500,
+                    duration: 500,
+                    place: 'center',
+                    placement: 'top left',
                     before: function() {
                         return true;
                     },
@@ -1015,15 +885,14 @@ function ieInput(els) {
                 var $thisD = this,
                 selector = $thisD.selector,
                 dataSource = $('[data-drop]'),
-                cloned = settings.cloned,
                 exit = $(settings.exit),
                 effon = settings.effon,
                 effoff = settings.effoff,
-                effdur = settings.effdur,
+                duration = settings.duration,
+                place = settings.place,
+                placement = settings.placement,
                 overlayColor = settings.overlayColor,
                 overlayOpacity = settings.overlayOpacity;
-
-                activeClass = settings.activeClass;
 
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
@@ -1032,8 +901,10 @@ function ieInput(els) {
                     $(this).each(function() {
                         var $this = $(this),
                         $thisS = $this.data('effect-off') || effoff,
-                        $thisD = $this.data('duration') || effdur,
+                        $thisD = $this.data('duration') || duration,
                         $thisSource = $this.data('drop');
+                        
+                        $this.attr('data-placement', $this.data('placement') || placement).attr('data-place', $this.data('place') || place);
                         $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                     });
                     if ($(event.target).parents('[data-simple="yes"]').length == 0){
@@ -1043,7 +914,7 @@ function ieInput(els) {
                 
                         var elSetOn = elSet.effectOn || effon,
                         elSetOff = elSet.effectOff || effoff,
-                        elSetDuration = elSet.duration || effdur,
+                        elSetDuration = elSet.duration || duration,
                         overlayColor = elSet.overlaycolor || settings.overlayColor,
                         overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
@@ -1088,7 +959,7 @@ function ieInput(els) {
                             if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
                             else elSetSource.removeAttr('style');
                     
-                            methods.positionDrop($this, elSet, elSetSource);
+                            methods.positionDrop($this, placement, place);
 
                             $this.addClass(activeClass);
                             drop_over.show();
@@ -1100,8 +971,8 @@ function ieInput(els) {
                                 elSetSource.addClass(activeClass);
                                 if (ltie7)
                                     ieInput();
+                                settings.after(this, elSetSource);
                             });
-                            settings.after(this, elSetSource);
                         }
                         $(cloned).remove();
                     }
@@ -1141,7 +1012,7 @@ function ieInput(els) {
             
             sel.each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
-                $this.click().parent().removeClass('active');
+                $this.click().parent().removeClass(activeClass);
                 if ($this.data('place') == 'center') {
                     body.removeClass('o_h');
                     body.css('margin-right', function(){
@@ -1152,7 +1023,7 @@ function ieInput(els) {
                     })
                 }
                 drop_over.remove();
-            }).removeClass('active');
+            }).removeClass(activeClass);
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {
@@ -1163,21 +1034,20 @@ function ieInput(els) {
                 queue: false
             });
         },
-        positionDrop: function($this){
+        positionDrop: function($this, placement, place){
             var $this = $this;
             if ($this == undefined) $this = $(this);
             
-            var elSet = $this.data(),
-            elSetSource = $(elSet.drop);
+            var elSetSource = $($this.data().drop);
             
-            var $thisP = $this.attr('data-place');
+            var $thisP = place;
             dataSourceH = 0,
             dataSourceW = 0,
-            $thisW = $this.width();
+            $thisW = $this.width(),
             $thisH = $this.height();
-            
+
             if ($thisP == 'noinherit') {
-                var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
+                var $thisPMT = placement.toLowerCase().split(' ');
 
                 if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
                     dataSourceH = -elSetSource.actual('height');
@@ -1212,7 +1082,7 @@ function ieInput(els) {
                 })
                 wnd.bind('resize.drop', function(){
                     methods.dropScroll(elSetSource)
-                    }).resize();
+                }).resize();
             }
         }
     };
@@ -1804,9 +1674,7 @@ var Shop = {
             if (typeof selector == 'undefined' || selector == '')
                 selector = this.popupCartSelector;
 
-            template = _.template($(selector).html(), Shop.Cart);
             return template = _.template($(selector).html(), Shop.Cart);
-
         },
 
         showPopupCart:function () {

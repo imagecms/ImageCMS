@@ -1,13 +1,13 @@
 <!-- Order call form -->
 <div class="drop-popup drop drop-order-call">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
+    <div class="icon_times_drop" data-closed="closed-js"></div>
     <div class="header-title">
         Заказ звонка
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="standart_form horizontal-form">
+                <div class=" horizontal-form">
                     <form method="post" action="{site_url('/shop/shop/callback')}" id="callback_form">
                         <div class="popup_container">
                             {include_tpl('callback')}
@@ -24,14 +24,14 @@
 
 <!-- Enter form -->
 <div class="drop-popup drop drop-enter">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
+    <div class="icon_times_drop" data-closed="closed-js"></div>
     <div class="header-title">
         Вход в магазин
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/login')}" id="enter_form">
                         <div class="popup_container">
                             {include_tpl('../login_popup')}
@@ -58,14 +58,14 @@
 
 <!-- Register form -->
 <div class="drop-popup drop drop-register">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
+    <div class="icon_times_drop" data-closed="closed-js"></div>
     <div class="header-title">
         Регистрация
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/login')}" id="register_form">
                         <div class="popup_container">
                             {include_tpl('../register_popup')}
@@ -81,14 +81,14 @@
 
 <!-- Forgot Password form -->
 <div class="drop-popup drop drop-forget">
-    <div class="icon_times-drop" data-closed="closed-js"></div>
+    <div class="icon_times_drop" data-closed="closed-js"></div>
     <div class="header-title">
         Напоминание пароля
     </div>
     <div class="drop-content">
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="{site_url('auth/forgot_password')}" id="remember_form">
                         <div class="popup_container">
                             {include_tpl('../../forgot_popup')}
@@ -103,12 +103,12 @@
 
 <!-- Report Appearance form -->                        
 <div class="drop-popup drop drop-report">
-    <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header-title">Сообщить о появлении</div>
         <div class="drop-content-inside">
             <div class="inside-padd">
-                <div class="horizontal-form standart_form">
+                <div class="horizontal-form ">
                     <form method="post" action="" id="notifMe_form">
                         reportFormData
                     </form>
@@ -172,7 +172,7 @@
 
 {if $CI->uri->segment(2) == "profile"}
     <div class="drop-popup drop drop-comulativ-discounts">
-        <div class="icon_times-drop" data-closed="closed-js"></div>
+        <div class="icon_times_drop" data-closed="closed-js"></div>
         <div class="header-title">Накопительные скидки</div>
         <div class="drop-content">
             <div class="drop-content-inside">
@@ -209,12 +209,12 @@
 
 {if $CI->uri->segment(2) == "wish_list"}
     <div class="drop-popup drop drop-show-friend">
-        <button type="button" class="icon_times-drop" data-closed="closed-js"></button>
+        <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="header-title">Сообщить другу</div>
         <div class="drop-content">
             <div class="drop-content-inside">
                 <div class="inside-padd">
-                    <div class="horizontal-form standart_form">
+                    <div class="horizontal-form ">
                         <form action="wish_list/sendWishList" method="post" id="wish_form">
                             <div class="popup_container">
                                 {include_tpl('wish_popup')}
