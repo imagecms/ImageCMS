@@ -381,7 +381,7 @@
                     <li><button data-href="#fourth">Аксессуары</button></li>
                     {/if}
                 </ul>
-                <div class="frame-tabs-ref">
+                <div class="frame-tabs">
                     <!--             Start. Characteristic-->                 
                     <div id="first">
                         <div class="characteristic">

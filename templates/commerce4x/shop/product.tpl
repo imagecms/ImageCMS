@@ -217,11 +217,6 @@
                 {echo $CI->load->module('share')->_make_share_form()}
             </div>
             <!-- End. Withdraw button to "share" -->
-            <div id="info">
-                <div class="text">
-                    {echo $model->getShortDescription()}
-                </div>
-            </div>
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
                 {if $model->getFullDescription() != ''}
