@@ -881,6 +881,7 @@ wnd.load(function() {
         prev: '.btn_prev',
         next: '.btn_next',
         content: '.carousel',
+        groupButtons: '.groupButton',
         before: function(){
             var sH = 0;
             var brandsImg = $('.frame_brand img')

@@ -25,7 +25,7 @@
                                                 <img src="{$item.cover_url}"/>
                                             </a>
                                         {else:}
-                                            <img src="{$THEME}/img/no_image.png"/>
+                                            <img src="{$THEME}img/no_image.png"/>
                                         {/if}
                                         <div class="m-t_10">
                                             <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn btn-small" data-rel="tooltip" data-title="{lang('imgs_view')}"><i class="icon-fullscreen"></i> Просмотр фото</a>
@@ -58,17 +58,17 @@
                                             <tr>
                                                 <th></th>
                                                 <td>
-                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" 
-                                                       class="btn btn-small" 
-                                                       data-rel="tooltip" 
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}"
+                                                       class="btn btn-small"
+                                                       data-rel="tooltip"
                                                        data-title="{lang('a_to_edit')}">
                                                         <i class="icon-edit"></i> Редактировать альбом
                                                     </a>
-                                                    <button type="button" 
-                                                            class="btn btn-danger btn-small" 
-                                                            data-rel="tooltip" 
-                                                            onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" 
-                                                            data-title="{lang('a_delete')}" 
+                                                    <button type="button"
+                                                            class="btn btn-danger btn-small"
+                                                            data-rel="tooltip"
+                                                            onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')"
+                                                            data-title="{lang('a_delete')}"
                                                             data-remove="">
                                                         <i class="icon-trash icon-white"></i> Удалить альбом
                                                     </button>

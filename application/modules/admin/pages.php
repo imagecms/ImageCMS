@@ -447,7 +447,6 @@ class Pages extends BaseAdminController {
      * @access public
      */
     function update($page_id) {
-
         //cp_check_perm('page_edit');
 
         $this->form_validation->set_rules('page_title', lang('ac_val_t'), 'trim|required|min_length[1]|max_length[500]');
@@ -527,16 +526,16 @@ class Pages extends BaseAdminController {
             $description = $this->lib_admin->db_post('page_description');
 
             // create keywords
-            if ($keywords == '' AND $settings['create_keywords'] == 'auto') {
-                $keywords = $this->lib_seo->get_keywords($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
-            }
+//            if ($keywords == '' AND $settings['create_keywords'] == 'auto') {
+//                $keywords = $this->lib_seo->get_keywords($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
+//            }
 
             // create description
-            if ($description == '' AND $settings['create_description'] == 'auto') {
-                $description = $this->lib_seo->get_description($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
-            }
+//            if ($description == '' AND $settings['create_description'] == 'auto') {
+//                $description = $this->lib_seo->get_description($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
+//            }
 
-            mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0, -1) : TRUE;
+//            mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0, -1) : TRUE;
 
             $publish_date = $this->input->post('publish_date') . ' ' . $this->input->post('publish_time');
             $create_date = $this->input->post('create_date') . ' ' . $this->input->post('create_time');
@@ -826,20 +825,20 @@ class Pages extends BaseAdminController {
         $keywords = $this->lib_seo->get_keywords($text, TRUE);
 
         foreach ($keywords as $key => $val) {
-            if ($val < 3) 
+            if ($val < 3)
                 $size = 14 + $val;
-            
-            if ($val == 1) 
+
+            if ($val == 1)
                 $size = 12;
-            
-            if ($val == 4) 
+
+            if ($val == 4)
                 $size = 13;
-            
-            if ($val > 3) 
+
+            if ($val > 3)
                 $size = 22;
-            
+
             $append = $key . ', ';
-            echo '<a class="underline" onclick="$(\'#page_keywords\').append (\'' . $append . '\' );" style="font-size:' . $size . 'px">' . $key . '</a> &nbsp;';
+            echo '<a class="underline" onclick="$(\'#page_keywords\').append(\'' . $append . '\' );" style="font-size:' . $size . 'px">' . $key . '</a> &nbsp;';
         }
     }
 

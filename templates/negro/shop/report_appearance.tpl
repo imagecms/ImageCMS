@@ -1,4 +1,4 @@
-<div class="drop drop-report">
+<div class="drop drop-report drop-style">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">Сообщить когда появится</div>
@@ -13,7 +13,7 @@
         <div class="">
             <label>
                 <span class="title">Ваше имя</span>
-                <span class="frame_form_field">
+                <span class="frame-form-field">
                     <input type="text" id="" name="UserName"/>
                     <label id="for_UserName" class="for_validations"></label>
                     <span class="must">*</span>
@@ -21,7 +21,7 @@
             </label>
             <label>
                 <span class="title">E-mail</span>
-                <span class="frame_form_field">
+                <span class="frame-form-field">
                     <input type="text" id="" name="UserEmail"/>
                     <label id="for_UserEmail" class="for_validations"></label>
                     <input type="hidden" name="ProductId" value=""/>
@@ -32,7 +32,7 @@
             </label>
             <label>
                 <span class="title">Телефон</span>
-                <span class="frame_form_field">
+                <span class="frame-form-field">
                     <input type="text" id="" name="UserPhone"/>
                     <label id="for_UserPhone" class="for_validations"></label>
                 </span>

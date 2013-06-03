@@ -77,7 +77,7 @@
                             {if count($paymentMethods)}
                                 <div class="frame-label">
                                     <span class="title">Способ оплаты</span>
-                                    <div class="frame_form_field">
+                                    <div class="frame-form-field">
                                         <div class="row-fluid">
                                             <div class="lineForm pmDiv">
                                  

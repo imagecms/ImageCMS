@@ -41,8 +41,10 @@
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('a_filtrate')}</button>
                     <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('a_copy_product')}</button>
-                    <button onclick="$('#pages_action_dialog').modal();pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
-                    <button onclick="$('#pages_delete_dialog').modal();pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                    <button onclick="$('#pages_action_dialog').modal();
+                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
+                    <button onclick="$('#pages_delete_dialog').modal();
+                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>-->
                     <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</a>
                 </div>
@@ -58,27 +60,27 @@
                     <ul class="nav nav-tabs nav-stacked">
                         {foreach $tree as $cat}
                             <li {if $cat_id==$cat.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$cat.id}" class="pjax">{$cat.name}</a></li>
-                            {if $cat.subtree}
-                                {foreach $cat.subtree as $sc1}
+                                {if $cat.subtree}
+                                    {foreach $cat.subtree as $sc1}
                                     <li {if $cat_id==$sc1.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc1.id}" class="pjax">&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc1.name}</a></li>
-                                    {if $sc1.subtree}
-                                        {foreach $sc1.subtree as $sc2}
+                                        {if $sc1.subtree}
+                                            {foreach $sc1.subtree as $sc2}
                                             <li {if $cat_id==$sc2.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc2.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc2.name}</a></li>
-                                            {if $sc2.subtree}
-                                                {foreach $sc2.subtree as $sc3}
+                                                {if $sc2.subtree}
+                                                    {foreach $sc2.subtree as $sc3}
                                                     <li {if $cat_id==$sc3.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc3.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc3.name}</a></li>
-                                                    {if $sc3.subtree}
-                                                        {foreach $sc3.subtree as $sc4}
+                                                        {if $sc3.subtree}
+                                                            {foreach $sc3.subtree as $sc4}
                                                             <li {if $cat_id==$sc4.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc4.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc4.name}</a></li>
-                                                        {/foreach}
-                                                    {/if}
-                                                {/foreach}
-                                            {/if}
-                                        {/foreach}
-                                    {/if}
-                                {/foreach}
-                            {/if}
-                        {/foreach}
+                                                            {/foreach}
+                                                        {/if}
+                                                    {/foreach}
+                                                {/if}
+                                            {/foreach}
+                                        {/if}
+                                    {/foreach}
+                                {/if}
+                            {/foreach}
                     </ul>
                 </div>
             {/if}
@@ -116,7 +118,7 @@
                             <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
                                 <option value="">Все категории</option>
                                 <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
-                                { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id'])); }
+                                {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
                             </select>
                         </td>{/if}
                         <td>
@@ -144,7 +146,7 @@
                                 <td><span>{truncate($page.url, 40, '...')}</span></td>
                                 {if $show_cat_list != 'yes'}
                                     <td>
-                                        <span>{if $category }{$category.name}{else:}
+                                        <span>{if $category}{$category.name}{else:}
 
                                             {if 0 == $page.category}
                                                 {lang('a_without_cat')}

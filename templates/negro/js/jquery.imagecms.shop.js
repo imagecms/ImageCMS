@@ -4,6 +4,23 @@ clonedC = 'cloned';
 /*
  *imagecms frontend plugins
  **/
+function plural_str(i, str){
+    function plural (a){
+        if ( a % 10 == 1 && a % 100 != 11 ) return 0
+        else if ( a % 10 >= 2 && a % 10 <= 4 && ( a % 100 < 10 || a % 100 >= 20)) return 1
+        else return 2;
+    }
+
+    switch (plural(i)) {
+        case 0:
+            return str[0];
+        case 1:
+            return str[1];
+        default:
+            return str[2];
+    }
+}
+
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
 }
@@ -45,6 +62,217 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
+(function($) {
+    var methods = {
+        init: function(options) {
+            if ($.exists_nabir($(this))) {
+                var settings = $.extend({
+                    wrapper: $(".frame-label:has(.niceCheck)"),
+                    elCheckWrap: '.niceCheck',
+                    evCond: false,
+                    before: function() {
+                        return true;
+                    }
+                }, options);
+                var frameChecks = $(this);
+                wrapper = settings.wrapper;
+                elCheckWrap = settings.elCheckWrap;
+                evCond = settings.evCond;
+                frameChecks = frameChecks.selector.split(',')
+                $.map(frameChecks, function(i, n) {
+                    thisFrameChecks = $(i.replace(' ', ''));
+                    thisFrameChecks.each(function() {
+                        $(this).find(elCheckWrap).each(function() {
+                            var $this = $(this).removeClass('b_n');
+                            var $thisInput = $this.children()
+
+                            if (!$thisInput.is('[disabled="disabled"]'))
+                                methods.changeCheckStart($this, $thisInput);
+                            else {
+                                methods.checkUnChecked($this, $thisInput)
+                                methods.CheckallDisabled($this, $thisInput);
+                            }
+                        })
+                    }).find(wrapper).unbind('click').on('click', function() {
+                        var $this = $(this),
+                        $thisD = $this.is('.disabled'),
+                        nstcheck = $this.find(elCheckWrap);
+                        if (nstcheck.length == 0)
+                            nstcheck = $this
+
+                        if (!$thisD) {
+                            if (!evCond)
+                                methods.changeCheck(nstcheck);
+                            else
+                                settings.before(thisFrameChecks, $this, nstcheck);
+                        }
+                    });
+                })
+            }
+        },
+        changeCheckStart: function(el, input) {
+            var el = el,
+            input = input;
+            if (input.attr("checked")) {
+                methods.checkChecked(el, input);
+            }
+            else {
+                methods.checkUnChecked(el, input);
+            }
+        },
+        checkChecked: function(el, input) {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = input;
+            if (input == undefined)
+                input = this.find("input");
+            el.addClass('active').parent().addClass('active');
+            input.attr("checked", true);
+        },
+        checkUnChecked: function(el, input) {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = input;
+            if (input == undefined)
+                input = this.find("input");
+            el.removeClass('active').parent().removeClass('active');
+            input.attr("checked", false);
+        },
+        changeCheck: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = el.find("input");
+            if (!input.attr("checked")) {
+                methods.checkChecked(el, input);
+            }
+            else {
+                methods.checkUnChecked(el, input);
+            }
+        },
+        changeCheckallchecks: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                var input = el.find("input");
+                el.addClass('active').parent().addClass('active');
+                input.attr("checked", true);
+            })
+        },
+        changeCheckallreset: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('active').parent().removeClass('active');
+                input.attr("checked", false);
+            });
+        },
+        CheckallDisabled: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('active').addClass('disabled').parent().addClass('disabled').removeClass('active');
+                input.attr('disabled', 'disabled').removeAttr('checked');
+            });
+        },
+        CheckallEnabled: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('disabled').parent().removeClass('disabled');
+                input.removeAttr('disabled');
+            });
+        }
+    };
+    $.fn.nStCheck = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.nStCheck');
+        }
+    };
+})(jQuery);
+(function($) {
+    var methods = {
+        init: function(options) {
+            if ($.exists_nabir($(this))) {
+                var settings = $.extend({
+                    after: function() {
+                        return true;
+                    }
+                }, options);
+                var after = settings.after,
+                $this = $(this);
+                $(this).each(function() {
+                    methods.changeRadioStart($(this), after);
+                });
+            }
+            $this.parent().unbind('click').on('click', function() {
+                methods.changeRadio($(this).children($this), after);
+            });
+        },
+        changeRadioStart: function(el, after)
+        {
+            var el = el,
+            input = el.find("input");
+            if (input.attr("checked")) {
+                methods.radioCheck(el, input, after);
+            }
+            el.removeClass('b_n');
+            return false;
+        },
+        changeRadio: function(el, after)
+        {
+            var el = el,
+            input = el.find("input");
+            methods.radioCheck(el, input, after);
+        },
+        radioCheck: function(el, input, after) {
+            var el = el,
+            input = input;
+            el.addClass('active');
+            el.parent().addClass('active');
+            input.attr("checked", true);
+            input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
+                methods.radioUnCheck($(this).parent(), $(this))
+            })
+
+            after(input);
+        },
+        radioUnCheck: function(el, input) {
+            var el = el,
+            input = input;
+            el.removeClass('active');
+            el.parent().removeClass('active');
+            input.attr("checked", false);
+        }
+    };
+    $.fn.nStRadio = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
+        }
+    };
+})(jQuery);
 (function($) {
     var methods = {
         init: function(options) {
@@ -448,107 +676,140 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var settings = $.extend({
-                before: function() {
-                    return true;
-                },
-                after: function() {
-                    return true;
-                }
-            }, options);
-            $this = this;
-            var tabs_div = [],
-            nav_tabs_li = [],
-            reg_refs = [];
-            refs = [];
-            attrOrdata = [];
-            this_l = this.length;
-            k = true;
-
-            return this.each(function(index) {
-                var $thiss = $(this);
-                nav_tabs_li[index] = $thiss.children();
-                refs[index] = nav_tabs_li[index].children();
-                attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
-
-                temp_obj = $([]);
-
-                refs[index].each(function(ind) {
-                    var this_href = $(this)[attrOrdata[index]]('href');
-                    if (ind == 0) {
-                        reg_refs[index] = "";
-                        temp_obj = temp_obj.add($(this_href));
-                        reg_refs[index] += this_href;
+            if ($.exists_nabir($(this))){
+                var settings = $.extend({
+                    effectOn:'show',
+                    effectOff:'hide',
+                    durationOn: 0,
+                    durationOff: 0,
+                    before: function() {
+                        return true;
+                    },
+                    after: function() {
+                        return true;
                     }
-                    else {
-                        temp_obj = temp_obj.add($(this_href));
-                        reg_refs[index] += '|' + this_href;
-                    }
-                })
-                tabs_div[index] = temp_obj;
-                reg_refs[index] = new RegExp(reg_refs[index]);
-                refs[index].on('click', function(event) {
-                    var $this = $(this);
-                    settings.before();
-                    event.preventDefault();
+                }, options);
+                $this = this;
+                var tabs_div = [],
+                tabs_id=[],
+                nav_tabs_li = [],
+                reg_refs = [];
+                refs = [];
+                attrOrdata = [];
+                this_l = this.length;
+                k = true;
 
-                    if (!$this.parent().hasClass(activeClass) && !$this.parent().hasClass('disabled')) {
+                return this.each(function(index) {
+                    var $thiss = $(this),
+                    effectOn = settings.effectOn,
+                    effectOff = settings.effectOff,
+                    durationOn = settings.durationOn,
+                    durationOff = settings.durationOff;
+                
+                    condRadio = $thiss.data('type') != 'itemsView';
+                    nav_tabs_li[index] = $thiss.children();
+                    refs[index] = nav_tabs_li[index].children();
+                    attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
 
-                        wST = wnd.scrollTop();
-                        $thisA = $this[attrOrdata[index]]('href');
-                        if ($this.data('drop') == undefined) {
-                            nav_tabs_li[index].removeClass(activeClass);
-                            $this.parent().addClass(activeClass);
-                            tabs_div[index].hide().removeClass(activeClass);
-                            $($thisA).show().addClass(activeClass);
+                    var temp_obj = $([]),
+                    temp_obj2 = $([]);
+
+                    refs[index].each(function(ind) {
+                        var this_href = $(this)[attrOrdata[index]]('href');
+                        if (ind == 0) {
+                            reg_refs[index] = "";
+                            temp_obj = temp_obj.add($(this_href));
+                            temp_obj2 = temp_obj2.add('[data-id='+this_href+']');
+                            reg_refs[index] += this_href;
                         }
-                        if (attrOrdata[index] != 'data') {
-                            if (event.which || event.button == 0) {
-                                var wLH = window.location.hash;
-                                temp = wLH;
-                                try {
-                                    if (wLH.indexOf($thisA) == -1) {
-                                        temp = temp.replace(wLH.match(reg_refs[index])[0], $thisA)
-                                    }
-                                    if (wLH.charAt(wLH.indexOf($thisA)) != '') {
-                                        temp += $thisA;
-                                    }
-                                    window.location.hash = temp;
-                                } catch (e) {
-                                    window.location.hash += $thisA;
+                        else {
+                            temp_obj = temp_obj.add($(this_href));
+                            temp_obj2 = temp_obj2.add('[data-id='+this_href+']');
+                            reg_refs[index] += '|' + this_href;
+                        }
+                    })
+                    tabs_div[index] = temp_obj;
+                    tabs_id[index] = temp_obj2;
+                    reg_refs[index] = new RegExp(reg_refs[index]);
+                    refs[index].on('click', function(event) {
+                        var $this = $(this);
+                        settings.before();
+                        event.preventDefault();
+
+                        if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
+
+                            wST = wnd.scrollTop();
+                            $thisA = $this[attrOrdata[index]]('href');
+                            if ($this.data('drop') == undefined) {
+                                nav_tabs_li[index].removeClass('active');
+                                $this.parent().addClass('active');
+                                if (condRadio) {
+                                    tabs_div[index].add(tabs_id[index])[effectOff](durationOff).removeClass('active');
+                                    $($thisA).add('[data-id='+$thisA+']')[effectOn](durationOn).addClass('active');
+                                    if (ltie7)
+                                        ieInput();
+                                }
+                                else {
+                                    setcookie('listtable', $this.parent().index(), 0, '/');
                                 }
                             }
-                            else if ($this.data('drop') == undefined && k) {
-                                window.location.hash = hashs[0].join('');
-                                k = false;
+                            if (condRadio) {
+                                if (attrOrdata[index] != 'data') {
+                                    if (event.which || event.button == 0) {
+                                        var wLH = window.location.hash;
+                                        temp = wLH;
+                                        try {
+                                            if (wLH.indexOf($thisA) == -1) {
+                                                temp = temp.replace(wLH.match(reg_refs[index])[0], $thisA)
+                                            }
+                                            if (wLH.charAt(wLH.indexOf($thisA)) != '') {
+                                                temp += $thisA;
+                                            }
+                                            window.location.hash = temp;
+                                        } catch (e) {
+                                            window.location.hash += $thisA;
+                                        }
+                                    }
+                                    else if ($this.data('drop') == undefined && k) {
+                                        window.location.hash = hashs[0].join('');
+                                        k = false;
+                                    }
+                                }
+                            }
+                            else {
+                                refs[index].each(function(){
+                                    var $thisDH = $(this).data('href');
+                                    if ($thisDH == $thisA) $($thiss.data('elchange')).addClass($thisA)
+                                    else $($thiss.data('elchange')).removeClass($thisDH)
+                                })
                             }
                         }
+                        ;
+                        if (event.which || event.button == 0) {
+                            settings.after($thiss);
+                        }
+                    });
+
+                    if (this_l - 1 == index) {
+                        methods.location();
+                        methods.startCheck();
                     }
-                    ;
-                    if (event.which || event.button == 0) {
-                        settings.after($thiss);
-                    }
+
+                    wnd.bind('hashchange', function(event) {
+                        methods.location();
+                        methods.startCheck();
+                        function scroll_top(wST) {
+                            wnd.scrollTop(wST);
+                        }
+
+                        //chrome bug
+                        if ($.browser.webkit)
+                            scroll_top(wST - 100);
+
+                        scroll_top(wST);
+                    })
                 });
-
-                if (this_l - 1 == index) {
-                    methods.location();
-                    methods.startCheck();
-                }
-
-                wnd.bind('hashchange', function(event) {
-                    methods.location();
-                    methods.startCheck();
-                    function scroll_top(wST) {
-                        wnd.scrollTop(wST);
-                    }
-
-                    //chrome bug
-                    if ($.browser.webkit)
-                        scroll_top(wST - 100);
-
-                    scroll_top(wST);
-                })
-            });
+            }
         },
         location: function() {
             hashs = [];
@@ -871,9 +1132,9 @@ function ieInput(els) {
                     exit: '[data-closed = "closed-js"]',
                     effon: 'show',
                     effoff: 'hide',
-                    duration: 500,
+                    duration: 200,
                     place: 'center',
-                    placement: 'top left',
+                    placement: 'noinherit',
                     before: function() {
                         return true;
                     },
@@ -897,88 +1158,111 @@ function ieInput(els) {
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
                     event.preventDefault();
-                
-                    $(this).each(function() {
-                        var $this = $(this),
-                        $thisS = $this.data('effect-off') || effoff,
-                        $thisD = $this.data('duration') || duration,
-                        $thisSource = $this.data('drop');
-                        
-                        $this.attr('data-placement', $this.data('placement') || placement).attr('data-place', $this.data('place') || place);
-                        $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-                    });
-                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
-                        $this = $(this);
+                    
+                    var $this = $(this);
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0){//for propagation with tabs
                         elSet = $this.data();
-                        elSetSource = $(elSet.drop);
-                
-                        var elSetOn = elSet.effectOn || effon,
-                        elSetOff = elSet.effectOff || effoff,
-                        elSetDuration = elSet.duration || duration,
-                        overlayColor = elSet.overlaycolor || settings.overlayColor,
-                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                        
+                        function showDrop(elSetSource, isajax){
+                            $this.each(function() {
+                                var $this = $(this),
+                                $thisEOff = $this.data('effect-off') || effoff,
+                                $thisD = $this.data('duration') || duration,
+                                $thisSource = $this.data('drop');
+                        
+                                $this.attr('data-placement', $this.data('placement') || placement);
+                                $this.attr('data-place', $this.data('place') || place);
+                                $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                            });
+                    
+                            var $thisEOn = elSet.effectOn || effon,
+                            $thisEOff = elSet.effectOff || effoff,
+                            $thisD = elSet.duration || duration,
+                            overlayColor = elSet.overlaycolor || settings.overlayColor,
+                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                        if (overlayColor != undefined || overlayOpacity != undefined) {
-                            if (!$.exists('.overlayDrop')) {
-                                body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                            if (overlayColor != undefined || overlayOpacity != undefined) {
+                                if (!$.exists('.overlayDrop')) {
+                                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                                }
+                                drop_over = $('.overlayDrop');
+                                drop_over.css({
+                                    'background-color': overlayColor,
+                                    'opacity': overlayOpacity
+                                });
                             }
-                            drop_over = $('.overlayDrop');
-                            drop_over.css({
-                                'background-color': overlayColor,
-                                'opacity': overlayOpacity
-                            });
-                        }
-                        else
-                            drop_over = $([]);
+                            else
+                                drop_over = $([]);
 
-                        if (elSetSource.is('.' + activeClass)) {
-                            $this.removeClass(activeClass)
-                            elSetSource[elSetOff](elSetDuration, function() {
-                                elSetSource.removeClass(activeClass).removeAttr('style')
-                                drop_over[elSetOff](elSetDuration);
-                            });
-                            $thisHref = $(this).attr('href');
-                            if ($thisHref != undefined) {
-                                var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
-                                try {
-                                    indH = wLH.match($thisHref + '(?![a-z])').index;
-                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                } catch (err) {
+                            if (elSetSource.is('.' + activeClass)) {
+                                methods.triggerBtnClick(elSetSource, selector);
+
+                                $thisHref = $(this).attr('href');
+                                if ($thisHref != undefined) {
+                                    var $thisHrefL = $thisHref.length,
+                                    wLH = location.hash,
+                                    wLHL = wLH.length;
+                                    try {
+                                        indH = wLH.match($thisHref + '(?![a-z])').index;
+                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                    } catch (err) {
+                                    }
                                 }
                             }
-                        }
-                        else {
-                            $newthis = settings.before(this, elSetSource);
-                            if ($newthis != undefined) $this = $newthis;
+                            else {
+                                $newthis = settings.before(this, elSetSource, isajax);
+                                if ($newthis != undefined) $this = $newthis;
                             
-                            if (event.button == undefined) body.scrollTop($this.offset().top)
+                                $thisDrop = $this.closest('[data-elrun]');
+                                if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
+                            
+                                if (event.button == undefined && place != "center") body.scrollTop($this.offset().top)
 
-                            var wndW = wnd.width();
-                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                            else elSetSource.removeAttr('style');
+                                var wndW = wnd.width();
+                                if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                                else elSetSource.removeAttr('style');
                     
-                            methods.positionDrop($this, placement, place);
+                                methods.positionDrop($this, placement, place);
+                            
+                                if (place == "center") methods.dropScroll(elSetSource);
 
-                            $this.addClass(activeClass);
-                            drop_over.show();
-
-                            drop_over.unbind('click').bind('click', function(){
-                                methods.triggerBtnClick();
-                            })
-                            elSetSource[elSetOn](elSetDuration, function() {
-                                elSetSource.addClass(activeClass);
-                                if (ltie7)
-                                    ieInput();
-                                settings.after(this, elSetSource);
-                            });
+                                $this.parent().addClass(activeClass);
+                                
+                                drop_over.show()
+                                drop_over.unbind('click').bind('click', function(e){
+                                    e.stopPropagation();
+                                    methods.triggerBtnClick(false,selector);
+                                })
+                                elSetSource[$thisEOn]($thisD, function() {
+                                    elSetSource.addClass(activeClass);
+                                    if (ltie7)
+                                        ieInput();
+                                    settings.after(this, elSetSource, isajax);
+                                });
+                            }
+                            $(cloned).remove();
                         }
-                        $(cloned).remove();
+                        
+                        elSetSource = $(elSet.drop);
+                        if ($.exists_nabir(elSetSource)){
+                            showDrop(elSetSource);
+                        }
+                        else{
+                            if (elSet.source){
+                                $.fancybox.showActivity();
+                                $.post(elSet.source, function(data){
+                                    $.fancybox.hideActivity();
+                                    body.append(data);
+                                    elSetSource = $(elSet.drop);
+                                    showDrop(elSetSource, true);
+                                    dataSource = $('[data-drop]');
+                                })
+                            }
+                        }
                     }
                 })
-                exit.click(function(){
-                    methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                exit.live('click', function(){
+                    methods.triggerBtnClick($(this).closest('[data-elrun]'), selector);
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
@@ -987,7 +1271,7 @@ function ieInput(els) {
                             return;
                         else
                         {
-                            methods.triggerBtnClick();
+                            methods.triggerBtnClick(false,selector);
                         }
                     }
                 }).live('keydown', function(e) {
@@ -1001,35 +1285,42 @@ function ieInput(els) {
                         key = e.which;
 
                     if (key == 27) {
-                        methods.triggerBtnClick();
+                        methods.triggerBtnClick(false,selector);
                     }
                 });
             }
         },
-        triggerBtnClick: function(sel) {
-            if (!sel) sel = $('[data-elrun].' + activeClass);
-            else sel = sel.closest('[data-elrun]');
+        triggerBtnClick: function(sel, selector) {
+            if (!sel) var drop = $('[data-elrun].' + activeClass);
+            else var drop = sel;
             
-            sel.each(function() {
-                $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
-                $this.click().parent().removeClass(activeClass);
-                if ($this.data('place') == 'center') {
-                    body.removeClass('o_h');
-                    body.css('margin-right', function(){
-                        if ($(document).height()-wnd.height() > 0){
-                            drop_over.removeClass('drop_overlay_fixed');
-                            return 0
-                        }
-                    })
+            
+            drop.removeClass(activeClass).each(function() {
+                var $this = $(this),
+                $thisEOff = $this.attr('data-effect-off'),
+                $thisD = $this.attr('data-duration');
+                
+                var $thisB = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                $thisB.parent().removeClass(activeClass);
+                
+                if ($thisB.data('place') == 'center' && !$.exists_nabir($(selector+'.'+activeClass))) {
+                    if ($(document).height()-wnd.height() > 0){
+                        drop_over.removeClass('drop_overlay_fixed');
+                        body.removeClass('isScroll')
+                    }
+                    drop_over.hide();
                 }
-                drop_over.remove();
-            }).removeClass(activeClass);
+                $this[$thisEOff]($thisD, function(){
+                    $(this).removeAttr('style');
+                    settings.close($thisB, $this);
+                });
+            });
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {
-            elSetSource.animate({
-                'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
+            elSetSource.css({
+                'top': (wnd.height() - elSetSource.actual('height')) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.actual('width')) / 2 + wnd.scrollLeft()
             }, {
                 queue: false
             });
@@ -1073,16 +1364,13 @@ function ieInput(els) {
                 if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                body.css('margin-right', function(){
-                    if ($(document).height()-wnd.height() > 0){
-                        body.addClass('o_h');
-                        drop_over.addClass('drop_overlay_fixed');
-                        return 17
-                    }
-                })
+                if ($(document).height()-wnd.height() > 0){
+                    body.addClass('isScroll');
+                    drop_over.addClass('drop_overlay_fixed');
+                }
                 wnd.bind('resize.drop', function(){
                     methods.dropScroll(elSetSource)
-                }).resize();
+                });
             }
         }
     };
@@ -1327,83 +1615,61 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var settings = $.extend({
-                item: 'li',
-                prev: '.prev',
-                next: '.next',
-                content: '.content-carousel',
-                before: function() {
-                },
-                after: function() {
-                }
-            }, options);
-            var $js_carousel = $(this);
-            if ($.exists_nabir($js_carousel)) {
-                var item = settings.item,
+            if ($.exists_nabir($(this))) {
+                var $js_carousel = $(this);
+                var settings = $.extend({
+                    item: 'li',
+                    prev: '.prev',
+                    next: '.next',
+                    content: '.content-carousel',
+                    groupButtons: '.group-button-carousel',
+                    before: function() {
+                    },
+                    after: function() {
+                    }
+                }, options);
+                var $item = settings.item,
                 prev = settings.prev,
                 next = settings.next,
                 content = settings.content,
-                $item = [],
-                $item_l = [],
-                $item_w = [],
-                $this_carousel = [],
-                $this_prev = [],
-                $this_next = [],
-                $marginR = [],
-                cont_width = [],
-                $item_h = [],
-                $marginT = [],
-                cont_height = [],
-                $frame_button = [],
+                groupButtons = settings.groupButtons,
                 adding = settings.adding;
-						
+					
                 $js_carousel.each(function(index) {
-                    $this = $(this);
-                    $frame_button[index] = $this.find('.groupButton')
-                    $this_carousel[index] = $this;
-                    $item[index] = $this.find(item);
-                    $item_l[index] = $item[index].length;
-                    $item_w[index] = $item[index].outerWidth(true);
-                    $item_h[index] = $item[index].outerHeight(true);
-                    $this_prev[index] = $this.find(prev);
-                    $this_next[index] = $this.find(next);
-                    $marginR[index] = $item_w[index] - $item[index].outerWidth();
-                    $marginT[index] = $item_h[index] - $item[index].outerHeight();
-                    cont_width[index] = $this.find(content).width();
-                    cont_height[index] = $this.find(content).height();
-                })
+                    var $this = $(this),
+                    $item = $this.find(content).children().children(item),
+                    $item_l = $item.length,
+                    $item_w = $item.outerWidth(true),
+                    $this_prev = $this.find(prev),
+                    $this_next = $this.find(next),
+                    $marginR = $item_w - $item.outerWidth(),
+                    cont_width = $this.find(content).width(),
+                    group_button = $this.find(groupButtons);
 
-                settings.before();
-                $js_carousel.each(function(index) {
-                    var index = index,
-                    $count_visible = (cont_width / ($item_w[index])).toFixed(1);
-                    var cond = $item_w * $item_l - $marginR > cont_width
-                    try{
-                        if (adding.vertical) {
-                            cond = $item_h[index] * $item_l[index] - $marginT[index] > cont_height[index]
-                            $count_visible = 1;
-                        }
-                    }catch(err){}
-                        
-                    if (cond) {
+                    settings.before($this);
+                    
+                    var $count_visible = (cont_width / $item_w).toFixed(1);
+                    if ($item_w * $item_l - $marginR > cont_width) {
                         var main_obj = {
-                            buttonNextHTML: $this_next[index],
-                            buttonPrevHTML: $this_prev[index],
+                            buttonNextHTML: $this_next,
+                            buttonPrevHTML: $this_prev,
                             visible: $count_visible,
                             scroll: 1
                         }
-                        $this_carousel[index].jcarousel($.extend(
+                        $this.jcarousel($.extend(
                             adding
                             , main_obj));
 
-                        $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
+                        $this_next.add($this_prev).css('display', 'inline-block');
+                        group_button.append($this_next.add($this_prev));
                     }
                     else {
-                        $this_next[index].add($this_prev[index]).css('display', 'none');
+                        $this_next.add($this_prev).hide();
                     }
+                    settings.after($this);
                 });
-                settings.after();
             }
+            return $js_carousel;
         }
     };
     $.fn.myCarousel = function(method) {
