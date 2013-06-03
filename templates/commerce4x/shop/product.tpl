@@ -216,6 +216,9 @@
             <div class="share_tov">
                 {echo $CI->load->module('share')->_make_share_form()}
             </div>
+            <div class="short_desc text">
+                {echo $model->getShortDescription()}
+            </div>
             <!-- End. Withdraw button to "share" -->
             <ul class="tabs clearfix">
                 <!-- Start. Show the block information if available -->
