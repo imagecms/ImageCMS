@@ -65,6 +65,217 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
+            if ($.exists_nabir($(this))) {
+                var settings = $.extend({
+                    wrapper: $(".frame-label:has(.niceCheck)"),
+                    elCheckWrap: '.niceCheck',
+                    evCond: false,
+                    before: function() {
+                        return true;
+                    }
+                }, options);
+                var frameChecks = $(this);
+                wrapper = settings.wrapper;
+                elCheckWrap = settings.elCheckWrap;
+                evCond = settings.evCond;
+                frameChecks = frameChecks.selector.split(',')
+                $.map(frameChecks, function(i, n) {
+                    thisFrameChecks = $(i.replace(' ', ''));
+                    thisFrameChecks.each(function() {
+                        $(this).find(elCheckWrap).each(function() {
+                            var $this = $(this).removeClass('b_n');
+                            var $thisInput = $this.children()
+
+                            if (!$thisInput.is('[disabled="disabled"]'))
+                                methods.changeCheckStart($this, $thisInput);
+                            else {
+                                methods.checkUnChecked($this, $thisInput)
+                                methods.CheckallDisabled($this, $thisInput);
+                            }
+                        })
+                    }).find(wrapper).unbind('click').on('click', function() {
+                        var $this = $(this),
+                        $thisD = $this.is('.disabled'),
+                        nstcheck = $this.find(elCheckWrap);
+                        if (nstcheck.length == 0)
+                            nstcheck = $this
+
+                        if (!$thisD) {
+                            if (!evCond)
+                                methods.changeCheck(nstcheck);
+                            else
+                                settings.before(thisFrameChecks, $this, nstcheck);
+                        }
+                    });
+                })
+            }
+        },
+        changeCheckStart: function(el, input) {
+            var el = el,
+            input = input;
+            if (input.attr("checked")) {
+                methods.checkChecked(el, input);
+            }
+            else {
+                methods.checkUnChecked(el, input);
+            }
+        },
+        checkChecked: function(el, input) {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = input;
+            if (input == undefined)
+                input = this.find("input");
+            el.addClass('active').parent().addClass('active');
+            input.attr("checked", true);
+        },
+        checkUnChecked: function(el, input) {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = input;
+            if (input == undefined)
+                input = this.find("input");
+            el.removeClass('active').parent().removeClass('active');
+            input.attr("checked", false);
+        },
+        changeCheck: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            var input = el.find("input");
+            if (!input.attr("checked")) {
+                methods.checkChecked(el, input);
+            }
+            else {
+                methods.checkUnChecked(el, input);
+            }
+        },
+        changeCheckallchecks: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                var input = el.find("input");
+                el.addClass('active').parent().addClass('active');
+                input.attr("checked", true);
+            })
+        },
+        changeCheckallreset: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('active').parent().removeClass('active');
+                input.attr("checked", false);
+            });
+        },
+        CheckallDisabled: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('active').addClass('disabled').parent().addClass('disabled').removeClass('active');
+                input.attr('disabled', 'disabled').removeAttr('checked');
+            });
+        },
+        CheckallEnabled: function(el)
+        {
+            var el = el;
+            if (el == undefined)
+                el = this;
+            el.each(function() {
+                input = el.find("input");
+                el.removeClass('disabled').parent().removeClass('disabled');
+                input.removeAttr('disabled');
+            });
+        }
+    };
+    $.fn.nStCheck = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.nStCheck');
+        }
+    };
+})(jQuery);
+(function($) {
+    var methods = {
+        init: function(options) {
+            if ($.exists_nabir($(this))) {
+                var settings = $.extend({
+                    after: function() {
+                        return true;
+                    }
+                }, options);
+                var after = settings.after,
+                $this = $(this);
+                $(this).each(function() {
+                    methods.changeRadioStart($(this), after);
+                });
+            }
+            $this.parent().unbind('click').on('click', function() {
+                methods.changeRadio($(this).children($this), after);
+            });
+        },
+        changeRadioStart: function(el, after)
+        {
+            var el = el,
+            input = el.find("input");
+            if (input.attr("checked")) {
+                methods.radioCheck(el, input, after);
+            }
+            el.removeClass('b_n');
+            return false;
+        },
+        changeRadio: function(el, after)
+        {
+            var el = el,
+            input = el.find("input");
+            methods.radioCheck(el, input, after);
+        },
+        radioCheck: function(el, input, after) {
+            var el = el,
+            input = input;
+            el.addClass('active');
+            el.parent().addClass('active');
+            input.attr("checked", true);
+            input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
+                methods.radioUnCheck($(this).parent(), $(this))
+            })
+
+            after(input);
+        },
+        radioUnCheck: function(el, input) {
+            var el = el,
+            input = input;
+            el.removeClass('active');
+            el.parent().removeClass('active');
+            input.attr("checked", false);
+        }
+    };
+    $.fn.nStRadio = function(method) {
+        if (methods[method]) {
+            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
+        }
+    };
+})(jQuery);
+(function($) {
+    var methods = {
+        init: function(options) {
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
@@ -1417,7 +1628,7 @@ function ieInput(els) {
                     after: function() {
                     }
                 }, options);
-                var item = settings.item,
+                var $item = settings.item,
                 prev = settings.prev,
                 next = settings.next,
                 content = settings.content,
@@ -1426,7 +1637,7 @@ function ieInput(els) {
 					
                 $js_carousel.each(function(index) {
                     var $this = $(this),
-                    $item = $this.find(item),
+                    $item = $this.find(content).children().children(item),
                     $item_l = $item.length,
                     $item_w = $item.outerWidth(true),
                     $this_prev = $this.find(prev),
@@ -1437,7 +1648,7 @@ function ieInput(els) {
 
                     settings.before($this);
                     
-                    var $count_visible = (cont_width / ($item_w)).toFixed(1);
+                    var $count_visible = (cont_width / $item_w).toFixed(1);
                     if ($item_w * $item_l - $marginR > cont_width) {
                         var main_obj = {
                             buttonNextHTML: $this_next,
@@ -1449,11 +1660,11 @@ function ieInput(els) {
                             adding
                             , main_obj));
 
-                        $this_next.add($this_prev).show();
-                        $this.append(group_button.append($this_next.add($this_prev)));
+                        $this_next.add($this_prev).css('display', 'inline-block');
+                        group_button.append($this_next.add($this_prev));
                     }
                     else {
-                        $this_next.add($this_prev).css('display', 'none');
+                        $this_next.add($this_prev).hide();
                     }
                     settings.after($this);
                 });

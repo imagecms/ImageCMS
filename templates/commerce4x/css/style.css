@@ -677,7 +677,8 @@ a.activeSlide{background-position: -66px 0;}
 .carousel .span4{width: 370px !important;}
 .carousel .span5{width: 470px !important;}
 .carousel_js .items_catalog > li{margin: 0 30px 20px 0;float: left;}
-.frame_carousel_product .items > li{float: left;}
+.frame_carousel_product .items > li{float: left;margin-left: 0;}
+.frame_carousel_product .row, .frame_carousel_product .row-fluid{margin-left: 0;}
 .carousel .items{width: 99999px;margin-left: 0;}
 .carousel .items .gen_sum_kits{width: 180px !important;}
 
