@@ -21,6 +21,7 @@ Thumbs.db
 /application/modules/shop/build.properties
 /application/modules/shop/buildtime-conf.xml
 /application/modules/shop/runtime-conf.xml
+/application/modules/shop/cmlTemp/
 /pma/
 *.*~
 /*.csv
@@ -29,3 +30,4 @@ codecept.phar
 codeception.yml
 /image_cms_shop_responsive/nbproject/private/
 /build
+/cm
