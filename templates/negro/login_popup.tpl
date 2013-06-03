@@ -3,7 +3,7 @@
 * @file template file for creating drop-down login form uses imagecms.api.js for submiting and appending validation errors
 */
 #}
-<div class="drop-enter drop">
+<div class="drop-enter drop drop-style">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">

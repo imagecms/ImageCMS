@@ -43,16 +43,10 @@
                     <span class="text-el">partner@imagecms.net</span>
                 </a>
                 <!--                End. Contacts block-->
-                <!--                Start. Show wish list and compare data-->
-                <div class="f_r">
-                    {include_shop_tpl('wish_list_data')}
-                    {include_shop_tpl('compare_data')}
-                </div>
-                <!--                End. Show wish list and compare data-->
             </div>
             <div class="frame-search-cleaner">
                 <!--                Start. Include cart data template-->
-                <div id="bask_block" class="frame-cleaner tiny-bask">
+                <div id="bask_block" class="frame-cleaner">
                     {include_shop_tpl('cart_data')}
                 </div>
                 <!--                    End. Include cart data template-->
@@ -65,7 +59,7 @@
                             </span>
                             <div class="frame-search-input">
                                 <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="" placeholder="{lang('s_se_thi_sit')}" />
-                                <div id="suggestions" class="drop-search drop"></div>
+                                <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>
                     </div>        

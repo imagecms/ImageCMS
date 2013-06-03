@@ -1,5 +1,5 @@
 <!-- floating elements-->
-<div id="popupCart" style="display: none;" class="drop drop-bask"></div>
+<div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
 <a href="#" data-drop="#popupCart" data-place="center" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" id="showCart" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">

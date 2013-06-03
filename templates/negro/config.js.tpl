@@ -10,4 +10,5 @@
     inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
     inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}"),
     inServerCompare = parseInt("{count($CI->session->userdata('shopForCompare'))}");
+    plurProd = ['&nbsp;товар', '&nbsp;товара', '&nbsp;товаров']
 </script>
