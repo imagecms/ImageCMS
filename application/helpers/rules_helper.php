@@ -19,7 +19,7 @@ if (!function_exists('admin_or_redirect')) {
         if($ci->dx_auth->is_admin())
             return true;
         else{
-            if ($this->input->is_ajax_request())
+            if ($ci->input->is_ajax_request())
                 echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
             else
             redirect('admin/login', '');
