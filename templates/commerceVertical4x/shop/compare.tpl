@@ -113,6 +113,7 @@
                                                             <!-- End. Check amount of goods -->
                                                             <!-- to wish list button -->
                                                             <button class="btn btn_small_p toWishlist" 
+                                                                    data-price="{echo $product->firstVariant->toCurrency()}"
                                                                     data-prodid="{echo $product->getId()}" 
                                                                     data-varid="{echo $product->firstVariant->getId()}"  
                                                                     type="button"
@@ -127,7 +128,7 @@
                                                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                                                 <figure>
                                                                     <span class="helper"></span>
-                                                                    <img src="{productImageUrl($product->getSmallModimage())}" alt="{echo $product->id}"/>
+                                                                    <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo $product->id}"/>
                                                                 </figure>
                                                             </a>
                                                         </div>

@@ -107,6 +107,7 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
+        
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists
@@ -134,7 +135,6 @@ class Star_rating extends MY_Controller {
             }
             //Change rating for product
             if ($type == 'product') {
-
                 if (SProductsQuery::create()->findPk($id) !== null) {
                     $model = SProductsRatingQuery::create()->findPk($id);
                     if ($model === null) {

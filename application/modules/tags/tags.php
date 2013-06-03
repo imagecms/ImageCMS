@@ -41,6 +41,7 @@ class Tags extends MY_Controller {
           shuffle($this->tags); // Shuffle tags array.
          */
         //echo $this->build_cloud(); // Display tag cloud.
+        $this->core->error_404();
     }
 
     // Autoload default function

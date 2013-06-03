@@ -119,7 +119,7 @@
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="photo">
                                         <figure>
-                                            <img src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}" 
+                                            <img src="{echo $orderProduct->getSProducts()->firstVariant->getSmallPhoto()}" 
                                                  alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
                                         </figure>
                                     </a>
@@ -180,7 +180,7 @@
                                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="photo">
                                                                 <figure>
                                                                     <span class="helper"></span>
-                                                                    <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
+                                                                    <img src="{echo $orderProduct->getKit()->getMainProduct()->firstVariant->getSmallPhoto()}" 
                                                                          alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
                                                                 </figure>
                                                             </a>
@@ -212,7 +212,7 @@
                                                                 <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="photo">
                                                                     <figure>
                                                                         <span class="helper"></span>
-                                                                        <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
+                                                                        <img src="{echo $kitProducts->getSProducts()->firstVariant->getSmallPhoto()}" 
                                                                              alt="{echo ShopCore::encode($orderProduct->product_name)}"/>
                                                                     </figure>
                                                                 </a>
@@ -225,7 +225,7 @@
                                                 <!-- End. Display kits products -->
 
                                             </ul>
-                                            <img src="{$THEME}/images/gen_sum.png" alt="gen_sum"/>
+                                            <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
 
                                             <!-- Start. Render kit summary -->
                                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>

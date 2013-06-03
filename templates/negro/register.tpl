@@ -1,4 +1,4 @@
-<div class="inside">
+<div class="frame-inside">
     <div class="container">
         <div class="title_h2">Регистрация</div>
         <div class="frame-register">
@@ -41,8 +41,8 @@
                         {if $cap_image}
                             <label>
                                 <span class="title">{$cap_image}</span>
-                                <span class="frame_form_field">
-                                    <span class="icon-replay"></span>
+                                <span class="frame-form-field">
+                                    <span class="icon_replay"></span>
                                     {if $captcha_type == 'captcha'}
                                         <input type="text" name="captcha" id="captcha" />
                                         <label id="for_captcha" class="for_validations"></label>
@@ -51,7 +51,7 @@
                             </label>
                         {/if}
                         <div class="control-group">
-                            <div class="btn btn-order">
+                            <div class="btn-order">
                                 <input type="submit" value="{lang('lang_submit')}"/>
                             </div>
                         </div>

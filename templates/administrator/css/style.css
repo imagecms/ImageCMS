@@ -635,6 +635,15 @@ span.check_gg {
     background-repeat: no-repeat no-repeat;
     background-color: rgba(255,255,255,0.5);
 }
+#fixPage{
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    position: fixed;
+    display: none;
+    background-repeat: no-repeat no-repeat;
+    background-color: rgba(255,255,255,0.2);
+}
 
 .dialogelfinder{
     font-size: 16px !important;
@@ -688,3 +697,5 @@ border-right: none !important;
 .bootstrapSkin table.mceLayout tr.mceFirst td {border: none !important;}
 
 .save_button_field{color:blue;cursor:pointer;}
+.w_150 {width:150px !important;}
+.center { display:block; text-align:center; margin:0 auto}

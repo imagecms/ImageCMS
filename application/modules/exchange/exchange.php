@@ -20,22 +20,28 @@ class Exchange {
     /** default directory for saving files from 1c */
     private $tempDir;
 
-    /* contains default locale */
+    /** contains default locale */
     private $locale;
 
-    /* contains shop category table name */
+    /** contains shop category table name */
     private $categories_table = 'shop_category';
 
-    /* contains shop products properties table name */
+    /** contains shop products properties table name */
     private $properties_table = 'shop_product_properties';
 
-    /* contains shop products table name */
+    /** contains shop products table name */
     private $products_table = 'shop_products';
 
-    /* contains shop products variants name */
+    /** contains shop products variants name */
     private $product_variants_table = 'shop_product_variants';
 
-    /* table which contains module settings if modules is installed */
+    /** contains shop products variants images */
+    private $shop_images = array();
+
+    /** contains shop products additionals images */
+    private $shop_additionals_images = array();
+
+    /** table which contains module settings if modules is installed */
     private $settings_table = 'components';
     private $allowed_image_extensions = array();
     private $login;
@@ -46,6 +52,7 @@ class Exchange {
     private $brand = array();
     private $prop = array();
     private $prop_data = array();
+    private $urls = array();
 
     public function __construct() {
         set_time_limit(0);
@@ -65,8 +72,9 @@ class Exchange {
         $this->prod = load_product();
         $this->prop = load_prop();
         $this->prop_data = load_prop_data();
+        $this->urls = load_urls();
 
-        $this->locale = $this->getCurrentLocale();    //getting current locale
+        $this->locale = MY_Controller::getCurrentLocale();    //getting current locale
 
         if (!$this->get1CSettings()) {
             //default settings if module is not installed yet
@@ -330,7 +338,8 @@ class Exchange {
             }
 
             //rename import xml file after import finished
-            rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+            if (!$this->config[debug])
+                rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
             //returns success status to 1c
             echo "success";
         }
@@ -569,6 +578,7 @@ class Exchange {
         }
         unset($temp_properties);
 
+        $i = 0;
         foreach ($this->xml->Каталог->Товары->Товар as $product) {
 
             $searchedProduct = is_prod($product->Ид, $this->prod);
@@ -589,9 +599,11 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
 
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
 
-
-                $data['active'] = true;
                 $data['hit'] = false;
                 $data['brand_id'] = 0;
                 $data['created'] = time();
@@ -602,8 +614,13 @@ class Exchange {
                 $data['action'] = false;
                 $data['added_to_cart_count'] = 0;
                 $data['enable_comments'] = true;
-                $data['url'] = translit_url($product->Наименование);
 
+                if (in_array(translit_url($product->Наименование), $this->urls)) {
+                    $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
+                } else {
+                    $data['url'] = translit_url($product->Наименование);
+                    $this->urls[] .= $data['url'];
+                }
 
                 //inserting prepared data to shop_products table
                 $this->ci->db->insert($this->products_table, $data);
@@ -613,26 +630,42 @@ class Exchange {
                 $insert_id = $this->ci->db->insert_id();
                 $data = array();
 
-
                 //setting images if $product->Картинка not empty
-                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
-                    $image = explode('/', $product->Картинка);
-                    $ext = explode('.', $image[count($image) - 1]);
+                if ($product->Картинка != '' OR $product->Картинка != null) {
 
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+                    $picture = null;
+                    foreach ($product->Картинка as $p) {
+                        $p = explode('/', $p);
+                        $p = end($p);
+                        $picture[] .= $p;
+                    }
 
-                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
+                    if (count($picture) > 1) {
 
-                    $data['mainImage'] = $insert_id . '_main.jpg';
-                    $data['smallImage'] = $insert_id . '_small.jpg';
-                    $data['mainModImage'] = $insert_id . '_mainMod.jpg';
-                    $data['smallModImage'] = $insert_id . '_smallMod.jpg';
+                        $this->ci->db->delete('shop_product_images', array('product_id' => $insert_id));
+
+                        foreach ($picture as $key => $pic) {
+                            if ($key == '0') {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
+                            } else {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/additional/' . $pic);
+
+                                $this->ci->db->set('product_id', $insert_id);
+                                $this->ci->db->set('image_name', $pic);
+                                $this->ci->db->set('position', $key - 1);
+                                $this->ci->db->insert('shop_product_images');
+
+                                $this->shop_additionals_images[] = $searchedProduct['id'];
+                            }
+                        }
+                    }
+                    else
+                        @copy($this->tempDir . 'images/' . $picture[0], './uploads/shop/products/origin/' . $picture[0]);
+
+                    $img[$i] = $picture[0];
                 }
-                $this->ci->db->where('id', $insert_id)->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
-                $data = array();
                 $data['id'] = $insert_id;
                 $data['locale'] = $this->locale;
                 $data['name'] = $product->Наименование . "";
@@ -653,6 +686,7 @@ class Exchange {
 
                 //preparing insert data for shop_product_variants
                 $data = array();
+                $data['mainImage'] = $img[$i];
                 $data['product_id'] = $insert_id;
                 $data['price'] = '0.00000';
                 $data['external_id'] = $product->Ид . "";
@@ -737,29 +771,48 @@ class Exchange {
                     $data['category_id'] = $categoryId;
                 }
                 $data['updated'] = time();
-                $data['url'] = translit_url($product->Наименование . "");
+
+                if ($product->Статус == 'Удален')
+                    $data['active'] = false;
+                else
+                    $data['active'] = true;
 
                 //updating prepared data in shop_products table
                 $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //setting images if $product->Картинка not empty
-                if ($product->Картинка . "" != '' OR $product->Картинка != null) {
-                    $image = explode('/', $product->Картинка);
-                    $ext = explode('.', $image[count($image) - 1]);
+                if ($product->Картинка != '' OR $product->Картинка != null) {
 
-                    @rename('./application/modules/shop/cmlTemp/images/' . $image[count($image) - 1], './application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1]);
-                    @copy('./application/modules/shop/cmlTemp/images/' . $product->Ид . '.' . $ext[count($ext) - 1], './uploads/shop/origin/' . $product->Ид . '.' . $ext[count($ext) - 1]);
+                    $picture = null;
+                    foreach ($product->Картинка as $p) {
+                        $p = explode('/', $p);
+                        $p = end($p);
+                        $picture[] .= $p;
+                    }
 
-                    $data = array();
+                    if (count($picture) > 1) {
+                        $this->ci->db->delete('shop_product_images', array('product_id' => $searchedProduct['id']));
 
-                    //$data['Image'] = $product->Ид . '.' . $ext[count($ext) - 1];
-                    $data['mainImage'] = $searchedProduct['id'] . '_main.jpg';
-                    $data['smallImage'] = $searchedProduct['id'] . '_small.jpg';
-                    $data['mainModImage'] = $searchedProduct['id'] . '_mainMod.jpg';
-                    $data['smallModImage'] = $searchedProduct['id'] . '_smallMod.jpg';
+                        foreach ($picture as $key => $pic) {
+                            if ($key == '0') {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/' . $pic);
+                            } else {
+                                @copy($this->tempDir . 'images/' . $pic, './uploads/shop/products/origin/additional/' . $pic);
+
+                                $this->ci->db->set('product_id', $searchedProduct['id']);
+                                $this->ci->db->set('image_name', $pic);
+                                $this->ci->db->set('position', $key - 1);
+                                $this->ci->db->insert('shop_product_images');
+
+                                $this->shop_additionals_images[] = $searchedProduct['id'];
+                            }
+                        }
+                    }
+                    else
+                        @copy($this->tempDir . 'images/' . $picture[0], './uploads/shop/products/origin/' . $picture[0]);
+
+                    $img[$i] = $picture[0];
                 }
-
-                $this->ci->db->where('id', $searchedProduct['id'])->update($this->products_table, $data);
 
                 //preparing data for shop_products_i18n table
                 $data = array();
@@ -784,6 +837,7 @@ class Exchange {
                 $data = array();
                 $data['number'] = $product->Артикул . "";
                 $data['external_id'] = $product->Ид . "";
+                $data['mainImage'] = $img[$i];
 
                 //updating prepared data in shop_product_variants
                 $this->ci->db->where(array('product_id' => $searchedProduct['id'], 'position' => 0))->update($this->product_variants_table, $data);
@@ -839,12 +893,18 @@ class Exchange {
                     }
                 }
             }
+            $i++;
         }
+
+        $this->shop_images = array_diff($img, array(null));
+
         //serializing and saving property values to database
         foreach ($properties_data as $key => $item) {
             $data = array();
             $data = array('data' => serialize($item));
-            $this->ci->db->where(array('id' => $key, 'locale' => $this->locale))->update('shop_product_properties_i18n', $data);
+            $this->ci->db
+                    ->where(array('id' => $key, 'locale' => $this->locale))
+                    ->update('shop_product_properties_i18n', $data);
         }
     }
 
@@ -855,7 +915,9 @@ class Exchange {
             $data['price'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
             $data['price_in_main'] = (float) $offer->Цены->Цена->ЦенаЗаЕдиницу;
             $data['stock'] = (int) $offer->Количество;
-            $this->ci->db->where('external_id', $offer->Ид . "")->update($this->product_variants_table, $data);
+            $this->ci->db
+                    ->where('external_id', $offer->Ид . "")
+                    ->update($this->product_variants_table, $data);
         }
     }
 
@@ -863,7 +925,9 @@ class Exchange {
      * uses SWatermark class to carry out image resize and adding watermark
      */
     private function startImagesResize() {
-        ShopCore::app()->SWatermark->updateWatermarks(true);
+        \MediaManager\Image::create()
+                ->resizeByName($this->shop_images)
+                ->resizeByIdAdditional(array_unique($this->shop_additionals_images));
     }
 
     /**
@@ -952,7 +1016,8 @@ class Exchange {
                     echo "fail. order not found";
                 }
             }
-            rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
+            if (!$this->config[debug])
+                rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
         }
         exit();
     }
@@ -1110,30 +1175,6 @@ class Exchange {
             echo $xml_order;
         }
         exit();
-    }
-
-    private function getCurrentLocale() {
-        $lang_id = $this->ci->config->item('cur_lang');
-        if ($lang_id) {
-            $this->ci->db->select('identif');
-            $query = $this->ci->db->get_where('languages', array('id' => $lang_id))->result();
-            if ($query) {
-                $currentLocale = $query[0]->identif;
-            } else {
-                $currentLocale = 'ru';
-            }
-        } else {
-            $language = $this->ci->db->where('default', 1)
-                    ->limit(1)
-                    ->get('languages');
-            if ($language)
-                $language = $language->row();
-            else
-                throw new Exception("Default language not found");
-
-            $currentLocale = $language->identif;
-        }
-        return $currentLocale;
     }
 
 }

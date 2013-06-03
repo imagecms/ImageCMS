@@ -56,11 +56,10 @@ class Commentsapi extends Comments {
             $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
-        if ($comments != null) {
+        if ($comments != null)
             $comments_count = count($comments);
-        } else {
+        else
             $comments_count = 0;
-        }
 
         if (is_array($comments)) {
             $i = 0;
@@ -107,7 +106,7 @@ class Commentsapi extends Comments {
 
     /**
      * Determinate commented page.
-     * 
+     *
      * if product - return id
      */
     public function parsUrl($url) {
@@ -123,7 +122,7 @@ class Commentsapi extends Comments {
                     ->get('shop_products')
                     ->row();
 
-            if ($id->enable_comments == 0)
+            if ($id->enable_comments === 0)
                 $this->enable_comments = false;
             else
                 return $id->id;
@@ -149,22 +148,21 @@ class Commentsapi extends Comments {
                     ->get('settings')
                     ->row();
 
-            if ($id->comments_status == 0)
+            if ($id->comments_status === 0)
                 $this->enable_comments = false;
             else
                 return $id->main_page_id;
         }
 
 //        if (strstr($url, '/bloh/')) {
-        $paths = explode(DS, $url);
+        $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
 
         $id = $this->db->select('id, comments_status')
                 ->where('url', $paths)
                 ->get('content')
                 ->row();
-
-        if ($id->comments_status == 0)
+        if ($id->comments_status === 0)
             $this->enable_comments = false;
         else
             return $id->id;
@@ -198,15 +196,6 @@ class Commentsapi extends Comments {
         $this->load->model('base');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-
-        // Check if page comments status.
-//        if ($this->getModule($_SERVER['HTTP_REFERER']) == 'core') {
-//            var_dump($item_id);
-//            if ($this->base->get_item_comments_status($item_id) == FALSE) {
-//                ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
-//                $this->core->error(lang('error_comments_diabled'));
-//            }
-//        }
 
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {

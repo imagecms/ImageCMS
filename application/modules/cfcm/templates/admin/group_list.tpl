@@ -23,9 +23,9 @@
                 </div>
 
             </div>
-        </div>                            
-    </div>             
-    <div class="tab-content content_big_td">                
+        </div>
+    </div>
+    <div class="tab-content content_big_td">
 
         dsfk jhfjdhgj fgdjhfjhg  C O N T E N T
 
@@ -69,10 +69,10 @@
                     {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
                 </td>
                 <td align="right">
-                    <img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
-                    <img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" /> 
+                    <img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
+                    <img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
                 </td>
-            </tr>        
+            </tr>
             {/foreach}
         </tbody>
         <tfoot>
@@ -113,8 +113,8 @@
                     var req = new Request.HTML({
                         method: 'post',
                         url: base_url + 'admin/components/cp/cfcm/delete_group/' + id,
-                        onComplete: function(response) { 
-                            ajax_div('page', base_url + 'admin/components/cp/cfcm/list_groups');    
+                        onComplete: function(response) {
+                            ajax_div('page', base_url + 'admin/components/cp/cfcm/list_groups');
                         }
                     }).post();
                 }

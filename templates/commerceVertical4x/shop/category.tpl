@@ -63,13 +63,13 @@
                         <span class="v-a_m">{lang('s_order_by')}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang('s_no')}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang('s_action')}</option>
+                                <option value="" {if !$order_method}selected="selected"{/if}>-{lang('s_no')}-</option>
+                                <option value="rating" {if $order_method=='rating'}selected="selected"{/if}>{lang('s_po')} {lang('s_rating')}</option>
+                                <option value="price" {if $order_method=='price'}selected="selected"{/if}>{lang('s_dewevye')}</option>
+                                <option value="price_desc" {if $order_method=='price_desc'}selected="selected"{/if} >{lang('s_dor')}</option>
+                                <option value="hit" {if $order_method=='hit'}selected="selected"{/if}>{lang('s_popular')}</option>
+                                <option value="hot" {if $order_method=='hot'}selected="selected"{/if}>{lang('s_new')}</option>
+                                <option value="action" {if $order_method=='action'}selected="selected"{/if}>{lang('s_action')}</option>
                             </select>
                         </div>
                     </div>
@@ -195,6 +195,7 @@
 
                                     <!-- to wish list button -->
                                     <button class="btn btn_small_p toWishlist" 
+                                            data-price="{echo $product->firstVariant->toCurrency()}"
                                             data-prodid="{echo $product->getId()}" 
                                             data-varid="{echo $product->firstVariant->getId()}"  
                                             type="button" 
@@ -212,12 +213,12 @@
 
                             </div>
 
-                            <!-- displaying products small mod image -->
+                            <!-- displaying products small image -->
                             <div class="photo-block">
                                 <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{productSmallImageUrl($product)}" 
+                                        <img src="{echo $product->firstVariant->getSmallPhoto()}" 
                                              alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}"/>
                                     </figure>
                                 </a>

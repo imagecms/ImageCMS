@@ -5,7 +5,7 @@
 #}
  
 <!-- Adds meta tag for this page -->
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+{$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 <article>
     <div class="t-a_c">
         <div class="row d_i-b t-a_l">

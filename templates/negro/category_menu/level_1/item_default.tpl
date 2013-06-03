@@ -1,7 +1,7 @@
 <li>
-    <a href="{$link}" title="{$title}"{if $wrapper != FALSE} class="is-sub"{/if}>
+    <a href="{$link}" title="{$title}" class="title-category-l1{if $wrapper != FALSE} is-sub{/if}">
         <span class="helper"></span>
-        <span>{$title}</span>
+        <span class="text-el">{$title}</span>
     </a>
     {$wrapper}
 </li>

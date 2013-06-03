@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 4.0.0deb0ubuntu1ppa1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 19 2013 р., 11:34
--- Версія сервера: 5.5.29
--- Версія PHP: 5.4.6-1ubuntu1.2
+-- Час створення: Трв 10 2013 р., 14:39
+-- Версія сервера: 5.5.31-0ubuntu0.13.04.1
+-- Версія PHP: 5.4.9-4ubuntu2
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- БД: `premium`
+-- База даних: `premium`
 --
 
 -- --------------------------------------------------------
@@ -59,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(63, 0, 0, 'Корневая категория', 'root category', '', 'root', '', '', '', 'b:0;', '', '', '', 5, 'publish_date', 'desc', 0, 11, 9, 'a:2:{s:26:"category_apply_for_subcats";s:1:"1";s:17:"apply_for_subcats";s:1:"1";}'),
 (69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'a:3:{i:0;s:2:"69";i:1;s:2:"70";i:2;s:2:"71";}', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
 (70, 69, 2, 'Последние новости', '', '', 'poslednie-novosti', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
 (71, 69, 3, 'Архив', '', '', 'arhiv', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}');
@@ -580,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=102 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=103 ;
 
 -- --------------------------------------------------------
 
@@ -597,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=756 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=759 ;
 
 --
 -- Дамп даних таблиці `logs`
@@ -618,7 +617,10 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 (752, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608759),
 (753, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/71"> Архив</a>', 1363608777),
 (754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618),
-(755, 1, 'admin', 'Вышел из панели управления', 1363617075);
+(755, 1, 'admin', 'Вышел из панели управления', 1363617075),
+(756, 47, 'admin', 'Вышел из панели управления', 1368174639),
+(757, 47, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1368174783),
+(758, 47, 'admin', 'Очистил кеш', 1368174887);
 
 -- --------------------------------------------------------
 
@@ -838,10 +840,6 @@ DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
-  `site_title` varchar(200) NOT NULL,
-  `site_short_title` varchar(50) NOT NULL,
-  `site_description` varchar(200) NOT NULL,
-  `site_keywords` varchar(200) NOT NULL,
   `create_keywords` varchar(25) NOT NULL,
   `create_description` varchar(25) NOT NULL,
   `create_cat_keywords` varchar(25) NOT NULL,
@@ -874,8 +872,32 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `site_title`, `site_short_title`, `site_description`, `site_keywords`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'premium', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'commerce4x', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `settings_i18n`
+--
+
+DROP TABLE IF EXISTS `settings_i18n`;
+CREATE TABLE IF NOT EXISTS `settings_i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lang_ident` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `short_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `keywords` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп даних таблиці `settings_i18n`
+--
+
+INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
+(1, 3, 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
 
 -- --------------------------------------------------------
 
@@ -1268,6 +1290,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
   `rate` float(6,3) DEFAULT '1.000',
+  `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -1295,6 +1318,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `free_from` float(10,2) NOT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_delivery_methods_I_2` (`enabled`),
   KEY `shop_delivery_methods_I_1` (`enabled`)
@@ -10019,7 +10043,48 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('1CCatSettings', 'a:1:{s:8:"filesize";s:11:"file_limit=";}', ''),
 ('1CSettingsOS', 'N;', ''),
 ('usegifts', '0;', 'ru'),
-('ordersCheckStocks', '', '');
+('ordersCheckStocks', '', ''),
+('imageSizesBlock', 'a:4:{s:5:"small";a:3:{s:4:"name";s:5:"small";s:6:"height";s:2:"65";s:5:"width";s:2:"63";}s:6:"medium";a:3:{s:4:"name";s:6:"medium";s:6:"height";s:3:"260";s:5:"width";s:3:"149";}s:4:"main";a:3:{s:4:"name";s:4:"main";s:6:"height";s:3:"452";s:5:"width";s:3:"288";}s:5:"large";a:3:{s:4:"name";s:5:"large";s:6:"height";s:3:"600";s:5:"width";s:3:"384";}}', ''),
+('imagesMainSize', 'auto', ''),
+('additionalImageWidth', '600', ''),
+('additionalImageHeight', '384', ''),
+('arrayFrontProductsPerPage', 'a:3:{i:0;s:2:"12";i:1;s:2:"24";i:2;s:2:"48";}', ''),
+('thumbImageWidth', '62', ''),
+('thumbImageHeight', '62', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `shop_sorting`
+--
+
+DROP TABLE IF EXISTS `shop_sorting`;
+CREATE TABLE IF NOT EXISTS `shop_sorting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pos` int(11) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `name_front` varchar(50) DEFAULT NULL,
+  `tooltip` varchar(50) NOT NULL,
+  `get` varchar(15) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Дамп даних таблиці `shop_sorting`
+--
+
+INSERT INTO `shop_sorting` (`id`, `pos`, `name`, `name_front`, `tooltip`, `get`, `active`) VALUES
+(1, 3, 'По рейтингу', 'Рейтинг', '', 'rating', 1),
+(2, 0, 'От дешевих к дорогим', 'От дешевих к дорогим', '', 'price', 1),
+(3, 2, 'От дорогих к дешевым', 'От дорогих к дешевим', '', 'price_desc', 1),
+(4, 1, 'Популярные', 'Популярние', '', 'hit', 1),
+(5, 4, 'Новинки', 'Новинки', '', 'hot', 1),
+(6, 5, 'Акции', 'Акции', '', 'action', 1),
+(7, 6, 'А-Я', 'Имени', '', 'name', 1),
+(8, 7, 'Я-А', 'Имени(Я-А)', '', 'name_desc', 1),
+(9, 7, 'Просмотров', 'Количеству просмотров', '', 'views', 1),
+(10, 9, 'Топ продаж', 'Топ продаж', '', 'topsales', 1);
 
 -- --------------------------------------------------------
 
@@ -10220,9 +10285,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
-
--- --------------------------------------------------------
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- Структура таблиці `user_autologin`

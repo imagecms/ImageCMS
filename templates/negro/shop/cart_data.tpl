@@ -1,11 +1,19 @@
-<div class="cleaner f_l f-s_0 isAvail">
-    <div class="btn btn-cleaner v-a_t c_d goCart">
-        <span>
-            <span class="icon-bask"></span>
-            <span class="text_el">Товаров</span>
-             <span id="topCartCount">&nbsp;(0)</span>
-             <span class="text_el">Сумма</span>
-             <span id="topCartTotalPrice">&nbsp;</span> {$CS}
+<div class="cleaner-btn tiny-bask">
+    <button>
+        <span class="frame-icon">
+            <span class="icon_cleaner"></span>
         </span>
-    </div>
-<div>
+        <span class="text-cleaner">
+            <span class="empty">
+                <span class="text-el">В корзине пусто</span>
+            </span>
+            <span class="no-empty">
+                <span class="text-el topCartCount"></span>
+                <span class="text-el plurProd">товар</span>
+                <span class="divider text-el">&#8226;</span>
+                <span class="text-el topCartTotalPrice"></span>
+                <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
+            </span>
+        </span>
+    </button>
+</div>

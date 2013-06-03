@@ -20,14 +20,6 @@ class Template extends Mabilis {
         $this->CI = & get_instance();
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
-        
-        $subStyle = null;
-        if ( strpos($tpl, '/') ) {
-            $parts = explode('/', $tpl);
-            $tpl = $parts[0];
-            $subStyle = $parts[2]!= 'default'?$parts[2]:null;
-        }
-        
         $config = array(
             'tpl_path' => TEMPLATES_PATH . $tpl . '/',
             'compile_path' => $this->CI->config->item('tpl_compile_path'),
@@ -44,10 +36,6 @@ class Template extends Mabilis {
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
         $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
-        
-        /*  subStyle folder */
-        $this->assign('subStyle', $subStyle);
-        
         $this->assign('CI', $this->CI);
     }
 
@@ -107,12 +95,12 @@ class Template extends Mabilis {
     }
 
     public function get_var($var) {
-        return $this->template_vars[$var];
+        return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
     }
 
     public function run_info() {
         /*         * ********************* */
-        echo '<!--';
+//        echo '<!--';
         echo '<div align="center">';
         echo 'Total Time:' . $this->CI->benchmark->elapsed_time('total_execution_time_start', 'total_execution_time_end') . ', ';
         echo 'Queries: ' . $this->CI->db->total_queries();
@@ -120,7 +108,7 @@ class Template extends Mabilis {
         echo ', Cache set: ' . $this->CI->cache->set;
         echo ', Memory Usage: ' . round(memory_get_usage() / 1024 / 1024, 4) . ' Mb';
         echo '</div>';
-        echo ' -->';
+//        echo ' -->';
         /*         * ********************* */
     }
 
@@ -172,9 +160,11 @@ class Template extends Mabilis {
     private $_js_files = array();
     private $_js_code = array();
     private $_css_code = array();
+    private $_css_str = array();
     private $_css_code_pos = array();
     private $_js_code_pos = array();
     private $_metas = array();
+    private $_canonicals = array();
     private static $arr = array();
     private static $result_before = '';
     private static $result_after = '';
@@ -196,6 +186,11 @@ class Template extends Mabilis {
         $this->_css_files[media_url($url)] = $position;
     }
 
+    public function registerCss($css, $position = 'before') {
+        $position = $this->_check_postion($position);
+        $this->_css_str[$css] = $position;
+    }
+
     public function registerJsFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_js_files[media_url($url)] = $position;
@@ -207,16 +202,30 @@ class Template extends Mabilis {
     }
 
     /**
-     * Place custom code before /head
-     * @param $code
+     * Place meta code before /head
+     * @param type $name meta name
+     * @param type $content meta content
      */
-    public function registerMeta($code) {
-        $this->_metas[] = $code;
+    public function registerMeta($name, $content) {
+        $this->_metas[] = '<META NAME="' . $name . '" CONTENT="' . $content . '">';
     }
 
+    /**
+     * Place canonical code before /head
+     * @param type $url canonical url
+     */
+    public function registerCanonical($url) {
+        $this->_canonicals[] = "<link href='" . $url . "' rel='canonical'>";
+    }
+
+    /**
+     * 
+     * @param string $position
+     * @return string
+     */
     private function _check_postion($position) {
-//        if ($position != 'before' AND $position != 'after')
-//            echo '!';
+        if ($position != 'before' AND $position != 'after')
+            return $position = 'before';
         return $position;
     }
 
@@ -282,6 +291,25 @@ class Template extends Mabilis {
             }
         }
 
+        if (sizeof($this->_css_str) > 0) {
+            foreach ($this->_css_str as $css => $pos) {
+                if (!in_array($css, self::$arr)) {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= $css;
+                            break;
+                        case 'after':
+                            self::$result_after .= $css;
+                            break;
+                        default :
+                            self::$result_before .= $css;
+                            break;
+                    }
+                    self::$arr[] = $css;
+                }
+            }
+        }
+
 
 //        // split css code
 //        if (sizeof($this->_css_code) > 0) {
@@ -310,10 +338,19 @@ class Template extends Mabilis {
 //                }
 //            }
 //        }
-
         if (sizeof($this->_metas) > 0) {
-            foreach ($this->_metas as $code)
-                self::$result_before .= "$code\n";
+            foreach ($this->_metas as $code) {
+                if (!strstr(self::$result_before, $code)) {
+                    self::$result_before .= "$code\n";
+                }
+            }
+        }
+        if (sizeof($this->_canonicals) > 0) {
+            foreach ($this->_canonicals as $code) {
+                if (!strstr(self::$result_before, $code)) {
+                    self::$result_before .= "$code\n";
+                }
+            }
         }
 
 //        $js_tpl_begin = "window.addEvent('domready', function() { ";

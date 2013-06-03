@@ -353,7 +353,7 @@ var Shop = {
         /*find url*/
         var anchors = false;
         if (anchors = $context.closest('li').find('a')) {
-            console.log(typeof anchors);
+//            console.log(typeof anchors);
             _.each(anchors, function(anchor){
                 if (typeof $(anchor).attr('href') != 'undefined')
                     if ($(anchor).attr('href').match('/product/'))
@@ -365,16 +365,32 @@ var Shop = {
         /*find image*/
         var images = false;
         if (images = $context.closest('li').find('img'))
-            cartItem.img = $(images[0]).attr('src');
+            $(images).each(function(){
+//                if ( $(this).attr('src').match(cartItem.id))
+                    cartItem.img = $(images[0]).attr('src');
+            });
         delete  images;
-
-
+        
         //check for product page
         if ($context.data('prodpage')) {
+            if (!cartItem.kit){
+                variantId = $context.data('varid');
+                smallImage = $('span.variant_' + variantId).attr('data-smallImage');
+                cartItem.img = smallImage;
+            }
             if (!cartItem.url)
                 cartItem.url = window.location.href;
             if (!cartItem.img)
                 cartItem.img = $context.closest('.container').find('img').first().attr('src');
+        }
+        /** Prepare kits images */
+        if (cartItem.kit){
+            kitImages = [];
+            img = $context.closest('ul').find('img');
+            img.each(function (i,image){
+                kitImages.push(image.src);
+            })
+           cartItem.img = kitImages;
         }
 
 
@@ -466,6 +482,7 @@ var Shop = {
             deleteWishListItem($(el));
         },
         sync: function(){
+    alert()
             $.getJSON('/shop/wish_list_api/sync', function(data){
                 if (typeof(data) == 'Array' || typeof(data) == 'object') {
                     localStorage.setItem('wishList', JSON.stringify(data));
@@ -986,36 +1003,37 @@ $(document).ready(
 
 $(//gift certificate in cart
     function(){
-        $('#applyGiftCert').on('click', function(){
-            $('input[name=makeOrder]').val(0);
-            $('input[name=checkCert]').val(1);
-            $('#makeOrderForm').ajaxSubmit({
-                url:'/shop/cart_api',
-                success : function(data){
-                    try {
-                        var dataObj = JSON.parse(data);
+    $('#applyGiftCert').on('click', function(event){
+        event.preventDefault()
 
-                        Shop.Cart.giftCertPrice = dataObj.cert_price;
+        $('input[name=checkCert]').val(1)
+        $.post('/shop/cart_api/getGiftCert', {giftcert: $('input[name=giftcert]').val(), checkCert:$('input[name=checkCert]').val()}, function(data) {
 
-                        if (Shop.Cart.giftCertPrice > 0)
-                        {// apply certificate
-                            $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision)+ ' '+curr);
-                            $('#giftCertSpan').show();
-                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
-                        }
+            try {
+                var dataObj = JSON.parse(data);
 
-                        Shop.Cart.totalRecount();
-                        recountCartPage();
-                    } catch (e) {
-                        //console.error('Checking gift certificate filed. '+e.message);
-                    }
+                Shop.Cart.giftCertPrice = dataObj.cert_price;
+
+                if (Shop.Cart.giftCertPrice > 0)
+                {// apply certificate
+                    $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision) + ' ' + curr);
+                    $('#giftCertSpan').show();
+                    //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
                 }
-            });
 
-            $('input[name=makeOrder]').val(1);
+                Shop.Cart.totalRecount();
+                recountCartPage();
+            } catch (e) {
+                //console.error('Checking gift certificate filed. '+e.message);
+            }
 
-            return false;
-        });
+        })
+        
+
+
+
+        return false;
+    });
     }
     )
 
@@ -1032,11 +1050,16 @@ $('#variantSwitcher').live('change', function () {
     var vSmallImage = $('span.variant_' + productId).attr('data-smallImage');
     var vStock = $('span.variant_' + productId).attr('data-stock');
 
-
+    $(document).trigger({
+        type: 'afrer_change_variant',
+        vId: vId
+    })
+    
     $('#photoGroup').attr('href', vMainImage);
     $('#imageGroup').attr('src', vMainImage).removeClass().attr('alt', vName);
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
+
     if ($.trim(vNumber) != '') {
         $('#number').html('(Артикул ' + vNumber + ')');
     } else {

@@ -75,9 +75,9 @@
                         </div>
                         <div class="box-ordering3">
                             {if count($paymentMethods)}
-                                <div class="frameLabel" style="position: relative; z-index: 5;">
+                                <div class="frame-label">
                                     <span class="title">Способ оплаты</span>
-                                    <div class="frame_form_field">
+                                    <div class="frame-form-field">
                                         <div class="row-fluid">
                                             <div class="lineForm pmDiv">
                                  
@@ -96,11 +96,11 @@
                         <div class="f_l footer-order">
                             <div class="cert_drop_container clearfix m-b_15"></div>
                             <div class="d_i-b v-a_m">
-                                <div style="width: 196px;" class="d_i-b v-a_b">
+                                <div class="d_i-b v-a_b">
                                     <input type="text" name="giftcert" placeholder="Введите номер сертификата"/>
                                     <input type="hidden" value="0" name="checkCert">
                                 </div>
-                                <div class="btn btn-def2 v-a_b">
+                                <div class="btn-def2 v-a_b">
                                     <button type="button" id="applyGiftCert" class="c_3 giftCertCheck">ОК</button>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="btn btn-order-product m-t_10">
+                            <div class="btn-order-product m-t_10">
                                 <input type="submit" value="Оформить заказ"/>
                             </div>
                         </div>

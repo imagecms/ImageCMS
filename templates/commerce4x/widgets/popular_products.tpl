@@ -4,7 +4,7 @@
     <div class="frame_carousel_product carousel_js">
         <div class="m-b_20">
             <div class="title_h1 d_i-b v-a_m">{$title}</div>
-            <div class="d_i-b groupButton v-a_m frame_carousel_button">
+            <div class="d_i-b groupButton v-a_m">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
                     <span class="text-el"></span>
@@ -18,7 +18,7 @@
         <div class="carousel bot_border_grey">
             <ul class="items items_catalog">
                 {foreach $products as $hotProduct}
-                <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not-avail{/if}">
+                <li class="span3 {if $hotProduct->firstvariant->getStock()==0} not_avail{/if}">
 
                     <!-- product info block -->
                     <div class="description">
@@ -59,14 +59,19 @@
 
                         <!-- displaying notify button -->
                         {if $hotProduct->firstvariant->getstock()!=0}
-                        <button class="btn btn_buy" 
+                        <button class="btn btn_buy btnBuy" 
                                 type="button" 
-                                data-prodId="{echo $hotProduct->getId()}" 
-                                data-varId="{echo $hotProduct->firstVariant->getId()}" 
+                                data-prodid="{echo $hotProduct->getId()}"
+                                data-varid="{echo $hotProduct->firstVariant->getId()}"
                                 data-price="{echo $hotProduct->firstVariant->toCurrency()}" 
-                                data-name="{echo $hotProduct->getName()}"
-                                data-number="{echo $hotProduct->firstVariant->getnumber()}"
-                                data-maxcount="{echo $hotProduct->firstVariant->getstock()}">
+                                data-name="{echo ShopCore::encode($hotProduct->getName())}"
+                                data-maxcount="{echo $hotProduct->firstVariant->getstock()}"
+                                data-number="{echo $hotProduct->firstVariant->getNumber()}"
+                                data-img="{echo $hotProduct->firstVariant->getSmallPhoto()}"
+                                data-url="{echo shop_url('product/'.$hotProduct->getUrl())}"
+                                data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-stock="{echo $hotProduct->firstVariant->getStock()}"
+                                >
                             {lang('s_buy')}
                         </button>
                         {else:}
@@ -83,17 +88,17 @@
                             {lang('s_message_o_report')}
                         </button> 
                         {/if} 
-                    </div>
-                    <!-- displaying products small mod image -->
-                    <div class="photo-block">
-                        <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
-                            <span class="helper"></span>
-                            <figure>
-                                <img src="{echo $hotProduct->firstvariant->getSmallPhoto()}" 
-                                     alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}"/>
-                            </figure>
-                        </a>
-                    </div>
+
+                        <!-- displaying products small mod image -->
+                        <div class="photo-block">
+                            <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
+                                <figure>
+                                    <span class="helper"></span>
+                                    <img src="{echo $hotProduct->firstVariant->getMediumPhoto()}" 
+                                         alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}"/>
+                                </figure>
+                            </a>
+                        </div>
                 </li>
                 {/foreach}
             </ul>

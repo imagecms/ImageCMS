@@ -56,7 +56,7 @@
                 {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                     {echo $paymentMethod->getPaymentForm($model)}
                             {if $paymentMethod->getDescription()}
-                                <div class="m-t_10 infoOrder" style="font-style: italic">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                                <div class="m-t_10 infoOrder">{echo ShopCore::t($paymentMethod->getDescription())}</div>
                             {/if}
                 {/if}
                 <!-- End. Render payment button and payment description -->
@@ -128,7 +128,7 @@
                 <div class="title_h3">Ваш заказ</div>
                 {foreach $model->getSOrderProductss() as $orderProduct}
          <!-- Start. Render Ordered Products -->            
-                        <ul class="items-complect item-order">
+                        <ul class="items items-complect item-order">
                             <li>
                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">
                                     <span class="photo-block">
@@ -149,7 +149,7 @@
             <!-- End. Render Ordered Products -->
         <!-- Start. Render Ordered kit products  -->
                 {foreach $model->getOrderKits() as $orderProduct}                        
-                                    <ul class="items-complect items-complect-order-view">
+                                    <ul class="items items-complect items items-complect-order-view">
                                         <li>
                                             <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
                                                 <span class="photo-block">
@@ -183,9 +183,9 @@
                                                 </div>
                                             </li>
                                         {/foreach}
-                                        <li style="width:100% !important;margin-left:0;">
+                                        <li>
                                             <div class="t-a_c">
-                                                <img src="{$THEME}/images/sum_arrow.png"/>
+                                                <img src="{$THEME}images/sum_arrow.png"/>
                                             </div>
                                             <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}  шт):</span>
                                             <div class="v-a_bl d_i-b">

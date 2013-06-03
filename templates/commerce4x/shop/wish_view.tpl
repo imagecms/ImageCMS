@@ -9,7 +9,7 @@
 #}
 <article class="container">
     <h1>{lang('s_WL')}</h1>
-    <div class="row-fluid">
+    <div class="row">
         <div class="text span8"><!-- Some text --></div>
     </div>
     <div class="frame_carousel_product">
@@ -21,9 +21,9 @@
         {else:}
             <!--If not empty list show list of products -->
             <div class="">
-                <ul class="items items_catalog  itemsFrameNS">
+                <ul class="items items_catalog itemsFrameNS">
                     {foreach $items as $key=>$item}
-                        <li class="span3 {if $item.model->firstvariant->stock == 0} not-avail{/if}">
+                        <li class="span3 {if $item.model->firstvariant->stock == 0} not_avail{/if}">
                             <!-- Descritpion block -->
                             <div class="description">
                                 <div class="frame_response">
@@ -51,7 +51,7 @@
                                 <!-- Start. Check is product available -->
                                 {if ShopCore::$ci->dx_auth->is_logged_in()===true}
                                     {if $item.model->firstvariant->stock != 0}
-                                        <button class="btn btn_buy" 
+                                        <button class="btn btn_buy btnBuy" 
                                                 type="button" 
                                                 data-prodId="{echo $item.model->getId()}" 
                                                 data-varId="{echo $item.model->firstVariant->getId()}" 
@@ -83,7 +83,7 @@
                                 <a href="{shop_url('product/' . $item.model->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{$item.model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
+                                        <img src="{echo $item.model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($item.model->getName())}"/>
                                     </figure>
                                 </a>
                             </div>

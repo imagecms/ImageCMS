@@ -40,15 +40,15 @@
                         <div id="tab_{$category[Url]}" class="categoryCompareBlock" data-refresh>
                             <div class="leftDescription">
                                 <ul>
-                                    <li style="height: 350px;"></li>
+                                    <li></li>
                                 </ul>
                                  <!--Start.Product properties names -->
                                 <ul class="characteristic">
                                     {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
                                     {foreach $data as $d}
-                                        <li >
+                                        <li>
                                             <span class="helper"></span>
-                                            <span>{$d}</span>
+                                            <span>{echo $d} </span>
                                         </li>
                                     {/foreach}
                                 </ul>
@@ -63,38 +63,41 @@
                                             {$CI->template->assign('promos',$promos)}
                                             <li class="compare_product_{echo $p->getId()}">
 <!--                                                Start. Include product template-->
-                                                <ul class="items-catalog">
+                                                <ul class="items items-catalog">
                                                     {include_tpl('one_product_item')}
                                                 </ul>
 <!--                                                End. Include product template-->
                                                  <!--Start. Product characteristics -->
                                                 <ul class="characteristic">
                                                     {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($p)}
-                                                    {$cnt = 1}   
                                                     {foreach $data as $d}
                                                         {$cval = ShopCore::encode($d)}
-                                                        <li>
-                                                            <span class="helper"></span>
-                                                            <span>
-                                                                {if count($pdata[$cval]) > 1}
+                                                        {if is_array($pdata[$cval])}
+                                                            <li>
+                                                                <span class="helper"></span>
+                                                                <span>
                                                                     {$i = 0}
                                                                     {foreach $pdata[$cval] as $ms}
                                                                         {echo $ms}
-                                                                        {if $i<(count($pdata[$cval])-1)}
-                                                                            ,
-                                                                        {/if}
-                                                                        {$i++}
-                                                                    {/foreach}
-                                                                {else:}
-                                                                    {if $pdata[$cval]} 
-                                                                        {echo $pdata[$cval]} 
-                                                                    {else:} 
-                                                                        - 
-                                                                    {/if}
-                                                                {/if}
+                                                                    {if $i<(count($pdata[$cval])-1)},{/if}
+                                                                    {$i++}
+                                                                {/foreach}
                                                             </span>
                                                         </li>
-                                                    {/foreach}                                                
+                                                    {else:}
+                                                        {if $pdata[$cval]}
+                                                            <li>
+                                                                <span class="helper"></span>
+                                                                <span>{echo $pdata[$cval]}</span>
+                                                            </li>
+                                                        {else:}
+                                                            <li>
+                                                                <span class="helper"></span>
+                                                                <span>-</span>
+                                                            </li>
+                                                        {/if}
+                                                    {/if}
+                                                {/foreach}
                                                 </ul>
                                                  <!--End. Product characteristics -->
                                             </li>

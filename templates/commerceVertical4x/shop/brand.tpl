@@ -145,6 +145,7 @@
                                 </button>
                                 <!-- to wish list button -->
                                 <button class="btn btn_small_p toWishlist" 
+                                        data-price="{echo $product->firstVariant->toCurrency()}"
                                         data-prodid="{echo $product->getId()}" 
                                         data-varid="{echo $product->firstVariant->getId()}"  
                                         type="button" 
@@ -160,7 +161,7 @@
                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                 <figure>
                                     <span class="helper"></span>
-                                    <img src="{productImageUrl($product->getmainimage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
+                                    <img src="{echo $product->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}"/>
                                 </figure>
                             </a>
                         </div>

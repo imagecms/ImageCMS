@@ -4,8 +4,9 @@
 
 /**
  * Image CMS
- *
  * Класс авторизации через посторонние сервисы
+ * @author a.gula <a.gula@imagecms.net>
+ * @property socauth_model $socauth_model
  */
 class Socauth extends MY_Controller {
 
@@ -14,16 +15,17 @@ class Socauth extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->load->model('socauth_model');
 
-        $this->settings = $this->db
-                ->select('settings')
-                ->where('identif', 'socauth')
-                ->get('components')
-                ->row_array();
-        $this->settings = unserialize($this->settings[settings]);
+        $this->settings = $this->socauth_model->getSettings();
     }
 
-    public function sendPassByEmail($email, $pass) {
+    /**
+     * Send email to user
+     * @param type $email
+     * @param type $pass
+     */
+    private function sendPassByEmail($email, $pass) {
         $this->load->library('email');
 
         $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
@@ -33,56 +35,88 @@ class Socauth extends MY_Controller {
         $this->email->send();
     }
 
-    public function socAuth($social, $id, $username, $email, $address, $key, $phone) {
+    /**
+     * Write cookies for auth
+     */
+    private function writeCookies() {
+        $this->load->helper('cookie');
+        if (!strstr($this->uri->uri_string(), 'socauth/vk')) {
+            $cookie = array(
+                'name' => 'url',
+                'value' => $this->uri->uri_string(),
+                'expire' => '15000000',
+                'prefix' => ''
+            );
+            $this->input->set_cookie($cookie);
+        }
+    }
 
-        if ($email == '')
-            redirect('/socauth');
+    /**
+     *
+     * @param type $soc type of social service
+     * @param type $socId social service ID
+     */
+    public function link($soc, $socId) {
+        $this->socauth_model->setLink($soc, $socId);
 
-        $user = $this->db
-                ->where('socialId', $id)
-                ->get('mod_social')
-                ->row();
+        redirect($this->input->cookie('url'));
+    }
+
+    /**
+     *
+     * @param type $soc type of social service
+     */
+    public function unlink($soc) {
+        if ($this->dx_auth->is_logged_in())
+            if ($this->socauth_model->delUserSocial($soc))
+                echo json_encode(array('answer' => 'sucesfull'));
+    }
+
+    /**
+     *
+     * @param type $social social service ID
+     * @param type $id social service ID
+     * @param type $username name in social service
+     * @param type $email email in social service
+     * @param type $address address in social service
+     * @param type $key
+     * @param type $phone phone in social service
+     */
+    private function socAuth($social, $id, $username, $email, $address, $key, $phone) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            redirect('/socauth/error');
+
+        $user = $this->socauth_model->getUserSocInfoBySocId($id);
 
         if (count($user) == 0) {
 
-            $emailChack = $this->db
-                    ->where('email', $email)
-                    ->get('users', 1)
-                    ->row();
+            $emailChack = $this->socauth_model->getUserByEmail($email);
 
-            if (count($emailChack) > 0)
-                redirect('/socauth');
+            if (count($emailCheck) > 0)
+                redirect('/socauth/error');
 
             $pass = random_string('alnum', 20);
 
             $this->sendPassByEmail($email, $pass);
 
-            $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone);
+            $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone, TRUE);
 
             if (!$register)
-                redirect('/socauth');
+                redirect('/socauth/error');
 
-            $userId = $this->db
-                    ->select('id')
-                    ->where('email', $email)
-                    ->get('users', 1)
-                    ->row();
+            $userId = $this->socauth_model->getUserByEmail($email);
 
-            $this->db->set('socialId', $id);
-            $this->db->set('userId', $userId->id);
-            $this->db->set('social', $social);
-            $this->db->insert('mod_social');
+            $this->socauth_model->setUserSoc($id, $social, $userId->id);
         }else {
             $data = new stdClass;
             $userData = $this->db
                     ->join('mod_social', 'users.id=mod_social.userId')
-                    ->where('email', $email)
                     ->where('socialId', $id)
                     ->get('users', 1)
                     ->row();
 
             if (count($userData) == 0)
-                redirect('/socauth');
+                redirect('/socauth/error');
 
             $data->role_id = $userData->role_id;
             $data->id = $userData->userId;
@@ -93,30 +127,74 @@ class Socauth extends MY_Controller {
             $this->dx_auth->_clear_login_attempts();
             $this->dx_auth_event->user_logged_in($userData->id);
         }
-        redirect('/shop/profile');
+        redirect($this->input->cookie('url'));
     }
 
     public function index() {
-        redirect('/shop/profile');
+        if (!$this->dx_auth->is_logged_in())
+            redirect('/auth/login');
+        else
+            redirect($this->input->cookie('url'));
     }
 
-    public function error($error = '') {
+    /**
+     *
+     * @param type $error type of error
+     */
+    public function error($error = "") {
         $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in())
+            redirect('/auth/login');
+        else
+            redirect($this->input->cookie('url'));
+    }
+
+    /**
+     * rendering login buttons
+     */
+    public function renderLogin() {
+        if (!$this->dx_auth->is_logged_in()) {
+            $this->writeCookies();
             \CMSFactory\assetManager::create()
                     ->setData($this->settings)
-                    ->render('login');
-        else
-            redirect('/shop/profile');
+                    ->render('loginButtons', TRUE);
+        }
     }
 
-    public function renderLogin() {
-        \CMSFactory\assetManager::create()
-                ->setData($this->settings)
-                ->render('buttons', TRUE);
+    /**
+     * rendering link buttons
+     */
+    public function renderLink() {
+        if ($this->dx_auth->is_logged_in()) {
+            $this->writeCookies();
+
+            $socials = $this->db
+                    ->where('userId', $this->dx_auth->get_user_id())
+                    ->get('mod_social');
+
+            if (!$socials)
+                return;
+
+            $socials = $socials->result_array();
+
+            foreach ($socials as $soc)
+                if (!$soc[isMain])
+                    $social[$soc[social]] = 'linked';
+                else
+                    $social[$soc[social]] = 'main';
+
+            \CMSFactory\assetManager::create()
+                    ->setData($this->settings)
+                    ->setData($social)
+                    ->registerScript('socauth')
+                    ->render('linkButtons', TRUE);
+        }
     }
 
+    /**
+     * get data from yandex
+     */
     public function ya() {
 
         if ($this->input->get()) {
@@ -145,12 +223,18 @@ class Socauth extends MY_Controller {
             $res = json_decode($res);
             curl_close($curl);
 
-            $this->socAuth('ya', $res->id, $res->display_name, $res->default_email, '', '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('ya', $res->id, $res->display_name, $res->default_email, '', '', '');
+            else
+                $this->link('ya', $res->id);
         }
         else
             $this->core->error_404();
     }
 
+    /**
+     * get data from facebook
+     */
     public function facebook() {
         if ($this->input->get()) {
             $curl = curl_init();
@@ -178,12 +262,18 @@ class Socauth extends MY_Controller {
 
             $res = json_decode($res);
 
-            $this->socAuth('fb', $res->id, $res->name, $res->email, $res->location->name, '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('fb', $res->id, $res->name, $res->email, $res->location->name, '', '');
+            else
+                $this->link('fb', $res->id);
         }
         else
             $this->core->error_404();
     }
 
+    /**
+     * get data from Vkontakte
+     */
     public function vk() {
         $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
@@ -209,6 +299,9 @@ class Socauth extends MY_Controller {
             $res = json_decode($res);
             curl_close($curl);
 
+            if ($res->error)
+                $this->error();
+
             $isRegistereg = $this->db
                     ->join('users', 'mod_social.userId=users.id')
                     ->where('socialId', $res->response[0]->uid)
@@ -228,8 +321,12 @@ class Socauth extends MY_Controller {
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean|trim');
             $this->form_validation->run();
 
-            if (!validation_errors())
-                $this->socAuth('vk', $this->input->post(uid), $this->input->post(name), $this->input->post(email), '', '', '');
+            if (!validation_errors()) {
+                if (!$this->dx_auth->is_logged_in())
+                    $this->socAuth('vk', $this->input->post(uid), $this->input->post(name), $this->input->post(email), '', '', '');
+                else
+                    $this->link('vk', $this->input->post(uid));
+            }
             else
                 redirect();
         }
@@ -237,9 +334,13 @@ class Socauth extends MY_Controller {
             $this->core->error_404();
     }
 
+    /**
+     * get data from google
+     */
     public function google() {
 
         if ($this->input->get()) {
+
             $postdata = array(
                 'code' => $this->input->get(code),
                 'client_id' => "{$this->settings[googleClientID]}",
@@ -281,12 +382,18 @@ class Socauth extends MY_Controller {
 
             curl_close($curl);
 
-            $this->socAuth('google', $res->id, $res->name, $res->email, '', '', '');
+            if (!$this->dx_auth->is_logged_in())
+                $this->socAuth('google', $res->id, $res->name, $res->email, '', '', '');
+            else
+                $this->link('google', $res->id);
         }
         else
             $this->core->error_404();
     }
 
+    /**
+     * install method
+     */
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
@@ -305,6 +412,10 @@ class Socauth extends MY_Controller {
             'social' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '20',
+                'null' => TRUE),
+            'isMain' => array(
+                'type' => 'INT',
+                'constraint' => '1',
                 'null' => TRUE)
         );
 
@@ -318,71 +429,13 @@ class Socauth extends MY_Controller {
             'autoload' => 0));
     }
 
+    /**
+     * deinstall method
+     */
     public function _deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_social');
-    }
-
-    public function twitter() {
-        $this->core->error_404();
-//        $oauth_nonce = md5(uniqid(rand(), true));
-//        $oauth_timestamp = time();
-//
-//        $oauth_base_text = "GET&";
-//        $oauth_base_text .= urlencode($this->settings[twitterRequestTokenURL]) . "&";
-//        $oauth_base_text .= urlencode("oauth_callback=" . urlencode($this->settings[twitterCallbackURL]) . "&");
-//        $oauth_base_text .= urlencode("oauth_consumer_key=" . $this->settings[twitterConsumerKey] . "&");
-//        $oauth_base_text .= urlencode("oauth_nonce=" . $oauth_nonce . "&");
-//        $oauth_base_text .= urlencode("oauth_signature_method=HMAC-SHA1&");
-//        $oauth_base_text .= urlencode("oauth_timestamp=" . $oauth_timestamp . "&");
-//        $oauth_base_text .= urlencode("oauth_version=1.0");
-//
-//        $key = $this->settings[twitterConsumerKey] . "&";
-//
-//        $oauth_signature = base64_encode(hash_hmac("sha1", $oauth_base_text, $key, true));
-//
-//        $url = $this->settings[twitterRequestTokenURL];
-//        $url .= '?oauth_callback=' . urlencode($this->settings[twitterCallbackURL]);
-//        $url .= '&oauth_consumer_key=' . $this->settings[twitterConsumerKey];
-//        $url .= '&oauth_nonce=' . $oauth_nonce;
-//        $url .= '&oauth_signature=' . urlencode($oauth_signature);
-//        $url .= '&oauth_signature_method=HMAC-SHA1';
-//        $url .= '&oauth_timestamp=' . $oauth_timestamp;
-//        $url .= '&oauth_version=1.0';
-//
-//        $response = file_get_contents($url);
-//        var_dump($response);
-//        
-//          $postdata = array(
-//          'code' => $this->input->get(code),
-//          'client_id' => "{$this->settings[googleClientID]}",
-//          'client_secret' => "{$this->settings[googleClientSecret]}",
-//          'redirect_uri' => "http://$_SERVER[HTTP_HOST]/socauth/google",
-//          'grant_type' => 'authorization_code'
-//          );
-//
-//          $opts = array(
-//          'http' => array(
-//          'method' => 'POST',
-//          'header' => 'Content-type:application/x-www-form-urlencoded',
-//          'content' => $postdata
-//          )
-//          );
-//
-//          $curl = curl_init();
-//          curl_setopt($curl, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-//          curl_setopt($curl, CURLOPT_HEADER, 0);
-//          curl_setopt($curl, CURLOPT_NOBODY, 0);
-//          curl_setopt($curl, CURLOPT_POST, 1);
-//          curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-//          curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-//          curl_setopt($curl, CURLOPT_REFERER, "http://$_SERVER[HTTP_HOST]");
-//          $res = curl_exec($curl);
-//          $res = json_decode($res);
-//          var_dumps($res);
-//
-//          curl_close($curl); 
     }
 
 }

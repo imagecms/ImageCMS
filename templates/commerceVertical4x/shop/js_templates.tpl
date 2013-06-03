@@ -31,7 +31,7 @@
                                 <td>
                                     <a href="<%-item.url%>" class="d_i-b photo">
                                         <figure>
-                                            <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>"/>
+                                            <img src="<% if(item.img) { %><%-item.img.replace('mainMod', 'smallMod')%><% } else { %>/uploads/shop/<%- item.id %>_smallMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>"/>
                                         </figure>
                                     </a>
                                 </td>
@@ -68,8 +68,8 @@
                             <% var names = item.name %>
                             <% var ids = item.id %>
                             <% var prices = item.prices %>
-
-
+                            <% var images = item.img %>
+                            
 
                             <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
                                 <td colspan="5">
@@ -92,7 +92,7 @@
                                                 <td>
                                                     <a class="photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -130,7 +130,7 @@
                                                 <td>
                                                     <a class="d_i-b photo" href="#">
                                                         <figure>
-                                                            <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                            <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                         </figure>
                                                     </a>
                                                 </td>
@@ -216,9 +216,9 @@
                 <thead class="v_h">
                     <tr>
                         <td class="span1"></td>
-                        <td class="span2"></td>
-                        <td class="span2"></td>
-                        <td class="span2"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -228,7 +228,7 @@
                         <td class="v-a_m">
                             <a class="photo" href="<%-item.url%>">
                                 <figure>
-                                    <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>">
+                                    <img src="<% if(item.img) { %><%-item.img.replace('mainMod', 'smallMod') %><% } else { %>/uploads/shop/<%- item.id %>_smallMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>">
                                 </figure>
                             </a>
                         </td>
@@ -254,7 +254,7 @@
                     <% var names = item.name %>
                     <% var ids = item.id %>
                     <% var prices = item.prices %>
-
+                    <% var images = item.img %>
 
 
                     <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
@@ -263,9 +263,9 @@
                                 <thead class="v_h">
                                     <tr>
                                         <td class="span1"></td>
-                                        <td class="span2"></td>
-                                        <td class="span2"></td>
-                                        <td class="span2"></td>
+                                        <td class="span3"></td>
+                                        <td class="span1"></td>
+                                        <td class="span1"></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -278,7 +278,7 @@
                                         <td>
                                             <a class="photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>
@@ -305,7 +305,7 @@
                                         <td>
                                             <a class="d_i-b photo" href="#">
                                                 <figure>
-                                                    <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                                    <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
                                                 </figure>
                                             </a>
                                         </td>

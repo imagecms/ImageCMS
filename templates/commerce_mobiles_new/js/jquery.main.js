@@ -26,14 +26,17 @@ function resetPie(nabir){
 
 $(document).ready(function(){
     $('.refresh_price').live('click', function() {
-               $('#recount').val('1')
-               $('#form').submit();
-            });
-    $('.main_menu > li').click(function(){
-        $this = $(this);
-        $this.siblings().filter('.active').toggleClass('active').find('ul').slideToggle('fast');
-        $this.toggleClass('active');
-        $this.find('ul').slideToggle('fast');
+        $('#recount').val('1')
+        $('#form').submit();
+    });
+    $('.main_menu li a').click(function(e){
+        var $this = $(this).parent().toggleClass('active');
+        
+        $this.siblings().removeClass('active').find('ul').slideUp('fast');
+        if ($this.children('ul').length > 0){
+            e.preventDefault();
+            $this.children('ul').slideToggle('fast');
+        }
     });
     //not_standart_checks----------------------
     if ($.exists('.niceCheck')) {
@@ -79,6 +82,16 @@ $(document).ready(function(){
         el.removeClass('b_n');
     }
     //close_not_standart_checks----------------------
+    
+    $('#method_deliv').change(function(){
+        $('[id*="paymentMethod"]').hide();
+        $('#paymentMethod'+$(this).val()).show().change();
+    }).change();
+    
+    $('[id*="paymentMethod"]').change(function(){
+        $('[name="paymentMethodId"]').val($(this).val())
+    }).change();
+    
     if (ltie7){
         $('.head_cle_foot').replaceWith('<div class="'+$('.head_cle_foot').attr('class')+'"></div>');
     }

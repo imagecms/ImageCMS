@@ -50,7 +50,7 @@
                 <div class="f-s_0 func-button">
                         {if $p->firstvariant->getstock() != 0}
                         <!-- buy/inCart button -------------------->
-                            <div class="btn btn-buy goBuy f_l">
+                            <div class="btn-buy btnBuy">
                                 <button class="buyButton toCart"
                                         type="button"
                                         data-prodId="{echo $p->getId()}"
@@ -60,14 +60,14 @@
                                         data-number="{echo $p->firstVariant->getnumber()}"
                                         data-maxcount="{echo $p->firstVariant->getstock()}"
                                         data-vname="{echo $p->firstVariant->getName()}">
-                                    <span class="icon-bask-buy"></span>
-                                    {lang('s_buy')}
+                                    <span class="icon_cleaner_buy"></span>
+                                    <span class="text-el">{lang('s_buy')}</span>
                                 </button>
                             </div>
                         <!-- end of buy/inCart buttons ------------->
                         {else:}
                             <!-- Start. Notify button -->
-                            <div class="d_i-b f_l var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail_wrap">
+                            <div class="d_i-b f_l var_{echo $p->firstVariant->getId()} prod_{echo $p->getId()} v-a_m not-avail">
                                 <span class="f-s_12 t-a_l">
                                     <span class="d_b">Товара нет в наличии</span>
                                     <button type="button" class="d_l_b f-s_12" data-drop=".drop-report" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="noinherit" data-placement="bottom left">Сообщите</button> о появлении
@@ -83,15 +83,16 @@
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons --------------------->
                             <div class="var_{echo $p->firstVariant->getId()} f_l prod_{echo $p->getId()}">
-                                <div class="btn btn-def" data-title="В список желаний" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-rel="tooltip">
+                                <div class="btn-def" data-title="В список желаний" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" data-rel="tooltip">
                                     <button class="toWishlist"
+                                        data-price="{echo $p->firstVariant->toCurrency()}"
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $p->firstVariant->getId()}"
                                         type="button"
                                         data-title="{lang('s_add_to_wish_list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
-                                    <span class="icon-wish"></span>
+                                    <span class="icon_wish"></span>
                                     <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                 </button>
                                 </div>
@@ -102,14 +103,14 @@
                    {if $CI->uri->segment(2) != "compare"}
                         <!-- compare buttons ----------------------->
                         <div class="d_i-b">
-                            <div class="btn btn-def f_l" data-title="В список сравнений"  data-prodid="{echo $p->getId()}" data-rel="tooltip">
+                            <div class="btn-def f_l" data-title="В список сравнений"  data-prodid="{echo $p->getId()}" data-rel="tooltip">
                                 <button class="toCompare"
                                         data-prodid="{echo $p->getId()}"
                                         type="button"
                                         data-title="{lang('s_add_to_compare')}"
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
-                                    <span class="icon-compare"></span>
+                                    <span class="icon_compare"></span>
                                     <span class="text-el">{lang('s_add_to_compare')}</span>
                                 </button>
                             </div>
@@ -132,10 +133,10 @@
         </div>
 <!--        Start. Remove buttons if compare or wishlist-->
         {if $CI->uri->segment(2) == "compare"}
-            <button type="button" class="icon-times-order deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
+            <button type="button" class="icon_times_remove deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
-            <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this)" class="icon-times-order"></button>
+                <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times_remove"></button>
         {/if}
 <!--        End. Remove buttons if compare or wishlist-->
     </li>
