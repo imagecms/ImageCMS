@@ -39,7 +39,7 @@ $baseMenu = array(
             ),
             array(
                 'link'      => '/admin/components/cp/cfcm/index#fields_groups',
-                'text'      => 'Список груп',
+                'text'      => 'Список групп',
             ),
         )
     ),

@@ -40,28 +40,32 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromCategory($product) {
-//        if (!$product)
-//            return;
-//
-//        $CI = &get_instance();
-//        $array = $CI->db
-//                ->select('item_id')
-//                ->join('shop_products', 'comments.item_id=shop_products.id')
-//                ->where_in('shop_products.category_id', $product[ShopCategoryId])
-//                ->where('module', 'shop')
-//                ->group_by('item_id')
-//                ->get('comments')
-//                ->result_array();
-//
-//        $ids = array();
-//
-//        foreach ($array as $key => $a){
-//
-//            $ids[$key] = $a[ShopCategoryId];}
-//
-//        $CI->db->where_in('item_id', $ids);
-//        $CI->db->where('module', 'shop');
-//        $CI->db->delete('comments');
+
+        if (!$product)
+            return;
+
+        $CI = &get_instance();
+
+        $ids = array();
+        foreach ($product[ShopCategoryId] as $key => $p)
+            $ids[$key] = $p;
+
+        $array = $CI->db
+                ->select('item_id')
+                ->join('shop_products', 'comments.item_id=shop_products.id')
+                ->where_in('shop_products.category_id', $ids)
+                ->where('module', 'shop')
+                ->group_by('item_id')
+                ->get('comments')
+                ->result_array();
+
+        $ids = array();
+        foreach ($array as $key => $a)
+            $ids[$key] = $a[item_id];
+
+        $CI->db->where_in('item_id', $ids);
+        $CI->db->where('module', 'shop');
+        $CI->db->delete('comments');
     }
 
     public function commentsDeleteFromProduct($product) {
