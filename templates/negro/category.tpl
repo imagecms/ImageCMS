@@ -1,6 +1,5 @@
 <div class="frame-inside">
     <div class="container">
-        {getPageCategoryPath($category.id, $delim = " / ", $is_page = false)}
         <div class="clearfix">
             <div class="text">
                 <h1>{echo encode($category.name)}</h1>

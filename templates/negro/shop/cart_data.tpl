@@ -1,4 +1,4 @@
-<div class="cleaner-btn tiny-bask">
+<div class="btn-cleaner tiny-bask">
     <button>
         <span class="frame-icon">
             <span class="icon_cleaner"></span>
