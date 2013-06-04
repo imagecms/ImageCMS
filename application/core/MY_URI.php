@@ -12,7 +12,7 @@ class MY_URI extends CI_URI {
 
     public function getParam($key)
     {
-        return $this->GET_params_arr[$key]; 
+        return $this->GET_params_arr[$key];
     }
 
     public function getAllParams()
@@ -31,7 +31,7 @@ class MY_URI extends CI_URI {
         {
             foreach($arr as $k => $v)
             {
-                $str .= $k.'='.$v; 
+                $str .= $k.'='.$v;
                 $n++;
                 if ($n < $cnt) $str .= '&';
             }
@@ -42,7 +42,7 @@ class MY_URI extends CI_URI {
 
     /**
      * Enable Russian charaters in url
-     */ 
+     */
     function _filter_uri($str)
     {
          if ($str != '' AND $this->config->item('permitted_uri_chars') != '')
@@ -52,7 +52,7 @@ class MY_URI extends CI_URI {
                  exit('The URI you submitted has disallowed characters.');
             }
          }
-             
+
          return $str;
     }
 
