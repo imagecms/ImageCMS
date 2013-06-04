@@ -16,7 +16,10 @@
                 </button>
             </div>
             <ul class="items items_catalog">
-                {foreach $kits as $kitProducts}                                     
+                
+                {foreach $kits as $kitProducts} 
+                {$arrUrl = array()}
+                {$arrImg = array()}
                 <li class="container">
                     <ul class="items items_middle">
                         <li class="span3">
@@ -44,6 +47,8 @@
                             <div class="d_i-b">+</div>
                         </li>
                         <!--Output of goods subsidiaries set-->
+                        {$arrUrl[] = shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}
+                        {$arrImg[] = $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}
                         {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                         <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
                             <div class="item_set">
@@ -80,7 +85,9 @@
                             <div class="d_i-b">
                                 {if $kitProducts->countProducts() == $key}{else:}+{/if}
                             </div>
-                        </li>                                            
+                        </li>  
+                        {$arrUrl[] = shop_url('product/' . $kitProduct->getSProducts()->getUrl())}
+                        {$arrImg[] = $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}
                         {/foreach}                       
                     </ul>
                     <!--Output of goods subsidiaries set END-->
@@ -98,16 +105,20 @@
                             </div>
                         </div>
                         <div class="f_r">
-                            <button class="btn btn_buy" type="button"                                    
-                                    data-price="{echo $kitProducts->getTotalPrice()}" 
-                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
-                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                            <button class="btn btn_buy btnBuy" type="button" 
+                                    
+                                    
+                                    data-price="{echo $kitProducts->getTotalPrice()}"
+                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                     data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                     data-kit="true"
                                     data-kitId="{echo $kitProducts->getId()}"
-                                    data-number="{//echo $model->firstVariant->getnumber()}"
-                                    data-maxcount="{//echo $model->firstVariant->getstock()}"
+                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
+                                    data-url='{echo json_encode($arrUrl)}'
+                                    data-img='{echo json_encode($arrImg)}'
+                                    data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                    
                                     >
                                 {lang('s_buy')}
                             </button>

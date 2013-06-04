@@ -105,6 +105,10 @@ class Top_menu_additional extends MY_Controller {
         $template = str_replace('#menu_payment', '', $template);
         $template = str_replace('#menu_contacts', '', $template);
         $template = str_replace('#menu_delivery', '', $template);
+        $template = str_replace('#wish_data', '', $template);
+        $template = str_replace('#compare_data', '', $template);
+        $template = str_replace('#tel_block', '', $template);
+        $template = str_replace('#cart_data', '', $template);
         
         return $template;
         

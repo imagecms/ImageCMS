@@ -64,7 +64,7 @@
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
                                 {foreach $sort as $s}
-                                <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
+                                    <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -81,7 +81,7 @@
                             {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
                             <select id="sort2" name="user_per_page">
                                 {foreach $per_page_arr as $pp}
-                                <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                                    <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -253,14 +253,14 @@
                                         {foreach $variants as $key => $pv}
                                             <!-- to wish list button -->
                                             <button {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
-                                                                   data-price="{echo $pv->toCurrency()}"
-                                                                   data-prodid="{echo $product->getId()}"
-                                                                   data-varid="{echo $pv->getId()}"
-                                                                   type="button"
-                                                                   data-title="{lang('s_add_to_wish_list')}"
-                                                                   data-firtitle="{lang('s_add_to_wish_list')}"
-                                                                   data-sectitle="{lang('s_in_wish_list')}"
-                                                                   data-rel="tooltip">
+                                                                  data-price="{echo $pv->toCurrency()}"
+                                                                  data-prodid="{echo $product->getId()}"
+                                                                  data-varid="{echo $pv->getId()}"
+                                                                  type="button"
+                                                                  data-title="{lang('s_add_to_wish_list')}"
+                                                                  data-firtitle="{lang('s_add_to_wish_list')}"
+                                                                  data-sectitle="{lang('s_in_wish_list')}"
+                                                                  data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
                                                 <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                             </button>
@@ -276,13 +276,17 @@
                             <!-- displaying products small mod image -->
 
                             <div class="photo-block">
-                                <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
-                                    <figure>
-                                        <span class="helper"></span>
-                                        <img src="{echo $product->firstVariant->getMediumPhoto()}"
-                                             alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}" class="vimg"/>
-                                    </figure>
-                                </a>
+                                {if $productSliderEnabled}
+                                    <a class="various fancybox.ajax photo" href="/product_slider/show/{echo $product->getId()}" rel="productSlider">
+                                    {else:}
+                                        <a href="{shop_url('product/'.$product->getUrl())}" class="photo">
+                                        {/if}
+                                        <figure>
+                                            <span class="helper"></span>
+                                            <img src="{echo $product->firstVariant->getMediumPhoto()}"
+                                                 alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}" class="vimg"/>
+                                        </figure>
+                                    </a>
                             </div>
 
                             <!-- creating hot bubble for products image if product is hot -->
@@ -301,6 +305,11 @@
                             {/if}
                         </li>
                     {/foreach}
+                    {if $productSliderEnabled}
+                        {foreach $product_all as $prod}
+                            <a class="d_n various fancybox.ajax photo" href="/product_slider/show/{echo $prod}" rel="productSlider"></a>
+                        {/foreach}
+                    {/if}
                 </ul>
             {else:}
                 <div class="alert alert-search-result">
@@ -315,5 +324,10 @@
 </article>
 
 {widget('view_product')}
-
+<script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{if $productSliderEnabled  }
+<script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+{/if}
+
+

@@ -43,6 +43,5 @@
                 </tr>
             </tbody>
         </table>
-        {include_tpl('modules_additions')}
     </form>
 </section>

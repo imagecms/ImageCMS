@@ -13,16 +13,31 @@ class Product_slider extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     public function autoload() {
-        if (!$this->input->is_ajax_request())
-        \CMSFactory\assetManager::create()
-            ->setData ('productSliderEnabled', true)
-            ->registerScript('script')
-            ->registerScript('cloud-zoom.1.0.2.min')
-            ->registerStyle('style');
+        if (!$this->input->is_ajax_request()) {
+            \CMSFactory\assetManager::create()
+                    ->setData('productSliderEnabled', true)
+                    ->registerScript('script')
+                    ->registerScript('cloud-zoom.1.0.2.min')
+                    ->registerStyle('style');
+            \CMSFactory\Events::create()->on('category:load')->setListener('loadAllProductWithoutPagina');
+        }
+    }
+
+    public function loadAllProductWithoutPagina($data) {
+        if (count($data['products']) > 0) {
+            $where_in = array();
+            foreach ($data['products'] as $p)
+                $where_in[] = $p->getid();
+        }
+        $selectCriteria = new \Criteria();
+        $selectCriteria->add(\SProductsPeer::ID, $where_in, Criteria::NOT_IN);
+        $product_all = \SProductsQuery::create(null, $selectCriteria)->filterByActive(1)->filterByCategory($data['category'])->select(array('Id'))->find()->toArray();
+        $ci = & get_instance();
+        $ci->template->assign('product_all', $product_all);
     }
 
     public function _install() {
@@ -40,9 +55,8 @@ class Product_slider extends MY_Controller {
           $this->dbforge->add_field($fields);
           $this->dbforge->create_table('mod_empty', TRUE);
          */
-        
-          $this->db->where('name', 'product_slider')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
+        $this->db->where('name', 'product_slider')
+                ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     public function _deinstall() {
@@ -52,39 +66,39 @@ class Product_slider extends MY_Controller {
          *
          */
     }
-    
+
     public function show($id) {
 
         $id = (int) $id;
-        $product = SProductsQuery::create()
+        $product = SProductsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())
                 ->filterById($id)
                 ->findOne();
-        
+
         $responseData = array();
-        
+
         $result = $this->db->select('id')
                 ->where('category_id', $product->getCategoryId())
                 ->get('shop_products')
                 ->result_array();
-        
+
         $responseData['model'] = $product;
-        
+
         \CMSFactory\assetManager::create()
                 ->setData($responseData)
                 ->render('product', true);
     }
-    
+
     public function links($catId, $withoutIds = array(0)) {
         $ids = $this->db->select('id')
                 ->where('category_id', $catId)
                 ->where_not_in('id', $withoutIds)
                 ->get('shop_products')
                 ->result();
-        
+
         $links = array();
         foreach ($ids as $id)
-            $links[] = '<a class="various fancybox.ajax photo" href="/product_slider/show/'.$id->id.'" rel="productSlider">product-slider</a>';
-        
+            $links[] = '<a class="various fancybox.ajax photo" href="/product_slider/show/' . $id->id . '" rel="productSlider">product-slider</a>';
+
         return $links;
     }
 

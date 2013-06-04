@@ -302,7 +302,7 @@ class Widgets_manager extends BaseAdminController {
     // Update widget config
     public function update_config($id = FALSE, $new_settings = array()) {
         //cp_check_perm('widget_access_settings');
-
+     
         if ($id != FALSE AND count($new_settings) > 0) {
             $settings = serialize($new_settings);
             $this->db->where('id', $id);
@@ -338,11 +338,7 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
-        
-        /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetHTML:preUpdate');
-        \CMSFactory\Events::runFactory();
-        
+
         $this->template->add_array(array(
             'widget' => $widget->row_array()
         ));
@@ -354,11 +350,7 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_access_settings'); 
 
         $widget = $this->get($id);
-        
-        /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetModule:preUpdate');
-        \CMSFactory\Events::runFactory();
-        
+
         $this->template->add_array(array(
             'widget' => $widget->row_array()
         ));
