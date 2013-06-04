@@ -1,4 +1,3 @@
-{if ShopCore::$ci->dx_auth->is_logged_in() === true}
 {$count = count($CI->session->userdata('shopForCompare'))}
 <div id="compareBlock">
     <div class="compare-list-btn tiny-compare-list">
@@ -17,4 +16,3 @@
         </button>
     </div>
 </div>
-{/if}

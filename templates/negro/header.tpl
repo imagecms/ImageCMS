@@ -27,8 +27,8 @@
                             <span class="phone-number">567-43-21</span>
                         </span>
                     </span>
-                    <span class="order-call-btn">
-                        <button type="button" data-event="call" data-drop=".drop-order-call" data-source="shop/callback">
+                    <span class="btn-order-call">
+                        <button type="button" data-drop=".drop-order-call" data-source="shop/callback">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">Заказать звонок</span>
                         </button>
@@ -54,7 +54,7 @@
                 <div class="frame-search-form">
                     <div class="p_r">
                         <form name="search" method="get" action="{shop_url('search')}"  id="autocomlete">
-                            <span class="search-btn">
+                            <span class="btn-search">
                                 <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('search_find')}</span></button>
                             </span>
                             <div class="frame-search-input">
