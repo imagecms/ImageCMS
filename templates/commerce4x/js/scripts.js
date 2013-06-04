@@ -175,9 +175,8 @@ function recountWishListTotalPrise(deletedItemPrice, id, vid){
     var wishListTotal = $('#wishListTotal');
     wishListTotal.text((wishListTotal.text()-deletedItemPrice).toFixed(pricePrecision));
 } 
-function deleteWishListItem(el, id, vid){
-    var deletedItemPrice = el.closest(genObj.parentBtnBuy).find(genObj.btnBuy).data('price');
-    recountWishListTotalPrise(deletedItemPrice, id, vid);
+function deleteWishListItem(el, id, vid, price){
+    recountWishListTotalPrise(price, id, vid);
     
     if (el.closest(genObj.parentBtnBuy).siblings().length == 0){
         $('[data-body="body"]').hide()

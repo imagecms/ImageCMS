@@ -64,7 +64,7 @@
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
                                 {foreach $sort as $s}
-                                <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
+                                    <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -81,7 +81,7 @@
                             {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
                             <select id="sort2" name="user_per_page">
                                 {foreach $per_page_arr as $pp}
-                                <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                                    <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -110,6 +110,7 @@
 
                     <!-- starts loop for array with products -->
                     {foreach $products as $product}
+                        {$desc = $product->getShortDescription()}
                         <!-- product block -->
                         <!-- check if product is in stock -->
                         <li class="{if (int)$product->getallstock() == 0}not_avail{/if} span3">
@@ -253,14 +254,14 @@
                                         {foreach $variants as $key => $pv}
                                             <!-- to wish list button -->
                                             <button {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
-                                                                   data-price="{echo $pv->toCurrency()}"
-                                                                   data-prodid="{echo $product->getId()}"
-                                                                   data-varid="{echo $pv->getId()}"
-                                                                   type="button"
-                                                                   data-title="{lang('s_add_to_wish_list')}"
-                                                                   data-firtitle="{lang('s_add_to_wish_list')}"
-                                                                   data-sectitle="{lang('s_in_wish_list')}"
-                                                                   data-rel="tooltip">
+                                                                  data-price="{echo $pv->toCurrency()}"
+                                                                  data-prodid="{echo $product->getId()}"
+                                                                  data-varid="{echo $pv->getId()}"
+                                                                  type="button"
+                                                                  data-title="{lang('s_add_to_wish_list')}"
+                                                                  data-firtitle="{lang('s_add_to_wish_list')}"
+                                                                  data-sectitle="{lang('s_in_wish_list')}"
+                                                                  data-rel="tooltip">
                                                 <span class="icon-wish_2"></span>
                                                 <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                             </button>
@@ -268,7 +269,11 @@
                                     </div>
                                 </div>
                                 <div class="short_description">
-                                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
+                                    {if $desc}
+                                        {echo $desc}
+                                    {else:}
+                                        {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
+                                    {/if}
                                 </div>
 
                             </div>
