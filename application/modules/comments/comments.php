@@ -40,6 +40,7 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromCategory($product) {
+
         if (!$product)
             return;
 
