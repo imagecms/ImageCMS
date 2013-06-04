@@ -29,7 +29,7 @@
     </div>
     <div class="container">
         <span class="show-all-brands show-all-default">
-            <a href="{shop_url('brand/')}" class="t-d_n f-s_0"><span class="icon-arrow"></span><span class="text-el">Смотреть все</span></a>
+            <a href="{shop_url('brand/')}" class="t-d_n f-s_0"><span class="icon_arrow"></span><span class="text-el">Смотреть все</span></a>
         </span>
     </div>
 </div>

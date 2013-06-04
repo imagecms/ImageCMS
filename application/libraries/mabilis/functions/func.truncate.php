@@ -7,6 +7,8 @@ if (!function_exists('func_truncate')) {
 
     function func_truncate($var, $chars = 0, $end = '...') {
 
+        $var = strip_tags($var);
+
         if ($chars > 0 AND mb_strlen($var, 'utf-8') >= $chars) {
             $att = mb_substr($var, 0, $chars, 'utf-8') . $end;
 
@@ -16,7 +18,7 @@ if (!function_exists('func_truncate')) {
                                 $tidy->parseString($att, array('show-body-only' => TRUE, 'indent' => TRUE, 'output-xhtml' => TRUE, 'wrap' => 200), 'utf8');
                                 return $tidy->value . $end;
                             }) : strip_tags($att);
-        } else 
+        } else
             return extension_loaded('tidy') ?
                     call_user_func(function () use ($var) {
                                 $tidy = new tidy();
