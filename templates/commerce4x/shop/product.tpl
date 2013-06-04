@@ -172,7 +172,7 @@
                                         {/if}
                                     {/foreach}
                                 </div>
-                            </div>
+                            </div>                                
                             <div class="d_i-b v-a_b m-b_20 add_func_btn">
                                 <!-- Start. Block "Add to Compare" -->
                                 <button class="btn btn_small_p toCompare"
@@ -233,7 +233,8 @@
                     <!-- End. Show the block information if available -->
 
                     <!-- Start. Display characteristics block if you have one -->
-                    {if $renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
+                    {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
+                    {if count($renderProperties) > 0}
                         <li>
                             <button type="button" data-href="#characteristic">
                                 <span class="icon-charack"></span>
@@ -284,9 +285,31 @@
                     {/if}
                     <!--Piece of information about the product End-->
                     <!--The unit features product Start-->
-                    {if $renderProperties}
+                    {if count($renderProperties) > 0}
                         <div id="characteristic">
-                            {echo $renderProperties}
+                            <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
+                                <tbody>
+                                    {foreach $renderProperties as $prop}
+                                    <tr>
+                                        <td>
+                                            {if $prop.Desc}
+                                            <div class="item_add d_i-b">
+                                                <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
+                                                <div class="drop drop_down">
+                                                    <div class="drop-content">
+                                                        {echo $prop.Desc}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {else:}
+                                                {echo $prop.Name}                                               
+                                            {/if}
+                                        </td>
+                                        <td>{echo $prop.Value}</td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
                         </div>
                     {/if}
                     <!--The unit features product End-->

@@ -231,14 +231,16 @@
                             </div>
                         </div>
                     {/if}
+                    {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
+                    {if count($renderProperties) >0}
                     <div id="characteristic" data-height="200">
-                        {//$prop_tip = $model->getPropertiesWithTip()}
-                        {if count($prop_tip) > 0}
+
                             <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
                                 <tbody>
-                                    {foreach $prop_tip as $prop}
+                                    {foreach $renderProperties as $prop}
                                         <tr>
                                             <td>
+                                                {if $prop.Desc}
                                                 <div class="item_add d_i-b">
                                                     <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
                                                     <div class="drop drop_down">
@@ -247,18 +249,18 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {else:}
+                                                    {echo $prop.Name}                                               
+                                                {/if}
                                             </td>
                                             <td>{echo $prop.Value}</td>
                                         </tr>
                                     {/foreach}
                                 </tbody>
                             </table>
-                        {/if}
-                        {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                        {if $renderProperties}
-                            {echo $renderProperties}
-                        {/if}
+                        
                     </div>
+                    {/if}
                 </div>
                 <div class="t-a_r m-t_20">
                     <a href="{shop_url('product/' . $model->geturl())}">Подробнее о товаре</a>
