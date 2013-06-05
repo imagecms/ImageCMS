@@ -184,10 +184,6 @@ function deleteWishListItem(el, id, vid, price){
     }
     el.closest(genObj.parentBtnBuy).remove();
 }
-def_min = $('span#opt1').data('def_min');
-def_max = $('span#opt2').data('def_max');
-cur_min = $('span#opt3').data('cur_min');
-cur_max = $('span#opt4').data('cur_max');
 
 function processWish() {
     //wishlist checking
@@ -316,7 +312,7 @@ function initShopPage(showWindow) {
             chCountInCart($(this).closest('div'));
         });
 
-        $(genObj.frameCount +'input').die('keyup').live('keyup', function(){
+        $(genObj.frameCount +' input').die('keyup').live('keyup', function(){
             chCountInCart($(this).prev('div'));
         });
 

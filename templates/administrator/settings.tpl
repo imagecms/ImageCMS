@@ -10,7 +10,7 @@
                     <a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveSettings" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 </div>
-            </div>                            
+            </div>
         </div>
         <div class="row-fluid">
             <div class="span3 m-t_10">
@@ -18,14 +18,14 @@
                     <li class="active"><a href="#setings">{lang('a_sett')}</a></li>
                     <li><a href="#seo">SEO</a></li>
                     <li><a href="#homePage">{lang('a_main_page')}</a></li>
-                    <li><a href="#metatag">Управление Мета-тегами</a></li>                          
-                    <li><a href="#metatag_edit">Ввести метатеги</a></li>                          
+                    <li><a href="#metatag">Управление Мета-тегами</a></li>
+                    <li><a href="#metatag_edit">Ввести метатеги</a></li>
                 </ul>
             </div>
             <div class="span9 content_big_td">
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="setings">                                    
+                        <div class="tab-pane active" id="setings">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -107,7 +107,7 @@
                             </table>
                         </div>
 
-                        <div class="tab-pane" id="seo">                                    
+                        <div class="tab-pane" id="seo">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -162,7 +162,7 @@
                             </table>
                         </div>
 
-                        <div class="tab-pane" id="homePage">                                    
+                        <div class="tab-pane" id="homePage">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -224,7 +224,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="metatag">                                    
+                        <div class="tab-pane" id="metatag">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -305,7 +305,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> 
+                        </div>
                         <div class="tab-pane" id="metatag_edit">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
@@ -322,7 +322,7 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
-                                                            <label class="control-label" for="site_offline">Виберите язык:</label>
+                                                            <label class="control-label" for="site_offline">Выберите язык:</label>
                                                             <div class="controls">
                                                                 <select name="site_langs" onchange="ch_lan(this)">
                                                                     {$i = 1}
@@ -371,7 +371,7 @@
                                                             </div>
                                                         </div>
                                                         {$i++}
-                                                    {/foreach}                            
+                                                    {/foreach}
                                                 </div>
                                             </div>
                                             </div>
@@ -381,7 +381,7 @@
                                 </tbody>
                             </table>
                             {form_csrf()}
-                            </form>                       
+                            </form>
                         </div>
                         </section>
                     </div>
