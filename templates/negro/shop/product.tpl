@@ -54,7 +54,7 @@
                     <!-- $model->hasDiscounts() - check for a discount. And show old price-->
                     {if $model->hasDiscounts()}
                     <div class="v-a_b d_i-b">
-                        <div class="price-old-catalog">
+                        <div class="price-discount-catalog">
                             <span>Старая цена: <span class="old-price"><span id="priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
                         </div>
                     </div>
@@ -252,6 +252,8 @@
                     <div class="title_h1">Вместе дешевле</div>
                     <ul>
                         {foreach $model->getShopKits() as $kitProducts}
+                        {$arrUrl = array()}
+                        {$arrImg = array()}
                         <li class="f_l">
                             <ul class="items items-complect">
                                 <!-- main product -->
@@ -274,6 +276,8 @@
                                     </div>
                                     <div class="f_l plus-complect">+</div>
                                 </li>
+                                {$arrUrl[] = shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}
+                                {$arrImg[] = $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}
                                 <!-- /end main product -->
                                 {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                 <!-- additional product -->
@@ -302,12 +306,14 @@
                                     </div>
                                     <div class="f_l plus-complect">{if $kitProducts->countProducts() == $key}={else:}+{/if}</div>
                                 </li>
+                                {$arrUrl[] = shop_url('product/' . $kitProduct->getSProducts()->getUrl())}
+                                {$arrImg[] = $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}
                                 <!-- /additional product -->
                                 {/foreach}
                                 <!-- total -->
                                 <li>
                                     <div class="t-a_c">
-                                        <div class="price-old-catalog d_i-b m-b_10">
+                                        <div class="price-discount-catalog d_i-b m-b_10">
                                             <span><span class="old-price"><span>{echo $kitProducts->getAllPriceBefore()} <span class="cur">{$CS}</span></span></span></span>
                                         </div>
                                     </div>
@@ -317,19 +323,21 @@
                                         </div>
                                     </div>
                                     <div class="t-a_c">
-                                        <div class="btn-buy btnBuy goBuy">
-                                            <button class="buyButton toCart" type="button"                                    
-                                                    data-price="{echo $kitProducts->getTotalPrice()}" 
-                                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}" 
-                                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}" 
+                                        <div class="btn-buy">
+                                            <button class="btnBuy" type="button"                                    
+                                                    data-price="{echo $kitProducts->getTotalPrice()}"
+                                                    data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                     data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}" 
+                                                    data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                                     data-kit="true"
                                                     data-kitId="{echo $kitProducts->getId()}"
-                                                    data-number="{echo $model->firstVariant->getnumber()}"
-                                                    data-maxcount="{echo $model->firstVariant->getstock()}"
+                                                    data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
+                                                    data-url='{echo json_encode($arrUrl)}'
+                                                    data-img='{echo json_encode($arrImg)}'
+                                                    data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                                     >
-                                                {lang('s_buy')}
+                                                <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                <span class="text-el">{lang('s_buy')}</span>
                                             </button>
                                         </div>
                                     </div>

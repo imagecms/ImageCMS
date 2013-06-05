@@ -14,7 +14,7 @@ var optionsMenu = {
     durationOn: 200,
     durationOff: 50,
     sub2Frame: '.frame-l2',//if drop-side
-    dropWidth: 400
+    dropWidth: 450
 };
 var optionCompare = {
     left : '.leftDescription li',
@@ -57,7 +57,7 @@ var genObj = {
     trCartKit: 'tr.cartKit',
     frameCount: '.frame-count',//селектор
     countOrCompl: '.countOrCompl',//селектор
-    priceOrder: '.priceOrder',
+    priceOrder: '[data-rel="priceOrder"]',
     minus: '.btn-minus > button',
     plus: '.btn-plus > button',
     parentBtnBuy: 'li, [data-rel="frameP"]',//селектор
@@ -333,7 +333,7 @@ function initShopPage(showWindow) {
             var word = cartItem.kit ? kits : pcs;
             pd.closest('tr').find(genObj.countOrCompl).html(word);
 
-            Shop.Cart.chCount(cartItem, function(){});
+            //Shop.Cart.chCount(cartItem, function(){});
 
             countSumInTinyBask();
             
@@ -350,10 +350,10 @@ function initShopPage(showWindow) {
         }
         // change count
         $(genObj.frameCount +' '+ genObj.minus +', '+ genObj.frameCount +' '+ genObj.plus).die('click').live('click', function(){
-            chCountInCart($(this).closest('div'));
+            chCountInCart($(this).closest('.frame-change-count'));
         });
 
-        $(genObj.frameCount +'input').die('keyup').live('keyup', function(){
+        $(genObj.frameCount +' input').live('keyup', function(){
             chCountInCart($(this).prev('div'));
         });
 
@@ -407,11 +407,11 @@ function recountCartPage() {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     delete ca;
 
-    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
-    $('span#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
+    $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
+    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 
-    $('span.curr').html(curr);
+    $('.curr').html(curr);
 }
 
 function emptyPopupCart() {
