@@ -7,40 +7,9 @@
 #}
 <div class="start_page container">
     <section class="row-fluid m-b_20">
-        <div class="span3">
-            <nav class="menu_vertical_side">
-                <ul class="nav">
-                    <li>
-                        <span class="title">Видео</span>
-                        <ul>
-                            <li>
-                                <a href="#">DVD</a>
-                            </li>
-                            <li>
-                                <a href="#">TV & HDTV</a>
-                            </li>
-                            <li>
-                                <a href="#">DVD/DVR Плееры</a>
-                            </li>
-                            <li>
-                                <a href="#">Blu-Ray Плееры</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="title">Домашнее аудио</span>
-                        <ul>
-                            <li>
-                                <a href="#">Домашние театры</a>
-                            </li>
-                            <li>
-                                <a href="#">Спикеры</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        
+        {echo \Category\RenderMenu::create()->load('category_menu_vert')}
+
         <!-- Show Banners in circle -->
         <div class="span9">
             <div class="mainFrameBaner">

@@ -30,6 +30,7 @@ class Settings_additional extends MY_Controller {
         }
         if (!$ci->input->is_ajax_request()) {
             \CMSFactory\assetManager::create()->registerScript('webinger_scripts');
+        }
             $parametr = $ci->db->query("select product_variant_paramert.on, shop_product_variants.product_id as pid,
                                                 product_variant_paramert.in_stock as in_stock, shop_product_variants.id as vid
                                                 from shop_product_variants 
@@ -45,7 +46,7 @@ class Settings_additional extends MY_Controller {
                     $arr_stock[] = $p['vid'];                
             }
             $this->template->assign('__product_parametr', array('in_stock' => $arr_stock, 'on' => $arr_on));
-        }
+        
         
         
         
