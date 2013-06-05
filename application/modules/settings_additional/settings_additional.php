@@ -28,8 +28,24 @@ class Settings_additional extends MY_Controller {
             $subStyle = $settings['substyle'];
             $this->template->assign('subStyle', $subStyle);
         }
-        if (!$ci->input->is_ajax_request()) 
+        if (!$ci->input->is_ajax_request()) {
             \CMSFactory\assetManager::create()->registerScript('webinger_scripts');
+            $parametr = $ci->db->query("select product_variant_paramert.on, shop_product_variants.product_id as pid,
+                                                product_variant_paramert.in_stock as in_stock, shop_product_variants.id as vid
+                                                from shop_product_variants 
+                                                left join product_variant_paramert on product_variant_paramert.id = shop_product_variants.id 
+                                                join shop_product_variants_i18n on shop_product_variants_i18n.id = shop_product_variants.id
+                                                where shop_product_variants_i18n.locale = '" . MY_Controller::getCurrentLocale() . "'")->result_array();
+            $arr_stock = array();
+            $arr_on = array();
+            foreach ($parametr as $p){
+                if ($p['on'] == 1 OR $p['on'] === NULL )
+                    $arr_on[] = $p['vid'];
+                if ($p['in_stock'] == 1 OR $p['in_stock'] === NULL )
+                    $arr_stock[] = $p['vid'];                
+            }
+            $this->template->assign('__product_parametr', array('in_stock' => $arr_stock, 'on' => $arr_on));
+        }
         
         
         
@@ -47,7 +63,7 @@ class Settings_additional extends MY_Controller {
         $ci = & get_instance();
         $model = $data['model'];
         
-        $parametr = $ci->db->query("select * from shop_product_variants 
+        $parametr = $ci->db->query("select *,shop_product_variants.product_id as pid  from shop_product_variants 
                                                 left join product_variant_paramert on product_variant_paramert.id = shop_product_variants.id 
                                                 join shop_product_variants_i18n on shop_product_variants_i18n.id = shop_product_variants.id
                                                 where shop_product_variants_i18n.locale = '" . MY_Controller::getCurrentLocale() . "'
@@ -62,9 +78,10 @@ class Settings_additional extends MY_Controller {
     public function ProductOn(){
         $ci = & get_instance();
         $id = (int)$this->input->post('id');
+        $pid = (int) $this->input->post('product_id');
         $status = ($this->input->post('status')) === 'false' ? 1 : 0;
         $sql_is = "select * from product_variant_paramert where id = '$id'";
-        $sql = count($ci->db->query($sql_is)->result_array()) > 0 ? "update `product_variant_paramert` set `on` = '$status' where `id` = '$id'" : "INSERT INTO `product_variant_paramert`(`id`, `on`, `in_stock`) VALUES ('$id','$status','0')";
+        $sql = count($ci->db->query($sql_is)->result_array()) > 0 ? "update `product_variant_paramert` set `on` = '$status' where `id` = '$id'" : "INSERT INTO `product_variant_paramert`(`id`, `on`, `in_stock`, `product_id`) VALUES ('$id','$status',NULL,'$pid')";
         $ci->db->query($sql);
 
         
@@ -72,9 +89,10 @@ class Settings_additional extends MY_Controller {
     public function InStock(){
         $ci = & get_instance();
         $id = (int)$this->input->post('id');
+        $pid = (int) $this->input->post('product_id');
         $status = ($this->input->post('status')) === 'false' ? 1 : 0;
         $sql_is = "select * from product_variant_paramert where id = '$id'";
-        $sql = count($ci->db->query($sql_is)->result_array()) > 0 ? "update `product_variant_paramert` set `in_stock` = '$status' where `id` = '$id'" : "INSERT INTO `product_variant_paramert`(`id`, `on`, `in_stock`) VALUES ('$id','0','$status')";
+        $sql = count($ci->db->query($sql_is)->result_array()) > 0 ? "update `product_variant_paramert` set `in_stock` = '$status' where `id` = '$id'" : "INSERT INTO `product_variant_paramert`(`id`, `on`, `in_stock`, `product_id`) VALUES ('$id',NULL,'$status','$pid')";
         $ci->db->query($sql);
 
         

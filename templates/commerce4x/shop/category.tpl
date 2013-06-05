@@ -12,8 +12,12 @@
 *   $pagination: string variable contains html code for displaying pagination
 *   $page_number: integer variable contains the current page number
 *   $banners: array of (object)s of SBanners which have to be displayed in current page
+    $__product_parametr = array('on' => 'масив включених вариантов', 'in_stol' => 'масив вариантов в наличии')
 */
 #}
+
+
+
 
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
@@ -154,11 +158,14 @@
 
                                 <div class="f-s_0">
                                     {$variants = $product->getProductVariants()}
-                                    {if count($variants) > 1}
+                                    {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
+                                    {if count($variants) > 1 && $cnt > 1}
+                                        
                                         <div class=" d_i-b v-a_b m-r_20 p-b_10 variantProd">
                                             <div class="lineForm w_170">
                                                 <select id="сVariantSwitcher_{echo $product->firstVariant->getId()}" name="variant">
                                                     {foreach $variants as $key => $pv}
+                                                        {if in_array($pv->getId(),$__product_parametr['on'])}
                                                         {if $pv->getName()}
                                                             {$name = ShopCore::encode($pv->getName())}
                                                         {else:}
@@ -167,6 +174,8 @@
                                                         <option value="{echo $pv->getId()}" title="{echo $name}">
                                                             {echo $name}
                                                         </option>
+                                                        {/if}
+                                                        
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -178,6 +187,7 @@
                                         <!-- Start. Collect information about Variants, for future processing -->
                                         {foreach $variants as $key => $pv}
                                             {if $pv->getStock() > 0}
+                                                
                                                 <button {if $key != 0}style="display:none"{/if}
                                                                       class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
                                                                       type="button"

@@ -111,24 +111,30 @@
 
                                 {$CS}&nbsp;&nbsp;
                             </div>
-                            {if count($product->getProductVariants()) > 1}
-                                <div class=" d_i-b v-a_b m-r_20 p-b_10 variantProd">
-                                    <div class="lineForm w_170">
-                                        <select id="сVariantSwitcher_{echo $product->firstVariant->getId()}" name="variant">
-                                            {foreach $product->getProductVariants() as $key => $pv}
-                                                {if $pv->getName()}
-                                                    {$name = ShopCore::encode($pv->getName())}
-                                                {else:}
-                                                    {$name = ShopCore::encode($product->getName())}
-                                                {/if}
-                                                <option value="{echo $pv->getId()}" title="{echo $name}">
-                                                    {echo $name}
-                                                </option>
-                                            {/foreach}
-                                        </select>
-                                    </div>
-                                </div>
-                            {/if}
+                            {$variants = $product->getProductVariants()}
+                                    {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
+                                    {if count($variants) > 1 && $cnt > 1}
+                                        
+                                        <div class=" d_i-b v-a_b m-r_20 p-b_10 variantProd">
+                                            <div class="lineForm w_170">
+                                                <select id="сVariantSwitcher_{echo $product->firstVariant->getId()}" name="variant">
+                                                    {foreach $variants as $key => $pv}
+                                                        {if in_array($pv->getId(),$__product_parametr['on'])}
+                                                        {if $pv->getName()}
+                                                            {$name = ShopCore::encode($pv->getName())}
+                                                        {else:}
+                                                            {$name = ShopCore::encode($product->getName())}
+                                                        {/if}
+                                                        <option value="{echo $pv->getId()}" title="{echo $name}">
+                                                            {echo $name}
+                                                        </option>
+                                                        {/if}
+                                                        
+                                                    {/foreach}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {/if}
                                                                 <!-- displaying buy button according to its availability in stock -->
                                     <div class="frame_cart_btns d_i-b v-a_b">
                                         <!-- Start. Collect information about Variants, for future processing -->

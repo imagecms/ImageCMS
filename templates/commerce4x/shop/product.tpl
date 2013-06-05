@@ -67,12 +67,14 @@
                             <!-- Start. Output of all the options -->
                             <div class="f-s_0 d_i-b v-a_b m-b_20">
                                 {$variants = $model->getProductVariants()}
-                                {if count($variants) > 1}
+                                {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
+                                {if count($variants) > 1 && $cnt > 1}
                                     <div class=" d_i-b v-a_b m-r_30 variantProd">
                                         <span class="title">Выбор варианта:</span>
                                         <div class="lineForm w_170">
                                             <select id="variantSwitcher" name="variant">
                                                 {foreach $variants as $key => $pv}
+                                                    {if in_array($pv->getId(),$__product_parametr['on'])}
                                                     {if $pv->getName()}
                                                         {$name = ShopCore::encode($pv->getName())}
                                                     {else:}
@@ -81,6 +83,7 @@
                                                     <option value="{echo $pv->getId()}" title="{echo $name}">
                                                         {echo $name}
                                                     </option>
+                                                    {/if}
                                                 {/foreach}
                                             </select>
                                         </div>
