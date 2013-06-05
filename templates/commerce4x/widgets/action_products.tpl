@@ -119,7 +119,7 @@
                         <a href="{shop_url('product/'.$hotProduct->getUrl())}" class="photo">
                             <figure>
                                 <span class="helper"></span>
-                                <img src="{echo $hotProduct->firstvariant->getSmallPhoto()}" 
+                                <img src="{echo $hotProduct->firstvariant->getMediumPhoto()}" 
                                      alt="{echo ShopCore::encode($hotProduct->getName())} - {echo $hotProduct->getId()}"/>
                             </figure>
                         </a>
