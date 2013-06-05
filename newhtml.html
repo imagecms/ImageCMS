@@ -7,7 +7,7 @@
     <div class="fancy-cleaner">
         <button type="button" class="icon_times_drop" data-closed="closed-js" onclick="togglePopupCart()"></button>
         <div class="drop-header">
-            <div class="title">В вашей корзине <span class="add-info"><%- Shop.Cart.totalCount %></span> товара на сумму <span class="add-info"><%- Shop.Cart.totalPrice %></span> <%-curr%></div>
+            <div class="title">Ваша корзина</div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
@@ -23,24 +23,16 @@
                         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>">
                             <td><button class="icon_times_remove_cart" onclick="rmFromPopupCart(this);"></button></td>
                             <td>
-                                <a href="<%-item.url%>" class="frame-photo-title">
-                                    <span class="photo-block">
-                                        <span class="helper"></span>
+                                <a href="<%-item.url%>" class="d_i-b photo">
+                                    <figure>
                                         <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>"/>
-                                    </span>
+                                    </figure>
                                 </a>
                             </td>
                             <td>
                                 <a href="<%-item.url%>"><%- item.name %></a><%if(item.vname) {%> <%- '('+item.vname+')'%><%}%><span class="c_97"><% if (item.number) { %> (<%- item.number %>) <% } %></span>
-                                <div class="frame-prices f-s_0">
-                                    <span class="current-prices f-s_0">
-                                        <span class="price-new">
-                                            <span>
-                                                <span class="price"><%- parseFloat(item.price).toFixed(pricePrecision) %></span>
-                                                <span class="curr"><%-curr%></span>
-                                            </span>
-                                        </span>
-                                    </span>
+                                <div class="price price_f-s_16">
+                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%-curr%>.</span>
                                 </div>
                             </td>
                             <td>
@@ -61,17 +53,10 @@
                                 </div>
                                 <span class="countOrCompl"><%-pcs%></span>
                             </td>
-                            <td class="frame-cur-sum-price">
-                                <span class="title">Сумма: </span>
-                                <div class="frame-prices f-s_0">
-                                    <span class="current-prices f-s_0">
-                                        <span class="price-new">
-                                            <span>
-                                                <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
-                                                <span class="curr"><%-curr%></span>
-                                            </span>
-                                        </span>
-                                    </span>
+                            <td>
+                                <span class="d_b">Сумма: </span>
+                                <div class="price price_f-s_16 d_i-b">
+                                    <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span> <%-curr%></span>
                                 </div>
                             </td>
                         </tr>
@@ -101,24 +86,16 @@
                                         <tr>
                                             <td rowspan="<%- names.length %>"><button class="icon_times_remove_cart" onclick="rmFromPopupCart(this, true);"></button></td>
                                             <td>
-                                                <a class="frame-photo-title" href="#">
-                                                    <span class="photo-block">
-                                                        <span class="helper"></span>
+                                                <a class="photo" href="#">
+                                                    <figure>
                                                         <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                     </figure>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#"><%- names[i] %></a>
-                                                <div class="frame-prices f-s_0">
-                                                    <span class="current-prices f-s_0">
-                                                        <span class="price-new">
-                                                            <span>
-                                                                <span class="price"><%-prices[i]%></span>
-                                                                <span class="curr"><%-curr%></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
+                                                <div class="price price_f-s_16">
+                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                             <td rowspan="<%- names.length %>">
@@ -139,17 +116,10 @@
                                                 </div>
                                                 <span class="countOrCompl"><%-pcs%></span>
                                             </td>
-                                            <td rowspan="<%- names.length %>" class="frame-cur-sum-price">
-                                                <span class="title">Сумма: </span>
-                                                <div class="frame-prices f-s_0">
-                                                    <span class="current-prices f-s_0">
-                                                        <span class="price-new">
-                                                            <span>
-                                                                <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
-                                                                <span class="curr"><%-curr%></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
+                                            <td rowspan="<%- names.length %>">
+                                                <span>Сумма: </span>
+                                                <div class="price price_f-s_16 d_i-b">
+                                                    <span class="first_cash"><span class="f-w_b"><%-parseFloat(item.price*item.count).toFixed(pricePrecision)%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -158,24 +128,16 @@
 
                                         <tr>
                                             <td>
-                                                <a class="frame-photo-title" href="#">
-                                                    <span class="photo-block">
-                                                        <span class="helper"></span>
+                                                <a class="d_i-b photo" href="#">
+                                                    <figure>
                                                         <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                                     </figure>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="#"><%-names[i]%></a>
-                                                <div class="frame-prices f-s_0">
-                                                    <span class="current-prices f-s_0">
-                                                        <span class="price-new">
-                                                            <span>
-                                                                <span class="price"><%-prices[i]%></span>
-                                                                <span class="curr"><%-curr%></span>
-                                                            </span>
-                                                        </span>
-                                                    </span>
+                                                <div class="price price_f-s_16">
+                                                    <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -226,17 +188,10 @@
 
                             <% } %>
                             <td>
-                                <div class="frame-gen-sum-price">
-                                    <span class="title">Итого:</span>
-                                    <div class="frame-prices f-s_0">
-                                        <span class="current-prices f-s_0">
-                                            <span class="price-new">
-                                                <span>
-                                                    <span class="price" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
-                                                    <span class="curr"><%-curr%></span>
-                                                </span>
-                                            </span>
-                                        </span>
+                                <div class="t-a_l d_i-b v-a_m">
+                                    <span class="d_b">Итого:</span>
+                                    <div class="price price_f-s_24">
+                                        <span class="first_cash"><span class="f-w_b" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%-curr%></span>
                                     </div>
                                 </div>
                             </td>
@@ -259,24 +214,16 @@
                 <% if (!item.kit) { %>
                 <tr>
                     <td class="v-a_m">
-                        <a class="frame-photo-title" href="<%-item.url%>">
-                            <span class="photo-block">
-                                <span class="helper"></span>
+                        <a class="photo" href="<%-item.url%>">
+                            <figure>
                                 <img src="<% if(item.img) { %><%-item.img%><% } else { %>/uploads/shop/<%- item.id %>_mainMod.jpg<% } %>" alt="<%- '('+item.vname+')'%>">
                             </figure>
                         </a>
                     </td>
                     <td>
                         <a href="<%-item.url%>"><%- item.name %></a><%if(item.vname)%> <%- '('+item.vname+')'%><span class="c_97"><% if (item.number) { %> (<%-item.number %>) <% } %></span>
-                        <div class="frame-prices f-s_0">
-                            <span class="current-prices f-s_0">
-                                <span class="price-new">
-                                    <span>
-                                        <span class="price"><%- parseFloat(item.price).toFixed(pricePrecision) %></span>
-                                        <span class="curr"><%-curr%></span>
-                                    </span>
-                                </span>
-                            </span>
+                        <div class="price price_f-s_16">
+                            <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
                         </div>
                     </td>
                     <td>
@@ -307,40 +254,25 @@
 
                                 <tr>
                                     <td>
-                                        <a class="frame-photo-title" href="#">
-                                            <span class="photo-block">
-                                                <span class="helper"></span>
+                                        <a class="photo" href="#">
+                                            <figure>
                                                 <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
                                             </figure>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="#"><%- names[i] %></a>
-                                        <div class="frame-prices f-s_0">
-                                            <span class="current-prices f-s_0">
-                                                <span class="price-new">
-                                                    <span>
-                                                        <span class="price"><%-prices[i]%></span>
-                                                        <span class="curr"><%-curr%></span>
-                                                    </span>
-                                                </span>
-                                            </span>
+                                        <div class="price price_f-s_16">
+                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                     <td rowspan="<%- names.length %>" class="v-a_m">
                                         <span class="c_8a">х</span> <span class="f-w_b f-s_16"><%- item.count %></span> <%-kits%> =
                                     </td>
-                                    <td rowspan="<%- names.length %>" class="frame-cur-sum-price">
-                                        <span class="title">Сумма: </span>
-                                        <div class="frame-prices f-s_0">
-                                            <span class="current-prices f-s_0">
-                                                <span class="price-new">
-                                                    <span>
-                                                        <span class="price" data-rel="priceOrder"><%- parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span>
-                                                        <span class="curr"><%-curr%></span>
-                                                    </span>
-                                                </span>
-                                            </span>
+                                    <td rowspan="<%- names.length %>" class="v-a_m">
+                                        <span>Сумма: </span>
+                                        <div class="price price_f-s_16 d_i-b">
+                                            <span class="first_cash"><span class="f-w_b"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
                                         </div>
                                     </td>
                                 </tr>
@@ -349,24 +281,16 @@
 
                                 <tr>
                                     <td>
-                                        <a class="frame-photo-title" href="#">
-                                            <span class="photo-block">
-                                            <span class="helper"></span>
-                                               <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
-                                            </span
+                                        <a class="d_i-b photo" href="#">
+                                            <figure>
+                                                <img src="/uploads/shop/<%-id%>_mainMod.jpg" alt="<%- '('+item.vname+')'%>">
+                                            </figure>
                                         </a>
                                     </td>
                                     <td>
                                         <a href="#"><%-names[i]%></a>
-                                        <div class="frame-prices f-s_0">
-                                            <span class="current-prices f-s_0">
-                                                <span class="price-new">
-                                                    <span>
-                                                        <span class="price"><%-prices[i]%></span>
-                                                        <span class="curr"><%-curr%></span>
-                                                    </span>
-                                                </span>
-                                            </span>
+                                        <div class="price price_f-s_16">
+                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
                                         </div>
                                     </td>
                                 </tr>
@@ -390,18 +314,11 @@
                             <span class="helper"></span>
                             <button class="d_l_b" type="button" onclick="initShopPage();">Редактировать</button>
                         </div>
-                        <div class="f_r frame-gen-sum-price">
-                            <span class="title">Итого:</span>
-                            <div class="frame-prices f-s_0">
-                                <span class="current-prices f-s_0">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
-                                            <span class="curr"><%-curr%></span>
-                                        </span>
-                                    </span>
-                                </span>
-                            </div>
+                        <div class="f_r">
+                            <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
+                            <span class="price price_f-s_24 v-a_m d_i-b">
+                                <span class="first_cash"><span class="f-w_b"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
+                            </span>
                         </div>
                     </td>
                 </tr>
