@@ -7835,6 +7835,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `name` varchar(50) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `data` text,
+  `description` text,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_product_properties_i18n_I_2` (`name`),
   KEY `shop_product_properties_i18n_I_1` (`name`)
