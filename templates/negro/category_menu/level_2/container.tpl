@@ -1,8 +1,5 @@
 <div class="frame-l2">
-    <ul>
-        <li>
-            <span class="title"></span>
-        </li>
+    <ul class="items">
         {$wrapper}
     </ul>
 </div>

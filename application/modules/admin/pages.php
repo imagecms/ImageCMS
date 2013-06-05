@@ -300,7 +300,6 @@ class Pages extends BaseAdminController {
      */
     function edit($page_id, $lang = 0) {
         //cp_check_perm('page_edit');
-
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang('ac_page') . $page_id . lang('ac_not_found'), false, 'r');
             exit;
@@ -384,6 +383,7 @@ class Pages extends BaseAdminController {
 
             $this->template->add_array(array(
                 'page_lang' => $data['lang'],
+                'page_identif' => $data[identif],
                 'tree' => $this->lib_category->build(),
                 'parent_id' => $data['category'],
                 'langs' => $langs,

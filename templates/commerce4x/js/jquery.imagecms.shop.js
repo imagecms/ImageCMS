@@ -1385,89 +1385,6 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var settings = $.extend({
-                item: 'li',
-                prev: '.prev',
-                next: '.next',
-                content: '.content-carousel',
-                before: function() {
-                },
-                after: function() {
-                }
-            }, options);
-            
-            var $js_carousel = $(this);
-            if ($.exists_nabir($js_carousel)) {
-                var item = settings.item,
-                prev = settings.prev,
-                next = settings.next,
-                content = settings.content,
-                adding = settings.adding;
-						
-                $js_carousel.each(function(index) {
-                    $this = $(this);
-                    $frame_button[index] = $this.find('.groupButton')
-                    $this_carousel[index] = $this;
-                    $item[index] = $this.find(item);
-                    $item_l[index] = $item[index].length;
-                    $item_w[index] = $item[index].outerWidth(true);
-                    $item_h[index] = $item[index].outerHeight(true);
-                    $this_prev[index] = $this.find(prev);
-                    $this_next[index] = $this.find(next);
-                    $marginR[index] = $item_w[index] - $item[index].outerWidth();
-                    $marginT[index] = $item_h[index] - $item[index].outerHeight();
-                    cont_width[index] = $this.find(content).width();
-                    cont_height[index] = $this.find(content).height();
-                })
-
-                settings.before();
-                $js_carousel.each(function(index) {
-                    var index = index,
-                    $count_visible = (cont_width / ($item_w)).toFixed(1);
-                    var cond = $item_w * $item_l - $marginR > cont_width;
-                    
-                    try{
-                        if (adding.vertical) {
-                            cond = $item_h[index] * $item_l[index] - $marginT[index] > cont_height[index]
-                            $count_visible = 1;
-                        }
-                    }catch(err){}
-                        
-                    if (cond) {
-                        var main_obj = {
-                            buttonNextHTML: $this_next[index],
-                            buttonPrevHTML: $this_prev[index],
-                            visible: $count_visible,
-                            scroll: 1
-                        }
-                        $this_carousel[index].jcarousel($.extend(
-                            adding
-                            , main_obj));
-
-                        $this_next[index].add($this_prev[index]).css('display','inline-block').appendTo($frame_button[index]);
-                    }
-                    else {
-                        $this_next[index].add($this_prev[index]).css('display', 'none');
-                    }
-                });
-                settings.after();
-            }
-        }
-    };
-    $.fn.myCarousel = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.myCarousel');
-        }
-    }
-})(jQuery);
-/*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
-(function($) {
-    var methods = {
-        init: function(options) {
             if ($.exists_nabir($(this))) {
                 var $js_carousel = $(this);
                 var settings = $.extend({
@@ -1946,7 +1863,7 @@ var Shop = {
             }
         },
 
-        rm:function (key, el, vid) {
+        rm:function (key, el, vid, price) {
             this.items = this.all();
             
             $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
@@ -1966,7 +1883,7 @@ var Shop = {
                     }
                 } catch (e) {}
             });
-            deleteWishListItem($(el),key, vid);
+            deleteWishListItem($(el),key, vid, price);
         },
         sync: function(){
             $.getJSON('/shop/wish_list_api/sync', function(data){

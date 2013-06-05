@@ -16,18 +16,18 @@
                         {$page.full_text}
                     {/if}
                 </div>
-                {$Comments = $CI->load->module('comments')->init($page)}
+                    {$Comments = $CI->load->module('comments')->init($page)}
 
-                <script type="text/javascript">
-                    {literal}
-                        $(function() {
-                            renderPosts(this);
-                        })
-                    {/literal}
-                </script>
-                <div id="comment">
-                    <div id="for_comments" name="for_comments"></div>
-                </div>
+                    <script type="text/javascript">
+                        {literal}
+                            $(function() {
+                                renderPosts(this);
+                            })
+                        {/literal}
+                    </script>
+                    <div id="comment">
+                        <div id="for_comments" name="for_comments"></div>
+                    </div>
             </article>
         </div>
     </div>

@@ -40,15 +40,20 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromCategory($product) {
+
         if (!$product)
             return;
 
         $CI = &get_instance();
 
+        $ids = array();
+        foreach ($product[ShopCategoryId] as $key => $p)
+            $ids[$key] = $p;
+
         $array = $CI->db
                 ->select('item_id')
                 ->join('shop_products', 'comments.item_id=shop_products.id')
-                ->where_in('shop_products.category_id', $product[ShopCategoryId])
+                ->where_in('shop_products.category_id', $ids)
                 ->where('module', 'shop')
                 ->group_by('item_id')
                 ->get('comments')

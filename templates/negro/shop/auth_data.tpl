@@ -1,7 +1,7 @@
 <nav>
     <ul class="nav nav-enter-reg">
         {if !$CI->dx_auth->is_logged_in()}
-        <li class="enter-btn">
+        <li class="btn-enter">
             <button type="button"
                     id="loginButton"
                     data-drop=".drop-enter"
@@ -14,7 +14,7 @@
         <li class="or f-s_0">
             <span class="text-el">или</span>
         </li>
-        <li class="register-btn">
+        <li class="btn-register">
             <a href="/auth/register">
                 <span class="icon_reg"></span>
                 <span class="text-el">Регистрация</span>
@@ -22,14 +22,14 @@
         </li>
         <!--Else show link for personal cabinet -->
         {else:}
-        <li class="personal-area-btn">
+        <li class="btn-personal-area">
             <a href="/shop/profile">
                 <span class="icon_enter"></span>
                 <span class="text-el">Личный кабинет</span>
             </a>
         </li>
-        <li class="exit-shop-btn">
-            <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
+        <li class="btn-exit-shop">
+            <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '')">
                 <span class="icon_exit"></span>
                 <span class="text-el">Выход</span>
             </button>
