@@ -34,7 +34,11 @@
     </div>
     <div class="clearfix">
         <div class="m-t_20 pull-right">
-            <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {if $CI->uri->total_segments()==5}
+                <a href="/{echo $l.identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {else:}
+                <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {/if}
         </div>
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
             <a href="#content_article" class="btn btn-small active">{lang('a_content')}</a>
@@ -358,6 +362,6 @@
     </div>
 </div>
 <script>
-    if (window.hasOwnProperty('pagesAdmin'))
-    pagesAdmin.initialize();
+                                                if (window.hasOwnProperty('pagesAdmin'))
+                                                    pagesAdmin.initialize();
 </script>

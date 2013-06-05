@@ -34,7 +34,7 @@
             {/if}
 <!--           Start. Old price-->
             {if $p->hasDiscounts() && $discount}
-                <div class="price-old-catalog">
+                <div class="price-discount-catalog">
                     <span>Старая цена: <span class="old-price"><span>{echo $p->firstVariant->toCurrency('OrigPrice')} <span class="cur">{$CS}</span></span></span></span>
                 </div>
             {/if}
