@@ -7838,6 +7838,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
   `name` varchar(50) NOT NULL,
   `locale` varchar(5) NOT NULL,
   `data` text,
+  `description` text,
   PRIMARY KEY (`id`,`locale`),
   KEY `shop_product_properties_i18n_I_2` (`name`),
   KEY `shop_product_properties_i18n_I_1` (`name`)
@@ -9200,6 +9201,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (474, 'Список виджетов', 'Доступ к списку виджетов', 'ru'),
 (475, 'Создание виджета', 'Доступ к созданию виджета', 'ru'),
 (476, 'Отображение формы создания виджета', 'Доступ к отображению формы создания виджета', 'ru'),
+(477, 'Редактирование виджетов', 'Доступ к отображению формы создания виджета', 'ru'),
 (478, 'Обновление виджета', 'Доступ к обновлению виджетов', 'ru'),
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),

@@ -114,6 +114,7 @@
 
                     <!-- starts loop for array with products -->
                     {foreach $products as $product}
+                        {$desc = $product->getShortDescription()}
                         <!-- product block -->
                         <!-- check if product is in stock -->
                         <li class="{if (int)$product->getallstock() == 0}not_avail{/if} span3">
@@ -278,7 +279,11 @@
                                     </div>
                                 </div>
                                 <div class="short_description">
-                                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
+                                    {if $desc}
+                                        {echo $desc}
+                                    {else:}
+                                        {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
+                                    {/if}
                                 </div>
 
                             </div>
