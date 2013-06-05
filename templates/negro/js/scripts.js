@@ -98,6 +98,13 @@ var genObj = {
     userToolbar: $('.items-user-toolbar')
 }
 
+function fancyresize(){
+    var wndH = wnd.height(),
+    popupCart = $('#popupCart');
+    if (popupCart.height() > wndH){
+        $('.frame-bask-main').css('height', wndH-popupCart.find('.drop-header').height() - popupCart.find('.frame-foot').height()-50);
+    }
+}
     
 function draw_icons(selIcons){
     selIcons.each(function(){
@@ -108,8 +115,8 @@ function draw_icons(selIcons){
         $thisL = parseInt($this.css('margin-left')),
         className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
         
-        var paper = Raphael($this[0], $thisW, $thisH);
         if (icons[className] != undefined){
+            var paper = Raphael($this[0], $thisW, $thisH);
             s = paper.path(icons[className]).attr({
                 fill: $this.css('color'),
                 stroke: "none"
@@ -373,6 +380,8 @@ function rmFromPopupCart(context, isKit) {
     cartItem.vId = tr.data('varid');
 
     Shop.Cart.rm(cartItem).totalRecount();
+    
+    fancyresize();
 };
 
 function togglePopupCart() {
@@ -581,25 +590,25 @@ jQuery(document).ready(function() {
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
 
-                if ($(el).offset().left < 322 - $(el).outerWidth()) {
-                    $(el).attr('data-placement', 'bottom left');
+                if (el.offset().left < 322 - el.outerWidth()) {
+                    el.attr('data-placement', 'bottom left');
                     $(dropEl).addClass('left-report');
                 }
                 else {
-                    if ($(el).data('placement') != 'top right')
-                        $(el).attr('data-placement', 'bottom right');
+                    if (el.data('placement') != 'top right')
+                        el.attr('data-placement', 'bottom right');
                 }
-                if ($(el).data('placement') == 'top right') {
+                if (el.data('placement') == 'top right') {
                     $(dropEl).addClass('top-right-report');
                 }
 
                 $(dropEl).find('li').remove();
-                var elWrap = $(el).closest('li').clone().removeAttr('style').removeAttr('class'),
+                var elWrap = el.closest('li').clone().removeAttr('style').removeAttr('class'),
                 dropEl = $(dropEl).find('.drop-content');
 
                 //adding product info into form
                 var formCont = $('#data-report');
-                var productId = $(el).attr('data-prodid');
+                var productId = el.attr('data-prodid');
                 formCont.find('input[name="ProductId"]').val(productId)
 
                 elWrap.find('.photo').prependTo(elWrap)
@@ -609,17 +618,26 @@ jQuery(document).ready(function() {
                         dropEl.append('<ul class="frame-search-thumbail items"></ul>');
                     dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, #variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
-                return $(el);
+                return el;
             }
             $(dropEl).find('.error').hide();
             
             if ($(dropEl).hasClass('frame-already-show'))
                 $('.frame-user-toolbar').css('width', body.width())
+            
         },
         after: function(el, dropEl, isajax) {
             var selIcons = $('[class*=icon_]');
-            draw_icons($('#popupCart').find(selIcons));
+            
             if (isajax) draw_icons(dropEl.find(selIcons));
+            
+            if (dropEl.is('#popupCart')) {
+                
+                fancyresize();
+                el.drop('positionDrop', el, el.data('placement'), el.data('place'));
+                
+                draw_icons($('#popupCart').find(selIcons));
+            }
         },
         close: function(el, dropEl){
             if ($(dropEl).hasClass('frame-already-show'))
