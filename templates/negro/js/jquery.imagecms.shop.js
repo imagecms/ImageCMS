@@ -1279,8 +1279,9 @@ function ieInput(els) {
                                 }
                             }
                             else {
-                                $newthis = settings.before(this, elSetSource, isajax);
-                                if ($newthis != undefined) $this = $newthis;
+                                settings.before($this, elSetSource, isajax);
+//                                $newthis = settings.before(this, elSetSource, isajax);
+//                                if ($newthis != undefined) $this = $newthis;
                             
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
@@ -1306,7 +1307,7 @@ function ieInput(els) {
                                     elSetSource.addClass(activeClass);
                                     if (ltie7)
                                         ieInput();
-                                    settings.after(this, elSetSource, isajax);
+                                    settings.after($this, elSetSource, isajax);
                                 });
                             }
                         }
@@ -1362,7 +1363,6 @@ function ieInput(els) {
             if (!sel) var drop = $('[data-elrun].' + activeClass);
             else var drop = sel;
             
-            
             drop.removeClass(activeClass).each(function() {
                 var $this = $(this),
                 $thisEOff = $this.attr('data-effect-off'),
@@ -1396,6 +1396,8 @@ function ieInput(els) {
         positionDrop: function($this, placement, place){
             var $this = $this;
             if ($this == undefined) $this = $(this);
+            if (placement == undefined) placement = $this.data('placement');
+            if (place == undefined) place = $this.data('place');
             
             var elSetSource = $($this.data().drop);
             
@@ -1440,6 +1442,7 @@ function ieInput(els) {
                     methods.dropScroll(elSetSource)
                 });
             }
+            if (this instanceof $) methods.dropScroll(elSetSource);
         }
     };
     $.fn.drop = function(method) {

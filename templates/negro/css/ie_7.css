@@ -18,7 +18,7 @@ textarea{overflow: auto;}
 .d_i-b, .helper, .helper + *, .t-a_j > *, .ie_1, [class*="icon"], .prev, .next, .niceCheck, .ui-slider-handle, .prod_status, .ie_17, #fancybox-close, .fancy-ico, [class*="btn"], .nav > li > a, .nav > li > span, .menu-main td > .frame-item-menu > div > .title > span, .items-catalog > li, #items-catalog-main .price-discount-catalog, .items-brands.main > li, .frame-catalog > ul > li, .frame-sub-catalog > li, .cusel, .block-filter .frame-label, .items-complect li, .social-product .social a, .items-sub-category > li, [class*="d_l"], .frame-item-menu > ul > li, .menu-main td > .frame-item-menu > div > .title > span, .crumbs a, .items-catalog .price-catalog, .comprasion_head li > span, .pagination > li, .fancy-photo .price-product{display: inline !important;zoom: 1;}
 [class*='price'].d_n{display:none !important;}
 .horizontal-form .controls > .btn > *{margin-left: -85px;}
-.btn-cleaner > *{line-height: 35px;}
+.btn-bask > *{line-height: 35px;}
 .phones-header nav{white-space: nowrap;}
 input.input-search{width: 360px !important;}
 .head-category .f_l{margin-right: 3%;}
