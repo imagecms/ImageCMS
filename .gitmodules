@@ -4,3 +4,6 @@
 [submodule "application/modules/mobile"]
 	path = application/modules/mobile
 	url = git@github.com:imagecms/ImageCMS-SMobile-version.git
+[submodule "application/modules/exchange"]
+	path = application/modules/exchange
+	url = git@github.com:imagecms/ImageCMS-Exchange.git
