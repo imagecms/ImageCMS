@@ -16,15 +16,15 @@
                                 <img src="{echo $p->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($p->getName())}" />
                                 <!-- creating hot bubble for products image if product is hot -->
                                 {if $p->getHot()}
-                                <span class="prod_status nowelty">{lang('s_shot')}</span>
+                                <span class="product-status nowelty">{lang('s_shot')}</span>
                                 {/if}
                                 <!-- creating hot bubble for products image if product is hit -->
                                 {if $p->getHit()}
-                                <span class="prod_status hit">{lang('s_s_hit')}</span>
+                                <span class="product-status hit">{lang('s_s_hit')}</span>
                                 {/if}
                                 <!-- creating hot bubble for products image if product is action -->
                                 {if $p->getAction()}
-                                <span class="prod_status action">{echo $p->firstVariant->getNumDiscount()} %</span>
+                                <span class="product-status action">{echo $p->firstVariant->getNumDiscount()} %</span>
                                 {/if}
                             </span>
                             <span class="title">{echo ShopCore::encode($p->getName())}</span>
@@ -88,7 +88,25 @@
                                 <!-- end of buy/inCart buttons ------------->
                                 {else:}
                                 <!-- Start. Notify button -->
-
+                                <div class="btn-not-avail">
+                                    <button
+                                        type="button"
+                                        data-drop=".drop-report"
+                                        data-source="/shop/ajax/getNotifyingRequest"
+                                        data-prodid="{echo $p->getId()}"
+                                        data-varid="{echo $p->firstVariant->getId()}"
+                                        data-price="{echo $p->firstVariant->toCurrency()}" 
+                                        data-name="{echo ShopCore::encode($p->getName())}"
+                                        data-maxcount="{echo $p->firstVariant->getstock()}"
+                                        data-number="{echo $p->firstVariant->getNumber()}"
+                                        data-img="{echo $p->firstVariant->getSmallPhoto()}"
+                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                        data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                        data-stock="{echo $p->firstVariant->getStock()}"
+                                        >
+                                        <span class="text-el">Сообщит о появлении</span>
+                                    </button>
+                                </div>
                                 <!-- End. Notify button -->
                                 {/if}
                             </div>

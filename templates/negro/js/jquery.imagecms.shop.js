@@ -1,6 +1,8 @@
 var activeClass = 'active',
 cloned = '.cloned';
-clonedC = 'cloned';
+clonedC = 'cloned',
+wnd = $(window),
+body = $('body');
 /*
  *imagecms frontend plugins
  **/
@@ -372,13 +374,15 @@ function ieInput(els) {
             }
             else
             {
+                $.fancybox.showActivity();
                 $.post(searchPath, {
                     queryString: inputString.val()
                 }, function(data) {
+                    $.fancybox.hideActivity();
                     $thisS.fadeIn(durationA);
                     try {
-                        var dataObj = JSON.parse(data);
-                        var html = _.template($('#searchResultsTemplate').html(), {
+                        var dataObj = JSON.parse(data),
+                        html = _.template($('#searchResultsTemplate').html(), {
                             'items': dataObj
                         });
                     } catch (e) {
@@ -1209,6 +1213,9 @@ function ieInput(els) {
                     },
                     after: function() {
                         return true;
+                    },
+                    close: function() {
+                        return true;
                     }
                 }, options);
 
@@ -1225,6 +1232,7 @@ function ieInput(els) {
                 overlayOpacity = settings.overlayOpacity;
 
                 dataSource.live('click', function(event) {
+                    $.fancybox.showActivity();
                     event.stopPropagation();
                     event.preventDefault();
                     
@@ -1233,14 +1241,17 @@ function ieInput(els) {
                         elSet = $this.data();
                         
                         function showDrop(elSetSource, isajax){
+                            var place = $this.data('place') ||  settings.place,
+                            placement = $this.data('placement') || settings.placement,
+                            $thisEOff = effoff || $this.data('effect-off'),
+                            $thisD = duration || $this.data('duration');
+                            
                             $this.each(function() {
                                 var $this = $(this),
-                                $thisEOff = $this.data('effect-off') || effoff,
-                                $thisD = $this.data('duration') || duration,
                                 $thisSource = $this.data('drop');
                         
-                                $this.attr('data-placement', $this.data('placement') || placement);
-                                $this.attr('data-place', $this.data('place') || place);
+                                $this.attr('data-placement', placement);
+                                $this.attr('data-place', place);
                                 $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                             });
                     
@@ -1280,8 +1291,8 @@ function ieInput(els) {
                             }
                             else {
                                 settings.before($this, elSetSource, isajax);
-//                                $newthis = settings.before(this, elSetSource, isajax);
-//                                if ($newthis != undefined) $this = $newthis;
+                                //                                $newthis = settings.before(this, elSetSource, isajax);
+                                //                                if ($newthis != undefined) $this = $newthis;
                             
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
@@ -1298,11 +1309,13 @@ function ieInput(els) {
 
                                 $this.parent().addClass(activeClass);
                                 
-                                drop_over.show()
-                                drop_over.unbind('click').bind('click', function(e){
-                                    e.stopPropagation();
-                                    methods.triggerBtnClick(false,selector);
-                                })
+                                if (place == "center"){
+                                    drop_over.show()
+                                    drop_over.unbind('click').bind('click', function(e){
+                                        e.stopPropagation();
+                                        methods.triggerBtnClick(false,selector);
+                                    })
+                                }
                                 elSetSource[$thisEOn]($thisD, function() {
                                     elSetSource.addClass(activeClass);
                                     if (ltie7)
@@ -1310,6 +1323,7 @@ function ieInput(els) {
                                     settings.after($this, elSetSource, isajax);
                                 });
                             }
+                            $.fancybox.hideActivity();
                         }
                         
                         elSetSource = $(elSet.drop);
@@ -1318,7 +1332,6 @@ function ieInput(els) {
                         }
                         else{
                             if (elSet.source){
-                                $.fancybox.showActivity();
                                 $.post(elSet.source, function(data){
                                     $.fancybox.hideActivity();
                                     body.append(data);
@@ -1335,7 +1348,7 @@ function ieInput(els) {
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button){
+                    if (event.button == 0){
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
@@ -1438,10 +1451,10 @@ function ieInput(els) {
                     body.addClass('isScroll');
                     drop_over.addClass('drop_overlay_fixed');
                 }
-                wnd.bind('resize.drop', function(){
-                    methods.dropScroll(elSetSource)
-                });
             }
+            wnd.bind('resize.drop', function(){
+                methods.dropScroll(elSetSource)
+            });
             if (this instanceof $) methods.dropScroll(elSetSource);
         }
     };
@@ -1939,10 +1952,6 @@ var Shop = {
                 selector = this.popupCartSelector;
 
             return template = _.template($(selector).html(), Shop.Cart);
-        },
-
-        showPopupCart:function () {
-        //$.fancybox(this.renderPopupCart());
         },
 
         sync: function (){

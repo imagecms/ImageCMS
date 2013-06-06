@@ -1,3 +1,4 @@
+var activeClass = 'active';
 /*
  *imagecms frontend plugins
  **/
@@ -998,16 +999,19 @@ function ieInput(els) {
         init: function(options) {
             if ($.exists_nabir($(this))){
                 settings = $.extend({
-                    cloned: '.cloned',
-                    activeClass: 'active',
                     exit: '[data-closed = "closed-js"]',
                     effon: 'show',
                     effoff: 'hide',
-                    effdur: 500,
+                    duration: 200,
+                    place: 'center',
+                    placement: 'noinherit',
                     before: function() {
                         return true;
                     },
                     after: function() {
+                        return true;
+                    },
+                    close: function() {
                         return true;
                     }
                 }, options);
@@ -1015,108 +1019,135 @@ function ieInput(els) {
                 var $thisD = this,
                 selector = $thisD.selector,
                 dataSource = $('[data-drop]'),
-                cloned = settings.cloned,
                 exit = $(settings.exit),
                 effon = settings.effon,
                 effoff = settings.effoff,
-                effdur = settings.effdur,
+                duration = settings.duration,
+                place = settings.place,
+                placement = settings.placement,
                 overlayColor = settings.overlayColor,
                 overlayOpacity = settings.overlayOpacity;
-
-                activeClass = settings.activeClass;
 
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
                     event.preventDefault();
-                
-                    $(this).each(function() {
-                        var $this = $(this),
-                        $thisS = $this.data('effect-off') || effoff,
-                        $thisD = $this.data('duration') || effdur,
-                        $thisSource = $this.data('drop');
-                        $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
-                    });
-                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
-                        $this = $(this);
+                    
+                    var $this = $(this);
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0){//for propagation with tabs
                         elSet = $this.data();
-                        elSetSource = $(elSet.drop);
-                
-                        var elSetOn = elSet.effectOn || effon,
-                        elSetOff = elSet.effectOff || effoff,
-                        elSetDuration = elSet.duration || effdur,
-                        overlayColor = elSet.overlaycolor || settings.overlayColor,
-                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                        
+                        function showDrop(elSetSource, isajax){
+                            var place = $this.data('place') ||  settings.place,
+                            placement = $this.data('placement') || settings.placement,
+                            $thisEOff = effoff || $this.data('effect-off'),
+                            $thisD = duration || $this.data('duration');
+                            
+                            $this.each(function() {
+                                var $this = $(this),
+                                $thisSource = $this.data('drop');
+                        
+                                $this.attr('data-placement', placement);
+                                $this.attr('data-place', place);
+                                $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
+                            });
+                    
+                            var $thisEOn = elSet.effectOn || effon,
+                            $thisEOff = elSet.effectOff || effoff,
+                            $thisD = elSet.duration || duration,
+                            overlayColor = elSet.overlaycolor || settings.overlayColor,
+                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                        if (overlayColor != undefined || overlayOpacity != undefined) {
-                            if (!$.exists('.overlayDrop')) {
-                                body.append('<div class="overlayDrop" style="position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                            if (overlayColor != undefined || overlayOpacity != undefined) {
+                                if (!$.exists('.overlayDrop')) {
+                                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
+                                }
+                                drop_over = $('.overlayDrop');
+                                drop_over.css({
+                                    'background-color': overlayColor,
+                                    'opacity': overlayOpacity
+                                });
                             }
-                            drop_over = $('.overlayDrop');
-                            drop_over.css({
-                                'background-color': overlayColor,
-                                'opacity': overlayOpacity
-                            });
-                        }
-                        else
-                            drop_over = $([]);
+                            else
+                                drop_over = $([]);
 
-                        if (elSetSource.is('.' + activeClass)) {
-                            $this.removeClass(activeClass)
-                            elSetSource[elSetOff](elSetDuration, function() {
-                                elSetSource.removeClass(activeClass).removeAttr('style')
-                                drop_over[elSetOff](elSetDuration);
-                            });
-                            $thisHref = $(this).attr('href');
-                            if ($thisHref != undefined) {
-                                var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
-                                try {
-                                    indH = wLH.match($thisHref + '(?![a-z])').index;
-                                    location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                } catch (err) {
+                            if (elSetSource.is('.' + activeClass)) {
+                                methods.triggerBtnClick(elSetSource, selector);
+
+                                $thisHref = $(this).attr('href');
+                                if ($thisHref != undefined) {
+                                    var $thisHrefL = $thisHref.length,
+                                    wLH = location.hash,
+                                    wLHL = wLH.length;
+                                    try {
+                                        indH = wLH.match($thisHref + '(?![a-z])').index;
+                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                                    } catch (err) {
+                                    }
                                 }
                             }
-                        }
-                        else {
-                            $newthis = settings.before(this, elSetSource);
-                            if ($newthis != undefined) $this = $newthis;
+                            else {
+                                settings.before($this, elSetSource, isajax);
+                                //                                $newthis = settings.before(this, elSetSource, isajax);
+                                //                                if ($newthis != undefined) $this = $newthis;
                             
-                            if (event.button == undefined) body.scrollTop($this.offset().top)
+                                $thisDrop = $this.closest('[data-elrun]');
+                                if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
+                            
+                                //if (event.button == undefined && place != "center") body.scrollTop($this.offset().top)
 
-                            var wndW = wnd.width();
-                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                            else elSetSource.removeAttr('style');
+                                var wndW = wnd.width();
+                                if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
+                                else elSetSource.removeAttr('style');
                     
-                            methods.positionDrop($this, elSet, elSetSource);
+                                methods.positionDrop($this, placement, place);
+                            
+                                if (place == "center") methods.dropScroll(elSetSource);
 
-                            $this.addClass(activeClass);
-                            drop_over.show();
-
-                            drop_over.unbind('click').bind('click', function(){
-                                methods.triggerBtnClick();
-                            })
-                            elSetSource[elSetOn](elSetDuration, function() {
-                                elSetSource.addClass(activeClass);
-                                if (ltie7)
-                                    ieInput();
-                            });
-                            settings.after(this, elSetSource);
+                                $this.parent().addClass(activeClass);
+                                
+                                //if (place == "center"){
+                                    drop_over.show()
+                                    drop_over.unbind('click').bind('click', function(e){
+                                        e.stopPropagation();
+                                        methods.triggerBtnClick(false,selector);
+                                    })
+                                //}
+                                elSetSource[$thisEOn]($thisD, function() {
+                                    elSetSource.addClass(activeClass);
+                                    if (ltie7)
+                                        ieInput();
+                                    settings.after($this, elSetSource, isajax);
+                                });
+                            }
                         }
-                        $(cloned).remove();
+                        
+                        elSetSource = $(elSet.drop);
+                        if ($.exists_nabir(elSetSource)){
+                            showDrop(elSetSource);
+                        }
+                        else{
+                            if (elSet.source){
+                                $.post(elSet.source, function(data){
+                                    body.append(data);
+                                    elSetSource = $(elSet.drop);
+                                    showDrop(elSetSource, true);
+                                    dataSource = $('[data-drop]');
+                                })
+                            }
+                        }
                     }
                 })
-                exit.click(function(){
-                    methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                exit.live('click', function(){
+                    methods.triggerBtnClick($(this).closest('[data-elrun]'), selector);
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button){
+                    if (event.button == 0){
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
                         {
-                            methods.triggerBtnClick();
+                            methods.triggerBtnClick(false,selector);
                         }
                     }
                 }).live('keydown', function(e) {
@@ -1130,54 +1161,61 @@ function ieInput(els) {
                         key = e.which;
 
                     if (key == 27) {
-                        methods.triggerBtnClick();
+                        methods.triggerBtnClick(false,selector);
                     }
                 });
             }
         },
-        triggerBtnClick: function(sel) {
-            if (!sel) sel = $('[data-elrun].' + activeClass);
-            else sel = sel.closest('[data-elrun]');
+        triggerBtnClick: function(sel, selector) {
+            if (!sel) var drop = $('[data-elrun].' + activeClass);
+            else var drop = sel;
             
-            sel.each(function() {
-                $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
-                $this.click().parent().removeClass('active');
-                if ($this.data('place') == 'center') {
-                    body.removeClass('o_h');
-                    body.css('margin-right', function(){
-                        if ($(document).height()-wnd.height() > 0){
-                            drop_over.removeClass('drop_overlay_fixed');
-                            return 0
-                        }
-                    })
+            drop.removeClass(activeClass).each(function() {
+                var $this = $(this),
+                $thisEOff = $this.attr('data-effect-off'),
+                $thisD = $this.attr('data-duration');
+                
+                var $thisB = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                $thisB.parent().removeClass(activeClass);
+                
+                if (!$.exists_nabir($(selector+'.'+activeClass))) {
+                    if ($(document).height()-wnd.height() > 0){
+                        drop_over.removeClass('drop_overlay_fixed');
+                        body.removeClass('isScroll')
+                    }
+                    drop_over.hide();
                 }
-                drop_over.remove();
-            }).removeClass('active');
+                $this[$thisEOff]($thisD, function(){
+                    $(this).removeAttr('style');
+                    settings.close($thisB, $this);
+                });
+            });
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {
-            elSetSource.animate({
-                'top': (wnd.height() - elSetSource.height()) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.width()) / 2 + wnd.scrollLeft()
+            elSetSource.css({
+                'top': (wnd.height() - elSetSource.actual('height')) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.actual('width')) / 2 + wnd.scrollLeft()
             }, {
                 queue: false
             });
         },
-        positionDrop: function($this){
+        positionDrop: function($this, placement, place){
             var $this = $this;
             if ($this == undefined) $this = $(this);
+            if (placement == undefined) placement = $this.data('placement');
+            if (place == undefined) place = $this.data('place');
             
-            var elSet = $this.data(),
-            elSetSource = $(elSet.drop);
+            var elSetSource = $($this.data().drop);
             
-            var $thisP = $this.attr('data-place');
+            var $thisP = place;
             dataSourceH = 0,
             dataSourceW = 0,
-            $thisW = $this.width();
+            $thisW = $this.width(),
             $thisH = $this.height();
-            
+
             if ($thisP == 'noinherit') {
-                var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
+                var $thisPMT = placement.toLowerCase().split(' ');
 
                 if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
                     dataSourceH = -elSetSource.actual('height');
@@ -1202,18 +1240,14 @@ function ieInput(els) {
                 });
                 if ($thisL == 0) elSetSource.css('margin-left', 0);
             }
-            if ($thisP == 'center') {
-                body.css('margin-right', function(){
-                    if ($(document).height()-wnd.height() > 0){
-                        body.addClass('o_h');
-                        drop_over.addClass('drop_overlay_fixed');
-                        return 17
-                    }
-                })
-                wnd.bind('resize.drop', function(){
-                    methods.dropScroll(elSetSource)
-                    }).resize();
+            if ($(document).height()-wnd.height() > 0){
+                body.addClass('isScroll');
+                drop_over.addClass('drop_overlay_fixed');
             }
+            wnd.bind('resize.drop', function(){
+                methods.dropScroll(elSetSource)
+            });
+            if (this instanceof $) methods.dropScroll(elSetSource);
         }
     };
     $.fn.drop = function(method) {
