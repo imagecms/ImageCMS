@@ -1093,7 +1093,7 @@ function ieInput(els) {
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
                             
-                                if (event.button == undefined && place != "center") body.scrollTop($this.offset().top)
+                                if (event.button == undefined && place != "center") wnd.scrollTop($this.offset().top)
 
                                 var wndW = wnd.width();
                                 if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
