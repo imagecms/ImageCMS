@@ -8,6 +8,8 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
+/application/modules/mobile/
+/application/modules/exchange/
 /application/libraries/fake
 Thumbs.db
 .idea/
