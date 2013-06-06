@@ -234,13 +234,13 @@
                                                                 <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl('no_s.png')}">
                                                             {/if}
                                                             {if $p->getHot()}
-                                                                <span class="prod_status nowelty">new</span>
+                                                                <span class="product-status nowelty">new</span>
                                                             {/if}
                                                             {if $p->getHit()}
-                                                                <span class="prod_status hit">хит</span>
+                                                                <span class="product-status hit">хит</span>
                                                             {/if}
                                                             {if $p->getAction()}
-                                                                <span class="prod_status action">акция</span>
+                                                                <span class="product-status action">акция</span>
                                                             {/if}
                                                         </span>
                                                         <span class="title">{echo ShopCore::encode($p->getName())}</span>

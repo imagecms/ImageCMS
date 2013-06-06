@@ -203,11 +203,6 @@
                                                 </button>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}
-                                                                      data-placement="top right"
-                                                                      data-place="noinherit"
-                                                                      data-duration="500"
-                                                                      data-effect-off=    "fadeOut"
-                                                                      data-effect-on="fadeIn"
                                                                       data-drop=".drop-report"
 
                                                                       data-id="{echo $pv->getId()}"
