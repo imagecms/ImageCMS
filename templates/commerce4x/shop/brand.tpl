@@ -224,7 +224,7 @@
                                 <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                     <figure>
                                         <span class="helper"></span>
-                                        <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}" class="vimg"/>
+                                        <img src="{echo $product->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getid()}" class="vimg"/>
                                     </figure>
                                 </a>
                             </div>
