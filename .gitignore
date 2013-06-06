@@ -8,7 +8,7 @@
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop
-/application/modules/mobile
+/application/modules/mobile/
 /application/libraries/fake
 Thumbs.db
 .idea/
