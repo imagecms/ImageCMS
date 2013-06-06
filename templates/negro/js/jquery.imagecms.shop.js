@@ -1,8 +1,8 @@
 var activeClass = 'active',
 cloned = '.cloned';
 clonedC = 'cloned',
-wnd = $(window),
-body = $('body');
+    wnd = $(window),
+    body = $('body');
 /*
  *imagecms frontend plugins
  **/
@@ -1241,14 +1241,14 @@ function ieInput(els) {
                         elSet = $this.data();
                         
                         function showDrop(elSetSource, isajax){
-                            var place = $this.data('place') ||  settings.place,
-                            placement = $this.data('placement') || settings.placement,
-                            $thisEOff = effoff || $this.data('effect-off'),
-                            $thisD = duration || $this.data('duration');
+                            var place = elSet.place ||  settings.place,
+                            placement = elSet.placement || settings.placement,
+                            $thisEOff = elSet.effectOff || effoff,
+                            $thisD = elSet.duration || duration;
                             
                             $this.each(function() {
                                 var $this = $(this),
-                                $thisSource = $this.data('drop');
+                                $thisSource = elSet.drop;
                         
                                 $this.attr('data-placement', placement);
                                 $this.attr('data-place', place);
@@ -1348,7 +1348,7 @@ function ieInput(els) {
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button == 0){
+                    if (event.button == 0 && ($(event.target).is('[data-drop]') || $(event.target).parents().is('[data-drop]'))){
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
@@ -1397,6 +1397,7 @@ function ieInput(els) {
                 });
             });
             wnd.unbind('resize.drop');
+            console.log(2)
         },
         dropScroll: function(elSetSource) {
             elSetSource.css({
@@ -1453,9 +1454,10 @@ function ieInput(els) {
                 }
             }
             wnd.bind('resize.drop', function(){
+                console.log(elSetSource)
                 methods.dropScroll(elSetSource)
             });
-            if (this instanceof $) methods.dropScroll(elSetSource);
+        //if (this instanceof $) methods.dropScroll($($(this).data('drop')));
         }
     };
     $.fn.drop = function(method) {
@@ -2099,7 +2101,7 @@ var Shop = {
             }
         },
 
-        rm:function (key, el, vid) {
+        rm:function (key, el, vid, price) {
             this.items = this.all();
             
             $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
@@ -2119,7 +2121,7 @@ var Shop = {
                     }
                 } catch (e) {}
             });
-            deleteWishListItem($(el),key, vid);
+            deleteWishListItem($(el),key, vid, price);
         },
         sync: function(){
             $.getJSON('/shop/wish_list_api/sync', function(data){

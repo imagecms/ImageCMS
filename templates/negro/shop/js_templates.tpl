@@ -22,7 +22,7 @@
 
                                     <!-- for single product -->
                                     <% if (!item.kit) { %>
-                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask">
+                                    <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
                                         <td class="frame-remove-bask-btn"><button class="icon_times_remove_cart" onclick="rmFromPopupCart(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">
@@ -280,7 +280,7 @@
                 <tbody>
                     <% _.each(Shop.Cart.getAllItems(), function(item){ %>
                     <% if (!item.kit) { %>
-                    <tr class="items items-bask">
+                    <tr class="items items-bask cartProduct">
                         <td>
                             <a class="frame-photo-title" href="<%-item.url%>">
                                 <span class="photo-block">
