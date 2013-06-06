@@ -28,7 +28,7 @@ var ImageCMSApi = {
     debugMode: true,
     returnMsg: function(msg) {
         if (this.debugMode === true) {
-            //console.log(msg);
+        //console.log(msg);
         }
     },
     formAction: function(url, selector) {
@@ -147,8 +147,6 @@ $(document).ready(function() {
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
             $('label#for_' + $(this).attr('name')).hide();
-            if ($('.btn_not_avail.active').length != 0)
-                $('.btn_not_avail.active').drop('positionDrop');
         }
     });
 });
@@ -179,7 +177,7 @@ var Notification = {
     formClass: ".drop-content",
     returnMsg: function(msg) {
         if (this.debugMode === true) {
-            console.log(msg);
+        //console.log(msg);
         }
     },
     formAction: function(url, selector) {
@@ -208,8 +206,7 @@ var Notification = {
                     if (obj.status === true) {
                         $(Notification.formClass + ' form#' + selector).hide();
                         $(Notification.formClass + ' form#' + selector).before('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
-                        if ($('.btn_not_avail.active').length != 0)
-                            $('.btn_not_avail.active').drop('positionDrop');
+                        
                         if (obj.close === true) {
                             if ($('.frame-search-thumbail')[0]) $('.frame-search-thumbail').remove();
                             setTimeout((function() {
@@ -252,8 +249,6 @@ var Notification = {
                     $('#' + selector).find('label#for_' + key).show();
                 }
             }
-            if ($('.btn_not_avail.active').length != 0)
-                $('.btn_not_avail.active').drop('positionDrop');
         } else {
             return false;
         }

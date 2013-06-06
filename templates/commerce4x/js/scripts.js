@@ -476,23 +476,14 @@ $(document).ready(function () {
     $('.drop').drop({
         overlayColor: '#000',
         overlayOpacity: '0.6',
+        place: 'center',
+        effon: 'fadeIn',
+        effoff: 'fadeOut',
+        duration: 500,
         before: function(el, dropEl) {
             //check for drop-report
            
             if ($(dropEl).hasClass('drop-report')) {
-                $(dropEl).removeClass('left-report').removeClass('top-right-report')
-
-                if ($(el).offset().left < 322 - $(el).outerWidth()) {
-                    $(el).attr('data-placement', 'bottom left');
-                    $(dropEl).addClass('left-report');
-                }
-                else {
-                    if ($(el).data('placement') != 'top right')
-                        $(el).attr('data-placement', 'bottom right');
-                }
-                if ($(el).data('placement') == 'top right'){
-                    $(dropEl).addClass('top-right-report');
-                }
             
                 $(dropEl).find(genObj.parentBtnBuy).remove();
                 var elWrap = $(el).closest(genObj.parentBtnBuy).clone().removeAttr('style').removeAttr('class'),

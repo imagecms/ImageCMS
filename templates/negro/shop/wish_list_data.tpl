@@ -4,7 +4,7 @@
     <div class="wish-list-btn tiny-wish-list">
         <button onclick="location='{shop_url('wish_list')}'">
             <span class="icon_wish_list"></span>
-            <span class="text-wish-list">
+            <span class="text-wish-list f-s_0">
                 <span class="text-el">Список желаний (</span>
                 <span class="empty">
                     <span class="text-el wishListCount"></span>

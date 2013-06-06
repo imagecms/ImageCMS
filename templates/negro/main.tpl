@@ -56,8 +56,6 @@
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
 
-        {include_shop_tpl('report_appearance')}
         {include_shop_tpl('js_templates')}
-        {include_shop_tpl('search_autocomplete')}
     </body>
 </html>

@@ -147,8 +147,9 @@ $(document).ready(function() {
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
             $('label#for_' + $(this).attr('name')).hide();
-            if ($('.btn_not_avail.active').length != 0)
-                $('.btn_not_avail.active').drop('positionDrop');
+            var btnNAA = $('.btn_not_avail.active');
+            if (btnNAA.length != 0)
+                btnNAA.drop('positionDrop', btnNAA, btnNAA.data('placement'), btnNAA.data('place'));
         }
     });
 });
