@@ -1,8 +1,5 @@
 {if count($products) > 0}
-<section class="special-proposition">
-    <div class="title_h1 container">
-        <span>{$title}</span>
-    </div>
+<section class="special-proposition frame-view-products">
     <div class="big-container">
         <div class="carousel_js products-carousel">
             <div class="content-carousel container">
@@ -126,7 +123,6 @@
         </div>
     </div>
 </section>
-{/if}
 {else:}
 Нет просмотреных товаров
 {/if}

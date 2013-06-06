@@ -5,10 +5,10 @@
             <span class="icon_compare_list"></span>
             <span class="text-compare-list f-s_0">
                 <span class="text-el">Список сравнений (</span>
-                <span class="empty">
+                <span class="empty f-s_0">
                     <span class="text-el compareListCount"></span>
                 </span>
-                <span class="no-empty">
+                <span class="no-empty f-s_0">
                     <span class="text-el compareListCount"></span>
                 </span>
                 <span class="text-el">)</span>
