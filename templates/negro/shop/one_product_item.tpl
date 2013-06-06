@@ -8,15 +8,15 @@
                 <img src="{productSmallImageUrl($p)}" alt="{echo ShopCore::encode($p->getName())}" />
                 <!-- creating hot bubble for products image if product is hot -->
                 {if $p->getHot()}
-                    <span class="prod_status nowelty">{lang('s_shot')}</span>
+                    <span class="product-status nowelty">{lang('s_shot')}</span>
                 {/if}
                 <!-- creating hot bubble for products image if product is hit -->
                 {if $p->getHit()}
-                    <span class="prod_status hit">{lang('s_s_hit')}</span>
+                    <span class="product-status hit">{lang('s_s_hit')}</span>
                 {/if}
                 <!-- creating hot bubble for products image if product is action -->
                 {if $p->getAction()}
-                    <span class="prod_status action">{lang('s_saction')}</span>
+                    <span class="product-status action">{lang('s_saction')}</span>
                 {/if}
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>

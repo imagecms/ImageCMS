@@ -145,11 +145,6 @@
                                             <button  {if $key != 0}style="display:none"{/if}
                                                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant"
                                                                    type="button"
-                                                                   data-placement="top right"
-                                                                   data-place="noinherit"
-                                                                   data-duration="500"
-                                                                   data-effect-off=    "fadeOut"
-                                                                   data-effect-on="fadeIn"
                                                                    data-drop=".drop-report"
 
                                                                    data-id="{echo $pv->getId()}"
