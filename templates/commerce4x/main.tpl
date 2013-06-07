@@ -307,7 +307,7 @@
             var inServerCompare = parseInt("{$cnt_comp}");
         </script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.min.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
 
