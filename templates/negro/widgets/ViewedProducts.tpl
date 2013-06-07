@@ -124,5 +124,9 @@
     </div>
 </section>
 {else:}
-Нет просмотреных товаров
+<div class="inside-padd">
+    <div class="msg f-s_0">
+        <div class="success"><span class="icon_info"></span><span class="text-el">Нет просмотреных товаров</span></div>
+    </div>
+</div>
 {/if}

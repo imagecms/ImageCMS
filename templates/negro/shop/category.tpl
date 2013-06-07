@@ -60,7 +60,7 @@
             <!--End. Banners-->
             {include_tpl('catalogue_header')}
             {if count($products) > 0}
-            <ul class="items items-catalog {if $_COOKIE['listtable'] == 1}list{/if}" id="items-catalog-main">
+            <ul class="items items-catalog {if $_COOKIE['listtable'] == 1} list{else:} table{/if}" id="items-catalog-main">
                 <!--                    include template for one product item-->
                 {include_tpl('one_product_item')}
             </ul>

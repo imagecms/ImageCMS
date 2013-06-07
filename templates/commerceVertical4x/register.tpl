@@ -1,4 +1,4 @@
-<article>
+<article class="container">
     {if validation_errors() OR $info_message}
         <div class="errors">
             {validation_errors()}

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="span3 f_r">
+        <div class="span3">
             {load_menu('left_menu')}
         </div>
         <div class="span6">
