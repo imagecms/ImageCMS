@@ -3,8 +3,8 @@
         <div class="nav menu-main vertical not-js">
             <nav>
                 <table>
-                    <tbody>                            
-                        {$wrapper}                            
+                    <tbody>
+                        {$wrapper}
                     </tbody>
                 </table>
             </nav>

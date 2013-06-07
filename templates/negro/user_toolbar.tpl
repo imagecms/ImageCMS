@@ -14,7 +14,7 @@
                             <span class="icon_already_show"></span>
                             <span class="text-view-list">
                                 <span class="text-el d_l_1">Вы уже смотрели</span>
-                                <span class="text-el">({echo count(widget('ViewedProducts'))})</span>
+                                <span class="text-el">&nbsp;({echo count(widget('ViewedProducts'))})</span>
                             </span>
                         </button>
                     </div>
