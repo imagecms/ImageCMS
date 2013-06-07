@@ -1,5 +1,5 @@
 <!-- floating elements-->
-<div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
+<div id="popupCart" style="display: none;" class="drop drop-bask drop-style" data-event="trigger"></div>
 <a href="#" data-drop="#popupCart" id="showCart" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">
@@ -514,6 +514,7 @@
 </script>
 {/literal}
 
+<span class="tooltip"></span>
 <div class="apply">
     <div>
         <div class="description">Найдено <span id="apply-count">5</span> тов.</div>

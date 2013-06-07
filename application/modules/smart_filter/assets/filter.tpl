@@ -11,34 +11,30 @@
 {$curMax = $maxPrice;}
 {/if}
 <script type="text/javascript">
-    def_min={$minPrice};
-    def_max={$maxPrice};
-    cur_min={$curMin};
-    cur_max={$curMax};
     totalProducts = parseInt('{$totalProducts}');
 </script>
 <div class="block-filter shadow-w_220">
     <div class="title_h3">Подробор по параметрам</div>
-    <div class="inside-padd">
+    <div class="frame-slider">
         <div class="title_h4">Цена в гривнах</div>
         <div class="sliderCont">
             <noscript>Джаваскрипт не включен</noscript>
-            <div id="slider">
-                <a class="ui-slider-handle" href="#" id="left_slider"></a>
-                <a class="ui-slider-handle" href="#" id="right_slider"></a>
+            <div class="slider" data-def-min="{$minPrice}" data-def-max="{$maxPrice}" data-cur-min="{$curMin}" data-cur-max="{$curMax}">
+                <a href="#" class="ui-slider-handle left-slider"></a>
+                <a href="#" class="ui-slider-handle right-slider"></a>
             </div>
         </div>
-    </div>
-    <div class="formCost">
-        <div class="inside-padd">
-            <div class="t-a_j">
-                <label>
-                    <input type="text" id="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $curMin}"/>
-                </label>
-                <label>
-                    <input type="text" id="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $curMax}"/>
-                </label>
-                <input type="submit" value="ОК"/>
+        <div class="formCost">
+            <div class="inside-padd">
+                <div class="t-a_j">
+                    <label>
+                        <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $curMin}"/>
+                    </label>
+                    <label>
+                        <input type="text" class="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $curMax}"/>
+                    </label>
+                    <input type="submit" value="ОК"/>
+                </div>
             </div>
         </div>
     </div>

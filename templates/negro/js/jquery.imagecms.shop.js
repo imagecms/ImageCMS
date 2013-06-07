@@ -424,11 +424,6 @@ function ieInput(els) {
                 me: true
             }, options);
 
-            $.ajaxSetup({
-                success: function() {
-                    $('.tooltip').remove();
-                }
-            })
             var $this = $(this),
             text_el = $this.find(genObj.textEl),
             me = settings.me;
@@ -436,19 +431,10 @@ function ieInput(els) {
             if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
                 return false;
             
-            if (settings.effect == 'notalways') {
-                $('.tooltip').remove();
-                body.append('<span class="tooltip">' + settings.title + '</span>');
-            }
-
             var tooltip = $('.tooltip').not(cloned);
 
             if (settings.effect == 'always') {
-                if (!$.exists_nabir(tooltip)) {
-                    body.append('<span class="tooltip">' + settings.title + '</span>');
-                }
-                else
-                    tooltip.text(settings.title)
+                tooltip.text(settings.title)
             }
 
             if (settings.otherClass !== false)
@@ -462,25 +448,19 @@ function ieInput(els) {
             }).fadeIn(300);
 
             $this.filter(':input').unbind('blur').blur(function() {
-                $('.tooltip').fadeOut(300, function() {
-                    $(this).remove()
-                });
+                $('.tooltip').fadeOut(300);
             })
             body.unbind('click.tooltip').live('click.tooltip', function(event) {
                 event.stopPropagation();
                 if ($(event.target).parents().is($this) || $(event.target).is($this))
                     return;
                 else{
-                    $('.tooltip').fadeOut(300, function() {
-                        $(this).remove()
-                    });
+                    $('.tooltip').fadeOut(300);
                 }
             })
         },
         remove: function( ) {
-            $('.tooltip').fadeOut(300, function() {
-                $(this).remove()
-            });
+            $('.tooltip').fadeOut(300);
         }
     };
     $.fn.tooltip = function(method) {
@@ -587,10 +567,10 @@ function ieInput(els) {
                                     var listDrop = $thisDrop.children();
                                     
                                     if (!listDrop.is('[data-height]')){
-                                        var sumHL1 = listDrop.height();
+                                        var sumHL1 = listDrop.height(),
+                                        dropW = $thisDrop.width();
                                         listDrop.attr('data-height', sumHL1);
                                         isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
-                                        dropW = $thisDrop.width();
                                     }
                                     
                                     listDrop.children().each(function(){
@@ -612,7 +592,8 @@ function ieInput(els) {
                                             }
                                         }
                                     }).unbind('hover').hover(function(){
-                                        subFrame = $(this).find(sub2Frame),
+                                        var subFrame = $(this).find(sub2Frame),
+                                        dropW = $(this).parent().parent().width(),
                                         sumW = dropW+subFrame.width(),
                                         subHL2 = subFrame.height(),
                                         dropDH = $thisDrop.children().data('height');
@@ -622,6 +603,7 @@ function ieInput(els) {
                                         $thisDrop.css('width', sumW);
                                         $thisDrop.children().add(subFrame).css('height', subHL2);
                                     },function(){
+                                        var subFrame = $(this).find(sub2Frame);
                                         $thisDrop.css('width', '')
                                         $thisDrop.children().add(subFrame).css('height', '')
                                     })
@@ -631,7 +613,7 @@ function ieInput(els) {
                         }, time_dur_m);
                     }, function() {
                         var $this = $(this),
-                        $thisDrop = $this.find(settings.drop);
+                        $thisDrop = $this.find(drop);
                         $(drop).hide();
                         $('.first_h, .last_h').removeAttr('class');
                         clearTimeout(hover_t_o);
@@ -665,83 +647,6 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.exists_nabir(this)) {
-                var settings = $.extend({}, options);
-
-                var rel = $(this),
-                minCost = settings.minCost,
-                maxCost = settings.maxCost;
-
-                if (options.minCost == undefined || options.maxCost == undefined) {
-                    minCost = $('<input type="text"/>', {
-                        value: cur_min
-                    }).insertAfter(body).hide();
-                    maxCost = $('<input type="text"/>', {
-                        value: cur_max
-                    }).insertAfter(body).hide();
-                }
-
-                rel.slider({
-                    min: def_min,
-                    max: def_max,
-                    values: [cur_min, cur_max],
-                    range: true,
-                    slide: function(event, ui) {
-                        minCost.val(ui.values[0]);
-                        maxCost.val(ui.values[1]);
-                    }
-                });
-                minCost.change(function() {
-                    var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    minS = minCost.data('mins');
-
-                    if (parseInt(value1) > parseInt(value2)) {
-                        value1 = value2;
-                        maxCost.val(value1);
-                    }
-                    if (parseInt(value1) < minS) {
-                        minCost.val(minS);
-                        value1 = minS;
-                    }
-                    rel.slider("values", 0, value1);
-                });
-                maxCost.change(function() {
-                    var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    maxS = maxCost.data('maxs');
-
-                    if (value2 > def_max) {
-                        value2 = def_max;
-                        maxCost.val(def_max)
-                    }
-
-                    if (parseInt(value1) > parseInt(value2)) {
-                        value2 = value1;
-                        maxCost.val(value2);
-                    }
-                    if (parseInt(value2) > maxS) {
-                        maxCost.val(maxS);
-                        value2 = maxS;
-                    }
-                    rel.slider("values", 1, value2);
-                });
-            }
-        }
-    }
-    $.fn.sliderInit = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.sliderInit');
-        }
-    };
-})(jQuery);
-(function($) {
-    var methods = {
-        init: function(options) {
             if ($.exists_nabir($(this))){
                 var settings = $.extend({
                     effectOn:'show',
@@ -772,7 +677,6 @@ function ieInput(els) {
                     durationOn = settings.durationOn,
                     durationOff = settings.durationOff;
                 
-                    condRadio = $thiss.data('type') != 'itemsView';
                     nav_tabs_li[index] = $thiss.children();
                     refs[index] = nav_tabs_li[index].children();
                     attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
@@ -801,9 +705,10 @@ function ieInput(els) {
                         var $this = $(this);
                         settings.before();
                         event.preventDefault();
-
-                        if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
-
+                        
+                        var condRadio = $thiss.data('type') != 'itemsView';
+                        
+                        if (!$this.parent().hasClass('disabled')) {
                             wST = wnd.scrollTop();
                             $thisA = $this[attrOrdata[index]]('href');
                             if ($this.data('drop') == undefined) {
@@ -942,15 +847,11 @@ function ieInput(els) {
         },
         startCheck: function() {
             $(hashs[1].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id');
-                $('[data-href="#' + $thisId + '"]').trigger('click');
+                $(this).trigger('click');
             });
-            $(hashs[0].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
-
-                $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
+            $.map(hashs[0], function(n, i) {
+                $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
+                $('[' + attrOrdataNew + '=' + n + ']').trigger('click');
             });
         }
     };
@@ -1261,7 +1162,8 @@ function ieInput(els) {
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                            if (overlayColor != undefined || overlayOpacity != undefined) {
+                            condOverlay = overlayColor != undefined && overlayOpacity != undefined && place == "center";
+                            if (condOverlay) {
                                 if (!$.exists('.overlayDrop')) {
                                     body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
                                 }
@@ -1276,28 +1178,14 @@ function ieInput(els) {
 
                             if (elSetSource.is('.' + activeClass)) {
                                 methods.triggerBtnClick(elSetSource, selector);
-
-                                $thisHref = $(this).attr('href');
-                                if ($thisHref != undefined) {
-                                    var $thisHrefL = $thisHref.length,
-                                    wLH = location.hash,
-                                    wLHL = wLH.length;
-                                    try {
-                                        indH = wLH.match($thisHref + '(?![a-z])').index;
-                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                    } catch (err) {
-                                    }
-                                }
                             }
                             else {
                                 settings.before($this, elSetSource, isajax);
-                                //                                $newthis = settings.before(this, elSetSource, isajax);
-                                //                                if ($newthis != undefined) $this = $newthis;
                             
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
                             
-                                if (event.button == undefined && place != "center") body.scrollTop($this.offset().top)
+                                if (event.button == undefined && $(event.target).data('place') != "center") wnd.scrollTop($this.offset().top);
 
                                 var wndW = wnd.width();
                                 if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
@@ -1307,9 +1195,8 @@ function ieInput(els) {
                             
                                 if (place == "center") methods.dropScroll(elSetSource);
 
-                                $this.parent().addClass(activeClass);
                                 
-                                if (place == "center"){
+                                if (condOverlay) {
                                     drop_over.show()
                                     drop_over.unbind('click').bind('click', function(e){
                                         e.stopPropagation();
@@ -1326,6 +1213,7 @@ function ieInput(els) {
                             $.fancybox.hideActivity();
                         }
                         
+                        $this.parent().addClass(activeClass);
                         elSetSource = $(elSet.drop);
                         if ($.exists_nabir(elSetSource)){
                             showDrop(elSetSource);
@@ -1348,7 +1236,7 @@ function ieInput(els) {
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button == 0 && ($(event.target).is('[data-drop]') || $(event.target).parents().is('[data-drop]'))){
+                    if (event.button == 0 && event.relatedTarget == null){
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
@@ -1381,23 +1269,33 @@ function ieInput(els) {
                 $thisEOff = $this.attr('data-effect-off'),
                 $thisD = $this.attr('data-duration');
                 
-                var $thisB = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
                 $thisB.parent().removeClass(activeClass);
+                
+                var $thisHref = $thisB.attr('href');
+                if ($thisHref != undefined) {
+                    var $thisHrefL = $thisHref.length,
+                    wLH = location.hash,
+                    wLHL = wLH.length;
+                    try {
+                        var indH = wLH.match($thisHref + '(?![a-z])').index;
+                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                    } catch (err) {}
+                }
                 
                 if ($thisB.data('place') == 'center' && !$.exists_nabir($(selector+'.'+activeClass))) {
                     if ($(document).height()-wnd.height() > 0){
                         drop_over.removeClass('drop_overlay_fixed');
                         body.removeClass('isScroll')
                     }
-                    drop_over.hide();
                 }
                 $this[$thisEOff]($thisD, function(){
                     $(this).removeAttr('style');
+                    drop_over.fadeOut(200);
                     settings.close($thisB, $this);
                 });
             });
             wnd.unbind('resize.drop');
-            console.log(2)
         },
         dropScroll: function(elSetSource) {
             elSetSource.css({
@@ -1454,7 +1352,6 @@ function ieInput(els) {
                 }
             }
             wnd.bind('resize.drop', function(){
-                console.log(elSetSource)
                 methods.dropScroll(elSetSource)
             });
         //if (this instanceof $) methods.dropScroll($($(this).data('drop')));
