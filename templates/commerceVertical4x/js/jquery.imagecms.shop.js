@@ -110,28 +110,25 @@ function ieInput(els) {
                         selectorPosition = 0;
                     }
 
-                    itemserch.each(function(i, el) {
-                        $(el).removeClass('selected');
-                        if (i == selectorPosition)
-                        {
-                            $(el).addClass('selected');
-                        }
-                    });
+                    itemserch.removeClass('selected');
+                    itemserch.eq(selectorPosition).addClass('selected');
 
                     return false;
                 }
-
                 // Enter pressed
                 if (code == 13)
                 {
-                    itemserch.each(function(i, el) {
-                        if ($(el).hasClass('selected'))
-                        {
+                    var itemserchS = itemserch.filter('.selected');
+                    if ($.exists_nabir(itemserchS))
+                        itemserchS.each(function(i, el) {
                             window.location = $(el).attr('href');
                             window.location = $(el).find('a').attr('href');
-                        }
-                    });
+                        });
+                    else {
+                        $thisS.closest('form').submit();
+                    }
                 }
+
             }
             catch (err) {
             }
