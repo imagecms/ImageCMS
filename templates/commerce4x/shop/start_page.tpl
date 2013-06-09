@@ -10,7 +10,7 @@
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
         <section class="container">
-            {$banners = ShopCore::app()->SBannerHelper->getBanners()}
+            {$banners = ShopCore::app()->SBannerHelper->getBanners(300)}
             {if count($banners)}
             <div class="frame_baner">
                 <ul class="cycle">

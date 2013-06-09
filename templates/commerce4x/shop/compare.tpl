@@ -95,7 +95,7 @@
                                                     data-name="{echo ShopCore::encode($product->getName())}"
                                                     data-maxcount="{echo $product->firstVariant->getstock()}"
                                                     data-number="{echo $product->firstVariant->getNumber()}"
-                                                    data-img="{echo $product->firstVariant->getSmallPhoto()}"
+                                                    data-img="{echo $product->firstVariant->getMediumPhoto()}"
                                                     data-url="{echo shop_url('product/'.$product->getUrl())}"
                                                     data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $product->firstVariant->getStock()}"
@@ -130,7 +130,7 @@
                                             <a href="{shop_url('product/' . $product->getUrl())}" class="photo">
                                                 <figure>
                                                     <span class="helper"></span>
-                                                    <img src="{echo $product->firstVariant->getSmallPhoto()}" alt="{echo $product->id}"/>
+                                                    <img src="{echo $product->firstVariant->getMediumPhoto()}" alt="{echo $product->id}"/>
                                                 </figure>
                                             </a>
                                         </div>
