@@ -63,11 +63,6 @@
                     </button>
                     {else:}
                     <button
-                        data-placement="top right"
-                        data-place="noinherit"
-                        data-duration="500"
-                        data-effect-off=    "fadeOut"
-                        data-effect-on="fadeIn"
                         data-drop=".drop-report"
                         data-prodid="{echo $product->getId()}"
                         type="button"

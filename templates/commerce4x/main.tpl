@@ -185,21 +185,15 @@
                                         +8 (090)<span class="d_n">&minus;</span> 500-50-50
                                     </div>
                                     <div style="margin-top: 7px;">
-                                        <ul class="tabs">
+                                        <ul>
                                             <li>
-                                                <a class="t-d_n d_b"
-                                                   href="#ordercall"
-                                                   data-drop=".drop-order-call"
-                                                   data-effect-on="fadeIn"
-                                                   data-effect-off="fadeOut"
-                                                   data-duration="300"
-                                                   data-place="center"
-                                                   data-simple="yes">
+                                                <button class="t-d_n d_b"
+                                                   data-drop=".drop-order-call">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
                                                         {lang('s_coll_order')}
                                                     </span>
-                                                </a>
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>

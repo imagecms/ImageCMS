@@ -4,6 +4,7 @@
 html, body{height: 100%;}
 html{-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}
 body{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 12px;min-width: 199px;color: #333;}
+body.isScroll{min-width: 1153px;padding-right: 17px;overflow: hidden;}
 @media all and (min-resolution: 120dpi){html {font-size: 50%;-webkit-text-size-adjust: 50%;-ms-text-size-adjust: 50%;}html, x:-moz-any-link {font-size: 100.01%;}}
 ul, ol{list-style: none;}
 table{border-collapse: collapse;border-spacing: 0;width: 100%;table-layout: fixed;}
@@ -729,6 +730,8 @@ a.activeSlide{background-position: -66px 0;}
 .variantProd .title{color: 4f4f4f;display: block;margin-bottom: 7px;font-size: 16px;font-weight: bold;}
 .count_response{color: #333;}
 .star{display: inline-block;margin-right: 9px;}
+.star > .productRate{display: block;}
+.star > .productRate > span{display: block;}
 
 .short_description{display: none;}
 .list .short_description{display: block;}
@@ -982,13 +985,9 @@ form + .msg{margin: 15px 15px 0;}
 .drop-order-call .drop-footer{background-position: -2015px 0;height: 10px;}
 .drop-order-call .drop-content .header_title{margin: 0 7px;}
 
-.drop-report{position: absolute;width: 322px;background-position: -2861px 0;padding-top: 13px;margin-top: -15px;margin-left: 85px;}
-.drop-report.left-report .drop-footer{background-position: -3184px 0;}
-.drop-report.left-report{margin-left: 0;}
-.drop-report.top-right-report{background-position: 0 0;margin-top: 13px;}
-.drop-report.top-right-report .drop-footer{background-position: -646px 0;}
+.drop-report{position: absolute;width: 322px;background-position: -2861px 0;padding-top: 13px;}
 .drop-report .drop-content{background-position: -323px 0;padding: 0 25px 15px;}
-.drop-report .drop-footer{background-position: -2538px 0;height: 13px;}
+.drop-report .drop-footer{background-position: -646px 0;height: 13px;}
 .drop-report .drop-content .header_title{margin: 0 7px;}
 .drop-report h1{font-size: 16px;}
 .drop-report .frame-search-thumbail .photo{margin-right: 0;}
@@ -1001,7 +1000,6 @@ form + .msg{margin: 15px 15px 0;}
 .frameSet{padding: 10px 45px;margin-bottom: 40px;border: 1px solid #cdcdcd;-moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius: 6px;-moz-box-shadow: 0 1px 2px #949494;-webkit-box-shadow: 0 1px 2px #949494;box-shadow: 0 1px 2px #949494;}
 .frameSet .jcarousel-item{width: 1050px;}
 .frameSet .container{width: 1078px;margin-right: 0 !important;overflow: hidden;}
-body.vertical_template .frameSet .jcarousel-item{width: 748px !important;}
 
 .frame_tabs .characteristic {margin-top: 0;}
 .characteristic td, .characteristic th{padding: 6px 0;border-bottom: 1px dotted #666;}

@@ -1,6 +1,4 @@
 var isTouch = 'ontouchstart' in document.documentElement,
-wnd = $(window),
-body = $('body'),
 mainBody = $('.mainBody'),
 cW = '980';
 
@@ -43,16 +41,19 @@ icons = {
     icon_phone_footer: "M20.755,1H10.62C9.484,1,8.562,1.921,8.562,3.058v24.385c0,1.136,0.921,2.058,2.058,2.058h10.135c1.136,0,2.058-0.922,2.058-2.058V3.058C22.812,1.921,21.891,1,20.755,1zM14.659,3.264h2.057c0.101,0,0.183,0.081,0.183,0.18c0,0.1-0.082,0.18-0.183,0.18h-2.057c-0.1,0-0.181-0.081-0.181-0.18C14.478,3.344,14.559,3.264,14.659,3.264zM13.225,3.058c0.199,0,0.359,0.162,0.359,0.36c0,0.198-0.161,0.36-0.359,0.36c-0.2,0-0.36-0.161-0.36-0.36S13.025,3.058,13.225,3.058zM15.688,28.473c-0.796,0-1.44-0.646-1.44-1.438c0-0.799,0.645-1.439,1.44-1.439s1.44,0.646,1.44,1.439S16.483,28.473,15.688,28.473zM22.041,24.355c0,0.17-0.139,0.309-0.309,0.309H9.642c-0.17,0-0.308-0.139-0.308-0.309V6.042c0-0.17,0.138-0.309,0.308-0.309h12.09c0.17,0,0.309,0.138,0.309,0.309V24.355z",
     icon_exit: "M24.086,20.904c-1.805,3.113-5.163,5.212-9.023,5.219c-5.766-0.01-10.427-4.672-10.438-10.435C4.636,9.922,9.297,5.261,15.063,5.25c3.859,0.007,7.216,2.105,9.022,5.218l3.962,2.284l0.143,0.082C26.879,6.784,21.504,2.25,15.063,2.248C7.64,2.25,1.625,8.265,1.624,15.688c0.002,7.42,6.017,13.435,13.439,13.437c6.442-0.002,11.819-4.538,13.127-10.589l-0.141,0.081L24.086,20.904zM28.4,15.688l-7.15-4.129v2.297H10.275v3.661H21.25v2.297L28.4,15.688z",
     icon_times_drop: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
-    icon_times_remove_cart: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
-    icon_times_remove: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
+    icon_times_cart: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
+    icon_times: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z",
     icon_wish_list: "M24.132,7.971c-2.203-2.205-5.916-2.098-8.25,0.235L15.5,8.588l-0.382-0.382c-2.334-2.333-6.047-2.44-8.25-0.235c-2.204,2.203-2.098,5.916,0.235,8.249l8.396,8.396l8.396-8.396C26.229,13.887,26.336,10.174,24.132,7.971z",
     icon_compare_list: "M21.786,12.876l7.556-4.363l-7.556-4.363v2.598H2.813v3.5h18.973V12.876zM10.368,18.124l-7.556,4.362l7.556,4.362V24.25h18.974v-3.501H10.368V18.124z",
     icon_already_show: "M14.075,9.531c0,0-2.705-1.438-5.158-1.438c-2.453,0-4.862,0.593-4.862,0.593L3.971,9.869c0,0,0.19,0.19,0.528,0.53c0.338,0.336,0.486,3.741,1.838,5.094c1.353,1.354,4.82,1.396,5.963,0.676c1.14-0.718,2.241-3.466,2.241-4.693c0-0.38,0-0.676,0-0.676c0.274-0.275,1.615-0.303,1.917,0c0,0,0,0.296,0,0.676c0,1.227,1.101,3.975,2.241,4.693c1.144,0.72,4.611,0.678,5.963-0.676c1.355-1.353,1.501-4.757,1.839-5.094c0.338-0.34,0.528-0.53,0.528-0.53l-0.084-1.183c0,0-2.408-0.593-4.862-0.593c-2.453,0-5.158,1.438-5.158,1.438C16.319,9.292,14.737,9.32,14.075,9.531z",
+    icon_info: "M16,1.466C7.973,1.466,1.466,7.973,1.466,16c0,8.027,6.507,14.534,14.534,14.534c8.027,0,14.534-6.507,14.534-14.534C30.534,7.973,24.027,1.466,16,1.466z M14.757,8h2.42v2.574h-2.42V8z M18.762,23.622H16.1c-1.034,0-1.475-0.44-1.475-1.496v-6.865c0-0.33-0.176-0.484-0.484-0.484h-0.88V12.4h2.662c1.035,0,1.474,0.462,1.474,1.496v6.887c0,0.309,0.176,0.484,0.484,0.484h0.88V23.622z",
+    icon_home: "M27.812,16l-3.062-3.062V5.625h-2.625v4.688L16,4.188L4.188,16L7,15.933v11.942h17.875V16H27.812zM16,26.167h-5.833v-7H16V26.167zM21.667,23.167h-3.833v-4.042h3.833V23.167z"
 }
 var genObj = {
     textEl: '.text-el',//селектор
-    emptyCarthideElement: '#popupCart .inside-padd table, #shopCartPage',
-    emptyCartshowElement: '#popupCart .inside-padd div.msg, #shopCartPageEmpty',
+    popupCart: '#popupCart',
+    emptyCarthideElement: '#popupCart table',
+    emptyCartshowElement: '#popupCart .msg',
     pM: '.paymentMethod',
     trCartKit: 'tr.cartKit',
     frameCount: '.frame-count',//селектор
@@ -95,14 +96,23 @@ var genObj = {
     priceVariant: '.priceVariant',
     priceOrigVariant: '.priceOrigVariant',
     photoProduct: '.photoProduct',
-    userToolbar: $('.items-user-toolbar')
+    userToolbar: $('.items-user-toolbar'),
+    popupCartTotal: '#popupCartTotal'
 }
 
-function fancyresize(){
+function dropBaskResize(){
     var wndH = wnd.height(),
-    popupCart = $('#popupCart');
-    if (popupCart.height() > wndH){
-        $('.frame-bask-main').css('height', wndH-popupCart.find('.drop-header').height() - popupCart.find('.frame-foot').height()-50);
+    popupCart = $(genObj.popupCart),
+    frameBaskMain = popupCart.find('.frame-bask-main'),
+    frameBaskMainCH = frameBaskMain.children().actual('height'),
+    header = popupCart.find('.drop-header').actual('height'),
+    footer = popupCart.find('.frame-foot').actual('height');
+    
+    if (frameBaskMainCH+header+footer > wndH){
+        frameBaskMain.css('height', wndH-header - footer - 150);
+    }
+    else if (frameBaskMainCH > frameBaskMain.actual('height')){
+        frameBaskMain.css('height', 'auto');
     }
 }
     
@@ -115,20 +125,22 @@ function draw_icons(selIcons){
         $thisL = parseInt($this.css('margin-left')),
         className = $this.attr('class').match(/(icon_)/).input.split(' ')[0];
         
-        if (icons[className] != undefined){
-            var paper = Raphael($this[0], $thisW, $thisH);
-            s = paper.path(icons[className]).attr({
-                fill: $this.css('color'),
-                stroke: "none"
-            });
-            var k = ($thisW-1)/s.getBBox().width;
-            s.scale(k,k);
-            s.translate(-$thisL, -$thisT)
-            $this.css({
-                'margin-top': 0, 
-                'margin-left': 0,
-                'position': 'relative'
-            });
+        if (!$.exists_nabir($this.children('svg'))) {
+            if (icons[className] != undefined){
+                var paper = Raphael($this[0], $thisW, $thisH);
+                s = paper.path(icons[className]).attr({
+                    fill: $this.css('color'),
+                    stroke: "none"
+                });
+                var k = ($thisW-1)/s.getBBox().width;
+                s.scale(k,k);
+                s.translate(-$thisL, -$thisT)
+                $this.css({
+                    'margin-top': 0, 
+                    'margin-left': 0,
+                    'position': 'relative'
+                });
+            }
         }
     })
 }
@@ -139,17 +151,19 @@ function itemUserToolbar(){
             dataRel = $this.data('rel');
         
             setcookie('condUserToolbar', dataRel, 0, '/')
-            $this.hide().siblings().show();
             if (dataRel == 0){
+                $this.hide().next().show();
                 itemsUT.children(hideSet).hide();   
-                itemsUT.animate({
+                itemsUT.stop().animate({
                     'width':'129'
                 })
             }
             else{
-                itemsUT.children(hideSet).show();
-                itemsUT.animate({
+                $this.hide().prev().show();
+                itemsUT.stop().animate({
                     'width':cW
+                }, function(){
+                    itemsUT.children(hideSet).show();
                 })
             }
         }).not('.activeUT').click()
@@ -157,9 +171,8 @@ function itemUserToolbar(){
             
         return itemsUT;
     },
-    this.resize = function(itemsUT, nab){
-        if (itemsUT.width() < cW) itemsUT.find(nab).css('width', wnd.width());
-        
+    this.resize = function(itemsUT){
+        $(itemsUT).css('width', body.width())
         return itemsUT;
     }
 }
@@ -251,7 +264,7 @@ function countSumInTinyBask(){
     $(genObj.sumTinyBask).each(function(){
         $(this).html(Shop.Cart.totalPrice);
     })
-    $(genObj.plurProd).each(function(){
+    $(genObj.sumTinyBask +' '+ genObj.plurProd).each(function(){
         $(this).html(plural_str(Shop.Cart.totalCount, plurProd));
     })
     
@@ -269,7 +282,8 @@ function processPage() {
         $(genObj.tinyBask +' '+ genObj.blockNoEmpty).hide();
     }
     else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
-        $(genObj.tinyBask).addClass(genObj.isAvail).on('click', function () {
+        $(genObj.tinyBask).addClass(genObj.isAvail);
+        $(genObj.tinyBask + '.' + genObj.isAvail).live('click', function () {
             initShopPage();
         })
         $(genObj.tinyBask +' '+ genObj.blockEmpty).hide();
@@ -309,11 +323,17 @@ function processPage() {
     });
 }
 
+function popupCartRecGenSum(){
+    $(genObj.popupCartTotal).each(function(){
+        $(this).html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+    })
+}
+
 function initShopPage(showWindow) {
     if (Shop.Cart.countChanged == false) {
         Shop.Cart.totalRecount();
 
-        $('#popupCart').html(Shop.Cart.renderPopupCart()).hide();
+        $(genObj.popupCart).html(Shop.Cart.renderPopupCart()).hide();
 
         $('[data-rel="plusminus"]').plusminus({
             prev:'prev.children(:eq(1))',
@@ -348,7 +368,7 @@ function initShopPage(showWindow) {
             
             pd.closest('tr').find(genObj.priceOrder).html(totalPrice.toFixed(pricePrecision));
 
-            $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+            popupCartRecGenSum();
             
             if (pd.closest(genObj.frameCount).find('input').val() == 1)
                 pd.closest(genObj.frameCount).find(genObj.minus).attr('disabled', 'disabled');
@@ -364,8 +384,10 @@ function initShopPage(showWindow) {
             chCountInCart($(this).prev('div'));
         });
 
-        if (typeof showWindow == 'undefined' || showWindow != false)
+        if (typeof showWindow == 'undefined' || showWindow != false){
             $('#showCart').click();
+        }
+   
     }
 };
 
@@ -381,7 +403,7 @@ function rmFromPopupCart(context, isKit) {
 
     Shop.Cart.rm(cartItem).totalRecount();
     
-    fancyresize();
+    dropBaskResize();
 };
 
 function togglePopupCart() {
@@ -424,8 +446,8 @@ function recountCartPage() {
 }
 
 function emptyPopupCart() {
-    $(genObj.emptyCarthideElement).hide();
-    $(genObj.emptyCartshowElement).removeClass('d_n').show();
+    $(genObj.popupCart).find(genObj.blockNoEmpty).hide();
+    $(genObj.popupCart).find(genObj.blockEmpty).show();
 }
 
 function checkCompareWishLink() {
@@ -590,53 +612,51 @@ jQuery(document).ready(function() {
             if ($(dropEl).hasClass('drop-report')) {
                 $(dropEl).removeClass('left-report').removeClass('top-right-report')
 
-                if (el.offset().left < 322 - el.outerWidth()) {
-                    el.attr('data-placement', 'bottom left');
-                    $(dropEl).addClass('left-report');
-                }
-                else {
-                    if (el.data('placement') != 'top right')
-                        el.attr('data-placement', 'bottom right');
-                }
-                if (el.data('placement') == 'top right') {
-                    $(dropEl).addClass('top-right-report');
-                }
-
                 $(dropEl).find('li').remove();
-                var elWrap = el.closest('li').clone().removeAttr('style').removeAttr('class'),
-                dropEl = $(dropEl).find('.drop-content');
+                var elWrap = el.closest('li').clone().removeAttr('style'),
+                dropEl = $(dropEl).find('[data-rel="pastehere"]');
 
                 //adding product info into form
-                var formCont = $('#data-report');
-                var productId = el.attr('data-prodid');
+                var formCont = $('#data-report'),
+                productId = el.attr('data-prodid');
+                
                 formCont.find('input[name="ProductId"]').val(productId)
 
-                elWrap.find('.photo').prependTo(elWrap)
-
                 if (!dropEl.parent().hasClass('active')) {
-                    if (!$.exists_nabir(dropEl.find('.frame-search-thumbail')))
-                        dropEl.append('<ul class="frame-search-thumbail items"></ul>');
-                    dropEl.find('.frame-search-thumbail').append(elWrap).find('.top_tovar, .btn, .frame_response, .tabs, .share_tov, .frame_tabs, #variantProd').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
+                    if (!$.exists_nabir(dropEl.find('.items-bask')))
+                        dropEl.append('<ul class="items items-bask item-report"></ul>');
+                    dropEl.find('.items-bask').append(elWrap).find('.func-button, .star, .product-status').remove().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone().removeClass('d_n'));
                 }
                 return el;
             }
             $(dropEl).find('.error').hide();
             
-            if ($(dropEl).hasClass('frame-already-show'))
-                $('.frame-user-toolbar').css('width', body.width())
             
+            
+            if (dropEl.is(genObj.popupCart)) {
+                //el.drop('positionDrop', el, el.data('placement'), el.data('place'));
+                dropBaskResize();
+            }
         },
         after: function(el, dropEl, isajax) {
             var selIcons = $('[class*=icon_]');
             
             if (isajax) draw_icons(dropEl.find(selIcons));
             
-            if (dropEl.is('#popupCart')) {
-                
-                fancyresize();
-                el.drop('positionDrop', el, el.data('placement'), el.data('place'));
-                
-                draw_icons($('#popupCart').find(selIcons));
+            if (dropEl.is(genObj.popupCart)) {
+                draw_icons($(genObj.popupCart).find(selIcons));
+            }
+            
+            var carouselInDrop = dropEl.find('.carousel_js');
+            if ($.exists_nabir(carouselInDrop) && !carouselInDrop.hasClass('visited')) {
+                carouselInDrop.addClass('visited')
+                carouselInDrop.myCarousel({
+                    item: 'li',
+                    prev: '.prev',
+                    next: '.next',
+                    content: '.content-carousel',
+                    groupButtons: '.group-button-carousel'
+                });
             }
         },
         close: function(el, dropEl){
@@ -685,7 +705,7 @@ jQuery(document).ready(function() {
     var methodDeliv = $('#method_deliv');
     if (window.location.href.match(/cart/) && $.exists_nabir(methodDeliv))
         changeDeliveryMethod(methodDeliv.val());
-    $('#popupCart').html(Shop.Cart.renderPopupCart())
+    $(genObj.popupCart).html(Shop.Cart.renderPopupCart())
         
     //click 'add to cart'
     $(genObj.btnBuy).on('click', function () {
@@ -731,7 +751,8 @@ jQuery(document).ready(function() {
         if ($.exists_nabir(methodDeliv))
             recountCartPage();
         
-        $('#popupCartTotal').html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+        popupCartRecGenSum();
+        
         if (Shop.Cart.totalCount == 0)
             emptyPopupCart();
     });
@@ -939,12 +960,12 @@ jQuery(document).ready(function() {
         })
       
         if (sumHeight > $thisH) $this.next().addClass('d_i-b').toggle(function(){
-            $(this).prev().animate({
+            $(this).prev().stop().animate({
                 'height': sumHeight
             }, 300);
         },
         function(){
-            $(this).prev().animate({
+            $(this).prev().stop().animate({
                 'height': $thisH
             }, 300);
         })
@@ -955,10 +976,6 @@ jQuery(document).ready(function() {
         $this = $(trigger);
         
         $this.trigger('click');
-        if ($this.data('place') != "center")
-            $('html, body').animate({
-                scrollTop:$this.offset().top
-            }, ($thisT.offset().top-$this.offset().top)/10)
     });
     
     var selIcons = $('[class*=icon_]');
@@ -966,26 +983,15 @@ jQuery(document).ready(function() {
     
     var userTool = new itemUserToolbar();
     userTool.show($('.items-user-toolbar'), $('.btn-toggle-toolbar > button'), '.box-1, .box-2, .box-3');
-    userTool.resize($('.frame-user-toolbar'), '.container, .items-user-toolbar');
+    userTool.resize($('.frame-user-toolbar'));
 });
 wnd.load(function() {   
-    $('.carousel_js:not(.frame-brands):not(.baner)').myCarousel({
+    $('.carousel_js:not(.frame-brands):not(.baner):visible').myCarousel({
         item: 'li',
         prev: '.prev',
         next: '.next',
         content: '.content-carousel',
-        groupButtons: '.group-button-carousel',
-        before: function(){
-        //            var sH = 0;
-        //            var brandsImg = $('.items-brands img')
-        //            if ($.exists_nabir(brandsImg.closest('.carousel_js'))){
-        //                $('.items-brands img').each(function(){
-        //                    var $thisH = $(this).height()
-        //                    if ($thisH > sH) sH = $thisH;
-        //                })
-        //                $('.items-brands .helper').css('height', sH);
-        //            }
-        }
+        groupButtons: '.group-button-carousel'
     });
     
     var cycle = $('.cycle'),
@@ -1074,7 +1080,7 @@ wnd.load(function() {
     compareListCount();
 }).resize(function(){
     var userTool = new itemUserToolbar();
-    userTool.resize($('.frame-user-toolbar'), '.container, .items-user-toolbar');
+    userTool.resize($('.frame-user-toolbar'));
     
     $('.menu-main').menuImageCms('refresh');
 });

@@ -9,23 +9,25 @@
 
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
-        <section>
+        <section class="container">
             {$banners = ShopCore::app()->SBannerHelper->getBanners()}
             {if count($banners)}
-                <div class="frame_baner">
-                    <ul class="cycle">
-                        {foreach $banners as $banner}
-                            <li>
-                                <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
-                    <div class="pager"></div>
+            <div class="frame_baner">
+                <ul class="cycle">
+                    {foreach $banners as $banner}
+                    <li>
+                        <a href="{echo $banner['url']}">
+                            <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class="group-button-carousel">
                     <button class="next" type="button"></button>
                     <button class="prev" type="button"></button>
                 </div>
+                <div class="pager"></div>
+            </div>
             {/if}
         </section>
     </div>
@@ -36,3 +38,4 @@
     {widget('action_products')}
 
 </div>
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.all.min.js"></script>

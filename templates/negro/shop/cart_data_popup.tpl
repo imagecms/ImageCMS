@@ -53,7 +53,7 @@
                                         {/if}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect item-order">
@@ -114,7 +114,7 @@
                                         {$kit_price = $k_main->firstVariant->getPrice()}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect">
@@ -234,13 +234,13 @@
                                                                 <img alt="{echo ShopCore::encode($p->getName())}" src="{productImageUrl('no_s.png')}">
                                                             {/if}
                                                             {if $p->getHot()}
-                                                                <span class="prod_status nowelty">new</span>
+                                                                <span class="product-status nowelty">new</span>
                                                             {/if}
                                                             {if $p->getHit()}
-                                                                <span class="prod_status hit">хит</span>
+                                                                <span class="product-status hit">хит</span>
                                                             {/if}
                                                             {if $p->getAction()}
-                                                                <span class="prod_status action">акция</span>
+                                                                <span class="product-status action">акция</span>
                                                             {/if}
                                                         </span>
                                                         <span class="title">{echo ShopCore::encode($p->getName())}</span>

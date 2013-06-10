@@ -6,9 +6,11 @@
             <ul class="cycle">
                 {foreach $banners as $banner}
                 <li>
-                    <a href="{echo $banner['url']}">
-                        <img data-src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                    </a>
+                    {if trim($banner.url)}
+                    <a href="{site_url($banner.url)}"><img data-src="{media_url('/uploads/shop/banners/'.$banner.image)}" alt="banner"/></a>
+                    {else:}
+                    <span><img data-src="{media_url('/uploads/shop/banners/'.$banner.image)}" alt="banner"/></span>
+                    {/if}
                 </li>
                 {/foreach}
             </ul>
