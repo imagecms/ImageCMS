@@ -930,7 +930,7 @@ class Core extends MY_Controller {
 
             $this->template->add_array(array(
                 'site_title' => $title,
-                'site_description' => $description,
+                'site_description' => strip_tags($description),
                 'site_keywords' => $keywords,
                 'page_number' => $page_number
             ));
