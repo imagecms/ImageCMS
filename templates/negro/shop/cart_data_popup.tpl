@@ -53,7 +53,7 @@
                                         {/if}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect item-order">
@@ -114,7 +114,7 @@
                                         {$kit_price = $k_main->firstVariant->getPrice()}
                                         <tr>
                                             <td class="t-a_c v-a_m">
-                                                <button type="button" class="icon_times_remove delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
+                                                <button type="button" class="icon_times delete_overlay_prod" data-undo="{$key}" data-href="/shop/cart/delete/{$key}"></button>
                                             </td>
                                             <td colspan="2">
                                                 <ul class="items items-complect">
