@@ -6,7 +6,7 @@
                     id="loginButton"
                     data-drop=".drop-enter"
                     data-source="/auth"
-                    data-placement="">
+                    >
                 <span class="icon_enter"></span>
                 <span class="text-el">Войти</span>
             </button>

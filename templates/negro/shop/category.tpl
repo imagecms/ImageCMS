@@ -20,32 +20,7 @@
         {widget('path')}
     </div>
 </div>
-<!--Start. Banners block-->
-{$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
-{if count($banners)}
-    <div class="frame_baner">
-        <section class="carousel_js baner container">
-            <div class="content-carousel">
-                 <ul class="cycle">
-                    {foreach $banners as $banner}
-                        <li>
-                            {if trim($banner['url']) != ""}
-                                <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
-                                </a>
-                            {else:}
-                                <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
-                            {/if}
-                        </li>
-                    {/foreach}
-                </ul>
-                <button type="button" class="prev arrow"></button>
-                <button type="button" class="next arrow"></button>
-            </div>
-        </section>
-    </div>
-{/if}
-<!--End. Banners-->
+
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog">
@@ -54,27 +29,56 @@
                     <h1 class="d_i">{echo $category->getName()}</h1>
                 </div>
                 {if $totalProducts > 0}
-                    <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
+                <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
                 {/if}
             </div>
+            <!--Start. Banners block-->
+            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
+            {if count($banners)}
+            <div class="frame_baner">
+                <section class="carousel_js baner container">
+                    <div class="content-carousel">
+                        <ul class="cycle">
+                            {foreach $banners as $banner}
+                            <li>
+                                {if trim($banner['url']) != ""}
+                                <a href="{echo $banner['url']}">
+                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
+                                </a>
+                                {else:}
+                                <img src="/uploads/shop/banners/{echo $banner['image']}" alt="{echo ShopCore::encode($banner['name'])}" />
+                                {/if}
+                            </li>
+                            {/foreach}
+                        </ul>
+                        <button type="button" class="prev arrow"></button>
+                        <button type="button" class="next arrow"></button>
+                    </div>
+                </section>
+            </div>
+            {/if}
+            <!--End. Banners-->
             {include_tpl('catalogue_header')}
             {if count($products) > 0}
-                <ul class="items items-catalog {if $_COOKIE['listtable'] == 1}list{/if}" id="items-catalog-main">
-<!--                    include template for one product item-->
-                    {include_tpl('one_product_item')}
-                </ul>
-<!--                render pagination-->
-                {$pagination}
+            <ul class="items items-catalog {if $_COOKIE['listtable'] == 1} list{else:} table{/if}" id="items-catalog-main">
+                <!--                    include template for one product item-->
+                {include_tpl('one_product_item')}
+            </ul>
+            <!--                render pagination-->
+            {$pagination}
             {else:}
-<!--                Start. Empty category-->
-                <div class="alert alert-search-result">
-                    <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
-                </div>
-<!--            End. Empty category-->
+            <!--                Start. Empty category-->
+            <div class="alert alert-search-result">
+                <div class="title_h2 t-a_c">По вашему запросу товаров не найдено</div>
+            </div>
+            <!--            End. Empty category-->
             {/if}
         </div>
-<!--        Load filter-->
-        {$CI->load->module('smart_filter')->init()}
+        <div class="filter">
+            <!--        Load filter-->
+            {$CI->load->module('smart_filter')->init()}
+        </div>
+    </div>
+    <!--widget for popular products in this category-->
+    {widget('popular_products')}
 </div>
-<!--widget for popular products in this category-->
-{widget('popular_products')}

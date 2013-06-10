@@ -1,6 +1,8 @@
 var activeClass = 'active',
 cloned = '.cloned';
-clonedC = 'cloned';
+clonedC = 'cloned',
+    wnd = $(window),
+    body = $('body');
 /*
  *imagecms frontend plugins
  **/
@@ -372,13 +374,15 @@ function ieInput(els) {
             }
             else
             {
+                $.fancybox.showActivity();
                 $.post(searchPath, {
                     queryString: inputString.val()
                 }, function(data) {
+                    $.fancybox.hideActivity();
                     $thisS.fadeIn(durationA);
                     try {
-                        var dataObj = JSON.parse(data);
-                        var html = _.template($('#searchResultsTemplate').html(), {
+                        var dataObj = JSON.parse(data),
+                        html = _.template($('#searchResultsTemplate').html(), {
                             'items': dataObj
                         });
                     } catch (e) {
@@ -420,11 +424,6 @@ function ieInput(els) {
                 me: true
             }, options);
 
-            $.ajaxSetup({
-                success: function() {
-                    $('.tooltip').remove();
-                }
-            })
             var $this = $(this),
             text_el = $this.find(genObj.textEl),
             me = settings.me;
@@ -432,19 +431,10 @@ function ieInput(els) {
             if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
                 return false;
             
-            if (settings.effect == 'notalways') {
-                $('.tooltip').remove();
-                body.append('<span class="tooltip">' + settings.title + '</span>');
-            }
-
             var tooltip = $('.tooltip').not(cloned);
 
             if (settings.effect == 'always') {
-                if (!$.exists_nabir(tooltip)) {
-                    body.append('<span class="tooltip">' + settings.title + '</span>');
-                }
-                else
-                    tooltip.text(settings.title)
+                tooltip.text(settings.title)
             }
 
             if (settings.otherClass !== false)
@@ -458,25 +448,19 @@ function ieInput(els) {
             }).fadeIn(300);
 
             $this.filter(':input').unbind('blur').blur(function() {
-                $('.tooltip').fadeOut(300, function() {
-                    $(this).remove()
-                });
+                $('.tooltip').fadeOut(300);
             })
             body.unbind('click.tooltip').live('click.tooltip', function(event) {
                 event.stopPropagation();
                 if ($(event.target).parents().is($this) || $(event.target).is($this))
                     return;
                 else{
-                    $('.tooltip').fadeOut(300, function() {
-                        $(this).remove()
-                    });
+                    $('.tooltip').fadeOut(300);
                 }
             })
         },
         remove: function( ) {
-            $('.tooltip').fadeOut(300, function() {
-                $(this).remove()
-            });
+            $('.tooltip').fadeOut(300);
         }
     };
     $.fn.tooltip = function(method) {
@@ -583,10 +567,10 @@ function ieInput(els) {
                                     var listDrop = $thisDrop.children();
                                     
                                     if (!listDrop.is('[data-height]')){
-                                        var sumHL1 = listDrop.height();
+                                        var sumHL1 = listDrop.height(),
+                                        dropW = $thisDrop.width();
                                         listDrop.attr('data-height', sumHL1);
                                         isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
-                                        dropW = $thisDrop.width();
                                     }
                                     
                                     listDrop.children().each(function(){
@@ -608,7 +592,8 @@ function ieInput(els) {
                                             }
                                         }
                                     }).unbind('hover').hover(function(){
-                                        subFrame = $(this).find(sub2Frame),
+                                        var subFrame = $(this).find(sub2Frame),
+                                        dropW = $(this).parent().parent().width(),
                                         sumW = dropW+subFrame.width(),
                                         subHL2 = subFrame.height(),
                                         dropDH = $thisDrop.children().data('height');
@@ -618,6 +603,7 @@ function ieInput(els) {
                                         $thisDrop.css('width', sumW);
                                         $thisDrop.children().add(subFrame).css('height', subHL2);
                                     },function(){
+                                        var subFrame = $(this).find(sub2Frame);
                                         $thisDrop.css('width', '')
                                         $thisDrop.children().add(subFrame).css('height', '')
                                     })
@@ -627,7 +613,7 @@ function ieInput(els) {
                         }, time_dur_m);
                     }, function() {
                         var $this = $(this),
-                        $thisDrop = $this.find(settings.drop);
+                        $thisDrop = $this.find(drop);
                         $(drop).hide();
                         $('.first_h, .last_h').removeAttr('class');
                         clearTimeout(hover_t_o);
@@ -661,83 +647,6 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.exists_nabir(this)) {
-                var settings = $.extend({}, options);
-
-                var rel = $(this),
-                minCost = settings.minCost,
-                maxCost = settings.maxCost;
-
-                if (options.minCost == undefined || options.maxCost == undefined) {
-                    minCost = $('<input type="text"/>', {
-                        value: cur_min
-                    }).insertAfter(body).hide();
-                    maxCost = $('<input type="text"/>', {
-                        value: cur_max
-                    }).insertAfter(body).hide();
-                }
-
-                rel.slider({
-                    min: def_min,
-                    max: def_max,
-                    values: [cur_min, cur_max],
-                    range: true,
-                    slide: function(event, ui) {
-                        minCost.val(ui.values[0]);
-                        maxCost.val(ui.values[1]);
-                    }
-                });
-                minCost.change(function() {
-                    var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    minS = minCost.data('mins');
-
-                    if (parseInt(value1) > parseInt(value2)) {
-                        value1 = value2;
-                        maxCost.val(value1);
-                    }
-                    if (parseInt(value1) < minS) {
-                        minCost.val(minS);
-                        value1 = minS;
-                    }
-                    rel.slider("values", 0, value1);
-                });
-                maxCost.change(function() {
-                    var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    maxS = maxCost.data('maxs');
-
-                    if (value2 > def_max) {
-                        value2 = def_max;
-                        maxCost.val(def_max)
-                    }
-
-                    if (parseInt(value1) > parseInt(value2)) {
-                        value2 = value1;
-                        maxCost.val(value2);
-                    }
-                    if (parseInt(value2) > maxS) {
-                        maxCost.val(maxS);
-                        value2 = maxS;
-                    }
-                    rel.slider("values", 1, value2);
-                });
-            }
-        }
-    }
-    $.fn.sliderInit = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.sliderInit');
-        }
-    };
-})(jQuery);
-(function($) {
-    var methods = {
-        init: function(options) {
             if ($.exists_nabir($(this))){
                 var settings = $.extend({
                     effectOn:'show',
@@ -761,6 +670,8 @@ function ieInput(els) {
                 this_l = this.length;
                 k = true;
 
+                var wST = wnd.scrollTop();
+                
                 return this.each(function(index) {
                     var $thiss = $(this),
                     effectOn = settings.effectOn,
@@ -768,7 +679,6 @@ function ieInput(els) {
                     durationOn = settings.durationOn,
                     durationOff = settings.durationOff;
                 
-                    condRadio = $thiss.data('type') != 'itemsView';
                     nav_tabs_li[index] = $thiss.children();
                     refs[index] = nav_tabs_li[index].children();
                     attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
@@ -793,16 +703,18 @@ function ieInput(els) {
                     tabs_div[index] = temp_obj;
                     tabs_id[index] = temp_obj2;
                     reg_refs[index] = new RegExp(reg_refs[index]);
-                    refs[index].on('click', function(event) {
+                    
+                    refs[index].bind('click.tabs', function(event) {
                         var $this = $(this);
                         settings.before();
                         event.preventDefault();
-
-                        if (!$this.parent().hasClass('active') && !$this.parent().hasClass('disabled')) {
-
-                            wST = wnd.scrollTop();
-                            $thisA = $this[attrOrdata[index]]('href');
-                            if ($this.data('drop') == undefined) {
+                                               
+                        var condRadio = $thiss.data('type') != 'itemsView';
+                        
+                        if (!$this.parent().hasClass('disabled')) {
+                            var $thisA = $this[attrOrdata[index]]('href'),
+                            $thisDD = $this.data('drop') == undefined;
+                            if ($thisDD) {
                                 nav_tabs_li[index].removeClass('active');
                                 $this.parent().addClass('active');
                                 if (condRadio) {
@@ -832,10 +744,11 @@ function ieInput(els) {
                                             window.location.hash += $thisA;
                                         }
                                     }
-                                    else if ($this.data('drop') == undefined && k) {
+                                    else if ($thisDD && k) {
                                         window.location.hash = hashs[0].join('');
                                         k = false;
                                     }
+                                    if (!$thisDD) $this.trigger('click.drop')
                                 }
                             }
                             else {
@@ -846,31 +759,33 @@ function ieInput(els) {
                                 })
                             }
                         }
-                        ;
+                        
+                        
                         if (event.which || event.button == 0) {
                             settings.after($thiss);
                         }
-                    });
+                    })
 
                     if (this_l - 1 == index) {
                         methods.location();
                         methods.startCheck();
                     }
-
-                    wnd.bind('hashchange', function(event) {
-                        methods.location();
-                        methods.startCheck();
-                        function scroll_top(wST) {
-                            wnd.scrollTop(wST);
-                        }
-
-                        //chrome bug
-                        if ($.browser.webkit)
-                            scroll_top(wST - 100);
-
-                        scroll_top(wST);
-                    })
                 });
+
+
+                wnd.bind('hashchange', function(event) {
+                    methods.location();
+                    methods.startCheck();
+                    function scroll_top(wST) {
+                        wnd.scrollTop(wST);
+                    }
+
+                    //chrome bug
+                    if ($.browser.webkit)
+                        scroll_top(wST - 100);
+
+                    scroll_top(wST);
+                })
             }
         },
         location: function() {
@@ -938,15 +853,11 @@ function ieInput(els) {
         },
         startCheck: function() {
             $(hashs[1].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id');
-                $('[data-href="#' + $thisId + '"]').trigger('click');
+                $(this).trigger('click.tabs');
             });
-            $(hashs[0].join(',')).each(function(index) {
-                var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
-
-                $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
+            $.map(hashs[0], function(n, i) {
+                $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
+                $('[' + attrOrdataNew + '=' + n + ']').trigger('click.tabs');
             });
         }
     };
@@ -1209,6 +1120,9 @@ function ieInput(els) {
                     },
                     after: function() {
                         return true;
+                    },
+                    close: function() {
+                        return true;
                     }
                 }, options);
 
@@ -1224,7 +1138,8 @@ function ieInput(els) {
                 overlayColor = settings.overlayColor,
                 overlayOpacity = settings.overlayOpacity;
 
-                dataSource.live('click', function(event) {
+                dataSource.live('click.drop', function(event) {
+                    $.fancybox.showActivity();
                     event.stopPropagation();
                     event.preventDefault();
                     
@@ -1233,14 +1148,17 @@ function ieInput(els) {
                         elSet = $this.data();
                         
                         function showDrop(elSetSource, isajax){
+                            var place = elSet.place ||  settings.place,
+                            placement = elSet.placement || settings.placement,
+                            $thisEOff = elSet.effectOff || effoff,
+                            $thisD = elSet.duration || duration;
+                            
                             $this.each(function() {
                                 var $this = $(this),
-                                $thisEOff = $this.data('effect-off') || effoff,
-                                $thisD = $this.data('duration') || duration,
-                                $thisSource = $this.data('drop');
+                                $thisSource = elSet.drop;
                         
-                                $this.attr('data-placement', $this.data('placement') || placement);
-                                $this.attr('data-place', $this.data('place') || place);
+                                $this.attr('data-placement', placement);
+                                $this.attr('data-place', place);
                                 $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                             });
                     
@@ -1250,7 +1168,8 @@ function ieInput(els) {
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
-                            if (overlayColor != undefined || overlayOpacity != undefined) {
+                            condOverlay = overlayColor != undefined && overlayOpacity != undefined && place == "center";
+                            if (condOverlay) {
                                 if (!$.exists('.overlayDrop')) {
                                     body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1001;"></div>')
                                 }
@@ -1265,28 +1184,14 @@ function ieInput(els) {
 
                             if (elSetSource.is('.' + activeClass)) {
                                 methods.triggerBtnClick(elSetSource, selector);
-
-                                $thisHref = $(this).attr('href');
-                                if ($thisHref != undefined) {
-                                    var $thisHrefL = $thisHref.length,
-                                    wLH = location.hash,
-                                    wLHL = wLH.length;
-                                    try {
-                                        indH = wLH.match($thisHref + '(?![a-z])').index;
-                                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                                    } catch (err) {
-                                    }
-                                }
                             }
                             else {
                                 settings.before($this, elSetSource, isajax);
-//                                $newthis = settings.before(this, elSetSource, isajax);
-//                                if ($newthis != undefined) $this = $newthis;
                             
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
                             
-                                if (event.button == undefined && place != "center") body.scrollTop($this.offset().top)
+                                if (event.button == undefined && place != "center") wnd.scrollTop($this.offset().top);
 
                                 var wndW = wnd.width();
                                 if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
@@ -1296,13 +1201,14 @@ function ieInput(els) {
                             
                                 if (place == "center") methods.dropScroll(elSetSource);
 
-                                $this.parent().addClass(activeClass);
                                 
-                                drop_over.show()
-                                drop_over.unbind('click').bind('click', function(e){
-                                    e.stopPropagation();
-                                    methods.triggerBtnClick(false,selector);
-                                })
+                                if (condOverlay) {
+                                    drop_over.show()
+                                    drop_over.unbind('click').bind('click', function(e){
+                                        e.stopPropagation();
+                                        methods.triggerBtnClick(false,selector);
+                                    })
+                                }
                                 elSetSource[$thisEOn]($thisD, function() {
                                     elSetSource.addClass(activeClass);
                                     if (ltie7)
@@ -1310,15 +1216,16 @@ function ieInput(els) {
                                     settings.after($this, elSetSource, isajax);
                                 });
                             }
+                            $.fancybox.hideActivity();
                         }
                         
+                        $this.parent().addClass(activeClass);
                         elSetSource = $(elSet.drop);
                         if ($.exists_nabir(elSetSource)){
                             showDrop(elSetSource);
                         }
                         else{
                             if (elSet.source){
-                                $.fancybox.showActivity();
                                 $.post(elSet.source, function(data){
                                     $.fancybox.hideActivity();
                                     body.append(data);
@@ -1335,7 +1242,7 @@ function ieInput(els) {
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button){
+                    if (event.button == 0 && event.relatedTarget == null){
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
@@ -1368,8 +1275,19 @@ function ieInput(els) {
                 $thisEOff = $this.attr('data-effect-off'),
                 $thisD = $this.attr('data-duration');
                 
-                var $thisB = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
+                var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
                 $thisB.parent().removeClass(activeClass);
+                
+                var $thisHref = $thisB.attr('href');
+                if ($thisHref != undefined) {
+                    var $thisHrefL = $thisHref.length,
+                    wLH = location.hash,
+                    wLHL = wLH.length;
+                    try {
+                        var indH = wLH.match($thisHref + '(?![a-z])').index;
+                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                    } catch (err) {}
+                }
                 
                 if ($thisB.data('place') == 'center' && !$.exists_nabir($(selector+'.'+activeClass))) {
                     if ($(document).height()-wnd.height() > 0){
@@ -1438,11 +1356,11 @@ function ieInput(els) {
                     body.addClass('isScroll');
                     drop_over.addClass('drop_overlay_fixed');
                 }
-                wnd.bind('resize.drop', function(){
-                    methods.dropScroll(elSetSource)
-                });
             }
-            if (this instanceof $) methods.dropScroll(elSetSource);
+            wnd.bind('resize.drop', function(){
+                methods.dropScroll(elSetSource)
+            });
+        //if (this instanceof $) methods.dropScroll($($(this).data('drop')));
         }
     };
     $.fn.drop = function(method) {
@@ -1941,10 +1859,6 @@ var Shop = {
             return template = _.template($(selector).html(), Shop.Cart);
         },
 
-        showPopupCart:function () {
-        //$.fancybox(this.renderPopupCart());
-        },
-
         sync: function (){
             $.getJSON('/shop/cart_api/sync', function(data){
                 if (typeof(data) == 'object'){
@@ -2090,7 +2004,7 @@ var Shop = {
             }
         },
 
-        rm:function (key, el, vid) {
+        rm:function (key, el, vid, price) {
             this.items = this.all();
             
             $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
@@ -2110,7 +2024,7 @@ var Shop = {
                     }
                 } catch (e) {}
             });
-            deleteWishListItem($(el),key, vid);
+            deleteWishListItem($(el),key, vid, price);
         },
         sync: function(){
             $.getJSON('/shop/wish_list_api/sync', function(data){
