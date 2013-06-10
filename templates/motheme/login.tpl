@@ -1,58 +1,38 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('lang_login_page')}</span></h5></div>
-
-{if validation_errors() OR $info_message}
-    <div class="errors"> 
-        {validation_errors()}
-        {$info_message}
-    </div>
-{/if}
-
-<form action="" method="post" class="form">
-
-    <div class="comment_form_info">
-
-        <div class="textbox">
-            <label for="username" class="left">{lang('s_email')}</label>
-            <input type="text" id="username" size="30" name="email" value="{lang('lang_email_form')}" onfocus="if (this.value == '{lang('lang_email_form')}')
-                    this.value = '';" onblur="if (this.value == '')
-                    this.value = '{lang('lang_email_form')}';" />
-        </div>
-
-        <div class="textbox_spacer"></div>
-
-        <div class="textbox">
-            <label for="password" class="left">{lang('lang_password')}</label> 
-            <input type="password" size="30" name="password" id="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
-                    this.value = '';" onblur="if (this.value == '')
-                    this.value = '{lang('lang_password')}';"/>
-        </div>
-    </div>
-
-    {if $cap_image}
-        <div class="comment_form_info">
-            <div class="textbox captcha">
-                <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if (this.value == 'Код протекции')
-                    this.value = '';" onblur="if (this.value == '')
-                    this.value = 'Код протекции';"/>
-            </div>
-            {$cap_image}
+<div class="grid_6">
+    <h2>{lang('lang_login_page')}</h2>
+    {if validation_errors() OR $info_message}
+        <div class="success">
+            {validation_errors()}
+            {$info_message}
         </div>
     {/if}
+    <form id="form" action="{site_url('auth/login')}" method="post">
+        <fieldset>
+            <label class="email">
+                <input type="text" id="email" name="email" class="text" value="" placeholder="{lang('lang_email_form')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильный email адрес.</span><span class="empty error-empty">*Это поле объязательно.</span>
+            </label>
+            <label class="password">
+                <input type="text" name="password" value="" placeholder="{lang('lang_password')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильное имя.</span><span class="empty error-empty">*Это поле объязательно для заполнения.</span>
+            </label>
+            <div class="clear"></div>
 
-    <p class="clear">
-        <label for="remember" class="left">&nbsp;</label> 
-        <label><input type="checkbox" name="remember" value="1" id="remember" /> {lang('lang_remember_me')}</label>
-    </p>
+            {if $cap_image}
+                <div class="textbox captcha" style="margin-top: 15px;">
+                    {$cap_image}
+                    <input type="text" name="captcha" id="recaptcha_response_field" value="" placeholder="Код протекции"/>
+                </div>
+            {/if}
+            <br class="clear">
+            <div class="btn">
+                <a data-type="submit" class="btn" onclick="document.getElementById('form').submit()"> {lang('lang_submit')} </a>
+                <a class="btn" href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
 
-    <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" /> 
-
-
-    <br /><br />
-
-    <label class="left">&nbsp;</label> 
-    <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
-    &nbsp;
-    <a href="{site_url($modules.auth . '/register')}">{lang('lang_register')}</a>
-
-    {form_csrf()}
-</form>
+                {form_csrf()}
+            </div>
+        </fieldset>
+    </form>
+</div>
