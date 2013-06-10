@@ -1,63 +1,63 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('lang_register')}</span></h5></div>
+<div class="grid_6">
+    <h2>{lang('lang_register')}</h2>
 
-{if validation_errors() OR $info_message}
-    <div class="errors">
-        {validation_errors()}
-        {$info_message}
-    </div>
-{/if}
-
-<form action="" class="form" method="post">
-    <fieldset>
-    <div class="comment_form_info">
-
-        <div class="textbox">
-            <label for="email" class="left">{lang('lang_email')}</label>
-            <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
+    {if validation_errors() OR $info_message}
+        <div class="errors">
+            {validation_errors()}
+            {$info_message}
         </div>
+    {/if}
 
-        <div class="textbox_spacer"></div>
+    <form method="post" id="form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
+            return false;">
+        <fieldset>
+            <label class="email">
+                <input type="text" id="email" name="email" class="text" value="" placeholder="{lang('lang_email')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильный email адрес.</span>
+                <span class="empty error-empty">*Это поле объязательно.</span>
+            </label>
 
-        <div class="textbox">
-            <label for="username" class="left">{lang('s_fio')}</label>
-            <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
+            <label class="username">
+                <input type="text" id="username" name="username" class="text" value="" placeholder="{lang('s_fio')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильный email адрес.</span>
+                <span class="empty error-empty">*Это поле объязательно.</span>
+            </label>
 
-        </div>
+            <label class="password">
+                <input type="text" name="password" value="" placeholder="{lang('lang_password')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильное имя.</span>
+                <span class="empty error-empty">*Это поле объязательно для заполнения.</span>
+            </label>
+            <label class="confirm_password">
+                <input type="text" name="confirm_password" value="" placeholder="{lang('lang_confirm_password')}"/>
+                <br class="clear">
+                <span class="error error-empty">*Вы ввели неправильное имя.</span>
+                <span class="empty error-empty">*Это поле объязательно для заполнения.</span>
+            </label>
+            {if $cap_image}
+                <label>
+                    <span class="title">{$cap_image}</span>
+                    <span class="frame_form_field">
+                        <span class="icon-replay"></span>
+                        {if $captcha_type == 'captcha'}
+                            <input type="text" name="captcha" id="captcha" />
+                            <label id="for_captcha" class="for_validations"></label>
+                        {/if}
+                    </span>
+                </label>
+            {/if}
+            <div class="clear"></div>
 
-        <div class="textbox">
-            <label for="password" class="left">{lang('lang_password')}</label>
-            <input type="password" size="30" name="password" id="password" value="{set_value('password')}" />
-        </div>
-
-        <div class="textbox_spacer"></div>
-
-        <div class="textbox"
-             <label for="confirm_password" class="left">{lang('lang_confirm_password')}</label>
-            <input type="password" class="text" size="30" name="confirm_password" id="confirm_password" />
-        </div>
-    </div>
-
-    <!--	{if $cap_image}
-        <div class="comment_form_info">
-        <div class="textbox captcha">
-            <input type="text" name="captcha" id="captcha" value="Код протекции" onfocus="if(this.value=='Код протекции') this.value='';" onblur="if(this.value=='') this.value='Код протекции';"/>
+            <div class="btn">
+                <a class="btn" href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
+                <a data-type="submit" class="btn" onclick="document.getElementById('form').submit()"> {lang('lang_submit')} </a>
             </div>
-    {$cap_image}
-    </div>
-    {/if}-->
 
-        <p class="clear">
-            <label for="submit" class="left">&nbsp;</label>
-            <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
-        </p>
-
-
-        <label class="left">&nbsp;</label>
-        <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
-        &nbsp;
-        <a href="{site_url('auth/login')}">Вход</a>
-
-        {form_csrf()}
+            {form_csrf()}
         </fieldset>
     </form>
 
+</div>
