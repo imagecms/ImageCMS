@@ -7,15 +7,15 @@
                     var $this = $(this),
                     settings = $.extend({
                         slider: $this.find('.slider'),
-                        minCost: $this.find('.minCost'),
-                        maxCost: $this.find('.maxCost'),
+                        minCost: null,
+                        maxCost: null,
                         leftSlider: $this.find('.left-slider'),
                         rightSlider: $this.find('.right-slider')
                     }, options);
                 
                     var slider = settings.slider,
-                    minCost = settings.minCost,
-                    maxCost = settings.maxCost,
+                    minCost = $this.find(settings.minCost),
+                    maxCost = $this.find(settings.maxCost),
                     left =  settings.leftSlider,
                     right = settings.rightSlider,
                     defMin = slider.data('def-min') || settings.defMin,
@@ -23,14 +23,17 @@
                     curMin = slider.data('cur-min') || settings.curMin,
                     curMax = slider.data('cur-max') || settings.curMax;
 
-                    if (minCost === '' || maxCost === '') {
-                        minCost = $('<input type="text"/>', {
-                            value: curMin
-                        }).insertAfter(body).hide();
-                        maxCost = $('<input type="text"/>', {
-                            value: curMax
-                        }).insertAfter(body).hide();
-                    }
+                    if (!$.exists_nabir(minCost))
+                        minCost = $('<input type="text" class="minCost"/>', {
+                            value: curMin,
+                            name: lp
+                        }).insertAfter(slider).hide();
+                        
+                    if (!$.exists_nabir(maxCost))
+                        maxCost = $('<input type="text" class="maxCost"/>', {
+                            value: curMax,
+                            name: rp
+                        }).insertAfter(slider).hide();
                 
                     slider.slider({
                         min: defMin,
@@ -51,8 +54,8 @@
                             minCost.val(ui.values[0]);
                             maxCost.val(ui.values[1]);
                         },
-                        stop: function(ui){
-                            //ajaxRecount($(ui.target).attr('id'), true);
+                        stop: function(){
+                            ajaxRecount('#'+slider.attr('id'), 'apply-slider');
                         }
                     });
                     minCost.change(function(){
@@ -91,7 +94,7 @@
                         slider.slider("values",1,value2);
                     });
                     minCost.add(maxCost).change(function(){
-                        //ajaxRecount(slider.attr('id'), true);
+                        ajaxRecount('#'+slider.attr('id'), 'apply-slider');
                     })
                 })
             }
@@ -103,7 +106,7 @@
         } else if ( typeof method === 'object' || ! method ) {
             return methods.init.apply( this, arguments );
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.sliderInit' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.sliderInit');
         }
     };
 })(jQuery);
@@ -118,11 +121,11 @@
                 effectOff: 'fadeOut',
                 duration: '300',
                 location: 'right',
-                elPos: $('.block-filter .frame-label'),
+                elPos: $('.frame-group-checks .frame-label'),
                 cleverFilterFunc: function(elPos, countTov, clas){
                     cleaverFilterObj.mainWraper.hide()
                     var left=0;
-        
+
                     if (cleaverFilterObj.location == 'right') left = elPos.width()+elPos.offset().left;
                     if (cleaverFilterObj.location == 'left') left = elPos.offset().left-cleaverFilterObj.mainWraper.actual('width');
        
@@ -131,6 +134,8 @@
                         'top': elPos.offset().top
                     }).removeClass().addClass('apply').addClass(clas);
                     cleaverFilterObj.elCount.text(countTov);
+                    
+                    cleaverFilterObj.mainWraper.find(genObj.plurProd).html(plural_str(countTov, plurProd))
         
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration);
                 }
@@ -174,18 +179,22 @@
 
 function afterAjaxInitializeFilter(){
     var apply = $('.apply'),
-    frameSlider = $('.frame-slider');
-
+    frameSlider = $('.frame-slider'),
     catalogForm = $('#catalog_form');
+    
+    //if ($.exists_nabir(frameSlider) == 0) frameSlider = $('<div class="frame-slider"></div>').append('.filter').hide();
 
-    frameSlider.sliderInit();
-    $(".block-filter").nStCheck({
+    frameSlider.sliderInit({
+        minCost: '.minCost',
+        maxCost: '.maxCost'
+    });
+    $(".frame-group-checks").nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
         evCond:true,
         before: function(a, b, c){
             c.nStCheck('changeCheck');
-            ajaxRecount(b.attr('id'), false);
+            ajaxRecount('#'+b.attr('id'), false);
         }
     });
     apply.cleaverFilterMethod();
@@ -194,17 +203,32 @@ function afterAjaxInitializeFilter(){
         return false;
     });
     $('.tooltip').tooltip('remove');
+    
+    $('.cleare_filter').click(function(){
+        nm = $(this).data('name');
+        $('#'+nm+' input').attr('checked',false);
+        catalogForm.submit();
+        return false;
+    })
+    $('.cleare_price').click(function(){
+        var $this = $(this),
+        $thisRel = $($this.data('rel')),
+        defMin = $thisRel.find('.slider').data('def-min'),
+        defMax = $thisRel.find('.slider').data('def-max');
+        
+        $thisRel.find('.minCost').val(defMin);
+        $thisRel.find('.maxCost').val(defMax);
+        catalogForm.submit();
+        return false;
+    })
 }
 function ajaxRecount(el, slChk) {
     var $this = el,
-    slChk = slChk;
-
-    //    $cur_url = $('input[name=requestUri]').val();
-
+    catalogForm = $('#catalog_form'),
+    data = catalogForm.serializeArray();
+    
     var catUrl = window.location.pathname;// + window.location.search;
     catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
-
-    var data = $('#catalog_form').serializeArray();
 
     $.ajax({
         type: 'get',
@@ -220,15 +244,15 @@ function ajaxRecount(el, slChk) {
             afterAjaxInitializeFilter();
             $.fancybox.hideActivity();
 
-            if (slChk) otherClass = 'apply-slider';
+            if (slChk) otherClass = slChk;
 
             //totalProducts = parseInt( $('#'+$this).find('.count').first().html().replace('(', '').replace(')', ''));
-            cleaverFilterObj.cleverFilterFunc($('#'+$this), totalProducts, otherClass);
+            cleaverFilterObj.cleverFilterFunc($($this), totalProducts, otherClass);
         }
     });
     return false;
 }
 
-$(window).load(function(){
+$(document).ready(function(){
     afterAjaxInitializeFilter();
 });

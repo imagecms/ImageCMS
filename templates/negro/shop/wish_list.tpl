@@ -27,7 +27,7 @@
             <li class="span3 {if $variant->stock == 0} not_avail{/if}">
 
                 {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                <button class="icon_times_remove" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $variant->getId()})">
+                <button class="icon_times" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $variant->getId()})">
                     <span class="icon-remove_comprasion"></span>
                 </button>    
                 {/if}

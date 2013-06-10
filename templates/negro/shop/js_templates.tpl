@@ -23,7 +23,7 @@
                                     <!-- for single product -->
                                     <% if (!item.kit) { %>
                                     <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
-                                        <td class="frame-remove-bask-btn"><button class="icon_times_remove_cart" onclick="rmFromPopupCart(this);"></button></td>
+                                        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
                                         <td class="frame-items">
                                             <a href="<%-item.url%>" class="frame-photo-title">
                                                 <span class="photo-block">
@@ -93,7 +93,7 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="frame-remove-bask-btn"><button class="icon_times_remove_cart" onclick="rmFromPopupCart(this, true);"></button></td>
+                                                        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
                                                         <td class="frame-items frame-items-kit">
                                                             <ul class="items items-bask">
                                                                 <% var idsL = ids.length; _.each(ids, function(id){  %>
@@ -516,9 +516,9 @@
 
 <span class="tooltip"></span>
 <div class="apply">
-    <div>
-        <div class="description">Найдено <span id="apply-count">5</span> тов.</div>
-        <a href="#">Показать</a>
+    <div class="content-apply">
+        <a href="#">Фильтровать</a>
+        <div class="description">Найдено <span class="f-s_0"><span id="apply-count">5</span><span class="plurProd"></span></span></div>
     </div>
     <span class="icon_times-apply"></span>
 </div>

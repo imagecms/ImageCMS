@@ -160,10 +160,10 @@
     </div>
     <!--        Start. Remove buttons if compare or wishlist-->
     {if $CI->uri->segment(2) == "compare"}
-    <button type="button" class="icon_times_remove deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
+    <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
     {/if}
     {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
-    <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times_remove"></button>
+    <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
     {/if}
     <!--        End. Remove buttons if compare or wishlist-->
 </li>

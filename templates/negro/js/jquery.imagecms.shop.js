@@ -670,6 +670,8 @@ function ieInput(els) {
                 this_l = this.length;
                 k = true;
 
+                var wST = wnd.scrollTop();
+                
                 return this.each(function(index) {
                     var $thiss = $(this),
                     effectOn = settings.effectOn,
@@ -701,17 +703,18 @@ function ieInput(els) {
                     tabs_div[index] = temp_obj;
                     tabs_id[index] = temp_obj2;
                     reg_refs[index] = new RegExp(reg_refs[index]);
-                    refs[index].on('click', function(event) {
+                    
+                    refs[index].bind('click.tabs', function(event) {
                         var $this = $(this);
                         settings.before();
                         event.preventDefault();
-                        
+                                               
                         var condRadio = $thiss.data('type') != 'itemsView';
                         
                         if (!$this.parent().hasClass('disabled')) {
-                            wST = wnd.scrollTop();
-                            $thisA = $this[attrOrdata[index]]('href');
-                            if ($this.data('drop') == undefined) {
+                            var $thisA = $this[attrOrdata[index]]('href'),
+                            $thisDD = $this.data('drop') == undefined;
+                            if ($thisDD) {
                                 nav_tabs_li[index].removeClass('active');
                                 $this.parent().addClass('active');
                                 if (condRadio) {
@@ -741,10 +744,11 @@ function ieInput(els) {
                                             window.location.hash += $thisA;
                                         }
                                     }
-                                    else if ($this.data('drop') == undefined && k) {
+                                    else if ($thisDD && k) {
                                         window.location.hash = hashs[0].join('');
                                         k = false;
                                     }
+                                    if (!$thisDD) $this.trigger('click.drop')
                                 }
                             }
                             else {
@@ -755,31 +759,33 @@ function ieInput(els) {
                                 })
                             }
                         }
-                        ;
+                        
+                        
                         if (event.which || event.button == 0) {
                             settings.after($thiss);
                         }
-                    });
+                    })
 
                     if (this_l - 1 == index) {
                         methods.location();
                         methods.startCheck();
                     }
-
-                    wnd.bind('hashchange', function(event) {
-                        methods.location();
-                        methods.startCheck();
-                        function scroll_top(wST) {
-                            wnd.scrollTop(wST);
-                        }
-
-                        //chrome bug
-                        if ($.browser.webkit)
-                            scroll_top(wST - 100);
-
-                        scroll_top(wST);
-                    })
                 });
+
+
+                wnd.bind('hashchange', function(event) {
+                    methods.location();
+                    methods.startCheck();
+                    function scroll_top(wST) {
+                        wnd.scrollTop(wST);
+                    }
+
+                    //chrome bug
+                    if ($.browser.webkit)
+                        scroll_top(wST - 100);
+
+                    scroll_top(wST);
+                })
             }
         },
         location: function() {
@@ -847,11 +853,11 @@ function ieInput(els) {
         },
         startCheck: function() {
             $(hashs[1].join(',')).each(function(index) {
-                $(this).trigger('click');
+                $(this).trigger('click.tabs');
             });
             $.map(hashs[0], function(n, i) {
                 $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                $('[' + attrOrdataNew + '=' + n + ']').trigger('click');
+                $('[' + attrOrdataNew + '=' + n + ']').trigger('click.tabs');
             });
         }
     };
@@ -1132,7 +1138,7 @@ function ieInput(els) {
                 overlayColor = settings.overlayColor,
                 overlayOpacity = settings.overlayOpacity;
 
-                dataSource.live('click', function(event) {
+                dataSource.live('click.drop', function(event) {
                     $.fancybox.showActivity();
                     event.stopPropagation();
                     event.preventDefault();
@@ -1185,7 +1191,7 @@ function ieInput(els) {
                                 $thisDrop = $this.closest('[data-elrun]');
                                 if ($.exists_nabir($thisDrop)) methods.triggerBtnClick($thisDrop, selector);
                             
-                                if (event.button == undefined && $(event.target).data('place') != "center") wnd.scrollTop($this.offset().top);
+                                if (event.button == undefined && place != "center") wnd.scrollTop($this.offset().top);
 
                                 var wndW = wnd.width();
                                 if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
@@ -1288,10 +1294,10 @@ function ieInput(els) {
                         drop_over.removeClass('drop_overlay_fixed');
                         body.removeClass('isScroll')
                     }
+                    drop_over.hide();
                 }
                 $this[$thisEOff]($thisD, function(){
                     $(this).removeAttr('style');
-                    drop_over.fadeOut(200);
                     settings.close($thisB, $this);
                 });
             });
