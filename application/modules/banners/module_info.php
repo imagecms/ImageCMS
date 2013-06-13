@@ -7,7 +7,7 @@ $com_info = array(
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
         'w'           => 600,                 // Window width
 	'h'           => 550,                 // Window height
-	'version'     => '0.1 Beta',               // Module version
+	'version'     => '1.1',               // Module version
 	'author'      => 'l.andriy@siteimage.com.ua' // Author info Andriy Leshko
 );
 
