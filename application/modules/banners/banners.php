@@ -35,7 +35,7 @@ class Banners extends MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function render($id = 0) {
-        var_dump($id);
+
 
         /* $id - is id entity (brand, category, product, page) .... for main id = 0 */
         if ($this->no_install === false)
