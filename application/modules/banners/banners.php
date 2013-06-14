@@ -36,13 +36,14 @@ class Banners extends MY_Controller {
      */
     public function render($id = 0) {
 
+
         /* $id - is id entity (brand, category, product, page) .... for main id = 0 */
         if ($this->no_install === false)
             return false;
 
         $type = $this->core->core_data['data_type'];
         $lang = $this->get_main_lang('identif');
-        $painting = $type . '_' . $id;
+        $painting = $type . '_' . (int)$id;
         $banners = $this->banner_model->get_all_banner($lang);
        
         foreach ($banners as $banner) {
