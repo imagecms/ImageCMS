@@ -7,8 +7,8 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/init_window/banners/edit/".$banner['id'])}
             </div>
         </div>                            
@@ -65,7 +65,7 @@
                                     <div class="controls">
                                         <select id="data" name="data[]" multiple="multiple" style="height:500px; max-width: 500px !important" >
                                             {foreach unserialize($banner['where_show']) as $w}
-                                                <option disabled selected='selected' ondblclick='delEntity(this)' value="{echo $w}">{get_entity_mod($w)}</option>
+                                                <option  ondblclick='delEntity(this)' value="{echo $w}">{get_entity_mod($w)}</option>
                                             {/foreach}
 
 
