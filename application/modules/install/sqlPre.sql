@@ -180,7 +180,6 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (121, 'shop', 'shop', 1, 0, 0, NULL, 17),
 (135, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 1),
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
-(140, 'exchange', 'exchange', 0, 0, 0, 'a:6:{s:3:"zip";s:2:"no";s:8:"filesize";s:7:"2048000";s:7:"validIP";s:9:"127.0.0.1";s:8:"password";s:0:"";s:11:"usepassword";N;s:12:"userstatuses";N;}', 3),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL);
 
 -- --------------------------------------------------------
