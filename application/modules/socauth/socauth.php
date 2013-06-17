@@ -289,7 +289,7 @@ class Socauth extends MY_Controller {
             curl_close($curl);
 
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://api.vk.com/method/users.get?uids={$res->user_id}&fields=uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone,photo,email&access_token={$res->access_token}");
+            curl_setopt($curl, CURLOPT_URL, "https://api.vk.com/method/users.get?uids={$res->user_id}&fields=uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone,photo,photo_medium,photo_big,email&access_token={$res->access_token}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
