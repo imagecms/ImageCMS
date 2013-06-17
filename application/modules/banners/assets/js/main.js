@@ -42,7 +42,7 @@ function delEntity(obj) {
     return false;
 
 }
-
+//autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')
 function autosearch(el, path, div, tpl) {
     if ($(el).val() == 'default')
         return false;
