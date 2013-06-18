@@ -13,65 +13,72 @@ class Wishlist extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-//        $this->load->model('wishlist_model');
-//        $this->settings = $this->wishlist_model->getSettings();
+        $this->load->model('wishlist_model');
+        $this->settings = $this->wishlist_model->getSettings();
     }
 
     public function index() {
-        
+
     }
 
     /**
      * Create WL
      */
     public function createWL() {
-        
+
     }
 
     /**
      * Edit WL
      */
     public function editWL() {
-        
+
     }
 
     /**
      * delete full WL
      */
     public function deleteWL() {
-        
+
     }
 
     public function addItem($id, $varId) {
-        return json_encode('dddd');
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function deleteItem($id, $varId) {
-        
+
     }
 
     public function editItem($id, $varId) {
-        
+
     }
 
     public function moveItem($id, $varId) {
-        
+
     }
 
     function editWLName($id, $newName) {
-        
+
     }
 
     public function getWLbyHash($hash) {
-        
+
     }
 
     public function renderUserWL($userId, $type = '') {
-        
+
     }
 
     public function renderWLByHash($hash) {
-        
+
     }
 
     public function renderWLButton($varId) {
@@ -93,7 +100,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {
@@ -178,7 +185,7 @@ class Wishlist extends MY_Controller {
                     'autoload' => 1,
         ));
 
-      
+
     }
 
     public function _deinstall() {
@@ -186,7 +193,7 @@ class Wishlist extends MY_Controller {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
-        
+
         $this->db->where('module','wishlist')
                 ->delete('components');
     }
