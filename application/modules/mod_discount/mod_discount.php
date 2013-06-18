@@ -10,6 +10,7 @@ if (!defined('BASEPATH'))
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  * @property discount_model $discount_model
+ * @property discount_model_front $discount_model
  */
 class Mod_discount extends MY_Controller {
 
