@@ -3,17 +3,27 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS 
+ * Image CMS
  * Sample Module Admin
+ * @property wishlist_model $wishlist_model
  */
 class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('wishlist_model');
+        $this->settings = $this->wishlist_model->getSettings();
     }
 
     public function index() {
-        
+        \CMSFactory\assetManager::create()
+                ->setData('settings', $this->wishlist_model->getSettings())
+                ->renderAdmin('main');
+    }
+
+    public function update_settings() {
+        $settings = $_POST[settings];
+        $this->wishlist_model->setSettings($_POST[settings]);
     }
 
 }

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @property CI_DB_active_record $db
+ */
 class Wishlist_model extends CI_Model {
 
     function __construct() {
@@ -18,12 +21,15 @@ class Wishlist_model extends CI_Model {
         $settings = unserialize($settings[settings]);
         return $settings;
     }
-/**
- *
- * @return boolean
- */
-    public function setSettings() {
 
+    /**
+     *
+     * @return boolean
+     */
+    public function setSettings($settings) {
+        $this->db
+                ->where('identif', 'wishlist')
+                ->update('components', array('settings' => serialize($settings)));
         return TRUE;
     }
     
