@@ -8,6 +8,7 @@ function addToWL(varId) {
             listID = false;
             listName = $('.wish_list_name').val();
         }
+    }
 
 //    if (!$('#' + varId).hasClass('inWL')) {
         $.ajax({
@@ -35,6 +36,7 @@ function addToWL(varId) {
 //    } else {
 //        //document.location.href = '/wishlist';
 //    }
+
 }
 
 function unspy(hash) {
