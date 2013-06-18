@@ -23,14 +23,15 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
-     *
+     * Save settings
+     * @param type $settings
      * @return boolean
      */
     public function setSettings($settings) {
-        $this->db
+        $forReturn = $this->db
                 ->where('identif', 'wishlist')
                 ->update('components', array('settings' => serialize($settings)));
-        return TRUE;
+        return $forReturn;
     }
     
     public function getWishLists() {
