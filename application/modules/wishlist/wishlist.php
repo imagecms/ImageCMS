@@ -43,7 +43,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function addItem($id, $varId) {
-        
+        return json_encode('dddd');
     }
 
     public function deleteItem($id, $varId) {
@@ -169,6 +169,14 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
+        
+        $this->db
+                ->where('identif', 'wishlist')
+                ->update('settings', array(
+                    'settings' => '',
+                    'enabled' => 1,
+                    'autoload' => 1,
+        ));
 
       
     }
