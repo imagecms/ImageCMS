@@ -8,6 +8,8 @@ function addToWL(varId) {
             listID = false;
             listName = $('.wish_list_name').val();
         }
+
+//    if (!$('#' + varId).hasClass('inWL')) {
         $.ajax({
             type: 'POST',
             url: '/wishlist/addItem/' + varId + '/' + listID + '/' + listName,
@@ -15,6 +17,7 @@ function addToWL(varId) {
                 if (data) {
                     $('.overlayDrop').remove();
                     $('#wishCart').css('display', 'none');
+
                 }
 //                obj = JSON.parse(data);
 //                if (obj.answer === 'sucesfull') {
@@ -27,7 +30,7 @@ function addToWL(varId) {
 //                }
             }
         });
-    }
+//    }
 
 //    } else {
 //        //document.location.href = '/wishlist';
