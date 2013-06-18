@@ -121,6 +121,7 @@
 
                                     <!-- displaying product's rate -->
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
+                                    {$CI->load->module('wishlist')->renderWLButton('2','3')}
 
                                     <!-- displaying comments count -->
                                     {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
