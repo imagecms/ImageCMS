@@ -41,10 +41,25 @@
                                 </div>
                             </div>
 
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxCommentLenght]">Максимальная длинна комментария</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxCommentLenght]" class="textbox_short" value="{$settings['maxCommentLenght']}" id="maxCommentLenght"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxDescLenght]">Максимальная длинна описания</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxDescLenght]" class="textbox_short" value="{$settings['maxDescLenght']}" id="maxDescLenght"/>
+                                </div>
+                            </div>
+
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
+        {form_csrf()}
     </form>
 </section>
