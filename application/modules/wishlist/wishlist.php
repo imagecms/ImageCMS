@@ -14,80 +14,87 @@ class Wishlist extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->i=0;
+        $this->i = 0;
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
     }
 
     public function index() {
-
+        
     }
 
     /**
      * Create WL
      */
     public function createWL() {
-
+        
     }
 
     /**
      * Edit WL
      */
     public function editWL() {
-
+        
     }
 
     /**
      * delete full WL
      */
     public function deleteWL() {
-
+        
     }
 
-    public function addItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+    public function addItem($varId, $listId, $listName) {
+        if($varId)
+        {
+           return $this->wishlist_model->addItem($varId, $listId, $listName);
+        }else{
+            return false;
+        }
+        
+//        if (true)
+//            echo json_encode(array(
+//                'answer' => 'sucesfull',
+//            ));
+//        else
+//            echo json_encode(array(
+//                'answer' => 'error',
+//            ));
     }
 
     public function deleteItem($id, $varId) {
-
+        
     }
 
     public function editItem($id, $varId) {
-
+        
     }
 
     public function moveItem($id, $varId) {
-
+        
     }
 
     function editWLName($id, $newName) {
-
+        
     }
 
     public function getWLbyHash($hash) {
-
+        
     }
 
     public function renderUserWL($userId, $type = '') {
-
+        
     }
 
     public function renderWLByHash($hash) {
-
+        
     }
 
     public function renderWLButton($varId) {
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->setData('data', $data)
-                ->setData('id', $varId)
+                ->setData('varId', $varId)
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->render('button', true);
@@ -103,7 +110,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function autoload() {
-
+        
     }
 
     public static function adminAutoload() {
@@ -186,8 +193,6 @@ class Wishlist extends MY_Controller {
                     'enabled' => 1,
                     'autoload' => 1,
         ));
-
-
     }
 
     public function _deinstall() {
@@ -195,6 +200,19 @@ class Wishlist extends MY_Controller {
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
+    }
+
+    public function renderPopup($varId) {
+        $wish_lists = $this->wishlist_model->getWishLists();
+        $data = array('wish_lists'=> $wish_lists);
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
+                ->setData('value', 'Добавить в Список Желания')
+                ->setData('class', 'btn')
+                ->setData('varId', $varId)
+                ->setData($data)
+                ->fetchTemplate('wishPopup');
+        return json_encode(array('popup' => $comments));
     }
 
 }

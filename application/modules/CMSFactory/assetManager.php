@@ -194,7 +194,7 @@ class assetManager {
     public function fetchTemplate($tpl) {
         try {
             /** Start. If file doesn't exists thorow exception */
-            file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
 
             /** Start. Return template file */
             return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($tpl));
