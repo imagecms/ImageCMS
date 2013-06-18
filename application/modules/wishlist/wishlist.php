@@ -13,65 +13,65 @@ class Wishlist extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('wishlist_model');
-        $this->settings = $this->wishlist_model->getSettings();
+//        $this->load->model('wishlist_model');
+//        $this->settings = $this->wishlist_model->getSettings();
     }
 
     public function index() {
-
+        
     }
 
     /**
      * Create WL
      */
     public function createWL() {
-
+        
     }
 
     /**
      * Edit WL
      */
     public function editWL() {
-
+        
     }
 
     /**
      * delete full WL
      */
     public function deleteWL() {
-
+        
     }
 
     public function addItem($id, $varId) {
-
+        
     }
 
     public function deleteItem($id, $varId) {
-
+        
     }
 
     public function editItem($id, $varId) {
-
+        
     }
 
     public function moveItem($id, $varId) {
-
+        
     }
 
     function editWLName($id, $newName) {
-
+        
     }
 
     public function getWLbyHash($hash) {
-
+        
     }
 
     public function renderUserWL($userId, $type = '') {
-
+        
     }
 
     public function renderWLByHash($hash) {
-
+        
     }
 
     /**
@@ -84,7 +84,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function autoload() {
-
+        
     }
 
     public static function adminAutoload() {
@@ -92,33 +92,86 @@ class Wishlist extends MY_Controller {
     }
 
     public function _install() {
-        /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
-        $query = '';
-        /**
-          $this->load->dbforge();
 
-          $fields = array(
-          'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-          'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
-          'value' => array('type' => 'VARCHAR', 'constraint' => 100,)
-          );
+        $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
 
-          $this->dbforge->add_key('id', TRUE);
-          $this->dbforge->add_field($fields);
-          $this->dbforge->create_table('mod_empty', TRUE);
-         */
-        /**
-          $this->db->where('name', 'module_frame')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
-         */
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'title' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '254',
+                'null' => FALSE
+            ),
+            'access' => array(
+                'type' => 'ENUM',
+                'constraint' => "'public','private','shared'",
+                'default' => "shared"
+            ),
+            'description' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
+            ),
+            'user_id' => array(
+                'type' => 'INT',
+                'null' => FALSE
+            ),
+            'user_image' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
+            ),
+            'user_birthday' => array(
+                'type' => 'TIMESTAMP',
+                'null' => TRUE
+            ),
+            'hash' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '16',
+                'null' => FALSE
+            )
+        );
+
+        $this->dbforge->add_field($fields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_wish_list');
+
+
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+            'wish_list_id' => array(
+                'type' => 'INT',
+                'null' => FALSE
+            ),
+            'variant_id' => array(
+                'type' => 'INT',
+                'null' => FALSE
+            ),
+            'comment' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
+            )
+        );
+        $this->dbforge->add_field($fields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_wish_list_products');
+
+      
     }
 
     public function _deinstall() {
-        /**
-          $this->load->dbforge();
-          $this->dbforge->drop_table('mod_empty');
-         *
-         */
+
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_wish_list_products');
+        $this->dbforge->drop_table('mod_wish_list');
+        
+        $this->db->where('module','wishlist')
+                ->delete('components');
     }
 
 }
