@@ -13,8 +13,8 @@ class Wishlist extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('wishlist_model');
-        $this->settings = $this->wishlist_model->getSettings();
+//        $this->load->model('wishlist_model');
+//        $this->settings = $this->wishlist_model->getSettings();
     }
 
     public function index() {
@@ -72,6 +72,15 @@ class Wishlist extends MY_Controller {
 
     public function renderWLByHash($hash) {
 
+    }
+
+    public function renderWLButton($varId) {
+        \CMSFactory\assetManager::create()
+                ->registerScript('wishlist')
+                ->setData('data', $data)
+                ->setData('value', 'Добавить в Список Желания')
+                ->setData('class', 'btn')
+                ->render('button', true);
     }
 
     /**
