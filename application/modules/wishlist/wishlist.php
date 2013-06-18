@@ -33,19 +33,25 @@ class Wishlist extends MY_Controller {
     }
 
     /**
-     * Create WL
+     *
+     * @param type $title
+     * @param type $access
+     * @param type $description
+     * @param type $user_id
+     * @param type $user_image
+     * @param type $user_birthday
      */
 
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
 
-        $this->db->set('title',$title);
-        $this->db->set('access',$access);
-        $this->db->set('description',$description);
-        $this->db->set('user_id',$user_id);
-        $this->db->set('user_image',$user_image);
-        $this->db->set('user_birthday',$user_birthday);
+        $this->db->set('title', $title);
+        $this->db->set('access', $access);
+        $this->db->set('description', $description);
+        $this->db->set('user_id', $user_id);
+        $this->db->set('user_image', $user_image);
+        $this->db->set('user_birthday', $user_birthday);
         $this->db->insert('mod_wish_list');
-        
+
         if (true)
             echo json_encode(array(
                 'answer' => 'sucesfull',
@@ -74,8 +80,16 @@ class Wishlist extends MY_Controller {
     /**
      * delete full WL
      */
-    public function deleteWL() {
-        
+    public function deleteWL($id) {
+        $this->db->delete('mod_wishlist', array('id' => $id));
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function addItem($varId, $listId, $listName) {
@@ -85,7 +99,7 @@ class Wishlist extends MY_Controller {
         }else{
             return false;
         }
-        
+
 //        if (true)
 //            echo json_encode(array(
 //                'answer' => 'sucesfull',
@@ -96,7 +110,7 @@ class Wishlist extends MY_Controller {
 //            ));
     }
 
-   
+
 
     public function deleteItem($id, $varId) {
         if (true)
@@ -143,25 +157,38 @@ class Wishlist extends MY_Controller {
     }
 
     public function getWLbyHash($hash) {
-        
+
     }
 
     public function renderUserWL($userId, $type = '') {
-        
+
     }
 
     public function renderWLByHash($hash) {
-        
+
     }
 
+    /**
+     * Render Wish List button
+     * @param type $varId
+     */
     public function renderWLButton($varId) {
-        \CMSFactory\assetManager::create()
-                ->registerScript('wishlist')
-                ->setData('data', $data)
-                ->setData('varId', $varId)
-                ->setData('value', 'Добавить в Список Желания')
-                ->setData('class', 'btn')
-                ->render('button', true);
+        if (true)
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('data', $data)
+                    ->setData('id', $varId)
+                    ->setData('value', 'Добавить в Список Желания')
+                    ->setData('class', 'btn')
+                    ->render('button', true);
+        else
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('data', $data)
+                    ->setData('id', $varId)
+                    ->setData('value', 'Уже в Списке Желания')
+                    ->setData('class', 'btn inWL')
+                    ->render('button', true);
     }
 
     /**
@@ -174,7 +201,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {
