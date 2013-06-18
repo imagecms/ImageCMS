@@ -13,9 +13,11 @@ class Wishlist extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
     }
+
 
     private function checkPerm() {
         $permAllow = TRUE;
@@ -39,6 +41,7 @@ class Wishlist extends MY_Controller {
      * @param type $user_image
      * @param type $user_birthday
      */
+
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
 
         $this->db->set('title', $title);
@@ -63,6 +66,7 @@ class Wishlist extends MY_Controller {
      * Edit WL
      */
     public function editWL() {
+
         if (true)
             echo json_encode(array(
                 'answer' => 'sucesfull',
@@ -88,17 +92,25 @@ class Wishlist extends MY_Controller {
             ));
     }
 
-    public function addItem($id, $varId) {
+    public function addItem($varId, $listId, $listName) {
+        if($varId)
+        {
+           return $this->wishlist_model->addItem($varId, $listId, $listName);
+        }else{
+            return false;
+        }
 
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+//        if (true)
+//            echo json_encode(array(
+//                'answer' => 'sucesfull',
+//            ));
+//        else
+//            echo json_encode(array(
+//                'answer' => 'error',
+//            ));
     }
+
+
 
     public function deleteItem($id, $varId) {
         if (true)
@@ -279,6 +291,19 @@ class Wishlist extends MY_Controller {
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
+    }
+
+    public function renderPopup($varId) {
+        $wish_lists = $this->wishlist_model->getWishLists();
+        $data = array('wish_lists'=> $wish_lists);
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
+                ->setData('value', 'Добавить в Список Желания')
+                ->setData('class', 'btn')
+                ->setData('varId', $varId)
+                ->setData($data)
+                ->fetchTemplate('wishPopup');
+        return json_encode(array('popup' => $comments));
     }
 
 }
