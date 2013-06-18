@@ -23,6 +23,12 @@ class Mod_discount extends MY_Controller {
         $this->load->module('core');
         $this->load->model('discount_model');
     }
+    
+    
+    public function init(){
+        
+        
+    }
 
     
     public function index() {
@@ -46,7 +52,7 @@ class Mod_discount extends MY_Controller {
                   `max_apply` INT NULL ,
                   `count_apply` INT NULL ,
                   `date_begin` INT(11) NULL ,
-                  `date_end` INT(11) NULL DEFAULT 2147476447 ,
+                  `date_end` INT(11) NULL ,
                   `type_value` TINYINT NULL ,
                   `value` INT NULL ,
                   `type_discount` VARCHAR(15) NULL ,
@@ -122,7 +128,7 @@ class Mod_discount extends MY_Controller {
                   `for_autorized` TINYINT NULL ,
                   `discount_id` INT NULL ,
                   `is_gift` TINYINT NULL ,
-                  `begin_value` FLOAT NULL  DEFAULT 9999999999,
+                  `begin_value` FLOAT NULL ,
                   PRIMARY KEY (`id`),
                   INDEX(`discount_id`))
                 ENGINE = MyISAM
