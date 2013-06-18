@@ -1,5 +1,5 @@
 <input type="submit"
        class="{$class}"
-       id='{echo $data[varId]}'
+       id='{echo $id}'
        value="{$value}"
-       onclick="addToWL('3','3')"/>
+       onclick="addToWL('{echo $id}','{echo $id}')"/>

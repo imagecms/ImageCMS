@@ -10,9 +10,11 @@
 class Wishlist extends MY_Controller {
 
     public $settings = array();
+    public $i;
 
     public function __construct() {
         parent::__construct();
+        $this->i=0;
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
     }
@@ -85,6 +87,7 @@ class Wishlist extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->setData('data', $data)
+                ->setData('id', $varId)
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->render('button', true);
@@ -154,7 +157,6 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list');
 
-
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -176,7 +178,7 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
-        
+
         $this->db
                 ->where('identif', 'wishlist')
                 ->update('settings', array(
@@ -189,13 +191,10 @@ class Wishlist extends MY_Controller {
     }
 
     public function _deinstall() {
-
         $this->load->dbforge();
+        ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
-
-        $this->db->where('module','wishlist')
-                ->delete('components');
     }
 
 }
