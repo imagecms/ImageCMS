@@ -10,41 +10,79 @@
 class Wishlist extends MY_Controller {
 
     public $settings = array();
-    public $i;
 
     public function __construct() {
         parent::__construct();
-        $this->i=0;
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
     }
 
-    public function index() {
+    private function checkPerm() {
+        $permAllow = TRUE;
+        if (!$this->dx_auth->is_logged_in())
+            $permAllow = FALSE;
 
+        return $permAllow;
+    }
+
+    public function index() {
+        if (!$this->checkPerm())
+            $this->core->error_404();
     }
 
     /**
      * Create WL
      */
-    public function createWL() {
+    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
 
+        $this->db->set('title',$title);
+        $this->db->set('access',$access);
+        $this->db->set('description',$description);
+        $this->db->set('user_id',$user_id);
+        $this->db->set('user_image',$user_image);
+        $this->db->set('user_birthday',$user_birthday);
+        $this->db->insert('mod_wish_list');
+        
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     /**
      * Edit WL
      */
     public function editWL() {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     /**
      * delete full WL
      */
     public function deleteWL() {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function addItem($id, $varId) {
+
         if (true)
             echo json_encode(array(
                 'answer' => 'sucesfull',
@@ -56,19 +94,47 @@ class Wishlist extends MY_Controller {
     }
 
     public function deleteItem($id, $varId) {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function editItem($id, $varId) {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function moveItem($id, $varId) {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     function editWLName($id, $newName) {
-
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function getWLbyHash($hash) {
@@ -186,8 +252,6 @@ class Wishlist extends MY_Controller {
                     'enabled' => 1,
                     'autoload' => 1,
         ));
-
-
     }
 
     public function _deinstall() {
