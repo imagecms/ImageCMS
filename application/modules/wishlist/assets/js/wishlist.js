@@ -1,7 +1,7 @@
 function addToWL(id, varId) {
     template = _.template($('script#wishPopupTemplate').html());
     $('#wishCart').css('display', 'block');
-    console.log($('#wishCart'))
+
     if (!$('.wishTMP').length)
     {
         $('#wishCart').append(_.template($('script#wishPopupTemplate').html(), {}));
@@ -21,10 +21,11 @@ function addToWL(id, varId) {
             url: '/wishlist/addItem/' + id + '/' + varId,
             success: function(data) {
                 obj = JSON.parse(data);
+                console.log(obj.answer);
                 if (obj.answer === 'sucesfull') {
                     $('#' + varId).val('Уже в Списке Желания');
-                    document.getElementById(varId).className = 'btn inWL';
-                    document.getElementById(varId).onclick = 'btn inWL';
+                    $('#' + varId).addClass('inWL');
+
                     $('#' + varId).die('click').on("click", function() {
                         document.location.href = '/wishlist';
                     });
