@@ -33,6 +33,13 @@
                 <tr>
                     <td colspan="6">
                         <div class="inside_padd">
+                            
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxListsCount]">Максимальное количество Списков Желания</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxListsCount]" class="textbox_short" value="{$settings['maxListsCount']}" id="maxListsCount"/>
+                                </div>
+                            </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="settings[maxItemsCount]">Максимальное количество товаров в Списках Желания</label>

@@ -13,14 +13,14 @@
                         {$wish_list.title}
                     </label>
                 {/foreach}
-                <label>
-                    <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList">
+                <label class="newWishListLable">
+                    <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount={$lists_count}>
                     <input type="text"  name="wishlist"  value="Создать список" class="wish_list_name">
                 </label>
                     <lable>Коментар
                         <textarea class="wishProductComment"></textarea>
                     </lable>
-                <input type="submit"  class="{$class}" id="{$varId}"  value="{$value}" onclick="addToWL('{$varId}')"/>
+                <input type="submit" class="{$class}" id="{$varId}"  value="{$value}" onclick="addToWL('{$varId}')"/>
             </div>            
         </div>        
     </div>
