@@ -5,8 +5,10 @@
  */
 class Wishlist_model extends CI_Model {
 
+
     function __construct() {
         parent::__construct();
+
     }
 
     /**
@@ -38,23 +40,28 @@ class Wishlist_model extends CI_Model {
         return $this->db->get('mod_wish_list')->result_array();
     }
 
-    public function addItem($varId, $listId, $listName) {
-        if (!$listId) {
-            $listId = $this->createWishList($listName);
+    public function addItem($varId, $listId, $listName, $commentProduct) {
+        $CI = &get_instance();
+        if ($listName != 'false') {
+            $this->createWishList($listName, $CI->dx_auth->get_user_id());
+            $listId = $this->db->insert_id();
         }
         $data = array(
             'variant_id' => $varId,
-            'wish_list_id' => $listId
+            'wish_list_id' => $listId,
+            'comment' => $commentProduct
         );
 
         return $this->db->insert('mod_wish_list_products', $data);
     }
 
-    public function createWishList($listName) {
+
+    public function createWishList($listName, $user_id) {
         $data = array(
-            'title' => $listName
+            'title' => $listName,
+            'user_id' => $user_id
         );
-        return $this->db->insert('mod_wish_list', $data)->insert_id();
+        return $this->db->insert('mod_wish_list', $data);
     }
 
 }

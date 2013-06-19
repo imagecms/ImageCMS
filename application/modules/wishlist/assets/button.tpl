@@ -2,4 +2,7 @@
        class="{$class}"
        id='{echo $varId}'
        value="{$value}"
-       onclick="renderPopup('{echo $varId}', $(this))"/>
+       onclick="renderPopup('{echo $varId}', $(this))"
+       
+       
+       />
