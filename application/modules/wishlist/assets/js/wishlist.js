@@ -3,34 +3,44 @@ function addToWL(varId) {
     var checkedList = $('#wishCart input[type=radio]:checked');
     if (checkedList.length) {
         var listID = checkedList.data('id');
-        var listName = "";
+        var listName = false;
+        var commentProduct = $('.wishProductComment').val();
+        
         if(checkedList.hasClass('newWishList')){
             listID = false;
             listName = $('.wish_list_name').val();
         }
-    }
-
-//    if (!$('#' + varId).hasClass('inWL')) {
+        
         $.ajax({
             type: 'POST',
-            url: '/wishlist/addItem/' + varId + '/' + listID + '/' + listName,
+            data: {
+                varId: varId,
+                listID: listID,
+                listName: listName,
+                commentProduct: commentProduct                
+            },
+            url: '/wishlist/addItem',
             success: function(data) {
                 if (data) {
                     $('.overlayDrop').remove();
                     $('#wishCart').css('display', 'none');
 
                 }
-//                obj = JSON.parse(data);
-//                if (obj.answer === 'sucesfull') {
-//                    $('#' + varId).val('Уже в Списке Желания');
-//                    document.getElementById(varId).className = 'btn inWL';
-//                    document.getElementById(varId).onclick = 'btn inWL';
-//                    $('#' + varId).die('click').on("click", function() {
-//                        document.location.href = '/wishlist';
-//                    });
-//                }
+    //                obj = JSON.parse(data);
+    //                if (obj.answer === 'sucesfull') {
+    //                    $('#' + varId).val('Уже в Списке Желания');
+    //                    document.getElementById(varId).className = 'btn inWL';
+    //                    document.getElementById(varId).onclick = 'btn inWL';
+    //                    $('#' + varId).die('click').on("click", function() {
+    //                        document.location.href = '/wishlist';
+    //                    });
+    //                }
             }
         });
+        
+    }
+    
+    
 //    }
 
 //    } else {
@@ -50,9 +60,8 @@ function unspy(hash) {
         }
     });
 }
-function renderPopup(varId, wlBtn) {
-    console.log(wlBtn)
 
+function renderPopup(varId, wlBtn) {
     var popupTemplate = '';
     $.ajax({
         type: 'POST',
@@ -60,25 +69,16 @@ function renderPopup(varId, wlBtn) {
         url: '/wishlist/renderPopup/' + varId,
         success: function(data) {
             if (data) {
-                popupTemplate = data.popup;
                 if (!$('.wishTMP').length) {
-                    body.append(popupTemplate);
+                    body.append(data.popup);
                 }
-
                 body.append('<div class="overlayDrop drop_overlay_fixed" style="position: fixed; width: 100%; height: 100%; left: 0px; top: 0px; z-index: 1001; background-color: rgb(0, 0, 0); opacity: 0.6;"></div>')
                 $('#wishCart').css('display', 'block');
-
             }
         }
     });
-
-//    $('#wishCart').css('display', 'block');
-//    console.log($('#wishCart'))
-
-
-
-
 }
+
 function removePopup() {
     $('.overlayDrop').remove();
     $('#wishCart').css('display', 'none');
