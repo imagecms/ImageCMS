@@ -19,7 +19,7 @@ function addToWL(varId) {
                 listName: listName,
                 commentProduct: commentProduct
             },
-            url: '/wishlist/addItem',
+            url: '/wishlist/wishlistAJAX/addItem',
             success: function(data) {
                 if (data) {
                     $('.overlayDrop').remove();

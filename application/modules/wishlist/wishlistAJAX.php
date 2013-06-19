@@ -7,9 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistAPI_AJAX extends Wishlist {
-
-
+class WishlistAJAX extends Wishlist {
 
     public function __construct() {
         parent::__construct();
@@ -26,7 +24,8 @@ class WishlistAPI_AJAX extends Wishlist {
     public function index() {
 //        if (!$this->checkPerm())
 //            $this->core->error_404();
-        $this->renderUserWL();
+//        $this->renderUserWL();
+        echo 2;
     }
 
     /**
@@ -88,21 +87,19 @@ class WishlistAPI_AJAX extends Wishlist {
             ));
     }
 
-    public function addItem($varId, $listId, $listName) {
-        if ($varId) {
-            return $this->wishlist_model->addItem($varId, $listId, $listName);
-        } else {
-            return false;
+    public function addItem() {
+        if (parent::addItem()) {
+
         }
 
-//        if (true)
-//            echo json_encode(array(
-//                'answer' => 'sucesfull',
-//            ));
-//        else
-//            echo json_encode(array(
-//                'answer' => 'error',
-//            ));
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function deleteItem($id, $varId) {

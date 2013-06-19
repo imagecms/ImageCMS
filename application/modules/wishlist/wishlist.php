@@ -11,6 +11,7 @@ class Wishlist extends MY_Controller {
 
     public $settings = array();
     public $dataModel;
+    public $errors;
 
     public function __construct() {
         parent::__construct();
@@ -92,20 +93,25 @@ class Wishlist extends MY_Controller {
             ));
     }
 
-
-    public function addItem($varId, $listId, $listName, $commentProduct) {
-
+    public function addItem() {
         $varId = $this->input->post('varId');
         $listId = $this->input->post('listID');
         $listName = $this->input->post('listName');
         $commentProduct = $this->input->post('commentProduct');
-
-        if($varId){
-           return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-
-        }else{
+//        var_dump($_POST);
+        if ($varId) {
+            return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
+        } else {
             return false;
         }
+//        if (true)
+//            echo json_encode(array(
+//                'answer' => 'sucesfull',
+//            ));
+//        else
+//            echo json_encode(array(
+//                'answer' => 'error',
+//            ));
     }
 
     public function deleteItem($id, $varId) {
@@ -309,7 +315,7 @@ class Wishlist extends MY_Controller {
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
 
-        $data = array('wish_lists'=> $wish_lists);
+        $data = array('wish_lists' => $wish_lists);
 
         $popup = \CMSFactory\assetManager::create()
                 ->setData('value', 'Добавить в Список Желания')
