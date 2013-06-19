@@ -904,7 +904,7 @@ function initAdminArea() {
     if ($.exists('.datepicker')) {
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd',
-            minDate: new Date(2013, 1 - 1, 1),
+            minDate: new Date(),
             showOtherMonths: true,
             selectOtherMonths: true,
             prevText: '',
