@@ -22,10 +22,7 @@ class WishlistAJAX extends Wishlist {
     }
 
     public function index() {
-//        if (!$this->checkPerm())
-//            $this->core->error_404();
-//        $this->renderUserWL();
-        echo 2;
+        $this->core->error_404();
     }
 
     /**
@@ -102,8 +99,8 @@ class WishlistAJAX extends Wishlist {
             ));
     }
 
-    public function deleteItem($id, $varId) {
-        if (true)
+    public function deleteItem() {
+        if (parent::deleteItem())
             echo json_encode(array(
                 'answer' => 'sucesfull',
             ));

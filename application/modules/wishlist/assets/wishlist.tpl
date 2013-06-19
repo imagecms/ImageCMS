@@ -3,7 +3,15 @@
         {foreach $wishlists as $key => $wishlist}
             <table class="table">
                 <thead>
-                <div>{$wishlist[0][title]}</div>
+                    <tr>
+                        <td colspan="3">
+                            <div>{$wishlist[0][title]}</div>
+                            <input type="submit"
+                                   class="btn"
+                                   value="удалить"
+                                   onclick="delWL(this)"/>
+                        </td>
+                    </tr>
                     <tr>
                         <th>№</th>
                         <th>Отписатся</th>
@@ -12,13 +20,13 @@
                 </thead>
                 <tbody>
                     {foreach $wishlist as $key => $w}
-                        <tr id='{$w[hash]}'>
+                        <tr>
                             <td>{echo $key+1}</td>
                             <td>
                                 <input type="submit"
                                        class="btn"
                                        value="удалить"
-                                       onclick="delFromWL('{$w[hash]}')"/>
+                                       onclick="delFromWL(this, '{echo $w[variant_id]}', '{echo $w[wish_list_id]}')"/>
                             </td>
                             <td>
                                 <a href="{shop_url('product/'.$w[url])}"
