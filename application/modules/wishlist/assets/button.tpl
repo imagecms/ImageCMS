@@ -3,7 +3,4 @@
        id='{echo $varId}'
        value="{$value}"
        data-listsCount = '{$lists_count}'
-       onclick="renderPopup('{echo $varId}', $(this))"
-       
-       
-       />
+       onclick="renderPopup('{echo $varId}', $(this))" />
