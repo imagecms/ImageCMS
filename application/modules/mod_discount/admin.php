@@ -14,20 +14,55 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
-
+        $this->load->model('discount_model_admin');
 
     }
-
+    
     /**
-     * @access public
-     * @author DevImageCms
-     * @copyright (c) 2013, ImageCMS
-     */
+    * For displaing list of discounts
+    */
     public function index() {
-
+        $data = array('discountsList' => $this->discount_model_admin->getDiscountsList());
+                
+        CMSFactory\assetManager::create()
+                   ->setData($data)
+                   ->registerStyle('style')
+                   ->registerScript('adminScripts')
+                   ->renderAdmin('list', true);
     }
+    
+    
+    /**
+     * Create discount
+     */
+    public function create() {
+        $data = array('data' => 111111, 'CS' => $this->discount_model_admin->getMainCurrencySymbol());
+        
+        CMSFactory\assetManager::create()
+                   ->setData($data)
+                   ->registerStyle('style')
+                   ->registerScript('adminScripts')
+                   ->renderAdmin('create', true);
+    }
+    
+    
+    /**
+    * Edit discount   
+    */
+    public function edit() {
+        
+    }
+    
+    
+    /**
+     * Change status(active or not)
+     */
+    public function ajaxChangeActive() {
+       $id = $this->input->post('id');
 
-   
+       return $this->discount_model_admin->changeActive($id);
+    }
+    
 }
 
 /* End of file admin.php */
