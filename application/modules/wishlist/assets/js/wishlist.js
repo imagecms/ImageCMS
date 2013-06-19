@@ -1,5 +1,4 @@
 function addToWL(varId) {
-    //if (!$('#' + varId).hasClass('inWL')) {
     var checkedList = $('#wishCart input[type=radio]:checked');
     if (checkedList.length) {
         var listID = checkedList.data('id');
@@ -24,35 +23,16 @@ function addToWL(varId) {
                 if (data) {
                     $('.overlayDrop').remove();
                     $('#wishCart').css('display', 'none');
-
                 }
-                //                obj = JSON.parse(data);
-                //                if (obj.answer === 'sucesfull') {
-                //                    $('#' + varId).val('Уже в Списке Желания');
-                //                    document.getElementById(varId).className = 'btn inWL';
-                //                    document.getElementById(varId).onclick = 'btn inWL';
-                //                    $('#' + varId).die('click').on("click", function() {
-                //                        document.location.href = '/wishlist';
-                //                    });
-                //                }
             }
         });
-
     }
-
-
-//    }
-
-//    } else {
-//        //document.location.href = '/wishlist';
-//    }
-
 }
 
-function unspy(hash) {
+function delFromWL(hash) {
     $.ajax({
         type: 'POST',
-        url: '/pricespy/unspy/' + hash,
+        url: '/wishlist/deleteItem/' + hash,
         success: function(data) {
             obj = JSON.parse(data);
             if (obj.answer === 'sucesfull')
