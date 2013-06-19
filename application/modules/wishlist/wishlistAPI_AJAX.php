@@ -7,16 +7,12 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Wishlist extends MY_Controller {
+class WishlistAPI_AJAX extends Wishlist {
 
-    public $settings = array();
-    public $dataModel;
+
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->model('wishlist_model');
-        $this->settings = $this->wishlist_model->getSettings();
     }
 
     private function checkPerm() {
@@ -92,20 +88,21 @@ class Wishlist extends MY_Controller {
             ));
     }
 
-
-    public function addItem($varId, $listId, $listName, $commentProduct) {
-
-        $varId = $this->input->post('varId');
-        $listId = $this->input->post('listID');
-        $listName = $this->input->post('listName');
-        $commentProduct = $this->input->post('commentProduct');
-
-        if($varId){
-           return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-
-        }else{
+    public function addItem($varId, $listId, $listName) {
+        if ($varId) {
+            return $this->wishlist_model->addItem($varId, $listId, $listName);
+        } else {
             return false;
         }
+
+//        if (true)
+//            echo json_encode(array(
+//                'answer' => 'sucesfull',
+//            ));
+//        else
+//            echo json_encode(array(
+//                'answer' => 'error',
+//            ));
     }
 
     public function deleteItem($id, $varId) {
@@ -190,18 +187,16 @@ class Wishlist extends MY_Controller {
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Уже в Списке Желания')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
     }
@@ -310,17 +305,15 @@ class Wishlist extends MY_Controller {
 
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
-
-        $data = array('wish_lists'=> $wish_lists);
-
-        $popup = \CMSFactory\assetManager::create()
+        $data = array('wish_lists' => $wish_lists);
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
                 ->setData($data)
-                ->setData('lists_count', $this->settings['maxListsCount'])
                 ->fetchTemplate('wishPopup');
-        return json_encode(array('popup' => $popup));
+        return json_encode(array('popup' => $comments));
     }
 
 }
