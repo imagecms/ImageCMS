@@ -199,6 +199,7 @@ class Wishlist extends MY_Controller {
                     ->setData('varId', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
+                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
@@ -206,6 +207,7 @@ class Wishlist extends MY_Controller {
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('value', 'Уже в Списке Желания')
+                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
     }
@@ -322,6 +324,7 @@ class Wishlist extends MY_Controller {
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
                 ->setData($data)
+                ->setData('lists_count', $this->settings['maxListsCount'])
                 ->fetchTemplate('wishPopup');
         return json_encode(array('popup' => $popup));
     }
