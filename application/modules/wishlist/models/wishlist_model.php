@@ -33,26 +33,28 @@ class Wishlist_model extends CI_Model {
                 ->update('components', array('settings' => serialize($settings)));
         return $forReturn;
     }
-    
+
     public function getWishLists() {
-        return $this->db->get('mod_wish_list')->result_array();         
+        return $this->db->get('mod_wish_list')->result_array();
     }
+
     public function addItem($varId, $listId, $listName) {
-        if(!$listId){
+        if (!$listId) {
             $listId = $this->createWishList($listName);
         }
         $data = array(
-               'variant_id' =>  $varId,
-               'wish_list_id' => $listId
+            'variant_id' => $varId,
+            'wish_list_id' => $listId
         );
-        
-        return $this->db->insert('mod_wish_list_products', $data);         
+
+        return $this->db->insert('mod_wish_list_products', $data);
     }
-    public function createWishList($listName){
+
+    public function createWishList($listName) {
         $data = array(
-               'title' =>  $listName               
+            'title' => $listName
         );
-        return $this->db->insert('mod_wish_list', $data)->insert_id();         
+        return $this->db->insert('mod_wish_list', $data)->insert_id();
     }
 
 }

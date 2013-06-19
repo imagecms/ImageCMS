@@ -7,16 +7,12 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Wishlist extends MY_Controller {
+class WishlistAPI_AJAX extends Wishlist {
 
-    public $settings = array();
-    public $dataModel;
+
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->model('wishlist_model');
-        $this->settings = $this->wishlist_model->getSettings();
     }
 
     private function checkPerm() {

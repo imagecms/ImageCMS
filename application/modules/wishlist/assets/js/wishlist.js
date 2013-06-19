@@ -4,21 +4,22 @@ function addToWL(varId) {
     if (checkedList.length) {
         var listID = checkedList.data('id');
         var listName = "";
-        if(checkedList.hasClass('newWishList')){
+        if (checkedList.hasClass('newWishList')) {
             listID = false;
             listName = $('.wish_list_name').val();
         }
+    }
 
 //    if (!$('#' + varId).hasClass('inWL')) {
-        $.ajax({
-            type: 'POST',
-            url: '/wishlist/addItem/' + varId + '/' + listID + '/' + listName,
-            success: function(data) {
-                if (data) {
-                    $('.overlayDrop').remove();
-                    $('#wishCart').css('display', 'none');
+    $.ajax({
+        type: 'POST',
+        url: '/wishlist/addItem/' + varId + '/' + listID + '/' + listName,
+        success: function(data) {
+            if (data) {
+                $('.overlayDrop').remove();
+                $('#wishCart').css('display', 'none');
 
-                }
+            }
 //                obj = JSON.parse(data);
 //                if (obj.answer === 'sucesfull') {
 //                    $('#' + varId).val('Уже в Списке Желания');
@@ -28,8 +29,8 @@ function addToWL(varId) {
 //                        document.location.href = '/wishlist';
 //                    });
 //                }
-            }
-        });
+        }
+    });
 //    }
 
 //    } else {
@@ -37,10 +38,10 @@ function addToWL(varId) {
 //    }
 }
 
-function unspy(hash) {
+function delFromWL(hash) {
     $.ajax({
         type: 'POST',
-        url: '/pricespy/unspy/' + hash,
+        url: '/wishlist/deleteItem/' + hash,
         success: function(data) {
             obj = JSON.parse(data);
             if (obj.answer === 'sucesfull')
@@ -48,6 +49,7 @@ function unspy(hash) {
         }
     });
 }
+
 function renderPopup(varId, wlBtn) {
     console.log(wlBtn)
 
