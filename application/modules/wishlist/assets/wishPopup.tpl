@@ -17,6 +17,9 @@
                     <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList">
                     <input type="text"  name="wishlist"  value="Создать список" class="wish_list_name">
                 </label>
+                    <lable>Коментар
+                        <textarea class="wishProductComment"></textarea>
+                    </lable>
                 <input type="submit"  class="{$class}" id="{$varId}"  value="{$value}" onclick="addToWL('{$varId}')"/>
             </div>            
         </div>        
