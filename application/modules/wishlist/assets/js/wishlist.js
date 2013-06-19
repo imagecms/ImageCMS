@@ -5,19 +5,19 @@ function addToWL(varId) {
         var listID = checkedList.data('id');
         var listName = false;
         var commentProduct = $('.wishProductComment').val();
-        
-        if(checkedList.hasClass('newWishList')){
+
+        if (checkedList.hasClass('newWishList')) {
             listID = false;
             listName = $('.wish_list_name').val();
         }
-        
+
         $.ajax({
             type: 'POST',
             data: {
                 varId: varId,
                 listID: listID,
                 listName: listName,
-                commentProduct: commentProduct                
+                commentProduct: commentProduct
             },
             url: '/wishlist/addItem',
             success: function(data) {
@@ -26,21 +26,21 @@ function addToWL(varId) {
                     $('#wishCart').css('display', 'none');
 
                 }
-    //                obj = JSON.parse(data);
-    //                if (obj.answer === 'sucesfull') {
-    //                    $('#' + varId).val('Уже в Списке Желания');
-    //                    document.getElementById(varId).className = 'btn inWL';
-    //                    document.getElementById(varId).onclick = 'btn inWL';
-    //                    $('#' + varId).die('click').on("click", function() {
-    //                        document.location.href = '/wishlist';
-    //                    });
-    //                }
+                //                obj = JSON.parse(data);
+                //                if (obj.answer === 'sucesfull') {
+                //                    $('#' + varId).val('Уже в Списке Желания');
+                //                    document.getElementById(varId).className = 'btn inWL';
+                //                    document.getElementById(varId).onclick = 'btn inWL';
+                //                    $('#' + varId).die('click').on("click", function() {
+                //                        document.location.href = '/wishlist';
+                //                    });
+                //                }
             }
         });
-        
+
     }
-    
-    
+
+
 //    }
 
 //    } else {
@@ -88,4 +88,16 @@ $('.overlayDrop').live('click', function() {
     this.remove();
     $('#wishCart').css('display', 'none');
 
+});
+$('.newWishList').live('click', function() {
+    var listCount = $(this).data('listscount');
+    if (listCount >= 10) {
+        if(!$('.listsLimit').length){
+            $('.newWishListLable').append('<div class="listsLimit">Лимит вишлистов закончен</div>');
+        }            
+        
+        $(this).removeAttr('checked');
+        $('.wish_list_name').blur();
+        return false;
+    }
 });
