@@ -5,10 +5,8 @@
  */
 class Wishlist_model extends CI_Model {
 
-
     function __construct() {
         parent::__construct();
-
     }
 
     /**
@@ -41,9 +39,8 @@ class Wishlist_model extends CI_Model {
     }
 
     public function addItem($varId, $listId, $listName, $commentProduct) {
-        $CI = &get_instance();
         if ($listName != 'false') {
-            $this->createWishList($listName, $CI->dx_auth->get_user_id());
+            $this->createWishList($listName, $this->dx_auth->get_user_id());
             $listId = $this->db->insert_id();
         }
         $data = array(
@@ -54,7 +51,6 @@ class Wishlist_model extends CI_Model {
 
         return $this->db->insert('mod_wish_list_products', $data);
     }
-
 
     public function createWishList($listName, $user_id) {
         $data = array(
