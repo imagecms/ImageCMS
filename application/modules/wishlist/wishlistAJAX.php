@@ -51,6 +51,7 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -66,21 +67,22 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
     /**
      * delete full WL
      */
-    public function deleteWL($id) {
-        $this->db->delete('mod_wishlist', array('id' => $id));
-        if (true)
+    public function deleteWL() {
+        if (parent::deleteWL())
             echo json_encode(array(
                 'answer' => 'sucesfull',
             ));
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -91,8 +93,8 @@ class WishlistAJAX extends Wishlist {
             ));
         }else{
             echo json_encode(array(
-                'answer' => 'error',                
-                'errors' => $this->errors,
+                'answer' => 'error',
+                'errors' => $this->errors
             ));
         }
 
@@ -107,6 +109,7 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -118,6 +121,7 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -129,6 +133,7 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -140,6 +145,7 @@ class WishlistAJAX extends Wishlist {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
