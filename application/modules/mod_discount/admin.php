@@ -35,17 +35,19 @@ class Admin extends BaseAdminController {
      * Create discount
      */
     public function create() {
-        $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
-        $data = array(
-            'userGroups'=>$userGroups,
-            'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
-            'categories' => ShopCore::app()->SCategoryTree->getTree(),
-        );
+        
+        
         if ($this->input->post()){
             var_dumps($_POST);
             
             
         }else {
+            $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
+            $data = array(
+                'userGroups'=>$userGroups,
+                'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
+                'categories' => ShopCore::app()->SCategoryTree->getTree(),
+            );
         CMSFactory\assetManager::create()
                    ->setData($data)
                    ->renderAdmin('create');

@@ -185,7 +185,7 @@
                                         
                                         <!--Start. Show if discount type is category of products-->
                                         <div id="categoryBlock" class="forHide" style="display: none;">
-                                           <select name="category['category_id']" id="">
+                                            <select name="category[category_id]">
                                                 {foreach $categories as $category}
                                                     <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
