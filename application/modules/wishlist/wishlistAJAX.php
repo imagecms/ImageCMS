@@ -74,16 +74,9 @@ class WishlistAJAX extends Wishlist {
     /**
      * delete full WL
      */
-    public function deleteWL() {
-        if (parent::deleteWL())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function deleteWL($id) {
+        parent::deleteWL($id);
+        redirect('/wishlist');
     }
 
     public function addItem() {
@@ -98,7 +91,7 @@ class WishlistAJAX extends Wishlist {
             ));
         }
 
-                    
+
     }
 
     public function deleteItem() {

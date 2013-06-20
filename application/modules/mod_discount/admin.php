@@ -35,14 +35,16 @@ class Admin extends BaseAdminController {
      * Create discount
      */
     public function create() {
-        $user_groups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
+        $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
         $data = array(
-            'userGroups'=>$user_groups,
+            'userGroups'=>$userGroups,
             'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
             'categories' => ShopCore::app()->SCategoryTree->getTree(),
         );
         if ($this->input->post()){
             var_dumps($_POST);
+            
+            
         }else {
         CMSFactory\assetManager::create()
                    ->setData($data)
@@ -55,6 +57,24 @@ class Admin extends BaseAdminController {
     */
     public function edit() {
         
+        $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
+//        $this->discount_model_admin
+        
+        $data = array(
+            'userGroups'=>$userGroups,
+            'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
+            'categories' => ShopCore::app()->SCategoryTree->getTree(),
+        );
+        if ($this->input->post()){
+            var_dumps($_POST);
+            
+            
+            
+        }else {
+        CMSFactory\assetManager::create()
+                   ->setData($data)
+                   ->renderAdmin('edit');
+        }
     }
     
     
@@ -74,7 +94,6 @@ class Admin extends BaseAdminController {
      * @param int $charsCount
      * @param int $digitsCount
      * @static
-     * @access public
      * @return string
      */
     
@@ -114,7 +133,7 @@ class Admin extends BaseAdminController {
         $sCoef = $this->input->get('term');
         $sLimit = $this->input->get('limit');
         
-        $users = $this->discount_model_admin->getProductsByIdNameArticle($sCoef, $sLimit);
+        $users = $this->discount_model_admin->getUsersByIdNameEmail($sCoef, $sLimit);
         
         if ($users != false){
             foreach ($users as $user) {
@@ -130,6 +149,7 @@ class Admin extends BaseAdminController {
         }
         echo '';
     }
+    
      /**
       * 
       * @return type
