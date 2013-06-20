@@ -88,18 +88,17 @@ class WishlistAJAX extends Wishlist {
 
     public function addItem() {
         if (parent::addItem()) {
-
-        }
-
-        if (true)
             echo json_encode(array(
                 'answer' => 'sucesfull',
             ));
-        else
+        }else{
             echo json_encode(array(
                 'answer' => 'error',
-                'errors' => $this->errors,
+                'errors' => $this->errors
             ));
+        }
+
+                    
     }
 
     public function deleteItem() {

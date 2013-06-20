@@ -8,6 +8,12 @@ function addToWL(varId) {
         if (checkedList.hasClass('newWishList')) {
             listID = false;
             listName = $('.wish_list_name').val();
+            if (listName === "Создать список") {
+                $('#errors').css('display', 'block')
+                $('#wishCart .error').html('');
+                $('#wishCart .error').append('<p>Неверная назва списка</p>');
+                return false;
+            }
         }
 
         $.ajax({
@@ -21,20 +27,40 @@ function addToWL(varId) {
             url: '/wishlist/wishlistAJAX/addItem',
             success: function(data) {
                 if (data) {
-                    $('.overlayDrop').remove();
-                    $('#wishCart').remove();
-                    obj = JSON.parse(data);
-                    if (obj.answer === 'sucesfull') {
-                        $('#' + varId).val('Уже в Списке Желания');
-                        $('#' + varId).addClass('inWL');
-                        $('#' + varId).bind('click');
-                        $('#' + varId).die('click').on("click", function() {
-                            document.location.href = '/wishlist';
-                        });
+                    var errors = {};
+                    var response = JSON.parse(data);
+
+                    if (response.answer == "error") {
+                        errors = response.errors;
+                        var outErrors = "";
+                        for (var error in errors) {
+                            outErrors += errors[error];
+                        }
+                        $('#errors').css('display', 'block')
+                        $('#wishCart .error').html('');
+                        $('#wishCart .error').append(outErrors);
+
                     }
+//                   // $('.overlayDrop').remove();
+                    $('#wishCart .addWL').css('display', 'none');
+                    $('#wishCart .share_tov').css('display', 'block');
+
+                    //--------------------
+
+                    $('#' + varId).val('Уже в Списке Желания');
+                    $('#' + varId).addClass('inWL');
+                    $('#' + varId).bind('click');
+                    $('#' + varId).die('click').on("click", function() {
+                        document.location.href = '/wishlist';
+                    });
+
                 }
             }
         });
+    } else {
+        $('#errors').css('display', 'block')
+        $('#wishCart .error').html('');
+        $('#wishCart .error').append('<p>Список не обран</p>');
     }
 }
 
@@ -80,6 +106,7 @@ function delWL($this, WLID) {
 
 function editWL() {
     var title = $('.wishListTitle').text();
+    $('.wishListTitle').replaceWith('<input type="text value="' + +'">')
 }
 
 function ajaxFileUpload(upload_field)
@@ -135,7 +162,8 @@ $('.overlayDrop').live('click', function() {
 });
 $('.newWishList').live('click', function() {
     var listCount = $(this).data('listscount');
-    if (listCount >= 10) {
+    var maxListsCount = $(this).data('maxlistscount');
+    if (listCount >= maxListsCount) {
         if (!$('.listsLimit').length) {
             $('.newWishListLable').append('<div class="listsLimit">Лимит вишлистов закончен</div>');
         }

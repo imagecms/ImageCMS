@@ -35,6 +35,13 @@
                         <div class="inside_padd">
                             
                             <div class="control-group">
+                                <label class="control-label" for="settings[maxListName]">Максимальная длина имя  Списка Желания</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxListName]" class="textbox_short" value="{$settings['maxListName']}" id="maxListName"/>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
                                 <label class="control-label" for="settings[maxListsCount]">Максимальное количество Списков Желания</label>
                                 <div class="controls">
                                     <input type = "number" name = "settings[maxListsCount]" class="textbox_short" value="{$settings['maxListsCount']}" id="maxListsCount"/>
