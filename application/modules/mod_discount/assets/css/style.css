@@ -6,6 +6,9 @@
 .bold_text {font-weight:bold;}
 .italc_text {font-style: italic;}
 
+.no_color{color:black;}
+
 .width150{width: 150px !important;}
+.width200{width: 200px !important;}
 .width100{width: 100px !important;}
 
