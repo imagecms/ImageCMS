@@ -116,38 +116,36 @@ class Wishlist extends MY_Controller {
 
         return $forReturn;
     }
+
  /**
   * add item to wish list
-  * 
+  *
   * @return boolean
   */
     public function addItem($varId) {
-        $listId = $this->input->post('wishlist');             
+        $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
-        
+
         if(!$listId){
             $listId = "";
         }
-        
+
         if($listName == 'Создать список'){
             $listName= "";
-        }        
-        
+        }
+
         if( strlen($listName)>$this->settings['maxListName']){
             $listName = substr($listName, 0, (int)$this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        var_dumps($varId." 1 ".$listId . " 2 " . $listName);
         
         $this->wishlist_model->addItem($varId, $listId, $listName);
-        
+
         if(count($this->errors)){
             return false;
-        }else{
+        } else {
             return true;
         }
-            
-        
     }
 
     public function deleteItem() {
