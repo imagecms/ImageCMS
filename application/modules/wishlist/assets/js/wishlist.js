@@ -77,8 +77,28 @@ function delWL($this, WLID) {
         }
     });
 }
+
 function editWL() {
     var title = $('.wishListTitle').text();
+}
+
+function ajaxFileUpload(upload_field)
+{
+    // Checking file type
+    var re_text = /\.jpg|\.gif|\.jpeg/i;
+    var filename = upload_field.value;
+    if (filename.search(re_text) == -1) {
+        alert("File should be either jpg or gif or jpeg");
+        upload_field.form.reset();
+        return false;
+    }
+    document.getElementById('picture_preview').innerHTML = '<div><img src="images/progressbar.gif" border="0" /></div>';
+    upload_field.form.action = '/wishlist/do_upload';
+    upload_field.form.target = 'upload_iframe';
+    upload_field.form.submit();
+    upload_field.form.action = '';
+    upload_field.form.target = '';
+    return true;
 }
 
 function renderPopup(varId, wlBtn) {
