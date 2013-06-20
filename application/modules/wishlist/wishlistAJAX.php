@@ -7,20 +7,10 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Wishlist extends MY_Controller {
-
-    public $settings = array();
-    public $dataModel;
-    public $errors;
-    public $userWishProducts;
+class WishlistAJAX extends Wishlist {
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->model('wishlist_model');
-        $this->settings = $this->wishlist_model->getSettings();
-        $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
-
     }
 
     private function checkPerm() {
@@ -32,10 +22,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function index() {
-//        if (!$this->checkPerm())
-//            $this->core->error_404();
-
-        $this->renderUserWL();
+        $this->core->error_404();
     }
 
     /**
@@ -98,23 +85,29 @@ class Wishlist extends MY_Controller {
     }
 
     public function addItem() {
-        $varId = $this->input->post('varId');
-        $listId = $this->input->post('listID');
-        $listName = $this->input->post('listName');
-        $commentProduct = $this->input->post('commentProduct');
+        if (parent::addItem()) {
 
-        if ($varId) {
-            return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-        } else {
-            return false;
         }
+
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function deleteItem() {
-        return $this->db->delete('mod_wish_list_products', array(
-            'variant_id' => $this->input->post(varID),
-            'wish_list_id' => $this->input->post(WLID),
-        ));
+        if (parent::deleteItem())
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+            ));
     }
 
     public function editItem($id, $varId) {
@@ -184,22 +177,20 @@ class Wishlist extends MY_Controller {
      * @param type $varId
      */
     public function renderWLButton($varId) {
-        if (!in_array($varId, $this->userWishProducts))
+        if (true)
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Уже в Списке Желания')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
     }
@@ -308,17 +299,15 @@ class Wishlist extends MY_Controller {
 
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
-
         $data = array('wish_lists' => $wish_lists);
-
-        $popup = \CMSFactory\assetManager::create()
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
                 ->setData($data)
-                ->setData('lists_count', $this->settings['maxListsCount'])
                 ->fetchTemplate('wishPopup');
-        return json_encode(array('popup' => $popup));
+        return json_encode(array('popup' => $comments));
     }
 
 }
