@@ -13,20 +13,20 @@ class Wishlist extends MY_Controller {
     public $dataModel;
     public $errors = array();
     public $userWishProducts;
-    
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->writeCookies();
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
-      private function writeCookies() {                  
+
+    private function writeCookies() {
         $this->load->helper('cookie');
-        if (!strstr( $this->uri->uri_string(), 'wishlist')) {
+        if (!strstr($this->uri->uri_string(), 'wishlist')) {
             $cookie = array(
                 'name' => 'url2',
                 'value' => $this->uri->uri_string(),
@@ -109,32 +109,44 @@ class Wishlist extends MY_Controller {
     /**
      * Edit WL
      */
-    public function editWL() {
+    public function editWL($wish_list_id) {
+        if ($wish_list_id) {
+            $wishlists = $this->db
+                    ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
+                    ->where('mod_wish_list.id', $wish_list_id)
+                    ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                    ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
+                    ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
+                    ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+                    ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                    ->get('mod_wish_list')
+                    ->result_array();
 
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
+            $w = array();
+            foreach ($wishlists as $wishlist)
+                $w[$wishlist[title]][] = $wishlist;
+
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $w)
+                    ->render('wishlistEdit');
+        }
         else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+            FALSE;
     }
 
     /**
      * delete full WL
      * @return type
      */
-    public function deleteWL() {
-        if (!$this->input->post(WLID))
-            return FALSE;
-
+    public function deleteWL($id) {
         $forReturn = TRUE;
 
-        $forReturn = $this->wishlist_model->delWishListById($this->input->post(WLID));
+        $forReturn = $this->wishlist_model->delWishListById($id);
 
         if ($forReturn) {
-            $forReturn = $this->wishlist_model->delWishListProductsByWLId($this->input->post(WLID));
+            $forReturn = $this->wishlist_model->delWishListProductsByWLId($id);
 
             if (!$forReturn)
                 $this->errors[] = 'Невозможно удалить товары из списка';
@@ -145,38 +157,38 @@ class Wishlist extends MY_Controller {
         return $forReturn;
     }
 
- /**
-  * add item to wish list
-  *
-  * @return boolean
-  */
+    /**
+     * add item to wish list
+     *
+     * @return boolean
+     */
     public function addItem($varId) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
-        if(!$listId){
+        if (!$listId) {
             $listId = "";
         }
 
-        if($listName == 'Создать список'){
-            $listName= "";
+        if ($listName == 'Создать список') {
+            $listName = "";
         }
 
-        if( strlen($listName)>$this->settings['maxListName']){
-            $listName = substr($listName, 0, (int)$this->settings['maxListName']);
+        if (strlen($listName) > $this->settings['maxListName']) {
+            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        
+
         $this->wishlist_model->addItem($varId, $listId, $listName);
 
-        if(count($this->errors)){
+        if (count($this->errors)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public function deleteItem($variant_id,$wish_list_id) {
+    public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->db->delete('mod_wish_list_products', array(
             'variant_id' => $variant_id,
             'wish_list_id' => $wish_list_id,
@@ -226,7 +238,7 @@ class Wishlist extends MY_Controller {
 
     public function renderUserWL($userId, $type = '') {
         $wishlists = $this->db
-                ->where('mod_wish_list.user_id', 49)
+                ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -234,11 +246,11 @@ class Wishlist extends MY_Controller {
                 ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                 ->get('mod_wish_list')
                 ->result_array();
+        var_dump($wishlists);
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
 
-//        var_dump($w);
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->registerStyle('style')
@@ -392,7 +404,7 @@ class Wishlist extends MY_Controller {
         $wish_lists = $this->wishlist_model->getWishLists();
         $back_linck = $_SERVER['HTTP_REFERER'];
 
-        $data = array('wish_lists' => $wish_lists, 'backlinck' => $back_linck );
+        $data = array('wish_lists' => $wish_lists, 'backlinck' => $back_linck);
 
         return $popup = \CMSFactory\assetManager::create()
                 ->registerStyle('style')
@@ -401,7 +413,7 @@ class Wishlist extends MY_Controller {
                 ->setData('varId', $varId)
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->render('wishPopup',false);
+                ->render('wishPopup', false);
         return json_encode(array('popup' => $popup));
     }
 
