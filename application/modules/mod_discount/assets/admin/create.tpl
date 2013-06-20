@@ -148,9 +148,9 @@
                                         
                                          <!--Start. Show if discount type is comulativ -->
                                         <div id="comulativBlock" class="forHide" style="display: none;">
-                                            от <input class="input-small" type="text" name="begin_value" value="" />{echo $CS}
+                                            от <input class="input-small" type="text" name="comulativ[begin_value]" value="" />{echo $CS}
                                             <div class="noLimitC"> 
-                                                до <input class="input-small" type="text" name="end_value" value="" />{echo $CS}
+                                                до <input class="input-small" type="text" name="comulativ[end_value]" value="" />{echo $CS}
                                                 <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                     <span class="niceCheck" style="background-position: -46px 0px; ">
                                                         <input type="checkbox" class="noLimitCountCheck">
@@ -185,7 +185,7 @@
                                         
                                         <!--Start. Show if discount type is category of products-->
                                         <div id="categoryBlock" class="forHide" style="display: none;">
-                                           <select name="category['category_id']" id="">
+                                           <select name="category[category_id]">
                                                 {foreach $categories as $category}
                                                     <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
@@ -242,7 +242,7 @@
                                             <input class="datepicker" type="text" value="" name="date_end" />
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" name="active" value="1" class="noLimitCountCheck">
+                                                    <input type="checkbox" name="date_end" value="1" class="noLimitCountCheck">
                                                 </span>
                                                 Не заканчивается
                                             </span>
@@ -256,7 +256,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>                               
+        </table>     
     </form>
     <div id="elFinder"></div>
 </section>
