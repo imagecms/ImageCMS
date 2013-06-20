@@ -66,7 +66,7 @@ class Wishlist_model extends CI_Model {
     }
 
     public function addItem($varId, $listId, $listName) {
-        if ($listName != 'false') {
+        if ($listName != '') {
             $this->createWishList($listName, $this->dx_auth->get_user_id());
             $listId = $this->db->insert_id();
         }

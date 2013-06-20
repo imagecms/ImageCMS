@@ -13,14 +13,28 @@ class Wishlist extends MY_Controller {
     public $dataModel;
     public $errors = array();
     public $userWishProducts;
+    
 
     public function __construct() {
         parent::__construct();
-
+        
+        $this->writeCookies();
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+    }
+      private function writeCookies() {                  
+        $this->load->helper('cookie');
+        if (!strstr( $this->uri->uri_string(), 'wishlist')) {
+            $cookie = array(
+                'name' => 'url2',
+                'value' => $this->uri->uri_string(),
+                'expire' => '15000',
+                'prefix' => ''
+            );
+            $this->input->set_cookie($cookie);
+        }
     }
 
     private function checkPerm() {
@@ -123,6 +137,7 @@ class Wishlist extends MY_Controller {
             $listName = substr($listName, 0, (int)$this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
+        var_dumps($varId." 1 ".$listId . " 2 " . $listName);
         
         $this->wishlist_model->addItem($varId, $listId, $listName);
         
@@ -185,7 +200,7 @@ class Wishlist extends MY_Controller {
 
     public function renderUserWL($userId, $type = '') {
         $wishlists = $this->db
-                ->where('mod_wish_list.user_id', 47)
+                ->where('mod_wish_list.user_id', 49)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -338,8 +353,9 @@ class Wishlist extends MY_Controller {
 
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
+        $back_linck = $_SERVER['HTTP_REFERER'];
 
-        $data = array('wish_lists' => $wish_lists);
+        $data = array('wish_lists' => $wish_lists, 'backlinck' => $back_linck );
 
         return $popup = \CMSFactory\assetManager::create()
                 ->registerStyle('style')
