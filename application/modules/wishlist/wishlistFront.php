@@ -88,10 +88,9 @@ class WishlistFront extends Wishlist {
 
     public function addItem() {
         if (parent::addItem()) {
-            
-        }else{
-            
-             \CMSFactory\assetManager::create()
+
+        } else {
+            \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
@@ -99,22 +98,12 @@ class WishlistFront extends Wishlist {
                     ->setData('class', 'btn')
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
-            
         }
-
-                    
     }
 
-    public function deleteItem() {
-        if (parent::deleteItem())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function deleteItem($variant_id, $wish_list_id) {
+        parent::deleteItem($variant_id, $wish_list_id);
+        redirect('/wishlist');
     }
 
     public function editItem($id, $varId) {

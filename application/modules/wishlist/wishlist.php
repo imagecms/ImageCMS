@@ -87,6 +87,9 @@ class Wishlist extends MY_Controller {
      * @return type
      */
     public function deleteWL() {
+        if (!$this->input->post(WLID))
+            return FALSE;
+
         $forReturn = TRUE;
 
         $forReturn = $this->wishlist_model->delWishListById($this->input->post(WLID));
@@ -134,10 +137,10 @@ class Wishlist extends MY_Controller {
         }
     }
 
-    public function deleteItem() {
-        $forReturn = $this->db->delete('modв_wish_list_products', array(
-            'variant_id' => $this->input->post(varID),
-            'wish_list_id' => $this->input->post(WLID),
+    public function deleteItem($variant_id,$wish_list_id) {
+        $forReturn = $this->db->delete('mod_wish_list_products', array(
+            'variant_id' => $variant_id,
+            'wish_list_id' => $wish_list_id,
         ));
         if (!$forReturn)
             $this->errors[] = 'Невозможно удалить товар из Списка Желания';
@@ -347,7 +350,7 @@ class Wishlist extends MY_Controller {
                 ->setData('varId', $varId)
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->render('wishPopup');
+                ->render('wishPopup',false);
         return json_encode(array('popup' => $popup));
     }
 
