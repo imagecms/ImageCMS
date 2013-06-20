@@ -51,6 +51,31 @@ class Wishlist extends MY_Controller {
 
         $this->renderUserWL();
     }
+    public function all() {
+       $users = $this->getAllUsers();
+       $lists = '';
+       foreach($users as $user){
+           $lists []= array(
+               'user' => $user,
+               'lists' => $this->getWLsByUserId($user['id'])
+               );
+           
+       }
+        
+          \CMSFactory\assetManager::create()
+                ->registerStyle('style')
+                ->setData('lists', $lists)
+                ->render('all');
+    }
+    public function getAllUsers(){
+        return $this->db->get('mod_wish_list_users')->result_array();
+    }
+     public function getWLsByUserId($user_id){
+         return $all_lists = $this->db
+                  ->where('user_id',$user_id)
+                ->get('mod_wish_list')->result_array();
+    }
+    
 
     /**
      *
@@ -291,19 +316,6 @@ class Wishlist extends MY_Controller {
             'user_id' => array(
                 'type' => 'INT',
                 'null' => FALSE
-            ),
-            'user_image' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
-            'user_birthday' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'hash' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '16',
-                'null' => FALSE
             )
         );
 
@@ -314,7 +326,7 @@ class Wishlist extends MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'auto_increment' => TRUE
+                'null' => FALSE
             ),
             'wish_list_id' => array(
                 'type' => 'INT',
@@ -332,6 +344,30 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
+        
+        $fields = array(
+            'id' => array(
+                'type' => 'INT',
+                'auto_increment' => TRUE
+            ),
+           'user_image' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
+            ),
+            'user_birthday' => array(
+                'type' => 'INT',
+                'null' => FALSE
+            ),
+            'description' => array(
+                'type' => 'TEXT',
+                'null' => TRUE
+            )
+        );
+
+        $this->dbforge->add_field($fields);
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->create_table('mod_wish_list_users');
+        
 
         $this->db
                 ->where('identif', 'wishlist')
