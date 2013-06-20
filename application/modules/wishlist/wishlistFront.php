@@ -7,7 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistFront extends Wishlist {
+class WishlistFront extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();

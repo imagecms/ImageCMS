@@ -7,7 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Wishlist extends MY_Controller {
+class Wishlist extends \wishlist\classes\BaseWishlist{
 
     public $settings = array();
     public $dataModel;
@@ -59,9 +59,9 @@ class Wishlist extends MY_Controller {
                'user' => $user,
                'lists' => $this->getWLsByUserId($user['id'])
                );
-           
+
        }
-        
+
           \CMSFactory\assetManager::create()
                 ->registerStyle('style')
                 ->setData('lists', $lists)
@@ -75,7 +75,7 @@ class Wishlist extends MY_Controller {
                   ->where('user_id',$user_id)
                 ->get('mod_wish_list')->result_array();
     }
-    
+
 
     /**
      *
@@ -359,7 +359,7 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
-        
+
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -382,7 +382,7 @@ class Wishlist extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_users');
-        
+
 
         $this->db
                 ->where('identif', 'wishlist')
