@@ -22,7 +22,7 @@ function addToWL(varId) {
             success: function(data) {
                 if (data) {
                     $('.overlayDrop').remove();
-                    $('#wishCart').css('display', 'none');
+                    $('#wishCart').remove();
                     obj = JSON.parse(data);
                     if (obj.answer === 'sucesfull') {
                         $('#' + varId).val('Уже в Списке Желания');
@@ -50,22 +50,34 @@ function delFromWL($this, varID, WLID) {
             obj = JSON.parse(data);
             if (obj.answer === 'sucesfull')
                 $($this).closest('tr').remove();
+            else {
+                $($this).closest('body').find('.error_text').html('');
+                $($this).closest('body').find('.error_text').append('<div class="msg"><div class="error">' + obj.errors + '</div></div>');
+            }
         }
     });
 }
 
-function delWL($this) {
+function delWL($this, WLID) {
     $.ajax({
         type: 'POST',
-        url: '/wishlist/wishlistAJAX/deleteItem',
+        data: {
+            WLID: WLID
+        },
+        url: '/wishlist/wishlistAJAX/deleteWL',
         success: function(data) {
             obj = JSON.parse(data);
+            console.log(obj.errors);
             if (obj.answer === 'sucesfull')
                 $($this).closest('.table').remove();
+            else {
+                $($this).closest('body').find('.error_text').html('');
+                $($this).closest('body').find('.error_text').append('<div class="msg"><div class="error">' + obj.errors + '</div></div>');
+            }
         }
     });
 }
-function editWL(){
+function editWL() {
     var title = $('.wishListTitle').text();
 }
 
@@ -96,7 +108,7 @@ function removePopup() {
 }
 
 $('.overlayDrop').live('click', function() {
-    
+
     this.remove();
     $('#wishCart').remove();
 
