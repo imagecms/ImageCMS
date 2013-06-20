@@ -17,7 +17,6 @@ class Discount_model_admin extends CI_Model {
         
         $query = $this->db->get('mod_shop_discounts')->result_array();
         return $query;
-        
     }
     
     /**
@@ -98,6 +97,7 @@ class Discount_model_admin extends CI_Model {
                 ->where('locale',$locale)
                 ->get()
                 ->result_array();
+        
         if ($query)
             return $query;
         else

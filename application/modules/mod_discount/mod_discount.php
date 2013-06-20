@@ -284,7 +284,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
             $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `key` VARCHAR(25) NULL ,
-                  `name` VARCHAR(50) NULL ,
+                  `name` VARCHAR(150) NULL ,
                   `active` TINYINT NULL ,
                   `max_apply` INT NULL ,
                   `count_apply` INT NULL ,
