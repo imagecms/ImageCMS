@@ -20,7 +20,6 @@ class Wishlist extends MY_Controller {
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
-
     }
 
     private function checkPerm() {
@@ -84,17 +83,23 @@ class Wishlist extends MY_Controller {
 
     /**
      * delete full WL
+     * @return type
      */
-    public function deleteWL($id) {
-        $this->db->delete('mod_wishlist', array('id' => $id));
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
+    public function deleteWL() {
+        $forReturn = TRUE;
+
+        $forReturn = $this->wishlist_model->delWishListById($this->input->post(WLID));
+
+        if ($forReturn) {
+            $forReturn = $this->wishlist_model->delWishListProductsByWLId($this->input->post(WLID));
+
+            if (!$forReturn)
+                $this->errors[] = 'Невозможно удалить товары из списка';
+        }
         else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+            $this->errors[] = 'Невозможно удалить Список Желания';
+
+        return $forReturn;
     }
  /**
   * add item to wish list
@@ -129,10 +134,14 @@ class Wishlist extends MY_Controller {
     }
 
     public function deleteItem() {
-        return $this->db->delete('mod_wish_list_products', array(
+        $forReturn = $this->db->delete('modв_wish_list_products', array(
             'variant_id' => $this->input->post(varID),
             'wish_list_id' => $this->input->post(WLID),
         ));
+        if (!$forReturn)
+            $this->errors[] = 'Невозможно удалить товар из Списка Желания';
+
+        return $forReturn;
     }
 
     public function editItem($id, $varId) {
@@ -311,7 +320,7 @@ class Wishlist extends MY_Controller {
 
         $this->db
                 ->where('identif', 'wishlist')
-                ->update('settings', array(
+                ->update('components', array(
                     'settings' => '',
                     'enabled' => 1,
                     'autoload' => 1,

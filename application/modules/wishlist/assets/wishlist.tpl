@@ -1,4 +1,9 @@
 <article class="container">
+    <label>
+        <span class="frame_form_field__icsi-css">
+            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
+        </span>
+    </label>
     {if count($wishlists)>0}
         {foreach $wishlists as $key => $wishlist}
             <table class="table">
@@ -10,7 +15,7 @@
                             <input type="submit"
                                    class="btn"
                                    value="удалить"
-                                   onclick="delWL(this)"/>
+                                   onclick="delWL(this,{echo $wishlist[0][wish_list_id]})"/>
                             <input type="submit"
                                    class="btn"
                                    value="изменить"
@@ -40,9 +45,9 @@
                                     {$w[name]}
                                 </a>
                             </td>
-                           <td>
-                               {$w[comment]}
-                           </td>
+                            <td>
+                                {$w[comment]}
+                            </td>
                         </tr>
                     {/foreach}
                 </tbody>
