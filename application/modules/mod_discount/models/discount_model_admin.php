@@ -17,7 +17,6 @@ class Discount_model_admin extends CI_Model {
         
         $query = $this->db->get('mod_shop_discounts')->result_array();
         return $query;
-        
     }
     
     /**
@@ -49,6 +48,83 @@ class Discount_model_admin extends CI_Model {
             return $query['symbol'];
         else
             return false;
+    }
+    
+    /**
+     * Check have any discoun with given key
+     */
+    public function checkDiscountCode($key) {
+        $query = $this->db->where('key',$key)->get('mod_shop_discounts')->row_array();
+    
+        if ($query)
+            return true;
+        else
+            return false;
+    }
+    
+    /**
+     * get users by id name email
+     * @param string $term
+     * @param int $limit
+     */
+    public function getUsersByIdNameEmail($term, $limit = 7) {
+        $query = $this->db
+                ->like('username', $term)
+                ->or_like('email', $term)
+                ->or_like('id', $term)
+                ->limit($limit)
+                ->get('users')
+                ->result_array();
         
+        if ($query)
+            return $query;
+        else
+            return false;
+                
+    }
+    
+    /**
+     * Get user groups
+     * @param string $locale
+     * @return boolean|array
+     */
+    public function getUserGroups($locale = 'ru') {
+        
+        $query = $this->db
+                ->select('shop_rbac_roles.id, shop_rbac_roles_i18n.alt_name')
+                ->from('shop_rbac_roles')
+                ->join('shop_rbac_roles_i18n','shop_rbac_roles.id=shop_rbac_roles_i18n.id')
+                ->where('locale',$locale)
+                ->get()
+                ->result_array();
+        
+        if ($query)
+            return $query;
+        else
+            return false;
+    }
+    
+    /**
+     * 
+     * @param string $term
+     * @param int $limit
+     */
+    public function getProductsByIdNameNumber($term, $limit = 7) {
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $this->db
+                ->select('id, name')
+                ->from('shop_products_i18n')
+                ->where('locale', $locale )
+                ->like('id', $term)
+                ->or_like('name', $term)
+                ->limit($limit)
+                ->get()
+                ->result_array();
+        
+        if ($query)
+            return $query;
+        else
+            return false;
+                
     }
 }
