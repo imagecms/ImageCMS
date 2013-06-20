@@ -39,13 +39,24 @@ class Wishlist_model extends CI_Model {
         return $this->db->get('mod_wish_list')->result_array();
     }
 
+    public function delWishListById($id) {
+        return $this->db->delete('mod_wish_list', array('id' => $id));
+    }
+
+    public function delWishListProductsByWLId($id) {
+        $this->db->where('wish_list_id', $id);
+        return $this->db->delete('mod_wish_list_products');
+    }
+
     public function getUserWishProducts() {
         $ids = $this->db
                 ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->group_by('variant_id')
-                ->get('mod_wish_list')
-                ->result_array();
+                ->get('mod_wish_list');
+
+        if ($ids)
+            $ids = $ids->result_array();
 
         foreach ($ids as $id) {
             $ID[] = $id[variant_id];
