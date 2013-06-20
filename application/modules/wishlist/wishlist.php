@@ -102,36 +102,35 @@ class Wishlist extends MY_Controller {
 
         return $forReturn;
     }
- /**
-  * add item to wish list
-  * 
-  * @return boolean
-  */
+
+    /**
+     * add item to wish list
+     *
+     * @return boolean
+     */
     public function addItem() {
         $varId = $this->input->post('varId');
         $listId = $this->input->post('listID');
-        $listName = $this->input->post('listName');         
+        $listName = $this->input->post('listName');
         $commentProduct = $this->input->post('commentProduct');
-        
-        if( strlen($listName)>$this->settings['maxListName']){
-            $listName = substr($listName, 0, (int)$this->settings['maxListName']);
+
+        if (strlen($listName) > $this->settings['maxListName']) {
+            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        
-        if( strlen($commentProduct)>$this->settings['maxCommentLenght']){
-            $commentProduct = substr($commentProduct, 0, (int)$this->settings['maxCommentLenght']);
+
+        if (strlen($commentProduct) > $this->settings['maxCommentLenght']) {
+            $commentProduct = substr($commentProduct, 0, (int) $this->settings['maxCommentLenght']);
             $this->errors[] = 'Поле коментар будет изменено до длини ' . $this->settings['maxCommentLenght'] . ' символов';
         }
-        
+
         $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-        
-        if(count($this->errors)){
+
+        if (count($this->errors)) {
             return false;
-        }else{
+        } else {
             return true;
         }
-            
-        
     }
 
     public function deleteItem() {
@@ -341,7 +340,7 @@ class Wishlist extends MY_Controller {
         $data = array('wish_lists' => $wish_lists);
 
         $popup = \CMSFactory\assetManager::create()
-                  ->registerStyle('style')
+                ->registerStyle('style')
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
