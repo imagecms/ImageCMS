@@ -20,13 +20,32 @@
                                    class="btn"
                                    value="изменить"
                                    onclick="editWL(this)"/>
+                            <select>
+                                <option>shared</option>
+                                <option>private</option>
+                                <option>public</option>
+                            </select>
+
+                            <!-- iframe used for ajax file upload-->
+                            <!-- debug: change it to style="display:block" -->
+                            <iframe name="upload_iframe" id="upload_iframe" style="display:none;"></iframe>
+                            <!-- iframe used for ajax file upload-->
+
+                            <form name="pictureForm" method="post" autocomplete="off" enctype="multipart/form-data">
+                                <div>
+                                    <span>Upload Picture :</span>
+                                    <input type="file" name="picture" id="picture" onchange="return ajaxFileUpload(this);" />
+                                    <span id="picture_error"></span>
+                                    <div id="picture_preview"></div>
+                                </div>
+                            </form>
                         </td>
                     </tr>
                     <tr>
                         <th>№</th>
                         <th>Отписатся</th>
                         <th>Товар</th>
-                        <th>Коментар</th>
+                        <th>Коментарий</th>
                     </tr>
                 </thead>
                 <tbody>
