@@ -11,7 +11,7 @@ namespace wishlist\classes;
  * @property \CI_DB_active_record $db
  * @property \CI_Input $input
  */
-class BaseWishlist extends \wishlist\classes\ParentWishlist{
+class BaseApi extends \wishlist\classes\ParentWishlist {
 
     public function __construct() {
         parent::__construct();
@@ -23,6 +23,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
             $permAllow = FALSE;
 
         return $permAllow;
+    }
+
+    public function index() {
+        $this->core->error_404();
     }
 
     /**
@@ -58,33 +62,50 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
     /**
      * Edit WL
      */
-    public function editWL($wish_list_id) {
-        if (parent::editWL($wish_list_id))
-            redirect('/wishlist');
+    public function editWL() {
+
+        if (true)
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+                'errors' => $this->errors,
+            ));
     }
 
     /**
      * delete full WL
      */
-    public function deleteWL($wish_list_id) {
-        parent::deleteWL($wish_list_id);
+    public function deleteWL($id) {
+        parent::deleteWL($id);
         redirect('/wishlist');
     }
 
-//    public function addItem($varId) {
-//        if (parent::addItem($varId)) {
-//            redirect($this->input->cookie('url2'));
-//        } else {
-//            \CMSFactory\assetManager::create()
-//                    ->registerScript('wishlist')
-//                    ->setData('errors', $this->errors)
-//                    ->render('errors');
-//        }
-//    }
+    public function addItem() {
+        if (parent::addItem()) {
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        } else {
+            echo json_encode(array(
+                'answer' => 'error',
+                'errors' => $this->errors
+            ));
+        }
+    }
 
-    public function deleteItem($variant_id, $wish_list_id) {
-        parent::deleteItem($variant_id, $wish_list_id);
-        redirect('/wishlist');
+    public function deleteItem() {
+        if (parent::deleteItem())
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
+        else
+            echo json_encode(array(
+                'answer' => 'error',
+                'errors' => $this->errors,
+            ));
     }
 
     public function editItem($id, $varId) {
@@ -127,8 +148,52 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
 
     }
 
+    public function renderUserWL($userId, $type = '') {
+        $wishlists = $this->db
+                ->where('mod_wish_list.user_id', 47)
+                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
+                ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
+                ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                ->get('mod_wish_list')
+                ->result_array();
+        $w = array();
+        foreach ($wishlists as $wishlist)
+            $w[$wishlist[title]][] = $wishlist;
+
+        var_dump($w);
+        \CMSFactory\assetManager::create()
+                ->registerScript('wishlist')
+                ->setData('wishlists', $w)
+                ->render('wishlist');
+    }
+
     public function renderWLByHash($hash) {
 
+    }
+
+    /**
+     * Render Wish List button
+     * @param type $varId
+     */
+    public function renderWLButton($varId) {
+        if (true)
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('data', $data)
+                    ->setData('id', $varId)
+                    ->setData('value', 'Добавить в Список Желания')
+                    ->setData('class', 'btn')
+                    ->render('button', true);
+        else
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('data', $data)
+                    ->setData('id', $varId)
+                    ->setData('value', 'Уже в Списке Желания')
+                    ->setData('class', 'btn inWL')
+                    ->render('button', true);
     }
 
     /**
@@ -231,6 +296,19 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
+    }
+
+    public function renderPopup($varId) {
+        $wish_lists = $this->wishlist_model->getWishLists();
+        $data = array('wish_lists' => $wish_lists);
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
+                ->setData('value', 'Добавить в Список Желания')
+                ->setData('class', 'btn')
+                ->setData('varId', $varId)
+                ->setData($data)
+                ->fetchTemplate('wishPopup');
+        return json_encode(array('popup' => $comments));
     }
 
 }
