@@ -7,34 +7,10 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Wishlist extends MY_Controller {
-
-    public $settings = array();
-    public $dataModel;
-    public $errors = array();
-    public $userWishProducts;
-    
+class WishlistFront extends Wishlist {
 
     public function __construct() {
         parent::__construct();
-        
-        $this->writeCookies();
-        $this->load->model('wishlist_model');
-        $this->load->helper(array('form', 'url'));
-        $this->settings = $this->wishlist_model->getSettings();
-        $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
-    }
-      private function writeCookies() {                  
-        $this->load->helper('cookie');
-        if (!strstr( $this->uri->uri_string(), 'wishlist')) {
-            $cookie = array(
-                'name' => 'url2',
-                'value' => $this->uri->uri_string(),
-                'expire' => '15000',
-                'prefix' => ''
-            );
-            $this->input->set_cookie($cookie);
-        }
     }
 
     private function checkPerm() {
@@ -46,10 +22,7 @@ class Wishlist extends MY_Controller {
     }
 
     public function index() {
-//        if (!$this->checkPerm())
-//            $this->core->error_404();
-
-        $this->renderUserWL();
+        $this->core->error_404();
     }
 
     /**
@@ -78,6 +51,7 @@ class Wishlist extends MY_Controller {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -93,73 +67,40 @@ class Wishlist extends MY_Controller {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
     /**
      * delete full WL
-     * @return type
      */
     public function deleteWL() {
-        if (!$this->input->post(WLID))
-            return FALSE;
-
-        $forReturn = TRUE;
-
-        $forReturn = $this->wishlist_model->delWishListById($this->input->post(WLID));
-
-        if ($forReturn) {
-            $forReturn = $this->wishlist_model->delWishListProductsByWLId($this->input->post(WLID));
-
-            if (!$forReturn)
-                $this->errors[] = 'Невозможно удалить товары из списка';
-        }
+        if (parent::deleteWL())
+            echo json_encode(array(
+                'answer' => 'sucesfull',
+            ));
         else
-            $this->errors[] = 'Невозможно удалить Список Желания';
-
-        return $forReturn;
+            echo json_encode(array(
+                'answer' => 'error',
+                'errors' => $this->errors,
+            ));
     }
 
- /**
-  * add item to wish list
-  *
-  * @return boolean
-  */
     public function addItem($varId) {
-        $listId = $this->input->post('wishlist');
-        $listName = $this->input->post('wishListName');
+        if (parent::addItem($varId)) {
+           redirect($this->input->cookie('url2'));
 
-        if(!$listId){
-            $listId = "";
-        }
-
-        if($listName == 'Создать список'){
-            $listName= "";
-        }
-
-        if( strlen($listName)>$this->settings['maxListName']){
-            $listName = substr($listName, 0, (int)$this->settings['maxListName']);
-            $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
-        }
-        
-        $this->wishlist_model->addItem($varId, $listId, $listName);
-
-        if(count($this->errors)){
-            return false;
-        } else {
-            return true;
+        }else{
+             \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('errors', $this->errors)
+                    ->render('errors');            
         }
     }
 
-    public function deleteItem($variant_id,$wish_list_id) {
-        $forReturn = $this->db->delete('mod_wish_list_products', array(
-            'variant_id' => $variant_id,
-            'wish_list_id' => $wish_list_id,
-        ));
-        if (!$forReturn)
-            $this->errors[] = 'Невозможно удалить товар из Списка Желания';
-
-        return $forReturn;
+    public function deleteItem($variant_id, $wish_list_id) {
+        parent::deleteItem($variant_id, $wish_list_id);
+        redirect('/wishlist');
     }
 
     public function editItem($id, $varId) {
@@ -170,6 +111,7 @@ class Wishlist extends MY_Controller {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -181,6 +123,7 @@ class Wishlist extends MY_Controller {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -192,6 +135,7 @@ class Wishlist extends MY_Controller {
         else
             echo json_encode(array(
                 'answer' => 'error',
+                'errors' => $this->errors,
             ));
     }
 
@@ -201,7 +145,7 @@ class Wishlist extends MY_Controller {
 
     public function renderUserWL($userId, $type = '') {
         $wishlists = $this->db
-                ->where('mod_wish_list.user_id', 49)
+                ->where('mod_wish_list.user_id', 47)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -213,10 +157,9 @@ class Wishlist extends MY_Controller {
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
 
-//        var_dump($w);
+        var_dump($w);
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
-                ->registerStyle('style')
                 ->setData('wishlists', $w)
                 ->render('wishlist');
     }
@@ -230,22 +173,20 @@ class Wishlist extends MY_Controller {
      * @param type $varId
      */
     public function renderWLButton($varId) {
-        if (!in_array($varId, $this->userWishProducts))
+        if (true)
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
-                    ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
-                    ->setData('varId', $varId)
+                    ->setData('id', $varId)
                     ->setData('value', 'Уже в Списке Желания')
-                    ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
     }
@@ -338,7 +279,7 @@ class Wishlist extends MY_Controller {
 
         $this->db
                 ->where('identif', 'wishlist')
-                ->update('components', array(
+                ->update('settings', array(
                     'settings' => '',
                     'enabled' => 1,
                     'autoload' => 1,
@@ -354,78 +295,15 @@ class Wishlist extends MY_Controller {
 
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
-        $back_linck = $_SERVER['HTTP_REFERER'];
-
-        $data = array('wish_lists' => $wish_lists, 'backlinck' => $back_linck );
-
-        return $popup = \CMSFactory\assetManager::create()
-                ->registerStyle('style')
+        $data = array('wish_lists' => $wish_lists);
+        //return $this->display_tpl('wishPopup');
+        $comments = \CMSFactory\assetManager::create()
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
                 ->setData($data)
-                ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->render('wishPopup',false);
-        return json_encode(array('popup' => $popup));
-    }
-
-    function do_upload() {
-        $upload_dir = 'uploads/'; // Directory for file storing
-        $preview_url = '/uploads/';
-        $filename = '';
-        $result = 'ERROR';
-        $result_msg = '';
-        $allowed_image = array('image/gif', 'image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png');
-        define('PICTURE_SIZE_ALLOWED', 2242880); // bytes
-
-        if (isset($_FILES['picture'])) {  // file was send from browser
-            if ($_FILES['picture']['error'] == UPLOAD_ERR_OK) {  // no error
-                if (in_array($_FILES['picture']['type'], $allowed_image)) {
-                    if (filesize($_FILES['picture']['tmp_name']) <= PICTURE_SIZE_ALLOWED) { // bytes
-                        $filename = $_FILES['picture']['name'];
-                        move_uploaded_file($_FILES['picture']['tmp_name'], $upload_dir . $filename);
-
-//phpclamav clamscan for scanning viruses
-//passthru('clamscan -d /var/lib/clamav --no-summary '.$upload_dir.$filename, $virus_msg); //scan virus
-                        $virus_msg = 'OK'; //assume clamav returing OK.
-                        if ($virus_msg != 'OK') {
-                            unlink($upload_dir . $filename);
-                            $result_msg = $filename . " : " . FILE_VIRUS_AFFECTED;
-                            $result_msg = '<font color=red>' . $result_msg . '</font>';
-                            $filename = '';
-                        } else {
-// main action -- move uploaded file to $upload_dir
-                            $result = 'OK';
-                        }
-                    } else {
-                        $filesize = filesize($_FILES['picture']['tmp_name']); // or $_FILES['picture']['size']
-                        $filetype = $_FILES['picture']['type'];
-                        $result_msg = PICTURE_SIZE;
-                    }
-                } else {
-                    $result_msg = SELECT_IMAGE;
-                }
-            } elseif ($_FILES['picture']['error'] == UPLOAD_ERR_INI_SIZE)
-                $result_msg = 'The uploaded file exceeds the upload_max_filesize directive in php.ini';
-            else
-                $result_msg = 'Unknown error';
-        }
-
-// This is a PHP code outputing Javascript code.
-        echo '<script language="JavaScript" type="text/javascript">' . "\n";
-        echo 'var parDoc = window.parent.document;';
-        if ($result == 'OK') {
-            echo 'parDoc.getElementById("picture_error").innerHTML =  "";';
-        } else {
-            echo "parDoc.getElementById('picture_error').innerHTML = '" . $result_msg . "';";
-        }
-
-        if ($filename != '') {
-            echo "parDoc.getElementById('picture_preview').innerHTML = '<img src=\'$preview_url$filename\' id=\'preview_picture_tag\' heigh=\'300\' width=\'300\' name=\'preview_picture_tag\' />';";
-        }
-
-        echo "\n" . '</script>';
-        exit(); // do not go futher
+                ->fetchTemplate('wishPopup');
+        return json_encode(array('popup' => $comments));
     }
 
 }

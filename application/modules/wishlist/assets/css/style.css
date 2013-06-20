@@ -1,0 +1,9 @@
+#wishCart .wishListDescription
+{
+    margin: 20px 20px;
+    color: #3a88cc;
+}
+#wishCart #errors
+{
+    display: none;
+}
