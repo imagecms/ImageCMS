@@ -79,6 +79,9 @@ class Wishlist_model extends CI_Model {
     }
 
     public function createWishList($listName, $user_id) {
+        if(!$this->db->where('user_id',$user_id)->get('mod_wish_list')->result_array()){
+            $this->db->insert('mod_wish_list_users', array('id'=> $user_id));
+        }
         $data = array(
             'title' => $listName,
             'user_id' => $user_id

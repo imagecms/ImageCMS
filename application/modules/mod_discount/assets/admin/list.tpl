@@ -16,7 +16,7 @@
             <table class="table table-striped table-bordered table-hover table-condensed discounts_table">
                 <thead>
                     <tr style="cursor: pointer;">
-                        <th class="span3">Название </th>
+                        <th class="span3">Описание </th>
                         <th class="span3">Ключ</th>
                         <th class="span2">Лимит</th>
                         <th class="span2">Использовано</th>
