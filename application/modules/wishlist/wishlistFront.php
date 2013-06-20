@@ -86,18 +86,15 @@ class WishlistFront extends Wishlist {
             ));
     }
 
-    public function addItem() {
-        if (parent::addItem()) {
+    public function addItem($varId) {
+        if (parent::addItem($varId)) {
+           redirect($this->input->cookie('url2'));
 
-        } else {
-            \CMSFactory\assetManager::create()
+        }else{
+             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
-                    ->setData('data', $data)
-                    ->setData('varId', $varId)
-                    ->setData('value', 'Добавить в Список Желания')
-                    ->setData('class', 'btn')
-                    ->setData('max_lists_count', $this->settings['maxListsCount'])
-                    ->render('button', true);
+                    ->setData('errors', $this->errors)
+                    ->render('errors');            
         }
     }
 
