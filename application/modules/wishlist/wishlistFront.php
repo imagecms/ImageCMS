@@ -7,7 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistAJAX extends Wishlist {
+class WishlistFront extends Wishlist {
 
     public function __construct() {
         parent::__construct();
@@ -86,31 +86,21 @@ class WishlistAJAX extends Wishlist {
             ));
     }
 
-    public function addItem() {
-        if (parent::addItem()) {
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        }else{
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors
-            ));
-        }
+    public function addItem($varId) {
+        if (parent::addItem($varId)) {
+           redirect($this->input->cookie('url2'));
 
-                    
+        }else{
+             \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('errors', $this->errors)
+                    ->render('errors');            
+        }
     }
 
-    public function deleteItem() {
-        if (parent::deleteItem())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function deleteItem($variant_id, $wish_list_id) {
+        parent::deleteItem($variant_id, $wish_list_id);
+        redirect('/wishlist');
     }
 
     public function editItem($id, $varId) {
