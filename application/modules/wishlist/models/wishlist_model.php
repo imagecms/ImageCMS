@@ -65,15 +65,14 @@ class Wishlist_model extends CI_Model {
         return $ID;
     }
 
-    public function addItem($varId, $listId, $listName, $commentProduct) {
+    public function addItem($varId, $listId, $listName) {
         if ($listName != 'false') {
             $this->createWishList($listName, $this->dx_auth->get_user_id());
             $listId = $this->db->insert_id();
         }
         $data = array(
             'variant_id' => $varId,
-            'wish_list_id' => $listId,
-            'comment' => $commentProduct
+            'wish_list_id' => $listId
         );
 
         return $this->db->insert('mod_wish_list_products', $data);
