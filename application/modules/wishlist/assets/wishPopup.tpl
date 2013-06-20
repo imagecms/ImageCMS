@@ -4,27 +4,31 @@
         </div>
         <div class="drop-content">
             <div class="inside_padd">
-                {foreach $wish_lists as $wish_list}
-                    <label>
-                        <input type="radio"
-                               name="wishlist"
-                               value="{$wish_list.title}"
-                               data-id="{$wish_list.id}">
-                        {$wish_list.title}
+                <div class="addWL">
+                    {foreach $wish_lists as $wish_list}
+                        <label>
+                            <input type="radio"
+                                   name="wishlist"
+                                   value="{$wish_list.title}"
+                                   data-id="{$wish_list.id}">
+                            {$wish_list.title}
+                        </label>
+                    {/foreach}
+                    <label class="newWishListLable">
+                        <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
+                        <input type="text"  name="wishlist"  value="Создать список" class="wish_list_name">
                     </label>
-                {/foreach}
-                <label class="newWishListLable">
-                    <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount={$lists_count}>
-                    <input type="text"  name="wishlist"  value="Создать список" class="wish_list_name">
-                </label>
-                <lable>Коментар
-                    <textarea class="wishProductComment"></textarea>
-                </lable>
+                    <lable>Коментар
+                        <textarea class="wishProductComment"></textarea>
+                    </lable>
+                    <input type="submit" class="{$class}" id="{$varId}"  value="{$value}" onclick="addToWL('{$varId}')"/>
+                </div>
                 <div class="share_tov">
                     {echo $CI->load->module('share')->_make_share_form()}
-                </div>
-                <input type="submit" class="{$class}" id="{$varId}"  value="{$value}" onclick="addToWL('{$varId}')"/>
+                </div>            
+                <div id="errors" class="msg"><div class="error"></div></div>
             </div>
+            
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ class Wishlist extends MY_Controller {
 
     public $settings = array();
     public $dataModel;
-    public $errors;
+    public $errors = array();
     public $userWishProducts;
 
     public function __construct() {
@@ -102,18 +102,36 @@ class Wishlist extends MY_Controller {
 
         return $forReturn;
     }
-
+ /**
+  * add item to wish list
+  * 
+  * @return boolean
+  */
     public function addItem() {
         $varId = $this->input->post('varId');
         $listId = $this->input->post('listID');
-        $listName = $this->input->post('listName');
+        $listName = $this->input->post('listName');         
         $commentProduct = $this->input->post('commentProduct');
-
-        if ($varId) {
-            return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-        } else {
-            return false;
+        
+        if( strlen($listName)>$this->settings['maxListName']){
+            $listName = substr($listName, 0, (int)$this->settings['maxListName']);
+            $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
+        
+        if( strlen($commentProduct)>$this->settings['maxCommentLenght']){
+            $commentProduct = substr($commentProduct, 0, (int)$this->settings['maxCommentLenght']);
+            $this->errors[] = 'Поле коментар будет изменено до длини ' . $this->settings['maxCommentLenght'] . ' символов';
+        }
+        
+        $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
+        
+        if(count($this->errors)){
+            return false;
+        }else{
+            return true;
+        }
+            
+        
     }
 
     public function deleteItem() {
@@ -202,7 +220,7 @@ class Wishlist extends MY_Controller {
                     ->setData('varId', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
+                    ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
@@ -210,7 +228,7 @@ class Wishlist extends MY_Controller {
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('value', 'Уже в Списке Желания')
-                    ->setData('lists_count', $this->settings['maxListsCount'])
+                    ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
     }
@@ -323,11 +341,12 @@ class Wishlist extends MY_Controller {
         $data = array('wish_lists' => $wish_lists);
 
         $popup = \CMSFactory\assetManager::create()
+                  ->registerStyle('style')
                 ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
                 ->setData('varId', $varId)
                 ->setData($data)
-                ->setData('lists_count', $this->settings['maxListsCount'])
+                ->setData('max_lists_count', $this->settings['maxListsCount'])
                 ->fetchTemplate('wishPopup');
         return json_encode(array('popup' => $popup));
     }
