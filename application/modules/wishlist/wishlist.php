@@ -11,12 +11,16 @@ class Wishlist extends MY_Controller {
 
     public $settings = array();
     public $dataModel;
+    public $errors;
+    public $userWishProducts;
 
     public function __construct() {
         parent::__construct();
 
         $this->load->model('wishlist_model');
         $this->settings = $this->wishlist_model->getSettings();
+        $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+
     }
 
     private function checkPerm() {
@@ -30,6 +34,7 @@ class Wishlist extends MY_Controller {
     public function index() {
 //        if (!$this->checkPerm())
 //            $this->core->error_404();
+
         $this->renderUserWL();
     }
 
@@ -92,31 +97,24 @@ class Wishlist extends MY_Controller {
             ));
     }
 
-
-    public function addItem($varId, $listId, $listName, $commentProduct) {
-
+    public function addItem() {
         $varId = $this->input->post('varId');
         $listId = $this->input->post('listID');
         $listName = $this->input->post('listName');
         $commentProduct = $this->input->post('commentProduct');
 
-        if($varId){
-           return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
-
-        }else{
+        if ($varId) {
+            return $this->wishlist_model->addItem($varId, $listId, $listName, $commentProduct);
+        } else {
             return false;
         }
     }
 
-    public function deleteItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+    public function deleteItem() {
+        return $this->db->delete('mod_wish_list_products', array(
+            'variant_id' => $this->input->post(varID),
+            'wish_list_id' => $this->input->post(WLID),
+        ));
     }
 
     public function editItem($id, $varId) {
@@ -173,6 +171,7 @@ class Wishlist extends MY_Controller {
         var_dump($w);
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
+                ->registerStyle('style')
                 ->setData('wishlists', $w)
                 ->render('wishlist');
     }
@@ -186,7 +185,7 @@ class Wishlist extends MY_Controller {
      * @param type $varId
      */
     public function renderWLButton($varId) {
-        if (true)
+        if (!in_array($varId, $this->userWishProducts))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->setData('data', $data)
@@ -311,7 +310,7 @@ class Wishlist extends MY_Controller {
     public function renderPopup($varId) {
         $wish_lists = $this->wishlist_model->getWishLists();
 
-        $data = array('wish_lists'=> $wish_lists);
+        $data = array('wish_lists' => $wish_lists);
 
         $popup = \CMSFactory\assetManager::create()
                 ->setData('value', 'Добавить в Список Желания')
