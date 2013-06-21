@@ -52,6 +52,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('list');
         }      
     }
+    
+     public function user($user_id){
+       $user_wish_lists = parent::user($user_id);
+       \CMSFactory\assetManager::create()
+                ->registerScript('wishlist')
+                ->registerStyle('style')
+                ->setData('wishlists', $user_wish_lists)
+                ->render('wishlist');
+    }
 
     public function renderWLButton($varId) {
         if (!in_array($varId, $this->userWishProducts))
@@ -86,7 +95,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->setData('varId', $varId)
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->render('wishPopup', false);
+                ->render('wishPopup');
         return json_encode(array('popup' => $popup));
     }
 
