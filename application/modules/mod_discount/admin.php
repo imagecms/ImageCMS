@@ -42,7 +42,7 @@ class Admin extends BaseAdminController {
             $typeDiscountTableName = 'mod_discount_'.$typeDiscount;
             
             //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
+            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
                 showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
                 exit;
             }
