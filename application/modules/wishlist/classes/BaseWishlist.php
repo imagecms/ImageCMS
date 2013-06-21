@@ -69,15 +69,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $this->db->set('user_birthday', $user_birthday);
         $this->db->insert('mod_wish_list');
 
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
     }
 
     /**
@@ -96,6 +87,16 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
             $this->db->set('comment', $coments);
             $this->db->update('mod_wish_list_products');
+        }
+    }
+
+    public function userUpdate() {
+        if (parent::userUpdate($this->input->post(user_name),$this->input->post(user_birthday),$this->input->post(description))) {
+            $this->db->where('id', $this->input->post(user_id));
+            $this->db->set('user_name', $this->input->post(user_name));
+            $this->db->set('user_birthday', $this->input->post(user_birthday));
+            $this->db->set('description', $this->input->post(description));
+            $this->db->update('mod_wish_list_users');
         }
     }
 
@@ -133,10 +134,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function deleteItem($variant_id, $wish_list_id, $redirect = 'true') {
         parent::deleteItem($variant_id, $wish_list_id);
-        if($redirect){
+        if ($redirect) {
             redirect('/wishlist');
         }
-        
     }
 
     public function editItem($id, $varId) {

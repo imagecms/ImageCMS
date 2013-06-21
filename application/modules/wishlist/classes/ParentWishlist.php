@@ -95,8 +95,9 @@ class ParentWishlist extends \MY_Controller {
             return false;
         }
     }
-    public function userUpdate() {
-        var_dump($_POST);
+    public function userUpdate($user_name,$user_birthday,$description) {
+        var_dump($this->settings);exit;
+
         if ($user_wish_lists) {
 
             return true;
@@ -223,6 +224,7 @@ class ParentWishlist extends \MY_Controller {
 
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id(), $access);
+        $userInfo = $this->getUserInfo();
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
