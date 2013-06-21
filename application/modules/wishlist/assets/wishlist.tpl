@@ -15,8 +15,8 @@
                                 <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
                                 {echo $wishlist[0][access]}
                                 <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                                <a href="/wishlist/wishlistFront/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
-                                <a href="/wishlist/wishlistFront/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
+                                <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
+                                <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
                             </td>
                         </tr>
                         <tr>

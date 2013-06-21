@@ -32,7 +32,7 @@ class ParentWishlist extends \MY_Controller {
         $this->load->helper('cookie');
         if (!strstr($this->uri->uri_string(), 'wishlist')) {
             $cookie = array(
-                'name' => 'url2',
+                'name' => 'url',
                 'value' => $this->uri->uri_string(),
                 'expire' => '15000',
                 'prefix' => ''
@@ -59,45 +59,41 @@ class ParentWishlist extends \MY_Controller {
     public function all() {
         $users = $this->wishlist_model->getAllUsers();
         $lists = '';
-        
+
         foreach ($users as $user) {
             $lists [] = array(
                 'user' => $user,
                 'lists' => $this->wishlist_model->getWLsByUserId($user['id'], 'public')
             );
         }
-        
-        if($lists){
+
+        if ($lists) {
             $this->dataModel = $lists;
-             return true;
-        }        
-        else{
+            return true;
+        } else {
             return false;
         }
-        
-       
     }
 
     public function show($user_id, $list_id) {
         $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
-        
+
         if ($wishlist) {
             $this->dataModel = $wishlist;
             return true;
         } else {
             return false;
-        }        
+        }
     }
-    
-    public function user($user_id){
-        $user_wish_lists = $this->renderUserWL($userId, $access="public");
-        if($user_wish_lists){
+
+    public function user($user_id) {
+        $user_wish_lists = $this->renderUserWL($userId, $access = "public");
+        if ($user_wish_lists) {
             $this->dataModel = $user_wish_lists;
             return true;
-        }else{
+        } else {
             return false;
         }
-     
     }
 
     /**
@@ -119,14 +115,6 @@ class ParentWishlist extends \MY_Controller {
         $this->db->set('user_birthday', $user_birthday);
         $this->db->insert('mod_wish_list');
 
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
     }
 
     /**
@@ -148,15 +136,20 @@ class ParentWishlist extends \MY_Controller {
             $w = array();
             foreach ($wishlists as $wishlist)
                 $w[$wishlist[title]][] = $wishlist;
+            $this->dataModel = $w;
+            return TRUE;
+        } else {
+            if ($this->input->post()) {
+                $this->db->where('wish_list_id', $this->input->post(WLID));
+                foreach ($this->input->post(comment)as $key => $coments) {
+                    $this->db->where('variant_id ', $key);
 
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->registerStyle('style')
-                    ->setData('wishlists', $w)
-                    ->render('wishlistEdit');
+                    $this->db->set('comment', $coments);
+                    $this->db->update('mod_wish_list_products');
+                }
+            }
         }
-        else
-            FALSE;
+        return FALSE;
     }
 
     /**
@@ -226,46 +219,25 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function editItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+
     }
 
     public function moveItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+
     }
 
     function editWLName($id, $newName) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+
     }
 
     public function getWLbyHash($hash) {
-        
+
     }
 
-    public function renderUserWL($userId, $access = 'shared') {
+    public function renderUserWL($userId, $access = array('shared')) {
         $wishlists = $this->db
                 ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
-                ->where('mod_wish_list.access', $access)
+                ->where_in('mod_wish_list.access', $access)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -281,7 +253,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function renderWLByHash($hash) {
-        
+
     }
 
     /**
@@ -294,7 +266,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {
