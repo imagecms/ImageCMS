@@ -11,7 +11,7 @@ namespace wishlist\classes;
  * @property \CI_DB_active_record $db
  * @property \CI_Input $input
  */
-class BaseWishlist extends \wishlist\classes\ParentWishlist{
+class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function __construct() {
         parent::__construct();
@@ -24,32 +24,30 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
 
         return $permAllow;
     }
-    
-     public function  all(){
-         $parent = parent::all();
-        if ($parent){
+
+    public function all() {
+        $parent = parent::all();
+        if ($parent) {
             return $this->dataModel;
-           
         } else {
             return false;
         }
-       
     }
-    
-     public function  show($user_id, $list_id){
-       if(parent::show($user_id, $list_id)){
-           return $this->dataModel;
-       }else{
-           return false;
-       }       
+
+    public function show($user_id, $list_id) {
+        if (parent::show($user_id, $list_id)) {
+            return $this->dataModel;
+        } else {
+            return false;
+        }
     }
-    
-    public function user($user_id){        
-       if(parent::user($user_id)){
-           return $this->dataModel;
-       }else{
-           return false;
-       }       
+
+    public function user($user_id) {
+        if (parent::user($user_id)) {
+            return $this->dataModel;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -81,15 +79,16 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
                 'errors' => $this->errors,
             ));
     }
-    
 
     /**
      * Edit WL
      */
-    public function editWL($wish_list_id) {
-        if (parent::editWL($wish_list_id))
-            redirect('/wishlist');
-    }
+//    public function editWL($wish_list_id) {
+//        if (parent::editWL($wish_list_id))
+//            return TRUE;
+//        else
+//            return FALSE;
+//    }
 
     /**
      * delete full WL
@@ -101,7 +100,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
 
 //    public function addItem($varId) {
 //        if (parent::addItem($varId)) {
-//            redirect($this->input->cookie('url2'));
+//            redirect($this->input->cookie('url'));
 //        } else {
 //            \CMSFactory\assetManager::create()
 //                    ->registerScript('wishlist')
@@ -178,11 +177,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
 
     public function _install() {
         parent::_install();
-       
     }
 
     public function _deinstall() {
-       parent::_deinstall();
+        parent::_deinstall();
     }
 
 }

@@ -6,7 +6,7 @@
     </label>
     {if count($wishlists)>0}
         {foreach $wishlists as $key => $wishlist}
-            <form method="POST" action="/wishlist/wishlistFront/editWL">
+            <form method="POST" action="/wishlist/editWL">
                 <table class="table">
                     <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                     <thead>
@@ -19,7 +19,7 @@
                                     <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">public</option>
                                 </select>
                                 <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                                <a href="/wishlist/wishlistFront/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
+                                <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
 
                             </td>
                         </tr>
@@ -35,7 +35,7 @@
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"
@@ -44,7 +44,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <textarea name="comment">{$w[comment]}</textarea>
+                                    <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
                                 </td>
                             </tr>
                         {/foreach}
