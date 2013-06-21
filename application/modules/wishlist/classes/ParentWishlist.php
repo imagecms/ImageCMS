@@ -57,30 +57,47 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function all() {
-
-        $users = $this->getAllUsers();
+        $users = $this->wishlist_model->getAllUsers();
         $lists = '';
+        
         foreach ($users as $user) {
             $lists [] = array(
                 'user' => $user,
-                'lists' => $this->getWLsByUserId($user['id'])
+                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], 'public')
             );
         }
-
-        \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('lists', $lists)
-                ->render('all');
+        
+        if($lists){
+            $this->dataModel = $lists;
+             return true;
+        }        
+        else{
+            return false;
+        }
+        
+       
     }
 
-    public function getAllUsers() {
-        return $this->db->get('mod_wish_list_users')->result_array();
+    public function show($user_id, $list_id) {
+        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
+        
+        if ($wishlist) {
+            $this->dataModel = $wishlist;
+            return true;
+        } else {
+            return false;
+        }        
     }
-
-    public function getWLsByUserId($user_id) {
-        return $all_lists = $this->db
-                        ->where('user_id', $user_id)
-                        ->get('mod_wish_list')->result_array();
+    
+    public function user($user_id){
+        $user_wish_lists = $this->renderUserWL($userId, $access="public");
+        if($user_wish_lists){
+            $this->dataModel = $user_wish_lists;
+            return true;
+        }else{
+            return false;
+        }
+     
     }
 
     /**
@@ -175,6 +192,7 @@ class ParentWishlist extends \MY_Controller {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
+
         if (!$listId) {
             $listId = "";
         }
@@ -241,12 +259,13 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getWLbyHash($hash) {
-
+        
     }
 
-    public function renderUserWL($userId, $type = '') {
+    public function renderUserWL($userId, $access = 'shared') {
         $wishlists = $this->db
                 ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
+                ->where('mod_wish_list.access', $access)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -262,7 +281,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function renderWLByHash($hash) {
-
+        
     }
 
     /**
@@ -275,7 +294,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
-
+        
     }
 
     public static function adminAutoload() {
@@ -319,7 +338,7 @@ class ParentWishlist extends \MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'null' => FALSE
+                'auto_increment' => TRUE
             ),
             'wish_list_id' => array(
                 'type' => 'INT',
@@ -341,7 +360,7 @@ class ParentWishlist extends \MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'auto_increment' => TRUE
+                'null' => FALSE
             ),
             'user_name' => array(
                 'type' => 'VARCHAR',
@@ -380,6 +399,7 @@ class ParentWishlist extends \MY_Controller {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_wish_list_products');
+        $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
     }
 
