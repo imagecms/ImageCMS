@@ -35,6 +35,17 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('errors');
         }
     }
+     
+    public function moveItem($varId, $wish_list_id) { 
+            parent::deleteItem($varId, $wish_list_id, false);
+            if (parent::addItem($varId)) {
+               redirect('/wishlist');
+            } else {
+                \CMSFactory\assetManager::create()
+                        ->setData('errors', $this->errors)
+                        ->render('errors');
+            }
+    }
 
     public function all() {
         $lists = parent::all();
@@ -55,17 +66,19 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if (parent::show($user_id, $list_id)) {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', $this->dataModel)
-                    ->render('list');
+                    ->render('other_list');
+        }else{
+            \CMSFactory\assetManager::create()
+                    ->setData('wishlist', 'empty')
+                    ->render('other_list');
         }
     }
 
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
         \CMSFactory\assetManager::create()
-                ->registerScript('wishlist')
-                ->registerStyle('style')
                 ->setData('wishlists', $user_wish_lists)
-                ->render('wishlist');
+                ->render('other_wishlist');
     }
 
     public function renderWLButton($varId) {
@@ -89,14 +102,14 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('button', true);
     }
 
-    public function renderPopup($varId) {
+    public function renderPopup($varId, $wish_list_id='') {
         $wish_lists = $this->wishlist_model->getWishLists();
         $data = array('wish_lists' => $wish_lists);
 
         return $popup = \CMSFactory\assetManager::create()
                 ->registerStyle('style')
-                ->setData('value', 'Добавить в Список Желания')
                 ->setData('class', 'btn')
+                ->setData('wish_list_id', $wish_list_id)
                 ->setData('varId', $varId)
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
@@ -118,6 +131,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         parent::updateWL();
         redirect('/wishlist');
     }
+    
 
 }
 

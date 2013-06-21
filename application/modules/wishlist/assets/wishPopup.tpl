@@ -1,5 +1,5 @@
 <article class="container">
-    <form method="post" action="{site_url('/wishlist/addItem/'.$varId)}">
+    <form method="post" action="{if $wish_list_id}{site_url('/wishlist/moveItem/'.$varId . '/' . $wish_list_id)}{else:}{site_url('/wishlist/addItem/'.$varId)}{/if}">
         <div id="wishCart" class="active" data-effect-off="fadeOut" data-duration="500" data-elrun="#popupCart" style="top: 922px; left: 571.5px; display: block;">
             <div class="fancy fancy_cleaner frame_head_content wishTMP">
                 <div class="header_title">Вибирите cписок  желаний
@@ -17,7 +17,7 @@
                                 <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
                                 <input type="text"  name="wishListName"  value="Создать список" class="wish_list_name">
                             </label>
-                            <input type="submit" class="{$class}" id="{$varId}"  value="{$value}"/>
+                            <input type="submit" class="{$class}" id="{$varId}"  value="{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}"/>
                         </div>
                         <div id="errors" class="msg">
                             <div class="error"></div>

@@ -12,7 +12,6 @@
                 </tr>
                 <tr>
                     <th>№</th>
-                    <th>Отписатся</th>
                     <th>Товар</th>
                     <th>Коментарий</th>
                 </tr>
@@ -21,9 +20,6 @@
                 {foreach $wishlist as $key => $w}
                     <tr>
                         <td>{echo $key+1}</td>
-                        <td>
-                            <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                        </td>
                         <td>
                             <a href="{shop_url('product/'.$w[url])}"
                                title="{$w[name]}">
