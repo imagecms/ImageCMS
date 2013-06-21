@@ -183,12 +183,16 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
         if($listName){
-            $count_lists = $this->wishlist_model->getUserWishListCount();
+            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
         }
-        if($count_lists >= $this->settings['maxListName']){
+        
+        if($count_lists >= $this->settings['maxListsCount']){
              $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
+             return FALSE;
+        }else{
+            $this->wishlist_model->addItem($varId, $listId, $listName);
         }
-        $this->wishlist_model->addItem($varId, $listId, $listName);
+        
 
         if (count($this->errors)) {
             return false;
