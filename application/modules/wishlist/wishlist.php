@@ -60,6 +60,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         return json_encode(array('popup' => $popup));
     }
 
+    public function addItem($varId) {
+        parent::addItem($varId);
+        redirect($this->input->cookie('url2'));
+    }
+
 }
 
 /* End of file wishlist.php */
