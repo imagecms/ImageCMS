@@ -15,13 +15,11 @@
                                 <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
                                 {echo $wishlist[0][access]}
                                 <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                                <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
-                                <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
+                                
                             </td>
                         </tr>
                         <tr>
                             <th>№</th>
-                            <th>Отписатся</th>
                             <th>Товар</th>
                             <th>Коментарий</th>
                         </tr>
@@ -30,10 +28,6 @@
                         {foreach $wishlist as $key => $w}
                             <tr>
                                 <td>{echo $key+1}</td>
-                                <td>
-                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
-                                </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"
                                        title="{$w[name]}">

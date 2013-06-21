@@ -109,9 +109,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 //        }
 //    }
 
-    public function deleteItem($variant_id, $wish_list_id) {
+    public function deleteItem($variant_id, $wish_list_id, $redirect = 'true') {
         parent::deleteItem($variant_id, $wish_list_id);
-        redirect('/wishlist');
+        if($redirect){
+            redirect('/wishlist');
+        }
+        
     }
 
     public function editItem($id, $varId) {
