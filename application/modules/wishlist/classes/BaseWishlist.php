@@ -83,12 +83,41 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     /**
      * Edit WL
      */
-//    public function editWL($wish_list_id) {
-//        if (parent::editWL($wish_list_id))
-//            return TRUE;
-//        else
-//            return FALSE;
-//    }
+    public function editWL($wish_list_id) {
+        if (!$this->input->post()) {
+            if (parent::editWL($wish_list_id))
+                return TRUE;
+            else
+                return FALSE;
+        } else {
+            $this->db->where('id', $this->input->post(WLID));
+            $this->db->set('access', $this->input->post(access));
+            $this->db->update('mod_wish_list');
+
+            $this->db->where('wish_list_id', $this->input->post(WLID));
+            $this->db->set('access', $this->input->post(access));
+
+            foreach ($this->input->post(comment)as $key => $coments) {
+                $this->db->where('variant_id ', $key);
+
+                $this->db->set('comment', $coments);
+                $this->db->update('mod_wish_list_products');
+            }
+        }
+    }
+
+    public function updateWL() {
+        $this->db->where('id', $this->input->post(WLID));
+        $this->db->set('access', $this->input->post(access));
+        $this->db->update('mod_wish_list');
+
+        foreach ($this->input->post(comment)as $key => $coments) {
+            $this->db->where('wish_list_id', $this->input->post(WLID));
+            $this->db->where('variant_id ', $key);
+            $this->db->set('comment', $coments);
+            $this->db->update('mod_wish_list_products');
+        }
+    }
 
     /**
      * delete full WL
@@ -118,39 +147,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function editItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     public function moveItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     function editWLName($id, $newName) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     public function getWLbyHash($hash) {
@@ -184,6 +189,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function _deinstall() {
         parent::_deinstall();
+    }
+
+    function do_upload() {
+        if (parent::do_upload()) {
+         
+            redirect('/wishlist');
+        }
     }
 
 }
