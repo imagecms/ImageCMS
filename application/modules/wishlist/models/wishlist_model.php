@@ -156,6 +156,10 @@ class Wishlist_model extends CI_Model {
         );
         return $this->db->insert('mod_wish_list', $data);
     }
+    
+    public function getUserWishListCount($user_id) {
+        $this->db->where('user_id', $user_id)->get('mod_wish_list_users')->count_all_results();;
+    }
 
     public function install() {
         mkdir('./uploads/mod_wishlist', 0777);
@@ -245,7 +249,13 @@ class Wishlist_model extends CI_Model {
         $this->db
                 ->where('identif', 'wishlist')
                 ->update('components', array(
-                    'settings' => '',
+                    'settings' => serialize(array('maxListName' => 254,
+                                        'maxListsCount' => 10,
+                                        'maxItemsCount' => 100,
+                                        'maxCommentLenght' => 500,
+                                        'maxDescLenght' => 1000,
+                                        'maxImageWidth' => 150,
+                                        'maxImageHeight' => 150)),
                     'enabled' => 1,
                     'autoload' => 1,
         ));
