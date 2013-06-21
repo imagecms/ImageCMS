@@ -21,10 +21,10 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->setData('wishlists', $w)
                 ->render('wishlist');
     }
-    
+
     public function addItem($varId) {
         if (parent::addItem($varId)) {
-            redirect($this->input->cookie('url2'));
+            redirect($this->input->cookie('url'));
         } else {
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
@@ -32,33 +32,33 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('errors');
         }
     }
-    
-    public function  all(){
+
+    public function all() {
         $lists = parent::all();
         if ($lists) {
-             \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('lists', $lists)
-                ->render('all');
+            \CMSFactory\assetManager::create()
+                    ->registerStyle('style')
+                    ->setData('lists', $lists)
+                    ->render('all');
         } else {
             \CMSFactory\assetManager::create()
                 ->registerStyle('style')
                 ->setData('lists', $lists)
                 ->render('all');
         }
-       
     }
-     public function  show($user_id, $list_id){
-        if(parent::show($user_id, $list_id)){
+
+    public function show($user_id, $list_id) {
+        if (parent::show($user_id, $list_id)) {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', $this->dataModel)
                     ->render('list');
-        }      
+        }
     }
-    
-     public function user($user_id){
-       $user_wish_lists = parent::user($user_id);
-       \CMSFactory\assetManager::create()
+
+    public function user($user_id) {
+        $user_wish_lists = parent::user($user_id);
+        \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->registerStyle('style')
                 ->setData('wishlists', $user_wish_lists)
@@ -87,7 +87,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function renderPopup($varId) {
-        var_dumps($this->settings['maxListName']);
         $wish_lists = $this->wishlist_model->getWishLists();
         $data = array('wish_lists' => $wish_lists);
 
@@ -99,7 +98,18 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
                 ->render('wishPopup');
-        return json_encode(array('popup' => $popup));
+    }
+
+    public function editWL($wish_list_id) {
+        if (parent::editWL($wish_list_id))
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $this->dataModel)
+                    ->render('wishlistEdit');
+        else
+            redirect ('/wishlist');
+
     }
 
 }
