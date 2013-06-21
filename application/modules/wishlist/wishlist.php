@@ -21,6 +21,37 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->setData('wishlists', $w)
                 ->render('wishlist');
     }
+    
+    public function addItem($varId) {
+        if (parent::addItem($varId)) {
+            redirect($this->input->cookie('url2'));
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('errors', $this->errors)
+                    ->render('errors');
+        }
+    }
+    
+    public function  all(){
+        $lists = parent::all();
+        if ($lists) {
+             \CMSFactory\assetManager::create()
+                ->registerStyle('style')
+                ->setData('lists', $lists)
+                ->render('all');
+        } else {
+            return false;
+        }
+       
+    }
+     public function  show($user_id, $list_id){
+        if(parent::show($user_id, $list_id)){
+            \CMSFactory\assetManager::create()
+                    ->setData('wishlist', $this->dataModel)
+                    ->render('list');
+        }      
+    }
 
     public function renderWLButton($varId) {
         if (!in_array($varId, $this->userWishProducts))
@@ -44,10 +75,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function renderPopup($varId) {
+        var_dumps($this->settings['maxListName']);
         $wish_lists = $this->wishlist_model->getWishLists();
-        $back_linck = $_SERVER['HTTP_REFERER'];
-
-        $data = array('wish_lists' => $wish_lists, 'backlinck' => $back_linck);
+        $data = array('wish_lists' => $wish_lists);
 
         return $popup = \CMSFactory\assetManager::create()
                 ->registerStyle('style')

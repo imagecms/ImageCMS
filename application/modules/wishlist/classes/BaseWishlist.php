@@ -24,6 +24,25 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
 
         return $permAllow;
     }
+    
+     public function  all(){
+         $parent = parent::all();
+        if ($parent){
+            return $this->dataModel;
+           
+        } else {
+            return false;
+        }
+       
+    }
+    
+     public function  show($user_id, $list_id){
+       if(parent::show($user_id, $list_id)){
+           return $this->dataModel;
+       }else{
+           return false;
+       }       
+    }
 
     /**
      *
@@ -54,6 +73,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
                 'errors' => $this->errors,
             ));
     }
+    
 
     /**
      * Edit WL
@@ -149,88 +169,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
     }
 
     public function _install() {
-
-        $this->load->dbforge();
-        ($this->dx_auth->is_admin()) OR exit;
-
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ),
-            'title' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '254',
-                'null' => FALSE
-            ),
-            'access' => array(
-                'type' => 'ENUM',
-                'constraint' => "'public','private','shared'",
-                'default' => "shared"
-            ),
-            'description' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
-            'user_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'user_image' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
-            'user_birthday' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'hash' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '16',
-                'null' => FALSE
-            )
-        );
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_wish_list');
-
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ),
-            'wish_list_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'variant_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'comment' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            )
-        );
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_wish_list_products');
-
-        $this->db
-                ->where('identif', 'wishlist')
-                ->update('settings', array(
-                    'settings' => '',
-                    'enabled' => 1,
-                    'autoload' => 1,
-        ));
+        parent::_install();
+       
     }
 
     public function _deinstall() {
-        $this->load->dbforge();
-        ($this->dx_auth->is_admin()) OR exit;
-        $this->dbforge->drop_table('mod_wish_list_products');
-        $this->dbforge->drop_table('mod_wish_list');
+       parent::_deinstall();
     }
 
 }
