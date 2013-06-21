@@ -15,12 +15,14 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
-        $w = parent::renderUserWL($this->dx_auth->get_user_id());
-        \CMSFactory\assetManager::create()
-                ->registerScript('wishlist')
-                ->registerStyle('style')
-                ->setData('wishlists', $w)
-                ->render('wishlist');
+        if (parent::renderUserWL($this->dx_auth->get_user_id())) {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $this->dataModel[wishlists])
+                    ->setData('user', $this->dataModel[user])
+                    ->render('wishlist');
+        }
     }
 
     public function addItem($varId) {
@@ -102,7 +104,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function editWL($wish_list_id) {
-        if (parent::editWL($wish_list_id))
+        if (parent::renderUserWLEdit($wish_list_id))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')

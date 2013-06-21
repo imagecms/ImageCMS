@@ -83,26 +83,19 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     /**
      * Edit WL
      */
-    public function editWL($wish_list_id) {
-        if (!$this->input->post()) {
-            if (parent::editWL($wish_list_id))
-                return TRUE;
-            else
-                return FALSE;
-        } else {
-            $this->db->where('id', $this->input->post(WLID));
-            $this->db->set('access', $this->input->post(access));
-            $this->db->update('mod_wish_list');
+    public function editWL() {
+        $this->db->where('id', $this->input->post(WLID));
+        $this->db->set('access', $this->input->post(access));
+        $this->db->update('mod_wish_list');
 
-            $this->db->where('wish_list_id', $this->input->post(WLID));
-            $this->db->set('access', $this->input->post(access));
+        $this->db->where('wish_list_id', $this->input->post(WLID));
+        $this->db->set('access', $this->input->post(access));
 
-            foreach ($this->input->post(comment)as $key => $coments) {
-                $this->db->where('variant_id ', $key);
+        foreach ($this->input->post(comment)as $key => $coments) {
+            $this->db->where('variant_id ', $key);
 
-                $this->db->set('comment', $coments);
-                $this->db->update('mod_wish_list_products');
-            }
+            $this->db->set('comment', $coments);
+            $this->db->update('mod_wish_list_products');
         }
     }
 
@@ -190,7 +183,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     function do_upload() {
         if (parent::do_upload()) {
-         
+
             redirect('/wishlist');
         }
     }

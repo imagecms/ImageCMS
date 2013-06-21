@@ -95,6 +95,15 @@ class ParentWishlist extends \MY_Controller {
             return false;
         }
     }
+    public function userUpdate() {
+        var_dump($_POST);
+        if ($user_wish_lists) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      *
@@ -201,17 +210,26 @@ class ParentWishlist extends \MY_Controller {
 
     }
 
-    public function getWLbyHash($hash) {
+    public function getUserInfo($id) {
+        if (!$id)
+            $id = $this->dx_auth->get_user_id();
 
+        return $this->db
+                        ->where('id', $id)
+                        ->get('mod_wish_list_users')
+                        ->row_array();
     }
 
     public function renderUserWL($userId, $access = 'shared') {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId);
-
+        $userInfo = $this->getUserInfo();
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
-        return $w;
+        $this->dataModel[wishlists] = $w;
+        $this->dataModel[user] = $userInfo;
+
+        return true;
     }
 
     public function renderUserWLEdit($wish_list_id) {
@@ -242,8 +260,8 @@ class ParentWishlist extends \MY_Controller {
         } else {
             $this->dataModel = array('upload_data' => $this->upload->data());
             $this->db
-                    ->where('id',  $this->dx_auth->get_user_id())
-                    ->update('mod_wish_list_users',array('user_image'=>$this->dataModel[upload_data][file_name]));
+                    ->where('id', $this->dx_auth->get_user_id())
+                    ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
         }
     }

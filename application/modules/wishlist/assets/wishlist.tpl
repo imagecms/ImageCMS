@@ -13,9 +13,19 @@
     <input type="submit" value="upload" class="btn" />
 
 </form>
+
+<form method="POST" action="/wishlist/userUpdate">
+    <input type="hidden" value="{echo $user[id]}" name="user_id"/>
+    <input type="text" value="{echo $user[user_name]}" name="user_name"/>
+    <input type="text" value="{echo $user[user_birthday]}" name="user_birthday"/>
+    <textarea name="description">{echo $user[description]}</textarea>
+    <input type="submit" class="btn"/>
+    {form_csrf()}
+</form>
+
 {if count($wishlists)>0}
     {foreach $wishlists as $key => $wishlist}
-        <form method="POST" action="/wishlist/wishlistFront/deleteWL">
+        <form>
             <table class="table">
                 <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                 <thead>
