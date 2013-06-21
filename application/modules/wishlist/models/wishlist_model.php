@@ -158,7 +158,8 @@ class Wishlist_model extends CI_Model {
     }
     
     public function getUserWishListCount($user_id) {
-        $this->db->where('user_id', $user_id)->get('mod_wish_list_users')->count_all_results();;
+       $this->db->where('user_id', $user_id)->get('mod_wish_list_users');
+       return $this->db->count_all_results();
     }
 
     public function install() {
