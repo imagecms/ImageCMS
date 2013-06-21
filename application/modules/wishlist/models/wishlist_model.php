@@ -73,7 +73,8 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
-        return $this->db->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+        return $this->db
+                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                         ->where('mod_wish_list.user_id', $user_id)
                         ->where_in('mod_wish_list.access', $access)
                         ->where('shop_products_i18n.locale', \MY_Controller::getCurrentLocale())
@@ -225,7 +226,7 @@ class Wishlist_model extends CI_Model {
             ),
             'user_birthday' => array(
                 'type' => 'INT',
-                'null' => FALSE
+                'null' => TRUE
             ),
             'description' => array(
                 'type' => 'TEXT',
@@ -236,7 +237,6 @@ class Wishlist_model extends CI_Model {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_users');
-
 
         $this->db
                 ->where('identif', 'wishlist')
