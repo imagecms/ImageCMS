@@ -209,7 +209,6 @@ class ParentWishlist extends \MY_Controller {
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id(), $access);
 
-
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
