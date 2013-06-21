@@ -41,7 +41,10 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->setData('lists', $lists)
                 ->render('all');
         } else {
-            return false;
+            \CMSFactory\assetManager::create()
+                ->registerStyle('style')
+                ->setData('lists', $lists)
+                ->render('all');
         }
        
     }
