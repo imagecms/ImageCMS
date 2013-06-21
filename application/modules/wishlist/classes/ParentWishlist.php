@@ -108,15 +108,6 @@ class ParentWishlist extends \MY_Controller {
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
-
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
     }
 
     /**
@@ -131,23 +122,6 @@ class ParentWishlist extends \MY_Controller {
                 $w[$wishlist[title]][] = $wishlist;
             $this->dataModel = $w;
             return TRUE;
-        } else {
-            if ($this->input->post()) {
-
-                $this->db->where('id', $this->input->post(WLID));
-                $this->db->set('access', $this->input->post(access));
-                $this->db->update('mod_wish_list');
-
-                $this->db->where('wish_list_id', $this->input->post(WLID));
-                $this->db->set('access', $this->input->post(access));
-
-                foreach ($this->input->post(comment)as $key => $coments) {
-                    $this->db->where('variant_id ', $key);
-
-                    $this->db->set('comment', $coments);
-                    $this->db->update('mod_wish_list_products');
-                }
-            }
         }
         return FALSE;
     }
@@ -238,6 +212,40 @@ class ParentWishlist extends \MY_Controller {
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
         return $w;
+    }
+
+    public function renderUserWLEdit($wish_list_id) {
+        if ($wish_list_id) {
+            $wishlists = $this->wishlist_model->getUserWishList($this->dx_auth->get_user_id(), $wish_list_id);
+
+            $w = array();
+            foreach ($wishlists as $wishlist)
+                $w[$wishlist[title]][] = $wishlist;
+            $this->dataModel = $w;
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    function do_upload() {
+        $config['upload_path'] = './uploads/mod_wishlist';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100000';
+        $config['max_width'] = '10240000';
+        $config['max_height'] = '768000';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $this->errors[] = $this->upload->display_errors();
+            return FALSE;
+        } else {
+            $this->dataModel = array('upload_data' => $this->upload->data());
+            $this->db
+                    ->where('id',  $this->dx_auth->get_user_id())
+                    ->update('mod_wish_list_users',array('user_image'=>$this->dataModel[upload_data][file_name]));
+            return TRUE;
+        }
     }
 
     public function renderWLByHash($hash) {

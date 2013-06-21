@@ -11,6 +11,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();
+        $this->load->helper(array('form', 'url'));
     }
 
     function index() {
@@ -42,9 +43,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('all');
         } else {
             \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('lists', $lists)
-                ->render('all');
+                    ->registerStyle('style')
+                    ->setData('lists', $lists)
+                    ->render('all');
         }
     }
 
@@ -101,7 +102,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function editWL($wish_list_id) {
-
         if (parent::editWL($wish_list_id))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
@@ -109,8 +109,12 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('wishlists', $this->dataModel)
                     ->render('wishlistEdit');
         else
-            redirect ('/wishlist');
+            redirect('/wishlist');
+    }
 
+    public function updateWL() {
+        parent::updateWL();
+        redirect('/wishlist');
     }
 
 }

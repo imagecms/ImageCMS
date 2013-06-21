@@ -153,6 +153,8 @@ class Wishlist_model extends CI_Model {
     }
 
     public function install() {
+        mkdir('./uploads/mod_wishlist', 0777);
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 
@@ -248,6 +250,7 @@ class Wishlist_model extends CI_Model {
     public function deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
+        rmdir('./uploads/mod_wishlist');
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');

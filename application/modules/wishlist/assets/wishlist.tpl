@@ -4,53 +4,62 @@
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>
         </span>
     </label>
-    {if count($wishlists)>0}
-        {foreach $wishlists as $key => $wishlist}
-            <form method="POST" action="/wishlist/wishlistFront/deleteWL">
-                <table class="table">
-                    <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
-                    <thead>
+    {form_open_multipart('/wishlist/do_upload')}
+
+    <input type="file" name="userfile" size="20" />
+
+    <br /><br />
+
+    <input type="submit" value="upload" class="btn" />
+
+</form>
+{if count($wishlists)>0}
+    {foreach $wishlists as $key => $wishlist}
+        <form method="POST" action="/wishlist/wishlistFront/deleteWL">
+            <table class="table">
+                <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                <thead>
+                    <tr>
+                        <td colspan="3">
+                            <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
+                            {echo $wishlist[0][access]}
+                            <div class="wishListDescription" >{$wishlist[0][description]}</div>
+                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
+                            <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>№</th>
+                        <th>Отписатся</th>
+                        <th>Товар</th>
+                        <th>Коментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach $wishlist as $key => $w}
                         <tr>
-                            <td colspan="3">
-                                <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
-                                {echo $wishlist[0][access]}
-                                <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                                <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
-                                <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
+                            <td>{echo $key+1}</td>
+                            <td>
+                                <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                            </td>
+                            <td>
+                                <a href="{shop_url('product/'.$w[url])}"
+                                   title="{$w[name]}">
+                                    {$w[name]}
+                                </a>
+                            </td>
+                            <td>
+                                {$w[comment]}
                             </td>
                         </tr>
-                        <tr>
-                            <th>№</th>
-                            <th>Отписатся</th>
-                            <th>Товар</th>
-                            <th>Коментарий</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach $wishlist as $key => $w}
-                            <tr>
-                                <td>{echo $key+1}</td>
-                                <td>
-                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                                </td>
-                                <td>
-                                    <a href="{shop_url('product/'.$w[url])}"
-                                       title="{$w[name]}">
-                                        {$w[name]}
-                                    </a>
-                                </td>
-                                <td>
-                                    {$w[comment]}
-                                </td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-                {form_csrf()}
-            </form>
-        {/foreach}
-    {else:}
-        Список Желания пуст
-    {/if}
+                    {/foreach}
+                </tbody>
+            </table>
+            {form_csrf()}
+        </form>
+    {/foreach}
+{else:}
+    Список Желания пуст
+{/if}
 </article>
 
