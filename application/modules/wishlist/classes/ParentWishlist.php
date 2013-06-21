@@ -169,6 +169,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function addItem($varId) {
+        if (!$this->dx_auth->is_logged_in())
+            $this->errors[] = 'Пользователь не залогинен';
+
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
@@ -185,11 +188,10 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
 
-        $this->wishlist_model->addItem($varId, $listId, $listName);
-
         if (count($this->errors)) {
             return false;
         } else {
+            $this->wishlist_model->addItem($varId, $listId, $listName);
             return true;
         }
     }
@@ -380,6 +382,5 @@ class ParentWishlist extends \MY_Controller {
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list');
     }
-
 
 }
