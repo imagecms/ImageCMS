@@ -41,6 +41,7 @@
                             <td>{echo $key+1}</td>
                             <td>
                                 <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
                             </td>
                             <td>
                                 <a href="{shop_url('product/'.$w[url])}"
@@ -52,41 +53,14 @@
                                 {$w[comment]}
                             </td>
                         </tr>
-                        <tr>
-                            <th>№</th>
-                            <th>Отписатся</th>
-                            <th>Товар</th>
-                            <th>Коментарий</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach $wishlist as $key => $w}
-                            <tr>
-                                <td>{echo $key+1}</td>
-                                <td>
-                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
-                                </td>
-                                <td>
-                                    <a href="{shop_url('product/'.$w[url])}"
-                                       title="{$w[name]}">
-                                        {$w[name]}
-                                    </a>
-                                </td>
-                                <td>
-                                    {$w[comment]}
-                                </td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-                {form_csrf()}
-            </form>
-        {/foreach}
-        {/foreach}
-    {else:}
-        Список Желания пуст
-    {/if}
-         
+                    {/foreach}
+                </tbody>
+            </table>
+            {form_csrf()}
+        </form>
+    {/foreach}
+{else:}
+    Список Желания пуст
+{/if}
 </article>
 
