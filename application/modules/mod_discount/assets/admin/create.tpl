@@ -127,7 +127,7 @@
                                     <div class="controls">
                                         <!--Start. Show if discount type is all_orders -->
                                         <div id="all_orderBlock" class="forHide" style="display: none;">
-                                            <input class="input-small" type="text" name="all_order[begin_value]" value="" />{echo $CS}
+                                            <input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="" maxlength="9"/>{echo $CS}
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" name="all_order[for_autorized]" value="1" class="noLimitCountCheck">
