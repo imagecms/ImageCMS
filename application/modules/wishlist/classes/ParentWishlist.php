@@ -87,7 +87,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function user($user_id) {
-        $user_wish_lists = $this->renderUserWL($userId, $access = "public");
+        $user_wish_lists = $this->renderUserWL($user_id, $access = array('public'));
         if ($user_wish_lists) {
             $this->dataModel = $user_wish_lists;
             return true;
@@ -192,11 +192,12 @@ class ParentWishlist extends \MY_Controller {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-
+        
+        $this->wishlist_model->addItem($varId, $listId, $listName);
+        
         if (count($this->errors)) {
             return false;
         } else {
-            $this->wishlist_model->addItem($varId, $listId, $listName);
             return true;
         }
     }
@@ -225,8 +226,8 @@ class ParentWishlist extends \MY_Controller {
 
     }
 
-    public function renderUserWL($userId, $access = 'shared') {
-        $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id());
+    public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
+        $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id(), $access);
 
         $w = array();
         foreach ($wishlists as $wishlist)
