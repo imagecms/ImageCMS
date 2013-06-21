@@ -84,6 +84,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      * Edit WL
      */
 //    public function editWL($wish_list_id) {
+//        if (!$this->input->post())
 //        if (parent::editWL($wish_list_id))
 //            return TRUE;
 //        else
@@ -115,39 +116,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function editItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     public function moveItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     function editWLName($id, $newName) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+
     }
 
     public function getWLbyHash($hash) {

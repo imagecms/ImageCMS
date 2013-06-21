@@ -108,7 +108,7 @@ class ParentWishlist extends \MY_Controller {
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
-        
+
         if (true)
             echo json_encode(array(
                 'answer' => 'sucesfull',
@@ -117,7 +117,6 @@ class ParentWishlist extends \MY_Controller {
             echo json_encode(array(
                 'answer' => 'error',
             ));
-
     }
 
     /**
@@ -125,7 +124,7 @@ class ParentWishlist extends \MY_Controller {
      */
     public function editWL($wish_list_id) {
         if ($wish_list_id) {
-            $wishlists = $this->wishlist_model->getUserWishList($this->dx_auth->get_user_id(), $wish_list_id);                   
+            $wishlists = $this->wishlist_model->getUserWishList($this->dx_auth->get_user_id(), $wish_list_id);
 
             $w = array();
             foreach ($wishlists as $wishlist)
@@ -134,7 +133,14 @@ class ParentWishlist extends \MY_Controller {
             return TRUE;
         } else {
             if ($this->input->post()) {
+
+                $this->db->where('id', $this->input->post(WLID));
+                $this->db->set('access', $this->input->post(access));
+                $this->db->update('mod_wish_list');
+
                 $this->db->where('wish_list_id', $this->input->post(WLID));
+                $this->db->set('access', $this->input->post(access));
+
                 foreach ($this->input->post(comment)as $key => $coments) {
                     $this->db->where('variant_id ', $key);
 
@@ -226,7 +232,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function renderUserWL($userId, $access = 'shared') {
-        $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id());
+        $wishlists = $this->wishlist_model->getUserWishListsByID($userId);
 
         $w = array();
         foreach ($wishlists as $wishlist)
@@ -256,7 +262,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function _install() {
-        $this->wishlist_model->install();        
+        $this->wishlist_model->install();
     }
 
     public function _deinstall() {
