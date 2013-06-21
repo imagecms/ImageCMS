@@ -35,16 +35,16 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('errors');
         }
     }
-     
-    public function moveItem($varId, $wish_list_id) { 
-            parent::deleteItem($varId, $wish_list_id, false);
-            if (parent::addItem($varId)) {
-               redirect('/wishlist');
-            } else {
-                \CMSFactory\assetManager::create()
-                        ->setData('errors', $this->errors)
-                        ->render('errors');
-            }
+
+    public function moveItem($varId, $wish_list_id) {
+        parent::deleteItem($varId, $wish_list_id, false);
+        if (parent::addItem($varId)) {
+            redirect('/wishlist');
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->setData('errors', $this->errors)
+                    ->render('errors');
+        }
     }
 
     public function all() {
@@ -67,7 +67,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', $this->dataModel)
                     ->render('other_list');
-        }else{
+        } else {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', 'empty')
                     ->render('other_list');
@@ -79,6 +79,10 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         \CMSFactory\assetManager::create()
                 ->setData('wishlists', $user_wish_lists)
                 ->render('other_wishlist');
+    }
+
+    public function userUpdate() {
+        parent::userUpdate();
     }
 
     public function renderWLButton($varId) {
@@ -102,7 +106,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('button', true);
     }
 
-    public function renderPopup($varId, $wish_list_id='') {
+    public function renderPopup($varId, $wish_list_id = '') {
         $wish_lists = $this->wishlist_model->getWishLists();
         $data = array('wish_lists' => $wish_lists);
 
@@ -131,7 +135,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         parent::updateWL();
         redirect('/wishlist');
     }
-    
 
 }
 
