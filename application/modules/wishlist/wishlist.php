@@ -14,7 +14,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
-        $w = parent::renderUserWL();
+        $w = parent::renderUserWL($this->dx_auth->get_user_id());
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->registerStyle('style')
@@ -101,6 +101,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function editWL($wish_list_id) {
+
         if (parent::editWL($wish_list_id))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
