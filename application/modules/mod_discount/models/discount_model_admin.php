@@ -66,6 +66,7 @@ class Discount_model_admin extends CI_Model {
      * get users by id name email
      * @param string $term
      * @param int $limit
+     * return boolean|array
      */
     public function getUsersByIdNameEmail($term, $limit = 7) {
         $query = $this->db
@@ -108,6 +109,7 @@ class Discount_model_admin extends CI_Model {
      * 
      * @param string $term
      * @param int $limit
+     * @return boolean|array
      */
     public function getProductsByIdNameNumber($term, $limit = 7) {
         $locale = MY_Controller::getCurrentLocale();
@@ -127,4 +129,59 @@ class Discount_model_admin extends CI_Model {
             return false;
                 
     }
+    
+    /**
+     * Insert data 
+     * @param string $tableName 
+     * @param array $data 
+     * @return boolean|int
+     */
+    public function insertDataToDB($tableName , $data) {
+        if ($tableName != null && $data != null){
+            
+            try {
+                $this->db->insert($tableName, $data);
+                return $this->db->insert_id();
+            }catch (Exception $e) {
+                return false;
+            }
+        }
+    }
+    
+    /**
+     * Check have any comulativ discount max endValue
+     * @return boolean
+     */
+    public function checkHaveAnyComulativDiscountMaxEndValue(){
+        $query = $this->db->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
+        
+        if (count($query))
+            return true;
+        else 
+            return false;
+    }
+    
+    /**
+     * Get discount all data by id
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getDiscountAllDataById($id) {
+        $query = $this->db->from('mod_shop_discounts')->where('id',$id)->get()->row_array();
+        
+        $discountType = $query['type_discount'];
+        
+        if ($discountType)
+            $queryDiscountType = $this->db->from('mod_discount_'.$discountType)->where('discount_id',$id)->get()->row_array();
+        
+        if ($queryDiscountType)
+            $query[$discountType] = $queryDiscountType;
+        
+        if ($query)
+            return $query;
+        else 
+            return false;
+    }
+
+    
 }

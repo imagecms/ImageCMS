@@ -12,11 +12,8 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/mod_discount" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button onclick="" type="button" class="btn btn-small btn-primary formSubmit" data-form="#createDiscountForm" data-submit>
+                <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('a_save')}
-                </button>
-                <button onclick="" type="button" class="btn btn-small action_on formSubmit" data-form="#createDiscountForm" data-action="tomain">
-                    <i class="icon-check"></i>{lang('a_footer_save_exit')}
                 </button>
             </div>
         </div>                            
@@ -40,7 +37,7 @@
                                     <div class="control-group pt_25" >
                                        <label class="control-label bold_text" for="Text">Описание:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" value="" />
+                                            <textarea name="name" maxlength="100" class=""></textarea>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -53,10 +50,10 @@
                                         </div>
                                         <div class="controls noLimitC">
                                             <label class="pt_25">Сколько раз будет использована скидка</label>
-                                            <input class="input-small" type="text" value="" disabled="disabled"/>
+                                            <input class="input-small onlyNumbersInput" type="text" value="" disabled="disabled" maxlength="3"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" checked="checked" name="max_apply" value="1" class="noLimitCountCheck">
+                                                    <input type="checkbox" checked="checked" name="max_apply" value="" class="noLimitCountCheck">
                                                 </span>
                                                 Бесконечно
                                             </span>
@@ -88,7 +85,7 @@
                                 </div>
                                 <div class="span4">
                                     <div class="width100 ml_50">
-                                        <input class="input-small required" type="text" name="value"/>
+                                        <input id="valueInput" class="input-small required" type="text" name="value" maxlength="9" />
                                         <div  id="typeValue">
                                             %
                                         </div>
@@ -148,9 +145,9 @@
                                         
                                          <!--Start. Show if discount type is comulativ -->
                                         <div id="comulativBlock" class="forHide" style="display: none;">
-                                            от <input class="input-small" type="text" name="comulativ[begin_value]" value="" />{echo $CS}
+                                            от <input class="input-small onlyNumbersInput required" type="text" name="comulativ[begin_value]" value="" maxlength="9" />{echo $CS}
                                             <div class="noLimitC"> 
-                                                до <input class="input-small" type="text" name="comulativ[end_value]" value="" />{echo $CS}
+                                                до <input class="input-small onlyNumbersInput" type="text" name="comulativ[end_value]" value="" maxlength="9"/>{echo $CS}
                                                 <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                     <span class="niceCheck" style="background-position: -46px 0px; ">
                                                         <input type="checkbox" class="noLimitCountCheck">
@@ -166,7 +163,7 @@
                                             <div>
                                                 <div>
                                                    <label> ID / ФИО / E-mail    :</label>
-                                                   <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                   <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input required" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                    <input id="discountUserId" type="hidden" name="user[user_id]" value=""/>
                                                 </div>
                                            </div>
@@ -197,7 +194,7 @@
                                         <div id="productBlock" class="forHide" style="display: none;">
                                             <div>
                                                 <label> Название / ID :</label>
-                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input required" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                 <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                                             </div>
                                         </div>
@@ -231,7 +228,7 @@
                                     <div class="control-group">
                                         <div class="controls width150">
                                             <label>Скидка начинается</label>
-                                            <input class="datepicker required" type="text" value="" name="date_begin" />
+                                            <input class="datepicker required" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +236,7 @@
                                     <div class="control-group noLimitC">
                                         <div class="ml_50 width150">
                                             <label>Скидка истекает</label>
-                                            <input class="datepicker" type="text" value="" name="date_end" />
+                                            <input class="datepicker" type="text" value="" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" name="date_end" value="1" class="noLimitCountCheck">

@@ -39,7 +39,6 @@ $(document).ready(
         var selectElement = $(this);
         discountType = selectElement.find("option:selected").val();
 
-        console.log(discountType);
         $('.forHide').hide();
         $('#'+discountType+'Block').show();
     })
@@ -50,7 +49,8 @@ $(document).ready(
     $('#selectTypeValue').bind('change',function (){
         var selectElement = $(this);
         valueType = selectElement.find("option:selected").val();
-
+        
+        $('#valueInput').val('');
         if (valueType == 1)
             $('#typeValue').text('%');
         else 
@@ -101,5 +101,37 @@ $(document).ready(
             });
         }
 
+
+        /**
+         * Make input only for numbers. If type of value == percent, then (1-100), if type of value == fixed, then type int. 
+         */
+         $('#valueInput').bind('keyup',function(){
+            var typeOfValue = $('#selectTypeValue').val();
+            var value = $(this).val(); 
+            var regexp = /[^0-9]/gi;
+            value = value.replace(regexp, '');
+            
+            // Can not begin from 0
+            if (parseInt(value) == 0)
+                value = '';
+            $(this).val(value);
+            
+            // Percent
+            if (typeOfValue == 1){
+                if (parseInt(value) >100){
+                    $(this).val(100);
+                }
+            }
+         })
+         
+         /**
+          * Make input only numbers (int)
+          */
+        $('.onlyNumbersInput').bind('keyup',function(){
+            var value = $(this).val(); 
+            var regexp = /[^0-9]/gi;
+            value = value.replace(regexp, '');
+            $(this).val(value);
+        })
 
 })
