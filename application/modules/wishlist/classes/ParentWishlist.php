@@ -87,7 +87,18 @@ class ParentWishlist extends \MY_Controller {
         } else {
             return false;
         }        
-    }   
+    }
+    
+    public function user($user_id){
+        $user_wish_lists = $this->renderUserWL($userId, $access="public");
+        if($user_wish_lists){
+            $this->dataModel = $user_wish_lists;
+            return true;
+        }else{
+            return false;
+        }
+     
+    }
 
     /**
      *
@@ -249,9 +260,10 @@ class ParentWishlist extends \MY_Controller {
         
     }
 
-    public function renderUserWL($userId, $type = '') {
+    public function renderUserWL($userId, $access = 'shared') {
         $wishlists = $this->db
                 ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
+                ->where('mod_wish_list.access', $access)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
                 ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                 ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
@@ -324,7 +336,7 @@ class ParentWishlist extends \MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'null' => FALSE
+                'auto_increment' => TRUE
             ),
             'wish_list_id' => array(
                 'type' => 'INT',
@@ -346,7 +358,7 @@ class ParentWishlist extends \MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'auto_increment' => TRUE
+                'null' => FALSE
             ),
             'user_name' => array(
                 'type' => 'VARCHAR',

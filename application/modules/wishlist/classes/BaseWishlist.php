@@ -43,6 +43,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist{
            return false;
        }       
     }
+    
+    public function user($user_id){        
+       if(parent::user($user_id)){
+           return $this->dataModel;
+       }else{
+           return false;
+       }       
+    }
 
     /**
      *

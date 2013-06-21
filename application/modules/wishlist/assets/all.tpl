@@ -7,7 +7,7 @@
                     <div>
                         <h2>Информация про пользователя</h2>
                         <div>
-                            <b>Имя: {$list['user']['user_name']}</b>
+                            <b>Имя: <a href="{site_url('/wishlist/user/'. $list['user']['id'])}">{$list['user']['user_name']}</a></b>
                         </div>
                         </br>                    
                         <div><img src="{site_url($list['user']['user_image'])}" alt='Ава' width="100"  height="100"/></div>
