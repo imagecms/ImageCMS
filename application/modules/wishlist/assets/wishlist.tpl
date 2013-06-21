@@ -28,32 +28,40 @@
                             <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
                         </td>
                     </tr>
+                    {if $wishlist[0][variant_id]}
                     <tr>
                         <th>№</th>
                         <th>Отписатся</th>
                         <th>Товар</th>
                         <th>Коментарий</th>
                     </tr>
+                    {/if}
                 </thead>
                 <tbody>
+                    {if $wishlist[0][variant_id]}
                     {foreach $wishlist as $key => $w}
-                        <tr>
-                            <td>{echo $key+1}</td>
-                            <td>
-                                <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                                <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
-                            </td>
-                            <td>
-                                <a href="{shop_url('product/'.$w[url])}"
-                                   title="{$w[name]}">
-                                    {$w[name]}
-                                </a>
-                            </td>
-                            <td>
-                                {$w[comment]}
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{echo $key+1}</td>
+                                <td>
+                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
+                                </td>
+                                <td>
+                                    <a href="{shop_url('product/'.$w[url])}"
+                                       title="{$w[name]}">
+                                        {$w[name]}
+                                    </a>
+                                </td>
+                                <td>
+                                    {$w[comment]}
+                                </td>
+                            </tr>
                     {/foreach}
+                    {else:}
+                        <tr>
+                            <td>Список пуст</td>
+                        </tr>
+                    {/if}
                 </tbody>
             </table>
             {form_csrf()}
