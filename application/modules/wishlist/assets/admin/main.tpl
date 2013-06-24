@@ -11,7 +11,7 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('a_back')}</span>
                 </a>
-                <a href="{$BASE_URL}admin/components/cp/wishlist/viewUsersWL"
+                <a href="{$BASE_URL}admin/components/cp/wishlist"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14"></span>
                     <span class="t-d_u">Список пользователей</span>

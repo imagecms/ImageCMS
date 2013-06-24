@@ -18,34 +18,32 @@ class Admin extends BaseAdminController {
     public function index() {
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
-                ->renderAdmin('main');
+                ->setData('users', $this->wishlist_model->getAllUsers())
+                ->renderAdmin('users');
     }
 
     public function update_settings() {
         if ($_POST) {
-            $settings = $_POST[settings];
             $this->wishlist_model->setSettings($_POST[settings]);
         }
     }
 
-    public function viewUsersWL() {
+    public function settings() {
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
-                ->setData('users', $this->wishlist_model->getAllUsers())
-                ->renderAdmin('users');
+                ->renderAdmin('main');
     }
 
     public function userWL($id) {
         $wishlist = new Wishlist();
         if ($wishlist->renderUserWL($id, array('public', 'shared', 'private')))
-            var_dump($wishlist->dataModel);
-        \CMSFactory\assetManager::create()
-                ->registerScript('wishlist')
-                ->registerStyle('style')
-                ->setData('wishlists', $wishlist->dataModel[wishlists])
-                ->setData('user', $wishlist->dataModel[user])
-                ->setData('settings', $wishlist->settings)
-                ->render('wishlist');
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $wishlist->dataModel[wishlists])
+                    ->setData('user', $wishlist->dataModel[user])
+                    ->setData('settings', $wishlist->settings)
+                    ->render('wishlist');
     }
 
 }
