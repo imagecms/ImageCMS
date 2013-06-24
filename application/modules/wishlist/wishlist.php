@@ -15,6 +15,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
+        $this->core->set_meta_tags('Wishlist');
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         if ($this->dx_auth->is_logged_in()) {
             if (parent::renderUserWL($this->dx_auth->get_user_id())) {
                 \CMSFactory\assetManager::create()
@@ -50,7 +52,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
              \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
                     ->render('errors');
-        }       
+        }
     }
 
     public function all() {
@@ -97,7 +99,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }else{
             return $this->errors;
         }
-    }    
+    }
 
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
@@ -112,7 +114,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             redirect('/wishlist');
         }else{
             return $this->errors;
-        }        
+        }
     }
 
     public function getMostPopularItems($limit = 10) {
