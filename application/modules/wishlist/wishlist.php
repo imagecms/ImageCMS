@@ -83,6 +83,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function userUpdate() {
         parent::userUpdate();
+        redirect('/wishlist');
     }
 
     public function renderWLButton($varId) {

@@ -17,7 +17,7 @@
 <form method="POST" action="/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
-    <input type="text" value="{echo $user[user_birthday]}" name="user_birthday"/>
+    <input type="date" value="{echo $user[user_birthday]}" name="user_birthday"/>
     <textarea name="description">{echo $user[description]}</textarea>
     <input type="submit" class="btn"/>
     {form_csrf()}
