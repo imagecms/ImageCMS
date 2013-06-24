@@ -102,6 +102,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $this->db->set('user_birthday', $user_birthday);
         $this->db->insert('mod_wish_list');
     }
+    
+    public function createWishList(){
+        if(parent::createWishList()){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }      
+    }
 
     /**
      * Edit WL

@@ -117,6 +117,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
+    
+    public function createWishList(){
+        parent::createWishList();
+        if($this->dataModel){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }      
+    }
 
     public function renderWLButton($varId) {
         if (!in_array($varId, $this->userWishProducts))
