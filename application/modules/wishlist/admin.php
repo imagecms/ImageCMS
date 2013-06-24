@@ -25,8 +25,7 @@ class Admin extends BaseAdminController {
         if ($_POST) {
             $settings = $_POST[settings];
             $this->wishlist_model->setSettings($_POST[settings]);
-        }
-
+        }       
     }
 
     public function viewUsersWL() {
