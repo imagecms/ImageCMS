@@ -118,7 +118,7 @@ class Wishlist_model extends CI_Model {
 
         return $ID;
     }
-    
+
     public function getMostPopularProducts($limit=10){
         return $this->db->select('COUNT(id) as productCount, variant_id,')
                         ->order_by('productCount', 'desc')
@@ -126,7 +126,7 @@ class Wishlist_model extends CI_Model {
                         ->limit($limit)
                         ->get('mod_wish_list_products')
                         ->result_array();
-        
+
     }
 
     public function insertWishList($title, $access, $description, $user_id) {
@@ -168,10 +168,15 @@ class Wishlist_model extends CI_Model {
         );
         return $this->db->insert('mod_wish_list', $data);
     }
-    
+
     public function getUserWishListCount($user_id) {
-       $this->db->where('user_id', $user_id)->get('mod_wish_list_users');
-       return $this->db->count_all_results();
+        $query = $this->db->where('user_id', $user_id)->get('mod_wish_list_users');
+        if ($query) {
+            $query = $query->result();
+            return $this->db->count_all_results();
+        }
+        else
+            return 0;
     }
     
     public function addRewiew($list_id){
@@ -282,12 +287,12 @@ class Wishlist_model extends CI_Model {
                 ->where('identif', 'wishlist')
                 ->update('components', array(
                     'settings' => serialize(array('maxListName' => 254,
-                                        'maxListsCount' => 10,
-                                        'maxItemsCount' => 100,
-                                        'maxCommentLenght' => 500,
-                                        'maxDescLenght' => 1000,
-                                        'maxImageWidth' => 150,
-                                        'maxImageHeight' => 150)),
+                        'maxListsCount' => 10,
+                        'maxItemsCount' => 100,
+                        'maxCommentLenght' => 500,
+                        'maxDescLenght' => 1000,
+                        'maxImageWidth' => 150,
+                        'maxImageHeight' => 150)),
                     'enabled' => 1,
                     'autoload' => 1,
         ));

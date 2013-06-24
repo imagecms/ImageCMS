@@ -126,15 +126,13 @@ class ParentWishlist extends \MY_Controller {
             return false;
         }
     }
-    public function userUpdate($user_name,$user_birthday,$description) {
-        var_dump($this->settings);exit;
 
-        if ($user_wish_lists) {
-
-            return true;
-        } else {
-            return false;
-        }
+    public function userUpdate($userID, $user_name, $user_birthday, $description) {
+        $this->db->where('id', $userID);
+        $this->db->set('user_name', $user_name);
+        $this->db->set('user_birthday', $user_birthday);
+        $this->db->set('description', $description);
+        return $this->db->update('mod_wish_list_users');
     }
 
     /**
@@ -194,45 +192,42 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function addItem($varId) {
-        if (!$this->dx_auth->is_logged_in()){
+        if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
         }
 
-        
+
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
         $count_lists = 0;
 
 
-        if (!$listId) {
+        if (!$listId)
             $listId = "";
-        }
 
-        if ($listName == 'Создать список') {
+        if ($listName == 'Создать список')
             $listName = "";
-        }
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        if($listName){
-            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
-        }
-        
-        if($count_lists >= $this->settings['maxListsCount']){
-             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
-             return FALSE;
-        }else{
-            $this->wishlist_model->addItem($varId, $listId, $listName);
-        }
-        
 
-        if (count($this->errors)) {
+        if ($listName)
+            $count_lists = $this->wishlist_model->getUserWishListCount();
+
+        if ($count_lists >= $this->settings['maxListsCount']) {
+            $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
-        } else {
-            $this->dataModel ="Добавлено";
+        }
+        else
+            $this->wishlist_model->addItem($varId, $listId, $listName);
+
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Добавлено";
             return TRUE;
         }
     }
@@ -312,13 +307,13 @@ class ParentWishlist extends \MY_Controller {
             return TRUE;
         }
     }
-    
-    public function getMostPopularItems($limit= 10){
+
+    public function getMostPopularItems($limit = 10) {
         $result = $this->wishlist_model->getMostPopularProducts($limit);
-        if($result){
+        if ($result) {
             $this->dataModel = $result;
             return TRUE;
-        }else{
+        } else {
             $this->error[] = 'Неверний запрос';
             return FALSE;
         }
