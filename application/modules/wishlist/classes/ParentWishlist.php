@@ -27,7 +27,7 @@ class ParentWishlist extends \MY_Controller {
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
         \CMSFactory\Events::create()->on('WishList:onShow')->setListener('addReview');
-        
+
     }
 
     private function writeCookies() {
@@ -82,13 +82,13 @@ class ParentWishlist extends \MY_Controller {
             \CMSFactory\Events::create()->registerEvent($list_id, 'WishList:onShow');
             \CMSFactory\Events::runFactory();
             $this->dataModel = $wishlist;
-            
+
             return true;
         } else {
             return false;
         }
     }
-    
+
     public function addReview($list_id){
         $sessID = $this->session->userdata('regenerated');
         if(!$this->input->cookie('wishListViewer')){
@@ -104,9 +104,9 @@ class ParentWishlist extends \MY_Controller {
             }
         }
         return FALSE;
-       
+
     }
-    
+
     public function getMostViewedWishLists($limit=10){
         $views = $this->wishlist_model->getMostViewedWishLists($limit);
         if($views){
@@ -148,26 +148,26 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
     }
-    
+
     public function createWishList(){
         $listName = $this->input->post('wishListName');
         $user_id = $this->input->post('user_id');
-        
+
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        
+
         $this->wishlist_model->createWishList($listName, $user_id);
-        
+
         if (count($this->errors))
             return FALSE;
         else {
             $this->dataModel = "Создано";
             return TRUE;
         }
-        
-        
+
+
     }
 
     /**
@@ -276,7 +276,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
-        $wishlists = $this->wishlist_model->getUserWishListsByID($this->dx_auth->get_user_id(), $access);
+        $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
         $userInfo = $this->getUserInfo();
         $w = array();
         foreach ($wishlists as $wishlist)

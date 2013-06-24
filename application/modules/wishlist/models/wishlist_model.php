@@ -74,7 +74,8 @@ class Wishlist_model extends CI_Model {
 
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
         return array_merge(
-                $this->db->where('mod_wish_list.user_id', $user_id)
+                $this->db
+                        ->where('mod_wish_list.user_id', $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->where_in('mod_wish_list.access', $access)
                         ->where('shop_products_i18n.locale', \MY_Controller::getCurrentLocale())
@@ -85,9 +86,11 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
                         ->result_array(),
-                $this->db->where_in('mod_wish_list.access', $access)
+                $this->db
+                        ->select('*, mod_wish_list.id AS `wish_list_id`')
+                        ->where_in('mod_wish_list.access', $access)
                         ->where('mod_wish_list_products.wish_list_id', NULL)
-                        ->where('mod_wish_list.user_id',  $user_id)
+                        ->where('mod_wish_list.user_id', $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->get('mod_wish_list')->result_array()
         );
@@ -119,14 +122,13 @@ class Wishlist_model extends CI_Model {
         return $ID;
     }
 
-    public function getMostPopularProducts($limit=10){
+    public function getMostPopularProducts($limit = 10) {
         return $this->db->select('COUNT(id) as productCount, variant_id,')
                         ->order_by('productCount', 'desc')
                         ->group_by('variant_id')
                         ->limit($limit)
                         ->get('mod_wish_list_products')
                         ->result_array();
-
     }
 
     public function insertWishList($title, $access, $description, $user_id) {
@@ -178,18 +180,18 @@ class Wishlist_model extends CI_Model {
         else
             return 0;
     }
-    
-    public function addRewiew($list_id){
+
+    public function addRewiew($list_id) {
         $count = $this->db->where('id', $list_id)
-                            ->select('review_count')
-                            ->get('mod_wish_list')
-                            ->row_array();        
+                ->select('review_count')
+                ->get('mod_wish_list')
+                ->row_array();
         return $this->db->where('id', $list_id)
-                        ->set('review_count', $count['review_count']+1)
+                        ->set('review_count', $count['review_count'] + 1)
                         ->update('mod_wish_list');
     }
-    
-    public function getMostViewedWishLists($limit=10){
+
+    public function getMostViewedWishLists($limit = 10) {
         return $this->db->select('id,title,review_count')->limit($limit)->get('mod_wish_list')->result_array();
     }
 
@@ -225,7 +227,7 @@ class Wishlist_model extends CI_Model {
             'review_count' => array(
                 'type' => 'INT',
                 'null' => FALSE,
-                'default'=> 0
+                'default' => 0
             )
         );
 

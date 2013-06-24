@@ -31,7 +31,21 @@ class Admin extends BaseAdminController {
     public function viewUsersWL() {
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
+                ->setData('users', $this->wishlist_model->getAllUsers())
                 ->renderAdmin('users');
+    }
+
+    public function userWL($id) {
+        $wishlist = new Wishlist();
+        if ($wishlist->renderUserWL($id, array('public', 'shared', 'private')))
+            var_dump($wishlist->dataModel);
+        \CMSFactory\assetManager::create()
+                ->registerScript('wishlist')
+                ->registerStyle('style')
+                ->setData('wishlists', $wishlist->dataModel[wishlists])
+                ->setData('user', $wishlist->dataModel[user])
+                ->setData('settings', $wishlist->settings)
+                ->render('wishlist');
     }
 
 }
