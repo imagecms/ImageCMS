@@ -7,7 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class Api extends \wishlist\classes\BaseApi {
+class WishlistApi extends \wishlist\classes\BaseApi {
 
     public function __construct() {
         parent::__construct();

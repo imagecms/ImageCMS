@@ -15,14 +15,19 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
-        if (parent::renderUserWL($this->dx_auth->get_user_id())) {
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->registerStyle('style')
-                    ->setData('wishlists', $this->dataModel[wishlists])
-                    ->setData('user', $this->dataModel[user])
-                    ->render('wishlist');
+        if ($this->dx_auth->is_logged_in()) {
+            if (parent::renderUserWL($this->dx_auth->get_user_id())) {
+                \CMSFactory\assetManager::create()
+                        ->registerScript('wishlist')
+                        ->registerStyle('style')
+                        ->setData('wishlists', $this->dataModel[wishlists])
+                        ->setData('user', $this->dataModel[user])
+                        ->setData('settings', $this->settings)
+                        ->render('wishlist');
+            }
         }
+        else
+            $this->core->error_404();
     }
 
     public function addItem($varId) {
@@ -38,27 +43,28 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function moveItem($varId, $wish_list_id) {
-        parent::deleteItem($varId, $wish_list_id, false);
-        if (parent::addItem($varId)) {
-            redirect('/wishlist');
+        parent::moveItem($varId, $wish_list_id);
+        if ($this->dataModel) {
+             redirect('/wishlist');
         } else {
-            \CMSFactory\assetManager::create()
+             \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
                     ->render('errors');
-        }
+        }       
     }
 
     public function all() {
         $lists = parent::all();
-        if ($lists) {
+        if ($this->dataModel) {
             \CMSFactory\assetManager::create()
-                    ->registerStyle('style')
                     ->setData('lists', $lists)
+                    ->setData('settings', $this->settings)
                     ->render('all');
         } else {
             \CMSFactory\assetManager::create()
-                    ->registerStyle('style')
+                    ->setData('lists', $this->errors)
                     ->setData('lists', $lists)
+                    ->setData('settings', $this->settings)
                     ->render('all');
         }
     }
@@ -75,6 +81,24 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
+    public function addReview($list_id){
+        parent::addReview($list_id);
+        if($this->dataModel){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+
+    public function getMostViewedWishLists($limit=10){
+        parent::getMostViewedWishLists($limit);
+        if($this->dataModel){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }    
+
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
         \CMSFactory\assetManager::create()
@@ -84,12 +108,26 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function userUpdate() {
         parent::userUpdate();
+        if($this->dataModel){
+            redirect('/wishlist');
+        }else{
+            return $this->errors;
+        }        
     }
-    
-    public function getMostPopularItems($limit= 10){
-       parent::getMostPopularItems($limit);
-       if($this->dataModel){
-           var_dumps($this->dataModel);
+
+    public function getMostPopularItems($limit = 10) {
+        parent::getMostPopularItems($limit);
+        if ($this->dataModel) {
+            var_dumps($this->dataModel);
+        } else {
+            return $this->errors;
+        }
+    }
+
+    public function createWishList(){
+        parent::createWishList();
+        if($this->dataModel){
+            return $this->dataModel;
         }else{
             return $this->errors;
         }
