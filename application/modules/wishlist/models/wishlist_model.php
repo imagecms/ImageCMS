@@ -214,6 +214,19 @@ class Wishlist_model extends CI_Model {
         else
             return 0;
     }
+    
+     public function getUserWishListItemsCount($user_id) {
+        $query = $this->db
+                            ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                            ->get('mod_wish_list');
+        if ($query) {
+            $query = $query->result();
+            return $this->db->count_all_results();
+        }
+        else
+            return 0;
+    }
+
 
     public function addRewiew($list_id) {
         $count = $this->db->where('id', $list_id)

@@ -309,6 +309,9 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
     }
+    public function getUserWishListItemsCount(){
+        var_dumps($this->wishlist_model->getUserWishListItemsCount(47));
+    }
 
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
