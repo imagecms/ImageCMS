@@ -4,6 +4,9 @@
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>
         </span>
     </label>
+    <div>
+        <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+    </div>
     {form_open_multipart('/wishlist/do_upload')}
 
     <input type="file" name="userfile" size="20" />
@@ -13,11 +16,10 @@
     <input type="submit" value="upload" class="btn" />
 
 </form>
-
 <form method="POST" action="/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
-    <input type="date" value="{echo $user[user_birthday]}" name="user_birthday"/>
+    <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
     <textarea name="description">{echo $user[description]}</textarea>
     <input type="submit" class="btn"/>
     {form_csrf()}
@@ -39,21 +41,21 @@
                         </td>
                     </tr>
                     {if $wishlist[0][variant_id]}
-                    <tr>
-                        <th>№</th>
-                        <th>Отписатся</th>
-                        <th>Товар</th>
-                        <th>Коментарий</th>
-                    </tr>
+                        <tr>
+                            <th>№</th>
+                            <th>Отписатся</th>
+                            <th>Товар</th>
+                            <th>Коментарий</th>
+                        </tr>
                     {/if}
                 </thead>
                 <tbody>
                     {if $wishlist[0][variant_id]}
-                    {foreach $wishlist as $key => $w}
+                        {foreach $wishlist as $key => $w}
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/wishlistFront/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
                                     <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
                                 </td>
                                 <td>
@@ -66,7 +68,7 @@
                                     {$w[comment]}
                                 </td>
                             </tr>
-                    {/foreach}
+                        {/foreach}
                     {else:}
                         <tr>
                             <td>Список пуст</td>

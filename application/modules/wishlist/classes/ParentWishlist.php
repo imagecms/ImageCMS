@@ -157,7 +157,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function addItem($varId) {
-        if (!$this->dx_auth->is_logged_in()){
+        if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
         }
@@ -168,31 +168,31 @@ class ParentWishlist extends \MY_Controller {
         $count_lists = 0;
 
 
-        if (!$listId) {
+        if (!$listId)
             $listId = "";
-        }
 
-        if ($listName == 'Создать список') {
+        if ($listName == 'Создать список')
             $listName = "";
-        }
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
 
-        if ($listName) {
+        if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount();
-        }
-        if ($count_lists >= $this->settings['maxListName']) {
+
+        if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
-        }
-
-
-        if (count($this->errors)) {
             return FALSE;
-        } else {
-            $this->dataModel ="Добавлено";
+        }
+        else
+            $this->wishlist_model->addItem($varId, $listId, $listName);
+
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Добавлено";
             return TRUE;
         }
     }
@@ -273,12 +273,12 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function getMostPopularItems($limit= 10){
+    public function getMostPopularItems($limit = 10) {
         $result = $this->wishlist_model->getMostPopularProducts($limit);
-        if($result){
+        if ($result) {
             $this->dataModel = $result;
             return TRUE;
-        }else{
+        } else {
             $this->error[] = 'Неверний запрос';
             return FALSE;
         }

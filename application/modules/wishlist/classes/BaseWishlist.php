@@ -33,12 +33,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
-    
+
     public function addItem($varId) {
         if (parent::addItem($varId)) {
             return $this->dataModel;
         } else {
-            return  $this->errors;
+            return $this->errors;
         }
     }
 
@@ -57,10 +57,11 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
-    public function getMostPopularItems($limit= 10){
-       if(parent::getMostPopularItems($limit)){
+
+    public function getMostPopularItems($limit = 10) {
+        if (parent::getMostPopularItems($limit)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
@@ -110,7 +111,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         else
             $desc = $this->input->post(description);
 
-        if (!strtotime($this->input->post(user_birthday)) + 50000)
+        if (!(strtotime($this->input->post(user_birthday)) + 50000))
             return false;
 
         parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
