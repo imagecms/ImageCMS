@@ -56,10 +56,10 @@
                                             {if $discount['max_apply'] != null && $discount['max_apply'] != '0'}  
                                                 {$maxApply = true;}
                                             {/if}
-                                            <input class="input-small onlyNumbersInput" type="text" {if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="3"/>
+                                            <input class="input-small onlyNumbersInput" type="text" name="max_apply"{if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="7"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" {if !$maxApply} checked="checked" {/if} name="max_apply" value="" class="noLimitCountCheck">
+                                                    <input type="checkbox" {if !$maxApply} checked="checked" {/if} class="noLimitCountCheck">
                                                 </span>
                                                 Бесконечно
                                             </span>
