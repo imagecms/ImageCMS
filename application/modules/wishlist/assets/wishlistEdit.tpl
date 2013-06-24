@@ -5,7 +5,6 @@
         </span>
     </label>
 
-{if count($wishlists)>0}
     {foreach $wishlists as $key => $wishlist}
         <form method="POST" action="/wishlist/updateWL">
             <table class="table">
@@ -13,7 +12,7 @@
                 <thead>
                     <tr>
                         <td colspan="3">
-                            <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
+                            <input type="text" value="{$wishlist[0][title]}" name="title"/>
                             <select name="access">
                                 <option {if $wishlist[0][access] == 'shared'}selected="selected"{/if} value="shared">shared</option>
                                 <option {if $wishlist[0][access] == 'private'}selected="selected"{/if} value="private">private</option>
@@ -55,8 +54,5 @@
             <input type="submit" class="btn"/>
         </form>
     {/foreach}
-{else:}
-    Список Желания пуст
-{/if}
 </article>
 

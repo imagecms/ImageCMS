@@ -15,7 +15,8 @@
                             {/foreach}
                             <label class="newWishListLable">
                                 <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
-                                <input type="text"  name="wishListName"  value="Создать список" class="wish_list_name">
+                                    Создать список
+                                <input type="text"  name="wishListName"  value="" class="wish_list_name">
                             </label>
                             <input type="submit" class="{$class}" id="{$varId}"  value="{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}"/>
                         </div>
@@ -23,32 +24,9 @@
                             <div class="error"></div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
         {form_csrf()}
     </form>
 </article>
-
-
-{literal}
-    <script>
-
-        $('.wish_list_name').mousedown(function() {
-            if ($(this).val() == "Создать список")
-            {
-                $(this).val('');
-            }
-        });
-        $('.wish_list_name').blur(function() {
-            if (!$(this).val())
-            {
-                $(this).val('Создать список');
-            }
-        });
-
-
-
-    </script>
-{/literal}
