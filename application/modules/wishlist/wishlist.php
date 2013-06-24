@@ -15,15 +15,19 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
-        if (parent::renderUserWL($this->dx_auth->get_user_id())) {
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->registerStyle('style')
-                    ->setData('wishlists', $this->dataModel[wishlists])
-                    ->setData('user', $this->dataModel[user])
-                    ->setData('settings', $this->settings)
-                    ->render('wishlist');
+        if ($this->dx_auth->is_logged_in()) {
+            if (parent::renderUserWL($this->dx_auth->get_user_id())) {
+                \CMSFactory\assetManager::create()
+                        ->registerScript('wishlist')
+                        ->registerStyle('style')
+                        ->setData('wishlists', $this->dataModel[wishlists])
+                        ->setData('user', $this->dataModel[user])
+                        ->setData('settings', $this->settings)
+                        ->render('wishlist');
+            }
         }
+        else
+            $this->core->error_404();
     }
 
     public function addItem($varId) {
@@ -90,11 +94,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         redirect('/wishlist');
     }
 
-    public function getMostPopularItems($limit= 10){
-       parent::getMostPopularItems($limit);
-       if($this->dataModel){
-           var_dumps($this->dataModel);
-        }else{
+    public function getMostPopularItems($limit = 10) {
+        parent::getMostPopularItems($limit);
+        if ($this->dataModel) {
+            var_dumps($this->dataModel);
+        } else {
             return $this->errors;
         }
     }
