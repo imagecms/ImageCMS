@@ -44,13 +44,11 @@ class Discount_model_front extends CI_Model {
 
     public function get_total_price($data) {
 
-        $ids = "(";
+        $price = 0;
         foreach ($data as $item)
-            $ids .= $item['variantId'] . ",";
-        $ids = rtrim($ids, ',') . ')';
-        $sql = "select sum(price) as price from shop_product_variants where id in $ids";
-        $result = $this->db->query($sql)->row();
-        return $result->price;
+            $price += $this->get_price($item['variantId']) * $item['quantity'];
+
+        return $price;
     }
 
     public function get_amout_user($id) {

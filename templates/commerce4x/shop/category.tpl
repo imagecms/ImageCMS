@@ -197,7 +197,7 @@
                                                                       data-url="{echo shop_url('product/'.$product->getUrl())}"
                                                                       data-price="{echo $pv->toCurrency()}"
                                                                       data-number="{echo $pv->getNumber()}"
-                                                                      data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                      data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
                                                     {lang('s_buy')}
@@ -219,7 +219,7 @@
                                                                       data-url="{echo shop_url('product/'.$product->getUrl())}"
                                                                       data-price="{echo $pv->toCurrency()}"
                                                                       data-number="{echo $pv->getNumber()}"
-                                                                      data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                      data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
 
                                                                       type="button"
