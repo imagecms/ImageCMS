@@ -26,6 +26,8 @@ class ParentWishlist extends \MY_Controller {
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+        \CMSFactory\Events::create()->on('WishList:onShow')->setListener('addReview');
+        
     }
 
     private function writeCookies() {
@@ -68,6 +70,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $lists;
             return true;
         } else {
+            $this->errors[] = 'Нет списков';
             return false;
         }
     }
@@ -76,10 +79,42 @@ class ParentWishlist extends \MY_Controller {
         $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
 
         if ($wishlist) {
+            \CMSFactory\Events::create()->registerEvent($list_id, 'WishList:onShow');
+            \CMSFactory\Events::runFactory();
             $this->dataModel = $wishlist;
+            
             return true;
         } else {
             return false;
+        }
+    }
+    
+    public function addReview($list_id){
+        $sessID = $this->session->userdata('regenerated');
+        if(!$this->input->cookie('wishListViewer')){
+            if($this->wishlist_model->addRewiew($list_id)){
+                $cookie = array(
+                    'name' => 'wishListViewer',
+                    'value' => $sessID,
+                    'expire' => 60*60*24,
+                    'prefix' => ''
+                );
+                $this->input->set_cookie($cookie);
+                return TRUE;
+            }
+        }
+        return FALSE;
+       
+    }
+    
+    public function getMostViewedWishLists($limit=10){
+        $views = $this->wishlist_model->getMostViewedWishLists($limit);
+        if($views){
+            $this->dataModel = $views;
+            return TRUE;
+        }else{
+            $this->errors[] = "Нет просмотров";
+            return FALSE;
         }
     }
 
