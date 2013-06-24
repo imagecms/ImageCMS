@@ -36,7 +36,6 @@
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
                             <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
                             <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
-                             <a href="/wishlist/getMostPopularItems/">gjgekzhys</a>
                         </td>
                     </tr>
                     {if $wishlist[0][variant_id]}
