@@ -123,7 +123,7 @@ class Admin extends BaseAdminController {
             $typeDiscount = $postArray['type_discount'];
             
             //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
+            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)){
                 showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
                 exit;
             }
@@ -205,7 +205,7 @@ class Admin extends BaseAdminController {
     public function ajaxChangeActive() {
        $id = $this->input->post('id');
 
-       return $this->discount_model_admin->changeActive($id);
+       echo $this->discount_model_admin->changeActive($id);
     }
     
     /**
