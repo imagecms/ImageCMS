@@ -21,6 +21,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel[wishlists])
                     ->setData('user', $this->dataModel[user])
+                    ->setData('settings', $this->settings)
                     ->render('wishlist');
         }
     }
@@ -54,11 +55,13 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             \CMSFactory\assetManager::create()
                     ->registerStyle('style')
                     ->setData('lists', $lists)
+                    ->setData('settings', $this->settings)
                     ->render('all');
         } else {
             \CMSFactory\assetManager::create()
                     ->registerStyle('style')
                     ->setData('lists', $lists)
+                    ->setData('settings', $this->settings)
                     ->render('all');
         }
     }
@@ -86,7 +89,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         parent::userUpdate();
         redirect('/wishlist');
     }
-    
+
     public function getMostPopularItems($limit= 10){
        parent::getMostPopularItems($limit);
        if($this->dataModel){
