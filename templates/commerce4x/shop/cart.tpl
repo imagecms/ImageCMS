@@ -125,6 +125,7 @@
                                             </div>
                                         {/if}
                                     </div>
+                                    {/*}
                                     {if ShopCore::app()->SSettings->usegifts == 1}
                                         <div class="groups_form" >
                                             <label for="giftcert">
@@ -141,6 +142,7 @@
                                             </label>
                                         </div>
                                     {/if}
+                                    { */}
                                     <div class="groups_form">
                                         <label>
                                             <span class="title">{lang('s_comment')}</span>
@@ -152,6 +154,7 @@
                                                 <div class="form_alert">
                                                     <div style="margin-bottom: 4px;" class="c_97">(Сумма товаров: <span class="f-w_b" id="totalPrice"></span> <span class="curr"></span> + Доставка: <span class="f-w_b" id="shipping"></span> <span class="curr"></span>)
                                                         <br/><span id="giftCertSpan" style="display: none;" >(Скидка подарочного сертификата: <span id="giftCertPrice" class="f-w_b"></span> )</span>
+                                                        <br/><span id="Discount" style="display: none;" ></span>
                                                     </div>
 
                                                     <span class="f-s_18">Сумма:</span> <span class="f-s_24" id="finalAmount"></span> <span class="f-s_14 curr"></span>

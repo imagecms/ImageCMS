@@ -178,6 +178,20 @@ class Wishlist_model extends CI_Model {
         else
             return 0;
     }
+    
+    public function addRewiew($list_id){
+        $count = $this->db->where('id', $list_id)
+                            ->select('review_count')
+                            ->get('mod_wish_list')
+                            ->row_array();        
+        return $this->db->where('id', $list_id)
+                        ->set('review_count', $count['review_count']+1)
+                        ->update('mod_wish_list');
+    }
+    
+    public function getMostViewedWishLists($limit=10){
+        return $this->db->select('id,title,review_count')->limit($limit)->get('mod_wish_list')->result_array();
+    }
 
     public function install() {
         mkdir('./uploads/mod_wishlist', 0777);
@@ -207,6 +221,11 @@ class Wishlist_model extends CI_Model {
             'user_id' => array(
                 'type' => 'INT',
                 'null' => FALSE
+            ),
+            'review_count' => array(
+                'type' => 'INT',
+                'null' => FALSE,
+                'default'=> 0
             )
         );
 

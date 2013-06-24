@@ -69,7 +69,7 @@
                                 data-number="{echo $hotProduct->firstVariant->getNumber()}"
                                 data-img="{echo $hotProduct->firstVariant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$hotProduct->getUrl())}"
-                                data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
                             {lang('s_buy')}

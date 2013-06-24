@@ -167,6 +167,8 @@
                 </div>
                 <!-- End orders history tab block -->
             </div>
+                        
+           {$CI->load->module('mod_discount/discount_api')->get_all_discount_information(true)}             
         </div>
     </div>
 </div>
