@@ -181,7 +181,7 @@ class Wishlist_model extends CI_Model {
     }
     
     public function createUserIfNotExist($user_id){
-        if (!$this->db->where('id', $user_id)->get('mod_wish_list')->result_array()) {
+        if (!$this->db->where('id', $user_id)->get('mod_wish_list_users')->result_array()) {
             $this->db->insert('mod_wish_list_users', array('id' => $user_id, 'user_name' => $this->dx_auth->get_username()));
             return TRUE;
         } 
