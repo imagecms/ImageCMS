@@ -141,9 +141,7 @@ $(document).ready(
          */
         $('.removeDiscountLink').bind('click',function (){
             var discountRow = $(this).closest('tr');
-            console.log(discountRow);
             var discountId= discountRow.data('id');
-            console.log(discountId);
             $.ajax({
                 async:false,
                 type: 'POST',
