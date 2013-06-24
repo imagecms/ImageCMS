@@ -309,12 +309,22 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
     }
-    public function getUserWishListItemsCount(){
-        var_dumps($this->wishlist_model->getUserWishListItemsCount(47));
+    public function getUserWishListItemsCount($user_id){
+        echo $this->wishlist_model->getUserWishListCount(47);
     }
 
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
+    }
+    
+    public function renderPopup(){
+        $wish_lists = $this->wishlist_model->getWishLists();
+        if($this->wishlist_model->getWishLists()){
+            $this->dataModel = $wish_lists;
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 
     public function autoload() {
