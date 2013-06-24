@@ -9,7 +9,7 @@
     </div>
     {form_open_multipart('/wishlist/do_upload')}
 
-        <input type="file" name="userfile" size="20" />
+        <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
         <br /><br />
 
@@ -47,7 +47,7 @@
                                 {echo $wishlist[0][access]}
                                 <div class="wishListDescription" >{$wishlist[0][description]}</div>
                                 <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
-                                <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}">редактировать</a>
+                                <a href="/wishlist/getUserWishListItemsCount/">редактировать</a>
                             </td>
                         </tr>
                         {if $wishlist[0][variant_id]}
