@@ -131,17 +131,17 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
         if(!$userID){
             $userID = $this->dx_auth->get_user_id();
-        }        
+        }
         if($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)){
             return TRUE;
         }else{
             return FALSE;
         }
     }
-    
+
     public function updateWL($id, $data, $comments) {
         $this->wishlist_model->upateWishList($id, $data);
-        $this->wishlist_model->upateWishListItemsComments($id, $comments);               
+        $this->wishlist_model->upateWishListItemsComments($id, $comments);
     }
     /**
      *
@@ -156,8 +156,8 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
     }
-    
-    public function createWishList($user_id, $listName){        
+
+    public function createWishList($user_id, $listName){
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
@@ -204,7 +204,7 @@ class ParentWishlist extends \MY_Controller {
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
-        }                
+        }
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
@@ -236,10 +236,10 @@ class ParentWishlist extends \MY_Controller {
 
         return $forReturn;
     }
-    
+
     public function moveItem($varId, $wish_list_id) {
-        parent::deleteItem($varId, $wish_list_id, false);
-        if (parent::addItem($varId)) {
+        $this->deleteItem($varId, $wish_list_id, false);
+        if ($this->addItem($varId)) {
             return TRUE;
         } else {
             return FALSE;
@@ -316,7 +316,7 @@ class ParentWishlist extends \MY_Controller {
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
-    
+
     public function renderPopup(){
         $wish_lists = $this->wishlist_model->getWishLists();
         if($this->wishlist_model->getWishLists()){
