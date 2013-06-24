@@ -158,6 +158,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
              return $this->errors[] = "Не удалось переместить";
          }       
     }
+    
+     public function renderPopup(){
+         if(parent::renderPopup()){
+             return $this->dataModel;
+         }else{
+             return $this->errors;
+         }
+        
+    }
 
   
     public function autoload() {

@@ -16,6 +16,13 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-
+    
+    public function renderPopup(){
+         if(parent::renderPopup()){
+             return $this->dataModel;
+         }else{
+             return $this->errors;
+         }        
+    }
 
 }
