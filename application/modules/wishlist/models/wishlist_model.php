@@ -14,11 +14,10 @@ class Wishlist_model extends CI_Model {
      * Get module settings
      */
     public function getSettings() {
-        $settings = $this->db
-                ->select('settings')
-                ->where('identif', 'wishlist')
-                ->get('components')
-                ->row_array();
+        $settings = $this->db->select('settings')
+                            ->where('identif', 'wishlist')
+                            ->get('components')
+                            ->row_array();
         $settings = unserialize($settings[settings]);
         return $settings;
     }
@@ -29,10 +28,8 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-        $forReturn = $this->db
-                ->where('identif', 'wishlist')
-                ->update('components', array('settings' => serialize($settings)));
-        return $forReturn;
+        return $this->db->where('identif', 'wishlist')
+                                ->update('components', array('settings' => serialize($settings)));
     }
 
     public function getWishLists() {
@@ -55,8 +52,7 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishList($user_id, $list_id) {
-        return $this->db
-                        ->where('mod_wish_list.user_id', $user_id)
+        return $this->db->where('mod_wish_list.user_id', $user_id)
                         ->where('mod_wish_list.id', $list_id)
                         ->where('shop_products_i18n.locale', \MY_Controller::getCurrentLocale())
                         ->where('shop_product_variants_i18n.locale', \MY_Controller::getCurrentLocale())
@@ -116,11 +112,10 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishProducts() {
-        $ids = $this->db
-                ->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
-                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                ->group_by('variant_id')
-                ->get('mod_wish_list');
+        $ids = $this->db->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
+                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                        ->group_by('variant_id')
+                        ->get('mod_wish_list');
 
         if ($ids)
             $ids = $ids->result_array();
@@ -155,12 +150,11 @@ class Wishlist_model extends CI_Model {
     
     public function upateWishListItemsComments($wish_list_id, $comments){
         foreach ($comments as $key => $coments) {
-            $this->db->where('wish_list_id', $wish_list_id);
-            $this->db->where('variant_id ', $key);
-            $this->db->set('comment', $coments);
-            $this->db->update('mod_wish_list_products');
+            $this->db->where('wish_list_id', $wish_list_id)
+                    ->where('variant_id ', $key)
+                    ->set('comment', $coments)
+                    ->update('mod_wish_list_products');
         }
-        
     }
 
     public function insertUser($user_id, $user_image, $user_birthday) {
@@ -185,7 +179,7 @@ class Wishlist_model extends CI_Model {
     }
     
     public function createUserIfNotExist($user_id){
-        if (!$this->db->where('user_id', $user_id)->get('mod_wish_list')->result_array()) {
+        if (!$this->db->where('id', $user_id)->get('mod_wish_list')->result_array()) {
             $this->db->insert('mod_wish_list_users', array('id' => $user_id, 'user_name' => $this->dx_auth->get_username()));
             return TRUE;
         } 
@@ -346,7 +340,6 @@ class Wishlist_model extends CI_Model {
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
     }
-
 }
 
 ?>
