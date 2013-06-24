@@ -9,7 +9,7 @@
     </div>
     {form_open_multipart('/wishlist/do_upload')}
 
-        <input type="file" name="userfile" size="20" />
+        <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
         <br /><br />
 
