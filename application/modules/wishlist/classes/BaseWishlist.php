@@ -30,7 +30,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         if ($parent) {
             return $this->dataModel;
         } else {
-            return false;
+            return $this->errors;
         }
     }
     
@@ -47,6 +47,23 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->dataModel;
         } else {
             return false;
+        }
+    }
+    
+    public function addReview($list_id){
+        if(parent::addReview($list_id)){
+            return $this->dataModel = "Увеличено";
+        }else{
+            return $this->errors[] = "Невозможно увеличить";
+        }
+       
+    }
+    
+    public function getMostViewedWishLists($limit=10){
+        if(parent::getMostViewedWishLists($limit)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
         }
     }
 
