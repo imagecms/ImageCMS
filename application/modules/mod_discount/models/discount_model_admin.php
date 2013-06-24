@@ -37,7 +37,7 @@ class Discount_model_admin extends CI_Model {
         else $active=1;
 
         if ($this->db->where('id',$id)->update('mod_shop_discounts',array('active'=>$active)))
-            return 'true';
+            return true;
         
         return false;
     }
@@ -177,11 +177,18 @@ class Discount_model_admin extends CI_Model {
     }
     
     /**
-     * Check have any comulativ discount max endValue
+     * Check have any comulativ discount max endValue. 
+     * 
+     * @param int $editDiscountId uses in order to not counting edited discount
      * @return boolean
      */
-    public function checkHaveAnyComulativDiscountMaxEndValue(){
-        $query = $this->db->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
+    public function checkHaveAnyComulativDiscountMaxEndValue($editDiscountId = null){
+        
+        $query = $this->db;
+        if ($editDiscountId)
+            $query = $query->where('discount_id !=',$editDiscountId);
+        
+        $query = $query->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
         
         if (count($query))
             return true;
