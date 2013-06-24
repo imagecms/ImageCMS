@@ -26,7 +26,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function addItem($varId) {
-        if (parent::addItem($varId)) {
+        parent::addItem($varId);
+        if ($this->dataModel) {
             redirect($this->input->cookie('url'));
         } else {
             \CMSFactory\assetManager::create()

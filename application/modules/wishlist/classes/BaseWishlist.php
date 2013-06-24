@@ -33,6 +33,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
+    
+    public function addItem($varId) {
+        if (parent::addItem($varId)) {
+            return $this->dataModel;
+        } else {
+            return  $this->errors;
+        }
+    }
 
     public function show($user_id, $list_id) {
         if (parent::show($user_id, $list_id)) {
