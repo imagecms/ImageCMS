@@ -50,9 +50,6 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function index() {
-//        if (!$this->checkPerm())
-//            $this->core->error_404();
-
         $this->renderUserWL();
     }
 
@@ -200,6 +197,7 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors)) {
             return FALSE;
         } else {
+            $this->dataModel ="Добавлено";
             return TRUE;
         }
     }
