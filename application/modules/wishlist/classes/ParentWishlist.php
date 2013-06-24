@@ -128,13 +128,21 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function userUpdate($userID, $user_name, $user_birthday, $description) {
-        $this->db->where('id', $userID);
-        $this->db->set('user_name', $user_name);
-        $this->db->set('user_birthday', $user_birthday);
-        $this->db->set('description', $description);
-        return $this->db->update('mod_wish_list_users');
+        $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
+        if(!$userID){
+            $userID = $this->dx_auth->get_user_id();
+        }        
+        if($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
-
+    
+    public function updateWL($id, $data, $comments) {
+        $this->wishlist_model->upateWishList($id, $data);
+        $this->wishlist_model->upateWishListItemsComments($id, $comments);               
+    }
     /**
      *
      * @param type $title
@@ -149,10 +157,7 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
     }
     
-    public function createWishList(){
-        $listName = $this->input->post('wishListName');
-        $user_id = $this->input->post('user_id');
-        
+    public function createWishList($user_id, $listName){        
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
@@ -163,27 +168,8 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = "Создано";
             return TRUE;
         }
-        
-        
-    }
-
-    /**
-     * Edit WL
-     */
-    public function editWL($wish_list_id) {
-        if ($wish_list_id) {
-            $wishlists = $this->wishlist_model->getUserWishList($this->dx_auth->get_user_id(), $wish_list_id);
-
-            $w = array();
-            foreach ($wishlists as $wishlist)
-                $w[$wishlist[title]][] = $wishlist;
-            $this->dataModel = $w;
-            return TRUE;
-        }
-        return FALSE;
     }
 
     /**
@@ -212,15 +198,12 @@ class ParentWishlist extends \MY_Controller {
      *
      * @return boolean
      */
-    public function addItem($varId) {
+    public function addItem($varId, $listId, $listName) {
+        $count_lists = 0;
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
-        }
-
-        $listId = $this->input->post('wishlist');
-        $listName = $this->input->post('wishListName');
-        $count_lists = 0;
+        }                
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
@@ -252,27 +235,21 @@ class ParentWishlist extends \MY_Controller {
 
         return $forReturn;
     }
-
-    public function editItem($id, $varId) {
-
-    }
-
-    public function moveItem($id, $varId) {
-
-    }
-
-    function editWLName($id, $newName) {
-
+    
+    public function moveItem($varId, $wish_list_id) {
+        parent::deleteItem($varId, $wish_list_id, false);
+        if (parent::addItem($varId)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     public function getUserInfo($id) {
         if (!$id)
             $id = $this->dx_auth->get_user_id();
 
-        return $this->db
-                        ->where('id', $id)
-                        ->get('mod_wish_list_users')
-                        ->row_array();
+        return $this->wishlist_model->getUserByID($id);
     }
 
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
@@ -332,17 +309,8 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function renderWLByHash($hash) {
-
-    }
-
-    /**
-     *
-     * @param type $id array()
-     */
-    public function deleteItemByIds($id) {
-        if (!$id)
-            return;
+    public function deleteItemByIds($ids) {
+        return $this->wishlist_model->deleteItemsByIDs($ids);
     }
 
     public function autoload() {

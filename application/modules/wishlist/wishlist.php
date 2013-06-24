@@ -39,14 +39,14 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function moveItem($varId, $wish_list_id) {
-        parent::deleteItem($varId, $wish_list_id, false);
-        if (parent::addItem($varId)) {
-            redirect('/wishlist');
+        parent::moveItem($varId, $wish_list_id);
+        if ($this->dataModel) {
+             redirect('/wishlist');
         } else {
-            \CMSFactory\assetManager::create()
+             \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
                     ->render('errors');
-        }
+        }       
     }
 
     public function all() {
@@ -94,8 +94,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }else{
             return $this->errors;
         }
-    }
-    
+    }    
 
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
@@ -106,7 +105,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function userUpdate() {
         parent::userUpdate();
-        redirect('/wishlist');
+        if($this->dataModel){
+            redirect('/wishlist');
+        }else{
+            return $this->errors;
+        }        
     }
 
     public function getMostPopularItems($limit= 10){
