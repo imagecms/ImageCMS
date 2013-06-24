@@ -162,8 +162,10 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function addItem($varId) {
-        if (!$this->dx_auth->is_logged_in())
+        if (!$this->dx_auth->is_logged_in()){
             $this->errors[] = 'Пользователь не залогинен';
+            return FALSE;
+        }
 
         
         $listId = $this->input->post('wishlist');
@@ -196,9 +198,9 @@ class ParentWishlist extends \MY_Controller {
         
 
         if (count($this->errors)) {
-            return false;
+            return FALSE;
         } else {
-            return true;
+            return TRUE;
         }
     }
 
@@ -275,6 +277,17 @@ class ParentWishlist extends \MY_Controller {
                     ->where('id', $this->dx_auth->get_user_id())
                     ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
+        }
+    }
+    
+    public function getMostPopularItems($limit= 10){
+        $result = $this->wishlist_model->getMostPopularProducts($limit);
+        if($result){
+            $this->dataModel = $result;
+            return TRUE;
+        }else{
+            $this->error[] = 'Неверний запрос';
+            return FALSE;
         }
     }
 

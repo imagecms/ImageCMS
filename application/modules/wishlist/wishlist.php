@@ -84,6 +84,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function userUpdate() {
         parent::userUpdate();
     }
+    
+    public function getMostPopularItems($limit= 10){
+       parent::getMostPopularItems($limit);
+       if($this->dataModel){
+           var_dumps($this->dataModel);
+        }else{
+            return $this->errors;
+        }
+    }
 
     public function renderWLButton($varId) {
         if (!in_array($varId, $this->userWishProducts))

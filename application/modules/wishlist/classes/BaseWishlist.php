@@ -49,6 +49,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
+    public function getMostPopularItems($limit= 10){
+       if(parent::getMostPopularItems($limit)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
 
     /**
      *
