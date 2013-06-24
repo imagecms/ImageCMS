@@ -68,6 +68,20 @@
                                     <input type = "number" name = "settings[maxDescLenght]" class="textbox_short" value="{$settings['maxDescLenght']}" id="maxDescLenght"/>
                                 </div>
                             </div>
+                                
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxImageWidth]">Максимальная ширина картинки пользователя</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxImageWidth]" class="textbox_short" value="{$settings['maxImageWidth']}" id="maxImageWidth"/>
+                                </div>
+                            </div>
+                                
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxImageHeight]">Максимальная висота картинки пользователя</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxImageHeight]" class="textbox_short" value="{$settings['maxImageHeight']}" id="maxImageHeight"/>
+                                </div>
+                            </div>
 
                         </div>
                     </td>

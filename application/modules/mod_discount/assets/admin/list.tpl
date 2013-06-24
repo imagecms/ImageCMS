@@ -16,8 +16,8 @@
             <table class="table table-striped table-bordered table-hover table-condensed discounts_table">
                 <thead>
                     <tr style="cursor: pointer;">
-                        <th class="span3">Название </th>
                         <th class="span3">Ключ</th>
+                        <th class="span3">Описание</th>
                         <th class="span2">Лимит</th>
                         <th class="span2">Использовано</th>
                         <th class="span2">Начaло действия</th>
@@ -44,13 +44,13 @@
                                     {foreach $discountsList as $discount}
                                     <tr>
                                         <td>
-                                            <a href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['name']}</a>
+                                            <a href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['key']}</a>
                                         </td>
-                                        <td><p>{echo $discount['key']}</p></td>
-                                        <td>{echo $discount['max_apply']}</td>
-                                        <td>{echo $discount['count_apply']}</td>
+                                        <td><p>{echo $discount['name']}</p></td>
+                                        <td>{if $discount['max_apply'] != 0}{echo $discount['max_apply']}{else:} Неограничено{/if}</td>
+                                        <td>{if $discount['count_apply'] != null}{echo $discount['count_apply']}{else:} - {/if}</td>
                                         <td>{echo date("Y-m-d H:i:s", $discount['date_begin'])}</td>
-                                        <td>{echo date("Y-m-d H:i:s", $discount['date_end'])}</td>
+                                        <td>{if $discount['date_end'] != 0}{echo date("Y-m-d H:i:s", $discount['date_end'])}{else:} - {/if}</td>
                                         <td>
                                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="показывать">
                                                 {if $discount['active'] == 1}
@@ -68,40 +68,6 @@
                     </tr>
                 </tbody>
             </table>
-    {/*<div class="clearfix">
-        <!-- Start. Pages -->
-            <div class="pagination pull-left">
-                <ul>
-                    <li class="btn-primary active"><span>1</span></li>
-                    <li>
-                        <a class="pjax" href="/admin/components/run/shop/search/index/?_pjax=%23mainContent&amp;per_page=24/">2</a>
-                    </li>
-                    <li>
-                        <a class="pjax" href="/admin/components/run/shop/search/index/?_pjax=%23mainContent&amp;per_page=48/">3</a>
-                    </li>
-                </ul>
-            </div>
-        <!-- End. Pages -->
-        
-        <!-- Start. Prev/ Next buttons -->
-        <div class="pagination pull-right">
-            <ul>
-                <li class="disabled"><span>&lt;&nbsp;Prev</span></li>
-                <li><a class="pjax" href="/admin/components/run/shop/search/index/?_pjax=%23mainContent&amp;per_page=24/">Next&nbsp;&gt;</a></li>
-            </ul>
-        </div>
-        <!-- End. Prev/ Next buttons -->
-        
-        <!-- Start. Per page block -->
-        <div class="pagination pull-right" style="margin-right: 25px;">
-                <select style="max-width:60px;" onchange="change_per_page(this);
-                return false;">
-                <option value="10">10</option>
-            </select>
-        </div>
-        <!-- End. Per page block -->
-        <div class="pagination pull-right" style="margin-right: 10px; margin-top: 24px;">На странице товаров:</div>
-    </div>*/}
     </div>
 </section>
     

@@ -7,7 +7,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistAJAX extends Wishlist {
+class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();
@@ -58,59 +58,35 @@ class WishlistAJAX extends Wishlist {
     /**
      * Edit WL
      */
-    public function editWL() {
-
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function editWL($wish_list_id) {
+        if ($_POST)
+            var_dump($_POST);
+        if (parent::editWL($wish_list_id))
+            redirect('/wishlist');
     }
 
     /**
      * delete full WL
      */
-    public function deleteWL() {
-        if (parent::deleteWL())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function deleteWL($wish_list_id) {
+        parent::deleteWL($wish_list_id);
+        redirect('/wishlist');
     }
 
-    public function addItem() {
-        if (parent::addItem()) {
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        }else{
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors
-            ));
+    public function addItem($varId) {
+        if (parent::addItem($varId)) {
+            redirect($this->input->cookie('url2'));
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('errors', $this->errors)
+                    ->render('errors');
         }
-
-                    
     }
 
-    public function deleteItem() {
-        if (parent::deleteItem())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
+    public function deleteItem($variant_id, $wish_list_id) {
+        parent::deleteItem($variant_id, $wish_list_id);
+        redirect('/wishlist');
     }
 
     public function editItem($id, $varId) {
@@ -183,22 +159,7 @@ class WishlistAJAX extends Wishlist {
      * @param type $varId
      */
     public function renderWLButton($varId) {
-        if (true)
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->setData('data', $data)
-                    ->setData('id', $varId)
-                    ->setData('value', 'Добавить в Список Желания')
-                    ->setData('class', 'btn')
-                    ->render('button', true);
-        else
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->setData('data', $data)
-                    ->setData('id', $varId)
-                    ->setData('value', 'Уже в Списке Желания')
-                    ->setData('class', 'btn inWL')
-                    ->render('button', true);
+        parent::renderWLButton($varId);
     }
 
     /**
