@@ -148,6 +148,27 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
     }
+    
+    public function createWishList(){
+        $listName = $this->input->post('wishListName');
+        $user_id = $this->input->post('user_id');
+        
+        if (strlen($listName) > $this->settings['maxListName']) {
+            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+            $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
+        }
+        
+        $this->wishlist_model->createWishList($listName, $user_id);
+        
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Создано";
+            return TRUE;
+        }
+        
+        
+    }
 
     /**
      * Edit WL
@@ -197,17 +218,9 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
 
-
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
         $count_lists = 0;
-
-
-        if (!$listId)
-            $listId = "";
-
-        if ($listName == 'Создать список')
-            $listName = "";
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
