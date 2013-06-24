@@ -30,7 +30,7 @@ class ParentWishlist extends \MY_Controller {
 
     private function writeCookies() {
         $this->load->helper('cookie');
-        if (!strstr($this->uri->uri_string(), 'wishlist')) {
+        if (!strstr($this->uri->uri_string(), 'wishlist') && !strstr($this->uri->uri_string(), 'sync')) {
             $cookie = array(
                 'name' => 'url',
                 'value' => $this->uri->uri_string(),
