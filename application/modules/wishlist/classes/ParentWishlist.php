@@ -94,15 +94,13 @@ class ParentWishlist extends \MY_Controller {
             return false;
         }
     }
-    public function userUpdate($user_name,$user_birthday,$description) {
-        var_dump($this->settings);exit;
 
-        if ($user_wish_lists) {
-
-            return true;
-        } else {
-            return false;
-        }
+    public function userUpdate($userID, $user_name, $user_birthday, $description) {
+        $this->db->where('id', $userID);
+        $this->db->set('user_name', $user_name);
+        $this->db->set('user_birthday', $user_birthday);
+        $this->db->set('description', $description);
+        return $this->db->update('mod_wish_list_users');
     }
 
     /**
@@ -165,7 +163,7 @@ class ParentWishlist extends \MY_Controller {
         if (!$this->dx_auth->is_logged_in())
             $this->errors[] = 'Пользователь не залогинен';
 
-        
+
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
         $count_lists = 0;
@@ -183,11 +181,11 @@ class ParentWishlist extends \MY_Controller {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
-        if($listName){
+        if ($listName) {
             $count_lists = $this->wishlist_model->getUserWishListCount();
         }
-        if($count_lists >= $this->settings['maxListName']){
-             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
+        if ($count_lists >= $this->settings['maxListName']) {
+            $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
         }
         $this->wishlist_model->addItem($varId, $listId, $listName);
 
