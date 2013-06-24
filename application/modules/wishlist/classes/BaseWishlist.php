@@ -52,16 +52,16 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
-    
+
     public function addReview($list_id){
         if(parent::addReview($list_id)){
             return $this->dataModel = "Увеличено";
         }else{
             return $this->errors[] = "Невозможно увеличить";
         }
-       
+
     }
-    
+
     public function getMostViewedWishLists($limit=10){
         if(parent::getMostViewedWishLists($limit)){
             return $this->dataModel;
@@ -98,7 +98,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
         parent::createWL($title, $access, $description, $user_id, $user_image, $user_birthday);
     }
-    
+
     public function createWishList(){
         $listName = $this->input->post('wishListName');
         $user_id = $this->input->post('user_id');        
@@ -107,7 +107,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->dataModel = "Создано";
         }else{
             return $this->errors;
-        }      
+        }
     }
 
     public function userUpdate() {        
@@ -133,6 +133,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $data = array('access' => $this->input->post(access));        
         $comments = $this->input->post(comment);
         parent::updateWL($id, $data, $comments);
+
     }
 
     /**

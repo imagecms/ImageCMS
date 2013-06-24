@@ -79,13 +79,15 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
+        $locale = \MY_Controller::getCurrentLocale();
+
         return array_merge(
                 $this->db
                         ->where('mod_wish_list.user_id', $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->where_in('mod_wish_list.access', $access)
-                        ->where('shop_products_i18n.locale', \MY_Controller::getCurrentLocale())
-                        ->where('shop_product_variants_i18n.locale', \MY_Controller::getCurrentLocale())
+                        ->where('shop_products_i18n.locale', $locale)
+                        ->where('shop_product_variants_i18n.locale', $locale)
                         ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
                         ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')

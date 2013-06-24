@@ -5,6 +5,20 @@
                 <span class="help-inline"></span>
                 <span class="title">{lang('a_users_list')}</span>
             </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/modules_table"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span>
+                        <span class="t-d_u">{lang('a_back')}</span>
+                    </a>
+                    <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14"></span>
+                        <span class="t-d_u">Настройки</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="content_big_td row-fluid">
 
@@ -33,7 +47,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="{$ADMIN_URL}userWL/{echo $u[id]}" class="pjax">{echo $u[id]}</a>
+                                        <a href="{$ADMIN_URL}wishlist/userWL/{echo $u[id]}" class="pjax">{echo $u[id]}</a>
                                     </td>
                                     <td>
                                         <a href="{$ADMIN_URL}users/edit/{echo $u[id]}" class="pjax" data-rel="tooltip">
