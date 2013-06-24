@@ -84,7 +84,10 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
-                        ->result_array(), $this->db->where_in('mod_wish_list.access', $access)
+                        ->result_array(),
+                $this->db->where_in('mod_wish_list.access', $access)
+                        ->where('mod_wish_list_products.wish_list_id', NULL)
+                        ->where('mod_wish_list.user_id',  $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->get('mod_wish_list')->result_array()
         );
@@ -114,6 +117,16 @@ class Wishlist_model extends CI_Model {
         }
 
         return $ID;
+    }
+
+    public function getMostPopularProducts($limit=10){
+        return $this->db->select('COUNT(id) as productCount, variant_id,')
+                        ->order_by('productCount', 'desc')
+                        ->group_by('variant_id')
+                        ->limit($limit)
+                        ->get('mod_wish_list_products')
+                        ->result_array();
+
     }
 
     public function insertWishList($title, $access, $description, $user_id) {

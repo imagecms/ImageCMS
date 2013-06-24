@@ -30,7 +30,7 @@ class ParentWishlist extends \MY_Controller {
 
     private function writeCookies() {
         $this->load->helper('cookie');
-        if (!strstr($this->uri->uri_string(), 'wishlist')) {
+        if (!strstr($this->uri->uri_string(), 'wishlist') && !strstr($this->uri->uri_string(), 'sync')) {
             $cookie = array(
                 'name' => 'url',
                 'value' => $this->uri->uri_string(),
@@ -50,9 +50,6 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function index() {
-//        if (!$this->checkPerm())
-//            $this->core->error_404();
-
         $this->renderUserWL();
     }
 
@@ -160,8 +157,10 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function addItem($varId) {
-        if (!$this->dx_auth->is_logged_in())
+        if (!$this->dx_auth->is_logged_in()){
             $this->errors[] = 'Пользователь не залогинен';
+            return FALSE;
+        }
 
 
         $listId = $this->input->post('wishlist');
@@ -181,18 +180,20 @@ class ParentWishlist extends \MY_Controller {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
             $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
         }
+
         if ($listName) {
             $count_lists = $this->wishlist_model->getUserWishListCount();
         }
         if ($count_lists >= $this->settings['maxListName']) {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
         }
-        $this->wishlist_model->addItem($varId, $listId, $listName);
+
 
         if (count($this->errors)) {
-            return false;
+            return FALSE;
         } else {
-            return true;
+            $this->dataModel ="Добавлено";
+            return TRUE;
         }
     }
 
@@ -269,6 +270,17 @@ class ParentWishlist extends \MY_Controller {
                     ->where('id', $this->dx_auth->get_user_id())
                     ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
+        }
+    }
+
+    public function getMostPopularItems($limit= 10){
+        $result = $this->wishlist_model->getMostPopularProducts($limit);
+        if($result){
+            $this->dataModel = $result;
+            return TRUE;
+        }else{
+            $this->error[] = 'Неверний запрос';
+            return FALSE;
         }
     }
 

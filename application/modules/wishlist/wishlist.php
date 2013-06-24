@@ -26,7 +26,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function addItem($varId) {
-        if (parent::addItem($varId)) {
+        parent::addItem($varId);
+        if ($this->dataModel) {
             redirect($this->input->cookie('url'));
         } else {
             \CMSFactory\assetManager::create()
@@ -84,6 +85,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function userUpdate() {
         parent::userUpdate();
         redirect('/wishlist');
+    }
+    
+    public function getMostPopularItems($limit= 10){
+       parent::getMostPopularItems($limit);
+       if($this->dataModel){
+           var_dumps($this->dataModel);
+        }else{
+            return $this->errors;
+        }
     }
 
     public function renderWLButton($varId) {
