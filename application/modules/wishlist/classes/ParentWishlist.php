@@ -26,6 +26,8 @@ class ParentWishlist extends \MY_Controller {
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+        \CMSFactory\Events::create()->on('WishList:onShow')->setListener('addReview');
+        
     }
 
     private function writeCookies() {
@@ -68,6 +70,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $lists;
             return true;
         } else {
+            $this->errors[] = 'Нет списков';
             return false;
         }
     }
@@ -76,10 +79,42 @@ class ParentWishlist extends \MY_Controller {
         $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
 
         if ($wishlist) {
+            \CMSFactory\Events::create()->registerEvent($list_id, 'WishList:onShow');
+            \CMSFactory\Events::runFactory();
             $this->dataModel = $wishlist;
+            
             return true;
         } else {
             return false;
+        }
+    }
+    
+    public function addReview($list_id){
+        $sessID = $this->session->userdata('regenerated');
+        if(!$this->input->cookie('wishListViewer')){
+            if($this->wishlist_model->addRewiew($list_id)){
+                $cookie = array(
+                    'name' => 'wishListViewer',
+                    'value' => $sessID,
+                    'expire' => 60*60*24,
+                    'prefix' => ''
+                );
+                $this->input->set_cookie($cookie);
+                return TRUE;
+            }
+        }
+        return FALSE;
+       
+    }
+    
+    public function getMostViewedWishLists($limit=10){
+        $views = $this->wishlist_model->getMostViewedWishLists($limit);
+        if($views){
+            $this->dataModel = $views;
+            return TRUE;
+        }else{
+            $this->errors[] = "Нет просмотров";
+            return FALSE;
         }
     }
 
@@ -112,6 +147,27 @@ class ParentWishlist extends \MY_Controller {
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
         $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
+    }
+    
+    public function createWishList(){
+        $listName = $this->input->post('wishListName');
+        $user_id = $this->input->post('user_id');
+        
+        if (strlen($listName) > $this->settings['maxListName']) {
+            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+            $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
+        }
+        
+        $this->wishlist_model->createWishList($listName, $user_id);
+        
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Создано";
+            return TRUE;
+        }
+        
+        
     }
 
     /**
@@ -162,17 +218,9 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
 
-
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
         $count_lists = 0;
-
-
-        if (!$listId)
-            $listId = "";
-
-        if ($listName == 'Создать список')
-            $listName = "";
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
