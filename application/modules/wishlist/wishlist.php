@@ -15,6 +15,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     function index() {
+        $this->core->set_meta_tags('Wishlist');
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         if ($this->dx_auth->is_logged_in()) {
             if (parent::renderUserWL($this->dx_auth->get_user_id())) {
                 \CMSFactory\assetManager::create()
@@ -50,7 +52,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
              \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
                     ->render('errors');
-        }       
+        }
     }
 
     public function all() {
@@ -97,7 +99,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }else{
             return $this->errors;
         }
-    }    
+    }
 
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
@@ -112,7 +114,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             redirect('/wishlist');
         }else{
             return $this->errors;
-        }        
+        }
     }
 
     public function getMostPopularItems($limit = 10) {
@@ -134,6 +136,12 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function renderWLButton($varId) {
+        if($this->dx_auth->is_logged_in()){
+            $href = '/wishlist/renderPopup/' . $varId;
+        }else{
+            $href = '/auth/login';
+        }
+        
         if (!in_array($varId, $this->userWishProducts))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
@@ -141,6 +149,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('varId', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
+                    ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
@@ -148,6 +157,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
+                    ->setData('href', $href)
                     ->setData('value', 'Уже в Списке Желания')
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
