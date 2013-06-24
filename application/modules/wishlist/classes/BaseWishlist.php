@@ -33,12 +33,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
+
     public function addItem($varId) {
         if (parent::addItem($varId)) {
             return $this->dataModel;
         } else {
-            return  $this->errors;
+            return $this->errors;
         }
     }
 
@@ -74,10 +74,11 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
-    public function getMostPopularItems($limit= 10){
-       if(parent::getMostPopularItems($limit)){
+
+    public function getMostPopularItems($limit = 10) {
+        if (parent::getMostPopularItems($limit)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
@@ -100,7 +101,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $this->db->set('user_image', $user_image);
         $this->db->set('user_birthday', $user_birthday);
         $this->db->insert('mod_wish_list');
-
     }
 
     /**
@@ -123,13 +123,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function userUpdate() {
-        if (parent::userUpdate($this->input->post(user_name),$this->input->post(user_birthday),$this->input->post(description))) {
-            $this->db->where('id', $this->input->post(user_id));
-            $this->db->set('user_name', $this->input->post(user_name));
-            $this->db->set('user_birthday', $this->input->post(user_birthday));
-            $this->db->set('description', $this->input->post(description));
-            $this->db->update('mod_wish_list_users');
-        }
+        if ($this->settings[maxDescLenght] < iconv_strlen($this->input->post(description), 'UTF-8'))
+            $desc = substr($this->input->post(description), 0, $this->settings[maxDescLenght]);
+        else
+            $desc = $this->input->post(description);
+
+        if (!(strtotime($this->input->post(user_birthday)) + 50000))
+            return false;
+
+        parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
     }
 
     public function updateWL() {
