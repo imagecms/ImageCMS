@@ -5,13 +5,13 @@ $(document).ready(
      * Change is discount active or not
      */
     $('.discounts_table').find('span.prod-on_off').add($('[data-page="tovar"]')).on('click', function() {
-        var discount_id = $(this).attr('data-id');
+        var discountId = $(this).attr('data-id');
         $.ajax({
             type: 'POST',
-            data: 'id=' + discount_id, 
-            url:'mod_discount/ajaxChangeActive',
+            data: 'id=' + discountId, 
+            url: base_url+'admin/components/init_window/mod_discount/ajaxChangeActive',
             success: function(response) {
-                if (response = 'true')
+                if (response == true)
                     showMessage('Статус изменен','','g')
             }
         });
@@ -63,7 +63,7 @@ $(document).ready(
     $('#generateDiscountKey').bind('click', function (){
         $.ajax({
             type: 'POST',
-            url:'generateDiscountKey',
+            url: base_url+'admin/components/init_window/mod_discount/generateDiscountKey',
             success: function(response) {
                 if (response != null)
                     $('#discountKey').val(response);
@@ -76,12 +76,13 @@ $(document).ready(
       */
         if($('#usersForDiscount').length){
             $('#usersForDiscount').autocomplete({
-                source: 'autoCompliteUsers?limit=25',
+                source: base_url+'admin/components/init_window/mod_discount/autoCompliteUsers?limit=25',
                 select: function(event, ui) {
                     userData = ui.item;
                 },
                 close: function() {
                     $('#discountUserId').val(userData.id);
+                    $('.hideAfterAutocomlite').hide();
                 }
             });
         }
@@ -91,12 +92,13 @@ $(document).ready(
          */
         if($('#productForDiscount').length){
             $('#productForDiscount').autocomplete({
-                source: 'autoCompliteProducts?limit=25',
+                source: base_url+'admin/components/init_window/mod_discount/autoCompliteProducts?limit=25',
                 select: function(event, ui) {
                     productsData = ui.item;
                 },
                 close: function() {
                  $('#discountProductId').val(productsData.id);
+                 $('.hideAfterAutocomlite').hide();
                 }
             });
         }
@@ -133,5 +135,37 @@ $(document).ready(
             value = value.replace(regexp, '');
             $(this).val(value);
         })
-
+        
+        /**
+         * Remove discount from list
+         */
+        $('.removeDiscountLink').bind('click',function (){
+            var discountRow = $(this).closest('tr');
+            console.log(discountRow);
+            var discountId= discountRow.data('id');
+            console.log(discountId);
+            $.ajax({
+                async:false,
+                type: 'POST',
+                data: 'id=' + discountId, 
+                url: base_url+'admin/components/init_window/mod_discount/ajaxDeleteDiscount',
+                success: function(response) {
+                    if (response == true)
+                        discountRow.hide();
+                        showMessage('Cкидку удалено!','','g')
+                }
+            })
+            
+        })
+        
+        /**
+         * Filter list by discount type 
+         */
+        $('#selectFilterDiscountType').bind('change',function(){
+            var option = $(this).val();
+            if (option)
+                window.location.replace(base_url+'admin/components/init_window/mod_discount/index?filterBy='+option);
+            else
+                window.location.replace(base_url+'admin/components/init_window/mod_discount/index');
+        })
 })

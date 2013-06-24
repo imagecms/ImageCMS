@@ -181,7 +181,7 @@ class Wishlist_model extends CI_Model {
     }
     
     public function createUserIfNotExist($user_id){
-        if (!$this->db->where('id', $user_id)->get('mod_wish_list')->result_array()) {
+        if (!$this->db->where('id', $user_id)->get('mod_wish_list_users')->result_array()) {
             $this->db->insert('mod_wish_list_users', array('id' => $user_id, 'user_name' => $this->dx_auth->get_username()));
             return TRUE;
         } 
@@ -206,14 +206,25 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishListCount($user_id) {
-        $query = $this->db->where('id', $user_id)->get('mod_wish_list_users');
+        $query = $this->db->where('user_id', $user_id)->get('mod_wish_list');
         if ($query) {
-            $query = $query->result();
-            return $this->db->count_all_results();
+            return count($query->result_array());
         }
         else
             return 0;
     }
+    
+     public function getUserWishListItemsCount($user_id) {
+        $query = $this->db->where('mod_wish_list.user_id', $user_id)
+                            ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                            ->get('mod_wish_list');
+        if ($query) {
+             return count($query->result_array());
+        }
+        else
+            return 0;
+    }
+
 
     public function addRewiew($list_id) {
         $count = $this->db->where('id', $list_id)

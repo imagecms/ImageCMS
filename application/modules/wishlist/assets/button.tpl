@@ -1,5 +1,5 @@
 {if $class != 'btn inWL'}
-    <form method="post" action="{site_url('/wishlist/renderPopup/'.$varId)}">
+    <form method="post" action="{site_url($href)}">
         <input type="submit"
                class="{$class}"
                id='{echo $varId}'
