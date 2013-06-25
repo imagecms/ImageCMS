@@ -1,4 +1,8 @@
 <article class="container">
+    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
+        <a href="#" class="APItester">Проверка API</a>
+        <textarea class="testAPI" style="font-size: 13px; line-height: 26px; padding: 10px; height: 200px; " ></textarea>
+    <!-- ******************************************************************************** -->
     <label>
         <span class="frame_form_field__icsi-css">
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>

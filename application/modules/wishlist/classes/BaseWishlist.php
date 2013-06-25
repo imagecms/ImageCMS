@@ -44,6 +44,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
+    
+    public function moveItem($varId, $wish_list_id) {
+        if (parent::moveItem($varId, $wish_list_id)) {
+            return $this->dataModel = "Операция успешна";
+        } else {
+            return $this->errors[] = "Не удалось переместить";
+        }
+    }
 
     public function show($user_id, $list_id) {
         if (parent::show($user_id, $list_id)) {
@@ -165,13 +173,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function moveItem($varId, $wish_list_id) {
-        if (parent::moveItem($varId, $wish_list_id)) {
-            return $this->dataModel = "Операция успешна";
-        } else {
-            return $this->errors[] = "Не удалось переместить";
-        }
-    }
+    
     
      public function renderPopup(){
          if(parent::renderPopup()){
