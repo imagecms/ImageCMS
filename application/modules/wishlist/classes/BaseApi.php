@@ -150,6 +150,15 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         parent::updateWL($id, $data, $desc, $title);
     }
     
+    public function deleteImage(){
+       $image = $this->input->post('image');
+       if(parent::deleteImage($image)){
+           return $this->dataModel[] = "Успешно удалено";
+       }else{
+           return $this->errors[] = "Ошибка";
+       }
+    }
+    
     public function do_upload() {
         if (parent::do_upload($this->input->post(userID))) {
             return $this->dataModel[] = 'Картинка загружена';
