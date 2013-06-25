@@ -40,6 +40,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
      */
     public function autoload() {
         \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
+        \CMSFactory\Events::create()->on('MakeOrder')->setListener('make_order_with_discount');
     }
     
     /**
@@ -55,6 +56,19 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
         $obj = new \mod_discount\discount_product;
         $obj->get_product_discount_event($product);
 
+    }
+    
+     /**
+     * update order with discount and gift
+     * @access public
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */   
+    public function make_order_with_discount($data){
+        $obj = new \mod_discount\discount_order;
+        $obj->update_order_discount($data);
     }
     
     public function register_script(){

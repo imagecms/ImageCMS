@@ -372,16 +372,29 @@ function recountCartPage() {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     delete ca;
 
-    if ($.isFunction(window.get_discount)){
+
+    if ($.isFunction(window.load_certificat)) {
+        load_certificat();
+    }
+
+    if ($.isFunction(window.get_discount)) {
         get_discount();
     }
-    
+
+
     var discount = Shop.Cart.discount;
     var finalAmount = parseFloat(Shop.Cart.getFinalAmount());
 
-    if (discount != null && discount != 0 )
+    if (discount != null && discount != 0)
         finalAmount = finalAmount - parseFloat(discount['result_sum_discount_convert']);
     
+
+    if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
+        finalAmount = finalAmount - parseFloat(Shop.Cart.gift.value);
+    
+    if (finalAmount - Shop.Cart.shipping < 0)
+        finalAmount = Shop.Cart.shipping;
+
     $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
     $('span#finalAmount').html(finalAmount.toFixed(pricePrecision));
     $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
@@ -696,36 +709,36 @@ $(document).ready(function() {
         wishListCount();
     });
 
-    $('#applyGiftCert').on('click', function() {
-        $('input[name=makeOrder]').val(0);
-        $('input[name=checkCert]').val(1);
-        $('#makeOrderForm').ajaxSubmit({
-            url: '/shop/cart_api/getGiftCert',
-            success: function(data) {
-                try {
-                    var dataObj = JSON.parse(data);
-
-                    Shop.Cart.giftCertPrice = dataObj.cert_price;
-
-                    if (Shop.Cart.giftCertPrice > 0)
-                    {// apply certificate
-                        $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision) + ' ' + curr);
-                        $('#giftCertSpan').show();
-                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
-                    }
-
-                    Shop.Cart.totalRecount();
-                    recountCartPage();
-                } catch (e) {
-                    //console.error('Checking gift certificate filed. '+e.message);
-                }
-            }
-        });
-
-        $('input[name=makeOrder]').val(1);
-
-        return false;
-    });
+//    $('#applyGiftCert').on('click', function() {
+//        $('input[name=makeOrder]').val(0);
+//        $('input[name=checkCert]').val(1);
+//        $('#makeOrderForm').ajaxSubmit({
+//            url: '/shop/cart_api/getGiftCert',
+//            success: function(data) {
+//                try {
+//                    var dataObj = JSON.parse(data);
+//
+//                    Shop.Cart.giftCertPrice = dataObj.cert_price;
+//
+//                    if (Shop.Cart.giftCertPrice > 0)
+//                    {// apply certificate
+//                        $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision) + ' ' + curr);
+//                        $('#giftCertSpan').show();
+//                        //$('input[name=giftcert], #applyGiftCert').attr('disabled', 'disabled')
+//                    }
+//
+//                    Shop.Cart.totalRecount();
+//                    recountCartPage();
+//                } catch (e) {
+//                    //console.error('Checking gift certificate filed. '+e.message);
+//                }
+//            }
+//        });
+//
+//        $('input[name=makeOrder]').val(1);
+//
+//        return false;
+//    });
     //variants
 
     function existsVnumber(vNumber, liBlock) {
@@ -991,7 +1004,7 @@ wnd.focus(function() {
     processPage();
     checkSyncs();
     processWish();
-    recountCartPage();
+    //recountCartPage();
     checkCompareWishLink();
     wishListCount();
     compareListCount();

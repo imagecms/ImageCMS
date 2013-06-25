@@ -91,7 +91,7 @@
                                     <div class="price price_f-s_24">
                                         <!-- $model->hasDiscounts() - check for a discount. -->
                                         {if $model->hasDiscounts()}
-                                            
+                                            {//$CI->load->module('mod_discount/discount_api')->get_discount_product_api(array('id'=>$model->getid(),vid=>$model->firstvariant->getid()),true)}
                                             <span class="d_b old_price">
                                                 <!--
                                                 "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
