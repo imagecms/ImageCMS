@@ -60,9 +60,9 @@ class Admin extends BaseAdminController {
     }
 
     public function deleteWL($wish_list_id) {
-        $wishlist = new Wishlist();
+        $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
-        redirect('/wishlist');
+        redirect($_SERVER[HTTP_REFERER]);
     }
 
 }
