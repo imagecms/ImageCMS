@@ -282,12 +282,10 @@ class ParentWishlist extends \MY_Controller {
 
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
-        var_dump($wishlists);
         $userInfo = $this->getUserInfo();
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
-        var_dump($w);
         $this->dataModel[wishlists] = $w;
         $this->dataModel[user] = $userInfo;
 
