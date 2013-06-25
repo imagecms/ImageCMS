@@ -158,6 +158,14 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function createWishList($user_id, $listName){
+        if ($listName)
+            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+
+        if ($count_lists >= $this->settings['maxListsCount']) {
+            $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
+            return FALSE;
+        }       
+        
         if($listName){
             if (strlen($listName) > $this->settings['maxListName']) {
                $listName = substr($listName, 0, (int) $this->settings['maxListName']);
@@ -222,13 +230,23 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }   
         else
-            $this->wishlist_model->addItem($varId, $listId, $listName);
+            if(!$this->wishlist_model->addItem($varId, $listId, $listName))
+                 $this->errors[] = "Невозможно додать";   
 
         if (count($this->errors))
             return FALSE;
         else {
             $this->dataModel = "Добавлено";
             return TRUE;
+        }
+    }
+    
+    public function moveItem($varId, $wish_list_id) {
+        $this->deleteItem($varId, $wish_list_id, false);
+        if ($this->addItem($varId)) {
+            return TRUE;
+        } else {
+            return FALSE;
         }
     }
 
@@ -240,14 +258,7 @@ class ParentWishlist extends \MY_Controller {
         return $forReturn;
     }
 
-    public function moveItem($varId, $wish_list_id) {
-        $this->deleteItem($varId, $wish_list_id, false);
-        if ($this->addItem($varId)) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
+    
 
     public function getUserInfo($id) {
         if (!$id)
