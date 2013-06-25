@@ -55,7 +55,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function all() {
-        if(!$users = $this->wishlist_model->getAllUsers()){
+        if (!$users = $this->wishlist_model->getAllUsers()) {
             $this->errors[] = 'Нет пользователей';
             return FALSE;
         }
@@ -241,7 +241,7 @@ class ParentWishlist extends \MY_Controller {
             return TRUE;
         }
     }
-    
+
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
         $this->deleteItem($varId, $wish_list_id, false);
         if ($this->addItem($varId, $to_listId, $to_listName)) {
@@ -294,9 +294,12 @@ class ParentWishlist extends \MY_Controller {
         return FALSE;
     }
 
-    function do_upload() {
+    function do_upload($userID = null) {
+        if (!$userID)
+            $userID = $this->dx_auth->get_user_id();
+
         $config['upload_path'] = './uploads/mod_wishlist';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['max_width'] = '10240000';
         $config['max_height'] = '768000';
@@ -309,7 +312,7 @@ class ParentWishlist extends \MY_Controller {
         } else {
             $this->dataModel = array('upload_data' => $this->upload->data());
             $this->db
-                    ->where('id', $this->dx_auth->get_user_id())
+                    ->where('id', $userID)
                     ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
         }

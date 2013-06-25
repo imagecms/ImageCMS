@@ -47,9 +47,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
         if ($this->dataModel) {
-             redirect('/wishlist');
+            redirect('/wishlist');
         } else {
-             \CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
                     ->render('errors');
         }
@@ -83,20 +83,20 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
-    public function addReview($list_id){
+    public function addReview($list_id) {
         parent::addReview($list_id);
-        if($this->dataModel){
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
-    public function getMostViewedWishLists($limit=10){
+    public function getMostViewedWishLists($limit = 10) {
         parent::getMostViewedWishLists($limit);
-        if($this->dataModel){
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
@@ -110,9 +110,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function userUpdate() {
         parent::userUpdate();
-        if($this->dataModel){
+        if ($this->dataModel) {
             redirect('/wishlist');
-        }else{
+        } else {
             return $this->errors;
         }
     }
@@ -126,23 +126,23 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
-    public function createWishList(){
+    public function createWishList() {
         parent::createWishList();
-        if($this->dataModel){
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
-            foreach($this->errors as $error)
+        } else {
+            foreach ($this->errors as $error)
                 echo $error;
         }
     }
 
     public function renderWLButton($varId) {
-        if($this->dx_auth->is_logged_in()){
+        if ($this->dx_auth->is_logged_in()) {
             $href = '/wishlist/renderPopup/' . $varId;
-        }else{
+        } else {
             $href = '/auth/login';
         }
-        
+
         if (!in_array($varId, $this->userWishProducts))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
@@ -192,6 +192,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function updateWL() {
         parent::updateWL();
+        redirect('/wishlist');
+    }
+
+    public function deleteWL($wish_list_id) {
+        parent::deleteWL($wish_list_id);
         redirect('/wishlist');
     }
 
