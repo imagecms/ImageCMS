@@ -18,11 +18,13 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         $data['settings'] =  $this->settings;
         
         if ($this->dataModel) {
-             $data['lists'] = $this->dataModel;
+             $data['data'] = $this->dataModel;
+             $data['answer'] = 'success';
         } else {
              $data['errors'] = $this->errors;
+             $data['answer'] = 'error';
         }
-        return $this->return_template($data, 'all');
+        return json_encode($data);
     }
     
     public function addItem($varId) {
@@ -41,12 +43,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     }
     
      public function show($user_id, $list_id) {
-        if (parent::show($user_id, $list_id)) {
-           $data['wishlist'] = $this->dataModel;
-        } else {
-           $data['errors'] = $this->errors;
-        }
-        return $this->return_template($data, 'other_list');
+         parent::show($user_id, $list_id);
+         return $this->return_json();
     }
     
     public function getMostViewedWishLists($limit=10){
@@ -56,12 +54,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     
     public function user($user_id) {
         parent::user($user_id);
-        if($this->dataModel){
-             $data['wishlists'] = $this->dataModel;
-        }else{
-             $data['errors'] = $this->errors;
-        }        
-        return $this->return_template($data, 'other_wishlist');       
+        return $this->return_json();      
     }
     
     public function userUpdate() {
@@ -88,6 +81,11 @@ class WishlistApi extends \wishlist\classes\BaseApi {
        return $this->return_json();
     }
     
+    public function deleteImage(){
+        parent::deleteImage();
+        return $this->return_json();
+    }
+    
     public function renderWLButton($varId) {
         if($this->dx_auth->is_logged_in()){
             $data['href'] = '/wishlist/renderPopup/' . $varId;
@@ -106,7 +104,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn inWL';
         }
-        return $this->return_template($data, 'button', 'wishlist');
+        return json_encode($data);
     }
 
 
@@ -118,16 +116,20 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         $data['class'] = 'btn';
         if($this->dataModel){
             $data['wish_lists'] = $this->dataModel;
+            $data['answer'] = 'success';
         }else{
             $data['errors'] = $this->errors;
+            $data['answer'] = 'error';
         }
-        return $this->return_template($data, 'wishPopup', '', 'style');
+        return json_encode($data);
     }
     
     public function editWL($wish_list_id) {
-        if (parent::renderUserWLEdit($wish_list_id))
+        if (parent::renderUserWLEdit($wish_list_id)){
             $data['wishlists'] = $this->dataModel;
-            return $this->return_template($data, 'wishlistEdit', 'wishlist', 'style');
+            $data['answer'] = 'success';
+            return json_encode($data);
+        }
     }
     
      
@@ -153,16 +155,6 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             }
         }
         return json_encode($data);
-    }
-    private function return_template($data, $tpl_name, $script = "", $style =""){
-        $CMSFactory = \CMSFactory\assetManager::create();
-        if($script){
-            $CMSFactory->registerScript($script);
-        }
-        if($style){
-            $CMSFactory->registerStyle($style);
-        }
-        return  $CMSFactory->setData($data)->fetchTemplate($tpl_name);
     }    
     
 }
