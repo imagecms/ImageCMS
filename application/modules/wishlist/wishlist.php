@@ -83,15 +83,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
-    public function addReview($list_id) {
-        parent::addReview($list_id);
-        if ($this->dataModel) {
-            return $this->dataModel;
-        } else {
-            return $this->errors;
-        }
-    }
-
     public function getMostViewedWishLists($limit = 10) {
         parent::getMostViewedWishLists($limit);
         if ($this->dataModel) {

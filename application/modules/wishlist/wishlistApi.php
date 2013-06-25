@@ -14,123 +14,144 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     }
     
     public function all() {
-        $lists = parent::all();
+        parent::all();
+        $data['settings'] =  $this->settings;
+        
         if ($this->dataModel) {
-            return \CMSFactory\assetManager::create()
-                    ->setData('lists', $lists)
-                    ->setData('settings', $this->settings)
-                    ->fetchTemplate('all');
+             $data['lists'] = $this->dataModel;
         } else {
-            return \CMSFactory\assetManager::create()
-                    ->setData('lists', $this->errors)
-                    ->setData('lists', $lists)
-                    ->setData('settings', $this->settings)
-                    ->fetchTemplate('all');
+             $data['errors'] = $this->errors;
         }
+        return $this->return_template($data, 'all');
     }
     
     public function addItem($varId) {
         parent::addItem($varId);
-        if ($this->dataModel) {
-            return $this->return_success($this->dataModel);
-        } else {
-            return $this->return_success($this->errors);
-        }
+        return $this->return_json();      
     }
     
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
-        if ($this->dataModel) {
-            return $this->return_success($this->dataModel);
-        } else {
-            return $this->return_success($this->errors);
-        }
+        return $this->return_json();      
     }
     
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
-        if($this->dataModel){
-            return $this->return_success($this->dataModel);
-        }else{
-            return $this->return_success($this->errors);
-        }        
+        return $this->return_json();            
     }
     
      public function show($user_id, $list_id) {
         if (parent::show($user_id, $list_id)) {
-            return \CMSFactory\assetManager::create()
-                        ->setData('wishlist', $this->dataModel)
-                        ->fetchTemplate('other_list');
+           $data['wishlist'] = $this->dataModel;
         } else {
-            return \CMSFactory\assetManager::create()
-                        ->setData('wishlist', 'empty')
-                        ->fetchTemplate('other_list');
+           $data['errors'] = $this->errors;
         }
+        return $this->return_template($data, 'other_list');
     }
     
     public function getMostViewedWishLists($limit=10){
         parent::getMostViewedWishLists($limit);
-        if($this->dataModel){
-            return $this->return_success($this->dataModel);
-        }else{
-            return $this->errors;
-        }
+        return $this->return_json();      
     }
     
     public function user($user_id) {
-        $user_wish_lists = parent::user($user_id);
-        if($user_wish_lists){
-            return \CMSFactory\assetManager::create()
-                ->setData('wishlists', $user_wish_lists)
-                ->fetchTemplate('other_wishlist');
+        parent::user($user_id);
+        if($this->dataModel){
+             $data['wishlists'] = $this->dataModel;
         }else{
-            
+             $data['errors'] = $this->errors;
+        }        
+        return $this->return_template($data, 'other_wishlist');       
+    }
+    
+    public function userUpdate() {
+        parent::userUpdate();
+        return $this->return_json();      
+    }
+    
+    public function getMostPopularItems($limit = 10) {
+        parent::getMostPopularItems($limit);
+        return $this->return_json();      
+    }
+    
+     public function createWishList(){
+        parent::createWishList();
+        return $this->return_json();      
+    }
+    
+     public function renderWLButton($varId) {
+        if($this->dx_auth->is_logged_in()){
+            $data['href'] = '/wishlist/renderPopup/' . $varId;
+        }else{
+            $data['href'] = '/auth/login';
         }
         
+        if (!in_array($varId, $this->userWishProducts)){
+            $data['varId'] = $varId;
+            $data['value'] = 'Добавить в Список Желания';
+            $data['max_lists_count'] = $this->settings['maxListsCount'];
+            $data['class'] = 'btn';
+        }else{
+            $data['varId'] = $varId;
+            $data['value'] = 'Уже в Списке Желания';
+            $data['max_lists_count'] = $this->settings['maxListsCount'];
+            $data['class'] = 'btn inWL';
+        }
+        return $this->return_template($data, 'button', 'wishlist');
     }
 
 
     public function renderPopup($varId, $wish_list_id = '') {
         parent::renderPopup();
+        $data['varId'] = $varId;
+        $data['wish_list_id'] = $wish_list_id;
+        $data['max_lists_count'] = $this->settings['maxListsCount'];
+        $data['class'] = 'btn';
         if($this->dataModel){
-            return $popup = \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('class', 'btn')
-                ->setData('wish_list_id', $wish_list_id)
-                ->setData('varId', $varId)
-                ->setData('wish_lists', $this->dataModel)
-                ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->fetchTemplate('wishPopup');
+            $data['wish_lists'] = $this->dataModel;
         }else{
-             return $popup = \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('class', 'btn')
-                ->setData('wish_list_id', $wish_list_id)
-                ->setData('varId', $varId)
-                ->setData('errors', $this->errors)
-                ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->fetchTemplate('wishPopup');
-        }       
+            $data['errors'] = $this->errors;
+        }
+        return $this->return_template($data, 'wishPopup', '', 'style');
     }
     
-    private function return_success($data = ""){
-        return json_encode(
-                    array(
-                        'answer' => 'success',
-                        'data' => $data
-                    )
+    public function editWL($wish_list_id) {
+        if (parent::renderUserWLEdit($wish_list_id))
+            $data['wishlists'] = $this->dataModel;
+            return $this->return_template($data, 'wishlistEdit', 'wishlist', 'style');
+    }
+    
+    public function updateWL() {
+        parent::updateWL();
+    }
+    
+    private function return_json(){
+        $data = array();
+        if($this->dataModel){
+            $data= array(
+                'answer' => 'success',
+                'data' => $this->dataModel
+            );
+        }  else {
+            if($this->errors){
+                 $data= array(
+                    'answer' => 'error',
+                    'data' => $this->errors
                 );
+            }
+        }
+        return json_encode($data);
     }
-    
-    private function return_error($data = ""){
-        return json_encode(
-                   array(
-                        'answer' => 'error', 
-                        'data' => $data
-                   )
-               );
-    }
-    
+    private function return_template($data, $tpl_name, $script = "", $style =""){
+        $CMSFactory = \CMSFactory\assetManager::create();
+        if($script){
+            $CMSFactory->registerScript($script);
+        }
+        if($style){
+            $CMSFactory->registerStyle($style);
+        }
+        return  $CMSFactory->setData($data)->fetchTemplate($tpl_name);
+    }    
     
 }
 
