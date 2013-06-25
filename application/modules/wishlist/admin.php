@@ -56,12 +56,33 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('wishlistEdit');
         }
         else
-            redirect('/wishlist');
+            redirect($_SERVER[HTTP_REFERER]);
     }
 
     public function deleteWL($wish_list_id) {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
+        redirect($_SERVER[HTTP_REFERER]);
+    }
+
+    public function updateWL() {
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->updateWL();
+        
+        redirect($_SERVER[HTTP_REFERER]);
+    }
+
+    public function userUpdate() {
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->userUpdate();
+
+        redirect($_SERVER[HTTP_REFERER]);
+    }
+
+    public function createWishList() {
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->createWishList();
+
         redirect($_SERVER[HTTP_REFERER]);
     }
 
