@@ -33,7 +33,5 @@
                 {/foreach}
             </tbody>
         </table>
-    {else:}
-        Список порожній
     {/if}
 </article>

@@ -191,10 +191,10 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         redirect('/wishlist');
     }
 
-    public function do_upload() {
-        parent::do_upload();
-        redirect($_SERVER[HTTP_REFERER]);
-}
+//    public function do_upload() {
+//        parent::do_upload();
+//        redirect($_SERVER[HTTP_REFERER]);
+//}
 
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
@@ -204,15 +204,25 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
+    
+    public function deleteImage(){
+        parent::deleteImage();
+        if($this->dataModel){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+    
+    public function do_upload() {
+        parent::do_upload();
+        if ($this->dataModel) {
+            redirect($_SERVER[HTTP_REFERER]);
+        }else{
+            return $this->errors[] = "Ошибка загрузки";
+        }
+    }
 
-//    public function do_upload() {
-//        parent::do_upload();
-//        if ($this->dataModel) {
-//            redirect($_SERVER[HTTP_REFERER]);
-//        }else{
-//            return $this->errors[] = "Ошибка загрузки";
-//        }
-//    }
 }
 
 /* End of file wishlist.php */
