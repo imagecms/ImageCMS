@@ -77,7 +77,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function show($user_id, $list_id) {
-        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
+        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id, array('public'));
         
         if ($wishlist) {
             self::addReview($list_id);    

@@ -51,23 +51,24 @@ class Wishlist_model extends CI_Model {
                         ->get('mod_wish_list')->result_array();
     }
 
-    public function getUserWishList($user_id, $list_id) {
+    public function getUserWishList($user_id, $list_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db->where('mod_wish_list.user_id', $user_id)
-                ->where('mod_wish_list.id', $list_id)
-                ->where('shop_products_i18n.locale', $locale)
-                ->where('shop_product_variants_i18n.locale', $locale)
-                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
-                ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
-                ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
-                ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
-                ->get('mod_wish_list')
-                ->result_array();
+                            ->where_in('access', $access)
+                            ->where('mod_wish_list.id', $list_id)
+                            ->where('shop_products_i18n.locale', $locale)
+                            ->where('shop_product_variants_i18n.locale', $locale)
+                            ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                            ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
+                            ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
+                            ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+                            ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                            ->get('mod_wish_list')
+                            ->result_array();
         if (!$query)
             return $this->db
                             ->select('*, mod_wish_list.id AS `wish_list_id`')
-//                            ->where_in('mod_wish_list.access', $access)
+                            ->where_in('mod_wish_list.access', $access)
                             ->where('mod_wish_list_products.wish_list_id', NULL)
                             ->where('mod_wish_list.id', $list_id)
                             ->where('mod_wish_list.user_id', $user_id)
@@ -105,7 +106,8 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
-                        ->result_array(), $this->db
+                        ->result_array(), 
+                $this->db
                         ->select('*, mod_wish_list.id AS `wish_list_id`')
                         ->where_in('mod_wish_list.access', $access)
                         ->where('mod_wish_list_products.wish_list_id', NULL)
