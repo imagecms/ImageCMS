@@ -61,7 +61,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-
     public function getMostViewedWishLists($limit = 10) {
         if (parent::getMostViewedWishLists($limit)) {
             return $this->dataModel;
@@ -158,15 +157,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-
-
-     public function renderPopup(){
-         if(parent::renderPopup()){
-             return $this->dataModel;
-         }else{
-             return $this->errors;
-         }
-
+    public function renderPopup() {
+        if (parent::renderPopup()) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
     }
 
     public function _install() {
@@ -178,9 +174,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     function do_upload() {
-        if (parent::do_upload($this->input->post(userID))) {
-            redirect($_SERVER[HTTP_REFERER]);
-        }
+        parent::do_upload($this->input->post(userID));
     }
 
 }

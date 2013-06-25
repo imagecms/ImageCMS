@@ -211,7 +211,8 @@ class Wishlist_model extends CI_Model {
         $this->createUserIfNotExist($user_id);
         $data = array(
             'title' => $listName,
-            'user_id' => $user_id
+            'user_id' => $user_id,
+            'hash'=>  random_string('unique', 16),
         );
         return $this->db->insert('mod_wish_list', $data);
     }
@@ -283,6 +284,11 @@ class Wishlist_model extends CI_Model {
                 'type' => 'INT',
                 'null' => FALSE,
                 'default' => 0
+            ),
+            'hash' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '16',
+                'null' => FALSE
             )
         );
 
