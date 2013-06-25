@@ -181,7 +181,7 @@ $('.APItester').live('click', function (){
          data: {
              userID: 47
          },
-         url: 'wishlist/wishlistApi/do_upload/',
+         url: 'wishlist/wishlistApi/show/49/9',
          success: function(data) {
               console.log(data)
              if(typeof data != Object){
