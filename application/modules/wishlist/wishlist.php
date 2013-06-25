@@ -120,7 +120,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function getMostPopularItems($limit = 10) {
         parent::getMostPopularItems($limit);
         if ($this->dataModel) {
-            var_dumps($this->dataModel);
+            return $this->dataModel;
         } else {
             return $this->errors;
         }
@@ -131,7 +131,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if($this->dataModel){
             return $this->dataModel;
         }else{
-            return $this->errors;
+            foreach($this->errors as $error)
+                echo $error;
         }
     }
 

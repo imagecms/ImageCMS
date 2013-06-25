@@ -12,6 +12,23 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     public function __construct() {
         parent::__construct();
     }
+    
+    public function addItem($varId) {
+        parent::addItem($varId);
+        if ($this->dataModel) {
+            return json_encode(
+                        array(
+                            'answer' => 'success',
+                            'data' => $this->dataModel
+                        )
+                    );
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->setData('errors', $this->errors)
+                    ->render('errors');
+        }
+    }
 
     public function renderPopup($varId, $wish_list_id = '') {
         parent::renderPopup();
@@ -31,6 +48,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             return json_encode($data);
         }       
     }
+    
+    
 }
 
 /* End of file api.php */
