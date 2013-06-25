@@ -17,7 +17,7 @@
     <input type="submit" value="upload" class="btn" />
 
 </form>
-<form method="POST" action="/wishlist/userUpdate">
+<form method="POST" action="/admin/components/cp/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
     <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
