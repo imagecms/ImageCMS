@@ -79,7 +79,16 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return $this->return_json();      
     }
     
-     public function renderWLButton($varId) {
+    public function updateWL() {
+        parent::updateWL();
+    }
+    
+    public function deleteWL($wish_list_id) {
+       parent::deleteWL($wish_list_id);
+       return $this->return_json();
+    }
+    
+    public function renderWLButton($varId) {
         if($this->dx_auth->is_logged_in()){
             $data['href'] = '/wishlist/renderPopup/' . $varId;
         }else{
@@ -121,9 +130,12 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             return $this->return_template($data, 'wishlistEdit', 'wishlist', 'style');
     }
     
-    public function updateWL() {
-        parent::updateWL();
+     
+    public function do_upload() {
+        parent::do_upload();
+        return $this->return_json();
     }
+    
     
     private function return_json(){
         $data = array();

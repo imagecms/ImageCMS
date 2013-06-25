@@ -179,10 +179,9 @@ $('.APItester').live('click', function (){
          type: 'POST',
          dataType: 'text',
          data: {
-             user_id: 49,
-             wishListName: "wishListName"
+             userID: 47
          },
-         url: 'wishlist/wishlistApi/editWL/10',
+         url: 'wishlist/wishlistApi/do_upload/',
          success: function(data) {
               console.log(data)
              if(typeof data != Object){
