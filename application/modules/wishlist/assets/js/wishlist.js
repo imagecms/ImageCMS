@@ -177,15 +177,20 @@ $('.newWishList').live('click', function() {
 $('.APItester').live('click', function (){
     $.ajax({
          type: 'POST',
-         dataType: 'json',
+         dataType: 'text',
          data: {
-             wishlist: 1,
-             wishListName: "Nam22"
+             user_id: 49,
+             wishListName: "wishListName"
          },
-         url: 'wishlist/wishlistApi/user/49',
+         url: 'wishlist/wishlistApi/editWL/10',
          success: function(data) {
-            $('.testAPI').text(JSON.stringify(data));
-            console.log(data)
+              console.log(data)
+             if(typeof data != Object){
+                 $('.testAPI').replaceWith('<div style="border: 2px solid;">' + data + '</div>');
+             }else{
+                 $('.testAPI').text(JSON.stringify(data));
+                 console.log(data)
+             }            
          }
      });
-})
+});

@@ -61,13 +61,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function addReview($list_id) {
-        if (parent::addReview($list_id)) {
-            return $this->dataModel = "Увеличено";
-        } else {
-            return $this->errors[] = "Невозможно увеличить";
-        }
-    }
 
     public function getMostViewedWishLists($limit = 10) {
         if (parent::getMostViewedWishLists($limit)) {
@@ -174,14 +167,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
              return $this->errors;
          }
 
-    }
-
-    public function autoload() {
-
-    }
-
-    public static function adminAutoload() {
-        parent::adminAutoload();
     }
 
     public function _install() {

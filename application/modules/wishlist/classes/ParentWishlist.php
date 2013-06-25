@@ -26,7 +26,6 @@ class ParentWishlist extends \MY_Controller {
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
-        \CMSFactory\Events::create()->on('WishList:onShow')->setListener('addReview');
     }
 
     private function writeCookies() {
@@ -79,10 +78,9 @@ class ParentWishlist extends \MY_Controller {
 
     public function show($user_id, $list_id) {
         $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
-
+        
         if ($wishlist) {
-            \CMSFactory\Events::create()->registerEvent($list_id, 'WishList:onShow');
-            \CMSFactory\Events::runFactory();
+            self::addReview($list_id);    
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -91,17 +89,24 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function addReview($list_id) {
-        $sessID = $this->session->userdata('regenerated');
-        if (!$this->input->cookie('wishListViewer')) {
-            if ($this->wishlist_model->addRewiew($list_id)) {
+    public static function addReview($list_id) {
+        $CI = & get_instance();
+        $listsAdded = array();
+        
+        if($CI->input->cookie('wishListViewer')){
+            $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
+        }
+        
+        if (!in_array($list_id, $listsAdded)) {
+            array_push($listsAdded, $list_id);
+            if ($CI->wishlist_model->addRewiew($list_id)) {
                 $cookie = array(
                     'name' => 'wishListViewer',
-                    'value' => $sessID,
+                    'value' => serialize($listsAdded),
                     'expire' => 60 * 60 * 24,
                     'prefix' => ''
                 );
-                $this->input->set_cookie($cookie);
+                $CI->input->set_cookie($cookie);
                 return TRUE;
             }
         }
@@ -124,6 +129,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $this->dataModel[wishlists];
             return TRUE;
         } else {
+            $this->errors[] = "Неверний запрос";
             return FALSE;
         }
     }
@@ -330,7 +336,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getUserWishListItemsCount($user_id) {
-        echo $this->wishlist_model->getUserWishListCount(47);
+        return $this->wishlist_model->getUserWishListCount(47);
     }
 
     public function deleteItemByIds($ids) {
@@ -348,7 +354,6 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
-
     }
 
     public static function adminAutoload() {
