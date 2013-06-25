@@ -27,7 +27,6 @@ class ParentWishlist extends \MY_Controller {
         $this->settings = $this->wishlist_model->getSettings();
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
         \CMSFactory\Events::create()->on('WishList:onShow')->setListener('addReview');
-
     }
 
     private function writeCookies() {
@@ -92,14 +91,14 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function addReview($list_id){
+    public function addReview($list_id) {
         $sessID = $this->session->userdata('regenerated');
-        if(!$this->input->cookie('wishListViewer')){
-            if($this->wishlist_model->addRewiew($list_id)){
+        if (!$this->input->cookie('wishListViewer')) {
+            if ($this->wishlist_model->addRewiew($list_id)) {
                 $cookie = array(
                     'name' => 'wishListViewer',
                     'value' => $sessID,
-                    'expire' => 60*60*24,
+                    'expire' => 60 * 60 * 24,
                     'prefix' => ''
                 );
                 $this->input->set_cookie($cookie);
@@ -107,15 +106,14 @@ class ParentWishlist extends \MY_Controller {
             }
         }
         return FALSE;
-
     }
 
-    public function getMostViewedWishLists($limit=10){
+    public function getMostViewedWishLists($limit = 10) {
         $views = $this->wishlist_model->getMostViewedWishLists($limit);
-        if($views){
+        if ($views) {
             $this->dataModel = $views;
             return TRUE;
-        }else{
+        } else {
             $this->errors[] = "Нет просмотров";
             return FALSE;
         }
@@ -132,12 +130,12 @@ class ParentWishlist extends \MY_Controller {
 
     public function userUpdate($userID, $user_name, $user_birthday, $description) {
         $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
-        if(!$userID){
+        if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
-        if($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)){
+        if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
-        }else{
+        } else {
             return FALSE;
         }
     }
@@ -146,6 +144,7 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->upateWishList($id, $data);
         $this->wishlist_model->upateWishListItemsComments($id, $comments);
     }
+
     /**
      *
      * @param type $title
@@ -160,24 +159,24 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
     }
 
-    public function createWishList($user_id, $listName){
+    public function createWishList($user_id, $listName) {
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
-        }       
-        
-        if($listName){
+        }
+
+        if ($listName) {
             if (strlen($listName) > $this->settings['maxListName']) {
-               $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+                $listName = substr($listName, 0, (int) $this->settings['maxListName']);
                 $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
             }
             $this->wishlist_model->createWishList($listName, $user_id);
-        }else{
-            $this->errors[] = "Поле имя не должно пустеть..." ;
-        }    
+        } else {
+            $this->errors[] = "Поле имя не должно пустеть...";
+        }
 
         if (count($this->errors))
             return FALSE;
@@ -231,10 +230,9 @@ class ParentWishlist extends \MY_Controller {
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
-        }   
-        else
-            if(!$this->wishlist_model->addItem($varId, $listId, $listName))
-                 $this->errors[] = "Невозможно додать";   
+        } else
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
+            $this->errors[] = "Невозможно додать";
 
         if (count($this->errors))
             return FALSE;
@@ -261,8 +259,6 @@ class ParentWishlist extends \MY_Controller {
         return $forReturn;
     }
 
-    
-
     public function getUserInfo($id) {
         if (!$id)
             $id = $this->dx_auth->get_user_id();
@@ -282,9 +278,12 @@ class ParentWishlist extends \MY_Controller {
         return TRUE;
     }
 
-    public function renderUserWLEdit($wish_list_id) {
+    public function renderUserWLEdit($wish_list_id, $userID = null) {
+        if ($userID === null)
+            $userID = $this->dx_auth->get_user_id();
+
         if ($wish_list_id) {
-            $wishlists = $this->wishlist_model->getUserWishList($this->dx_auth->get_user_id(), $wish_list_id);
+            $wishlists = $this->wishlist_model->getUserWishList($userID, $wish_list_id);
 
             $w = array();
             foreach ($wishlists as $wishlist)
@@ -326,7 +325,8 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
     }
-    public function getUserWishListItemsCount($user_id){
+
+    public function getUserWishListItemsCount($user_id) {
         echo $this->wishlist_model->getUserWishListCount(47);
     }
 
@@ -334,12 +334,12 @@ class ParentWishlist extends \MY_Controller {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
 
-    public function renderPopup(){
+    public function renderPopup() {
         $wish_lists = $this->wishlist_model->getWishLists();
-        if($this->wishlist_model->getWishLists()){
+        if ($this->wishlist_model->getWishLists()) {
             $this->dataModel = $wish_lists;
             return TRUE;
-        }else{
+        } else {
             return FALSE;
         }
     }
