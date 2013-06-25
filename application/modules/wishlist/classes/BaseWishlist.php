@@ -44,7 +44,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
+
     public function moveItem($varId, $wish_list_id) {
         if (parent::moveItem($varId, $wish_list_id)) {
             return $this->dataModel = "Операция успешна";
@@ -151,14 +151,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         parent::updateWL($id, $data, $desc, $title);
     }
 
-    /**
-     * delete full WL
-     */
-    public function deleteWL($wish_list_id) {
-        parent::deleteWL($wish_list_id);
-        redirect('/wishlist');
-    }
-
     public function deleteItem($variant_id, $wish_list_id, $redirect = 'true') {
         parent::deleteItem($variant_id, $wish_list_id);
         if ($redirect) {
@@ -166,15 +158,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    
-    
+
+
      public function renderPopup(){
          if(parent::renderPopup()){
              return $this->dataModel;
          }else{
              return $this->errors;
          }
-        
+
     }
 
     public function _install() {
@@ -186,8 +178,8 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     function do_upload() {
-        if (parent::do_upload()) {
-            redirect('/wishlist');
+        if (parent::do_upload($this->input->post(userID))) {
+            redirect($_SERVER[HTTP_REFERER]);
         }
     }
 

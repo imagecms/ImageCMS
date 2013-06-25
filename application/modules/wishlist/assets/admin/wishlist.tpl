@@ -10,9 +10,10 @@
     {form_open_multipart('/wishlist/do_upload')}
 
     <input type="file" name="userfile" size="20" />
+    <input type="hidden" value="{echo $user[id]}" name="userID"/>
 
     <br /><br />
-
+    {form_csrf()}
     <input type="submit" value="upload" class="btn" />
 
 </form>
