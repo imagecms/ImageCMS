@@ -68,10 +68,10 @@ class ParentWishlist extends \MY_Controller {
 
         if ($lists) {
             $this->dataModel = $lists;
-            return true;
+            return TRUE;
         } else {
             $this->errors[] = 'Нет списков';
-            return false;
+            return FALSE;
         }
     }
 
@@ -83,9 +83,9 @@ class ParentWishlist extends \MY_Controller {
             \CMSFactory\Events::runFactory();
             $this->dataModel = $wishlist;
 
-            return true;
+            return TRUE;
         } else {
-            return false;
+            return FALSE;
         }
     }
 
@@ -121,9 +121,9 @@ class ParentWishlist extends \MY_Controller {
     public function user($user_id) {
         if ($this->renderUserWL($user_id, $access = array('public'))) {
             $this->dataModel = $this->dataModel[wishlists];
-            return true;
+            return TRUE;
         } else {
-            return false;
+            return FALSE;
         }
     }
 
@@ -158,12 +158,15 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function createWishList($user_id, $listName){
-        if (strlen($listName) > $this->settings['maxListName']) {
-            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
-            $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
-        }
-
-        $this->wishlist_model->createWishList($listName, $user_id);
+        if($listName){
+            if (strlen($listName) > $this->settings['maxListName']) {
+               $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+                $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
+            }
+            $this->wishlist_model->createWishList($listName, $user_id);
+        }else{
+            $this->errors[] = "Поле имя не должно пустеть..." ;
+        }    
 
         if (count($this->errors))
             return FALSE;
@@ -212,12 +215,12 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if ($listName)
-            $count_lists = $this->wishlist_model->getUserWishListCount();
+            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
-        }
+        }   
         else
             $this->wishlist_model->addItem($varId, $listId, $listName);
 
@@ -262,7 +265,7 @@ class ParentWishlist extends \MY_Controller {
         $this->dataModel[wishlists] = $w;
         $this->dataModel[user] = $userInfo;
 
-        return true;
+        return TRUE;
     }
 
     public function renderUserWLEdit($wish_list_id) {

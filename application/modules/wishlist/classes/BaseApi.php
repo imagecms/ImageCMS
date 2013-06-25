@@ -17,6 +17,18 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         parent::__construct();
     }
     
+    public function addItem($varId) {
+        $listId = $this->input->post('wishlist');
+        $listName = $this->input->post('wishListName');
+
+        if (parent::addItem($varId, $listId, $listName)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+
+    
     public function renderPopup(){
          if(parent::renderPopup()){
              return $this->dataModel;
