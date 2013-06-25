@@ -237,7 +237,7 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getMostViewedWishLists($limit = 10) {
-        return $this->db->select('id,title,review_count')->limit($limit)->get('mod_wish_list')->result_array();
+        return $this->db->select('id,title,review_count')->where('review_count <>', 0)->limit($limit)->get('mod_wish_list')->result_array();
     }
 
     public function install() {

@@ -180,9 +180,9 @@ $('.APItester').live('click', function (){
          dataType: 'json',
          data: {
              wishlist: 1,
-             wishListName: "Name"
+             wishListName: "Nam22"
          },
-         url: 'wishlist/wishlistApi/renderPopup/' + 129 + "/" +20,
+         url: 'wishlist/wishlistApi/user/49',
          success: function(data) {
             $('.testAPI').text(JSON.stringify(data));
             console.log(data)

@@ -56,7 +56,10 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function all() {
-        $users = $this->wishlist_model->getAllUsers();
+        if(!$users = $this->wishlist_model->getAllUsers()){
+            $this->errors[] = 'Нет пользователей';
+            return FALSE;
+        }
         $lists = '';
 
         foreach ($users as $user) {
@@ -241,9 +244,9 @@ class ParentWishlist extends \MY_Controller {
         }
     }
     
-    public function moveItem($varId, $wish_list_id) {
+    public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
         $this->deleteItem($varId, $wish_list_id, false);
-        if ($this->addItem($varId)) {
+        if ($this->addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
             return FALSE;
