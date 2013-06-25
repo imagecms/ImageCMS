@@ -125,6 +125,7 @@
                                             </div>
                                         {/if}
                                     </div>
+                                    <div id="gift"></div>
                                     {/*}
                                     {if ShopCore::app()->SSettings->usegifts == 1}
                                         <div class="groups_form" >
@@ -158,7 +159,7 @@
                                                     </div>
 
                                                     <span class="f-s_18">Сумма:</span> <span class="f-s_24" id="finalAmount"></span> <span class="f-s_14 curr"></span>
-
+                                                    <input type="hidden" name="totalprice" value="">
                                                 </div>
                                             </div>
                                         </div>

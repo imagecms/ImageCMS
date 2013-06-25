@@ -14,7 +14,7 @@ class Discount_model_front extends CI_Model {
         $time = time();
         $sql = "select *, id as ids
                 from mod_shop_discounts
-                where (max_apply >= count_apply or max_apply is null) 
+                where (max_apply > count_apply or max_apply is null) 
                       and 
                       (date_begin > '$time' and date_end < '$time' or date_begin > '$time' and date_end is Null or date_begin is Null and date_end is Null)
                       and 
@@ -56,6 +56,14 @@ class Discount_model_front extends CI_Model {
         $sql = "select amout from users where id = '$id'";
         $result = $this->db->query($sql)->row();
         return $result->amout;
+    }
+    
+    public function updateapply($key){
+        
+        $sql = "update mod_shop_discounts set count_apply = count_apply + 1 where `key` = '$key' and max_apply IS NOT NULL";
+
+        $this->db->query($sql);
+        
     }
 
 }

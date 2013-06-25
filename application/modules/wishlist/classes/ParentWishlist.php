@@ -210,7 +210,12 @@ class ParentWishlist extends \MY_Controller {
         else
             $this->errors[] = 'Невозможно удалить Список Желания';
 
-        return $forReturn;
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Создано";
+            return TRUE;
+        }
     }
 
     /**
@@ -249,7 +254,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->deleteItem($varId, $wish_list_id, false);
+        $this->deleteItem($varId, $wish_list_id);
         if ($this->addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
@@ -261,6 +266,8 @@ class ParentWishlist extends \MY_Controller {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
         if (!$forReturn)
             $this->errors[] = 'Невозможно удалить товар из Списка Желания';
+        else
+            $this->dataModel = "Операция успешна";
 
         return $forReturn;
     }
@@ -317,8 +324,7 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         } else {
             $this->dataModel = array('upload_data' => $this->upload->data());
-            $this->db
-                    ->where('id', $userID)
+            $this->db->where('id', $userID)
                     ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
         }
@@ -341,6 +347,11 @@ class ParentWishlist extends \MY_Controller {
 
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
+    }
+    public function deleteImage(){
+        $image = $this->input->post('image');
+        echo site_url('/uploads/mod_wishlist/' . $image);
+        unlink(site_url('/uploads/mod_wishlist/' . $image));
     }
 
     public function renderPopup() {

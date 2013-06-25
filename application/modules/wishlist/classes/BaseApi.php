@@ -118,6 +118,15 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
     }
     
+    public function deleteWL($wish_list_id) {
+        if(parent::deleteWL($wish_list_id)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+    
+    
     public function updateWL() {
         $id = $this->input->post(WLID);
 
@@ -139,6 +148,14 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         );
 
         parent::updateWL($id, $data, $desc, $title);
+    }
+    
+    public function do_upload() {
+        if (parent::do_upload($this->input->post(userID))) {
+            return $this->dataModel[] = 'Картинка загружена';
+        }else{
+            return $this->errors[] = "Ошибка загрузки";
+        }
     }
 
 
