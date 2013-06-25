@@ -78,9 +78,9 @@ class ParentWishlist extends \MY_Controller {
 
     public function show($user_id, $list_id) {
         $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
-        
+
         if ($wishlist) {
-            self::addReview($list_id);    
+            self::addReview($list_id);
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -92,11 +92,11 @@ class ParentWishlist extends \MY_Controller {
     public static function addReview($list_id) {
         $CI = & get_instance();
         $listsAdded = array();
-        
+
         if($CI->input->cookie('wishListViewer')){
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
         }
-        
+
         if (!in_array($list_id, $listsAdded)) {
             array_push($listsAdded, $list_id);
             if ($CI->wishlist_model->addRewiew($list_id)) {
@@ -281,10 +281,12 @@ class ParentWishlist extends \MY_Controller {
 
     public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
+        var_dump($wishlists);
         $userInfo = $this->getUserInfo();
         $w = array();
         foreach ($wishlists as $wishlist)
             $w[$wishlist[title]][] = $wishlist;
+        var_dump($w);
         $this->dataModel[wishlists] = $w;
         $this->dataModel[user] = $userInfo;
 
@@ -342,7 +344,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getUserWishListItemsCount($user_id) {
-        return $this->wishlist_model->getUserWishListCount(47);
+        return $this->wishlist_model->getUserWishListCount($user_id);
     }
 
     public function deleteItemByIds($ids) {
