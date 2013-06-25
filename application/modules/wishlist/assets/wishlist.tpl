@@ -20,6 +20,11 @@
         <input type="submit" value="upload" class="btn" />
 
     </form>
+    <form method="POST" action="/wishlist/deleteImage">
+        <input type="hidden" value="{echo $user[user_image]}" name="image"/>
+        <input type="submit" value="Удалить картинку" class="btn"/>
+        {form_csrf()}
+    </form>
     <form method="POST" action="/wishlist/userUpdate">
         <input type="hidden" value="{echo $user[id]}" name="user_id"/>
         <input type="text" value="{echo $user[user_name]}" name="user_name"/>
