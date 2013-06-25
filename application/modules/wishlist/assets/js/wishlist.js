@@ -173,3 +173,19 @@ $('.newWishList').live('click', function() {
         return false;
     }
 });
+//---------------------TEST API-------------------------------//
+$('.APItester').live('click', function (){
+    $.ajax({
+         type: 'POST',
+         dataType: 'json',
+         data: {
+             wishlist: 1,
+             wishListName: "Name"
+         },
+         url: 'wishlist/wishlistApi/renderPopup/' + 129 + "/" +20,
+         success: function(data) {
+            $('.testAPI').text(JSON.stringify(data));
+            console.log(data)
+         }
+     });
+})
