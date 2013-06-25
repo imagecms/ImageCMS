@@ -182,7 +182,7 @@ $('.APItester').live('click', function (){
              wishlist: 1,
              wishListName: "Name"
          },
-         url: 'wishlist/wishlistApi/addItem/' + 100,
+         url: 'wishlist/wishlistApi/renderPopup/' + 129 + "/" +20,
          success: function(data) {
             $('.testAPI').text(JSON.stringify(data));
             console.log(data)
