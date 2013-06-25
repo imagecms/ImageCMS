@@ -15,9 +15,9 @@ class Wishlist_model extends CI_Model {
      */
     public function getSettings() {
         $settings = $this->db->select('settings')
-                            ->where('identif', 'wishlist')
-                            ->get('components')
-                            ->row_array();
+                ->where('identif', 'wishlist')
+                ->get('components')
+                ->row_array();
         $settings = unserialize($settings[settings]);
         return $settings;
     }
@@ -29,7 +29,7 @@ class Wishlist_model extends CI_Model {
      */
     public function setSettings($settings) {
         return $this->db->where('identif', 'wishlist')
-                                ->update('components', array('settings' => serialize($settings)));
+                        ->update('components', array('settings' => serialize($settings)));
     }
 
     public function getWishLists() {
@@ -52,18 +52,29 @@ class Wishlist_model extends CI_Model {
     }
 
     public function getUserWishList($user_id, $list_id) {
-        $locale =\MY_Controller::getCurrentLocale();
-        return $this->db->where('mod_wish_list.user_id', $user_id)
-                        ->where('mod_wish_list.id', $list_id)
-                        ->where('shop_products_i18n.locale', $locale)
-                        ->where('shop_product_variants_i18n.locale', $locale)
-                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                        ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
-                        ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
-                        ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
-                        ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
-                        ->get('mod_wish_list')
-                        ->result_array();
+        $locale = \MY_Controller::getCurrentLocale();
+        $query = $this->db->where('mod_wish_list.user_id', $user_id)
+                ->where('mod_wish_list.id', $list_id)
+                ->where('shop_products_i18n.locale', $locale)
+                ->where('shop_product_variants_i18n.locale', $locale)
+                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
+                ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
+                ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                ->get('mod_wish_list')
+                ->result_array();
+        if (!$query)
+            return $this->db
+                            ->select('*, mod_wish_list.id AS `wish_list_id`')
+//                            ->where_in('mod_wish_list.access', $access)
+                            ->where('mod_wish_list_products.wish_list_id', NULL)
+                            ->where('mod_wish_list.id', $list_id)
+                            ->where('mod_wish_list.user_id', $user_id)
+                            ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
+                            ->get('mod_wish_list')
+                            ->result_array();
+        return $query;
     }
 
     public function deleteItem($variant_id, $wish_list_id) {
@@ -74,7 +85,7 @@ class Wishlist_model extends CI_Model {
     }
 
     public function deleteItemsByIDs($ids) {
-        foreach ($ids as $id){
+        foreach ($ids as $id) {
             $this->db->where('id', $id)->delete('mod_wish_list_products');
         }
     }
@@ -94,8 +105,7 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
-                        ->result_array(),
-                $this->db
+                        ->result_array(), $this->db
                         ->select('*, mod_wish_list.id AS `wish_list_id`')
                         ->where_in('mod_wish_list.access', $access)
                         ->where('mod_wish_list_products.wish_list_id', NULL)
@@ -116,9 +126,9 @@ class Wishlist_model extends CI_Model {
 
     public function getUserWishProducts() {
         $ids = $this->db->where('mod_wish_list.user_id', $this->dx_auth->get_user_id())
-                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                        ->group_by('variant_id')
-                        ->get('mod_wish_list');
+                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                ->group_by('variant_id')
+                ->get('mod_wish_list');
 
         if ($ids)
             $ids = $ids->result_array();
@@ -147,11 +157,11 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list');
     }
 
-    public function upateWishList($id, $data){
+    public function upateWishList($id, $data) {
         return $this->db->where('id', $id)->update('mod_wish_list', $data);
     }
 
-    public function upateWishListItemsComments($wish_list_id, $comments){
+    public function upateWishListItemsComments($wish_list_id, $comments) {
         foreach ($comments as $key => $coments) {
             $this->db->where('wish_list_id', $wish_list_id)
                     ->where('variant_id ', $key)
@@ -181,7 +191,7 @@ class Wishlist_model extends CI_Model {
         return $this->db->insert('mod_wish_list_products', $data);
     }
 
-    public function createUserIfNotExist($user_id){
+    public function createUserIfNotExist($user_id) {
         if (!$this->db->where('id', $user_id)->get('mod_wish_list_users')->result_array()) {
             $this->db->insert('mod_wish_list_users', array('id' => $user_id, 'user_name' => $this->dx_auth->get_username()));
             return TRUE;
@@ -189,12 +199,12 @@ class Wishlist_model extends CI_Model {
         return FALSE;
     }
 
-    public function updateUser($userID, $user_name, $user_birthday, $description){
+    public function updateUser($userID, $user_name, $user_birthday, $description) {
         return $this->db->where('id', $userID)
-                    ->set('user_name', $user_name)
-                    ->set('user_birthday', $user_birthday)
-                    ->set('description', $description)
-                    ->update('mod_wish_list_users');
+                        ->set('user_name', $user_name)
+                        ->set('user_birthday', $user_birthday)
+                        ->set('description', $description)
+                        ->update('mod_wish_list_users');
     }
 
     public function createWishList($listName, $user_id) {
@@ -215,17 +225,16 @@ class Wishlist_model extends CI_Model {
             return 0;
     }
 
-     public function getUserWishListItemsCount($user_id) {
+    public function getUserWishListItemsCount($user_id) {
         $query = $this->db->where('mod_wish_list.user_id', $user_id)
-                            ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                            ->get('mod_wish_list');
+                ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+                ->get('mod_wish_list');
         if ($query) {
-             return count($query->result_array());
+            return count($query->result_array());
         }
         else
             return 0;
     }
-
 
     public function addRewiew($list_id) {
         $count = $this->db->where('id', $list_id)
@@ -354,6 +363,7 @@ class Wishlist_model extends CI_Model {
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
     }
+
 }
 
 ?>
