@@ -11,17 +11,17 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/mod_discount" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
+                <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#editDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('a_save')}
                 </button>
-                <button onclick="" type="button" class="btn btn-small action_on formSubmit submitButton" data-form="#createDiscountForm" data-action="tomain">
+                <button onclick="" type="button" class="btn btn-small action_on formSubmit submitButton" data-form="#editDiscountForm" data-action="tomain">
                     <i class="icon-check"></i>{lang('a_footer_save_exit')}
                 </button>
             </div>
         </div>                            
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/edit" enctype="multipart/form-data" id="editDiscountForm">
+    <form method="post" action="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" enctype="multipart/form-data" id="editDiscountForm">
         <table class="table table-striped table-bordered table-condensed content_big_td">
             <thead>
                 <tr>
@@ -56,10 +56,10 @@
                                             {if $discount['max_apply'] != null && $discount['max_apply'] != '0'}  
                                                 {$maxApply = true;}
                                             {/if}
-                                            <input class="input-small onlyNumbersInput" type="text" {if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="3"/>
+                                            <input class="input-small onlyNumbersInput" type="text" name="max_apply"{if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="7"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" {if !$maxApply} checked="checked" {/if} name="max_apply" value="" class="noLimitCountCheck">
+                                                    <input type="checkbox" {if !$maxApply} checked="checked" {/if} class="noLimitCountCheck">
                                                 </span>
                                                 Бесконечно
                                             </span>
@@ -114,7 +114,6 @@
                                         <div class="controls">
                                             <div class="width200">
                                                 <select name="type_discount" id="selectDiscountType" class="required no_color">
-                                                    <option  value="">Нет</option>
                                                     <option value="all_order" {if $discount['type_discount'] == 'all_order'} selected {/if}>Заказ на сумму больше</option>
                                                     <option value="comulativ" {if $discount['type_discount'] == 'comulativ'} selected {/if}>Накопительная скидка</option>
                                                     <option value="user" {if $discount['type_discount'] == 'user'} selected {/if}>Пользователь</option>
@@ -172,26 +171,21 @@
                                         <div id="userBlock" class="forHide" {if $discount['type_discount'] != 'user'}style="display: none;"{/if}>
                                             <div>
                                                 <div>
-                                                   <label> ID / ФИО / E-mail    :</label>
-                                                   <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input required" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-                                                   <input id="discountUserId" type="hidden" name="user[user_id]" value="{echo $discount['user']['user_id']}"/>
+                                                    <label class="hideAfterAutocomlite"> Текущий пользователь : 
+                                                        {echo $discount['user']['userInfo']}
+                                                    </label>
+                                                    <label> ID / ФИО / E-mail    :</label>
+                                                    <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                    <input id="discountUserId" type="hidden" name="user[user_id]" value="{echo $discount['user']['user_id']}"/>
                                                 </div>
                                            </div>
                                         </div>
                                         <!-- End. Show if discount type is user -->
                                         
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
                                         <!--Start. Show if discount type is group of users-->
                                         <div id="group_userBlock" class="forHide" {if $discount['type_discount'] != 'group_user'}style="display: none;"{/if}>
-                                            {$checked = 'checked'}
                                             {foreach $userGroups as $group}
-                                                 <input type="radio" name="group_user[id]" value="{echo $group[id]}" {echo $checked}>{echo $group['alt_name']}<br/>
+                                                 <input type="radio" name="group_user[group_id]" value="{echo $group[id]}" {if $group[id] == $discount['group_user']['group_id']}checked=checked{/if}>{echo $group['alt_name']}<br/>
                                                  {$checked = ''}
                                             {/foreach}
                                         </div>
@@ -201,7 +195,7 @@
                                         <div id="categoryBlock" class="forHide" {if $discount['type_discount'] != 'category'} style="display: none;" {/if}>
                                            <select name="category[category_id]">
                                                 {foreach $categories as $category}
-                                                    <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
+                                                    <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}" {if $category->getId() == $discount['category']['category_id']}selected=selected{/if}>{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
@@ -210,9 +204,12 @@
                                         <!--Start. Show if discount type is product-->
                                         <div id="productBlock" class="forHide" {if $discount['type_discount'] != 'product'} style="display: none;" {/if}>
                                             <div>
+                                                <label class="hideAfterAutocomlite"> Текущий товар : 
+                                                    {echo $discount['product']['productInfo']}
+                                                </label>
                                                 <label> Название / ID :</label>
-                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input required" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-                                                <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
+                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
                                             </div>
                                         </div>
                                         <!-- End. Show if discount type is product-->
@@ -220,9 +217,8 @@
                                         <!--Start. Show if discount type is brand-->
                                         <div id="brandBlock" class="forHide" {if $discount['type_discount'] != 'brand'} style="display: none;" {/if}>
                                            <select id="selectBrand" name="brand[brand_id]">
-                                                <option value="">{lang('a_not_set')}</option>
                                                 {foreach SBrandsQuery::create()->find() as $brand}
-                                                    <option value="{echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</option>
+                                                    <option value="{echo $brand->getId()}" {if $brand->getId() == $discount['brand']['brand_id']}selected=selected{/if}>{echo ShopCore::encode($brand->getName())}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
@@ -259,7 +255,7 @@
                                             <input class="datepicker" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" {if !$endDate} checked {/if}name="date_end" value="1" class="noLimitCountCheck">
+                                                    <input type="checkbox" {if !$endDate} checked {/if}class="noLimitCountCheck">
                                                 </span>
                                                 Не заканчивается
                                             </span>

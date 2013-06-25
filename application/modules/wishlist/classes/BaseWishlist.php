@@ -34,11 +34,22 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function addItem($varId) {
-        if (parent::addItem($varId)) {
+    public function addItem($varId, $listId, $listName) {
+        $listId = $this->input->post('wishlist');
+        $listName = $this->input->post('wishListName');
+
+        if (parent::addItem($varId, $listId, $listName)) {
             return $this->dataModel;
         } else {
             return $this->errors;
+        }
+    }
+
+    public function moveItem($varId, $wish_list_id) {
+        if (parent::moveItem($varId, $wish_list_id)) {
+            return $this->dataModel = "Операция успешна";
+        } else {
+            return $this->errors[] = "Не удалось переместить";
         }
     }
 
@@ -49,20 +60,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return false;
         }
     }
-    
-    public function addReview($list_id){
-        if(parent::addReview($list_id)){
-            return $this->dataModel = "Увеличено";
-        }else{
-            return $this->errors[] = "Невозможно увеличить";
-        }
-       
-    }
-    
-    public function getMostViewedWishLists($limit=10){
-        if(parent::getMostViewedWishLists($limit)){
+
+
+    public function getMostViewedWishLists($limit = 10) {
+        if (parent::getMostViewedWishLists($limit)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
@@ -93,44 +96,22 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      * @param type $user_birthday
      */
     public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-
-        $this->db->set('title', $title);
-        $this->db->set('access', $access);
-        $this->db->set('description', $description);
-        $this->db->set('user_id', $user_id);
-        $this->db->set('user_image', $user_image);
-        $this->db->set('user_birthday', $user_birthday);
-        $this->db->insert('mod_wish_list');
+        parent::createWL($title, $access, $description, $user_id, $user_image, $user_birthday);
     }
-    
-    public function createWishList(){
-        if(parent::createWishList()){
-            return $this->dataModel;
-        }else{
+
+    public function createWishList() {
+        $listName = $this->input->post('wishListName');
+        $user_id = $this->input->post('user_id');
+
+        if (parent::createWishList($user_id, $listName)) {
+            return $this->dataModel = "Создано";
+        } else {
             return $this->errors;
-        }      
-    }
-
-    /**
-     * Edit WL
-     */
-    public function editWL() {
-        $this->db->where('id', $this->input->post(WLID));
-        $this->db->set('access', $this->input->post(access));
-        $this->db->update('mod_wish_list');
-
-        $this->db->where('wish_list_id', $this->input->post(WLID));
-        $this->db->set('access', $this->input->post(access));
-
-        foreach ($this->input->post(comment)as $key => $coments) {
-            $this->db->where('variant_id ', $key);
-
-            $this->db->set('comment', $coments);
-            $this->db->update('mod_wish_list_products');
         }
     }
 
     public function userUpdate() {
+
         if ($this->settings[maxDescLenght] < iconv_strlen($this->input->post(description), 'UTF-8'))
             $desc = substr($this->input->post(description), 0, $this->settings[maxDescLenght]);
         else
@@ -139,40 +120,36 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         if (!(strtotime($this->input->post(user_birthday)) + 50000))
             return false;
 
-        parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
-    }
-
-    public function updateWL() {
-        $this->db->where('id', $this->input->post(WLID));
-        $this->db->set('access', $this->input->post(access));
-        $this->db->update('mod_wish_list');
-
-        foreach ($this->input->post(comment)as $key => $coments) {
-            $this->db->where('wish_list_id', $this->input->post(WLID));
-            $this->db->where('variant_id ', $key);
-            $this->db->set('comment', $coments);
-            $this->db->update('mod_wish_list_products');
+        $updated = parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
+        if ($updated) {
+            return $this->dataModel = "Обновлено";
+        } else {
+            return $this->errors = "Не обновлено";
         }
     }
 
-    /**
-     * delete full WL
-     */
-    public function deleteWL($wish_list_id) {
-        parent::deleteWL($wish_list_id);
-        redirect('/wishlist');
-    }
+    public function updateWL() {
+        $id = $this->input->post(WLID);
 
-//    public function addItem($varId) {
-//        if (parent::addItem($varId)) {
-//            redirect($this->input->cookie('url'));
-//        } else {
-//            \CMSFactory\assetManager::create()
-//                    ->registerScript('wishlist')
-//                    ->setData('errors', $this->errors)
-//                    ->render('errors');
-//        }
-//    }
+        foreach ($this->input->post(comment) as $key => $comment) {
+            if ($this->settings[maxCommentLenght] < iconv_strlen($comment, 'UTF-8'))
+                $desc[$key] = substr($comment, 0, $this->settings[maxDescLenght]);
+            else
+                $desc[$key] = $comment;
+        }
+
+        if ($this->settings[maxListName] < iconv_strlen($this->input->post(title), 'UTF-8'))
+            $title = substr($this->input->post(title), 0, $this->settings[maxListName]);
+        else
+            $title = $this->input->post(title);
+
+        $data = array(
+            'access' => $this->input->post(access),
+            'title' => $title,
+        );
+
+        parent::updateWL($id, $data, $desc, $title);
+    }
 
     public function deleteItem($variant_id, $wish_list_id, $redirect = 'true') {
         parent::deleteItem($variant_id, $wish_list_id);
@@ -181,41 +158,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function editItem($id, $varId) {
 
-    }
 
-    public function moveItem($id, $varId) {
+     public function renderPopup(){
+         if(parent::renderPopup()){
+             return $this->dataModel;
+         }else{
+             return $this->errors;
+         }
 
-    }
-
-    function editWLName($id, $newName) {
-
-    }
-
-    public function getWLbyHash($hash) {
-
-    }
-
-    public function renderWLByHash($hash) {
-
-    }
-
-    /**
-     *
-     * @param type $id array()
-     */
-    public function deleteItemByIds($id) {
-        if (!$id)
-            return;
-    }
-
-    public function autoload() {
-
-    }
-
-    public static function adminAutoload() {
-        parent::adminAutoload();
     }
 
     public function _install() {
@@ -227,9 +178,8 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     function do_upload() {
-        if (parent::do_upload()) {
-
-            redirect('/wishlist');
+        if (parent::do_upload($this->input->post(userID))) {
+            redirect($_SERVER[HTTP_REFERER]);
         }
     }
 

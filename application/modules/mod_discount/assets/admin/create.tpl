@@ -11,7 +11,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/mod_discount" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
                     <i class="icon-ok icon-white"></i>{lang('a_save')}
                 </button>
@@ -50,10 +50,10 @@
                                         </div>
                                         <div class="controls noLimitC">
                                             <label class="pt_25">Сколько раз будет использована скидка</label>
-                                            <input class="input-small onlyNumbersInput" type="text" value="" disabled="disabled" maxlength="3"/>
+                                            <input class="input-small onlyNumbersInput" name="max_apply" type="text" value="" disabled="disabled" maxlength="7"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" checked="checked" name="max_apply" value="" class="noLimitCountCheck">
+                                                    <input type="checkbox" checked="checked" class="noLimitCountCheck">
                                                 </span>
                                                 Бесконечно
                                             </span>
@@ -174,7 +174,7 @@
                                         <div id="group_userBlock" class="forHide" style="display: none;">
                                             {$checked = 'checked'}
                                             {foreach $userGroups as $group}
-                                                 <input type="radio" name="group_user[id]" value="{echo $group[id]}" {echo $checked}>{echo $group['alt_name']}<br/>
+                                                 <input type="radio" name="group_user[group_id]" value="{echo $group[id]}" {echo $checked}>{echo $group['alt_name']}<br/>
                                                  {$checked = ''}
                                             {/foreach}
                                         </div>
@@ -203,7 +203,6 @@
                                         <!--Start. Show if discount type is brand-->
                                         <div id="brandBlock" class="forHide" style="display: none;">
                                            <select id="selectBrand" name="brand[brand_id]">
-                                                <option value="">{lang('a_not_set')}</option>
                                                 {foreach SBrandsQuery::create()->find() as $brand}
                                                     <option value="{echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</option>
                                                 {/foreach}
@@ -239,7 +238,7 @@
                                             <input class="datepicker" type="text" value="" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                             <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" name="date_end" value="1" class="noLimitCountCheck">
+                                                    <input type="checkbox" class="noLimitCountCheck">
                                                 </span>
                                                 Не заканчивается
                                             </span>

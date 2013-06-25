@@ -14,7 +14,7 @@
                                 <img src="{site_url('./uploads/mod_wishlist/'.$list['user']['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
                             </div>
                             </br>
-                            <div>Дата рождения: {$list['user']['user_birthday']}</div>
+                            <div>Дата рождения: {date('Y-m-d', $list['user']['user_birthday'])}</div>
                             <div>Описание: {$list['user']['description']}</div>
                         </div>
                     </td>

@@ -11,19 +11,25 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('form', 'url'));    
+        $this->load->helper(array('form', 'url'));
     }
 
     function index() {
-        if (parent::renderUserWL($this->dx_auth->get_user_id())) {
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->registerStyle('style')
-                    ->setData('wishlists', $this->dataModel[wishlists])
-                    ->setData('user', $this->dataModel[user])
-                    ->setData('settings', $this->settings)
-                    ->render('wishlist');
+        $this->core->set_meta_tags('Wishlist');
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+        if ($this->dx_auth->is_logged_in()) {
+            if (parent::renderUserWL($this->dx_auth->get_user_id())) {
+                \CMSFactory\assetManager::create()
+                        ->registerScript('wishlist')
+                        ->registerStyle('style')
+                        ->setData('wishlists', $this->dataModel[wishlists])
+                        ->setData('user', $this->dataModel[user])
+                        ->setData('settings', $this->settings)
+                        ->render('wishlist');
+            }
         }
+        else
+            $this->core->error_404();
     }
 
     public function addItem($varId) {
@@ -39,8 +45,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     }
 
     public function moveItem($varId, $wish_list_id) {
-        parent::deleteItem($varId, $wish_list_id, false);
-        if (parent::addItem($varId)) {
+        parent::moveItem($varId, $wish_list_id);
+        if ($this->dataModel) {
             redirect('/wishlist');
         } else {
             \CMSFactory\assetManager::create()
@@ -64,9 +70,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('all');
         }
     }
-    
 
-    public function show($user_id, $list_id) {       
+    public function show($user_id, $list_id) {
         if (parent::show($user_id, $list_id)) {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', $this->dataModel)
@@ -77,25 +82,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('other_list');
         }
     }
-    
-    public function addReview($list_id){
-        parent::addReview($list_id);
-        if($this->dataModel){
-            return $this->dataModel;
-        }else{
-            return $this->errors;
-        }       
-    }
-    
-    public function getMostViewedWishLists($limit=10){
+
+    public function getMostViewedWishLists($limit = 10) {
         parent::getMostViewedWishLists($limit);
-        if($this->dataModel){
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
-    
 
     public function user($user_id) {
         $user_wish_lists = parent::user($user_id);
@@ -106,28 +101,39 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function userUpdate() {
         parent::userUpdate();
-        redirect('/wishlist');
-    }
-
-    public function getMostPopularItems($limit= 10){
-       parent::getMostPopularItems($limit);
-       if($this->dataModel){
-           var_dumps($this->dataModel);
-        }else{
+        if ($this->dataModel) {
+            redirect('/wishlist');
+        } else {
             return $this->errors;
         }
     }
-    
-    public function createWishList(){
-        parent::createWishList();
-        if($this->dataModel){
+
+    public function getMostPopularItems($limit = 10) {
+        parent::getMostPopularItems($limit);
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
-        }      
+        }
+    }
+
+    public function createWishList() {
+        parent::createWishList();
+        if ($this->dataModel) {
+            return $this->dataModel;
+        } else {
+            foreach ($this->errors as $error)
+                echo $error;
+        }
     }
 
     public function renderWLButton($varId) {
+        if ($this->dx_auth->is_logged_in()) {
+            $href = '/wishlist/renderPopup/' . $varId;
+        } else {
+            $href = '/auth/login';
+        }
+
         if (!in_array($varId, $this->userWishProducts))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
@@ -135,6 +141,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('varId', $varId)
                     ->setData('value', 'Добавить в Список Желания')
                     ->setData('class', 'btn')
+                    ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->render('button', true);
         else
@@ -142,6 +149,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
+                    ->setData('href', $href)
                     ->setData('value', 'Уже в Списке Желания')
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
@@ -175,6 +183,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function updateWL() {
         parent::updateWL();
+        redirect('/wishlist');
+    }
+
+    public function deleteWL($wish_list_id) {
+        parent::deleteWL($wish_list_id);
         redirect('/wishlist');
     }
 

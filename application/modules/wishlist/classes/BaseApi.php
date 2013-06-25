@@ -16,299 +16,148 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-
-    private function checkPerm() {
-        $permAllow = TRUE;
-        if (!$this->dx_auth->is_logged_in())
-            $permAllow = FALSE;
-
-        return $permAllow;
-    }
-
-    public function index() {
-        $this->core->error_404();
-    }
-
-    /**
-     *
-     * @param type $title
-     * @param type $access
-     * @param type $description
-     * @param type $user_id
-     * @param type $user_image
-     * @param type $user_birthday
-     */
-    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-
-        $this->db->set('title', $title);
-        $this->db->set('access', $access);
-        $this->db->set('description', $description);
-        $this->db->set('user_id', $user_id);
-        $this->db->set('user_image', $user_image);
-        $this->db->set('user_birthday', $user_birthday);
-        $this->db->insert('mod_wish_list');
-
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
-
-    /**
-     * Edit WL
-     */
-    public function editWL() {
-
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
-
-    /**
-     * delete full WL
-     */
-    public function deleteWL($id) {
-        parent::deleteWL($id);
-        redirect('/wishlist');
-    }
-
-    public function addItem() {
-        if (parent::addItem()) {
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
+    
+    public function all() {
+        $parent = parent::all();
+        if ($parent) {
+            return $this->dataModel;
         } else {
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors
-            ));
+            return $this->errors;
         }
     }
+    
+    public function addItem($varId) {
+        $listId = $this->input->post('wishlist');
+        $listName = $this->input->post('wishListName');
 
-    public function deleteItem() {
-        if (parent::deleteItem())
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
+        if (parent::addItem($varId, $listId, $listName)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function moveItem($varId, $wish_list_id) {
+        $to_listId = $this->input->post('wishlist');
+        $to_listName = $this->input->post('wishListName');
+        
+        if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
+            return $this->dataModel = "Операция успешна";
+        } else {
+            return $this->errors[] = "Не удалось переместить";
+        }
+    }
+    
+    public function deleteItem($variant_id, $wish_list_id) {
+        if(parent::deleteItem($variant_id, $wish_list_id)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }        
+    }
+    
+    public function show($user_id, $list_id) {
+        if (parent::show($user_id, $list_id)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function getMostViewedWishLists($limit = 10) {
+        if (parent::getMostViewedWishLists($limit)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function user($user_id) {
+        if (parent::user($user_id)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function userUpdate() {
+
+        if ($this->settings[maxDescLenght] < iconv_strlen($this->input->post(description), 'UTF-8'))
+            $desc = substr($this->input->post(description), 0, $this->settings[maxDescLenght]);
         else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
+            $desc = $this->input->post(description);
 
-    public function editItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
+        if (!(strtotime($this->input->post(user_birthday)) + 50000))
+            return false;
+
+        $updated = parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
+        if ($updated) {
+            return $this->dataModel = "Обновлено";
+        } else {
+            return $this->errors = "Не обновлено";
+        }
+    }
+    
+     public function getMostPopularItems($limit = 10) {
+        if (parent::getMostPopularItems($limit)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    
+    public function createWishList() {
+        $listName = $this->input->post('wishListName');
+        $user_id = $this->input->post('user_id');
+
+        if (parent::createWishList($user_id, $listName)) {
+            return $this->dataModel = "Создано";
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function deleteWL($wish_list_id) {
+        if(parent::deleteWL($wish_list_id)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+    
+    
+    public function updateWL() {
+        $id = $this->input->post(WLID);
+
+        foreach ($this->input->post(comment) as $key => $comment) {
+            if ($this->settings[maxCommentLenght] < iconv_strlen($comment, 'UTF-8'))
+                $desc[$key] = substr($comment, 0, $this->settings[maxDescLenght]);
+            else
+                $desc[$key] = $comment;
+        }
+
+        if ($this->settings[maxListName] < iconv_strlen($this->input->post(title), 'UTF-8'))
+            $title = substr($this->input->post(title), 0, $this->settings[maxListName]);
         else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
+            $title = $this->input->post(title);
 
-    public function moveItem($id, $varId) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
-
-    function editWLName($id, $newName) {
-        if (true)
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-                'errors' => $this->errors,
-            ));
-    }
-
-    public function getWLbyHash($hash) {
-
-    }
-
-    public function renderUserWL($userId, $type = '') {
-        $wishlists = $this->db
-                ->where('mod_wish_list.user_id', 47)
-                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
-                ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
-                ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
-                ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
-                ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
-                ->get('mod_wish_list')
-                ->result_array();
-        $w = array();
-        foreach ($wishlists as $wishlist)
-            $w[$wishlist[title]][] = $wishlist;
-
-        var_dump($w);
-        \CMSFactory\assetManager::create()
-                ->registerScript('wishlist')
-                ->setData('wishlists', $w)
-                ->render('wishlist');
-    }
-
-    public function renderWLByHash($hash) {
-
-    }
-
-    /**
-     * Render Wish List button
-     * @param type $varId
-     */
-    public function renderWLButton($varId) {
-        if (true)
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->setData('data', $data)
-                    ->setData('id', $varId)
-                    ->setData('value', 'Добавить в Список Желания')
-                    ->setData('class', 'btn')
-                    ->render('button', true);
-        else
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->setData('data', $data)
-                    ->setData('id', $varId)
-                    ->setData('value', 'Уже в Списке Желания')
-                    ->setData('class', 'btn inWL')
-                    ->render('button', true);
-    }
-
-    /**
-     *
-     * @param type $id array()
-     */
-    public function deleteItemByIds($id) {
-        if (!$id)
-            return;
-    }
-
-    public function autoload() {
-
-    }
-
-    public static function adminAutoload() {
-        parent::adminAutoload();
-    }
-
-    public function _install() {
-
-        $this->load->dbforge();
-        ($this->dx_auth->is_admin()) OR exit;
-
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ),
-            'title' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '254',
-                'null' => FALSE
-            ),
-            'access' => array(
-                'type' => 'ENUM',
-                'constraint' => "'public','private','shared'",
-                'default' => "shared"
-            ),
-            'description' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
-            'user_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'user_image' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
-            'user_birthday' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'hash' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '16',
-                'null' => FALSE
-            )
+        $data = array(
+            'access' => $this->input->post(access),
+            'title' => $title,
         );
 
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_wish_list');
-
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ),
-            'wish_list_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'variant_id' => array(
-                'type' => 'INT',
-                'null' => FALSE
-            ),
-            'comment' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            )
-        );
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_wish_list_products');
-
-        $this->db
-                ->where('identif', 'wishlist')
-                ->update('settings', array(
-                    'settings' => '',
-                    'enabled' => 1,
-                    'autoload' => 1,
-        ));
+        parent::updateWL($id, $data, $desc, $title);
     }
 
-    public function _deinstall() {
-        $this->load->dbforge();
-        ($this->dx_auth->is_admin()) OR exit;
-        $this->dbforge->drop_table('mod_wish_list_products');
-        $this->dbforge->drop_table('mod_wish_list');
-    }
 
-    public function renderPopup($varId) {
-        $wish_lists = $this->wishlist_model->getWishLists();
-        $data = array('wish_lists' => $wish_lists);
-        //return $this->display_tpl('wishPopup');
-        $comments = \CMSFactory\assetManager::create()
-                ->setData('value', 'Добавить в Список Желания')
-                ->setData('class', 'btn')
-                ->setData('varId', $varId)
-                ->setData($data)
-                ->fetchTemplate('wishPopup');
-        return json_encode(array('popup' => $comments));
+    
+    public function renderPopup(){
+         if(parent::renderPopup()){
+             return $this->dataModel;
+         }else{
+             return $this->errors;
+         }        
     }
 
 }
