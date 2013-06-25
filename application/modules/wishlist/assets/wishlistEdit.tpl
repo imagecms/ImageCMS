@@ -23,31 +23,35 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <th>№</th>
-                        <th>Отписатся</th>
-                        <th>Товар</th>
-                        <th>Коментарий</th>
-                    </tr>
+                    {if !$wishlist}
+                        <tr>
+                            <th>№</th>
+                            <th>Отписатся</th>
+                            <th>Товар</th>
+                            <th>Коментарий</th>
+                        </tr>
+                    {/if}
                 </thead>
                 <tbody>
-                    {foreach $wishlist as $key => $w}
-                        <tr>
-                            <td>{echo $key+1}</td>
-                            <td>
-                                <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                            </td>
-                            <td>
-                                <a href="{shop_url('product/'.$w[url])}"
-                                   title="{$w[name]}">
-                                    {$w[name]}
-                                </a>
-                            </td>
-                            <td>
-                                <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
-                            </td>
-                        </tr>
-                    {/foreach}
+                    {if !$wishlist}
+                        {foreach $wishlist as $key => $w}
+                            <tr>
+                                <td>{echo $key+1}</td>
+                                <td>
+                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                </td>
+                                <td>
+                                    <a href="{shop_url('product/'.$w[url])}"
+                                       title="{$w[name]}">
+                                        {$w[name]}
+                                    </a>
+                                </td>
+                                <td>
+                                    <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
+                                </td>
+                            </tr>
+                        {/foreach}
+                    {/if}
                 </tbody>
             </table>
             {form_csrf()}
