@@ -15,6 +15,8 @@ if (!defined('BASEPATH'))
  * @property discount_model_front $discount_model_front
  */
 class discount extends classes\BaseDiscount {
+    
+    public $result_discount;
      /**
      * __construct base object loaded
      * @access public
@@ -79,15 +81,18 @@ class discount extends classes\BaseDiscount {
      * get final discount for order
      * @access public
      * @author DevImageCms
-     * @param $render for getting result as array or discount value only
+     * @param $render for getting result as array or discount value only, totalPrice
      * @return discount array discount with key: all_active_discount, all_max_type_discount, max_discount, sum_discount_product, sum_discount_no_product, result_sum_discount or only value discount
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_result_discount($render = null) {
+    public function get_result_discount($render = null, $totalPrice = null) {
 
-        $discount_max = $this->get_max_discount($this->result_discount, $this->total_price);        
+        if (null === $totalPrice)
+            $totalPrice = $this->total_price;
+        
+        $discount_max = $this->get_max_discount($this->result_discount, $totalPrice);        
 
-        $discount_value_no_product = $this->get_discount_value($discount_max, $this->total_price);
+        $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
 
         $discount_product_value = $this->get_discount_products();
 
