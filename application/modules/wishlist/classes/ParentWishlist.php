@@ -158,6 +158,14 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function createWishList($user_id, $listName){
+        if ($listName)
+            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+
+        if ($count_lists >= $this->settings['maxListsCount']) {
+            $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
+            return FALSE;
+        }       
+        
         if($listName){
             if (strlen($listName) > $this->settings['maxListName']) {
                $listName = substr($listName, 0, (int) $this->settings['maxListName']);
