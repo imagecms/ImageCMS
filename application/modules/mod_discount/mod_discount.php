@@ -155,8 +155,8 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
             $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_comulativ` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `discount_id` INT NULL ,
-                  `begin_value` FLOAT NULL ,
-                  `end_value` FLOAT NULL ,                  
+                  `begin_value` INT NULL ,
+                  `end_value` INT NULL ,                  
                   PRIMARY KEY (`id`),
                   INDEX(`discount_id`))
                 ENGINE = MyISAM

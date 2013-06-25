@@ -173,3 +173,24 @@ $('.newWishList').live('click', function() {
         return false;
     }
 });
+//---------------------TEST API-------------------------------//
+$('.APItester').live('click', function (){
+    $.ajax({
+         type: 'POST',
+         dataType: 'text',
+         data: {
+             user_id: 49,
+             wishListName: "wishListName"
+         },
+         url: 'wishlist/wishlistApi/deleteWL/120',
+         success: function(data) {
+              console.log(data)
+             if(typeof data != Object){
+                 $('.testAPI').replaceWith('<div style="border: 2px solid;">' + data + '</div>');
+             }else{
+                 $('.testAPI').text(JSON.stringify(data));
+                 console.log(data)
+             }            
+         }
+     });
+});

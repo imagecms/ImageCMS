@@ -1,4 +1,8 @@
 <article class="container">
+    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
+        <a href="#" class="APItester">Проверка API</a>
+        <textarea class="testAPI" style="font-size: 13px; line-height: 26px; padding: 10px; height: 200px; " ></textarea>
+    <!-- ******************************************************************************** -->
     <label>
         <span class="frame_form_field__icsi-css">
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>
@@ -9,7 +13,7 @@
     </div>
     {form_open_multipart('/wishlist/do_upload')}
 
-        <input type="file" name="userfile" size="20" />
+        <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
         <br /><br />
 
@@ -26,7 +30,7 @@
     </form>
 
     <br /><br />
-    
+
     <form method="POST" action="/wishlist/createWishList">
         <input type="hidden" value="{echo $user[id]}" name="user_id"/>
         <input type="text" value="" name="wishListName"/>

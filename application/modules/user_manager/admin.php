@@ -39,10 +39,11 @@ class Admin extends BaseAdminController {
     function set_tpl_roles() {
         // roles
         //$query = $this->db->get('shop_rbac_roles');
-
+        
+        $locale = MY_Controller::getCurrentLocale();
         $this->db->select("shop_rbac_roles.*", FALSE);
         $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-        $this->db->where('locale', BaseAdminController::getCurrentLocale());
+        $this->db->where('locale', $locale);
         $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
         $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -177,7 +178,6 @@ class Admin extends BaseAdminController {
             $role = $this->input->post('role');
 //            var_dump($role);
 //            exit();
-
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
                 showMessage(lang('amt_email_exists'), '', 'r');

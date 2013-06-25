@@ -9,13 +9,18 @@ class Discount_model_admin extends CI_Model {
     
     /**
      * Get discounts List
-     * 
-     * @param int $row_count
+     * @param string $discountType
+     * @param int $rowCount
      * @param int $offset
+     * @return array
      */
-    public function getDiscountsList($row_count = null, $offset = null) {
+    public function getDiscountsList($discountType = null, $rowCount = null, $offset = null) {
         
-        $query = $this->db->get('mod_shop_discounts')->result_array();
+        $query = $this->db->order_by('active','desc')->order_by('id','desc');
+                if ($discountType != null){
+                $query = $query->where('type_discount',$discountType) ;
+                }
+                $query = $query->get('mod_shop_discounts')->result_array();
         return $query;
     }
     
@@ -32,7 +37,7 @@ class Discount_model_admin extends CI_Model {
         else $active=1;
 
         if ($this->db->where('id',$id)->update('mod_shop_discounts',array('active'=>$active)))
-            return 'true';
+            return true;
         
         return false;
     }
@@ -131,29 +136,59 @@ class Discount_model_admin extends CI_Model {
     }
     
     /**
-     * Insert data 
+     * Insert data, uses when create discount
      * @param string $tableName 
      * @param array $data 
      * @return boolean|int
      */
     public function insertDataToDB($tableName , $data) {
-        if ($tableName != null && $data != null){
-            
-            try {
-                $this->db->insert($tableName, $data);
-                return $this->db->insert_id();
-            }catch (Exception $e) {
-                return false;
-            }
+        try {
+            $this->db->insert($tableName, $data);
+            return $this->db->insert_id();
+        }catch (Exception $e) {
+            return false;
         }
     }
     
     /**
-     * Check have any comulativ discount max endValue
+     * Update discount by id.
+     * @param int $id
+     * @param array $data
      * @return boolean
      */
-    public function checkHaveAnyComulativDiscountMaxEndValue(){
-        $query = $this->db->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
+    public function updateDiscountById($id , $data, $typeDiscountData) {
+        $discountType = $data['type_discount'];
+        $previousDiscount = $this->getDiscountAllDataById($id);
+        
+        $discountTypeTableNamePrevious = 'mod_discount_'.$previousDiscount['type_discount'];
+        $discountTypeTableNameNew = 'mod_discount_'.$discountType;
+        
+        try {
+            $this->db->where('id',$id)->update('mod_shop_discounts', $data);
+            $this->db->where('discount_id',$id)->delete($discountTypeTableNamePrevious);
+            $typeDiscountData['discount_id'] = $id;
+            
+            $this->db->insert($discountTypeTableNameNew, $typeDiscountData);
+            
+            return true;
+        }catch (Exception $e) {
+            return false;
+        }
+    }
+    
+    /**
+     * Check have any comulativ discount max endValue. 
+     * 
+     * @param int $editDiscountId uses in order to not counting edited discount
+     * @return boolean
+     */
+    public function checkHaveAnyComulativDiscountMaxEndValue($editDiscountId = null){
+        
+        $query = $this->db;
+        if ($editDiscountId)
+            $query = $query->where('discount_id !=',$editDiscountId);
+        
+        $query = $query->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
         
         if (count($query))
             return true;
@@ -182,6 +217,62 @@ class Discount_model_admin extends CI_Model {
         else 
             return false;
     }
-
+    
+    /**
+     * Get username and email by id
+     * @param int $id
+     * @return string|boolean
+     */
+    public function getUserNameAndEmailById($id){
+        
+        $query = $this->db->select('username, email')->from('users')->where('id',$id)->get()->row_array();
+        if ($query){
+            $userInfo = $query['username'].' - '.$query['email'];
+            return $userInfo;
+        }
+        
+        return false;
+    } 
+    
+    /**
+     * Get product name by id
+     * @param int $id
+     * @return string|boolean
+     */
+    public function getProductById($id){
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $this->db
+                ->select('name')
+                ->from('shop_products_i18n')
+                ->where('id',$id)
+                ->where('locale',$locale)
+                ->get()
+                ->row_array();
+        
+        if ($query)
+            return $query['name'];
+        
+        return false;
+    } 
+    
+    /**
+     * Delete discount by id
+     * @param type $id
+     * @return boolean
+     */
+    public function deleteDiscountById($id) {
+        $query = $this->db->from('mod_shop_discounts')->where('id',$id)->get()->row_array();
+        $discountType = $query['type_discount'];
+        
+         try {
+            $this->db->where('id',$id)->delete('mod_shop_discounts');
+            $this->db->where('discount_id',$id)->delete('mod_discount_'.$discountType);
+            return true;
+        }catch (Exception $e) {
+            return false;
+        }
+    }
+    
+    
     
 }
