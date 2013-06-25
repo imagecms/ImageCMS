@@ -222,5 +222,19 @@ class BaseDiscount extends \MY_Controller {
 
         return $discount_value;
     }
+    
+     /**
+     * update discount apply
+     * @access public
+     * @author DevImageCms
+     * @param $key
+     * @return -----
+     * @copyright (c) 2013, ImageCMS
+     */    
+    public function updatediskapply($key){
+        
+        $this->discount_model_front->updateapply($key);        
+    }
+    
 
 }

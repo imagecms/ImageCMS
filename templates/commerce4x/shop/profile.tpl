@@ -72,6 +72,7 @@
                                     <label id="for_address" class="for_validations"></label>
                                 </span>
                             </label>
+                            {/*}
                             {if $profile->getdiscount()}
                                 <label>
                                     <span class="title">Скидка:</span>
@@ -81,6 +82,7 @@
                                     </span>
                                 </label>
                             {/if} 
+                            { */}
                             {echo ShopCore::app()->CustomFieldsHelper->setPatternMain('pattern_custom_field')->getCustomFields('user', $profile->getId())->asHtml()}
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
@@ -151,7 +153,7 @@
                                     <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('s_order')} №{echo $order->getId()}</a></td>
                                     <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
-                                    <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>
+                                    <td>{echo $order->getTotalPrice()} {$CS}</td>
                                     <td>{echo $order->getSOrderStatuses()->getName()}</td>
                                     <td>
                                         {if $order->getPaid()}
@@ -168,7 +170,7 @@
                 <!-- End orders history tab block -->
             </div>
                         
-           {$CI->load->module('mod_discount/discount_api')->get_all_discount_information(true)}             
+           {//$CI->load->module('mod_discount/discount_api')->get_user_discount_api(1)}             
         </div>
     </div>
 </div>

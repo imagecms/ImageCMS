@@ -55,7 +55,7 @@ class discount_api extends \mod_discount\discount {
     public function get_discount_tpl_from_json_api() {
         $json = json_decode($_POST['json']);
 
-        \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount', true);
+        \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
     }
 
     /**
@@ -68,57 +68,52 @@ class discount_api extends \mod_discount\discount {
      */
     public function get_discount_product_api($product, $tpl = null) {
         if ($this->check_module_install()) {
-            $this->get_all_discount();
-            $this->collect_type();
-            $this->discount_for_product = array_merge($this->discount_type['product'], $this->discount_type['brand'], $this->discount_type['category']);
-
-
-            $arr_discount = array();
-
-            foreach ($this->discount_for_product as $disc)
-                foreach ($this->discount_model_front->get_product($product['id']) as $key => $value) {
-                    if ($disc[$key] == $value)
-                        $arr_discount[] = $disc;
-                }
-
-
-            if (count($arr_discount) > 0) {
-                $price = $this->discount_model_front->get_price($product['vid']);
-                $discount_max = $this->get_max_discount($arr_discount, $price);
-                $discount_value = $this->get_discount_value($discount_max, $this->discount_model_front->get_price($product['vid']));
+            $DiscProdObj = new \mod_discount\Discount_product;
+            if ($DiscProdObj->get_product_discount_event($product)) {
+                $arr = \CMSFactory\assetManager::create()->discount;
+                if (null === $tpl)
+                    return $arr;
+                else
+                    \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
             }
             else
                 return false;
+        }
+        return false;
+    }
 
-
-            $arr = array(
-                'discoun_all_product' => $arr_discount,
-                'discount_max' => $discount_max,
-                'discount_value' => $discount_value,
-                'price' => $price
-            );
+    /**
+     * get all discount information
+     * @access public
+     * @author DevImageCms
+     * @param tpl, price optional 
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_all_discount_information($tpl = null, $price = null) {
+        if ($this->check_module_install()) {
+            $discount = $this->init()->get_result_discount(1, $price);
             if (null === $tpl)
-                return $arr;
+                return $discount;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info', true);
         }
     }
     /**
-     * get all discount information
+     * get all discount information without maximized
      * @access public
      * @author DevImageCms
      * @param tpl optional 
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_all_discount_information( $tpl = null) {
+    public function get_user_discount_api($tpl = null) {
         if ($this->check_module_install()) {
-            $discount = $this->init()->get_result_discount(1);
+            $this->init();
             if (null === $tpl)
-                return $discount;
+                return $this->result_discount;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info', true);
-            
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info', true);
         }
     }
 
