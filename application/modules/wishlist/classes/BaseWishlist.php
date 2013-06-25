@@ -61,7 +61,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-
     public function getMostViewedWishLists($limit = 10) {
         if (parent::getMostViewedWishLists($limit)) {
             return $this->dataModel;
@@ -151,22 +150,20 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         parent::updateWL($id, $data, $desc, $title);
     }
 
-    public function deleteItem($variant_id, $wish_list_id, $redirect = 'true') {
-        parent::deleteItem($variant_id, $wish_list_id);
-        if ($redirect) {
-            redirect('/wishlist');
+    public function deleteItem($variant_id, $wish_list_id) {
+        if (parent::deleteItem($variant_id, $wish_list_id)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
         }
     }
 
-
-
-     public function renderPopup(){
-         if(parent::renderPopup()){
-             return $this->dataModel;
-         }else{
-             return $this->errors;
-         }
-
+    public function renderPopup() {
+        if (parent::renderPopup()) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
     }
 
     public function _install() {
@@ -179,7 +176,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     function do_upload() {
         if (parent::do_upload($this->input->post(userID))) {
-            redirect($_SERVER[HTTP_REFERER]);
+            return $this->dataModel[] = 'Картинка загружена';
+        } else {
+            return $this->errors[] = "Ошибка загрузки";
         }
     }
 
