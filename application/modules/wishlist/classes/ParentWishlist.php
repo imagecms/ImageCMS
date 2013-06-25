@@ -305,9 +305,12 @@ class ParentWishlist extends \MY_Controller {
         return FALSE;
     }
 
-    function do_upload() {
+    function do_upload($userID = null) {
+        if (!$userID)
+            $userID = $this->dx_auth->get_user_id();
+
         $config['upload_path'] = './uploads/mod_wishlist';
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = '100000';
         $config['max_width'] = '10240000';
         $config['max_height'] = '768000';
@@ -320,7 +323,7 @@ class ParentWishlist extends \MY_Controller {
         } else {
             $this->dataModel = array('upload_data' => $this->upload->data());
             $this->db
-                    ->where('id', $this->dx_auth->get_user_id())
+                    ->where('id', $userID)
                     ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
             return TRUE;
         }
