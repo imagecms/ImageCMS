@@ -118,6 +118,15 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
     }
     
+    public function deleteWL($wish_list_id) {
+        if(parent::deleteWL($wish_list_id)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+    
+    
     public function updateWL() {
         $id = $this->input->post(WLID);
 

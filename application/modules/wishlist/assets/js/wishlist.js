@@ -182,7 +182,7 @@ $('.APItester').live('click', function (){
              user_id: 49,
              wishListName: "wishListName"
          },
-         url: 'wishlist/wishlistApi/editWL/10',
+         url: 'wishlist/wishlistApi/deleteWL/120',
          success: function(data) {
               console.log(data)
              if(typeof data != Object){
