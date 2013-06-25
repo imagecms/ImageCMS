@@ -210,7 +210,12 @@ class ParentWishlist extends \MY_Controller {
         else
             $this->errors[] = 'Невозможно удалить Список Желания';
 
-        return $forReturn;
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = "Создано";
+            return TRUE;
+        }
     }
 
     /**
