@@ -175,7 +175,7 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if ($listName) {
-            if (strlen($listName) > $this->settings['maxListName']) {
+            if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = substr($listName, 0, (int) $this->settings['maxListName']);
                 $this->errors[] = 'Поле имя будет изменено до длини ' . $this->settings['maxListName'] . ' символов </br>';
             }
