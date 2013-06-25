@@ -103,6 +103,7 @@ class Admin extends BaseAdminController {
             $data = array(
                 'userGroups'=>$userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
+                'filterQuery' => $_SESSION['QueryDiscountList'],
                 'categories' => ShopCore::app()->SCategoryTree->getTree(),
             );
             
@@ -117,7 +118,7 @@ class Admin extends BaseAdminController {
     * Edit discount   
     */
     public function edit($id) {
-       $_SESSION['QueryDiscountList'];
+       
         if ($this->input->post()){
             $postArray = $this->input->post();
             $typeDiscount = $postArray['type_discount'];
@@ -188,6 +189,7 @@ class Admin extends BaseAdminController {
                 'discount' =>$discountData,
                 'userGroups'=>$userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
+                'filterQuery' => $_SESSION['QueryDiscountList'],
                 'categories' => ShopCore::app()->SCategoryTree->getTree(),
             );
             
@@ -304,13 +306,15 @@ class Admin extends BaseAdminController {
         echo '';
     }
     
-    
+    /**
+     * Save query to session
+     * @param string $query
+     */
     public function saveQueryToSession($query) {
+        
         session_start();
         $_SESSION['QueryDiscountList'] = '?'.$query;
     }
-            
-   
 }
 
 /* End of file admin.php */

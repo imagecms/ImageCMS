@@ -43,7 +43,26 @@ class Admin extends BaseAdminController {
                     ->setData('wishlists', $wishlist->dataModel[wishlists])
                     ->setData('user', $wishlist->dataModel[user])
                     ->setData('settings', $wishlist->settings)
-                    ->render('wishlist');
+                    ->renderAdmin('wishlist');
+    }
+
+    public function editWL($wish_list_id, $userID) {
+        $wishlist = new Wishlist();
+        if ($wishlist->renderUserWLEdit($wish_list_id, $userID)) {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $wishlist->dataModel)
+                    ->renderAdmin('wishlistEdit');
+        }
+        else
+            redirect('/wishlist');
+    }
+
+    public function deleteWL($wish_list_id) {
+        $wishlist = new Wishlist();
+        $wishlist->deleteWL($wish_list_id);
+        redirect('/wishlist');
     }
 
 }
