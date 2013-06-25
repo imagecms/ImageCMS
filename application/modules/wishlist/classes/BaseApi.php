@@ -17,6 +17,15 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         parent::__construct();
     }
     
+    public function all() {
+        $parent = parent::all();
+        if ($parent) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
     public function addItem($varId) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
@@ -29,11 +38,13 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     }
     
     public function moveItem($varId, $wish_list_id) {
-        $this->deleteItem($varId, $wish_list_id, false);
-        if ($this->addItem($varId)) {
-            return TRUE;
+        $to_listId = $this->input->post('wishlist');
+        $to_listName = $this->input->post('wishListName');
+        
+        if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
+            return $this->dataModel = "Операция успешна";
         } else {
-            return FALSE;
+            return $this->errors[] = "Не удалось переместить";
         }
     }
     
@@ -43,6 +54,30 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }else{
             return $this->errors;
         }        
+    }
+    
+    public function show($user_id, $list_id) {
+        if (parent::show($user_id, $list_id)) {
+            return $this->dataModel;
+        } else {
+            return false;
+        }
+    }
+    
+    public function getMostViewedWishLists($limit = 10) {
+        if (parent::getMostViewedWishLists($limit)) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
+    }
+    
+    public function user($user_id) {
+        if (parent::user($user_id)) {
+            return $this->dataModel;
+        } else {
+            return false;
+        }
     }
 
     
