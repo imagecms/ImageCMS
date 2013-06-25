@@ -342,16 +342,16 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getUserWishListItemsCount($user_id) {
-        return $this->wishlist_model->getUserWishListCount(47);
+        return $this->wishlist_model->getUserWishListCount($user_id);
     }
 
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
-    public function deleteImage(){
-        $image = $this->input->post('image');
-        echo site_url('/uploads/mod_wishlist/' . $image);
-        unlink(site_url('/uploads/mod_wishlist/' . $image));
+    
+    public function deleteImage($image){
+        $basePath = substr(dirname(__FILE__),0,strpos(dirname(__FILE__), "application"));
+        return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
 
     public function renderPopup() {

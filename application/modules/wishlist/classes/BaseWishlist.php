@@ -158,6 +158,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
+    
+     public function deleteImage(){
+       $image = $this->input->post('image');
+       if(parent::deleteImage($image)){
+           return $this->dataModel[] = "Успешно удалено";
+       }else{
+           return $this->errors[] = "Ошибка";
+       }
+    }
 
     public function renderPopup(){
          if(parent::renderPopup()){

@@ -200,6 +200,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
     
+    public function deleteImage(){
+        parent::deleteImage();
+        if($this->dataModel){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
+    }
+    
     public function do_upload() {
         parent::do_upload();
         if ($this->dataModel) {
