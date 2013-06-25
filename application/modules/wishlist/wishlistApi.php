@@ -23,11 +23,41 @@ class WishlistApi extends \wishlist\classes\BaseApi {
                         )
                     );
         } else {
-            \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
-                    ->setData('errors', $this->errors)
-                    ->render('errors');
+            return json_encode(
+                        array(
+                            'answer' => 'error',
+                            'data' => $this->errors
+                        )
+                    );
         }
+    }
+    
+    public function moveItem($varId, $wish_list_id) {
+        parent::moveItem($varId, $wish_list_id);
+        if ($this->dataModel) {
+             return json_encode(
+                        array(
+                            'answer' => 'success',
+                            'data' => $this->dataModel
+                        )
+                    );
+        } else {
+             return json_encode(
+                        array(
+                            'answer' => 'error',
+                            'data' => $this->errors
+                        )
+                    );
+        }
+    }
+    
+    public function deleteItem($variant_id, $wish_list_id) {
+        parent::deleteItem($variant_id, $wish_list_id);
+        if($this->dataModel){
+             return $this->return_success($this->dataModel);
+        }else{
+            return $this->return_success($this->errors);
+        }        
     }
 
     public function renderPopup($varId, $wish_list_id = '') {
@@ -42,11 +72,28 @@ class WishlistApi extends \wishlist\classes\BaseApi {
                  'max_lists_count' => $this->settings['maxListsCount']
                     
              );
-             return json_encode($data);
+             return $this->return_success($data);
         }else{
-            $data = array('answer' => 'error');
-            return json_encode($data);
+            return $this->return_error(array('data' => $this->errors));
         }       
+    }
+    
+    private function return_success($data = ""){
+        return json_encode(
+                    array(
+                        'answer' => 'success',
+                        'data' => $data
+                    )
+                );
+    }
+    
+    private function return_error($data = ""){
+        return json_encode(
+                   array(
+                        'answer' => 'error', 
+                        'data' => $data
+                   )
+               );
     }
     
     
