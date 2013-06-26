@@ -241,7 +241,7 @@ class ParentWishlist extends \MY_Controller {
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
         if ($count_lists >= $this->settings['maxListsCount']) {
-            $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
+            $this->errors[] = 'Лимит Cписков Желания исчерпан. Максимум - ' . $this->settings['maxListsCount'] . ' </br>';
             return FALSE;
         } else
         if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
@@ -256,7 +256,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);      
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);
         if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
@@ -383,5 +383,5 @@ class ParentWishlist extends \MY_Controller {
     public function _deinstall() {
         $this->wishlist_model->deinstall();
     }
-    
+
 }
