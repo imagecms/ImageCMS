@@ -25,6 +25,7 @@ class ParentWishlist extends \MY_Controller {
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
+
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
@@ -224,7 +225,7 @@ class ParentWishlist extends \MY_Controller {
      *
      * @return boolean
      */
-    public function addItem($varId, $listId, $listName) {
+    public function _addItem($varId, $listId, $listName) {
         $count_lists = 0;
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
@@ -243,7 +244,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
         } else
-        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
             $this->errors[] = "Невозможно додать";
 
         if (count($this->errors))
@@ -255,8 +256,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->deleteItem($varId, $wish_list_id);
-        if ($this->addItem($varId, $to_listId, $to_listName)) {
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);      
+        if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
             return FALSE;
@@ -284,8 +285,10 @@ class ParentWishlist extends \MY_Controller {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
         $userInfo = $this->getUserInfo();
         $w = array();
+
         foreach ($wishlists as $wishlist)
-            $w[$wishlist[title]][] = $wishlist;
+            $w[$wishlist[wish_list_id]][] = $wishlist;
+
         $this->dataModel[wishlists] = $w;
         $this->dataModel[user] = $userInfo;
 
@@ -380,5 +383,5 @@ class ParentWishlist extends \MY_Controller {
     public function _deinstall() {
         $this->wishlist_model->deinstall();
     }
-
+    
 }
