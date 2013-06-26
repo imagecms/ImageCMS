@@ -2,6 +2,7 @@
 
 	cusel version 2.5
 	last update: 31.10.11
+	СЃРјРµРЅР° РѕР±С‹С‡РЅРѕРіРѕ СЃРµР»РµРєС‚ РЅР° СЃС‚РёР»СЊРЅС‹Р№
 	autor: Evgen Ryzhkov
 	updates by:
 		- Alexey Choporov

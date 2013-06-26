@@ -1,10 +1,10 @@
 <div class="frame-inside">
     <div class="container">
-        <div class="title_h2">Вход</div>
+        <div class="title-h2">Вход</div>
         <div class="frame-register">
             <form method="post" action="{site_url('auth/login')}" id="login_form">
                 <div class="grey-b_r-bord inside-padd">
-                    <div class="title_h4">Авторизируйтесь, заполнив поля ниже:</div>
+                    <div class="title-h4">Авторизируйтесь, заполнив поля ниже:</div>
                     <div class="horizontal-form">
                         {if $info_message || $log_errors}
                             <div class="control-group">

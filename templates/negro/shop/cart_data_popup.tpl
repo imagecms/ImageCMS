@@ -3,7 +3,7 @@
     {if count($inCart) > 0}
         <div class="inside-padd frame-cleaner-main">
             <form method="post" action="{shop_url('cart')}" id="order_form">
-                <div class="title_h3">В вашей корзине {count($inCart)} {echo SStringHelper::Pluralize(count($inCart), array('товар','товара','товаров'))} на сумму
+                <div class="title-h3">В вашей корзине {count($inCart)} {echo SStringHelper::Pluralize(count($inCart), array('товар','товара','товаров'))} на сумму
                     <span class="price-order">
                         <span><span class="totalCartHead">0</span> <span class="cur">{$CS}</span></span>
                     </span>
@@ -211,7 +211,7 @@
                     {if count($related_products) > 0}
                         {shuffle($related_products);} 
                         <div class="footer-fancy-cleaner">
-                            <div class="title_h2 m-l_42">Рекомендуем добавить к заказу</div>
+                            <div class="title-h2 m-l_42">Рекомендуем добавить к заказу</div>
                             <ul class="items items-complect items items-recomedet clearfix">
                                 {$rcnt = 4}
                                 {foreach $related_products as $id}
@@ -311,7 +311,7 @@
         </script>
     {else:}
         <div class="inside-padd frame-cleaner-main">
-            <div class="title_h3">В корзине нет товаров</div>
+            <div class="title-h3">В корзине нет товаров</div>
         </div>
         <script type="text/javascript">
             $('#order_form').hide();
