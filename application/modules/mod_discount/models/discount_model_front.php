@@ -73,5 +73,7 @@ class Discount_model_front extends CI_Model {
         $this->db->query($sql);
         
     }
+    
+   
 
 }
