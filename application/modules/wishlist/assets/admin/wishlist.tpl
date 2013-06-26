@@ -74,7 +74,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn" value="{lang()}Сохранить"/>
+                                                        <input type="submit" class="btn" value="{lang(save)}"/>
                                                     </div>
                                                 </div>
                                             </div>
