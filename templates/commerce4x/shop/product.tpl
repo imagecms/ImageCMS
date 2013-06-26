@@ -489,6 +489,7 @@
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
                                 </div>
+
                                 <button class="btn btn_buy btnBuy" type="button"
                                         data-price="{echo $kitProducts->getTotalPrice()}"
                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
@@ -503,6 +504,7 @@
                                         >
                                     {lang('s_buy')}
                                 </button>
+                                
                             </li>
                         </ul>
                     </li>
