@@ -53,7 +53,8 @@ var ImageCMSApi = {
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
                     if (obj.status == true) {
                         $('#' + selector).hide();
-                        $('<div class="msg"><div class="success">' + obj.msg + '</div></div>').appendTo($('#' + selector).parent());
+                        $(message.success(obj.msg)).appendTo($('#' + selector).parent());
+                        drawIcons($('.msg').find(selIcons));
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image);
@@ -134,7 +135,7 @@ var ImageCMSApi = {
  * which have on click function formAction
  */
 $(document).ready(function() {
-    $('form.submit_enter input').on('keypress', function(e) {
+    $('form.submit_enter input').bind('keypress', function(e) {
         if (e.which == 13) {
             $('form.submit_enter input[type="button"]').trigger('click');
         }
@@ -147,9 +148,6 @@ $(document).ready(function() {
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
             $('label#for_' + $(this).attr('name')).hide();
-            var btnNAA = $('.btn_not_avail.active');
-            if (btnNAA.length != 0)
-                btnNAA.drop('positionDrop', btnNAA, btnNAA.data('placement'), btnNAA.data('place'));
         }
     });
 });
@@ -186,7 +184,6 @@ var Notification = {
     formClass: ".drop-content",
     returnMsg: function(msg) {
         if (this.debugMode === true) {
-            console.log(msg);
         }
     },
     formAction: function(url, selector) {
@@ -214,9 +211,9 @@ var Notification = {
                     }
                     if (obj.status === true) {
                         $(Notification.formClass + ' form#' + selector).hide();
-                        $(Notification.formClass + ' form#' + selector).before('<div class="msg"><div class="success">' + obj.msg + '</div></div>');
-                        if ($('.btn_not_avail.active').length != 0)
-                            $('.btn_not_avail.active').drop('positionDrop');
+                        $(Notification.formClass + ' form#' + selector).before(message.success(obj.msg));
+                        drawIcons($('.msg').find(selIcons));
+                        
                         if (obj.close === true) {
                             setTimeout((function() {
                                 $('.drop').drop('triggerBtnClick');
@@ -258,8 +255,6 @@ var Notification = {
                     $('#' + selector).find('label#for_' + key).show();
                 }
             }
-            if ($('.btn_not_avail.active').length != 0)
-                $('.btn_not_avail.active').drop('positionDrop');
         } else {
             return false;
         }
@@ -301,16 +296,16 @@ var orderSelect = {
 }
 
 $(document).ready(function() {
-    $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
+    $(FilterManipulation.OnChangeSubmitSelectors).bind('change', function() {
         FilterManipulation.filterSubmit();
     });
 
-    $(FilterManipulation.OnClickSubmitSelectors).on('click', function(event) {
+    $(FilterManipulation.OnClickSubmitSelectors).bind('click', function(event) {
         event.preventDefault();
         FilterManipulation.filterSubmit();
     });
 
-    $('span.filterLable').on('click', function() {
+    $('span.filterLable').bind('click', function() {
         var input = $(this).prev('span.niceCheck.b_n').find('input').not('[disabled=disabled]');
         if (input.is(':checked')) {
             input.attr('checked', false);
@@ -322,11 +317,11 @@ $(document).ready(function() {
         }
     });
 
-    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').on('change', function() {
+    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').bind('change', function() {
         orderSelect.addHiddenFields();
     });
 
-    $('#sort, #sort2').on('change', function(){
+    $('#sort, #sort2').bind('change', function(){
         $('form#searchSortForm').submit();
     });
 });

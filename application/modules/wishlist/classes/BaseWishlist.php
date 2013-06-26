@@ -38,7 +38,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
-        if (parent::addItem($varId, $listId, $listName)) {
+        if (parent::_addItem($varId, $listId, $listName)) {
             return $this->dataModel;
         } else {
             return $this->errors;
@@ -46,7 +46,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function moveItem($varId, $wish_list_id) {
-        if (parent::moveItem($varId, $wish_list_id)) {
+        $listId = $this->input->post('wishlist');
+        $listName = $this->input->post('wishListName');
+        
+        if (parent::moveItem($varId, $wish_list_id, $listId, $listName)) {
             return $this->dataModel = "Операция успешна";
         } else {
             return $this->errors[] = "Не удалось переместить";

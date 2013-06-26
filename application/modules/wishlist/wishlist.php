@@ -191,11 +191,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         redirect('/wishlist');
     }
 
-//    public function do_upload() {
-//        parent::do_upload();
-//        redirect($_SERVER[HTTP_REFERER]);
-//}
-
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
         if($this->dataModel){
