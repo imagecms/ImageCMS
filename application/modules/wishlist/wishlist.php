@@ -47,7 +47,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
         if ($this->dataModel) {
-            redirect('/wishlist');
+           redirect('/wishlist');
         } else {
             \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
@@ -199,7 +199,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
-    
+
     public function deleteImage(){
         parent::deleteImage();
         if($this->dataModel){
@@ -208,7 +208,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
-    
+
     public function do_upload() {
         parent::do_upload();
         if ($this->dataModel) {

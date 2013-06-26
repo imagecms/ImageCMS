@@ -45,25 +45,25 @@ class Components extends BaseAdminController {
 
         // process modules info
         $count = count($db_modules);
-        for ($i = 0; $i < $count; $i++) {            
+        for ($i = 0; $i < $count; $i++) {
             $module_name = $db_modules[$i]['name'];
             if ($this->module_exists($module_name)){
-                
+
                 $info = $this->get_module_info($module_name);
                 $db_modules[$i]['menu_name'] = $info['menu_name'];
                 $db_modules[$i]['version'] = $info['version'];
                 $db_modules[$i]['description'] = $info['description'];
                 $db_modules[$i]['identif'] = $db_modules[$i]['identif'];
-                
+
                 if (file_exists(APPPATH . 'modules/' . $module_name . '/admin.php')) {
                     $db_modules[$i]['admin_file'] = 1;
                 } else {
-                    $db_modules[$i]['admin_file'] = 0;                    
-                }               
+                    $db_modules[$i]['admin_file'] = 0;
+                }
             }else{
                  unset($db_modules[$i]);
             }
-            
+
         }
 
 
@@ -155,9 +155,9 @@ class Components extends BaseAdminController {
      * @return boolean
      */
     function module_exists($module_name){
-        return opendir(APPPATH . 'modules/' . $module_name. '/');    
+        return opendir(APPPATH . 'modules/' . $module_name. '/');
     }
-    
+
     function find_components($in_menu = FALSE) {
         $components = array();
         if ($in_menu == TRUE) {
@@ -282,7 +282,7 @@ class Components extends BaseAdminController {
 
     function cp($module) {
         $func = $this->uri->segment(5);
-       
+
         if ($func == FALSE)
             $func = 'index';
 
@@ -290,7 +290,7 @@ class Components extends BaseAdminController {
 
         $this->load->module('core/core');
         $args = $this->core->grab_variables(6);
-       
+
         $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
 
         //echo '<div id="' . $module . '_module_block">' . modules::run($module . '/admin/' . $func, $args) . '</div>';
