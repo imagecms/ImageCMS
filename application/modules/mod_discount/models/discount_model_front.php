@@ -14,7 +14,9 @@ class Discount_model_front extends CI_Model {
         $time = time();
         $sql = "select *, id as ids
                 from mod_shop_discounts
-                where (max_apply > count_apply or max_apply is null or (max_apply is null and count_apply is null)) 
+                where (max_apply > count_apply 
+                        or max_apply is null 
+                        or (max_apply is null and count_apply is null)) 
                       and 
                       (date_begin < '$time' and date_end > '$time' 
                           or date_begin < '$time' and date_end is Null 

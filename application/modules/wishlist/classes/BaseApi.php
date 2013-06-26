@@ -26,7 +26,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
     }
     
-    public function addItem($varId) {
+    public function _addItem($varId) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 

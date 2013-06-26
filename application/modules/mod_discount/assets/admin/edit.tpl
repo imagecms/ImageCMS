@@ -184,9 +184,10 @@
                                         
                                         <!--Start. Show if discount type is group of users-->
                                         <div id="group_userBlock" class="forHide" {if $discount['type_discount'] != 'group_user'}style="display: none;"{/if}>
+                                            {if $discount['group_user']['group_id'] == null}{$checked = 'checked=checked'}{/if}
                                             {foreach $userGroups as $group}
-                                                 <input type="radio" name="group_user[group_id]" value="{echo $group[id]}" {if $group[id] == $discount['group_user']['group_id']}checked=checked{/if}>{echo $group['alt_name']}<br/>
-                                                 {$checked = ''}
+                                                 <input type="radio" name="group_user[group_id]" {$checked} value="{echo $group[id]}" {if $group[id] == $discount['group_user']['group_id']}checked=checked{/if}>{echo $group['alt_name']}<br/>
+                                            {$checked=''}
                                             {/foreach}
                                         </div>
                                         <!-- End. Show if discount type is group of users-->

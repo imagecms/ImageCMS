@@ -10,7 +10,7 @@
                         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
                             <span class="photo-block">
                                 <span class="helper"></span>
-                                <img src="{echo $p->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($p->getName())}" />
+                                <img src="{echo $p->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
                                 <!-- creating hot bubble for products image if product is hot -->
                                 {if $p->getHot()}
                                 <span class="product-status nowelty">{lang('s_shot')}</span>
@@ -27,7 +27,7 @@
                             <span class="title">{echo ShopCore::encode($p->getName())}</span>
                         </a>
                         <div class="description">
-                            {$CI->load->module('star_rating')->show_star_rating($p)}
+                            <div class="frame-star">{$CI->load->module('star_rating')->show_star_rating($p)}</div>
                             <div class="frame-prices f-s_0">
                                 <!-- Check for discount-->
                                 {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
@@ -60,7 +60,7 @@
                                 </span>
                                 {/if}
                             </div>
-                            <div class="f-s_0 func-button">
+                            <div class="funcs-buttons">
                                 {if $p->firstvariant->getstock() != 0}
                                 <!-- buy/inCart button -------------------->
                                 <div class="btn-buy">
