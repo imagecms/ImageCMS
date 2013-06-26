@@ -24,7 +24,7 @@
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
-        <script type="text/javascript" src="{$THEME}js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
     </head>
@@ -38,6 +38,7 @@
             </div>
             <div class="content">
                 {$content}
+                {widget('latest_news')}
             </div>
             <div class="h-footer"></div>
         </div>
@@ -55,6 +56,13 @@
         <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <script type="text/javascript" src="{$THEME}js/imagecms.api.js"></script>
+
+        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
+        
+        <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
+        
+        <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
 
         {include_shop_tpl('js_templates')}
     </body>

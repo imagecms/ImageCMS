@@ -1,11 +1,11 @@
 <div class="frame-inside">
     <div class="container">
-        <div class="title_h2">Регистрация</div>
+        <div class="title-h2">Регистрация</div>
         <div class="frame-register">
             <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
                                                 return false;">
                 <div class="grey-b_r-bord inside-padd">
-                    <div class="title_h4">Все поля обязательны для заполнения</div>
+                    <div class="title-h4">Все поля обязательны для заполнения</div>
                     <div class="horizontal-form">
                         <div class="control-group">
                             <label class="control-label" for="reg_name">Ваше имя:</label>

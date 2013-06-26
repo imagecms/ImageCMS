@@ -15,9 +15,9 @@
                             <span class="title">E-mail:</span>
                             <span class="frame-form-field">
                                 <input type="text" name="email" id="login" />
+                                <label id="for_email" class="for_validations error"></label>
                                 <span class="help-block">На Вашу почту будет отправлен пароль</span>
                                 <span class="must">*</span>
-                                <label id="for_email" class="for_validations error"></label>
                             </span>
                         </label>
                         <div class="frame-label">

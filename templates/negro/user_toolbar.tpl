@@ -35,7 +35,9 @@
     </div>
     <div class="drop frame-already-show">
         <div class="content-already-show">
-            {widget('ViewedProducts')}
+            <div class="horizontal-carousel">
+                {widget('ViewedProducts')}
+            </div>
         </div>
     </div>
 </div>

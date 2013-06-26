@@ -35,14 +35,14 @@
                     </label>
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
-                        <span class="frame-form-field">
-                            <span class="btn-form">
+                        <div class="frame-form-field">
+                            <div class="btn-form">
                                 <button type="submit">
                                     <span class="icon_order_drop"></span>
                                     <span class="text-el">Позвоните мне</span>
                                 </button>
-                            </span>
-                        </span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
