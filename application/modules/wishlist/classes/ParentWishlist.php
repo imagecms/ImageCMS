@@ -255,7 +255,7 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         } 
        
-        if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
             $this->errors[] = lang(error_cant_add);
 
         if (count($this->errors))
@@ -347,7 +347,6 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getMostPopularItems($limit = 10) {
-        $result = $this->wishlist_model->getMostPopularProducts($limit);
         if ($result) {
             $this->dataModel = $result;
             return TRUE;
