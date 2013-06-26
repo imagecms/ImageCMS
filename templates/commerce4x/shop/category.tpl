@@ -20,7 +20,7 @@
     <!-- Show Banners in circle -->
     <div class="mainFrameBaner">
         <section class="container">
-            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(3,$category->id)}
+            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(300,$category->id)}
             {if count($banners)}
                 <div class="frame_baner">
                     <ul class="cycle">
@@ -121,6 +121,7 @@
 
                                     <!-- displaying product's rate -->
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
+                                    {$CI->load->module('wishlist')->renderWLButton($product->firstvariant->getId())}
 
                                     <!-- displaying comments count -->
                                     {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
@@ -196,7 +197,7 @@
                                                                       data-url="{echo shop_url('product/'.$product->getUrl())}"
                                                                       data-price="{echo $pv->toCurrency()}"
                                                                       data-number="{echo $pv->getNumber()}"
-                                                                      data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                      data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
                                                     {lang('s_buy')}
@@ -218,7 +219,7 @@
                                                                       data-url="{echo shop_url('product/'.$product->getUrl())}"
                                                                       data-price="{echo $pv->toCurrency()}"
                                                                       data-number="{echo $pv->getNumber()}"
-                                                                      data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                      data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
 
                                                                       type="button"

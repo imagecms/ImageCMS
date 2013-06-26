@@ -70,7 +70,7 @@
                         {if $model->getGiftCertKey() != null}
                             <tr>
                                 <th>{lang('s_do_you_cer_tif')}: </th>
-                                <td>-{echo $model->getGiftCertPrice()} {$CS}</td>
+                                <td>-{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}</td>
                             </tr>
                         {/if}
                         <!-- End. Render certificate -->
@@ -149,7 +149,7 @@
                                 {/if}
                             </div>
                             <div class="price price_f-s_16">
-                                <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getPrice()}</span> {$CS}</span>
+                                <span class="first_cash"><span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice())}</span> {$CS}</span>
                             </div>
                         </td>
                         <td>
@@ -262,11 +262,15 @@
                 <div class="t-a_r inside_padd">
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
-                            (Сумма товаров: <span class="f-w_b">{echo $model->getTotalPrice()}</span> {$CS}
+                            (Сумма товаров: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
+                            {if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
 
-                            + Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
-                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo $model->getGiftCertPrice()} {$CS}<span class="f-w_b"></span> )</span>{/if}
+                            
+                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
+                        <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
                     </div>
+                    
+                    {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
 
 
                     <span class="f-s_18">Сумма:</span>&nbsp;

@@ -91,6 +91,7 @@
                                     <div class="price price_f-s_24">
                                         <!-- $model->hasDiscounts() - check for a discount. -->
                                         {if $model->hasDiscounts()}
+                                            {//$CI->load->module('mod_discount/discount_api')->get_discount_product_api(array('id'=>$model->getid(),vid=>$model->firstvariant->getid()),true)}
                                             <span class="d_b old_price">
                                                 <!--
                                                 "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
@@ -99,6 +100,9 @@
                                                 -->
 
                                                 <span class="f-w_b priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                
+                                                {//echo $model->firstVariant->getVirtual('discounttpl')}
+                                                {//var_dump($model->firstVariant->getVirtual('discount'))}
 
                                                 {$CS}
                                             </span>
@@ -136,7 +140,7 @@
                                                                   data-img="{echo $pv->getSmallPhoto()}"
                                                                   data-mainImage="{echo $pv->getMainPhoto()}"
                                                                   data-largeImage="{echo $pv->getlargePhoto()}"
-                                                                  data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                  data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                   data-stock="{echo $pv->getStock()}"
                                                                   >
                                                 {lang('s_buy')}
@@ -158,7 +162,7 @@
                                                                    data-img="{echo $pv->getSmallPhoto()}"
                                                                    data-mainImage="{echo $pv->getMainPhoto()}"
                                                                    data-largeImage="{echo $pv->getlargePhoto()}"
-                                                                   data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                                                   data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                    data-stock="{echo $pv->getStock()}"
                                                                    >
                                                 <span class="icon-but"></span>
@@ -334,7 +338,7 @@
                                                     data-maxcount="{echo $p->firstVariant->getstock()}"
                                                     data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                     data-url="{echo shop_url('product/' . $p->getUrl())}"
-                                                    data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                                    data-origprice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $p->firstVariant->getStock()}"
                                                     >
                                                 {lang('s_buy')}
