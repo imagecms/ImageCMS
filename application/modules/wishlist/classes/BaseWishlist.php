@@ -49,7 +49,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
         
-        if(!($listId && $listName)){
+        if((!$listId && !$listName)){
             return $this->errors[] = lang(error_cant_move);
         }
 

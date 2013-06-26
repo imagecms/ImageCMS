@@ -267,8 +267,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);  
-
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);
         if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
