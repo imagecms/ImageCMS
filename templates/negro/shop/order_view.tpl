@@ -20,14 +20,14 @@
 <div class="frame-inside">
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
-            <div class="title_h2">Спасибо за ваш заказ!</div>
+            <div class="title-h2">Спасибо за ваш заказ!</div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
                     Shop.Cart.clear();
                 }){/literal}
             </script>
         {else:}
-            <div class="title_h2">Заказ №<span class="arial">{echo $model->getId()}</span></div>
+            <div class="title-h2">Заказ №<span class="arial">{echo $model->getId()}</span></div>
         {/if}
 
         {$total = $model->getTotalPrice()}
@@ -62,7 +62,7 @@
                 <!-- End. Render payment button and payment description -->
             </div>
             
-            <div class="title_h3">Параметры заказа</div>
+            <div class="title-h3">Параметры заказа</div>
             <table class="table-info-order">
 <!--                Start. Order status-->
                 <tr>
@@ -125,7 +125,7 @@
         <!-- End. Displays a information block about Order -->
         <div class="right-order">
             <div class="frame-your-order">
-                <div class="title_h3">Ваш заказ</div>
+                <div class="title-h3">Ваш заказ</div>
                 {foreach $model->getSOrderProductss() as $orderProduct}
          <!-- Start. Render Ordered Products -->            
                         <ul class="items items-complect item-order">

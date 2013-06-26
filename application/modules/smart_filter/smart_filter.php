@@ -25,7 +25,7 @@ class Smart_filter extends \Category\BaseCategory {
     public function init() {
         return \CMSFactory\assetManager::create()
                         ->registerScript('jquery.ui-slider',TRUE)
-                        ->registerScript('filter')
+                        ->registerScript('filter', TRUE)
                         ->render('main', true);
     }
 

@@ -9,7 +9,7 @@
         </li>
         {foreach $navi_cats as $item} {$i++}
         <li class="btn-crumb">
-            {if $i < count($navi_cats) }
+            {if $i < count($navi_cats)}
             <a href="{site_url($item.path_url)}" typeof="v:Breadcrumb">
                 <span class="text-el">{$item.name}<span class="divider">→</span></span>
             </a>

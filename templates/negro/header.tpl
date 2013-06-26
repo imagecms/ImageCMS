@@ -21,7 +21,7 @@
                 <!--                Start. contacts block-->
                 <div class="phones-header">
                     <span class="f-s_0">
-                        <span class="icon_header_phone"></span>
+                        <span class="icon_phone_header"></span>
                         <span class="phone">
                             <span class="phone-code">(097)</span>
                             <span class="phone-number">567-43-21</span>
@@ -29,7 +29,7 @@
                     </span>
                     <ul class="tabs">
                         <li class="btn-order-call">
-                            <a href="#ordercall" data-drop=".drop-order-call" data-source="/shop/callback">
+                            <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
                                 <span class="icon_order_call"></span>
                                 <span class="text-el d_l">Заказать звонок</span>
                             </a>

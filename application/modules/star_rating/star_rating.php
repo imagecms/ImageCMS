@@ -97,6 +97,7 @@ class Star_rating extends MY_Controller {
                     ->registerStyle('style')
                     ->registerScript('scripts')
                     ->render($template, true);
+
     }
 
     /**

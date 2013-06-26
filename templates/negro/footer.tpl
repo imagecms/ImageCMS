@@ -44,7 +44,7 @@
                     <li><div class="c_9">Главный офис:</div></li>
                     <li><div class="c_w">Киев, ул. Шевченка 22, офис: 39</div></li>
                     <li><div class="c_w f-s_0">
-                            <span class="icon_header_phone"></span>
+                            <span class="icon_phone_header"></span>
                             <span class="f-s_16"><span>(097)</span> <span class="f-w_b">567-43-21</span></span>
                         </div>
                     </li>
