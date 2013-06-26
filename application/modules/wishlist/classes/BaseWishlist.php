@@ -48,11 +48,11 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function moveItem($varId, $wish_list_id) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
-        
+
         if (parent::moveItem($varId, $wish_list_id, $listId, $listName)) {
-            return $this->dataModel = "Операция успешна";
+            return $this->dataModel = lang(success);
         } else {
-            return $this->errors[] = "Не удалось переместить";
+            return $this->errors[] = lang(error_cant_move);
         }
     }
 
@@ -106,7 +106,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $user_id = $this->input->post('user_id');
 
         if (parent::createWishList($user_id, $listName)) {
-            return $this->dataModel = "Создано";
+            return $this->dataModel = lang(created);
         } else {
             return $this->errors;
         }
@@ -124,9 +124,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         $updated = parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
         if ($updated) {
-            return $this->dataModel = "Обновлено";
+            return $this->dataModel = lang(updated);
         } else {
-            return $this->errors = "Не обновлено";
+            return $this->errors = lang(error_cant_update);
         }
     }
 
@@ -160,13 +160,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
+
      public function deleteImage(){
        $image = $this->input->post('image');
        if(parent::deleteImage($image)){
-           return $this->dataModel[] = "Успешно удалено";
+           return $this->dataModel[] = lang(deleted);
        }else{
-           return $this->errors[] = "Ошибка";
+           return $this->errors[] = lang(error_cant_delete);
        }
     }
 
@@ -188,9 +188,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     function do_upload() {
         if (parent::do_upload($this->input->post(userID))) {
-            return $this->dataModel[] = 'Картинка загружена';
+            return $this->dataModel[] = lang(picture_uploaded);
         } else {
-            return $this->errors[] = "Ошибка загрузки";
+            return $this->errors[] = lang(error_upload_photo);
         }
     }
 

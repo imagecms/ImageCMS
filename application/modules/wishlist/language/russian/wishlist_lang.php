@@ -14,11 +14,12 @@ $lang[error_WL_delete]  = 'Невозможно удалить Список Же
 $lang[error_items_limit_exhausted]  = 'Исчерпан лимит продуктов в Списке Желания';
 $lang[error_user_not_autorized]  = 'Пользователь не залогинен';
 $lang[error_cant_add]  = 'Невозможно добавить';
+$lang[error_cant_move]  = 'Не удалось переместить';
+$lang[error_cant_update]  = 'Не обновлено';
+$lang[error_cant_delete]  = 'Невозможно удалить';
+$lang[]  = 'Ошибка загрузки';
 $lang[]  = '';
-$lang[]  = '';
-$lang[]  = '';
-$lang[]  = '';
-$lang[]  = '';
+
 /**
  * messeges
  */
@@ -27,7 +28,17 @@ $lang[listname_max_count]  = 'Максимaльная длина имени Сп
 $lang[created]  = 'Создано';
 $lang[success]  = 'Операция успешна';
 $lang[added]  = 'Добавлено';
+$lang[updated]  = 'Обновлено';
+$lang[deleted]  = 'Успешно удалено';
+$lang[picture_uploaded]  = 'Картинка загружена';
+$lang[create_new_list]  = 'Создать новий список';
 $lang[]  = '';
+
+/**
+ * buttons
+ */
+$lang[btn_add_2_WL]  = 'Добавить в Список Желания';
+$lang[btn_already_in_WL]  = 'Уже в Списке Желания';
 $lang[]  = '';
 
 /**

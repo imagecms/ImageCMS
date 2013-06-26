@@ -180,8 +180,15 @@ class BaseDiscount extends \MY_Controller {
         return $this->discount_type;
     }
     
-    
-    public function empty_to_array(){
+     /**
+     * set empty array for null ellement discount
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ----
+     * @copyright (c) 2013, ImageCMS
+     */    
+    private function empty_to_array(){
         if (!$this->discount_type['product'])
             $this->discount_type['product'] = array();
         
