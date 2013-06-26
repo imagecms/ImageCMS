@@ -5,13 +5,8 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-<<<<<<< HEAD
-                <span class="title">Списки пользователя: {echo $user[user_name]}</span>
-            </div>
-=======
                 <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
             </div>                          
->>>>>>> d2dd66ed33a175d3ce31c2f47941200e9e873d7a
         </div>
         <div class="row-fluid">
 
@@ -42,7 +37,7 @@
                                         <div class="form-horizontal">
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}" class="img-polaroid" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}" class="img-polaroid" alt='{lang(ava)}' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -96,10 +91,10 @@
                     {if count($wishlists)>0}
                         {foreach $wishlists as $key => $wishlist}
                             <h4 class="title">{$wishlist[0][title]}</h4>
-                            <lable>Тип списка: <b>{echo $wishlist[0][access]}</b></lable>
+                            <lable>{lang(list_type)}: <b>{echo $wishlist[0][access]}</b></lable>
                             <br>
-                            <a href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">{lang()}удалить</a>
-                            <a href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">{lang()}редактировать</a>
+                            <a href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">{lang(delete)}</a>
+                            <a href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">{lang(edit)}</a>
                             <div class="wishListDescription" >
                                 {$wishlist[0][description]}
                             </div>
@@ -110,9 +105,9 @@
                                         {if $wishlist[0][variant_id]}
                                             <tr>
                                                 <th>№</th>
-                                                <th>{lang()}Отписатся</th>
-                                                <th>{lang()}Товар</th>
-                                                <th>{lang()}Коментарий</th>
+                                                <th>{lang(unsubscribe)}</th>
+                                                <th>{lang(product)}</th>
+                                                <th>{lang(comment)}</th>
                                             </tr>
                                         {else:}
                                             <tr>
@@ -126,8 +121,8 @@
                                                 <tr>
                                                     <td>{echo $key+1}</td>
                                                     <td>
-                                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang()}удалить</a>
-                                                        <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang()}Переместить</a>
+                                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
+                                                        <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(move)}</a>
                                                     </td>
                                                     <td>
                                                         <a href="{shop_url('product/'.$w[url])}"
@@ -142,7 +137,7 @@
                                             {/foreach}
                                         {else:}
                                             <tr>
-                                                <td >{lang()}Список пуст</td>
+                                                <td >{lang(empty_list)}</td>
                                             </tr>
                                         {/if}
                                     </tbody>
@@ -151,14 +146,14 @@
                             </form>
                         {/foreach}
                     {else:}
-                       {lang()} Список Желания пуст
+                       {lang(empty_list)}
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="6">{lang()}Создать список</th>
+                                <th colspan="6">{lang(create_list)}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -169,14 +164,14 @@
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">{lang()}Название списка:</label>
+                                                    <label class="control-label" for="banner_type">{lang(list_name)}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="" name="wishListName"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" value="{lang()}Создать новий список" class="btn"/>
+                                                        <input type="submit" value="{lang(create_list)}" class="btn"/>
                                                     </div>
                                                 </div>
                                             </div>
