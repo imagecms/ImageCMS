@@ -27,7 +27,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return json_encode($data);
     }
     
-    public function addItem($varId) {
+    public function _addItem($varId) {
         parent::addItem($varId);
         return $this->return_json();      
     }
