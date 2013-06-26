@@ -19,7 +19,7 @@
                                 <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">public</option>
                             </select>
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
+                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}"class="btn">удалить</a>
 
                         </td>
                     </tr>
@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}"class="btn">удалить</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"

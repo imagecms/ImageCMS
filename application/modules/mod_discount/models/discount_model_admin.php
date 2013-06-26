@@ -385,7 +385,7 @@ class Discount_model_admin extends CI_Model {
 
 
             $this->db->where('name', 'mod_discount');
-            $this->db->update('components', array('enabled' => 1));
+            $this->db->update('components', array('enabled' => 1, 'autoload' => 1));
     }
     /**
      * Delete module
