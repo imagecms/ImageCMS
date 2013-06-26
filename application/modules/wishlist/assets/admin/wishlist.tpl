@@ -5,13 +5,8 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-<<<<<<< HEAD
-                <span class="title">Списки пользователя: {echo $user[user_name]}</span>
-            </div>
-=======
                 <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
-            </div>                          
->>>>>>> d2dd66ed33a175d3ce31c2f47941200e9e873d7a
+            </div>
         </div>
         <div class="row-fluid">
 
@@ -42,13 +37,21 @@
                                         <div class="form-horizontal">
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}" class="img-polaroid" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
+                                                         class="img-polaroid"
+                                                         alt='Ава'
+                                                         width="{echo $settings[maxImageWidth]}"
+                                                         height="{echo $settings[maxImageHeight]}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <div class="controls">
                                                     {form_open_multipart('/wishlist/do_upload')}
-                                                    <input type="file"  name="userfile" size="20"  accept="image/gif, image/jpeg, image/png, image/jpg" style="position: relative!important; opacity: 2!important;"/>
+                                                    <input type="file"
+                                                           name="userfile"
+                                                           size="20"
+                                                           accept="image/gif, image/jpeg, image/png, image/jpg"
+                                                           style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                                     <input type="submit" value="upload" class="btn" />
                                                     {form_csrf()}
@@ -103,25 +106,20 @@
                             <div class="wishListDescription" >
                                 {$wishlist[0][description]}
                             </div>
-                            <form>
-                                <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
-                                <table class="table table-striped table-bordered table-hover table-condensed products_table">
-                                    <thead>
-                                        {if $wishlist[0][variant_id]}
+                            {if $wishlist[0][variant_id]}
+                                <form>
+                                    <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                                    <table class="table table-striped table-bordered table-hover table-condensed products_table">
+                                        <thead>
                                             <tr>
                                                 <th>№</th>
                                                 <th>{lang()}Отписатся</th>
                                                 <th>{lang()}Товар</th>
                                                 <th>{lang()}Коментарий</th>
                                             </tr>
-                                        {else:}
-                                            <tr>
-                                                <th style="height: 20px"></th>
-                                            </tr>
-                                        {/if}
-                                    </thead>
-                                    <tbody>
-                                        {if $wishlist[0][variant_id]}
+
+                                        </thead>
+                                        <tbody>
                                             {foreach $wishlist as $key => $w}
                                                 <tr>
                                                     <td>{echo $key+1}</td>
@@ -140,18 +138,16 @@
                                                     </td>
                                                 </tr>
                                             {/foreach}
-                                        {else:}
-                                            <tr>
-                                                <td >{lang()}Список пуст</td>
-                                            </tr>
-                                        {/if}
-                                    </tbody>
-                                </table>
-                                {form_csrf()}
-                            </form>
+                                        </tbody>
+                                    </table>
+                                    {form_csrf()}
+                                </form>
+                            {else:}
+                                {lang()}Список пуст
+                            {/if}
                         {/foreach}
                     {else:}
-                       {lang()} Список Желания пуст
+                        {lang()} Список Желания пуст
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
