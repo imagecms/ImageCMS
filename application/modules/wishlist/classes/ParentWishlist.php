@@ -236,6 +236,9 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
         }
+        if($listName){
+            $listId = "";
+        }
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
@@ -249,9 +252,9 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
         } else
-        if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
             $this->errors[] = "Невозможно додать";
-
+        
         if (count($this->errors))
             return FALSE;
         else {
@@ -261,7 +264,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);      
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);  
         if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
