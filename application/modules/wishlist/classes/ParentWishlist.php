@@ -226,6 +226,11 @@ class ParentWishlist extends \MY_Controller {
      */
     public function _addItem($varId, $listId, $listName) {
         $count_lists = 0;
+        $count_items = $this->wishlist_model->getUserWishListItemsCount($this->dx_auth->get_user_id());
+        if($count_items >= $this->settings['maxItemsCount']){
+            $this->errors[] = 'Исчерпан лимит продуктов';
+            return FALSE;
+        }
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
             return FALSE;
@@ -343,7 +348,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getUserWishListItemsCount($user_id) {
-        return $this->wishlist_model->getUserWishListCount($user_id);
+        return $this->wishlist_model->getUserWishListItemsCount($user_id);
     }
 
     public function deleteItemByIds($ids) {
