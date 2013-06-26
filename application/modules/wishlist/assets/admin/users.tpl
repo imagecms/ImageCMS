@@ -15,7 +15,7 @@
                     <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14"></span>
-                        <span class="t-d_u">Настройки</span>
+                        <span class="t-d_u">{lang(settings)}</span>
                     </a>
                 </div>
             </div>
