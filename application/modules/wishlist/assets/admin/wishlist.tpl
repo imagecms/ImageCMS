@@ -122,7 +122,7 @@
                                                     <td>{echo $key+1}</td>
                                                     <td>
                                                         <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
-                                                        <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(move)}</a>
+                                                        <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(move)}</a>
                                                     </td>
                                                     <td>
                                                         <a href="{shop_url('product/'.$w[url])}"
@@ -160,7 +160,7 @@
                             <tr>
                                 <td colspan="6">
                                     <div class="inside_padd">
-                                        <form method="POST" action="/wishlist/createWishList">
+                                        <form method="POST" action="/admin/components/cp/wishlist/createWishList">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">

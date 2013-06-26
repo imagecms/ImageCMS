@@ -36,6 +36,8 @@
                                 </th>
                                 <th class="span1">{lang('a_ID')}</th>
                                 <th class="span5">{lang('a_user')}</th>
+                                <th class="span5">{lang('lists_count')}</th>
+                                <th class="span5">{lang('items_count')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,12 +49,18 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="{$ADMIN_URL}wishlist/userWL/{echo $u[id]}" class="pjax">{echo $u[id]}</a>
+                                        <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{echo $u[id]}" class="pjax">{echo $u[id]}</a>
                                     </td>
                                     <td>
-                                        <a href="{$ADMIN_URL}users/edit/{echo $u[id]}" class="pjax" data-rel="tooltip">
+                                        <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{echo $u[id]}" class="pjax" data-rel="tooltip">
                                             {echo ShopCore::encode($u[user_name])}
                                         </a>
+                                    </td>
+                                    <td>
+                                        {$u[lists_count]}
+                                    </td>
+                                    <td>
+                                        {$u[items_count]}
                                     </td>
                                 </tr>
                             {/foreach}

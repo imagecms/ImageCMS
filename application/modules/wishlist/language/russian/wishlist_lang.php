@@ -66,12 +66,19 @@ $lang[edit_list] = "Редактировать список";
 $lang[list_] = "Список";
 $lang[settings] = "Настройки";
 $lang[wish_list_settings] = "Настройка Списков Желания";
-$lang[max_list_name_length] = "Максимальная длина имя  Списка Желания";
+$lang[max_list_name_length] = "Максимальная длина имя Списка Желания";
 $lang[max_lists_counts] = "Максимальное количество Списков Желания";
 $lang[max_items_counts] = "Максимальное количество товаров в Списках Желания";
 $lang[max_comment_length] = "Максимальная длинна комментария";
 $lang[max_description_length] = "Максимальная длинна описания";
 $lang[max_image_width] = "Максимальная ширина картинки пользователя";
 $lang[max_image_height] = "Максимальная висота картинки пользователя";
+
+$lang[move_item] = "Перемещение товара";
+$lang[choose_wish_list] = "Вибирите Список Желаний";
+$lang[move_in_list] = "Переместить в список";
+$lang[lists_count] = "Количество списков";
+$lang[items_count] = "Количество товаров в списках";
 $lang[] = "";
+
 ?>

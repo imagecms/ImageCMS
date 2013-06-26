@@ -48,6 +48,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function moveItem($varId, $wish_list_id) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
+        
+        if(!($listId && $listName)){
+            return $this->errors[] = lang(error_cant_move);
+        }
 
         if (parent::moveItem($varId, $wish_list_id, $listId, $listName)) {
             return $this->dataModel = lang(success);
