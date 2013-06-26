@@ -77,10 +77,11 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function show($user_id, $list_id) {
-        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id);
-        
+
+        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id, array('public'));
+
         if ($wishlist) {
-            self::addReview($list_id);    
+            self::addReview($list_id);
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -92,11 +93,11 @@ class ParentWishlist extends \MY_Controller {
     public static function addReview($list_id) {
         $CI = & get_instance();
         $listsAdded = array();
-        
-        if($CI->input->cookie('wishListViewer')){
+
+        if ($CI->input->cookie('wishListViewer')) {
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
         }
-        
+
         if (!in_array($list_id, $listsAdded)) {
             array_push($listsAdded, $list_id);
             if ($CI->wishlist_model->addRewiew($list_id)) {
@@ -348,9 +349,9 @@ class ParentWishlist extends \MY_Controller {
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
-    
-    public function deleteImage($image){
-        $basePath = substr(dirname(__FILE__),0,strpos(dirname(__FILE__), "application"));
+
+    public function deleteImage($image) {
+        $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
 
@@ -365,6 +366,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
+
     }
 
     public static function adminAutoload() {
