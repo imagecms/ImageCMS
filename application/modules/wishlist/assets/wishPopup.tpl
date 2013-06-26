@@ -14,7 +14,7 @@
                                 </label>
                             {/foreach}
                             <label class="newWishListLable">
-                                <input type="radio" name="wishlist"  value="{$wish_list.title}" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
+                                <input type="radio" name="wishlist"  value="sd" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
                                     Создать список
                                 <input type="text"  name="wishListName"  value="" class="wish_list_name">
                             </label>
