@@ -48,15 +48,15 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function moveItem($varId, $wish_list_id) {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
-        
+
         if((!$listId && !$listName)){
-            return $this->errors[] = lang(error_cant_move);
+            return $this->errors[] = lang('error_cant_move');
         }
 
         if (parent::moveItem($varId, $wish_list_id, $listId, $listName)) {
-            return $this->dataModel = lang(success);
+            return $this->dataModel = lang('success');
         } else {
-            return $this->errors[] = lang(error_cant_move);
+            return $this->errors[] = lang('error_cant_move');
         }
     }
 
@@ -110,7 +110,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $user_id = $this->input->post('user_id');
 
         if (parent::createWishList($user_id, $listName)) {
-            return $this->dataModel = lang(created);
+            return $this->dataModel = lang('created');
         } else {
             return $this->errors;
         }
@@ -118,39 +118,39 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function userUpdate() {
 
-        if ($this->settings[maxDescLenght] < iconv_strlen($this->input->post(description), 'UTF-8'))
-            $desc = substr($this->input->post(description), 0, $this->settings[maxDescLenght]);
+        if ($this->settings['maxDescLenght'] < iconv_strlen($this->input->post('description'), 'UTF-8'))
+            $desc = substr($this->input->post('description'), 0, $this->settings['maxDescLenght']);
         else
-            $desc = $this->input->post(description);
+            $desc = $this->input->post('description');
 
-        if (!(strtotime($this->input->post(user_birthday)) + 50000))
+        if (!(strtotime($this->input->post('user_birthday')) + 50000))
             return false;
 
-        $updated = parent::userUpdate($this->input->post(user_id), $this->input->post(user_name), strtotime($this->input->post(user_birthday)) + 50000, $desc);
+        $updated = parent::userUpdate($this->input->post('user_id'), $this->input->post('user_name'), strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
-            return $this->dataModel = lang(updated);
+            return $this->dataModel = lang('updated');
         } else {
-            return $this->errors = lang(error_cant_update);
+            return $this->errors = lang('error_cant_update');
         }
     }
 
     public function updateWL() {
-        $id = $this->input->post(WLID);
+        $id = $this->input->post('WLID');
 
-        foreach ($this->input->post(comment) as $key => $comment) {
-            if ($this->settings[maxCommentLenght] < iconv_strlen($comment, 'UTF-8'))
-                $desc[$key] = substr($comment, 0, $this->settings[maxDescLenght]);
+        foreach ($this->input->post('comment') as $key => $comment) {
+            if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
+                $desc[$key] = substr($comment, 0, $this->settings['maxDescLenght']);
             else
                 $desc[$key] = $comment;
         }
 
-        if ($this->settings[maxListName] < iconv_strlen($this->input->post(title), 'UTF-8'))
-            $title = substr($this->input->post(title), 0, $this->settings[maxListName]);
+        if ($this->settings['maxListName'] < iconv_strlen($this->input->post('title'), 'UTF-8'))
+            $title = substr($this->input->post('title'), 0, $this->settings['maxListName']);
         else
-            $title = $this->input->post(title);
+            $title = $this->input->post('title');
 
         $data = array(
-            'access' => $this->input->post(access),
+            'access' => $this->input->post('access'),
             'title' => $title,
         );
 
@@ -168,9 +168,9 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      public function deleteImage(){
        $image = $this->input->post('image');
        if(parent::deleteImage($image)){
-           return $this->dataModel[] = lang(deleted);
+           return $this->dataModel[] = lang('deleted');
        }else{
-           return $this->errors[] = lang(error_cant_delete);
+           return $this->errors[] = lang('error_cant_delete');
        }
     }
 
@@ -191,10 +191,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     function do_upload() {
-        if (parent::do_upload($this->input->post(userID))) {
-            return $this->dataModel[] = lang(picture_uploaded);
+        if (parent::do_upload($this->input->post('userID'))) {
+            return $this->dataModel[] = lang('picture_uploaded');
         } else {
-            return $this->errors[] = lang(error_upload_photo);
+            return $this->errors[] = lang('error_upload_photo');
         }
     }
 

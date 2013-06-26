@@ -58,7 +58,7 @@ class ParentWishlist extends \MY_Controller {
 
     public function all() {
         if (!$users = $this->wishlist_model->getAllUsers()) {
-            $this->errors[] = lang(error_no_user);
+            $this->errors[] = lang('error_no_user');
             return FALSE;
         }
         $lists = '';
@@ -66,7 +66,7 @@ class ParentWishlist extends \MY_Controller {
         foreach ($users as $user) {
             $lists [] = array(
                 'user' => $user,
-                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], 'public')
+                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], array('public'))
             );
         }
 
@@ -74,7 +74,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $lists;
             return TRUE;
         } else {
-            $this->errors[] = lang(error_no_lists);
+            $this->errors[] = lang('error_no_lists');
             return FALSE;
         }
     }
@@ -123,17 +123,17 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $views;
             return TRUE;
         } else {
-            $this->errors[] = lang(error_no_views);
+            $this->errors[] = lang('error_no_views');
             return FALSE;
         }
     }
 
     public function user($user_id) {
         if ($this->renderUserWL($user_id, $access = array('public'))) {
-            $this->dataModel = $this->dataModel[wishlists];
+            $this->dataModel = $this->dataModel['wishlists'];
             return TRUE;
         } else {
-            $this->errors[] = lang(error_wrong_query);
+            $this->errors[] = lang('error_wrong_query');
             return FALSE;
         }
     }
@@ -209,10 +209,10 @@ class ParentWishlist extends \MY_Controller {
             $forReturn = $this->wishlist_model->delWishListProductsByWLId($id);
 
             if (!$forReturn)
-                $this->errors[] = lang(error_items_delete);
+                $this->errors[] = lang('error_items_delete');
         }
         else
-            $this->errors[] = lang(error_WL_delete);
+            $this->errors[] = lang('error_WL_delete');
 
         if (count($this->errors))
             return FALSE;
@@ -231,11 +231,11 @@ class ParentWishlist extends \MY_Controller {
         $count_lists = 0;
         $count_items = $this->wishlist_model->getUserWishListItemsCount($this->dx_auth->get_user_id());
         if ($count_items >= $this->settings['maxItemsCount']) {
-                $this->errors[] = lang(error_items_limit_exhausted);
+                $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
         }
         if (!$this->dx_auth->is_logged_in()) {
-            $this->errors[] = lang(error_user_not_autorized);
+            $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
         }
         if($listName){
@@ -244,7 +244,7 @@ class ParentWishlist extends \MY_Controller {
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
-            $this->errors[] = lang(error_listname_limit_exhausted) . '. ' . lang(listname_max_count) . ' - ' . $this->settings['maxListName'];
+            $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
         }
 
         if ($listName)
@@ -256,12 +256,12 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if (!$this->wishlist_model->addItem($varId, $listId, $listName))
-            $this->errors[] = lang(error_cant_add);
+            $this->errors[] = lang('error_cant_add');
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang(added);
+            $this->dataModel = lang('added');
             return TRUE;
         }
     }
@@ -279,9 +279,9 @@ class ParentWishlist extends \MY_Controller {
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
         if (!$forReturn)
-            $this->errors[] = lang(error_items_delete);
+            $this->errors[] = lang('error_items_delete');
         else
-            $this->dataModel = lang(success);
+            $this->dataModel = lang('success');
 
         return $forReturn;
     }
@@ -299,10 +299,10 @@ class ParentWishlist extends \MY_Controller {
         $w = array();
 
         foreach ($wishlists as $wishlist)
-            $w[$wishlist[wish_list_id]][] = $wishlist;
+            $w[$wishlist['wish_list_id']][] = $wishlist;
 
-        $this->dataModel[wishlists] = $w;
-        $this->dataModel[user] = $userInfo;
+        $this->dataModel['wishlists'] = $w;
+        $this->dataModel['user'] = $userInfo;
 
         return TRUE;
     }
@@ -316,7 +316,7 @@ class ParentWishlist extends \MY_Controller {
 
             $w = array();
             foreach ($wishlists as $wishlist)
-                $w[$wishlist[title]][] = $wishlist;
+                $w[$wishlist['title']][] = $wishlist;
             $this->dataModel = $w;
             return TRUE;
         }
@@ -341,7 +341,7 @@ class ParentWishlist extends \MY_Controller {
         } else {
             $this->dataModel = array('upload_data' => $this->upload->data());
             $this->db->where('id', $userID)
-                    ->update('mod_wish_list_users', array('user_image' => $this->dataModel[upload_data][file_name]));
+                    ->update('mod_wish_list_users', array('user_image' => $this->dataModel['upload_data']['file_name']));
             return TRUE;
         }
     }
@@ -351,7 +351,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $result;
             return TRUE;
         } else {
-            $this->error[] = lang(error_wrong_query);
+            $this->error[] = lang('error_wrong_query');
             return FALSE;
         }
     }
