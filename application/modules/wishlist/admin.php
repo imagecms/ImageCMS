@@ -61,8 +61,13 @@ class Admin extends BaseAdminController {
 
     public function deleteWL($wish_list_id) {
         $wishlist = new \wishlist\classes\ParentWishlist();
+        $user_id = substr($_SERVER[HTTP_REFERER], strlen($_SERVER[HTTP_REFERER])-2, strlen($_SERVER[HTTP_REFERER])-2);
         $wishlist->deleteWL($wish_list_id);
-        redirect($_SERVER[HTTP_REFERER]);
+        if(!strstr($this->uri->uri_string(), 'editWL')){
+            redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
+        }else{
+            redirect($_SERVER[HTTP_REFERER] . "#lists");
+        }        
     }
 
     public function updateWL() {

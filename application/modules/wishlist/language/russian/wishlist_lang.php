@@ -29,4 +29,19 @@ $lang[success]  = 'Операция успешна';
 $lang[added]  = 'Добавлено';
 $lang[]  = '';
 $lang[]  = '';
+
+/**
+ * Admin
+ */
+$lang[user_lists]  = 'Списки пользователя';
+$lang[user]  = 'Пользователь';
+$lang[lists]  = 'Списки';
+$lang[create_list]  = 'Создать список';
+$lang[name]  = 'Имя';
+$lang[birthday]  = 'День рождения';
+$lang[last]  = 'Описаниє';
+$lang[]  = '';
+$lang[]  = '';
+$lang[]  = '';
+
 ?>

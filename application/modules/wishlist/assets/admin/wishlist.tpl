@@ -4,16 +4,16 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Списки пользователя: {echo $user[user_name]}</span>
+                <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
             </div>                          
         </div>
         <div class="row-fluid">
 
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                    <a href="#user" class="btn btn-small active">Пользователь</a>
-                    <a href="#lists" class="btn btn-small">Списки</a>
-                    <a href="#create_list" class="btn btn-small">Создать список</a>
+                    <a href="#user" class="btn btn-small active">{lang(user)}</a>
+                    <a href="#lists" class="btn btn-small">{lang(lists)}</a>
+                    <a href="#create_list" class="btn btn-small">{lang(create_list)}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -21,7 +21,7 @@
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="6">Пользователь</th>
+                                <th colspan="6">{lang(user)}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,26 +55,26 @@
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">Имя:</label>
+                                                    <label class="control-label" for="banner_type">{lang(name)}</label>
                                                     <div class="controls">
                                                         <input type="text" value="{echo $user[user_name]}" name="user_name"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">День рождения:</label>
+                                                    <label class="control-label" for="banner_type">{lang(birthday)}:</label>
                                                     <div class="controls">
                                                         <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">Описаниє:</label>
+                                                    <label class="control-label" for="banner_type">{lang(last)}:</label>
                                                     <div class="controls">
                                                         <textarea name="description">{echo $user[description]}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn" value="Сохранить"/>
+                                                        <input type="submit" class="btn" value="{lang()}Сохранить"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,8 +92,8 @@
                             <h4 class="title">{$wishlist[0][title]}</h4>
                             <lable>Тип списка: <b>{echo $wishlist[0][access]}</b></lable>
                             <br>
-                            <a href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
-                            <a href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">редактировать</a>
+                            <a href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">{lang()}удалить</a>
+                            <a href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">{lang()}редактировать</a>
                             <div class="wishListDescription" >
                                 {$wishlist[0][description]}
                             </div>
@@ -104,9 +104,9 @@
                                         {if $wishlist[0][variant_id]}
                                             <tr>
                                                 <th>№</th>
-                                                <th>Отписатся</th>
-                                                <th>Товар</th>
-                                                <th>Коментарий</th>
+                                                <th>{lang()}Отписатся</th>
+                                                <th>{lang()}Товар</th>
+                                                <th>{lang()}Коментарий</th>
                                             </tr>
                                         {else:}
                                             <tr>
@@ -120,8 +120,8 @@
                                                 <tr>
                                                     <td>{echo $key+1}</td>
                                                     <td>
-                                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
-                                                        <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">Переместить</a>
+                                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang()}удалить</a>
+                                                        <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang()}Переместить</a>
                                                     </td>
                                                     <td>
                                                         <a href="{shop_url('product/'.$w[url])}"
@@ -136,7 +136,7 @@
                                             {/foreach}
                                         {else:}
                                             <tr>
-                                                <td >Список пуст</td>
+                                                <td >{lang()}Список пуст</td>
                                             </tr>
                                         {/if}
                                     </tbody>
@@ -145,14 +145,14 @@
                             </form>
                         {/foreach}
                     {else:}
-                        Список Желания пуст
+                       {lang()} Список Желания пуст
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
                     <table class="table table-striped table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th colspan="6">Создать список</th>
+                                <th colspan="6">{lang()}Создать список</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,14 +163,14 @@
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="banner_type">Название списка:</label>
+                                                    <label class="control-label" for="banner_type">{lang()}Название списка:</label>
                                                     <div class="controls">
                                                         <input type="text" value="" name="wishListName"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" value="Создать новий список" class="btn"/>
+                                                        <input type="submit" value="{lang()}Создать новий список" class="btn"/>
                                                     </div>
                                                 </div>
                                             </div>
