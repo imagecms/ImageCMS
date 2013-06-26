@@ -40,4 +40,19 @@ $lang[]  = '';
 $lang[btn_add_2_WL]  = 'Добавить в Список Желания';
 $lang[btn_already_in_WL]  = 'Уже в Списке Желания';
 $lang[]  = '';
+
+/**
+ * Admin
+ */
+$lang[user_lists]  = 'Списки пользователя';
+$lang[user]  = 'Пользователь';
+$lang[lists]  = 'Списки';
+$lang[create_list]  = 'Создать список';
+$lang[name]  = 'Имя';
+$lang[birthday]  = 'День рождения';
+$lang[last]  = 'Описаниє';
+$lang[]  = '';
+$lang[]  = '';
+$lang[]  = '';
+
 ?>
