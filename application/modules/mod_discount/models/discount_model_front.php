@@ -26,7 +26,7 @@ class Discount_model_front extends CI_Model {
                       and 
                        active = 1";
         
-        ///echo $sql . '   ';
+        
 
         return $this->db->query($sql)->result_array();
     }
@@ -73,5 +73,7 @@ class Discount_model_front extends CI_Model {
         $this->db->query($sql);
         
     }
+    
+   
 
 }
