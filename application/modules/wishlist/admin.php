@@ -12,6 +12,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->model('wishlist_model');
+        $this->load->language('wishlist');
         $this->settings = $this->wishlist_model->getSettings();
     }
 
@@ -73,7 +74,7 @@ class Admin extends BaseAdminController {
     public function updateWL() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->updateWL();
-        
+
         redirect($_SERVER[HTTP_REFERER]);
     }
 
@@ -87,6 +88,13 @@ class Admin extends BaseAdminController {
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->createWishList();
+
+        redirect($_SERVER[HTTP_REFERER]);
+    }
+
+    public function do_upload() {
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->do_upload();
 
         redirect($_SERVER[HTTP_REFERER]);
     }

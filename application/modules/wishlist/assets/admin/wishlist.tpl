@@ -1,11 +1,17 @@
 <div class="container">
     <section class="mini-layout">
 
+
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
+<<<<<<< HEAD
+                <span class="title">Списки пользователя: {echo $user[user_name]}</span>
+            </div>
+=======
                 <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
             </div>                          
+>>>>>>> d2dd66ed33a175d3ce31c2f47941200e9e873d7a
         </div>
         <div class="row-fluid">
 
@@ -43,7 +49,7 @@
                                                 <div class="controls">
                                                     {form_open_multipart('/wishlist/do_upload')}
                                                     <input type="file"  name="userfile" size="20"  accept="image/gif, image/jpeg, image/png, image/jpg" style="position: relative!important; opacity: 2!important;"/>
-                                                    <input type="hidden" value="{echo $user[id]}" name="userID"/>                            
+                                                    <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                                     <input type="submit" value="upload" class="btn" />
                                                     {form_csrf()}
                                                     </form>
@@ -85,7 +91,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>        
+                </div>
                 <div class="tab-pane" id="lists">
                     {if count($wishlists)>0}
                         {foreach $wishlists as $key => $wishlist}
@@ -97,7 +103,7 @@
                             <div class="wishListDescription" >
                                 {$wishlist[0][description]}
                             </div>
-                            <form>                    
+                            <form>
                                 <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                                 <table class="table table-striped table-bordered table-hover table-condensed products_table">
                                     <thead>
@@ -176,7 +182,7 @@
                                             </div>
                                             {form_csrf()}
                                         </form>
-                                    </div>   
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

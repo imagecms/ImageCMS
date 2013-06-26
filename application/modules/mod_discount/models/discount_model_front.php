@@ -54,7 +54,10 @@ class Discount_model_front extends CI_Model {
 
         $price = 0;
         foreach ($data as $item)
-            $price += $this->get_price($item['variantId']) * $item['quantity'];
+            if ($item['instance'] == 'SProducts')
+                $price += $this->get_price($item['variantId']) * $item['quantity'];
+            else
+                $price += $item['price'] * $item['quantity'];
 
         return $price;
     }
