@@ -96,7 +96,7 @@ class discount_api extends \mod_discount\discount {
             if (null === $tpl)
                 return $discount;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info_all', true);
         }
     }
     /**
@@ -113,7 +113,7 @@ class discount_api extends \mod_discount\discount {
             if (null === $tpl)
                 return $this->result_discount;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info_user', true);
         }
     }
 
