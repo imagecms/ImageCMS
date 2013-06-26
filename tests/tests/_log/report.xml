@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites>
-  <testsuite name="unit" tests="1" assertions="0" failures="0" errors="0" time="0.014213">
-    <testcase name="testMe" class="WishlistApiTest" file="/var/www/t1.loc/tests/tests/unit/WishlistApiTest.php" line="18" assertions="0" time="0.014213"/>
-  </testsuite>
-</testsuites>
