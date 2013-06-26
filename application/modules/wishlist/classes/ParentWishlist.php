@@ -40,7 +40,7 @@ class ParentWishlist extends \MY_Controller {
                 'expire' => '15000',
                 'prefix' => ''
             );
-            $this->input->set_cookie($cookie);
+            @$this->input->set_cookie($cookie);
         }
     }
 
@@ -174,24 +174,24 @@ class ParentWishlist extends \MY_Controller {
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
         if ($count_lists >= $this->settings['maxListsCount']) {
-            $this->errors[] = lang(error_list_limit_exhausted) . '. ' . lang(list_max_count) . ' - ' . $this->settings['maxListsCount'];
+            $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
 
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = substr($listName, 0, (int) $this->settings['maxListName']);
-                $this->errors[] = lang(error_listname_limit_exhausted) . '. ' . lang(listname_max_count) . ' - ' . $this->settings['maxListName'];
+                $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
             }
             $this->wishlist_model->createWishList($listName, $user_id);
         } else {
-            $this->errors[] = lang(error_listname_empty);
+            $this->errors[] = lang('error_listname_empty');
         }
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang(created);
+            $this->dataModel = lang('created');
             return TRUE;
         }
     }
@@ -217,7 +217,7 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang(created);
+            $this->dataModel = lang('created');
             return TRUE;
         }
     }
@@ -251,10 +251,10 @@ class ParentWishlist extends \MY_Controller {
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
         if ($count_lists >= $this->settings['maxListsCount']) {
-            $this->errors[] = lang(error_list_limit_exhausted) . '. ' . lang(list_max_count) . ' - ' . $this->settings['maxListsCount'];
+            $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
-        } 
-       
+        }
+
         if (!$this->wishlist_model->addItem($varId, $listId, $listName))
             $this->errors[] = lang(error_cant_add);
 
@@ -267,7 +267,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);  
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);
 
         if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
