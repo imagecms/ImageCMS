@@ -16,7 +16,7 @@
         {if count($products) > 0}
              <!-- Start. Buttons for change to show different or all properties -->
              <div class="clearfix frame-catalog-view">
-                <div class="title_h1 f_l">Сравнение товаров</div>
+                <div class="title-h1 f_l">Сравнение товаров</div>
                 <ul class="tabs groups-buttons f_l m-l_50">
                     <li class="active btn"><button type="button" data-href="#all-params">{lang('s_all_par')}</button></li>
                     <li class="btn"><button type="button" data-href="#only-dif">{lang('s_only_diff')}</button></li>
@@ -26,7 +26,7 @@
             <div class="p_r">
                  <!--Start. Show categories of products which are in list -->
                 <div class="comprasion_head">
-                    <div class="title_h2">Категория:</div>
+                    <div class="title-h2">Категория:</div>
                     <ul class="tabs tabs-comprasion">
                         {foreach $categories as $category}
                             <li><button data-href="#tab_{$category[Url]}"><span class="d_l_b">{$category[Name]}</span></button></li>
@@ -112,7 +112,7 @@
             </div>
             <!--End. Show compare list if count products >0 -->
         {else:}
-            <div class="title_h2">Список сравнений пуст</div>
+            <div class="title-h2">Список сравнений пуст</div>
         {/if}
     </div>
 </div>
