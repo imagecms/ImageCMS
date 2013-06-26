@@ -23,7 +23,7 @@
 
                         </td>
                     </tr>
-                    {if !$wishlist}
+                    {if $wishlist[0][id] != null}
                         <tr>
                             <th>№</th>
                             <th>Отписатся</th>
@@ -33,7 +33,7 @@
                     {/if}
                 </thead>
                 <tbody>
-                    {if !$wishlist}
+                    {if $wishlist[0][id] != null}
                         {foreach $wishlist as $key => $w}
                             <tr>
                                 <td>{echo $key+1}</td>
