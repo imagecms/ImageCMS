@@ -26,7 +26,8 @@ class ParentWishlist extends \MY_Controller {
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
 
-        $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+        if ($this->settings)
+            $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
     private function writeCookies() {
@@ -228,7 +229,7 @@ class ParentWishlist extends \MY_Controller {
     public function _addItem($varId, $listId, $listName) {
         $count_lists = 0;
         $count_items = $this->wishlist_model->getUserWishListItemsCount($this->dx_auth->get_user_id());
-        if($count_items >= $this->settings['maxItemsCount']){
+        if ($count_items >= $this->settings['maxItemsCount']) {
             $this->errors[] = 'Исчерпан лимит продуктов';
             return FALSE;
         }
