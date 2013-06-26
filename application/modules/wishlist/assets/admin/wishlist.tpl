@@ -18,8 +18,9 @@
             </div>
             {form_open_multipart('/wishlist/do_upload' , 'class ="btn btn-small"')}
 
-            <input type="file" name="userfile" size="20"/>
+            <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
             <input type="hidden" value="{echo $user[id]}" name="userID"/>
+
 
             <br /><br />
             {form_csrf()}
