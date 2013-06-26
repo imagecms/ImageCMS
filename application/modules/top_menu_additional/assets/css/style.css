@@ -10,9 +10,12 @@
 
 #frame_additional_menu > .menu_additional > [class*="box-"]{font-size: 13px;}
 #frame_additional_menu > .menu_additional > .f-s_0{font-size: 0;}
-#frame_additional_menu > .menu_additional{
+#frame_additional_menu > .menu_additional{  
+    border-width: 0 1px 1px 1px;border-style: solid;border-color: transparent;width: 1168px;font-size: 0;
+}
+#frame_additional_menu > .menu_additional_op { height: 42px; opacity: 0.85;
     border-width: 0 1px 1px 1px;border-style: solid;border-color: #c8c8c8;width: 1168px;font-size: 0;
-    
+      
     -moz-border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
@@ -27,15 +30,13 @@
     background: -o-linear-gradient(top,  #fdfdfd 0%,#e6e6e6 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #fdfdfd 0%,#e6e6e6 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #fdfdfd 0%,#e6e6e6 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
-}
-
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */}
 #frame_additional_menu > .menu_additional > [class*="box-"]{text-align: center;height: 42px;display: inline-block;//display: inline;zoom: 1;vertical-align:top;}
 #frame_additional_menu > .menu_additional > [class*="box-"] > *{text-align: left;}
 #frame_additional_menu > .menu_additional > .box-1{border-right: 1px solid #c8c8c8;width: 322px;}
 #frame_additional_menu > .menu_additional > .box-4{border-left: 1px solid #fff;width: 175px;}
 #frame_additional_menu > .menu_additional > .box-2, #frame_additional_menu .menu_additional .box-3{border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #c8c8c8;}
-#frame_additional_menu > .menu_additional > .box-2{width: 303px;position: relative;top: -2px;}
+#frame_additional_menu > .menu_additional > .box-2{width: 303px;position: relative;}
 #frame_additional_menu > .menu_additional > .box-3{width: 362px;}
 #frame_additional_menu .cleaner > span{color:#f44524;position: relative;top: 1px;}
 .cleaner .text-el{text-decoration: none;cursor: default;}

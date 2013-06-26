@@ -21,7 +21,7 @@
             <div class="span5 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                 <div class="photo-block">
-                    <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="photo photoProduct">
+                    <a rel="group position: 'xBlock', adjustX: 10" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom">
                         <figure>
                             <span class="helper"></span>
                             <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>
@@ -178,7 +178,7 @@
                             </div>                                
                             <div class="d_i-b v-a_b m-b_20 add_func_btn">
                                 <!-- Start. Block "Add to Compare" -->
-                                <button class="btn btn_small_p toCompare"
+                                <button class="btn btn_small_p toCompare d_i-b"
                                         data-prodid="{echo $model->getId()}"
                                         type="button"
                                         data-title="{lang('s_add_to_compare')}"
@@ -192,6 +192,7 @@
                                 <!-- End. Block "Add to Compare" -->
 
                                 <!--Block Wishlist Start-->
+                                <div class="wrap_wish-list d_i-b">
                                 {foreach $variants as $key => $pv}
                                     <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                         <!-- to wish list button -->
@@ -209,11 +210,13 @@
                                         </button>
                                     </div>
                                 {/foreach}
+                               </div>
                                 <!-- Stop. Block "Add to Wishlist" -->
                                 <!--Block Follow the price Start-->
                             </div>
                         </div>
                     </div>
+                  <div id="xBlock"></div>
                 </div>
                 <!-- Start. Withdraw button to "share" -->
                 <div class="share_tov">

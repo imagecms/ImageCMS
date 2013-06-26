@@ -162,7 +162,7 @@
                                     {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                                     {if count($variants) > 1 && $cnt > 1}
                                         
-                                        <div class=" d_i-b v-a_b m-r_20 p-b_10 variantProd">
+                                        <div class=" d_i-b v-a_b m-r_20 p-b_10 m-b_8 variantProd">
                                             <div class="lineForm w_170">
                                                 <select id="сVariantSwitcher_{echo $product->firstVariant->getId()}" name="variant">
                                                     {foreach $variants as $key => $pv}
@@ -247,7 +247,7 @@
                                     <!-- End. Collect information about Variants, for future processing -->
 
 
-                                    <div class="d_i-b v-a_b">
+                                    <div class="d_i-b v-a_b m-l_4">
 
                                         <!-- to compare button -->
                                         <button class="btn btn_small_p toCompare"
