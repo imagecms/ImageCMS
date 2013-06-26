@@ -224,7 +224,7 @@ class ParentWishlist extends \MY_Controller {
      *
      * @return boolean
      */
-    public function addItem($varId, $listId, $listName) {
+    public function _addItem($varId, $listId, $listName) {
         $count_lists = 0;
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = 'Пользователь не залогинен';
@@ -243,7 +243,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = 'Лимит списков равен ' . $this->settings['maxListsCount'] . ' исчерпан </br>';
             return FALSE;
         } else
-        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
             $this->errors[] = "Невозможно додать";
 
         if (count($this->errors))
@@ -255,8 +255,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->deleteItem($varId, $wish_list_id);
-        if ($this->addItem($varId, $to_listId, $to_listName)) {
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);      
+        if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
             return FALSE;
@@ -380,5 +380,5 @@ class ParentWishlist extends \MY_Controller {
     public function _deinstall() {
         $this->wishlist_model->deinstall();
     }
-
+    
 }
