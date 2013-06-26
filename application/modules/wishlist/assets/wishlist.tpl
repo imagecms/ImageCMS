@@ -1,8 +1,8 @@
 <article class="container">
-    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
+{/*    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
     <a href="#" class="APItester">Проверка API</a>
     <textarea class="testAPI" style="font-size: 13px; line-height: 26px; padding: 10px; height: 200px; " ></textarea>
-    <!-- ******************************************************************************** -->
+    <!-- ******************************************************************************** -->*/}
     <label>
         <span class="frame_form_field__icsi-css">
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>
@@ -53,7 +53,7 @@
                     <tr>
                         <td colspan="3">
                             <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
-                            {echo $wishlist[0][access]}
+                            Тип списка: <b>{echo $wishlist[0][access]}</b>
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
                             <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}"class="btn">удалить</a>
                             <a href="/wishlist/editWL/{$wishlist[0][wish_list_id]}"class="btn">редактировать</a>
