@@ -39,7 +39,7 @@ class Admin extends BaseAdminController {
     function set_tpl_roles() {
         // roles
         //$query = $this->db->get('shop_rbac_roles');
-        
+
         $locale = MY_Controller::getCurrentLocale();
         $this->db->select("shop_rbac_roles.*", FALSE);
         $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
@@ -176,8 +176,7 @@ class Admin extends BaseAdminController {
             $user = $this->input->post('username');
             $email = $this->input->post('email');
             $role = $this->input->post('role');
-//            var_dump($role);
-//            exit();
+
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
                 showMessage(lang('amt_email_exists'), '', 'r');
@@ -193,7 +192,7 @@ class Admin extends BaseAdminController {
 //            }
 
             $this->load->helper('string');
-            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', random_string('alnum', 5), $this->input->post('phone'))) {
+            if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', random_string('alnum', 5), $this->input->post('phone'), false)) {
 
                 //set user role
                 $user_info = $this->user2->get_user_by_email($user_info['email'])->row_array();
