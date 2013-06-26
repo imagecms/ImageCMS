@@ -1,4 +1,4 @@
-<span class="title_h3">Способ доставки</span>&nbsp;&nbsp;<a href="{site_url('oplata')}">Подробнее</a>
+<span class="title-h3">Способ доставки</span>&nbsp;&nbsp;<a href="{site_url('oplata')}">Подробнее</a>
 <div class="frame-radio-but is_deliveries">
     {foreach $deliveryMethods as $m}
         <div for="input_dMethod_{echo $m->getId()}" class="frame-label">

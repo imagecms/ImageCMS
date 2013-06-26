@@ -251,7 +251,7 @@
                                             <!-- to wish list button -->
                                             <button {if $key != 0}style="display:none"{/if} class="btn btn_small_p toWishlist variant_{echo $pv->getId()} variant"
                                                                   data-price="{echo $pv->toCurrency()}"
-                                                                  data-prodid="{echo $product->getId()}"
+                                                                  data-prodid="{echo $p->getId()}"
                                                                   data-varid="{echo $pv->getId()}"
                                                                   type="button"
                                                                   data-title="{lang('s_add_to_wish_list')}"

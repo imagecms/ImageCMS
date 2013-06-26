@@ -1,4 +1,3 @@
-<div class="center content">
     <h1>{lang('orderind_shop_sg')}</h1>
     {if count($items) > 0}
         <form method="post" action="{site_url(uri_string())}" id="cartForm">

@@ -49,7 +49,7 @@
                                 </span>
                                 <div class="f_r neigh-buttonform">
                                     <span class="helper"></span>
-                                    <button type="button" class="d_l_1" data-drop=".drop-forgot" data-source="auth/forgot_password">{lang('lang_forgot_password')}</button>
+                                    <button type="button" class="d_l_1" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('lang_forgot_password')}</button>
                                 </div>
                             </div>
                         </div>

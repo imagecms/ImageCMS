@@ -12,7 +12,7 @@
     <div class="container">
         {if count($items) > 0}
         <div class="clearfix">
-            <div class="title_h1 f_l">Список желаний</div>
+            <div class="title-h1 f_l">Список желаний</div>
         </div>
         <!--            Start. Show products in wish list-->
         <ul class="items items-catalog items items-wish-list" id="items-catalog-main">
@@ -124,7 +124,7 @@
         {else:}
         <!--      Start. Empty wish list-->
         <div class="clearfix">
-            <div class="title_h3">Список желаний пуст</div>
+            <div class="title-h3">Список желаний пуст</div>
         </div>
         <!--      End. Empty wishlist-->
         {/if}

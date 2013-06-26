@@ -180,7 +180,7 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list_users');
     }
 
-    public function addItem($varId, $listId, $listName) {
+    public function _addItem($varId, $listId, $listName) {
         if ($listName != '') {
             $this->createWishList($listName, $this->dx_auth->get_user_id());
             $listId = $this->db->insert_id();
