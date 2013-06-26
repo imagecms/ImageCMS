@@ -257,7 +257,7 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = "Добавлено";
+            $this->dataModel = lang(added);
             return TRUE;
         }
     }
@@ -274,7 +274,7 @@ class ParentWishlist extends \MY_Controller {
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
         if (!$forReturn)
-            $this->errors[] = 'Невозможно удалить товар из Списка Желания';
+            $this->errors[] = lang(error_items_delete);
         else
             $this->dataModel = lang(success);
 

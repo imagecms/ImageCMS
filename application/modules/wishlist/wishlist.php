@@ -139,7 +139,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
-                    ->setData('value', 'Добавить в Список Желания')
+                    ->setData('value', lang(btn_add_2_WL))
                     ->setData('class', 'btn')
                     ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
@@ -150,7 +150,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('href', $href)
-                    ->setData('value', 'Уже в Списке Желания')
+                    ->setData('value', lang(btn_already_in_WL))
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
@@ -193,29 +193,26 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
-        if($this->dataModel){
+        if ($this->dataModel) {
             redirect('/wishlist');
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
-    public function deleteImage(){
+    public function deleteImage() {
         parent::deleteImage();
-        if($this->dataModel){
+        if ($this->dataModel) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
     public function do_upload() {
         parent::do_upload();
-        if ($this->dataModel) {
-            redirect($_SERVER[HTTP_REFERER]);
-        }else{
-            return $this->errors[] = "Ошибка загрузки";
-        }
+
+        redirect('/wishlist');
     }
 
 }

@@ -31,7 +31,7 @@
 <form method="POST" action="/wishlist/createWishList">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="" name="wishListName"/>
-    <input type="submit" value="Создать новий список" class="btn"/>
+    <input type="submit" value="{lang(create_new_list)}" class="btn"/>
     {form_csrf()}
 </form>
 
