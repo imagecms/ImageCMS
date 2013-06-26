@@ -22,8 +22,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 \CMSFactory\assetManager::create()
                         ->registerScript('wishlist')
                         ->registerStyle('style')
-                        ->setData('wishlists', $this->dataModel[wishlists])
-                        ->setData('user', $this->dataModel[user])
+                        ->setData('wishlists', $this->dataModel['wishlists'])
+                        ->setData('user', $this->dataModel['user'])
                         ->setData('settings', $this->settings)
                         ->render('wishlist');
             }
@@ -139,7 +139,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
-                    ->setData('value', lang(btn_add_2_WL))
+                    ->setData('value', lang('btn_add_2_WL'))
                     ->setData('class', 'btn')
                     ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
@@ -150,7 +150,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('href', $href)
-                    ->setData('value', lang(btn_already_in_WL))
+                    ->setData('value', lang('btn_already_in_WL'))
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);

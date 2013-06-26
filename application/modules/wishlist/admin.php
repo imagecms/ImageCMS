@@ -25,7 +25,7 @@ class Admin extends BaseAdminController {
              $user['items_count'] = $this->wishlist_model->getUserWishListItemsCount($user['id']);
              $users[$key] = $user;
          }
-             
+
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
                 ->setData('users', $users)
@@ -34,7 +34,7 @@ class Admin extends BaseAdminController {
 
     public function update_settings() {
         if ($_POST) {
-            $this->wishlist_model->setSettings($_POST[settings]);
+            $this->wishlist_model->setSettings($_POST['settings']);
         }
     }
 
@@ -51,8 +51,8 @@ class Admin extends BaseAdminController {
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')
-                    ->setData('wishlists', $wishlist->dataModel[wishlists])
-                    ->setData('user', $wishlist->dataModel[user])
+                    ->setData('wishlists', $wishlist->dataModel['wishlists'])
+                    ->setData('user', $wishlist->dataModel['user'])
                     ->setData('settings', $wishlist->settings)
                     ->renderAdmin('wishlist');
     }
@@ -67,49 +67,49 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('wishlistEdit');
         }
         else
-            redirect($_SERVER[HTTP_REFERER]);
+            redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function deleteWL($wish_list_id) {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
-      
+
         if(!strstr($this->uri->uri_string(), 'editWL')){
             $user_id = $this->session->userdata('admin_edit_user_id');
             redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
         }else{
-            redirect($_SERVER[HTTP_REFERER] . "#lists");
-        }        
+            redirect($_SERVER['HTTP_REFERER'] . "#lists");
+        }
     }
 
     public function updateWL() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->updateWL();
 
-        redirect($_SERVER[HTTP_REFERER]);
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function userUpdate() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->userUpdate();
 
-        redirect($_SERVER[HTTP_REFERER]);
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->createWishList();
 
-        redirect($_SERVER[HTTP_REFERER] . "#lists");
+        redirect($_SERVER['HTTP_REFERER'] . "#lists");
     }
 
     public function do_upload() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->do_upload();
 
-        redirect($_SERVER[HTTP_REFERER]);
+        redirect($_SERVER['HTTP_REFERER']);
     }
-    
+
     public function renderPopup($varId, $wish_list_id) {
         $wish_lists = $this->wishlist_model->getWishLists();
         $data = array('wish_lists' => $wish_lists);
@@ -127,9 +127,9 @@ class Admin extends BaseAdminController {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
         $user_id = $this->session->userdata('admin_edit_user_id');
-        
+
         redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
     }
-    
+
 
 }
