@@ -182,7 +182,7 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list_users');
     }
 
-    public function _addItem($varId, $listId, $listName) {
+    public function addItem($varId, $listId, $listName) {
         if ($listName != '') {
             $this->createWishList($listName, $this->dx_auth->get_user_id());
             $listId = $this->db->insert_id();
@@ -216,7 +216,7 @@ class Wishlist_model extends CI_Model {
         $data = array(
             'title' => $listName,
             'user_id' => $user_id,
-            'hash' => random_string('unique', 16),
+            'hash' => random_string('unique', 16) 
         );
         return $this->db->insert('mod_wish_list', $data);
     }

@@ -238,6 +238,9 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang(error_user_not_autorized);
             return FALSE;
         }
+        if($listName){
+            $listId = "";
+        }
 
         if (strlen($listName) > $this->settings['maxListName']) {
             $listName = substr($listName, 0, (int) $this->settings['maxListName']);
@@ -250,8 +253,9 @@ class ParentWishlist extends \MY_Controller {
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang(error_list_limit_exhausted) . '. ' . lang(list_max_count) . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
-        } else
-        if (!$this->wishlist_model->_addItem($varId, $listId, $listName))
+        } 
+       
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
             $this->errors[] = lang(error_cant_add);
 
         if (count($this->errors))
@@ -263,7 +267,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);
+        $this->wishlist_model->deleteItem($varId, $wish_list_id);  
+
         if ($this->_addItem($varId, $to_listId, $to_listName)) {
             return TRUE;
         } else {
@@ -342,7 +347,6 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function getMostPopularItems($limit = 10) {
-        $result = $this->wishlist_model->getMostPopularProducts($limit);
         if ($result) {
             $this->dataModel = $result;
             return TRUE;
