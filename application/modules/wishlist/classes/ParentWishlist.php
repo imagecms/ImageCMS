@@ -25,6 +25,7 @@ class ParentWishlist extends \MY_Controller {
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));
         $this->settings = $this->wishlist_model->getSettings();
+
         $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
@@ -284,8 +285,10 @@ class ParentWishlist extends \MY_Controller {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
         $userInfo = $this->getUserInfo();
         $w = array();
+
         foreach ($wishlists as $wishlist)
-            $w[$wishlist[title]][] = $wishlist;
+            $w[$wishlist[wish_list_id]][] = $wishlist;
+
         $this->dataModel[wishlists] = $w;
         $this->dataModel[user] = $userInfo;
 
