@@ -169,7 +169,7 @@ class discount extends classes\BaseDiscount {
 
         $discount_comulativ = array();
         foreach ($this->discount_type['comulativ'] as $disc)
-            if (($disc['begin_value'] <= $this->amout_user and $disc['end_value'] > $this->amout_user and $disc['end_value'] !== NULL) or ($disc['begin_value'] <= $this->amout_user and $disc['end_value'] !== NULL))
+            if (($disc['begin_value'] <= $this->amout_user and $disc['end_value'] > $this->amout_user ) or ($disc['begin_value'] <= $this->amout_user and !$disc['end_value']))
                 $discount_comulativ[] = $disc;
         if (count($discount_comulativ) > 0)
             return $this->get_max_discount($discount_comulativ, $this->total_price);
