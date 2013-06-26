@@ -47,7 +47,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
         if ($this->dataModel) {
-            redirect('/wishlist');
+           redirect('/wishlist');
         } else {
             \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
