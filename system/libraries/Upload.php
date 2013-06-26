@@ -140,10 +140,9 @@ class CI_Upload {
 	 *
 	 * @return	bool
 	 */
-	public function do_upload($field = 'file', $i = 0)
+		public function do_upload($field = 'userfile')
 	{
-		
-	// Is $_FILES[$field] set? If not, no reason to continue.
+		// Is $_FILES[$field] set? If not, no reason to continue.
 		if ( ! isset($_FILES[$field]))
 		{
 			$this->set_error('upload_no_file_selected');
@@ -158,47 +157,54 @@ class CI_Upload {
 		}
 
 		// Was the file able to be uploaded? If not, determine the reason why.
-		if ( ! is_uploaded_file($_FILES[$field]['tmp_name'][$i]))
+		if ( ! is_uploaded_file($_FILES[$field]['tmp_name']))
 		{
-			$error = ( ! isset($_FILES[$field]['error'][$i])) ? 4 : $_FILES[$field]['error'][$i];
+			$error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];
 
-			switch($error)
+			switch ($error)
 			{
-				case 1:	// UPLOAD_ERR_INI_SIZE
+				case UPLOAD_ERR_INI_SIZE:
 					$this->set_error('upload_file_exceeds_limit');
 					break;
-				case 2: // UPLOAD_ERR_FORM_SIZE
+				case UPLOAD_ERR_FORM_SIZE:
 					$this->set_error('upload_file_exceeds_form_limit');
 					break;
-				case 3: // UPLOAD_ERR_PARTIAL
+				case UPLOAD_ERR_PARTIAL:
 					$this->set_error('upload_file_partial');
 					break;
-				case 4: // UPLOAD_ERR_NO_FILE
+				case UPLOAD_ERR_NO_FILE:
 					$this->set_error('upload_no_file_selected');
 					break;
-				case 6: // UPLOAD_ERR_NO_TMP_DIR
+				case UPLOAD_ERR_NO_TMP_DIR:
 					$this->set_error('upload_no_temp_directory');
 					break;
-				case 7: // UPLOAD_ERR_CANT_WRITE
+				case UPLOAD_ERR_CANT_WRITE:
 					$this->set_error('upload_unable_to_write_file');
 					break;
-				case 8: // UPLOAD_ERR_EXTENSION
+				case UPLOAD_ERR_EXTENSION:
 					$this->set_error('upload_stopped_by_extension');
 					break;
-				default :   $this->set_error('upload_no_file_selected');
+				default:
+					$this->set_error('upload_no_file_selected');
 					break;
 			}
 
 			return FALSE;
 		}
 
-
 		// Set the uploaded data as class variables
-		$this->file_temp = $_FILES[$field]['tmp_name'][$i];
-		$this->file_size = $_FILES[$field]['size'][$i];
-		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $_FILES[$field]['type'][$i]);
+		$this->file_temp = $_FILES[$field]['tmp_name'];
+		$this->file_size = $_FILES[$field]['size'];
+
+		// Skip MIME type detection?
+		if ($this->detect_mime !== FALSE)
+		{
+			$this->_file_mime_type($_FILES[$field]);
+		}
+
+		$this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
-		$this->file_name = $this->_prep_filename($_FILES[$field]['name'][$i]);
+		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
 		$this->file_ext	 = $this->get_extension($this->file_name);
 		$this->client_name = $this->file_name;
 
@@ -210,7 +216,7 @@ class CI_Upload {
 		}
 
 		// if we're overriding, let's now make sure the new name and type is allowed
-		if ($this->_file_name_override != '')
+		if ($this->_file_name_override !== '')
 		{
 			$this->file_name = $this->_prep_filename($this->_file_name_override);
 
@@ -219,11 +225,10 @@ class CI_Upload {
 			{
 				$this->file_name .= $this->file_ext;
 			}
-
-			// An extension was provided, lets have it!
 			else
 			{
-				$this->file_ext	 = $this->get_extension($this->_file_name_override);
+				// An extension was provided, let's have it!
+				$this->file_ext	= $this->get_extension($this->_file_name_override);
 			}
 
 			if ( ! $this->is_allowed_filetype(TRUE))
@@ -255,7 +260,8 @@ class CI_Upload {
 		}
 
 		// Sanitize the file name for security
-		$this->file_name = $this->clean_file_name($this->file_name);
+		$CI =& get_instance();
+		$this->file_name = $CI->security->sanitize_filename($this->file_name);
 
 		// Truncate the file name if it's too long
 		if ($this->max_filename > 0)
@@ -264,9 +270,9 @@ class CI_Upload {
 		}
 
 		// Remove white spaces in the name
-		if ($this->remove_spaces == TRUE)
+		if ($this->remove_spaces === TRUE)
 		{
-			$this->file_name = preg_replace("/\s+/", "_", $this->file_name);
+			$this->file_name = preg_replace('/\s+/', '_', $this->file_name);
 		}
 
 		/*
@@ -277,7 +283,7 @@ class CI_Upload {
 		 */
 		$this->orig_name = $this->file_name;
 
-		if ($this->overwrite == FALSE)
+		if ($this->overwrite === FALSE)
 		{
 			$this->file_name = $this->set_filename($this->upload_path, $this->file_name);
 
@@ -290,23 +296,20 @@ class CI_Upload {
 		/*
 		 * Run the file through the XSS hacking filter
 		 * This helps prevent malicious code from being
-		 * embedded within a file.  Scripts can easily
+		 * embedded within a file. Scripts can easily
 		 * be disguised as images or other file types.
 		 */
-		if ($this->xss_clean)
+		if ($this->xss_clean && $this->do_xss_clean() === FALSE)
 		{
-			if ($this->do_xss_clean() === FALSE)
-			{
-				$this->set_error('upload_unable_to_write_file');
-				return FALSE;
-			}
+			$this->set_error('upload_unable_to_write_file');
+			return FALSE;
 		}
 
 		/*
 		 * Move the file to the final destination
 		 * To deal with different server configurations
-		 * we'll attempt to use copy() first.  If that fails
-		 * we'll use move_uploaded_file().  One of the two should
+		 * we'll attempt to use copy() first. If that fails
+		 * we'll use move_uploaded_file(). One of the two should
 		 * reliably work in most environments
 		 */
 		if ( ! @copy($this->file_temp, $this->upload_path.$this->file_name))
@@ -321,14 +324,13 @@ class CI_Upload {
 		/*
 		 * Set the finalized image dimensions
 		 * This sets the image width/height (assuming the
-		 * file was an image).  We use this information
+		 * file was an image). We use this information
 		 * in the "data" function.
 		 */
 		$this->set_image_properties($this->upload_path.$this->file_name);
 
 		return TRUE;
 	}
-
 	// --------------------------------------------------------------------
 
 	/**
