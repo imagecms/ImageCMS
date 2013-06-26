@@ -385,7 +385,7 @@ class Discount_model_admin extends CI_Model {
 
 
             $this->db->where('name', 'mod_discount');
-            $this->db->update('components', array('enabled' => 1));
+            $this->db->update('components', array('enabled' => 1, 'autoload' => 1));
     }
     /**
      * Delete module
@@ -401,5 +401,29 @@ class Discount_model_admin extends CI_Model {
         $this->dbforge->drop_table('mod_discount_user');
         $this->dbforge->drop_table('mod_discount_category');
         $this->dbforge->drop_table('mod_discount_product');
+    }
+    
+    /**
+     * Validation atribute lables
+     * @return array
+     */
+    public function attributeLabels() {
+        return array(
+            'value' => ShopCore::t('Значение'),
+        );
+    }
+    
+    /**
+     * Validation attribute rules
+     * @return array
+     */
+    public function rules() {
+        return array(
+            array(
+                'field' => 'value',
+                'label' => 'Значение',
+                'rules' => 'required|integer',
+            ),
+        );
     }
 }

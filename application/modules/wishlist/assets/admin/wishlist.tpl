@@ -6,8 +6,9 @@
             <div class="pull-left">
                 <span class="help-inline"></span>
                 <span class="title">{lang(user_lists)}: {echo $user[user_name]}</span>
-            </div>                          
+            </div>
         </div>
+
         <div class="row-fluid">
 
             <div class="clearfix">
@@ -37,13 +38,21 @@
                                         <div class="form-horizontal">
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}" class="img-polaroid" alt='{lang(ava)}' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
+                                                         class="img-polaroid"
+                                                         alt='{lang(ava)}'
+                                                         width="{echo $settings[maxImageWidth]}"
+                                                         height="{echo $settings[maxImageHeight]}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
                                                 <div class="controls">
                                                     {form_open_multipart('/wishlist/do_upload')}
-                                                    <input type="file"  name="userfile" size="20"  accept="image/gif, image/jpeg, image/png, image/jpg" style="position: relative!important; opacity: 2!important;"/>
+                                                    <input type="file"
+                                                           name="userfile"
+                                                           size="20"
+                                                           accept="image/gif, image/jpeg, image/png, image/jpg"
+                                                           style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                                     <input type="submit" value="upload" class="btn" />
                                                     {form_csrf()}
@@ -98,25 +107,20 @@
                             <div class="wishListDescription" >
                                 {$wishlist[0][description]}
                             </div>
-                            <form>
-                                <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
-                                <table class="table table-striped table-bordered table-hover table-condensed products_table">
-                                    <thead>
-                                        {if $wishlist[0][variant_id]}
+                            {if $wishlist[0][variant_id]}
+                                <form>
+                                    <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                                    <table class="table table-striped table-bordered table-hover table-condensed products_table">
+                                        <thead>
                                             <tr>
                                                 <th>№</th>
                                                 <th>{lang(unsubscribe)}</th>
                                                 <th>{lang(product)}</th>
                                                 <th>{lang(comment)}</th>
                                             </tr>
-                                        {else:}
-                                            <tr>
-                                                <th style="height: 20px"></th>
-                                            </tr>
-                                        {/if}
-                                    </thead>
-                                    <tbody>
-                                        {if $wishlist[0][variant_id]}
+
+                                        </thead>
+                                        <tbody>
                                             {foreach $wishlist as $key => $w}
                                                 <tr>
                                                     <td>{echo $key+1}</td>
@@ -135,18 +139,18 @@
                                                     </td>
                                                 </tr>
                                             {/foreach}
-                                        {else:}
-                                            <tr>
-                                                <td >{lang(empty_list)}</td>
-                                            </tr>
-                                        {/if}
-                                    </tbody>
-                                </table>
-                                {form_csrf()}
-                            </form>
+
+                                        </tbody>
+                                    </table>
+                                    {form_csrf()}
+                                </form>
+                            {else:}
+                                {lang(empty_list)}
+                            {/if}
+
                         {/foreach}
                     {else:}
-                       {lang(empty_list)}
+                        {lang(empty_list)}
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
@@ -160,7 +164,7 @@
                             <tr>
                                 <td colspan="6">
                                     <div class="inside_padd">
-                                        <form method="POST" action="/admin/components/cp/wishlist/createWishList">
+                                        <form method="POST" action="/wishlist/createWishList">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
