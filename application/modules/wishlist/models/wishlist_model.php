@@ -96,6 +96,7 @@ class Wishlist_model extends CI_Model {
 
         return array_merge(
                 $this->db
+                        ->select('*, shop_product_variants.mainImage AS `image`')
                         ->where('mod_wish_list.user_id', $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->where_in('mod_wish_list.access', $access)
@@ -106,7 +107,8 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
-                        ->result_array(), $this->db
+                        ->result_array(),
+                $this->db
                         ->select('*, mod_wish_list.id AS `wish_list_id`')
                         ->where_in('mod_wish_list.access', $access)
                         ->where('mod_wish_list_products.wish_list_id', NULL)
