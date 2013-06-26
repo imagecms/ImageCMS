@@ -27,7 +27,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
     public function __construct() {
 
         parent::__construct();        
-
+        $this->load->model('discount_model_admin');
     }
 
     /**
@@ -84,7 +84,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
     public function _install() {
 
         if (SHOP_INSTALLED) {
-            $this->discount_model_front->moduleInstall();
+            $this->discount_model_admin->moduleInstall();
             
         }
     }
@@ -100,7 +100,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
         
-        $this->discount_model_front->moduleDelete();
+        $this->discount_model_admin->moduleDelete();
         
     }
 
