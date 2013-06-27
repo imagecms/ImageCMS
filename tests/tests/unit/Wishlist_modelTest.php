@@ -327,25 +327,20 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers Wishlist_model::install
-     * @todo   Implement testInstall().
-     */
-    public function testInstall() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
      * @covers Wishlist_model::deinstall
      * @todo   Implement testDeinstall().
      */
     public function testDeinstall() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertNotNull($this->object->deinstall(), 'Cant get Settings');
+    }
+
+    /**
+     * @covers Wishlist_model::install
+     * @todo   Implement testInstall().
+     */
+    public function testInstall() {
+
+        $this->assertNotNull($this->object->getSettings(), 'Cant get Settings');
     }
 
 }
