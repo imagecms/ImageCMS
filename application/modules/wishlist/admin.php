@@ -60,10 +60,12 @@ class Admin extends BaseAdminController {
     public function editWL($wish_list_id, $userID) {
         $wishlist = new Wishlist();
         if ($wishlist->renderUserWLEdit($wish_list_id, $userID)) {
+            $user_id = $this->session->userdata('admin_edit_user_id');
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $wishlist->dataModel)
+                    ->setData('user_id', $user_id)
                     ->renderAdmin('wishlistEdit');
         }
         else
@@ -123,13 +125,21 @@ class Admin extends BaseAdminController {
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
                 ->renderAdmin('wishPopup');
     }
-
-    public function moveItem($varId, $wish_list_id) {
+    
+    public function moveItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
         $user_id = $this->session->userdata('admin_edit_user_id');
 
         redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
     }
+    
+    public function deleteImage(){
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->deleteImage();
+        
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
 
 }
