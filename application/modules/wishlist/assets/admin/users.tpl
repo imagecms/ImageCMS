@@ -12,10 +12,9 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
-                       class="t-d_n m-r_15 pjax">
-                        <span class="f-s_14"></span>
-                        <span class="t-d_u">{lang(settings)}</span>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
+                        <i class="icon-wrench"></i>
+                        {lang(settings)}
                     </a>
                 </div>
             </div>
