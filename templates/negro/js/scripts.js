@@ -68,8 +68,8 @@ icons = {
 var genObj = {
     textEl: '.text-el', //селектор
     popupCart: '#popupCart',
-    emptyCarthideElement: "#popupCart table, #shopCartPage",
-    emptyCartshowElement: "#popupCart .msg, #shopCartPageEmpty",
+    emptyCarthideElement: "#popupCart .no-empty, #shopCartPage",
+    emptyCartshowElement: "#popupCart .empty, #shopCartPageEmpty",
     pM: $('.paymentMethod'),
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
@@ -98,6 +98,7 @@ var genObj = {
     isAvail: 'pointer', //назва класу
     loginButton: '#loginButton', //селектор
     inCart: 'in-cart', //назва класу
+    toCart: 'to-cart', //назва класу
     notAvail: 'not-avail', //назва класу
     infoBut: '.infoBut',
     btnBuy: '.btnBuy', //назва класу кнопка купити
@@ -347,23 +348,24 @@ function processPage() {
         keys.push(item.id + '_' + item.vId);
     });
     //update all product buttons
+    var key = $this.data('prodid') + '_' + $this.data('varid');
     $(genObj.btnBuy).each(function() {
-        var $this = $(this),
-                key = $this.data('prodid') + '_' + $this.data('varid');
+        var $this = $(this);
         if (keys.indexOf(key) != -1) {
             $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
             $this.unbind('click').bind('click', function(e) {
+                $.fancybox.showActivity();
                 Shop.Cart.countChanged = false;
                 togglePopupCart(e.target);
             }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
         }
     });
     $('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
-        var $this = $(this),
-                key = $(this).data('prodid') + '_' + $(this).data('varid');
+        var $this = $(this);
         if (keys.indexOf(key) == -1) {
             $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
             $this.unbind('click').bind('click', function(e) {
+                $.fancybox.showActivity();
                 Shop.Cart.countChanged = false;
                 var cartItem = Shop.composeCartItem($(this));
                 Shop.Cart.add(cartItem, e);
@@ -371,8 +373,7 @@ function processPage() {
         }
     });
     $('[data-rel="frameplusminus"]').each(function() {
-        var $this = $(this),
-                key = $this.data('prodid') + '_' + $this.data('varid');
+        var $this = $(this);
         if (keys.indexOf(key) != -1) {
             var input = $this.find('input');
             $this.find('button').attr('disabled', 'disabled');
@@ -451,8 +452,9 @@ function initShopPage(showWindow, target, orderDetails) {
             })
             popupCartRecGenSum();
         }
-        $(genObj.frameCount + ' input').bind('keyup', function() {
-            chCountInCart($(this).prev('div'));
+        $(genObj.frameCount + ' input').bind('keyup', function(e) {
+            if (!$.testNumber(e))
+                chCountInCart($(this).prev('div'));
         });
         if (showWindow) {
             togglePopupCart(target);
@@ -486,7 +488,7 @@ function renderOrderDetails() {
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
-    genObj.pM.prev().show();
+    genObj.pM.next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         data = JSON.parse(dataStr);
         var replaceStr = '';
@@ -500,7 +502,7 @@ function changeDeliveryMethod(id, selectDeliv) {
             });
         }
         genObj.pM.html(replaceStr);
-        genObj.pM.prev().hide();
+        genObj.pM.next().hide();
         if (selectDeliv)
             cuSel({
                 changedEl: '#paymentMethod'
@@ -527,11 +529,13 @@ function recountCartPage(selectDeliv, methodDeliv) {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
     $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    var shiping = parseFloat(Shop.Cart.shipping).toFixed(pricePrecision);
+    $('#shipping').html(shiping);
     $('.curr').html(curr);
 }
 
 function emptyPopupCart() {
+    console.log($(genObj.emptyCartshowElement))
     $(genObj.emptyCarthideElement).hide();
     $(genObj.emptyCartshowElement).removeClass("d_n").show()
 }
@@ -602,11 +606,13 @@ function existsVnames(vName, liBlock) {
     }
 }
 function condProduct(vStock, liBlock, btnBuy) {
-    liBlock.removeClass(genObj.notAvail).removeClass(genObj.inCart);
+    liBlock.removeClass(genObj.notAvail + ' ' + genObj.inCart);
     if (vStock == 0)
         liBlock.addClass(genObj.notAvail);
-    if (btnBuy.hasClass(genObj.btnCartCss))
+    else if (btnBuy.parent().hasClass(genObj.btnCartCss))
         liBlock.addClass(genObj.inCart)
+    else
+        liBlock.addClass(genObj.toCart)
 }
 
 jQuery(document).ready(function() {
@@ -626,6 +632,9 @@ jQuery(document).ready(function() {
         if (ltie7)
             ieInput('.cuselText');
     }
+    $('#sort, #sort2').bind('change', function() {
+        $('form#searchSortForm').submit();
+    });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
     $('.menu-main').menuImageCms(optionsMenu);
     $('.drop').drop({
@@ -636,28 +645,36 @@ jQuery(document).ready(function() {
         effoff: 'fadeOut',
         duration: 500,
         before: function(el, dropEl, isajax) {
-            if ($(dropEl).hasClass('drop-report')) {
-                $(dropEl).removeClass('left-report').removeClass('top-right-report')
+            var dropEl = $(dropEl);
+            if (dropEl.hasClass('drop-report')) {
+                dropEl.find('li').children().remove();
+                dropEl.find('[data-clone="data-report"]').remove();
 
-                $(dropEl).find('li').remove();
-                var elWrap = el.closest('li').clone(true).removeAttr('style'),
-                        dropEl = $(dropEl).find('[data-rel="pastehere"]');
+                var parentEl = el.closest(genObj.parentBtnBuy)
+                if ($.existsN(el.closest('.items-catalog')))
+                    var elWrap = parentEl.clone(true).removeAttr('style').children();
+                else {
+
+                    var elWrap = parentEl.find('.frame-photo-title > .photo-block').clone(true);
+                    elWrap.after('<div class="description"><span class="title">' + $('h1').text() + '</span>' + parentEl.find('.frame-prices').clone().html() + '</div>')
+                }
+                var dropElRep = dropEl.find('[data-rel="pastehere"]');
                 //adding product info into form
                 var formCont = $('#data-report'),
                         productId = el.attr('data-prodid');
                 formCont.find('input[name="ProductId"]').val(productId)
 
-                if (!dropEl.parent().hasClass('active')) {
-                    if (!$.existsN(dropEl.find('.items-bask')))
-                        dropEl.append('<ul class="items items-bask item-report"></ul>');
-                    dropEl.find('.items-bask').append(elWrap).find('.funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product').remove().end().find('.no-vis-table').parent().remove().end().end().parent().find('[data-clone="data-report"]').remove().end().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
-                }
+                if (!$.existsN(dropElRep.find('.items-bask')))
+                    dropElRep.append('<ul class="items items-bask item-report"><li></li></ul>');
+
+                dropElRep.find('.item-report').children().append(elWrap).find('.funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
                 return el;
             }
-            $(dropEl).find('.error').hide();
             if (dropEl.is(genObj.popupCart)) {
                 dropBaskResize();
             }
+            dropEl.find('label.error, label.success').hide();
+            dropEl.find(':input').removeClass('error success');
         },
         after: function(el, dropEl, isajax) {
             if (isajax)
@@ -677,6 +694,7 @@ jQuery(document).ready(function() {
                     groupButtons: '.group-button-carousel'
                 });
             }
+            dropEl.find('form input[type="text"]:first').focus();
         },
         close: function(el, dropEl) {
             if ($(dropEl).hasClass('frame-already-show'))
@@ -858,6 +876,7 @@ jQuery(document).ready(function() {
             selectDeliv = false;
     recountCartPage(selectDeliv, methodDeliv);
     $(genObj.btnBuy).bind('click', function(e) {
+        $.fancybox.showActivity();
         Shop.Cart.countChanged = false;
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
@@ -911,11 +930,8 @@ jQuery(document).ready(function() {
     countSumBask();
     //cart content changed
     $(document).live('cart_changed', function() {
-
-//Shop.Cart.totalRecount();
+        Shop.Cart.totalRecount();
         processPage();
-//        if ($.exists(genObj.orderDetails))
-//            renderOrderDetails();
         if ($.existsN(methodDeliv))
             recountCartPage(selectDeliv, methodDeliv);
         popupCartRecGenSum();
@@ -1045,7 +1061,7 @@ jQuery(document).ready(function() {
         liBlock.find(genObj.priceVariant).html(vPrice);
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut));
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
     });
@@ -1070,7 +1086,7 @@ jQuery(document).ready(function() {
         liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
     });
     $('.frame-count-buy .btn-plus > button, .frame-count-buy .btn-plus > button').live('click', function() {
         var $this = $(this);
