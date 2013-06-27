@@ -42,8 +42,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return $this->return_json();
     }
 
-     public function show($user_id, $list_id) {
-         parent::show($user_id, $list_id);
+     public function show($hash) {
+         parent::show($hash);
          return $this->return_json();
     }
 
