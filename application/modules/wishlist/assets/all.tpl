@@ -34,6 +34,8 @@
             {/foreach}
         </table>
     {else:}
-        Списков нет!!
+        {foreach (array)$errors as $error}
+            {echo $error}
+        {/foreach}
     {/if}
 </article>

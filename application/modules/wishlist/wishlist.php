@@ -64,8 +64,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('all');
         } else {
             \CMSFactory\assetManager::create()
-                    ->setData('lists', $this->errors)
-                    ->setData('lists', $lists)
+                    ->setData('errors', $this->errors)
                     ->setData('settings', $this->settings)
                     ->render('all');
         }
