@@ -16,7 +16,6 @@
                             </div>
                             </br>
                             <div>Дата рождения: {date('Y-m-d', $list['user']['user_birthday'])}</div>
-                            <div>Описание: {$list['user']['description']}</div>
                         </div>
                     </td>
                     <td>
