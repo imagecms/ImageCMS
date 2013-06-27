@@ -82,7 +82,6 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_no_user');
             return FALSE;
         }
-        $lists = '';
 
         foreach ($users as $user) {
             $lists [] = array(
@@ -111,7 +110,6 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function show($hash, $access = array('public')) {
-
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
 
         if ($wishlist) {
@@ -339,18 +337,16 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
         }
-        if ($listName) {
-            $listId = "";
-        }
-
 
         if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']) {
             $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
             $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
         }
 
-        if ($listName)
+        if ($listName) {
+            $listId = "";
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+        }
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
