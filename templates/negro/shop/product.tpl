@@ -22,7 +22,7 @@
     <div class="container">
         <div class="clearfix item-product">
             <div class="f-s_0 title-product">
-                <div class="d_i m-r_15">
+                <div class="frame-title">
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 {$hasCode = $model->firstVariant->getNumber() == '';}
@@ -95,7 +95,7 @@
                                         {if $pv->getStock() > 0}
                                             <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
-                                                    <div class="number" data-title="количество на складе {echo $pv->getstock()}">
+                                                    <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                                         <div class="frame-change-count">
                                                             <div class="btn-plus">
                                                                 <button type="button">
@@ -111,7 +111,7 @@
                                                         <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $pv->getstock()}">
                                                     </div>
                                                 </div>
-                                                <div class="btn-buy btn-buy-p variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                                                <div class="btn-buy btn-buy-p">
                                                     <button class="btnBuy infoBut"
                                                             type="button"
                                                             data-id="{echo $pv->getId()}"
@@ -449,9 +449,11 @@
                                             </div>
                                             <div class="btn-buy">
                                                 <button class="btnBuy" type="button"                                    
-                                                        data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
+                                                        data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
+                                                        data-addprice="{echo json_encode($kitProducts->getTotalPrice())}"
+                                                        data-addprices="{echo json_encode($kitProducts->getTotalPrice())}"  
                                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                                         data-kit="true"
                                                         data-kitId="{echo $kitProducts->getId()}"

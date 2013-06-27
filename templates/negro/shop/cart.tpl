@@ -6,7 +6,7 @@
                     <h1 class="d_i">Корзина</h1>
                 </div>
             </div>
-            <div class="msg">
+            <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
                     <span class="text-el">Ваша корзина пуста</span>
@@ -22,13 +22,13 @@
                 </div>
                 <div class="left-cart">
                     {if !$is_logged_in}
-                        <ul class="tabs-data-cart items">
+                        <ul class="items items-order-user">
                             <li class="new-buyer">
                                 <span>
                                     <span class="text-el">Я новый покупатель</span>
                                 </span>
                             </li>
-                            <li>
+                            <li class="old-buyer">
                                 <button type="button" data-trigger="#loginButton">
                                     <span class="d_l text-el">Я уже здесь покупал</span>
                                 </button>
@@ -41,7 +41,10 @@
                                 {if $errors}
                                     <div class="groups-form">
                                         <div class="msg">
-                                            <div class="error">{echo $errors}</div>
+                                            <div class="error">
+                                                <span class="icon_error"></span>
+                                                <span class="text-el">{echo $errors}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 {/if}
@@ -56,7 +59,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_phone')}</span>
+                                        <span class="title">{lang('s_phone')}:</span>
                                         <span class="frame-form-field">
                                             {if $isRequired['userInfo[phone]']}
                                                 <span class="must">*</span>
@@ -65,7 +68,7 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_user_el')}</span>
+                                        <span class="title">{lang('s_email')}:</span>
                                         <span class="frame-form-field">
                                             {if $isRequired['userInfo[email]']}
                                                 <span class="must">*</span>
@@ -74,17 +77,21 @@
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('s_addresrec')}</span>
+                                        <span class="title">{lang('s_address')}:</span>
                                         <span class="frame-form-field">
                                             {if $isRequired['userInfo[deliverTo]']}
                                                 <span class="must">*</span>
                                             {/if}
                                             <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                     </label>
+                                    <label>
+                                        <span class="title">{lang('s_comment')}</span>
+                                        <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
+                                    </label>
                                 </div>
                                 <div class="groups-form">
                                     <div class="frame-label">
-                                        <span class="title">Способ доставки</span>
+                                        <span class="title">{lang('s_dostavka')}</span>
                                         <div class="frame-form-field check-variant-delivery">
                                             {/*<div class="lineForm">
                                                 <select id="method_deliv" name="deliveryMethodId">
@@ -113,134 +120,193 @@
                                                     <div class="frame-label">
                                                         <span class="niceRadio b_n">
                                                             <input type="radio"
-                                                                   {if $counter} checked="checked"
-                                                                       {$del_id = $deliveryMethod->getId()}
-                                                                       {$counter = false}
-                                                                       {$del_price = ceil($deliveryMethod->getPrice())}
-                                                                       {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                                                                   {/if}
-                                                                   name="met_del"
-                                                                   value="{echo $del_id}"
-                                                                   data-price="{echo ceil($deliveryMethod->getPrice())}"
-                                                                   data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
-                                                                   />
-                                                        </span>
-                                                        <div class="name-count">
-                                                            <span class="text-el">{echo $deliveryMethod->getName()}</span>
-                                                        </div>
-                                                        {if $deliveryMethod->getDescription()}
-                                                            <div class="help-block">{echo $deliveryMethod->getDescription()}</div>
-                                                        {/if}
+                                                            {if $counter} checked="checked"{/if}
+                                                            {$del_id = $deliveryMethod->getId()}
+                                                            {$counter = false}
+                                                            {$price = ceil($deliveryMethod->getPrice())}
+                                                            {if $price == 0}
+                                                                {$price = "Бесплатно"}
+                                                            {else:}
+                                                                {$price = $price}
+                                                            {/if}
+                                                            {$del_price = $price}
+                                                            {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                                                            name="met_del"
+                                                            value="{echo $del_id}"
+                                                            data-price="{$price}"
+                                                            data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
+                                                            />
+                                                    </span>
+                                                    <div class="name-count">
+                                                        <span class="text-el">{echo $deliveryMethod->getName()}</span>
                                                     </div>
-                                                {/foreach}
-                                            </div>
+                                                    {if $deliveryMethod->getDescription()}
+                                                        <div class="help-block">
+                                                            {echo $deliveryMethod->getDescription()}
+                                                        </div>
+                                                    {/if}
+                                                    {echo $price}
+                                                </div>
+                                            {/foreach}
                                         </div>
                                     </div>
+                                </div>
 
-                                    {if count($paymentMethods)}
-                                        <div class="frame-label">
-                                            <span class="title">Способ оплаты</span>
-                                            <div class="frame-form-field">
-                                                <div class="paymentMethod check-variant-payment">
-                                                    {/*<div class="lineForm">
+                                {if count($paymentMethods)}
+                                    <div class="frame-label">
+                                        <span class="title">Способ оплаты</span>
+                                        <div class="frame-form-field check-variant-payment">
+                                            <div class="preloader"></div>
+                                            <div class="paymentMethod">
+                                                {/*<div class="lineForm">
                                                     <select name="paymentMethodId" id="paymentMethod">
-                                                    {$counter = true}
-                                                    {foreach $paymentMethods as $paymentMethod}
+                                                {$counter = true}
+                                                {foreach $paymentMethods as $paymentMethod}
                                                     <label>
                                                     <option
-                                                        {if $counter} checked="checked"
-                                                            {$counter = false}
-                                                            {$pay_id = $paymentMethod->getId()}
-                                                        {/if}
+                                                    {if $counter} checked="checked"
+                                                        {$counter = false}
+                                                        {$pay_id = $paymentMethod->getId()}
+                                                    {/if}
                                                     value="{echo $pay_id}"
                                                     />
-                                                        {echo $paymentMethod->getName()}
+                                                    {echo $paymentMethod->getName()}
                                                     </option>
                                                     </label>
-                                                    {/foreach}
+                                                {/foreach}
                                                     </select>
                                                     </div>*/}
-                                                    <div class="frame-radio">
-                                                        {$counter = true}
-                                                        {foreach $paymentMethods as $paymentMethod}
-                                                            <div class="frame-label">
-                                                                <span class="niceRadio b_n">
-                                                                    <input type="radio"
-                                                                           {if $counter} checked="checked"
-                                                                               {$counter = false}
-                                                                               {$pay_id = $paymentMethod->getId()}
-                                                                           {/if}
-                                                                           value="{echo $pay_id}"
-                                                                           name="paymentMethodId"
-                                                                           />
-                                                                </span>
-                                                                <div class="name-count">
-                                                                    <span class="text-el">{echo $paymentMethod->getName()}</span>
-                                                                </div>
-                                                                {if $paymentMethod->getDescription()}
-                                                                    <div class="help-block">{echo $paymentMethod->getDescription()}</div>
-                                                                {/if}
+                                                <div class="frame-radio">
+                                                    {$counter = true}
+                                                    {foreach $paymentMethods as $paymentMethod}
+                                                        <div class="frame-label">
+                                                            <span class="niceRadio b_n">
+                                                                <input type="radio"
+                                                                       {if $counter} checked="checked"
+                                                                           {$counter = false}
+                                                                           {$pay_id = $paymentMethod->getId()}
+                                                                       {/if}
+                                                                       value="{echo $pay_id}"
+                                                                       name="paymentMethodId"
+                                                                       />
+                                                            </span>
+                                                            <div class="name-count">
+                                                                <span class="text-el">{echo $paymentMethod->getName()}</span>
                                                             </div>
-                                                        {/foreach}
-                                                    </div>
+                                                            {if $paymentMethod->getDescription()}
+                                                                <div class="help-block">{echo $paymentMethod->getDescription()}</div>
+                                                            {/if}
+                                                        </div>
+                                                    {/foreach}
                                                 </div>
                                             </div>
                                         </div>
-                                    {/if}
-                                </div>
-                                {if ShopCore::app()->SSettings->usegifts == 1}
-                                    <div class="groups-form" >
-                                        <label for="giftcert">
-                                            <span class="title">{lang('s_cert_code')}</span>
-                                            <span class="frame-form-field">
-                                                <div class="btn-def f_r">
-                                                    <button id="applyGiftCert">{lang('s_apply_sertif')}</button>
-                                                </div>
-                                                <div class="o_h">
-                                                    <input type="text" name="giftcert" value="">
-                                                </div>
-                                                {if $isRequired['giftcert']}
-                                                    <span class="must">*</span>
-                                                {/if}
-                                            </span>
-                                        </label>
                                     </div>
                                 {/if}
-                                <div class="groups-form">
-                                    <label>
-                                        <span class="title">{lang('s_comment')}</span>
-                                        <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
-                                    </label>
-                                    <div class="frame-label">
-                                        <span class="title">&nbsp;</span>
-                                        <div class="frame-form-field">
-                                            <div>(Сумма товаров: <span class="f-w_b" id="totalPrice"></span> <span class="curr"></span> + Доставка: <span id="shipping"></span> <span class="curr"></span>)
-                                                <span id="giftCertSpan" style="display: none;">(Скидка подарочного сертификата: <span id="giftCertPrice"></span> )</span>
+                            </div>
+                            {if ShopCore::app()->SSettings->usegifts == 1}
+                                <div class="groups-form" >
+                                    <label for="giftcert" class="label-gift-cert">
+                                        <span class="title">{lang('s_cert_code')}</span>
+                                        <span class="frame-form-field">
+                                            <div class="preloader"></div>
+                                            <div class="btn-def f_r">
+                                                <button id="applyGiftCert"><span class="text-el">{lang('s_apply_sertif')}</span></button>
                                             </div>
-                                            <span>Сумма:</span> <span id="finalAmount"></span> <span class="curr"></span>
+                                            <div class="o_h">
+                                                <input type="text" name="giftcert" value="" />
+                                                <span class="icon_success"></span>
+                                            </div>
+                                            {if $isRequired['giftcert']}
+                                                <span class="must">*</span>
+                                            {/if}
+                                        </span>
+                                    </label>
+                                </div>
+                            {/if}
+                            <div class="groups-form">
+                                <div class="frame-label">
+                                    <span class="title">&nbsp;</span>
+                                    <div class="frame-form-field">
+                                        <ul class="items items-order-gen-info">
+                                            <li>
+                                                <span class="s-t">Стоимость доставки:</span>
+                                                <span class="price-item">
+                                                    <span class="text-el">+</span><span id="shipping"></span>
+                                                    <span class="curr"></span>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <span class="s-t">Ваша текущая скидка:</span>
+                                                <span class="price-item">
+                                                    <span class="text-discount w-s_n-w">
+                                                        <span class="text-el">-</span><span id="currDiscount">bla-bla</span><span class="text-el">&nbsp;</span><span class="curr"></span>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                            <li id="giftCertSpan" style="display: none;">
+                                                <span class="s-t">Подарочный сертификат:</span>
+                                                <span class="price-item">
+                                                    <span class="text-discount">
+                                                        <span class="text-el">-</span><span id="giftCertPrice"></span><span class="text-el">&nbsp;</span><span class="curr"></span>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <div class="gen-sum-order">
+                                            <span class="title">Итого к оплате:</span>
+                                            <span class="frame-prices f-s_0">
+                                                <span class="price-discount">
+                                                    <span>
+                                                        <span class="price" id="totalPrice"></span>
+                                                        <span class="curr"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="current-prices f-s_0">
+                                                    <span class="price-new">
+                                                        <span>
+                                                            <span class="price" id="finalAmount"></span>
+                                                            <span class="curr"></span>
+                                                        </span>
+                                                    </span>
+                                                    {if $NextCSId != null}
+                                                        <span class="price-add">
+                                                            <span>
+                                                                (<span class="price" id="totalPriceAdd">bla-bla</span>
+                                                                <span class="add-curr">{$NextCs}</span>)
+                                                            </span>
+                                                        </span>
+                                                    {/if}
+                                                </span>
+                                            </span>
                                         </div>
                                     </div>
-                                    <div class="frame-label">
-                                        <span class="title">&nbsp;</span>
-                                        <span class="frame-form-field">
-                                            <input type="submit" class="btn btn_cart" value="Подтверждаю заказ">
-                                        </span>
-                                    </div>
                                 </div>
-                                <input type="hidden" name="makeOrder" value="1">
-                                <input type="hidden" name="checkCert" value="0">
-                                {form_csrf()}
-                            </form>
-                        </div>
+                                <div class="frame-label">
+                                    <span class="title">&nbsp;</span>
+                                    <span class="frame-form-field">
+                                        <div class="btn-cart btn-cart-p">
+                                            <input type="submit" class="btn btn_cart" value="Оформить"/>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="makeOrder" value="1">
+                            <input type="hidden" name="checkCert" value="0">
+                            {form_csrf()}
+                        </form>
                     </div>
-
                 </div>
-                <div class="right-cart" id="orderDetails">
 
+            </div>
+            <div class="right-cart">
+                <div class="preloader"></div>
+                <div id="orderDetails">
                 </div>
             </div>
-        {/if}
-    </div>
+        </div>
+    {/if}
 </div>
 </div>
-<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
+<script type="text/javascript" src="{$THEME}js/jquery.inputmask-multi.js"></script>
