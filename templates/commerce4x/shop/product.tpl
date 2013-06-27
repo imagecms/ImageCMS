@@ -160,6 +160,7 @@
                                                                    data-maxcount="{echo $pv->getstock()}"
                                                                    data-number="{echo $pv->getNumber()}"
                                                                    data-img="{echo $pv->getSmallPhoto()}"
+                                                                   data-url="{echo shop_url('product/' . $model->getUrl())}"
                                                                    data-mainImage="{echo $pv->getMainPhoto()}"
                                                                    data-largeImage="{echo $pv->getlargePhoto()}"
                                                                    data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
