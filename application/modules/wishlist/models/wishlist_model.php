@@ -462,7 +462,7 @@ class Wishlist_model extends CI_Model {
      * @param type $list_id
      * @return boolean
      */
-    public function addRewiew($hash) {
+    public function addReview($hash) {
         $count = $this->db->where('hash', $hash)
                 ->select('review_count')
                 ->get('mod_wish_list')
