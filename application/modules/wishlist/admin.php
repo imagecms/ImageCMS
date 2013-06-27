@@ -18,13 +18,13 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-         $wishlist = new \wishlist\classes\ParentWishlist();
-         $users = $this->wishlist_model->getAllUsers();
-         foreach ($users as $key => $user){
-             $user['lists_count'] = $this->wishlist_model->getUserWishListCount($user['id']);
-             $user['items_count'] = $this->wishlist_model->getUserWishListItemsCount($user['id']);
-             $users[$key] = $user;
-         }
+        $wishlist = new \wishlist\classes\ParentWishlist();
+        $users = $this->wishlist_model->getAllUsers();
+        foreach ($users as $key => $user) {
+            $user['lists_count'] = $this->wishlist_model->getUserWishListCount($user['id']);
+            $user['items_count'] = $this->wishlist_model->getUserWishListItemsCount($user['id']);
+            $users[$key] = $user;
+        }
 
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
@@ -76,10 +76,10 @@ class Admin extends BaseAdminController {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
 
-        if(!strstr($this->uri->uri_string(), 'editWL')){
+        if (!strstr($this->uri->uri_string(), 'editWL')) {
             $user_id = $this->session->userdata('admin_edit_user_id');
             redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
-        }else{
+        } else {
             redirect($_SERVER['HTTP_REFERER'] . "#lists");
         }
     }
@@ -141,6 +141,5 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
     
-
 
 }

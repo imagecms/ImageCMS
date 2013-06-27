@@ -8,7 +8,7 @@
 * $total_price : (string) Total price of all products
 */
 #}
-<div class="frame-inside">
+<div class="frame-inside page-wish-list">
     <div class="container">
         {if count($items) > 0}
         <div class="clearfix">
