@@ -5,7 +5,21 @@
             <div class="pull-left">
                 <span class="help-inline"></span>
                 <span class="title">{lang(edit_list)}: {echo $user[user_name]}</span>
-            </div>                          
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{$user_id}#lists"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span>
+                        <span class="t-d_u">{lang('a_back')}</span>
+                    </a>
+                    <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14"></span>
+                        <span class="t-d_u">{lang(settings)}</span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row-fluid">
             <label>
@@ -54,42 +68,42 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <table class="table table-striped table-bordered table-hover table-condensed">
-                        <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
-                        <thead>
-                            <tr>
-                                <td colspan="3">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>№</th>
-                                <th>{lang(unsubscribe)}</th>
-                                <th>{lang(product)}</th>
-                                <th>{lang(comment)}</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {foreach $wishlist as $key => $w}
+                    {if $wishlist[0][id] != null}
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                            <thead>
                                 <tr>
-                                    <td>{echo $key+1}</td>
-                                    <td>
-                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
-                                    </td>
-                                    <td>
-                                        <a href="{shop_url('product/'.$w[url])}"
-                                           title="{$w[name]}">
-                                            {$w[name]}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
+                                    <td colspan="3">
                                     </td>
                                 </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <th>№</th>
+                                    <th>{lang(unsubscribe)}</th>
+                                    <th>{lang(product)}</th>
+                                    <th>{lang(comment)}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $wishlist as $key => $w}
+                                    <tr>
+                                        <td>{echo $key+1}</td>
+                                        <td>
+                                            <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{shop_url('product/'.$w[url])}"
+                                               title="{$w[name]}">
+                                                {$w[name]}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    {/if}
                     {form_csrf()}
                     <input type="submit" class="btn" value="{lang(save)}"/>
                 </form>

@@ -241,11 +241,19 @@ class ParentWishlist extends \MY_Controller {
         if($listName){
             $listId = "";
         }
-
-        if (strlen($listName) > $this->settings['maxListName']) {
-            $listName = substr($listName, 0, (int) $this->settings['maxListName']);
-            $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+        
+        if (preg_match("/[а-я]+/i", $listName)) {
+             if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']){
+                    $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
+                    $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+              }
+        }else{
+             if (strlen($listName) > $this->settings['maxListName']) {
+                 $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+             }
         }
+       
 
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
