@@ -185,7 +185,7 @@
                                                 </div>
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
-                                                        {echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}
+                                                        {echo $orderProduct->getKit()->getMainProductPrice()}
                                                     </span> {$CS}
                                                 </div>
                                             </div>
