@@ -11,6 +11,7 @@
 /application/modules/mobile/
 /application/modules/exchange/
 /tests/tests/_log/*
+/tests/application/*
 Thumbs.db
 .idea/
 .settings/
