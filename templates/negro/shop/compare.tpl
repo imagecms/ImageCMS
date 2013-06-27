@@ -10,7 +10,7 @@
 * ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray(Sproducts $product): method gives product properties values
 */
 #}
-<div class="frame-inside">
+<div class="frame-inside page-compare">
     <div class="container">
         <!--Start. Show compare list if count products >0 -->
         {if count($products) > 0}

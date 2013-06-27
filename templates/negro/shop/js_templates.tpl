@@ -22,7 +22,7 @@
 
         <!-- for single product -->
         <% if (!item.kit) { %>
-        <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
+        <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
         <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
         <td class="frame-items">
         <a href="<%-item.url%>" class="frame-photo-title">
@@ -44,15 +44,15 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
-<span class="price-add">
+        <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-curr%></span>
+        <span class="add-curr"><%-currNext%></span>
         </span>
         </span>
         </span>
         </div>
-</div>
+        </div>
         </div>
         </td>
         <td class="frame-count">
@@ -83,10 +83,10 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
-<span class="price-add">
+        <span class="price-add">
         <span>
         <span class="price addCurrPrice"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-currNext%></span>
+        <span class="add-curr"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -102,7 +102,7 @@
         <% var images = item.img %>
         <% var urls = item.url %>
 
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
         <table>
         <tbody>
@@ -131,8 +131,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i]%></span>
+        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
+        <span class="add-curr"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -154,8 +160,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i]%></span>
+        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price"><%-addprices[i].toFixed(pricePrecision)%></span>
+        <span class="add-curr"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -192,6 +204,12 @@
         <span class="price-new">
         <span>
         <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price" data-rel="priceaddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
@@ -232,15 +250,17 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <span class="price-add">
+        <span>
+        <span class="price" id="popupCartTotaladdprice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         </span>
         </span>
         </div>
+        <% if (!document.getElementById('orderDetails')) { %>
         <div class="content-frame-foot">
-        <% if ( document.getElementById('orderDetails')) { %>
-        <% if ( Shop.Cart.totalCount  == 0 ) { %>
-        <% setTimeout("location.href = '/';", 2000); %>
-        <% } %>
-        <% } else { %>
         <div class="clearfix">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
@@ -255,8 +275,8 @@
         </a>
         </div>
         </div>
-        <% } %>
         </div>
+        <% } %>
         </div>
         </div>
         </div>
@@ -296,7 +316,7 @@
 
         <!-- for single product -->
         <% if (!item.kit) { %>
-        <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
+        <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
         <td class="frame-items">
         <a href="<%-item.url%>" class="frame-photo-title">
         <span class="photo-block">
@@ -318,7 +338,7 @@
         </span>
         </span>
         </div>
-        <div>
+        <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number d_i-b" data-title="количество на складе <%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>">
@@ -335,9 +355,10 @@
         </div>
         <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
+        <span class="countOrCompl"><%-pluralStr(item.count, plurProd)%></span>
         </div>
         </div>
-<div class="frame-cur-sum-price">
+        <div class="frame-cur-sum-price">
         <span class="title">На сумму: </span>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
@@ -348,7 +369,7 @@
         </span>
         </span>
         </span>
-</div>
+        </div>
         </div>
         </div>
         </td>
@@ -363,7 +384,7 @@
         <% var images = item.img %>
         <% var urls = item.url %>
 
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" id="popupKit_<%- item.kitId %>">
+        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
         <table>
         <tbody>
@@ -433,6 +454,7 @@
         <div class="kits-gen-sum">
         <img src="<%-theme%>/images/kits_sum.png" />
         </div>
+        <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number" data-title="количество на складе <%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit %>">
@@ -450,6 +472,8 @@
         <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
         <span class="countOrCompl"><%-pluralStr(item.count, plurKits)%></span>
+        </div>
+        </div>
         </div>
         <div class="frame-cur-sum-price">
         <span class="title">На сумму: </span>
@@ -501,12 +525,8 @@
         </span>
         </span>
         </div>
+        <% if (!document.getElementById('orderDetails')) { %>
         <div class="content-frame-foot">
-        <% if ( document.getElementById('orderDetails')) { %>
-        <% if ( Shop.Cart.totalCount  == 0 ) { %>
-        <% setTimeout("location.href = '/';", 2000); %>
-        <% } %>
-        <% } else { %>
         <div class="clearfix">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
@@ -521,8 +541,8 @@
         </a>
         </div>
         </div>
-        <% } %>
         </div>
+        <% } %>
         </div>
         </div>
         </div>
@@ -534,12 +554,6 @@
         <div class="inside-padd">
         <div class="msg f-s_0">
         <div class="success"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
-        </div>
-        <div class="btn-form">
-        <button type="button" onclick="togglePopupCart()">
-        <span class="icon_form"></span>
-        <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
-        </button>
         </div>
         </div>
         </div>

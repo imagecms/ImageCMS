@@ -56,10 +56,6 @@ jQuery.onlyNumber = function(el) {
             $(this).tooltip();
             return false;
         }
-        else {
-            $(this).tooltip('remove');
-            return true;
-        }
     });
 }
 function setcookie(name, value, expires, path, domain, secure)
@@ -256,7 +252,7 @@ function ieInput(els) {
                 after: function() {
                 }
             }, options),
-            settings = optionsRadio;
+                    settings = optionsRadio;
             var $this = $(this);
             if ($.existsN($this)) {
                 $this.each(function() {
@@ -457,15 +453,19 @@ function ieInput(els) {
                     settings = $.extend({
                 title: this.attr('data-title'),
                 otherClass: false,
+                durOff: 500,
                 effect: 'notalways',
+                hover: false,
                 me: true
             }, options);
             var $this = $(this),
                     textEl = $this.find(genObj.textEl),
-                    me = settings.me;
+                    me = settings.me,
+                    hover = settings.hover,
+                    durOff = settings.durOff;
             if (textEl.is(':visible') && $.existsN(textEl) && me)
                 return false;
-            tooltip.text(settings.title)
+            tooltip.text(settings.title);
 
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
@@ -475,15 +475,16 @@ function ieInput(els) {
                 'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
                 'top': this.offset().top - tooltip.actual('outerHeight')
             }).stop().fadeIn(300);
-            $this.filter(':input').unbind('blur').blur(function() {
-                methods.remove();
-            })
             $this.unbind('mouseout.tooltip').bind('mouseout.tooltip', function() {
                 $(this).tooltip('remove');
             })
+            if (!hover)
+                setTimeout(function() {
+                    body.tooltip('remove');
+                }, durOff)
         },
         remove: function() {
-            $('.tooltip').fadeOut(300);
+            $('.tooltip').stop().fadeOut(300);
         }
     };
     $.fn.tooltip = function(method) {
@@ -495,8 +496,8 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.tooltip');
         }
     };
-    $('[data-rel="tooltip"]').live('mouseenter', function() {
-        $(this).tooltip();
+    $('[data-rel="tooltip"]').live('mouseover', function() {
+        $(this).tooltip({'hover': true});
     }).live('mouseout', function() {
         $(this).tooltip('remove');
     })
@@ -708,10 +709,18 @@ function ieInput(els) {
                     if ($this.index() == itemMenuL - 1)
                         $this.removeClass('lastH');
                     var $thisDrop = $this.find(settings.drop);
-                    if ($.existsN($thisDrop))
-                        $this.find(settings.drop)[effOff](durationOff, function() {
-                            $this.removeClass(hM);
-                        });
+                    if ($.existsN($thisDrop)) {
+                        if (sub2Frame) {
+                            $this.find(settings.drop)[effOff](durationOff, function() {
+                                $this.removeClass(hM);
+                            });
+                        }
+                        else {
+                            $this.find(settings.drop).stop()[effOff](durationOff, function() {
+                                $this.removeClass(hM);
+                            });
+                        }
+                    }
                     else {
                         setTimeout(function() {
                             $this.removeClass(hM);
@@ -730,7 +739,9 @@ function ieInput(els) {
                             if (evLF == 'toggle' || evLS == 'toggle') {
                                 $(this).find('.' + hM).click();
                             }
-                            $(drop)[effOff](durationOff);
+                            setTimeout(function() {
+                                $(drop)[effOff](durationOff);
+                            }, duration)
                             closeMenu(menu, e);
                             return timeDurM = duration;
                         });
@@ -1224,7 +1235,7 @@ function ieInput(els) {
                 }
             }, options);
             var settings = optionsDrop,
-            $thisD = this,
+                    $thisD = this,
                     selector = $thisD.selector,
                     dataSource = settings.dataSource,
                     exit = $(settings.exit),
@@ -1280,7 +1291,7 @@ function ieInput(els) {
                         methods.triggerBtnClick(elSetSource, selector, close);
                     }
                     else {
-                       settings.before($this, elSetSource, isajax);
+                        settings.before($this, elSetSource, isajax);
 //                            starget trigger click in drop on show drop element (js_template.tpl showCart)
                         $thisDrop = $this.closest('[data-elrun]');
                         if ($.existsN($thisDrop))
@@ -1379,7 +1390,7 @@ function ieInput(els) {
                 if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
                     if ($(document).height() - wnd.height() > 0) {
                         dropOver.removeClass('dropOverlayFixed');
-                        body.removeClass('isScroll')
+                        body.removeClass('isScroll');
                     }
                     dropOver.hide();
                 }
@@ -1461,7 +1472,10 @@ function ieInput(els) {
             var settings = $.extend({
                 prev: '',
                 next: '',
+                ajax: false,
                 after: function() {
+                },
+                before: function() {
                 }
             }, options);
             if (this.length > 0) {
@@ -1469,6 +1483,7 @@ function ieInput(els) {
                     var $this = $(this),
                             prev = settings.prev.split('.'),
                             next = settings.next.split('.'),
+                            ajax = settings.ajax,
                             $thisPrev = $this,
                             $thisNext = $this,
                             regS = '',
@@ -1493,41 +1508,48 @@ function ieInput(els) {
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
                     })
-
-                    $thisNext.unbind('click.pM').bind('click.pM', function(e) {
+                    $thisNext.not('[disabled="disabled"]').unbind('click.pM').bind('click.pM', function(e) {
                         var el = $(this),
                                 input = $this.focus(),
                                 inputVal = parseInt(input.val());
 
-                        settings.before(e, el, input);
-                        if (isNaN(inputVal))
-                            input.attr('value', 1);
-                        else
-                            input.attr('value', inputVal + 1);
+                        if (!input.is(':disabled')) {
+                            settings.before(e, el, input);
+                            if (isNaN(inputVal))
+                                input.attr('value', 1);
+                            else
+                                input.attr('value', inputVal + 1);
 
-                        if (checkProdStock)
-                            input.maxValue();
+                            if (settings.ajax)
+                                $.fancybox.showActivity();
+                            if (checkProdStock)
+                                input.maxValue();
 
-                        settings.after(e, el, input);
+                            settings.after(e, el, input);
+                        }
                     })
-                    $thisPrev.unbind('click.pM').bind('click.pM', function(e) {
+                    $thisPrev.not('[disabled="disabled"]').unbind('click.pM').bind('click.pM', function(e) {
                         var el = $(this),
                                 input = $this.focus(),
                                 inputVal = parseInt(input.val());
 
-                        settings.before(e, el, input);
-                        if (isNaN(inputVal))
-                            input.attr('value', 1)
-                        else if (inputVal > 1)
-                            input.attr('value', inputVal - 1)
+                        if (!input.is(':disabled')) {
+                            settings.before(e, el, input);
+                            if (isNaN(inputVal))
+                                input.attr('value', 1)
+                            else if (inputVal > 1) {
+                                if (ajax)
+                                    $.fancybox.showActivity();
+                                input.attr('value', inputVal - 1)
+                            }
 
-                        settings.after(e, el, input);
+                            settings.after(e, el, input);
+                        }
                     })
                     $this.bind('keyup').unbind('keyup', function() {
                         if (checkProdStock)
                             $(this).maxValue();
                     })
-                    $this.closest(genObj.frameCount).tooltip('remove');
                 })
             }
         }
@@ -1545,9 +1567,9 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var $this = $(this);
-            var $min = $(this).attr('data-min');
-            $thisVal = $this.val();
+            var $this = $(this),
+                    $min = $(this).attr('data-min'),
+                    $thisVal = $this.val();
 
             if ($thisVal == '') {
                 $this.keypress(function(e) {
@@ -1899,6 +1921,12 @@ var Shop = {
             else
                 return this.totalPrice;
         },
+        getTotalAddPrice: function() {
+            if (this.totalPrice == 0)
+                return this.totalRecount().totalPrice;
+            else
+                return this.totalPrice;
+        },
         getFinalAmount: function() {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPrice())
@@ -1969,6 +1997,7 @@ var Shop = {
             count: obj.count ? obj.count : 1,
             kit: obj.kit ? obj.kit : false,
             prices: obj.prices ? obj.prices : 0,
+            addprices: obj.addprices ? obj.addprices : 0,
             kitId: obj.kitId ? obj.kitId : 0,
             maxcount: obj.maxcount ? obj.maxcount : 0,
             number: obj.number ? obj.number : 0,
@@ -1984,7 +2013,7 @@ var Shop = {
         var cartItem = new Shop.cartItem();
         cartItem.id = $context.data('prodid');
         cartItem.vId = $context.data('varid');
-        cartItem.count = $context.data('count');
+        cartItem.count = $context.attr('data-count');
         cartItem.price = parseFloat($context.data('price')).toFixed(pricePrecision);
         cartItem.addprice = parseFloat($context.data('addprice')).toFixed(pricePrecision);
         cartItem.name = $context.data('name');
