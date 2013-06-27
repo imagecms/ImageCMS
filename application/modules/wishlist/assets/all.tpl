@@ -24,7 +24,7 @@
                             <ul>
                                 {foreach $list['lists'] as $listItem}
                                     <li>
-                                        <a href="{site_url('/wishlist/show/' . $list['user']['id'] . '/' . $listItem['id'])}">{$listItem['title']}</a>
+                                        <a href="{site_url('/wishlist/show/' . $listItem['hash'])}">{$listItem['title']}</a>
                                     </li>
                                 {/foreach}
                             </ul>

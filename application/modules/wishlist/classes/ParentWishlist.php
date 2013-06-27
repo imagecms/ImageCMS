@@ -31,10 +31,10 @@ class ParentWishlist extends \MY_Controller {
             $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
-    
+
     /**
      * set in cookie previous page url
-     * 
+     *
      * @access private
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -53,8 +53,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
-     * check if user login 
-     * 
+     * check if user login
+     *
      * @access private
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -69,20 +69,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
-     * rendet user wish list
-     * 
-     * @access public
-     * @author DevImageCms
-     * @copyright (c) 2013, ImageCMS
-     * @return boolean
-     */
-    public function index() {
-        $this->renderUserWL();
-    }
-
-    /**
-     * get all users wish lists 
-     * 
+     * get all users wish lists
+     *
      * @access public
      * @param  array $access - list access
      * @author DevImageCms
@@ -112,21 +100,22 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+
     /**
      * get user wish list
-     * 
+     *
      * @access public
      * @param int $user_id, int $list_id, array $access - list access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($user_id, $list_id, $access = array('public')) {
+    public function show($hash, $access = array('public')) {
 
-        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id, $access);
+        $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
 
         if ($wishlist) {
-            self::addReview($list_id);
+            self::addReview($hash);
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -137,14 +126,14 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * add view point to list
-     * 
+     *
      * @access public
      * @param int $list_id
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public static function addReview($list_id) {
+    public static function addReview($hash) {
         $CI = & get_instance();
         $listsAdded = array();
 
@@ -152,9 +141,9 @@ class ParentWishlist extends \MY_Controller {
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
         }
 
-        if (!in_array($list_id, $listsAdded)) {
-            array_push($listsAdded, $list_id);
-            if ($CI->wishlist_model->addRewiew($list_id)) {
+        if (!in_array($hash, $listsAdded)) {
+            array_push($listsAdded, $hash);
+            if ($CI->wishlist_model->addReview($hash)) {
                 $cookie = array(
                     'name' => 'wishListViewer',
                     'value' => serialize($listsAdded),
@@ -170,7 +159,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * get most viewed wish list
-     * 
+     *
      * @access public
      * @param int $limit - count lists to get
      * @author DevImageCms
@@ -190,7 +179,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * render user list
-     * 
+     *
      * @access public
      * @param int $user_id, $access
      * @author DevImageCms
@@ -209,7 +198,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * update user information
-     * 
+     *
      * @access public
      * @param $userID, $user_name, $user_birthday, $description
      * @author DevImageCms
@@ -231,7 +220,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * update wish list
-     * 
+     *
      * @access public
      * @param $id, $data, $comments
      * @author DevImageCms
@@ -246,7 +235,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * create wish list
-     * 
+     *
      * @access public
      * @param type $title
      * @param type $access
@@ -265,7 +254,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * create wish list
-     * 
+     *
      * @access public
      * @param int $user_id, string $listName
      * @author DevImageCms
@@ -301,7 +290,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * delete full WL
-     * 
+     *
      * @access public
      * @param int $id - list id
      * @author DevImageCms
@@ -332,7 +321,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * add item to wish list
-     * 
+     *
      * @access public
      * @param $varId, $listId, $listName
      * @author DevImageCms
@@ -353,6 +342,7 @@ class ParentWishlist extends \MY_Controller {
         if ($listName) {
             $listId = "";
         }
+
 
         if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']) {
             $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
@@ -380,7 +370,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * move item from one wish list to another
-     * 
+     *
      * @param type $varId
      * @param type $wish_list_id
      * @param type $to_listId
@@ -402,7 +392,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * delete item from wish list
-     * 
+     *
      * @param type $variant_id
      * @param type $wish_list_id
      * @access public
@@ -422,7 +412,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * get user info
-     * 
+     *
      * @param type $id
      * @access public
      * @author DevImageCms
@@ -438,7 +428,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * render user wish list
-     * 
+     *
      * @param type $userId
      * @param type $access
      * @access public
@@ -462,7 +452,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * render user wish list edit page
-     * 
+     *
      * @param type $wish_list_id
      * @param type $userID
      * @access public
@@ -488,7 +478,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * upload image for user
-     * 
+     *
      * @param type $userID
      * @access public
      * @author DevImageCms
@@ -520,7 +510,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * get most popular items by wish list usage
-     * 
+     *
      * @param type $limit
      * @access public
      * @author DevImageCms
@@ -538,8 +528,8 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
-     * get user wish list items count 
-     * 
+     * get user wish list items count
+     *
      * @param type $user_id
      * @access public
      * @author DevImageCms
@@ -552,7 +542,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * delete list items by id's
-     * 
+     *
      * @param array $ids
      * @access public
      * @author DevImageCms
@@ -565,7 +555,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * delete  image
-     * 
+     *
      * @param type $image
      * @access public
      * @author DevImageCms
@@ -579,7 +569,7 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * get popup for adding or moving items
-     * 
+     *
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -596,7 +586,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {

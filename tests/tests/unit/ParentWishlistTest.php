@@ -31,7 +31,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testRemoveAllWL() {
-        $wllist = $this->model->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared','private'));
+        $wllist = $this->model->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared', 'private'));
         foreach ($wllist as $value) {
             $this->assertTrue($this->model->deleteWL($value['id']));
         }
@@ -49,6 +49,286 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
             array($GLOBALS['userId'], 'name8'),
             array($GLOBALS['userId'], 'name9'),
             array($GLOBALS['userId'], 'name10'),
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::all
+     * @todo   Implement testAll().
+     */
+    public function testAll() {
+        $this->assertTrue($this->model->all(), 'Cant all');
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::show
+     * @todo   Implement testShow().
+     */
+    public function testShow() {
+        $this->assertTrue($this->model->show($GLOBALS['userId'],'1'), 'Cant show');
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::addReview
+     * @todo   Implement testAddReview().
+     */
+    public function testAddReview() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::getMostViewedWishLists
+     * @todo   Implement testGetMostViewedWishLists().
+     */
+    public function testGetMostViewedWishLists() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::user
+     * @todo   Implement testUser().
+     */
+    public function testUser() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::userUpdate
+     * @todo   Implement testUserUpdate().
+     */
+    public function testUserUpdate() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::updateWL
+     * @todo   Implement testUpdateWL().
+     */
+    public function testUpdateWL() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::createWL
+     * @todo   Implement testCreateWL().
+     */
+    public function testCreateWL() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::createWishList
+     * @todo   Implement testCreateWishList().
+     */
+    public function testCreateWishList() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteWL
+     * @todo   Implement testDeleteWL().
+     */
+    public function testDeleteWL() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::_addItem
+     * @todo   Implement test_addItem().
+     */
+    public function test_addItem() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::moveItem
+     * @todo   Implement testMoveItem().
+     */
+    public function testMoveItem() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteItem
+     * @todo   Implement testDeleteItem().
+     */
+    public function testDeleteItem() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::getUserInfo
+     * @todo   Implement testGetUserInfo().
+     */
+    public function testGetUserInfo() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::renderUserWL
+     * @todo   Implement testRenderUserWL().
+     */
+    public function testRenderUserWL() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::renderUserWLEdit
+     * @todo   Implement testRenderUserWLEdit().
+     */
+    public function testRenderUserWLEdit() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::do_upload
+     * @todo   Implement testDo_upload().
+     */
+    public function testDo_upload() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::getMostPopularItems
+     * @todo   Implement testGetMostPopularItems().
+     */
+    public function testGetMostPopularItems() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::getUserWishListItemsCount
+     * @todo   Implement testGetUserWishListItemsCount().
+     */
+    public function testGetUserWishListItemsCount() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteItemByIds
+     * @todo   Implement testDeleteItemByIds().
+     */
+    public function testDeleteItemByIds() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteImage
+     * @todo   Implement testDeleteImage().
+     */
+    public function testDeleteImage() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::renderPopup
+     * @todo   Implement testRenderPopup().
+     */
+    public function testRenderPopup() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::autoload
+     * @todo   Implement testAutoload().
+     */
+    public function testAutoload() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::adminAutoload
+     * @todo   Implement testAdminAutoload().
+     */
+    public function testAdminAutoload() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::_install
+     * @todo   Implement test_install().
+     */
+    public function test_install() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::_deinstall
+     * @todo   Implement test_deinstall().
+     */
+    public function test_deinstall() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
         );
     }
 
