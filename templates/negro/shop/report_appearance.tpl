@@ -10,7 +10,7 @@
     <div class="drop-footer"></div>
 </div>
 <div class="d_n" data-clone="data-report">
-      <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report');
+      <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report', '.items');
           return false;">
         <div class="horizontal-form">
             <label>

@@ -27,7 +27,7 @@
 var ImageCMSApi = {
     debugMode: true,
     returnMsg: function(msg) {
-        if (this.debugMode === true) {
+        if (this.debugMode === true && window.console) {
             console.log(msg);
         }
     },
@@ -73,7 +73,6 @@ var ImageCMSApi = {
                         setTimeout((function() {
                             $('.msg').hide();
                             $('#' + selector).show();
-
                         }), 3000);
                     }
                 }
@@ -99,12 +98,13 @@ var ImageCMSApi = {
      * 
      * */
     sendValidations: function(validations, selector) {
+        var thisSelector = $('#' + selector);
         if (typeof validations === 'object') {
             for (var key in validations) {
                 if (validations[key] != "") {
-                    $('#' + selector).find('label#for_' + key).addClass('error');
-                    $('#' + selector).find('label#for_' + key).html(validations[key]);
-                    $('#' + selector).find('label#for_' + key).show();
+                    thisSelector.find('[name=' + key + ']').addClass('error');
+                    thisSelector.find('label#for_' + key).addClass('error').html(validations[key]).show();
+                    thisSelector.find(':input.error:first').focus();
                 }
             }
         } else {
@@ -128,36 +128,6 @@ var ImageCMSApi = {
     }
 
 }
-/**
- * to make form submit using ImafeCMSApi
- * you sould give to the form class "submit_enter"
- * and there have to be an input of type button 
- * which have on click function formAction
- */
-$(document).ready(function() {
-    $('form.submit_enter input').bind('keypress', function(e) {
-        if (e.which == 13) {
-            $('form.submit_enter input[type="button"]').trigger('click');
-        }
-    });
-
-    /**
-     * code for hidding validation errors blocks oninput
-     */
-
-    $('form input, textarea').live('input', function() {
-        if ($.exists($('label#for_' + $(this).attr('name')))) {
-            $('label#for_' + $(this).attr('name')).hide();
-        }
-    });
-});
-
-
-
-
-
-
-
 /**
  * NotificationsApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -186,7 +156,7 @@ var Notification = {
         if (this.debugMode === true) {
         }
     },
-    formAction: function(url, selector) {
+    formAction: function(url, selector, hideEl) {
         //collect data from form
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
@@ -209,19 +179,20 @@ var Notification = {
                     if (obj.validations !== 'undefined') {
                         Notification.sendValidations(obj.validations, selector);
                     }
+                    var drop = $(Notification.formClass);
+                    var form = drop.find('form#' + selector);
                     if (obj.status === true) {
-                        $(Notification.formClass + ' form#' + selector).hide();
-                        $(Notification.formClass + ' form#' + selector).before(message.success(obj.msg));
+                        form.add($(Notification.formClass).find(hideEl)).hide();
+                        form.before(message.success(obj.msg));
                         drawIcons($('.msg').find(selIcons));
-                        
+
                         if (obj.close === true) {
                             setTimeout((function() {
-                                $('.drop').drop('triggerBtnClick');
+                                drop.drop('triggerBtnClick', function() {
+                                    form.show();
+                                    drop.find('.msg').remove();
+                                });
                             }), 3000);
-                            setTimeout((function() {
-                                $(Notification.formClass + ' form#' + selector).show();
-                                $('.msg').remove();
-                            }), 4000);
                         }
                     }
                 }
@@ -247,12 +218,13 @@ var Notification = {
      * 
      * */
     sendValidations: function(validations, selector) {
+        var thisSelector = $('#' + selector);
         if (typeof validations === 'object') {
             for (var key in validations) {
                 if (validations[key] != "") {
-                    $('#' + selector).find('label#for_' + key).addClass('error');
-                    $('#' + selector).find('label#for_' + key).html(validations[key]);
-                    $('#' + selector).find('label#for_' + key).show();
+                    thisSelector.find('[name=' + key + ']').addClass('error');
+                    thisSelector.find('label#for_' + key).addClass('error').html(validations[key]).show();
+                    thisSelector.find(':input.error:first').focus();
                 }
             }
         } else {
@@ -261,67 +233,12 @@ var Notification = {
     },
 };
 
-/**
- * js object for filter handling
- * @type type
- */
-
-var FilterManipulation = {
-    formId: "#filter",
-    OnChangeSubmitSelectors: "[name='brand[]'], .propertyCheck, [name='category[]']",
-    OnClickSublitSelectors: ".filterSubmit",
-    filterSubmit: function() {
-        $(FilterManipulation.formId).submit();
-        $(FilterManipulation.OnChangeSubmitSelectors).attr('disabled', 'disabled');
-    },
-};
-
-/**
- * handle products list order and per page event
- * @type type
- */
-
-var orderSelect = {
-    mainSelector: ".sort",
-    orderSelector: "#sort",
-    perPageSelector: "#sort2",
-    filterForm: "form#filter",
-    addHiddenFields: function() {
-        $(orderSelect.filterForm + ' input[name="order"]').val($(orderSelect.orderSelector).val());
-        $(orderSelect.filterForm + ' input[name="user_per_page"]').val($(orderSelect.perPageSelector).val());
-        $(orderSelect.filterForm).submit();
-
-    }
-
-}
 
 $(document).ready(function() {
-    $(FilterManipulation.OnChangeSubmitSelectors).bind('change', function() {
-        FilterManipulation.filterSubmit();
-    });
-
-    $(FilterManipulation.OnClickSubmitSelectors).bind('click', function(event) {
-        event.preventDefault();
-        FilterManipulation.filterSubmit();
-    });
-
-    $('span.filterLable').bind('click', function() {
-        var input = $(this).prev('span.niceCheck.b_n').find('input').not('[disabled=disabled]');
-        if (input.is(':checked')) {
-            input.attr('checked', false);
-            input.trigger('change');
+    $('form input, textarea').live('input', function() {
+        if ($.exists($('label#for_' + $(this).attr('name')))) {
+            $('label#for_' + $(this).removeClass('error success').attr('name')).hide();
         }
-        else {
-            input.attr('checked', 'checked');
-            input.trigger('change');
-        }
-    });
-
-    $(orderSelect.mainSelector + '.lineForm input[type="hidden"]').bind('change', function() {
-        orderSelect.addHiddenFields();
-    });
-
-    $('#sort, #sort2').bind('change', function(){
-        $('form#searchSortForm').submit();
     });
 });
+
