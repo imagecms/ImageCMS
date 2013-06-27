@@ -25,7 +25,6 @@
                     <div class="frameLabel__icsi-css error_text" name="error_text"></div>
                 </span>
             </label>
-
             {foreach $wishlists as $key => $wishlist}
                 <form method="POST" action="/admin/components/cp/wishlist/updateWL">
                     <table class="table table-striped table-bordered table-hover table-condensed">
