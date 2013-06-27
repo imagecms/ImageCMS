@@ -315,11 +315,7 @@ class Wishlist_model extends CI_Model {
                 'type' => 'ENUM',
                 'constraint' => "'public','private','shared'",
                 'default' => "shared"
-            ),
-            'description' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
-            ),
+            ),           
             'user_id' => array(
                 'type' => 'INT',
                 'null' => FALSE
