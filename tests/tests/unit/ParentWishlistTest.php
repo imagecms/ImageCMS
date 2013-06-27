@@ -4,7 +4,7 @@ require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
 
 doLogin();
 
-class WishlistTest extends \PHPUnit_Framework_TestCase {
+class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     public $model = null;
 
@@ -19,20 +19,18 @@ class WishlistTest extends \PHPUnit_Framework_TestCase {
     /**
      * @dataProvider provider
      */
-    public function testCreateWl($a, $b) {
+    public function testCreate10WL($a, $b) {
         $this->assertTrue($this->model->createWishList($a, $b), 'All cool, Bro!');
     }
 
     /**
      * @dataProvider provider
      */
-    public function testCreateWOver($a, $b) {
+    public function testCreateWOverLimit($a, $b) {
         $this->assertFalse($this->model->createWishList($a, $b), 'All cool, Bro!');
     }
 
-    /**
-     */
-    public function testRemoveAllWl() {
+    public function testRemoveAllWL() {
         $wllist = $this->model->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared','private'));
         foreach ($wllist as $value) {
             $this->assertTrue($this->model->deleteWL($value['id']));
