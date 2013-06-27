@@ -27,6 +27,8 @@
                 </div>
                 {$hasCode = $model->firstVariant->getNumber() == '';}
                 <span class="frame-number code" {if $hasCode}style="display:none;"{/if}>Код товара: {if !$hasCode}<span class="code">{trim($model->firstVariant->getNumber())}</span>{/if}</span>
+                {$hasVariant = $model->firstVariant->getName() == '';}
+                <span class="frame-number code" {if $hasVariant}style="display:none;"{/if}>Вариант: {if !$hasVariant}<span class="code">{trim($model->firstVariant->getName())}</span>{/if}</span>
             </div>
             <div class="right-product">
                 {/* if cloudzoom*/}

@@ -99,6 +99,7 @@ class discount_api extends \mod_discount\discount {
                 \CMSFactory\assetManager::create()->setData(array('discount' => $discount))->render('discount_info_all', true);
         }
     }
+
     /**
      * get all discount information without maximized
      * @access public
@@ -115,6 +116,28 @@ class discount_api extends \mod_discount\discount {
             else
                 \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info_user', true);
         }
+    }
+    
+    /**
+     * is product discount
+     * @access public
+     * @author DevImageCms
+     * @param model 
+     * @return boolean
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function is_product_discount(SProducts $model) {
+        if ($this->check_module_install()) {
+            $obj = new \mod_discount\Discount_product;
+
+            $discount_array = $obj->get_discount_one_product($obj->discount_model_front->get_product($model->getid()));
+
+            if (count($discount_array) > 0)
+                return true;
+            else
+                return false;
+        }
+
     }
 
 }

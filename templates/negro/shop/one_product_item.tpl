@@ -221,20 +221,20 @@
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
 
-            </div>
-            <div class="p_r frame-without-top">
-                <div class="no-vis-table">
-                    <!--                    Start. Description-->
-                    {if trim($p->getShortDescription()) != ''}
-                        <div class="short-desc">
-                            {echo $p->getShortDescription()}
-                        </div>
-                    {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId(), 1)}
-                        <div class="short-desc">
-                            <p>{echo $props}</p>
-                        </div>
-                    {/if}
-                    <!-- End. Description-->
+                <div class="p_r frame-without-top">
+                    <div class="no-vis-table">
+                        <!--                    Start. Description-->
+                        {if trim($p->getShortDescription()) != ''}
+                            <div class="short-desc">
+                                {echo $p->getShortDescription()}
+                            </div>
+                        {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId(), 1)}
+                            <div class="short-desc">
+                                <p>{echo $props}</p>
+                            </div>
+                        {/if}
+                        <!-- End. Description-->
+                    </div>
                 </div>
             </div>
         {/if}
