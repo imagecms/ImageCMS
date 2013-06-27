@@ -174,9 +174,42 @@ class BaseDiscount extends \MY_Controller {
             $discount = $this->discount;
         $arr = array();
         foreach ($discount as $disc)
-            $arr[$disc['type_discount']][] = $disc;
+            $arr[$disc['type_discount']][] = $disc;        
         $this->discount_type = $arr;
+        $this->empty_to_array();
         return $this->discount_type;
+    }
+    
+     /**
+     * set empty array for null ellement discount
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ----
+     * @copyright (c) 2013, ImageCMS
+     */    
+    private function empty_to_array(){
+        if (!$this->discount_type['product'])
+            $this->discount_type['product'] = array();
+        
+        if (!$this->discount_type['brand'])
+            $this->discount_type['brand'] = array();
+        
+        if (!$this->discount_type['category'])
+            $this->discount_type['category'] = array();
+        
+        if (!$this->discount_type['all_order'])
+            $this->discount_type['all_order'] = array();
+        
+        if (!$this->discount_type['comulativ'])
+            $this->discount_type['comulativ'] = array();
+        
+        if (!$this->discount_type['group_user'])
+            $this->discount_type['group_user'] = array();
+        
+        if (!$this->discount_type['user'])
+            $this->discount_type['user'] = array();
+        
     }
     
      /**
