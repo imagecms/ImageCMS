@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="control-group">
                                                 <div class="controls">
-                                                    {form_open_multipart('/wishlist/do_upload')}
+                                                    {form_open_multipart('/admin/components/cp/wishlist/do_upload')}
                                                     <input type="file"
                                                            name="userfile"
                                                            size="20"

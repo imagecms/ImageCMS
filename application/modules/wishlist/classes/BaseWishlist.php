@@ -190,7 +190,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         parent::_deinstall();
     }
 
-    function do_upload() {
+    public function do_upload() {
         if (parent::do_upload($this->input->post('userID'))) {
             return $this->dataModel[] = lang('picture_uploaded');
         } else {

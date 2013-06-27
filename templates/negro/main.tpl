@@ -38,8 +38,8 @@
             </div>
             <div class="content">
                 {$content}
-                {widget('latest_news')}
             </div>
+                {widget('latest_news')}
             <div class="h-footer"></div>
         </div>
         <footer>

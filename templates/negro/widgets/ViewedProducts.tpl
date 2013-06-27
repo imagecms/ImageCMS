@@ -3,7 +3,7 @@
     <div class="big-container">
         <div class="carousel_js products-carousel">
             <div class="content-carousel container">
-                <ul class="items items-catalog">
+                <ul class="items items-catalog items-h-carousel">
                     {foreach $products as $p}
                     {$p->getProductVariants()}
                     <li>
