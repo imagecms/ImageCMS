@@ -8,18 +8,18 @@
     {foreach $wishlists as $key => $wishlist}
         <form method="POST" action="/wishlist/updateWL">
             <table class="table">
-                <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                <input type="hidden" name="WLID" value="{echo $wishlist['0']['wish_list_id']}">
                 <thead>
                     <tr>
                         <td colspan="3">
-                            <input type="text" value="{$wishlist[0][title]}" name="title"/>
+                            <input type="text" value="{$wishlist['0']['title']}" name="title"/>
                             <select name="access">
-                                <option {if $wishlist[0][access] == 'shared'}selected="selected"{/if} value="shared">shared</option>
-                                <option {if $wishlist[0][access] == 'private'}selected="selected"{/if} value="private">private</option>
-                                <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">public</option>
+                                <option {if $wishlist['0']['access'] == 'shared'}selected="selected"{/if} value="shared">shared</option>
+                                <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">private</option>
+                                <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">public</option>
                             </select>
-                            <div class="wishListDescription" >{$wishlist[0][description]}</div>
-                            <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">удалить</a>
+                            <div class="wishListDescription" >{$wishlist['0']['description']}</div>
+                            <a href="/wishlist/deleteWL/{$wishlist['0']['wish_list_id']}"class="btn">удалить</a>
 
                         </td>
                     </tr>
@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">удалить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w['variant_id']}/{echo $w['wish_list_id']}"class="btn">удалить</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"

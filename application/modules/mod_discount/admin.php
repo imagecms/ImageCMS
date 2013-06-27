@@ -43,59 +43,64 @@ class Admin extends BaseAdminController {
     public function create() {
         
         if ($this->input->post()){
-            $postArray = $this->input->post();
-            $typeDiscount = $postArray['type_discount'];
-            $typeDiscountTableName = 'mod_discount_'.$typeDiscount;
             
-            //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
-                showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
-                exit;
-            }
-            //Check date end is > then date begin
-            if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null){
-                showMessage('Неверный диапазон дат!','','r');
-                exit;
-            }
-            
-            // If empty field with discount key, then generate key
-            if ($postArray['key'] == null)
-                $postArray['key'] = $this->generateDiscountKey ();
-            
-            //Prepare data for inserting in the table 'mod_shop_discounts'
-            $data = array (
-                'name' => $postArray['name'],
-                'key' => $postArray['key'],
-                'max_apply' => $postArray['max_apply'],
-                'type_value' => $postArray['type_value'],
-                'value' => $postArray['value'],
-                'type_discount' => $typeDiscount,
-                'date_begin' => strtotime($postArray['date_begin']),
-                'date_end' => strtotime($postArray['date_end']),
-                'active' => '1'
-            );
-            
-            //Insert data in table 'mod_shop_discounts' and if success then get discount id
-            $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
-            
-            //Prepare data for inserting in the table of selected discount type
-            $typeDiscountData = $postArray[$typeDiscount];
-            
-            //If was error when inserted in the table 'mod_shop_discounts' then exit
-            if ($discountId != false){
-                $typeDiscountData['discount_id'] = $discountId;
-                $result = $this->discount_model_admin->insertDataToDB($typeDiscountTableName, $typeDiscountData);
-            }else{
-                showMessage('Не удалось создать скидку!','','r');
-                exit;
-            }
-                
-            //If discount created success then show message and redirect to discounts list
-            if ($result != false){
-                showMessage('Скидка успешно создана!');
-                pjax('index');
-            }
+            $this->form_validation->set_rules($this->discount_model_admin->rules());
+            if ($this->form_validation->run()){
+                $postArray = $this->input->post();
+                $typeDiscount = $postArray['type_discount'];
+                $typeDiscountTableName = 'mod_discount_'.$typeDiscount;
 
+                //Check have any comulativ discount max end value
+                if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
+                    showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
+                    exit;
+                }
+                //Check date end is > then date begin
+                if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null){
+                    showMessage('Неверный диапазон дат!','','r');
+                    exit;
+                }
+
+                // If empty field with discount key, then generate key
+                if ($postArray['key'] == null)
+                    $postArray['key'] = $this->generateDiscountKey ();
+
+                //Prepare data for inserting in the table 'mod_shop_discounts'
+                $data = array (
+                    'name' => $postArray['name'],
+                    'key' => $postArray['key'],
+                    'max_apply' => $postArray['max_apply'],
+                    'type_value' => $postArray['type_value'],
+                    'value' => $postArray['value'],
+                    'type_discount' => $typeDiscount,
+                    'date_begin' => strtotime($postArray['date_begin']),
+                    'date_end' => strtotime($postArray['date_end']),
+                    'active' => '1'
+                );
+
+                //Insert data in table 'mod_shop_discounts' and if success then get discount id
+                $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
+
+                //Prepare data for inserting in the table of selected discount type
+                $typeDiscountData = $postArray[$typeDiscount];
+
+                //If was error when inserted in the table 'mod_shop_discounts' then exit
+                if ($discountId != false){
+                    $typeDiscountData['discount_id'] = $discountId;
+                    $result = $this->discount_model_admin->insertDataToDB($typeDiscountTableName, $typeDiscountData);
+                }else{
+                    showMessage('Не удалось создать скидку!','','r');
+                    exit;
+                }
+
+                //If discount created success then show message and redirect to discounts list
+                if ($result != false){
+                    showMessage('Скидка успешно создана!');
+                    pjax('index');
+                }
+            }else{
+                showMessage(validation_errors(), '', 'r');
+            }
         }else {
             
             //Prepare data for template
@@ -120,52 +125,55 @@ class Admin extends BaseAdminController {
     public function edit($id) {
        
         if ($this->input->post()){
-            $postArray = $this->input->post();
-            $typeDiscount = $postArray['type_discount'];
-            
-            //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)){
-                showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
-                exit;
+            $this->form_validation->set_rules($this->discount_model_admin->rules());
+            if ($this->form_validation->run()){
+                $postArray = $this->input->post();
+                $typeDiscount = $postArray['type_discount'];
+
+                //Check have any comulativ discount max end value
+                if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)){
+                    showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
+                    exit;
+                }
+
+                //Check date end is > then date begin
+                if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null){
+                    showMessage('Неверный диапазон дат!','','r');
+                    exit;
+                }
+
+                // If empty field with discount key, then generate key
+                if ($postArray['key'] == null)
+                    $postArray['key'] = $this->generateDiscountKey ();
+
+                //Prepare data for insert in table mod_shop_discounts
+                $data = array (
+                    'name' => $postArray['name'],
+                    'key' => $postArray['key'],
+                    'max_apply' => $postArray['max_apply'],
+                    'type_value' => $postArray['type_value'],
+                    'value' => $postArray['value'],
+                    'type_discount' => $typeDiscount,
+                    'date_begin' => strtotime($postArray['date_begin']),
+                    'date_end' => strtotime($postArray['date_end']),
+                    'active' => '1'
+                );
+
+                //Prepare data for inserting in the table of selected discount type
+                $typeDiscountData = $postArray[$typeDiscount];
+
+                // Insert data
+                if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData )){
+                    showMessage('Изменения сохранены!');
+                }
+                //Return to list of discounts, if user clicked 'save and exit'
+                if ($postArray['action'] == 'tomain')
+                    pjax('/admin/components/init_window/mod_discount/index'.$_SESSION['QueryDiscountList']);
+                else
+                    pjax('/admin/components/init_window/mod_discount/edit/' . $id);
+            }else{
+                showMessage(validation_errors(), '', 'r');
             }
-            
-            //Check date end is > then date begin
-            if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null){
-                showMessage('Неверный диапазон дат!','','r');
-                exit;
-            }
-            
-            // If empty field with discount key, then generate key
-            if ($postArray['key'] == null)
-                $postArray['key'] = $this->generateDiscountKey ();
-            
-            //Prepare data for insert in table mod_shop_discounts
-            $data = array (
-                'name' => $postArray['name'],
-                'key' => $postArray['key'],
-                'max_apply' => $postArray['max_apply'],
-                'type_value' => $postArray['type_value'],
-                'value' => $postArray['value'],
-                'type_discount' => $typeDiscount,
-                'date_begin' => strtotime($postArray['date_begin']),
-                'date_end' => strtotime($postArray['date_end']),
-                'active' => '1'
-            );
-            
-            //Prepare data for inserting in the table of selected discount type
-            $typeDiscountData = $postArray[$typeDiscount];
-            
-            // Insert data
-            if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData )){
-                showMessage('Изменения сохранены!');
-            }
-            //Return to list of discounts, if user clicked 'save and exit'
-            if ($postArray['action'] == 'tomain')
-                pjax('/admin/components/init_window/mod_discount/index'.$_SESSION['QueryDiscountList']);
-            else
-                pjax('/admin/components/init_window/mod_discount/edit/' . $id);
-            
-            
         }else {
             
             //Get list of user roles and info about current discount
