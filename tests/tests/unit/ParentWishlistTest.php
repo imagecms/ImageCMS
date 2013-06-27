@@ -20,7 +20,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @dataProvider provider
      */
     public function testCreate10WL($a, $b) {
-        $this->assertTrue($this->model->createWishList($a, $b), 'All cool, Bro!');
+        $this->assertTrue($this->model->zcreateWishList($a, $b), 'All cool, Bro!');
     }
 
     /**
