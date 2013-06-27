@@ -4,7 +4,20 @@
             <div class="pull-left">
                 <span class="help-inline"></span>
                 <span class="title">{lang(move_item)}: {echo $user[user_name]}</span>
-            </div>                          
+            </div>
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/cp/wishlist"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span>
+                        <span class="t-d_u">{lang('a_back')}</span>
+                    </a>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
+                        <i class="icon-wrench"></i>
+                        {lang(settings)}
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row-fluid">
             <table class="table table-striped table-bordered table-hover table-condensed">

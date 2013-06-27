@@ -74,6 +74,7 @@ $lang['max_comment_length'] = '<p>Максимальная длина комме
 $lang['max_description_length'] = '<p>Максимальная длина описания</p>';
 $lang['max_image_width'] = '<p>Максимальная ширина картинки пользователя</p>';
 $lang['max_image_height'] = '<p>Максимальная высота картинки пользователя</p>';
+$lang['no_lists'] = '<p>Нет списков</p>';
 
 $lang['move_item'] = '<p>Перемещение товара</p>';
 $lang['choose_wish_list'] = '<p>Вибирите Список Желаний</p>';

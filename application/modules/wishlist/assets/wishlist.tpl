@@ -81,6 +81,7 @@
                                     <a href="{shop_url('product/'.$w[url])}"
                                        title="{$w[name]}">
                                         <img src="{site_url('uploads/shop/products/medium/'.$w[image])}"/>
+                                        <br>
                                         {$w[name]}
                                     </a>
                                 </td>
