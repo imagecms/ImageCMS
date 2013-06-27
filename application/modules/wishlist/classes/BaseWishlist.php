@@ -119,7 +119,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function userUpdate() {
 
         if ($this->settings['maxDescLenght'] < iconv_strlen($this->input->post('description'), 'UTF-8'))
-            $desc = substr($this->input->post('description'), 0, $this->settings['maxDescLenght']);
+            $desc = mb_substr($this->input->post('description'), 0, $this->settings['maxDescLenght'], 'UTF-8');
         else
             $desc = $this->input->post('description');
 
@@ -139,7 +139,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         foreach ($this->input->post('comment') as $key => $comment) {
             if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
-                $desc[$key] = substr($comment, 0, $this->settings['maxDescLenght']);
+                $desc[$key] = mb_substr($comment, 0, $this->settings['maxDescLenght']);
             else
                 $desc[$key] = $comment;
         }

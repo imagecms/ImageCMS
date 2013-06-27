@@ -1,6 +1,5 @@
 <div class="container">
     <section class="mini-layout">
-
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
@@ -13,10 +12,9 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
-                       class="t-d_n m-r_15 pjax">
-                        <span class="f-s_14"></span>
-                        <span class="t-d_u">{lang(settings)}</span>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
+                        <i class="icon-wrench"></i>
+                        {lang(settings)}
                     </a>
                 </div>
             </div>
@@ -55,11 +53,6 @@
                                                         <option {if $wishlist[0][access] == 'private'}selected="selected"{/if} value="private">private</option>
                                                         <option {if $wishlist[0][access] == 'public'}selected="selected"{/if} value="public">public</option>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="control-group">
-                                                <div class="controls">
-                                                    <a class="btn" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">{lang(delete)}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +98,7 @@
                         </table>
                     {/if}
                     {form_csrf()}
-                    <input type="submit" class="btn" value="{lang(save)}"/>
+                    <input type="submit" class="btn btn-small btn-success" value="{lang(save)}"/>
                 </form>
             {/foreach}
         </div>

@@ -12,10 +12,9 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a href="{$BASE_URL}admin/components/cp/wishlist/settings"
-                       class="t-d_n m-r_15 pjax">
-                        <span class="f-s_14"></span>
-                        <span class="t-d_u">{lang(settings)}</span>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
+                        <i class="icon-wrench"></i>
+                        {lang(settings)}
                     </a>
                 </div>
             </div>
@@ -72,7 +71,7 @@
                                                 <div class="controls">
                                                     <form method="POST" action="/admin/components/cp/wishlist/deleteImage">
                                                         <input type="hidden" value="{echo $user[user_image]}" name="image"/>
-                                                        <input type="submit" value="Удалить картинку" class="btn"/>
+                                                        <input type="submit" value="Удалить картинку" class="btn btn-danger btn-small"/>
                                                         {form_csrf()}
                                                     </form>
                                                 </div>
@@ -102,7 +101,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn" value="{lang(save)}"/>
+                                                        <input type="submit" class="btn btn-small btn-success" value="{lang(save)}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,15 +116,26 @@
                 <div class="tab-pane" id="lists">
                     {if count($wishlists)>0}
                         {foreach $wishlists as $key => $wishlist}
-                            <h4 class="title">{$wishlist[0][title]}</h4>
-                            <lable>{lang(list_type)}: <b>{echo $wishlist[0][access]}</b></lable>
-                            <br>
-                            <a href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">{lang(delete)}</a>
-                            <a href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">{lang(edit)}</a>
-                            <div class="wishListDescription" >
-                                {$wishlist[0][description]}
+                            <div class="frame_title clearfix" style="top: 179px; width: 1168px;">
+                                <div class="pull-left">
+                                    <h4 class="title">
+                                        <b>{$wishlist[0][title]}</b>
+                                    </h4>
+                                    <h5>{lang(list_type)}: 
+                                        <i>{echo $wishlist[0][access]}</i>
+                                    </h5>
+                                </div>
+                                    <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
+                                        <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
+                                            <i class="icon-trash icon-white"></i>
+                                            {lang(delete)}
+                                        </a>
+                                        <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">
+                                            <i class="icon-edit"></i>
+                                            {lang(edit)}
+                                        </a>
+                                </div>
                             </div>
-
                             {if $wishlist[0][variant_id]}
                                 <form>
                                     <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
@@ -137,7 +147,6 @@
                                                 <th>{lang(product)}</th>
                                                 <th>{lang(comment)}</th>
                                             </tr>
-
                                         </thead>
                                         <tbody>
 
@@ -200,7 +209,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" value="{lang(create_list)}" class="btn"/>
+                                                        <input type="submit" value="{lang(create_list)}" class="btn btn-small btn-success"/>
                                                     </div>
                                                 </div>
                                             </div>

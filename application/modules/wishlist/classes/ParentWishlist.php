@@ -143,6 +143,7 @@ class ParentWishlist extends \MY_Controller {
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
+        
         if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
         } else {
@@ -180,7 +181,7 @@ class ParentWishlist extends \MY_Controller {
 
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
-                $listName = substr($listName, 0, (int) $this->settings['maxListName']);
+                $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
             }
             $this->wishlist_model->createWishList($listName, $user_id);
@@ -242,19 +243,11 @@ class ParentWishlist extends \MY_Controller {
             $listId = "";
         }
         
-        if (preg_match("/[а-я]+/i", $listName)) {
-             if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']){
-                    $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
-                    $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
-              }
-        }else{
-             if (strlen($listName) > $this->settings['maxListName']) {
-                 $listName = substr($listName, 0, (int) $this->settings['maxListName']);
-                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
-             }
-        }
-       
-
+        if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']){
+                $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
+                $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+         }
+        
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
