@@ -32,12 +32,21 @@ class Wishlist_model extends CI_Model {
                         ->update('components', array('settings' => serialize($settings)));
     }
 
-    public function getWishLists() {
-        return $this->db->where('user_id', $this->dx_auth->get_user_id())->get('mod_wish_list')->result_array();
+    public function getWishLists($userID = NULL) {
+        if (!$userID)
+            $userID = $this->dx_auth->get_user_id();
+
+        return $this->db
+                        ->where('user_id', $userID)
+                        ->get('mod_wish_list')
+                        ->result_array();
     }
 
     public function getAllUsers() {
-        return $this->db->order_by('user_name')->get('mod_wish_list_users')->result_array();
+        return $this->db
+                        ->order_by('user_name')
+                        ->get('mod_wish_list_users')
+                        ->result_array();
     }
 
     public function getUserByID($id) {
@@ -53,7 +62,8 @@ class Wishlist_model extends CI_Model {
 
     public function getUserWishList($user_id, $list_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
-        $query = $this->db->where('mod_wish_list.user_id', $user_id)
+        $query = $this->db
+                ->where('mod_wish_list.user_id', $user_id)
                 ->where_in('access', $access)
                 ->where('mod_wish_list.id', $list_id)
                 ->where('shop_products_i18n.locale', $locale)
@@ -79,9 +89,10 @@ class Wishlist_model extends CI_Model {
     }
 
     public function deleteItem($variant_id, $wish_list_id) {
-        return $this->db->delete('mod_wish_list_products', array(
-                    'variant_id' => $variant_id,
-                    'wish_list_id' => $wish_list_id,
+        return $this->db
+                        ->delete('mod_wish_list_products', array(
+                            'variant_id' => $variant_id,
+                            'wish_list_id' => $wish_list_id,
         ));
     }
 
@@ -107,7 +118,8 @@ class Wishlist_model extends CI_Model {
                         ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
                         ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                         ->get('mod_wish_list')
-                        ->result_array(), $this->db
+                        ->result_array(),
+                $this->db
                         ->select('*, mod_wish_list.id AS `wish_list_id`')
                         ->where_in('mod_wish_list.access', $access)
                         ->where('mod_wish_list_products.wish_list_id', NULL)
