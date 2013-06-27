@@ -60,10 +60,11 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function show($user_id, $list_id) {
-        if (parent::show($user_id, $list_id)) {
+    public function show($hash) {
+        if (parent::show($hash)) {
             return $this->dataModel;
         } else {
+            $this->errors;
             return false;
         }
     }
