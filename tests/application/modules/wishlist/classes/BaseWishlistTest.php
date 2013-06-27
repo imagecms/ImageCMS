@@ -1,8 +1,5 @@
 <?php
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
-
-doLogin();
 namespace wishlist\classes;
 
 /**
