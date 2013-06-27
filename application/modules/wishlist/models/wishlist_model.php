@@ -145,7 +145,7 @@ class Wishlist_model extends CI_Model {
         return $this->db->delete('mod_wish_list_products');
     }
 
-    public function getUserWishProducts($userID) {
+    public function getUserWishProducts($userID = null) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
         $ID = null;
@@ -196,7 +196,7 @@ class Wishlist_model extends CI_Model {
         }
     }
 
-    public function insertUser($user_id, $user_image, $user_birthday, $user_name) {
+    public function insertUser($user_id, $user_image, $user_birthday, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
         return $this->db->set('id', $user_id)
@@ -206,7 +206,7 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list_users');
     }
 
-    public function addItem($varId, $listId, $listName, $user_id) {
+    public function addItem($varId, $listId, $listName, $user_id = null) {
         if (!$user_id)
             $user_id = $this->dx_auth->get_user_id();
 
@@ -222,7 +222,7 @@ class Wishlist_model extends CI_Model {
         return $this->db->insert('mod_wish_list_products', $data);
     }
 
-    public function createUserIfNotExist($user_id, $user_name) {
+    public function createUserIfNotExist($user_id, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
 
