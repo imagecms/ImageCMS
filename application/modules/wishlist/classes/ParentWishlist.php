@@ -52,10 +52,6 @@ class ParentWishlist extends \MY_Controller {
         return $permAllow;
     }
 
-    public function index() {
-        $this->renderUserWL();
-    }
-
     public function all() {
         if (!$users = $this->wishlist_model->getAllUsers()) {
             $this->errors[] = lang('error_no_user');
@@ -79,12 +75,12 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function show($user_id, $list_id) {
+    public function show($hash) {
 
-        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id, array('public'));
+        $wishlist = $this->wishlist_model->getUserWishListByHash($hash, array('public'));
 
         if ($wishlist) {
-            self::addReview($list_id);
+            self::addReview($hash);
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -93,7 +89,7 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public static function addReview($list_id) {
+    public static function addReview($hash) {
         $CI = & get_instance();
         $listsAdded = array();
 
@@ -101,9 +97,9 @@ class ParentWishlist extends \MY_Controller {
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
         }
 
-        if (!in_array($list_id, $listsAdded)) {
-            array_push($listsAdded, $list_id);
-            if ($CI->wishlist_model->addRewiew($list_id)) {
+        if (!in_array($hash, $listsAdded)) {
+            array_push($listsAdded, $hash);
+            if ($CI->wishlist_model->addReview($hash)) {
                 $cookie = array(
                     'name' => 'wishListViewer',
                     'value' => serialize($listsAdded),
@@ -143,7 +139,7 @@ class ParentWishlist extends \MY_Controller {
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
-        
+
         if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
         } else {
@@ -242,12 +238,12 @@ class ParentWishlist extends \MY_Controller {
         if($listName){
             $listId = "";
         }
-        
+
         if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']){
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
          }
-        
+
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
 
