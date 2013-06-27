@@ -3,37 +3,37 @@
 /**
  * error
  */
-$lang['error_no_user'] = 'Нет пользователей';
-$lang['error_no_lists'] = 'Нет списков';
-$lang['error_no_views'] = 'Нет просмотров';
-$lang['error_wrong_query'] = 'Неверний запрос';
-$lang['error_list_limit_exhausted'] = 'Лимит Списков Желаний исчерпан';
-$lang['error_listname_limit_exhausted'] = 'Название Списка Желаний будет изменено';
-$lang['error_listname_empty'] = 'Название Списка Желаний не должно быть пустым!';
-$lang['error_items_delete'] = 'Невозможно удалить товары из Списка Желаний';
-$lang['error_WL_delete'] = 'Невозможно удалить Список Желаний';
-$lang['error_items_limit_exhausted'] = 'Исчерпан лимит продуктов в Списке Желаний';
-$lang['error_user_not_autorized'] = 'Пользователь не залогинен';
-$lang['error_cant_add'] = 'Невозможно добавить';
-$lang['error_cant_move'] = 'Не удалось переместить';
-$lang['error_cant_update'] = 'Не обновлено';
-$lang['error_cant_delete'] = 'Невозможно удалить';
-$lang[''] = 'Ошибка загрузки';
-$lang[''] = '';
+$lang['error_no_user'] = '<p>Нет пользователей</p>';
+$lang['error_no_lists'] = '<p>Нет списков</p>';
+$lang['error_no_views'] = '<p>Нет просмотров</p>';
+$lang['error_wrong_query'] = '<p>Неверний запрос</p>';
+$lang['error_list_limit_exhausted'] = '<p>Лимит Списков Желаний исчерпан</p>';
+$lang['error_listname_limit_exhausted'] = '<p>Название Списка Желаний будет изменено</p>';
+$lang['error_listname_empty'] = '<p>Название Списка Желаний не должно быть пустым!</p>';
+$lang['error_items_delete'] = '<p>Невозможно удалить товары из Списка Желаний</p>';
+$lang['error_WL_delete'] = '<p>Невозможно удалить Список Желаний</p>';
+$lang['error_items_limit_exhausted'] = '<p>Исчерпан лимит продуктов в Списке Желаний</p>';
+$lang['error_user_not_autorized'] = '<p>Пользователь не залогинен</p>';
+$lang['error_cant_add'] = '<p>Невозможно добавить</p>';
+$lang['error_cant_move'] = '<p>Не удалось переместить</p>';
+$lang['error_cant_update'] = '<p>Не обновлено</p>';
+$lang['error_cant_delete'] = '<p>Невозможно удалить</p>';
+$lang[''] = '<p>Ошибка загрузки</p>';
+$lang[''] = '<p></p>';
 
 /**
  * messeges
  */
-$lang['list_max_count'] = 'Максимум списков';
-$lang['listname_max_count'] = 'Максимальная длина имени Списка Желаний';
-$lang['created'] = 'Создано';
-$lang['success'] = 'Операция успешна';
-$lang['added'] = 'Добавлено';
-$lang['updated'] = 'Обновлено';
-$lang['deleted'] = 'Успешно удалено';
-$lang['picture_uploaded'] = 'Картинка загружена';
-$lang['create_new_list'] = 'Создать новый список';
-$lang[''] = '';
+$lang['list_max_count'] = '<p>Максимум списков</p>';
+$lang['listname_max_count'] = '<p>Максимальная длина имени Списка Желаний</p>';
+$lang['created'] = '<p>Создано</p>';
+$lang['success'] = '<p>Операция успешна</p>';
+$lang['added'] = '<p>Добавлено</p>';
+$lang['updated'] = '<p>Обновлено</p>';
+$lang['deleted'] = '<p>Успешно удалено</p>';
+$lang['picture_uploaded'] = '<p>Картинка загружена</p>';
+$lang['create_new_list'] = '<p>Создать новый список</p>';
+$lang[''] = '<p></p>';
 
 /**
  * buttons
@@ -55,31 +55,32 @@ $lang['last'] = 'Описание';
 $lang['ava'] = 'Ава';
 $lang['save'] = 'Сохранить';
 $lang['list_type'] = 'Тип списка';
-$lang['delete'] = "Удалить";
-$lang['edit'] = "Редактировать";
-$lang['unsubscribe'] = "Отписаться";
-$lang['product'] = "Товар";
-$lang['comment'] = "Комментарий";
-$lang['move'] = "Переместить";
-$lang['empty_list'] = "Список пуст";
-$lang['list_name'] = "Название списка";
-$lang['edit_list'] = "Редактировать список";
-$lang['list_'] = "Список";
-$lang['settings'] = "Настройки";
-$lang['wish_list_settings'] = "Настройка Списков Желания";
-$lang['max_list_name_length'] = "Максимальная длина имени Списка Желаний";
-$lang['max_lists_counts'] = "Максимальное количество Списков Желаний";
-$lang['max_items_counts'] = "Максимальное количество товаров в Списках Желаний";
-$lang['max_comment_length'] = "Максимальная длина комментария";
-$lang['max_description_length'] = "Максимальная длина описания";
-$lang['max_image_width'] = "Максимальная ширина картинки пользователя";
-$lang['max_image_height'] = "Максимальная высота картинки пользователя";
+$lang['delete'] = 'Удалить';
+$lang['edit'] = 'Редактировать';
+$lang['unsubscribe'] = 'Отписаться';
+$lang['product'] = 'Товар';
+$lang['comment'] = 'Комментарий';
+$lang['move'] = 'Переместить';
+$lang['empty_list'] = 'Список пуст';
+$lang['list_name'] = 'Название списка';
+$lang['edit_list'] = 'Редактировать список';
+$lang['list_'] = 'Список';
+$lang['settings'] = 'Настройки';
+$lang['wish_list_settings'] = 'Настройка Списков Желания';
+$lang['max_list_name_length'] = 'Максимальная длина имени Списка Желаний';
+$lang['max_lists_counts'] = 'Максимальное количество Списков Желаний';
+$lang['max_items_counts'] = 'Максимальное количество товаров в Списках Желаний';
+$lang['max_comment_length'] = 'Максимальная длина комментария';
+$lang['max_description_length'] = 'Максимальная длина описания';
+$lang['max_image_width'] = 'Максимальная ширина картинки пользователя';
+$lang['max_image_height'] = 'Максимальная высота картинки пользователя';
+$lang['no_lists'] = 'Нет списков';
 
-$lang['move_item'] = "Перемещение товара";
-$lang['choose_wish_list'] = "Вибирите Список Желаний";
-$lang['move_in_list'] = "Переместить в список";
-$lang['lists_count'] = "Количество списков";
-$lang['items_count'] = "Количество товаров в списках";
-$lang[''] = "";
+$lang['move_item'] = 'Перемещение товара';
+$lang['choose_wish_list'] = 'Вибирите Список Желаний';
+$lang['move_in_list'] = 'Переместить в список';
+$lang['lists_count'] = 'Количество списков';
+$lang['items_count'] = 'Количество товаров в списках';
+$lang[''] = '';
 
 ?>

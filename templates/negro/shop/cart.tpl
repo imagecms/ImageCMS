@@ -101,12 +101,12 @@
                                                 {if $counter} selected="selected"
                                                     {$del_id = $deliveryMethod->getId()}
                                                     {$counter = false}
-                                                    {$del_price = ceil($deliveryMethod->getPrice())}
+                                                    {$price = ceil($deliveryMethod->getPrice())}
                                                     {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
                                                 {/if}
                                                             name="met_del"
                                                             value="{echo $del_id}"
-                                                            data-price="{echo ceil($deliveryMethod->getPrice())}"
+                                                            data-price="{$price}"
                                                             data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
                                                 {echo $deliveryMethod->getName()}
                                                         </option>
@@ -124,12 +124,6 @@
                                                             {$del_id = $deliveryMethod->getId()}
                                                             {$counter = false}
                                                             {$price = ceil($deliveryMethod->getPrice())}
-                                                            {if $price == 0}
-                                                                {$price = "Бесплатно"}
-                                                            {else:}
-                                                                {$price = $price}
-                                                            {/if}
-                                                            {$del_price = $price}
                                                             {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
                                                             name="met_del"
                                                             value="{echo $del_id}"
@@ -156,26 +150,25 @@
                                     <div class="frame-label">
                                         <span class="title">Способ оплаты</span>
                                         <div class="frame-form-field check-variant-payment">
-                                            <div class="preloader"></div>
                                             <div class="paymentMethod">
                                                 {/*<div class="lineForm">
                                                     <select name="paymentMethodId" id="paymentMethod">
                                                 {$counter = true}
                                                 {foreach $paymentMethods as $paymentMethod}
-                                                    <label>
-                                                    <option
+                                                            <label>
+                                                                <option
                                                     {if $counter} checked="checked"
                                                         {$counter = false}
                                                         {$pay_id = $paymentMethod->getId()}
                                                     {/if}
-                                                    value="{echo $pay_id}"
-                                                    />
+                                                                    value="{echo $pay_id}"
+                                                                    />
                                                     {echo $paymentMethod->getName()}
-                                                    </option>
-                                                    </label>
+                                                                </option>
+                                                            </label>
                                                 {/foreach}
                                                     </select>
-                                                    </div>*/}
+                                                </div>*/}
                                                 <div class="frame-radio">
                                                     {$counter = true}
                                                     {foreach $paymentMethods as $paymentMethod}
@@ -200,6 +193,7 @@
                                                     {/foreach}
                                                 </div>
                                             </div>
+                                            <div class="preloader"></div>
                                         </div>
                                     </div>
                                 {/if}
