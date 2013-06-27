@@ -32,8 +32,14 @@ jQuery.exists = function(selector) {
 jQuery.existsN = function(nabir) {
     return (nabir.length > 0);
 }
-jQuery.testNumber = function(key) {
+jQuery.testNumber = function(e) {
+    if (!e)
+        var e = window.event;
+    var key = e.keyCode;
+    if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
+        return true;
     keyChar = String.fromCharCode(key);
+
     if (!/\d/.test(keyChar)) {
         return false;
     }
@@ -42,17 +48,7 @@ jQuery.testNumber = function(key) {
 }
 jQuery.onlyNumber = function(el) {
     $(el).live('keypress', function(e) {
-        var key, keyChar;
-        if (!e)
-            var e = window.event;
-        if (e.keyCode)
-            key = e.keyCode;
-        else if (e.which)
-            key = e.which;
-        if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
-            return true;
-        $.testNumber(key)
-        if (!$.testNumber(key)) {
+        if (!$.testNumber(e)) {
             $(this).tooltip();
             return false;
         }
@@ -1365,40 +1361,51 @@ function ieInput(els) {
             })
         },
         triggerBtnClick: function(sel, selector, close) {
-            if (!sel)
+            if (!sel || typeof sel == 'function')
                 var drop = $('[data-elrun].' + activeClass);
             else
                 var drop = sel;
-            drop.removeClass(activeClass).each(function() {
-                var $this = $(this),
-                        $thisEOff = $this.attr('data-effect-off'),
-                        $thisD = $this.attr('data-duration');
-                var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
-                $thisB.parent().removeClass(activeClass);
-                var $thisHref = $thisB.attr('href');
-                if ($thisHref != undefined) {
-                    var $thisHrefL = $thisHref.length,
-                            wLH = location.hash,
-                            wLHL = wLH.length;
-                    try {
-                        var indH = wLH.match($thisHref + '(?![a-z])').index;
-                        location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
-                    } catch (err) {
+
+            if ($.existsN(drop)) {
+                drop.removeClass(activeClass).each(function() {
+                    var $this = $(this),
+                            $thisEOff = $this.attr('data-effect-off'),
+                            $thisD = $this.attr('data-duration');
+                    var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
+                    $thisB.parent().removeClass(activeClass);
+                    var $thisHref = $thisB.attr('href');
+                    if ($thisHref != undefined) {
+                        var $thisHrefL = $thisHref.length,
+                                wLH = location.hash,
+                                wLHL = wLH.length;
+                        try {
+                            var indH = wLH.match($thisHref + '(?![a-z])').index;
+                            location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
+                        } catch (err) {
+                        }
                     }
-                }
-                var dropOver = $('.overlayDrop');
-                if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
-                    if ($(document).height() - wnd.height() > 0) {
-                        dropOver.removeClass('dropOverlayFixed');
-                        body.removeClass('isScroll');
+                    var dropOver = $('.overlayDrop');
+                    if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
+                        if ($(document).height() - wnd.height() > 0) {
+                            dropOver.removeClass('dropOverlayFixed');
+                            body.removeClass('isScroll');
+                        }
+                        dropOver.hide();
                     }
-                    dropOver.hide();
-                }
-                $this[$thisEOff]($thisD, function() {
-                    $(this).removeAttr('style');
-                    close($thisB, $(this));
+                    $this[$thisEOff]($thisD, function() {
+                        $(this).removeAttr('style');
+                        if (close != undefined)
+                            close($thisB, $(this));
+
+                        if (typeof sel == 'function')
+                            sel();
+                    });
                 });
-            });
+            }
+            else {
+                if (typeof sel == 'function')
+                    sel();
+            }
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {
@@ -1566,24 +1573,15 @@ function ieInput(els) {
 })(jQuery);
 (function($) {
     var methods = {
-        init: function(options) {
+        init: function() {
             var $this = $(this),
                     $min = $(this).attr('data-min'),
-                    $thisVal = $this.val();
+                    $thisVal = parseInt($this.val());
 
-            if ($thisVal == '') {
-                $this.keypress(function(e) {
-                    if (!e)
-                        var e = window.event;
-                    key = e.keyCode;
-
-                    keyChar = String.fromCharCode(key);
-                    if ($thisVal == '' && keyChar == 0)
-                        return false;
-                })
-            }
-            else if ($thisVal <= $min)
+            if ($thisVal < $min || $thisVal == '') {
                 $this.val($min);
+                return true;
+            }
         }
     };
     $.fn.minValue = function(method) {
@@ -1595,8 +1593,8 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.minValue');
         }
     };
-    $('[data-min]').live('keyup', function() {
-        $(this).minValue();
+    $('[data-min]').live('keyup', function(e) {
+        $(this).minValue(e);
     })
 })(jQuery);
 (function($) {
