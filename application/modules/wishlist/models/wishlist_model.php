@@ -12,6 +12,7 @@ class Wishlist_model extends CI_Model {
 
     /**
      * Get module settings
+     * @return array
      */
     public function getSettings() {
         $settings = $this->db->select('settings')
@@ -33,6 +34,12 @@ class Wishlist_model extends CI_Model {
         ));
     }
 
+    /**
+     * get wish lists
+     *
+     * @param int $userID - filter by user id
+     * @return boolean
+     */
     public function getWishLists($userID = NULL) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
@@ -43,6 +50,11 @@ class Wishlist_model extends CI_Model {
                         ->result_array();
     }
 
+    /**
+     * get all users
+     *
+     * @return array | false
+     */
     public function getAllUsers() {
         $users = $this->db
                 ->order_by('user_name')
@@ -54,6 +66,12 @@ class Wishlist_model extends CI_Model {
             return FALSE;
     }
 
+    /**
+     * get user by id
+     *
+     * @param type $id
+     * @return array
+     */
     public function getUserByID($id) {
         return $this->db
                         ->where('id', $id)
@@ -61,6 +79,13 @@ class Wishlist_model extends CI_Model {
                         ->row_array();
     }
 
+    /**
+     * get wish list by user id
+     *
+     * @param type $user_id
+     * @param type $access
+     * @return array
+     */
     public function getWLsByUserId($user_id, $access = array('shared')) {
         return $all_lists = $this->db
                 ->where('user_id', $user_id)
@@ -69,6 +94,12 @@ class Wishlist_model extends CI_Model {
                 ->result_array();
     }
 
+    /**
+     * get user wish list
+     *
+     * @param $user_id, $list_id, $access = array('public', 'shared', 'private')
+     * @return array
+     */
     public function getUserWishList($user_id, $list_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db
@@ -123,6 +154,13 @@ class Wishlist_model extends CI_Model {
         return $query;
     }
 
+    /**
+     * delete item from list
+     *
+     * @param type $variant_id
+     * @param type $wish_list_id
+     * @return boolean
+     */
     public function deleteItem($variant_id, $wish_list_id) {
         return $this->db
                         ->delete('mod_wish_list_products', array(
@@ -131,6 +169,12 @@ class Wishlist_model extends CI_Model {
         ));
     }
 
+    /**
+     * delete items by ides
+     *
+     * @param array $ids
+     * @return ---
+     */
     public function deleteItemsByIDs($ids) {
         foreach ($ids as $id) {
             $this->db->where('id', $id)
@@ -138,6 +182,13 @@ class Wishlist_model extends CI_Model {
         }
     }
 
+    /**
+     * get user wish list by id
+     *
+     * @param type $user_id
+     * @param type $access
+     * @return array
+     */
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
 
@@ -165,15 +216,33 @@ class Wishlist_model extends CI_Model {
         );
     }
 
+    /**
+     * delete wish list by id
+     *
+     * @param type $id
+     * @return boolean
+     */
     public function delWishListById($id) {
         return $this->db->delete('mod_wish_list', array('id' => $id));
     }
 
+    /**
+     * delete wish list products by wish list id
+     *
+     * @param type $id
+     * @return boolean
+     */
     public function delWishListProductsByWLId($id) {
         $this->db->where('wish_list_id', $id);
         return $this->db->delete('mod_wish_list_products');
     }
 
+    /**
+     * get user wish list products
+     *
+     * @param type $userID
+     * @return array
+     */
     public function getUserWishProducts($userID = null) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
@@ -195,6 +264,12 @@ class Wishlist_model extends CI_Model {
         return $ID;
     }
 
+    /**
+     * get most popular products
+     *
+     * @param type $limit
+     * @return array
+     */
     public function getMostPopularProducts($limit = 10) {
         return $this->db->select('COUNT(id) as productCount, variant_id,')
                         ->order_by('productCount', 'desc')
@@ -204,6 +279,15 @@ class Wishlist_model extends CI_Model {
                         ->result_array();
     }
 
+    /**
+     * insert wish list
+     *
+     * @param type $title
+     * @param type $access
+     * @param type $description
+     * @param type $user_id
+     * @return boolean
+     */
     public function insertWishList($title, $access, $description, $user_id) {
         return $this->db->set('title', $title)
                         ->set('access', $access)
@@ -212,10 +296,24 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list');
     }
 
+    /**
+     * update wish list
+     *
+     * @param type $id
+     * @param type $data
+     * @return boolean
+     */
     public function upateWishList($id, $data) {
         return $this->db->where('id', $id)->update('mod_wish_list', $data);
     }
 
+    /**
+     * update wish lists items comments
+     *
+     * @param type $wish_list_id
+     * @param type $comments
+     * @return ---
+     */
     public function upateWishListItemsComments($wish_list_id, $comments) {
         foreach ($comments as $key => $coments) {
             $this->db->where('wish_list_id', $wish_list_id)
@@ -225,6 +323,15 @@ class Wishlist_model extends CI_Model {
         }
     }
 
+    /**
+     * insert user
+     *
+     * @param type $user_id
+     * @param type $user_image
+     * @param type $user_birthday
+     * @param type $user_name
+     * @return boolean
+     */
     public function insertUser($user_id, $user_image, $user_birthday, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
@@ -235,6 +342,15 @@ class Wishlist_model extends CI_Model {
                         ->insert('mod_wish_list_users');
     }
 
+    /**
+     * add item to wish list
+     *
+     * @param type $varId
+     * @param type $listId
+     * @param type $listName
+     * @param type $user_id
+     * @return boolean
+     */
     public function addItem($varId, $listId, $listName, $user_id = null) {
         if (!$user_id)
             $user_id = $this->dx_auth->get_user_id();
@@ -251,6 +367,13 @@ class Wishlist_model extends CI_Model {
         return $this->db->insert('mod_wish_list_products', $data);
     }
 
+    /**
+     * create user wish list if not exist
+     *
+     * @param type $user_id
+     * @param type $user_name
+     * @return boolean
+     */
     public function createUserIfNotExist($user_id, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
@@ -265,6 +388,15 @@ class Wishlist_model extends CI_Model {
         return FALSE;
     }
 
+    /**
+     * update user
+     *
+     * @param type $userID
+     * @param type $user_name
+     * @param type $user_birthday
+     * @param type $description
+     * @return boolean
+     */
     public function updateUser($userID, $user_name, $user_birthday, $description) {
         return $this->db->where('id', $userID)
                         ->set('user_name', $user_name)
@@ -273,6 +405,13 @@ class Wishlist_model extends CI_Model {
                         ->update('mod_wish_list_users');
     }
 
+    /**
+     * create wish list
+     *
+     * @param type $listName
+     * @param type $user_id
+     * @return boolean
+     */
     public function createWishList($listName, $user_id) {
         $this->createUserIfNotExist($user_id);
         $data = array(
@@ -283,6 +422,12 @@ class Wishlist_model extends CI_Model {
         return $this->db->insert('mod_wish_list', $data);
     }
 
+    /**
+     * get user wish list count
+     *
+     * @param type $user_id
+     * @return int
+     */
     public function getUserWishListCount($user_id) {
         $query = $this->db
                 ->where('user_id', $user_id)
@@ -294,6 +439,12 @@ class Wishlist_model extends CI_Model {
             return 0;
     }
 
+    /**
+     * get user wish list items count
+     *
+     * @param type $user_id
+     * @return int
+     */
     public function getUserWishListItemsCount($user_id) {
         $query = $this->db->where('mod_wish_list.user_id', $user_id)
                 ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
@@ -305,7 +456,13 @@ class Wishlist_model extends CI_Model {
             return 0;
     }
 
-    public function addReview($hash) {
+    /**
+     * add list rewiev
+     *
+     * @param type $list_id
+     * @return boolean
+     */
+    public function addRewiew($hash) {
         $count = $this->db->where('hash', $hash)
                 ->select('review_count')
                 ->get('mod_wish_list')
@@ -318,6 +475,12 @@ class Wishlist_model extends CI_Model {
                         ->update('mod_wish_list');
     }
 
+    /**
+     * get most view wish lists
+     *
+     * @param type $limit
+     * @return boolean
+     */
     public function getMostViewedWishLists($limit = 10) {
         return $this->db
                         ->select('id,title,review_count')
@@ -327,6 +490,9 @@ class Wishlist_model extends CI_Model {
                         ->result_array();
     }
 
+    /**
+     * install module(create db tables, set default values)
+     */
     public function install() {
 
         $this->load->dbforge();
@@ -347,10 +513,6 @@ class Wishlist_model extends CI_Model {
                 'type' => 'ENUM',
                 'constraint' => "'public','private','shared'",
                 'default' => "shared"
-            ),
-            'description' => array(
-                'type' => 'TEXT',
-                'null' => TRUE
             ),
             'user_id' => array(
                 'type' => 'INT',
@@ -438,6 +600,9 @@ class Wishlist_model extends CI_Model {
         return TRUE;
     }
 
+    /**
+     * deinstall module
+     */
     public function deinstall() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;

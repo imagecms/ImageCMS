@@ -47,6 +47,7 @@ $lang[''] = '';
  */
 $lang['user_lists'] = 'Списки пользователя';
 $lang['user'] = 'Пользователь';
+$lang['users'] = 'Пользователи';
 $lang['lists'] = 'Списки';
 $lang['create_list'] = 'Создать список';
 $lang['name'] = 'Имя';
