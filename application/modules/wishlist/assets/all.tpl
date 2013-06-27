@@ -2,6 +2,7 @@
     {if $lists}
         <table  class="table" style="width:600px">
             {foreach $lists as $list}
+                {if $list['lists']}
                 <tr>
                     <td>
                         <div>
@@ -31,9 +32,12 @@
                         </div>
                     </td>
                 </tr>
+                {/if}
             {/foreach}
         </table>
     {else:}
-        Списков нет!!
+        {foreach (array)$errors as $error}
+            {echo $error}
+        {/foreach}
     {/if}
 </article>

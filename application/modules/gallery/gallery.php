@@ -217,7 +217,7 @@ class Gallery extends MY_Controller {
         return $albums;
     }
 
-    // Install 
+    // Install
     function _install() {
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
