@@ -231,26 +231,7 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->upateWishList($id, $data);
         $this->wishlist_model->upateWishListItemsComments($id, $comments);
     }
-
-    /**
-     * create wish list
-     *
-     * @access public
-     * @param type $title
-     * @param type $access
-     * @param type $description
-     * @param type $user_id
-     * @param type $user_image
-     * @param type $user_birthday
-     * @author DevImageCms
-     * @copyright (c) 2013, ImageCMS
-     * @return -----
-     */
-    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-        $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
-        $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
-    }
-
+    
     /**
      * create wish list
      *

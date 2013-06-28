@@ -3,7 +3,9 @@
 require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
 
 doLogin();
-
+/**
+ * @property \Codeception\TestCase\Test $this Description
+ */
 class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     public $object = null;
@@ -86,25 +88,12 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers wishlist\classes\ParentWishlist::createWL
-     * @todo   Implement testCreateWL().
-     */
-    public function testCreateWL() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
      * @covers wishlist\classes\ParentWishlist::createWishList
      * @todo   Implement testCreateWishList().
      */
     public function testCreateWishList() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->createWishList($GLOBALS['userId'],'test'), 'Cant all');
+        return TRUE;
     }
 
     /**
