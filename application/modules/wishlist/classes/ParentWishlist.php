@@ -31,7 +31,6 @@ class ParentWishlist extends \MY_Controller {
             $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
-
     /**
      * set in cookie previous page url
      *
@@ -48,7 +47,7 @@ class ParentWishlist extends \MY_Controller {
                 'expire' => '15000',
                 'prefix' => ''
             );
-            $this->input->set_cookie($cookie);
+            @$this->input->set_cookie($cookie);
         }
     }
 
@@ -99,7 +98,6 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-
     /**
      * get user wish list
      *
@@ -110,6 +108,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function show($hash, $access = array('public')) {
+        if (!$hash)
+            return FALSE;
+
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
 
         if ($wishlist) {
@@ -204,10 +205,10 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function userUpdate($userID, $user_name, $user_birthday, $description) {
-        $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
+        $this->wishlist_model->createUserIfNotExist($userID);
 
         if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
@@ -229,27 +230,7 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->upateWishList($id, $data);
         $this->wishlist_model->upateWishListItemsComments($id, $comments);
     }
-
-
-    /**
-     * create wish list
-     *
-     * @access public
-     * @param type $title
-     * @param type $access
-     * @param type $description
-     * @param type $user_id
-     * @param type $user_image
-     * @param type $user_birthday
-     * @author DevImageCms
-     * @copyright (c) 2013, ImageCMS
-     * @return -----
-     */
-    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-        $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
-        $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
-    }
-
+    
     /**
      * create wish list
      *
@@ -514,6 +495,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function getMostPopularItems($limit = 10) {
+        $result = $this-> wishlist_model->getMostPopularProducts();
         if ($result) {
             $this->dataModel = $result;
             return TRUE;
