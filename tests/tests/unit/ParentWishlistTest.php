@@ -17,42 +17,6 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @dataProvider provider
-     */
-    public function testCreate10WL($a, $b) {
-        $this->assertTrue($this->object->createWishList($a, $b), 'All cool, Bro!');
-    }
-
-    /**
-     * @dataProvider provider
-     */
-    public function testCreateWOverLimit($a, $b) {
-        $this->assertFalse($this->object->createWishList($a, $b), 'All cool, Bro!');
-    }
-
-    public function testRemoveAllWL() {
-        $wllist = $this->object->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared', 'private'));
-        foreach ($wllist as $value) {
-            $this->assertTrue($this->object->deleteWL($value['id']));
-        }
-    }
-
-    public function provider() {
-        return array(
-            array($GLOBALS['userId'], 'name1'),
-            array($GLOBALS['userId'], 'name2'),
-            array($GLOBALS['userId'], 'name3'),
-            array($GLOBALS['userId'], 'name4'),
-            array($GLOBALS['userId'], 'name5'),
-            array($GLOBALS['userId'], 'name6'),
-            array($GLOBALS['userId'], 'name7'),
-            array($GLOBALS['userId'], 'name8'),
-            array($GLOBALS['userId'], 'name9'),
-            array($GLOBALS['userId'], 'name10'),
-        );
-    }
-
-    /**
      * @covers wishlist\classes\ParentWishlist::all
      * @todo   Implement testAll().
      */
@@ -85,6 +49,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers wishlist\classes\ParentWishlist::getMostViewedWishLists
      * @todo   Implement testGetMostViewedWishLists().
+     * @depends testAddReview
      */
     public function testGetMostViewedWishLists() {
         $this->assertTrue($this->object->getMostViewedWishLists(), 'Cant get most popular');
@@ -106,10 +71,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testUserUpdate().
      */
     public function testUserUpdate() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->userUpdate('9999999','test_name','544516462','test_desc'), 'Cant Update User');
     }
 
     /**

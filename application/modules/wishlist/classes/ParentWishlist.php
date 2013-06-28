@@ -206,10 +206,10 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function userUpdate($userID, $user_name, $user_birthday, $description) {
-        $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
+        $this->wishlist_model->createUserIfNotExist($userID);
 
         if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
