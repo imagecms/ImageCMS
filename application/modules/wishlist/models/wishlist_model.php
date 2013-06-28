@@ -184,10 +184,10 @@ class Wishlist_model extends CI_Model {
      */
     public function deleteItemsByIDs($ids) {
         foreach ($ids as $id) {
-            echo $id;
             $this->db->where('id', $id)
                     ->delete('mod_wish_list_products');
         }
+        return TRUE;
     }
 
     /**

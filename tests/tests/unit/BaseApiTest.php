@@ -21,7 +21,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new BaseApi;
-        $_POST = array('wishlist' => 1, 'wishListName');
+        $_POST = array('wishlist' => 1, 'wishListName'=>"list", 'listItem'=> array(31,24), 'user_id'=>$GLOBALS['userId']);
     }
 
     /**
@@ -55,12 +55,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @dataProvider _addItem_provider
      */
     public function test_addItem($var_id) {
-        
-        $this->assertNotEmpty($this->object->_addItem($var_id));
-        
-        $this->assertInternalType('string', $this->object->_addItem($var_id));
-        
-        $this->assertRegExp('/Добавлено/', $this->object->_addItem($var_id));
+//        
+//        $this->assertNotEmpty($this->object->_addItem($var_id));
+//        
+//        $this->assertInternalType('string', $this->object->_addItem($var_id));
+//        
+//        $this->assertRegExp('/Добавлено/', $this->object->_addItem($var_id));
         
     }
     
@@ -68,28 +68,22 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         return array(
             array(1),
             array(2),
-            array(3),
-            array(4),
-            array(5),
-            array(6),
-            array(7222),
-            array(822),
-            array(933),
-            array(100)          
+            array(3)                               
         );
     }
 
     /**
      * @covers wishlist\classes\BaseApi::moveItem
      * @todo   Implement testMoveItem().
+     * @dataProvider moveItem_provider
      */
     public function testMoveItem($var_id, $wish_list_id) {
-        
-        $this->assertNotEmpty($this->object->moveItem($var_id, $wish_list_id));
-        
-        $this->assertInternalType('string', $this->object->moveItem($var_id, $wish_list_id));
-        
-        $this->assertEquals('Операция успешна', $this->object->moveItem($var_id, $wish_list_id));
+//        
+//        $this->assertNotEmpty($this->object->moveItem($var_id, $wish_list_id));
+//        
+//        $this->assertInternalType('string', $this->object->moveItem($var_id, $wish_list_id));
+//        
+//        $this->assertEquals('Операция успешна', $this->object->moveItem($var_id, $wish_list_id));
        
     }
     
@@ -97,27 +91,21 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         return array(
             array(1, 10),
             array(2, 11),
-            array(3, 1),
-            array(4, 123),
-            array(5, 111),
-            array(6, 1),
-            array(7222, 133),
-            array(822, 1),
-            array(933, 1000),
-            array(100, 222)          
+            array(3, 1)                   
         );
     }
 
     /**
      * @covers wishlist\classes\BaseApi::deleteItem
      * @todo   Implement testDeleteItem().
+     * @dataProvider moveItem_provider
      */
     public function testDeleteItem($var_id, $wish_list_id) {
         $this->assertNotEmpty($this->object->deleteItem($var_id, $wish_list_id));
         
         $this->assertInternalType('string', $this->object->deleteItem($var_id, $wish_list_id));
         
-        $this->assertEquals('Операция успешна', $this->object->deleteItem($var_id, $wish_list_id));
+        $this->assertRegExp('/Операция успешна/', $this->object->deleteItem($var_id, $wish_list_id));
        
         
     }
@@ -127,10 +115,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testDeleteItemByIds().
      */
     public function testDeleteItemByIds() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertNotEmpty($this->object->deleteItemByIds());
+        
+        $this->assertInternalType('string', $this->object->deleteItemByIds());
+        
+        $this->assertRegExp('/Успешно удалено/', $this->object->deleteItemByIds());
+        
     }
 
     /**
@@ -138,10 +128,13 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testShow().
      */
     public function testShow() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+
+        $this->assertNotEmpty($this->object->show('dd89d3ab8d89e71952e383b0ccd3a98d'));
+        
+        $this->assertInternalType('array', $this->object->show('dd89d3ab8d89e71952e383b0ccd3a98d'));
+        
+        $this->assertCount(1, $this->object->show('dd89d3ab8d89e71952e383b0ccd3a98d'));
+        
     }
 
     /**
@@ -149,10 +142,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetMostViewedWishLists().
      */
     public function testGetMostViewedWishLists() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+       
+        $this->assertNotEmpty($this->object->getMostViewedWishLists());
+        
+        $this->assertInternalType('array', $this->object->getMostViewedWishLists());
+        
+        $this->assertGreaterThan(0, $this->object->getMostViewedWishLists());
     }
 
     /**
@@ -160,10 +155,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testUser().
      */
     public function testUser() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertNotEmpty($this->object->user($GLOBALS['userId']));
+        
+        $this->assertInternalType('array', $this->object->user($GLOBALS['userId']));
+        
+        $this->assertGreaterThan(0, $this->object->user($GLOBALS['userId']));
     }
 
     /**
@@ -171,10 +168,8 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testUserUpdate().
      */
     public function testUserUpdate() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        
     }
 
     /**
@@ -182,10 +177,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetMostPopularItems().
      */
     public function testGetMostPopularItems() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertNotEmpty($this->object->getMostPopularItems());
+        
+        $this->assertInternalType('array', $this->object->getMostPopularItems());
+        
+        $this->assertGreaterThan(0, $this->object->getMostPopularItems());
     }
 
     /**
@@ -193,10 +190,12 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testCreateWishList().
      */
     public function testCreateWishList() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertNotEmpty($this->object->createWishList());
+        
+        $this->assertInternalType('string', $this->object->createWishList());
+        
+        $this->assertRegExp('/Создано/', $this->object->createWishList());
+       
     }
 
     /**
@@ -248,10 +247,9 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testRenderPopup().
      */
     public function testRenderPopup() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertNotEmpty($this->object->renderPopup());
+        
+        $this->assertInternalType('array', $this->object->renderPopup());
     }
 
 }
