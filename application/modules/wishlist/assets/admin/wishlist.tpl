@@ -58,7 +58,7 @@
                                             <div class="control-group">
                                                 <div class="controls">
                                                     {form_open_multipart('/admin/components/cp/wishlist/do_upload')}
-                                                    <input type="file"
+                                                    <input type="file" 
                                                            name="userfile"
                                                            size="20"
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
