@@ -1,24 +1,26 @@
 <article class="container">
-{/*    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
+    {/*    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
     <a href="#" class="APItester">Проверка API</a>
     <textarea class="testAPI" style="font-size: 13px; line-height: 26px; padding: 10px; height: 200px; " ></textarea>
     <!-- ******************************************************************************** -->*/}
-    <label>
-        <span class="frame_form_field__icsi-css">
-            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-        </span>
-    </label>
+    {if $errors}
+        {foreach $errors as $error}
+            <div class="msg">
+                <div class="error">{$error}</div>
+            </div>
+        {/foreach}
+    {/if}
     <div>
         <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
     </div>
     {form_open_multipart('/wishlist/do_upload')}
-
+    <input type="hidden" value="{echo $user[id]}" name="userID"/>
     <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
     <br /><br />
 
     <input type="submit" value="upload" class="btn" />
-
+    {form_csrf()}
 </form>
 <form method="POST" action="/wishlist/deleteImage">
     <input type="hidden" value="{echo $user[user_image]}" name="image"/>
