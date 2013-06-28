@@ -3,8 +3,9 @@
 require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
 
 doLogin();
+
 /**
- * @property \Codeception\TestCase\Test $this Description
+ * @property \Codeception\TestCase\Test $this
  */
 class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
@@ -19,16 +20,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers wishlist\classes\ParentWishlist::all
-     * @todo   Implement testAll().
-     */
-    public function testAll() {
-        $this->assertTrue($this->object->all(), 'Cant all');
-    }
-
-    /**
      * @covers wishlist\classes\ParentWishlist::show
-     * @todo   Implement testShow().
      */
     public function testShow() {
         // Remove the following lines when you implement this test.
@@ -38,84 +30,69 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers wishlist\classes\ParentWishlist::addReview
-     * @todo   Implement testAddReview().
+     * @covers wishlist\classes\ParentWishlist::userUpdate
      */
-    public function testAddReview() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testUserUpdate() {
+        $this->assertTrue($this->object->userUpdate(999999, 'test_name', '544516462', 'test_desc'), 'Cant Update User');
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::all
+     */
+    public function testAll() {
+        $this->assertTrue($this->object->all(), 'Cant all');
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::createWishList
+     */
+    public function testCreateWishList() {
+        $this->assertTrue($this->object->createWishList(999999, 'test'), 'Cant create');
+        $id = $this->object->db->insert_id();
+        $this->object->db
+                ->where('title', 'test')
+                ->set('hash', '1')
+                ->update('mod_wish_list');
+        return $id;
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::addReview
+     * @depends testCreateWishList
+     */
+    public function testAddReview($id) {
+        $this->assertTrue($this->object->addReview(1), 'Cant add review');
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::user
+     */
+    public function testUser() {
+        $this->assertTrue($this->object->user(999999));
+        $this->assertTrue($this->object->user(999999), array('public', 'public', 'shared'));
     }
 
     /**
      * @covers wishlist\classes\ParentWishlist::getMostViewedWishLists
-     * @todo   Implement testGetMostViewedWishLists().
-     * @depends testAddReview
      */
     public function testGetMostViewedWishLists() {
         $this->assertTrue($this->object->getMostViewedWishLists(), 'Cant get most popular');
     }
 
     /**
-     * @covers wishlist\classes\ParentWishlist::user
-     * @todo   Implement testUser().
-     */
-    public function testUser() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers wishlist\classes\ParentWishlist::userUpdate
-     * @todo   Implement testUserUpdate().
-     */
-    public function testUserUpdate() {
-        $this->assertTrue($this->object->userUpdate('9999999','test_name','544516462','test_desc'), 'Cant Update User');
-    }
-
-    /**
      * @covers wishlist\classes\ParentWishlist::updateWL
-     * @todo   Implement testUpdateWL().
+     * @depends testCreateWishList
      */
-    public function testUpdateWL() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers wishlist\classes\ParentWishlist::createWishList
-     * @todo   Implement testCreateWishList().
-     */
-    public function testCreateWishList() {
-        $this->assertTrue($this->object->createWishList($GLOBALS['userId'],'test'), 'Cant all');
-        return TRUE;
-    }
-
-    /**
-     * @covers wishlist\classes\ParentWishlist::deleteWL
-     * @todo   Implement testDeleteWL().
-     */
-    public function testDeleteWL() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testUpdateWL($id) {
+        $this->assertTrue($this->object->updateWL($id, array(), array()));
     }
 
     /**
      * @covers wishlist\classes\ParentWishlist::_addItem
-     * @todo   Implement test_addItem().
+     * @depends testCreateWishList
      */
-    public function test_addItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function test_addItem($id) {
+        $this->assertTrue($this->object->_addItem('1', $id, 'test'));
     }
 
     /**
@@ -145,10 +122,11 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetUserInfo().
      */
     public function testGetUserInfo() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertArrayHasKey('id', $this->object->getUserInfo(999999));
+        $this->assertArrayHasKey('user_name', $this->object->getUserInfo(999999));
+        $this->assertArrayHasKey('user_image', $this->object->getUserInfo(999999));
+        $this->assertArrayHasKey('user_birthday', $this->object->getUserInfo(999999));
+        $this->assertArrayHasKey('description', $this->object->getUserInfo(999999));
     }
 
     /**
@@ -259,6 +237,14 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
         );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteWL
+     * @depends testCreateWishList
+     */
+    public function testDeleteWL($id) {
+        $this->assertTrue($this->object->deleteWL($id));
     }
 
     /**
