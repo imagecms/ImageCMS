@@ -16,7 +16,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-
+    
     private function checkPerm() {
         $permAllow = TRUE;
         if (!$this->dx_auth->is_logged_in())

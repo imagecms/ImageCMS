@@ -30,7 +30,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
-        if (parent::addItem($varId, $listId, $listName)) {
+        if (parent::_addItem($varId, $listId, $listName)) {
             return $this->dataModel;
         } else {
             return $this->errors;
@@ -44,7 +44,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
             return $this->dataModel = "Операция успешна";
         } else {
-            return $this->errors[] = "Не удалось переместить";
+            return $this->errors = "Не удалось переместить";
         }
     }
 
