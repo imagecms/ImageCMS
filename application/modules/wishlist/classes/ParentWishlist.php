@@ -102,8 +102,7 @@ class ParentWishlist extends \MY_Controller {
      * get user wish list
      *
      * @access public
-     * @param type $hash
-     * @param type $access
+     * @param int $hash, array $access - list access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -128,7 +127,7 @@ class ParentWishlist extends \MY_Controller {
      * add view point to list
      *
      * @access public
-     * @param int $list_id
+     * @param int $hash
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -502,6 +501,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function getMostPopularItems($limit = 10) {
+        $result = $this-> wishlist_model->getMostPopularProducts();
         if ($result) {
             $this->dataModel = $result;
             return TRUE;

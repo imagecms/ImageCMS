@@ -38,7 +38,7 @@ class Wishlist_model extends CI_Model {
      * get wish lists
      *
      * @param int $userID - filter by user id
-     * @return boolean
+     * @return array
      */
     public function getWishLists($userID = NULL) {
         if (!$userID)
@@ -128,6 +128,13 @@ class Wishlist_model extends CI_Model {
         return $query;
     }
 
+    /**
+     * get user wish list by hash
+     * 
+     * @param type $hash
+     * @param type $access
+     * @return array
+     */
     public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db
@@ -180,6 +187,7 @@ class Wishlist_model extends CI_Model {
             $this->db->where('id', $id)
                     ->delete('mod_wish_list_products');
         }
+        return TRUE;
     }
 
     /**
@@ -194,7 +202,7 @@ class Wishlist_model extends CI_Model {
 
         return array_merge(
                 $this->db
-                        ->select('*, shop_product_variants.mainImage AS `image`')
+                        ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
                         ->where('mod_wish_list.user_id', $user_id)
                         ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                         ->where_in('mod_wish_list.access', $access)
