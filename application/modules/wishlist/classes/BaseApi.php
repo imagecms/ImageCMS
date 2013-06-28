@@ -55,6 +55,17 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
+    
+    public function deleteItemByIds(){
+        $items = $this->input->post('listItem');
+        if($items){
+            if(parent::deleteItemByIds($items)){
+                return $this->dataModel[] = lang('deleted');
+            }else{
+                return $this->errors[] = lang('error_cant_delete');
+            }
+        }
+     }
 
     public function show($hash) {
         if (parent::show($hash)) {

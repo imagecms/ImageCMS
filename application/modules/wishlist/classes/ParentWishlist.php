@@ -104,7 +104,7 @@ class ParentWishlist extends \MY_Controller {
      * get user wish list
      *
      * @access public
-     * @param int $user_id, int $list_id, array $access - list access
+     * @param int $hash, array $access - list access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -126,7 +126,7 @@ class ParentWishlist extends \MY_Controller {
      * add view point to list
      *
      * @access public
-     * @param int $list_id
+     * @param int $hash
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
