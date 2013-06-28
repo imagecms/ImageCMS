@@ -16,7 +16,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-    
+
     private function checkPerm() {
         $permAllow = TRUE;
         if (!$this->dx_auth->is_logged_in())
@@ -49,7 +49,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         $listId = $this->input->post('wishlist');
         $listName = $this->input->post('wishListName');
 
-        if((!$listId && !$listName)){
+        if ((!$listId && !$listName)) {
             return $this->errors[] = lang('error_cant_move');
         }
 
@@ -165,25 +165,25 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
-    public function deleteItemByIds(){
+
+    public function deleteItemByIds() {
         $items = $this->input->post('listItem');
-        if($items){
-            if(parent::deleteItemByIds($items)){
+        if ($items) {
+            if (parent::deleteItemByIds($items)) {
                 return $this->dataModel[] = lang('deleted');
-            }else{
+            } else {
                 return $this->errors[] = lang('error_cant_delete');
             }
         }
-     }
+    }
 
-    public function deleteImage(){
-       $image = $this->input->post('image');
-       if(parent::deleteImage($image)){
-           return $this->dataModel[] = lang('deleted');
-       }else{
-           return $this->errors[] = lang('error_cant_delete');
-       }
+    public function deleteImage() {
+        $image = $this->input->post('image');
+        if (parent::deleteImage($image)) {
+            return $this->dataModel[] = lang('deleted');
+        } else {
+            return $this->errors[] = lang('error_cant_delete');
+        }
     }
 
     public function renderPopup() {
@@ -204,6 +204,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function do_upload() {
         if (parent::do_upload($this->input->post('userID'))) {
+            if (!$this->upload->do_upload()) {
+                $this->errors[] = $this->upload->display_errors();
+                return FALSE;
+            } else {
+                $this->dataModel = array('upload_data' => $this->upload->data());
+                $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
+                return TRUE;
+            }
             return $this->dataModel[] = lang('picture_uploaded');
         } else {
             return $this->errors[] = lang('error_upload_photo');

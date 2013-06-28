@@ -86,6 +86,13 @@
                                 </div>
                             </div>
 
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxImageSize]">{lang(max_image_size)}</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxImageSize]" class="textbox_short" value="{$settings['maxImageSize']}" id="maxImageSize"/>
+                                </div>
+                            </div>
+
                         </div>
                     </td>
                 </tr>

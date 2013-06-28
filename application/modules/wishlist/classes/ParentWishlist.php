@@ -186,7 +186,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function user($user_id, $access = array('public')) {
-        if ($this->renderUserWL($user_id, $access)) {
+        if ($this->getUserWL($user_id, $access)) {
             $this->dataModel = $this->dataModel['wishlists'];
             return TRUE;
         } else {
@@ -296,7 +296,7 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('created');
+            $this->dataModel = lang('deleted');
             return TRUE;
         }
     }
@@ -318,6 +318,10 @@ class ParentWishlist extends \MY_Controller {
             $userId = $this->dx_auth->get_user_id();
         $count_lists = 0;
         $count_items = $this->wishlist_model->getUserWishListItemsCount($userId);
+
+        if (!$this->settings) {
+            $this->settings = $this->wishlist_model->getSettings();
+        }
 
         if ($count_items >= $this->settings['maxItemsCount']) {
             $this->errors[] = lang('error_items_limit_exhausted');
@@ -343,7 +347,7 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
 
-        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
             $this->errors[] = lang('error_cant_add');
 
         if (count($this->errors))
@@ -412,16 +416,20 @@ class ParentWishlist extends \MY_Controller {
     /**
      * render user wish list
      *
-     * @param type $userId
-     * @param type $access
+     * @param $userId
+     * @param array $access
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function renderUserWL($userId, $access = array('public', 'public', 'shared')) {
+    public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
         $userInfo = $this->getUserInfo($userId);
+        if (empty($userInfo)) {
+            $this->errors[] = lang('error_no_user_data');
+            return FALSE;
+        }
         $w = array();
 
         foreach ($wishlists as $wishlist)
@@ -449,6 +457,8 @@ class ParentWishlist extends \MY_Controller {
 
         if ($wish_list_id) {
             $wishlists = $this->wishlist_model->getUserWishList($userID, $wish_list_id);
+            if (empty($wishlists))
+                return FALSE;
 
             $w = array();
             foreach ($wishlists as $wishlist)
@@ -472,23 +482,31 @@ class ParentWishlist extends \MY_Controller {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
+        $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
+
+        list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
+
+        if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
+            $this->errors[] = 1;
+        if ($this->settings['maxImageWidth'] < $width)
+            $this->errors[] = 2;
+        if ($this->settings['maxImageHeight'] < $height)
+            $this->errors[] = 3;
+        if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
+            $this->errors[] = 4;
+
+        if ($this->errors)
+            return FALSE;
+
         $config['upload_path'] = './uploads/mod_wishlist';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = '100000';
-        $config['max_width'] = '10240000';
-        $config['max_height'] = '768000';
+        $config['max_size'] = $this->settings['maxImageSize'];
+        $config['max_width'] = $this->settings['maxImageWidth'];
+        $config['max_height'] = $this->settings['maxImageHeight'];
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload()) {
-            $this->errors[] = $this->upload->display_errors();
-            return FALSE;
-        } else {
-            $this->dataModel = array('upload_data' => $this->upload->data());
-            $this->db->where('id', $userID)
-                    ->update('mod_wish_list_users', array('user_image' => $this->dataModel['upload_data']['file_name']));
-            return TRUE;
-        }
+        return TRUE;
     }
 
     /**
@@ -501,8 +519,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function getMostPopularItems($limit = 10) {
-        $result = $this-> wishlist_model->getMostPopularProducts();
-        if ($result) {
+        $result = $this->wishlist_model->getMostPopularProducts();
+
+        if ($result !== FALSE) {
             $this->dataModel = $result;
             return TRUE;
         } else {
