@@ -6,10 +6,10 @@ doLogin();
 
 class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
-    public $model = null;
+    public $object = null;
 
     protected function setUp() {
-        $this->model = new \wishlist\classes\ParentWishlist();
+        $this->object = new \wishlist\classes\ParentWishlist();
     }
 
     protected function tearDown() {
@@ -20,20 +20,20 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @dataProvider provider
      */
     public function testCreate10WL($a, $b) {
-        $this->assertTrue($this->model->zcreateWishList($a, $b), 'All cool, Bro!');
+        $this->assertTrue($this->object->createWishList($a, $b), 'All cool, Bro!');
     }
 
     /**
      * @dataProvider provider
      */
     public function testCreateWOverLimit($a, $b) {
-        $this->assertFalse($this->model->createWishList($a, $b), 'All cool, Bro!');
+        $this->assertFalse($this->object->createWishList($a, $b), 'All cool, Bro!');
     }
 
     public function testRemoveAllWL() {
-        $wllist = $this->model->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared', 'private'));
+        $wllist = $this->object->wishlist_model->getWLsByUserId($GLOBALS['userId'], array('public', 'shared', 'private'));
         foreach ($wllist as $value) {
-            $this->assertTrue($this->model->deleteWL($value['id']));
+            $this->assertTrue($this->object->deleteWL($value['id']));
         }
     }
 
@@ -57,7 +57,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testAll().
      */
     public function testAll() {
-        $this->assertTrue($this->model->all(), 'Cant all');
+        $this->assertTrue($this->object->all(), 'Cant all');
     }
 
     /**
@@ -65,7 +65,10 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testShow().
      */
     public function testShow() {
-        $this->assertTrue($this->model->show($GLOBALS['userId'],'1'), 'Cant show');
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -84,10 +87,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testGetMostViewedWishLists().
      */
     public function testGetMostViewedWishLists() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->getMostViewedWishLists(), 'Cant get most popular');
     }
 
     /**

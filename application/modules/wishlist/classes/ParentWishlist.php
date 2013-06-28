@@ -31,7 +31,6 @@ class ParentWishlist extends \MY_Controller {
             $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
-
     /**
      * set in cookie previous page url
      *
@@ -48,7 +47,7 @@ class ParentWishlist extends \MY_Controller {
                 'expire' => '15000',
                 'prefix' => ''
             );
-            $this->input->set_cookie($cookie);
+            @$this->input->set_cookie($cookie);
         }
     }
 
@@ -100,17 +99,19 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-
     /**
      * get user wish list
      *
      * @access public
-     * @param int $user_id, int $list_id, array $access - list access
+     * @param type $hash
+     * @param type $access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
     public function show($hash, $access = array('public')) {
+        if (!$hash)
+            return FALSE;
 
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
 
@@ -231,7 +232,6 @@ class ParentWishlist extends \MY_Controller {
         $this->wishlist_model->upateWishList($id, $data);
         $this->wishlist_model->upateWishListItemsComments($id, $comments);
     }
-
 
     /**
      * create wish list
