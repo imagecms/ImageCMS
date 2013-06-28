@@ -46,12 +46,12 @@
 
 {if count($wishlists)>0}
     {foreach $wishlists as $key => $wishlist}
-        <form>
+        <form method="post" action="/wishlist/deleteItemByIds" >
             <table class="table">
                 <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                 <thead>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
                             Тип списка: <b>{echo $wishlist[0][access]}</b>
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
@@ -61,6 +61,7 @@
                     </tr>
                     {if $wishlist[0][variant_id]}
                         <tr>
+                            <th>Check</th>
                             <th>№</th>
                             <th>Отписатся</th>
                             <th>Товар</th>
@@ -72,6 +73,7 @@
                     {if $wishlist[0][variant_id]}
                         {foreach $wishlist as $key => $w}
                             <tr>
+                                <td><input type="checkbox" name="listItem[]" value="{$w['list_product_id']}" /></td>
                                 <td>{echo $key+1}</td>
                                 <td>
                                     <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}" class="btn">удалить</a>
@@ -92,12 +94,13 @@
                         {/foreach}
                     {else:}
                         <tr>
-                            <td>Список пуст</td>
+                            <td colspan="4">Список пуст</td>
                         </tr>
                     {/if}
                 </tbody>
             </table>
             {form_csrf()}
+            <input type="submit" class="btn btn-small" value="Видалить Обрані">
         </form>
         <hr/>
     {/foreach}

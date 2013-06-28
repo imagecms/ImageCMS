@@ -198,6 +198,16 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
+    
+    public function deleteItemByIds(){
+        parent::deleteItemByIds();
+        if ($this->dataModel) {
+            redirect('/wishlist');
+        } else {
+            return $this->errors;
+        }
+         
+     }
 
     public function deleteImage() {
         parent::deleteImage();

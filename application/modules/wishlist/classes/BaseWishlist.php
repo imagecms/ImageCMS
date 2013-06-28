@@ -165,8 +165,19 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
+    
+    public function deleteItemByIds(){
+        $items = $this->input->post('listItem');
+        if($items){
+            if(parent::deleteItemByIds($items)){
+                return $this->dataModel[] = lang('deleted');
+            }else{
+                return $this->errors[] = lang('error_cant_delete');
+            }
+        }
+     }
 
-     public function deleteImage(){
+    public function deleteImage(){
        $image = $this->input->post('image');
        if(parent::deleteImage($image)){
            return $this->dataModel[] = lang('deleted');
