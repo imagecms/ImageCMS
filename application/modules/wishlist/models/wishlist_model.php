@@ -316,11 +316,13 @@ class Wishlist_model extends CI_Model {
      */
     public function upateWishListItemsComments($wish_list_id, $comments) {
         foreach ($comments as $key => $coments) {
-            $this->db->where('wish_list_id', $wish_list_id)
-                    ->where('variant_id ', $key)
-                    ->set('comment', $coments)
-                    ->update('mod_wish_list_products');
+            if (!$this->db->where('wish_list_id', $wish_list_id)
+                            ->where('variant_id ', $key)
+                            ->set('comment', $coments)
+                            ->update('mod_wish_list_products'))
+                return FALSE;
         }
+        return TRUE;
     }
 
     /**

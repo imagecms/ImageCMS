@@ -228,22 +228,25 @@ class ParentWishlist extends \MY_Controller {
      * @return -----
      */
     public function updateWL($id, $data, $comments) {
-        $this->wishlist_model->upateWishList($id, $data);
-        $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        $return = TRUE;
+        $return = $this->wishlist_model->upateWishList($id, $data);
+        $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        return $return;
     }
-    
+
     /**
      * create wish list
      *
      * @access public
-     * @param int $user_id, string $listName
+     * @param int $user_id,
+     * @param string $listName
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
     public function createWishList($user_id, $listName) {
         if ($listName)
-            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+            $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
@@ -303,14 +306,20 @@ class ParentWishlist extends \MY_Controller {
      * add item to wish list
      *
      * @access public
-     * @param $varId, $listId, $listName
+     * @param type $varId
+     * @param string $listId
+     * @param type $listName
+     * @param type $userId
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function _addItem($varId, $listId, $listName) {
+    public function _addItem($varId, $listId, $listName, $userId = null) {
+        if (!$userId)
+            $userId = $this->dx_auth->get_user_id();
         $count_lists = 0;
-        $count_items = $this->wishlist_model->getUserWishListItemsCount($this->dx_auth->get_user_id());
+        $count_items = $this->wishlist_model->getUserWishListItemsCount($userId);
+
         if ($count_items >= $this->settings['maxItemsCount']) {
             $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
@@ -327,7 +336,7 @@ class ParentWishlist extends \MY_Controller {
 
         if ($listName) {
             $listId = "";
-            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+            $count_lists = $this->wishlist_model->getUserWishListCount($userId);
         }
 
         if ($count_lists >= $this->settings['maxListsCount']) {
@@ -398,9 +407,6 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function getUserInfo($id) {
-        if (!$id)
-            $id = $this->dx_auth->get_user_id();
-
         return $this->wishlist_model->getUserByID($id);
     }
 
@@ -416,7 +422,7 @@ class ParentWishlist extends \MY_Controller {
      */
     public function renderUserWL($userId, $access = array('public', 'public', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
-        $userInfo = $this->getUserInfo();
+        $userInfo = $this->getUserInfo($userId);
         $w = array();
 
         foreach ($wishlists as $wishlist)
