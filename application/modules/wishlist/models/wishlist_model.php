@@ -29,7 +29,6 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-//        var_dump((int)ini_get('upload_max_filesize'));
         return $this->db->where('identif', 'wishlist')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -462,12 +461,13 @@ class Wishlist_model extends CI_Model {
      * @param type $user_id
      * @return boolean
      */
-    public function createWishList($listName, $user_id) {
+    public function createWishList($listName, $user_id, $access = 'shared') {
         $this->createUserIfNotExist($user_id);
         $data = array(
             'title' => $listName,
             'user_id' => $user_id,
-            'hash' => random_string('unique', 16)
+            'hash' => random_string('unique', 16),
+            'access' => $access
         );
         return $this->db->insert('mod_wish_list', $data);
     }
