@@ -18,15 +18,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         $this->core->set_meta_tags('Wishlist');
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         if ($this->dx_auth->is_logged_in()) {
-            if (parent::renderUserWL($this->dx_auth->get_user_id())) {
-                \CMSFactory\assetManager::create()
-                        ->registerScript('wishlist')
-                        ->registerStyle('style')
-                        ->setData('wishlists', $this->dataModel['wishlists'])
-                        ->setData('user', $this->dataModel['user'])
-                        ->setData('settings', $this->settings)
-                        ->render('wishlist');
-            }
+            parent::getUserWL($this->dx_auth->get_user_id());
+            \CMSFactory\assetManager::create()
+                    ->registerScript('wishlist')
+                    ->registerStyle('style')
+                    ->setData('wishlists', $this->dataModel['wishlists'])
+                    ->setData('user', $this->dataModel['user'])
+                    ->setData('settings', $this->settings)
+                    ->setData('errors', $this->errors)
+                    ->render('wishlist');
         }
         else
             $this->core->error_404();
@@ -47,7 +47,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
         if ($this->dataModel) {
-           redirect('/wishlist');
+            redirect('/wishlist');
         } else {
             \CMSFactory\assetManager::create()
                     ->setData('errors', $this->errors)
@@ -198,16 +198,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             return $this->errors;
         }
     }
-    
-    public function deleteItemByIds(){
+
+    public function deleteItemByIds() {
         parent::deleteItemByIds();
         if ($this->dataModel) {
             redirect('/wishlist');
         } else {
             return $this->errors;
         }
-         
-     }
+    }
 
     public function deleteImage() {
         parent::deleteImage();
@@ -220,7 +219,6 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function do_upload() {
         parent::do_upload();
-
         redirect('/wishlist');
     }
 

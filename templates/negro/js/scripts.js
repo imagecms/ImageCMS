@@ -9,12 +9,12 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    countColumn: 3, //if not drop-side
+    //countColumn: 3, //if not drop-side
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
+    sub2Frame: '.frame-l2', //if drop-side
     dropWidth: 480,
     evLF: 'hover',
     evLS: 'hover',
@@ -348,9 +348,10 @@ function processPage() {
         keys.push(item.id + '_' + item.vId);
     });
     //update all product buttons
-    var key = $this.data('prodid') + '_' + $this.data('varid');
+
     $(genObj.btnBuy).each(function() {
-        var $this = $(this);
+        var $this = $(this),
+                key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
             $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
             $this.unbind('click').bind('click', function(e) {
@@ -361,7 +362,8 @@ function processPage() {
         }
     });
     $('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
-        var $this = $(this);
+        var $this = $(this),
+                key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) == -1) {
             $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
             $this.unbind('click').bind('click', function(e) {
@@ -373,7 +375,8 @@ function processPage() {
         }
     });
     $('[data-rel="frameplusminus"]').each(function() {
-        var $this = $(this);
+        var $this = $(this),
+                key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
             var input = $this.find('input');
             $this.find('button').attr('disabled', 'disabled');
@@ -420,7 +423,7 @@ function initShopPage(showWindow, target, orderDetails) {
             if (input == undefined)
                 var input = pd.closest(genObj.frameCount).find('input');
 
-            var inputVal = input.attr('value'),
+            var inputVal = input.val(),
                     condTooltip = '';
             if (!btn)
                 condTooltip = checkProdStock && inputVal > input.data('max');
@@ -453,8 +456,10 @@ function initShopPage(showWindow, target, orderDetails) {
             popupCartRecGenSum();
         }
         $(genObj.frameCount + ' input').bind('keyup', function(e) {
-            if (!$.testNumber(e))
+            var $this = $(this);
+            if (!$.testNumber(e) && !$this.maxValue()) {
                 chCountInCart($(this).prev('div'));
+            }
         });
         if (showWindow) {
             togglePopupCart(target);
@@ -529,8 +534,7 @@ function recountCartPage(selectDeliv, methodDeliv) {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
     $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    var shiping = parseFloat(Shop.Cart.shipping).toFixed(pricePrecision);
-    $('#shipping').html(shiping);
+    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
     $('.curr').html(curr);
 }
 
@@ -632,8 +636,14 @@ jQuery(document).ready(function() {
         if (ltie7)
             ieInput('.cuselText');
     }
-    $('#sort, #sort2').bind('change', function() {
-        $('form#searchSortForm').submit();
+    var catalogForm = $('#catalog_form')
+    $('#sort').live('change', function() {
+        $('input[name=order]').val($(this).val())
+        catalogForm.submit();
+    });
+    $('#sort2').live('change', function() {
+        $('input[name=user_per_page]').val($(this).val())
+        catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
     $('.menu-main').menuImageCms(optionsMenu);
@@ -872,7 +882,7 @@ jQuery(document).ready(function() {
 //    var methodDeliv = $('#method_deliv'),
 //            selectDeliv = true;
     //    if radio
-    var methodDeliv = $('[name = "met_del"]'),
+    var methodDeliv = $('[name = "deliveryMethodId"]'),
             selectDeliv = false;
     recountCartPage(selectDeliv, methodDeliv);
     $(genObj.btnBuy).bind('click', function(e) {
@@ -1088,10 +1098,11 @@ jQuery(document).ready(function() {
         existsVnames(vName, liBlock);
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
     });
-    $('.frame-count-buy .btn-plus > button, .frame-count-buy .btn-plus > button').live('click', function() {
+    $('.frame-count-buy ' + genObj.minus + ',.frame-count-buy ' + genObj.plus).live('click', function() {
         var $this = $(this);
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.closest(genObj.frameChangeCount).next().val())
-    })
+    }
+    )
 });
 wnd.load(function() {
     $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-brands):not(.frame-scroll-pane):visible').myCarousel({
