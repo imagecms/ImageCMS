@@ -495,6 +495,19 @@ class Commentsapi extends Comments {
             return $words[1];
         return $words[2];
     }
+    
+    /**
+     * Get count answers to comment by id
+     * @param int $commentId
+     * @return boolean|int
+     */
+    public function getCountCommentAnswersByCommentId($commentId){
+        $query = $this->db->where('parent',$commentId)->get('comments')->result_array();
+        if ($query)
+            return count($query);
+        else
+            return false;
+    }
 
 }
 
