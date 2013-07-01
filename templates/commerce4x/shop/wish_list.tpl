@@ -95,12 +95,7 @@
                                         {if in_array($variant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                     </button>
                                 {else:}
-                                    <button data-placement="bottom right"
-                                            data-place="noinherit"
-                                            data-duration="500"
-                                            data-price="{echo $variant->toCurrency()}"
-                                            data-effect-off="fadeOut"
-                                            data-effect-on="fadeIn"
+                                    <button
                                             data-drop=".drop-report"
                                             data-prodid="{echo $item.model->getId()}"
                                             type="button"

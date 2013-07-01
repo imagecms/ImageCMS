@@ -15,7 +15,7 @@ textarea{overflow: auto;}
 .special-proposition + .special-proposition, .frame-seo-text{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '<span class="ie_10"></span>'));}
 .shadow-w_220{z-index: expression(runtimeStyle.zIndex = 1, insertAdjacentHTML('afterBegin', '<span class="ie_19"></span>'));}
 
-.d_i-b, .helper, .helper + *, .t-a_j > *, .ie_1, [class*="icon"], .prev, .next, .niceCheck, .ui-slider-handle, .prod_status, .ie_17, #fancybox-close, .fancy-ico, [class*="btn"], .nav > li > a, .nav > li > span, .menu-main td > .frame-item-menu > div > .title > span, .items-catalog > li, #items-catalog-main .price-discount-catalog, .items-brands.main > li, .frame-catalog > ul > li, .frame-sub-catalog > li, .cusel, .block-filter .frame-label, .items-complect li, .social-product .social a, .items-sub-category > li, [class*="d_l"], .frame-item-menu > ul > li, .menu-main td > .frame-item-menu > div > .title > span, .crumbs a, .items-catalog .price-catalog, .comprasion_head li > span, .pagination > li, .fancy-photo .price-product{display: inline !important;zoom: 1;}
+.d_i-b, .helper, .helper + *, .t-a_j > *, .ie_1, [class*="icon"], .prev, .next, .niceCheck, .ui-slider-handle, .product-status, .ie_17, #fancybox-close, .fancy-ico, [class*="btn"], .nav > li > a, .nav > li > span, .menu-main td > .frame-item-menu > div > .title > span, .items-catalog > li, #items-catalog-main .price-discount-catalog, .items-brands.main > li, .frame-catalog > ul > li, .frame-sub-catalog > li, .cusel, .block-filter .frame-label, .items-complect li, .social-product .social a, .items-sub-category > li, [class*="d_l"], .frame-item-menu > ul > li, .menu-main td > .frame-item-menu > div > .title > span, .crumbs a, .items-catalog .price-catalog, .comprasion_head li > span, .pagination > li, .fancy-photo .price-product{display: inline !important;zoom: 1;}
 [class*='price'].d_n{display:none !important;}
 .horizontal-form .controls > .btn > *{margin-left: -85px;}
 .btn-bask > *{line-height: 35px;}
@@ -32,4 +32,4 @@ li{zoom: 1;}
 #items-catalog-main .star{margin-bottom: 10px;zoom: 1;}
 
 .check-filter > li > div{float: left;margin-left: 5px;}
-.func-button > .btn {float: left;}
+.funcs-buttons > .btn {float: left;}

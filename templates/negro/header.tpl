@@ -19,21 +19,23 @@
         <div class="left-content-header">
             <div class="header-left-content-header">
                 <!--                Start. contacts block-->
-                <span class="phones-header">
+                <div class="phones-header">
                     <span class="f-s_0">
-                        <span class="icon_header_phone"></span>
+                        <span class="icon_phone_header"></span>
                         <span class="phone">
                             <span class="phone-code">(097)</span>
                             <span class="phone-number">567-43-21</span>
                         </span>
                     </span>
-                    <span class="btn-order-call">
-                        <button type="button" data-drop=".drop-order-call" data-source="shop/callback">
-                            <span class="icon_order_call"></span>
-                            <span class="text-el d_l">Заказать звонок</span>
-                        </button>
-                    </span>
-                </span>
+                    <ul class="tabs">
+                        <li class="btn-order-call">
+                            <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
+                                <span class="icon_order_call"></span>
+                                <span class="text-el d_l">Заказать звонок</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <a href="skype:icon_skype" class="f-s_0">
                     <span class="icon_skype"></span>
                     <span class="text-el">imagecms</span>

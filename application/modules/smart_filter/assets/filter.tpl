@@ -11,42 +11,44 @@
     {$curMax = $maxPrice;}
 {/if}
 <script type="text/javascript">
-    def_min={$minPrice};
-    def_max={$maxPrice};
-    cur_min={$curMin};
-    cur_max={$curMax};
     totalProducts = parseInt('{$totalProducts}');
+    slider1 = new Object();
+    slider1.defMin = {$minPrice};
+    slider1.defMax = {$maxPrice};
+    slider1.curMin = {$curMin};
+    slider1.curMax = {$curMax};
 </script>
-<div class="block-filter shadow-w_220">
-    <div class="title_h3">Подробор по параметрам</div>
-    <div class="inside-padd">
-        <div class="title_h4">Цена в гривнах</div>
-        <div class="sliderCont">
-            <noscript>Джаваскрипт не включен</noscript>
-            <div id="slider">
-                <a class="ui-slider-handle" href="#" id="left_slider"></a>
-                <a class="ui-slider-handle" href="#" id="right_slider"></a>
-            </div>
-        </div>
-    </div>
-    <div class="formCost">
+<div class="frames-checks-sliders">
+    <div class="frame-slider" id="frame-slider1">
         <div class="inside-padd">
-            <div class="t-a_j">
-                <label>
-                    <input type="text" id="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $curMin}"/>
-                </label>
-                <label>
-                    <input type="text" id="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $curMax}"/>
-                </label>
-                <input type="submit" value="ОК"/>
+            <div class="title">Цена в гривнах</div>
+            <div class="slider-cont">
+                <noscript>Джаваскрипт не включен</noscript>
+                <div class="slider" id="slider1">
+                    <a href="#" class="ui-slider-handle left-slider"></a>
+                    <a href="#" class="ui-slider-handle right-slider"></a>
+                </div>
+            </div>
+            <div class="form-cost number">
+                <div class="t-a_j">
+                    <label>
+                        <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
+                    </label>
+                    <label>
+                        <input type="text" class="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
+                    </label>
+                    <div class="btn-def">
+                        <input type="submit" value="ОК"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="frame-group-checks">
         <div class="inside-padd">
             {if count($brands) > 0}
-                <div class="title_h4">Производитель</div>
-                <ul>
+                <div class="title">Производитель</div>
+                <ul class="list-filters">
                     {foreach $brands as $brand}
                         {if is_array(ShopCore::$_GET['brand']) && in_array($brand->id, ShopCore::$_GET['brand'])}
                             {$check = 'checked="checked"'}
@@ -54,7 +56,7 @@
                             {$check = ''}
                         {/if}
                         {if $brand->countProducts == 0}
-                        {//$class = "disabled"}
+                            {//$class = "disabled"}
                             {$dis = 'disabled="disabled"'}
                         {else:}
                             {$class = $dis = ""}
@@ -65,7 +67,7 @@
                                     <input {$dis} class="brand{echo $brand->id}" name="brand[]" value="{echo $brand->id}" type="checkbox" {$check}/>
                                 </span>
                                 <div class="name-count">
-                                    <span class="title">{echo $brand->name}</span>
+                                    <span class="text-el">{echo $brand->name}</span>
                                     <span class="count">({echo $brand->countProducts})</span>
                                 </div>
                             </div>
@@ -81,7 +83,7 @@
         {foreach $propertiesInCat as $prop}
             <div class="frame-group-checks">
                 <div class="inside-padd">
-                    <div class="title_h4">{echo $prop->name}</div>
+                    <div class="title">{echo $prop->name}</div>
                     <ul>
                         {foreach $prop->possibleValues as $item}
                             {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
@@ -90,7 +92,7 @@
                                 {$check = ''}
                             {/if}
                             {if $item.count == 0}
-                            {//$class = "disabled"}
+                                {//$class = "disabled"}
                                 {$dis = 'disabled="disabled"'}
                             {else:}
                                 {$class = $dis = ""}
@@ -101,7 +103,7 @@
                                         <input {$dis} name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {$check} />
                                     </span>
                                     <div class="name-count">
-                                        <span class="title">{echo $item.value}</span>
+                                        <span class="text-el">{echo $item.value}</span>
                                         <span class="count">({echo $item.count})</span>
                                     </div>
                                 </div>

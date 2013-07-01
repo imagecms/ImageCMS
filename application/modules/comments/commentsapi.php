@@ -47,6 +47,7 @@ class Commentsapi extends Comments {
 //        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
+//        var_dump($item_id);
         $comments = $this->base->get($item_id, 0, $this->module);
 
         // Read comments template
@@ -493,6 +494,19 @@ class Commentsapi extends Comments {
         if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ( $numeric % 10 == 4 ))
             return $words[1];
         return $words[2];
+    }
+    
+    /**
+     * Get count answers to comment by id
+     * @param int $commentId
+     * @return boolean|int
+     */
+    public function getCountCommentAnswersByCommentId($commentId){
+        $query = $this->db->where('parent',$commentId)->get('comments')->result_array();
+        if ($query)
+            return count($query);
+        else
+            return false;
     }
 
 }

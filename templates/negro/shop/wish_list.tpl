@@ -8,11 +8,11 @@
 * $total_price : (string) Total price of all products
 */
 #}
-<div class="frame-inside">
+<div class="frame-inside page-wish-list">
     <div class="container">
         {if count($items) > 0}
         <div class="clearfix">
-            <div class="title_h1 f_l">Список желаний</div>
+            <div class="title-h1 f_l">Список желаний</div>
         </div>
         <!--            Start. Show products in wish list-->
         <ul class="items items-catalog items items-wish-list" id="items-catalog-main">
@@ -27,7 +27,7 @@
             <li class="span3 {if $variant->stock == 0} not_avail{/if}">
 
                 {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                <button class="icon_times_remove" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $variant->getId()})">
+                <button class="icon_times" data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $item.model->getId()}, this, {echo $variant->getId()})">
                     <span class="icon-remove_comprasion"></span>
                 </button>    
                 {/if}
@@ -124,7 +124,7 @@
         {else:}
         <!--      Start. Empty wish list-->
         <div class="clearfix">
-            <div class="title_h3">Список желаний пуст</div>
+            <div class="title-h3">Список желаний пуст</div>
         </div>
         <!--      End. Empty wishlist-->
         {/if}

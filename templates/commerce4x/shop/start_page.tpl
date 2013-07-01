@@ -10,6 +10,7 @@
         
         {echo \Category\RenderMenu::create()->load('category_menu_vert')}
 
+<<<<<<< HEAD
         <!-- Show Banners in circle -->
         <div class="span9">
             <div class="mainFrameBaner">
@@ -26,6 +27,24 @@
                         {/foreach}
                     </ul>
                     <div class="pager"></div>
+=======
+    <!-- Show Banners in circle -->
+    <div class="mainFrameBaner">
+        <section class="container">
+            {$banners = ShopCore::app()->SBannerHelper->getBanners(300)}
+            {if count($banners)}
+            <div class="frame_baner">
+                <ul class="cycle">
+                    {foreach $banners as $banner}
+                    <li>
+                        <a href="{echo $banner['url']}">
+                            <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+                <div class="group-button-carousel">
+>>>>>>> d888f7481798821a48812ef40868da9a7f0cb876
                     <button class="next" type="button"></button>
                     <button class="prev" type="button"></button>
                 </div>

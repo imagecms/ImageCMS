@@ -21,15 +21,38 @@ class Smart_filter extends \Category\BaseCategory {
 //        if ($this->input->is_ajax_request())
 //        else
     }
+    
+    public function set_price_slider(){
+        
+        $priceRange = \ShopCore::app()->SFilter->getPricerange();
+
+        if ($_GET['lp']) $curMin = (int) $_GET['lp']; else $curMin = (int) $priceRange['minCost'];
+        if ($_GET['rp']) $curMax = (int) $_GET['rp']; else $curMax = (int) $priceRange['maxCost'];
+        $data = array(
+            'minPrice' => (int) $priceRange['minCost'],
+            'maxPrice' => (int) $priceRange['maxCost'],
+            'curMin' => $curMin,
+            'curMax' => $curMax
+        );
+        
+        \CMSFactory\assetManager::create()->setData($data);
+        
+    }
 
     public function init() {
+
+        $this->set_price_slider();
+
         return \CMSFactory\assetManager::create()
-                        ->registerScript('jquery.ui-slider',TRUE)
-                        ->registerScript('filter')
+                        ->registerScript('jquery.ui-slider', TRUE)
+                        ->registerScript('filter', TRUE)
                         ->render('main', true);
     }
 
     public function filter() {
+        
+        $this->set_price_slider();
+        
         return \CMSFactory\assetManager::create()
                         ->setData($this->data)
                         ->render('filter', true);

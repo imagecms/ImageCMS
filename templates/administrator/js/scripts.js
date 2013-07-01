@@ -18,7 +18,7 @@ function sortInit() {
             axis: 'y',
             cursor: 'move',
             scroll: false,
-            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, td select, td textarea',
+            cancel: '.head_body, .btn, .frame_label, td p, td span, td a, td input, input, td select, td textarea',
             helper: function(e, tr)
             {
                 var $originals = tr.children();
@@ -904,7 +904,7 @@ function initAdminArea() {
     if ($.exists('.datepicker')) {
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd',
-            minDate: new Date(2013, 1 - 1, 1),
+            minDate: new Date(),
             showOtherMonths: true,
             selectOtherMonths: true,
             prevText: '',
@@ -1345,6 +1345,29 @@ $(document).ready(
             $('#settings_form .control-label').live('click', function() {
                 $(this).next().find(':input:first').focus();
             })
+            $('.updateColumn').live('click', function() {
+                var btn = $(this);
+                var categoryId = btn.data('id');
+                var column = btn.parent().find('input').val();
+
+                if (!parseInt(column))
+                    showMessage('Сообщение','Введите номер колонки','r')
+                    
+                $.ajax({
+                    type: 'POST',
+                    data: 'categoryId='+categoryId+'&column='+column,
+                    url: base_url + 'admin/components/run/shop/categories/ajaxUpdateCategoryColumn/',
+                    success: function(data) {
+                        if (data == true){
+                            showMessage('Сообщение','Номер колонки обновлен','success');
+                            btn.hide();
+                        }else{
+                            showMessage('Сообщение','Не удалось обновить номер колонки','errror');
+                        }
+                    }
+                });
+            });
+            
         });
 
 $(window).load(function() {

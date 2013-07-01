@@ -5,8 +5,8 @@
             <button type="button"
                     id="loginButton"
                     data-drop=".drop-enter"
-                    data-source="/auth"
-                    data-placement="">
+                    data-source="{site_url('auth')}"
+                    >
                 <span class="icon_enter"></span>
                 <span class="text-el">Войти</span>
             </button>

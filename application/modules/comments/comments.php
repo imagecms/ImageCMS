@@ -23,6 +23,7 @@ class Comments extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $CI = &get_instance();
     }
 
     /**
@@ -87,7 +88,7 @@ class Comments extends MY_Controller {
 
     public function init($model) {
         \CMSFactory\assetManager::create()
-                ->registerScript('comments', TRUE);
+                ->registerScript('comments');
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());

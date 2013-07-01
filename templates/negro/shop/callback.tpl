@@ -14,6 +14,7 @@
                         <span class="title">Ваше имя:</span>
                         <span class="frame-form-field">
                             <span class="icon_person"></span>
+                            <span class="must">*</span>
                             <input type="text" name="Name"/>
                             <label id="for_Name" class="for_validations"></label>
                         </span>
@@ -22,6 +23,7 @@
                         <span class="title">Ваш телефон:</span>
                         <span class="frame-form-field">
                             <span class="icon_phone"></span>
+                            <span class="must">*</span>
                             <input type="text" name="Phone"/>
                             <label id="for_Phone" class="for_validations"></label>
                         </span>
@@ -35,14 +37,14 @@
                     </label>
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
-                        <span class="frame-form-field">
-                            <span class="btn-form">
+                        <div class="frame-form-field">
+                            <div class="btn-form">
                                 <button type="submit">
                                     <span class="icon_order_drop"></span>
                                     <span class="text-el">Позвоните мне</span>
                                 </button>
-                            </span>
-                        </span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

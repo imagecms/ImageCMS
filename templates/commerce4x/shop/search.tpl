@@ -205,18 +205,13 @@
                                             data-url="{echo shop_url('product/'.$product->getUrl())}"
                                             data-price="{echo $pv->toCurrency()}"
                                             {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
-                                            data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                            data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $pv->getStock()}"
                                             >
                                             {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                     </button>
                                     {else:}
                                     <button {if $key != 0}style="display:none"{/if}
-                                        data-placement="top right"
-                                        data-place="noinherit"
-                                        data-duration="500"
-                                        data-effect-off=    "fadeOut"
-                                        data-effect-on="fadeIn"
                                         data-drop=".drop-report"
 
                                         data-id="{echo $pv->getId()}"
@@ -232,7 +227,7 @@
                                         data-url="{echo shop_url('product/'.$product->getUrl())}"
                                         data-price="{echo $pv->toCurrency()}"
                                         {if trim(ShopCore::encode($pv->getNumber())) != ''} data-number="{echo $pv->getNumber()}"{/if}
-                                        data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-stock="{echo $pv->getStock()}"
 
                                         type="button"

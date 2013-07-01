@@ -22,7 +22,7 @@
                 <li class="box-4">
                     <div class="btn-toggle-toolbar">
                         <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0}style="display: none;"{else:} class="activeUT"{/if}>
-                            <span class="icon_times_remove"></span>
+                            <span class="icon_times"></span>
                             <span class="text-el">Свернуть</span>
                         </button>
                         <button type="button" data-rel="1" {if $_COOKIE['condUserToolbar'] == 1}style="display: none;"{else:} class="activeUT"{/if}>
@@ -35,7 +35,9 @@
     </div>
     <div class="drop frame-already-show">
         <div class="content-already-show">
-            {widget('ViewedProducts')}
+            <div class="horizontal-carousel">
+                {widget('ViewedProducts')}
+            </div>
         </div>
     </div>
 </div>

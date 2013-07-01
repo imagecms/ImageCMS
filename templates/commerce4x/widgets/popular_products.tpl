@@ -69,17 +69,13 @@
                                 data-number="{echo $hotProduct->firstVariant->getNumber()}"
                                 data-img="{echo $hotProduct->firstVariant->getSmallPhoto()}"
                                 data-url="{echo shop_url('product/'.$hotProduct->getUrl())}"
-                                data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
+                                data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
                             {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                         </button>
                         {else:}
-                        <button data-placement="bottom right"
-                                data-place="noinherit"
-                                data-duration="500"
-                                data-effect-off="fadeOut"
-                                data-effect-on="fadeIn"
+                        <button 
                                 data-drop=".drop-report"
                                 data-prodid="{echo $hotProduct->getId()}"
                                 type="button"

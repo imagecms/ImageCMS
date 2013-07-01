@@ -1020,5 +1020,5 @@ window.ontouchstart = function(e) {
 }
 if (isTouch)
     window.onscroll = function() {
-            topbar.style.top =  window.pageYOffset || docElem.scrollTop || body.scrollTop + window.innerHeight + 'px';
+            topbar.style.top =  window.pageYOffset || docElem.scrollTop || body.scrollTop + window.innerHeight - 50 + 'px';
     };
