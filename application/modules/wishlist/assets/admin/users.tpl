@@ -56,10 +56,10 @@
                                         </a>
                                     </td>
                                     <td>
-                                        {$u[lists_count]}
+                                        <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{echo $u[id]}#lists" class="pjax">{$u[lists_count]} </a>
                                     </td>
                                     <td>
-                                        {$u[items_count]}
+                                        <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{echo $u[id]}#lists" class="pjax">{$u[items_count]}</a>
                                     </td>
                                 </tr>
                             {/foreach}

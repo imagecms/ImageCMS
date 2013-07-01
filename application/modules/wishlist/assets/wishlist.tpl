@@ -1,24 +1,26 @@
 <article class="container">
-{/*    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
+    {/*    <!-- ***************************ПРОВЕРКА wishlistApi********************************* -->
     <a href="#" class="APItester">Проверка API</a>
     <textarea class="testAPI" style="font-size: 13px; line-height: 26px; padding: 10px; height: 200px; " ></textarea>
     <!-- ******************************************************************************** -->*/}
-    <label>
-        <span class="frame_form_field__icsi-css">
-            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-        </span>
-    </label>
+    {if $errors}
+        {foreach $errors as $error}
+            <div class="msg">
+                <div class="error">{$error}</div>
+            </div>
+        {/foreach}
+    {/if}
     <div>
         <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
     </div>
     {form_open_multipart('/wishlist/do_upload')}
-
+    <input type="hidden" value="{echo $user[id]}" name="userID"/>
     <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
     <br /><br />
 
     <input type="submit" value="upload" class="btn" />
-
+    {form_csrf()}
 </form>
 <form method="POST" action="/wishlist/deleteImage">
     <input type="hidden" value="{echo $user[user_image]}" name="image"/>
@@ -46,12 +48,12 @@
 
 {if count($wishlists)>0}
     {foreach $wishlists as $key => $wishlist}
-        <form>
+        <form method="post" action="/wishlist/deleteItemByIds" >
             <table class="table">
                 <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                 <thead>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="4">
                             <h1 class="wishListTitle">{$wishlist[0][title]}</h1>
                             Тип списка: <b>{echo $wishlist[0][access]}</b>
                             <div class="wishListDescription" >{$wishlist[0][description]}</div>
@@ -61,6 +63,7 @@
                     </tr>
                     {if $wishlist[0][variant_id]}
                         <tr>
+                            <th>Check</th>
                             <th>№</th>
                             <th>Отписатся</th>
                             <th>Товар</th>
@@ -72,6 +75,7 @@
                     {if $wishlist[0][variant_id]}
                         {foreach $wishlist as $key => $w}
                             <tr>
+                                <td><input type="checkbox" name="listItem[]" value="{$w['list_product_id']}" /></td>
                                 <td>{echo $key+1}</td>
                                 <td>
                                     <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}" class="btn">удалить</a>
@@ -92,12 +96,13 @@
                         {/foreach}
                     {else:}
                         <tr>
-                            <td>Список пуст</td>
+                            <td colspan="4">Список пуст</td>
                         </tr>
                     {/if}
                 </tbody>
             </table>
             {form_csrf()}
+            <input type="submit" class="btn btn-small" value="Удалить Обрание">
         </form>
         <hr/>
     {/foreach}

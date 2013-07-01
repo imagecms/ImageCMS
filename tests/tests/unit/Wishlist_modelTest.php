@@ -67,10 +67,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetWishLists().
      */
     public function testGetWishLists() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->object->getWishLists($GLOBALS['userId']);
     }
 
     /**
@@ -277,9 +274,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      */
     public function testCreateWishList() {
         // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->createWishList('adas', $GLOBALS['userId']));
     }
 
     /**
@@ -287,10 +282,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetUserWishListCount().
      */
     public function testGetUserWishListCount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertContainsOnly('int', array($this->object->getUserWishListCount($GLOBALS['userId'])));
     }
 
     /**
@@ -308,7 +300,9 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @covers Wishlist_model::addRewiew
      * @todo   Implement testAddRewiew().
      */
-    public function testAddRewiew() {
+    public function testAddReview() {
+//        $this->testAddItem();
+//        $this->assertTrue($this->object->addReview(''), 'Cant add review');
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
@@ -331,7 +325,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testDeinstall().
      */
     public function testDeinstall() {
-        $this->assertNotNull($this->object->deinstall(), 'Cant get Settings');
+        $this->assertTrue($this->object->deinstall(), 'Cant deinstall');
     }
 
     /**
@@ -339,8 +333,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testInstall().
      */
     public function testInstall() {
-
-        $this->assertNotNull($this->object->getSettings(), 'Cant get Settings');
+        $this->assertTrue($this->object->install(), 'Cant install');
     }
 
 }
