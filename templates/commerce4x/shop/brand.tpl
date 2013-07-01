@@ -24,7 +24,7 @@
 <article class="container">
     <div class="row">
         {include_tpl('filter')}
-        <div class="span9 right">
+        <div class="span10 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
             <span class="c_97">
                 {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}

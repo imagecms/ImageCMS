@@ -5,7 +5,7 @@
             <div class="title_h1 d_i-b v-a_m">{$title}</div>
         </div>
         <div class="carousel">
-            <div class="frame_carousel_button">
+            <div class="groupButton">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
                     <span class="text-el"></span>

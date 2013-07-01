@@ -28,7 +28,7 @@
             <h1>{lang('s_WL')}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
-                <ul class="items items_catalog itemsFrameNS">
+                <ul class="items items_catalog itemsFrameNS items_wish_list">
                     {foreach $items as $key=>$item}
 
                         {foreach $item.model->getProductVariants() as $variants}

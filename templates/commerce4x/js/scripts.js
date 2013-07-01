@@ -15,8 +15,8 @@ var genObj = {
     minus: '.minus',
     plus: '.plus',
     parentBtnBuy: 'li, [data-rel="frameP"]', //селектор
-    wishListIn: 'btn_cart', //назва класу
-    compareIn: 'btn_cart', //назва класу
+    wishListIn: '', //назва класу
+    compareIn: '', //назва класу
     toWishlist: 'toWishlist', //назва класу
     inWishlist: 'inWishlist', //назва класу
     toCompare: 'toCompare', //назва класу
@@ -41,15 +41,7 @@ var genObj = {
     priceOrigVariant: '.priceOrigVariant',
     photoProduct: '.photoProduct'
 }
-var optionsMenu = {
-    item: $('.menu-main td > .frame-item-menu > div'),
-    duration: 400,
-    drop: 'ul',
-    itemSub: '.frame-item-menu > ul > li',
-    frameSub: '.frame-item-menu > ul > li > div',
-    effecton: 'fadeIn',
-    effectoff: 'fadeOut'
-};
+
 var optionCompare = {
     left: '.leftDescription li',
     right: '.comprasion_tovars_frame > li',
@@ -110,44 +102,24 @@ function initBtnBuy() {
         return true;
     });
 }
-function navPortait() {
+function navPortait(){
     var frameM = $('.frame-menu-main');
     headerMenu = $('.headerMenu');
-
-    $('.headerMenu').each(function() {
-        var $this = $(this);
-        if ($this.hasClass('navHorizontal')) {
-            $('.frame-navbar').addClass('in');
-            var headerFon = $('.headerFon'),
-                    heightFon = 0,
-                    temp_height = $this.find('> li').outerHeight();
-
-            if ($this.hasClass('navVertical')) {
-                $('.btn-navbar').hide();
-                $this.removeClass('navVertical');
-                $('.frame-navbar').addClass('in').show();
-            }
-            if (temp_height < $this.outerHeight()) {
-                $('.btn-navbar').show();
-                $('.frame-navbar').removeClass('in');
-                $this.addClass('navVertical');
-            }
-
-            if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
-                heightFon = frameM.offset().top + frameM.outerHeight(true)
-                if ($.exists('.frame_baner'))
-                    heightFon = $('.frame_baner').height() / 2 + $('.frame_baner').offset().top;
-                headerFon.css({
-                    'height': heightFon,
-                    'top': 0
-                });
-            }
-            else
-                headerFon.css({
-                    'height': $('.headerContent').outerHeight(true) + $('header').height(),
-                    'top': 0
-                });
-        }
+    
+    var headerFon = $('.headerFon'),
+    heightFon = 0,
+    temp_height = $this.find('> li').outerHeight();
+            
+    if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')){
+        heightFon = frameM.offset().top+frameM.outerHeight(true)
+        headerFon.css({
+            'height': heightFon,
+            'top':0
+        });
+    }
+    else headerFon.css({
+        'height': $('.headerContent').outerHeight(true)+$('header').height(),
+        'top':0
     });
 }
 
@@ -497,7 +469,17 @@ $(document).ready(function() {
         }
         cuSel(params);
     }
-    $('.menu-main').menuPacket2(optionsMenu);
+    /*call plugin menuImageCms (jquery.imagecms.js)*/
+    $('.menu-main').menuImageCms({
+        item: $('.menu-main').find('td'),
+        duration: 200,
+        drop: '.frame-item-menu > ul',
+        countColumn: 5, //if not drop-side
+        effectOn: 'slideDown',
+        effectOff: 'slideUp',
+        durationOn: 200,
+        durationOff: 50
+    })
 
     $('.drop').drop({
         overlayColor: '#000',
@@ -612,7 +594,7 @@ $(document).ready(function() {
     $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
 
 
-    $('.' + genObj.tinyBask + '.' + genObj.isAvail).on('click', function() {
+    $('.' + genObj.tinyBask + '.' + genObj.isAvail).live('click', function() {
         initShopPage();
     });
 
@@ -894,25 +876,6 @@ wnd.load(function() {
         });
     }
 
-    $('.carousel_js:not(.vertical_carousel)').myCarousel({
-        item: 'li',
-        prev: '.btn_prev',
-        next: '.btn_next',
-        content: '.carousel',
-        groupButtons: '.groupButton',
-        before: function() {
-            var sH = 0;
-            var brandsImg = $('.frame_brand img')
-            if ($.exists_nabir(brandsImg.closest('.carousel_js'))) {
-                brandsImg.each(function() {
-                    var $thisH = $(this).height()
-                    if ($thisH > sH)
-                        sH = $thisH;
-                })
-                $('.frame_brand .helper').css('height', sH);
-            }
-        }
-    });
     /*call plugin myCarousel (jquery.imagecms.js and jquery.jcarousel.min.js) */
     $('.carousel_js:not(.vertical_carousel)').myCarousel({
         item: 'li',
@@ -920,15 +883,15 @@ wnd.load(function() {
         next: '.btn_next',
         content: '.carousel',
         before: function() {
-            var sH = 0;
-            var brandsImg = $('.items_brands img')
+            var sH = 0,
+                    brandsImg = $('.frame_brand img');
             if ($.exists_nabir(brandsImg.closest('.carousel_js'))) {
                 brandsImg.each(function() {
                     var $thisH = $(this).height()
                     if ($thisH > sH)
                         sH = $thisH;
                 })
-                $('.items_brands .helper').css('height', sH);
+                $('.frame_brand .helper').css('height', sH);
             }
         }
     });
@@ -943,14 +906,6 @@ wnd.load(function() {
         next: '.btn_next',
         content: '.carousel'
     });
-    wnd.resize(function() {
-        navPortait();
-        $('.frame_tabsc > div').equalHorizCell('refresh');
-        $('.menu-main').menuPacket2('refresh');
-        var btn_not_avail = $('.btn_not_avail.active');
-        if (btn_not_avail.length != 0)
-            btn_not_avail.drop('positionDrop');
-    })
 
     navPortait();
     var d_r_f_item = $('[data-radio-frame]');
@@ -1038,3 +993,46 @@ wnd.focus(function() {
     wishListCount();
     compareListCount();
 })
+
+// проверяем поддержку position: fixed;[start]
+var isFixedSupported = (function() {
+    var isSupported = null;
+    if (document.createElement) {
+        var el = document.createElement("div");
+        if (el && el.style) {
+            el.style.position = "fixed";
+            el.style.top = "10px";
+            var root = document.body;
+            if (root && root.appendChild && root.removeChild) {
+                root.appendChild(el);
+                isSupported = el.offsetTop === 10;
+                root.removeChild(el);
+            }
+        }
+    }
+    return isSupported;
+})();
+
+window.onload = function() {
+    if (!isFixedSupported) {
+        document.body.className += ' no-fixed-supported';
+    }
+    window.scrollBy(0, 1);
+}
+
+var topbar = document.getElementById('topbar');
+var bottombar = document.getElementById('bottombar');
+var bottomBarHeight = bottombar.offsetHeight;
+
+var windowHeight = window.innerHeight;
+
+window.ontouchstart = function(e) {
+    if (event.target !== topbar) {
+        topbar.style = "";
+    }
+}
+window.onscroll = function() {
+    var scrollTop = window.scrollY;
+    topbar.style.top = scrollTop + 'px';
+    bottombar.style.bottom = (scrollTop + windowHeight - bottomBarHeight) + 'px';
+};
