@@ -307,6 +307,35 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
+     *
+     * @param type $UserID
+     * @return boolean
+     */
+    public function deleteAllWL($UserID) {
+        $forReturn = TRUE;
+
+        $WLs = $this->wishlist_model->getAllUserWLs($UserID);
+        if ($forReturn) {
+            foreach ($WLs as $wl) {
+                $forReturn = $this->wishlist_model->delWishListById($wl);
+                $forReturn = $this->wishlist_model->delWishListProductsByWLId($wl);
+
+                if (!$forReturn)
+                    $this->errors[] = lang('error_items_delete');
+            }
+        }
+        else
+            $this->errors[] = lang('error_WL_delete');
+
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = lang('deleted');
+            return TRUE;
+        }
+    }
+
+    /**
      * add item to wish list
      *
      * @access public
@@ -491,7 +520,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     function do_upload($userID = null) {
-        
+
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
@@ -500,13 +529,13 @@ class ParentWishlist extends \MY_Controller {
         list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
 
         if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
-            $this->errors[] = 1;
+            $this->errors[] = lang('error_max_image_size_exceeded');
         if ($this->settings['maxImageWidth'] < $width)
-            $this->errors[] = 2;
+            $this->errors[] = lang('error_max_image_width_exceeded');
         if ($this->settings['maxImageHeight'] < $height)
-            $this->errors[] = 3;
+            $this->errors[] = lang('error_max_image_height_exceeded');
         if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
-            $this->errors[] = 4;
+            $this->errors[] = lang('error_invalid_file_format');
 
         if ($this->errors)
             return FALSE;
@@ -571,7 +600,7 @@ class ParentWishlist extends \MY_Controller {
     /**
      * delete  image
      *
-     * @param type $image
+     * @param string $image image name
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -590,9 +619,9 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function renderPopup() {
-        $wish_lists = $this->wishlist_model->getWishLists();
-        if ($this->wishlist_model->getWishLists()) {
+    public function renderPopup($userID = null) {
+        $wish_lists = $this->wishlist_model->getWishLists($userID);
+        if ($wish_lists) {
             $this->dataModel = $wish_lists;
             return TRUE;
         } else {
