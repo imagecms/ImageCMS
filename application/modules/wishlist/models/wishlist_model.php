@@ -29,6 +29,7 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
+//        var_dump((int)ini_get('upload_max_filesize'));
         return $this->db->where('identif', 'wishlist')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -130,7 +131,7 @@ class Wishlist_model extends CI_Model {
 
     /**
      * get user wish list by hash
-     * 
+     *
      * @param type $hash
      * @param type $access
      * @return array
@@ -200,28 +201,36 @@ class Wishlist_model extends CI_Model {
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
 
-        return array_merge(
-                $this->db
-                        ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
-                        ->where('mod_wish_list.user_id', $user_id)
-                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
-                        ->where_in('mod_wish_list.access', $access)
-                        ->where('shop_products_i18n.locale', $locale)
-                        ->where('shop_product_variants_i18n.locale', $locale)
-                        ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
-                        ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
-                        ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
-                        ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
-                        ->get('mod_wish_list')
-                        ->result_array(), $this->db
-                        ->select('*, mod_wish_list.id AS `wish_list_id`')
-                        ->where_in('mod_wish_list.access', $access)
-                        ->where('mod_wish_list_products.wish_list_id', NULL)
-                        ->where('mod_wish_list.user_id', $user_id)
-                        ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
-                        ->get('mod_wish_list')
-                        ->result_array()
-        );
+        $queryFirst = $this->db
+                ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
+                ->where('mod_wish_list.user_id', $user_id)
+                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
+                ->where_in('mod_wish_list.access', $access)
+                ->where('shop_products_i18n.locale', $locale)
+                ->where('shop_product_variants_i18n.locale', $locale)
+                ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
+                ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
+                ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+                ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+                ->get('mod_wish_list');
+
+        if ($queryFirst) {
+            $queryFirst = $queryFirst->result_array();
+        }
+
+        $querySecond = $this->db
+                ->select('*, mod_wish_list.id AS `wish_list_id`')
+                ->where_in('mod_wish_list.access', $access)
+                ->where('mod_wish_list_products.wish_list_id', NULL)
+                ->where('mod_wish_list.user_id', $user_id)
+                ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
+                ->get('mod_wish_list');
+
+        if ($querySecond) {
+            $querySecond = $querySecond->result_array();
+        }
+
+        return array_merge($queryFirst, $querySecond);
     }
 
     /**
@@ -279,12 +288,15 @@ class Wishlist_model extends CI_Model {
      * @return array
      */
     public function getMostPopularProducts($limit = 10) {
-        return $this->db->select('COUNT(id) as productCount, variant_id,')
-                        ->order_by('productCount', 'desc')
-                        ->group_by('variant_id')
-                        ->limit($limit)
-                        ->get('mod_wish_list_products')
-                        ->result_array();
+        $query = $this->db->select('COUNT(id) as productCount, variant_id,')
+                ->order_by('productCount', 'desc')
+                ->group_by('variant_id')
+                ->limit($limit)
+                ->get('mod_wish_list_products');
+        if ($query)
+            return $query->result_array();
+        else
+            return FALSE;
     }
 
     /**
@@ -324,11 +336,13 @@ class Wishlist_model extends CI_Model {
      */
     public function upateWishListItemsComments($wish_list_id, $comments) {
         foreach ($comments as $key => $coments) {
-            $this->db->where('wish_list_id', $wish_list_id)
-                    ->where('variant_id ', $key)
-                    ->set('comment', $coments)
-                    ->update('mod_wish_list_products');
+            if (!$this->db->where('wish_list_id', $wish_list_id)
+                            ->where('variant_id ', $key)
+                            ->set('comment', $coments)
+                            ->update('mod_wish_list_products'))
+                return FALSE;
         }
+        return TRUE;
     }
 
     /**
@@ -363,7 +377,7 @@ class Wishlist_model extends CI_Model {
         if (!$user_id)
             $user_id = $this->dx_auth->get_user_id();
 
-        if ($listName != '') {
+        if ($listName != '') {//?????????
             $this->createWishList($listName, $user_id);
             $listId = $this->db->insert_id();
         }
@@ -498,6 +512,14 @@ class Wishlist_model extends CI_Model {
                         ->result_array();
     }
 
+    public function setUserImage($userID, $file_name) {
+        $this->db
+                ->where('id', $userID)
+                ->update('mod_wish_list_users', array(
+                    'user_image' => $file_name
+        ));
+    }
+
     /**
      * install module(create db tables, set default values)
      */
@@ -595,13 +617,18 @@ class Wishlist_model extends CI_Model {
         $this->db
                 ->where('identif', 'wishlist')
                 ->update('components', array(
-                    'settings' => serialize(array('maxListName' => 254,
-                        'maxListsCount' => 10,
-                        'maxItemsCount' => 100,
-                        'maxCommentLenght' => 500,
-                        'maxDescLenght' => 1000,
-                        'maxImageWidth' => 150,
-                        'maxImageHeight' => 150)),
+                    'settings' => serialize(
+                            array(
+                                'maxListName' => 254,
+                                'maxListsCount' => 10,
+                                'maxItemsCount' => 100,
+                                'maxCommentLenght' => 500,
+                                'maxDescLenght' => 1000,
+                                'maxImageWidth' => 150,
+                                'maxImageHeight' => 150,
+                                'maxImageSize' => 2000000
+                            )
+                    ),
                     'enabled' => 1,
                     'autoload' => 1
         ));
