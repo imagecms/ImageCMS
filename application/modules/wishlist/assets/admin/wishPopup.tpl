@@ -50,6 +50,7 @@
                                                             <input type="text"  name="wishListName"  value="" class="wish_list_name">
                                                         </label>
                                                         <input type="submit" class="{$class}" id="{$varId}"  value="{lang(move_in_list)}"/>
+                                                        <input type="hidden" name="user_id" value="{$user_id}"/>
                                                     </div>
                                                     <div id="errors" class="msg">
                                                         <div class="error"></div>

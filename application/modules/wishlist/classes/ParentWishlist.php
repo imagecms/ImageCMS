@@ -370,10 +370,10 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
+    public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '', $user_id = null) {
         $this->wishlist_model->deleteItem($varId, $wish_list_id);
 
-        if ($this->_addItem($varId, $to_listId, $to_listName)) {
+        if ($this->_addItem($varId, $to_listId, $to_listName, $user_id)) {
             return TRUE;
         } else {
             return FALSE;
@@ -424,11 +424,16 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
+        $this->wishlist_model->createUserIfNotExist($userId);
+
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
-        if(!$wishlists){
+        $userInfo = $this->getUserInfo($userId);
+        $this->dataModel['user'] = $userInfo;
+
+        if (!$wishlists) {
             return FALSE;
         }
-        $userInfo = $this->getUserInfo($userId);
+
         if (empty($userInfo)) {
             $this->errors[] = lang('error_no_user_data');
             return FALSE;
@@ -439,7 +444,6 @@ class ParentWishlist extends \MY_Controller {
             $w[$wishlist['wish_list_id']][] = $wishlist;
 
         $this->dataModel['wishlists'] = $w;
-        $this->dataModel['user'] = $userInfo;
 
         return TRUE;
     }
@@ -569,8 +573,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function deleteImage($image) {
-        $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
-        return unlink($basePath . "uploads/mod_wishlist/" . $image);
+        return unlink("./uploads/mod_wishlist/" . $image);
     }
 
     /**
