@@ -18,9 +18,9 @@ $lang['error_cant_add'] = '<p>Невозможно добавить</p>';
 $lang['error_cant_move'] = '<p>Не удалось переместить</p>';
 $lang['error_cant_update'] = '<p>Не обновлено</p>';
 $lang['error_cant_delete'] = '<p>Невозможно удалить</p>';
-$lang[''] = '<p>Ошибка загрузки</p>';
+$lang['error_download'] = '<p>Ошибка загрузки</p>';
 $lang['error_no_user_data'] = '<p>Данные пользователя ненайдены</p>';
-$lang[''] = '<p></p>';
+$lang['error_user_id'] = '<p>Не введен пользователь</p>';
 
 /**
  * messeges
