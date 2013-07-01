@@ -21,7 +21,7 @@
             <div class="span5 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                 <div class="photo-block">
-                    <a rel="group position: 'xBlock', adjustX: 10" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom">
+                    <a rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom">
                         <figure>
                             <span class="helper"></span>
                             <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>

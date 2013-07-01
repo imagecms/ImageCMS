@@ -58,7 +58,7 @@
                     <!-- End. Categories tree with navigation -->
                 </div>
             </aside>
-            <div class="span9 right">
+            <div class="span10 right">
                 {if !empty(ShopCore::$_GET['text'])}
                     <h1 class="d_i">  {lang('s_sea_search_for')}: "{encode(trim($_GET['text']))}" </h1>
                 {/if}

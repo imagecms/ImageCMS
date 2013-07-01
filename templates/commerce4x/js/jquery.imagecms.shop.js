@@ -17,15 +17,15 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expires_date = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
-    ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+            ((expires) ? ";expires=" + expires_date.toGMTString() : "") +
+            ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
 }
 var ie = jQuery.browser.msie,
-ieV = jQuery.browser.version,
-ltie7 = ie && (ieV <= 7),
-ltie8 = ie && (ieV <= 8);
+        ieV = jQuery.browser.version,
+        ltie7 = ie && (ieV <= 7),
+        ltie8 = ie && (ieV <= 8);
 
 function ieInput(els) {
     els = $('input[type="text"], textarea, input[type="password"]');
@@ -195,12 +195,12 @@ function ieInput(els) {
                 }
             })
             var $this = $(this),
-            text_el = $this.find('.text-el'),
-            me = settings.me;
+                    text_el = $this.find('.text-el'),
+                    me = settings.me;
 
             if (text_el.is(':visible') && $.exists_nabir(text_el) && me)
                 return false;
-            
+
             if (settings.effect == 'notalways') {
                 $('.tooltip').remove();
                 body.append('<span class="tooltip">' + settings.title + '</span>');
@@ -235,7 +235,7 @@ function ieInput(els) {
                 event.stopPropagation();
                 if ($(event.target).parents().is($this) || $(event.target).is($this))
                     return;
-                else{
+                else {
                     $('.tooltip').fadeOut(300, function() {
                         $(this).remove()
                     });
@@ -263,237 +263,107 @@ function ieInput(els) {
         $(this).tooltip('remove');
     })
 })(jQuery);
+/*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
         init: function(options) {
-            if (options.menu == undefined)
-                var settings = $.extend({
-                    item: this.find('li'),
-                    duration: 300,
-                    drop: 'li > ul',
-                    itemSub: this.find('li li'),
-                    effecton: 'show',
-                    effectoff: 'hide',
-                    frameSub: 'li li div'
-                }, options);
-            else
-                var settings = $.extend({}, options);
-
             var sH = 0,
-            menu = "";
-
-            if (options.menu == undefined)
-                menu = $(this)
-            else
-                menu = settings.menu;
+                    menu = $(this);
+            var settings = $.extend({
+                item: this.find('li'),
+                effectOn: 'fadeIn',
+                effectOff: 'fadeOut',
+                duration: 0,
+                drop: 'li > ul',
+                countColumn: 'none',
+                durationOn: 0,
+                durationOff: 0,
+                dropWidth: null
+            }, options);
 
             var menuW = menu.width(),
-            menuItem = settings.item,
-            vertical = false,
-            menuItemSub = settings.itemSub,
-            item_menu_l = menuItem.length,
-            frameSub = $(settings.frameSub),
-            dropW = 520;
-            duration = time_dur_m = settings.duration;
-            drop = menuItem.next(settings.drop);
-            menuItemCltd = menuItem.closest('td');
-            effecton = settings.effecton;
-            effectoff = settings.effectoff;
+                    menuItem = settings.item,
+                    drop = settings.drop,
+                    effOn = settings.effectOn,
+                    effOff = settings.effectOff,
+                    drop = settings.drop,
+                    countColumn = settings.countColumn,
+                    item_menu_l = menuItem.length,
+                    dropW = settings.dropWidth,
+                    duration = time_dur_m = settings.duration,
+                    durationOn = settings.durationOn,
+                    durationOff = settings.durationOff;
 
-            if (menu.hasClass('vertical'))
-                vertical = true;
+            if (!dropW)
+                dropW = parseInt(menuW / 3);
 
-            menuItem.find('.helper:first').add(menuItemCltd).removeAttr('style');
-
-            $thisOH = 0;
-            menuItemCltd.each(function(index) {
+            menuItem.each(function(index) {
                 var $this = $(this),
-                $thisW = $this.width(),
-                $thisL = $this.position().left,
-                $drop = $this.find(drop).first(),
-                $thisH = $this.height();
-                if ($thisH > sH) {
+                        $thisW = $this.width(),
+                        $thisL = $this.position().left,
+                        drop = $this.find(settings.drop),
+                        $thisH = $this.height();
+                if ($thisH > sH)
                     sH = $thisH;
-                }
-
-                if (!vertical) {
-                    if (menuW - $thisL < dropW) {
-                        if ($thisL + $thisW > dropW)
-                            $drop.css('right', menuW - $thisW - $thisL).removeAttr('class').addClass('right-drop');
-                        if ($thisW + $thisL < dropW)
-                            $drop.css({
-                                'right': menuW - $thisW - $thisL,
-                                'left': 'auto'
-                            }).removeAttr('class').addClass('top-drop');
-                    }
-                    else if (menuW - $thisL > dropW) {
-                        $drop.css('left', $thisL).removeAttr('class');
-                    }
-                    if (dropW > wnd.width()) {
-                        if ($thisL > (menuW - $thisW) / 2)
-                            $drop.css({
-                                'right': 0,
-                                'left': 'auto'
-                            }).removeAttr('class').addClass('top-drop');
-                        else
-                            $drop.css({
-                                'right': 'auto',
-                                'left': 0
-                            }).removeAttr('class').addClass('top-drop');
-                    }
+                if (menuW - $thisL < dropW) {
+                    if (drop.children().length >= countColumn)
+                        drop.css('right', 0).addClass('right-drop');
+                    else
+                        drop.css('right', menuW - $thisW - $thisL).addClass('right-drop');
                 }
                 else {
-                    $drop.css({
-                        'top': $thisOH,
-                        'left': '100%'
-                    }).removeAttr('class');
-                    if (dropW + menuW > wnd.width())
-                        $drop.css({
-                            'left': 0
-                        }).removeAttr('class');
-                    if (dropW > wnd.width())
-                        $drop.removeAttr('style').addClass('top-drop');
+                    if (drop.children().length >= countColumn)
+                        drop.css('left', 0);
+                    else
+                        drop.css('left', $thisL)
                 }
-                $thisOH += $this.outerHeight(true) + 2;
             }).css('height', sH);
-
-            menuItem.find('.helper:first').css('height', sH - 4)
+            menuItem.find('.helper:first').css('height', sH)
 
             $('.not-js').removeClass('not-js');
-
-            evDrop = '';
-            isTouch ? evDrop = 'toggle' : evDrop = 'mouseenter mouseleave';
-
-            function itemSubEv(el, event) {
-                var $this = el,
-                cond = $.exists_nabir($this.next('div'))
-                if (cond) {
-                    event.preventDefault();
-                    $thisP = $this.parent();
-                    $thisC = $this.next('div');
-                    $thisP.addClass('hover');
-                    $thisC[effecton](duration);
-                    $thisP.siblings().removeClass('hover').children('div').stop()[effectoff](duration)
-                    $thisP.parent().addClass('hover');
-                }
-                else {
-                    $this.parent().siblings().removeClass('hover').children('div').stop()[effectoff](duration)
-                }
-                if (isTouch && !cond)
-                    window.location.href = el.attr('href');
-            }
-
-            if (!isTouch)
-                evDrop2 = 'hover';
-            else
-                evDrop2 = evDrop;
-            var evDropF = evDrop.split(' ')[0];
-            var evDropS = evDrop.split(' ')[1];
-
-            $(menuItemSub + '> a').unbind(evDrop2)[evDrop2](function(event) {
-                itemSubEv($(this), event);
-            }, function(event) {
-                itemSubEv($(this), event);
-            });
-
-            hover_t_o = '';
-
-            function unhov(el) {
-                var $this = el,
-                $thisDrop = $this.next();
-                $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
-
-                frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
+            var hover_t_o = '';
+            menuItem.hover(
+                    function() {
+                        var $this = $(this),
+                                $thisDrop = $this.find(settings.drop);
+                        if ($this.index() == 0)
+                            $this.addClass('first_h');
+                        if ($this.index() == item_menu_l - 1)
+                            $this.addClass('last_h');
+                        hover_t_o = setTimeout(function() {
+                            $thisDrop[effOn](durationOn);
+                            if ($thisDrop.length != 0)
+                                menu.addClass('hover');
+                        }, time_dur_m);
+                    }, function() {
+                var $this = $(this),
+                        $thisDrop = $this.find(settings.drop);
+                $(settings.drop).stop()[effOff](durationOff);
+                $('.first_h, .last_h').removeAttr('class');
                 clearTimeout(hover_t_o);
                 if ($thisDrop.length != 0)
                     menu.removeClass('hover');
-            }
-            function hov(el) {
-                drop.removeClass('d_n');
-                var $this = el,
-                $thisDrop = $this.next();
-
-                menuItemCltd.removeClass('hover');
-
-                frameSub.add(drop.not($thisDrop)).stop()[effectoff](duration);
-
-                $this = $this.closest('td').addClass('hover');
-
-                if ($this.index() == 0)
-                    $this.addClass('first_h');
-                if ($this.index() == item_menu_l - 1)
-                    $this.addClass('last_h');
-
-                hover_t_o = setTimeout(function() {
-                    $thisDrop[effecton](duration);
-                    if ($thisDrop.length != 0)
-                        menu.addClass('hover');
-                }, time_dur_m);
-            }
-            if (isTouch) {
-                menuItem.unbind(evDrop)[evDrop](
+            });
+            menu.hover(
                     function() {
-                        hov($(this));
-                    }, function() {
-                        unhov($(this));
-                    });
-                menu[evDrop](
-                    function(event) {
-                        time_dur_m = 0;
+                        return time_dur_m = 0;
                     },
-                    function(event) {
-                        time_dur_m = duration;
-                    });
-            }
-            else {
-                menuItem.unbind(evDropF)[evDropF](function() {
-                    hov($(this));
-                    }).unbind(evDropS)[evDropS](function() {
-                    unhov($(this));
-                })
-                menu.unbind(evDropF)[evDropF](function() {
-                    return time_dur_m = 0;
-                    }).unbind(evDropS)[evDropS](
                     function() {
-                        methods.fadeDrop();
                         return time_dur_m = duration;
                     });
-            }
-            drop.find('li li a').click(function(event) {
-                event.stopPropagation();
-            })
-            body.click(function() {
-                methods.fadeDrop();
-            })
-        },
-        refresh: function() {
-            $(drop).removeClass('right-drop').removeAttr('style');
-            methods.init($.extend({
-                menu: $('.menu-main')
-            }, optionsMenu));
-        },
-        fadeDrop: function() {
-            time_dur_m = 0;
-
-            clearTimeout(hover_t_o);
-
-            drop.stop()[effectoff](duration).addClass('d_n');
-
-            menuItemCltd.removeClass('hover')
-            $('.first_h, .last_h').removeClass('first_h').removeClass('last_h');
         }
     };
-    $.fn.menuPacket2 = function(method) {
+    $.fn.menuImageCms = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
             return methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + method + ' does not exist on jQuery.tooltip');
+            $.error('Method ' + method + ' does not exist on jQuery.menuImageCms');
         }
     };
 })(jQuery);
+/*plugin menuImageCms end*/
 (function($) {
     def_min = $('span#opt1').data('def_min');
     def_max = $('span#opt2').data('def_max');
@@ -505,8 +375,8 @@ function ieInput(els) {
                 var settings = $.extend({}, options);
 
                 var rel = $(this),
-                minCost = settings.minCost,
-                maxCost = settings.maxCost;
+                        minCost = settings.minCost,
+                        maxCost = settings.maxCost;
 
                 if (options.minCost == undefined || options.maxCost == undefined) {
                     minCost = $('<input type="text"/>', {
@@ -529,8 +399,8 @@ function ieInput(els) {
                 });
                 minCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    minS = minCost.data('mins');
+                            value2 = maxCost.val(),
+                            minS = minCost.data('mins');
 
                     if (parseInt(value1) > parseInt(value2)) {
                         value1 = value2;
@@ -544,8 +414,8 @@ function ieInput(els) {
                 });
                 maxCost.change(function() {
                     var value1 = minCost.val(),
-                    value2 = maxCost.val(),
-                    maxS = maxCost.data('maxs');
+                            value2 = maxCost.val(),
+                            maxS = maxCost.data('maxs');
 
                     if (value2 > def_max) {
                         value2 = def_max;
@@ -588,8 +458,8 @@ function ieInput(els) {
             }, options);
             $this = this;
             var tabs_div = [],
-            nav_tabs_li = [],
-            reg_refs = [];
+                    nav_tabs_li = [],
+                    reg_refs = [];
             refs = [];
             attrOrdata = [];
             this_l = this.length;
@@ -687,11 +557,11 @@ function ieInput(els) {
             if (location.hash == '')
             {
                 var i = 0,
-                j = 0;
+                        j = 0;
                 $(refs).each(function(index) {
                     var index = index;
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs[i] = $this[attrOrdataL]('href');
@@ -707,10 +577,10 @@ function ieInput(els) {
             else {
                 $(refs).each(function(index) {
                     var index = index,
-                    j = 0;
+                            j = 0;
 
                     $this = refs[index].first(),
-                    attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
 
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -718,10 +588,10 @@ function ieInput(els) {
                     }
                 });
                 var t = location.hash,
-                s = '#',
-                m = s.length,
-                res = 0,
-                i = 0;
+                        s = '#',
+                        m = s.length,
+                        res = 0,
+                        i = 0;
                 pos = [];
 
                 while (i < t.length - 1)
@@ -750,7 +620,7 @@ function ieInput(els) {
             });
             $(hashs[0].join(',')).each(function(index) {
                 var $thisId = $(this).attr('id'),
-                attrOrdataNew = '';
+                        attrOrdataNew = '';
 
                 $('[href="#' + $thisId + '"]').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '="#' + $thisId + '"]').trigger('click');
@@ -771,7 +641,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var settings = $.extend({}, options),
-            mouseWhell = settings.mouseWhell;
+                    mouseWhell = settings.mouseWhell;
             elEven = settings.elEven;
             elEvens = $(settings.right).find(elEven);
             onlyDif = settings.onlyDif;
@@ -779,19 +649,19 @@ function ieInput(els) {
             hoverParent = settings.hoverParent;
             this.each(function(index) {
                 var $this = $(this),
-                visThis = $this.is(':visible');
+                        visThis = $this.is(':visible');
                 if (visThis) {
                     var left = $this.find(settings.left),
-                    right = $this.find(settings.right);
+                            right = $this.find(settings.right);
                     li_i_length = left.length;
                 }
 
                 if (visThis && !$this.is('[data-equalHorizCell]')) {
                     var h = 0,
-                    li_i_h = [],
-                    frameScroll = $this.find(settings.frameScroll),
-                    frame_scrollC = frameScroll.children(),
-                    frame_scrollCL = frame_scrollC.length;
+                            li_i_h = [],
+                            frameScroll = $this.find(settings.frameScroll),
+                            frame_scrollC = frameScroll.children(),
+                            frame_scrollCL = frame_scrollC.length;
                     scrollNSP = settings.scrollNSP && $.exists(frameScroll);
                     scrollNSPT = settings.scrollNSPT;
                     for (var j = 0; j < li_i_length; j++) {
@@ -824,7 +694,7 @@ function ieInput(els) {
                         $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                     }
                     var firstScrl = frameScroll.parent(),
-                    secScrl = $([]);
+                            secScrl = $([]);
                     if (scrollNSP) {
                         secScrl = $this.children('.scrollNSP');
                         secScrl.css({
@@ -855,7 +725,7 @@ function ieInput(els) {
                 }
                 if (visThis) {
                     var right = right.find(hoverParent),
-                    left = left.parent(hoverParent).children();
+                            left = left.parent(hoverParent).children();
                     left.each(function(ind) {
                         if (ind % 2 == 0)
                             $(this).removeClass('evenC').addClass('oddC');
@@ -894,22 +764,22 @@ function ieInput(els) {
         hoverComprasion: function(left, right) {
             left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
+                        index = $this.index(),
+                        nab = $([]);
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(index))
                 })
                 $([]).add(left.eq(index)).add(nab).addClass('hover')
             },
-            function() {
-                var $this = $(this),
-                index = $this.index(),
-                nab = $([]);
-                right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(index))
-                })
-                $([]).add(left.eq(index)).add(nab).removeClass('hover')
-            });
+                    function() {
+                        var $this = $(this),
+                                index = $this.index(),
+                                nab = $([]);
+                        right.each(function() {
+                            nab = nab.add($(this).find(elEven).eq(index))
+                        })
+                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
+                    });
         },
         onlyDifM: function(left, right) {
             li_i_h = [];
@@ -996,7 +866,7 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.exists_nabir($(this))){
+            if ($.exists_nabir($(this))) {
                 settings = $.extend({
                     cloned: '.cloned',
                     activeClass: 'active',
@@ -1013,39 +883,39 @@ function ieInput(els) {
                 }, options);
 
                 var $thisD = this,
-                selector = $thisD.selector,
-                dataSource = $('[data-drop]'),
-                cloned = settings.cloned,
-                exit = $(settings.exit),
-                effon = settings.effon,
-                effoff = settings.effoff,
-                effdur = settings.effdur,
-                overlayColor = settings.overlayColor,
-                overlayOpacity = settings.overlayOpacity;
+                        selector = $thisD.selector,
+                        dataSource = $('[data-drop]'),
+                        cloned = settings.cloned,
+                        exit = $(settings.exit),
+                        effon = settings.effon,
+                        effoff = settings.effoff,
+                        effdur = settings.effdur,
+                        overlayColor = settings.overlayColor,
+                        overlayOpacity = settings.overlayOpacity;
 
                 activeClass = settings.activeClass;
 
                 dataSource.live('click', function(event) {
                     event.stopPropagation();
                     event.preventDefault();
-                
+
                     $(this).each(function() {
                         var $this = $(this),
-                        $thisS = $this.data('effect-off') || effoff,
-                        $thisD = $this.data('duration') || effdur,
-                        $thisSource = $this.data('drop');
+                                $thisS = $this.data('effect-off') || effoff,
+                                $thisD = $this.data('duration') || effdur,
+                                $thisSource = $this.data('drop');
                         $($thisSource).attr('data-effect-off', $thisS).attr('data-duration', $thisD).attr('data-elrun', $thisSource);
                     });
-                    if ($(event.target).parents('[data-simple="yes"]').length == 0){
+                    if ($(event.target).parents('[data-simple="yes"]').length == 0) {
                         $this = $(this);
                         elSet = $this.data();
                         elSetSource = $(elSet.drop);
-                
+
                         var elSetOn = elSet.effectOn || effon,
-                        elSetOff = elSet.effectOff || effoff,
-                        elSetDuration = elSet.duration || effdur,
-                        overlayColor = elSet.overlaycolor || settings.overlayColor,
-                        overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
+                                elSetOff = elSet.effectOff || effoff,
+                                elSetDuration = elSet.duration || effdur,
+                                overlayColor = elSet.overlaycolor || settings.overlayColor,
+                                overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
 
                         if (overlayColor != undefined || overlayOpacity != undefined) {
                             if (!$.exists('.overlayDrop')) {
@@ -1069,8 +939,8 @@ function ieInput(els) {
                             $thisHref = $(this).attr('href');
                             if ($thisHref != undefined) {
                                 var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
+                                        wLH = location.hash,
+                                        wLHL = wLH.length;
                                 try {
                                     indH = wLH.match($thisHref + '(?![a-z])').index;
                                     location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -1080,20 +950,24 @@ function ieInput(els) {
                         }
                         else {
                             $newthis = settings.before(this, elSetSource);
-                            if ($newthis != undefined) $this = $newthis;
-                            
-                            if (event.button == undefined) body.scrollTop($this.offset().top)
+                            if ($newthis != undefined)
+                                $this = $newthis;
+
+                            if (event.button == undefined)
+                                body.scrollTop($this.offset().top)
 
                             var wndW = wnd.width();
-                            if (elSetSource.actual('width') > wnd.width()) elSetSource.css('width', wndW-40);
-                            else elSetSource.removeAttr('style');
-                    
+                            if (elSetSource.actual('width') > wnd.width())
+                                elSetSource.css('width', wndW - 40);
+                            else
+                                elSetSource.removeAttr('style');
+
                             methods.positionDrop($this, elSet, elSetSource);
 
                             $this.addClass(activeClass);
                             drop_over.show();
 
-                            drop_over.unbind('click').bind('click', function(){
+                            drop_over.unbind('click').bind('click', function() {
                                 methods.triggerBtnClick();
                             })
                             elSetSource[elSetOn](elSetDuration, function() {
@@ -1106,12 +980,12 @@ function ieInput(els) {
                         $(cloned).remove();
                     }
                 })
-                exit.click(function(){
+                exit.click(function() {
                     methods.triggerBtnClick($(this).closest('[data-elrun]'));
                 })
                 body.live('click', function(event) {
                     event.stopPropagation();
-                    if (event.button){
+                    if (event.button) {
                         if ($(event.target).parents().is(selector) || $(event.target).is(selector) || $(event.target).is(exit))
                             return;
                         else
@@ -1136,16 +1010,18 @@ function ieInput(els) {
             }
         },
         triggerBtnClick: function(sel) {
-            if (!sel) sel = $('[data-elrun].' + activeClass);
-            else sel = sel.closest('[data-elrun]');
-            
+            if (!sel)
+                sel = $('[data-elrun].' + activeClass);
+            else
+                sel = sel.closest('[data-elrun]');
+
             sel.each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
                 if ($this.data('place') == 'center') {
                     body.removeClass('o_h');
-                    body.css('margin-right', function(){
-                        if ($(document).height()-wnd.height() > 0){
+                    body.css('margin-right', function() {
+                        if ($(document).height() - wnd.height() > 0) {
                             drop_over.removeClass('drop_overlay_fixed');
                             return 0
                         }
@@ -1163,19 +1039,20 @@ function ieInput(els) {
                 queue: false
             });
         },
-        positionDrop: function($this){
+        positionDrop: function($this) {
             var $this = $this;
-            if ($this == undefined) $this = $(this);
-            
+            if ($this == undefined)
+                $this = $(this);
+
             var elSet = $this.data(),
-            elSetSource = $(elSet.drop);
-            
+                    elSetSource = $(elSet.drop);
+
             var $thisP = $this.attr('data-place');
             dataSourceH = 0,
-            dataSourceW = 0,
-            $thisW = $this.width();
+                    dataSourceW = 0,
+                    $thisW = $this.width();
             $thisH = $this.height();
-            
+
             if ($thisP == 'noinherit') {
                 var $thisPMT = $this.attr('data-placement').toLowerCase().split(' ');
 
@@ -1190,29 +1067,31 @@ function ieInput(els) {
 
                 if ($thisPMT[0] == 'right' || $thisPMT[1] == 'right')
                     dataSourceW = -elSetSource.actual('width') + $thisW;
-                
+
 
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-                if ($thisL < 0) $thisL = 0;
+                if ($thisL < 0)
+                    $thisL = 0;
 
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0) elSetSource.css('margin-left', 0);
+                if ($thisL == 0)
+                    elSetSource.css('margin-left', 0);
             }
             if ($thisP == 'center') {
-                body.css('margin-right', function(){
-                    if ($(document).height()-wnd.height() > 0){
+                body.css('margin-right', function() {
+                    if ($(document).height() - wnd.height() > 0) {
                         body.addClass('o_h');
                         drop_over.addClass('drop_overlay_fixed');
                         return 17
                     }
                 })
-                wnd.bind('resize.drop', function(){
+                wnd.bind('resize.drop', function() {
                     methods.dropScroll(elSetSource)
-                    }).resize();
+                }).resize();
             }
         }
     };
@@ -1236,12 +1115,12 @@ function ieInput(els) {
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                    prev = settings.prev.split('.'),
-                    next = settings.next.split('.'),
-                    $thisPrev = $this,
-                    $thisNext = $this,
-                    regS = '',
-                    regM = '';
+                            prev = settings.prev.split('.'),
+                            next = settings.next.split('.'),
+                            $thisPrev = $this,
+                            $thisNext = $this,
+                            regS = '',
+                            regM = '';
 
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
@@ -1280,12 +1159,12 @@ function ieInput(els) {
                     $thisPrev.click(function() {
                         var input = $this.focus();
                         var inputVal = parseInt(input.val());
-                                                
+
                         if (isNaN(inputVal))
                             input.val(1)
                         else if (inputVal > 1)
                             input.val(inputVal - 1)
-                        
+
                     })
                     $this.die('keyup').live('keyup', function() {
                         if (checkProdStock)
@@ -1358,7 +1237,7 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-            $max = parseInt($(this).attr('data-max'));
+                    $max = parseInt($(this).attr('data-max'));
 
             $thisVal = $this.val();
 
@@ -1385,60 +1264,85 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.exists_nabir($(this))) {
-                var $js_carousel = $(this);
-                var settings = $.extend({
-                    item: 'li',
-                    prev: '.prev',
-                    next: '.next',
-                    content: '.content-carousel',
-                    groupButtons: '.group-button-carousel',
-                    before: function() {
-                    },
-                    after: function() {
-                    }
-                }, options);
+            var settings = $.extend({
+                item: 'li',
+                prev: '.prev',
+                next: '.next',
+                content: '.content-carousel',
+                before: function() {
+                },
+                after: function() {
+                }
+            }, options);
+            var $js_carousel = $(this);
+            if ($.exists_nabir($js_carousel)) {
                 var item = settings.item,
-                prev = settings.prev,
-                next = settings.next,
-                content = settings.content,
-                groupButtons = settings.groupButtons,
-                adding = settings.adding;
-					
+                        prev = settings.prev,
+                        next = settings.next,
+                        content = settings.content,
+                        $item = [],
+                        $item_l = [],
+                        $item_w = [],
+                        $this_carousel = [],
+                        $this_prev = [],
+                        $this_next = [],
+                        $marginR = [],
+                        cont_width = [],
+                        $item_h = [],
+                        $marginT = [],
+                        cont_height = [],
+                        $frame_button = [],
+                        adding = settings.adding;
+
                 $js_carousel.each(function(index) {
-                    var $this = $(this),
-                    $item = $this.find(content).children().children(item),
-                    $item_l = $item.length,
-                    $item_w = $item.outerWidth(true),
-                    $this_prev = $this.find(prev),
-                    $this_next = $this.find(next),
-                    $marginR = $item_w - $item.outerWidth(),
-                    cont_width = $this.find(content).width(),
-                    group_button = $this.find(groupButtons);
+                    $this = $(this);
+                    $frame_button[index] = $this.find('.groupButton')
+                    $this_carousel[index] = $this;
+                    $item[index] = $this.find(item);
+                    $item_l[index] = $item[index].length;
+                    $item_w[index] = $item[index].outerWidth(true);
+                    $item_h[index] = $item[index].outerHeight(true);
+                    $this_prev[index] = $this.find(prev);
+                    $this_next[index] = $this.find(next);
+                    $marginR[index] = $item_w[index] - $item[index].outerWidth();
+                    $marginT[index] = $item_h[index] - $item[index].outerHeight();
+                    cont_width[index] = $this.find(content).width();
+                    cont_height[index] = $this.find(content).height();
+                })
 
-                    settings.before($this);
+                settings.before();
+                $js_carousel.each(function(index) {
+                    var index = index,
+                            $count_visible = (cont_width / ($item_w[index])).toFixed(1);
 
-                    var $count_visible = (cont_width / $item_w).toFixed(1);
-                    if ($item_w * $item_l - $marginR > cont_width) {
+                    var cond = $item_w[index] * $item_l[index] - $marginR[index] > cont_width[index]
+                    try {
+                        if (adding.vertical) {
+                            cond = $item_h[index] * $item_l[index] - $marginT[index] > cont_height[index]
+                            $count_visible = 1;
+                        }
+                    } catch (err) {
+                    }
+
+                    if (cond) {
                         var main_obj = {
-                            buttonNextHTML: $this_next,
-                            buttonPrevHTML: $this_prev,
+                            buttonNextHTML: $this_next[index],
+                            buttonPrevHTML: $this_prev[index],
                             visible: $count_visible,
                             scroll: 1
                         }
-                        $this.jcarousel($.extend(
-                            adding
-                            , main_obj));
+                        $this_carousel[index].jcarousel($.extend(
+                                adding
+                                , main_obj));
 
-                        group_button.append($this_next.add($this_prev).css('display', 'inline-block'));
+                        $this_next[index].add($this_prev[index]).css('display', 'inline-block').appendTo($frame_button[index]);
                     }
                     else {
-                        $this_next.add($this_prev).hide();
+                        $this_next[index].add($this_prev[index]).css('display', 'none');
                     }
-                    settings.after($this);
                 });
+                settings.after();
             }
-            return $js_carousel;
         }
     };
     $.fn.myCarousel = function(method) {
@@ -1451,11 +1355,12 @@ function ieInput(els) {
         }
     }
 })(jQuery);
+/*plugin myCarousel end*/
 /*
  *imagecms shop plugins
  **/
 if (!Array.indexOf) {
-    Array.prototype.indexOf = function (obj, start) {
+    Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
             if (this[i] == obj) {
                 return i;
@@ -1468,33 +1373,32 @@ if (!Array.indexOf) {
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
-    Cart:{
-        totalPrice:0,
-        totalCount:0,
-        popupCartSelector:'script#cartPopupTemplate',
-        countChanged:false,
-        shipping:0,
-        shipFreeFrom:0,
+    Cart: {
+        totalPrice: 0,
+        totalCount: 0,
+        popupCartSelector: 'script#cartPopupTemplate',
+        countChanged: false,
+        shipping: 0,
+        shipFreeFrom: 0,
         giftCertPrice: 0,
-
-        add:function (cartItem) {
+        add: function(cartItem) {
             //trigger before_add_to_cart
             $(document).trigger({
-                type:'before_add_to_cart',
-                cartItem:_.clone(cartItem)
+                type: 'before_add_to_cart',
+                cartItem: _.clone(cartItem)
             });
             //
             var data = {
-                'quantity':cartItem.count,
-                'productId':cartItem.id,
-                'variantId':cartItem.vId
+                'quantity': cartItem.count,
+                'productId': cartItem.id,
+                'variantId': cartItem.vId
             };
             var url = '/shop/cart_api/add';
 
             if (cartItem.kit) {
                 data = {
-                    'quantity':cartItem.count,
-                    'kitId':cartItem.kitId
+                    'quantity': cartItem.count,
+                    'kitId': cartItem.kitId
                 };
 
                 url += '/ShopKit';
@@ -1502,20 +1406,20 @@ var Shop = {
 
             Shop.currentItem = cartItem;
             $.post(url, data,
-                function (data) {
-                    try {
-                        responseObj = JSON.parse(data);
+                    function(data) {
+                        try {
+                            responseObj = JSON.parse(data);
 
-                        //save item to storage
-                        Shop.Cart._add(Shop.currentItem);
-                    } catch (e) {
-                        return;
-                    }
-                });
+                            //save item to storage
+                            Shop.Cart._add(Shop.currentItem);
+                        } catch (e) {
+                            return;
+                        }
+                    });
             return;
 
         },
-        _add:function (cartItem) {
+        _add: function(cartItem) {
 
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
@@ -1528,44 +1432,44 @@ var Shop = {
 
             ////trigger after_add_to_cart
             $(document).trigger({
-                type:'after_add_to_cart',
-                cartItem:_.clone(cartItem)
+                type: 'after_add_to_cart',
+                cartItem: _.clone(cartItem)
             });
 
             $(document).trigger({
-                type:'cart_changed'
+                type: 'cart_changed'
             });
             //
 
             return this;
         },
-        rm:function (cartItem) {
+        rm: function(cartItem) {
             Shop.currentItem = this.load('cartItem_' + cartItem.id + '_' + cartItem.vId);
 
             if (Shop.currentItem.kit)
                 var key = 'ShopKit_' + Shop.currentItem.kitId;
             else
-                var key = 'SProducts_' + Shop.currentItem.id+'_'+Shop.currentItem.vId;
+                var key = 'SProducts_' + Shop.currentItem.id + '_' + Shop.currentItem.vId;
 
             //Shop.currentItem = cartItem;
-            $.getJSON('/shop/cart_api/delete/' + key, function () {
-                localStorage.removeItem('cartItem_' + Shop.currentItem.id +'_'+ Shop.currentItem.vId);
+            $.getJSON('/shop/cart_api/delete/' + key, function() {
+                localStorage.removeItem('cartItem_' + Shop.currentItem.id + '_' + Shop.currentItem.vId);
 
                 Shop.Cart.totalRecount();
 
                 $(document).trigger({
-                    type:'cart_rm',
+                    type: 'cart_rm',
                     cartItem: Shop.currentItem
                 });
 
                 $(document).trigger({
-                    type:'cart_changed'
+                    type: 'cart_changed'
                 });
             });
 
             return this;
         },
-        chCount:function (cartItem, f) {
+        chCount: function(cartItem, f) {
 
             Shop.Cart.currentItem = this.load(cartItem.storageId());
             if (Shop.Cart.currentItem) {
@@ -1577,15 +1481,15 @@ var Shop = {
                 Shop.currentCallbackFn = f;
 
                 if (cartItem.kit)
-                    var postName = 'kits[ShopKit_'+Shop.Cart.currentItem.kitId+']';
+                    var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
                 else
-                    var postName = 'products[SProducts_'+cartItem.id+'_'+cartItem.vId+']';
+                    var postName = 'products[SProducts_' + cartItem.id + '_' + cartItem.vId + ']';
 
                 var postData = {
-                    recount:1
+                    recount: 1
                 };
                 postData[postName] = cartItem.count;
-                $.post('/shop/cart_api/recount', postData, function(data){
+                $.post('/shop/cart_api/recount', postData, function(data) {
 
                     var dataObj = JSON.parse(data);
                     if (dataObj.hasOwnProperty('count'))
@@ -1593,15 +1497,15 @@ var Shop = {
 
                     Shop.Cart.save(Shop.Cart.currentItem);
 
-                    (Shop.currentCallbackFn () );
+                    (Shop.currentCallbackFn());
 
                     $(document).trigger({
-                        type:'count_changed',
-                        cartItem:_.clone(cartItem)
+                        type: 'count_changed',
+                        cartItem: _.clone(cartItem)
                     });
 
                     $(document).trigger({
-                        type:'cart_changed'
+                        type: 'cart_changed'
                     });
 
                 });
@@ -1610,63 +1514,59 @@ var Shop = {
 
             }
         },
-
-        clear:function () {
+        clear: function() {
             $.getJSON('/shop/cart_api/clear',
-                function () {
-                    var items = Shop.Cart.getAllItems();
-                    for (var i = 0; i < items.length; i++)
-                        localStorage.removeItem(items[i].storageId());
-                    delete items;
+                    function() {
+                        var items = Shop.Cart.getAllItems();
+                        for (var i = 0; i < items.length; i++)
+                            localStorage.removeItem(items[i].storageId());
+                        delete items;
 
-                    $(document).trigger({
-                        type:'cart_changed'
-                    });
+                        $(document).trigger({
+                            type: 'cart_changed'
+                        });
 
-                    Shop.Cart.totalRecount();
-                }
-                );
+                        Shop.Cart.totalRecount();
+                    }
+            );
         },
-
         //work with storage
-        load:function (key) {
+        load: function(key) {
             try {
                 return new Shop.cartItem(JSON.parse(localStorage.getItem(key)));
             } catch (e) {
                 return false;
             }
         },
-
-        save:function (cartItem) {
+        save: function(cartItem) {
             if (!cartItem.storageId().match(/undefined/)) {
                 localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
                 this.totalRecount();
 
                 ////trigger cart_changed
                 $(document).trigger({
-                    type:'cart_changed'
+                    type: 'cart_changed'
                 });
-            //
+                //
             }
             return this;
         },
-
-        getAllItems:function () {
+        getAllItems: function() {
             var pattern = /cartItem_*/;
 
             var items = [];
             for (var i = 0; i < localStorage.length; i++) {
 
                 var key = localStorage.key(i);
-                try{
+                try {
                     if (key.match(pattern))
                         items.push(this.load(key));
-                }catch(err){}
+                } catch (err) {
+                }
             }
             return items;
         },
-
-        length:function () {
+        length: function() {
             var pattern = /cartItem_*/;
             var length = 0;
             for (var i = 0; i < localStorage.length; i++)
@@ -1675,13 +1575,12 @@ var Shop = {
 
             return length;
         },
-
-        totalRecount:function () {
+        totalRecount: function() {
             var items = this.getAllItems();
 
             this.totalPrice = 0;
             this.totalCount = 0;
-            
+
             for (var i = 0; i < items.length; i++) {
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalCount += parseInt(items[i].count);
@@ -1689,23 +1588,20 @@ var Shop = {
 
             return this;
         },
-
-        getTotalPrice:function () {
+        getTotalPrice: function() {
             if (this.totalPrice == 0)
                 return this.totalRecount().totalPrice;
             else
                 return this.totalPrice;
         },
-
-        getFinalAmount:function () {
+        getFinalAmount: function() {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPrice())
                     this.shipping = 0.0;
 
-            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice))>=0?(this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)):0;
+            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
-
-        renderPopupCart:function (selector) {
+        renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
                 selector = this.popupCartSelector;
 
@@ -1713,19 +1609,17 @@ var Shop = {
             return template = _.template($(selector).html(), Shop.Cart);
 
         },
-
-        showPopupCart:function () {
-        //$.fancybox(this.renderPopupCart());
+        showPopupCart: function() {
+            //$.fancybox(this.renderPopupCart());
         },
-
-        sync: function (){
-            $.getJSON('/shop/cart_api/sync', function(data){
-                if (typeof(data) == 'object'){
+        sync: function() {
+            $.getJSON('/shop/cart_api/sync', function(data) {
+                if (typeof(data) == 'object') {
 
                     var items = Shop.Cart.getAllItems();
                     for (var i = 0; i < items.length; i++)
                         if (!items[i].kit)
-                            localStorage.removeItem('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                            localStorage.removeItem('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
                     delete items;
 
                     _.each(_.keys(data.data.items), function(key) {
@@ -1734,61 +1628,60 @@ var Shop = {
                         else
                         {
                             try {
-                                var kit = Shop.Cart.load('cartItem_'+items[i]['id']+'_'+items[i]['vId']);
+                                var kit = Shop.Cart.load('cartItem_' + items[i]['id'] + '_' + items[i]['vId']);
                                 kit.count = data.data.items[key].count;
-                                Shop.Cart.save('cartItem_'+kit['id']+'_'+kit['vId']);
-                            }catch(err){}
+                                Shop.Cart.save('cartItem_' + kit['id'] + '_' + kit['vId']);
+                            } catch (err) {
+                            }
                         }
                     });
 
                     $(document).trigger({
-                        type:'cart_changed'
+                        type: 'cart_changed'
                     });
                 }
-                if ( data ==  false )
+                if (data == false)
                     Shop.Cart.clear();
             });
         },
-
-        updatePage:function () {
+        updatePage: function() {
 
         }
     },
-    cartItem:function (obj) {
+    cartItem: function(obj) {
         if (typeof obj == 'undefined' || obj == false)
             obj = {
-                id:false,
-                vId:false,
-                name:false,
-                count:false,
-                kit:false,
-                maxcount:0,
-                number:'',
-                vname:false,
-                url:false
+                id: false,
+                vId: false,
+                name: false,
+                count: false,
+                kit: false,
+                maxcount: 0,
+                number: '',
+                vname: false,
+                url: false
             };
 
         return prototype = {
-            id:obj.id ? obj.id : 0,
-            vId:obj.vId ? obj.vId : 0,
-            price:obj.price ? obj.price : 0,
-            name:obj.name ? obj.name : '',
-            count:obj.count ? obj.count : 1,
-            kit:obj.kit ? obj.kit : false,
-            prices:obj.prices ? obj.prices : 0,
-            kitId:obj.kitId ? obj.kitId : 0,
-            maxcount:obj.maxcount ? obj.maxcount : 0,
-            number:obj.number ? obj.number : 0,
-            vname:obj.vname ? obj.vname : '',
-            url:obj.url ? obj.url : '',
-            img:obj.img ? obj.img : '',
-            storageId:function () {
+            id: obj.id ? obj.id : 0,
+            vId: obj.vId ? obj.vId : 0,
+            price: obj.price ? obj.price : 0,
+            name: obj.name ? obj.name : '',
+            count: obj.count ? obj.count : 1,
+            kit: obj.kit ? obj.kit : false,
+            prices: obj.prices ? obj.prices : 0,
+            kitId: obj.kitId ? obj.kitId : 0,
+            maxcount: obj.maxcount ? obj.maxcount : 0,
+            number: obj.number ? obj.number : 0,
+            vname: obj.vname ? obj.vname : '',
+            url: obj.url ? obj.url : '',
+            img: obj.img ? obj.img : '',
+            storageId: function() {
                 return 'cartItem_' + this.id + '_' + this.vId;
             }
         };
     },
-
-    composeCartItem:function ($context) {
+    composeCartItem: function($context) {
         var cartItem = new Shop.cartItem();
 
         cartItem.id = $context.data('prodid');
@@ -1801,39 +1694,37 @@ var Shop = {
         cartItem.maxcount = $context.data('maxcount');
         cartItem.number = $context.data('number');
         cartItem.vname = $context.data('vname');
-        cartItem.url = $context.data('url'); 
+        cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
         return cartItem;
     },
-
     //settings manager
-    Settings:{
-        get:function (key) {
+    Settings: {
+        get: function(key) {
             return localStorage.getItem(key);
         },
-        set:function (key, value) {
+        set: function(key, value) {
             localStorage.setItem(key, value);
             return this;
         }
     },
-
-    WishList:{
-        items:[],
-        all:function () {
+    WishList: {
+        items: [],
+        all: function() {
             return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
         },
-        add:function (key, vid, price, curentEl) {
+        add: function(key, vid, price, curentEl) {
             Shop.WishList.items = this.all();
-            localStorage.setItem('wishList_'+key+'_'+vid, JSON.stringify({
-                id: key, 
-                vid: vid, 
+            localStorage.setItem('wishList_' + key + '_' + vid, JSON.stringify({
+                id: key,
+                vid: vid,
                 price: price
             }));
             if (this.items.indexOf(key) == -1) {
                 $.post('/shop/wish_list_api/add', {
-                    productId_:key,
-                    variantId_:vid
-                }, function (data) {
+                    productId_: key,
+                    variantId_: vid
+                }, function(data) {
                     try {
                         var dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1841,16 +1732,16 @@ var Shop = {
                             Shop.WishList.items.push(key);
                             //localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
                             var arr = JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
-                            arr.push(key+'_'+vid)
+                            arr.push(key + '_' + vid)
                             localStorage.setItem('wishList', JSON.stringify(arr));
-                            
+
                             if (Shop.WishList.items.length != dataObj.count) {
                                 Shop.WishList.sync();
                                 return;
                             }
                             $(document).trigger({
-                                type:'wish_list_add',
-                                dataObj:dataObj
+                                type: 'wish_list_add',
+                                dataObj: dataObj
                             });
                         }
                         else {
@@ -1858,15 +1749,15 @@ var Shop = {
                                 $(loginButton).click();
                             }
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
         },
-
-        rm:function (key, el, vid, price) {
+        rm: function(key, el, vid, price) {
             this.items = this.all();
-            
-            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function (data) {
+
+            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function(data) {
                 try {
                     dataObj = JSON.parse(data);
                     dataObj.id = key;
@@ -1876,17 +1767,18 @@ var Shop = {
                         localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
 
                         $(document).trigger({
-                            type:'wish_list_rm',
-                            dataObj:dataObj
+                            type: 'wish_list_rm',
+                            dataObj: dataObj
                         });
 
                     }
-                } catch (e) {}
+                } catch (e) {
+                }
             });
-            deleteWishListItem($(el),key, vid, price);
+            deleteWishListItem($(el), key, vid, price);
         },
-        sync: function(){
-            $.getJSON('/shop/wish_list_api/sync', function(data){
+        sync: function() {
+            $.getJSON('/shop/wish_list_api/sync', function(data) {
                 if (typeof(data) == 'Array' || typeof(data) == 'object') {
                     localStorage.setItem('wishList', JSON.stringify(data));
                 }
@@ -1895,21 +1787,20 @@ var Shop = {
                 }
 
                 $(document).trigger({
-                    type:'wish_list_sync'
+                    type: 'wish_list_sync'
                 });
             });
         }
     },
-
-    CompareList:{
-        items:[],
-        all:function () {
+    CompareList: {
+        items: [],
+        all: function() {
             return JSON.parse(localStorage.getItem('compareList')) ? _.compact(JSON.parse(localStorage.getItem('compareList'))) : [];
         },
-        add:function (key) {
+        add: function(key) {
             this.items = this.all();
             if (this.items.indexOf(key) === -1) {
-                $.get('/shop/compare_api/add/' + key, function (data) {
+                $.get('/shop/compare_api/add/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1919,17 +1810,17 @@ var Shop = {
                             localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
 
                             $(document).trigger({
-                                type:'compare_list_add',
-                                dataObj:dataObj
+                                type: 'compare_list_add',
+                                dataObj: dataObj
                             });
 
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
         },
-
-        rm:function (key, el) {
+        rm: function(key, el) {
             this.items = JSON.parse(localStorage.getItem('compareList')) ? JSON.parse(localStorage.getItem('compareList')) : [];
 
             if (this.items.indexOf(key) !== -1) {
@@ -1937,7 +1828,7 @@ var Shop = {
                 this.items = _.without(this.items, key);
                 this.items = this.all();
 
-                $.get('/shop/compare_api/remove/' + key, function (data) {
+                $.get('/shop/compare_api/remove/' + key, function(data) {
                     try {
                         dataObj = JSON.parse(data);
                         dataObj.id = key;
@@ -1947,30 +1838,31 @@ var Shop = {
                             localStorage.setItem('compareList', JSON.stringify(Shop.CompareList.items));
 
                             $(document).trigger({
-                                type:'compare_list_rm',
-                                dataObj:dataObj
+                                type: 'compare_list_rm',
+                                dataObj: dataObj
                             });
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                    }
                 });
             }
             deleteComprasionItem($(el));
         },
-        sync: function(){
-            $.getJSON('/shop/compare_api/sync', function(data){
+        sync: function() {
+            $.getJSON('/shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.parse(data));
 
                     $(document).trigger({
-                        type:'compare_list_sync'
+                        type: 'compare_list_sync'
                     });
                 }
                 else
-                if(data === false) {
+                if (data === false) {
                     localStorage.removeItem('compareList');
 
                     $(document).trigger({
-                        type:'compare_list_sync'
+                        type: 'compare_list_sync'
                     });
                 }
             });

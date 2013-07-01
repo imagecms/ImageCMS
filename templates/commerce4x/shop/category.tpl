@@ -59,7 +59,7 @@
         </aside>
 
         <!-- catalog container -->
-        <div class="span9 right">
+        <div class="span10 right">
 
             <!-- category title and products count output -->
             <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>

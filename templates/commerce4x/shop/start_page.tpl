@@ -36,10 +36,10 @@
     </section>
     <section class="container">
         <div class="row-fluid">
-            <div class="span8">
+            <div class="span7">
                 {widget('infobox2')}
             </div>
-            <div class="span4">
+            <div class="span5">
                 {widget('Kits')}
                 {widget('action_products')}
             </div>
