@@ -266,91 +266,260 @@ function ieInput(els) {
 /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
-        init: function(options) {
-            var sH = 0,
-                    menu = $(this);
-            var settings = $.extend({
-                item: this.find('li'),
-                effectOn: 'fadeIn',
-                effectOff: 'fadeOut',
-                duration: 0,
-                drop: 'li > ul',
-                countColumn: 'none',
-                durationOn: 0,
-                durationOff: 0,
-                dropWidth: null
-            }, options);
-
-            var menuW = menu.width(),
-                    menuItem = settings.item,
-                    drop = settings.drop,
-                    effOn = settings.effectOn,
-                    effOff = settings.effectOff,
-                    drop = settings.drop,
-                    countColumn = settings.countColumn,
-                    item_menu_l = menuItem.length,
-                    dropW = settings.dropWidth,
-                    duration = time_dur_m = settings.duration,
-                    durationOn = settings.durationOn,
-                    durationOff = settings.durationOff;
-
-            if (!dropW)
-                dropW = parseInt(menuW / 3);
-
-            menuItem.each(function(index) {
-                var $this = $(this),
-                        $thisW = $this.width(),
-                        $thisL = $this.position().left,
-                        drop = $this.find(settings.drop),
-                        $thisH = $this.height();
-                if ($thisH > sH)
-                    sH = $thisH;
-                if (menuW - $thisL < dropW) {
-                    if (drop.children().length >= countColumn)
-                        drop.css('right', 0).addClass('right-drop');
-                    else
-                        drop.css('right', menuW - $thisW - $thisL).addClass('right-drop');
-                }
+        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn) {
+            if (menuW - $thisL < dropW) {
+                drop.removeClass('left-drop')
+                if (drop.children().children().length >= countColumn)
+                    drop.css('right', 0).addClass('right-drop');
                 else {
-                    if (drop.children().length >= countColumn)
-                        drop.css('left', 0);
-                    else
-                        drop.css('left', $thisL)
+                    var right = menuW - $thisW - $thisL;
+                    if ($thisL + $thisW < dropW)
+                        right = menuW - dropW;
+                    drop.css('right', right).addClass('right-drop');
                 }
-            }).css('height', sH);
-            menuItem.find('.helper:first').css('height', sH)
+            }
+            else {
+                drop.removeClass('right-drop')
+                if (drop.children().children().length >= countColumn)
+                    drop.css('left', 0).addClass('left-drop');
+                else
+                    drop.css('left', $thisL).addClass('left-drop');
+            }
+        },
+        init: function(options) {
+            if ($.exists_nabir($(this))) {
+                var sH = 0,
+                        menu = $(this);
+                var settings = $.extend({
+                    item: this.find('li'),
+                    effectOn: 'fadeIn',
+                    effectOff: 'fadeOut',
+                    duration: 0,
+                    drop: 'li > ul',
+                    countColumn: 'none',
+                    durationOn: 0,
+                    durationOff: 0,
+                    dropWidth: null,
+                    sub2Frame: null,
+                    evLF: 'hover',
+                    evLS: 'hover',
+                    hM: 'hoverM'
+                }, options);
+                var menuW = menu.width(),
+                        menuItem = settings.item,
+                        drop = settings.drop,
+                        effOn = settings.effectOn,
+                        effOff = settings.effectOff,
+                        countColumn = settings.countColumn,
+                        itemMenuL = menuItem.length,
+                        dropW = settings.dropWidth,
+                        sub2Frame = settings.sub2Frame,
+                        duration = timeDurM = settings.duration,
+                        durationOn = settings.durationOn,
+                        durationOff = settings.durationOff,
+                        evLF = settings.evLF,
+                        evLS = settings.evLS,
+                        hM = settings.frAClass;
 
-            $('.not-js').removeClass('not-js');
-            var hover_t_o = '';
-            menuItem.hover(
-                    function() {
-                        var $this = $(this),
-                                $thisDrop = $this.find(settings.drop);
-                        if ($this.index() == 0)
-                            $this.addClass('first_h');
-                        if ($this.index() == item_menu_l - 1)
-                            $this.addClass('last_h');
-                        hover_t_o = setTimeout(function() {
-                            $thisDrop[effOn](durationOn);
-                            if ($thisDrop.length != 0)
-                                menu.addClass('hover');
-                        }, time_dur_m);
-                    }, function() {
-                var $this = $(this),
-                        $thisDrop = $this.find(settings.drop);
-                $(settings.drop).stop()[effOff](durationOff);
-                $('.first_h, .last_h').removeAttr('class');
-                clearTimeout(hover_t_o);
-                if ($thisDrop.length != 0)
-                    menu.removeClass('hover');
-            });
-            menu.hover(
-                    function() {
-                        return time_dur_m = 0;
-                    },
-                    function() {
-                        return time_dur_m = duration;
-                    });
+                if (isTouch) {
+                    evLF = 'toggle';
+                    evLS = 'toggle';
+                }
+
+                if (!dropW)
+                    dropW = parseInt(menuW / 3);
+
+                var k = [],
+                        kk = 0;
+                menuItem.each(function(index) {
+                    var $this = $(this),
+                            $thisW = $this.width(),
+                            $thisL = $this.position().left,
+                            drop = $this.find(settings.drop),
+                            $thisH = $this.height();
+
+                    k[index] = false;
+
+                    if ($thisH > sH)
+                        sH = $thisH;
+                    methods.position(menuW, $thisL, dropW, drop, $thisW, countColumn);
+                }).css('height', sH);
+                menuItem.find('.helper:first').css('height', sH)
+
+                $('.not-js').removeClass('not-js');
+                var hoverTO = '';
+
+                function closeMenu(el, e) {
+                    var $this = el,
+                            $thisDrop = $this.find(drop);
+
+                    if ($thisDrop.length != 0)
+                        menu.removeClass(hM);
+
+                    var menuItemH = menuItem.filter('.' + hM)
+                    if (e.type == 'click' && evLF == 'toggle')
+                        menuItemH.click()
+
+                    var subH = $thisDrop.children().children('.' + hM);
+                    if (e.type == 'click' && evLS == 'toggle')
+                        subH.click();
+
+                    $('.firstH, .lastH').removeClass('firstH lastH');
+                    clearTimeout(hoverTO);
+                }
+                menuItem.unbind(evLF)[evLF](
+                        function(e) {
+                            var $thisI = $this.index();
+                            $this = $(this).addClass(hM),
+                                    $thisDrop = $this.find(settings.drop);
+
+                            if (e.type == 'click' && evLF == 'toggle') {
+                                $this.siblings().filter('.' + hM).click()
+                            }
+
+                            var subH = $(drop).children().children('.' + hM);
+                            if (e.type == 'click' && evLS == 'toggle')
+                                subH.click();
+
+                            if (e.type == 'click' && $this.has(drop).length == 0 && (evLF == 'toggle' || evLS == 'toggle')) {
+                                if ($(e.target).closest('a').length != 0 || $(e.target).is('a'))
+                                    window.location = $(e.target).closest('a').attr('href') || $(e.target).attr('href');
+                            }
+
+                            if ($thisI == 0)
+                                $this.addClass('firstH');
+                            if ($thisI == itemMenuL - 1)
+                                $this.addClass('lastH');
+
+                            if ($(e.relatedTarget).is(menuItem) || kk == 0)
+                                k[$thisI] = true;
+                            if (k[$thisI]) {
+                                hoverTO = setTimeout(function() {
+                                    $thisDrop[effOn](durationOn, function() {
+                                        kk++;
+                                        if ($thisDrop.length != 0)
+                                            menu.addClass(hM);
+                                        if (sub2Frame) {
+                                            var listDrop = $thisDrop.children();
+                                            if (!listDrop.is('[data-height]')) {
+                                                var sumHL1 = listDrop.height(),
+                                                        dropW = $thisDrop.width();
+                                                listDrop.attr('data-height', sumHL1);
+                                                isSub2W = $thisDrop.find(sub2Frame).addClass('is-side').actual('width');
+                                            }
+
+                                            listDrop.children().each(function() {
+                                                var $this = $(this),
+                                                        isSub2 = $this.find(sub2Frame);
+                                                if ($.exists_nabir(isSub2)) {
+                                                    var sumHL2 = isSub2.actual('height');
+                                                    if (sumHL2 > sumHL1)
+                                                        var koef = Math.ceil(sumHL2 / sumHL1);
+                                                    if (koef != undefined) {
+                                                        subWL2 = isSub2W * koef;
+                                                        if (subWL2 + dropW > menuW) {
+                                                            subWL2 = menuW - dropW;
+                                                        }
+                                                        isSub2.css('width', dropW);
+                                                    }
+                                                }
+                                            })[evLS](function(e) {
+                                                var $this = $(this),
+                                                        subFrame = $this.find(sub2Frame);
+
+                                                if (e.type == 'click' && evLS == 'toggle') {
+                                                    $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                }
+                                                else
+                                                    $this.has(sub2Frame).addClass(hM);
+
+                                                $thisDrop.css('width', '');
+                                                $thisDrop.children().add(subFrame).css('height', '');
+
+                                                var dropW = $this.parent().parent().width(),
+                                                        sumW = dropW + subFrame.width(),
+                                                        subHL2 = subFrame.height(),
+                                                        dropDH = $thisDrop.children().data('height');
+                                                if (subHL2 < dropDH)
+                                                    subHL2 = dropDH;
+                                                $thisDrop.css('width', sumW);
+                                                $thisDrop.children().add(subFrame).css('height', subHL2);
+                                            }, function(e) {
+                                                var $this = $(this),
+                                                        subFrame = $this.find(sub2Frame);
+                                                $thisDrop.css('width', '')
+                                                $thisDrop.children().add(subFrame).css('height', '')
+                                                $this.removeClass(hM)
+                                            });
+                                        }
+                                    });
+                                }, timeDurM);
+                            }
+                        }, function(e) {
+                    var $this = $(this),
+                            $thisI = $this.index();
+                    k[$thisI] = true;
+                    if ($this.index() == 0)
+                        $this.removeClass('firstH');
+                    if ($this.index() == itemMenuL - 1)
+                        $this.removeClass('lastH');
+                    var $thisDrop = $this.find(settings.drop);
+                    if ($.exists_nabir($thisDrop)) {
+                        if (sub2Frame) {
+                            $this.find(settings.drop)[effOff](durationOff, function() {
+                                $this.removeClass(hM);
+                            });
+                        }
+                        else {
+                            $this.find(settings.drop).stop()[effOff](durationOff, function() {
+                                $this.removeClass(hM);
+                            });
+                        }
+                    }
+                    else {
+                        setTimeout(function() {
+                            $this.removeClass(hM);
+                        }, durationOff)
+                    }
+                })
+                menu.unbind('hover')['hover'](
+                        function(e) {
+                            kk = 0;
+                            e.stopImmediatePropagation();
+                            return timeDurM = 0;
+                        },
+                        function(e) {
+                            kk = -1;
+                            e.stopImmediatePropagation();
+                            if (evLF == 'toggle' || evLS == 'toggle') {
+                                $(this).find('.' + hM).click();
+                            }
+                            setTimeout(function() {
+                                $(drop)[effOff](durationOff);
+                            }, duration)
+                            closeMenu(menu, e);
+                            return timeDurM = duration;
+                        });
+                body.unbind('click.menu').bind('click.menu', function(e) {
+                    closeMenu(menu, e);
+                }).unbind('keydown.menu').bind('keydown.menu', function(e) {
+                    if (!e)
+                        var e = window.event;
+                    if (e.keyCode == 27) {
+                        closeMenu(menu, e);
+                    }
+                });
+                $(drop).find('a').click(function(e) {
+                    e.stopPropagation();
+                });
+                menuItem.find('a').click(function(e) {
+                    if ($.exists_nabir($(this).find(drop)))
+                        e.stopPropagation();
+                });
+            }
+        },
+        refresh: function() {
+            methods.init.call($(this), optionsMenu);
         }
     };
     $.fn.menuImageCms = function(method) {

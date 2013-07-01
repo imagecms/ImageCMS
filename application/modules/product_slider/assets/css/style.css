@@ -3,10 +3,10 @@
 .popup_product .variantProd .title{display: block;}
 
 .popup_product .icon-infoM{width: 16px;height: 16px;margin-right: 5px;background: url("../images/info.png") no-repeat;top: 4px;}
-.popup_product .drop_down{width: 587px;}
-.popup_product .frame_tabs{overflow: hidden; position: relative;}
-.popup_product #info.hideAfter:after {
-    content: ""; position: absolute; display: block; left:0; bottom:0px; right:0;height:40px;
+.popup_product .drop_down{width: 570px;}
+.popup_product .frame_tabs > div{overflow: hidden; position: relative;}
+.popup_product .hideAfter:after {
+    content: ""; position: absolute; display: block; left:0; bottom:0px; height:40px;width: 100%;
     background: #fff;
     background: -moz-linear-gradient(top,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 80%,rgba(255,255,255,1) 100%);
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(255,255,255,0)),color-stop(80%,rgba(255,255,255,1)),color-stop(100%,rgba(255,255,255,1)));
@@ -23,7 +23,7 @@
 .popup_product .frame_tabs > div, .cloned .frame_tabs > div, .cloned.frame_tabs > div{display: block;}
 .popup_product .item_tovar{padding-bottom: 0;margin-bottom: 0;}
 .wish_list_in_popup .d_l_b, .wish_list_in_popup .d_l_b{border-bottom-color: transparent;text-decoration: underline;}
-.popup_product #info, .cloned.frame_tabs #characteristic{overflow: hidden;padding-top: 25px;}
+.popup_product #characteristic, .popup_product #info, .cloned.frame_tabs #characteristic{padding-top: 25px;}
 
 .product_slider_PN{width: 28px !important;}
 .product_slider_PN#fancybox-left{left: -35px;}

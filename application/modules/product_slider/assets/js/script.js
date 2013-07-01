@@ -1,9 +1,9 @@
 function margZoomLens() {
     $('#wrap').find('img').each(function() {
         var $this = $(this),
-        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
-        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
-        
+                mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
+                mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
         console.log('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
     })
@@ -32,6 +32,8 @@ $(document).ready(function() {
                             elWrapCHMH = 586 - 90 - frameWDesc.css('width', $rightFrameProductW).actual('height'),
                             $elWrapCHH = $elWrapCH.css('width', $rightFrameProductW).actual('height'),
                             $elsCH = $elWrapCH.children();
+
+                    frameWDesc.add($elWrapCH).css('width', '100%');
 
                     if ($elWrapCHH > elWrapCHMH) {
                         var lostH = $elWrapCHH - elWrapCHMH;

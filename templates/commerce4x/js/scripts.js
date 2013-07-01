@@ -96,9 +96,9 @@ var orderSelect = {
 function margZoomLens() {
     $('#wrap').find('img').each(function() {
         var $this = $(this),
-        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
-        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
-        
+                mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
+                mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
         console.log(1)
     })
@@ -489,7 +489,12 @@ $(document).ready(function() {
         effectOn: 'slideDown',
         effectOff: 'slideUp',
         durationOn: 200,
-        durationOff: 50
+        durationOff: 100,
+        //sub2Frame: '.frame-l2', //if drop-side
+        dropWidth: 480,
+        evLF: 'hover',
+        evLS: 'hover',
+        frAClass: 'hoverM'
     })
 
     $('.drop').drop({
@@ -933,12 +938,15 @@ wnd.load(function() {
         $this.siblings().removeClass('active').end().addClass('active');
     });
 
-    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-    margZoomLens();
-    body.append('<style id="forCloudZomm"></style>')
-    $('#photoGroup').find('img').load(function() {
+    try {
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
         margZoomLens();
-    })
+        body.append('<style id="forCloudZomm"></style>')
+        $('#photoGroup').find('img').load(function() {
+            margZoomLens();
+        })
+    } catch (err) {
+    }
 
     var fr_lab_l = $('.frameLabel').length;
     $('.frameLabel').each(function(index) {
@@ -1012,6 +1020,5 @@ window.ontouchstart = function(e) {
 }
 if (isTouch)
     window.onscroll = function() {
-        var scrollTop = window.scrollY;
-        topbar.style.top = scrollTop + 'px';
+            topbar.style.top =  window.pageYOffset || docElem.scrollTop || body.scrollTop + window.innerHeight + 'px';
     };

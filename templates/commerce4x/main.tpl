@@ -40,7 +40,7 @@
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body>
+    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])}">
         <div class="mainBody">
             <div class="container clearfix" id="frame_additional_menu">{$CI->load->module('top_menu_additional')->render()}</div>
             <div class="header">
@@ -223,13 +223,13 @@
 
         <!-- php vars to js -->
         <script type="text/javascript">
-                                                            var curr = '{$CS}';
-                                                            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
-                                                            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-                                                            var inCart = '{lang('already_in_basket')}';
-                                                            var toCart = '{lang('s_buy')}';
-                                                            var pcs = 'шт.';
-                                                            var kits = 'компл.';
+            var curr = '{$CS}';
+            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
+            var inCart = '{lang('already_in_basket')}';
+            var toCart = '{lang('s_buy')}';
+            var pcs = 'шт.';
+            var kits = 'компл.';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->
