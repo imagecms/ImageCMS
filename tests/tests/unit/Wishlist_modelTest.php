@@ -43,6 +43,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
         $this->assertArrayHasKey('maxDescLenght', $this->object->getSettings());
         $this->assertArrayHasKey('maxImageWidth', $this->object->getSettings());
         $this->assertArrayHasKey('maxImageHeight', $this->object->getSettings());
+        $this->assertArrayHasKey('maxImageSize', $this->object->getSettings());
     }
 
     /**
