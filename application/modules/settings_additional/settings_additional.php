@@ -68,7 +68,7 @@ class Settings_additional extends MY_Controller {
                                                 left join product_variant_paramert on product_variant_paramert.id = shop_product_variants.id 
                                                 join shop_product_variants_i18n on shop_product_variants_i18n.id = shop_product_variants.id
                                                 where shop_product_variants_i18n.locale = '" . MY_Controller::getCurrentLocale() . "'
-                                                      and shop_product_variants.product_id = '" . $model->getid() . "'")->result_array();
+                                                      and shop_product_variants.product_id = '" . $model->getid() . "' order by shop_product_variants.position")->result_array();
             if (count($parametr) > 0){                                             
                 $buffer = \CMSFactory\assetManager::create()->setData(array('parametr' => $parametr))->registerScript('script')->fetchTemplate('product_parametr');
                 \CMSFactory\assetManager::create()->appendData('moduleAdditions', $buffer);                

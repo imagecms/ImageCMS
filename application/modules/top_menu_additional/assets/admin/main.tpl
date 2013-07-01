@@ -102,6 +102,9 @@
                                             <span class="help-block">
                                                 <strong> #compare_data - дание про сравнение товаров</strong>
                                             </span>
+                                            <span class="help-block">
+                                                <strong> #tel_block - дание про телефони</strong>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
