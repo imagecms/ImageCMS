@@ -38,8 +38,6 @@
 </form>
 
 <br /><br />
-  dddddddddddddddddddddddddddddddddddddddddddddd
-{var_dumps($user)}
 <form method="POST" action="/wishlist/createWishList">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="" name="wishListName"/>

@@ -119,20 +119,18 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertGreaterThan(0, $this->object->getMostViewedWishLists());
     }
-    
-    
-     /**
+
+    /**
      * @covers wishlist\classes\BaseApi::user
      * @todo   Implement testUser().
      */
     public function testUser() {
         $this->assertNotEmpty($this->object->user(47));
-        
+
         $this->assertInternalType('array', $this->object->user(47));
-        
+
         $this->assertGreaterThan(0, $this->object->user(47));
     }
-
 
     /**
      * @covers wishlist\classes\BaseApi::getMostPopularItems
@@ -146,7 +144,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertGreaterThan(0, $this->object->getMostPopularItems());
     }
-    
+
     /**
      * @covers wishlist\classes\BaseApi::createWishList
      * @todo   Implement testCreateWishList().
@@ -154,24 +152,22 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
     public function testCreateWishList() {
         $result = $this->object->createWishList();
         $this->assertNotEmpty($result);
-        
+
         $this->assertInternalType('string', $result);
-        
+
         $this->assertRegExp('/Создано/', $result);
-       
     }
-    
-    
+
     /**
      * @covers wishlist\classes\BaseApi::renderPopup
      * @todo   Implement testRenderPopup().
      */
     public function testRenderPopup() {
         $this->assertNotEmpty($this->object->renderPopup());
-        
+
         $this->assertInternalType('array', $this->object->renderPopup());
     }
-    
+
     /**
      * @covers wishlist\classes\BaseApi::show
      * @todo   Implement testShow().
@@ -181,28 +177,25 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $model->upateWishList(1, array('access' => 'public', 'hash' => '222'));
 
         $this->assertNotEmpty($this->object->show('222'));
-        
+
         $this->assertInternalType('array', $this->object->show('222'));
-        
+
         $this->assertCount(1, $this->object->show('222'));
-        
     }
+
     /**
      * @covers wishlist\classes\BaseApi::deleteItem
      * @todo   Implement testDeleteItem().
      */
     public function testDeleteItem() {
         $result = $this->object->deleteItem(1, 4);
-        
+
         $this->assertNotEmpty($result);
-        
+
         $this->assertInternalType('string', $result);
-        
+
         $this->assertRegExp('/Операция успешна/', $result);
-       
-        
     }
-    
 
     /**
      * @covers wishlist\classes\BaseApi::deleteItemByIds
@@ -211,44 +204,55 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
     public function testDeleteItemByIds() {
         $result = $this->object->deleteItemByIds();
         $this->assertNotEmpty($result);
-        
+
         $this->assertInternalType('string', $result);
-        
+
         $this->assertRegExp('/Успешно удалено/', $result);
+    }
+
+    /**
+     * @covers wishlist\classes\BaseApi::userUpdate
+     * @todo   Implement testUserUpdate().
+     */
+    public function testUserUpdate() {
+        $_POST['description'] = "test desc";
+        $_POST['user_birthday'] = 112341234;
+        $_POST['user_id'] = 47;
+        $_POST['user_name'] = "test_name";
+
+        $result = $this->object->userUpdate();
+        $this->assertNotEmpty($result);
+        $this->assertInternalType('string', $result);
+        $this->assertRegExp('/Обновлено/', $result);
+    }
+
+
+    /**
+     * @covers wishlist\classes\BaseApi::deleteWL
+     * @todo   Implement testDeleteWL().
+     */
+    public function testDeleteWL() {
+        $result = $this->object->deleteWL(2);
+        $this->assertNotEmpty($result);
+
+        $this->assertInternalType('string', $result);
+
+        $this->assertRegExp('/Успешно удалено/', $result);
+    }
+
+    /**
+     * @covers wishlist\classes\BaseApi::updateWL
+     * @todo   Implement testUpdateWL().
+     */
+    public function testUpdateWL() {
+        $_POST['WLID'] = 3;
+        $_POST['comment'] = "test_wl_comment";
+        $_POST['title'] = "test title";
+        $_POST['access'] = array('public');
+        $result = $this->object->updateWL();
+        var_dumps($result);
         
     }
-//
-//
-//    /**
-//     * @covers wishlist\classes\BaseApi::userUpdate
-//     * @todo   Implement testUserUpdate().
-//     */
-//    public function testUserUpdate() {
-//        
-//        
-//    }    
-//
-//    /**
-//     * @covers wishlist\classes\BaseApi::deleteWL
-//     * @todo   Implement testDeleteWL().
-//     */
-//    public function testDeleteWL() {
-//        // Remove the following lines when you implement this test.
-//        $this->markTestIncomplete(
-//                'This test has not been implemented yet.'
-//        );
-//    }
-//
-//    /**
-//     * @covers wishlist\classes\BaseApi::updateWL
-//     * @todo   Implement testUpdateWL().
-//     */
-//    public function testUpdateWL() {
-//        // Remove the following lines when you implement this test.
-//        $this->markTestIncomplete(
-//                'This test has not been implemented yet.'
-//        );
-//    }
 //
 //    /**
 //     * @covers wishlist\classes\BaseApi::deleteImage
@@ -271,5 +275,4 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 //                'This test has not been implemented yet.'
 //        );
 //    }
-
 }
