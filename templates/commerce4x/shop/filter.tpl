@@ -18,7 +18,7 @@
 
 
 {//main filter container}
-<aside class="span3">
+
     {//define default values for price slider}
     <span id="opt1" data-def_min = "{echo (int)$priceRange.minCost}"></span>
     <span id="opt2" data-def_max = "{echo (int)$priceRange.maxCost}"></span>
@@ -267,5 +267,5 @@
     {//container for displaying price range slider}
 </form>
 </div>
-</aside>
+
 <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>

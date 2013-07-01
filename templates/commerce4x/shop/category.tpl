@@ -50,8 +50,11 @@
 
     <!-- main category page content -->
     <div class="row">
+        <aside class="span3">
+        {if $sub_menu}{echo $sub_menu}{/if}
         <!-- here filter tpl is including -->
         {include_tpl('filter')}
+        </aside>
 
         <!-- catalog container -->
         <div class="span9 right">
