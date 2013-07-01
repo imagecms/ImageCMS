@@ -1,4 +1,23 @@
-{include_tpl('price_java_parametr')}
+{$minPrice = (int)$priceRange.minCost;}
+{$maxPrice = (int)$priceRange.maxCost;}
+{if $_GET['lp']}
+    {$curMin = (int)$_GET['lp'];}
+{else:}
+    {$curMin = $minPrice;}
+{/if}
+{if $_GET['rp']}
+    {$curMax = (int)$_GET['rp'];}
+{else:}
+    {$curMax = $maxPrice;}
+{/if}
+<script type="text/javascript">
+    totalProducts = parseInt('{$totalProducts}');
+    slider1 = new Object();
+    slider1.defMin = {$minPrice};
+    slider1.defMax = {$maxPrice};
+    slider1.curMin = {$curMin};
+    slider1.curMax = {$curMax};
+</script>
 
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
