@@ -106,8 +106,8 @@
                                                 {/if}
                                                             name="met_del"
                                                             value="{echo $del_id}"
-                                                            data-price="{$price}"
-                                                            data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
+                                                            data-price="{echo $price}"
+                                                            data-freefrom="{echo $del_freefrom}"/>
                                                 {echo $deliveryMethod->getName()}
                                                         </option>
                                             {/foreach}
@@ -125,21 +125,21 @@
                                                             {$counter = false}
                                                             {$price = ceil($deliveryMethod->getPrice())}
                                                             {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                                                            name="met_del"
+                                                            name="deliveryMethodId"
                                                             value="{echo $del_id}"
                                                             data-price="{$price}"
-                                                            data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
+                                                            data-freefrom="{echo $del_freefrom}"
                                                             />
                                                     </span>
                                                     <div class="name-count">
                                                         <span class="text-el">{echo $deliveryMethod->getName()}</span>
                                                     </div>
-                                                    {if $deliveryMethod->getDescription()}
-                                                        <div class="help-block">
+                                                    <div class="help-block">
+                                                        {if $deliveryMethod->getDescription()}
                                                             {echo $deliveryMethod->getDescription()}
-                                                        </div>
-                                                    {/if}
-                                                    {echo $price}
+                                                        {/if}
+                                                        <div>Цена: {echo $price} <span class="curr">{$CS}</span></div>
+                                                    </div>
                                                 </div>
                                             {/foreach}
                                         </div>

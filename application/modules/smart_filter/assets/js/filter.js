@@ -240,7 +240,6 @@ function ajaxRecount(el, slChk, submit) {
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
 
-
     $.ajax({
         type: 'get',
         url: catUrl,
