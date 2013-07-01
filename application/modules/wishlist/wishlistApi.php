@@ -41,7 +41,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         parent::deleteItem($variant_id, $wish_list_id);
         return $this->return_json();
     }
-    
+
     public function deleteItemByIds(){
         parent::deleteItemByIds($items);
         return $this->return_json();
