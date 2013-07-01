@@ -142,7 +142,7 @@
                                                                   data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                   data-stock="{echo $pv->getStock()}"
                                                                   >
-                                                {lang('s_buy')}
+                                                {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                             </button>
                                         {else:}
                                             <button  {if $key != 0}style="display:none"{/if}
@@ -298,7 +298,7 @@
                                     {foreach $renderProperties as $prop}
                                     <tr>
                                         <td>
-                                            {if $prop.Desc}
+                                            {if $prop.Desc && $prop.ShowFaq}
                                             <div class="item_add d_i-b">
                                                 <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
                                                 <div class="drop drop_down">
@@ -366,7 +366,7 @@
                                                     data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $p->firstVariant->getStock()}"
                                                     >
-                                                {lang('s_buy')}
+                                                {if in_array($p->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                             </button>
                                             <div class="d_i-b">
                                                 <!-- to compare button -->

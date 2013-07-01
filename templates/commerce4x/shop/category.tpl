@@ -50,8 +50,13 @@
 
     <!-- main category page content -->
     <div class="row">
+        <aside class="span3">
+            
+            {echo \Category\RenderMenu::create()->showSubCategories('sub_category_menu_vert',$category->getId())}
+
         <!-- here filter tpl is including -->
         {include_tpl('filter')}
+        </aside>
 
         <!-- catalog container -->
         <div class="span10 right">
@@ -209,7 +214,7 @@
                                                                       data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
-                                                    {lang('s_buy')}
+                                                    {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                                 </button>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}

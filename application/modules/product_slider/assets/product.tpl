@@ -240,7 +240,7 @@
                             {foreach $renderProperties as $prop}
                                 <tr>
                                     <td>
-                                        {if $prop.Desc}
+                                        {if $prop.Desc && $prop.ShowFaq}
                                             <div class="item_add d_i-b">
                                                 <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
                                                 <div class="drop drop_down">
@@ -248,6 +248,7 @@
                                                         {echo $prop.Desc}
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         {else:}
                                             {echo $prop.Name}                                               

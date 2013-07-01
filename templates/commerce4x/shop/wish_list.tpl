@@ -92,7 +92,7 @@
                                             data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $variant->getStock()}"
                                             >
-                                        {lang('s_buy')}
+                                        {if in_array($variant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                     </button>
                                 {else:}
                                     <button data-placement="bottom right"

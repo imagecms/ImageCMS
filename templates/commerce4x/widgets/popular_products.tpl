@@ -72,7 +72,7 @@
                                 data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
-                            {lang('s_buy')}
+                            {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                         </button>
                         {else:}
                         <button data-placement="bottom right"
