@@ -26,7 +26,7 @@
                         <img id="imageGroup" src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
                     </figure>                        
                 </a>              
-                <ul class="frame_thumbs">                    
+                <ul class="frame_thumbs clearfix">                    
                     <!-- Start. Show additional images -->
                     { if sizeof($productImages = $model->getSProductImagess()) > 0}
                     { foreach $productImages as $key => $image}
@@ -50,7 +50,11 @@
                     { /if}   
 
                     <!-- End. Show additional images -->
-                </ul>
+                </ul>               
+            </li>
+            <!--Photo block for main product end-->
+            <li class="span7" id="right_popup_product" data-width="57.4">
+                <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                 <!-- Output rating for the old product Start -->
                 <div class="frame_response c_b">
                     <div class="star">
@@ -64,14 +68,10 @@
                     {/if}
                 </div>
                 <!-- Output rating for the old product End -->
-            </li>
-            <!--Photo block for main product end-->
-            <li class="span7" id="right_popup_product" data-width="57.4">
-                <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                 <div class="clearfix frame_buy">
                     <div class="f-s_0 d_i-b v-a_b">
                         <!-- Start. Output of all the options -->
-                        <div class="f-s_0 d_i-b v-a_b m-b_20">
+                        <div class="f-s_0 d_i-b v-a_b m-b_19">
                             {$variants = $model->getProductVariants()}
                             {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                             {if count($variants) > 1 && $cnt > 1}
@@ -96,7 +96,7 @@
                                 </div>
                                 <!-- End. Output of all the options -->
                             {/if}
-                            <div class=" d_i-b v-a_b m-r_45">
+                            <div class=" d_i-b v-a_b m-r_10">
                                 <div class="price price_f-s_24">
                                     <!-- $model->hasDiscounts() - check for a discount. -->
                                     {if $model->hasDiscounts()}
@@ -182,9 +182,12 @@
                                 {/foreach}
                             </div>
                         </div>
-                        <div class="d_i-b v-a_b m-b_20 add_func_btn">
+                        <button class="btn btn-more d_i-b m-b_20 m-r_10">
+                           <a href="{shop_url('product/' . $model->geturl())}">Подробнее</a>
+                        </button>
+                        <div class="v-a_b m-b_20 add_func_btn">
                             <!-- Start. Block "Add to Compare" -->
-                            <button class="btn btn_small_p toCompare"
+                            <button class="btn_small_p toCompare d_i-b"
                                     data-prodid="{echo $model->getId()}"
                                     type="button"
                                     data-title="{lang('s_add_to_compare')}"
@@ -198,10 +201,11 @@
                             <!-- End. Block "Add to Compare" -->
 
                             <!--Block Wishlist Start-->
+                            <div class="wrap_wish-list d_i-b">
                             {foreach $variants as $key => $pv}
-                                <div {if $key != 0}style="display:none"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
+                                <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant m-t_5">
                                     <!-- to wish list button -->
-                                    <button class="btn btn_small_p toWishlist"
+                                    <button class="btn_small_p toWishlist"
                                             data-price="{echo $pv->toCurrency()}"
                                             data-prodid="{echo $model->getId()}"
                                             data-varid="{echo $pv->getId()}"
@@ -213,8 +217,9 @@
                                         <span class="icon-wish_2"></span>
                                         <span class="text-el">{lang('s_add_to_wish_list')}</span>
                                     </button>
-                                </div>
+                            </div>
                             {/foreach}
+                        </div>
                             <!-- Stop. Block "Add to Wishlist" -->
                             <!--Block Follow the price Start-->
                         </div>
@@ -225,15 +230,7 @@
                 <div class="share_tov">
                     {echo $CI->load->module('share')->_make_share_form()}
                 </div>
-                <div class="frame_tabs" data-height="372">
-                    <!-- End. Withdraw button to "share" -->
-                    {if $model->getFullDescription() != ''}
-                        <div id="info" data-height="172">
-                            <div class="text">
-                                { echo $model->getFullDescription()}                      
-                            </div>
-                        </div>
-                    {/if}
+                <div class="frame_tabs" data-height="372">                   
                     {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
                     {if count($renderProperties) >0}
                     <div id="characteristic" data-height="200">
@@ -263,6 +260,14 @@
                             </table>
                         
                     </div>
+                    {/if}
+                     <!-- End. Withdraw button to "share" -->
+                    {if $model->getFullDescription() != ''}
+                        <div id="info" data-height="172">
+                            <div class="text">
+                                { echo $model->getFullDescription()}                      
+                            </div>
+                        </div>
                     {/if}
                 </div>
                 <div class="t-a_r m-t_20">

@@ -31,6 +31,7 @@ $(document).ready(function() {
 
                             if ($this.data('height') < thisH) {
                                 $this.height(thisH - lostH);
+                                $this.addClass('hideAfter');
                             }
                         })
                     }

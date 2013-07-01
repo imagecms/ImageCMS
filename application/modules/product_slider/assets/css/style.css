@@ -42,7 +42,7 @@
 }
 .item_tovar #wrap{text-align: center;font-size: 0;overflow: hidden;}
 .item_tovar #wrap{width: 0;display: inline-block;width: 100%;}
-.mousetrap{position: relative!important;display: inline-block;margin-top: -370px !important;top: -14px !important;}
+.mousetrap{display: inline-block;}
 .item_tovar #wrap .photo figure{width: auto;display: inline-block;}
 .item_tovar #wrap .photo{display: inline-block !important;width: auto;padding: 0;max-width: 100%;}
 
