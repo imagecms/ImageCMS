@@ -61,7 +61,7 @@
 <!-- end of selected filters block -->
 
 <form action="" method="get" id="catalog_form">
-    <input type="hidden" name="order" value="{echo $_GET[order]}" />
+    <input type="hidden" name="order" value="{echo $order_method}" />
     <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
     {if $totalProducts > 0}
         <div class="popup_container">
