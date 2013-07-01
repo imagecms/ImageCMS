@@ -26,12 +26,12 @@
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
                     <li class="cleare_price" data-rel="slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
-                    
-                    {/if}
-                    {if count($brands) > 0}
-                        {foreach $brands as $brand}
-                            {foreach $_GET['brand'] as $id}
-                                {if $id == $brand->id}
+
+                {/if}
+                {if count($brands) > 0}
+                    {foreach $brands as $brand}
+                        {foreach $_GET['brand'] as $id}
+                            {if $id == $brand->id}
                                 <li data-name="brand_{echo $brand->id}" class="cleare_filter"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $brand->name}</span></button></li>
                                         {/if}
                                     {/foreach}
@@ -61,7 +61,8 @@
 <!-- end of selected filters block -->
 
 <form action="" method="get" id="catalog_form">
-    <input type="hidden" name="order" value="{echo $_GET[order]}" />
+    <input type="hidden" name="order" value="{echo $order_method}" />
+    <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
     {if $totalProducts > 0}
         <div class="popup_container">
             {include_tpl('filter')}

@@ -1527,7 +1527,9 @@ function ieInput(els) {
                             else
                                 input.attr('value', inputVal + 1);
 
-                            if (settings.ajax)
+                            if (settings.ajax && !checkProdStock)
+                                $.fancybox.showActivity();
+                            if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
                                 $.fancybox.showActivity();
                             if (checkProdStock)
                                 input.maxValue();
@@ -1553,10 +1555,6 @@ function ieInput(els) {
                             settings.after(e, el, input);
                         }
                     })
-                    $this.bind('keyup').unbind('keyup', function() {
-                        if (checkProdStock)
-                            $(this).maxValue();
-                    })
                 })
             }
         }
@@ -1573,15 +1571,19 @@ function ieInput(els) {
 })(jQuery);
 (function($) {
     var methods = {
-        init: function() {
+        init: function(e) {
             var $this = $(this),
-                    $min = $(this).attr('data-min'),
+                    key = e.keyCode,
                     $thisVal = parseInt($this.val());
 
-            if ($thisVal < $min || $thisVal == '') {
-                $this.val($min);
-                return true;
+            if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0'))
+            {
+                return false;
             }
+//            if ($thisVal < $min || isNaN($thisVal) || (isNaN($thisVal) && keyChar == 0)) {
+//                $this.val($min);
+//                return true;
+//            }
         }
     };
     $.fn.minValue = function(method) {
@@ -1593,20 +1595,34 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.minValue');
         }
     };
-    $('[data-min]').live('keyup', function(e) {
-        $(this).minValue(e);
+    $('[data-min]').live({
+        'keyup': function(e) {
+            var $this = $(this);
+            if (parseInt($this.val()) == '0')
+                $this.val($this.attr('data-min'))
+        },
+        'keydown': function(e) {
+            $(this).minValue(e);
+        }
     })
 })(jQuery);
 (function($) {
     var methods = {
-        init: function(options) {
+        init: function(e) {
             var $this = $(this),
-                    $max = parseInt($(this).attr('data-max'));
-            $thisVal = $this.val();
-            if ($thisVal > $max) {
+                    $thisVal = $this.val(),
+                    $max = parseInt($this.attr('data-max'));
+           
+            if (!e)
+                var e = window.event;
+            var key = e.keyCode;
+            keyChar = parseInt(String.fromCharCode(key));
+            if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
                 $this.val($max);
-                return false;
+                return $max;
             }
+            else
+                return false;
         }
     };
     $.fn.maxValue = function(method) {
@@ -1618,8 +1634,8 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.maxValue');
         }
     };
-    $('[data-max]').live('keyup', function() {
-        $(this).maxValue();
+    $('[data-max]').live('keydown keyup', function(e) {
+        $(this).maxValue(e);
     })
 })(jQuery);
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/

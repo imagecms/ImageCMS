@@ -47,7 +47,7 @@ class Admin extends BaseAdminController {
     public function userWL($id) {
         $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
-        if ($wishlist->renderUserWL($id, array('public', 'shared', 'private')))
+        if ($wishlist->getUserWL($id, array('public', 'shared', 'private')))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')
@@ -112,8 +112,8 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function renderPopup($varId, $wish_list_id) {
-        $wish_lists = $this->wishlist_model->getWishLists();
+    public function renderPopup($varId, $wish_list_id, $user_id) {
+        $wish_lists = $this->wishlist_model->getWishLists($user_id);
         $data = array('wish_lists' => $wish_lists);
 
         return $popup = \CMSFactory\assetManager::create()
@@ -121,11 +121,12 @@ class Admin extends BaseAdminController {
                 ->setData('class', 'btn')
                 ->setData('wish_list_id', $wish_list_id)
                 ->setData('varId', $varId)
+                ->setData('user_id', $user_id)
                 ->setData($data)
                 ->setData('max_lists_count', $this->settings['maxListsCount'])
                 ->renderAdmin('wishPopup');
     }
-    
+
     public function moveItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
@@ -133,13 +134,11 @@ class Admin extends BaseAdminController {
 
         redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
     }
-    
+
     public function deleteImage(){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->deleteImage();
-        
+
         redirect($_SERVER['HTTP_REFERER']);
     }
-    
-
 }
