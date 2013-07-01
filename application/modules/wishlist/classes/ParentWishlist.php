@@ -491,6 +491,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     function do_upload($userID = null) {
+        
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
@@ -517,7 +518,6 @@ class ParentWishlist extends \MY_Controller {
         $config['max_height'] = $this->settings['maxImageHeight'];
 
         $this->load->library('upload', $config);
-
         return TRUE;
     }
 
@@ -578,7 +578,8 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function deleteImage($image) {
-        return unlink("./uploads/mod_wishlist/" . $image);
+        $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
+        return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
 
     /**

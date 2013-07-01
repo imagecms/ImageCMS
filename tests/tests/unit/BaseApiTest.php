@@ -249,30 +249,49 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $_POST['comment'] = "test_wl_comment";
         $_POST['title'] = "test title";
         $_POST['access'] = array('public');
+        
         $result = $this->object->updateWL();
-        var_dumps($result);
+        
+        $this->assertNotEmpty($result);
+        $this->assertInternalType('array', $result);
+        $this->assertRegExp('/Обновлено/', $result[0]);
         
     }
-//
-//    /**
-//     * @covers wishlist\classes\BaseApi::deleteImage
-//     * @todo   Implement testDeleteImage().
-//     */
-//    public function testDeleteImage() {
-//        // Remove the following lines when you implement this test.
-//        $this->markTestIncomplete(
-//                'This test has not been implemented yet.'
-//        );
-//    }
-//
-//    /**
-//     * @covers wishlist\classes\BaseApi::do_upload
-//     * @todo   Implement testDo_upload().
-//     */
-//    public function testDo_upload() {
-//        // Remove the following lines when you implement this test.
-//        $this->markTestIncomplete(
-//                'This test has not been implemented yet.'
-//        );
-//    }
+    
+    /**
+     * @covers wishlist\classes\BaseApi::do_upload
+     * @todo   Implement testDo_upload().
+     */
+    public function testDo_uploadUserIDError() {
+        $result = $this->object->do_upload();
+        
+        $this->assertNotEmpty($result);
+        $this->assertInternalType('string', $result);
+        $this->assertRegExp('/Не введен пользователь/', $result);
+    }
+
+    /**
+     * @covers wishlist\classes\BaseApi::deleteImage
+     * @todo   Implement testDeleteImage().
+     */
+    public function testDeleteImage() {
+        $_POST['image'] = 'test_image.jpg';
+        write_file('../../../uploads/mod_wishlist/test_image.jpg') ;
+        $result = $this->object->deleteImage();
+        
+        $this->assertNotEmpty($result);
+        $this->assertInternalType('string', $result);
+        $this->assertRegExp('/Успешно удалено/', $result);
+        
+        //-----При неверном имени изобраєения------------
+        $_POST['image'] = 'wrong_image_name.jpg';
+        write_file('../../../uploads/mod_wishlist/test_image.jpg') ;
+        $result = $this->object->deleteImage();
+        
+        $this->assertNotEmpty($result);
+        $this->assertInternalType('string', $result);
+        $this->assertRegExp('/Ошибка/', $result);
+    }
+
+    
 }
