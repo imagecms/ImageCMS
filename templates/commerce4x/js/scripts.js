@@ -15,8 +15,8 @@ var genObj = {
     minus: '.minus',
     plus: '.plus',
     parentBtnBuy: 'li, [data-rel="frameP"]', //селектор
-    wishListIn: '', //назва класу
-    compareIn: '', //назва класу
+    wishListIn: 'btn_cart', //назва класу
+    compareIn: 'btn_cart', //назва класу
     toWishlist: 'toWishlist', //назва класу
     inWishlist: 'inWishlist', //назва класу
     toCompare: 'toCompare', //назва класу
@@ -93,6 +93,16 @@ var orderSelect = {
     }
 
 }
+function margZoomLens() {
+    $('#wrap').find('img').each(function() {
+        var $this = $(this),
+        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2),
+        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+        
+        $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
+        console.log(1)
+    })
+}
 function initBtnBuy() {
     $(genObj.btnBuy).on('click', function() {
         Shop.Cart.countChanged = false;
@@ -102,25 +112,26 @@ function initBtnBuy() {
         return true;
     });
 }
-function navPortait(){
+function navPortait() {
     var frameM = $('.frame-menu-main');
     headerMenu = $('.headerMenu');
-    
+
     var headerFon = $('.headerFon'),
-    heightFon = 0,
-    temp_height = $this.find('> li').outerHeight();
-            
-    if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')){
-        heightFon = frameM.offset().top+frameM.outerHeight(true)
+            heightFon = 0,
+            temp_height = $this.find('> li').outerHeight();
+
+    if ($.exists_nabir(frameM) && !frameM.children().hasClass('vertical')) {
+        heightFon = frameM.offset().top + frameM.outerHeight(true)
         headerFon.css({
             'height': heightFon,
-            'top':0
+            'top': 0
         });
     }
-    else headerFon.css({
-        'height': $('.headerContent').outerHeight(true)+$('header').height(),
-        'top':0
-    });
+    else
+        headerFon.css({
+            'height': $('.headerContent').outerHeight(true) + $('header').height(),
+            'top': 0
+        });
 }
 
 function deleteComprasionItem(el) {
@@ -922,42 +933,12 @@ wnd.load(function() {
         $this.siblings().removeClass('active').end().addClass('active');
     });
 
-    /*function for change activity elements alternate images on page seperate tovar (fancybox)*/
-    function fancyboxProduct() {
-        var itemThumbs = $('.item_tovar .frame_thumbs > li, .photoProduct'),
-                itemThumbsL = itemThumbs.length;
-        if ($.exists_nabir(itemThumbs)) {
-            itemThumbs.click(function() {
-                var $this = $(this);
-                itemThumbs.removeClass('active');
-                $this.addClass('active');
-            })
-            $('.fancybox-next').live('click', function() {
-                var $this = itemThumbs.filter('.active'),
-                        $thisI = itemThumbs.index($this);
-
-                if (itemThumbs.index($this) != itemThumbsL - 1) {
-                    $this.removeClass('active');
-                    $(itemThumbs[$thisI + 1]).addClass('active');
-                }
-                else
-                    itemThumbs.first().click()
-            });
-            $('.fancybox-prev').live('click', function() {
-                var $this = itemThumbs.filter('.active'),
-                        $thisI = itemThumbs.index($this);
-                if (itemThumbs.index($this) != 0) {
-                    $this.removeClass('active')
-                    $(itemThumbs[$thisI - 1]).addClass('active')
-                }
-                else
-                    itemThumbs.last().click()
-            })
-            $(".fancybox-wrap").unbind('mousewheel.fb');
-        }
-    }
-    /*call function fancyboxProduct*/
-    fancyboxProduct();
+    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+    margZoomLens();
+    body.append('<style id="forCloudZomm"></style>')
+    $('#photoGroup').find('img').load(function() {
+        margZoomLens();
+    })
 
     var fr_lab_l = $('.frameLabel').length;
     $('.frameLabel').each(function(index) {
@@ -1020,9 +1001,7 @@ window.onload = function() {
     window.scrollBy(0, 1);
 }
 
-var topbar = document.getElementById('topbar');
-var bottombar = document.getElementById('bottombar');
-var bottomBarHeight = bottombar.offsetHeight;
+var topbar = $('.fixed')[0];
 
 var windowHeight = window.innerHeight;
 
@@ -1031,8 +1010,8 @@ window.ontouchstart = function(e) {
         topbar.style = "";
     }
 }
-window.onscroll = function() {
-    var scrollTop = window.scrollY;
-    topbar.style.top = scrollTop + 'px';
-    bottombar.style.bottom = (scrollTop + windowHeight - bottomBarHeight) + 'px';
-};
+if (isTouch)
+    window.onscroll = function() {
+        var scrollTop = window.scrollY;
+        topbar.style.top = scrollTop + 'px';
+    };

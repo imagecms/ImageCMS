@@ -21,6 +21,7 @@
     -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 1px 2px #d7d7d7;
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 1px 2px #d7d7d7;
 }
+.cloud-zoom-lens {background: url("../images/zoom.png") no-repeat;background-position: 50% 50% !important;background-color:#fff;outline: 1px solid #969696;cursor:move;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 #frame_additional_menu > .menu_additional:after{
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: .85;-khtml-opacity: .85;opacity: .85;
     content: "";position: absolute;left: 0;top: 0;z-index: -1;
