@@ -230,6 +230,11 @@ class ParentWishlist extends \MY_Controller {
         $return = TRUE;
         $return = $this->wishlist_model->upateWishList($id, $data);
         $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        if($return){
+            $this->dataModel[] = lang("updated");
+        }else{
+            $this->errors[] = lang('error_cant_update');
+        }
         return $return;
     }
 
