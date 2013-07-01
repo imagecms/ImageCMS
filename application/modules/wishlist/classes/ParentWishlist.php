@@ -520,7 +520,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     function do_upload($userID = null) {
-        
+
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
@@ -529,13 +529,13 @@ class ParentWishlist extends \MY_Controller {
         list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
 
         if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
-            $this->errors[] = 1;
+            $this->errors[] = lang('error_max_image_size_exceeded');
         if ($this->settings['maxImageWidth'] < $width)
-            $this->errors[] = 2;
+            $this->errors[] = lang('error_max_image_width_exceeded');
         if ($this->settings['maxImageHeight'] < $height)
-            $this->errors[] = 3;
+            $this->errors[] = lang('error_max_image_height_exceeded');
         if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
-            $this->errors[] = 4;
+            $this->errors[] = lang('error_invalid_file_format');
 
         if ($this->errors)
             return FALSE;
