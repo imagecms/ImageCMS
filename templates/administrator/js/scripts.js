@@ -1350,8 +1350,6 @@ $(document).ready(
                 var categoryId = btn.data('id');
                 var column = btn.parent().find('input').val();
 
-                console.log(categoryId);
-                console.log(column);
                 if (!parseInt(column))
                     showMessage('Сообщение','Введите номер колонки','r')
                     
