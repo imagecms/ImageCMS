@@ -58,7 +58,7 @@
                                             <div class="control-group">
                                                 <div class="controls">
                                                     {form_open_multipart('/admin/components/cp/wishlist/do_upload')}
-                                                    <input type="file"
+                                                    <input type="file" 
                                                            name="userfile"
                                                            size="20"
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
@@ -155,7 +155,7 @@
                                                     <td>{echo $key+1}</td>
                                                     <td>
                                                         <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
-                                                        <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(move)}</a>
+                                                        <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}">{lang(move)}</a>
                                                     </td>
                                                     <td>
                                                         <a href="{shop_url('product/'.$w[url])}"
