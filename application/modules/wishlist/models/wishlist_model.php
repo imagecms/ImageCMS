@@ -284,6 +284,33 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
+     *
+     *
+     * @param type $userID
+     * @return array
+     */
+    public function getAllUserWLs($userID = null) {
+        if (!$userID)
+            $userID = $this->dx_auth->get_user_id();
+
+        $ID = null;
+
+        $ids = $this->db
+                ->where('mod_wish_list.user_id', $userID)
+                ->get('mod_wish_list');
+
+        if ($ids) {
+            $ids = $ids->result_array();
+
+            foreach ($ids as $id) {
+                $ID[] = $id['id'];
+            }
+        }
+
+        return $ID;
+    }
+
+    /**
      * get most popular products
      *
      * @param type $limit
