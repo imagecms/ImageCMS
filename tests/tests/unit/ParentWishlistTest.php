@@ -19,15 +19,6 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     }
 
-    /**
-     * @covers wishlist\classes\ParentWishlist::show
-     */
-    public function testShow() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
 
     /**
      * @covers wishlist\classes\ParentWishlist::userUpdate
@@ -54,6 +45,14 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
                 ->set('hash', '1')
                 ->update('mod_wish_list');
         return $id;
+    }
+    /**
+     * @covers wishlist\classes\ParentWishlist::show
+     * @depends testCreateWishList
+     */
+    public function testShow() {
+        $this->assertTrue($this->object->show(1, array('public', 'public', 'shared')));
+        $this->assertFalse($this->object->show(3, array('public', 'public', 'shared')));
     }
 
     /**
@@ -104,13 +103,10 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\ParentWishlist::moveItem
-     * @todo   Implement testMoveItem().
+     * @depends testCreateWishList
      */
-    public function testMoveItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testMoveItem($id) {
+        $this->assertTrue($this->object->moveItem('1031', $id, '2', 'test2'));
     }
 
     /**

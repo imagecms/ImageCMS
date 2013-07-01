@@ -102,7 +102,7 @@
                 </tbody>
             </table>
             {form_csrf()}
-            <input type="submit" class="btn btn-small" value="Удалить Обрание">
+            <input type="submit" class="btn btn-small" value="Удалить избраны">
         </form>
         <hr/>
     {/foreach}
