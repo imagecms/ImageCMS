@@ -23,7 +23,9 @@
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <div class="row">
+        <aside class="span3">
         {include_tpl('filter')}
+        </aside>
         <div class="span10 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
             <span class="c_97">
@@ -162,6 +164,7 @@
                                                                       >
                                                     {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                                 </button>
+                                                <div {if $key != 0}style="display:none;"{/if} class="t-a_c variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}В наличии{else:}Под заказ{/if}</div>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}
                                                                       data-placement="top right"
