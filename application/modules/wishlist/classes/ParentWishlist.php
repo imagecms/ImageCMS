@@ -425,6 +425,9 @@ class ParentWishlist extends \MY_Controller {
      */
     public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
+        if(!$wishlists){
+            return FALSE;
+        }
         $userInfo = $this->getUserInfo($userId);
         if (empty($userInfo)) {
             $this->errors[] = lang('error_no_user_data');
