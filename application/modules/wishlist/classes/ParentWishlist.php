@@ -31,6 +31,13 @@ class ParentWishlist extends \MY_Controller {
             $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
     }
 
+    /**
+     * set in cookie previous page url
+     *
+     * @access private
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     */
     private function writeCookies() {
         $this->load->helper('cookie');
         if (!strstr($this->uri->uri_string(), 'wishlist') && !strstr($this->uri->uri_string(), 'sync')) {
@@ -44,6 +51,14 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * check if user login
+     *
+     * @access private
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     private function checkPerm() {
         $permAllow = TRUE;
         if (!$this->dx_auth->is_logged_in())
@@ -52,21 +67,25 @@ class ParentWishlist extends \MY_Controller {
         return $permAllow;
     }
 
-    public function index() {
-        $this->renderUserWL();
-    }
-
-    public function all() {
+    /**
+     * get all users wish lists
+     *
+     * @access public
+     * @param  array $access - list access
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
+    public function all($access = array('public')) {
         if (!$users = $this->wishlist_model->getAllUsers()) {
             $this->errors[] = lang('error_no_user');
             return FALSE;
         }
-        $lists = '';
 
         foreach ($users as $user) {
             $lists [] = array(
                 'user' => $user,
-                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], array('public'))
+                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], $access)
             );
         }
 
@@ -79,12 +98,23 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function show($user_id, $list_id) {
+    /**
+     * get user wish list
+     *
+     * @access public
+     * @param int $hash, array $access - list access
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
+    public function show($hash, $access = array('public')) {
+        if (!$hash)
+            return FALSE;
 
-        $wishlist = $this->wishlist_model->getUserWishList($user_id, $list_id, array('public'));
+        $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
 
         if ($wishlist) {
-            self::addReview($list_id);
+            self::addReview($hash);
             $this->dataModel = $wishlist;
 
             return TRUE;
@@ -93,7 +123,16 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public static function addReview($list_id) {
+    /**
+     * add view point to list
+     *
+     * @access public
+     * @param int $hash
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
+    public static function addReview($hash) {
         $CI = & get_instance();
         $listsAdded = array();
 
@@ -101,9 +140,9 @@ class ParentWishlist extends \MY_Controller {
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
         }
 
-        if (!in_array($list_id, $listsAdded)) {
-            array_push($listsAdded, $list_id);
-            if ($CI->wishlist_model->addRewiew($list_id)) {
+        if (!in_array($hash, $listsAdded)) {
+            array_push($listsAdded, $hash);
+            if ($CI->wishlist_model->addReview($hash)) {
                 $cookie = array(
                     'name' => 'wishListViewer',
                     'value' => serialize($listsAdded),
@@ -117,6 +156,15 @@ class ParentWishlist extends \MY_Controller {
         return FALSE;
     }
 
+    /**
+     * get most viewed wish list
+     *
+     * @access public
+     * @param int $limit - count lists to get
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function getMostViewedWishLists($limit = 10) {
         $views = $this->wishlist_model->getMostViewedWishLists($limit);
         if ($views) {
@@ -128,8 +176,17 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function user($user_id) {
-        if ($this->renderUserWL($user_id, $access = array('public'))) {
+    /**
+     * render user list
+     *
+     * @access public
+     * @param int $user_id, $access
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
+    public function user($user_id, $access = array('public')) {
+        if ($this->getUserWL($user_id, $access)) {
             $this->dataModel = $this->dataModel['wishlists'];
             return TRUE;
         } else {
@@ -138,12 +195,21 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * update user information
+     *
+     * @access public
+     * @param $userID, $user_name, $user_birthday, $description
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function userUpdate($userID, $user_name, $user_birthday, $description) {
-        $this->wishlist_model->createUserIfNotExist($this->dx_auth->get_user_id());
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
-        
+        $this->wishlist_model->createUserIfNotExist($userID);
+
         if ($this->wishlist_model->updateUser($userID, $user_name, $user_birthday, $description)) {
             return TRUE;
         } else {
@@ -151,28 +217,35 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * update wish list
+     *
+     * @access public
+     * @param $id, $data, $comments
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return -----
+     */
     public function updateWL($id, $data, $comments) {
-        $this->wishlist_model->upateWishList($id, $data);
-        $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        $return = TRUE;
+        $return = $this->wishlist_model->upateWishList($id, $data);
+        $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        return $return;
     }
 
     /**
+     * create wish list
      *
-     * @param type $title
-     * @param type $access
-     * @param type $description
-     * @param type $user_id
-     * @param type $user_image
-     * @param type $user_birthday
+     * @access public
+     * @param int $user_id,
+     * @param string $listName
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
      */
-    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-        $this->wishlist_model->insertWishList($title, $access, $description, $user_id);
-        $this->wishlist_model->insertUser($user_id, $user_image, $user_birthday);
-    }
-
     public function createWishList($user_id, $listName) {
         if ($listName)
-            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+            $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
@@ -199,7 +272,12 @@ class ParentWishlist extends \MY_Controller {
 
     /**
      * delete full WL
-     * @return type
+     *
+     * @access public
+     * @param int $id - list id
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
      */
     public function deleteWL($id) {
         $forReturn = TRUE;
@@ -218,7 +296,7 @@ class ParentWishlist extends \MY_Controller {
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('created');
+            $this->dataModel = lang('deleted');
             return TRUE;
         }
     }
@@ -226,37 +304,50 @@ class ParentWishlist extends \MY_Controller {
     /**
      * add item to wish list
      *
+     * @access public
+     * @param type $varId
+     * @param string $listId
+     * @param type $listName
+     * @param type $userId
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function _addItem($varId, $listId, $listName) {
+    public function _addItem($varId, $listId, $listName, $userId = null) {
+        if (!$userId)
+            $userId = $this->dx_auth->get_user_id();
         $count_lists = 0;
-        $count_items = $this->wishlist_model->getUserWishListItemsCount($this->dx_auth->get_user_id());
+        $count_items = $this->wishlist_model->getUserWishListItemsCount($userId);
+
+        if (!$this->settings) {
+            $this->settings = $this->wishlist_model->getSettings();
+        }
+
         if ($count_items >= $this->settings['maxItemsCount']) {
-                $this->errors[] = lang('error_items_limit_exhausted');
+            $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
         }
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
         }
-        if($listName){
-            $listId = "";
+
+        if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']) {
+            $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
+            $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
         }
-        
-        if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']){
-                $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
-                $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
-         }
-        
-        if ($listName)
-            $count_lists = $this->wishlist_model->getUserWishListCount($this->dx_auth->get_user_id());
+
+        if ($listName) {
+            $listId = "";
+            $count_lists = $this->wishlist_model->getUserWishListCount($userId);
+        }
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
 
-        if (!$this->wishlist_model->addItem($varId, $listId, $listName))
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
             $this->errors[] = lang('error_cant_add');
 
         if (count($this->errors))
@@ -267,6 +358,18 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * move item from one wish list to another
+     *
+     * @param type $varId
+     * @param type $wish_list_id
+     * @param type $to_listId
+     * @param type $to_listName
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '') {
         $this->wishlist_model->deleteItem($varId, $wish_list_id);
 
@@ -277,6 +380,16 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * delete item from wish list
+     *
+     * @param type $variant_id
+     * @param type $wish_list_id
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
         if (!$forReturn)
@@ -287,16 +400,36 @@ class ParentWishlist extends \MY_Controller {
         return $forReturn;
     }
 
+    /**
+     * get user info
+     *
+     * @param type $id
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function getUserInfo($id) {
-        if (!$id)
-            $id = $this->dx_auth->get_user_id();
-
         return $this->wishlist_model->getUserByID($id);
     }
 
-    public function renderUserWL($userId, $access = array('public', 'private', 'shared')) {
+    /**
+     * render user wish list
+     *
+     * @param $userId
+     * @param array $access
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
+    public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
-        $userInfo = $this->getUserInfo();
+        $userInfo = $this->getUserInfo($userId);
+        if (empty($userInfo)) {
+            $this->errors[] = lang('error_no_user_data');
+            return FALSE;
+        }
         $w = array();
 
         foreach ($wishlists as $wishlist)
@@ -308,12 +441,24 @@ class ParentWishlist extends \MY_Controller {
         return TRUE;
     }
 
+    /**
+     * render user wish list edit page
+     *
+     * @param type $wish_list_id
+     * @param type $userID
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function renderUserWLEdit($wish_list_id, $userID = null) {
         if ($userID === null)
             $userID = $this->dx_auth->get_user_id();
 
         if ($wish_list_id) {
             $wishlists = $this->wishlist_model->getUserWishList($userID, $wish_list_id);
+            if (empty($wishlists))
+                return FALSE;
 
             $w = array();
             foreach ($wishlists as $wishlist)
@@ -324,31 +469,59 @@ class ParentWishlist extends \MY_Controller {
         return FALSE;
     }
 
+    /**
+     * upload image for user
+     *
+     * @param type $userID
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     function do_upload($userID = null) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
+        $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
+
+        list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
+
+        if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
+            $this->errors[] = 1;
+        if ($this->settings['maxImageWidth'] < $width)
+            $this->errors[] = 2;
+        if ($this->settings['maxImageHeight'] < $height)
+            $this->errors[] = 3;
+        if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
+            $this->errors[] = 4;
+
+        if ($this->errors)
+            return FALSE;
+
         $config['upload_path'] = './uploads/mod_wishlist';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['max_size'] = '100000';
-        $config['max_width'] = '10240000';
-        $config['max_height'] = '768000';
+        $config['max_size'] = $this->settings['maxImageSize'];
+        $config['max_width'] = $this->settings['maxImageWidth'];
+        $config['max_height'] = $this->settings['maxImageHeight'];
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload()) {
-            $this->errors[] = $this->upload->display_errors();
-            return FALSE;
-        } else {
-            $this->dataModel = array('upload_data' => $this->upload->data());
-            $this->db->where('id', $userID)
-                    ->update('mod_wish_list_users', array('user_image' => $this->dataModel['upload_data']['file_name']));
-            return TRUE;
-        }
+        return TRUE;
     }
 
+    /**
+     * get most popular items by wish list usage
+     *
+     * @param type $limit
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function getMostPopularItems($limit = 10) {
-        if ($result) {
+        $result = $this->wishlist_model->getMostPopularProducts();
+
+        if ($result !== FALSE) {
             $this->dataModel = $result;
             return TRUE;
         } else {
@@ -357,19 +530,54 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
+    /**
+     * get user wish list items count
+     *
+     * @param type $user_id
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function getUserWishListItemsCount($user_id) {
         return $this->wishlist_model->getUserWishListItemsCount($user_id);
     }
 
+    /**
+     * delete list items by id's
+     *
+     * @param array $ids
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function deleteItemByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
 
+    /**
+     * delete  image
+     *
+     * @param type $image
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function deleteImage($image) {
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
 
+    /**
+     * get popup for adding or moving items
+     *
+     * @access public
+     * @author DevImageCms
+     * @copyright (c) 2013, ImageCMS
+     * @return boolean
+     */
     public function renderPopup() {
         $wish_lists = $this->wishlist_model->getWishLists();
         if ($this->wishlist_model->getWishLists()) {

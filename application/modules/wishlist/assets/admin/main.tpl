@@ -12,7 +12,7 @@
                     <span class="t-d_u">{lang('a_back')}</span>
                 </a>
                 <a href="{$BASE_URL}admin/components/cp/wishlist" class="btn btn-small pjax">
-                    {lang(user_lists)}
+                    {lang(users)}
                 </a>
                 <button type="button"
                         class="btn btn-small btn-primary action_on formSubmit"
@@ -83,6 +83,13 @@
                                 <label class="control-label" for="settings[maxImageHeight]">{lang(max_image_height)}</label>
                                 <div class="controls">
                                     <input type = "number" name = "settings[maxImageHeight]" class="textbox_short" value="{$settings['maxImageHeight']}" id="maxImageHeight"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxImageSize]">{lang(max_image_size)}</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxImageSize]" class="textbox_short" value="{$settings['maxImageSize']}" id="maxImageSize"/>
                                 </div>
                             </div>
 
