@@ -382,7 +382,7 @@ class Wishlist_model extends CI_Model {
      * @param type $user_name
      * @return boolean
      */
-    public function createUserIfNotExist($user_id, $user_name = null) {
+   public function createUserIfNotExist($user_id, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
 
@@ -616,7 +616,7 @@ class Wishlist_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         @rmdir('./uploads/mod_wishlist');
 
-        $this->dbforge->drop_table('m2od_wish_list_products');
+        $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
         return TRUE;
