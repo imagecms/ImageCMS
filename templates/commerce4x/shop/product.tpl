@@ -144,6 +144,7 @@
                                                                   >
                                                 {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                             </button>
+                                             <div {if $key != 0}style="display:none;"{/if} class="t-a_c variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}В наличии{else:}Под заказ{/if}</div>
                                         {else:}
                                             <button  {if $key != 0}style="display:none"{/if}
                                                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant"
