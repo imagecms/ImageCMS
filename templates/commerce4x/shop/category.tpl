@@ -209,7 +209,7 @@
                                                                       data-origPrice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                       data-stock="{echo $pv->getStock()}"
                                                                       >
-                                                    {lang('s_buy')}
+                                                    {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                                 </button>
                                             {else:}
                                                 <button {if $key != 0}style="display:none"{/if}
