@@ -47,7 +47,7 @@ class Admin extends BaseAdminController {
     public function userWL($id) {
         $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
-        if ($wishlist->renderUserWL($id, array('public', 'shared', 'private')))
+        if ($wishlist->getUserWL($id, array('public', 'shared', 'private')))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')

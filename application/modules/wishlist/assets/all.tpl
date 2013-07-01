@@ -2,6 +2,7 @@
     {if $lists}
         <table  class="table" style="width:600px">
             {foreach $lists as $list}
+                {if $list['lists']}
                 <tr>
                     <td>
                         <div>
@@ -15,7 +16,6 @@
                             </div>
                             </br>
                             <div>Дата рождения: {date('Y-m-d', $list['user']['user_birthday'])}</div>
-                            <div>Описание: {$list['user']['description']}</div>
                         </div>
                     </td>
                     <td>
@@ -24,13 +24,14 @@
                             <ul>
                                 {foreach $list['lists'] as $listItem}
                                     <li>
-                                        <a href="{site_url('/wishlist/show/' . $list['user']['id'] . '/' . $listItem['id'])}">{$listItem['title']}</a>
+                                        <a href="{site_url('/wishlist/show/' . $listItem['hash'])}">{$listItem['title']}</a>
                                     </li>
                                 {/foreach}
                             </ul>
                         </div>
                     </td>
                 </tr>
+                {/if}
             {/foreach}
         </table>
     {else:}
