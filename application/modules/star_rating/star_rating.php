@@ -87,6 +87,7 @@ class Star_rating extends MY_Controller {
                 $template = 'star_rating';
             } else {
                 $template = null;
+                return false;
             }
         }
 
