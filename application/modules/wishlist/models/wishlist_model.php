@@ -229,8 +229,14 @@ class Wishlist_model extends CI_Model {
         if ($querySecond) {
             $querySecond = $querySecond->result_array();
         }
-
-        return array_merge($queryFirst, $querySecond);
+        if(array_merge($queryFirst, $querySecond)){
+           
+            return array_merge($queryFirst, $querySecond);
+            
+        }else{
+            return FALSE;
+        }
+        
     }
 
     /**
@@ -308,10 +314,9 @@ class Wishlist_model extends CI_Model {
      * @param type $user_id
      * @return boolean
      */
-    public function insertWishList($title, $access, $description, $user_id) {
+    public function insertWishList($title, $access, $user_id) {
         return $this->db->set('title', $title)
                         ->set('access', $access)
-                        ->set('description', $description)
                         ->set('user_id', $user_id)
                         ->insert('mod_wish_list');
     }
