@@ -264,7 +264,7 @@ class Wishlist_model extends CI_Model {
     public function getUserWishProducts($userID = null) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
-        $ID = null;
+        $ID = array();
         $ids = $this->db
                 ->where('mod_wish_list.user_id', $userID)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
@@ -292,7 +292,7 @@ class Wishlist_model extends CI_Model {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
-        $ID = null;
+        $ID = array();
 
         $ids = $this->db
                 ->where('mod_wish_list.user_id', $userID)
@@ -316,7 +316,8 @@ class Wishlist_model extends CI_Model {
      * @return array
      */
     public function getMostPopularProducts($limit = 10) {
-        $query = $this->db->select('COUNT(id) as productCount, variant_id,')
+        $query = $this->db
+                ->select('COUNT(id) as productCount, variant_id,')
                 ->order_by('productCount', 'desc')
                 ->group_by('variant_id')
                 ->limit($limit)
@@ -351,7 +352,9 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function upateWishList($id, $data) {
-        return $this->db->where('id', $id)->update('mod_wish_list', $data);
+        return $this->db
+                ->where('id', $id)
+                ->update('mod_wish_list', $data);
     }
 
     /**

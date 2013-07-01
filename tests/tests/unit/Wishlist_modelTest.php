@@ -89,10 +89,19 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers Wishlist_model::createWishList
-     * @todo   Implement testCreateWishList().
      */
     public function testCreateWishList() {
-        $this->assertInternalType('array', $this->object->createWishList('test', $GLOBALS['userId'], 'shared'));
+        $this->assertTrue($this->object->createWishList('test', $GLOBALS['userId'], 'shared'));
+        $id = $this->object->db->insert_id();
+        return $id;
+    }
+
+    /**
+     * @covers Wishlist_model::upateWishList
+     * @depends testGetUserWishList
+     */
+    public function testUpateWishList($id) {
+        $this->assertTrue($this->object->upateWishList($id, array(), array()));
     }
 
     /**
@@ -112,85 +121,65 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @depends testGetUserWishList
      */
     public function testGetUserWishListByHash($id) {
-        $hash = $this->object->db->where('id', $id)->get('mod_wish_list')->row()->hash;
+        $hash = $this->object->db
+                        ->where('id', $id)
+                        ->get('mod_wish_list')
+                        ->row()->hash;
         $this->assertInternalType('array', $this->object->GetUserWishListByHash($hash, array('public', 'shared', 'private')));
     }
 
     /**
      * @covers Wishlist_model::deleteItem
-     * @todo   Implement testDeleteItem().
+     * @depends testCreateWishList
      */
-    public function testDeleteItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testDeleteItem($id) {
+        $this->assertTrue($this->object->deleteItem('1031', $id));
     }
 
     /**
      * @covers Wishlist_model::deleteItemsByIDs
-     * @todo   Implement testDeleteItemsByIDs().
      */
     public function testDeleteItemsByIDs() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->deleteItemsByIDs('1031'));
     }
 
     /**
      * @covers Wishlist_model::getUserWishListsByID
-     * @todo   Implement testGetUserWishListsByID().
      */
     public function testGetUserWishListsByID() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->getUserWishListsByID($GLOBALS['userId'], array('public', 'shared', 'private')));
     }
 
     /**
      * @covers Wishlist_model::delWishListById
-     * @todo   Implement testDelWishListById().
+     * @depends testCreateWishList
      */
-    public function testDelWishListById() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testDelWishListById($id) {
+        $this->assertTrue($this->object->delWishListById($id));
     }
 
     /**
      * @covers Wishlist_model::delWishListProductsByWLId
-     * @todo   Implement testDelWishListProductsByWLId().
+     * @depends testCreateWishList
      */
-    public function testDelWishListProductsByWLId() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testDelWishListProductsByWLId($id) {
+        $this->assertTrue($this->object->delWishListProductsByWLId($id));
     }
 
     /**
      * @covers Wishlist_model::getUserWishProducts
-     * @todo   Implement testGetUserWishProducts().
+     * @depends testCreateWishList
      */
     public function testGetUserWishProducts() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->getUserWishProducts($GLOBALS['userId']));
     }
 
     /**
      * @covers Wishlist_model::getAllUserWLs
-     * @todo   Implement testGetAllUserWLs().
+     * @depends testCreateWishList
      */
     public function testGetAllUserWLs() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->getAllUserWLs($GLOBALS['userId']));
     }
 
     /**
@@ -198,10 +187,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testGetMostPopularProducts().
      */
     public function testGetMostPopularProducts() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->getMostPopularProducts());
     }
 
     /**
@@ -209,21 +195,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testInsertWishList().
      */
     public function testInsertWishList() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Wishlist_model::upateWishList
-     * @todo   Implement testUpateWishList().
-     */
-    public function testUpateWishList() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->insertWishList('test', 'shared', $GLOBALS['userId']));
     }
 
     /**

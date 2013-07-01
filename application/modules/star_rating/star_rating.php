@@ -35,7 +35,7 @@ class Star_rating extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     /**
@@ -109,7 +109,7 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-        
+
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists
