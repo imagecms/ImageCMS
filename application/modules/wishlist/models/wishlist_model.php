@@ -178,17 +178,14 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
-     * delete items by ides
+     * delete items by ids
      *
      * @param array $ids
      * @return ---
      */
     public function deleteItemsByIDs($ids) {
-        foreach ($ids as $id) {
-            $this->db->where('id', $id)
-                    ->delete('mod_wish_list_products');
-        }
-        return TRUE;
+        return $this->db->where_in('id', $ids)
+                        ->delete('mod_wish_list_products');
     }
 
     /**
@@ -229,14 +226,13 @@ class Wishlist_model extends CI_Model {
         if ($querySecond) {
             $querySecond = $querySecond->result_array();
         }
-        if(array_merge($queryFirst, $querySecond)){
-           
-            return array_merge($queryFirst, $querySecond);
-            
-        }else{
+
+        $arr = array_merge($queryFirst, $querySecond);
+        if (count($arr) > 0) {
+            return $arr;
+        } else {
             return FALSE;
         }
-        
     }
 
     /**
@@ -401,7 +397,7 @@ class Wishlist_model extends CI_Model {
      * @param type $user_name
      * @return boolean
      */
-   public function createUserIfNotExist($user_id, $user_name = null) {
+    public function createUserIfNotExist($user_id, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
 
