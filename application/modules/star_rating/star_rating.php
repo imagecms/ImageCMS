@@ -94,9 +94,10 @@ class Star_rating extends MY_Controller {
         if ($template !== null)
             CMSFactory\assetManager::create()
                     ->setData($data)
-                    ->registerStyle('style')
-                    ->registerScript('scripts')
-                    ->render($template, true);
+                    ->registerStyle('style');
+                    if ($template != 'product_star_rating')
+                        CMSFactory\assetManager::create()->registerScript('scripts');
+                    CMSFactory\assetManager::create()->render($template, true);
 
     }
 
