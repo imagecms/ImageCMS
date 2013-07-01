@@ -14,6 +14,7 @@
         <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
     </div>
     {form_open_multipart('/wishlist/do_upload')}
+
     <input type="hidden" value="{echo $user[id]}" name="userID"/>
     <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
@@ -27,7 +28,7 @@
     <input type="submit" value="Удалить картинку" class="btn"/>
     {form_csrf()}
 </form>
-  
+
 <form method="POST" action="/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
