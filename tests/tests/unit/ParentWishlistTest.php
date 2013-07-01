@@ -47,6 +47,15 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers wishlist\classes\ParentWishlist::renderPopup
+     * @depends testCreateWishList
+     */
+    public function testRenderPopup() {
+        $this->assertTrue($this->object->renderPopup(999999));
+        $this->assertFalse($this->object->renderPopup(4322343));
+    }
+
+    /**
      * @covers wishlist\classes\ParentWishlist::show
      * @depends testCreateWishList
      */
@@ -134,7 +143,6 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      */
     public function testRenderUserWL() {
         $this->assertTrue($this->object->getUserWL(999999, array('public', 'shared', 'private')));
-//        $this->assertFalse($this->object->getUserWL(465423165466541, array('public', 'shared', 'private')));
     }
 
     /**
@@ -193,7 +201,6 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
      * @covers wishlist\classes\ParentWishlist::deleteItemByIds
      * @depends testCreateWishList
      * @depends test_addItem
-     * @todo   Implement testDeleteItemByIds().
      */
     public function testDeleteItemByIds($id) {
         for ($i = 0; $i < 6; $i++) {
@@ -205,24 +212,11 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\ParentWishlist::deleteImage
-     * @todo   Implement testDeleteImage().
      */
     public function testDeleteImage() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers wishlist\classes\ParentWishlist::renderPopup
-     * @todo   Implement testRenderPopup().
-     */
-    public function testRenderPopup() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        write_file('../../../uploads/mod_wishlist/test.png', '');
+        $this->assertTrue($this->object->deleteImage('test.png'));
+        $this->assertFalse($this->object->deleteImage('test.png'));
     }
 
     /**
@@ -275,6 +269,13 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
         );
+    }
+
+    /**
+     * @covers wishlist\classes\ParentWishlist::deleteAllWL
+     */
+    public function testDeleteAllWL() {
+        $this->assertTrue($this->object->deleteAllWL(999999));
     }
 
 }

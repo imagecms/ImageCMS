@@ -302,6 +302,35 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
+     *
+     * @param type $UserID
+     * @return boolean
+     */
+    public function deleteAllWL($UserID) {
+        $forReturn = TRUE;
+
+        $WLs = $this->wishlist_model->getAllUserWLs($UserID);
+        if ($forReturn) {
+            foreach ($WLs as $wl) {
+                $forReturn = $this->wishlist_model->delWishListById($wl);
+                $forReturn = $this->wishlist_model->delWishListProductsByWLId($wl);
+
+                if (!$forReturn)
+                    $this->errors[] = lang('error_items_delete');
+            }
+        }
+        else
+            $this->errors[] = lang('error_WL_delete');
+
+        if (count($this->errors))
+            return FALSE;
+        else {
+            $this->dataModel = lang('deleted');
+            return TRUE;
+        }
+    }
+
+    /**
      * add item to wish list
      *
      * @access public
@@ -566,14 +595,15 @@ class ParentWishlist extends \MY_Controller {
     /**
      * delete  image
      *
-     * @param type $image
+     * @param string $image image name
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
     public function deleteImage($image) {
-        return unlink("./uploads/mod_wishlist/" . $image);
+        $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
+        return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
 
     /**
@@ -584,9 +614,9 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function renderPopup() {
-        $wish_lists = $this->wishlist_model->getWishLists();
-        if ($this->wishlist_model->getWishLists()) {
+    public function renderPopup($userID = null) {
+        $wish_lists = $this->wishlist_model->getWishLists($userID);
+        if ($wish_lists) {
             $this->dataModel = $wish_lists;
             return TRUE;
         } else {
