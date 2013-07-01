@@ -397,14 +397,14 @@
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price priceVariant">{echo $kitProduct->getDiscountProductPrice()}</span>
+                                                                            <span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
                                                                     {if $NextCSId != null}
                                                                         <span class="price-add">
                                                                             <span>
-                                                                                (<span class="price addCurrPrice">{echo $kitProduct->getDiscountProductPrice('Price',1)}</span>
+                                                                                (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency()}</span>
                                                                                 <span class="add-curr">{$NextCs}</span>)
                                                                             </span>
                                                                         </span>
