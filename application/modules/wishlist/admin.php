@@ -112,8 +112,8 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function renderPopup($varId, $wish_list_id) {
-        $wish_lists = $this->wishlist_model->getWishLists();
+    public function renderPopup($varId, $wish_list_id, $user_id) {
+        $wish_lists = $this->wishlist_model->getWishLists($user_id);
         $data = array('wish_lists' => $wish_lists);
 
         return $popup = \CMSFactory\assetManager::create()
@@ -140,6 +140,4 @@ class Admin extends BaseAdminController {
         
         redirect($_SERVER['HTTP_REFERER']);
     }
-    
-
 }
