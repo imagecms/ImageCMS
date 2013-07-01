@@ -166,7 +166,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
                 'tmp_name' => '/tmp/php7k30REd',
                 'error' => 0,
                 'size' => 343));
-        $this->assertTrue($this->object->do_upload(999999));
+        $this->assertTrue($this->object->do_upload(47));
 
         $_FILES = array(
             'userfile' =>
@@ -176,7 +176,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
                 'tmp_name' => '/tmp/php7k30REd',
                 'error' => 0,
                 'size' => 343));
-        $this->assertFalse($this->object->do_upload(999999));
+        $this->assertFalse($this->object->do_upload(47));
 
         $_FILES = array(
             'userfile' =>
@@ -186,7 +186,7 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
                 'tmp_name' => '/tmp/php7k30REd',
                 'error' => 0,
                 'size' => 344444444443));
-        $this->assertFalse($this->object->do_upload(999999));
+        $this->assertFalse($this->object->do_upload(47));
     }
 
     /**

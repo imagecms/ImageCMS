@@ -230,6 +230,11 @@ class ParentWishlist extends \MY_Controller {
         $return = TRUE;
         $return = $this->wishlist_model->upateWishList($id, $data);
         $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        if($return){
+            $this->dataModel[] = lang("updated");
+        }else{
+            $this->errors[] = lang('error_cant_update');
+        }
         return $return;
     }
 
@@ -515,6 +520,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     function do_upload($userID = null) {
+        
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
 
@@ -541,7 +547,6 @@ class ParentWishlist extends \MY_Controller {
         $config['max_height'] = $this->settings['maxImageHeight'];
 
         $this->load->library('upload', $config);
-
         return TRUE;
     }
 
