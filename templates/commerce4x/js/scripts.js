@@ -795,18 +795,16 @@ $(document).ready(function() {
     $('[id ^= сVariantSwitcher_]').live('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
-
+                
         var vMediumImage = liBlock.find(genObj.prefV + productId).attr('data-mediumImage'),
-                vId = $(genObj.prefV + productId).attr('data-id'),
                 vName = liBlock.find(genObj.prefV + productId).attr('data-vname'),
                 vPrice = liBlock.find(genObj.prefV + productId).attr('data-price'),
                 vOrigPrice = liBlock.find(genObj.prefV + productId).attr('data-origPrice'),
                 vNumber = liBlock.find(genObj.prefV + productId).attr('data-number'),
                 vStock = liBlock.find(genObj.prefV + productId).attr('data-stock');
 
-
         liBlock.find(genObj.selVariant).hide();
-        liBlock.find(genObj.prefV + vId).show();
+        liBlock.find(genObj.prefV + productId).show();
 
         liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
         liBlock.find(genObj.priceVariant).html(vPrice);
