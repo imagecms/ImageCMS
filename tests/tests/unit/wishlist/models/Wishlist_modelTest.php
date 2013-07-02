@@ -24,8 +24,7 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * This method is called after a test is executed.
      */
     protected function tearDown() {
-        $this->object->db->delete('mod_wish_list_users', array('id' => 999999));
-        $this->object->db->delete('mod_wish_list_users', array('id' => 888888));
+
     }
 
     /**
