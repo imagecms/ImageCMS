@@ -59,6 +59,9 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertInternalType('string', $result);
 
         $this->assertRegExp('/Добавлено/', $result);
+        
+        $_POST[ 'wishListName'] = "";
+            
     }
 
     public function _addItem_provider() {
