@@ -137,6 +137,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function updateWL() {
+       
         $id = $this->input->post('WLID');
 
         foreach ($this->input->post('comment') as $key => $comment) {
@@ -147,7 +148,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
 
         if ($this->settings['maxListName'] < iconv_strlen($this->input->post('title'), 'UTF-8'))
-            $title = substr($this->input->post('title'), 0, $this->settings['maxListName']);
+            $title = mb_substr($this->input->post('title'), 0, $this->settings['maxListName'], 'UTF-8'); 
         else
             $title = $this->input->post('title');
 
