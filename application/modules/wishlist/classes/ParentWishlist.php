@@ -232,8 +232,6 @@ class ParentWishlist extends \MY_Controller {
         if($comments){
             $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
         }
-        
-        
         if($return){
             $this->dataModel[] = lang("updated");
         }else{
