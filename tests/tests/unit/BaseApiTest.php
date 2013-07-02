@@ -85,7 +85,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInternalType('string', $result);
 
-        $this->assertEquals('Операция успешна', $result);
+        $this->assertRegExp('/Операция успешна/', $result);
     }
 
     public function moveItem_provider() {
@@ -207,7 +207,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInternalType('string', $result);
 
-        $this->assertRegExp('/Успешно удалено/', $result);
+        $this->assertRegExp('/Операция успешна/', $result);
     }
 
     /**
