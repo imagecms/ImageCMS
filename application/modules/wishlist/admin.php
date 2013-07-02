@@ -127,6 +127,12 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('wishPopup');
     }
 
+    public function deleteItem($varId, $wish_list_id){
+        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist->deleteItem($varId, $wish_list_id);        
+      
+        redirect($_SERVER['HTTP_REFERER'] . '#lists');
+    }
     public function moveItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
