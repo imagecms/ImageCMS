@@ -387,7 +387,7 @@
                                                             {if $kitProduct->getDiscount()}
                                                                 <span class="price-discount">
                                                                     <span>
-                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getBeforePrice()}</span>
+                                                                        <span class="price priceOrigVariant">{//echo $kitProduct->getBeforePrice()}</span>
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>

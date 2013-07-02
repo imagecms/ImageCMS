@@ -148,10 +148,11 @@ class CI_Upload {
 			$this->set_error('upload_no_file_selected');
 			return FALSE;
 		}
-
+                
 		// Is the upload path valid?
 		if ( ! $this->validate_upload_path())
 		{
+                    
 			// errors will already be set by validate_upload_path() so just return FALSE
 			return FALSE;
 		}

@@ -1,6 +1,6 @@
 <?php
 
-(defined('BASEPATH')) OR exit('No direct script access allowed');
+namespace wishlist;
 
 /**
  * Image CMS
@@ -27,8 +27,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return json_encode($data);
     }
 
-    public function _addItem($varId) {
-        parent::addItem($varId);
+    public function addItem($varId) {
+        parent::_addItem($varId);
         return $this->return_json();
     }
 
@@ -41,7 +41,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         parent::deleteItem($variant_id, $wish_list_id);
         return $this->return_json();
     }
-    
+
     public function deleteItemByIds(){
         parent::deleteItemByIds($items);
         return $this->return_json();
@@ -79,6 +79,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
     public function updateWL() {
         parent::updateWL();
+        return $this->return_json();
     }
 
     public function deleteWL($wish_list_id) {
