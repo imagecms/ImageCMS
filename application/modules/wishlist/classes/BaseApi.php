@@ -42,7 +42,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $to_listName = $this->input->post('wishListName');
 
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
-            return $this->dataModel = "Операция успешна";
+            return $this->dataModel = lang('success');
         } else {
             return $this->errors = "Не удалось переместить";
         }
@@ -60,7 +60,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if($items){
             if(parent::deleteItemByIds($items)){
-                return $this->dataModel[] = lang('deleted');
+                return $this->dataModel[] = lang('success');
             }else{
                 return $this->errors[] = lang('error_cant_delete');
             }
@@ -157,8 +157,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             'access' => $this->input->post('access'),
             'title' => $title,
         );
-
-        if(parent::updateWL($id, $data, $desc, $title)){
+        
+        if(parent::updateWL($id, $data, $desc)){
             return $this->dataModel;
         }else{
             return $this->errors;

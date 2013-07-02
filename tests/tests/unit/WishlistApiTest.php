@@ -12,6 +12,9 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
      * @var WishlistApi
      */
     protected $object;
+    protected $added;
+    protected $operation_success;
+    protected $updated_success;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,6 +22,16 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
         $this->object = new \wishlist\wishlistApi();
+        $this->added = json_encode(array('answer'=>'success', 'data'=> "<p>Добавлено</p>"));
+        $this->operation_success =json_encode(array('answer'=>'success', 'data'=> "<p>Операция успешна</p>"));
+        $this->updated_success = json_encode(array('answer'=>'success', 'data'=> array("<p>Обновлено</p>")));
+        
+         $_POST = array(
+            'wishlist' => 1,
+            'wishListName' => "list",
+            'listItem' => array(2, 3),
+            'user_id' => $GLOBALS['userId']
+        );
     }
 
     /**
@@ -33,66 +46,128 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
      * @covers WishlistApi::all
      * @todo   Implement testAll().
      */
-    public function testAll() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function test_deinstall() {
+        $this->object->_deinstall();
     }
 
+    public function test_install() {
+        $this->object->_install();
+    }
+    
     /**
      * @covers WishlistApi::_addItem
      * @todo   Implement test_addItem().
+     * @dataProvider addItem_provider
      */
-    public function test_addItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testaddItem($var_id) {
+        $result = $this->object->addItem($var_id);
+        $this->assertNotEmpty($result);
+        $this->assertJsonStringEqualsJsonString($this->added, $result);
     }
 
+    public function addItem_provider() {
+        return array(
+            array(1),
+            array(2),
+            array(3)
+        );
+    }
+    
+    
     /**
      * @covers WishlistApi::moveItem
      * @todo   Implement testMoveItem().
+     * @dataProvider moveItem_provider
      */
-    public function testMoveItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+    public function testMoveItem($var_id, $wish_list_id) {
+        $result = $this->object->moveItem($varId, $wish_list_id);
+        $this->assertNotEmpty($result);
+        $this->assertJsonStringEqualsJsonString($this->operation_success, $result);
+    }
+     public function moveItem_provider() {
+        return array(
+            array(1, 1),
+            array(2, 2),
+            array(3, 3)
+        );
+    }
+    
+    /**
+     * @covers WishlistApi::updateWL
+     * @todo   Implement testUpdateWL().
+     * @dataProvider update_data_provider
+     */
+    public function testUpdateWL($list_id) {
+        $_POST['WLID'] = $list_id;
+        $_POST['comment'] = "test_wl_comment";
+        $_POST['title'] = "test title";
+        $_POST['access'] = 'public';
+        
+        $result = $this->object->updateWL();
+        
+        $this->assertNotEmpty($result);
+        $this->assertJsonStringEqualsJsonString($this->updated_success, $result);
+    }
+    
+    public function update_data_provider(){
+        return array(
+            array(1),
+            array(2),
+            array(3)
         );
     }
 
-    /**
-     * @covers WishlistApi::deleteItem
-     * @todo   Implement testDeleteItem().
-     */
-    public function testDeleteItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    
+
+    public function testAll() {
+        $result = $this->object->all();
+        $result = json_decode($result);
+        
+        $this->assertObjectHasAttribute('lists', $result->data[0]);
+        $this->assertObjectHasAttribute('user', $result->data[0]);
+        $this->assertObjectHasAttribute('data', $result);
+        $this->assertObjectHasAttribute('settings', $result);
+        $this->assertObjectHasAttribute('answer', $result);
+        
+        $this->assertEquals('success', $result->answer);
+        
+        $this->assertNotEmpty($result->settings);
+        $this->assertNotEmpty($result->data[0]->user);
+        $this->assertNotEmpty($result->data[0]->lists);
+    
     }
 
-    /**
-     * @covers WishlistApi::deleteItemByIds
-     * @todo   Implement testDeleteItemByIds().
-     */
-    public function testDeleteItemByIds() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
+//    /**
+//     * @covers WishlistApi::deleteItem
+//     * @todo   Implement testDeleteItem().
+//     */
+//    public function testDeleteItem() {
+//        $result = $this->object->deleteItem(1, 1);
+//        $this->assertNotEmpty($result);
+//        $this->assertJsonStringEqualsJsonString($this->operation_success, $result);
+//    }
+//
+//    /**
+//     * @covers WishlistApi::deleteItemByIds
+//     * @todo   Implement testDeleteItemByIds().
+//     */
+//    public function testDeleteItemByIds() {
+//        $result = $this->object->deleteItemByIds();
+//        
+//        $this->assertNotEmpty($result);
+//        $this->assertJsonStringEqualsJsonString($this->operation_success, $result);
+//    }
 
     /**
      * @covers WishlistApi::show
      * @todo   Implement testShow().
      */
     public function testShow() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $model = new \Wishlist_model();
+        $model->upateWishList(1, array('hash' => '111'));
+        $result = $this->object->show('111');
+        var_dumps($result);
+        
     }
 
     /**
@@ -150,16 +225,7 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    /**
-     * @covers WishlistApi::updateWL
-     * @todo   Implement testUpdateWL().
-     */
-    public function testUpdateWL() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
+    
 
     /**
      * @covers WishlistApi::deleteWL
