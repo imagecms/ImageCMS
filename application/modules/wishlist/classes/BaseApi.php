@@ -42,7 +42,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $to_listName = $this->input->post('wishListName');
 
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
-            return $this->dataModel = "Операция успешна";
+            return $this->dataModel = lang('success');
         } else {
             return $this->errors = "Не удалось переместить";
         }
@@ -60,7 +60,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if($items){
             if(parent::deleteItemByIds($items)){
-                return $this->dataModel[] = lang('deleted');
+                return $this->dataModel[] = lang('success');
             }else{
                 return $this->errors[] = lang('error_cant_delete');
             }
@@ -157,8 +157,12 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             'access' => $this->input->post('access'),
             'title' => $title,
         );
-
-        parent::updateWL($id, $data, $desc, $title);
+        
+        if(parent::updateWL($id, $data, $desc)){
+            return $this->dataModel;
+        }else{
+            return $this->errors;
+        }
     }
 
     public function deleteImage(){
@@ -171,10 +175,22 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     }
 
     public function do_upload() {
-        if (parent::do_upload($this->input->post(userID))) {
-            return $this->dataModel[] = 'Картинка загружена';
+        if($this->input->post('userID')){
+            if (parent::do_upload($this->input->post('userID'))) {
+                if (!$this->upload->do_upload()) {
+                    $this->errors[] = $this->upload->display_errors();
+                    return $this->errors[] = lang('error_download');
+                } else {
+                    $this->dataModel = array('upload_data' => $this->upload->data());
+                    $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
+                    return $this->dataModel[] = lang('picture_uploaded');
+                }
+                return $this->dataModel[] = lang('picture_uploaded');
+            } else {
+                return $this->errors[] = lang('error_upload_photo');
+            }     
         }else{
-            return $this->errors[] = "Ошибка загрузки";
+            return $this->errors[] = lang('error_user_id');
         }
     }
 

@@ -47,13 +47,14 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function moveItem($varId, $wish_list_id) {
         $listId = $this->input->post('wishlist');
+        $user_id = $this->input->post('user_id');
         $listName = $this->input->post('wishListName');
 
         if ((!$listId && !$listName)) {
             return $this->errors[] = lang('error_cant_move');
         }
 
-        if (parent::moveItem($varId, $wish_list_id, $listId, $listName)) {
+        if (parent::moveItem($varId, $wish_list_id, $listId, $listName, $user_id)) {
             return $this->dataModel = lang('success');
         } else {
             return $this->errors[] = lang('error_cant_move');
@@ -155,7 +156,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             'title' => $title,
         );
 
-        parent::updateWL($id, $data, $desc, $title);
+        parent::updateWL($id, $data, $desc);
     }
 
     public function deleteItem($variant_id, $wish_list_id) {

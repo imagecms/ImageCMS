@@ -35,7 +35,7 @@ class Star_rating extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     /**
@@ -87,16 +87,18 @@ class Star_rating extends MY_Controller {
                 $template = 'star_rating';
             } else {
                 $template = null;
+                return false;
             }
         }
 
         //Show template with prepared parametrs
         if ($template !== null)
-            CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->registerStyle('style')
-                    ->registerScript('scripts')
-                    ->render($template, true);
+            $renderTemplate= CMSFactory\assetManager::create();
+                    $renderTemplate->setData($data)
+                    ->registerStyle('style');
+                    if ($template != 'product_star_rating')
+                        $renderTemplate->registerScript('scripts');
+                    $renderTemplate->render($template, true);
 
     }
 
@@ -108,7 +110,7 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-        
+
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists
