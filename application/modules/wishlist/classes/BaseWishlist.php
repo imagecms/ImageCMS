@@ -156,7 +156,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             'title' => $title,
         );
 
-        parent::updateWL($id, $data, $desc, $title);
+        parent::updateWL($id, $data, $desc);
     }
 
     public function deleteItem($variant_id, $wish_list_id) {
