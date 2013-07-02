@@ -508,7 +508,7 @@ function ieInput(els) {
                     drop.css('right', 0).addClass('right-drop');
                 else {
                     var right = menuW - $thisW - $thisL;
-                    if ($thisL - $thisW < dropW)
+                    if ($thisL + $thisW < dropW)
                         right = menuW - dropW;
                     drop.css('right', right).addClass('right-drop');
                 }
@@ -615,11 +615,6 @@ function ieInput(els) {
                             var subH = $(drop).children().children('.' + hM);
                             if (e.type == 'click' && evLS == 'toggle')
                                 subH.click();
-
-                            if (e.type == 'click' && $this.has(drop).length == 0 && (evLF == 'toggle' || evLS == 'toggle')) {
-                                if ($(e.target).closest('a').length != 0 || $(e.target).is('a'))
-                                    window.location = $(e.target).closest('a').attr('href') || $(e.target).attr('href');
-                            }
 
                             if ($thisI == 0)
                                 $this.addClass('firstH');
@@ -750,9 +745,13 @@ function ieInput(els) {
                         closeMenu(menu, e);
                     }
                 });
-                $(sub2Frame).find('a').unbind('click').click(function(e) {
+                $(drop).find('a').click(function(e) {
                     e.stopPropagation();
-                })
+                });
+                menuItem.find('a').click(function(e) {
+                    if ($.exists_nabir($(this).find(drop)))z
+                        e.stopPropagation();
+                });
             }
         },
         refresh: function() {
@@ -1523,9 +1522,9 @@ function ieInput(els) {
                         if (!input.is(':disabled')) {
                             settings.before(e, el, input);
                             if (isNaN(inputVal))
-                                input.attr('value', 1);
+                                input.val(1);
                             else
-                                input.attr('value', inputVal + 1);
+                                input.val(inputVal + 1);
 
                             if (settings.ajax && !checkProdStock)
                                 $.fancybox.showActivity();
@@ -1545,11 +1544,11 @@ function ieInput(els) {
                         if (!input.is(':disabled')) {
                             settings.before(e, el, input);
                             if (isNaN(inputVal))
-                                input.attr('value', 1)
+                                input.val(1)
                             else if (inputVal > 1) {
                                 if (ajax)
                                     $.fancybox.showActivity();
-                                input.attr('value', inputVal - 1)
+                                input.val(inputVal - 1)
                             }
 
                             settings.after(e, el, input);
@@ -1573,17 +1572,16 @@ function ieInput(els) {
     var methods = {
         init: function(e) {
             var $this = $(this),
-                    key = e.keyCode,
+                    $min = $(this).attr('data-min'),
                     $thisVal = parseInt($this.val());
 
-            if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0'))
-            {
-                return false;
+            if (!e)
+                var e = window.event;
+            var key = e.keyCode;
+
+            if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0')) {
+                $this.val($min);
             }
-//            if ($thisVal < $min || isNaN($thisVal) || (isNaN($thisVal) && keyChar == 0)) {
-//                $this.val($min);
-//                return true;
-//            }
         }
     };
     $.fn.minValue = function(method) {
@@ -1595,34 +1593,26 @@ function ieInput(els) {
             $.error('Method ' + method + ' does not exist on jQuery.minValue');
         }
     };
-    $('[data-min]').live({
-        'keyup': function(e) {
-            var $this = $(this);
-            if (parseInt($this.val()) == '0')
-                $this.val($this.attr('data-min'))
-        },
-        'keydown': function(e) {
-            $(this).minValue(e);
-        }
-    })
 })(jQuery);
 (function($) {
     var methods = {
-        init: function(e) {
+        init: function(e, f) {
             var $this = $(this),
                     $thisVal = $this.val(),
                     $max = parseInt($this.attr('data-max'));
-           
+
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
             keyChar = parseInt(String.fromCharCode(key));
             if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
                 $this.val($max);
+                if (typeof f == 'function')
+                    f();
                 return $max;
             }
             else
-                return false;
+                return true;
         }
     };
     $.fn.maxValue = function(method) {

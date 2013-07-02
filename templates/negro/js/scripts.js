@@ -9,12 +9,12 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    //countColumn: 3, //if not drop-side
+    countColumn: 5, //if not drop-side
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    sub2Frame: '.frame-l2', //if drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
     dropWidth: 480,
     evLF: 'hover',
     evLS: 'hover',
@@ -422,7 +422,6 @@ function initShopPage(showWindow, target, orderDetails) {
             });
             if (input == undefined)
                 var input = pd.closest(genObj.frameCount).find('input');
-
             var inputVal = input.val(),
                     condTooltip = '';
             if (!btn)
@@ -434,7 +433,6 @@ function initShopPage(showWindow, target, orderDetails) {
                 pd.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false});
             }
             cartItem.count = inputVal;
-
             Shop.Cart.chCount(cartItem, function() {
                 input.focus();
             });
@@ -443,11 +441,9 @@ function initShopPage(showWindow, target, orderDetails) {
             var pdTrs = $('[data-id =' + $(pd).closest('tr').data('id') + ']')
             pdTrs.each(function() {
                 pdTr = $(this);
-
                 var word = cartItem.kit ? kits : pcs;
                 if ($.existsN(pdTr.closest(genObj.orderDetails)))
                     word = cartItem.kit ? pluralStr(inputVal, plurKits) : pluralStr(inputVal, plurProd);
-
                 pdTr.find(genObj.priceOrder).html(totalPrice.toFixed(pricePrecision));
                 pdTr.find(genObj.plusMinus).val(cartItem.count);
                 pdTr.find(genObj.priceAddPrice).html((cartItem.count * cartItem.addprice).toFixed(pricePrecision));
@@ -457,7 +453,10 @@ function initShopPage(showWindow, target, orderDetails) {
         }
         $(genObj.frameCount + ' input').bind('keyup', function(e) {
             var $this = $(this);
-            if (!$.testNumber(e) && !$this.maxValue()) {
+            if ($this.maxValue(e, function() {
+                $this.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false})
+            })) {
+                $this.minValue();
                 chCountInCart($(this).prev('div'));
             }
         });
@@ -659,7 +658,6 @@ jQuery(document).ready(function() {
             if (dropEl.hasClass('drop-report')) {
                 dropEl.find('li').children().remove();
                 dropEl.find('[data-clone="data-report"]').remove();
-
                 var parentEl = el.closest(genObj.parentBtnBuy)
                 if ($.existsN(el.closest('.items-catalog')))
                     var elWrap = parentEl.clone(true).removeAttr('style').children();
@@ -676,7 +674,6 @@ jQuery(document).ready(function() {
 
                 if (!$.existsN(dropElRep.find('.items-bask')))
                     dropElRep.append('<ul class="items items-bask item-report"><li></li></ul>');
-
                 dropElRep.find('.item-report').children().append(elWrap).find('.funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
                 return el;
             }
@@ -762,7 +759,6 @@ jQuery(document).ready(function() {
                         frameButton = frameThumbs.children('.group-button-carousel')
                 carGal = frameThumbs.children('.content-carousel').clone(true).prependTo(fancyC).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone()),
                         fancyTitle = $('#fancybox-title');
-
                 fancyC.find(genObj.plusMinus).plusminus({
                     prev: 'prev.children(:eq(1))',
                     next: 'prev.children(:eq(0))',
@@ -771,7 +767,6 @@ jQuery(document).ready(function() {
                             el.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false});
                     }
                 });
-
                 var itemThumbs = carGal.find('.items-thumbs');
                 itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend($('[data-rel="mainThumbPhoto"]').children().clone().removeClass('d_n'));
                 if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
