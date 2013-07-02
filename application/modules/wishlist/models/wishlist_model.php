@@ -29,7 +29,6 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-//        var_dump((int)ini_get('upload_max_filesize'));
         return $this->db->where('identif', 'wishlist')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -178,17 +177,14 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
-     * delete items by ides
+     * delete items by ids
      *
      * @param array $ids
      * @return ---
      */
     public function deleteItemsByIDs($ids) {
-        foreach ($ids as $id) {
-            $this->db->where('id', $id)
-                    ->delete('mod_wish_list_products');
-        }
-        return TRUE;
+        return $this->db->where_in('id', $ids)
+                        ->delete('mod_wish_list_products');
     }
 
     /**
@@ -230,7 +226,12 @@ class Wishlist_model extends CI_Model {
             $querySecond = $querySecond->result_array();
         }
 
-        return array_merge($queryFirst, $querySecond);
+        $arr = array_merge($queryFirst, $querySecond);
+        if (count($arr) > 0) {
+            return $arr;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -263,7 +264,7 @@ class Wishlist_model extends CI_Model {
     public function getUserWishProducts($userID = null) {
         if (!$userID)
             $userID = $this->dx_auth->get_user_id();
-        $ID = null;
+        $ID = array();
         $ids = $this->db
                 ->where('mod_wish_list.user_id', $userID)
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
@@ -282,13 +283,41 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
+     *
+     *
+     * @param type $userID
+     * @return array
+     */
+    public function getAllUserWLs($userID = null) {
+        if (!$userID)
+            $userID = $this->dx_auth->get_user_id();
+
+        $ID = array();
+
+        $ids = $this->db
+                ->where('mod_wish_list.user_id', $userID)
+                ->get('mod_wish_list');
+
+        if ($ids) {
+            $ids = $ids->result_array();
+
+            foreach ($ids as $id) {
+                $ID[] = $id['id'];
+            }
+        }
+
+        return $ID;
+    }
+
+    /**
      * get most popular products
      *
      * @param type $limit
      * @return array
      */
     public function getMostPopularProducts($limit = 10) {
-        $query = $this->db->select('COUNT(id) as productCount, variant_id,')
+        $query = $this->db
+                ->select('COUNT(id) as productCount, variant_id,')
                 ->order_by('productCount', 'desc')
                 ->group_by('variant_id')
                 ->limit($limit)
@@ -308,10 +337,9 @@ class Wishlist_model extends CI_Model {
      * @param type $user_id
      * @return boolean
      */
-    public function insertWishList($title, $access, $description, $user_id) {
+    public function insertWishList($title, $access, $user_id) {
         return $this->db->set('title', $title)
                         ->set('access', $access)
-                        ->set('description', $description)
                         ->set('user_id', $user_id)
                         ->insert('mod_wish_list');
     }
@@ -324,7 +352,9 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function upateWishList($id, $data) {
-        return $this->db->where('id', $id)->update('mod_wish_list', $data);
+        return $this->db
+                ->where('id', $id)
+                ->update('mod_wish_list', $data);
     }
 
     /**
@@ -434,12 +464,13 @@ class Wishlist_model extends CI_Model {
      * @param type $user_id
      * @return boolean
      */
-    public function createWishList($listName, $user_id) {
+    public function createWishList($listName, $user_id, $access = 'shared') {
         $this->createUserIfNotExist($user_id);
         $data = array(
             'title' => $listName,
             'user_id' => $user_id,
-            'hash' => random_string('unique', 16)
+            'hash' => random_string('unique', 16),
+            'access' => $access
         );
         return $this->db->insert('mod_wish_list', $data);
     }
@@ -643,7 +674,7 @@ class Wishlist_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         @rmdir('./uploads/mod_wishlist');
 
-        $this->dbforge->drop_table('m2od_wish_list_products');
+        $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
         return TRUE;

@@ -66,10 +66,13 @@
                                 </span>
                             </div>
                         </div>
+                        {$countAnswers = $CI->load->module('comments')->commentsapi->getCountCommentAnswersByCommentId($comment.id)}
+                        {if $countAnswers}
                         <ul class="frame-list-comment__icsi-css sub-2">
+                            {$step = 1}
                             {foreach $comment_ch as $com_ch}
                                 {if $com_ch.parent == $comment.id}
-                                    <li>
+                                    <li {if $step <= $countAnswers-2} class="d_n" {/if}>
                                         <div class="author-data-comment__icsi-css">
                                             <span class="s-t">Ответ от</span>
                                             <span class="author-comment__icsi-css">{$com_ch.user_name}</span>
@@ -81,9 +84,11 @@
                                             </p>
                                         </div>
                                     </li>
+                                    {$step++}
                                 {/if}
                             {/foreach}
                         </ul>
+                        {/if}
                         <button type="button" class="s-all-comments"><span class="text-el"><span class="d_l_1">Смотреть все ответы</span> ↓</span></button>
                     </li>
                 {/foreach}
@@ -98,7 +103,7 @@
     {/if}
 
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="main-form-comments__icsi-css">
+        <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
             <div class="frame-comments__icsi-css layout-highlight">
                 <div class="title_h2__icsi-css title-default">
                     <div class="title">Оставте свой отзыв</div>
