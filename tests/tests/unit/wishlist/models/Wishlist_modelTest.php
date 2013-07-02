@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
+require_once realpath(dirname(__FILE__) . '/../../../..') . '/enviroment.php';
 
 doLogin();
 
@@ -24,7 +24,15 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      * This method is called after a test is executed.
      */
     protected function tearDown() {
+        $this->object->db->delete('mod_wish_list_users', array('id' => 999999));
+        $this->object->db->delete('mod_wish_list_users', array('id' => 888888));
+    }
 
+    /**
+     * @covers Wishlist_model::install
+     */
+    public function testInstall() {
+        $this->assertTrue($this->object->install());
     }
 
     /**
@@ -92,19 +100,28 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      */
     public function testCreateWishList() {
         $this->assertTrue($this->object->createWishList('test', $GLOBALS['userId'], 'shared'));
-        $id = $this->object->db->insert_id();
-        return $id;
+        $this->object->db
+                ->where('title', 'test')
+                ->set('hash', '1')
+                ->update('mod_wish_list');
+        $ID = $this->object->db->insert_id();
+        return $ID;
+    }
+
+    /**
+     * @covers Wishlist_model::updateWishListItem
+     * @depends testCreateWishList
+     */
+    public function testUpdateWishListItem($id) {
+//        $this->assertTrue($this->object->updateWishListItem('1031', $id, array()));
     }
 
     /**
      * @covers Wishlist_model::addItem
-     * @todo   Implement testAddItem().
+     * @depends testCreateWishList
      */
-    public function testAddItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testAddItem($id) {
+        $this->assertTrue($this->object->addItem('1031', $id, '', 999999));
     }
 
     /**
@@ -120,11 +137,11 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers Wishlist_model::upateWishList
+     * @covers Wishlist_model::updateWishList
      * @depends testGetUserWishList
      */
-    public function testUpateWishList($id) {
-        $this->assertFalse($this->object->upateWishList($id, array()));
+    public function testUpdateWishList($id) {
+        $this->assertFalse($this->object->updateWishList($id, array()));
     }
 
     /**
@@ -208,10 +225,10 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers Wishlist_model::upateWishListItemsComments
+     * @covers Wishlist_model::updateWishListItemsComments
      * @depends testCreateWishList
      */
-    public function testUpateWishListItemsComments($id) {
+    public function testUpdateWishListItemsComments($id) {
         $this->assertFalse($this->object->insertWishList($id, array()));
     }
 
@@ -220,105 +237,67 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
      */
     public function testInsertUser() {
         $this->assertTrue($this->object->insertUser(999999, '', '', 'test'));
+        $this->assertFalse($this->object->insertUser(999999, '', '', 'test'));
+        $id = $this->object->db->insert_id();
+        return $id;
     }
 
     /**
      * @covers Wishlist_model::createUserIfNotExist
-     * @todo   Implement testCreateUserIfNotExist().
      */
     public function testCreateUserIfNotExist() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->createUserIfNotExist(888888));
+        $this->assertFalse($this->object->createUserIfNotExist(888888));
     }
 
     /**
      * @covers Wishlist_model::updateUser
-     * @todo   Implement testUpdateUser().
      */
     public function testUpdateUser() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->updateUser($GLOBALS['userId'], 'test', '111111', 'desc'));
     }
 
     /**
      * @covers Wishlist_model::getUserWishListCount
-     * @todo   Implement testGetUserWishListCount().
      */
     public function testGetUserWishListCount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('int', $this->object->getUserWishListCount(999999));
     }
 
     /**
      * @covers Wishlist_model::getUserWishListItemsCount
-     * @todo   Implement testGetUserWishListItemsCount().
      */
     public function testGetUserWishListItemsCount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('int', $this->object->getUserWishListItemsCount(999999));
     }
 
     /**
      * @covers Wishlist_model::addReview
-     * @todo   Implement testAddReview().
      */
     public function testAddReview() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->addReview(1), 'Cant add review');
     }
 
     /**
      * @covers Wishlist_model::getMostViewedWishLists
-     * @todo   Implement testGetMostViewedWishLists().
      */
     public function testGetMostViewedWishLists() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->getMostViewedWishLists());
     }
 
     /**
      * @covers Wishlist_model::setUserImage
-     * @todo   Implement testSetUserImage().
      */
     public function testSetUserImage() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Wishlist_model::install
-     * @todo   Implement testInstall().
-     */
-    public function testInstall() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->setUserImage(999999, '111.png'));
     }
 
     /**
      * @covers Wishlist_model::deinstall
-     * @todo   Implement testDeinstall().
      */
     public function testDeinstall() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->deinstall());
+        $this->object->install();
     }
 
 }

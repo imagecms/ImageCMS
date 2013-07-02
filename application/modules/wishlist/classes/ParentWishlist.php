@@ -116,7 +116,7 @@ class ParentWishlist extends \MY_Controller {
         if ($wishlist) {
             self::addReview($hash);
             $this->dataModel = $wishlist;
-            
+
             return TRUE;
         } else {
             return FALSE;
@@ -149,7 +149,7 @@ class ParentWishlist extends \MY_Controller {
                     'expire' => 60 * 60 * 24,
                     'prefix' => ''
                 );
-                $CI->input->set_cookie($cookie);
+                @$CI->input->set_cookie($cookie);
                 return TRUE;
             }
         }
@@ -229,7 +229,9 @@ class ParentWishlist extends \MY_Controller {
     public function updateWL($id, $data, $comments) {
         $return = TRUE;
         $return = $this->wishlist_model->upateWishList($id, $data);
-        $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        if($comments){
+            $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+        }
         if($return){
             $this->dataModel[] = lang("updated");
         }else{
@@ -380,7 +382,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
-        
+
         if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
             $this->errors[] = lang('error_cant_add');
 
@@ -407,12 +409,12 @@ class ParentWishlist extends \MY_Controller {
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '', $user_id = null) {
         if(!$user_id)
             $user_id = $this->dx_auth->get_user_id ();
-        
+
         if($to_listName){
             $this->wishlist_model->createWishList($to_listName, $user_id);
-            $to_listId = $this->db->insert_id();            
+            $to_listId = $this->db->insert_id();
         }
-        
+
         $data = array('wish_list_id' => $to_listId);
         return $this->wishlist_model->updateWishListItem($varId, $wish_list_id, $data);
     }
