@@ -5,7 +5,6 @@ function margZoomLens() {
                 mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
 
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
-        console.log('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
     })
 }
 $(document).ready(function() {
@@ -33,7 +32,6 @@ $(document).ready(function() {
                             $elWrapCHH = $elWrapCH.css('width', $rightFrameProductW).actual('height'),
                             $elsCH = $elWrapCH.children();
 
-                    console.log($elWrapCHH > elWrapCHMH)
                     if ($elWrapCHH > elWrapCHMH) {
                         var lostH = $elWrapCHH - elWrapCHMH;
                         $elsCH.each(function() {

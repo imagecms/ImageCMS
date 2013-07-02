@@ -100,7 +100,6 @@ function margZoomLens() {
                 mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
 
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
-        console.log(1)
     })
 }
 function initBtnBuy() {
@@ -766,16 +765,16 @@ $(document).ready(function() {
 
     $('#variantSwitcher').live('change', function() {
         var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy);
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btn = $('.btn' + genObj.prefV + productId);
 
-        var vId = $(genObj.prefV + productId).attr('data-id'),
-                vName = $(genObj.prefV + productId).attr('data-vname'),
-                vPrice = $(genObj.prefV + productId).attr('data-price'),
-                vOrigPrice = $(genObj.prefV + productId).attr('data-origPrice'),
-                vNumber = $(genObj.prefV + productId).attr('data-number'),
-                vLargeImage = $(genObj.prefV + productId).attr('data-largeImage'),
-                vMainImage = $(genObj.prefV + productId).attr('data-mainImage'),
-                vStock = $(genObj.prefV + productId).attr('data-stock');
+        var vName = btn.attr('data-vname'),
+                vPrice = btn.attr('data-price'),
+                vOrigPrice = btn.attr('data-origPrice'),
+                vNumber = btn.attr('data-number'),
+                vLargeImage = btn.attr('data-largeImage'),
+                vMainImage = btn.attr('data-mainImage'),
+                vStock = btn.attr('data-stock');
 
         $(genObj.photoProduct).attr('href', vLargeImage);
         $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
@@ -788,20 +787,21 @@ $(document).ready(function() {
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
 
         liBlock.find(genObj.selVariant).hide();
-        liBlock.find(genObj.prefV + vId).show();
+        liBlock.find(genObj.prefV + productId).show();
     });
 
     /**Variants in Category*/
     $('[id ^= сVariantSwitcher_]').live('change', function() {
         var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy);
-                
-        var vMediumImage = liBlock.find(genObj.prefV + productId).attr('data-mediumImage'),
-                vName = liBlock.find(genObj.prefV + productId).attr('data-vname'),
-                vPrice = liBlock.find(genObj.prefV + productId).attr('data-price'),
-                vOrigPrice = liBlock.find(genObj.prefV + productId).attr('data-origPrice'),
-                vNumber = liBlock.find(genObj.prefV + productId).attr('data-number'),
-                vStock = liBlock.find(genObj.prefV + productId).attr('data-stock');
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btn = liBlock.find('.btn' + genObj.prefV + productId);
+
+        var vMediumImage = btn.attr('data-mediumImage'),
+                vName = btn.attr('data-vname'),
+                vPrice = btn.attr('data-price'),
+                vOrigPrice = btn.attr('data-origPrice'),
+                vNumber = btn.attr('data-number'),
+                vStock = btn.attr('data-stock');
 
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + productId).show();
@@ -813,7 +813,7 @@ $(document).ready(function() {
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
 
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + genObj.btnBuy));
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
     });
 
     $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
@@ -1018,5 +1018,5 @@ window.ontouchstart = function(e) {
 }
 if (isTouch)
     window.onscroll = function() {
-            topbar.style.top =  window.pageYOffset || docElem.scrollTop || body.scrollTop + window.innerHeight - 50 + 'px';
+        topbar.style.top = window.pageYOffset || docElem.scrollTop || body.scrollTop + window.innerHeight - 50 + 'px';
     };
