@@ -14,6 +14,7 @@
         <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
     </div>
     {form_open_multipart('/wishlist/do_upload')}
+
     <input type="hidden" value="{echo $user[id]}" name="userID"/>
     <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
@@ -27,6 +28,7 @@
     <input type="submit" value="Удалить картинку" class="btn"/>
     {form_csrf()}
 </form>
+
 <form method="POST" action="/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
@@ -37,7 +39,6 @@
 </form>
 
 <br /><br />
-
 <form method="POST" action="/wishlist/createWishList">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="" name="wishListName"/>
@@ -79,7 +80,7 @@
                                 <td>{echo $key+1}</td>
                                 <td>
                                     <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}" class="btn">удалить</a>
-                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}"class="btn">Переместить</a>
+                                    <a href="/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}"class="btn">Переместить</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"
@@ -102,7 +103,7 @@
                 </tbody>
             </table>
             {form_csrf()}
-            <input type="submit" class="btn btn-small" value="Удалить Обрание">
+            <input type="submit" class="btn btn-small" value="Удалить избраны">
         </form>
         <hr/>
     {/foreach}

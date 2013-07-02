@@ -18,9 +18,12 @@ $lang['error_cant_add'] = '<p>Невозможно добавить</p>';
 $lang['error_cant_move'] = '<p>Не удалось переместить</p>';
 $lang['error_cant_update'] = '<p>Не обновлено</p>';
 $lang['error_cant_delete'] = '<p>Невозможно удалить</p>';
-$lang[''] = '<p>Ошибка загрузки</p>';
+$lang['error_download'] = '<p>Ошибка загрузки</p>';
 $lang['error_no_user_data'] = '<p>Данные пользователя ненайдены</p>';
-$lang[''] = '<p></p>';
+$lang['error_user_id'] = '<p>Не введен пользователь</p>';
+$lang['error_max_image_size_exceeded'] = '<p>Превышен максимальный размер изображения</p>';
+$lang['error_max_image_width_exceeded'] = '<p>Превышен максимальня ширина изображения</p>';
+$lang['error_invalid_file_format'] = '<p>Недопустимый формат файла</p>';
 
 /**
  * messeges
