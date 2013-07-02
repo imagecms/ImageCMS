@@ -266,7 +266,7 @@ class BaseDiscount extends \MY_Controller {
      */    
     public function updatediskapply($key){
         
-        $this->discount_model_front->updateapply($key);        
+        return $this->discount_model_front->updateapply($key);        
     }
     
 

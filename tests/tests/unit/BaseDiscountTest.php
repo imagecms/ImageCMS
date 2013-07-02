@@ -41,112 +41,114 @@ class BaseDiscountTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_user_id
-     * @todo   Implement testGet_user_id().
      */
     public function testGet_user_id() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertEquals(50,$this->object->get_user_id());
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_user_group_id
-     * @todo   Implement testGet_user_group_id().
+
      */
     public function testGet_user_group_id() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertEquals(1,$this->object->get_user_group_id());
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_cart_data
-     * @todo   Implement testGet_cart_data().
      */
     public function testGet_cart_data() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertInternalType('array',  $this->object->get_cart_data());
+        $this->assertEquals(2, count($this->object->get_cart_data()));
+
+
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_amout_user
-     * @todo   Implement testGet_amout_user().
      */
     public function testGet_amout_user() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertEquals(392065.56, $this->object->get_amout_user($this->object->get_user_id()));
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_total_price
-     * @todo   Implement testGet_total_price().
      */
     public function testGet_total_price() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertEquals(125998.80, $this->object->get_total_price($this->object->get_cart_data()));
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_all_discount
-     * @todo   Implement testGet_all_discount().
      */
     public function testGet_all_discount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertInternalType('array',  $this->object->get_all_discount());
+        $arr = $this->object->get_all_discount();      
+        $this->assertEquals(2, count($arr));
+        $this->assertArrayHasKey('type_discount', $arr[0]);
+        $this->assertArrayHasKey('type_value', $arr[0]);
+        $this->assertArrayHasKey('value', $arr[0]);
+        $this->assertArrayHasKey('discount_id', $arr[0]);
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::collect_type
-     * @todo   Implement testCollect_type().
      */
     public function testCollect_type() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $discount_type = $this->object->collect_type($this->object->get_all_discount());
+        $this->assertArrayHasKey('product', $discount_type);
+        $this->assertArrayHasKey('brand', $discount_type);
+        $this->assertEquals(1, count($discount_type['group_user']));
+        
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_max_discount
-     * @todo   Implement testGet_max_discount().
      */
     public function testGet_max_discount() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+        
+        $arr_disc = array(
+            array('type_value' => 2, 'value' => 200),
+            array('type_value' => 1, 'value' => 20),
+            array('type_value' => 1, 'value' => 10),
+            array('type_value' => 2, 'value' => 120)
         );
+        
+        $price = 210;
+        
+        $disc = $this->object->get_max_discount($arr_disc, $price);
+        
+        $this->assertEquals(200, $disc['value']);
+        
+        
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::get_discount_value
-     * @todo   Implement testGet_discount_value().
      */
     public function testGet_discount_value() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $arr_disc = 
+            array('type_value' => 1, 'value' => 20);
+        
+        $price = 210;
+        
+        $disc = $this->object->get_discount_value($arr_disc, $price);
+        
+        $this->assertEquals(42, $disc);
     }
 
     /**
      * @covers mod_discount\classes\BaseDiscount::updatediskapply
-     * @todo   Implement testUpdatediskapply().
      */
     public function testUpdatediskapply() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        
+        $this->assertTrue($this->object->updatediskapply('qvu102pfrn5m0552'));
     }
 
 }
