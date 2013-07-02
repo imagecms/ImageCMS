@@ -119,6 +119,7 @@ class ParentWishlist extends \MY_Controller {
 
             return TRUE;
         } else {
+             $this->errors[] = lang('error_wrong_query');
             return FALSE;
         }
     }
@@ -228,9 +229,9 @@ class ParentWishlist extends \MY_Controller {
      */
     public function updateWL($id, $data, $comments) {
         $return = TRUE;
-        $return = $this->wishlist_model->upateWishList($id, $data);
+        $return = $this->wishlist_model->updateWishList($id, $data);
         if($comments){
-            $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+            $this->wishlist_model->updateWishListItemsComments($id, $comments);
         }
         if($return){
             $this->dataModel[] = lang("updated");
@@ -292,10 +293,7 @@ class ParentWishlist extends \MY_Controller {
         $forReturn = $this->wishlist_model->delWishListById($id);
 
         if ($forReturn) {
-            $forReturn = $this->wishlist_model->delWishListProductsByWLId($id);
-
-            if (!$forReturn)
-                $this->errors[] = lang('error_items_delete');
+            $this->wishlist_model->delWishListProductsByWLId($id);
         }
         else
             $this->errors[] = lang('error_WL_delete');
