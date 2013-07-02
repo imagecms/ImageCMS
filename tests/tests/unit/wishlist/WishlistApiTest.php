@@ -2,7 +2,7 @@
 
 namespace wishlist;
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
+require_once realpath(dirname(__FILE__) . '/../../..') . '/enviroment.php';
 
 doLogin();
 
@@ -51,7 +51,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::all
-     * @todo   Implement testAll().
      */
     public function test_deinstall() {
         $this->object->_deinstall();
@@ -63,7 +62,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::_addItem
-     * @todo   Implement test_addItem().
      * @dataProvider addItem_provider
      */
     public function testaddItem($var_id) {
@@ -82,7 +80,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::show
-     * @todo   Implement testShow().
      */
     public function testShow() {
 
@@ -91,7 +88,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::moveItem
-     * @todo   Implement testMoveItem().
      * @dataProvider moveItem_provider
      */
     public function testMoveItem($var_id, $wish_list_id) {
@@ -110,7 +106,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::updateWL
-     * @todo   Implement testUpdateWL().
      * @dataProvider update_data_provider
      */
     public function testUpdateWL($list_id) {
@@ -153,7 +148,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::getMostViewedWishLists
-     * @todo   Implement testGetMostViewedWishLists().
      */
     public function testGetMostViewedWishLists() {
         //-----no views
@@ -164,8 +158,8 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
         //----prepare data to get most viewed lists
 
-        $this->model->upateWishList(1, array('review_count' => 3));
-        $this->model->upateWishList(2, array('review_count' => 2));
+        $this->model->updateWishList(1, array('review_count' => 3));
+        $this->model->updateWishList(2, array('review_count' => 2));
 
         $result = $this->object->getMostViewedWishLists();
         $result = json_decode($result);
@@ -179,10 +173,9 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::user
-     * @todo   Implement testUser().
      */
     public function testUser() {
-        $result = $this->object->user(47);
+        $result = $this->object->user($GLOBALS['userId'] );
         $result = json_decode($result);
 
         $this->assertObjectHasAttribute('answer', $result);
@@ -200,12 +193,11 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::userUpdate
-     * @todo   Implement testUserUpdate().
      */
     public function testUserUpdate() {
         $_POST['description'] = "test desc";
         $_POST['user_birthday'] = 112341234;
-        $_POST['user_id'] = 47;
+        $_POST['user_id'] = $GLOBALS['userId'] ;
         $_POST['user_name'] = "test_name";
 
         $result = $this->object->userUpdate();
@@ -218,7 +210,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::getMostPopularItems
-     * @todo   Implement testGetMostPopularItems().
      */
     public function testGetMostPopularItems() {
         $result = $this->object->getMostPopularItems();
@@ -234,7 +225,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::createWishList
-     * @todo   Implement testCreateWishList().
      */
     public function testCreateWishList() {
         $result = $this->object->createWishList();
@@ -247,7 +237,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::deleteWL
-     * @todo   Implement testDeleteWL().
      */
     public function testDeleteWL() {
         $result = $this->object->deleteWL(2);
@@ -260,11 +249,10 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::deleteImage
-     * @todo   Implement testDeleteImage().
      */
     public function testDeleteImage() {
         $_POST['image'] = 'test_image.jpg';
-        write_file('../../../uploads/mod_wishlist/test_image.jpg');
+        write_file('../../../../uploads/mod_wishlist/test_image.jpg');
         $result = $this->object->deleteImage();
         $result = json_decode($result);
 
@@ -275,7 +263,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::renderWLButton
-     * @todo   Implement testRenderWLButton().
      * @dataProvider data_varId
      */
     public function testRenderWLButton($var_id) {
@@ -291,7 +278,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::renderPopup
-     * @todo   Implement testRenderPopup().
      * @dataProvider data_varId
      */
     public function testRenderPopup($var_id) {
@@ -314,10 +300,9 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::editWL
-     * @todo   Implement testEditWL().
      */
     public function testEditWL() {
-        $result = $this->object->editWL(4, 47);
+        $result = $this->object->editWL(4, $GLOBALS['userId'] );
         $result = json_decode($result);
 
         $this->assertNotEmpty($result);
@@ -327,7 +312,7 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertGreaterThan(0, $result->wishlists);
         
         //------When not existing wish list id
-        $result = $this->object->editWL(10, 47);
+        $result = $this->object->editWL(10, $GLOBALS['userId'] );
         $result = json_decode($result);
         
         $this->assertNotEmpty($result);
@@ -337,7 +322,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::do_upload
-     * @todo   Implement testDo_upload().
      */
     public function testDo_upload() {
         $result = $this->object->do_upload();
@@ -350,7 +334,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
     
       /**
      * @covers WishlistApi::deleteItem
-     * @todo   Implement testDeleteItem().
      */
     public function testDeleteItem() {
         $result = $this->object->deleteItem(1, 1);
@@ -360,7 +343,6 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers WishlistApi::deleteItemByIds
-     * @todo   Implement testDeleteItemByIds().
      */
     public function testDeleteItemByIds() {
         $result = $this->object->deleteItemByIds();

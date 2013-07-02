@@ -241,7 +241,8 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function delWishListById($id) {
-        return $this->db->delete('mod_wish_list', array('id' => $id));
+        $this->db->delete('mod_wish_list', array('id' => $id));
+        return $this->db->affected_rows();
     }
 
     /**
@@ -252,7 +253,8 @@ class Wishlist_model extends CI_Model {
      */
     public function delWishListProductsByWLId($id) {
         $this->db->where('wish_list_id', $id);
-        return $this->db->delete('mod_wish_list_products');
+        $this->db->delete('mod_wish_list_products');
+        return $this->db->affected_rows();
     }
 
     /**
@@ -352,9 +354,9 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function updateWishList($id, $data) {
-        return $this->db
-                        ->where('id', $id)
-                        ->update('mod_wish_list', $data);
+        $this->db->where('id', $id)
+                 ->update('mod_wish_list', $data);
+        return $this->db->affected_rows();
     }
 
     /**
