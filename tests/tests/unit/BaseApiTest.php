@@ -248,7 +248,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $_POST['WLID'] = 3;
         $_POST['comment'] = "test_wl_comment";
         $_POST['title'] = "test title";
-        $_POST['access'] = array('public');
+        $_POST['access'] = 'public';
         
         $result = $this->object->updateWL();
         
