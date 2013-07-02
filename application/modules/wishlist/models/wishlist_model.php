@@ -25,7 +25,7 @@ class Wishlist_model extends CI_Model {
 
     /**
      * Save settings
-     * @param type $settings
+     * @param array $settings
      * @return boolean
      */
     public function setSettings($settings) {
@@ -351,10 +351,10 @@ class Wishlist_model extends CI_Model {
      * @param type $data
      * @return boolean
      */
-    public function upateWishList($id, $data) {
+    public function updateWishList($id, $data) {
         return $this->db
-                ->where('id', $id)
-                ->update('mod_wish_list', $data);
+                        ->where('id', $id)
+                        ->update('mod_wish_list', $data);
     }
 
     /**
@@ -364,7 +364,7 @@ class Wishlist_model extends CI_Model {
      * @param type $comments
      * @return ---
      */
-    public function upateWishListItemsComments($wish_list_id, $comments) {
+    public function updateWishListItemsComments($wish_list_id, $comments) {
         foreach ($comments as $key => $coments) {
             if (!$this->db->where('wish_list_id', $wish_list_id)
                             ->where('variant_id ', $key)
@@ -477,17 +477,17 @@ class Wishlist_model extends CI_Model {
 
     /**
      * update WishList item
-     * 
+     *
      * @param type $varId
      * @param type $wish_list_id
      * @param type $data
      * @return type
      */
-    public function updateWishListItem($varId,$wish_list_id, $data) {
-       return  $this->db
-                ->where('wish_list_id', $wish_list_id)
-                ->where('variant_id', $varId)
-                ->update('mod_wish_list_products', $data);
+    public function updateWishListItem($varId, $wish_list_id, $data) {
+        return $this->db
+                        ->where('wish_list_id', $wish_list_id)
+                        ->where('variant_id', $varId)
+                        ->update('mod_wish_list_products', $data);
     }
 
     /**
@@ -559,7 +559,7 @@ class Wishlist_model extends CI_Model {
     }
 
     public function setUserImage($userID, $file_name) {
-        $this->db
+        return $this->db
                 ->where('id', $userID)
                 ->update('mod_wish_list_users', array(
                     'user_image' => $file_name
