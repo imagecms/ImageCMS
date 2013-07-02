@@ -97,11 +97,14 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers Wishlist_model::upateWishList
-     * @depends testGetUserWishList
+     * @covers Wishlist_model::addItem
+     * @todo   Implement testAddItem().
      */
-    public function testUpateWishList($id) {
-        $this->assertTrue($this->object->upateWishList($id, array(), array()));
+    public function testAddItem() {
+        // Remove the following lines when you implement this test.
+        $this->markTestIncomplete(
+                'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -114,6 +117,14 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
         $this->assertInternalType('array', $this->object->getUserWishList($GLOBALS['userId'], $id, array('public', 'shared', 'private')));
 //        $wishlist->deleteWL($id);
         return $id;
+    }
+
+    /**
+     * @covers Wishlist_model::upateWishList
+     * @depends testGetUserWishList
+     */
+    public function testUpateWishList($id) {
+        $this->assertFalse($this->object->upateWishList($id, array()));
     }
 
     /**
@@ -184,7 +195,6 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers Wishlist_model::getMostPopularProducts
-     * @todo   Implement testGetMostPopularProducts().
      */
     public function testGetMostPopularProducts() {
         $this->assertInternalType('array', $this->object->getMostPopularProducts());
@@ -192,7 +202,6 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers Wishlist_model::insertWishList
-     * @todo   Implement testInsertWishList().
      */
     public function testInsertWishList() {
         $this->assertTrue($this->object->insertWishList('test', 'shared', $GLOBALS['userId']));
@@ -200,35 +209,17 @@ class Wishlist_modelTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers Wishlist_model::upateWishListItemsComments
-     * @todo   Implement testUpateWishListItemsComments().
+     * @depends testCreateWishList
      */
-    public function testUpateWishListItemsComments() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+    public function testUpateWishListItemsComments($id) {
+        $this->assertFalse($this->object->insertWishList($id, array()));
     }
 
     /**
      * @covers Wishlist_model::insertUser
-     * @todo   Implement testInsertUser().
      */
     public function testInsertUser() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Wishlist_model::addItem
-     * @todo   Implement testAddItem().
-     */
-    public function testAddItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertTrue($this->object->insertUser(999999, '', '', 'test'));
     }
 
     /**
