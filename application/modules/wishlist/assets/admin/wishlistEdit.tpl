@@ -28,6 +28,7 @@
             {foreach $wishlists as $key => $wishlist}
                 <form method="POST" action="/admin/components/cp/wishlist/updateWL">
                     <table class="table table-striped table-bordered table-hover table-condensed">
+                        <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang(list_)}</th>
@@ -62,7 +63,6 @@
                     </table>
                     {if $wishlist[0][id] != null}
                         <table class="table table-striped table-bordered table-hover table-condensed">
-                            <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                             <thead>
                                 <tr>
                                     <td colspan="3">
@@ -80,7 +80,7 @@
                                     <tr>
                                         <td>{echo $key+1}</td>
                                         <td>
-                                            <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
+                                            <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
                                         </td>
                                         <td>
                                             <a href="{shop_url('product/'.$w[url])}"
