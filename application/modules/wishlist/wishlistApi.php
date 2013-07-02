@@ -130,10 +130,13 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return json_encode($data);
     }
 
-    public function editWL($wish_list_id) {
-        if (parent::renderUserWLEdit($wish_list_id)){
+    public function editWL($wish_list_id, $userID = null) {
+        if (parent::renderUserWLEdit($wish_list_id, $userID)){
             $data['wishlists'] = $this->dataModel;
             $data['answer'] = 'success';
+            return json_encode($data);
+        }else{
+            $data['answer'] = 'error';
             return json_encode($data);
         }
     }

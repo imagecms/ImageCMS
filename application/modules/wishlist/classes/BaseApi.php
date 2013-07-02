@@ -60,7 +60,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if($items){
             if(parent::deleteItemByIds($items)){
-                return $this->dataModel[] = lang('success');
+                return $this->dataModel = lang('success');
             }else{
                 return $this->errors[] = lang('error_cant_delete');
             }
@@ -103,7 +103,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         $updated = parent::userUpdate($this->input->post('user_id'), $this->input->post('user_name'), strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
-            return $this->dataModel = "Обновлено";
+            return $this->dataModel = lang('updated');
         } else {
             return $this->errors = "Не обновлено";
         }
