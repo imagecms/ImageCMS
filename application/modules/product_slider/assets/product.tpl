@@ -230,7 +230,7 @@
         </div>
         <div id="xBlock"></div>
         <!-- Start. Withdraw button to "share" -->
-        <div class="frame_tabs" data-height="358">                   
+        <div class="frame_tabs">
             {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
             {if count($renderProperties) >0}
                 <div id="characteristic" data-height="200">

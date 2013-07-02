@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'top_menu_additional',
+    'menu_name' => 'Вспомогательное меню',
     'description' => '',
     'admin_type' => 'inside',
     'window_type' => 'xhr',

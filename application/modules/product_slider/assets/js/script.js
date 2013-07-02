@@ -27,14 +27,13 @@ $(document).ready(function() {
                     var $rightFrameProduct = $('#right_popup_product'),
                             $whoClonded = '.frame_tabs',
                             frameWDesc = $('.frame_w_desc'),
-                            $rightFrameProductW = ($(document).width() * kW - parseInt($rightFrameProduct.css('padding-left')) * 2) * $rightFrameProduct.data('width') / 100 - 9,
+                            $rightFrameProductW = 600,
                             $elWrapCH = $rightFrameProduct.find($whoClonded),
-                            elWrapCHMH = 586 - 90 - frameWDesc.css('width', $rightFrameProductW).actual('height'),
+                            elWrapCHMH = 507 - frameWDesc.css('width', $rightFrameProductW).actual('height'),
                             $elWrapCHH = $elWrapCH.css('width', $rightFrameProductW).actual('height'),
                             $elsCH = $elWrapCH.children();
 
-                    frameWDesc.add($elWrapCH).css('width', '100%');
-
+                    console.log($elWrapCHH > elWrapCHMH)
                     if ($elWrapCHH > elWrapCHMH) {
                         var lostH = $elWrapCHH - elWrapCHMH;
                         $elsCH.each(function() {
@@ -48,7 +47,7 @@ $(document).ready(function() {
                             }
                         })
                     }
-                    $elWrapCH.css('height', elWrapCHMH);
+                    $elWrapCH.css('height', elWrapCHMH-5);
                 }
                 heightDesrcCharc();
 
