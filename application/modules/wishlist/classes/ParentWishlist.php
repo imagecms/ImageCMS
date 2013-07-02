@@ -116,7 +116,7 @@ class ParentWishlist extends \MY_Controller {
         if ($wishlist) {
             self::addReview($hash);
             $this->dataModel = $wishlist;
-
+            
             return TRUE;
         } else {
             return FALSE;
@@ -380,7 +380,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
-
+        
         if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
             $this->errors[] = lang('error_cant_add');
 
@@ -405,13 +405,16 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '', $user_id = null) {
-        $this->wishlist_model->deleteItem($varId, $wish_list_id);
-
-        if ($this->_addItem($varId, $to_listId, $to_listName, $user_id)) {
-            return TRUE;
-        } else {
-            return FALSE;
+        if(!$user_id)
+            $user_id = $this->dx_auth->get_user_id ();
+        
+        if($to_listName){
+            $this->wishlist_model->createWishList($to_listName, $user_id);
+            $to_listId = $this->db->insert_id();            
         }
+        
+        $data = array('wish_list_id' => $to_listId);
+        return $this->wishlist_model->updateWishListItem($varId, $wish_list_id, $data);
     }
 
     /**

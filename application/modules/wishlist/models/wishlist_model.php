@@ -473,6 +473,21 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
+     * update WishList item
+     * 
+     * @param type $varId
+     * @param type $wish_list_id
+     * @param type $data
+     * @return type
+     */
+    public function updateWishListItem($varId,$wish_list_id, $data) {
+       return  $this->db
+                ->where('wish_list_id', $wish_list_id)
+                ->where('variant_id', $varId)
+                ->update('mod_wish_list_products', $data);
+    }
+
+    /**
      * get user wish list count
      *
      * @param type $user_id
