@@ -8,7 +8,6 @@
                     <div class="inside_padd">
                         <div class="addWL">
                             {foreach $wish_lists as $wish_list}
-                                {$wish_list.user_id}
                                 <label>
                                     <input type="radio" name="wishlist" value="{$wish_list.id}" data-id="{$wish_list.id}">
                                     {$wish_list.title}
