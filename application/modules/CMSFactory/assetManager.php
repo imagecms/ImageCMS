@@ -275,7 +275,13 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     private function buildScriptPath($tpl) {
-        return sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
+        if (!$this->template)
+            $this->template = \CI_Controller::get_instance()->config->item('template');
+
+        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js'))
+            return sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
+        else
+            return sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
     }
 
     /**
@@ -285,7 +291,13 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     private function buildStylePath($tpl) {
-        return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
+        if (!$this->template)
+            $this->template = \CI_Controller::get_instance()->config->item('template');
+
+        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/css/' . $tpl . '.css'))
+            return sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
+        else
+            return sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
     }
 
     /**
