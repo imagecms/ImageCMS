@@ -2,7 +2,7 @@
 
 namespace wishlist\classes;
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
+require_once realpath(dirname(__FILE__) . '/../../../..') . '/enviroment.php';
 
 doLogin();
 
@@ -36,7 +36,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      * This method is called after a test is executed.
      */
     protected function tearDown() {
-        
+
     }
 
     public function test_deinstall() {
@@ -85,7 +85,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInternalType('string', $result);
 
-        $this->assertEquals('Операция успешна', $result);
+        $this->assertRegExp('/Операция успешна/', $result);
     }
 
     public function moveItem_provider() {
@@ -174,7 +174,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
      */
     public function testShow() {
         $model = new \Wishlist_model();
-        $model->upateWishList(1, array('access' => 'public', 'hash' => '222'));
+        $model->updateWishList(1, array('access' => 'public', 'hash' => '222'));
 
         $this->assertNotEmpty($this->object->show('222'));
 
@@ -207,7 +207,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInternalType('string', $result);
 
-        $this->assertRegExp('/Успешно удалено/', $result);
+        $this->assertRegExp('/Операция успешна/', $result);
     }
 
     /**
@@ -249,22 +249,22 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $_POST['comment'] = "test_wl_comment";
         $_POST['title'] = "test title";
         $_POST['access'] = 'public';
-        
+
         $result = $this->object->updateWL();
-        
+
         $this->assertNotEmpty($result);
         $this->assertInternalType('array', $result);
         $this->assertRegExp('/Обновлено/', $result[0]);
-        
+
     }
-    
+
     /**
      * @covers wishlist\classes\BaseApi::do_upload
      * @todo   Implement testDo_upload().
      */
     public function testDo_uploadUserIDError() {
         $result = $this->object->do_upload();
-        
+
         $this->assertNotEmpty($result);
         $this->assertInternalType('string', $result);
         $this->assertRegExp('/Не введен пользователь/', $result);
@@ -278,20 +278,20 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $_POST['image'] = 'test_image.jpg';
         write_file('../../../uploads/mod_wishlist/test_image.jpg') ;
         $result = $this->object->deleteImage();
-        
+
         $this->assertNotEmpty($result);
         $this->assertInternalType('string', $result);
         $this->assertRegExp('/Успешно удалено/', $result);
-        
+
         //-----При неверном имени изобраєения------------
         $_POST['image'] = 'wrong_image_name.jpg';
         write_file('../../../uploads/mod_wishlist/test_image.jpg') ;
         $result = $this->object->deleteImage();
-        
+
         $this->assertNotEmpty($result);
         $this->assertInternalType('string', $result);
         $this->assertRegExp('/Ошибка/', $result);
     }
 
-    
+
 }
