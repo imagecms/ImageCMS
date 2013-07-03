@@ -51,8 +51,9 @@
     <!-- main category page content -->
     <div class="row">
         <aside class="span3">
+             {echo \Category\RenderMenu::create()->load('sub_category_menu_vert')}
 
-            {echo \Category\RenderMenu::create()->showSubCategories('sub_category_menu_vert',$category->getId())}
+            {//echo \Category\RenderMenu::create()->showSubCategories('sub_category_menu_vert',$category->getId())}
 
             <!-- here filter tpl is including -->
             {include_tpl('filter')}
