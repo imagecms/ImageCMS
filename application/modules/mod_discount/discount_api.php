@@ -73,8 +73,11 @@ class discount_api extends \mod_discount\discount {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
-                else
+                elseif (1 === $tpl)
                     \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
+                elseif ('json' === $tpl)
+                    echo json_encode ($arr);
+                    
             }
             else
                 return false;
