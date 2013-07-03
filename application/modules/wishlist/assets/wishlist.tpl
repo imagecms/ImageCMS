@@ -49,7 +49,7 @@
 
 {if count($wishlists)>0}
     {foreach $wishlists as $key => $wishlist}
-        <form method="post" action="/wishlist/deleteItemByIds" >
+        <form method="post" action="/wishlist/deleteItemsByIds" >
             <table class="table">
                 <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                 <thead>
@@ -103,7 +103,9 @@
                 </tbody>
             </table>
             {form_csrf()}
-            <input type="submit" class="btn btn-small" value="Удалить избраны">
+            {if $wishlist[0][variant_id]}
+                <input type="submit" class="btn btn-small" value="Удалить избраны">
+            {/if}
         </form>
         <hr/>
     {/foreach}
