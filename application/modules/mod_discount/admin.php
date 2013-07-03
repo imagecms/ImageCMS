@@ -1,6 +1,6 @@
 <?php
 
-(defined('BASEPATH')) OR exit('No direct script access allowed');
+//(defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Admin Class for Mod_Discount module
@@ -10,7 +10,7 @@
  * @package ImageCMSModule
 
  */
-class Admin extends BaseAdminController {
+class Admin {
 
     function __construct() {
         parent::__construct();
