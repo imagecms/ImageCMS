@@ -4,7 +4,7 @@
 
 /**
  * Image CMS
- * Sample Module Admin
+ * WishList Module Admin
  * @property wishlist_model $wishlist_model
  */
 class Admin extends BaseAdminController {
@@ -180,8 +180,8 @@ class Admin extends BaseAdminController {
      */
     public function deleteItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
-        $wishlist->deleteItem($varId, $wish_list_id);        
-      
+        $wishlist->deleteItem($varId, $wish_list_id);
+
         redirect($_SERVER['HTTP_REFERER'] . '#lists');
     }
     /**

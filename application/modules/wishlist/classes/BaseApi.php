@@ -16,7 +16,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-    
+
     /**
      * get all public users lists
      * 
@@ -80,7 +80,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
+
     /**
      * delete items by ids
      *  
@@ -99,7 +99,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get user public list by hash
-     * 
+     *
      * @param type $hash - unique list identificator
      * @return mixed
      */
@@ -232,7 +232,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             'access' => $this->input->post('access'),
             'title' => $title,
         );
-        
+
         if(parent::updateWL($id, $data, $desc)){
             return $this->dataModel;
         }else{
@@ -273,7 +273,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
                 return $this->dataModel[] = lang('picture_uploaded');
             } else {
                 return $this->errors[] = lang('error_upload_photo');
-            }     
+            }
         }else{
             return $this->errors[] = lang('error_user_id');
         }
