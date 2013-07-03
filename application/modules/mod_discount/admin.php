@@ -1,6 +1,6 @@
 <?php
 
-//(defined('BASEPATH')) OR exit('No direct script access allowed');
+(defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Admin Class for Mod_Discount module
@@ -10,12 +10,12 @@
  * @package ImageCMSModule
 
  */
-class Admin {
+class Admin extends \ShopAdminController{
 
     function __construct() {
         parent::__construct();
         $this->load->model('discount_model_admin');
-        CMSFactory\assetManager::create()
+        \CMSFactory\assetManager::create()
                    ->registerStyle('style')
                    ->registerScript('adminScripts');
     }
@@ -32,7 +32,7 @@ class Admin {
         //Get list of discounts 
         $data = array('discountsList' => $this->discount_model_admin->getDiscountsList($filterParam));
         
-        CMSFactory\assetManager::create()
+        \CMSFactory\assetManager::create()
                    ->setData($data)
                    ->renderAdmin('list', true);
     }
@@ -113,7 +113,7 @@ class Admin {
             );
             
             //Render template and set data
-            CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                        ->setData($data)
                        ->renderAdmin('create');
             }
@@ -202,7 +202,7 @@ class Admin {
             );
             
             //Render template and set data
-            CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                    ->setData($data)
                    ->renderAdmin('edit');
         }
