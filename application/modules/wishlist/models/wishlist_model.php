@@ -169,11 +169,15 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function deleteItem($variant_id, $wish_list_id) {
-        return $this->db
-                        ->delete('mod_wish_list_products', array(
-                            'variant_id' => $variant_id,
-                            'wish_list_id' => $wish_list_id,
+        $this->db
+                ->delete('mod_wish_list_products', array(
+                    'variant_id' => $variant_id,
+                    'wish_list_id' => $wish_list_id,
         ));
+        if ($this->db->affected_rows() == 0)
+            return FALSE;
+        else
+            return TRUE;
     }
 
     /**
@@ -355,8 +359,12 @@ class Wishlist_model extends CI_Model {
      */
     public function updateWishList($id, $data) {
         $this->db->where('id', $id)
-                 ->update('mod_wish_list', $data);
-        return $this->db->affected_rows();
+                ->update('mod_wish_list', $data);
+
+        if ($this->db->affected_rows() == 0)
+            return FALSE;
+        else
+            return TRUE;
     }
 
     /**
@@ -409,7 +417,7 @@ class Wishlist_model extends CI_Model {
         if (!$user_id)
             $user_id = $this->dx_auth->get_user_id();
 
-        if ($listName != '') {//?????????
+        if ($listName != '') {
             $this->createWishList($listName, $user_id);
             $listId = $this->db->insert_id();
         }
@@ -562,9 +570,9 @@ class Wishlist_model extends CI_Model {
 
     public function setUserImage($userID, $file_name) {
         return $this->db
-                ->where('id', $userID)
-                ->update('mod_wish_list_users', array(
-                    'user_image' => $file_name
+                        ->where('id', $userID)
+                        ->update('mod_wish_list_users', array(
+                            'user_image' => $file_name
         ));
     }
 
