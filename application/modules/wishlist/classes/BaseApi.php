@@ -62,7 +62,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
             return $this->dataModel = lang('success');
         } else {
-            return $this->errors = "Не удалось переместить";
+            return $this->errors = lang('error_cant_move');
         }
     }
 
@@ -158,7 +158,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         if ($updated) {
             return $this->dataModel = lang('updated');
         } else {
-            return $this->errors = "Не обновлено";
+            return $this->errors = lang('error_cant_update');
         }
     }
 
@@ -187,7 +187,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $user_id = $this->input->post('user_id');
 
         if (parent::createWishList($user_id, $listName)) {
-            return $this->dataModel = "Создано";
+            return $this->dataModel = lang('created');
         } else {
             return $this->errors;
         }
@@ -248,9 +248,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function deleteImage(){
        $image = $this->input->post('image');
        if(parent::deleteImage($image)){
-           return $this->dataModel[] = "Успешно удалено";
+           return $this->dataModel[] = lang('deleted');
        }else{
-           return $this->errors[] = "Ошибка";
+           return $this->errors[] = lang('error');
        }
     }
 
