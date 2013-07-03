@@ -201,30 +201,7 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertRegExp('/Неверний запрос/', $result[0]);
     }
 
-    /**
-     * @covers wishlist\classes\BaseApi::deleteItem
-     */
-    public function testDeleteItem() {
-        $result = $this->object->deleteItem(1, 4);
-
-        $this->assertNotEmpty($result);
-
-        $this->assertInternalType('string', $result);
-
-        $this->assertRegExp('/Операция успешна/', $result);
-    }
-
-    /**
-     * @covers wishlist\classes\BaseApi::deleteItemsByIds
-     */
-    public function testDeleteItemsByIds() {
-        $result = $this->object->deleteItemsByIds();
-        $this->assertNotEmpty($result);
-
-        $this->assertInternalType('string', $result);
-
-        $this->assertRegExp('/Операция успешна/', $result);
-    }
+    
 
     /**
      * @covers wishlist\classes\BaseApi::userUpdate
@@ -339,6 +316,29 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotEmpty($result);
         $this->assertInternalType('array', $result);
         $this->assertRegExp('/Невозможно удалить Список Желаний/', $result[0]);
+    }
+     /**
+     * @covers wishlist\classes\BaseApi::deleteItemsByIds
+     */
+    public function testDeleteItemsByIds() {
+        $result = $this->object->deleteItemsByIds();
+        $this->assertNotEmpty($result);
+
+        $this->assertInternalType('string', $result);
+
+        $this->assertRegExp('/Операция успешна/', $result);
+    }
+    /**
+     * @covers wishlist\classes\BaseApi::deleteItem
+     */
+    public function testDeleteItem() {
+        $result = $this->object->deleteItem(2, 4);
+        
+        $this->assertNotEmpty($result);
+
+        $this->assertInternalType('string', $result);
+
+        $this->assertRegExp('/Операция успешна/', $result);
     }
     
 

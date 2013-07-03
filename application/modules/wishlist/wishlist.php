@@ -220,6 +220,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                 ->render('wishPopup');
     }
 
+    /**
+     * edit wish list
+     * 
+     * @param int $wish_list_id
+     */
     public function editWL($wish_list_id) {
         if (parent::renderUserWLEdit($wish_list_id))
             \CMSFactory\assetManager::create()
@@ -231,16 +236,32 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             redirect('/wishlist');
     }
 
+    /**
+     * update wish list
+     * 
+     */
     public function updateWL() {
         parent::updateWL();
         redirect('/wishlist');
     }
 
+    /**
+     * delete wish list
+     * 
+     * @param int $wish_list_id
+     */
     public function deleteWL($wish_list_id) {
         parent::deleteWL($wish_list_id);
         redirect('/wishlist');
     }
 
+    /**
+     * delete item from wish list
+     * 
+     * @param int $variant_id
+     * @param int $wish_list_id
+     * @return mixed
+     */
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
         if ($this->dataModel) {
@@ -250,6 +271,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
+    /**
+     * delete items by ids
+     * 
+     * @return mixed
+     */
     public function deleteItemsByIds() {
         parent::deleteItemsByIds();
         if ($this->dataModel) {
@@ -259,6 +285,11 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
+    /**
+     * delete user image
+     * 
+     * @return mixed
+     */
     public function deleteImage() {
         parent::deleteImage();
         if ($this->dataModel) {
@@ -268,6 +299,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
+    /**
+     * upload user image
+     */
     public function do_upload() {
         parent::do_upload();
         redirect('/wishlist');

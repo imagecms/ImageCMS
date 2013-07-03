@@ -17,6 +17,9 @@ class Admin extends BaseAdminController {
         $this->settings = $this->wishlist_model->getSettings();
     }
 
+    /**
+     * render wadmin start page
+     */
     public function index() {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $users = $this->wishlist_model->getAllUsers();
@@ -32,18 +35,29 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('users');
     }
 
+    /**
+     * updare settings for wish lists
+     */
     public function update_settings() {
         if ($_POST) {
             $this->wishlist_model->setSettings($_POST['settings']);
         }
     }
 
+    /**
+     * render settings page for wishlist
+     */
     public function settings() {
         \CMSFactory\assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
                 ->renderAdmin('main');
     }
 
+    /**
+     * render user wish list
+     * 
+     * @param type $id
+     */
     public function userWL($id) {
         $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
@@ -57,6 +71,12 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('wishlist');
     }
 
+    /**
+     * render user edit list page
+     * 
+     * @param type $wish_list_id
+     * @param type $userID
+     */
     public function editWL($wish_list_id, $userID) {
         $wishlist = new Wishlist();
         if ($wishlist->renderUserWLEdit($wish_list_id, $userID)) {
@@ -72,6 +92,11 @@ class Admin extends BaseAdminController {
             redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * delete list by list id
+     * 
+     * @param type $wish_list_id
+     */
     public function deleteWL($wish_list_id) {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
@@ -84,6 +109,9 @@ class Admin extends BaseAdminController {
         }
     }
 
+    /**
+     * update wish list
+     */
     public function updateWL() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->updateWL();
@@ -91,6 +119,9 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * user information update 
+     */
     public function userUpdate() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->userUpdate();
@@ -98,6 +129,9 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * create wish list
+     */
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->createWishList();
@@ -105,6 +139,9 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER'] . "#lists");
     }
 
+    /**
+     * upload image
+     */
     public function do_upload() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->do_upload();
@@ -112,6 +149,14 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * render add and move item popup 
+     * 
+     * @param type $varId
+     * @param type $wish_list_id
+     * @param type $user_id
+     * @return type
+     */
     public function renderPopup($varId, $wish_list_id, $user_id) {
         $wish_lists = $this->wishlist_model->getWishLists($user_id);
         $data = array('wish_lists' => $wish_lists);
@@ -127,12 +172,24 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('wishPopup');
     }
 
+    /**
+     * delete item from wish list
+     * 
+     * @param type $varId
+     * @param type $wish_list_id
+     */
     public function deleteItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->deleteItem($varId, $wish_list_id);
 
         redirect($_SERVER['HTTP_REFERER'] . '#lists');
     }
+    /**
+     * move item to wish list
+     * 
+     * @param type $varId - current item  variant id
+     * @param type $wish_list_id - current item  list id
+     */
     public function moveItem($varId, $wish_list_id){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
@@ -141,6 +198,9 @@ class Admin extends BaseAdminController {
         redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
     }
 
+    /**
+     * delete user image
+     */
     public function deleteImage(){
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->deleteImage();
