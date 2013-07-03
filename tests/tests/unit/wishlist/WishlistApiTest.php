@@ -302,7 +302,7 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
      * @covers WishlistApi::editWL
      */
     public function testEditWL() {
-        $result = $this->object->editWL(4, $GLOBALS['userId'] );
+        $result = $this->object->editWL(4, $GLOBALS['userId']);
         $result = json_decode($result);
 
         $this->assertNotEmpty($result);
@@ -312,7 +312,7 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertGreaterThan(0, $result->wishlists);
         
         //------When not existing wish list id
-        $result = $this->object->editWL(10, $GLOBALS['userId'] );
+        $result = $this->object->editWL(10, $GLOBALS['userId']);
         $result = json_decode($result);
         
         $this->assertNotEmpty($result);
@@ -332,7 +332,7 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals('error', $result->answer);
     }
     
-      /**
+    /**
      * @covers WishlistApi::deleteItem
      */
     public function testDeleteItem() {
@@ -342,10 +342,10 @@ class WishlistApiTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers WishlistApi::deleteItemByIds
+     * @covers WishlistApi::deleteItemsByIds
      */
-    public function testDeleteItemByIds() {
-        $result = $this->object->deleteItemByIds();
+    public function testDeleteItemsByIds() {
+        $result = $this->object->deleteItemsByIds();
         
         $this->assertNotEmpty($result);
         $this->assertJsonStringEqualsJsonString($this->operation_success, $result);
