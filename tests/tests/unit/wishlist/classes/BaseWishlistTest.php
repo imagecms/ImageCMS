@@ -69,13 +69,13 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\BaseWishlist::moveItem
-     * @todo   Implement testMoveItem().
      */
     public function testMoveItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+//        $_POST['wishlist'] = 1;
+//        $_POST['user_id'] = $GLOBALS['userId'];
+//        $_POST['wishListName'] = 325;
+//        var_dump($this->object->moveItem(1031, 1));
+//        $this->assertTrue($this->object->moveItem(1031, 1));
     }
 
     /**
@@ -122,10 +122,14 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateWL().
      */
     public function testUpdateWL() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+//                $_POST['WLID'] = '1';
+//                $_POST['comment'] = array();
+//                $_POST['title'] = 1;
+//                $_POST['access'] = 'shared';
+//        // Remove the following lines when you implement this test.
+//        $this->markTestIncomplete(
+//                'This test has not been implemented yet.'
+//        );
     }
 
     /**
