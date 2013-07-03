@@ -157,10 +157,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    public function deleteItemByIds() {
+    public function deleteItemsByIds() {
         $items = $this->input->post('listItem');
         if ($items) {
-            if (parent::deleteItemByIds($items)) {
+            if (parent::deleteItemsByIds($items)) {
                 return $this->dataModel[] = lang('deleted');
             } else {
                 return $this->errors[] = lang('error_cant_delete');

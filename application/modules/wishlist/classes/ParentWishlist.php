@@ -597,7 +597,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function deleteItemByIds($ids) {
+    public function deleteItemsByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
 

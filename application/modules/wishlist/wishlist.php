@@ -199,8 +199,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         }
     }
 
-    public function deleteItemByIds() {
-        parent::deleteItemByIds();
+    public function deleteItemsByIds() {
+        parent::deleteItemsByIds();
         if ($this->dataModel) {
             redirect('/wishlist');
         } else {
