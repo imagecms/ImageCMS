@@ -64,6 +64,7 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
                 ->set('hash', '1')
                 ->set('access', 'public')
                 ->update('mod_wish_list');
+
         $this->assertInternalType('array', $this->object->addItem('1031', '1', 'teweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeestteweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeest'));
     }
 
@@ -71,11 +72,11 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
      * @covers wishlist\classes\BaseWishlist::moveItem
      */
     public function testMoveItem() {
-//        $_POST['wishlist'] = 1;
-//        $_POST['user_id'] = $GLOBALS['userId'];
-//        $_POST['wishListName'] = 325;
-//        var_dump($this->object->moveItem(1031, 1));
-//        $this->assertTrue($this->object->moveItem(1031, 1));
+        $_POST['wishlist'] = 1;
+        $_POST['user_id'] = $GLOBALS['userId'];
+        $_POST['wishListName'] = 325;
+
+        $this->assertEquals('<p>Операция успешна</p>', $this->object->moveItem(1031, 1));
     }
 
     /**
@@ -119,72 +120,36 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\BaseWishlist::updateWL
-     * @todo   Implement testUpdateWL().
      */
     public function testUpdateWL() {
-//                $_POST['WLID'] = '1';
-//                $_POST['comment'] = array();
-//                $_POST['title'] = 1;
-//                $_POST['access'] = 'shared';
-//        // Remove the following lines when you implement this test.
-//        $this->markTestIncomplete(
-//                'This test has not been implemented yet.'
-//        );
+        $_POST['WLID'] = '1';
+        $_POST['comment'] = array();
+        $_POST['title'] = 1;
+        $_POST['access'] = 'shared';
+
+        $this->assertNull($this->object->updateWL());
     }
 
     /**
      * @covers wishlist\classes\BaseWishlist::deleteItem
-     * @todo   Implement testDeleteItem().
      */
     public function testDeleteItem() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->deleteItem(2, 1));
     }
 
     /**
      * @covers wishlist\classes\BaseWishlist::deleteItemByIds
-     * @todo   Implement testDeleteItemByIds().
      */
     public function testDeleteItemByIds() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers wishlist\classes\BaseWishlist::deleteImage
-     * @todo   Implement testDeleteImage().
-     */
-    public function testDeleteImage() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $_POST['listItem'] = array(1);
+        $this->assertEquals('<p>Успешно удалено</p>', $this->object->deleteItemsByIds(1, 1));
     }
 
     /**
      * @covers wishlist\classes\BaseWishlist::renderPopup
-     * @todo   Implement testRenderPopup().
      */
     public function testRenderPopup() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers wishlist\classes\BaseWishlist::do_upload
-     * @todo   Implement testDo_upload().
-     */
-    public function testDo_upload() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
+        $this->assertInternalType('array', $this->object->renderPopup());
     }
 
     /**

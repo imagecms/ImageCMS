@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `user_mail` varchar(50) NOT NULL,
   `user_site` varchar(250) NOT NULL,
   `item_id` bigint(11) NOT NULL,
-  `text` varchar(500) NOT NULL,
+  `text` text,
   `date` int(11) NOT NULL,
   `status` smallint(1) NOT NULL,
   `agent` varchar(250) NOT NULL,
