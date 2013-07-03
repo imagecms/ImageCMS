@@ -2,7 +2,7 @@
 
 namespace mod_discount\classes;
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
+require_once realpath(dirname(__FILE__) . '/../../..') . '/enviroment.php';
 
 doLogin();
 
