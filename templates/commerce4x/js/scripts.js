@@ -317,7 +317,7 @@ function initShopPage(showWindow) {
             chCountInCart($(this).closest('div'));
         });
 
-        $(genObj.frameCount + 'input').die('keyup').live('keyup', function() {
+        $(genObj.frameCount + ' input').die('keyup').live('keyup', function() {
             chCountInCart($(this).prev('div'));
         });
 
