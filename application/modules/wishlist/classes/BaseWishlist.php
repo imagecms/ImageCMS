@@ -35,8 +35,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function addItem($varId, $listId, $listName) {
-        $listId = $this->input->post('wishlist');
-        $listName = $this->input->post('wishListName');
+        if (!$listId)
+            $listId = $this->input->post('wishlist');
+        if (!$listName)
+            $listName = $this->input->post('wishListName');
 
         if (parent::_addItem($varId, $listId, $listName)) {
             return $this->dataModel;
@@ -94,19 +96,6 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
     }
 
-    /**
-     *
-     * @param type $title
-     * @param type $access
-     * @param type $description
-     * @param type $user_id
-     * @param type $user_image
-     * @param type $user_birthday
-     */
-    public function createWL($title, $access, $description, $user_id, $user_image, $user_birthday) {
-        parent::createWL($title, $access, $description, $user_id, $user_image, $user_birthday);
-    }
-
     public function createWishList() {
         $listName = $this->input->post('wishListName');
         $user_id = $this->input->post('user_id');
@@ -137,7 +126,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     }
 
     public function updateWL() {
-       
+
         $id = $this->input->post('WLID');
 
         foreach ($this->input->post('comment') as $key => $comment) {
@@ -148,7 +137,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
 
         if ($this->settings['maxListName'] < iconv_strlen($this->input->post('title'), 'UTF-8'))
-            $title = mb_substr($this->input->post('title'), 0, $this->settings['maxListName'], 'UTF-8'); 
+            $title = mb_substr($this->input->post('title'), 0, $this->settings['maxListName'], 'UTF-8');
         else
             $title = $this->input->post('title');
 
