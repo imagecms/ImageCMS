@@ -63,10 +63,16 @@
                                         </button>
                                     {else:}
                                         <button
-                                                data-drop=".drop-report"
-                                                data-prodid="{echo $item.model->getId()}"
-                                                type="button"
-                                                class="btn btn_not_avail">
+                                            data-placement="noinherit"
+                                            data-place="center"
+                                            data-duration="500"
+                                            data-effect-off= "fadeOut"
+                                            data-effect-on="fadeIn"
+                                            data-drop=".drop-report"
+                                            
+                                            data-prodid="{echo $item.model->getId()}"
+                                            type="button"
+                                            class="btn btn_not_avail">
                                             <span class="icon-but"></span>
                                             <span class="text-el">{lang('s_message_o_report')}</span>
                                         </button>

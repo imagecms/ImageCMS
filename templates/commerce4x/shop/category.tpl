@@ -49,7 +49,7 @@
     {widget('path')}
 
     <!-- main category page content -->
-    <div class="row">
+    <div class="row-fluid">
         <aside class="span3">
 
             {echo \Category\RenderMenu::create()->showSubCategories('sub_category_menu_vert',$category->getId())}
@@ -59,7 +59,7 @@
         </aside>
 
         <!-- catalog container -->
-        <div class="span10 right">
+        <div class="span9 right">
 
             <!-- category title and products count output -->
             <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>
@@ -219,6 +219,11 @@
                                 </button>
                             {else:}
                                 <button {if $key != 0}style="display:none"{/if}
+                                                      data-placement="noinherit"
+                                                      data-place="center"
+                                                      data-duration="500"
+                                                      data-effect-off=    "fadeOut"
+                                                      data-effect-on="fadeIn"
                                                       data-drop=".drop-report"
 
                                                       data-id="{echo $pv->getId()}"

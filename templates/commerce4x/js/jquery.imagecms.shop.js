@@ -1466,7 +1466,7 @@ function ieInput(els) {
                     $this = $(this);
                     $frame_button[index] = $this.find('.groupButton')
                     $this_carousel[index] = $this;
-                    $item[index] = $this.find(item);
+                    $item[index] = $this.find(content).children().children(item);
                     $item_l[index] = $item[index].length;
                     $item_w[index] = $item[index].outerWidth(true);
                     $item_h[index] = $item[index].outerHeight(true);

@@ -1,5 +1,5 @@
 #frame_additional_menu{position: relative;z-index: 3;height: 42px;}
-#frame_additional_menu .item_add_style {text-shadow: 0 1px #f5f5f5;margin: 0 14px;}
+#frame_additional_menu .item_add_style {text-shadow: 0 1px #f5f5f5;margin-left: 14px;width: 85px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 #frame_additional_menu .icon-infoM{width: 16px;height: 16px;margin-right: 5px;background: url("../images/info.png") no-repeat;top: 4px;}
 #frame_additional_menu .icon-phoneM{width: 29px;height: 27px;margin-right: 5px;background: url("../images/phone.png") no-repeat;top: 4px;}
 #frame_additional_menu .icon-wish{width: 36px;height: 32px;margin-right: 14px;background: url("../images/wish_list.png") no-repeat;}

@@ -20,11 +20,11 @@
             <!--Photo block for main product-->
             <li class="span4 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photo cloud-zoom">
+                <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photo photoProduct cloud-zoom">
                     <figure>
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                         <span class="helper"></span>
-                        <img id="imageGroup" src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"  id="vimg"/>
                     </figure>                        
                 </a>              
                 <ul class="frame_thumbs clearfix">                    
@@ -133,7 +133,7 @@
                             {foreach $variants as $key => $pv}
                                 {if $pv->getStock() > 0}
                                     <button {if $key != 0}style="display:none"{/if}
-                                                          class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
+                                                          class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant info"
                                                           type="button"
 
                                                           data-id="{echo $pv->getId()}"
@@ -154,7 +154,7 @@
                                     </button>
                                 {else:}
                                     <button  {if $key != 0}style="display:none"{/if}
-                                                           class="btn btn_not_avail variant_{echo $pv->getId()} variant"
+                                                           class="btn btn_not_avail variant_{echo $pv->getId()} variant info"
                                                            type="button"
                                                            data-placement="top right"
                                                            data-place="noinherit"

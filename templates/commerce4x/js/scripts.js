@@ -36,7 +36,7 @@ var genObj = {
     prefV: ".variant_",
     selVariant: '.variant',
     imgVC: '.vimg',
-    imgVP: '.vimg',
+    imgVP: '#vimg',
     priceVariant: '.priceVariant',
     priceOrigVariant: '.priceOrigVariant',
     photoProduct: '.photoProduct'
@@ -766,7 +766,7 @@ $(document).ready(function() {
     $('#variantSwitcher').live('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy),
-                btn = $('.btn' + genObj.prefV + productId);
+                btn = $('.info' + genObj.prefV + productId);
 
         var vName = btn.attr('data-vname'),
                 vPrice = btn.attr('data-price'),
@@ -937,12 +937,14 @@ wnd.load(function() {
     });
 
     try {
-        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-        body.append('<style id="forCloudZomm"></style>')
-        margZoomLens();
-        $('#photoGroup').find('img').load(function() {
+        if (!isTouch) {
+            $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+            body.append('<style id="forCloudZomm"></style>')
             margZoomLens();
-        })
+            $('#photoGroup').find('img').load(function() {
+                margZoomLens();
+            })
+        }
     } catch (err) {
     }
 

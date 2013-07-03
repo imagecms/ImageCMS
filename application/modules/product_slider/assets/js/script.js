@@ -45,7 +45,7 @@ $(document).ready(function() {
                             }
                         })
                     }
-                    $elWrapCH.css('height', elWrapCHMH-5);
+                    $elWrapCH.css('height', elWrapCHMH - 5);
                 }
                 heightDesrcCharc();
 
@@ -59,8 +59,6 @@ $(document).ready(function() {
                     cuSel(paramsSelect);
                 }
 
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-
                 function thumbsPhotoToggle() {
                     $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
                         var $this = $(this);
@@ -68,8 +66,10 @@ $(document).ready(function() {
                         $('.mousetrap').remove();
 
                         //if cloudZomm not initialize
-//                        e.preventDefault();
-//                        $('#photoGroup').find('img').attr('src', $this.attr('href'));
+                        if (isTouch) {
+                            e.preventDefault();
+                            $('#photoGroup').find('img').attr('src', $this.attr('href'));
+                        }
                     })
                 }
                 thumbsPhotoToggle();
@@ -83,12 +83,14 @@ $(document).ready(function() {
                 compareListCount();
 
                 initBtnBuy();
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-                margZoomLens();
-                body.append('<style id="forCloudZomm"></style>')
-                $('#photoGroup').find('img').load(function() {
+                if (!isTouch) {
+                    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
                     margZoomLens();
-                })
+                    body.append('<style id="forCloudZomm"></style>')
+                    $('#photoGroup').find('img').load(function() {
+                        margZoomLens();
+                    })
+                }
             },
             onClosed: function() {
                 $('#fancybox-left, #fancybox-right').removeClass('product_slider_PN');

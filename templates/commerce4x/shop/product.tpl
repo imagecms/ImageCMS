@@ -25,7 +25,7 @@
                         {/*rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo"*/}
                         <figure>
                             <span class="helper"></span>
-                            <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg"/>
+                            <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg"/>
                         </figure>
                     </a>
                 </div>
@@ -61,7 +61,7 @@
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     <span class="d_i-b m-b_10">
                         {$hasCode = $model->firstVariant->getNumber() == '';}
-                        <span class="frame_number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo $model->firstVariant->getNumber()}{/if})</span></span>
+                        <span class="frame_number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo trim($model->firstVariant->getNumber())}{/if})</span></span>
                         {$hasVariant = $model->firstVariant->getName() == '';}
                         <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{echo $model->firstVariant->getName()}{/if})</span></span>
                     </span>
@@ -135,7 +135,7 @@
                             {foreach $variants as $key => $pv}
                                 {if $pv->getStock() > 0}
                                     <button {if $key != 0}style="display:none"{/if}
-                                                          class="btn btn_buy btn_buy_b btnBuy variant_{echo $pv->getId()} variant"
+                                                          class="btn btn_buy btn_buy_b btnBuy variant_{echo $pv->getId()} variant info"
                                                           type="button"
 
                                                           data-id="{echo $pv->getId()}"
@@ -143,9 +143,9 @@
                                                           data-varid="{echo $pv->getId()}"
                                                           data-price="{echo $pv->toCurrency()}"
                                                           data-name="{echo ShopCore::encode($model->getName())}"
-                                                          data-vname="{echo ShopCore::encode($pv->getName())}"
+                                                          data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                                           data-maxcount="{echo $pv->getstock()}"
-                                                          data-number="{echo $pv->getNumber()}"
+                                                          data-number="{echo trim($pv->getNumber())}"
                                                           data-img="{echo $pv->getSmallPhoto()}"
                                                           data-mainImage="{echo $pv->getMainPhoto()}"
                                                           data-largeImage="{echo $pv->getlargePhoto()}"
@@ -157,12 +157,12 @@
                             <div {if $key != 0}style="display:none;"{/if} class="t-a_c variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}В наличии{else:}Под заказ{/if}</div>
                         {else:}
                             <button  {if $key != 0}style="display:none"{/if}
-                                                   class="btn btn_not_avail variant_{echo $pv->getId()} variant"
+                                                   class="btn btn_not_avail variant_{echo $pv->getId()} variant info"
                                                    type="button"
-                                                   data-placement="top right"
-                                                   data-place="noinherit"
+                                                   data-placement="noinherit"
+                                                   data-place="center"
                                                    data-duration="500"
-                                                   data-effect-off=    "fadeOut"
+                                                   data-effect-off= "fadeOut"
                                                    data-effect-on="fadeIn"
                                                    data-drop=".drop-report"
 
@@ -516,7 +516,7 @@
                             </li>
                         {/foreach}
                         <!--Output of goods subsidiaries set END-->
-                        <li class="span3 p-t_40 gen_sum_kits">
+                        <li class="span3 gen_sum_kits">
                             <div class="price price_f-s_24">
                                 <span class="d_b old_price">
                                     <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
