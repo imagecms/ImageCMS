@@ -35,7 +35,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * add item to wish list
      * 
-     * @param type $varId - current variant id 
+     * @param int $varId - current variant id 
      * @return json
      */
     public function addItem($varId) {
@@ -46,8 +46,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * move item to wish list
      * 
-     * @param type $varId - current variant id 
-     * @param type $wish_list_id - current wish list id 
+     * @param int $varId - current variant id 
+     * @param int $wish_list_id - current wish list id 
      * @return json
      */
     public function moveItem($varId, $wish_list_id) {
@@ -58,8 +58,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete item from list
      * 
-     * @param type $variant_id
-     * @param type $wish_list_id
+     * @param int $variant_id
+     * @param int $wish_list_id
      * @return json
      */
     public function deleteItem($variant_id, $wish_list_id) {
@@ -80,7 +80,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      /**
       * get public wish list
       * 
-      * @param type $hash
+      * @param $hash
       * @return json
       */
      public function show($hash) {
@@ -91,7 +91,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get  most viewed wish lists
      * 
-     * @param type $limit
+     * @param int $limit
      * @return json
      */
     public function getMostViewedWishLists($limit=10){
@@ -102,7 +102,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get user public wish list
      * 
-     * @param type $user_id
+     * @param int $user_id
      * @return json
      */
     public function user($user_id) {
@@ -123,7 +123,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get most popular items
      * 
-     * @param type $limit = 10
+     * @param int $limit = 10
      * @return json
      */
     public function getMostPopularItems($limit = 10) {
@@ -154,7 +154,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete wish list
      * 
-     * @param type $wish_list_id
+     * @param int $wish_list_id
      * @return json
      */
     public function deleteWL($wish_list_id) {
@@ -175,7 +175,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get wish list button
      * 
-     * @param type $varId
+     * @param int $varId
      * @return json
      */
     public function renderWLButton($varId) {
@@ -203,8 +203,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get popup
      * 
-     * @param type $varId
-     * @param type $wish_list_id
+     * @param int $varId
+     * @param int $wish_list_id
      * @return json
      */
     public function renderPopup($varId, $wish_list_id = '') {
@@ -226,8 +226,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * edit wish list 
      * 
-     * @param type $wish_list_id
-     * @param type $userID
+     * @param int $wish_list_id
+     * @param int $userID
      * @return json
      */
     public function editWL($wish_list_id, $userID = null) {
