@@ -20,7 +20,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get all public users lists
      * 
-     * @return type
+     * @return mixed
      */
     public function all() {
         $parent = parent::all();
@@ -34,8 +34,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * add item to wish list
      * 
-     * @param type $varId
-     * @return type
+     * @param int $varId
+     * @return mixed
      */
     public function _addItem($varId) {
         $listId = $this->input->post('wishlist');
@@ -51,9 +51,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * move item to wish list
      * 
-     * @param type $varId - item var current id
-     * @param type $wish_list_id - item wish list current id 
-     * @return type
+     * @param int $varId - item var current id
+     * @param int $wish_list_id - item wish list current id 
+     * @return mixed
      */
     public function moveItem($varId, $wish_list_id) {
         $to_listId = $this->input->post('wishlist');
@@ -69,9 +69,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete item from wish list
      * 
-     * @param type $variant_id - item var current id
-     * @param type $wish_list_id - item wish list current id 
-     * @return type
+     * @param int $variant_id - item var current id
+     * @param int $wish_list_id - item wish list current id 
+     * @return mixed
      */
     public function deleteItem($variant_id, $wish_list_id) {
         if(parent::deleteItem($variant_id, $wish_list_id)){
@@ -84,7 +84,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete items by ids
      *  
-     * @return type
+     * @return mixed
      */
     public function deleteItemsByIds(){
         $items = $this->input->post('listItem');
@@ -101,7 +101,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
      * get user public list by hash
      * 
      * @param type $hash - unique list identificator
-     * @return type
+     * @return mixed
      */
     public function show($hash) {
         if (parent::show($hash)) {
@@ -114,8 +114,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get most viewed wish lists
      * 
-     * @param type $limit - lists count
-     * @return type
+     * @param int $limit - lists count
+     * @return mixed
      */
     public function getMostViewedWishLists($limit = 10) {
         if (parent::getMostViewedWishLists($limit)) {
@@ -128,8 +128,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get user public lists 
      * 
-     * @param type $user_id
-     * @return type
+     * @param int $user_id
+     * @return mixed
      */
     public function user($user_id) {
         if (parent::user($user_id)) {
@@ -142,7 +142,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * update user information
      * 
-     * @return type
+     * @return mixed
      */
     public function userUpdate() {
 
@@ -165,8 +165,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get most popular items
      * 
-     * @param type $limit - items count
-     * @return type
+     * @param int $limit - items count
+     * @return mixed
      */
      public function getMostPopularItems($limit = 10) {
         if (parent::getMostPopularItems($limit)) {
@@ -180,7 +180,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * create wish list
      * 
-     * @return type
+     * @return mixed
      */
     public function createWishList() {
         $listName = $this->input->post('wishListName');
@@ -196,8 +196,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete wish list
      * 
-     * @param type $wish_list_id
-     * @return type
+     * @param int $wish_list_id
+     * @return mixed
      */
     public function deleteWL($wish_list_id) {
         if(parent::deleteWL($wish_list_id)){
@@ -211,7 +211,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * update wiish list
      * 
-     * @return type
+     * @return mixed
      */
     public function updateWL() {
         $id = $this->input->post('WLID');
@@ -243,7 +243,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete image
      * 
-     * @return type
+     * @return mixed
      */
     public function deleteImage(){
        $image = $this->input->post('image');
@@ -257,7 +257,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * upload image
      * 
-     * @return type
+     * @return mixed
      */
     public function do_upload() {
         if($this->input->post('userID')){
@@ -282,7 +282,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get popup
      * 
-     * @return type
+     * @return mixed
      */
     public function renderPopup(){
          if(parent::renderPopup()){

@@ -102,7 +102,8 @@ class ParentWishlist extends \MY_Controller {
      * get user wish list
      *
      * @access public
-     * @param int $hash, array $access - list access
+     * @param int $hash, 
+     * @param array $access - list access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -181,7 +182,8 @@ class ParentWishlist extends \MY_Controller {
      * render user list
      *
      * @access public
-     * @param int $user_id, $access
+     * @param int $user_id
+     * @param $access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -200,7 +202,10 @@ class ParentWishlist extends \MY_Controller {
      * update user information
      *
      * @access public
-     * @param $userID, $user_name, $user_birthday, $description
+     * @param $userID 
+     * @param $user_name
+     * @param  $user_birthday
+     * @param $description
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -222,7 +227,9 @@ class ParentWishlist extends \MY_Controller {
      * update wish list
      *
      * @access public
-     * @param $id, $data, $comments
+     * @param $id
+     * @param $data
+     * @param $comments
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return -----
