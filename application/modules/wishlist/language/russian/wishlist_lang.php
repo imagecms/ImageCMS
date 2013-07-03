@@ -24,6 +24,7 @@ $lang['error_user_id'] = '<p>Не введен пользователь</p>';
 $lang['error_max_image_size_exceeded'] = '<p>Превышен максимальный размер изображения</p>';
 $lang['error_max_image_width_exceeded'] = '<p>Превышен максимальня ширина изображения</p>';
 $lang['error_invalid_file_format'] = '<p>Недопустимый формат файла</p>';
+$lang['error'] = '<p>Ошибка</p>';
 
 /**
  * messeges
