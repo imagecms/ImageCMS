@@ -361,6 +361,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
         }
+        
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
