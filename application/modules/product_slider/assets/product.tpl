@@ -121,6 +121,11 @@
                                 <span class="f-w_b priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
                                 <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
                             </div>
+                                {foreach $variants as $key => $pv}
+                                {if $pv->getStock() > 0}
+                                <div {if $key != 0}style="display:none;"{/if} class="m-l_10 variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}В наличии{else:}Под заказ{/if}</div>
+                                {/if}
+                                {/foreach}
                             <!--
                             Buy button applies the
                             data-prodid - product ID
@@ -150,8 +155,9 @@
                                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                           data-stock="{echo $pv->getStock()}"
                                                           >
-                                        {lang('s_buy')}
+                                        {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                                     </button>
+                                    
                                 {else:}
                                     <button  {if $key != 0}style="display:none"{/if}
                                                            class="btn btn_not_avail variant_{echo $pv->getId()} variant info"
