@@ -215,10 +215,10 @@ class BaseApiTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers wishlist\classes\BaseApi::deleteItemByIds
+     * @covers wishlist\classes\BaseApi::deleteItemsByIds
      */
-    public function testDeleteItemByIds() {
-        $result = $this->object->deleteItemByIds();
+    public function testDeleteItemsByIds() {
+        $result = $this->object->deleteItemsByIds();
         $this->assertNotEmpty($result);
 
         $this->assertInternalType('string', $result);
