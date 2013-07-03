@@ -233,7 +233,7 @@ class discount extends classes\BaseDiscount {
         $all_order_arr_not_reg = array();
         foreach ($this->discount_type['all_order'] as $disc)
             if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= $this->total_price and $disc['for_autorized'] === NULL)
+                if ($disc['begin_value'] <= $this->total_price and !$disc['for_autorized'])
                     $all_order_arr_not_reg[] = $disc;
 
         if (count($all_order_arr_not_reg) > 0)
