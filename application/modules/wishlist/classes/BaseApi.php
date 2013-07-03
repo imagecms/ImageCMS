@@ -16,10 +16,10 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function __construct() {
         parent::__construct();
     }
-    
+
     /**
      * get all public users lists
-     * 
+     *
      * @return type
      */
     public function all() {
@@ -33,7 +33,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * add item to wish list
-     * 
+     *
      * @param type $varId
      * @return type
      */
@@ -50,9 +50,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * move item to wish list
-     * 
+     *
      * @param type $varId - item var current id
-     * @param type $wish_list_id - item wish list current id 
+     * @param type $wish_list_id - item wish list current id
      * @return type
      */
     public function moveItem($varId, $wish_list_id) {
@@ -68,9 +68,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete item from wish list
-     * 
+     *
      * @param type $variant_id - item var current id
-     * @param type $wish_list_id - item wish list current id 
+     * @param type $wish_list_id - item wish list current id
      * @return type
      */
     public function deleteItem($variant_id, $wish_list_id) {
@@ -80,10 +80,10 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return $this->errors;
         }
     }
-    
+
     /**
      * delete items by ids
-     *  
+     *
      * @return type
      */
     public function deleteItemsByIds(){
@@ -99,7 +99,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get user public list by hash
-     * 
+     *
      * @param type $hash - unique list identificator
      * @return type
      */
@@ -113,7 +113,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get most viewed wish lists
-     * 
+     *
      * @param type $limit - lists count
      * @return type
      */
@@ -126,8 +126,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     }
 
     /**
-     * get user public lists 
-     * 
+     * get user public lists
+     *
      * @param type $user_id
      * @return type
      */
@@ -141,7 +141,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * update user information
-     * 
+     *
      * @return type
      */
     public function userUpdate() {
@@ -164,7 +164,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get most popular items
-     * 
+     *
      * @param type $limit - items count
      * @return type
      */
@@ -179,7 +179,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * create wish list
-     * 
+     *
      * @return type
      */
     public function createWishList() {
@@ -195,7 +195,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete wish list
-     * 
+     *
      * @param type $wish_list_id
      * @return type
      */
@@ -210,7 +210,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * update wiish list
-     * 
+     *
      * @return type
      */
     public function updateWL() {
@@ -232,7 +232,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             'access' => $this->input->post('access'),
             'title' => $title,
         );
-        
+
         if(parent::updateWL($id, $data, $desc)){
             return $this->dataModel;
         }else{
@@ -242,7 +242,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete image
-     * 
+     *
      * @return type
      */
     public function deleteImage(){
@@ -256,7 +256,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * upload image
-     * 
+     *
      * @return type
      */
     public function do_upload() {
@@ -273,7 +273,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
                 return $this->dataModel[] = lang('picture_uploaded');
             } else {
                 return $this->errors[] = lang('error_upload_photo');
-            }     
+            }
         }else{
             return $this->errors[] = lang('error_user_id');
         }
@@ -281,7 +281,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get popup
-     * 
+     *
      * @return type
      */
     public function renderPopup(){
