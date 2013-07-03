@@ -154,7 +154,6 @@ class BaseWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\BaseWishlist::_deinstall
-     * @todo   Implement test_deinstall().
      */
     public function test_deinstall() {
         $this->assertNull($this->object->_deinstall());
