@@ -3,7 +3,7 @@
 .popup_product .variantProd .title{display: block;}
 
 .popup_product .icon-infoM{width: 16px;height: 16px;margin-right: 5px;background: url("../images/info.png") no-repeat;top: 4px;}
-.popup_product .drop_down{width: 570px;}
+.popup_product .drop_down{width: 536px;}
 .popup_product .frame_tabs > div{overflow: hidden; position: relative;}
 .popup_product .hideAfter:after {
     content: ""; position: absolute; display: block; left:0; bottom:0px; height:40px;width: 100%;
@@ -18,12 +18,14 @@
 .popup_product .icon-wish_2 + span, .popup_product .icon-comprasion_2 + span {border-bottom: 1px dotted #3a88cc; font-size: 12px;} 
 .popup_product .icon-wish_2 + span:hover, .popup_product .icon-comprasion_2 + span:hover {color: #cc0000; border-bottom: 1px dotted #cc0000;}
 .popup_product{padding: 20px;display: none;}
-.popup_product .add_func_btn button{padding: 5px 5px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;}
+.frame_w_desc .add_func_btn button{padding: 5px 5px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px;}
 .popup_product .frame_tabs{border: 0;padding: 0;max-width: 100%;}
 .popup_product .frame_tabs > div, .cloned .frame_tabs > div, .cloned.frame_tabs > div{display: block;}
 .popup_product .item_tovar{padding-bottom: 0;margin-bottom: 0;}
 .wish_list_in_popup .d_l_b, .wish_list_in_popup .d_l_b{border-bottom-color: transparent;text-decoration: underline;}
-.popup_product #characteristic, .popup_product #info, .cloned.frame_tabs #characteristic{padding-top: 25px;}
+.popup_product #info, .cloned.frame_tabs > #info{padding-top: 25px;}
+.frame_w_desc .frame_response{margin-bottom: 9px;}
+.frame_w_desc .price_f-s_24{margin-bottom: 3px;}
 
 .product_slider_PN{width: 28px !important;}
 .product_slider_PN#fancybox-left{left: -35px;}

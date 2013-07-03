@@ -1149,7 +1149,7 @@ function ieInput(els) {
                         $(cloned).remove();
                     }
                 })
-                exit.click(function() {
+                exit.live('click', function() {
                     methods.triggerBtnClick($(this).closest('[data-elrun]'));
                 })
                 body.live('click', function(event) {
@@ -1187,17 +1187,16 @@ function ieInput(els) {
             sel.each(function() {
                 $this = $('[data-drop = "' + $(this).attr('data-elrun') + '"]');
                 $this.click().parent().removeClass('active');
-                if ($this.data('place') == 'center') {
-                    body.removeClass('o_h');
-                    body.css('margin-right', function() {
-                        if ($(document).height() - wnd.height() > 0) {
-                            drop_over.removeClass('drop_overlay_fixed');
-                            return 0
-                        }
-                    })
-                }
-                drop_over.remove();
             }).removeClass('active');
+            body.removeClass('o_h');
+            body.css('margin-right', function() {
+                if ($(document).height() - wnd.height() > 0) {
+                    drop_over.removeClass('drop_overlay_fixed');
+                    return 0
+                }
+            })
+
+            drop_over.remove();
             wnd.unbind('resize.drop');
         },
         dropScroll: function(elSetSource) {

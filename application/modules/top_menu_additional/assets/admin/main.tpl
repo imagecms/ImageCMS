@@ -68,7 +68,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="menu_cont">Редектор меню:</label>
                                         <div class="controls">
-                                                <textarea style="height: 200px; width: 50% !important" name="menu_template">
+                                                <textarea style="height: 400px; width: 70% !important" name="menu_template">
 {if !$menu->menu_template}
 &lt;div class="menu_additional"&gt;
         #menu_contacts
@@ -85,25 +85,25 @@
 {else:}{echo $menu->menu_template}{/if}
                                                 </textarea>
                                             <span class="help-block">
-                                                <strong> #menu_contacts - ссилка на контакты</strong>
+                                                <strong> #menu_contacts</strong> - Контакты 
                                             </span>
                                             <span class="help-block">
-                                                <strong> #menu_delivery - ссилка на доставку</strong>
+                                                <strong> #menu_delivery</strong> - Доставка
                                             </span>
                                             <span class="help-block">
-                                                <strong> #menu_payment - ссилка на оплату</strong>
+                                                <strong> #menu_payment</strong> - Оплата
                                             </span>
                                             <span class="help-block">
-                                                <strong> #cart_data - дание про Вашу корзину</strong>
+                                                <strong> #cart_data</strong> - Данные о корзине
                                             </span>
                                             <span class="help-block">
-                                                <strong> #wish_data - дание про Ваш список желаний</strong>
+                                                <strong> #wish_data</strong> - Данные о списке желаний
                                             </span>
                                             <span class="help-block">
-                                                <strong> #compare_data - дание про сравнение товаров</strong>
+                                                <strong> #compare_data</strong> - <span class="">Данные о сравнение товаров</span>
                                             </span>
                                             <span class="help-block">
-                                                <strong> #tel_block - дание про телефони</strong>
+                                                <strong> #tel_block</strong> - Шаблон с номером телефона
                                             </span>
                                         </div>
                                     </div>
