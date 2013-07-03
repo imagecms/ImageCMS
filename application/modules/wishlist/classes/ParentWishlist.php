@@ -361,7 +361,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
         }
-        
+
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
@@ -430,7 +430,7 @@ class ParentWishlist extends \MY_Controller {
      */
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
-        if (!$forReturn)
+        if ($forReturn == 0)
             $this->errors[] = lang('error_items_delete');
         else
             $this->dataModel = lang('success');

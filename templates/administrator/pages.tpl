@@ -48,9 +48,9 @@
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>-->
                     <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</a>
                 </div>
-            </div>                            
+            </div>
         </div>
-        <div class="row-fluid">    
+        <div class="row-fluid">
             {if $show_cat_list == 'yes'}
                 <div class="span3">
                     <ul class="nav nav-tabs nav-stacked m-t_10">
@@ -152,7 +152,7 @@
                                                 {lang('a_without_cat')}
                                             {else:}
 
-                                                {foreach $cats  as $c} 
+                                                {foreach $cats  as $c}
                                                     {if $c.id == $page.category}
                                                         {$c.name}
                                                     {/if}
