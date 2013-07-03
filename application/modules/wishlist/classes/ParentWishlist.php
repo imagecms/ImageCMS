@@ -461,7 +461,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
+    public function getUserWL($userId, $access = array('public', 'private', 'shared')) {
         $this->wishlist_model->createUserIfNotExist($userId);
 
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
