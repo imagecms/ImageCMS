@@ -119,6 +119,7 @@ class ParentWishlist extends \MY_Controller {
 
             return TRUE;
         } else {
+             $this->errors[] = lang('error_wrong_query');
             return FALSE;
         }
     }
@@ -228,9 +229,9 @@ class ParentWishlist extends \MY_Controller {
      */
     public function updateWL($id, $data, $comments) {
         $return = TRUE;
-        $return = $this->wishlist_model->upateWishList($id, $data);
+        $return = $this->wishlist_model->updateWishList($id, $data);
         if($comments){
-            $return = $this->wishlist_model->upateWishListItemsComments($id, $comments);
+            $this->wishlist_model->updateWishListItemsComments($id, $comments);
         }
         if($return){
             $this->dataModel[] = lang("updated");
@@ -292,10 +293,7 @@ class ParentWishlist extends \MY_Controller {
         $forReturn = $this->wishlist_model->delWishListById($id);
 
         if ($forReturn) {
-            $forReturn = $this->wishlist_model->delWishListProductsByWLId($id);
-
-            if (!$forReturn)
-                $this->errors[] = lang('error_items_delete');
+            $this->wishlist_model->delWishListProductsByWLId($id);
         }
         else
             $this->errors[] = lang('error_WL_delete');
@@ -363,6 +361,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_items_limit_exhausted');
             return FALSE;
         }
+
         if (!$this->dx_auth->is_logged_in()) {
             $this->errors[] = lang('error_user_not_autorized');
             return FALSE;
@@ -431,7 +430,7 @@ class ParentWishlist extends \MY_Controller {
      */
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
-        if (!$forReturn)
+        if ($forReturn == 0)
             $this->errors[] = lang('error_items_delete');
         else
             $this->dataModel = lang('success');
@@ -462,7 +461,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function getUserWL($userId, $access = array('public', 'public', 'shared')) {
+    public function getUserWL($userId, $access = array('public', 'private', 'shared')) {
         $this->wishlist_model->createUserIfNotExist($userId);
 
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
@@ -598,7 +597,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function deleteItemByIds($ids) {
+    public function deleteItemsByIds($ids) {
         return $this->wishlist_model->deleteItemsByIDs($ids);
     }
 

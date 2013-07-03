@@ -10,12 +10,12 @@
  * @package ImageCMSModule
 
  */
-class Admin extends BaseAdminController {
+class Admin extends \ShopAdminController{
 
     function __construct() {
         parent::__construct();
         $this->load->model('discount_model_admin');
-        CMSFactory\assetManager::create()
+        \CMSFactory\assetManager::create()
                    ->registerStyle('style')
                    ->registerScript('adminScripts');
     }
@@ -32,7 +32,7 @@ class Admin extends BaseAdminController {
         //Get list of discounts 
         $data = array('discountsList' => $this->discount_model_admin->getDiscountsList($filterParam));
         
-        CMSFactory\assetManager::create()
+        \CMSFactory\assetManager::create()
                    ->setData($data)
                    ->renderAdmin('list', true);
     }
@@ -113,7 +113,7 @@ class Admin extends BaseAdminController {
             );
             
             //Render template and set data
-            CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                        ->setData($data)
                        ->renderAdmin('create');
             }
@@ -202,7 +202,7 @@ class Admin extends BaseAdminController {
             );
             
             //Render template and set data
-            CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                    ->setData($data)
                    ->renderAdmin('edit');
         }
