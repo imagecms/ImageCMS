@@ -104,7 +104,7 @@
             </table>
             {form_csrf()}
             {if $wishlist[0][variant_id]}
-                <input type="submit" class="btn btn-small" value="Удалить избраны">
+                <input type="submit" class="btn btn-small" value="Удалить">
             {/if}
         </form>
         <hr/>

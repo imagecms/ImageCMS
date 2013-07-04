@@ -32,7 +32,7 @@ textarea{overflow: auto;height: 100px;padding-top: 3px;display: block;}
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus{border-color: #75d9ff;outline: none;-moz-box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);-webkit-box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);box-shadow: 0 0 5px rgba(177, 229, 255, 0.75), inset 0 3px 3px rgba(0, 0, 0, 0.06);}
 
 .helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}
-.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}
+.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;word-wrap: break-word;}
 
 .arial{font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
 .pts-s-n, .frameNav td a, .promotion{font-family: 'PT Sans', sans-serif;}

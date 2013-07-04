@@ -34,8 +34,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
-        <div class="frame-cur-sum-price">
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -47,11 +46,10 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
-        <span class="add-curr"><%-currNext%></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
-        </div>
         </div>
         </div>
         </td>
@@ -75,6 +73,7 @@
         </td>
         <td class="frame-cur-sum-price">
         <span class="title">Сумма: </span>
+<div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -86,11 +85,12 @@
         <span class="price-add">
         <span>
         <span class="price addCurrPrice"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="add-curr"><%-currNext%></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
         </div>
+</div>
         </td>
         </tr>
         <% } else { %>
@@ -126,7 +126,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -137,8 +137,8 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
-        <span class="add-curr"><%-currNext%></span>
+        <span class="price"><%- parseFloat(0).toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -155,7 +155,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -166,8 +166,8 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price"><%-addprices[i].toFixed(pricePrecision)%></span>
-        <span class="add-curr"><%-currNext%></span>
+        <span class="price"><%- (0).toFixed(pricePrecision)%></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -231,11 +231,12 @@
         </div>
         </div>
         <div class="frame-foot">
-        <div class="inside-padd">
         <div class="header-frame-foot">
+        <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount">10%</span>
+        <span class="text-discount current-discount">bla-bla</span>
         <span class="s-t">Всего:</span>
+        <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -250,6 +251,7 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        </span>
         <span class="price-add">
         <span>
         <span class="price" id="popupCartTotaladdprice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
@@ -261,7 +263,7 @@
         </div>
         <% if (!document.getElementById('orderDetails')) { %>
         <div class="content-frame-foot">
-        <div class="clearfix">
+        <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
         <span class="icon_form"></span>
@@ -327,7 +329,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -337,7 +339,7 @@
         </span>
         </span>
         </span>
-        </div>
+</div>
         <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number d_i-b" data-title="количество на складе <%-item.maxcount%>">
@@ -385,10 +387,6 @@
         <% var urls = item.url %>
 
         <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
-        <td colspan="4">
-        <table>
-        <tbody>
-        <tr>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
         <% var idsL = ids.length; _.each(ids, function(id){  %>
@@ -407,7 +405,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -430,7 +428,7 @@
         </a>
         <div class="description">
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -489,11 +487,6 @@
         </div>
         </div>
         </tr>
-        </tbody>
-        </table>
-        </td>
-        </tr>
-
         <% } %>
 
         <% }); %>
@@ -503,11 +496,12 @@
         </div>
         </div>
         <div class="frame-foot">
-        <div class="inside-padd">
         <div class="header-frame-foot">
+        <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount">10%</span>
+        <span class="text-discount current-discount">bla-bla</span>
         <span class="s-t">Всего:</span>
+        <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -524,10 +518,11 @@
         </span>
         </span>
         </span>
+        </span>
         </div>
         <% if (!document.getElementById('orderDetails')) { %>
         <div class="content-frame-foot">
-        <div class="clearfix">
+        <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
         <span class="icon_form"></span>
@@ -593,6 +588,7 @@
 
         <span class="description">
         <!-- Start. Product price  -->
+        <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="current-prices f-s_0 var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
         <span class="price-new">
@@ -602,6 +598,7 @@
         </span>
         </span>
         </span>
+</span>
         </span>
         </span>
         <!-- End. Product price  -->
