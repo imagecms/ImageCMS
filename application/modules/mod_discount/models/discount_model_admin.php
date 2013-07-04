@@ -35,7 +35,12 @@ class Discount_model_admin extends CI_Model {
         if ( $active == 1)
             $active = 0;
         else $active=1;
-
+        
+        // Check is discount with such id
+        if ($discount == null)
+            return false;
+        
+        // If updated active succes then return TRUE
         if ($this->db->where('id',$id)->update('mod_shop_discounts',array('active'=>$active)))
             return true;
         
@@ -74,6 +79,7 @@ class Discount_model_admin extends CI_Model {
      * return boolean|array
      */
     public function getUsersByIdNameEmail($term, $limit = 7) {
+        
         $query = $this->db
                 ->like('username', $term)
                 ->or_like('email', $term)
@@ -263,8 +269,9 @@ class Discount_model_admin extends CI_Model {
     public function deleteDiscountById($id) {
         $query = $this->db->from('mod_shop_discounts')->where('id',$id)->get()->row_array();
         $discountType = $query['type_discount'];
-        
-         try {
+        if (!$query)
+            return false;
+        try {
             $this->db->where('id',$id)->delete('mod_shop_discounts');
             $this->db->where('discount_id',$id)->delete('mod_discount_'.$discountType);
             return true;
