@@ -214,7 +214,6 @@ class Admin extends \ShopAdminController{
      */
     public function ajaxChangeActive() {
        $id = $this->input->post('id');
-
        echo $this->discount_model_admin->changeActive($id);
     }
     
@@ -224,7 +223,7 @@ class Admin extends \ShopAdminController{
      */
     public function ajaxDeleteDiscount() {
         $id = $this->input->post('id');
-        return $this->discount_model_admin->deleteDiscountById($id);
+        echo $this->discount_model_admin->deleteDiscountById($id);
         
     }
 
