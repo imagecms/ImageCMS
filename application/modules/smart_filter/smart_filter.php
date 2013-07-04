@@ -21,8 +21,6 @@ class Smart_filter extends \Category\BaseCategory {
 //        if ($this->input->is_ajax_request())
 //        else
     }
-    
-
 
     public function init() {
 
@@ -35,9 +33,9 @@ class Smart_filter extends \Category\BaseCategory {
     }
 
     public function filter() {
-        
 
-        
+
+
         return \CMSFactory\assetManager::create()
                         ->setData($this->data)
                         ->render('filter', true);
@@ -46,7 +44,7 @@ class Smart_filter extends \Category\BaseCategory {
 //    public function ()
 
     public function autoload() {
-        
+
     }
 
     public function _install() {
