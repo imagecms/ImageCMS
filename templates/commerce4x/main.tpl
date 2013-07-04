@@ -40,7 +40,7 @@
         {$canonical}
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
-    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])}">
+    <body class="is{echo $agent[0]}">
         <div class="mainBody">
             <div class="container clearfix" id="frame_additional_menu">{$CI->load->module('top_menu_additional')->render()}</div>
             <div class="header">

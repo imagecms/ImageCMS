@@ -3,12 +3,14 @@
         <div class="carousel">
             <ul class="items">
                 {foreach $brands as $brand}
-                <li>
-                    <a href="{shop_url($brand.full_url)}">
-                        <span class="helper"></span>
-                        <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" alt="{$brand.name}"/>
-                    </a>
-                </li>
+                    <li>
+                        <a href="{shop_url($brand.full_url)}" class="photo">
+                            <figure>
+                                <span class="helper"></span>
+                                <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" alt="{$brand.name}"/>
+                            </figure>
+                        </a>
+                    </li>
                 {/foreach}
             </ul>
         </div>

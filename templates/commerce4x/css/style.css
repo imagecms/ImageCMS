@@ -1467,7 +1467,8 @@ footer{background-color: #303030\0/;*background-color: #303030;}
 
 .no-fixed-supported .fixed{position: absolute;}
 .isSafari .navHorizontal, .isSafari .frameUndef_1, .isSafari .items, .isSafari .groupButton{letter-spacing: -5px;}
-.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .isSafari .items > li, .isSafari .groupButton > li{letter-spacing: normal;}
+.isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .isSafari .items > li{letter-spacing: normal;}
 .isSafari .rightDescription {margin-left: 0;}
+.isSafari .photo figure img{max-width: 50%;}
 
 .isBr .frame_w_desc, .isBr.checked_filter .frame_tabs{width: 600px !important;}
