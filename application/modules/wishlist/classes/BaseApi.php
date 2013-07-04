@@ -19,7 +19,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get all public users lists
-     * 
+     *
      * @return mixed
      */
     public function all() {
@@ -33,7 +33,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * add item to wish list
-     * 
+     *
      * @param int $varId
      * @return mixed
      */
@@ -50,9 +50,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * move item to wish list
-     * 
+     *
      * @param int $varId - item var current id
-     * @param int $wish_list_id - item wish list current id 
+     * @param int $wish_list_id - item wish list current id
      * @return mixed
      */
     public function moveItem($varId, $wish_list_id) {
@@ -68,34 +68,34 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete item from wish list
-     * 
+     *
      * @param int $variant_id - item var current id
-     * @param int $wish_list_id - item wish list current id 
+     * @param int $wish_list_id - item wish list current id
      * @return mixed
      */
     public function deleteItem($variant_id, $wish_list_id) {
-        if(parent::deleteItem($variant_id, $wish_list_id)){
+        if (parent::deleteItem($variant_id, $wish_list_id)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
     /**
      * delete items by ids
-     *  
+     *
      * @return mixed
      */
-    public function deleteItemsByIds(){
+    public function deleteItemsByIds() {
         $items = $this->input->post('listItem');
-        if($items){
-            if(parent::deleteItemsByIds($items)){
+        if ($items) {
+            if (parent::deleteItemsByIds($items)) {
                 return $this->dataModel = lang('success');
-            }else{
+            } else {
                 return $this->errors[] = lang('error_cant_delete');
             }
         }
-     }
+    }
 
     /**
      * get user public list by hash
@@ -113,7 +113,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get most viewed wish lists
-     * 
+     *
      * @param int $limit - lists count
      * @return mixed
      */
@@ -126,8 +126,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     }
 
     /**
-     * get user public lists 
-     * 
+     * get user public lists
+     *
      * @param int $user_id
      * @return mixed
      */
@@ -141,7 +141,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * update user information
-     * 
+     *
      * @return mixed
      */
     public function userUpdate() {
@@ -164,11 +164,11 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * get most popular items
-     * 
+     *
      * @param int $limit - items count
      * @return mixed
      */
-     public function getMostPopularItems($limit = 10) {
+    public function getMostPopularItems($limit = 10) {
         if (parent::getMostPopularItems($limit)) {
             return $this->dataModel;
         } else {
@@ -176,10 +176,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
     }
 
-
     /**
      * create wish list
-     * 
+     *
      * @return mixed
      */
     public function createWishList() {
@@ -195,22 +194,21 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete wish list
-     * 
+     *
      * @param int $wish_list_id
      * @return mixed
      */
     public function deleteWL($wish_list_id) {
-        if(parent::deleteWL($wish_list_id)){
+        if (parent::deleteWL($wish_list_id)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
-
     /**
      * update wiish list
-     * 
+     *
      * @return mixed
      */
     public function updateWL() {
@@ -233,34 +231,34 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             'title' => $title,
         );
 
-        if(parent::updateWL($id, $data, $desc)){
+        if (parent::updateWL($id, $data, $desc)) {
             return $this->dataModel;
-        }else{
+        } else {
             return $this->errors;
         }
     }
 
     /**
      * delete image
-     * 
+     *
      * @return mixed
      */
-    public function deleteImage(){
-       $image = $this->input->post('image');
-       if(parent::deleteImage($image)){
-           return $this->dataModel[] = lang('deleted');
-       }else{
-           return $this->errors[] = lang('error');
-       }
+    public function deleteImage() {
+        $image = $this->input->post('image');
+        if (parent::deleteImage($image)) {
+            return $this->dataModel[] = lang('deleted');
+        } else {
+            return $this->errors[] = lang('error');
+        }
     }
 
     /**
      * upload image
-     * 
+     *
      * @return mixed
      */
     public function do_upload() {
-        if($this->input->post('userID')){
+        if ($this->input->post('userID')) {
             if (parent::do_upload($this->input->post('userID'))) {
                 if (!$this->upload->do_upload()) {
                     $this->errors[] = $this->upload->display_errors();
@@ -274,23 +272,24 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             } else {
                 return $this->errors[] = lang('error_upload_photo');
             }
-        }else{
+        } else {
             return $this->errors[] = lang('error_user_id');
         }
     }
 
     /**
      * get popup
-     * 
+     *
      * @return mixed
      */
-    public function renderPopup(){
-         if(parent::renderPopup()){
-             return $this->dataModel;
-         }else{
-             return $this->errors;
-         }
+    public function renderPopup() {
+        if (parent::renderPopup()) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
     }
 
 }
+
 /* End of file BaseApi.php */

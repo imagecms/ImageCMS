@@ -226,15 +226,18 @@
                                             <li>
                                                 <span class="s-t">Стоимость доставки:</span>
                                                 <span class="price-item">
-                                                    <span class="text-el">+</span><span id="shipping"></span>
-                                                    <span class="curr"></span>
+                                                    <span>
+                                                        <span class="text-el">+</span><span id="shipping"></span>
+                                                        <span class="curr"></span>
+                                                    </span>
                                                 </span>
                                             </li>
                                             <li>
                                                 <span class="s-t">Ваша текущая скидка:</span>
                                                 <span class="price-item">
-                                                    <span class="text-discount w-s_n-w">
-                                                        <span class="text-el">-</span><span id="currDiscount">bla-bla</span><span class="text-el">&nbsp;</span><span class="curr"></span>
+                                                    <span class="text-discount">
+                                                        <span class="text-el">-</span><span id="currDiscount">bla-bla</span>
+                                                        <span class="curr"></span>
                                                     </span>
                                                 </span>
                                             </li>
@@ -242,7 +245,8 @@
                                                 <span class="s-t">Подарочный сертификат:</span>
                                                 <span class="price-item">
                                                     <span class="text-discount">
-                                                        <span class="text-el">-</span><span id="giftCertPrice"></span><span class="text-el">&nbsp;</span><span class="curr"></span>
+                                                        <span class="text-el">-</span><span id="giftCertPrice"></span>
+                                                        <span class="curr"></span>
                                                     </span>
                                                 </span>
                                             </li>
@@ -267,7 +271,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 (<span class="price" id="totalPriceAdd">bla-bla</span>
-                                                                <span class="add-curr">{$NextCs}</span>)
+                                                                <span class="curr-add">{$NextCs}</span>)
                                                             </span>
                                                         </span>
                                                     {/if}
