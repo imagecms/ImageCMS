@@ -26,6 +26,28 @@ function pluralStr(i, str) {
     }
 }
 
+jQuery.expr[':'].regex = function(elem, index, match) {
+    var matchParams = match[3].split(','),
+            validLabels = /^(data|css):/,
+            attr = {
+        method: matchParams[0].match(validLabels) ?
+                matchParams[0].split(':')[0] : 'attr',
+        property: matchParams.shift().replace(validLabels, '')
+    },
+    regexFlags = 'ig',
+            regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
+    return regex.test(jQuery(elem)[attr.method](attr.property));
+}
+
+function sIncrease(i, ii) { // to up array
+    if (i > ii)
+        return 1;
+    else if (i < ii)
+        return -1;
+    else
+        return 0;
+}
+
 jQuery.exists = function(selector) {
     return ($(selector).length > 0);
 }
@@ -39,7 +61,6 @@ jQuery.testNumber = function(e) {
     if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
         return true;
     keyChar = String.fromCharCode(key);
-
     if (!/\d/.test(keyChar)) {
         return false;
     }
@@ -347,7 +368,6 @@ function ieInput(els) {
                             }
                         });
                     });
-
                     if (inputString.val().length == 0)
                         closeFrame();
                     selectorPosition = -1;
@@ -462,7 +482,6 @@ function ieInput(els) {
             if (textEl.is(':visible') && $.existsN(textEl) && me)
                 return false;
             tooltip.text(settings.title);
-
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
             if (settings.effect == 'notalways')
@@ -522,30 +541,36 @@ function ieInput(els) {
             }
         },
         init: function(options) {
-            if ($.existsN($(this))) {
+            var menu = $(this);
+            if ($.existsN(menu)) {
                 var sH = 0,
-                        menu = $(this);
-                var settings = $.extend({
+                        settings = $.extend({
                     item: this.find('li'),
                     effectOn: 'fadeIn',
                     effectOff: 'fadeOut',
                     duration: 0,
                     drop: 'li > ul',
                     countColumn: 'none',
+                    columnPart: false,
+                    columnClassPref: 'column_',
                     durationOn: 0,
                     durationOff: 0,
                     dropWidth: null,
                     sub2Frame: null,
                     evLF: 'hover',
                     evLS: 'hover',
-                    hM: 'hoverM'
+                    hM: 'hoverM',
+                    refresh: false
                 }, options);
                 var menuW = menu.width(),
                         menuItem = settings.item,
                         drop = settings.drop,
+                        dropOJ = $(drop),
                         effOn = settings.effectOn,
                         effOff = settings.effectOff,
                         countColumn = settings.countColumn,
+                        columnPart = settings.columnPart,
+                        columnClassPref = settings.columnClassPref,
                         itemMenuL = menuItem.length,
                         dropW = settings.dropWidth,
                         sub2Frame = settings.sub2Frame,
@@ -554,8 +579,8 @@ function ieInput(els) {
                         durationOff = settings.durationOff,
                         evLF = settings.evLF,
                         evLS = settings.evLS,
-                        hM = settings.frAClass;
-
+                        hM = settings.frAClass,
+                        refresh = settings.refresh;
                 if (isTouch) {
                     evLF = 'toggle';
                     evLS = 'toggle';
@@ -563,7 +588,6 @@ function ieInput(els) {
 
                 if (!dropW)
                     dropW = parseInt(menuW / 3);
-
                 var k = [],
                         kk = 0;
                 menuItem.each(function(index) {
@@ -572,9 +596,7 @@ function ieInput(els) {
                             $thisL = $this.position().left,
                             drop = $this.find(settings.drop),
                             $thisH = $this.height();
-
                     k[index] = false;
-
                     if ($thisH > sH)
                         sH = $thisH;
                     methods.position(menuW, $thisL, dropW, drop, $thisW, countColumn);
@@ -583,14 +605,11 @@ function ieInput(els) {
 
                 $('.not-js').removeClass('not-js');
                 var hoverTO = '';
-
                 function closeMenu(el, e) {
                     var $this = el,
                             $thisDrop = $this.find(drop);
-
                     if ($thisDrop.length != 0)
                         menu.removeClass(hM);
-
                     var menuItemH = menuItem.filter('.' + hM)
                     if (e.type == 'click' && evLF == 'toggle')
                         menuItemH.click()
@@ -598,29 +617,26 @@ function ieInput(els) {
                     var subH = $thisDrop.children().children('.' + hM);
                     if (e.type == 'click' && evLS == 'toggle')
                         subH.click();
-
                     $('.firstH, .lastH').removeClass('firstH lastH');
                     clearTimeout(hoverTO);
                 }
                 menuItem.unbind(evLF)[evLF](
                         function(e) {
-                            var $thisI = $this.index();
+                            var $this = $(this),
+                                    $thisI = $this.index();
                             $this = $(this).addClass(hM),
                                     $thisDrop = $this.find(settings.drop);
-
                             if (e.type == 'click' && evLF == 'toggle') {
                                 $this.siblings().filter('.' + hM).click()
                             }
 
-                            var subH = $(drop).children().children('.' + hM);
+                            var subH = dropOJ.children().children('.' + hM);
                             if (e.type == 'click' && evLS == 'toggle')
                                 subH.click();
-
                             if ($thisI == 0)
                                 $this.addClass('firstH');
                             if ($thisI == itemMenuL - 1)
                                 $this.addClass('lastH');
-
                             if ($(e.relatedTarget).is(menuItem) || kk == 0)
                                 k[$thisI] = true;
                             if (k[$thisI]) {
@@ -656,22 +672,13 @@ function ieInput(els) {
                                             })[evLS](function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-
                                                 if (e.type == 'click' && evLS == 'toggle') {
                                                     $this.addClass(hM).siblings().filter('.' + hM).click()
                                                 }
                                                 else
                                                     $this.has(sub2Frame).addClass(hM);
-
                                                 $thisDrop.css('width', '');
                                                 $thisDrop.children().add(subFrame).css('height', '');
-
-
-                                                if (e.type == 'click' && $this.has(sub2Frame).length == 0 && (evLF == 'toggle' || evLS == 'toggle')) {
-                                                    if ($(e.target).closest('a').length != 0 || $(e.target).is('a'))
-                                                        window.location = $(e.target).closest('a').attr('href') || $(e.target).attr('href');
-                                                    return false;
-                                                }
                                                 var dropW = $this.parent().parent().width(),
                                                         sumW = dropW + subFrame.width(),
                                                         subHL2 = subFrame.height(),
@@ -731,7 +738,7 @@ function ieInput(els) {
                                 $(this).find('.' + hM).click();
                             }
                             setTimeout(function() {
-                                $(drop)[effOff](durationOff);
+                                dropOJ[effOff](durationOff);
                             }, duration)
                             closeMenu(menu, e);
                             return timeDurM = duration;
@@ -745,17 +752,40 @@ function ieInput(els) {
                         closeMenu(menu, e);
                     }
                 });
-                $(drop).find('a').click(function(e) {
+                dropOJ.find('a').click(function(e) {
                     e.stopPropagation();
                 });
+                if (columnPart && !sub2Frame && !refresh)
+                    dropOJ.each(function() {
+                        var $this = $(this),
+                                columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
+                                numbColumn = [];
+
+                        columnsObj.each(function(i) {
+                            numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
+                        })
+                        numbColumn = numbColumn.sort($.unique(numbColumn));
+                        if (numbColumn.length > 1) {
+                            $.map(numbColumn, function(n, i) {
+                                var currC = columnsObj.filter('.' + columnClassPref + n),
+                                        classCuurC = currC.first().attr('class');
+
+                                $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
+                                $this.find('[data-column="' + n + '"]').children().append(currC.clone());
+                            })
+                            columnsObj.remove();
+                        }
+                    })
                 menuItem.find('a').click(function(e) {
-                    if ($.exists_nabir($(this).find(drop)))z
+                    if ($.exists_nabir($(this).find(drop)))
                         e.stopPropagation();
                 });
             }
+            return menu;
         },
         refresh: function() {
-            methods.init.call($(this), optionsMenu);
+            methods.init.call($(this), $.extend(optionsMenu, {refresh: true}));
+            return $(this);
         }
     };
     $.fn.menuImageCms = function(method) {
@@ -772,7 +802,8 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            if ($.existsN($(this))) {
+            var $this = $(this);
+            if ($.existsN($this)) {
                 var settings = $.extend({
                     effectOn: 'show',
                     effectOff: 'hide',
@@ -783,7 +814,6 @@ function ieInput(els) {
                     after: function() {
                     }
                 }, options);
-                $this = this;
                 var tabsDiv = [],
                         tabsId = [],
                         navTabsLi = [],
@@ -793,7 +823,7 @@ function ieInput(els) {
                 refs = [];
                 attrOrdata = [];
                 wST = wnd.scrollTop();
-                this.each(function(index) {
+                $this.each(function(index) {
                     var $thiss = $(this),
                             effectOn = settings.effectOn,
                             effectOff = settings.effectOff,
@@ -821,7 +851,6 @@ function ieInput(els) {
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
                     regRefs[index] = new RegExp(regRefs[index]);
-
                     refs[index].bind('click.tabs', function(e) {
                         var $this = $(this);
                         if ($this.is('a'))
@@ -907,6 +936,7 @@ function ieInput(els) {
                     }
                 });
             }
+            return $this;
         },
         location: function() {
             hashs = [];
@@ -916,8 +946,8 @@ function ieInput(els) {
                 var i = 0,
                         j = 0;
                 $(refs).each(function(index) {
-                    var index = index;
-                    $this = refs[index].first(),
+                    var index = index,
+                            $this = refs[index].first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs[i] = $this[attrOrdataL]('href');
@@ -933,8 +963,8 @@ function ieInput(els) {
             else {
                 $(refs).each(function(index) {
                     var index = index,
-                            j = 0;
-                    $this = refs[index].first(),
+                            j = 0,
+                            $this = refs[index].first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -945,8 +975,8 @@ function ieInput(els) {
                         s = '#',
                         m = s.length,
                         res = 0,
-                        i = 0;
-                pos = [];
+                        i = 0,
+                        pos = [];
                 while (i < t.length - 1)
                 {
                     var ch = t.substr(i, m)
@@ -987,20 +1017,21 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(options) {
-            var settings = $.extend({}, options),
-                    mouseWhell = settings.mouseWhell;
-            elEven = settings.elEven;
-            elEvens = $(settings.right).find(elEven);
-            onlyDif = settings.onlyDif;
-            allParams = settings.allParams;
-            hoverParent = settings.hoverParent;
-            this.each(function(index) {
+            var $this = $(this),
+                    settings = $.extend({}, options),
+                    mouseWhell = settings.mouseWhell,
+                    elEven = settings.elEven,
+                    onlyDif = settings.onlyDif,
+                    allParams = settings.allParams,
+                    hoverParent = settings.hoverParent,
+                    jScrollPane = settings.jScrollPane || false;
+            $this.each(function(index) {
                 var $this = $(this),
                         visThis = $this.is(':visible');
                 if (visThis) {
                     var left = $this.find(settings.left),
-                            right = $this.find(settings.right);
-                    liLength = left.length;
+                            right = $this.find(settings.right),
+                            liLength = left.length;
                 }
 
                 if (visThis && !$this.is('[data-equalHorizCell]')) {
@@ -1008,9 +1039,9 @@ function ieInput(els) {
                             liH = [],
                             frameScroll = $this.find(settings.frameScroll),
                             frameScrollC = frameScroll.children(),
-                            frameScrollCL = frameScrollC.length;
-                    scrollNSP = settings.scrollNSP && $.exists(frameScroll);
-                    scrollNSPT = settings.scrollNSPT;
+                            frameScrollCL = frameScrollC.length,
+                            scrollNSP = settings.scrollNSP && $.exists(frameScroll),
+                            scrollNSPT = settings.scrollNSPT;
                     for (var j = 0; j < liLength; j++) {
                         nab = $([]);
                         right.each(function() {
@@ -1031,16 +1062,16 @@ function ieInput(els) {
                         w += $(this).outerWidth(true);
                     })
                     frameScroll.css('width', w);
-                    frameScrollP = frameScroll.parent();
-                    frameScrollPW = frameScrollP.width();
-                    var scrollW = w - frameScroll.parent().width();
+                    var frameScrollP = frameScroll.parent(),
+                            frameScrollPW = frameScrollP.width(),
+                            scrollW = w - frameScrollPW;
                     if (scrollNSP) {
                         scrollNSPT = $this.find(scrollNSPT);
                         topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
                         $this.children('.scrollNSP').remove();
                         $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
                     }
-                    var firstScrl = frameScroll.parent(),
+                    var firstScrl = frameScrollP.css('overflow', 'hidden'),
                             secScrl = $([]);
                     if (scrollNSP) {
                         secScrl = $this.children('.scrollNSP');
@@ -1049,6 +1080,7 @@ function ieInput(els) {
                             'top': topScrollNSP
                         })
                     }
+                    
 
                     if (mouseWhell) {
                         firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
@@ -1087,28 +1119,31 @@ function ieInput(els) {
                                 $(this).removeClass('oddC').addClass('evenC')
                         });
                     });
-                    methods.hoverComprasion(left, right);
+                    methods.hoverComprasion(left, right, elEven);
                     onlyDif.die('click').live('click', function() {
-                        methods.onlyDifM(left, right);
+                        methods.onlyDifM(left, right, liLength, elEven);
                     })
                     allParams.die('click').live('click', function() {
-                        methods.allParamsM(left, right);
+                        methods.allParamsM(left, right, liLength, elEven);
                     })
                 }
             })
+            return $this;
         },
-        refresh: function() {
+        refresh: function(optionCompare) {
+            var $this = $(this);
             $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
-            $(this).equalHorizCell(optionCompare)
+            $this.equalHorizCell(optionCompare)
+            return $this;
         },
-        headComprasion: function() {
-            compHead = $('.comprasion-head');
-            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
-                compHead.find('.tabs').css('height', left.first().height() - 70);
-            else
-                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
-        },
-        hoverComprasion: function(left, right) {
+//        headComprasion: function() {
+//            compHead = $('.comprasion-head');
+//            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
+//                compHead.find('.tabs').css('height', left.first().height() - 70);
+//            else
+//                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
+//        },
+        hoverComprasion: function(left, right, elEven) {
             left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
                         index = $this.index(),
@@ -1128,7 +1163,7 @@ function ieInput(els) {
                         $([]).add(left.eq(index)).add(nab).removeClass('hover')
                     });
         },
-        onlyDifM: function(left, right) {
+        onlyDifM: function(left, right, liLength, elEven) {
             liH = [];
             var genObjC = $([]);
             tempText = '';
@@ -1168,7 +1203,7 @@ function ieInput(els) {
             });
             genObjC.hide();
         },
-        allParamsM: function(left, right) {
+        allParamsM: function(left, right, elEven) {
             left.removeClass('evenC').removeClass('oddC').each(function(ind) {
                 if (ind % 2 == 0)
                     $(this).addClass('oddC');
@@ -1245,7 +1280,6 @@ function ieInput(els) {
                 e.stopPropagation();
                 e.preventDefault();
                 var $this = $(this);
-
                 elSet = $this.data();
                 function showDrop(elSetSource, isajax, e) {
                     var place = elSet.place || settings.place,
@@ -1268,8 +1302,8 @@ function ieInput(els) {
                             $thisEOff = elSet.effectOff || effoff,
                             $thisD = elSet.duration || duration,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            overlayOpacity = elSet.overlayopacity || settings.overlayOpacity;
-                    condOverlay = overlayColor != undefined && overlayOpacity != undefined;
+                            overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
+                    condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
                     if (condOverlay) {
                         if (!$.exists('.overlayDrop')) {
                             body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
@@ -1294,7 +1328,6 @@ function ieInput(els) {
                         $thisDrop = $(e.starget).closest('[data-elrun]');
                         if ($.existsN($thisDrop))
                             methods.triggerBtnClick($thisDrop, selector, close);
-
                         if (e.button == undefined && place != "center")
                             wnd.scrollTop($this.offset().top);
                         var wndW = wnd.width();
@@ -1327,7 +1360,6 @@ function ieInput(els) {
                     }).bind('keydown.bodydrop', function(e) {
                         if (!e)
                             var e = window.event;
-
                         key = e.keyCode;
                         if (key == 27) {
                             methods.triggerBtnClick(false, selector, close);
@@ -1338,6 +1370,8 @@ function ieInput(els) {
                 $this.parent().addClass(activeClass);
                 elSetSource = $(elSet.drop);
                 if ($.existsN(elSetSource)) {
+                    if (!$.existsN(elSetSource.parent('body')))
+                        body.append(elSetSource)
                     showDrop(elSetSource, false, e);
                 }
                 else if (elSet.source) {
@@ -1347,7 +1381,6 @@ function ieInput(els) {
                             body.append(data);
                             elSetSource = $(elSet.drop);
                             showDrop(elSetSource, true, e);
-
                             var el = elSetSource.find('[data-drop]');
                             methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
                         })
@@ -1364,7 +1397,6 @@ function ieInput(els) {
                 var drop = $('[data-elrun].' + activeClass);
             else
                 var drop = sel;
-
             if ($.existsN(drop)) {
                 drop.removeClass(activeClass).each(function() {
                     var $this = $(this),
@@ -1395,7 +1427,6 @@ function ieInput(els) {
                         $(this).removeAttr('style');
                         if (close != undefined)
                             close($thisB, $(this));
-
                         if (typeof sel == 'function')
                             sel();
                     });
@@ -1457,9 +1488,10 @@ function ieInput(els) {
                 }
             }
             wnd.bind('resize.drop', function() {
-                methods.dropScroll(elSetSource)
+                if ($thisP == 'center') {
+                    methods.dropScroll(elSetSource)
+                }
             });
-
         }
     };
     $.fn.drop = function(method) {
@@ -1518,21 +1550,18 @@ function ieInput(els) {
                         var el = $(this),
                                 input = $this.focus(),
                                 inputVal = parseInt(input.val());
-
                         if (!input.is(':disabled')) {
                             settings.before(e, el, input);
                             if (isNaN(inputVal))
                                 input.val(1);
                             else
                                 input.val(inputVal + 1);
-
                             if (settings.ajax && !checkProdStock)
                                 $.fancybox.showActivity();
                             if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
                                 $.fancybox.showActivity();
                             if (checkProdStock)
                                 input.maxValue();
-
                             settings.after(e, el, input);
                         }
                     })
@@ -1540,7 +1569,6 @@ function ieInput(els) {
                         var el = $(this),
                                 input = $this.focus(),
                                 inputVal = parseInt(input.val());
-
                         if (!input.is(':disabled')) {
                             settings.before(e, el, input);
                             if (isNaN(inputVal))
@@ -1574,11 +1602,9 @@ function ieInput(els) {
             var $this = $(this),
                     $min = $(this).attr('data-min'),
                     $thisVal = parseInt($this.val());
-
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
-
             if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0')) {
                 $this.val($min);
             }
@@ -1600,7 +1626,6 @@ function ieInput(els) {
             var $this = $(this),
                     $thisVal = $this.val(),
                     $max = parseInt($this.attr('data-max'));
-
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
@@ -1665,6 +1690,7 @@ function ieInput(els) {
                             contW = $content.width(),
                             contH = $content.height(),
                             groupButton = $this.find(groupButtons);
+                    console.log(groupButton)
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
                     var k = false,
@@ -1674,7 +1700,6 @@ function ieInput(els) {
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
                     if (condH || condV)
                         k = true;
-
                     if (k) {
                         var mainO = {
                             buttonNextHTML: $thisNext,
@@ -1685,7 +1710,6 @@ function ieInput(els) {
                         $this.jcarousel($.extend(
                                 adding
                                 , mainO)).addClass('iscarousel').removeClass('mask-carousel');
-
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                     }
@@ -1747,6 +1771,7 @@ var Shop = {
         shipFreeFrom: 0,
         giftCertPrice: 0,
         add: function(cartItem, e) {
+            console.log(cartItem)
             //trigger before_add_to_cart
             $(document).trigger({
                 type: 'before_add_to_cart',
@@ -1990,7 +2015,9 @@ var Shop = {
                 maxcount: 0,
                 number: '',
                 vname: false,
-                url: false
+                url: false,
+                addprices: false,
+                addprice: false
             };
         return prototype = {
             id: obj.id ? obj.id : 0,
@@ -2023,6 +2050,7 @@ var Shop = {
         cartItem.name = $context.data('name');
         cartItem.kit = $context.data('kit');
         cartItem.prices = $context.data('prices');
+        cartItem.addprices = $context.data('addprices');
         cartItem.kitId = $context.data('kitid');
         cartItem.maxcount = $context.data('maxcount');
         cartItem.number = $context.data('number');

@@ -8,7 +8,7 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form ">
-                <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
+                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', 'data-callback');
                     return false;">
                     <label>
                         <span class="title">Ваше имя:</span>

@@ -1,10 +1,8 @@
-<div class="frame-l2">
-    <ul class="items sub-category">
-        {$wrapper}
-    </ul>
-    <div class="btn-additional-s_c">
-        <button type="button">
-            <span class="text-el">Все категории <span class="f-s_13">→</span></span>
-        </button>
-    </div>
+<ul class="items">
+    {$wrapper}
+</ul>
+<div class="btn-additional-s_c">
+    <button type="button">
+        <span class="text-el">Все категории <span class="f-s_13">→</span></span>
+    </button>
 </div>
