@@ -10,27 +10,39 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     countColumn: 5, //if not drop-side
+
+//    if need column partition
+    columnPart: true,
+    columnClassPref: 'column_',
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
     //sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 480,
+    dropWidth: 600,
     evLF: 'hover',
     evLS: 'hover',
     frAClass: 'hoverM'
 };
 var optionCompare = {
-    left: '.leftDescription li',
-    right: '.comprasion_tovars_frame > li',
+    left: '.left-compare li',
+    right: '.items-compare > li',
     elEven: 'li',
-    frameScroll: '.comprasion_tovars_frame',
-    mouseWhell: false,
+    frameScroll: '.items-compare',
+    mouseWhell: true,
     scrollNSP: true,
+    jScrollPane:true,
     scrollNSPT: '.items-catalog',
     onlyDif: $('[data-href="#only-dif"]'),
     allParams: $('[data-href="#all-params"]'),
     hoverParent: '.characteristic'
+};
+imageCmsApiDefaults = {
+    hideForm: true,
+    messagePlace: 'ahead', // behind
+    durationHideForm: 3000,
+    callback: function() {
+    }
 };
 icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
@@ -64,7 +76,7 @@ icons = {
     icon_comment: "M16,5.333c-7.732,0-14,4.701-14,10.5c0,1.982,0.741,3.833,2.016,5.414L2,25.667l5.613-1.441c2.339,1.317,5.237,2.107,8.387,2.107c7.732,0,14-4.701,14-10.5C30,10.034,23.732,5.333,16,5.333z",
     icon_success: "M2.379,14.729 5.208,11.899 12.958,19.648 25.877,6.733 28.707,9.561 12.958,25.308z",
     icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z"
-}
+};
 var genObj = {
     textEl: '.text-el', //селектор
     popupCart: '#popupCart',
@@ -105,7 +117,7 @@ var genObj = {
     btnBuyCss: 'btn-buy', //назва класу
     btnCartCss: 'btn-cart', //назва класу
     descr: '.description',
-    frameNumber: '.frame-number',
+    frameNumber: '.frame-variant-code',
     frameVName: '.frame-variant-name',
     code: '.code',
     prefV: ".variant_",
@@ -122,16 +134,20 @@ var genObj = {
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
     frameChangeCount: '.frame-change-count',
-    numberC: '.number'//количество на складе
-}
+    numberC: '.number', //количество на складе
+    msgF: '.msg',
+    err: 'error', //клас
+    scs: 'success'//клас
+
+};
 message = {
     success: function(text) {
-        return '<div class = "msg"><div class = "success"><span class = "icon_info"></span><span class="text-el">' + text + '</span></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><span class="text-el">' + text + '</span></div></div>'
     },
     error: function(text) {
-        return '<div class = "msg"><div class = "error"><span class = "icon_info"></span><span class="text-el">' + text + '</span></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><span class="text-el">' + text + '</span></div></div>'
     }
-}
+};
 
 function dropBaskResize() {
     var wndH = wnd.height(),
@@ -165,6 +181,7 @@ function decorElemntItemProduct() {
             decEl.css('height', sumH + decElH);
         });
         $('[data-elchange="#items-catalog-main"]').addClass('visited');
+        wnd.scroll();//if lazyload
     }
     setTimeout(curFunc, 400)
 }
@@ -259,7 +276,7 @@ function deleteComprasionItem(el) {
         $('.page-compare').find(genObj.blockNoEmpty).show()
     }
 
-    $('.frame-tabs-comprasion > div').equalHorizCell('refresh');
+    $('.frame-tabs-compare > div').equalHorizCell('refresh', optionCompare);
     if (optionCompare.onlyDif.parent().hasClass('active'))
         optionCompare.onlyDif.click();
     else
@@ -455,7 +472,7 @@ function initShopPage(showWindow, target, orderDetails) {
             var $this = $(this);
             if ($this.maxValue(e, function() {
                 $this.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false})
-            })) {
+            }) && !$.testNumber(e)) {
                 $this.minValue();
                 chCountInCart($(this).prev('div'));
             }
@@ -680,8 +697,8 @@ jQuery(document).ready(function() {
             if (dropEl.is(genObj.popupCart)) {
                 dropBaskResize();
             }
-            dropEl.find('label.error, label.success').hide();
-            dropEl.find(':input').removeClass('error success');
+            dropEl.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
+            dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
         },
         after: function(el, dropEl, isajax) {
             if (isajax)
@@ -711,7 +728,7 @@ jQuery(document).ready(function() {
     $('.tabs').tabs({
         after: function(el) {
             if (el.parent().hasClass('comprasion-head')) {
-                $('.frame-tabs-ref > div').equalHorizCell(optionCompare);
+                $('.frame-tabs-compare > div').equalHorizCell(optionCompare);
                 if (optionCompare.onlyDif.parent().hasClass('active'))
                     optionCompare.onlyDif.click();
                 else
@@ -722,7 +739,8 @@ jQuery(document).ready(function() {
             }
         }
     });
-    $('.frame-tabs-ref > div').equalHorizCell(optionCompare);
+
+    $('.frame-tabs-compare > div').equalHorizCell(optionCompare);
     $(genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1))',
         next: 'prev.children(:eq(0))',
@@ -768,7 +786,7 @@ jQuery(document).ready(function() {
                     }
                 });
                 var itemThumbs = carGal.find('.items-thumbs');
-                itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend($('[data-rel="mainThumbPhoto"]').children().clone().removeClass('d_n'));
+                itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend($('[data-rel="mainThumbPhoto"]').children().clone(true).removeClass('d_n'));
                 if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
                     itemThumbs.unwrap();
                 fancyTitle.prependTo(fancyC);
@@ -809,7 +827,6 @@ jQuery(document).ready(function() {
                 $("#fancybox-wrap").unbind('mousewheel.fb');
             }
         })
-
 
         //if cloudzoom
 //    $('.item-product .items-thumbs > li > a').bind('click', function(e) {
@@ -856,6 +873,10 @@ jQuery(document).ready(function() {
         });
     });
     drawIcons($(selIcons));
+    $('svg').live('click', function(e) {
+        e.preventDefault();
+        $(this).closest('button').click();
+    })
     var userTool = new itemUserToolbar();
     userTool.show($('.items-user-toolbar'), $('.btn-toggle-toolbar > button'), '.box-1, .box-2, .box-3');
     userTool.resize($('.frame-user-toolbar'));
@@ -1012,8 +1033,8 @@ jQuery(document).ready(function() {
     $('#applyGiftCert').bind('click', function(e) {
         $thisPreloader = $('.label-gift-cert .preloader');
         e.preventDefault();
-        var inputGiftCert = $('[name="giftcert"]').removeClass('error success')
-        inputGiftCert.next('.msg').remove(),
+        var inputGiftCert = $('[name="giftcert"]').removeClass(genObj.scs + ' ' + genObj.err)
+        inputGiftCert.next(genObj.msgF).remove(),
                 inputGiftCertVT = $.trim(inputGiftCert.val());
         if (inputGiftCertVT != '') {
             $.ajax({
@@ -1029,12 +1050,12 @@ jQuery(document).ready(function() {
                         Shop.Cart.giftCertPrice = dataObj.cert_price;
                         if (Shop.Cart.giftCertPrice > 0)
                         {
-                            inputGiftCert.addClass('success');
+                            inputGiftCert.addClass(genObj.scs);
                             $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision));
                             $('#giftCertSpan').show();
                         }
                         else {
-                            inputGiftCert.addClass('error').after(message.error(dataObj.errors));
+                            inputGiftCert.addClass(genObj.err).after(message.error(dataObj.errors));
                             $('#giftCertSpan').hide();
                             drawIcons(inputGiftCert.next().find(selIcons));
                         }
