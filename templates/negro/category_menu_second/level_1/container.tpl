@@ -1,1 +1,1 @@
-<ul class="items">{$wrapper}</ul>
+{$wrapper}

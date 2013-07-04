@@ -8,8 +8,8 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
-                  <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
-                    return false;">
+                <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
+                        return false;">
                     <div class="horizontal-form">
                         <label>
                             <span class="title">E-mail:</span>

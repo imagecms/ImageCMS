@@ -17,70 +17,103 @@
 */
 #}
 
-<div class="frame-inside">
+<div class="frame-inside page-order">
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
-            <div class="title-h2">Спасибо за ваш заказ!</div>
+            <div class="f-s_0 title-order-view without-crumbs">
+                <div class="frame-title">
+                    <h1 class="d_i c_9">Спасибо, ваш заказ принят.</h1>
+                </div>
+            </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
-                    Shop.Cart.clear();
+                Shop.Cart.clear();
                 }){/literal}
             </script>
         {else:}
-            <div class="title-h2">Заказ №<span class="arial">{echo $model->getId()}</span></div>
+            <div class="f-s_0 title-order-view without-crumbs">
+                <div class="frame-title">
+                    <h1 class="d_i">Номер заказа:<span class="number-order">{echo $model->getId()}</span></h1>
+                </div>
+            </div>
         {/if}
 
         {$total = $model->getTotalPrice()}
         <!-- Start. Displays a information block about Order -->
         <div class="left-order">
-            <div class="m-b_15">
-                Дата заказа {date('d.m.Y, H:i:s.',$model->getDateCreated())} 
-                {if (int)$model->getComulativ() > 0}
-                    <br/>Скидка: <span class="text-discount">-{echo $model->getComulativ()}%</span>
+            <div class="title-h3">Параметры заказа</div>
+            <table class="table-info-order">
+                <tr>
+                    <th>Дата заказа</th>
+                    <td>{date('d.m.Y, H:i:s.',$model->getDateCreated())} </td>
+                </tr>
+                <!-- Start. Render certificate -->
+                {$giftCond = $model->getGiftCertKey() != null}
+                {if $giftCond}
+                    {$giftPrice = (float)$model->getGiftCertPrice()}
+                    {$total -= $giftPrice}
+                {else:}
+                    {$giftPrice = 0}
                 {/if}
-                 <!-- Start. Render certificate -->
-                {if $model->getGiftCertKey() != null}
-                    <br/>Сертификат: <span class="text-discount">-{echo $model->getgiftCertPrice()} {$CS}</span>
-                    {$total -= (float)$model->getgiftCertPrice()}
-                {/if}
-                 <!-- End. Render certificate -->
-                  <!-- Start. Delivery Method price -->
+                <!-- End. Render certificate -->
+
+                <!-- Start. Delivery Method price -->
                 {if (int)$model->getDeliveryPrice() > 0}
-                    <br/>Стоимость доставки: <span class="green">{echo round($model->getDeliveryPrice())} {$CS}</span>
                     {$total = $total + $model->getDeliveryPrice()}
                 {/if}
                 <!-- End. Delivery Method price -->
-                <br/>Итого: <span class="green f-w_b">{echo $total} {$CS}</span>
+
+                <tr>
+                    <th>К оплате:</th>
+                    <td>
+                        <span class="frame-prices f-s_0">
+                            <span class="current-prices f-s_0">
+                                <span class="price-new">
+                                    <span>
+                                        <span class="price">{echo $total}</span>
+                                        <span class="curr">{$CS}</span>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+
                 <!-- Start. Render payment button and payment description -->
-                <br/>Способ оплаты:
-                {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
-                    {echo $paymentMethod->getPaymentForm($model)}
+                <tr>
+                    <th>Способ оплаты:</th>
+                    <td>
+                        {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                             {if $paymentMethod->getDescription()}
-                                <div class="m-t_10 infoOrder">{echo ShopCore::t($paymentMethod->getDescription())}</div>
+                                {echo ShopCore::t($paymentMethod->getDescription())}
                             {/if}
-                {/if}
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="frame-payment">
+                            {echo ShopSettingsQuery::create()->filterByName('adminMessageOrderPage')->findOne()->getValue()}
+                            {echo $paymentMethod->getPaymentForm($model)}
+                        </div>
+                    </td>
+                </tr>
                 <!-- End. Render payment button and payment description -->
-            </div>
-            
-            <div class="title-h3">Параметры заказа</div>
-            <table class="table-info-order">
-<!--                Start. Order status-->
+
+                <!--                Start. Order status-->
                 <tr>
                     <th>Статус заказа</th>
                     <td><span class="status-order">{echo SOrders::getStatusName('Id',$model->getStatus())}</span></td>
                 </tr>
-<!--                End. Order status-->
-<!--                    Start. Paid or not-->
+                <!--                End. Order status-->
+                <!--                    Start. Paid or not-->
                 <tr>
                     <th>Статус оплаты</th>
-                    <td><span class="status-order">{if $model->getPaid() == true}Оплачен{else:}Неоплачен{/if}</span></td>
+                    <td><span class="status-pay">{if $model->getPaid() == true}Оплачен{else:}Неоплачен{/if}</span></td>
                 </tr>
-<!--                    End. Paid or not-->
-                <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
-                 <!-- Start. Delivery Method name -->
+                <!--                    End. Paid or not-->
+
+                <!-- Start. Delivery Method name -->
                 <tr>
                     <th>Способ доставки</th>
                     <td>
@@ -89,24 +122,32 @@
                         {/if}
                     </td>
                 </tr>
-                 <!-- End. Delivery Method name -->
+                <!-- End. Delivery Method name -->
+
+            </table>
+            <div class="title-h3">Данные покупателя</div>
+            <!--                Start. User info block-->
+            <table class="table-info-order">
                 <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
-<!--                Start. User info block-->
-                <tr>
-                    <th>Ваше имя:</th>
+                    <th>Имя:</th>
                     <td>{echo $model->getUserFullName()}</td>
                 </tr>
+                {if $model->getUserPhone()}
                 <tr>
                     <th>Телефон:</th>
                     <td>{echo $model->getUserPhone()}</td>
                 </tr>
+                {/if}
                 <tr>
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
+                {if $model->getUserEmail()}
+                <tr>
+                    <th>Город:</th>
+                    <td>{echo $model->getUserEmail()}</td>
+                </tr>
+                {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>Адрес:</th>
@@ -119,91 +160,237 @@
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
-<!--                End. User info block-->
+                <!--                End. User info block-->
             </table>
         </div>
         <!-- End. Displays a information block about Order -->
         <div class="right-order">
-            <div class="frame-your-order">
-                <div class="title-h3">Ваш заказ</div>
-                {foreach $model->getSOrderProductss() as $orderProduct}
-         <!-- Start. Render Ordered Products -->            
-                        <ul class="items items-complect item-order">
-                            <li>
-                                <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">
-                                    <span class="photo-block">
-                                        <span class="helper"></span>
-                                        <img alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}" src="{productImageUrl($orderProduct->getSProducts()->getSmallModImage())}">
-                                    </span>
-                                    <span class="title">{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}</span>
-                                </a>
-                                <div class="description">
-                                    <div class="price-complect d_i-b">
-                                        <div>{echo $orderProduct->getPrice()} <span class="cur">{$CS}</span></div>
-                                    </div>
-                                    х {echo $orderProduct->getQuantity()} шт.
-                                </div>
-                            </li>
-                        </ul>
-                {/foreach}
-            <!-- End. Render Ordered Products -->
-        <!-- Start. Render Ordered kit products  -->
-                {foreach $model->getOrderKits() as $orderProduct}                        
-                                    <ul class="items items-complect items items-complect-order-view">
-                                        <li>
-                                            <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}">
-                                                <span class="photo-block">
-                                                    <span class="helper"></span>
-                                                        <img src="{productImageUrl($orderProduct->getKit()->getMainProduct()->getSmallModImage())}" 
-                                                                         alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
-                                                    </span>
-                                                <span class="title">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</span>
-                                            </a>
-                                            <div class="description">
-                                                <div class="price-complect d_i-b">
-                                                    <div>{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()} <span class="cur">{$CS}</span></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- Start. Display kits products -->
-                                        {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
-                                            <li>
-                                                <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}">
+            <div class="frame-bask frame-bask-order">
+                <div class="frame-bask-scroll">
+                    <div class="frame-bask-main">
+                        <div class="inside-padd">
+                            <table class="table-order">
+                                <tbody>
+                                    <!-- for single product -->
+                                    {foreach $model->getSOrderProductss() as $orderProduct}
+                                        <tr class="items items-bask items-order cartProduct">
+                                            <td class="frame-items">
+                                                <!-- Start. Render Ordered Products -->            
+                                                <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
-                                                            <img src="{productImageUrl($kitProducts->getSProducts()->getSmallModImage())}" 
-                                                                             alt="{echo ShopCore::encode($kitProducts->getSProducts()->getName())}"/>
+                                                        <img alt="{echo ShopCore::encode($orderProduct->product_name)}" src="{echo $orderProduct->getSProducts()->firstVariant->getSmallPhoto()}">
                                                     </span>
-                                                    <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
+                                                    <span class="title">{echo ShopCore::encode($orderProduct->product_name)}</span>
                                                 </a>
                                                 <div class="description">
-                                                    <div class="price-complect d_i-b">
-                                                        <div>{echo $kitProducts->getDiscountProductPrice()}<span class="cur">{$CS}</span></div>
-                                                    </div>
+                                                    <span class="frame-variant-name-code">
+                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang(s_variant)}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                </span>
+                                                <span class="frame-prices">
+                                                    <span class="current-prices f-s_0">
+                                                        <span class="price-new">
+                                                            <span>
+                                                                <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="curr">{$CS}</span>
+                                                            </span>
+                                                        </span>
+                                                        <span class="price-add">
+                                                            <span>
+                                                                <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="curr-add">{$NextCs}</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <div class="gen-sum-row">
+                                                    <span class="s-t">Количество:</span>
+                                                    <span class="count">{echo $orderProduct->getQuantity()}</span>
+                                                    <span class="s-t">на сумму:</span>
+                                                    <span class="frame-prices">
+                                                        <span class="current-prices f-s_0">
+                                                            <span class="price-new">
+                                                                <span>
+                                                                    <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
+                                                                    <span class="curr">{$CS}</span>
+                                                                </span>
+                                                            </span>
+                                                            <span class="price-add">
+                                                                <span>
+                                                                    <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
+                                                                    <span class="curr-add">{$NextCs}</span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
                                                 </div>
-                                            </li>
-                                        {/foreach}
-                                        <li>
-                                            <div class="t-a_c">
-                                                <img src="{$THEME}images/sum_arrow.png"/>
                                             </div>
-                                            <span class="v-a_bl">Комплект ({echo $orderProduct->getQuantity()}  шт):</span>
-                                            <div class="v-a_bl d_i-b">
-                                                <div class="price-complect f-s_21 d_i-b"><div>{echo $orderProduct->getKit()->getTotalPrice()}<span class="cur">{$CS}</span></div></div>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                                <!-- end for single product -->
+                                <!-- Start. Render Ordered kit products  -->
+                                {foreach $model->getOrderKits() as $orderProduct}
+                                    <tr class="row-kits">
+                                        <td class="frame-items frame-items-kit">
+                                            <ul class="items items-bask">
+                                                <li>
+                                                    <div class="frame-kit main-product">
+                                                        <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="frame-photo-title">
+                                                            <span class="photo-block">
+                                                                <span class="helper"></span>
+                                                                <img src="{echo $orderProduct->getKit()->getMainProduct()->firstVariant->getSmallPhoto()}" 
+                                                                     alt="{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}"/>
+                                                            </span>
+                                                            <span class="title">{echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}</span>
+                                                        </a>
+                                                        <div class="description">
+                                                            <div class="frame-prices">
+                                                                <span class="current-prices">
+                                                                    <span class="price-new">
+                                                                        <span>
+                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span>
+                                                                            <span class="curr">{$CS}</span>
+                                                                        </span>
+                                                                    </span>
+                                                                    <span class="price-add">
+                                                                        <span>
+                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span>
+                                                                            <span class="curr">{$NextCs}</span>
+                                                                        </span>
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </li>
+                                                {foreach $orderProduct->getKit()->getShopKitProducts() as $key => $kitProducts}
+                                                    <li>
+                                                        <div class="next-kit">+</div>
+                                                        <div class="frame-kit">
+                                                            <a href="{shop_url('product/' . $kitProducts->getSProducts()->getUrl())}" class="frame-photo-title">
+                                                                <span class="photo-block">
+                                                                    <span class="helper"></span>
+                                                                    <img src="{echo $kitProducts->getSProducts()->firstVariant->getSmallPhoto()}" 
+                                                                         alt="{echo ShopCore::encode($kitProducts->getSProducts()->getName())}"/>
+                                                                </span>
+                                                                <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
+                                                            </a>
+                                                            <div class="description">
+                                                                {/*<div class="frame-prices">
+                                                                    <span class="current-prices">
+                                                                        <span class="price-new">
+                                                                            <span>
+                                                                                <span class="price">{echo $kitProducts->getDiscountProductPrice()}</span>
+                                                                                <span class="curr">{$CS}</span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>*/}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                            <div class="gen-sum-row">
+                                                <img src="{$THEME}images/kits_sum.png"/>
+                                                <span class="s-t">Комплектов:</span>
+                                                <span class="count">{echo $orderProduct->getQuantity()}</span>
+                                                <span class="s-t">на сумму:</span>
+                                                <span class="frame-prices">
+                                                    <span class="current-prices f-s_0">
+                                                        <span class="price-new">
+                                                            <span>
+                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                                <span class="curr">{$CS}</span>
+                                                            </span>
+                                                        </span>
+                                                        <span class="price-add">
+                                                            <span>
+                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                                <span class="curr-add">{$NextCs}</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </span>
                                             </div>
-                                        </li>
-                                    </ul>
-                {/foreach}
-<!--                Start. Price block-->
-                <div class="m-b_15 t-a_r">
-                    <div class="f-s_18 f-w_b">К оплате: <span class="price-order">
-                            <span>{echo $total}<span class="cur">{$CS}</span></span><br/>
-                            {if round($model->getDeliveryPrice())!= null}Доставка:<span> {echo round($model->getDeliveryPrice())}<span class="cur"> {$CS}</span></span>{/if}
-                        </span>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                                <!-- End. Render Ordered kit products  -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-<!--                End. Price block-->
+            </div>
+            <div class="frame-foot">
+                <div class="header-frame-foot">
+                    <div class="inside-padd">
+                        <ul class="items items-order-gen-info">
+                            <li>
+                                <span class="s-t">Стоимость доставки:</span>
+                                <span class="price-item">
+                                    <span>
+                                        <span class="price">{echo round($model->getDeliveryPrice())}</span>
+                                        <span class="curr">{$CS}</span>
+                                    </span>
+                                </span>
+                            </li>
+
+                            <li>
+                                <span class="s-t">Ваша текущая скидка:</span>
+                                <span class="price-item">
+                                    <span>
+                                        <span class="text-discount current-discount">bla-bla</span>
+                                    </span>
+                                </span>
+                            </li>
+                            {if $giftCond}
+                                <li>
+                                    <span class="s-t">Подарочный сертификат:</span>
+                                    <span class="price-item">
+                                        <span class="text-discount">
+                                            <span class="price">-{echo $giftPrice}</span>
+                                            <span class="curr">{$CS}</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            {/if}
+                        </ul>
+                        <!-- Start. Price block-->
+                        <div class="gen-sum-order">
+                            <span class="title">Итого к оплате:</span>
+                            <span class="frame-prices f-s_0">
+                                {if $giftCond}
+                                    <span class="price-discount">
+                                        <span>
+                                            <span class="price">{echo $total+$giftPrice}</span>
+                                            <span class="curr">{$CS}</span>
+                                        </span>
+                                    </span>
+                                {/if}
+                                <span class="current-prices f-s_0">
+                                    <span class="price-new">
+                                        <span>
+                                            <span class="price">{echo $total}</span>
+                                            <span class="curr">{$CS}</span>
+                                        </span>
+                                    </span>
+                                    <span class="price-add">
+                                        <span>
+                                            (<span class="price" id="totalPriceAdd">bla-bla</span>
+                                            <span class="curr-add">{$NextCs}</span>)
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                        <!-- End. Price block-->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
