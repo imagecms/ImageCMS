@@ -22,12 +22,12 @@
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            <div class="frame-variant-code">
+            <span class="frame-variant-name-code">
                 {$hasCode = $p->firstVariant->getNumber() == '';}
-                <span class="frame-number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{trim($p->firstVariant->getNumber())}{/if})</span></span>
-                {$hasVariant = $p->firstVariant->getName() == '';}  
-                <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{trim($p->firstVariant->getName())}{/if})</span></span>
-            </div>
+                <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">{if !$hasCode}{trim($p->firstVariant->getNumber())}{/if}</span></span>
+                    {$hasVariant = $p->firstVariant->getName() == '';}  
+                <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">{if !$hasVariant}{trim($p->firstVariant->getName())}{/if}</span></span>
+            </span>
             <div class="frame-star f-s_0">
                 {$CI->load->module('star_rating')->show_star_rating($p)}
                 {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
@@ -65,7 +65,7 @@
                             <span class="price-add">
                                 <span>
                                     (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',1)}</span>
-                                    <span class="add-curr">{$NextCs}</span>)
+                                    <span class="curr-add">{$NextCs}</span>)
                                 </span>
                             </span>
                         {/if}
@@ -220,22 +220,23 @@
                     </div>
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
-
-                <div class="p_r frame-without-top">
-                    <div class="no-vis-table">
-                        <!--                    Start. Description-->
-                        {if trim($p->getShortDescription()) != ''}
-                            <div class="short-desc">
-                                {echo $p->getShortDescription()}
-                            </div>
-                        {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId(), 1)}
-                            <div class="short-desc">
-                                <p>{echo $props}</p>
-                            </div>
-                        {/if}
-                        <!-- End. Description-->
+                {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search"}
+                    <div class="p_r frame-without-top">
+                        <div class="no-vis-table">
+                            <!--                    Start. Description-->
+                            {if trim($p->getShortDescription()) != ''}
+                                <div class="short-desc">
+                                    {echo $p->getShortDescription()}
+                                </div>
+                            {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId(), 1)}
+                                <div class="short-desc">
+                                    <p>{echo $props}</p>
+                                </div>
+                            {/if}
+                            <!-- End. Description-->
+                        </div>
                     </div>
-                </div>
+                {/if}
             </div>
         {/if}
         <!--        Start. Remove buttons if compare or wishlist-->
