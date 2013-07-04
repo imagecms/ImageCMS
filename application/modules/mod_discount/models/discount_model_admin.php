@@ -148,14 +148,12 @@ class Discount_model_admin extends CI_Model {
      * @return boolean|int
      */
     public function insertDataToDB($tableName , $data) {
-        
+        try {
             $this->db->insert($tableName, $data);
-            $id =  $this->db->insert_id();
-            if ($id)
-                return $id;
-            else
-                return false;
-        
+            return $this->db->insert_id();
+        }catch (Exception $e) {
+            return false;
+        }
     }
     
     /**
@@ -197,6 +195,7 @@ class Discount_model_admin extends CI_Model {
             $query = $query->where('discount_id !=',$editDiscountId);
         
         $query = $query->where('end_value',null)->or_where('end_value',0)->get('mod_discount_comulativ')->result_array();
+        
         if (count($query))
             return true;
         else 
