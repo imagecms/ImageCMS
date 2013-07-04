@@ -209,7 +209,6 @@ class Discount_model_admin extends CI_Model {
      */
     public function getDiscountAllDataById($id) {
         $query = $this->db->from('mod_shop_discounts')->where('id',$id)->get()->row_array();
-        
         $discountType = $query['type_discount'];
         
         if ($discountType)
