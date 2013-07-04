@@ -1,6 +1,6 @@
 <?php
 
-require_once realpath(dirname(__FILE__) . '/../..') . '/enviroment.php';
+require_once realpath(dirname(__FILE__) . '/../../../..') . '/enviroment.php';
 
 doLogin();
 
@@ -121,9 +121,10 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers wishlist\classes\ParentWishlist::deleteItem
-     * @depends test_addItem
+     * @depends testCreateWishList
      */
     public function testDeleteItem($id) {
+        $this->object->wishlist_model->addItem(1031, $id, '');
         $this->assertTrue($this->object->deleteItem('1031', $id));
     }
 
@@ -198,23 +199,23 @@ class ParentWishlistTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers wishlist\classes\ParentWishlist::deleteItemByIds
+     * @covers wishlist\classes\ParentWishlist::deleteItemsByIds
      * @depends testCreateWishList
      * @depends test_addItem
      */
-    public function testDeleteItemByIds($id) {
+    public function testDeleteItemsByIds($id) {
         for ($i = 0; $i < 6; $i++) {
             $this->assertTrue($this->object->_addItem('1031', $id, '', 999999));
             $ids[] = $this->object->db->insert_id();
         }
-        $this->assertTrue($this->object->deleteItemByIds($ids));
+        $this->assertTrue($this->object->deleteItemsByIds($ids));
     }
 
     /**
      * @covers wishlist\classes\ParentWishlist::deleteImage
      */
     public function testDeleteImage() {
-        write_file('../../../uploads/mod_wishlist/test.png', '');
+        write_file('../../../../../uploads/mod_wishlist/test.png', '');
         $this->assertTrue($this->object->deleteImage('test.png'));
         $this->assertFalse($this->object->deleteImage('test.png'));
     }
