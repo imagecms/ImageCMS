@@ -39,7 +39,21 @@ jQuery.expr[':'].regex = function(elem, index, match) {
     return regex.test(jQuery(elem)[attr.method](attr.property));
 }
 
-function sIncrease(i, ii) { // to up array
+String.prototype.trim = function()
+{
+    return this.trimRight().trimLeft();
+}
+String.prototype.trimMiddle = function()
+{
+    var r = /\s\s+/g;
+    return this.trim().replace(r, ' ');
+}
+String.prototype.pasteSAcomm = function() {
+    var r = /\s,/g;
+    return this.replace(r, ',');
+}
+
+function sIncrease(i, ii) { // to up array     
     if (i > ii)
         return 1;
     else if (i < ii)
@@ -85,8 +99,7 @@ function setcookie(name, value, expires, path, domain, secure)
     }
     var expiresDate = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") +
-            ((path) ? ";path=" + path : "") +
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
             ((domain) ? ";domain=" + domain : "") +
             ((secure) ? ";secure" : "");
 }
@@ -443,7 +456,7 @@ function ieInput(els) {
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
-                if (code != 27 && code != 40 && code != 38 && inputString.val().length != 0 && $.trim(inputString.val()) != "")
+                if (code != 27 && code != 40 && code != 38 && code != 13 && inputString.val().length != 0 && $.trim(inputString.val()) != "")
                     postSearch();
                 else if (inputString.val().length == 0)
                     closeFrame();
@@ -474,8 +487,7 @@ function ieInput(els) {
                 hover: false,
                 me: true
             }, options);
-            var $this = $(this),
-                    textEl = $this.find(genObj.textEl),
+            var $this = $(this), textEl = $this.find(genObj.textEl),
                     me = settings.me,
                     hover = settings.hover,
                     durOff = settings.durOff;
@@ -516,8 +528,7 @@ function ieInput(els) {
     }).live('mouseout', function() {
         $(this).tooltip('remove');
     })
-})(jQuery);
-/*plugin menuImageCms for main menu shop*/
+})(jQuery); /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
         position: function(menuW, $thisL, dropW, drop, $thisW, countColumn) {
@@ -531,8 +542,7 @@ function ieInput(els) {
                         right = menuW - dropW;
                     drop.css('right', right).addClass('right-drop');
                 }
-            }
-            else {
+            } else {
                 drop.removeClass('right-drop')
                 if (drop.children().children().length >= countColumn)
                     drop.css('left', 0).addClass('left-drop');
@@ -594,12 +604,11 @@ function ieInput(els) {
                     var $this = $(this),
                             $thisW = $this.width(),
                             $thisL = $this.position().left,
-                            drop = $this.find(settings.drop),
                             $thisH = $this.height();
                     k[index] = false;
                     if ($thisH > sH)
                         sH = $thisH;
-                    methods.position(menuW, $thisL, dropW, drop, $thisW, countColumn);
+                    methods.position(menuW, $thisL, dropW, $this.find(settings.drop), $thisW, countColumn);
                 }).css('height', sH);
                 menuItem.find('.helper:first').css('height', sH)
 
@@ -625,11 +634,10 @@ function ieInput(els) {
                             var $this = $(this),
                                     $thisI = $this.index();
                             $this = $(this).addClass(hM),
-                                    $thisDrop = $this.find(settings.drop);
+                                    $thisDrop = $this.find(drop);
                             if (e.type == 'click' && evLF == 'toggle') {
                                 $this.siblings().filter('.' + hM).click()
                             }
-
                             var subH = dropOJ.children().children('.' + hM);
                             if (e.type == 'click' && evLS == 'toggle')
                                 subH.click();
@@ -637,7 +645,7 @@ function ieInput(els) {
                                 $this.addClass('firstH');
                             if ($thisI == itemMenuL - 1)
                                 $this.addClass('lastH');
-                            if ($(e.relatedTarget).is(menuItem) || kk == 0)
+                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || kk == 0)
                                 k[$thisI] = true;
                             if (k[$thisI]) {
                                 hoverTO = setTimeout(function() {
@@ -706,15 +714,15 @@ function ieInput(els) {
                         $this.removeClass('firstH');
                     if ($this.index() == itemMenuL - 1)
                         $this.removeClass('lastH');
-                    var $thisDrop = $this.find(settings.drop);
+                    var $thisDrop = $this.find(drop);
                     if ($.existsN($thisDrop)) {
                         if (sub2Frame) {
-                            $this.find(settings.drop)[effOff](durationOff, function() {
+                            $this.find(drop)[effOff](durationOff, function() {
                                 $this.removeClass(hM);
                             });
                         }
                         else {
-                            $this.find(settings.drop).stop()[effOff](durationOff, function() {
+                            $this.find(drop).stop()[effOff](durationOff, function() {
                                 $this.removeClass(hM);
                             });
                         }
@@ -777,7 +785,7 @@ function ieInput(els) {
                         }
                     })
                 menuItem.find('a').click(function(e) {
-                    if ($.exists_nabir($(this).find(drop)))
+                    if ($.existsN($(this).find(drop)))
                         e.stopPropagation();
                 });
             }
@@ -973,10 +981,8 @@ function ieInput(els) {
                 });
                 var t = location.hash,
                         s = '#',
-                        m = s.length,
-                        res = 0,
-                        i = 0,
-                        pos = [];
+                        m = s.length, res = 0,
+                        i = 0, pos = [];
                 while (i < t.length - 1)
                 {
                     var ch = t.substr(i, m)
@@ -984,8 +990,7 @@ function ieInput(els) {
                         res += 1;
                         i = i + m
                         pos[res - 1] = t.indexOf(s, i - m)
-                    }
-                    else
+                    } else
                         i++
                 }
                 var i = 0;
@@ -1018,13 +1023,17 @@ function ieInput(els) {
     var methods = {
         init: function(options) {
             var $this = $(this),
-                    settings = $.extend({}, options),
+                    settings = $.extend({
+                after: function() {
+                }
+            }, options),
                     mouseWhell = settings.mouseWhell,
                     elEven = settings.elEven,
                     onlyDif = settings.onlyDif,
                     allParams = settings.allParams,
                     hoverParent = settings.hoverParent,
-                    jScrollPane = settings.jScrollPane || false;
+                    jScrollPane = settings.jScrollPane || false,
+                    after = settings.after;
             $this.each(function(index) {
                 var $this = $(this),
                         visThis = $this.is(':visible');
@@ -1033,7 +1042,6 @@ function ieInput(els) {
                             right = $this.find(settings.right),
                             liLength = left.length;
                 }
-
                 if (visThis && !$this.is('[data-equalHorizCell]')) {
                     var h = 0,
                             liH = [],
@@ -1065,7 +1073,7 @@ function ieInput(els) {
                     var frameScrollP = frameScroll.parent(),
                             frameScrollPW = frameScrollP.width(),
                             scrollW = w - frameScrollPW;
-                    if (scrollNSP) {
+                    if (scrollNSP && frameScrollCL != 0) {
                         scrollNSPT = $this.find(scrollNSPT);
                         topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
                         $this.children('.scrollNSP').remove();
@@ -1075,31 +1083,59 @@ function ieInput(els) {
                             secScrl = $([]);
                     if (scrollNSP) {
                         secScrl = $this.children('.scrollNSP');
+                        if (jScrollPane)
+                            secScrl.addClass('jScrollPane')
                         secScrl.css({
                             'width': frameScrollPW,
                             'top': topScrollNSP
                         })
                     }
-                    
+                    var api = '';
+                    function initNSS() {
+                        api = $(secScrl).jScrollPane(scrollPane);
+                        api = api.data('jsp');
 
-                    if (mouseWhell) {
+                        return api;
+                    }
+                    if (jScrollPane)
+                        api = initNSS();
+
+                    if (mouseWhell && scrollW > 0) {
                         firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
-                            $thisSL = $(this).scrollLeft();
+                            if (jScrollPane)
+                                $thisSL = api.getContentPositionX();
+                            else
+                                $thisSL = $(this).scrollLeft();
+
                             if ($thisSL != scrollW && deltaY < 0) {
-                                firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
+                                if (jScrollPane)
+                                    api.scrollToX($thisSL + w / frameScrollCL)
+                                else
+                                    firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
                                 return false;
                             }
                             if ($thisSL > 0 && deltaY > 0) {
-                                firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
+                                if (jScrollPane)
+                                    api.scrollToX($thisSL - w / frameScrollCL)
+                                else
+                                    firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
                                 return false;
                             }
                         });
                     }
-                    firstScrl.add(secScrl).scrollLeft('0');
-                    secScrl.unbind('scroll').bind('scroll', function() {
-                        $thisSL = $(this).scrollLeft();
-                        firstScrl.add(secScrl).scrollLeft($thisSL);
-                    });
+                    if (jScrollPane)
+                        api.scrollToX(0)
+                    else
+                        firstScrl.add(secScrl).scrollLeft('0');
+
+                    if (scrollW > 0)
+                        secScrl.unbind('scroll').bind('scroll', function() {
+                            if (jScrollPane)
+                                $thisSL = api.getContentPositionX();
+                            else
+                                $thisSL = $(this).scrollLeft();
+                            firstScrl.add(secScrl).scrollLeft($thisSL);
+                        });
                     $this.attr('data-equalHorizCell', '');
                 }
                 if (visThis) {
@@ -1113,10 +1149,14 @@ function ieInput(els) {
                     });
                     right.each(function() {
                         $(this).find(elEven).each(function(ind) {
+                            var $this = $(this),
+                                    $thisCL = $this.children(':last');
+
+                            $thisCL.text($thisCL.text().trimMiddle().pasteSAcomm());
                             if (ind % 2 == 0)
-                                $(this).removeClass('evenC').addClass('oddC');
+                                $this.removeClass('evenC').addClass('oddC');
                             else
-                                $(this).removeClass('oddC').addClass('evenC')
+                                $this.removeClass('oddC').addClass('evenC')
                         });
                     });
                     methods.hoverComprasion(left, right, elEven);
@@ -1124,8 +1164,9 @@ function ieInput(els) {
                         methods.onlyDifM(left, right, liLength, elEven);
                     })
                     allParams.die('click').live('click', function() {
-                        methods.allParamsM(left, right, liLength, elEven);
+                        methods.allParamsM(left, right, elEven);
                     })
+                    after($this);
                 }
             })
             return $this;
@@ -1136,13 +1177,13 @@ function ieInput(els) {
             $this.equalHorizCell(optionCompare)
             return $this;
         },
-//        headComprasion: function() {
-//            compHead = $('.comprasion-head');
-//            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
-//                compHead.find('.tabs').css('height', left.first().height() - 70);
-//            else
-//                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
-//        },
+        headComprasion: function() {
+            compHead = $('.comprasion-head');
+            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
+                compHead.find('.tabs').css('height', left.first().height() - 70);
+            else
+                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
+        },
         hoverComprasion: function(left, right, elEven) {
             left.add(right.find(elEven)).hover(function() {
                 var $this = $(this),
@@ -1164,19 +1205,19 @@ function ieInput(els) {
                     });
         },
         onlyDifM: function(left, right, liLength, elEven) {
-            liH = [];
-            var genObjC = $([]);
-            tempText = '';
-            k = 0;
+            var liH = [],
+                    genObjC = $([]),
+                    tempText = '',
+                    k = 0;
             for (var j = 0; j < liLength; j++) {
-                nab = $([]);
+                var nab = $([]);
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(j))
                 })
                 var tempNabir = nab;
                 tempNabir.each(function(index) {
                     var thisCh = $(this);
-                    liH[index] = $.trim(thisCh.text());
+                    liH[index] = thisCh.text();
                     if (tempText == liH[index])
                         k++;
                     tempText = liH[index];
@@ -1217,7 +1258,7 @@ function ieInput(els) {
                     else
                         $(this).addClass('evenC')
                 }).show();
-            });
+            })
         }
     };
     $.fn.equalHorizCell = function(method) {
@@ -1271,8 +1312,7 @@ function ieInput(els) {
                     exit = $(settings.exit),
                     effon = settings.effon,
                     effoff = settings.effoff,
-                    duration = settings.duration,
-                    close = settings.close,
+                    duration = settings.duration, close = settings.close,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
                 wST = wnd.scrollTop();
@@ -1321,7 +1361,7 @@ function ieInput(els) {
                     }
                     else {
                         settings.before($this, elSetSource, isajax);
-//                            starget trigger click in drop on show drop element (js_template.tpl showCart)
+                        //                            starget trigger click in drop on show drop element (js_template.tpl showCart)
                         $thisDrop = $this.closest('[data-elrun]');
                         if ($.existsN($thisDrop))
                             methods.triggerBtnClick($thisDrop, selector, close);
@@ -1370,7 +1410,7 @@ function ieInput(els) {
                 $this.parent().addClass(activeClass);
                 elSetSource = $(elSet.drop);
                 if ($.existsN(elSetSource)) {
-                    if (!$.existsN(elSetSource.parent('body')))
+                    if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                         body.append(elSetSource)
                     showDrop(elSetSource, false, e);
                 }
@@ -1407,8 +1447,7 @@ function ieInput(els) {
                     var $thisHref = $thisB.attr('href');
                     if ($thisHref != undefined) {
                         var $thisHrefL = $thisHref.length,
-                                wLH = location.hash,
-                                wLHL = wLH.length;
+                                wLH = location.hash, wLHL = wLH.length;
                         try {
                             var indH = wLH.match($thisHref + '(?![a-z])').index;
                             location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -1454,9 +1493,9 @@ function ieInput(els) {
                 placement = $this.data('placement');
             if (place == undefined)
                 place = $this.data('place');
-            var elSetSource = $($this.data().drop);
-            var $thisP = place;
-            dataSourceH = 0,
+            var elSetSource = $($this.data().drop),
+                    $thisP = place,
+                    dataSourceH = 0,
                     dataSourceW = 0,
                     $thisW = $this.width(),
                     $thisH = $this.height();
@@ -1474,8 +1513,7 @@ function ieInput(els) {
                 $thisL = $this.offset().left + dataSourceW;
                 if ($thisL < 0)
                     $thisL = 0;
-                elSetSource.css({
-                    'top': $thisT,
+                elSetSource.css({'top': $thisT,
                     'left': $thisL
                 });
                 if ($thisL == 0)
@@ -1505,8 +1543,7 @@ function ieInput(els) {
     };
 })(jQuery);
 (function($) {
-    var methods = {
-        init: function(options) {
+    var methods = {init: function(options) {
             var settings = $.extend({
                 prev: '',
                 next: '',
@@ -1524,8 +1561,7 @@ function ieInput(els) {
                             ajax = settings.ajax,
                             $thisPrev = $this,
                             $thisNext = $this,
-                            regS = '',
-                            regM = '';
+                            regS = '', regM = '';
                     $.each(prev, function(i, v) {
                         regS = v.match(/\(.*\)/);
                         if (regS != null) {
@@ -1623,8 +1659,7 @@ function ieInput(els) {
 (function($) {
     var methods = {
         init: function(e, f) {
-            var $this = $(this),
-                    $thisVal = $this.val(),
+            var $this = $(this), $thisVal = $this.val(),
                     $max = parseInt($this.attr('data-max'));
             if (!e)
                 var e = window.event;
@@ -1674,8 +1709,7 @@ function ieInput(els) {
                         prev = settings.prev,
                         next = settings.next,
                         content = settings.content,
-                        groupButtons = settings.groupButtons,
-                        adding = settings.adding;
+                        groupButtons = settings.groupButtons, adding = settings.adding;
                 $jsCarousel.each(function() {
                     var $this = $(this),
                             $item = $this.find(content).children().children(item + ':visible'),
@@ -1690,11 +1724,9 @@ function ieInput(els) {
                             contW = $content.width(),
                             contH = $content.height(),
                             groupButton = $this.find(groupButtons);
-                    console.log(groupButton)
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
-                    var k = false,
-                            isVert = $.existsN($this.closest('.vertical-carousel')),
+                    var k = false, isVert = $.existsN($this.closest('.vertical-carousel')),
                             isHorz = $.existsN($this.closest('.horizontal-carousel')),
                             condH = $itemW * $itemL - $marginR > contW && isHorz,
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
@@ -1720,7 +1752,6 @@ function ieInput(els) {
                             $item.parent().css('height', $itemH * $itemL);
                             $content.css('height', 'auto');
                         }
-
                         $thisNext.add($thisPrev).hide();
                     }
                     if (body.lazyload() == body) {
@@ -1758,7 +1789,6 @@ if (!Array.indexOf) {
         return -1;
     }
 }
-
 var Shop = {
     //var Cart = new Object();
     currentItem: {},
@@ -1924,8 +1954,7 @@ var Shop = {
                 }
             }
             return items;
-        },
-        length: function() {
+        }, length: function() {
             var pattern = /cartItem_*/;
             var length = 0;
             for (var i = 0; i < localStorage.length; i++)
@@ -2001,7 +2030,6 @@ var Shop = {
             });
         },
         updatePage: function() {
-
         }
     },
     cartItem: function(obj) {
@@ -2019,8 +2047,7 @@ var Shop = {
                 addprices: false,
                 addprice: false
             };
-        return prototype = {
-            id: obj.id ? obj.id : 0,
+        return prototype = {id: obj.id ? obj.id : 0,
             vId: obj.vId ? obj.vId : 0,
             price: obj.price ? obj.price : 0,
             addprice: obj.addprice ? obj.addprice : 0,
@@ -2060,8 +2087,7 @@ var Shop = {
         return cartItem;
     },
     //settings manager
-    Settings: {
-        get: function(key) {
+    Settings: {get: function(key) {
             return localStorage.getItem(key);
         },
         set: function(key, value) {
@@ -2101,8 +2127,7 @@ var Shop = {
                             }
                             $(document).trigger({
                                 type: 'wish_list_add',
-                                dataObj: dataObj
-                            });
+                                dataObj: dataObj});
                         }
                         else {
                             if (dataObj.errors.match('not_logged_in')) {

@@ -10,8 +10,14 @@
     <div class="drop-footer"></div>
 </div>
 <div class="d_n" data-clone="data-report">
-      <form method="post" action="" id="data-report" onsubmit="Notification.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report', '.items');
-          return false;">
+    <form method="post" action="" id="data-report" onsubmit="ImageCMSApi.formAction('/shop/ajax/getApiNotifyingRequest', 'data-report', {literal}{drop: '.drop-report', callback: function(msg, status, form, DS) {
+                    if (status) {
+                        $(DS.drop).find('.items > li').children().remove();
+                        hideDrop(DS.drop, form, DS.durationHideForm);
+                    }
+                    return true; /*for hide form*/
+                }}{/literal});
+            return false;">
         <div class="horizontal-form">
             <label>
                 <span class="title">Ваше имя</span>

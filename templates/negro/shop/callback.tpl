@@ -8,8 +8,13 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form ">
-                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', 'data-callback');
-                    return false;">
+                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', 'data-callback', {literal}{callback: function(msg, status, form, DS) {
+                                if (status) {
+                                    hideDrop(DS.drop, form, DS.durationHideForm);
+                                }
+                                return true; /*for hide form*/
+                            }}{/literal});
+                        return false;">
                     <label>
                         <span class="title">Ваше имя:</span>
                         <span class="frame-form-field">

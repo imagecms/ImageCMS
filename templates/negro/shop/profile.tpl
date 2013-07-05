@@ -40,7 +40,7 @@
                                             <div>
                                                 Ваша текущая скидка:
                                                 <span class="price-item">
-                                                    <span class="text-discount">{echo $discount['0']->getDiscount()} %</span>
+                                                    <span class="text-discount">{echo $discount['0']->getDiscount()}%</span>
                                                 </span>
                                             </div>
                                         </li>
