@@ -23,16 +23,18 @@
  *          '/auth/authapi/banned'
  * 
  **/
-
 var ImageCMSApi = {
+    defSet: imageCmsApiDefaults,
     debugMode: true,
     returnMsg: function(msg) {
         if (this.debugMode === true && window.console) {
             console.log(msg);
         }
     },
-    formAction: function(url, selector) {
+    formAction: function(url, selector, obj) {
         //collect data from form
+        var DS = this.defSet;
+        $.extend(DS, obj)
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         else
@@ -49,12 +51,17 @@ var ImageCMSApi = {
             },
             success: function(obj) {
                 if (obj !== null) {
+                    var form = $('#' + selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
                     if (obj.status == true) {
-                        $('#' + selector).hide();
-                        $(message.success(obj.msg)).appendTo($('#' + selector).parent());
-                        drawIcons($('.msg').find(selIcons));
+                        if (DS.hideForm)
+                            form.hide();
+                        if (DS.messagePlace == 'ahead')
+                            $(message.success(obj.msg)).prependTo(form.parent());
+                        if (DS.messagePlace == 'behind')
+                            $(message.success(obj.msg)).appendTo(form.parent());
+                        drawIcons(form.parent().find(genObj.msgF).find(selIcons));
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image);
@@ -70,10 +77,14 @@ var ImageCMSApi = {
                                 location.href = obj.redirect;
                             }
                     if (obj.refresh != true && obj.redirect !== 'undefined') {
+                        if (typeof DS.callback == 'function')
+                            DS.callback(obj.msg, obj.status, form, DS.hideForm, DS.durationHideForm);
+                        
                         setTimeout((function() {
-                            $('.msg').hide();
-                            $('#' + selector).show();
-                        }), 3000);
+                            form.parent().find(genObj.msgF).fadeOut();
+                            if (DS.hideForm)
+                                form.show();
+                        }), DS.durationHideForm);
                     }
                 }
                 return this;
@@ -102,9 +113,9 @@ var ImageCMSApi = {
         if (typeof validations === 'object') {
             for (var key in validations) {
                 if (validations[key] != "") {
-                    thisSelector.find('[name=' + key + ']').addClass('error');
-                    thisSelector.find('label#for_' + key).addClass('error').html(validations[key]).show();
-                    thisSelector.find(':input.error:first').focus();
+                    thisSelector.find('[name=' + key + ']').addClass(genObj.err);
+                    thisSelector.find('label#for_' + key).addClass(genObj.err).html(validations[key]).show();
+                    thisSelector.find(':input.' + genObj.err + ':first').focus();
                 }
             }
         } else {
@@ -120,7 +131,7 @@ var ImageCMSApi = {
         var html = '<span class="title">Код протекции</span>\n\
                         <span class="frame-form-field">\n\
                             <input type="text" name="captcha" value="Код протекции"/> \n\
-                            <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
+                            <span class="help-block" id="for_captcha_image">' + captcha_image + '</span>\n\
                             <label id="for_captcha" class="for_validations"></label>\n\
                         </span>';
         $('#captcha_block').html(html);
@@ -184,13 +195,15 @@ var Notification = {
                     if (obj.status === true) {
                         form.add($(Notification.formClass).find(hideEl)).hide();
                         form.before(message.success(obj.msg));
-                        drawIcons($('.msg').find(selIcons));
+                        drawIcons($(genObj.msgF).find(selIcons));
 
                         if (obj.close === true) {
                             setTimeout((function() {
                                 drop.drop('triggerBtnClick', function() {
-                                    form.show();
-                                    drop.find('.msg').remove();
+                                    drop.find(genObj.msgF).fadeOut(function() {
+                                        $(this).remove();
+                                        form.show();
+                                    })
                                 });
                             }), 3000);
                         }
@@ -222,9 +235,9 @@ var Notification = {
         if (typeof validations === 'object') {
             for (var key in validations) {
                 if (validations[key] != "") {
-                    thisSelector.find('[name=' + key + ']').addClass('error');
-                    thisSelector.find('label#for_' + key).addClass('error').html(validations[key]).show();
-                    thisSelector.find(':input.error:first').focus();
+                    thisSelector.find('[name=' + key + ']').addClass(genObj.err);
+                    thisSelector.find('label#for_' + key).addClass(genObj.err).html(validations[key]).show();
+                    thisSelector.find(':input.' + genObj.err + ':first').focus();
                 }
             }
         } else {
@@ -237,7 +250,7 @@ var Notification = {
 $(document).ready(function() {
     $('form input, textarea').live('input', function() {
         if ($.exists($('label#for_' + $(this).attr('name')))) {
-            $('label#for_' + $(this).removeClass('error success').attr('name')).hide();
+            $('label#for_' + $(this).removeClass(genObj.err + ' ' + genObj.scs).attr('name')).hide();
         }
     });
 });

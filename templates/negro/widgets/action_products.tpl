@@ -59,7 +59,7 @@
                                                     <span class="price-add">
                                                         <span>
                                                             (<span class="price">{echo $p->firstVariant->toCurrency('Price',1)}</span>
-                                                            <span class="add-curr">{$NextCs}</span>)
+                                                            <span class="curr-add">{$NextCs}</span>)
                                                         </span>
                                                     </span>
                                                 {/if}
