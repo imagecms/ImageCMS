@@ -260,13 +260,13 @@ class BaseDiscount extends \MY_Controller {
      * update discount apply
      * @access public
      * @author DevImageCms
-     * @param $key
+     * @param $key, $gift optional
      * @return -----
      * @copyright (c) 2013, ImageCMS
      */    
-    public function updatediskapply($key){
+    public function updatediskapply($key, $gift = null){
         
-        return $this->discount_model_front->updateapply($key);        
+        return $this->discount_model_front->updateapply($key, $gift);        
     }
     
 

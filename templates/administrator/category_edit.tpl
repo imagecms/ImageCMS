@@ -10,7 +10,7 @@
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                     <button type="submit" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
-
+                    {if count($langs) > 1}
                     <div class="dropdown d-i_b">
                         {foreach $langs as $l}
                             {if $l['default'] == 1}
@@ -30,6 +30,7 @@
                         </ul>
 
                     </div>
+                    {/if}
 
                 </div>
             </div>                            

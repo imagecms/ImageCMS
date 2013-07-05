@@ -55,7 +55,7 @@ class Discount_order extends classes\BaseDiscount {
                 $data['order']->settotalprice($pricetotal_gift);
                 $data['order']->setoriginprice($data['price']);
                 $data['order']->save();
-                $obkGift->updatediskapply($data['key']); // TODO
+                $obkGift->updatediskapply($data['key'], 'gift'); // TODO
             }
             
             if ($discount['result_sum_discount']){
