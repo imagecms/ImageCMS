@@ -224,7 +224,8 @@ class Install extends MY_Controller {
 
 
         // Update site title
-        mysql_query('UPDATE `settings` SET `site_title`=\'' . mysql_real_escape_string($this->input->post('site_title')) . '\' ', $link);
+        mysql_query('UPDATE `settings_i18n` SET `name`=\'' . mysql_real_escape_string($this->input->post('site_title')) . '\' ', $link);
+        mysql_query('UPDATE `settings_i18n` SET `short_name`=\'' . mysql_real_escape_string($this->input->post('site_title')) . '\' ', $link);
         mysql_query('UPDATE `settings` SET `lang_sel`=\'' . mysql_real_escape_string($this->input->post('lang_sel')) . '\' ', $link);
 
         // TRUNCATE if user want (product_samples not chacked)

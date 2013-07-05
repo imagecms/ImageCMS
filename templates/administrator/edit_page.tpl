@@ -10,6 +10,7 @@
                 <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#edit_page_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>
+                {if count($langs) > 1}
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                         {foreach $langs as $l}
@@ -29,6 +30,7 @@
                         {/foreach}
                     </ul>
                 </div>
+                {/if}
             </div>
         </div>
     </div>
