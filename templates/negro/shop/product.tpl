@@ -25,10 +25,12 @@
                 <div class="frame-title">
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
-                {$hasCode = $model->firstVariant->getNumber() == '';}
-                <span class="frame-number code" {if $hasCode}style="display:none;"{/if}>Код товара: {if !$hasCode}<span class="code">{trim($model->firstVariant->getNumber())}</span>{/if}</span>
-                {$hasVariant = $model->firstVariant->getName() == '';}
-                <span class="frame-number code" {if $hasVariant}style="display:none;"{/if}>Вариант: {if !$hasVariant}<span class="code">{trim($model->firstVariant->getName())}</span>{/if}</span>
+                <span class="frame-variant-name-code">
+                    {$hasCode = $model->firstVariant->getNumber() != '';}
+                    <span class="frame-variant-code" {if !$hasCode}style="display:none;"{/if}>Код товара: <span class="code">{if $hasCode}{trim($model->firstVariant->getNumber())}{/if}</span></span>
+                        {$hasVariant = $model->firstVariant->getName() != '';}
+                    <span class="frame-variant-name" {if !$hasVariant}style="display:none;"{/if}>Вариант: <span class="code">{if $hasVariant}{trim($model->firstVariant->getName())}{/if}</span></span>
+                </span>
             </div>
             <div class="right-product">
                 {/* if cloudzoom*/}
@@ -83,7 +85,7 @@
                                                 <span class="price-add">
                                                     <span>
                                                         (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',1)}</span>
-                                                        <span class="add-curr">{$NextCs}</span>)
+                                                        <span class="curr-add">{$NextCs}</span>)
                                                     </span>
                                                 </span>
                                             {/if}
@@ -355,7 +357,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice('Price',1)}</span>
-                                                                            <span class="add-curr">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCs}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -405,7 +407,7 @@
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency()}</span>
-                                                                                <span class="add-curr">{$NextCs}</span>)
+                                                                                <span class="curr-add">{$NextCs}</span>)
                                                                             </span>
                                                                         </span>
                                                                     {/if}
@@ -443,7 +445,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 (<span class="price">{echo $kitProducts->getTotalPrice()}</span>
-                                                                <span class="add-curr">{$NextCs}</span>)
+                                                                <span class="curr-add">{$NextCs}</span>)
                                                             </span>
                                                         </span>
                                                     {/if}
@@ -454,8 +456,8 @@
                                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                         data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                        data-addprice="{echo json_encode($kitProducts->getTotalPrice())}"
-                                                        data-addprices="{echo json_encode($kitProducts->getTotalPrice())}"  
+                                                        data-addprice="{echo $kitProducts->getTotalPrice()}"
+                                                        data-addprices="{echo json_encode($kitProducts->getPriceCart())}"
                                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                                         data-kit="true"
                                                         data-kitId="{echo $kitProducts->getId()}"
@@ -490,7 +492,7 @@
         </div>
     {/if}
     <!--        End. Buy kits-->
-    <div class="container f-s_0 frame-tabs-product">
+    <div class="container f-s_0">
         <!--        Start. Tabs block       -->
         <ul class="tabs tabs-data">
             <li>
@@ -523,7 +525,7 @@
                 </li>
             {/if}
         </ul>
-        <div class="frame-tabs-ref">
+        <div class="frame-tabs-ref frame-tabs-product">
             <div id="view">
                 <!--             Start. Characteristic-->                 
                 <div class="inside-padd">
@@ -643,7 +645,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                            <span class="add-curr">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCs}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -777,7 +779,7 @@
                                                                 <span class="price-add">
                                                                     <span>
                                                                         (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                        <span class="add-curr">{$NextCs}</span>)
+                                                                        <span class="curr-add">{$NextCs}</span>)
                                                                     </span>
                                                                 </span>
                                                             {/if}

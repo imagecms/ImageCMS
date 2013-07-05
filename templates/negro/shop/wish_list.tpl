@@ -41,7 +41,7 @@
                     <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                     <span class="d_b m-b_5">
                         {$hasCode = $variant->getNumber() == '';}
-                        <span class="frame-number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if})</span></span>
+                        <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if})</span></span>
                         {$hasVariant = $variant->getName() == '';}
                         <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
                     </span>
