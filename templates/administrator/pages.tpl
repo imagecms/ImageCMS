@@ -7,7 +7,7 @@
         {lang('a_category')}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
             <option value="0">{lang('a_without_cat')}</option>
-            { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree']));}
         </select>
     </div>
     <div class="modal-footer">
@@ -59,28 +59,46 @@
                     </ul>
                     <ul class="nav nav-tabs nav-stacked">
                         {foreach $tree as $cat}
-                            <li {if $cat_id==$cat.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$cat.id}" class="pjax">{$cat.name}</a></li>
-                                {if $cat.subtree}
-                                    {foreach $cat.subtree as $sc1}
-                                    <li {if $cat_id==$sc1.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc1.id}" class="pjax">&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc1.name}</a></li>
-                                        {if $sc1.subtree}
-                                            {foreach $sc1.subtree as $sc2}
-                                            <li {if $cat_id==$sc2.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc2.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc2.name}</a></li>
-                                                {if $sc2.subtree}
-                                                    {foreach $sc2.subtree as $sc3}
-                                                    <li {if $cat_id==$sc3.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc3.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc3.name}</a></li>
-                                                        {if $sc3.subtree}
-                                                            {foreach $sc3.subtree as $sc4}
-                                                            <li {if $cat_id==$sc4.id} class="active" {/if}> <a  href="/admin/pages/GetPagesByCategory/{$sc4.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="simple_tree">↳</span>{$sc4.name}</a></li>
-                                                            {/foreach}
-                                                        {/if}
-                                                    {/foreach}
-                                                {/if}
-                                            {/foreach}
-                                        {/if}
-                                    {/foreach}
-                                {/if}
-                            {/foreach}
+                            <li {if $cat_id==$cat.id} class="active" {/if}>
+                                <a  href="/admin/pages/GetPagesByCategory/{$cat.id}" class="pjax">{$cat.name}</a>
+                            </li>
+                            {if $cat.subtree}
+                                {foreach $cat.subtree as $sc1}
+                                    <li {if $cat_id==$sc1.id} class="active" {/if}>
+                                        <a  href="/admin/pages/GetPagesByCategory/{$sc1.id}" class="pjax">&nbsp;&nbsp;&nbsp;
+                                            <span class="simple_tree">↳</span>{$sc1.name}
+                                        </a>
+                                    </li>
+                                    {if $sc1.subtree}
+                                        {foreach $sc1.subtree as $sc2}
+                                            <li {if $cat_id==$sc2.id} class="active" {/if}>
+                                                <a  href="/admin/pages/GetPagesByCategory/{$sc2.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <span class="simple_tree">↳</span>{$sc2.name}
+                                                </a>
+                                            </li>
+                                            {if $sc2.subtree}
+                                                {foreach $sc2.subtree as $sc3}
+                                                    <li {if $cat_id==$sc3.id} class="active" {/if}>
+                                                        <a  href="/admin/pages/GetPagesByCategory/{$sc3.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <span class="simple_tree">↳</span>{$sc3.name}
+                                                        </a>
+                                                    </li>
+                                                    {if $sc3.subtree}
+                                                        {foreach $sc3.subtree as $sc4}
+                                                            <li {if $cat_id==$sc4.id} class="active" {/if}>
+                                                                <a  href="/admin/pages/GetPagesByCategory/{$sc4.id}" class="pjax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <span class="simple_tree">↳</span>{$sc4.name}
+                                                                </a>
+                                                            </li>
+                                                        {/foreach}
+                                                    {/if}
+                                                {/foreach}
+                                            {/if}
+                                        {/foreach}
+                                    {/if}
+                                {/foreach}
+                            {/if}
+                        {/foreach}
                     </ul>
                 </div>
             {/if}
@@ -97,37 +115,40 @@
                         <th class="span1">ID</th>
                         <th class="span4">{lang('a_title')}</th>
                         <th class="span3">{lang('a_url')}</th>
-                    {if $show_cat_list != 'yes'}<th class="span2">{lang('a_category')}</th>{/if}
-                    <th class="span2">{lang('a_date_create')}</th>
-                    <th class="span1">{lang('a_status')}</th>
-                </tr>
-                <tr class="head_body">
-                    <td>
-                    </td>
-                    <td class="number">
-                        <input type="text" name="id" data-original-title="{lang('a_numbers_only')}" value="{$_POST['id']}"/>
-                    </td>
-                    <td>
-                        <input type="text" name="title" value="{$_POST['title']}"/>
-                    </td>
-                    <td>
-                        <input type="text" name="url" value="{$_POST['url']}"/>
-                    </td>
-                    {if $show_cat_list != 'yes'}
+                            {if $show_cat_list != 'yes'}
+                            <th class="span2">{lang('a_category')}</th>
+                            {/if}
+                        <th class="span2">{lang('a_date_create')}</th>
+                        <th class="span1">{lang('a_status')}</th>
+                    </tr>
+                    <tr class="head_body">
                         <td>
-                            <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                <option value="">Все категории</option>
-                                <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
-                                {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
-                            </select>
-                        </td>{/if}
+                        </td>
+                        <td class="number">
+                            <input type="text" name="id" data-original-title="{lang('a_numbers_only')}" value="{$_POST['id']}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="title" value="{$_POST['title']}"/>
+                        </td>
+                        <td>
+                            <input type="text" name="url" value="{$_POST['url']}"/>
+                        </td>
+                        {if $show_cat_list != 'yes'}
+                            <td>
+                                <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+                                    <option value="">Все категории</option>
+                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                    {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
+                                </select>
+                            </td>
+                        {/if}
                         <td>
                         </td>
                         <td>
                         </td>
                     </tr>
                 </thead>
-                <tbody data-url="">
+                <tbody data-url="" class="sortable ui-sortable">
                     {if count($pages)}
                         {foreach $pages as $page}
                             <tr data-id="{$page.id}">

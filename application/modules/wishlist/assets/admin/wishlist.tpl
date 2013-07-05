@@ -64,7 +64,7 @@
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
                                                            style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                                                    <input type="submit" value="upload" class="btn" />
+                                                    <input type="submit" value="Загрузить" class="btn" />
                                                     {form_csrf()}
                                                     </form>
                                                 </div>

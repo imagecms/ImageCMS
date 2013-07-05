@@ -529,12 +529,10 @@ class Pages extends BaseAdminController {
 //            if ($keywords == '' AND $settings['create_keywords'] == 'auto') {
 //                $keywords = $this->lib_seo->get_keywords($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
 //            }
-
             // create description
 //            if ($description == '' AND $settings['create_description'] == 'auto') {
 //                $description = $this->lib_seo->get_description($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
 //            }
-
 //            mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0, -1) : TRUE;
 
             $publish_date = $this->input->post('publish_date') . ' ' . $this->input->post('publish_time');

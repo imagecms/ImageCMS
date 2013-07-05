@@ -28,30 +28,7 @@ class AdminTest extends \PHPUnit_Framework_TestCase {
     protected function tearDown() {
         
     }
-    
-    /**
-     * @covers Admin::index
-     * @todo   Implement testIndex().
-     */
-    public function testIndex() {
-       
-    }
-
-    /**
-     * @covers Admin::create
-     * @todo   Implement testCreate().
-     */
-    public function testCreate() {
-       
-    }
-
-    /**
-     * @covers Admin::edit
-     * @todo   Implement testEdit().
-     */
-    public function testEdit() {
-        
-    }
+   
     /**
      * Prepare test data
      * @covers Admin::all
