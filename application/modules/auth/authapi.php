@@ -42,7 +42,8 @@ class Authapi extends MY_Controller {
 
             /** Prepare response */
             if (TRUE === $validationResult AND TRUE === $doLoginResult) {
-                ShopCore::app()->SCart->transferCartData();
+                if (class_exists('ShopCore') && SHOP_INSTALLED)
+                    ShopCore::app()->SCart->transferCartData();
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
                 $jsonResponse['refresh'] = TRUE;

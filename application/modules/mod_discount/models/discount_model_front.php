@@ -16,7 +16,8 @@ class Discount_model_front extends CI_Model {
                 from mod_shop_discounts
                 where (max_apply > count_apply 
                         or max_apply is null 
-                        or (max_apply is null and count_apply is null)) 
+                        or (max_apply is null and count_apply is null)
+                        or (count_apply is null and max_apply > 0))
                       and 
                       (date_begin < '$time' and date_end > '$time' 
                           or date_begin < '$time' and date_end is Null 
@@ -69,10 +70,13 @@ class Discount_model_front extends CI_Model {
         return $result->amout;
     }
     
-    public function updateapply($key){
+    public function updateapply($key, $gift = null){
         
         $sql = "update mod_shop_discounts set count_apply = count_apply + 1 where `key` = '$key' and max_apply IS NOT NULL";
-
+        
+        if ($gift !== Null)
+            $this->db->query("update mod_shop_discounts set active = 0 where `key` = '$key'");
+        
         return $this->db->query($sql);
         
     }

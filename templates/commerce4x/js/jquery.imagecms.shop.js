@@ -1547,7 +1547,7 @@ var Shop = {
 
                 url += '/ShopKit';
             }
-
+            
             Shop.currentItem = cartItem;
             $.post(url, data,
                     function(data) {
@@ -1564,13 +1564,13 @@ var Shop = {
 
         },
         _add: function(cartItem) {
-
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
             else
                 currentItem = cartItem;
-
+                                        
+            console.log(currentItem)
             this.save(currentItem);
 
 
@@ -1700,7 +1700,7 @@ var Shop = {
 
             var items = [];
             for (var i = 0; i < localStorage.length; i++) {
-
+                
                 var key = localStorage.key(i);
                 try {
                     if (key.match(pattern))
