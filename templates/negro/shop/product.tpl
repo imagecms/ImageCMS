@@ -820,3 +820,4 @@
             <!-- End. Tabs block       -->
         </div>
     </div>
+    {widget('latest_news')}

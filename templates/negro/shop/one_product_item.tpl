@@ -29,15 +29,15 @@
                 <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">{if !$hasVariant}{trim($p->firstVariant->getName())}{/if}</span></span>
             </span>
             <div class="frame-star f-s_0">
-                {$CI->load->module('star_rating')->show_star_rating($p)}
                 {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                    {$CI->load->module('star_rating')->show_star_rating($p)}
                     <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                         {$Comments[$p->getId()]}
                     </a>
-                {else:}
+                {/*{else:}
                     <div class="d_i-b">
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-null-response">Оставьте отзыв</a>
-                    </div>
+                    </div>*/}
                 {/if}
             </div>
             <div class="frame-prices f-s_0">
@@ -176,8 +176,7 @@
                     <div class="p_r frame-without-top">
                         <div class="frame-wish-compare-list no-vis-table">
                             <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
-                            {/*}
-                            {if $CI->uri->segment(2) != "wish_list"}
+                            {if $CI->uri->segment(2) == "compare"}
                                 <!-- Wish List buttons --------------------->
                                 {foreach $variants as $key => $pv}
                                     <!-- to wish list button -->
@@ -192,13 +191,12 @@
                                                 data-sectitle="{lang('s_in_wish_list')}"
                                                 data-rel="tooltip">
                                             <span class="icon_wish"></span>
-                                            <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                            <span class="text-el d_l">{lang('s_add_to_wish_list')}</span>
                                         </button>
                                     </div>
                                 {/foreach}
                                 <!-- end of Wish List buttons -------------->
                             {/if}
-                            { */}
                             <!--                     Add to compare, if $CI->uri->segment(2) != "compare"-->
                             {if $CI->uri->segment(2) != "compare"}
                                 <!-- compare buttons ----------------------->

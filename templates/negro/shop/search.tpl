@@ -6,13 +6,15 @@
 <div class="frame-inside">
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
+            {if $totalProducts != 0}
             <div class="f-s_0 title-category">
                 <div class="frame-title">
                     <h1 class="d_i">Вы искали: <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                 </div>
                 <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
             </div>
-            {if count($products) == 0}
+            {/if}
+            {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
@@ -21,7 +23,7 @@
                 </div>
             {/if}
             {include_tpl('catalogue_header')}
-            {if count($products) > 0}
+            {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     {include_tpl('one_product_item')}
                 </ul>

@@ -19,11 +19,17 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
+        {$colorScheme = 'css/color_scheme_1'}
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
+
+        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
+        
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
@@ -39,7 +45,6 @@
             <div class="content">
                 {$content}
             </div>
-                {widget('latest_news')}
             <div class="h-footer"></div>
         </div>
         <footer>
@@ -59,9 +64,9 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
-        
+
         <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
-        
+
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
 
         {include_shop_tpl('js_templates')}

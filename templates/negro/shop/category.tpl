@@ -30,7 +30,7 @@
                 </div>
                 <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
             </div>
-            {if count($products) == 0}
+            {if $totalProducts == 0}
                 <!--                Start. Empty category-->
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
@@ -73,7 +73,7 @@
             {/if}
             <!--End. Banners-->
             {include_tpl('catalogue_header')}
-            {if count($products) > 0}
+            {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     <!--                    include template for one product item-->
                     {include_tpl('one_product_item')}
@@ -92,3 +92,4 @@
 <div class="horizontal-carousel">
     {widget('popular_products')}
 </div>
+{widget('latest_news')}
