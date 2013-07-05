@@ -158,7 +158,7 @@
                         </td>
                         <td>
                             <div class="price price_f-s_16">
-                                <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getProductTotalPrice()}</span> {$CS}</span>
+                                <span class="first_cash"><span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice()*$orderProduct->getQuantity())}</span> {$CS}</span>
                             </div>
                         </td>
                     </tr>
@@ -240,6 +240,8 @@
 
                             </ul>
                             <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
+                            
+                            
 
                             <!-- Start. Render kit summary -->
                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
@@ -276,6 +278,7 @@
                     <span class="f-s_18">Сумма:</span>&nbsp;
                     <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
                     <span class="f-s_24"> {$CS}</span>
+                    {//var_dump(json_decode($model->getdiscountinfo()))}
 
                 </div>
             </div>
@@ -285,6 +288,7 @@
 
 </tfoot>
 </table>
+                    
 </div>
 </div>
 </div>

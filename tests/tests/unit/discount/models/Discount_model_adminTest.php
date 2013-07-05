@@ -131,7 +131,24 @@ class Discount_model_adminTest extends PHPUnit_Framework_TestCase {
      * @todo   Implement testUpdateDiscountById().
      */
     public function testUpdateDiscountById() {
-        
+        $data = array (
+                    'name' => 'name',
+                    'key' => 'key123asd123ka12',
+                    'max_apply' => 5,
+                    'type_value' => 1,
+                    'value' => 50,
+                    'type_discount' => 'comulativ',
+                    'date_begin' => time(),
+                    'date_end' => time()+111234,
+                    'active' => '0'
+                );
+        $typeDiscountData = array(
+            'id' => 1,
+            'discount_id' => 1,
+            'begin_value' => 9999,
+        );
+        $result = $this->object->updateDiscountById(1, $data, $typeDiscountData);
+        $this->assertEquals($result, true);
     }
 
     /**
@@ -155,69 +172,56 @@ class Discount_model_adminTest extends PHPUnit_Framework_TestCase {
     /**
      * @covers Discount_model_admin::getDiscountAllDataById
      * @todo   Implement testGetDiscountAllDataById().
+     * @dataProvider getDiscountAllDataByIdParams
      */
-    public function testGetDiscountAllDataById() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+    public function testGetDiscountAllDataById($id, $param) {
+        $result = (boolean)$this->object->getDiscountAllDataById($id);
+        $this->assertEquals($result, $param);
+    }
+    public function getDiscountAllDataByIdParams(){
+        return array(
+            array(1,true),
+            array('a23',false),
+            array(987654,false),
         );
     }
 
     /**
      * @covers Discount_model_admin::getUserNameAndEmailById
      * @todo   Implement testGetUserNameAndEmailById().
+     * @dataProvider getUserNameAndEmailByIdParams
      */
-    public function testGetUserNameAndEmailById() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+    public function testGetUserNameAndEmailById($id,$param) {
+        $result = (boolean) $this->object->getUserNameAndEmailById($id);
+        $this->assertEquals($result, $param);
+        
+    }
+    public function getUserNameAndEmailByIdParams(){
+        return array(
+            array(1,true),
+            array('a23',false),
+            array(98765432,false),
         );
     }
 
     /**
      * @covers Discount_model_admin::getProductById
      * @todo   Implement testGetProductById().
+     * @dataProvider getProductByIdParams
      */
-    public function testGetProductById() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+    public function testGetProductById($id, $param) {
+        $result = (boolean) $this->object->getProductById($id);
+        $this->assertEquals($result, $param);
+    }
+    public function getProductByIdParams() {
+        return array(
+            array(999999,true),
+            array(03100,false),
+            array('VIXIA',false),
+            array('akj2323ksda',false)
         );
     }
-
-    /**
-     * @covers Discount_model_admin::deleteDiscountById
-     * @todo   Implement testDeleteDiscountById().
-     */
-    public function testDeleteDiscountById() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
     
-    /**
-     * @covers Discount_model_admin::attributeLabels
-     * @todo   Implement testAttributeLabels().
-     */
-    public function testAttributeLabels() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Discount_model_admin::rules
-     * @todo   Implement testRules().
-     */
-    public function testRules() {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-                'This test has not been implemented yet.'
-        );
-    }
     /**
      * Prepare test data
      * @covers Discount_model_admin::all

@@ -915,6 +915,8 @@ class DX_Auth {
                 }
                 if($login_user){
                     if ($this->login($email, $password)) {
+                        if (class_exists('ShopCore'))
+                            ShopCore::app()->SCart->transferCartData();
                         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
                             redirect('', 'location');
     //                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {

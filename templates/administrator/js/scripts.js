@@ -1350,8 +1350,8 @@ $(document).ready(
                 var categoryId = btn.data('id');
                 var column = btn.parent().find('input').val();
 
-                if (!parseInt(column))
-                    showMessage('Сообщение','Введите номер колонки','r')
+                if (!parseInt(column) && parseInt(column)!=0)
+                    showMessage('Сообщение','Введите номер колонки','r');
                     
                 $.ajax({
                     type: 'POST',
