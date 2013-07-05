@@ -183,7 +183,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     /**
-     * render user list
+     * render user lists
      *
      * @access public
      * @param int $user_id
