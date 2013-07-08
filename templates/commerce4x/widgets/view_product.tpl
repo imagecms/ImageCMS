@@ -44,8 +44,9 @@
                                 <!--To display the amount of discounts you can use $product->firstVariant->getNumDiscount()-->
                             </div>  
                             {if $product->firstvariant->getstock()!=0}
-
-                            <button class="btn btn_buy btnBuy" 
+                                <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                                
+                            <!--<button class="btn btn_buy btnBuy" 
                                     type="button" 
                                     data-id="{echo $product->getId()}"
                                     data-varid="{echo $product->firstVariant->getId()}"
@@ -60,8 +61,9 @@
                                     data-stock="{echo $product->firstVariant->getStock()}"
                                     >
                                 {lang('s_more')}
-                                {/*}{if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} { */}
-                            </button>
+                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
+                            </button>-->
+                            
                             {else:}
                             <button 
                                     data-drop=".drop-report"

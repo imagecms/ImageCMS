@@ -44,6 +44,8 @@
                         {$CS}
                     </div>
                     {if $product->firstVariant->getStock() != 0}
+                        <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                        <!--
                     <button 
                         class="btn btn_buy btnBuy" 
                         type="button" 
@@ -60,8 +62,9 @@
                         data-stock="{echo $product->firstVariant->getStock()}"
                         >
                         {lang('s_more')}
-                       {/*} {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} { */}
+                       {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
                     </button>
+                   -->
                     {else:}
                     <button
                         data-drop=".drop-report"

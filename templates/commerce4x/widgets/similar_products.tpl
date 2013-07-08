@@ -44,8 +44,9 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()} </span> 
                                 {$CS}
                             </div>
-
-                            <button class="btn btn_buy" 
+                            <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                            
+                            <!--<button class="btn btn_buy" 
                                     type="button" 
                                     data-prodid="{echo $product->getId()}" 
                                     data-varid="{echo $product->firstVariant->getId()}" 
@@ -54,8 +55,9 @@
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
                                 {lang('s_more')}
-                                {/*}{if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} { */}
+                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
                             </button>
+                            -->
                         </div>
                         <div class="photo-block">
                             <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">

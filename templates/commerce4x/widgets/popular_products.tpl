@@ -59,7 +59,8 @@
 
                         <!-- displaying notify button -->
                         {if $hotProduct->firstvariant->getstock()!=0}
-                        <button class="btn btn_buy btnBuy" 
+                            <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('s_more')}</a>
+                        <!--<button class="btn btn_buy btnBuy" 
                                 type="button" 
                                 data-prodid="{echo $hotProduct->getId()}"
                                 data-varid="{echo $hotProduct->firstVariant->getId()}"
@@ -74,8 +75,9 @@
                                 >
                             {lang('s_more')}
                             
-                            {/*}{if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}{ */}
+                            {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                         </button>
+                        -->
                         {else:}
                         <button 
                                 data-drop=".drop-report"

@@ -66,7 +66,9 @@
                         <div class="f_r">
                             <!-- displaying notify button -->
                             {if $hotProduct->firstvariant->getstock()!=0}
-                                <button class="btn btn_buy btnBuy" 
+                                <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('s_more')}</a>
+                               
+                              <!--  <button class="btn btn_buy btnBuy" 
                                         type="button" 
 
 
@@ -85,7 +87,8 @@
                                         data-stock="{echo $hotProduct->firstvariant->getStock()}"
                                         >
                                     {lang('s_more')}
-                                </button>
+                                </button> -->
+                               
                             {else:}
                             <button data-placement="bottom right"
                                     data-place="noinherit"
