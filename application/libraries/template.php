@@ -2,6 +2,12 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
+
+//require_once realpath(__DIR__). '/Fenom/Fenom.php';
+
+
+
 /**
  * Image CMS
  * Template Class
@@ -32,6 +38,14 @@ class Template extends Mabilis {
 
         $this->template_dir = $config['tpl_path'];
 
+        
+        
+       // $this->provide = new \Fenom\Provider($this->template_dir);
+       // $this->fenom = new Fenom($this->provide);
+       // $this->fenom->setCompileDir($config['compile_path']);
+       // $this->fenom->setOptions($options);
+        
+        
         /** URL to JS folder */
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
@@ -65,6 +79,7 @@ class Template extends Mabilis {
      * @return true
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
+
 
         $CI = &get_instance();
         if ($CI->uri->segment(1) == 'admin') {
@@ -131,6 +146,8 @@ class Template extends Mabilis {
     }
 
     public function display($file, $data = array(), $processOutput = true) {
+        
+        
         if (sizeof($data) > 0) {
             $this->add_array($data);
         }
@@ -144,7 +161,18 @@ class Template extends Mabilis {
     }
 
     public function view($file, $data = array(), $return = FALSE) {
+        
+        $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
+       // $file = ltrim($file, 'file:');
+       // $file_arr = explode('/', $file);
+       // $file = $file_arr[count($file_arr)-1];
+       // unset($file_arr[count($file_arr)-1]); 
+       // $dir = realpath(implode('/', $file_arr));
+       // $this->provide->set_template($dir);
+        //return $this->splitTplFiles($this->fenom->display($file, $data));
+        
         return $this->splitTplFiles(parent::view($file, $data, $return));
+        
     }
 
     public function include_tpl($name, $path) {
