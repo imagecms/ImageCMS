@@ -1,3 +1,4 @@
+{$colorScheme = 'css/color_scheme_1'}
 <!--Start. Top menu and authentication data block-->
 <div class="menu-header">
     <div class="container">
@@ -15,7 +16,7 @@
 <div class="content-header">
     <div class="container">
         <!--        Logo-->
-        <a href="{site_url('')}" class="logo"><img src="{$THEME}images/logo.png" alt="logo.png"/></a>
+        <a href="{site_url('')}" class="logo"><img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/></a>
         <div class="left-content-header">
             <div class="header-left-content-header">
                 <!--                Start. contacts block-->

@@ -10,7 +10,7 @@
                 </li>
                 <li class="box-3">
                     <div class="btn-already-show">
-                        <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp">
+                        <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
                             <span class="icon_already_show"></span>
                             <span class="text-view-list">
                                 <span class="text-el d_l_1">Вы уже смотрели</span>
@@ -31,6 +31,12 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="btn-to-up">
+            <button type="button">
+                <span class="icon_arrow_p"></span>
+                <span class="text-el">Наверх</span>
+            </button>
         </div>
     </div>
     <div class="drop frame-already-show">

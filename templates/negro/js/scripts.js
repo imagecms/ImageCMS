@@ -1,5 +1,5 @@
 var isTouch = 'ontouchstart' in document.documentElement,
-        mainBody = $('.mainBody'),
+        mainBody = $('.main-body'),
         cW = '980',
         selIcons = '[class*=icon_]',
         widhtItemScroll = 256,
@@ -25,25 +25,60 @@ var optionsMenu = {
     frAClass: 'hoverM'
 };
 var optionCompare = {
+    frameCompare: '.frame-tabs-compare > div',
     left: '.left-compare li',
     right: '.items-compare > li',
     elEven: 'li',
     frameScroll: '.items-compare',
     mouseWhell: true,
     scrollNSP: true,
-    jScrollPane:true,
+    jScrollPane: false,
     scrollNSPT: '.items-catalog',
     onlyDif: $('[data-href="#only-dif"]'),
     allParams: $('[data-href="#all-params"]'),
-    hoverParent: '.characteristic'
+    hoverParent: '.compare-characteristic',
+    after: function(el) {
+        $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height())
+//        if carousel in compare
+        if ($.existsN(el.find('.carousel_js:not(.iscarousel)')))
+            el.find('.carousel_js:not(.iscarousel)').myCarousel({
+                item: 'li',
+                prev: '.prev',
+                next: '.next',
+                content: '.content-carousel',
+                groupButtons: '.group-button-carousel'
+            });
+        wnd.scroll();
+    },
+    compareChangeCategory: function() {
+        if ($.exists('.comprasion-head')) {
+            $(optionCompare.frameCompare).equalHorizCell(optionCompare);
+            if (optionCompare.onlyDif.parent().hasClass('active'))
+                optionCompare.onlyDif.click();
+            else
+                optionCompare.allParams.click();
+        }
+    }
 };
 imageCmsApiDefaults = {
     hideForm: true,
     messagePlace: 'ahead', // behind
-    durationHideForm: 3000,
-    callback: function() {
-    }
+    durationHideForm: 3000
+// callback (callback return (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance
+// any other
 };
+function hideDrop(drop, form, durationHideForm) {
+    setTimeout(function() {
+        var drop = $(drop);
+        drop.drop('triggerBtnClick', function() {
+            drop.find(genObj.msgF).fadeOut(function() {
+                $(this).remove();
+                form.show();
+            })
+        });
+    }, durationHideForm - 500/*time fadeout drop see on site*/)
+}
+
 icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
     icon_reg: "M20.771,12.364c0,0,0.849-3.51,0-4.699c-0.85-1.189-1.189-1.981-3.058-2.548s-1.188-0.454-2.547-0.396c-1.359,0.057-2.492,0.792-2.492,1.188c0,0-0.849,0.057-1.188,0.397c-0.34,0.34-0.906,1.924-0.906,2.321s0.283,3.058,0.566,3.624l-0.337,0.113c-0.283,3.283,1.132,3.68,1.132,3.68c0.509,3.058,1.019,1.756,1.019,2.548s-0.51,0.51-0.51,0.51s-0.452,1.245-1.584,1.698c-1.132,0.452-7.416,2.886-7.927,3.396c-0.511,0.511-0.453,2.888-0.453,2.888h26.947c0,0,0.059-2.377-0.452-2.888c-0.512-0.511-6.796-2.944-7.928-3.396c-1.132-0.453-1.584-1.698-1.584-1.698s-0.51,0.282-0.51-0.51s0.51,0.51,1.02-2.548c0,0,1.414-0.397,1.132-3.68H20.771z",
@@ -215,7 +250,7 @@ function drawIcons(selIcons) {
 }
 
 function itemUserToolbar() {
-    this.show = function(itemsUT, btn, hideSet) {
+    this.show = function(itemsUT, btn, hideSet, btnUp) {
         btn.bind('click.uT', function() {
             var $this = $(this),
                     dataRel = $this.data('rel');
@@ -230,17 +265,32 @@ function itemUserToolbar() {
             else {
                 $this.hide().prev().show();
                 itemsUT.stop().animate({
-                    'width': cW
+                    'width': '100%'
                 }, function() {
                     itemsUT.children(hideSet).show();
                 })
             }
         }).not('.activeUT').trigger('click.uT');
+        wnd.unbind('scroll.UT').bind('scroll.UT', function() {
+            if (wnd.scrollTop() > wnd.height())
+                btnUp.fadeIn();
+            else
+                btnUp.fadeOut();
+        })
         itemsUT.fadeIn();
         return itemsUT;
     },
-            this.resize = function(itemsUT) {
-        $(itemsUT).css('width', body.width())
+            this.resize = function(itemsUT, btnUp) {
+        var btnW = btnUp.outerWidth(true),
+                bodyW = body.width(),
+                itemsUT = $(itemsUT),
+                itemsUTCW = itemsUT.children().width();
+
+        if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+            btnUp.fadeIn();
+        else
+            btnUp.fadeOut();
+        itemsUT.css('width', bodyW)
         return itemsUT;
     }
 }
@@ -253,7 +303,6 @@ function itemUserToolbar() {
 //        $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
 //    })
 //}
-var orderDetails = $.exists(genObj.orderDetails)
 function deleteComprasionItem(el) {
     var $this = el,
             $thisI = $this.parents(genObj.parentBtnBuy),
@@ -272,15 +321,23 @@ function deleteComprasionItem(el) {
         btn.remove();
     }
     if (productsCGen == 1) {
-        $('.page-compare').find(genObj.blockEmpty).hide()
-        $('.page-compare').find(genObj.blockNoEmpty).show()
+        $('.page-compare').find(genObj.blockEmpty).show()
+        $('.page-compare').find(genObj.blockNoEmpty).hide()
     }
+//    if carousel
+    if ($.existsN($thisP.find('.jcarousel-list')))
+        if ($thisP.find('.right-compare').width() == (productsCL - 1) * productsC.last().width()) {
+            $thisP.find('.jcarousel-list').css('left', 0)
+            $thisP.find('.group-button-carousel').children().hide()
+        }
 
-    $('.frame-tabs-compare > div').equalHorizCell('refresh', optionCompare);
+    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     if (optionCompare.onlyDif.parent().hasClass('active'))
         optionCompare.onlyDif.click();
     else
         optionCompare.allParams.click();
+
+//    items-compare
 }
 function recountWishListTotalPrise(deletedItemPrice, id, vid) {
 
@@ -341,6 +398,7 @@ function countSumBask() {
         $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
     });
 }
+var orderDetails = $.exists(genObj.orderDetails)
 function processPage() {
 //update page content
 //update products count
@@ -666,7 +724,7 @@ jQuery(document).ready(function() {
     $('.drop').drop({
         overlayColor: '#000',
         overlayOpacity: '0.6',
-        place: 'center',
+        place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
         effon: 'fadeIn',
         effoff: 'fadeOut',
         duration: 500,
@@ -691,7 +749,7 @@ jQuery(document).ready(function() {
 
                 if (!$.existsN(dropElRep.find('.items-bask')))
                     dropElRep.append('<ul class="items items-bask item-report"><li></li></ul>');
-                dropElRep.find('.item-report').children().append(elWrap).find('.funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+                dropElRep.find('.item-report').children().append(elWrap).find('.icon_times, .funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
                 return el;
             }
             if (dropEl.is(genObj.popupCart)) {
@@ -727,20 +785,19 @@ jQuery(document).ready(function() {
     });
     $('.tabs').tabs({
         after: function(el) {
-            if (el.parent().hasClass('comprasion-head')) {
-                $('.frame-tabs-compare > div').equalHorizCell(optionCompare);
-                if (optionCompare.onlyDif.parent().hasClass('active'))
-                    optionCompare.onlyDif.click();
-                else
-                    optionCompare.allParams.click();
-            }
+            optionCompare.compareChangeCategory(el);
             if (el.data('type') == "itemsView" && !el.hasClass('visited')) {
                 decorElemntItemProduct();
             }
         }
     });
+//    if carousel in compare
+//    $('#compare').change(function() {
+//        var $this = $(this);
+//        $($this.val()).siblings().hide().end().show();
+//        optionCompare.compareChangeCategory($this);
+//    }).change();
 
-    $('.frame-tabs-compare > div').equalHorizCell(optionCompare);
     $(genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1))',
         next: 'prev.children(:eq(0))',
@@ -873,13 +930,13 @@ jQuery(document).ready(function() {
         });
     });
     drawIcons($(selIcons));
-    $('svg').live('click', function(e) {
-        e.preventDefault();
-        $(this).closest('button').click();
+    var userTool = new itemUserToolbar(),
+            btnToUp = $('.btn-to-up');
+    btnToUp.click(function() {
+        $("html, body").animate({scrollTop: "0"});
     })
-    var userTool = new itemUserToolbar();
-    userTool.show($('.items-user-toolbar'), $('.btn-toggle-toolbar > button'), '.box-1, .box-2, .box-3');
-    userTool.resize($('.frame-user-toolbar'));
+    userTool.show($('.items-user-toolbar'), $('.btn-toggle-toolbar > button'), '.box-1, .box-2, .box-3', btnToUp);
+    userTool.resize($('.frame-user-toolbar'), btnToUp);
     if ($.existsN($('.animateListItems.table')))
         decorElemntItemProduct();
     var frLabL = $('.frame-label').length;
@@ -1188,6 +1245,7 @@ wnd.load(function() {
         });
         $(next + ',' + prev).show();
     }
+    $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
     cycle.find('img[data-src]').each(function() {
         var $this = $(this);
         $this.attr('src', $this.attr('data-src')).load(function() {
@@ -1220,7 +1278,7 @@ wnd.load(function() {
     recountCartPage(selectDeliv, methodDeliv);
 }).resize(function() {
     var userTool = new itemUserToolbar();
-    userTool.resize($('.frame-user-toolbar'));
+    userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
     $('.menu-main').menuImageCms('refresh');
     dropBaskResize();
     if ($.exists(selScrollPane)) {
