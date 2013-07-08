@@ -1,3 +1,3 @@
 <li>
-    <a href="{$link}" title="{$title}">{$title}</a>
+    <a href="{$link}" title="{$title}">&nbsp;&nbsp;&nbsp; - {$title}</a>
 </li>
