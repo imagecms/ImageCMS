@@ -28,20 +28,45 @@
                         <div class="inside_padd">
                             <div class="form-horizontal">
                                 <div class="row-fluid">
-
+                                    
 
                                     <div class="control-group">
-                                        <label class="control-label" for="menu_del">SubTemplate:</label>
+                                        <label class="control-label" for="template">Template:</label>
                                         <div class="controls">                                           
-                                            <select style="width:25% !important" name="substyle" id="menu_del">
-                                                <option {if !$menu->del->href} selected="selected"{/if} value="0">--не определено--</option>
-                                                {foreach $subStyle as $style}
-                                                    <option value="{echo $style}" {if $data['substyle'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                            <select onchange="changelogo(this)" style="width:25% !important" name="templ" id="template">
+                                                {foreach $templ as $style}
+                                                    <option value="{echo $style}" {if $data['templ'] == $style} selected="selected" {/if} >{echo $style}</option>
                                                 {/foreach}
                                             </select> 
+                                            
 
                                         </div>
                                     </div>
+                                            
+                                            
+                                    <div class="control-group">
+                                        <label class="control-label" for="substyle">SubTemplate:</label>
+                                        <div class="controls">                                           
+                                            <select style="width:25% !important" name="substyle" id="substyle">
+                                                <option {if !$data['substyle']} selected="selected"{/if} value="0">--не определено--</option>
+                                                {foreach $subStyle as $style}
+                                                    <option value="{echo $style}" {if $data['substyle'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                                {/foreach}
+                                            </select>
+                                            <span class="help-block">Для работы дополнительных стилей надо, чтоб они были установлен для каждого из шаблонов</span>
+
+                                        </div>
+                                    </div>
+                                            
+                                    <div class="control-group">
+                                        
+                                        <div class="controls">                                           
+                                            <img id="logo" style="max-width: 200px" src="{echo '/templates/' . $data['templ']}/screenshot.png"/>
+
+                                        </div>
+                                    </div>        
+                                            
+                                    
 
 
 

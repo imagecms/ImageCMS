@@ -1,1 +1,2 @@
-<li><a href="{$link}" title="{$title}">{$title}</a>{$wrapper}</li>
+<li>
+                        <span class="title">{$title}</span>{$wrapper}</li>

@@ -3,5 +3,6 @@
 
         {$title}
     </a>
+    {$wrapper}
     
 </li>
