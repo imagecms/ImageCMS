@@ -1,0 +1,2304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 12:07+0300\n"
+"PO-Revision-Date: 2013-07-05 15:14+0300\n"
+"Last-Translator: hellmark1990 <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: /var/www/image.loc/application/modules/admin\n"
+"X-Poedit-SearchPath-1: /var/www/image.loc/templates/administrator\n"
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:30
+#: /var/www/img/application/modules/admin/widgets_manager.php:81
+#: /var/www/img/application/modules/admin/widgets_manager.php:196
+msgid "Set the directory access rights to continue the work with widgets"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:91
+msgid "Widget with the same name already exists. Choose or select another name."
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:96
+#: /var/www/img/application/modules/admin/widgets_manager.php:160
+#: /var/www/img/application/modules/admin/widgets_manager.php:239
+#: /var/www/img/application/modules/admin/widgets_manager.php:270
+#: /var/www/img/application/modules/admin/pages.php:139
+#: /var/www/img/application/modules/admin/pages.php:468
+#, fuzzy
+msgid "Description "
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:97
+#: /var/www/img/application/modules/admin/widgets_manager.php:161
+#: /var/www/img/application/modules/admin/widgets_manager.php:240
+#: /var/www/img/application/modules/admin/widgets_manager.php:271
+msgid "Name"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:98
+msgid "Module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:99
+msgid "Method"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:144
+#: /var/www/img/application/modules/admin/widgets_manager.php:175
+#, fuzzy
+msgid "Created a widget"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:162
+#: /var/www/img/application/modules/admin/widgets_manager.php:272
+msgid "HTML"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:225
+#: /var/www/img/application/modules/admin/widgets_manager.php:298
+msgid "Error: widget not found!"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:255
+#: /var/www/img/application/modules/admin/widgets_manager.php:290
+msgid "Changed a widget"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:257
+#: /var/www/img/application/modules/admin/widgets_manager.php:293
+msgid "Changes has been saved"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:327
+msgid "Deleted a widget"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:329
+msgid "Widget successfully deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/widgets_manager.php:442
+msgid "Core"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:98
+msgid "Installed a module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:133
+msgid "Deleted a module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:137
+msgid "Module deletion error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:234
+msgid "Changed the module settings"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:324
+msgid "Author"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:324
+msgid "Version "
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:328
+msgid "Can't load module info file"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:395
+#, fuzzy
+msgid "Positions updated"
+msgstr "Позиція змінена"
+
+#: /var/www/img/application/modules/admin/components.php:397
+msgid "Fail"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/components.php:411
+msgid "Changes saved"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin_search.php:91
+#: /var/www/img/application/modules/admin/admin_search.php:220
+msgid "The first"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin_search.php:92
+#: /var/www/img/application/modules/admin/admin_search.php:221
+msgid "Last"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:96
+msgid "Error: Module information has not been found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:123
+#: /var/www/img/application/modules/admin/sys_upgrade.php:32
+msgid "FTP_connect function is not available"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:140
+#: /var/www/img/application/modules/admin/sys_upgrade.php:62
+msgid "Server connection error:Check username and password"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:167
+msgid "Wrong path to the root directory"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:182
+msgid "File downloading error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:207
+#: /var/www/img/application/modules/admin/mod_search.php:287
+msgid "Creation of temporary directory has been failed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:231
+msgid "Delete the directory to continue"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:231
+msgid "Attention or Caution"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:237
+#: /var/www/img/application/modules/admin/mod_search.php:268
+#: /var/www/img/application/modules/admin/sys_upgrade.php:129
+msgid "Exploding error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:248
+#: /var/www/img/application/modules/admin/mod_search.php:296
+msgid "Module installation module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/mod_search.php:258
+#: /var/www/img/application/modules/admin/mod_search.php:306
+msgid "Modul has been installed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:108
+msgid "Deleted ID page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:136
+#: /var/www/img/application/modules/admin/pages.php:464
+msgid "Title"
+msgstr "Заголовок"
+
+#: /var/www/img/application/modules/admin/pages.php:137
+#: /var/www/img/application/modules/admin/pages.php:465
+msgid "URL"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:138
+#: /var/www/img/application/modules/admin/pages.php:467
+msgid "Preliminary contents"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:140
+#: /var/www/img/application/modules/admin/pages.php:469
+msgid "Page template"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:141
+#: /var/www/img/application/modules/admin/pages.php:471
+msgid "Date of creation or creation date"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:142
+#: /var/www/img/application/modules/admin/pages.php:472
+msgid "Time of creation or creation time"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:143
+#: /var/www/img/application/modules/admin/pages.php:473
+msgid "Publication date or date of publication"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:144
+#: /var/www/img/application/modules/admin/pages.php:474
+msgid "Publication time or time of publication"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:146
+msgid "Main page template"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:173
+#: /var/www/img/application/modules/admin/pages.php:503
+msgid "Reserved the same name module"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:182
+#: /var/www/img/application/modules/admin/pages.php:512
+msgid "Reserved of the same name category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:194
+msgid "Page with the same URL has been created yet. Specify or select another URL"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:258
+#, fuzzy
+msgid "Created a page"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/pages.php:268
+msgid "Page has been created"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:318
+msgid "Page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:318
+msgid "Not found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:442
+msgid "Language of the page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:442
+msgid "Created. ID"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:466
+msgid "Keywords"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:470
+msgid "Main page template "
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid "Page with URL"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid "in ID category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:526
+msgid " already exists. Specify or select another URL"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:584
+msgid "Changed the page "
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:594
+msgid "Page contents have been updated"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:613
+msgid "Error: Generic page can not be deleted."
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:631
+#: /var/www/img/application/modules/admin/pages.php:648
+msgid "Page has been deleted."
+msgstr ""
+
+#: /var/www/img/application/modules/admin/pages.php:833
+msgid "Zero-length string"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:48
+msgid "You are using the latest version"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:48
+msgid "Congratulations!"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:85
+msgid "Error: Wrong path to the root directory."
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:96
+msgid "Error downloading update file"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/sys_upgrade.php:162
+msgid "Updating has been completed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:42
+msgid "Directory ./application/backups has no writing permission"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:82
+msgid "Backup copying"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/backup.php:113
+msgid "Backup copying has been completed"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:73
+msgid "E-mail"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:74
+msgid "Password"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:84
+msgid "Protection code"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:99
+msgid "Entered the IP control panel"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:103
+msgid "Username and password have not been found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:119
+msgid "Username or Email"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:123
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr ""
+
+#: /var/www/img/application/modules/admin/login.php:145
+#: /var/www/img/application/modules/admin/login.php:149
+msgid "Wrong protection code"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/settings.php:124
+msgid "Page has not been found"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/settings.php:168
+#, fuzzy
+msgid "Changed wesite settings"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/admin/settings.php:171
+#, fuzzy
+msgid "Settings have been saved"
+msgstr "Сохранение настроек прошло успешно"
+
+#: /var/www/img/application/modules/admin/admin.php:57
+msgid "Cleared the cache"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:63
+msgid "Files deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:65
+#: /var/www/img/application/modules/admin/admin.php:73
+msgid "Cache has been cleared"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:71
+msgid "Outdated files  have been deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/admin.php:155
+msgid "exited the control panel"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:48
+#: /var/www/img/application/modules/admin/languages.php:106
+#: /var/www/img/templates/administrator/_out.php:1213
+#: /var/www/img/templates/administrator/_out.php:1819
+#: /var/www/img/templates/administrator/_out.php:1989
+#: /var/www/img/templates/administrator/_out.php:2018
+#: /var/www/img/templates/administrator/_out.php:4142
+#: /var/www/img/templates/administrator/_out.php:4676
+msgid "Identifier"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:49
+#: /var/www/img/application/modules/admin/languages.php:107
+#: /var/www/img/application/modules/admin/categories.php:128
+#: /var/www/img/application/modules/admin/categories.php:412
+#: /var/www/img/templates/administrator/_out.php:1158
+#: /var/www/img/templates/administrator/_out.php:2887
+#: /var/www/img/templates/administrator/_out.php:3192
+#: /var/www/img/templates/administrator/_out.php:4678
+#, fuzzy
+msgid "Image"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/languages.php:50
+#: /var/www/img/application/modules/admin/languages.php:108
+#: /var/www/img/templates/administrator/_out.php:1845
+#: /var/www/img/templates/administrator/_out.php:4168
+#: /var/www/img/templates/administrator/_out.php:4675
+msgid "Folder"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:51
+#: /var/www/img/application/modules/admin/languages.php:109
+#: /var/www/img/application/modules/admin/categories.php:135
+#: /var/www/img/templates/administrator/_out.php:166
+#: /var/www/img/templates/administrator/_out.php:1855
+#: /var/www/img/templates/administrator/_out.php:4178
+#: /var/www/img/templates/administrator/_out.php:4677
+#: /var/www/img/templates/administrator/settings.tpl:76
+msgid "Template"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:70
+msgid "Create a language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:74
+msgid "Language has been created"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:128
+msgid "Changed a language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:155
+#: /var/www/img/application/modules/admin/languages.php:171
+msgid "This language has been used by default and can not be deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:155
+#: /var/www/img/application/modules/admin/languages.php:171
+msgid "Blocking"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:163
+#: /var/www/img/application/modules/admin/languages.php:183
+msgid "Deleted the ID language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:185
+msgid "the language has been deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:206
+msgid "Specified a language or selected a language"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/languages.php:206
+#: /var/www/img/templates/administrator/_out.php:3940
+#: /var/www/img/templates/administrator/_out.php:3953
+#: /var/www/img/templates/administrator/_out.php:4362
+#: /var/www/img/templates/administrator/_out.php:4375
+#: /var/www/img/templates/administrator/_out.php:4679
+#, fuzzy
+msgid "by default"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/application/modules/admin/languages.php:208
+msgid "The language has been installed by default"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:127
+msgid "URL categories"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:129
+#: /var/www/img/templates/administrator/_out.php:2900
+#: /var/www/img/templates/administrator/_out.php:3206
+#, fuzzy
+msgid "Position"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/admin/categories.php:130
+#: /var/www/img/application/modules/admin/categories.php:294
+#: /var/www/img/templates/administrator/_out.php:1370
+#: /var/www/img/templates/administrator/_out.php:4082
+#: /var/www/img/templates/administrator/_out.php:4498
+msgid "Parent"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:133
+#: /var/www/img/application/modules/admin/categories.php:415
+#, fuzzy
+msgid "Short description"
+msgstr "Позиція"
+
+#: /var/www/img/application/modules/admin/categories.php:137
+#: /var/www/img/templates/administrator/_out.php:2976
+#: /var/www/img/templates/administrator/_out.php:3287
+#: /var/www/img/templates/administrator/_out.php:3933
+#: /var/www/img/templates/administrator/_out.php:4355
+msgid "Main template"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:138
+msgid "Per page"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:205
+#: /var/www/img/application/modules/admin/categories.php:346
+msgid "Category has been created or created a category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:213
+#: /var/www/img/application/modules/admin/categories.php:365
+msgid "Category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:213
+msgid "Created or has been created"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:244
+msgid "Changed the category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:366
+#: /var/www/img/templates/administrator/_out.php:361
+#: /var/www/img/templates/administrator/_out.php:374
+#: /var/www/img/templates/administrator/_out.php:1287
+#: /var/www/img/templates/administrator/_out.php:1373
+#: /var/www/img/templates/administrator/_out.php:2838
+#: /var/www/img/templates/administrator/_out.php:2849
+#: /var/www/img/templates/administrator/_out.php:2870
+#: /var/www/img/templates/administrator/_out.php:3142
+#: /var/www/img/templates/administrator/_out.php:3153
+#: /var/www/img/templates/administrator/_out.php:3173
+#: /var/www/img/templates/administrator/_out.php:3815
+#: /var/www/img/templates/administrator/_out.php:4086
+#: /var/www/img/templates/administrator/_out.php:4249
+#: /var/www/img/templates/administrator/_out.php:4502
+#: /var/www/img/templates/administrator/settings.tpl:271
+#: /var/www/img/templates/administrator/settings.tpl:284
+msgid "No"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:416
+msgid "Meta title"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:439
+msgid "Translated the category"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:448
+msgid "Changed the category translation"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:460
+msgid "Category translation updated"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:518
+msgid "Category deletion error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:518
+msgid "Error"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:529
+#: /var/www/img/application/modules/admin/categories.php:561
+msgid "Deleted ID category or ID category has been deleted"
+msgstr ""
+
+#: /var/www/img/application/modules/admin/categories.php:587
+msgid "Category has been deleted"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3
+#: /var/www/img/templates/administrator/component_settings.tpl:3
+msgid "URL access on"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:7
+#: /var/www/img/templates/administrator/_out.php:3643
+#: /var/www/img/templates/administrator/component_settings.tpl:7
+msgid "Auto loading "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:11
+#: /var/www/img/templates/administrator/component_settings.tpl:11
+msgid "Add to the menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:16
+#: /var/www/img/templates/administrator/_out.php:28
+#: /var/www/img/templates/administrator/_out.php:101
+#: /var/www/img/templates/administrator/_out.php:486
+#: /var/www/img/templates/administrator/_out.php:1033
+#: /var/www/img/templates/administrator/_out.php:1101
+#: /var/www/img/templates/administrator/_out.php:1224
+#: /var/www/img/templates/administrator/_out.php:1396
+#: /var/www/img/templates/administrator/_out.php:1789
+#: /var/www/img/templates/administrator/_out.php:1883
+#: /var/www/img/templates/administrator/_out.php:1930
+#: /var/www/img/templates/administrator/_out.php:2692
+#: /var/www/img/templates/administrator/_out.php:3069
+#: /var/www/img/templates/administrator/_out.php:3464
+#: /var/www/img/templates/administrator/_out.php:3754
+#: /var/www/img/templates/administrator/_out.php:4528
+#: /var/www/img/templates/administrator/_out.php:5375
+#: /var/www/img/templates/administrator/translateRole.tpl:10
+#: /var/www/img/templates/administrator/settings.tpl:11
+#: /var/www/img/templates/administrator/roleCreate.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:23
+#: /var/www/img/templates/administrator/_out.php:3459
+#: /var/www/img/templates/administrator/translateRole.tpl:5
+msgid "Role edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:27
+#: /var/www/img/templates/administrator/_out.php:485
+#: /var/www/img/templates/administrator/_out.php:1100
+#: /var/www/img/templates/administrator/_out.php:1395
+#: /var/www/img/templates/administrator/_out.php:2691
+#: /var/www/img/templates/administrator/_out.php:2783
+#: /var/www/img/templates/administrator/_out.php:3068
+#: /var/www/img/templates/administrator/_out.php:3463
+#: /var/www/img/templates/administrator/_out.php:3753
+#: /var/www/img/templates/administrator/translateRole.tpl:9
+#: /var/www/img/templates/administrator/roleCreate.tpl:9
+msgid "Back"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:29
+#: /var/www/img/templates/administrator/_out.php:1034
+#: /var/www/img/templates/administrator/_out.php:1102
+#: /var/www/img/templates/administrator/_out.php:3070
+#: /var/www/img/templates/administrator/_out.php:3465
+#: /var/www/img/templates/administrator/translateRole.tpl:11
+#, fuzzy
+msgid "Save and exit"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:34
+#: /var/www/img/templates/administrator/_out.php:40
+#: /var/www/img/templates/administrator/_out.php:1401
+#: /var/www/img/templates/administrator/_out.php:1407
+#: /var/www/img/templates/administrator/_out.php:1935
+#: /var/www/img/templates/administrator/_out.php:1941
+#: /var/www/img/templates/administrator/_out.php:2700
+#: /var/www/img/templates/administrator/_out.php:2710
+#: /var/www/img/templates/administrator/_out.php:3472
+#: /var/www/img/templates/administrator/_out.php:3481
+#: /var/www/img/templates/administrator/_out.php:4537
+#: /var/www/img/templates/administrator/_out.php:4547
+#: /var/www/img/templates/administrator/_out.php:5672
+#: /var/www/img/templates/administrator/translateRole.tpl:16
+#: /var/www/img/templates/administrator/translateRole.tpl:22
+msgid "English"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:34
+#: /var/www/img/templates/administrator/_out.php:40
+#: /var/www/img/templates/administrator/_out.php:1401
+#: /var/www/img/templates/administrator/_out.php:1407
+#: /var/www/img/templates/administrator/_out.php:1935
+#: /var/www/img/templates/administrator/_out.php:1941
+#: /var/www/img/templates/administrator/_out.php:2700
+#: /var/www/img/templates/administrator/_out.php:2710
+#: /var/www/img/templates/administrator/_out.php:3472
+#: /var/www/img/templates/administrator/_out.php:3481
+#: /var/www/img/templates/administrator/_out.php:4537
+#: /var/www/img/templates/administrator/_out.php:4547
+#: /var/www/img/templates/administrator/_out.php:5673
+#: /var/www/img/templates/administrator/translateRole.tpl:16
+#: /var/www/img/templates/administrator/translateRole.tpl:22
+msgid "Russian"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:59
+#: /var/www/img/templates/administrator/_out.php:497
+#: /var/www/img/templates/administrator/_out.php:602
+#: /var/www/img/templates/administrator/_out.php:1046
+#: /var/www/img/templates/administrator/_out.php:1424
+#: /var/www/img/templates/administrator/_out.php:1893
+#: /var/www/img/templates/administrator/_out.php:1958
+#: /var/www/img/templates/administrator/_out.php:2011
+#: /var/www/img/templates/administrator/_out.php:2063
+#: /var/www/img/templates/administrator/_out.php:2173
+#: /var/www/img/templates/administrator/_out.php:2728
+#: /var/www/img/templates/administrator/_out.php:3495
+#: /var/www/img/templates/administrator/_out.php:3783
+#: /var/www/img/templates/administrator/_out.php:3865
+#: /var/www/img/templates/administrator/_out.php:4125
+#: /var/www/img/templates/administrator/_out.php:4221
+#: /var/www/img/templates/administrator/_out.php:4292
+#: /var/www/img/templates/administrator/_out.php:4565
+#: /var/www/img/templates/administrator/_out.php:5389
+#: /var/www/img/templates/administrator/translateRole.tpl:41
+#: /var/www/img/templates/administrator/roleCreate.tpl:21
+#: /var/www/img/templates/administrator/widget_edit_html.tpl:22
+msgid "Properties"
+msgstr "Свойства"
+
+#: /var/www/img/templates/administrator/_out.php:69
+#: /var/www/img/templates/administrator/_out.php:227
+#: /var/www/img/templates/administrator/_out.php:513
+#: /var/www/img/templates/administrator/_out.php:618
+#: /var/www/img/templates/administrator/_out.php:1061
+#: /var/www/img/templates/administrator/_out.php:1171
+#: /var/www/img/templates/administrator/_out.php:1217
+#: /var/www/img/templates/administrator/_out.php:1433
+#: /var/www/img/templates/administrator/_out.php:1504
+#: /var/www/img/templates/administrator/_out.php:1621
+#: /var/www/img/templates/administrator/_out.php:1909
+#: /var/www/img/templates/administrator/_out.php:1967
+#: /var/www/img/templates/administrator/_out.php:1990
+#: /var/www/img/templates/administrator/_out.php:2022
+#: /var/www/img/templates/administrator/_out.php:2078
+#: /var/www/img/templates/administrator/_out.php:2120
+#: /var/www/img/templates/administrator/_out.php:2743
+#: /var/www/img/templates/administrator/_out.php:2907
+#: /var/www/img/templates/administrator/_out.php:3213
+#: /var/www/img/templates/administrator/_out.php:3420
+#: /var/www/img/templates/administrator/_out.php:3511
+#: /var/www/img/templates/administrator/_out.php:3641
+#: /var/www/img/templates/administrator/_out.php:3709
+#: /var/www/img/templates/administrator/_out.php:4580
+#: /var/www/img/templates/administrator/_out.php:4949
+#: /var/www/img/templates/administrator/_out.php:5005
+#: /var/www/img/templates/administrator/_out.php:5405
+#: /var/www/img/templates/administrator/translateRole.tpl:51
+#: /var/www/img/templates/administrator/settings.tpl:137
+#: /var/www/img/templates/administrator/roleCreate.tpl:37
+#: /var/www/img/templates/administrator/widget_edit_html.tpl:38
+#, fuzzy
+msgid "Description"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:96
+#: /var/www/img/templates/administrator/settings.tpl:6
+msgid "Site configuration"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:100
+#: /var/www/img/templates/administrator/_out.php:1788
+#: /var/www/img/templates/administrator/_out.php:2050
+#: /var/www/img/templates/administrator/_out.php:4112
+#: /var/www/img/templates/administrator/settings.tpl:10
+msgid "Go back"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:108
+#: /var/www/img/templates/administrator/_out.php:122
+#: /var/www/img/templates/administrator/_out.php:1505
+#: /var/www/img/templates/administrator/_out.php:1542
+#: /var/www/img/templates/administrator/_out.php:1801
+#: /var/www/img/templates/administrator/_out.php:2792
+#: /var/www/img/templates/administrator/_out.php:2803
+#: /var/www/img/templates/administrator/_out.php:3099
+#: /var/www/img/templates/administrator/_out.php:3785
+#: /var/www/img/templates/administrator/_out.php:3988
+#: /var/www/img/templates/administrator/_out.php:4223
+#: /var/www/img/templates/administrator/_out.php:4407
+#: /var/www/img/templates/administrator/settings.tpl:18
+#: /var/www/img/templates/administrator/settings.tpl:32
+msgid "Settings"
+msgstr "Настройки"
+
+#: /var/www/img/templates/administrator/_out.php:110
+#: /var/www/img/templates/administrator/_out.php:283
+#: /var/www/img/templates/administrator/settings.tpl:20
+#: /var/www/img/templates/administrator/settings.tpl:193
+#, fuzzy
+msgid "Main page"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:133
+#: /var/www/img/templates/administrator/_out.php:357
+#: /var/www/img/templates/administrator/settings.tpl:43
+#: /var/www/img/templates/administrator/settings.tpl:267
+msgid "Site name or site title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:140
+#: /var/www/img/templates/administrator/settings.tpl:50
+msgid "Site shutdown"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:148
+#: /var/www/img/templates/administrator/settings.tpl:58
+msgid "The site will be available only to the Administrator"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:154
+#: /var/www/img/templates/administrator/settings.tpl:64
+msgid "Select admin language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:220
+#: /var/www/img/templates/administrator/settings.tpl:130
+msgid "Short site name or site title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:241
+#: /var/www/img/templates/administrator/settings.tpl:151
+msgid "ID Google Analytics"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:245
+#: /var/www/img/templates/administrator/settings.tpl:155
+msgid "The code should be in the format "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:250
+#: /var/www/img/templates/administrator/settings.tpl:160
+msgid "G.Webmaster"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:257
+msgid "Ya.Webmaster"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:264
+#: /var/www/img/templates/administrator/settings.tpl:174
+msgid "ID for yandex metric"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:295
+#: /var/www/img/templates/administrator/_out.php:662
+#: /var/www/img/templates/administrator/_out.php:708
+#: /var/www/img/templates/administrator/_out.php:781
+#: /var/www/img/templates/administrator/_out.php:835
+#: /var/www/img/templates/administrator/_out.php:926
+#: /var/www/img/templates/administrator/_out.php:1676
+#: /var/www/img/templates/administrator/_out.php:2321
+#: /var/www/img/templates/administrator/_out.php:2607
+#: /var/www/img/templates/administrator/_out.php:3809
+#: /var/www/img/templates/administrator/_out.php:4243
+#: /var/www/img/templates/administrator/_out.php:5226
+#: /var/www/img/templates/administrator/settings.tpl:205
+#: /var/www/img/templates/administrator/dashboard.tpl:22
+#: /var/www/img/templates/administrator/dashboard.tpl:68
+#: /var/www/img/templates/administrator/dashboard.tpl:141
+#: /var/www/img/templates/administrator/pages.tpl:7
+#: /var/www/img/templates/administrator/pages.tpl:98
+msgid "Categories"
+msgstr "Категории"
+
+#: /var/www/img/templates/administrator/_out.php:312
+#: /var/www/img/templates/administrator/settings.tpl:222
+msgid "Page ID"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:345
+#: /var/www/img/templates/administrator/_out.php:2793
+#: /var/www/img/templates/administrator/_out.php:3017
+#: /var/www/img/templates/administrator/_out.php:3100
+#: /var/www/img/templates/administrator/_out.php:3328
+#: /var/www/img/templates/administrator/settings.tpl:255
+msgid "Meta tags"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:360
+#: /var/www/img/templates/administrator/_out.php:373
+#: /var/www/img/templates/administrator/settings.tpl:270
+#: /var/www/img/templates/administrator/settings.tpl:283
+msgid "Yes"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:370
+#: /var/www/img/templates/administrator/settings.tpl:280
+msgid "Category name"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:383
+#: /var/www/img/templates/administrator/settings.tpl:293
+msgid "Separator"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:390
+#: /var/www/img/templates/administrator/_out.php:1187
+#: /var/www/img/templates/administrator/_out.php:3037
+#: /var/www/img/templates/administrator/_out.php:3347
+#: /var/www/img/templates/administrator/_out.php:3921
+#: /var/www/img/templates/administrator/_out.php:4343
+#: /var/www/img/templates/administrator/settings.tpl:300
+msgid "Meta Keywords"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:393
+#: /var/www/img/templates/administrator/_out.php:405
+#: /var/www/img/templates/administrator/settings.tpl:303
+#: /var/www/img/templates/administrator/settings.tpl:315
+msgid "Auto formation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:394
+#: /var/www/img/templates/administrator/_out.php:406
+#: /var/www/img/templates/administrator/settings.tpl:304
+#: /var/www/img/templates/administrator/settings.tpl:316
+msgid "Leave empty"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:397
+#: /var/www/img/templates/administrator/_out.php:409
+#: /var/www/img/templates/administrator/settings.tpl:307
+#: /var/www/img/templates/administrator/settings.tpl:319
+msgid "If not given or specified"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:402
+#: /var/www/img/templates/administrator/_out.php:1182
+#: /var/www/img/templates/administrator/_out.php:3032
+#: /var/www/img/templates/administrator/_out.php:3342
+#: /var/www/img/templates/administrator/_out.php:3911
+#: /var/www/img/templates/administrator/_out.php:4333
+#: /var/www/img/templates/administrator/settings.tpl:312
+#, fuzzy
+msgid "Meta Description"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:436
+#: /var/www/img/templates/administrator/_out.php:437
+#: /var/www/img/templates/administrator/_out.php:2501
+#: /var/www/img/templates/administrator/_out.php:2502
+#: /var/www/img/templates/administrator/_out.php:4721
+#: /var/www/img/templates/administrator/_out.php:4722
+#: /var/www/img/templates/administrator/_out.php:4883
+#: /var/www/img/templates/administrator/_out.php:4884
+#: /var/www/img/templates/administrator/_out.php:5468
+#: /var/www/img/templates/administrator/_out.php:5470
+#: /var/www/img/templates/administrator/forgot_password.tpl:6
+msgid "Operation panel"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:448
+#: /var/www/img/templates/administrator/_out.php:4738
+#: /var/www/img/templates/administrator/_out.php:4898
+#: /var/www/img/templates/administrator/forgot_password.tpl:18
+msgid "Delete the file to continue"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:455
+#: /var/www/img/templates/administrator/forgot_password.tpl:25
+msgid "Forgot your password?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:468
+#: /var/www/img/templates/administrator/_out.php:1293
+#: /var/www/img/templates/administrator/_out.php:5696
+msgid "Send"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:469
+#: /var/www/img/templates/administrator/_out.php:4782
+#: /var/www/img/templates/administrator/forgot_password.tpl:39
+msgid "Log in"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:481
+#: /var/www/img/templates/administrator/roleCreate.tpl:5
+#, fuzzy
+msgid "Role create"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:487
+#: /var/www/img/templates/administrator/_out.php:1397
+#: /var/www/img/templates/administrator/_out.php:1790
+#: /var/www/img/templates/administrator/_out.php:1884
+#: /var/www/img/templates/administrator/_out.php:2052
+#: /var/www/img/templates/administrator/_out.php:2693
+#: /var/www/img/templates/administrator/_out.php:3755
+#: /var/www/img/templates/administrator/_out.php:4214
+#: /var/www/img/templates/administrator/roleCreate.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:519
+#: /var/www/img/templates/administrator/_out.php:3523
+#: /var/www/img/templates/administrator/roleCreate.tpl:43
+msgid "Importance"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:584
+#: /var/www/img/templates/administrator/_out.php:1878
+#: /var/www/img/templates/administrator/widget_edit_html.tpl:4
+msgid "Widget editing"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:621
+#: /var/www/img/templates/administrator/_out.php:1912
+#: /var/www/img/templates/administrator/_out.php:2081
+#: /var/www/img/templates/administrator/widget_edit_html.tpl:41
+msgid "Short widget discription"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:646
+msgid "a_tools_panel"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:650
+#: /var/www/img/templates/administrator/_out.php:874
+#: /var/www/img/templates/administrator/_out.php:875
+#: /var/www/img/templates/administrator/dashboard.tpl:10
+#: /var/www/img/templates/administrator/pages.tpl:46
+#: /var/www/img/templates/administrator/pages.tpl:47
+#, fuzzy
+msgid "Create a page"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:651
+#: /var/www/img/templates/administrator/_out.php:2778
+#: /var/www/img/templates/administrator/_out.php:2784
+#: /var/www/img/templates/administrator/_out.php:3812
+#: /var/www/img/templates/administrator/_out.php:4066
+#: /var/www/img/templates/administrator/_out.php:4246
+#: /var/www/img/templates/administrator/_out.php:4482
+#: /var/www/img/templates/administrator/dashboard.tpl:11
+msgid "Create a category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:657
+#: /var/www/img/templates/administrator/dashboard.tpl:17
+#, fuzzy
+msgid "New pages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:664
+#: /var/www/img/templates/administrator/_out.php:710
+#: /var/www/img/templates/administrator/_out.php:4011
+#: /var/www/img/templates/administrator/_out.php:4432
+#: /var/www/img/templates/administrator/dashboard.tpl:24
+#: /var/www/img/templates/administrator/dashboard.tpl:70
+msgid "Time and date of creation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:673
+#: /var/www/img/templates/administrator/_out.php:685
+#: /var/www/img/templates/administrator/_out.php:719
+#: /var/www/img/templates/administrator/_out.php:731
+#: /var/www/img/templates/administrator/_out.php:970
+#: /var/www/img/templates/administrator/_out.php:1391
+#: /var/www/img/templates/administrator/_out.php:1527
+#: /var/www/img/templates/administrator/_out.php:2324
+#: /var/www/img/templates/administrator/_out.php:2358
+#: /var/www/img/templates/administrator/_out.php:2610
+#: /var/www/img/templates/administrator/_out.php:2687
+#: /var/www/img/templates/administrator/_out.php:3064
+#: /var/www/img/templates/administrator/_out.php:4692
+msgid "Editing"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:703
+#: /var/www/img/templates/administrator/dashboard.tpl:63
+#, fuzzy
+msgid "Updated pages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:753
+#: /var/www/img/templates/administrator/_out.php:2362
+#: /var/www/img/templates/administrator/_out.php:2644
+#: /var/www/img/templates/administrator/dashboard.tpl:113
+msgid "System"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:759
+#: /var/www/img/templates/administrator/_out.php:1261
+#: /var/www/img/templates/administrator/_out.php:1620
+#: /var/www/img/templates/administrator/_out.php:3710
+#: /var/www/img/templates/administrator/_out.php:5012
+#: /var/www/img/templates/administrator/_out.php:5678
+#: /var/www/img/templates/administrator/dashboard.tpl:119
+msgid "Version"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:761
+#: /var/www/img/templates/administrator/dashboard.tpl:121
+msgid "Version updates available"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:763
+#: /var/www/img/templates/administrator/dashboard.tpl:123
+msgid "Version updates are not available."
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:766
+#: /var/www/img/templates/administrator/_out.php:1139
+#: /var/www/img/templates/administrator/_out.php:3110
+#: /var/www/img/templates/administrator/dashboard.tpl:126
+msgid "Information"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:774
+#: /var/www/img/templates/administrator/dashboard.tpl:134
+msgid "Statistics"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:780
+#: /var/www/img/templates/administrator/_out.php:5105
+#: /var/www/img/templates/administrator/_out.php:5248
+#: /var/www/img/templates/administrator/dashboard.tpl:140
+#, fuzzy
+msgid "Pages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:782
+#: /var/www/img/templates/administrator/dashboard.tpl:142
+msgid "Comments"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:791
+#: /var/www/img/templates/administrator/_out.php:5551
+#: /var/www/img/templates/administrator/dashboard.tpl:151
+msgid "Latest/recent  comments"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:812
+#: /var/www/img/templates/administrator/dashboard.tpl:172
+msgid "ImageCMS news"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:832
+#: /var/www/img/templates/administrator/pages.tpl:4
+msgid "Copy/Move pages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:837
+#: /var/www/img/templates/administrator/_out.php:883
+#: /var/www/img/templates/administrator/_out.php:978
+#: /var/www/img/templates/administrator/_out.php:2314
+#: /var/www/img/templates/administrator/_out.php:2602
+#: /var/www/img/templates/administrator/pages.tpl:9
+#: /var/www/img/templates/administrator/pages.tpl:55
+#: /var/www/img/templates/administrator/pages.tpl:150
+msgid "Without a category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:842
+#: /var/www/img/templates/administrator/_out.php:856
+#: /var/www/img/templates/administrator/_out.php:1294
+#: /var/www/img/templates/administrator/_out.php:1465
+#: /var/www/img/templates/administrator/_out.php:1776
+#: /var/www/img/templates/administrator/_out.php:3599
+#: /var/www/img/templates/administrator/_out.php:4640
+#: /var/www/img/templates/administrator/_out.php:5212
+#: /var/www/img/templates/administrator/_out.php:5697
+#: /var/www/img/templates/administrator/pages.tpl:14
+#: /var/www/img/templates/administrator/pages.tpl:28
+#, fuzzy
+msgid "Cancel"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:843
+msgid "Confirm"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:850
+#: /var/www/img/templates/administrator/pages.tpl:22
+msgid "Delete pages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:853
+#: /var/www/img/templates/administrator/pages.tpl:25
+msgid "Delete selected pages"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:857
+#: /var/www/img/templates/administrator/_out.php:873
+#: /var/www/img/templates/administrator/_out.php:1464
+#: /var/www/img/templates/administrator/_out.php:1478
+#: /var/www/img/templates/administrator/_out.php:1715
+#: /var/www/img/templates/administrator/_out.php:1777
+#: /var/www/img/templates/administrator/_out.php:3381
+#: /var/www/img/templates/administrator/_out.php:3400
+#: /var/www/img/templates/administrator/_out.php:3598
+#: /var/www/img/templates/administrator/_out.php:3618
+#: /var/www/img/templates/administrator/_out.php:4639
+#: /var/www/img/templates/administrator/_out.php:4654
+#: /var/www/img/templates/administrator/_out.php:4800
+#: /var/www/img/templates/administrator/_out.php:4855
+#: /var/www/img/templates/administrator/_out.php:4928
+#: /var/www/img/templates/administrator/_out.php:4993
+#: /var/www/img/templates/administrator/_out.php:5211
+#: /var/www/img/templates/administrator/_out.php:5230
+#: /var/www/img/templates/administrator/pages.tpl:29
+#: /var/www/img/templates/administrator/pages.tpl:45
+msgid "Delete"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:866
+msgid "a_cont_list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:870
+#: /var/www/img/templates/administrator/pages.tpl:42
+msgid "Filter"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:871
+#: /var/www/img/templates/administrator/pages.tpl:43
+msgid "Create copy"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:872
+#: /var/www/img/templates/administrator/pages.tpl:44
+msgid "move or displace"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:927
+#: /var/www/img/templates/administrator/pages.tpl:99
+msgid "Date of creation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:928
+#: /var/www/img/templates/administrator/_out.php:5125
+#: /var/www/img/templates/administrator/pages.tpl:100
+msgid "Status"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:934
+#: /var/www/img/templates/administrator/_out.php:5753
+msgid "numbers only"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:969
+#: /var/www/img/templates/administrator/_out.php:5134
+#, fuzzy
+msgid "goto site"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:994
+#: /var/www/img/templates/administrator/_out.php:5142
+#: /var/www/img/templates/administrator/_out.php:5754
+msgid "show"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:994
+#: /var/www/img/templates/administrator/_out.php:5142
+#: /var/www/img/templates/administrator/_out.php:5755
+msgid "don't show"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1028
+#: /var/www/img/templates/administrator/_out.php:1882
+#: /var/www/img/templates/administrator/_out.php:2011
+#: /var/www/img/templates/administrator/_out.php:2029
+#: /var/www/img/templates/administrator/_out.php:2051
+#: /var/www/img/templates/administrator/_out.php:2163
+#: /var/www/img/templates/administrator/_out.php:2312
+#: /var/www/img/templates/administrator/_out.php:2323
+#: /var/www/img/templates/administrator/_out.php:2357
+#: /var/www/img/templates/administrator/_out.php:2601
+#: /var/www/img/templates/administrator/_out.php:2609
+#: /var/www/img/templates/administrator/_out.php:4113
+#: /var/www/img/templates/administrator/_out.php:4213
+#, fuzzy
+msgid "Create"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1028
+#: /var/www/img/templates/administrator/_out.php:1391
+#: /var/www/img/templates/administrator/_out.php:2687
+msgid "Privileges"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1073
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:2755
+#: /var/www/img/templates/administrator/_out.php:4978
+#: /var/www/img/templates/administrator/_out.php:5164
+msgid "Group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1096
+msgid "Category translation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1162
+#: /var/www/img/templates/administrator/_out.php:2891
+#: /var/www/img/templates/administrator/_out.php:3196
+#: /var/www/img/templates/administrator/_out.php:4160
+msgid "Choose an image "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1177
+#: /var/www/img/templates/administrator/_out.php:3027
+#: /var/www/img/templates/administrator/_out.php:3337
+#: /var/www/img/templates/administrator/_out.php:3902
+#: /var/www/img/templates/administrator/_out.php:4324
+msgid "Meta Title"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1214
+#: /var/www/img/templates/administrator/_out.php:1905
+#: /var/www/img/templates/administrator/_out.php:2019
+#: /var/www/img/templates/administrator/_out.php:3887
+#: /var/www/img/templates/administrator/_out.php:4309
+msgid "Only Latin characters"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1230
+msgid "System information"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1237
+msgid "Level of server utilisation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1247
+msgid "Server"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1250
+msgid "Operating system"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1258
+msgid "Data base"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1262
+msgid "Period"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1263
+msgid "Size"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1268
+msgid "Write rights or permission"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1285
+msgid "Select a category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1305
+msgid "Orders"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1308
+msgid "a_callbacks"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1312
+msgid "Arrival notification"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1344
+msgid "Regular discounts"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1458
+msgid "Widget delete"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1461
+msgid "Delete selected widget(s)?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1474
+msgid "Widgets list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1479
+#, fuzzy
+msgid "Create a widget"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1501
+#: /var/www/img/templates/administrator/_out.php:1987
+#: /var/www/img/templates/administrator/_out.php:3418
+#: /var/www/img/templates/administrator/_out.php:4947
+#: /var/www/img/templates/administrator/_out.php:5161
+#: /var/www/img/templates/administrator/_out.php:5245
+msgid "ID"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1503
+#: /var/www/img/templates/administrator/_out.php:2085
+#: /var/www/img/templates/administrator/_out.php:2121
+msgid "Type"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1553
+#, fuzzy
+msgid "No widgets created"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:1600
+msgid "message"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1600
+msgid "Module search is being developed"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1606
+msgid "set write rights  on the directory for  simple module installation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1622
+msgid "Actions"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1632
+#: /var/www/img/templates/administrator/_out.php:3711
+#: /var/www/img/templates/administrator/_out.php:3727
+#: /var/www/img/templates/administrator/_out.php:5017
+#: /var/www/img/templates/administrator/_out.php:5019
+msgid "Install"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1650
+msgid "No  modules have been found at your request"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1659
+msgid "Module search"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1664
+msgid "Here you can search for modules and set them to automatic mode"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1697
+#, fuzzy
+msgid "Change category data"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:1698
+#: /var/www/img/templates/administrator/_out.php:4866
+msgid "Add a subcategory"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1699
+#: /var/www/img/templates/administrator/_out.php:4867
+msgid "Add an article"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1711
+#: /var/www/img/templates/administrator/_out.php:4924
+msgid "Roles groups list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:3449
+#: /var/www/img/templates/administrator/_out.php:4978
+msgid "List"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:4978
+msgid "a_privilegy"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1765
+#: /var/www/img/templates/administrator/_out.php:3449
+#: /var/www/img/templates/administrator/_out.php:4978
+msgid "Empty."
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1773
+msgid "Remove group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1784
+msgid "Language edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1826
+#: /var/www/img/templates/administrator/_out.php:1833
+#: /var/www/img/templates/administrator/_out.php:4149
+#: /var/www/img/templates/administrator/_out.php:4156
+msgid "Image URL"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1837
+msgid "Choose an image"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1925
+#: /var/www/img/templates/administrator/_out.php:4523
+msgid "Roles group edit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:1983
+msgid "Group list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2046
+msgid "Widget creating"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2095
+#, fuzzy
+msgid "Module name"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2188
+msgid "Copy to the local computer"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2200
+msgid "Save on the server"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2202
+msgid "File will be saved in the directory"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2213
+msgid "Send to your email"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2219
+msgid "File format"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2310
+#: /var/www/img/templates/administrator/_out.php:3782
+#: /var/www/img/templates/administrator/_out.php:3799
+#: /var/www/img/templates/administrator/_out.php:4220
+#: /var/www/img/templates/administrator/_out.php:4233
+msgid "Content"
+msgstr "Содержимое"
+
+#: /var/www/img/templates/administrator/_out.php:2316
+#: /var/www/img/templates/administrator/_out.php:2603
+msgid "Field constructor"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2328
+#: /var/www/img/templates/administrator/_out.php:2614
+msgid "Menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2331
+#: /var/www/img/templates/administrator/_out.php:2616
+#: /var/www/img/templates/administrator/_out.php:5583
+msgid "Control or Operation"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2340
+#: /var/www/img/templates/administrator/_out.php:2625
+#: /var/www/img/templates/administrator/_out.php:3623
+msgid "Modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2342
+#: /var/www/img/templates/administrator/_out.php:2627
+#: /var/www/img/templates/administrator/_out.php:3614
+#: /var/www/img/templates/administrator/_out.php:3623
+msgid "All modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2343
+#: /var/www/img/templates/administrator/_out.php:2628
+msgid "Search"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2355
+#: /var/www/img/templates/administrator/_out.php:2640
+msgid "Widgets"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2364
+#: /var/www/img/templates/administrator/_out.php:2646
+#, fuzzy
+msgid "Site settings"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2365
+#: /var/www/img/templates/administrator/_out.php:2648
+#: /var/www/img/templates/administrator/_out.php:4650
+#, fuzzy
+msgid "Languages"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2366
+#: /var/www/img/templates/administrator/_out.php:2649
+#: /var/www/img/templates/administrator/_out.php:5823
+msgid "Cache"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2368
+#: /var/www/img/templates/administrator/_out.php:2651
+#: /var/www/img/templates/administrator/_out.php:5855
+msgid "Clear all"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2369
+#: /var/www/img/templates/administrator/_out.php:2652
+#: /var/www/img/templates/administrator/_out.php:5849
+msgid "Clear old or Delete outdated posts or information"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2373
+#: /var/www/img/templates/administrator/_out.php:2655
+#: /var/www/img/templates/administrator/_out.php:5875
+msgid "Event journal"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2564
+msgid "To use your personal account, activate JavaScript, please."
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2594
+#: /var/www/img/templates/administrator/_out.php:5515
+msgid "Hello"
+msgstr "Привет"
+
+#: /var/www/img/templates/administrator/_out.php:2599
+msgid "Contents"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2660
+msgid "View a site"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2661
+msgid "Exit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2785
+#, fuzzy
+msgid "Create and exit"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2825
+#: /var/www/img/templates/administrator/_out.php:3130
+msgid "AutoFit"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2835
+#: /var/www/img/templates/administrator/_out.php:3139
+msgid "Parent category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2845
+#: /var/www/img/templates/administrator/_out.php:3148
+msgid "Field group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2855
+#: /var/www/img/templates/administrator/_out.php:3158
+msgid "Select  a field group  for a category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2860
+#: /var/www/img/templates/administrator/_out.php:2880
+#: /var/www/img/templates/administrator/_out.php:3164
+#: /var/www/img/templates/administrator/_out.php:3184
+msgid "Apply for subcategories"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2866
+#: /var/www/img/templates/administrator/_out.php:3169
+msgid "page field group"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2875
+#: /var/www/img/templates/administrator/_out.php:3178
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2922
+#: /var/www/img/templates/administrator/_out.php:3229
+msgid "Page display"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2932
+#: /var/www/img/templates/administrator/_out.php:3239
+msgid "Sort by"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2936
+#: /var/www/img/templates/administrator/_out.php:3243
+#, fuzzy
+msgid "by date"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:2937
+#: /var/www/img/templates/administrator/_out.php:3244
+msgid "By alphabet or  in the alphabetic order"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2938
+#: /var/www/img/templates/administrator/_out.php:3245
+#, fuzzy
+msgid "By position"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:2943
+#: /var/www/img/templates/administrator/_out.php:3251
+msgid "In descending order"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2944
+#: /var/www/img/templates/administrator/_out.php:3252
+msgid "In ascending order"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2950
+#: /var/www/img/templates/administrator/_out.php:3258
+msgid "Posts on the page or Records on the page"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2957
+#: /var/www/img/templates/administrator/_out.php:3266
+msgid "Comment pages by default "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2962
+#: /var/www/img/templates/administrator/_out.php:3271
+msgid "Display pages of other categories"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2981
+#: /var/www/img/templates/administrator/_out.php:2992
+#: /var/www/img/templates/administrator/_out.php:3292
+#: /var/www/img/templates/administrator/_out.php:3303
+msgid "Main category template by default"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:2985
+#: /var/www/img/templates/administrator/_out.php:3296
+msgid "Category template"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3002
+#: /var/www/img/templates/administrator/_out.php:3313
+msgid "Page view template by default"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3101
+#: /var/www/img/templates/administrator/_out.php:3784
+#: /var/www/img/templates/administrator/_out.php:4222
+msgid "Additional fields"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3375
+#: /var/www/img/templates/administrator/_out.php:4849
+msgid "Remove a Role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3378
+#: /var/www/img/templates/administrator/_out.php:4852
+msgid "Remove selected roles?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3388
+#: /var/www/img/templates/administrator/_out.php:4862
+#: /var/www/img/templates/administrator/_out.php:5000
+msgid "Remove roles?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3396
+msgid "Roles list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3401
+msgid "New Role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3449
+msgid "Role"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3592
+#: /var/www/img/templates/administrator/_out.php:3604
+msgid "Module deinstalling"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3595
+msgid "Delete selected module(s)?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3605
+msgid "Delete modules?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3624
+msgid "Install modules"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3644
+msgid "URL access"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3645
+msgid "Show in menu"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3679
+#: /var/www/img/templates/administrator/_out.php:3684
+#: /var/www/img/templates/administrator/_out.php:3689
+msgid "switch on"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3679
+#: /var/www/img/templates/administrator/_out.php:3684
+#: /var/www/img/templates/administrator/_out.php:3689
+msgid "switch off"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3700
+msgid "Modules has not been installed"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3737
+msgid "There isn't any module for install!"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3748
+msgid "Edit page"
+msgstr "Редактировать страницу"
+
+#: /var/www/img/templates/administrator/_out.php:3779
+msgid "a_show_page"
+msgstr "Просмотр"
+
+#: /var/www/img/templates/administrator/_out.php:3843
+#: /var/www/img/templates/administrator/_out.php:4275
+msgid "Full contents"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3893
+#: /var/www/img/templates/administrator/_out.php:4315
+msgid "Tags"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3946
+#: /var/www/img/templates/administrator/_out.php:4368
+msgid "Page Template"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3965
+#: /var/www/img/templates/administrator/_out.php:4387
+msgid "Comment permission"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:3998
+#: /var/www/img/templates/administrator/_out.php:4417
+msgid "Publication status"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4002
+#: /var/www/img/templates/administrator/_out.php:4421
+msgid "Published or Has been published"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4003
+#: /var/www/img/templates/administrator/_out.php:4422
+msgid "Pending approval or Awaiting approval "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4004
+#: /var/www/img/templates/administrator/_out.php:4423
+msgid "Has not been published"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4024
+#: /var/www/img/templates/administrator/_out.php:4444
+msgid "Time and date of publication"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4037
+#: /var/www/img/templates/administrator/_out.php:4457
+msgid "Access"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4041
+#: /var/www/img/templates/administrator/_out.php:4461
+msgid "All"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4108
+msgid "The creation of a new language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4207
+#, fuzzy
+msgid "Create new page"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:4632
+msgid "Delete language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4635
+msgid "Delete selected languages?"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4636
+msgid "Attention! All pages in this language will be deleted!"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4655
+msgid "Create language"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4767
+msgid "Update the code"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4777
+msgid "Remember"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4780
+msgid "Forgot your password"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4795
+msgid "Privileges list"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4799
+msgid "Create privilege"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:4868
+msgid "Double click to show all categories"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5022
+#, fuzzy
+msgid "Download"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:5041
+#: /var/www/img/templates/administrator/_out.php:5290
+msgid "FTP connection settings"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5045
+#: /var/www/img/templates/administrator/_out.php:5294
+msgid "Hostname"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5049
+#: /var/www/img/templates/administrator/_out.php:5298
+msgid "Port"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5053
+#: /var/www/img/templates/administrator/_out.php:5302
+msgid "login"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5061
+#: /var/www/img/templates/administrator/_out.php:5310
+msgid "Path to the root directory"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5065
+msgid "For example"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5071
+msgid "Next"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5098
+msgid "a_search_results"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5108
+#: /var/www/img/templates/administrator/_out.php:5162
+#: /var/www/img/templates/administrator/_out.php:5885
+msgid "User"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5151
+#: /var/www/img/templates/administrator/_out.php:5189
+#: /var/www/img/templates/administrator/_out.php:5264
+msgid "No relevant data has been found"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5165
+msgid "Banned"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5166
+msgid "Last IP"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5205
+#: /var/www/img/templates/administrator/_out.php:5218
+msgid "Delete category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5208
+msgid "Remove selected categories"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5217
+msgid "Delete a category"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5231
+#, fuzzy
+msgid "Create category"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/img/templates/administrator/_out.php:5277
+#, fuzzy
+msgid "System update"
+msgstr "Позиція змінена"
+
+#: /var/www/img/templates/administrator/_out.php:5284
+msgid "Attention"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5284
+msgid "Make a database backup copy before updating "
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5314
+msgid "For example:  /domains/mysite/public_html/"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5320
+msgid "Update"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5370
+msgid "Roles group create"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5522
+msgid "Guest"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5525
+msgid "Preview"
+msgstr "Смотреть"
+
+#: /var/www/img/templates/administrator/_out.php:5525
+msgid "site"
+msgstr "сайт"
+
+#: /var/www/img/templates/administrator/_out.php:5545
+msgid "Products without icons"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5616
+msgid "Manage shop"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5647
+#, fuzzy
+msgid "Manage site"
+msgstr "Позиція"
+
+#: /var/www/img/templates/administrator/_out.php:5668
+msgid "a_"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5693
+#, fuzzy
+msgid "Your remark"
+msgstr "Вааааааааааааше замечание"
+
+#: /var/www/img/templates/administrator/_out.php:5834
+msgid "Delete cache"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5843
+msgid "Total file caching"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5886
+msgid "Date/time"
+msgstr ""
+
+#: /var/www/img/templates/administrator/_out.php:5887
+msgid "Action"
+msgstr ""
+
+#: /var/www/img/templates/administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr ""
+
+#: /var/www/img/templates/administrator/profiler_template.php:405
+msgid "profiler_no_profiles"
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_pub_date"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_creat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_sett_saved"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_by_default"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "ac_created"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_yes"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_cat_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_name"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_n"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_cat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_no_updates"
+#~ msgstr "Позиція змінена"
+
+#~ msgid "a_url"
+#~ msgstr "Посилання"
+
+#, fuzzy
+#~ msgid "a_date_create"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_select_image"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_type"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_footer_cancel"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_image_url"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_save_path"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_sort"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_by_pos"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_comm_by_def"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_turn_off"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "a_page_tpl"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "a_pub_stat"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_enter_sys"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_create_group"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "a_ftp_sett"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_in_mb"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_left"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_top"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_bottom"
+#~ msgstr "Позиція"
+
+#, fuzzy
+#~ msgid "amt_text"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_no_albums"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_album"
+#~ msgstr "Нааааааааамеееееееееее"
+
+#, fuzzy
+#~ msgid "amt_gallery"
+#~ msgstr "Нааааааааамеееееееееее"
