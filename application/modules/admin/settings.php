@@ -17,7 +17,8 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
-        
+    
+        //phpinfo(INFO_ENVIRONMENT);
         $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
@@ -173,6 +174,8 @@ class Settings extends BaseAdminController {
     
     public function switch_admin_lang($lang)
     {
+     
+        
         $langs = Array(
             'english',
             'russian'
@@ -180,6 +183,7 @@ class Settings extends BaseAdminController {
         
         if (in_array($lang, $langs) && $this->config->item('language') != $lang)
         {
+                  
             $this->db->set('lang_sel', $lang.'_lang')
                 ->update('settings');
 

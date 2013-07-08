@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки модуля Рейтинг</span>
+            <span class="title">{lang("Module settings starRating")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

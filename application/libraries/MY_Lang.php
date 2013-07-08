@@ -29,6 +29,7 @@ class MY_Lang extends CI_Lang {
 	 */
 	function __construct() {
 		parent::__construct();
+
 	}
 
 	private function _language() {

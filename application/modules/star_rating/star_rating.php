@@ -27,6 +27,8 @@ class Star_rating extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('path');
+        $obj = new MY_Lang();
+        $obj->load('star_rating');
     }
 
     public static function adminAutoload() {

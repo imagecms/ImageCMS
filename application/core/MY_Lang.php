@@ -37,12 +37,12 @@ class MY_Lang extends MX_Lang {
     public function getLangCode($language) {
         $langs = array(
             'russian'   => array('ru', 'ru_RU'),
-            'english'   => array('en', 'en_GB'),
+            'english'   => array('en', 'en_US'),
             'german'    => array('de', 'de_CH'),
             'ukrainian' => array('uk', 'uk_UA')
         );
 
-        return isset($langs[$language])?$langs[$language]:array('en', 'en_GB');
+        return isset($langs[$language])?$langs[$language]:array('en', 'en_US');
     }
 
 
@@ -57,9 +57,10 @@ class MY_Lang extends MX_Lang {
         else
             $this->ci->config->set_item('language', 'russian');
 
+       
         unset($sett);
-
         $this->gettext_language = $this->ci->config->item('language');
+        
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $this->getLangCode($this->gettext_language)[1]);
     }
@@ -91,10 +92,9 @@ class MY_Lang extends MX_Lang {
 	 * @param	string	the language (english, etc.)
 	 * @return	mixed
 	 */
-	public function load($module) {
+	public function load($module = 'admin') {
         if (!$this->gettext)
             $this->_init();
-
         $this->gettext_domain = $module;
         $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $this->getLangCode($this->gettext_language)[1]);
 	}
@@ -135,7 +135,8 @@ class MY_Lang extends MX_Lang {
         putenv('LANG='.$locale);
         putenv('LANGUAGE='.$locale);
 
-		$textdomain_path = bindtextdomain($this->gettext_domain, $this->gettext_path); var_dump($textdomain_path);
+		$textdomain_path = bindtextdomain($this->gettext_domain, $this->gettext_path);
+//                var_dump($textdomain_path);
 		bind_textdomain_codeset($this->gettext_domain, $this->gettext_codeset);
 		textdomain($this->gettext_domain);
 		log_message('debug', 'Gettext Class path: ' . $textdomain_path);
@@ -143,7 +144,7 @@ class MY_Lang extends MX_Lang {
 
         log_message('debug', 'Gettext Class the domain: ' . $this->gettext_domain);
 
-        var_dump($this->gettext_domain);
+//        var_dump($this->gettext_domain);
 
 		return  true;
 	}

@@ -17,8 +17,7 @@
                     <div class="inside_padd">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
-                            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
-                                                return false;">
+                            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form'); return false;">
                                 <label>
                                     <span class="title">{lang("Email")}</span>
                                     <span class="frame_form_field">

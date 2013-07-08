@@ -37,7 +37,7 @@ class Gettext_Extension extends Gettext
      */
     public function __construct($params)
     {
-
+        
         $lang = $params['locale'][0];
         $locale = $params['locale'][1];
 
@@ -53,6 +53,7 @@ class Gettext_Extension extends Gettext
 
         bindtextdomain($params['domain'], 'application/language/admin');
         textdomain($params['domain']);
+        
     }
 
     /**
