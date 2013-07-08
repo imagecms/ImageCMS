@@ -59,7 +59,8 @@
                         data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                         data-stock="{echo $product->firstVariant->getStock()}"
                         >
-                        {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                        {lang('s_more')}
+                       {/*} {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} { */}
                     </button>
                     {else:}
                     <button

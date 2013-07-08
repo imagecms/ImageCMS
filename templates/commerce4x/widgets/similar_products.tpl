@@ -53,7 +53,8 @@
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
-                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                                {lang('s_more')}
+                                {/*}{if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} { */}
                             </button>
                         </div>
                         <div class="photo-block">

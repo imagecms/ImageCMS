@@ -105,6 +105,8 @@
                             </div>
                         </div>
                         <div class="f_r">
+                            <a class="btn btn_buy" href="{shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}#kit">{lang('s_more')}</a>
+                           {/*}
                             <button class="btn btn_buy btnBuy" type="button" 
                                     
                                     
@@ -120,8 +122,10 @@
                                     data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                     
                                     >
-                                {lang('s_buy')}
+                                {lang('s_more')}
+                                {//lang('s_buy')}
                             </button>
+                            { */}
                         </div>
                     </div>
                 </li>
