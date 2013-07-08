@@ -13,7 +13,7 @@
                 <span class="count">(Найдено {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
             </div>
 
-            {if count($products) == 0}
+            {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
@@ -24,7 +24,7 @@
 
             {include_tpl('catalogue_header')}
 
-            {if count($products) > 0}
+            {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     {include_tpl('one_product_item')}
                 </ul>

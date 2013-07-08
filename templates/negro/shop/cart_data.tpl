@@ -17,8 +17,10 @@
                     <span class="text-el">&nbsp;</span>
                     <span class="text-el plurProd">товар</span>
                     <span class="divider text-el">&#8226;</span>
-                    <span class="text-el topCartTotalPrice"></span>
-                    <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
+                    <span class="d_i-b">
+                        <span class="text-el topCartTotalPrice"></span>
+                        <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
+                    </span>
                 </span>
             </span>
         </span>

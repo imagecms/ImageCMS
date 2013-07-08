@@ -8,7 +8,12 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
-                <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
+                <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form', {literal}{callback: function(msg, status, form, DS) {
+                    if (status) {
+                        hideDrop(DS.drop, form, DS.durationHideForm);
+                    }
+                    return true; /*for hide form*/
+                }}{/literal});
                         return false;">
                     <div class="horizontal-form">
                         <label>
