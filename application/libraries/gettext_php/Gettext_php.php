@@ -53,7 +53,7 @@ class Gettext_PHP extends Gettext
      */
     public function __construct($params)
     {
-        //var_dump($params);
+//        var_dumps($params);
         list($directory, $domain, $locale) = $params;
         $this->mofile = sprintf("%s/%s/LC_MESSAGES/%s.mo", $directory, $locale, $domain);
     }

@@ -57,7 +57,13 @@ class MY_Controller extends MX_Controller {
 
     public function __construct() {
         parent::__construct();
+           
+//        $this->load->library('gettext_php/gettext_extension');
+//        $this->gettext_extension->switchDomain('application/modules/admin/language', 'admin', 'ru_RU');
+//        $this->gettext->switchDomain('application/modules/admin/language', $module, $this->getLangCode($this->gettext_language)[1]);
 
+        $obj = new MY_Lang();
+        $obj->load();
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
             $this->pjaxRequest = true;
             header('X-PJAX: true');
@@ -65,7 +71,7 @@ class MY_Controller extends MX_Controller {
 
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             $this->ajaxRequest = true;
-
+        
         defined('SHOP_INSTALLED') OR define('SHOP_INSTALLED', $this->checkForShop());
     }
 

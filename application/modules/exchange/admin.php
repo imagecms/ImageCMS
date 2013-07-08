@@ -38,7 +38,7 @@ class Admin extends BaseAdminController {
         if ($for_update) {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('1CSettings[filesize]', lang('The size of the file being loaded at the same time'), 'integer|required');
-            $this->form_validation->set_rules('1CSettings[validIP]', lang('IP server 1С'), 'valid_ip|required');
+            $this->form_validation->set_rules('1CSettings[validIP]', lang('IP server 1C'), 'valid_ip|required');
             $config['zip'] = $for_update['zip'];
             $config['filesize'] = $for_update['filesize'];
             $config['validIP'] = $for_update['validIP'];

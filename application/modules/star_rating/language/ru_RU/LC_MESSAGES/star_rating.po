@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 13:04+0300\n"
-"PO-Revision-Date: 2013-03-28 13:04+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-07-08 15:30+0300\n"
+"PO-Revision-Date: 2013-07-08 15:33+0300\n"
+"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -15,24 +15,29 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../..//_out.php:9
-#: ../../..//assets/admin/settings.tpl:9
+#: /var/www/image.loc/_temp.php:7
+msgid "fghgh"
+msgstr "АААААААААААААААААААААААААААА"
+
+#: /var/www/image.loc/_temp.php:8
+msgid "Module settings starRating"
+msgstr "Настройки модуля Рейтинг"
+
+#: /var/www/image.loc/_temp.php:9
 msgid "Go back"
 msgstr ""
 
-#: ../../..//_out.php:10
-#: ../../..//assets/admin/settings.tpl:10
+#: /var/www/image.loc/_temp.php:10
 msgid "Have been saved"
 msgstr ""
 
-#: ../../..//_out.php:11
-#: ../../..//assets/admin/settings.tpl:11
+#: /var/www/image.loc/_temp.php:11
 msgid "Save and go back"
 msgstr ""
 
-#: ../../..//admin.php:39
+#: ../../../admin.php:39
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
 

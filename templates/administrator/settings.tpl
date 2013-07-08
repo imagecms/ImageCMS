@@ -152,7 +152,7 @@
                                                             <div class="controls">
                                                                 <input type="text" id="google_analytics_id" name="google_analytics_id" value="{$google_analytics_id}" />
                                                                 <span class="help-block">
-                                                                    {lang("The code should be in the format "ua-54545845"")}
+                                                                    {lang("The code should be in the format ua-54545845")}
                                                                 </span>
                                                             </div>
                                                         </div>
