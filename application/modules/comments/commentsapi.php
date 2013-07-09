@@ -47,7 +47,6 @@ class Commentsapi extends Comments {
 //        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-//        var_dump($item_id);
         $comments = $this->base->get($item_id, 0, $this->module);
 
         // Read comments template
@@ -123,7 +122,7 @@ class Commentsapi extends Comments {
                     ->get('shop_products')
                     ->row();
 
-            if ($id->enable_comments === 0)
+            if ($id->enable_comments == 0)
                 $this->enable_comments = false;
             else
                 return $id->id;
@@ -149,13 +148,12 @@ class Commentsapi extends Comments {
                     ->get('settings')
                     ->row();
 
-            if ($id->comments_status === 0)
+            if ($id->comments_status == 0)
                 $this->enable_comments = false;
             else
                 return $id->main_page_id;
         }
 
-//        if (strstr($url, '/bloh/')) {
         $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
 
@@ -163,11 +161,11 @@ class Commentsapi extends Comments {
                 ->where('url', $paths)
                 ->get('content')
                 ->row();
-        if ($id->comments_status === 0)
-            $this->enable_comments = false;
+
+        if ($id->comments_status == 0)
+            $this->enable_comments = FALSE;
         else
             return $id->id;
-//        }
     }
 
     public function getModule($url) {
@@ -495,14 +493,14 @@ class Commentsapi extends Comments {
             return $words[1];
         return $words[2];
     }
-    
+
     /**
      * Get count answers to comment by id
      * @param int $commentId
      * @return boolean|int
      */
-    public function getCountCommentAnswersByCommentId($commentId){
-        $query = $this->db->where('parent',$commentId)->get('comments')->result_array();
+    public function getCountCommentAnswersByCommentId($commentId) {
+        $query = $this->db->where('parent', $commentId)->get('comments')->result_array();
         if ($query)
             return count($query);
         else

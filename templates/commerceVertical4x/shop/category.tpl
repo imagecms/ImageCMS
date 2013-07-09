@@ -97,7 +97,7 @@
             </div>
             {/if}
         </div>
-        
+
         <!-- rendering product list if products count more than 0 -->
 
         <!-- catalog container -->
@@ -263,7 +263,7 @@
                     </div>
                     <div class="short_description">
                         {if $desc}
-                        {echo $desc}
+                        {echo strip_tags($desc)}
                         {else:}
                         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                         {/if}

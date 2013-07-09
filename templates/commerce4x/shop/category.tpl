@@ -266,7 +266,7 @@
                                 </div>
                                 <div class="short_description">
                                     {if $desc}
-                                        {echo $desc}
+                                        {echo strip_tags($desc)}
                                     {else:}
                                         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                                     {/if}
