@@ -27,6 +27,7 @@ class Star_rating extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('path');
+        $this->load->model('rating_model');
         $obj = new MY_Lang();
         $obj->load('star_rating');
     }
@@ -44,7 +45,7 @@ class Star_rating extends MY_Controller {
      * @param SProducts $item
      */
     public function show_star_rating($item = null) {
-        $get_settings = $this->rating_model->get_settings();
+       $get_settings = $this->rating_model->get_settings();
 
         //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
