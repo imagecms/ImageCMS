@@ -172,12 +172,12 @@ class Search extends MY_Controller {
             }
         }
     }
-    
+
      public function save_positions() {
         $positions = $_POST['positions'];
         if (sizeof($positions) == 0)
             return false;
-        
+
         foreach ($positions as $key => $val) {
             $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
             $this->db->query($query);

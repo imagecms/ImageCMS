@@ -6,13 +6,13 @@
 	<title>{lang("Operation panel")} | Image CMS</title>
 	<meta name="description" content="{lang("Operation panel")} - Image CMS" />
 
-	<link rel="stylesheet" href="{$THEME}/css/content.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/rdTree.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/calendar.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/sortableTable.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/alertbox.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/Autocompleter.css" type="text/css" />
-	<link rel="stylesheet" href="{$THEME}/css/ui.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/content.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/rdTree.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/calendar.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/sortableTable.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/alertbox.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/Autocompleter.css" type="text/css" />
+	<link rel="stylesheet" href="{$THEME}css/ui.css" type="text/css" />
 
     
     <script  type="text/javascript">
@@ -76,7 +76,7 @@
 <div id="desktopTitlebarWrapper">
 
 	<div id="desktopTitlebar">
-            <img src="{$THEME}/images/logo1.png" id="cmsLogo" onclick="ajax_div('page', base_url + 'admin/dashboard/index'); return false;" style="cursor:pointer;" width="130px;" /> 
+            <img src="{$THEME}images/logo1.png" id="cmsLogo" onclick="ajax_div('page', base_url + 'admin/dashboard/index'); return false;" style="cursor:pointer;" width="130px;" /> 
         <h2 class="tagline">
  
 		</h2>
@@ -169,7 +169,7 @@
 
 
 </div>
-<img id="spinner2" src="{$THEME}/images/spinner-placeholder.gif" />
+<img id="spinner2" src="{$THEME}images/spinner-placeholder.gif" />
 </div>
 
 <div id="dockWrapper">

@@ -11,37 +11,28 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
-
         $this->load->library('DX_Auth');
-        $this->lang->load('star_rating');
-        //cp_check_perm('module_admin');
+        $this->load->model('rating_model');
     }
 
     public function index() {
-        $get_settings = $this->get_settings();
+        $get_settings = $this->rating_model->get_settings();
         $settings = json_decode($get_settings['settings']);
         $this->template->add_array(array(
             'settings' => $settings,
-            'is_shop' => $this->is_shop(),
+            'is_shop' => $this->rating_model->is_shop(),
         ));
         $this->render('settings');
     }
 
     public function update_settings() {
         $settings= json_encode($_POST['sr']);
-
-        $this->db->set('settings', $settings);
-        $this->db->where('name', 'star_rating');
-        $this->db->update('components');
+        
+        $this->rating_model->update_settings($settings);
         
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
         showMessage(lang("Settings saved success"));
-    }
-
-    public function get_settings() {
-        $settings = $this->db->select('settings')->where('name','star_rating')->get('components')->row_array();
-        return $settings;
     }
 
     public function render($viewName, array $data = array(), $return = false) {
@@ -50,26 +41,6 @@ class Admin extends BaseAdminController {
 
         $this->template->show('file:' . 'application/modules/star_rating/assets/admin/' . $viewName);
         exit;
-
-//        if ($return === false)
-//            $this->template->show('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
-//        else
-//            return $this->template->fetch('file:' . 'application/modules/star_rating/templates/admin/' . $viewName);
-        $this->__destruct();
     }
     
-    
-    
-    private function is_shop()
-    {
-        $res = $this->db->where('name','star_rating')->get('components')->row();
-        return $res; 
-    }
-
-    public function __destruct() {
-        $this->lang->load('admin');
-        unset($this);
-    }
-            
-
 }

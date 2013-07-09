@@ -6,7 +6,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
         <title>{$site_title}</title>
-        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css"/>
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt_ie_8.css" /><![endif]-->
         <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="css/lt_ie_7.css" /><![endif]-->
         <!--[if IE 6]>
@@ -15,8 +15,8 @@
                 DD_belatedPNG.fix('.h_f, .head_foot, .frame_search .frame_input input, .main_f_i_f-r, .logo img, .icon, .but_buy, .but_buy .b_buy_in, .but_buy a, .subm_filter, .subm_filter input, .frame_search .frame_input span, .search_button');
             </script>
         <![endif]-->
-        <script src="{$SHOP_THEME}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-        <script src="{$SHOP_THEME}/js/jquery.main.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="{$SHOP_THEME}js/jquery.main.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="inder"></div>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    {include_tpl('shop/default/cart_data')}
+                    {include_tpl('shop/cart_data')}
                 </li>
             </ul>
             <a href="/" class="f_l logo">

@@ -48,6 +48,22 @@ class Settings extends BaseAdminController {
 
         $this->template->assign('parent_id', $settings['main_page_cat']);
         $this->template->assign('id', 0);
+        
+///+++++++++++++++++++++++++++++++
+
+        $langs = $this->db->get('languages')->result_array();
+        $lang_meta = array();
+        foreach ($langs as $lang) {
+            $meta = $this->db->where('lang_ident', $lang['id'])->limit(1)->get('settings_i18n')->result_array();
+            if (count($meta) > 0)
+                $lang_meta[$lang['id']] = $meta[0];
+            else
+                $lang_meta[$lang['id']] = null;
+        }
+        $this->template->assign('langs', $langs);
+        $this->template->assign('meta_langs', $lang_meta);
+        
+//++++++++++++++++++++
 
         ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
 
@@ -57,6 +73,50 @@ class Settings extends BaseAdminController {
         $this->template->show('settings', FALSE);
     }
 
+    
+ //++++++++++++++
+        public function translate_meta() {
+
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('name', 'Название', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('short_name', 'Краткое название', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('description', 'Описание', 'trim|xss_clean');
+            $this->form_validation->set_rules('keywords', 'Ключевие слова', 'trim|xss_clean');
+            if ($this->form_validation->run($this) == FALSE)
+                showMessage(validation_errors(), false, 'r');
+            else {
+                $name = $this->input->post('name');
+                $short_name = $this->input->post('short_name');
+                $desk = $this->input->post('description');
+                $key = $this->input->post('keywords');
+                $lang = $this->input->post('lang_ident');
+                if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array()))
+                    $this->db->query("UPDATE settings_i18n 
+                                                            SET
+                                                                name = '$name',
+                                                                short_name = '$short_name',
+                                                                description = '$desk',
+                                                                keywords = '$key'
+                                                            WHERE lang_ident = '$lang'");
+                else
+                    $this->db->query("INSERT INTO settings_i18n( 
+                                                                lang_ident,
+                                                                name,
+                                                                short_name,
+                                                                description,
+                                                                keywords
+                                                                )
+                                                            VALUES(
+                                                                '$lang',
+                                                                '$name',
+                                                                '$short_name',
+                                                                '$desk',
+                                                                '$key')");
+            }
+
+    }
+//+++++++++++++++++++++++++++++++++++++++++    
     /**
      * Main Page settings
      */
@@ -137,10 +197,6 @@ class Settings extends BaseAdminController {
         }
 
         $data_m = array(
-            'site_title' => $this->lib_admin->db_post('title'),
-            'site_short_title' => $this->lib_admin->db_post('short_title'),
-            'site_description' => $this->lib_admin->db_post('description'),
-            'site_keywords' => $this->lib_admin->db_post('keywords'),
             'create_keywords' => $this->input->post('create_keywords'),
             'create_description' => $this->input->post('create_description'),
             'create_cat_keywords' => $this->input->post('create_cat_keywords'),
@@ -159,6 +215,8 @@ class Settings extends BaseAdminController {
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
         );
+        
+        $this->translate_meta();
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
 
@@ -169,7 +227,8 @@ class Settings extends BaseAdminController {
         $this->lib_admin->log(lang("Changed wesite settings"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
-        showMessage(lang("Settings have been saved"));
+        if (!validation_errors())
+          showMessage(lang("Settings have been saved"));
     }
     
     public function switch_admin_lang($lang)

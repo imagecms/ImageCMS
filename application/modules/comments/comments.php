@@ -23,6 +23,7 @@ class Comments extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $CI = &get_instance();
     }
 
     /**
@@ -32,16 +33,74 @@ class Comments extends MY_Controller {
         return FALSE;
     }
 
+    public static function adminAutoload() {
+        parent::adminAutoload();
+
+        \CMSFactory\Events::create()->onShopProductDelete()->setListener('commentsDeleteFromProduct');
+        \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('commentsDeleteFromCategory');
+    }
+
+    public function commentsDeleteFromCategory($product) {
+
+        if (!$product)
+            return;
+
+        $CI = &get_instance();
+
+        $ids = array();
+        foreach ($product[ShopCategoryId] as $key => $p)
+            $ids[$key] = $p;
+
+        $array = $CI->db
+                ->select('item_id')
+                ->join('shop_products', 'comments.item_id=shop_products.id')
+                ->where_in('shop_products.category_id', $ids)
+                ->where('module', 'shop')
+                ->group_by('item_id')
+                ->get('comments')
+                ->result_array();
+
+        $ids = array();
+        foreach ($array as $key => $a)
+            $ids[$key] = $a[item_id];
+
+        $CI->db->where_in('item_id', $ids);
+        $CI->db->where('module', 'shop');
+        $CI->db->delete('comments');
+    }
+
+    public function commentsDeleteFromProduct($product) {
+        if (!$product)
+            return;
+
+        $CI = &get_instance();
+
+        $product = $product[model];
+        $ids = array();
+        foreach ($product as $key => $p)
+            $ids[$key] = $p->id;
+
+        $CI->db->join('shop_products', 'comments.item_id=shop_products.id');
+        $CI->db->where_in('item_id', $ids);
+        $CI->db->where('module', 'shop');
+        $CI->db->delete('comments');
+    }
+
     public function init($model) {
-        \CMSFactory\assetManager::create()->registerScript('comments');
+        \CMSFactory\assetManager::create()
+                ->registerScript('comments');
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
             if ($this->core->core_data[module] != 'shop') {
-                foreach ($model as $id)
-                    $ids[] = $id[id];
+                foreach ((array) $model as $key => $id) {
+                    if (is_array($id))
+                        $ids[$key] = $id[id];
+                    else
+                        $ids[$key] = $id;
+                }
                 $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids, 'core');
             } else {
                 foreach ($model as $id)

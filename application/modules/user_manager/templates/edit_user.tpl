@@ -7,9 +7,9 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$SELF_URL}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>                   
-                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#update" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang("Save")}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang("Save and go back")}</button>
+                    <a href="{$SELF_URL}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>                   
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#update" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang('Save')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Save and exit')}</button>
                 </div>
             </div>                            
         </div>
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang("User data")}
+                          {lang("User data")}
                         </th>
                     </tr>
                 </thead>
@@ -45,13 +45,13 @@
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="phone">{lang("Phone number")}</label>
+                                            <label class="control-label" for="phone">{lang('Phone')}</label>
                                             <div class="controls">
                                                 <input type="text" name="phone" id="phone" value="{$phone}" autocomplete="off"/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="role_id">{lang("Group")}</label>
+                                            <label class="control-label" for="role_id">{lang('Group')}</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
                                                     <option value ="0">Без групы</option>
@@ -62,28 +62,28 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="new_pass">{lang("New password")}</label>
+                                            <label class="control-label" for="new_pass">{lang('New password')}</label>
                                             <div class="controls">
                                                 <input type="password" name="new_pass" id="new_pass" value=""/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="new_pass_conf">{lang("Confirm the password")}</label>
+                                            <label class="control-label" for="new_pass_conf">{lang('New password confirmation')}</label>
                                             <div class="controls">
                                                 <input type="password" name="new_pass_conf" id="new_pass_conf" value=""/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="banned">{lang("Ban")}</label>
+                                            <label class="control-label" for="banned">{lang('Ban')}</label>
                                             <div class="controls">
                                                 <select name="banned" id="banned">
-                                                    <option value ="0" selected="selected" >{lang("No")}</option>
-                                                    <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang("Yes")}</option>
+                                                    <option value ="0" selected="selected" >{lang('No')}</option>
+                                                    <option value ="1" {if $banned == "1"} selected="selected" {/if}>{lang('Yes')}</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="ban_reason">{lang("Ban reason")}</label>
+                                            <label class="control-label" for="ban_reason">{lang('Ban Reason')}</label>
                                             <div class="controls">
                                                 <input type="text" name="ban_reason" id="ban_reason" value="{$ban_reason}"/>
                                             </div>

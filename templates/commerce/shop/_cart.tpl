@@ -60,16 +60,16 @@
                                     {if $item.model->getMainProduct()->getMainImage()}
                                         <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
                                             <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
-                                        </a>                                        
-                                    {/if}                                   
+                                        </a>
+                                    {/if}
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
                                     <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
-                                    {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                              
-                                    {echo $item.price} {$CS}                              
+                                    {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}
+                                    {echo $item.price} {$CS}
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
                                     <div class="count">
@@ -88,33 +88,33 @@
                             </tr>
                             {foreach $item.model->getShopKitProducts() as $shopKitProduct}
                                 {$ap = $shopKitProduct->getSProducts()}
-                                {$ap->setLocale(ShopController::getCurrentLocale())}
+                                {$ap->setLocale(MY_Controller::getCurrentLocale())}
                                 {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                 <tr>
                                     <td style="width:90px;padding:2px;">
-                                            {if $ap->getMainImage()}
-                                                <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
-                                                    <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
-                                                </a>
-                                            {/if}                      
-                                        </td>
-                                        <td>
-                                            <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
-                                            {echo ShopCore::encode($kitFirstVariant->getName())}
-                                            {if $kitFirstVariant->getEconomy() > 0}
-                                    <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
-                                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                {else:}
-                                    <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                                {/if}
-                                </td>
-                                </tr>
-                                {$i++}
-                            {/foreach}
-                        {/if}
-                        {$total += $summary}
-                        {$total_nc += $summary_nextc}
-                    {/foreach}
+                                        {if $ap->getMainImage()}
+                                            <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
+                                                <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />
+                                            </a>
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
+                                        {echo ShopCore::encode($kitFirstVariant->getName())}
+                                        {if $kitFirstVariant->getEconomy() > 0}
+                                <br /><s style="font-size:14px;">{echo $kitFirstVariant->toCurrency('origPrice')} {$CS}</s>
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {else:}
+                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                            {/if}
+                            </td>
+                            </tr>
+                            {$i++}
+                        {/foreach}
+                    {/if}
+                    {$total += $summary}
+                    {$total_nc += $summary_nextc}
+                {/foreach}
                 </tbody>
                 <tfoot>
                     <tr>
@@ -139,128 +139,131 @@
                                         </div>
                                     </div>
                                 </div>
-                    </td>
-                </tr>
-            </tfoot>
-            <input type="hidden" name="forCart" value ="1"/>
-        </table>
-    </div>
-    <div class="order-cleaner clearfix">
-        <div class="f_l method_deliver_buy">
-            {if ShopCore::app()->SSettings->__get('usegifts') == 1}
-                <div class="block_title_18"><span class="title_18">{lang("Do you have a gift certificate?")}</span></div>
-                <label>
-                    <input type="text" name="giftcert" id="giftcertkey"/>
-                    <input type="button" name="giftcert" value="{lang("Apply")}" class="giftcertcheck"/>
-                </label>
-            {/if}
-            <div class="block_title_18"><span class="title_18">{lang("Select a delivery method")}</span></div>
-                {$counter = true}
-                {foreach $deliveryMethods as $deliveryMethod}
-                    {$del_id = $deliveryMethod->getId()}
-                <label>
-                    <input type="radio" 
-                           {if $counter} checked="checked" 
-                               {$del_id = $deliveryMethod->getId()} 
-                               {$counter = false}
-                               {$del_price = ceil($deliveryMethod->getPrice())}
-                               {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                           {/if} 
-                           name="met_del" 
-                           class="met_del" 
-                           value="{echo $del_id}" 
-                           data-price="{echo ceil($deliveryMethod->getPrice())}" 
-                           data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
-                    {echo $deliveryMethod->getName()}
-                </label>
-            {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+        <input type="hidden" name="forCart" value ="1"/>
+    </table>
+</div>
+<div class="order-cleaner clearfix">
+    <div class="f_l method_deliver_buy">
+        {if ShopCore::app()->SSettings->__get('usegifts') == 1}
+            <div class="block_title_18"><span class="title_18">{lang('s_do_you_have')}</span></div>
+            <label>
+                <input type="text" name="giftcert" id="giftcertkey"/>
+                <input type="button" name="giftcert" value="{lang('s_apply_sertif')}" class="giftcertcheck"/>
+            </label>
+        {/if}
+        <div class="block_title_18"><span class="title_18">{lang('s_sdm')}</span></div>
+            {$counter = true}
+            {foreach $deliveryMethods as $deliveryMethod}
+                {$del_id = $deliveryMethod->getId()}
+            <label>
+                <input type="radio"
+                       {if $counter} checked="checked"
+                           {$del_id = $deliveryMethod->getId()}
+                           {$counter = false}
+                           {$del_price = ceil($deliveryMethod->getPrice())}
+                           {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                       {/if}
+                       name="met_del"
+                       class="met_del"
+                       value="{echo $del_id}"
+                       data-price="{echo ceil($deliveryMethod->getPrice())}"
+                       data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
+                {echo $deliveryMethod->getName()}
+            </label>
+        {/foreach}
 
-            <!--    Show payment methods    -->
-            {if sizeof($paymentMethods) > 0}
-                <div class="block_title_18"><span class="title_18">{lang("Select a payment method")}</span></div>
-                <div id="paymentMethods">
-                    {$counter = true}
-                    {foreach $paymentMethods as $paymentMethod}
-                        <label>
-                            <input type="radio"
-                                   {if $counter} checked="checked"
-                                       {$counter = false}
-                                       {$pay_id = $paymentMethod->getId()}
-                                   {/if} 
-                                   name="met_buy" 
-                                   class="met_buy" 
-                                   value="{echo $pay_id}" />
-                            {echo $paymentMethod->getName()}
-                        </label>                        
-                    {/foreach}
-                </div>
-            {/if}            
-            <!--    Show payment methods    -->
+        <!--    Show payment methods    -->
+        {if sizeof($paymentMethods) > 0}
+            <div class="block_title_18"><span class="title_18">{lang('s_spm')}</span></div>
+            <div id="paymentMethods">
+                {$counter = true}
+                {foreach $paymentMethods as $paymentMethod}
+                    <label>
+                        <input type="radio"
+                               {if $counter} checked="checked"
+                                   {$counter = false}
+                                   {$pay_id = $paymentMethod->getId()}
+                               {/if}
+                               name="met_buy"
+                               class="met_buy"
+                               value="{echo $pay_id}" />
+                        {echo $paymentMethod->getName()}
+                    </label>
+                {/foreach}
+            </div>
+        {/if}
+        <!--    Show payment methods    -->
+    </div>
+    <div class="addres_recip f_r">
+        <div class="block_title_18">
+            {if validation_errors()}
+                <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
+            {/if}
+            <span class="title_18">{lang('s_addresrec')}</span>
         </div>
-        <div class="addres_recip f_r">
-            <div class="block_title_18">
-                {if validation_errors()}
-                    <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
-                {/if}
-                <span class="title_18">{lang("Address of the recipient")}</span>
-            </div>
-            <div class="label_block">
-                <label class="f_l">
-                    {if $isRequired['userInfo[fullName]']}
-                        <span class="red">*</span>
-                    {/if}
-                    {lang("You name")}
-                    <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
-                </label>
-                <label class="f_l">
-                    {if $isRequired['userInfo[email]']}
-                        <span class="red">*</span>
-                    {/if}
-                    {lang("E-mail Address")}
-                    <input type="text" {if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
-                </label>
-                <label class="f_l">
-                    {if $isRequired['userInfo[phone]']}
-                        <span class="red">*</span>
-                    {/if}
-                    {lang("Phone")}
-                    <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
-                </label>
-                <label class="f_l">
-                    {if $isRequired['userInfo[deliverTo]']}
-                        <span class="red">*</span>
-                    {/if}
-                    {lang("Address of the recipient")}
-                    <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
-                </label>
-            </div>
-            <label class="c_b d_b">
-                {if $isRequired['userInfo[commentText]']}
+        <div class="label_block">
+            <label class="f_l">
+                {if $isRequired['userInfo[fullName]']}
                     <span class="red">*</span>
                 {/if}
-                {lang("Comment")}
-                <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
+                {lang('s_c_uoy_name_u')}
+                <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
             </label>
-            <div>
-                {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
-            </div>
+            <label class="f_l">
+                {if $isRequired['userInfo[email]']}
+                    <span class="red">*</span>
+                {/if}
+                {lang('s_c_uoy_user_el')}
+                <input type="text" {if $isRequired['userInfo[email]']} class="required email"{/if} name="userInfo[email]" value="{$profile.email}">
+            </label>
+            <label class="f_l">
+                {if $isRequired['userInfo[phone]']}
+                    <span class="red">*</span>
+                {/if}
+                {lang('s_phone')}
+                <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
+            </label>
+            <label class="f_l">
+                {if $isRequired['userInfo[deliverTo]']}
+                    <span class="red">*</span>
+                {/if}
+                {lang('s_addresrec')}
+                <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
+            </label>
+        </div>
+        <label class="c_b d_b">
+            {if $isRequired['userInfo[commentText]']}
+                <span class="red">*</span>
+            {/if}
+            {lang('s_comment')}
+            <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea>
+        </label>
+        <div>
+            {echo ShopCore::app()->CustomFieldsWidgetHelper->renderPartOfFormWithCustomFields(-1, 'order', 'cartCustomData')}
         </div>
     </div>
-    <div class="foot_cleaner c_b result">
-        <span class="v-a_m">
-            <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{$vprices.main.price}</span> {$vprices.main.symbol} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> руб)</span>
-            <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $vprices.main.price + $deliveryMethod->getPrice()}</span> грн.</span>
-        </span>
-        <div class="buttons button_big_blue v-a_m">
-            <input type="submit" value="{lang("Formulation order")}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
-        </div>
+</div>
+<div class="foot_cleaner c_b result">
+    <span class="v-a_m">
+        <span class="c_9 f-s_16">(Сумма товаров: <span class="b">{$vprices.main.price}</span> {$vprices.main.symbol} +   Доставка: <span class="b">{echo $deliveryMethod->getPrice()}</span> руб)</span>
+        <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b">{echo $vprices.main.price + $deliveryMethod->getPrice()}</span> грн.</span>
+    </span>
+    <div class="buttons button_big_blue v-a_m">
+        <input type="submit" value="{lang('s_c_of_z_')}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
     </div>
-    <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
-    <input type="hidden" name="deliveryMethod" value="1" />
-    <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}" />
-    <input type="hidden" name="paymentMethod" value="5" />
-    <input type="hidden" name="makeOrder" value="1" />
-    {form_csrf()}
+</div>
+<input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
+<input type="hidden" name="deliveryMethod" value="1" />
+<input type="hidden" name="paymentMethodId" id="paymentMethodId" value="{echo $pay_id}" />
+<input type="hidden" name="paymentMethod" value="5" />
+<input type="hidden" name="makeOrder" value="1" />
+{form_csrf()}
 </form>
 {else:}
     <div class="comparison_slider">

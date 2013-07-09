@@ -4,9 +4,8 @@
         <meta charset="utf-8" />
         <title>{$site_title}</title>
         <meta name="description" content="{if (int)$page_number>1}{echo $page_number} - {/if}{$site_description}" />
-        <meta name="keywords" content="{$site_keywords}" /> 
+        <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        {$meta_noindex}
         {$canonical}
         <link rel="stylesheet" type="text/css" href="{$SHOP_THEME}css/style.css" media="all" />
         <!--
@@ -35,14 +34,8 @@
         <script type="text/javascript" src="{$SHOP_THEME}/js/shop.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/jquery.validate.js"></script>
         <script type="text/javascript" src="{$SHOP_THEME}js/autocomplete.js"></script>
-        
+
         <script type="text/javascript" src="{$SHOP_THEME}js/underscore-min.js"></script>
-        {$gmeta}
-
-        {$yameta}
-        {$renderGA}
-
-        {$ymetric}
     </head>
     <body>
         <div class="main_body">
@@ -50,7 +43,7 @@
                 <div class="center">
                     {load_menu('top_menu')}
                     <ul class="user_menu m-l_19 auth_data">{include_tpl('auth_data')}</ul>
-                    <ul class="user_menu cart_data_holder">                        
+                    <ul class="user_menu cart_data_holder">
                         <!--                        <li><a href="/" style="color:silver;">ru</a></li>
                                                 <li style="margin-left: 0; padding-left: 5px;"><a href="{$BASE_URL}en" style="color:silver;">en</a></li>-->
                         {include_tpl('cart_data')}</ul>
@@ -131,7 +124,7 @@
                         <span>ImageCMS</span>
                     </li>
                     {$CI->load->module('star_rating')->show_star_rating()}
-                </ul>                    
+                </ul>
 
                 <div class="footer_info f_r">
                     <div>© ImageCMS, {date('Y')}</div>
@@ -149,11 +142,11 @@
             </div>
         </div><!-- footer -->
         <div class="h_bg_{whereami()}"></div>
-        
-        
-        
+
+
+
         <script type="text/template" id="cartPopupTemplate">
-         {literal}   
+         {literal}
             <div class="fancy fancy_cleaner frame_head_content">
                 <div class="header_title">Ваша корзина</div>
                 <div class="inside_padd">
@@ -226,8 +219,8 @@
                     </table>
                 </div>
             </div>
-         {/literal}  
+         {/literal}
         </script>
-        
+
     </body>
 </html>

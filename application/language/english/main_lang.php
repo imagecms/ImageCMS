@@ -365,4 +365,8 @@ $lang['s_properties_in_cat'] = 'Properties';
 
 $lang['s_follow_prod'] = 'Follow the price';
 $lang['s_followprod'] = 'In follow';
+$lang['s_show_products'] = 'View products';
+$lang['s_article'] = 'Article';
+$lang['s_variant'] = 'Variant';
+$lang['s_variant_name'] = 'Name variant';
 /* End of file main_lang.php */

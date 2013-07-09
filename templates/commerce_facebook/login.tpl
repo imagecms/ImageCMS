@@ -1,4 +1,4 @@
-{$this->registerMeta('<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">')}
+{$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 
 <div id="titleExt"><span class="ext">{lang("Authorization")}</span></h5></div>
 

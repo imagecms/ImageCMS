@@ -1,0 +1,1 @@
+<ul class="list_1">{$wrapper}</ul>

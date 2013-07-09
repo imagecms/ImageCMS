@@ -46,7 +46,8 @@
                             <div>{lang("ID")}</div>
                             <div>{lang("Name")}</div>
                             <div>{lang("Link")}</div>
-                            <div>{lang("Type")}</div>
+                            {/*}<div>{lang('amt_type')}</div>{*/}
+                            <div>Показывать</div>
                         </div>
                         <div class=" body_category frame_level">
                             <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">

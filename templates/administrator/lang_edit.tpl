@@ -34,7 +34,7 @@
                                                     <div class="control-group">
                                                         <label class="control-label" for="inputName">{lang("Name")}:</label>
                                                         <div class="controls">
-                                                            <input type="text" name="name" id="" value="{$lang_name}" />
+                                                            <input type="text" name="lang_name" id="" value="{$lang_name}" />
                                                         </div>
                                                     </div>    
                                                     <div class="control-group">

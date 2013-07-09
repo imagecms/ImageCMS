@@ -6,13 +6,13 @@
         <title>{lang("Operation panel")} - Image CMS</title>
         <meta name="description" content="{lang("Operation panel")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.23.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery-ui-1.8.16.custom.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-responsive.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-notify.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.23.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.16.custom.css"/>
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
     </head>
     <body>
 
@@ -27,7 +27,7 @@
         <div class="main_body">
             <div class="form_login t-a_c">
                 <a href="/admin/dashboard" class="d-i_b">
-                    <img src="{$THEME}/img/logo.png"/>
+                    <img src="{$THEME}img/logo.png"/>
                 </a><br/>
                 <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
                     {if $login_failed}
@@ -69,7 +69,7 @@
                 </form>
             </div>
         </div>
-        <script src="{$THEME}/js/jquery-1.8.2.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
+        <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
     </body>
 </html>

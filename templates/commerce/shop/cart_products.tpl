@@ -65,16 +65,16 @@
                         {if $item.model->getMainProduct()->getMainImage()}
                             <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
                                 <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
-                            </a>                                        
-                        {/if}                                   
+                            </a>
+                        {/if}
                     </td>
                     <td>
                         <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
                         <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}">
-                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}                               
-                        {echo $item.price} {$CS}                               
+                        {//echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {//$CS}
+                        {echo $item.price} {$CS}
                     </td>
                     <td rowspan="{echo $item.model->countProducts()}">
                         <div class="count">
@@ -94,19 +94,19 @@
                 </tr>
                 {foreach $item.model->getShopKitProducts() as $shopKitProduct}
                     {$ap = $shopKitProduct->getSProducts()}
-                    {$ap->setLocale(ShopController::getCurrentLocale())}
+                    {$ap->setLocale(MY_Controller::getCurrentLocale())}
                     {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                     <tr>
                         <td style="width:90px;padding:2px;">
                             {if $ap->getMainImage()}
                                 <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
-                                    <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
+                                    <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />
                                 </a>
-                            {/if}                      
+                            {/if}
                         </td>
                         <td>
                             <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> {echo ShopCore::encode($kitFirstVariant->getName())}
-                            {if $kitFirstVariant->getEconomy() > 0}                               
+                            {if $kitFirstVariant->getEconomy() > 0}
                                 <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
                             {else:}
                                 <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
@@ -147,7 +147,7 @@
                         <span class="cert_fancybox">Сумма сертификата превышает сумму заказа!</span>
                     {else:}
                     {if $msg == 1}<span class="cert_fancybox"> Вы использовали сертификат!</span>{/if}
-                {if $msg == 2}<span class="cert_fancybox"> Не верный ключ сертификата!</span>{/if}  
+                {if $msg == 2}<span class="cert_fancybox"> Не верный ключ сертификата!</span>{/if}
             {/if}
             {literal}
                 <script type="text/javascript">
@@ -165,7 +165,7 @@
                         {/if}
                     </div>
                 </div>
-                </td>     
+                </td>
                 </tr>
                 </tfoot>
                 <input type="hidden" name="forCart" value="1" />

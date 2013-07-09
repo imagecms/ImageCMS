@@ -18,59 +18,60 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>Отображать на страницах:</th>
+                            <th>Отображать на страницах:</th>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     <div class="inside_padd">
                                         <div class="row-fluid" style ='padding:10px'>
-                                               <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[main]" value="1" {if $settings->main == 1}checked="checked"{/if}/>
-                                                        </span> Главной
-                                                    </span>
-                                                </div>
-                                                <hr style ='margin:5px'>
-                                                <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label ">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[page]" value="1" {if $settings->page == 1}checked="checked"{/if}/>
-                                                        </span> Cодержимого
-                                                    </span>
-                                                </div>
-                                                <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[category]" value="1" {if $settings->category == 1}checked="checked"{/if}/>
-                                                        </span>
-                                                            Категории
-                                                    </span>
-                                                </div>
-                                                {if $is_shop != null}
-                                                <hr style ='margin:5px'>
-                                                <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[product]" value="1" {if $settings->product == 1}checked="checked"{/if}/>
-                                                        </span> Продукта
-                                                    </span>
-                                                </div>
-                                                <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[shop_category]" value="1" {if $settings->shop_category == 1}checked="checked"{/if}/>
-                                                        </span> Категории продуктов
-                                                    </span>
-                                                </div>
-                                                <div class="controls-group" style ='padding:5px'>
-                                                    <span class="frame_label">
-                                                        <span class="niceCheck">
-                                                            <input type="checkbox" name="sr[brand]" value="1" {if $settings->brand == 1}checked="checked"{/if}/>
-                                                        </span> Брендов
-                                                    </span>
-                                                </div>{/if}
+                                            <div class="controls-group" style ='padding:5px'>
+                                                 <span class="frame_label">
+                                                     <span class="niceCheck">
+                                                         <input type="checkbox" name="sr[main]" value="1" {if $settings->main == 1}checked="checked"{/if}/>
+                                                     </span> Главной
+                                                 </span>
+                                             </div>
+                                             <hr style ='margin:5px'>
+                                             <div class="controls-group" style ='padding:5px'>
+                                                 <span class="frame_label ">
+                                                     <span class="niceCheck">
+                                                         <input type="checkbox" name="sr[page]" value="1" {if $settings->page == 1}checked="checked"{/if}/>
+                                                     </span> Cодержимого
+                                                 </span>
+                                             </div>
+                                             <div class="controls-group" style ='padding:5px'>
+                                                 <span class="frame_label">
+                                                     <span class="niceCheck">
+                                                         <input type="checkbox" name="sr[category]" value="1" {if $settings->category == 1}checked="checked"{/if}/>
+                                                     </span>
+                                                         Категории
+                                                 </span>
+                                             </div>
+                                             {if $is_shop != null}
+                                                 <hr style ='margin:5px'>
+                                                 <div class="controls-group" style ='padding:5px'>
+                                                     <span class="frame_label">
+                                                         <span class="niceCheck">
+                                                             <input type="checkbox" name="sr[product]" value="1" {if $settings->product == 1}checked="checked"{/if}/>
+                                                         </span> Продукта
+                                                     </span>
+                                                 </div>
+                                                 <div class="controls-group" style ='padding:5px'>
+                                                     <span class="frame_label">
+                                                         <span class="niceCheck">
+                                                             <input type="checkbox" name="sr[shop_category]" value="1" {if $settings->shop_category == 1}checked="checked"{/if}/>
+                                                         </span> Категории продуктов
+                                                     </span>
+                                                 </div>
+                                                 <div class="controls-group" style ='padding:5px'>
+                                                     <span class="frame_label">
+                                                         <span class="niceCheck">
+                                                             <input type="checkbox" name="sr[brand]" value="1" {if $settings->brand == 1}checked="checked"{/if}/>
+                                                         </span> Брендов
+                                                     </span>
+                                                 </div>
+                                             {/if}
                                         </div>
                                     </div>
                                 </td>

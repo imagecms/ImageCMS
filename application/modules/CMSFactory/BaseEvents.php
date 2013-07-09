@@ -80,6 +80,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -89,7 +96,33 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onAdminPagePreEdit() {
+        $this->key = 'BaseAdminPage:preUpdate';
+        return $this;
+    }
+
+    final public function onAdminPagePreCreate() {
+        $this->key = 'BaseAdminPage:preCreate';
+        return $this;
+    }
+
+    /*
+     * 
+     */
+
+    final public function on($key) {
+        $this->key = $key;
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -100,6 +133,13 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
+     * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
+     * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>     
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -110,35 +150,75 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
+     * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
+     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>     
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    final public function onAdminСategoryCreate() {
+    final public function onAdminCategoryCreate() {
         $this->key = 'Categories:create';
+        return $this;
+    }
+
+    final public function onAdminCategoryPreCreate() {
+        $this->key = 'BaseAdminCategory:preCreate';
         return $this;
     }
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
-     * <tr valign="top"><td>['url']</td><td></td></tr>
-     * <tr valign="top"><td>['short_desc']</td><td></td></tr>
-     * <tr valign="top"><td>['parent_id']</td><td></td></tr>
-     * <tr valign="top"><td>['description']</td><td></td></tr>
-     * <tr valign="top"><td>['userId']</td><td></td></tr>
+     * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
+     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>
      * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    final public function onAdminСategoryUpdate() {
+    final public function onAdminCategoryUpdate() {
         $this->key = 'Categories:update';
         return $this;
     }
 
+    final public function onAdminCategoryPreUpdate() {
+        $this->key = 'Categories:preUpdate';
+        return $this;
+    }
+
+    final public function onWidgetModulePreUpdate() {
+        $this->key = 'WidgetModule:preUpdate';
+        return $this;
+    }
+
+    final public function onWidgetHTMLPreUpdate() {
+        $this->key = 'WidgetHTML:preUpdate';
+        return $this;
+    }
+
+    final public function onAdminDashboardShow() {
+        $this->key = 'Dashboard:show';
+        return $this;
+    }
+
+    final public function onShopDashboardShow() {
+        $this->key = 'ShopDashboard:show';
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -148,7 +228,17 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopProductPreUpdate() {
+        $this->key = 'ShopAdminProducts:preEdit';
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -158,7 +248,17 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopProductPreCreate() {
+        $this->key = 'ShopAdminProducts:preCreate';
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
+     * <tr valign="top"><td>['model']</td><td></td>Instanceof SProducts</tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -169,6 +269,10 @@ abstract class BaseEvents {
     }
 
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -178,7 +282,16 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onShopCategoryPreCreate() {
+        $this->key = 'ShopAdminCategories:preCreate';
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -188,7 +301,30 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onShopCategoryPreEdit() {
+        $this->key = 'ShopAdminCategories:preEdit';
+        return $this;
+    }
+
     /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function onShopCategoryDelete() {
+        $this->key = 'ShopAdminCategories:delete';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['commentId']</td><td>Comment ID</td></tr>
+     * </table>
      * @return BehaviorFactory
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -215,6 +351,21 @@ abstract class BaseEvents {
 
     public function onRemoveFromCart() {
         $this->key = 'SCart:removeOne';
+        return $this;
+    }
+
+    public function onBrandPageLoad() {
+        $this->key = 'brand:load';
+        return $this;
+    }
+
+    public function onCategoryPageLoad() {
+        $this->key = 'category:load';
+        return $this;
+    }
+
+    public function onProductPageLoad() {
+        $this->key = 'product:load';
         return $this;
     }
 

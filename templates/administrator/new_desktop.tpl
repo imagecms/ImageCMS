@@ -4,10 +4,10 @@
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/style.css">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-responsive.css">
-        <link rel="stylesheet" type="text/css" href="{$THEME}/css/bootstrap-notify.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-notify.css">
     </head>
     <body>
         <div class="main_body">
@@ -19,7 +19,7 @@
                 <section class="container">
 
                     <a href="/admin" class="logo span3">
-                        <img src="{$THEME}/img/logo.png"/>
+                        <img src="{$THEME}img/logo.png"/>
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
@@ -164,15 +164,15 @@
                 </div>
             </div>
         </footer>
-        <script src="{$THEME}/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/pjax/jquery.pjax.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/jquery.form.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/scripts.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/functions.js" type="text/javascript"></script>
-        <script src="{$THEME}/js/admin_base.js" type="text/javascript"></script>
+        <script src="{$THEME}js/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
+        <script src="{$THEME}js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
+        <script src="{$THEME}js/pjax/jquery.pjax.js" type="text/javascript"></script>
+        <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
+        <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
+        <script src="{$THEME}js/functions.js" type="text/javascript"></script>
+        <script src="{$THEME}js/admin_base.js" type="text/javascript"></script>
         {literal}
             <script>
 

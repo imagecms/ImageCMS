@@ -45,7 +45,7 @@ class Module_frame extends MY_Controller {
         /**
           $this->load->dbforge();
           $this->dbforge->drop_table('mod_empty');
-         * 
+         *
          */
     }
 

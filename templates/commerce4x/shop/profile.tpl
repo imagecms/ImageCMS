@@ -72,12 +72,26 @@
                                     <label id="for_address" class="for_validations"></label>
                                 </span>
                             </label>
+                            {/*}
+                            {if $profile->getdiscount()}
+                                <label>
+                                    <span class="title">Скидка:</span>
+                                    <span class="frame_form_field">
+                                        <input disabled="disabled" type="text" value="{echo encode($profile->getdiscount())}%" name="address"/>
+
+                                    </span>
+                                </label>
+                            {/if} 
+                            { */}
+                            {echo ShopCore::app()->CustomFieldsHelper->setPatternMain('pattern_custom_field')->getCustomFields('user', $profile->getId())->asHtml()}
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
                                     <input type="submit" value="{lang("Edit")}" class="btn"/>
                                 </span>
                             </div>
+                                
+                            
                             {form_csrf()}
                         </form>
                     </div>
@@ -136,65 +150,27 @@
                         <tbody>
                             <tr>
                                 {foreach $orders as $order}
-                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
+                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('s_order')} №{echo $order->getId()}</a></td>
                                     <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
-                                    <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>
+                                    <td>{echo $order->getTotalPrice()} {$CS}</td>
                                     <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                                    <td>{if $order->getPaid()}<span class="icon-paid"></span> {else:} <span class="icon-paid_not"></span> {/if}</td>
+                                    <td>
+                                        {if $order->getPaid()}
+                                            <span class="icon-paid"></span> 
+                                        {else:} 
+                                            <span class="icon-paid_not"></span> 
+                                        {/if}
+                                    </td>
                                 </tr>
                             {/foreach}
                         </tbody>
                     </table>
                 </div>
                 <!-- End orders history tab block -->
-                <!-- Start waiting block -->
-                {if count($goodsInSpy) != 0}
-                    <div id="wait_tov">
-                        <table class="table v-a_m">
-                            <colgroup>
-                                <col width="25"/>
-                                <col width="45"/>
-                                <col width="90"/>
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>№</th>
-                                    <th></th>
-                                    <th>{lang("Name")}</th>
-                                    <th>{lang("Difference")}</th>
-                                    <th>{lang("Differencein percents")}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach $goodsInSpy as $good}
-                                    {$product = $good->getProduct()}
-                                    <tr>
-                                        <td><span class="times f-s_18"><a href="{echo $good->getLink()}">&times;</a></span></td>
-                                        <td>{echo $product[0]->getId()}</td>
-                                        <td>
-                                            <a href="{$BASE_URL}shop/product/{echo $product[0]->geturl()}" class="photo">
-                                                <figure>
-                                                    <img src="{productImageUrl($product[0]->smallmodimage)}" alt="{echo $product[0]->getId()}"/>
-                                                </figure>
-                                            </a>
-                                        </td>
-                                        <td><a href="{$BASE_URL}shop/product/{echo $product[0]->geturl()}">{echo $product[0]->getName()}</td>
-                                        <td>
-                                            {echo $good->getdist()}
-                                        </td>
-                                        <td>
-                                            {echo $good->getpercentdist()}
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {/if}
-                <!-- End waiting block -->
             </div>
+                        
+           {//$CI->load->module('mod_discount/discount_api')->get_user_discount_api(1)}             
         </div>
     </div>
 </div>

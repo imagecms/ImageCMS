@@ -68,6 +68,7 @@ class Admin extends BaseAdminController {
         $this->init_settings();
 
         $this->test_uploads_folder($this->conf['upload_path']);
+        $this->load->helper('file');
     }
 
     /**
@@ -465,8 +466,7 @@ class Admin extends BaseAdminController {
     public function delete_image($ids = 0) {
         if ($this->input->post('id'))
             $ids = $this->input->post('id');
-//        var_dump($ids);
-//        exit;
+
         foreach ($ids as $key => $id) {
             $image = $this->gallery_m->get_image_info($id);
             if ($image != FALSE) {

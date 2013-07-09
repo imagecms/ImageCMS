@@ -112,7 +112,10 @@ class Dashboard extends BaseAdminController {
             'cms_number' => IMAGECMS_NUMBER,
             'sys_status' => $status,
         ));
-
+        
+        \CMSFactory\Events::create()->registerEvent('', 'Dashboard:show');
+        \CMSFactory\Events::runFactory();
+        
         $this->template->show('dashboard', FALSE);
     }
 

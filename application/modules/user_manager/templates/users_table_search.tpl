@@ -25,7 +25,7 @@
 			<td>{$user.last_login}</td>
 			<td>{$user.created}</td>
 			<td  class="rightAlign">
-			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang("Edit")}" />
+			<img onclick="edit_user({$user.id});" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
 			</td>
 		</tr>
 		{/foreach}

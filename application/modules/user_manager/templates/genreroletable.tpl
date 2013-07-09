@@ -5,7 +5,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang("Properties")}
+                         {lang("Properties")}
                     </th>
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
                                 <div class="row-fluid">
                                     <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
                                         <div class="control-group">
-                                            <label class="control-label" for="role_id">{lang("Group")}</label>
+                                            <label class="control-label" for="role_id">{lang('Group')}</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
                                                     {foreach $roles as $role}

@@ -1,0 +1,1 @@
+{\Category\RenderMenu::create()->setConfig(array('url.shop.category'=>'/mobile/category/'))->load('category_menu')}

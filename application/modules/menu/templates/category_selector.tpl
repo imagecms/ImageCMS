@@ -5,19 +5,19 @@
                     {lang("Choose a category")}
                 </td>
                 <td valign="top">
-                <div style="width:350px;" id="item_params">  
-                        <h3>{lang("Options")}:</h3> 
+                <div style="width:350px;" id="item_params">
+                        <h3>{lang("Options")}:</h3>
                 </div>
                 </td>
             </tr>
             <tr>
                 <td valign="top">
                     <div id="category_list">{$cats_list}</div>
-                </td>              
-               
+                </td>
+
                <td valign="top">
-                    <!-- Link params -->              
-                   <input type="hidden" id="owner_id" value="{$insert_id}" /> 
+                    <!-- Link params -->
+                   <input type="hidden" id="owner_id" value="{$insert_id}" />
 
 
                     <div class="field_text">{lang("Type")}</div>
@@ -31,23 +31,23 @@
                         0
                     </div>
                     <div class="form_overflow"></div>
-                    
+
 
                     <div class="field_text">{lang("Title")}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_title"  id="cat_title" />
                     </div>
-                    
-                    <div class="form_overflow"></div>                  
+
+                    <div class="form_overflow"></div>
 
                     <div class="field_text">{lang("Parent")}</div>
                     <div class="field_input">
                        	<select name="cat_parent_id" id="cat_parent_id">
                         <option value="0">{lang("No")}</option>
                         {foreach $menu_result as $item}
-                        <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++ }-{/for} {$item.title}</option>  
+                        <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
-                        </select> 
+                        </select>
                     </div>
 
                     <div class="form_overflow"></div>
@@ -59,16 +59,16 @@
                         <option value="0">{lang("No")}</option>
                         <option value="first">{lang("First")}</option>
                         {foreach $menu_result as $item}
-                        <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>  
+                        <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
-                        </select> 
+                        </select>
                     </div>
                     <div class="form_overflow"></div>
-                    
                     <div class="field_text">{lang("Image")}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_image"  id="cat_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}/images/images.png" title="{lang("Select an image")}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang("Select an image")}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+
                     </div>
 
                     <div class="field_text">{lang("Access level")}</div>
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="form_overflow"></div>
-		    
+
 		    	            <div class="field_text">
                         {lang("Open in the new window")}
                     </div>
@@ -109,7 +109,7 @@
                         <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
-                    <div class="form_overflow"></div>                 
+                    <div class="form_overflow"></div>
                 </td>
             </tr>
         </table>
@@ -131,7 +131,7 @@
                 el.removeClass('clicked');
         });
 
-        item.set('class', 'clicked'); 
+        item.set('class', 'clicked');
 
         $('cat_id').set('html', id);
         $('cat_title').value = item.title;
@@ -165,9 +165,9 @@
         item_image = $('cat_image').value;
 
         var roles = new Array();
-        $('cat_roles').getSelected().each(function(el) {  
+        $('cat_roles').getSelected().each(function(el) {
              roles.include( el.value );
-        });  
+        });
 
         var req = new Request.HTML({
                method: 'post',

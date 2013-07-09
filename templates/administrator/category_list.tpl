@@ -9,7 +9,7 @@
             <p>{lang("Remove selected categories")}?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}/admin/categories/delete')" >{lang("Delete")}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/categories/delete')" >{lang("Delete")}</a>
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
         </div>
     </div>
@@ -29,7 +29,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}/admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang("Create category")}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang("Create category")}</button>
                 </div>
             </div>                            
         </div>       

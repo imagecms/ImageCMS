@@ -135,46 +135,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="history_order f_r">
-                <div class="block_title_18"><span class="title_18">{lang("Do you follow the following goods")}</span></div>
-
-                {lang("Goods in order to monitor")}:
-                <span style="font-weight: bold;">
-                    {echo count($goodsInSpy)}
-                </span>
-                {if count($goodsInSpy)>0}
-                    <table cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>{lang("Item Number")}</th>
-                                <th>{lang("Product Name")}</th>
-                                <th>{lang("Difference")}</th>
-                                <th>{lang("Differencein percents")}</th>
-                                <th>{lang("Unsubscribe")}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach $goodsInSpy as $good}
-                                {$product = $good->getProduct()}
-                                <tr>
-                                    <td>{echo $product[0]->getId()}</td>
-                                    <td><a href="{$BASE_URL}shop/product/{echo $product[0]->getUrl()}">{echo $product[0]->getName()}</td>
-                                    <td>
-                                        {echo $good->getdist()}
-                                    </td>
-                                    <td>
-                                        {echo $good->getpercentdist()}
-                                    </td>
-                                    <td>
-                                        <a href="{echo $good->getLink()}">{lang("Unsubscribe")}</a>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                {/if}
-            </div>
         </div>
         <div class="center">
         </div>

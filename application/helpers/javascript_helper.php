@@ -7,13 +7,6 @@ if (!defined('BASEPATH'))
  */
 
 /**
- * Reload window content by windowID
- */
-function updateContent($windowID, $url) {
-    echo "<script type=\"text/javascript\"> MochaUI.updateContent($('" . $windowID . "'), null, '" . $url . "'); </script>";
-}
-
-/**
  * Show Roar message
  */
 function showMessage($message, $title = FALSE, $class = '', $ret = false) {
@@ -45,32 +38,6 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false) {
 
 function pjax($url, $selector = '#mainContent') {
     echo '<script>$.pjax({url: "' . $url . '", container:"' . $selector . '"});</script>';
-}
-
-/**
- * Build new MochaUI window
- */
-function buildWindow($id, $title, $contentURL, $width, $height, $method = 'iframe') {
-    $w = "
-			<script type=\"text/javascript\">
-			new MochaUI.Window({
-				id: '" . $id . "',
-				title: '" . $title . "',
-				loadMethod: '" . $method . "',
-				contentURL: '" . $contentURL . "',
-				width: " . $width . ",
-				height: " . $height . "
-			});
-			</script>";
-
-    echo $w;
-}
-
-/**
- * Close window
- */
-function closeWindow($windowID) {
-    echo "<script type=\"text/javascript\"> MochaUI.closeWindow($('" . $windowID . "')); </script>";
 }
 
 /**
