@@ -48,7 +48,8 @@ class Commentsapi extends Comments {
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 //        var_dump($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module);
+        $commentsCount = $this->getTotalCommentsForProducts($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module, $_POST[countComment]);
 
         // Read comments template
         // Set page id for comments form
@@ -100,6 +101,7 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
+            'commentsCount' => $commentsCount[$item_id],
             'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
             'validation_errors' => $this->validation_errors
         ));
