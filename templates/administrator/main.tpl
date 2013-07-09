@@ -239,11 +239,11 @@
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
                 <label>
-                    Ваше Имя:
+                    {lang('Your Name')}:
                     <input type=text name="name"/>
                 </label>
                 <label>
-                    Ваш Email:
+                    {lang('Your Email')}:
                     <input type=text name="email"/>
                 </label>
                 <label>

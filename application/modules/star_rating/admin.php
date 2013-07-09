@@ -13,6 +13,8 @@ class Admin extends BaseAdminController {
         parent::__construct();
         $this->load->library('DX_Auth');
         $this->load->model('rating_model');
+        $obj = new MY_Lang();
+        $obj->load('star_rating');
     }
 
     public function index() {

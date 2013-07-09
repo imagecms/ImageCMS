@@ -136,8 +136,8 @@
                         {if $show_cat_list != 'yes'}
                             <td>
                                 <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                    <option value="">Все категории</option>
-                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                    <option value="">{lang('All categories')}</option>
+                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>{lang('Without category')}</option>
                                     {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
                                 </select>
                             </td>
