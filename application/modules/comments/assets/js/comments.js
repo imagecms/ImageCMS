@@ -201,10 +201,15 @@ function initComments() {
         });
     });
 }
-renderPosts = function(el) {
+renderPosts = function(el, data) {
+    if (data != undefined)
+        var dataSend = data
+    else
+        var dataSend = "";
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
         dataType: "json",
+        data: dataSend,
         type: "post",
         success: function(obj) {
             el.each(function() {
@@ -221,11 +226,11 @@ renderPosts = function(el) {
                         initComments();
                 })
 
-                if (obj.total_comments !== 0) {
+                if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').append(obj.total_comments);
+                    $('#cc').append(obj.commentsCount);
                 }
-                drawIcons(el.find(selIcons));
+                $(document).trigger({'type': 'render_comment', 'el': el});
             }
         }
     });
