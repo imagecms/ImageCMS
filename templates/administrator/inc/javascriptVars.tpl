@@ -51,6 +51,13 @@
         lang.success = "{lang('Success')}";
         lang.fileIsLoadedSlot = "{lang('File is loaded. Slot')}";
         lang.scriptErrorNotifyAdministrator = "{lang('Script error. Notify administrator.')}";
+        lang.waitForResizeEnding = "{lang('Wait for resize ending')}";
+        lang.resizeImagesForProducts = "{lang('Resize images for products')}";
+        lang.allFindingProducts = "{lang('All finding products')}";
+        lang.processed = "{lang('Processed')}";
+        lang.imagesUpdated = "{lang('Images updated')}";
+        lang.completed = "{lang('Completed')}";
+        
 </script>
 
     

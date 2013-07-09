@@ -54,10 +54,10 @@
                     </tr>
                     <tr>
                         <td class="span2">
-                            Проверка отправки почты
+                            {lang('Check mail sending')}
                         </td>
                         <td>
-                            <a href="sys_info/mailTest">Проверить</a>
+                            <a href="sys_info/mailTest">{lang('Check')}</a>
                         </td>
                     </tr>
                 </tbody>

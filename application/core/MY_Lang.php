@@ -49,7 +49,12 @@ class MY_Lang extends MX_Lang {
     private function _init() {
         if ( !isset($this->ci) )
             $this->ci =& get_instance();
-
+//        if(!strstr(uri_string(), 'admin')){
+//            
+//             $this->ci->load->library('gettext_php/gettext_extension', array());
+//             $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', 'en_US');
+//             //return;
+//        }
         $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
         if ($sett->lang_sel == 'english_lang') {
             $this->ci->config->set_item('language', 'english');
@@ -60,7 +65,6 @@ class MY_Lang extends MX_Lang {
        
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
-        
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $this->getLangCode($this->gettext_language)[1]);
     }
@@ -95,6 +99,9 @@ class MY_Lang extends MX_Lang {
 	public function load($module = 'admin') {
         if (!$this->gettext)
             $this->_init();
+        
+       
+        //var_dumps($module);
         $this->gettext_domain = $module;
         $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $this->getLangCode($this->gettext_language)[1]);
 	}

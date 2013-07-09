@@ -232,9 +232,7 @@ class Settings extends BaseAdminController {
     }
     
     public function switch_admin_lang($lang)
-    {
-     
-        
+    {  
         $langs = Array(
             'english',
             'russian'

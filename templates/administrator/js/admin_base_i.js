@@ -827,7 +827,7 @@ $(document).ready(function() {
     $('#resizeAll').live('click', function() {
 
         window.onbeforeunload = (function() {
-            return 'Дождитесь завершения ресайза!';
+            return lang.waitForResizeEnding + '!';
         });
         /* */
         $.ajax({
@@ -853,13 +853,13 @@ $(document).ready(function() {
                             complete: function() {
                                 done += array.length;
                                 $('.bar').css('width', ((done / countAll) * 100) + '%');
-                                $('#progressLabel').html('<b>Ресайз изображений для товаров</b> <br/>Всего найдено товаров: ' + countAll + '  (Обработано : ' + done + ' )');
+                                $('#progressLabel').html('<b>' + lang.resizeImagesForProducts + '</b> <br/>' + lang.allFindingProducts + ': ' + countAll + '  (' + lang.processed + ' : ' + done + ' )');
 //                                console.log((done / countAll) * 100);
                                 if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
                                     if ($('#useAdditionalImages').attr('checked') != 'checked') {
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage("Картинки обновлены", "Завершено");
+                                        showMessage(lang.imagesUpdated, lang.completed);
                                     }
                                     window.onbeforeunload = null;
                                 }

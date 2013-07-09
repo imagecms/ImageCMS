@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">Полное описание:</label>
+                                    <label class="control-label" for="Description">{lang('Full description')}:</label>
                                     <div class="controls">
                                         <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                     </div>
@@ -87,10 +87,10 @@
         </table>
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
             {if strpos(getCmsNumber(), 'Premium')}
-                <a href="#shop" class="btn btn-small">Магазин</a>
+                <a href="#shop" class="btn btn-small">{lang('Shop')}</a>
             {/if}
-            <a href="#base" class="btn btn-small active">Базовая</a>
-            <a href="#module" class="btn btn-small">Модули</a>
+            <a href="#base" class="btn btn-small active">{lang('Base')}</a>
+            <a href="#module" class="btn btn-small">{lang('Module')}</a>
         </div>
         <div class="tab-content">
             {foreach $types as $key => $type}
@@ -136,59 +136,7 @@
                             </div>
                         {/foreach}
                     </div>
-<<<<<<< HEAD
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-        {if strpos(getCmsNumber(), 'Premium')}<a href="#shop" class="btn btn-small">{lang('Shop')}</a>{/if}
-        <a href="#base" class="btn btn-small active">{lang('Basic')}</a>
-        <a href="#module" class="btn btn-small">{lang('Modules')}</a>
-    </div> 
-    <div class="tab-content">
-        {foreach $types as $key => $type}
-            {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop'}
-            <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
-                {foreach $type as $k => $groups} 
-                    <div class="span3">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="t-a_c span1">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox" />
-                                            </span>
-                                        </span>
-                                    </th>                           
-                                    <th>{echo $groups['description']}</th>
-                                </tr>                        
-                            </thead>
-                            <tbody class="sortable">
-                                {foreach $groups['privileges'] as $privilege}
-                                    {$checked = null}
-                                {if in_array((int)$privilege['id'], $privilegeCheck)}{$checked = 1}{/if}
-                                <tr {if $checked == 1}class="active"{/if}>       
-                                    <td class="t-a_c">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">  
-                                                <input type="checkbox" class="chldcheck"  value="{echo $privilege['id']}" name="Privileges[]" {if $checked == 1} checked="checked" {/if}/>
-                                            </span>
-                                        </span>
-                                    </td>
-                                    <td style="word-wrap : break-word;">
-                                        <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
-                                    </td>
-                                    <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" class="pjax">{lang('removing')}</a></td>-->
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
-=======
                 {/if}
->>>>>>> development
             {/foreach}
         </div>
         {form_csrf()}

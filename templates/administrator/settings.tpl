@@ -307,7 +307,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            Введите мета даные
+                                            {lang('Enter Meta Tags')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -318,7 +318,7 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
-                                                            <label class="control-label" for="site_offline">Выберите язык:</label>
+                                                            <label class="control-label" for="site_offline">{lang('Choose language')}:</label>
                                                             <div class="controls">
                                                                 <select name="site_langs" onchange="ch_lan(this)">
                                                                     {$i = 1}

@@ -1,13 +1,179 @@
 <?php
 /*
-../../../assets/product_star_rating.tpl
-../../../assets/star_rating.tpl
-../../../assets/admin/settings.tpl*/
+/var/www/image.loc/application/modules/shop/admin/templates/productspy/settings.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/discounts/autodrop.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/discounts/create.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/discounts/list.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/discounts/edit.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/users/create.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/users/list.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/users/edit_orders_list.tpl
+/var/www/image.loc/application/modules/shop/admin/templates/users/edit.tpl*/
 
-_("fghgh");
-_("Module settings starRating");
-_("Go back");
+_("Tracking the price settings");
+_("Sender email");
+_("Headline writing about committing subscription");
+_("The text of the notification subscription");
+_("Product name");
+_("Product price");
+_("The key for tracking");
+_("Link to unsubscribe from the tracking item");
+_("Letters header to change the prices");
+_("The text change notification rates");
+_("Product name");
+_("Product price");
+_("New product price");
+_("Old product price");
+_("The key for tracking");
+_("Link to unsubscribe from the tracking item");
+_("chose date");
+_("chose date");
+_(""There are no translations users");
+_("Basket");
+_("Delivery price");
+_("Sum");
+_("Status");
+_("Order");
+_("things");
+_("Paid");
+_("Paid");
+_("Delete oder");
+_("Price");
+_("a_ps");
+_("You can use the following variable");
+_("Name of the customer");
+_("Customer e-mail address");
+_("You can use the following variable");
+_("Name of the customer");
+_("Customer e-mail address");
+_("Save");
+_("Create");
+_("Discounts");
+_("Back");
+_("Create");
+_("Save and exit");
+_("Payment method create");
+_("Name");
+_("Active");
+_("Description");
+_("Starting date");
+_("Finishing date ");
+_("Discounts");
+_(" Number greater than zero. To use a percent discount  apply : "SUM" format.");
+_("Categories");
+_("Products");
+_("Follow product ID by a comma.");
+_("User group");
+_("There are no translations users");
+_("Close");
+_("Removing discounts");
+_("Remove selected discount?");
+_("Delete");
+_("Cancel");
+_("Removing discounts");
+_("Remove the discount?");
+_("List of permanent discounts");
+_("Deposit rates");
+_("Create a discount");
+_("Delete");
+_("ID");
+_("Name");
+_("Starting date");
+_("Finishing date ");
+_("Active");
+_("Editing");
+_("Active");
+_("Empty discount list");
+_("Editing discounts");
+_("Back");
+_("Have been saved");
+_("Save and exit");
+_("Editing");
+_("Discounts");
+_("Name");
+_("Active");
+_("Description");
+_("Starting date");
+_("Finishing date ");
+_("Discounts");
+_(" Number greater than zero. To use a percent discount  apply : "SUM" format.");
+_("Categories");
+_("Follow product ID by a comma.");
+_("User group");
+_("Create user");
+_("Back");
+_("Create");
+_("Save and exit");
+_("Data");
+_("E-mail");
+_("Password");
+_("Role");
+_("Full name");
+_("Phone number");
+_("Address");
+_("Additional data");
+_("Deleting a user");
+_("Remove selected users?");
+_("Delete");
+_("Cancel");
+_("Deleting a user");
+_("Deleting a user");
+_("Users list");
+_("Filter");
+_("Cancel filter");
+_("Cancel filter");
+_("Create user");
+_("Delete");
+_("User");
+_("Export");
+_("ID");
+_("E-mail");
+_("User");
+_("Time of registration");
+_("Purchase price");
+_("from");
+_("choose a date");
+_("to");
+_("choose a date");
+_("from");
+_("numbers only");
+_("to");
+_("numbers only");
+_("Editing by");
+_("Export");
+_("Export");
+_("Export CSV gives <br />jumps file with <br />a list of all<br /> users.");
+_("Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku.");
+_("Order history");
+_("Order");
+_("Time of the order");
+_("Payment type");
+_("Payment method");
+_("Editing by");
+_("Back");
 _("Have been saved");
 _("Save and go back");
+_("User data");
+_("ID");
+_("Time of registration");
+_("Purchase price");
+_("Full name");
+_("Phone number");
+_("Address");
+_("E-mail");
+_("Role");
+_("Additional data");
+_("Content");
+_("WishList");
+_("Status");
+_("Time of the order");
+_("Orders");
+_("Cart");
+_("Total price");
+_("Paid");
+_("Orders");
+_("Purchased Product");
+_("Yes");
+_("No");
 
 ?>
