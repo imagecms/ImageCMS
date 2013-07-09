@@ -442,6 +442,18 @@ $(document).ready(function() {
             }
         });
     });
+    
+    $('#translateProductUrl').live('click', function() {
+        var str = $('#Name').attr('value');
+        $.ajax({
+            type: 'post',
+            url: '/admin/components/run/shop/products/ajax_translit',
+            data: 'str=' + str,
+            success: function(data) {
+                $('#Url').attr('value', data);
+            }
+        });
+    });
 
     $('.cat_change_active').live('click', function() {
         var id = $(this).attr('data-id');
@@ -633,7 +645,6 @@ $(document).ready(function() {
 
     $('.link_type').live('change', function() {
         var identif = $(this).val();
-        console.log(identif);
         $('.edit_holder').hide();
         $('#' + identif).show();
         $('.submit_link').each(function() {
@@ -857,7 +868,6 @@ $(document).ready(function() {
             data: $('.saveForm').serialize(),
             url: '/admin/components/cp/menu/update_menu/' + idMenu,
             success: function(obj) {
-                console.log(obj.color);
                 if (obj.result == true)
                     showMessage(obj.title, obj.message);
                 else
@@ -1048,6 +1058,21 @@ var delete_currency_function = new Object({
         });
         $('#recount').modal('hide');
         return true;
+    },
+    showOnSite: function(id){
+        $.ajax({
+            type: "post",
+            data: id,
+            url: '/admin/components/run/shop/currencies/showOnSite',
+            success: function(data) {
+                alert(data)
+            },
+            error: function (){
+                alert('error');
+            }
+        });
+       
+        return true;
     }
 
 
@@ -1213,7 +1238,6 @@ $(document).ready(function() {
     $('#categorySelect').live('change', function() {
         //$('#mainContent').load($(this).attr('url')+$(this).val());
         $.pjax({url: $(this).attr('url') + $(this).val(), container: '#mainContent'});
-        console.log($(this).val());
         //
         //window.location.href = $(this).attr('url')+$(this).val();
     });

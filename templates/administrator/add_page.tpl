@@ -18,7 +18,10 @@
             <a href="#content_article" class="btn btn-small active">{lang("Content")}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang("Properties")}</a>
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields")}</a>
-            <a href="#setings_article" class="btn btn-small">{lang("Settings")}</a>
+            <a href="#setings_article" class="btn btn-small">{lang("Settings")}</a>       
+            {if $moduleAdditions}
+                <a href="#modules_additions" class="btn btn-small">{lang('Modules additions')}</a>
+            {/if}
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
@@ -258,7 +261,7 @@
                                             <select multiple="multiple" name="roles[]" id="roles">
                                                 <option value="0">{lang("All")}</option>
                                                 {foreach $roles as $role}
-                                                <option value ="{$role.id}">{$role.name}</option>
+                                                    <option value ="{$role.id}">{$role.name}</option>
                                                 {/foreach}
                                             </select>        	
                                         </div>
@@ -269,6 +272,7 @@
                     </tbody>
                 </table>
             </div>
+            {include_tpl('modules_additions')}
         </div>
         {form_csrf()}
     </form>
@@ -313,5 +317,5 @@
 
 <script>
     if (window.hasOwnProperty('pagesAdmin'))
-        pagesAdmin.initialize();
+    pagesAdmin.initialize();
 </script>

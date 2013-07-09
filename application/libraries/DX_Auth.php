@@ -830,7 +830,7 @@ class DX_Auth {
         $this->ci->session->sess_destroy();
     }
 
-    function register($username, $password, $email, $address, $key, $phone) {
+    function register($username, $password, $email, $address = '', $key, $phone = '', $login_user = TRUE) {
 
         // Load Models
         $this->ci->load->model('dx_auth/users', 'users');
@@ -913,10 +913,14 @@ class DX_Auth {
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
                 }
-                if ($this->login($email, $password)) {
-                    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
-                        redirect('', 'location');
-//                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                if($login_user){
+                    if ($this->login($email, $password)) {
+                        if (class_exists('ShopCore'))
+                            ShopCore::app()->SCart->transferCartData();
+                        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
+                            redirect('', 'location');
+    //                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
+                    }
                 }
             }
         }
@@ -1258,7 +1262,7 @@ class DX_Auth {
     private function _get_recaptcha_data() {
         return $this->get_recaptcha_html();
     }
-
+    
     /* End of Recaptcha function */
 }
 

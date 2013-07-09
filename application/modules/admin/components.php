@@ -46,18 +46,24 @@ class Components extends BaseAdminController {
         // process modules info
         $count = count($db_modules);
         for ($i = 0; $i < $count; $i++) {
-            $info = $this->get_module_info($db_modules[$i]['name']);
+            $module_name = $db_modules[$i]['name'];
+            if ($this->module_exists($module_name)){
 
-            $db_modules[$i]['menu_name'] = $info['menu_name'];
-            $db_modules[$i]['version'] = $info['version'];
-            $db_modules[$i]['description'] = $info['description'];
-            $db_modules[$i]['identif'] = $db_modules[$i]['identif'];
+                $info = $this->get_module_info($module_name);
+                $db_modules[$i]['menu_name'] = $info['menu_name'];
+                $db_modules[$i]['version'] = $info['version'];
+                $db_modules[$i]['description'] = $info['description'];
+                $db_modules[$i]['identif'] = $db_modules[$i]['identif'];
 
-            if (file_exists(APPPATH . 'modules/' . $db_modules[$i]['name'] . '/admin.php')) {
-                $db_modules[$i]['admin_file'] = 1;
-            } else {
-                $db_modules[$i]['admin_file'] = 0;
+                if (file_exists(APPPATH . 'modules/' . $module_name . '/admin.php')) {
+                    $db_modules[$i]['admin_file'] = 1;
+                } else {
+                    $db_modules[$i]['admin_file'] = 0;
+                }
+            }else{
+                 unset($db_modules[$i]);
             }
+
         }
 
 
@@ -142,6 +148,14 @@ class Components extends BaseAdminController {
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
         }
+    }
+    /**
+     * Check is module exixts
+     * @param string $module_name module name
+     * @return boolean
+     */
+    function module_exists($module_name){
+        return opendir(APPPATH . 'modules/' . $module_name. '/');
     }
 
     function find_components($in_menu = FALSE) {
@@ -268,6 +282,7 @@ class Components extends BaseAdminController {
 
     function cp($module) {
         $func = $this->uri->segment(5);
+
         if ($func == FALSE)
             $func = 'index';
 

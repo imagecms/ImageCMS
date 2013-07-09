@@ -21,7 +21,7 @@
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
     {parsetags: 'explicit'}
 </script>
-<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"> </script> 
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 
 
 <!-- BEGIN LIGHTBOX -->
@@ -30,7 +30,7 @@
 <!-- END LIGHTBOX -->
 
 
-<div class="content">    
+<div class="content">
 
     <div class="center">
         <div class="tovar_frame clearfix{if $model->firstvariant->getstock()== 0} not_avail{/if}">
@@ -38,12 +38,12 @@
                 {if sizeof($model->getSProductImagess()) > 0}
                     {foreach $model->getSProductImagess() as $image}
                         <span>
-                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">                         
+                            <a  class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{echo $image->getThumbUrl()}" data-title-id="fancyboxAdditionalContent">
                                 <img src="{echo $image->getThumbUrl()}" width="90"/>
-                            </a>                                
+                            </a>
                         </span>
                     {/foreach}
-                {/if}                
+                {/if}
             </div>
             <div class="photo_block">
                 <a class="grouped_elements fancybox-thumb" rel="fancybox-thumb" href="{productImageUrl($model->getMainImage())}" data-title-id="fancyboxAdditionalContent" >
@@ -115,7 +115,7 @@
     <!--                    <span class="count_people d_b" itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
                             <meta itemprop="worstRating" content="1">
                             <span class="ratingValue" itemprop="ratingValue"> 0</span>/
-                            <span itemprop="bestRating">5</span> залишило                        
+                            <span itemprop="bestRating">5</span> залишило
                             <span itemprop="reviewCount" class="reviewCount">0  </span>чоловік.
                         </span>-->
 </div>
@@ -126,15 +126,15 @@
             {$var_prices = currency_convert($pv->getPrice(), $pv->getCurrency())}
 <!--                                 <option class="selectVar" value="{echo $pv->getId()}" data-pp="1" data-st="{echo $pv->getStock()}" data-cs="{$NextCS}" data-spr="{echo ShopCore::app()->SCurrencyHelper->convert($pv->getPrice(), $NextCSId)}" data-pr="{echo $pv->getPrice()}" data-pid="{echo $model->getId()}" data-img="{echo $pv->getmainimage()}" data-vname="{echo $pv->getName()}" data-vnumber="{echo $pv->getNumber()}">{echo $pv->getName()}</option>-->
             <option class="selectVar"
-                    value="{echo $pv->getId()}" 
-                    data-pp="1" 
-                    data-st="{echo $pv->getStock()}" 
-                    data-cs="{echo $var_prices.second.symbol}" 
-                    data-spr="{echo $var_prices.second.price}" 
-                    data-pr="{echo $var_prices.main.price}" 
-                    data-pid="{echo $model->getId()}" 
-                    data-img="{echo $pv->getmainimage()}" 
-                    data-vname="{echo $pv->getName()}" 
+                    value="{echo $pv->getId()}"
+                    data-pp="1"
+                    data-st="{echo $pv->getStock()}"
+                    data-cs="{echo $var_prices.second.symbol}"
+                    data-spr="{echo $var_prices.second.price}"
+                    data-pr="{echo $var_prices.main.price}"
+                    data-pid="{echo $model->getId()}"
+                    data-img="{echo $pv->getmainimage()}"
+                    data-vname="{echo $pv->getName()}"
                     data-vnumber="{echo $pv->getNumber()}">
                 {echo $pv->getName()}
             </option>
@@ -183,15 +183,6 @@
             <a href="/shop/wish_list">Уже в списке желаний</a>
         {/if}
     </span>
-    {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-        <span class="ajax_refer_marg" style="margin-top: -2px">
-            {if !is_in_spy(ShopCore::$ci->dx_auth->get_user_id(), $model->getId())}
-                <a data-logged_in="{if ShopCore::$ci->dx_auth->is_logged_in()===true}true{/if}" data-price="{echo $model->firstVariant->toCurrency()}" data-user_id="{echo ShopCore::$ci->dx_auth->get_user_id()}" data-varid="{echo $model->firstVariant->getId()}" data-prodid="{echo $model->getId()}" href="#" class="js gray addtoSpy">Следить за этим товаром</a>
-            {else:}
-                <a href="#">Вы уже следите за этим товаром</a>
-            {/if}
-        </span>
-    {/if}
 </div>
 </div>
 <p class="c_b">{echo $model->getShortDescription()}</p>
@@ -207,7 +198,7 @@
         <div>
             <div class="title">Заказ по телефону:</div>
             <span></span>
-            <span></span> 
+            <span></span>
             <span></span>
         </div>
     </li>
@@ -249,7 +240,7 @@
                         <div class="photo_block">
                             <a href="{shop_url('shop/product'. $model->getId())}">
                                 <figure>
-                                            <img src="{productImageUrl($model->getSmallModImage())}"/>
+                                    <img src="{productImageUrl($model->getSmallModImage())}"/>
                                 </figure>
                             </a>
                         </div>
@@ -266,128 +257,225 @@
 
                             </div>
                         </div>
-                                </div>
-                        <div class="plus_eval">+</div>
-                        {$i = 0}
-                        {$sum1_1 = $sum2_1 = $prices.main.price}
-                        {$sum1_2 = $sum2_2 = $prices.second.price}
-                        {foreach $kits[0]->getShopKitProducts() as $shopKitProduct}
-                            {$ap = $shopKitProduct->getSProducts()}
-                            {$ap->setLocale(ShopController::getCurrentLocale())}
+                    </div>
+                    <div class="plus_eval">+</div>
+                    {$i = 0}
+                    {$sum1_1 = $sum2_1 = $prices.main.price}
+                    {$sum1_2 = $sum2_2 = $prices.second.price}
+                    {foreach $kits[0]->getShopKitProducts() as $shopKitProduct}
+                        {$ap = $shopKitProduct->getSProducts()}
+                        {$ap->setLocale(MY_Controller::getCurrentLocale())}
 
 
-                            <div class="f_l smallest_item">
-                                <div class="photo_block">
-                                    <a href="{'/shop/product/'.$ap->getUrl()}">
-                                        <figure>
-                                            <img src="{productImageUrl($ap->getSmallModImage())}"/>
-                                        </figure>
-                                    </a>
-                                </div>
-
-                                <div class="func_description">
-                                    <a href="{'/shop/product/'.$ap->getId()}">{echo ShopCore::encode($ap->getName())}</a>
-
-                                    <div class="buy">
-
-                                        {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
-                                        {$kit_prices = currency_convert($kitFirstVariant->getPrice(), $kitFirstVariant->getCurrency())}
-                                        {if $shopKitProduct->getDiscount()}
-
-                                            <del class="price f-s_12 price-c_9">{echo $s1_1 = $kit_prices.main.price}<sub> {$kit_prices.main.symbol}</sub>
-                                                {if $NextCS != $CS}
-                                                    <span>{echo $s1_2 = $kit_prices.second.price} {$kit_prices.second.symbol}</span></del>
-                                                {/if}
-
-                                            <div class="price f-s_14 price-c_red">
-                                                {echo $s2_1 = $kit_prices.main.price*(100-$shopKitProduct->getDiscount())/100}
-                                                <sub> {$kit_prices.main.symbol}</sub>
-                                                <span>{echo $s2_2 = $kit_prices.second.price*(100-$shopKitProduct->getDiscount())/100} {$kit_prices.second.symbol}</span>
-                                            </div>
-
-                                        {else:}
-                                            <div class="price f-s_14">{echo $kit_prices.main.price}
-                                                <sub> {$kit_prices.main.symbol}</sub>
-                                                {if $NextCS != $CS}}
-                                                    <span>{echo $kit_prices.second.price} {$kit_prices.second.symbol}</span>
-                                                {/if}
-                                            </div>   
-                                        {/if}
-                                    </div>
-                                </div>
-                            </div>
-                            {$sum1_1 += $s1_1}
-                            {$sum1_2 += $s1_2}
-                            {$sum2_1 += $s2_1}
-                            {$sum2_2 += $s2_2}
-                            {$i++}
-
-                            {if $i == $count}        
-                                <div class="plus_eval">=</div>
-                                <div class="button_block">
-                                    <div class="buy">
-                                        {if $dis}
-                                            <del class="price f-s_12 price-c_9">{round($sum1_1, 2)}<sub> {$kit_prices.main.symbol}</sub>
-                                                {if $NextCS != $CS}
-                                                    <span>{echo round($sum1_2, 2)} {$kit_prices.second.symbol}</span></del>
-                                                {/if}
-                                            {/if}
-                                        <div class="price f-s_18">{echo round($sum2_1, 2)} <sub> {$kit_prices.main.symbol}</sub></br>
-                                            {if $NextCS != $CS}
-                                                <span> {echo round($sum2_2, 2)}  {$kit_prices.second.symbol}</span></div>
-                                            {/if}
-                                    </div></br>
-                                    <div class="buttons button_gs">
-                                        <div class="buy">
-                                            {foreach $kits as $kit}
-                                                <a class="goBuy" kitId="{echo $kit->id}" instance="ShopKit" data-varid="86" data-prodid="{echo $kit->productId}" href="">Купить</a>
-                                            {/foreach}
-                                        </div>
-                                    </div>
-                                </div>
-                                        </div>
-                            {else:}
-                                <div class="plus_eval">+</div>
-                            {/if}
-                        {/foreach}				
-                </li>
-            </ul>{if $model->getKits()->count()>1}
-        <button class="prev"></button>
-        <button class="next"></button>
-{/if}
-        </div>
-    </div> 
-{/if}
-<!------------------------------------------------------------------------------------------------------------Finish-->
-
-{if count(getSimilarProduct($model, 20)) > 1}
-    <div class="featured carusel_frame">
-        <div class="f-s_18 c_6 center">Похожие товары</div>
-        <div class="carusel">
-            <ul>
-                {$simprod = getSimilarProduct($model, 20)}
-                {foreach $simprod as $sp}
-                    {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
-                    {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
-                    <li>
-                        <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                        <div class="f_l smallest_item">
                             <div class="photo_block">
-                                <a href="{site_url('shop/product/'.$sp->getId())}">
-                                    <img src="{productImageUrl($sp->getSmallModImage())}"/>
+                                <a href="{'/shop/product/'.$ap->getUrl()}">
+                                    <figure>
+                                        <img src="{productImageUrl($ap->getSmallModImage())}"/>
+                                    </figure>
                                 </a>
                             </div>
+
                             <div class="func_description">
-                                <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
+                                <a href="{'/shop/product/'.$ap->getId()}">{echo ShopCore::encode($ap->getName())}</a>
+
                                 <div class="buy">
-                                    <div class="price f-s_14">{echo $sim_prod.main.price}
-                                        <sub> {$sim_prod.main.symbol}</sub>
-                                        {if $NextCS != $CS}
-                                            <span>{echo $sim_prod.second.price} {$sim_prod.second.symbol}</span> 
+
+                                    {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
+                                    {$kit_prices = currency_convert($kitFirstVariant->getPrice(), $kitFirstVariant->getCurrency())}
+                                    {if $shopKitProduct->getDiscount()}
+
+                                        <del class="price f-s_12 price-c_9">{echo $s1_1 = $kit_prices.main.price}<sub> {$kit_prices.main.symbol}</sub>
+                                            {if $NextCS != $CS}
+                                                <span>{echo $s1_2 = $kit_prices.second.price} {$kit_prices.second.symbol}</span></del>
+                                            {/if}
+
+                                        <div class="price f-s_14 price-c_red">
+                                            {echo $s2_1 = $kit_prices.main.price*(100-$shopKitProduct->getDiscount())/100}
+                                            <sub> {$kit_prices.main.symbol}</sub>
+                                            <span>{echo $s2_2 = $kit_prices.second.price*(100-$shopKitProduct->getDiscount())/100} {$kit_prices.second.symbol}</span>
+                                        </div>
+
+                                    {else:}
+                                        <div class="price f-s_14">{echo $kit_prices.main.price}
+                                            <sub> {$kit_prices.main.symbol}</sub>
+                                            {if $NextCS != $CS}}
+                                                <span>{echo $kit_prices.second.price} {$kit_prices.second.symbol}</span>
+                                            {/if}
+                                        </div>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                        {$sum1_1 += $s1_1}
+                        {$sum1_2 += $s1_2}
+                        {$sum2_1 += $s2_1}
+                        {$sum2_2 += $s2_2}
+                        {$i++}
+
+                        {if $i == $count}
+                            <div class="plus_eval">=</div>
+                            <div class="button_block">
+                                <div class="buy">
+                                    {if $dis}
+                                        <del class="price f-s_12 price-c_9">{round($sum1_1, 2)}<sub> {$kit_prices.main.symbol}</sub>
+                                            {if $NextCS != $CS}
+                                                <span>{echo round($sum1_2, 2)} {$kit_prices.second.symbol}</span></del>
+                                            {/if}
                                         {/if}
-                                    </div>                                                                             
-                                    <div class="{$style.class} buttons">                                            
-                                        <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
+                                    <div class="price f-s_18">{echo round($sum2_1, 2)} <sub> {$kit_prices.main.symbol}</sub></br>
+                                        {if $NextCS != $CS}
+                                            <span> {echo round($sum2_2, 2)}  {$kit_prices.second.symbol}</span></div>
+                                        {/if}
+                                </div></br>
+                                <div class="buttons button_gs">
+                                    <div class="buy">
+                                        {foreach $kits as $kit}
+                                            <a class="goBuy" kitId="{echo $kit->id}" instance="ShopKit" data-varid="86" data-prodid="{echo $kit->productId}" href="">Купить</a>
+                                        {/foreach}
                                     </div>
+                                </div>
+                            </div>
+                            </div>
+                        {else:}
+                            <div class="plus_eval">+</div>
+                        {/if}
+                    {/foreach}
+                </li>
+            </ul>{if $model->getKits()->count()>1}
+            <button class="prev"></button>
+            <button class="next"></button>
+        {/if}
+    </div>
+</div>
+{/if}
+    <!------------------------------------------------------------------------------------------------------------Finish-->
+
+    {if count(getSimilarProduct($model, 20)) > 1}
+        <div class="featured carusel_frame">
+            <div class="f-s_18 c_6 center">Похожие товары</div>
+            <div class="carusel">
+                <ul>
+                    {$simprod = getSimilarProduct($model, 20)}
+                    {foreach $simprod as $sp}
+                        {$sim_prod = currency_convert($sp->firstvariant->getPrice(), $sp->firstvariant->getCurrency())}
+                        {$style = productInCart($cart_data, $sp->getId(), $sp->firstVariant->getId(), $sp->firstVariant->getStock())}
+                        <li>
+                            <div class="f_l smallest_item {if $sp->firstvariant->getstock()==0}not_avail{/if}">
+                                <div class="photo_block">
+                                    <a href="{site_url('shop/product/'.$sp->getId())}">
+                                        <img src="{productImageUrl($sp->getSmallModImage())}"/>
+                                    </a>
+                                </div>
+                                <div class="func_description">
+                                    <a href="{site_url('shop/product/'.$sp->getId())}" class="title">{echo ShopCore::encode($sp->getName())}</a>
+                                    <div class="buy">
+                                        <div class="price f-s_14">{echo $sim_prod.main.price}
+                                            <sub> {$sim_prod.main.symbol}</sub>
+                                            {if $NextCS != $CS}
+                                                <span>{echo $sim_prod.second.price} {$sim_prod.second.symbol}</span>
+                                            {/if}
+                                        </div>
+                                        <div class="{$style.class} buttons">
+                                            <a class="{$style.identif}" href="{$style.link}" data-varid="{echo $sp->firstVariant->getId()}"  data-prodid="{echo $sp->getId()}" >{$style.message}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+            <button class="prev"></button>
+            <button class="next"></button>
+        </div>
+    {/if}
+
+    <div class="center">
+        <div class="tabs f_l w_770 info_tovar">
+            <ul class="nav_tabs">
+                {if $model->getFullDescription()}
+                    <li><a href="#first">Информация</a></li>
+                    {/if}
+                    {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+                    <li><a href="#second">Характеристики</a></li>
+                    {/if}
+                    {if $model->getRelatedProductsModels()}
+                    <li><a href="#third">Аксессуары</a></li>
+                    {/if}
+                <li><a href="#four">{echo SStringHelper::Pluralize($model->totalComments(), array('Отзыв', 'Отзывы', 'Отзывов'))}({echo $model->totalComments()})</a></li>
+            </ul>
+            {if $model->getFullDescription()}
+                <div id="first">
+                    <div class="info_text">
+                        {echo $model->getFullDescription()}
+                    </div>
+                </div>
+            {/if}
+            {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+                <div id="second">
+                    {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
+                </div>
+            {/if}
+            {if $model->getRelatedProductsModels()}
+                <div id="third">
+                    <ul class="accessories f-s_0">
+                        {foreach $model->getRelatedProductsModels() as $p}
+                            {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
+                            {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
+                            <li>
+                                <div class="small_item">
+                                    <a class="img" href="{shop_url('product/' . $p->getUrl())}">
+                                        <span><img src="{productImageUrl($p->getSmallModImage())}" /></span>
+                                    </a>
+                                    <div class="info">
+                                        <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
+                                        <div class="buy">
+                                            <div class="price f-s_16 f_l">{echo $rel_prod.main.price}
+                                                <sub> {$rel_prod.main.symbol}</sub>
+                                                {if $NextCS != $CS}
+                                                    <span class="d_b">{echo $rel_prod.second.price} {$rel_prod.second.symbol}</span>
+                                                {/if}
+                                            </div>
+                                            <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {/foreach}
+                    </ul>
+                </div>
+
+            {/if}
+            <div id="four">
+                {$comments}
+            </div>
+        </div>
+        <div class="nowelty_auction m-t_29">
+            <div class="box_title">
+                <span>Новинки</span>
+            </div>
+            <ul>
+                {foreach getPromoBlock('hot', 3) as $hotProduct}
+                    {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
+                    {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
+                    <li>
+                        <div class="small_item">
+                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
+                                <span>
+                                    <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
+                                </span>
+                            </a>
+                            <div class="info">
+                                <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
+                                <div class="buy">
+                                    <div class="price f-s_16 f_l">{echo $hot_prices.main.price}
+                                        <sub>{$hot_prices.main.symbol}</sub>
+                                        {if $NextCS != $CS}
+                                            <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
+                                        {/if}
+                                    </div>
+                                    <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -395,104 +483,7 @@
                 {/foreach}
             </ul>
         </div>
-        <button class="prev"></button>
-        <button class="next"></button>
     </div>
-{/if} 
-
-<div class="center">
-    <div class="tabs f_l w_770 info_tovar">
-        <ul class="nav_tabs">
-            {if $model->getFullDescription()}
-                <li><a href="#first">Информация</a></li>
-            {/if}
-            {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-                <li><a href="#second">Характеристики</a></li>
-            {/if}
-            {if $model->getRelatedProductsModels()}
-                <li><a href="#third">Аксессуары</a></li>
-            {/if}
-            <li><a href="#four">{echo SStringHelper::Pluralize($model->totalComments(), array('Отзыв', 'Отзывы', 'Отзывов'))}({echo $model->totalComments()})</a></li>
-        </ul>
-        {if $model->getFullDescription()}
-            <div id="first">
-                <div class="info_text">
-                    {echo $model->getFullDescription()}
-                </div>
-            </div>
-        {/if}
-        {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-            <div id="second">
-                {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-            </div>
-        {/if}
-        {if $model->getRelatedProductsModels()}
-            <div id="third">
-                <ul class="accessories f-s_0">
-                    {foreach $model->getRelatedProductsModels() as $p}
-                        {$rel_prod = currency_convert($p->firstvariant->getPrice(), $p->firstvariant->getCurrency())}
-                        {$style = productInCart($cart_data, $p->getId(), $p->firstVariant->getId(), $p->firstVariant->getStock())}
-                        <li>
-                            <div class="small_item">
-                                <a class="img" href="{shop_url('product/' . $p->getUrl())}">
-                                    <span><img src="{productImageUrl($p->getSmallModImage())}" /></span>
-                                </a>
-                                <div class="info">
-                                    <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
-                                    <div class="buy">
-                                        <div class="price f-s_16 f_l">{echo $rel_prod.main.price}
-                                            <sub> {$rel_prod.main.symbol}</sub>
-                                            {if $NextCS != $CS}
-                                                <span class="d_b">{echo $rel_prod.second.price} {$rel_prod.second.symbol}</span>
-                                            {/if}
-                                        </div>
-                                        <div class="{$style.class} buttons"><a class="{$style.identif}" href="{$style.link}" data-varid="{echo $p->firstVariant->getId()}" data-prodid="{echo $p->getId()}" >{$style.message}</a></div> 
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    {/foreach}    
-                </ul>
-            </div>
-
-        {/if}
-        <div id="four">
-            {$comments}
-        </div>
-    </div>
-    <div class="nowelty_auction m-t_29">
-        <div class="box_title">
-            <span>Новинки</span>
-        </div>
-        <ul>                  
-            {foreach getPromoBlock('hot', 3) as $hotProduct}  
-                {$hot_prices = currency_convert($hotProduct->firstvariant->getPrice(), $hotProduct->firstvariant->getCurrency())}
-                {$style = productInCart($cart_data, $hotProduct->getId(), $hotProduct->firstVariant->getId(), $hotProduct->firstVariant->getStock())}
-                <li>
-                    <div class="small_item">
-                        <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="img">
-                            <span>
-                                <img src="{productImageUrl($hotProduct->getSmallModimage())}" alt="{echo ShopCore::encode($hotProduct->getName())}" />
-                            </span>
-                        </a>
-                        <div class="info">
-                            <a href="{shop_url('product/' . $hotProduct->getUrl())}" class="title">{echo ShopCore::encode($hotProduct->getName())}</a>
-                            <div class="buy">
-                                <div class="price f-s_16 f_l">{echo $hot_prices.main.price} 
-                                    <sub>{$hot_prices.main.symbol}</sub>
-                                    {if $NextCS != $CS}
-                                        <span class="d_b">{echo $hot_prices.second.price} {$hot_prices.second.symbol}</span>
-                                    {/if}
-                                </div>                               
-                                <div class="{$style.class} buttons"><a class="{$style.identif}" data-varid="{echo $hotProduct->firstVariant->getId()}" data-prodid="{echo $hotProduct->getId()}" href="{shop_url('product/' . $hotProduct->getUrl())}">{$style.message}</a></div>
-                            </div>   
-                        </div>
-                    </div>
-                </li>  
-            {/foreach}
-        </ul>
-    </div>
-</div>
 </div>
 
 

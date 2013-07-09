@@ -25,7 +25,7 @@
                                                 <img src="{$item.cover_url}"/>
                                             </a>
                                         {else:}
-                                            <img src="{$THEME}/img/no_image.png"/>
+                                            <img src="{$THEME}img/no_image.png"/>
                                         {/if}
                                         <div class="m-t_10">
                                             <a href="/admin/components/init_window/gallery/edit_album/{$item.id}" class="btn btn-small" data-rel="tooltip" data-title="{lang("View images")}"><i class="icon-fullscreen"></i> {lang('View images')}</a>
@@ -58,8 +58,20 @@
                                             <tr>
                                                 <th></th>
                                                 <td>
-                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}" class="btn btn-small   " data-rel="tooltip" data-title="{lang('a_to_edit')}"><i class="icon-edit"></i> {lang('Edit albums')}</a>
-                                                    <button type="button" class="btn btn-danger btn-small" data-rel="tooltip" onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')" data-title="{lang("Delete")}" data-remove=""><i class="icon-trash icon-white"></i> {lang('Delete album')}</button>
+                                                    <a href="/admin/components/init_window/gallery/edit_album_params/{$item.id}"
+                                                       class="btn btn-small"
+                                                       data-rel="tooltip"
+                                                       data-title="{lang('a_to_edit')}">
+                                                        <i class="icon-edit"></i> {lang('Edit albums')}
+                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-danger btn-small"
+                                                            data-rel="tooltip"
+                                                            onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')"
+                                                            data-title="{lang('a_delete')}"
+                                                            data-remove="">
+                                                        <i class="icon-trash icon-white"></i> {lang('Delete albums')}
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -83,7 +95,8 @@
         <h3>{lang("Delete album?")}</h3>
     </div>
     <div class="modal-footer">
-        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
-        <a href="" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang("Delete")}</a>
+        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
+        <a href="" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm();
+                                                                    $('.modal').modal('hide');">{lang('Delete')}</a>
     </div>
 </div>

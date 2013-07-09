@@ -150,7 +150,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
 select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;}
-table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input{height: 27px !important;margin-bottom: 0;}
+table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{height: 27px !important;margin-bottom: 0;}
 label, input, button, select, textarea{font-size: 12px !important;}
 textarea{line-height: 1.5!important;}
 table label{margin-bottom: 5px;clear: both;}
@@ -635,6 +635,15 @@ span.check_gg {
     background-repeat: no-repeat no-repeat;
     background-color: rgba(255,255,255,0.5);
 }
+#fixPage{
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    position: fixed;
+    display: none;
+    background-repeat: no-repeat no-repeat;
+    background-color: rgba(255,255,255,0.2);
+}
 
 .dialogelfinder{
     font-size: 16px !important;
@@ -686,3 +695,7 @@ border-right: none !important;
 .albums_list table table th, .albums_list table table td{padding: 4px !important;}
 .albums_list .active .table-striped > tbody > tr:nth-child(odd) td, .albums_list .active .table-striped > tbody tr:nth-child(odd) th{background-color: #fff9e0 !important;}
 .bootstrapSkin table.mceLayout tr.mceFirst td {border: none !important;}
+
+.save_button_field{color:blue;cursor:pointer;}
+.w_150 {width:150px !important;}
+.center { display:block; text-align:center; margin:0 auto}

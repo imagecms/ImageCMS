@@ -14,10 +14,12 @@ class Commentsapi extends Comments {
     public $use_moderation = TRUE;
     public $validation_errors;
     public $enable_comments = true;
+    public $module = 'core';
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->module = $this->getModule($_SERVER['HTTP_REFERER']);
     }
 
     private function init_settings() {
@@ -45,7 +47,8 @@ class Commentsapi extends Comments {
 //        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-        $comments = $this->base->get($item_id);
+//        var_dump($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module);
 
         // Read comments template
         // Set page id for comments form
@@ -54,11 +57,10 @@ class Commentsapi extends Comments {
             $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
-        if ($comments != null) {
+        if ($comments != null)
             $comments_count = count($comments);
-        } else {
+        else
             $comments_count = 0;
-        }
 
         if (is_array($comments)) {
             $i = 0;
@@ -105,7 +107,7 @@ class Commentsapi extends Comments {
 
     /**
      * Determinate commented page.
-     * 
+     *
      * if product - return id
      */
     public function parsUrl($url) {
@@ -121,12 +123,25 @@ class Commentsapi extends Comments {
                     ->get('shop_products')
                     ->row();
 
-            if ($id->enable_comments == 0)
+            if ($id->enable_comments === 0)
                 $this->enable_comments = false;
             else
                 return $id->id;
         }
 
+        if (strstr($url, "/image/")) {
+            $url = explode(DS, $url);
+            $url = $url[count($url) - 1];
+
+            return $url;
+        }
+
+        if (strstr($url, '/album/')) {
+            $url = explode(DS, $url);
+            $url = $url[count($url) - 1];
+
+            return $url;
+        }
 
         if ($url == site_url()) {
             $id = $this->db->select('main_page_id, comments_status')
@@ -134,22 +149,21 @@ class Commentsapi extends Comments {
                     ->get('settings')
                     ->row();
 
-            if ($id->comments_status == 0)
+            if ($id->comments_status === 0)
                 $this->enable_comments = false;
             else
                 return $id->main_page_id;
         }
 
 //        if (strstr($url, '/bloh/')) {
-        $paths = explode(DS, $url);
+        $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
 
         $id = $this->db->select('id, comments_status')
                 ->where('url', $paths)
                 ->get('content')
                 ->row();
-
-        if ($id->comments_status == 0)
+        if ($id->comments_status === 0)
             $this->enable_comments = false;
         else
             return $id->id;
@@ -163,6 +177,8 @@ class Commentsapi extends Comments {
         if (strstr($url, '/bloh/'))
             return 'core';
 
+        if (strstr($url, '/gallery/'))
+            return 'gallery';
 
         if ($url == site_url())
             return 'core';
@@ -181,15 +197,6 @@ class Commentsapi extends Comments {
         $this->load->model('base');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-
-        // Check if page comments status.
-//        if ($this->getModule($_SERVER['HTTP_REFERER']) == 'core') {
-//            var_dump($item_id);
-//            if ($this->base->get_item_comments_status($item_id) == FALSE) {
-//                ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
-//                $this->core->error(lang('error_comments_diabled'));
-//            }
-//        }
 
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
@@ -274,7 +281,7 @@ class Commentsapi extends Comments {
 
             if (!validation_errors()) {
                 $comment_data = array(
-                    'module' => $this->getModule($_SERVER['HTTP_REFERER']),
+                    'module' => $this->module,
                     'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
                     'user_name' => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : trim(htmlspecialchars($this->input->post('comment_author'))),
                     'user_mail' => $this->dx_auth->is_logged_in() ? $email->email : trim(htmlspecialchars($this->input->post('comment_email'))),
@@ -290,7 +297,6 @@ class Commentsapi extends Comments {
                     'rate' => $this->input->post('ratec'),
                     'parent' => $this->input->post('comment_parent')
                 );
-
                 $this->db->insert('comments', $comment_data);
                 \CMSFactory\Events::create()->registerEvent(array('commentId' => $this->db->insert_id()));
                 $this->validation_errors = '';
@@ -488,6 +494,19 @@ class Commentsapi extends Comments {
         if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ( $numeric % 10 == 4 ))
             return $words[1];
         return $words[2];
+    }
+    
+    /**
+     * Get count answers to comment by id
+     * @param int $commentId
+     * @return boolean|int
+     */
+    public function getCountCommentAnswersByCommentId($commentId){
+        $query = $this->db->where('parent',$commentId)->get('comments')->result_array();
+        if ($query)
+            return count($query);
+        else
+            return false;
     }
 
 }

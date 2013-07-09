@@ -4,35 +4,34 @@
 	</ul>
     <h3>{lang("All Brands Shop")}</h3>
     <div class="brand">
-    {foreach SBrandsQuery::create()->joinWithI18n(ShopController::getCurrentLocale())->find() as $brand}
-	    <a href="{shop_url('brand/' . $brand->getUrl())}">{echo $brand->getName()}</a>
-	{/foreach}
+        {foreach SBrandsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->find() as $brand}
+            <a href="{shop_url('brand/' . $brand->getUrl())}">{echo $brand->getName()}</a>
+        {/foreach}
     </div>
 
     <h3>{lang("Brands Alphabetical")}</h3>
     <div class="brand">
-    {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false, array('EN')) as $brandsCharater=>$brands}
-        {if $brands}
-        <div class="bubbleInfo">
-        <div class="trigger"><a>{echo $brandsCharater}</a></div>
-            <div if class="popup">
-                    {foreach $brands as $brand}
-                        <a href="{shop_url('brand/' . $brand['url'])}">{echo $brand['name'].'('.$brand['total'].')'}</a>{counter("<br />", "", "")}
-                    {/foreach}
-            </div>
-        </div>
-        {else:}
-        {echo $brandsCharater}
-        {/if}
-    {/foreach}
+        {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false, array('EN')) as $brandsCharater=>$brands}
+            {if $brands}
+                <div class="bubbleInfo">
+                    <div class="trigger"><a>{echo $brandsCharater}</a></div>
+                    <div if class="popup">
+                        {foreach $brands as $brand}
+                            <a href="{shop_url('brand/' . $brand['url'])}">{echo $brand['name'].'('.$brand['total'].')'}</a>{counter("<br />", "", "")}
+                        {/foreach}
+                    </div>
+                </div>
+            {else:}
+                {echo $brandsCharater}
+            {/if}
+        {/foreach}
     </div>
-	<h3>{lang("We accept")}</h3>
-	<div class="brand">
-		<img src="{$SHOP_THEME}images/cards.gif" alt="logo" border="0"/>
-	</div>
-	<h3>{lang("Operation time")}</h3>
-	<div class="time_work">
-		{lang("<b> Shop works around the clock </ b>, can order products at any time. <br />
-We are ready to receive and process your orders every day from 10:00 to 19:00. Off - Sunday.")}
-	</div>
+    <h3>{lang('s_we_acc')}</h3>
+    <div class="brand">
+        <img src="{$SHOP_THEME}images/cards.gif" alt="logo" border="0"/>
+    </div>
+    <h3>{lang('s_oper_time')}</h3>
+    <div class="time_work">
+        {lang('s_shop_work_time')}
+    </div>
 </div>

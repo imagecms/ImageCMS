@@ -1,7 +1,9 @@
 <?php
 
 // DX_Auth class to work with users table
-
+/**
+ * @property CI_DB_active_record $db
+ */
 class Users extends CI_Model {
 
     function Users() {
@@ -20,12 +22,13 @@ class Users extends CI_Model {
         $roles_table = $this->_roles_table;
 
         if ($offset >= 0 AND $row_count > 0) {
+            $locale = MY_Controller::getCurrentLocale();
             $this->db->select("$users_table.*", FALSE);
             $this->db->select("$roles_table.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);            
+            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
             $this->db->join($roles_table, "$roles_table.id = $users_table.role_id", "left");
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id AND shop_rbac_roles_i18n.locale ='".BaseAdminController::getCurrentLocale()."'", "left");
-            //$this->db->where('shop_rbac_roles_i18n.locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id AND shop_rbac_roles_i18n.locale ='$locale'", "left");
+            //$this->db->where('shop_rbac_roles_i18n.locale', MY_Controller::getCurrentLocale());
             $this->db->order_by("$users_table.id", "ASC");
 
             $query = $this->db->get($this->_table, $row_count, $offset);

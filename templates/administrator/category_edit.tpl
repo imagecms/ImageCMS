@@ -10,27 +10,29 @@
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
                     <button type="submit" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang("Save and exit")}</button>
+                    {if count($langs) > 1}
 
                     <div class="dropdown d-i_b">
                         {foreach $langs as $l}
-                        {if $l['default'] == 1}
-                        <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                            {$l.lang_name}
-                            <span class="caret"></span>
+                            {if $l['default'] == 1}
+                                <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                                    {$l.lang_name}
+                                    <span class="caret"></span>
 
-                        </a>
-                        {/if}   
+                                </a>
+                            {/if}   
                         {/foreach}
                         <ul class="dropdown-menu">
                             {foreach $langs as $l}
-                            {if !$l.default}
-                            <li><a href="{$BASE_URL}admin/categories/translate/{$id}/{$l.id}">{$l.lang_name}</a></li>
-                            {/if}
-                            {/foreach}
+                                {if !$l.default}
+                                    <li><a href="{$BASE_URL}admin/categories/translate/{$id}/{$l.id}">{$l.lang_name}</a></li>
+                                    {/if}
+                                {/foreach}
                         </ul>
 
                     </div>
-                        
+                    {/if}
+
                 </div>
             </div>                            
         </div>
@@ -41,6 +43,9 @@
                         <a href="#parameters" class="btn btn-small active">{lang("Settings")}</a>
                         <a href="#metatag" class="btn btn-small">{lang("Meta tags")}</a>
                         <a href="#dodPol" class="btn btn-small">{lang("Additional fields")}</a>
+                        {if $moduleAdditions}
+                            <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+                        {/if}
                     </div>                    
                 </div>
                 <div class="tab-content">
@@ -94,7 +99,7 @@
                                                         <select name="category_field_group" id="category_field_group">
                                                             <option value="-1">{lang("No")}</option>
                                                             {foreach $f_groups as $k => $v}
-                                                            <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
+                                                                <option value="{$k}" {if $k == $category_field_group} selected="selected" {/if}>{$v}</option>
                                                             {/foreach}
                                                         </select>
                                                         <p class="help-block">{lang("Select  a field group  for a category")}</p>
@@ -107,205 +112,206 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="field_group">{lang("page field group")}:</label>
-                                                    <div class="controls">
-                                                        {$f_groups = $this->CI->load->module('cfcm/cfcm_forms')->prepare_groups_select()}
-                                                        <select name="field_group" id="field_group">
-                                                            <option value="-1">{lang("No")}</option>
-                                                            {foreach $f_groups as $k => $v}
+
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="field_group">{lang("page field group")}:</label>
+                                                <div class="controls">
+                                                    {$f_groups = $this->CI->load->module('cfcm/cfcm_forms')->prepare_groups_select()}
+                                                    <select name="field_group" id="field_group">
+                                                        <option value="-1">{lang("No")}</option>
+                                                        {foreach $f_groups as $k => $v}
                                                             <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
-                                                            {/foreach}
-                                                        </select>
-                                                        <p class="help-block">{lang("Select a field group to be displayed/ viewed  in the created category of the group or group category")}</p>
-                                                        <span class="frame_label no_connection m-t_20">
-                                                            <span class="niceCheck b_n">
-                                                                <input type="checkbox" value="1" name="apply_for_subcats"
-                                                                       {if  $settings['apply_for_subcats']== '1'} checked {/if}>  
-                                                            </span>
-                                                            {lang("Apply for subcategories")}
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="control-group">
-                                                    <label class="control-label" for="Img">
-                                                        {lang("Image")}:                            
-                                                    </label>
-                                                    <div class="controls">
-                                                        <div class="group_icon pull-right">
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image ")}</button>
-                                                        </div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="image" id="Img" value="{$image}">				    
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="control-group">
-                                                    <label class="control-label" for="position">{lang("Position")}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="position" value="{$position}" id="position">
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label" for="short_desc">{lang("Description")}:</label>
-                                                    <div class="controls">
-                                                        <textarea name="short_desc" id="short_desc" class="elRTE">{htmlspecialchars($short_desc)}</textarea>
-                                                    </div>
-                                                </div>
-
+                                                        {/foreach}
+                                                    </select>
+                                                    <p class="help-block">{lang("Select a field group to be displayed/ viewed  in the created category of the group or group category")}</p>
+                                                    <span class="frame_label no_connection m-t_20">
+                                                        <span class="niceCheck b_n">
+                                                            <input type="checkbox" value="1" name="apply_for_subcats"
+                                                            {if  $settings['apply_for_subcats']== '1'} checked {/if}>  
+                                                    </span>
+                                                     {lang("Apply for subcategories")}
+                                                </span>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">
-                                        {lang("Page display")}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="inside_padd span12">
-                                            <div class="form-horizontal">
-                                                <div class="control-group">
-                                                    <label class="control-label" for="order_by">{lang("Sort by")}:</label>
-                                                    <div class="controls">
-                                                        <div class="pull-left span6">
-                                                            <select name="order_by" id="order_by">
-                                                                <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>{lang("by date")}</option>
-                                                                <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang("By alphabet or  in the alphabetic order")}</option>
-                                                                <option value="position" {if $order_by == "position"} selected="selected" {/if}>{lang("By position")}</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="pull-left span6">
 
-                                                            <select name="sort_order">
-                                                                <option value="desc" {if $sort_order == "desc"} selected="selected" {/if}>{lang("In descending order")}</option>
-                                                                <option value="asc" {if $sort_order == "asc"} selected="selected" {/if}>{lang("In ascending order")}</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="per_page">{lang("Posts on the page or Records on the page")}:</label>
-                                                    <div class="controls">
 
-                                                        <input type="text" name="per_page" value="{$per_page}" id="per_page" />
-                                                        <div class="frame_label no_connection m-t_20">
-                                                            <span class="niceCheck b_n">
-                                                                <input type="checkbox" name="comments_default" value="1" {if $comments_default == 1 } checked="checked" {/if}  />  
-                                                            </span>
-                                                            {lang("Comment pages by default ")}
-                                                        </div>
-                                                    </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="Img">
+                                                 {lang("Image")}:                                  
+                                            </label>
+                                            <div class="controls">
+                                                <div class="group_icon pull-right">
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                        return false;"><i class="icon-picture"></i>{lang("Choose an image ")}</button>
                                                 </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="fetch_pages">{lang("Display pages of other categories")}:</label>
-                                                    <div class="controls">
-
-                                                        <div class="o_h">
-                                                            <select name="fetch_pages[]"  multiple="multiple" size="5" id="fetch_pages">
-                                                                {if !$fetch_pages}
-                                                                {$fetch_pages = Array()}
-                                                                {/if}
-                                                                {foreach $include_cats as $c}
-                                                                <option value="{$c.id}" {if in_array($c.id, $fetch_pages)}  selected="selected" {/if}> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
-                                                                {/foreach}
-                                                            </select>
-
-                                                        </div>
-                                                    </div></div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="main_tp">{lang("Main template")}:</label>
-                                                    <div class="controls">
-                                                        <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="main_tpl" value="{$main_tpl}"  id="main_tp" />                                                                              </div>
-                                                        <p class="help-block">{lang("Main category template by default")}  main.tpl</p>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="tpl">{lang("Category template")}:</label>
-                                                    <div class="controls">
-                                                        <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="tpl" value="{$tpl}" id="tpl" /> 
-
-                                                        </div>
-                                                        <p class="help-block">{lang("Main category template by default")}  category.tpl</p>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label" for="page_tpl">{lang("Page template")}:</label>
-                                                    <div class="controls">
-                                                        <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="page_tpl" value="{$page_tpl}" id="page_tpl" />                                                           
-                                                        </div>
-                                                        <p class="help-block">{lang("Page view template by default")} page_full.tpl</p>
-                                                    </div>
-                                                </div>                                             
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="metatag">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th colspan="6">
-                                        {lang("Meta tags")}
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="inside_padd span12">
-                                            <div class="form-horizontal">
-                                                <div class="control-group"><label class="control-label" for="title">{lang("Meta Title")}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="title" value="{$title}" id="title" />
-                                                    </div>
-                                                </div>
-                                                <div class="control-group"><label class="control-label" for="description">{lang("Meta Description")}:</label>
-                                                    <div class="controls">
-                                                        <textarea id="description" name="description"  rows="10" cols="180" >{$description}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group"><label class="control-label" for="keywords">{lang("Meta Keywords")}:</label>
-                                                    <div class="controls">
-                                                        <textarea id="keywords" name="keywords" rows="10" cols="180" >{$keywords}</textarea>
-                                                    </div>
+                                                <div class="o_h">
+                                                    <input type="text" name="image" id="Img" value="{$image}">				    
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="position">{lang('a_position')}:</label>
+                                            <div class="controls">
+                                                <input type="text" name="position" value="{$position}" id="position">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
+                                            <div class="controls">
+                                                <textarea name="short_desc" id="short_desc" class="elRTE">{htmlspecialchars($short_desc)}</textarea>
+                                            </div>
+                                        </div>
 
-                    <div class="tab-pane" id="dodPol">
-                        {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category')}
-                    </div>
-                </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_page_view')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd span12">
+                                    <div class="form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label" for="order_by">{lang('a_sort')}:</label>
+                                            <div class="controls">
+                                                <div class="pull-left span6">
+                                                    <select name="order_by" id="order_by">
+                                                        <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>{lang('a_by_date')}</option>
+                                                        <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang('a_by_abc')}</option>
+                                                        <option value="position" {if $order_by == "position"} selected="selected" {/if}>{lang('a_by_pos')}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="pull-left span6">
+
+                                                    <select name="sort_order">
+                                                        <option value="desc" {if $sort_order == "desc"} selected="selected" {/if}>{lang('a_desc_order')}</option>
+                                                        <option value="asc" {if $sort_order == "asc"} selected="selected" {/if}>{lang('a_asc_order')}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="per_page">{lang('a_records_count')}:</label>
+                                            <div class="controls">
+
+                                                <input type="text" name="per_page" value="{$per_page}" id="per_page" />
+                                                <div class="frame_label no_connection m-t_20">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox" name="comments_default" value="1" {if $comments_default == 1} checked="checked" {/if}  />  
+                                                    </span>
+                                                    {lang('a_comm_by_def')}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="fetch_pages">{lang('a_disp_pages_f_other_cats')}:</label>
+                                            <div class="controls">
+
+                                                <div class="o_h">
+                                                    <select name="fetch_pages[]"  multiple="multiple" size="5" id="fetch_pages">
+                                                        {if !$fetch_pages}
+                                                            {$fetch_pages = Array()}
+                                                        {/if}
+                                                        {foreach $include_cats as $c}
+                                                            <option value="{$c.id}" {if in_array($c.id, $fetch_pages)}  selected="selected" {/if}> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
+                                                        {/foreach}
+                                                    </select>
+
+                                                </div>
+                                            </div></div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="main_tp">{lang('a_main_tpl')}:</label>
+                                            <div class="controls">
+                                                <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
+                                                <div class="o_h">
+                                                    <input type="text" name="main_tpl" value="{$main_tpl}"  id="main_tp" />                                                                              </div>
+                                                <p class="help-block">{lang('a_main_tpl_by_def')}  main.tpl</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="tpl">{lang('a_cat_tpl')}:</label>
+                                            <div class="controls">
+                                                <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
+                                                <div class="o_h">
+                                                    <input type="text" name="tpl" value="{$tpl}" id="tpl" /> 
+
+                                                </div>
+                                                <p class="help-block">{lang('a_main_cat_tpl_by_def')}  category.tpl</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="page_tpl">{lang('a_pages_tpl')}:</label>
+                                            <div class="controls">
+                                                <div class="help-block pull-right">&nbsp;&nbsp;.tpl</div>
+                                                <div class="o_h">
+                                                    <input type="text" name="page_tpl" value="{$page_tpl}" id="page_tpl" />                                                           
+                                                </div>
+                                                <p class="help-block">{lang('a_pages_view_tpl_by_def')} page_full.tpl</p>
+                                            </div>
+                                        </div>                                             
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            {form_csrf()}
-        </form>
-    </section>
+            <div class="tab-pane" id="metatag">
+                <table class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('a_meta_tags')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd span12">
+                                    <div class="form-horizontal">
+                                        <div class="control-group"><label class="control-label" for="title">{lang('a_meta_title')}:</label>
+                                            <div class="controls">
+                                                <input type="text" name="title" value="{$title}" id="title" />
+                                            </div>
+                                        </div>
+                                        <div class="control-group"><label class="control-label" for="description">{lang('a_meta_description')}:</label>
+                                            <div class="controls">
+                                                <textarea id="description" name="description"  rows="10" cols="180" >{$description}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="control-group"><label class="control-label" for="keywords">{lang('a_meta_keywords')}:</label>
+                                            <div class="controls">
+                                                <textarea id="keywords" name="keywords" rows="10" cols="180" >{$keywords}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="dodPol">
+                {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category')}
+            </div>
+            {include_tpl('modules_additions')}
+        </div>
+    </div>
+    {form_csrf()}
+</form>
+</section>
 </div>
 <div id="elFinder"></div>

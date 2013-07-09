@@ -1,5 +1,42 @@
 var editorsEnabled = false;
 //temporary
+
+function ajaxLoadChildCategory(el, id) {
+
+    var container = $(el).closest('.row-category');
+
+    if (container.next().attr('class') != 'frame_level sortable ui-sortable')
+        $.post('/admin/components/run/shop/categories/ajax_load_parent', {id: id}, function(data) {
+            $(data).insertAfter(container);
+            initNiceCheck();
+            share_alt_init();
+            sortInit();
+        })
+
+
+}
+
+function changeDefaultValute(id) {
+
+    $.post('/admin/components/run/shop/currencies/makeCurrencyDefault', {id: id})
+
+}
+function changeMainValute(id) {
+
+    $.post('/admin/components/run/shop/currencies/makeCurrencyMain', {id: id})
+
+}
+function ChangeMenuItemActive(obj, id) {
+    $.post('/admin/components/cp/menu/chose_hidden', {status: $(obj).attr('rel'), id: id}, function() {
+        if ($(obj).attr('rel') == 'true')
+            $(obj).addClass('disable_tovar').attr('rel', false);
+        else
+            $(obj).removeClass('disable_tovar').attr('rel', true);
+    })
+
+}
+
+
 function ChangeBannerActive(el, bannerId)
 {
     var currentActiveStatus = $(el).attr('rel');
@@ -19,6 +56,27 @@ function ChangeBannerActive(el, bannerId)
 
     });
 }
+// on/of sorting method
+function ChangeSortActive(el, sortId)
+{
+    var currentActiveStatus = $(el).attr('rel');
+
+    $.post('/admin/components/run/shop/settings/changeSortActive/', {
+        sortId: sortId,
+        status: currentActiveStatus
+    }, function(data) {
+        $('.notifications').append(data)
+        if (currentActiveStatus == 'true')
+        {
+            $(el).addClass('disable_tovar').attr('rel', false);
+
+        } else {
+            $(el).removeClass('disable_tovar').attr('rel', true);
+        }
+
+    });
+}
+
 var shopAdminMenuCache = false;
 
 function showMessage(title, text, messageType)
@@ -39,13 +97,13 @@ function translite_title(from, to)
 {
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
-        url, {
-            'str': $(from).val()
-        }, function(data)
+            url, {
+        'str': $(from).val()
+    }, function(data)
 
-        {
-            $(to).val(data);
-        }
+    {
+        $(to).val(data);
+    }
     );
 }
 
@@ -55,12 +113,12 @@ function create_description(from, to)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(
-        base_url + 'admin/pages/ajax_create_description/', {
-            'text': $(from).val()
-        },
-        function(data) {
-            $(to).val(data);
-        }
+            base_url + 'admin/pages/ajax_create_description/', {
+        'text': $(from).val()
+    },
+    function(data) {
+        $(to).val(data);
+    }
     );
 }
 
@@ -70,11 +128,11 @@ function retrive_keywords(from, to)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
-            'keys': $(from).val()
-        },
-        function(data) {
-            $(to).html(data);
-        }
+        'keys': $(from).val()
+    },
+    function(data) {
+        $(to).html(data);
+    }
     );
 }
 
@@ -115,6 +173,7 @@ $('.formSubmit').live('click', function() {
                     name: "action",
                     value: action
                 });
+
             },
             success: function(data) {
                 $('#loading').fadeOut(100);
@@ -136,14 +195,26 @@ $('.formSubmit').live('click', function() {
 function updateNotificationsTotal()
 {
     //if (isShop)
-    $('#topPanelNotifications>div').load('/admin/components/run/shop/notifications/getAvailableNotification', function(){
-        $('#topPanelNotifications>div a').die('click').on('click', function(){
-            $.pjax({
-                url: $(this).attr('href'),
-                container: '#mainContent',
-                timeout: 3000
+    $.get('/admin/components/run/shop/notifications/getAvailableNotification', function(data) {
+
+        try {
+            var Obj = JSON.parse(data);
+            if (!Obj.success)
+                window.location.href = '/admin';
+        } catch (e) {
+
+            $('#topPanelNotifications>div').html(data);
+
+            $('#topPanelNotifications>div a').die('click').on('click', function() {
+                $.pjax({
+                    url: $(this).attr('href'),
+                    container: '#mainContent',
+                    timeout: 3000
+                });
             });
-        });
+
+        }
+
     });
 
 }
@@ -202,7 +273,7 @@ function loadBaseInterface()
     $('li').removeClass('active');
     $('#baseAdminMenu li.homeAnchor').addClass('active');
 
-    $('#topPanelNotifications').fadeOut(300);
+    //$('#topPanelNotifications').fadeOut(300);
     $.pjax({
         url: '/admin/dashboard',
         container: '#mainContent',
@@ -240,15 +311,15 @@ function initElRTE()
         styleWithCSS: false,
         height: 300,
         fmAllow: true,
-        lang: locale.substr(0,2),
-        allowTextNodes : false,
+        lang: locale.substr(0, 2),
+        allowTextNodes: false,
         //        Format: 'Paragraph',
         fmOpen: function(callback) {
             //			    if (typeof dialog === 'undefined') {
             // create new elFinder
             dialog = $('<div />').dialogelfinder({
                 url: '/admin/elfinder_init',
-                lang: locale.substr(0,2),
+                lang: locale.substr(0, 2),
                 commands: [
                     'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
                     'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
@@ -308,15 +379,15 @@ function initElRTE()
         toolbar: 'custom'
     };
     $('textarea.elRTE.focusOnClick').each(
-        function() {
-            var rte = this;
-            opts.height = 300;
-            $(rte).on('focus', function() {
-                $(rte).elrte(opts);
+            function() {
+                var rte = this;
+                opts.height = 300;
+                $(rte).on('focus', function() {
+                    $(rte).elrte(opts);
 
-                //$(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
-            });
-        }
+                    //$(rte).delay(300).closest('.el-rte').find('.workzone, iframe, textarea').animate({'height':'300px'}, 400);
+                });
+            }
     );
 
     $('textarea.elRTE').not('.focusOnClick').each(function() {
@@ -333,7 +404,7 @@ function initTinyMCE()
         //mode : "textareas",
         // Location of TinyMCE script
         height: 300,
-        language: locale.substr(0,2),
+        language: locale.substr(0, 2),
         script_url: '/js/tiny_mce/tiny_mce.js',
         // General options
         theme: "advanced",
@@ -362,17 +433,15 @@ function initTinyMCE()
             //username: "Some User",
             //staffid: "991234"
         },
-
-        mode : "exact",
-        elements : 'nourlconvert',
+        mode: "exact",
+        elements: 'nourlconvert',
         //relative_urls : true, // Default value
         //document_base_url : 'http://img.loc/',
-        convert_urls : false,
-
+        convert_urls: false,
         file_browser_callback: function(field_name, url, type, win) {
             $('<div/>').dialogelfinder({
                 url: '/admin/elfinder_init',
-                lang: locale.substr(0,2),
+                lang: locale.substr(0, 2),
                 dialog: {
                     width: 900,
                     modal: true,
@@ -381,7 +450,7 @@ function initTinyMCE()
                 },
                 getFileCallback: function(file) {
                     file.path = file.path.replace(/\134/g, '/');
-                    file.path = '/'+file.path;
+                    file.path = '/' + file.path;
 
                     var field = win.document.forms[0].elements[field_name];
                     field.value = file.path;
@@ -389,19 +458,19 @@ function initTinyMCE()
                     cmsT.value = $('input[name=cms_token]').val();
 
 
-                    $( win.document.forms[0], 'input#insert').on('click', function(el){
+                    $(win.document.forms[0], 'input#insert').on('click', function(el) {
                         //if (el.srcElement == 'input#insert') {
                         sPost();
                         //}
                     });
                     //
-                    function sPost(){
+                    function sPost() {
                         $.post('/admin/components/run/imagebox/imagebox/upload', {
                             file_url: file.path,
                             x: win.document.forms[0].elements['fancyThumbX'].value,
                             y: win.document.forms[0].elements['fancyThumbY'].value,
                             cms_token: $('input[name=cms_token]').val()
-                        }, function(data){
+                        }, function(data) {
                             console.log(data);
                         });
                     }
@@ -421,15 +490,15 @@ function initTinyMCE()
     };
 
     $('textarea.elRTE.focusOnClick').each(
-        function() {
-            opts.height = 200;
-            $(this).on('focus', function() {
-                $(this).tinymce(opts);
-                $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({
-                    'height': '300px'
-                }, 400);
-            });
-        }
+            function() {
+                opts.height = 200;
+                $(this).on('focus', function() {
+                    $(this).tinymce(opts);
+                    $(this).delay(300).closest('.controls').find('.mceIframeContainer, .mceIframeContainer iframe').animate({
+                        'height': '300px'
+                    }, 400);
+                });
+            }
     );
 
     //if (!editorsEnabled)
@@ -441,7 +510,7 @@ function initTinyMCE()
         if ($(this).hasClass('inited') == false)
         {
             opts.selector = id;
-            if ($(this).hasClass('smallTextarea')){
+            if ($(this).hasClass('smallTextarea')) {
                 opts.theme_advanced_buttons1 = undefined;
                 opts.theme_advanced_buttons2 = undefined;
                 opts.theme_advanced_buttons3 = undefined;
@@ -466,7 +535,7 @@ function initTextEditor(name)
             'elrte': initElRTE,
             'tinymce': initTinyMCE
         }
-            [name]())
+        [name]())
 }
 
 var dlg = false;
@@ -480,7 +549,7 @@ function elFinderPopup(type, id, path)
     {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
-            lang: locale.substr(0,2),
+            lang: locale.substr(0, 2),
             commands: [
                 'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
                 'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
@@ -569,7 +638,7 @@ function elFinderTPLEd()
     eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
-        lang: locale.substr(0,2),
+        lang: locale.substr(0, 2),
         commands: [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
             'download', 'rm', 'rename', 'mkdir', 'mkfile', 'upload', 'edit', 'preview', 'extract', 'archive', 'search', 'info', 'view', 'help', 'sort'
@@ -799,7 +868,7 @@ var orders = new Object({
     {
         var data = {};
         if ($(btn).data('update') == 'price')
-        //    		alert($(btn).closest('td').find('input').val());
+            //    		alert($(btn).closest('td').find('input').val());
             data.newPrice = $(btn).closest('td').find('input').val();
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
@@ -807,8 +876,122 @@ var orders = new Object({
         $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
             $('.notifications').append(data);
         });
-    }
+    },
+    getProductsInCategory: function(categoryId) {
+        $('#variantInfoBlock').hide();
+        $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
+            type: "post",
+            data: 'categoryId=' + categoryId,
+            async: false,
+            success: function(data) {
+                products = JSON.parse(data)
+                $("#productsForOrders").empty();
+                $("#variantsForOrders").empty();
+                for (i = 0; i < products.length; i++) {
+                    $("#productsForOrders").append($('<option data-productName=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
+                }
+            }
+        });
+    },
+    getProductVariantsByProduct: function(productId, productName) {
+        $('#variantInfoBlock').hide();
+        $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetProductVariants/',
+            type: "post",
+            data: 'productId=' + productId,
+            complete: function(data) {
+                productVariants = JSON.parse(data.responseText);
+                separate = '';
+                $("#variantsForOrders").empty();
+                for (i = 0; i < productVariants.length; i++) {
+                    var variantName = '';
+                    if (productVariants[i]['name'] != '') {
+                        variantName = productVariants[i]['name'];
+                        separate = ' - '
+                    }
+                    price = parseFloat(productVariants[i]['price']).toFixed(2);
+                    $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
+                            '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
+                            ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
+                }
+            }
+        });
+    },
+    //Add product to cart in admin
+    addToCartAdmin: function(element) {
+        var clonedElement = $('.addNewProductBlock').clone(true).removeClass('addNewProductBlock');
+        var data = element.data();
+        var variantName = '-';
 
+        if (data.variantname != 'noName') {
+            variantName = data.variantname;
+        }
+        clonedElement.find('.variantCartName').html(variantName);
+        clonedElement.find('.productCartName').html(data.productname);
+        clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
+        clonedElement.find('.productCartPriceSymbol').html(data.productcurrency);
+
+        //Input values
+        clonedElement.find('.inputProductId').val(data.productid);
+        clonedElement.find('.inputProductName').val(data.productname);
+        clonedElement.find('.inputVariantId').val(data.variantid);
+        clonedElement.find('.inputVariantName').val(variantName);
+        clonedElement.find('.inputPrice').val(data.price);
+        clonedElement.find('.inputQuantity').val(1);
+
+
+        $('#insertHere').append(clonedElement);
+
+        inputUpdatePrice = clonedElement.find('.productCartQuantity');
+        inputUpdatePrice.data('stock', data.stock);
+        orders.updateQuantityAdmin(inputUpdatePrice);
+
+    },
+    deleteCartProduct: function(element) {
+        $(element).closest('tr').remove();
+        orders.updateTotalCartSum();
+    },
+    updateQuantityAdmin: function(element) {
+        var stock = $(element).data('stock');
+        var row = $(element).closest('tr');
+        var quantity = $(element).val();
+        var price = row.find('.productCartPrice').html();
+        
+        if (checkProdStock == 1 && quantity > stock){
+            $(element).val(stock);
+            quantity = stock;
+        }
+        total = price * quantity;
+        row.find('.productCartTotal').html(total.toFixed(2));
+
+        orders.updateTotalCartSum();
+
+    },
+    updateTotalCartSum: function() {
+        var total = parseFloat(0);
+        allPrices = $('#insertHere').find('.productCartTotal')
+        allPrices.each(function(i, element) {
+            total = total + parseFloat($(element).html());
+        })
+        $('#totalCartSum').html(parseFloat(total).toFixed(2));
+    },
+    isInCart: function(variantId) {
+        var productBlocksInCart = $('#insertHere').find('.inputVariantId');
+        var countProductsInCart = productBlocksInCart.length;
+        var checkResult = 'false';
+
+        if (countProductsInCart > 0) {
+            productBlocksInCart.each(function(index, el) {
+                if (variantId == el.value) {
+                    checkResult = 'true';
+                    return false;
+                }
+            });
+        }
+        return checkResult;
+
+    }
 });
 
 var orderStatuses = new Object({
@@ -1037,4 +1220,20 @@ function clone_object() {
         })
     }
 }
+var variantInfo = new Object({
+    getImage: function(variantId) {
+        var imageName = '';
+        $.ajax({
+            url: "/admin/components/run/shop/orders/getImageName",
+            async: false,
+            type: "post",
+            data: 'variantId=' + variantId,
+            success: function(data) {
+                imageName = data;
+            }
+        });
+        return imageName;
+    }
+})
+
 window.onload = clone_object();

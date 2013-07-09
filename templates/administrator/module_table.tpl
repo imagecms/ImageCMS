@@ -1,6 +1,6 @@
 <div class="container">
 
-    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -32,7 +32,7 @@
                     <div class="d-i_b">
                         <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
                     </div>
-                </div>    
+                </div>
             </div>
             <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
                 <a href="#modules" class="btn btn-small active" onclick="$('#allM').html('{lang("All modules")}')">{lang("Modules")}</a>
@@ -88,7 +88,16 @@
                                                 <p>{$module.description}</p>
                                             </td>
                                             <td class="urlholder">
-                                                <p>{if $module['enabled'] == "1"}{anchor($module.identif,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
+                                                 {if $module['admin_file'] == 1}
+                                                    {if $module.name == 'shop'}
+                                                        {$module.menu_name}
+                                                    {else:}
+                                                         <p>{if $module['enabled'] == "1"}{anchor($module.name,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
+                                                    {/if}
+                                                {else:}
+                                                    <p>{if $module['enabled'] == "1"}{$module.identif}{else:}-{/if}</p>
+                                                {/if}
+
                                             </td>
                                             <td class="t-a_c">
                                                 <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang("switch on")}"  data-off="{lang("switch off")}">

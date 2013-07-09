@@ -364,6 +364,7 @@ abstract class elFinderVolumeDriver {
 		'c'     => 'text/x-csrc',
 		'h'     => 'text/x-chdr',
 		'cpp'   => 'text/x-c++src',
+		'cpp'   => 'text/x-csrc',
 		'hh'    => 'text/x-c++hdr',
 		'log'   => 'text/plain',
 		'csv'   => 'text/x-comma-separated-values',
@@ -2998,7 +2999,7 @@ z
 			2 => array("pipe", "w")   // stderr
 		);
 
-		$process = proc_open($command, $descriptorspec, $pipes, null, null);
+		$process =  proc_open($command, $descriptorspec, $pipes, null, null);
 
 		if (is_resource($process)) {
 

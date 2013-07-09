@@ -95,6 +95,8 @@ class Admin extends MY_Controller {
 
         if ($this->input->get('path'))
             $path = $this->input->get('path');
+      
+       
 
         $opts = array(
             // 'debug' => true,
@@ -168,17 +170,26 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-        $message .= lang("Site address") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page") .': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message") . ': ' . trim(strip_tags($_GET['text']));
+         $message .= lang("Site address") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page") .': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message") . ': ' . trim(strip_tags($_GET['text']));
+        $text = trim($_GET['text']);
+        if (!empty($text)) {
+            /* send message */
+            $this->email->from('bugs@imagecms.net', 'Admin Robot');
+            $this->email->to('report@imagecms.net');
+            $this->email->bcc('dev@imagecms.net');
+            $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
+            $this->email->message(stripslashes($message));
+            if (!$this->email->send()){
+                echo '<div class="alert alert-error"> Произашла ошибка отправки сообщения </div>';
+                exit;
+            }
+            echo '<div class="alert alert-success">Ваше сообщение отправено</div>';
+        }
+        else
+            echo '<div class="alert alert-error"> Ваше замечание обязательное поле </div>' ;
+        
 
-        /* send message */
-        $this->email->from('bugs@imagecms.net', 'Admin Robot');
-        $this->email->to('report@imagecms.net');
-        $this->email->bcc('dev@imagecms.net');
-        $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
-        $this->email->message(stripslashes($message));
-        $this->email->send();
-
-        echo $message;
+        
     }
 
 }

@@ -25,7 +25,7 @@
                     <div class="control-group">
                         <label class="control-label" for="g_c_desc">{lang("Description")}:</label>
                         <div class="controls">
-                            <textarea name="description" id="g_c_desc" class="elRTE">{htmlspecialchars($category.description)}</textarea>
+                            <textarea name="description" id="g_c_desc" class="smallTextarea elRTE">{htmlspecialchars($category.description)}</textarea>
                         </div>
                     </div>
                     <div class="control-group">

@@ -102,7 +102,7 @@ class Languages extends BaseAdminController {
     function update($lang_id) {
         //cp_check_perm('lang_edit');
 
-        $this->form_validation->set_rules('name', lang("Title"), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('lang_name', lang("Title"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image"), 'max_length[250]');
         $this->form_validation->set_rules('folder', lang("Folder"), 'required|max_length[250]');
@@ -113,7 +113,7 @@ class Languages extends BaseAdminController {
         } else {
 
             $data = array(
-                'lang_name' => $this->input->post('name'),
+                'lang_name' => $this->input->post('lang_name'),
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),

@@ -190,6 +190,7 @@ class Menu extends MY_Controller {
                         $active_cur = FALSE;
                     }
                 }
+
                 if ($this->cur_level < ( $item['expand_level'] ))
                     $this->expand[$item['id']] = TRUE; // to expand tree
                 if ($site_url == $this->current_uri OR $active_cur === TRUE) {
@@ -198,7 +199,8 @@ class Menu extends MY_Controller {
                     $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
                 } else {
                     // Make link active if link is / and no segments in url
-                    if ($item['link'] == '/' AND $this->uri->total_segments() == 0) {
+                   // if ($item['link'] == '/' AND $this->uri->total_segments() == 0) {
+                    if ($item['link'] == '/' AND get_main_lang('identif') == $this->uri->segment(1) AND $this->uri->total_segments() == 1 or $item['link'] == '/' AND get_main_lang('identif') != $this->uri->segment(1) AND $this->uri->total_segments() == 0 or $item['item_type'] == 'url' AND $item['link'] != '/' AND strstr($_SERVER['REQUEST_URI'], $item['link'])) {
                         $is_active = TRUE;
                         $this->arranged_menu_array[$arranged_items_count]['is_active'] = TRUE;
                     } else {
@@ -207,7 +209,14 @@ class Menu extends MY_Controller {
                     }
                 }
 
-                $item['item_type'] == 'url' ? $href = $item['link'] : $href = site_url($item['link']);
+                //$item['item_type'] == 'url' ? $href = $item['link'] : $href = site_url($item['link']);
+                //echo $item['item_type'];
+                if ($item['item_type'] == 'url' && strstr($item['link'],'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')){
+                    $href = $item['link'];
+                }
+                else
+                    $href = rtrim(site_url($item['link']),'/');
+
 
                 $this->arranged_menu_array[$arranged_items_count]['link'] = $href;
                 $this->arranged_menu_array[$arranged_items_count]['id'] = $item['id'];
@@ -264,7 +273,7 @@ class Menu extends MY_Controller {
     /**
      * Натягивает шаблон на данные и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
-     * @param integer $index номер элемента для натягивания шаблона  
+     * @param integer $index номер элемента для натягивания шаблона
      * @param string  $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
@@ -284,7 +293,7 @@ class Menu extends MY_Controller {
     /**
      * Натягивает данные на шаблон и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
-     * @param integer $index номер элемента для натягивания шаблона  
+     * @param integer $index номер элемента для натягивания шаблона
      * @param string  $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
@@ -456,7 +465,7 @@ class Menu extends MY_Controller {
      */
     private function get_expand_items($url) {
         foreach ($this->sub_menu_array as $item) {
-            if (site_url($item['link']) == $url AND $item['parent_id'] != 0) {
+            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and !empty($item['link'])) {
                 $this->expand[$item['parent_id']] = TRUE;
                 $this->get_expand_items(site_url($this->sub_menu_array[$item['parent_id']]['link']));
             }

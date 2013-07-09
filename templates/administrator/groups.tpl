@@ -17,8 +17,8 @@
 						<td>{$group.name}</td>
 						<td>{$group.desc}</td>
 						<td>
-						<img src="{$THEME}/images/edit_page.png" width="16" height="16" style="cursor:pointer;" onclick="edit_group('{$group.id}');">
-						<img src="{$THEME}/images/delete.png" width="16" height="16" style="cursor:pointer;" onclick="delete_group('{$group.id}');">
+						<img src="{$THEME}images/edit_page.png" width="16" height="16" style="cursor:pointer;" onclick="edit_group('{$group.id}');">
+						<img src="{$THEME}images/delete.png" width="16" height="16" style="cursor:pointer;" onclick="delete_group('{$group.id}');">
 						</td>
 					</tr>
 					{/foreach}

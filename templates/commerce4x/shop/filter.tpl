@@ -46,7 +46,7 @@
                                 <li>
                                     <div class="o_h">
                                         {//link to uncheck current filter}
-                                        <a href="{echo str_replace(array('&brand[]=' . $brand->id, '?brand[]=' . $brand->id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
+                                        <a data-id="brand_{echo $brand->id}" class="del_filter_item" href="{echo str_replace(array('&brand[]=' . $brand->id, '?brand[]=' . $brand->id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($brand->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -62,7 +62,7 @@
                                 <li>
                                     <div class="o_h">
                                         {//link to uncheck current filter}
-                                        <a href="{echo str_replace(array('&category[]=' . $category->category_id, '?category[]=' . $category->category_id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($category->name)}</a>
+                                        <a class="del_filter_item" data-id="category_{echo $category->category_id}" href="{echo str_replace(array('&category[]=' . $category->category_id, '?category[]=' . $category->category_id), '', $aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($category->name)}</a>
                                     </div>
                                 </li>
                             {/if}
@@ -80,7 +80,7 @@
                                         <li>
                                             <div class="o_h">
                                                 {//link to unckeck current filter}
-                                                <a href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
+                                                <a class="del_filter_item" data-id="prop_{echo $prop->property_id}_{echo $key.value}" href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
                                             </div>
                                         </li>
                                     {/if}
@@ -98,7 +98,7 @@
                                 {//link to uncheck filter by price}
                                 {$url = str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), '', $aurl)}
                                 {$position = strpos($url, '&')}
-                                <a href="{echo substr_replace($url, '?', $position,1)}">
+                                <a class="del_price" def_min="{(int)$priceRange.minCost}" def_max="{echo (int)$priceRange.maxCost}" href="{echo substr_replace($url, '?', $position,1)}">
 
                                     <span class="times">&times;</span>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
@@ -126,7 +126,9 @@
 
         {//form for submiting checked filters}
         <form id="filter" method="get" action="">
-            {if (int)$priceRange.minCost != 0 && (int)$priceRange.maxCost != 0}
+            <input type=hidden name="order" value="{echo $order_method}"/>
+            <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
+            {if (int)$priceRange.minCost >= 0 && (int)$priceRange.maxCost != 0}
                 <div class="boxFilter">
                     {//meet slider}
                     <div class="title">{lang("Price")}</div>
@@ -205,7 +207,7 @@
             <div class="boxFilter">
 
                 {//displaying property name}
-                <div class="title">{echo ShopCore::encode($prop->name)}</div>
+                <div class="title">{echo ShopCore::encode($prop->name) }</div>
 
                 <div class="clearfix check_form">
 
@@ -214,7 +216,7 @@
                         <div class="frameLabel">
                             <span class="niceCheck b_n">
                                 {//if we dont have products in current category with such possible value, we will disable checkbox}
-                                <input {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                <input id="prop_{echo $prop->property_id}_{echo $item.value}" {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
                             </span>
 
                             {//displaying possible value}
@@ -241,7 +243,7 @@
                         <span class="niceCheck b_n">
 
                             {//one category checkbox input}
-                            <input type="checkbox" {if $category->countProducts == 0}disabled="disabled"{/if} name="category[]" value="{echo $category->category_id}" type="checkbox" {if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && in_array($category->category_id, ShopCore::$_GET['category'])}checked="checked"{/if}/>
+                            <input id="category_{echo $category->category_id}" type="checkbox" {if $category->countProducts == 0}disabled="disabled"{/if} name="category[]" value="{echo $category->category_id}" type="checkbox" {if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && in_array($category->category_id, ShopCore::$_GET['category'])}checked="checked"{/if}/>
                         </span>
                         <span class="filterLable">
 
@@ -266,3 +268,4 @@
 </form>
 </div>
 </aside>
+<script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>

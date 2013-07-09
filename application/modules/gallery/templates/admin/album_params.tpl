@@ -22,7 +22,7 @@
                         <div class="controls">
                             <select name="category_id" id="category_id">
                                 {foreach $categories as $item}
-                                <option value="{$item.id}"  {if $item['id'] == $album['category_id'] }selected="selected"{/if} >{$item.name}</option>
+                                <option value="{$item.id}"  {if $item['id'] == $album['category_id'] }selected="selected"{/if}>{$item.name}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="control-group">
                         <label class="control-label" for="">{lang("Description")}:</label>
                         <div class="controls">
-                            <textarea name="description" class="elRTE">{htmlspecialchars($album.description)}</textarea>
+                            <textarea name="description" class="smallTextarea elRTE">{htmlspecialchars($album.description)}</textarea>
                         </div>
                     </div>
                     <div class="control-group">

@@ -10,7 +10,7 @@
                     <a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveSettings" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
                 </div>
-            </div>                            
+            </div>
         </div>
         <div class="row-fluid">
             <div class="span3 m-t_10">
@@ -18,13 +18,14 @@
                     <li class="active"><a href="#setings">{lang("Settings")}</a></li>
                     <li><a href="#seo">SEO</a></li>
                     <li><a href="#homePage">{lang("Main page")}</a></li>
-                    <li><a href="#metatag">{lang('Management of Meta Tags')}</a></li>                          
+                    <li><a href="#metatag">{lang('Management of Meta Tags')}</a></li>  
+                    <li><a href="#metatag_edit">{lang('Enter Meta Tags')}</a></li>
                 </ul>
             </div>
             <div class="span9 content_big_td">
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
-                        <div class="tab-pane active" id="setings">                                    
+                        <div class="tab-pane active" id="setings">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -39,13 +40,6 @@
                                             <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="titleNa">{lang("Site name or site title")}:</label>
-                                                            <div class="controls">
-                                                                <input type="text" id="titleNa" name="title" value="{$site_title}" />
-                                                            </div>
-                                                        </div>
-
                                                         <div class="control-group">
                                                             <label class="control-label" for="site_offline">{lang("Site shutdown")}:</label>
                                                             <div class="controls">
@@ -111,7 +105,7 @@
                             </table>
                         </div>
 
-                        <div class="tab-pane" id="seo">                                    
+                        <div class="tab-pane" id="seo">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -126,27 +120,6 @@
                                             <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="short_titleS">{lang("Short site name or site title")}:</label>
-                                                            <div class="controls">
-                                                                <input type="text" id="short_titleS" name="short_title" value="{$site_short_title}" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="descriptionN">{lang("Description")}:</label>
-                                                            <div class="controls">
-                                                                <input type="text" id="descriptionN" name="description" value="{$site_description}" />
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="control-group m-t_10">
-                                                            <label class="control-label" for="keywordsss">{lang("Keywords")}:</label>
-                                                            <div class="controls">
-                                                                <input type="text" id="keywordsss" name="keywords" value="{$site_keywords}" />
-                                                            </div>
-                                                        </div>
-
                                                         <div class="control-group m-t_10">
                                                             <label class="control-label" for="google_analytics_id">{lang("ID Google Analytics")}:</label>
                                                             <div class="controls">
@@ -185,7 +158,7 @@
                             </table>
                         </div>
 
-                        <div class="tab-pane" id="homePage">                                    
+                        <div class="tab-pane" id="homePage">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -247,7 +220,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="metatag">                                    
+                        <div class="tab-pane" id="metatag">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -328,10 +301,83 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>                    
+                        </div>
+                        <div class="tab-pane" id="metatag_edit">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">
+                                            Введите мета даные
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="inside_padd">
+                                                <div class="form-horizontal">
+                                                    <div class="row-fluid">
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="site_offline">Выберите язык:</label>
+                                                            <div class="controls">
+                                                                <select name="site_langs" onchange="ch_lan(this)">
+                                                                    {$i = 1}
+                                                                    {foreach $langs as $lan}
+                                                                        <option value="{echo $lan['id']}" {if $i == 1} selected="selected" {/if} >{echo $lan['lang_name']}</option>
+                                                                        {$i++}
+                                                                    {/foreach}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {$i = 1}
+                                                    {foreach $meta_langs as $lan => $meta}
+                                                        <div class="lan {if $i!= 1}d_n{/if}" id="lang_form{echo $lan}">
+                                                            <input  {if $i!= 1}disabled="disabled"{/if}type="hidden" name="lang_ident" value="{echo $lan}">
+                                                            <div class="row-fluid">
+                                                                <div class="control-group m-t_10">
+                                                                    <label class="control-label" for="titleNa">{lang('a_site_title')}:</label>
+                                                                    <div class="controls">
+                                                                        <input {if $i!= 1}disabled="disabled"{/if} type="text" id="titleNa" name="name" value="{echo $meta.name}" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group m-t_10">
+                                                                    <label class="control-label" for="short_titleS">{lang('a_short_title')}:</label>
+                                                                    <div class="controls">
+                                                                        <input {if $i!= 1}disabled="disabled"{/if} type="text" id="short_titleS" name="short_name" value="{echo $meta.short_name}" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group m-t_10">
+                                                                    <label class="control-label" for="descriptionN">{lang('a_desc')}:</label>
+                                                                    <div class="controls">
+                                                                        <input {if $i!= 1}disabled="disabled"{/if} type="text" id="descriptionN" name="description" value="{echo $meta.description}" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="control-group m-t_10">
+                                                                    <label class="control-label" for="keywordsss">{lang('a_key_words')}:</label>
+                                                                    <div class="controls">
+                                                                        <input {if $i!= 1}disabled="disabled"{/if} type="text" id="keywordsss" name="keywords" value="{echo $meta.keywords}" />
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        {$i++}
+                                                    {/foreach}
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            {form_csrf()}
+                            </form>
+                        </div>
+                        </section>
                     </div>
-                    {form_csrf()}
-                </form>                       
-            </div>
-    </section>
-</div>

@@ -52,11 +52,11 @@
                                 <td>
                                     <div class="price f-s_18 f_l">
                                         {if $item.discount AND ShopCore::$ci->dx_auth->is_logged_in() === true}
-                                            <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br /> 
+                                            <div class="price f-s_12 f_l">Скидка {echo $item.discount}%</div><br />
                                             {$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary - $summary / 100 *$item.discount}
-                                            <sub>{$CS}</sub>      <br />       
-                                            <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$CS}</del> 
+                                            <sub>{$CS}</sub>      <br />
+                                            <del class="price price-c_red f-s_12 price-c_9">{echo $summary} {$CS}</del>
                                         {else:}
                                             {$summary = $variant->getPrice() * $item.quantity}
                                             {echo $summary}
@@ -75,15 +75,15 @@
                                     {if $item.model->getMainProduct()->getMainImage()}
                                         <a href="{shop_url('product/' . $item.model->getProductId())}" class="photo_block">
                                             <img src="{productImageUrl($item.model->getMainProduct()->getId() . '_main.jpg')}" border="0"  width="100" />
-                                        </a>                                        
-                                    {/if}                                   
+                                        </a>
+                                    {/if}
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/' . $item.model->getMainProduct()->getUrl())}">{echo ShopCore::encode($item.model->getMainProduct()->getName())}</a> {echo ShopCore::encode($item.model->getMainProduct()->firstVariant->getName())}
                                     <br /><span style="font-size:16px;">{echo $item.model->getMainProduct()->firstVariant->toCurrency()} {$CS}</span>
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
-                                    {echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}                             
+                                    {echo ShopCore::app()->SCurrencyHelper->convert($item.price)} {$CS}
                                 </td>
                                 <td rowspan="{echo $item.model->countProducts()}">
                                     <div class="count">
@@ -102,40 +102,40 @@
                             </tr>
                             {foreach $item.model->getShopKitProducts() as $shopKitProduct}
                                 {$ap = $shopKitProduct->getSProducts()}
-                                {$ap->setLocale(ShopController::getCurrentLocale())}
+                                {$ap->setLocale(MY_Controller::getCurrentLocale())}
                                 {$kitFirstVariant = $ap->getKitFirstVariant($shopKitProduct)}
                                 <tr>
                                     <td style="width:90px;padding:2px;">
                                         {if $ap->getMainImage()}
                                             <a href="{shop_url('product/' . $ap->getId())}" class="photo_block">
-                                                <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />                                                
+                                                <img src="{productImageUrl($ap->getId() . '_main.jpg')}" border="0" width="100" alt="{echo ShopCore::encode($ap->getName())}" />
                                             </a>
-                                        {/if}                      
+                                        {/if}
                                     </td>
                                     <td>
-                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a> 
+                                        <a href="{shop_url('product/' . $ap->getUrl())}">{echo ShopCore::encode($ap->getName())}</a>
                                         {echo ShopCore::encode($kitFirstVariant->getName())}
                                         {if $kitFirstVariant->getEconomy() > 0}
-                                
-                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                            {else:}
-                                <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
-                            {/if}
-                            </td>
-                            </tr>
-                            {$i++}
-                        {/foreach}
-                    {/if}
-                    {$total     += $summary}
-                    {$total_nc  += $summary_nextc}
-                {/foreach}
+
+                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                                        {else:}
+                                            <span style="font-size:16px;">{echo $kitFirstVariant->toCurrency()} {$CS}</span>
+                                        {/if}
+                                    </td>
+                                </tr>
+                                {$i++}
+                            {/foreach}
+                        {/if}
+                        {$total     += $summary}
+                        {$total_nc  += $summary_nextc}
+                    {/foreach}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="6">
                             <div class="foot_cleaner">
-                                <div class="f_l f-s_26" style="width: 268px;">                                   
-                                    {if count($discountCom)} 
+                                <div class="f_l f-s_26" style="width: 268px;">
+                                    {if count($discountCom)}
                                         <span class="price f-s_12 price-c_9" style="font-size: 14px;">
                                             Накопительная скидка {echo $discountCom->getDiscount()}%
                                         </span>
@@ -149,8 +149,8 @@
                                         <div class="price f-s_26_lh_50 f_l">{$total} <sub>{$CS}</sub>
                                         {else:}
                                             <div class="price f-s_26 f_l">
-                                                {if count($discountCom)} 
-                                                    <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del> 
+                                                {if count($discountCom)}
+                                                    <del class="price price-c_red f-s_12 price-c_9">{echo $total} {$CS}</del>
                                                     <span class="price f-s_12 price-c_9" style="font-size: 14px;">Скидка {echo $discountCom->getDiscount()}%</span><br />
                                                     {echo $total - $total / 100 * $discountCom->getDiscount()} {$CS}
 
@@ -177,7 +177,7 @@
                     </tr>
                 </tfoot>
             </table>
-            {form_csrf();}        
+            {form_csrf();}
         </form>
     </div>
 {else:}

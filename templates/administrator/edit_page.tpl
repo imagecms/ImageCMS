@@ -10,38 +10,48 @@
                 <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#edit_page_form" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>{lang("Save and go back")}</button>
+                {if count($langs) > 1}
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                         {foreach $langs as $l}
-                        {if $page_lang == $l.id}
-                        {$l.lang_name}
-                        {/if}
+                            {if $page_lang == $l.id}
+                                {$l.lang_name}
+                            {/if}
                         {/foreach}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         {foreach $langs as $l}
-                        {if $l.id != $page_lang}
-                        <li><a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a></li>
-                        {/if}
+                            {if $l.id != $page_lang}
+                                <li>
+                                    <a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a>
+                                </li>
+                            {/if}
                         {/foreach}
                     </ul>
                 </div>
+                {/if}
             </div>
-        </div>                            
-    </div>  
-
+        </div>
+    </div>
     <div class="clearfix">
         <div class="m-t_20 pull-right">
-            <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {if $CI->uri->total_segments()==5}
+                <a href="/{echo $l.identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {else:}
+                <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('a_show_page')} <span class="f-s_14">&rarr;</span></a>
+            {/if}
         </div>
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
             <a href="#content_article" class="btn btn-small active">{lang("Content")}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang("Properties")}</a>
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings")}</a>
+            {if $moduleAdditions}
+                <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+            {/if}
         </div>
-    </div>             
+    </div>
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
         <div class="tab-content content_big_td">
 
@@ -66,11 +76,12 @@
                                             {lang("Categories")}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category")}</a>
+                                            <a onclick="$('.modal').modal();
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category")}</a>
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
-                                                    <option value="0" >{lang("No")}</option>
-                                                    { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id'])); }
+                                                    <option value="0" >{lang('No')}</option>
+                                                    {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id']));}
                                                 </select>
                                             </div>
                                         </div>
@@ -134,12 +145,12 @@
                                         </label>
                                         <div class="controls">
                                             {if $defLang.id == $page_lang}
-                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite')}</button>
-                                            <div class="o_h">
-                                                <input type="text" name="page_url" value="{$url}" id="page_url" />
-                                            </div>
+                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplite')}</button>
+                                                <div class="o_h">
+                                                    <input type="text" name="page_url" value="{$url}" id="page_url" />
+                                                </div>
                                             {else:}
-                                            <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
+                                                <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
                                             {/if}
                                             <div class="help-block">({lang("Only Latin characters")})</div>
                                         </div>
@@ -272,7 +283,7 @@
                                                 <input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" data-placement="top" data-original-title="{lang('choose date')}" data-rel="tooltip" class="datepicker input-small"  />
                                                 <i class="icon-calendar"></i>
                                             </div>
-                                            <input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="input-small" />			             	
+                                            <input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="input-small" />
                                         </div>
                                     </div>
 
@@ -285,7 +296,7 @@
                                                 <input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" data-placement="top" data-original-title="{lang('choose date')}" data-rel="tooltip" class="datepicker input-small" />
                                                 <i class="icon-calendar"></i>
                                             </div>
-                                            <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="input-small" />            	
+                                            <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="input-small" />
                                         </div>
                                     </div>
 
@@ -297,9 +308,9 @@
                                             <select multiple="multiple" name="roles[]" id="roles[]">
                                                 <option value="0" {$all_selected} >{lang("All")}</option>
                                                 {foreach $roles as $role}
-                                                <option {$role.selected} value="{$role.id}">{$role.name}</option>
+                                                    <option {$role.selected} value="{$role.id}">{$role.name}</option>
                                                 {/foreach}
-                                            </select>        	
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -307,10 +318,9 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
+            {include_tpl('modules_additions')}
         </div>
-
         {form_csrf()}
     </form>
 </section>
@@ -354,6 +364,6 @@
     </div>
 </div>
 <script>
-    if (window.hasOwnProperty('pagesAdmin'))
-        pagesAdmin.initialize();
+                                                if (window.hasOwnProperty('pagesAdmin'))
+                                                    pagesAdmin.initialize();
 </script>
