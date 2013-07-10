@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-28 12:10+0300\n"
-"PO-Revision-Date: 2013-03-28 12:10+0300\n"
-"Last-Translator: koloda <koloda90@gmail.com>\n"
+"POT-Creation-Date: 2013-07-10 10:39+0300\n"
+"PO-Revision-Date: 2013-07-10 11:55+0300\n"
+"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -15,338 +15,403 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../..//comments.php:140
-#: ../../..//commentsapi.php:78
-msgid "lang_total_comments"
-msgstr ""
-
-#: ../../..//comments.php:177
-#: ../../..//_out.php:3
-msgid "login_for_comments"
-msgstr ""
-
-#: ../../..//comments.php:186
-msgid "error_comments_diabled"
-msgstr ""
-
-#: ../../..//comments.php:197
-msgid "error_comments_period"
-msgstr ""
-
-#: ../../..//comments.php:213
-#: ../../..//comments.php:215
-#: ../../..//_out.php:170
-#: ../../..//commentsapi.php:218
-#: ../../..//commentsapi.php:220
-#: ../../..//assets/comments_api.tpl:170
-msgid "Code protection"
-msgstr ""
-
-#: ../../..//comments.php:306
-msgid "error_comments_text"
-msgstr ""
-
-#: ../../..//comments_widgets.php:88
-msgid "Number of comments"
-msgstr ""
-
-#: ../../..//comments_widgets.php:89
-#: ../../..//comments_widgets.php:168
-msgid "Number of characters"
-msgstr ""
-
-#: ../../..//comments_widgets.php:102
-#: ../../..//comments_widgets.php:181
+#: /var/www/image.loc/_temp.php:13
 #, fuzzy
-msgid "Settings have been saved or settings were saved"
-msgstr "Сохранение настроек прошло успешно"
+msgid "Recent reviews"
+msgstr "Смотреть"
 
-#: ../../..//comments_widgets.php:167
-msgid "Number of responses"
+#: /var/www/image.loc/_temp.php:14
+msgid "Comments"
+msgstr "Коментарі"
+
+#: /var/www/image.loc/_temp.php:15
+#: /var/www/image.loc/_temp.php:24
+#: /var/www/image.loc/_temp.php:30
+#: /var/www/image.loc/_temp.php:36
+msgid "Into spam"
 msgstr ""
 
-#: ../../..//_out.php:8
-#: ../../..//assets/comments_api.tpl:8
-msgid "Customer Reviews"
+#: /var/www/image.loc/_temp.php:16
+msgid "In the waiting"
 msgstr ""
 
-#: ../../..//_out.php:28
-#: ../../..//_out.php:156
-#: ../../..//assets/comments_api.tpl:28
-#: ../../..//assets/comments_api.tpl:156
-msgid "Plus"
+#: /var/www/image.loc/_temp.php:17
+#: /var/www/image.loc/_temp.php:23
+#: /var/www/image.loc/_temp.php:29
+#: /var/www/image.loc/_temp.php:35
+msgid "In approve"
 msgstr ""
 
-#: ../../..//_out.php:34
-#: ../../..//_out.php:162
-#: ../../..//assets/comments_api.tpl:34
-#: ../../..//assets/comments_api.tpl:162
-msgid "Cons"
-msgstr ""
-
-#: ../../..//_out.php:45
-#: ../../..//assets/comments_api.tpl:45
-msgid "Answer"
-msgstr ""
-
-#: ../../..//_out.php:55
-#: ../../..//assets/comments_api.tpl:55
-msgid "Like this review"
-msgstr ""
-
-#: ../../..//_out.php:62
-#: ../../..//assets/comments_api.tpl:62
-msgid "Dislike this review"
-msgstr ""
-
-#: ../../..//_out.php:94
-#: ../../..//assets/comments_api.tpl:94
-msgid "Write a review"
-msgstr ""
-
-#: ../../..//_out.php:105
-#: ../../..//assets/comments_api.tpl:105
-msgid "You rating"
-msgstr ""
-
-#: ../../..//_out.php:127
-#: ../../..//_out.php:201
-msgid "lang_comment_author"
-msgstr ""
-
-#: ../../..//_out.php:133
-#: ../../..//_out.php:207
-msgid "lang_comment_email"
-msgstr ""
-
-#: ../../..//_out.php:140
-msgid "lang_comment_site"
-msgstr ""
-
-#: ../../..//_out.php:149
-#: ../../..//assets/comments_api.tpl:149
-msgid "Text comments"
-msgstr ""
-
-#: ../../..//_out.php:181
-#: ../../..//_out.php:233
-msgid "leave a comment"
-msgstr ""
-
-#: ../../..//_out.php:402
-#: ../../..//templates/settings.tpl:5
-#, fuzzy
-msgid "Comment settings"
-msgstr "Позиція"
-
-#: ../../..//_out.php:406
-#: ../../..//templates/settings.tpl:9
-msgid "Back"
-msgstr ""
-
-#: ../../..//_out.php:407
-#: ../../..//_out.php:562
-#: ../../..//_out.php:986
-#: ../../..//templates/settings.tpl:10
-#: ../../..//templates/recent_comments_form.tpl:10
-#: ../../..//templates/recent_product_comments_form.tpl:10
-msgid "Have been saved"
-msgstr ""
-
-#: ../../..//_out.php:416
-#: ../../..//templates/settings.tpl:19
-msgid "Properties"
-msgstr ""
-
-#: ../../..//_out.php:425
-#: ../../..//templates/settings.tpl:28
-msgid "Maximum comment length"
-msgstr ""
-
-#: ../../..//_out.php:431
-#: ../../..//templates/settings.tpl:34
-#, fuzzy
-msgid "Comment restrictions"
-msgstr "Позиція"
-
-#: ../../..//_out.php:434
-#: ../../..//templates/settings.tpl:37
-msgid "Comment frequency restriction  per minute . O - check off"
-msgstr ""
-
-#: ../../..//_out.php:444
-#: ../../..//templates/settings.tpl:47
-msgid "Forbid comments for unregistered users"
-msgstr ""
-
-#: ../../..//_out.php:455
-#: ../../..//templates/settings.tpl:58
-msgid "Administrator approval on"
-msgstr ""
-
-#: ../../..//_out.php:466
-#: ../../..//templates/settings.tpl:69
-msgid "Use the protection code"
-msgstr ""
-
-#: ../../..//_out.php:486
-#, fuzzy
-msgid "a_comm_edit"
-msgstr "Нааааааааамеееееееееее"
-
-#: ../../..//_out.php:491
-#: ../../..//templates/edit.tpl:11
-msgid "Save"
-msgstr ""
-
-#: ../../..//_out.php:501
-#: ../../..//_out.php:572
-#: ../../..//_out.php:996
-#: ../../..//templates/edit.tpl:21
-#: ../../..//templates/recent_comments_form.tpl:20
-#: ../../..//templates/recent_product_comments_form.tpl:20
+#: /var/www/image.loc/_temp.php:18
+#: /var/www/image.loc/_temp.php:79
+#: /var/www/image.loc/_temp.php:104
+#: /var/www/image.loc/_temp.php:116
 #, fuzzy
 msgid "Settings"
 msgstr "Позиція"
 
-#: ../../..//_out.php:514
-#: ../../..//templates/edit.tpl:34
-msgid "Author"
+#: /var/www/image.loc/_temp.php:19
+#: /var/www/image.loc/_temp.php:92
+msgid "Mark"
 msgstr ""
 
-#: ../../..//_out.php:521
-#: ../../..//templates/edit.tpl:41
-msgid "E-Mail"
+#: /var/www/image.loc/_temp.php:20
+msgid "User Email"
 msgstr ""
 
-#: ../../..//_out.php:528
-#: ../../..//templates/edit.tpl:48
-msgid "Status"
+#: /var/www/image.loc/_temp.php:21
+#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:33
+#: /var/www/image.loc/_temp.php:103
+msgid "Save"
 msgstr ""
 
-#: ../../..//_out.php:531
-#: ../../..//templates/edit.tpl:51
-msgid "Approved"
+#: /var/www/image.loc/_temp.php:22
+#: /var/www/image.loc/_temp.php:28
+#: /var/www/image.loc/_temp.php:34
+#, fuzzy
+msgid "Cancel"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/image.loc/_temp.php:25
+msgid "Waiting moderation"
 msgstr ""
 
-#: ../../..//_out.php:532
-#: ../../..//templates/edit.tpl:52
-msgid "Pending approval"
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:32
+#: /var/www/image.loc/_temp.php:38
+#: /var/www/image.loc/_temp.php:93
+msgid "Delete"
 msgstr ""
 
-#: ../../..//_out.php:533
-#: ../../..//_out.php:656
-#: ../../..//templates/edit.tpl:53
-#: ../../..//templates/comments_list.tpl:47
-msgid "Spam"
+#: /var/www/image.loc/_temp.php:31
+#: /var/www/image.loc/_temp.php:37
+msgid "Wait moderation"
 msgstr ""
 
-#: ../../..//_out.php:538
-#: ../../..//templates/edit.tpl:58
-msgid "Contents"
+#: /var/www/image.loc/_temp.php:39
+#, fuzzy
+msgid "a_comm_edit"
+msgstr "Нааааааааамеееееееееее"
+
+#: /var/www/image.loc/_temp.php:40
+msgid "Return"
 msgstr ""
 
-#: ../../..//_out.php:557
-#: ../../..//_out.php:981
-#: ../../..//templates/recent_comments_form.tpl:5
-#: ../../..//templates/recent_product_comments_form.tpl:5
+#: /var/www/image.loc/_temp.php:41
+#, fuzzy
+msgid "Create and exit"
+msgstr "Позиція"
+
+#: /var/www/image.loc/_temp.php:42
+#: /var/www/image.loc/_temp.php:62
+msgid "login_for_comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:63
+msgid "s_clients_comment"
+msgstr "Коментарий"
+
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:55
+#: /var/www/image.loc/_temp.php:64
+msgid "s_plus"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:65
+msgid "s_cons"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+#: /var/www/image.loc/_temp.php:66
+msgid "s_comment_answer"
+msgstr "Ответ"
+
+#: /var/www/image.loc/_temp.php:47
+msgid "s_like"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+msgid "s_dislike"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "s_leave_your_comment"
+msgstr "Оставить комент"
+
+#: /var/www/image.loc/_temp.php:50
+#: /var/www/image.loc/_temp.php:68
+msgid "s_you_raiting"
+msgstr "Ваш рейтинг"
+
+#: /var/www/image.loc/_temp.php:51
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:72
+msgid "lang_comment_author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+#: /var/www/image.loc/_temp.php:60
+#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:73
+msgid "lang_comment_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "lang_comment_site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+#: /var/www/image.loc/_temp.php:69
+msgid "s_text_comment_one"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+#: /var/www/image.loc/_temp.php:70
+msgid "lang_captcha"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:71
+#: /var/www/image.loc/_temp.php:74
+msgid "s_leave_comment"
+msgstr "Оставить коментарий"
+
+#: /var/www/image.loc/_temp.php:75
+#: /var/www/image.loc/_temp.php:112
 #, fuzzy
 msgid "Widget settings"
 msgstr "Позиція"
 
-#: ../../..//_out.php:561
-#: ../../..//_out.php:985
-#: ../../..//templates/recent_comments_form.tpl:9
-#: ../../..//templates/recent_product_comments_form.tpl:9
+#: /var/www/image.loc/_temp.php:76
+#: /var/www/image.loc/_temp.php:113
 msgid "Go back"
 msgstr ""
 
-#: ../../..//_out.php:563
-#: ../../..//_out.php:987
-#: ../../..//templates/recent_comments_form.tpl:11
-#: ../../..//templates/recent_product_comments_form.tpl:11
+#: /var/www/image.loc/_temp.php:77
+#: /var/www/image.loc/_temp.php:84
+#: /var/www/image.loc/_temp.php:114
+msgid "Have been saved"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+#: /var/www/image.loc/_temp.php:115
 msgid "Save and go back"
 msgstr ""
 
-#: ../../..//_out.php:580
-#: ../../..//_out.php:1004
-#: ../../..//templates/recent_comments_form.tpl:28
-#: ../../..//templates/recent_product_comments_form.tpl:28
+#: /var/www/image.loc/_temp.php:80
+#: /var/www/image.loc/_temp.php:117
 msgid "Number of comments for display"
 msgstr ""
 
-#: ../../..//_out.php:586
-#: ../../..//_out.php:1010
-#: ../../..//templates/recent_comments_form.tpl:34
-#: ../../..//templates/recent_product_comments_form.tpl:34
+#: /var/www/image.loc/_temp.php:81
+#: /var/www/image.loc/_temp.php:118
 msgid "Maximum number of characters"
 msgstr ""
 
-#: ../../..//_out.php:621
-#: ../../..//templates/comments_list.tpl:12
-msgid "Mark"
+#: /var/www/image.loc/_temp.php:82
+msgid "Comment settings"
+msgstr "Настройки коментарів"
+
+#: /var/www/image.loc/_temp.php:83
+msgid "Back"
 msgstr ""
 
-#: ../../..//_out.php:630
-#: ../../..//templates/comments_list.tpl:21
-msgid "Delete"
+#: /var/www/image.loc/_temp.php:85
+msgid "Properties"
 msgstr ""
 
-#: ../../..//_out.php:636
-#: ../../..//templates/comments_list.tpl:27
+#: /var/www/image.loc/_temp.php:86
+msgid "Maximum comment length"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+msgid "Comment restrictions"
+msgstr "Частота коментарів"
+
+#: /var/www/image.loc/_temp.php:88
+msgid "Comment frequency restriction  per minute . O - check off"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:89
+msgid "Forbid comments for unregistered users"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:90
+msgid "Administrator approval on"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:91
+msgid "Use the protection code"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:94
 msgid "All comments"
-msgstr ""
+msgstr "Все коментарии"
 
-#: ../../..//_out.php:643
-#: ../../..//templates/comments_list.tpl:34
+#: /var/www/image.loc/_temp.php:95
 msgid "Pending moderation  or waiting for moderation"
-msgstr ""
+msgstr "Ожидающие модерации или ждет модерации"
 
-#: ../../..//_out.php:648
-#: ../../..//templates/comments_list.tpl:39
+#: /var/www/image.loc/_temp.php:96
 msgid "Approval"
 msgstr ""
 
-#: ../../..//_out.php:678
-#: ../../..//templates/comments_list.tpl:69
+#: /var/www/image.loc/_temp.php:97
+#: /var/www/image.loc/_temp.php:110
+msgid "Spam"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:98
 msgid "ID"
 msgstr ""
 
-#: ../../..//_out.php:679
-#: ../../..//templates/comments_list.tpl:70
+#: /var/www/image.loc/_temp.php:99
 msgid "Text"
 msgstr ""
 
-#: ../../..//_out.php:681
-#: ../../..//templates/comments_list.tpl:72
+#: /var/www/image.loc/_temp.php:100
 msgid "User"
 msgstr ""
 
-#: ../../..//_out.php:683
-#: ../../..//templates/comments_list.tpl:74
+#: /var/www/image.loc/_temp.php:101
 msgid "Page"
 msgstr ""
 
-#: ../../..//_out.php:970
-#: ../../..//templates/comments_list.tpl:361
+#: /var/www/image.loc/_temp.php:102
 msgid "No data has been found or Nothing has been found"
 msgstr ""
 
-#: ../../..//commentsapi.php:101
-#: ../../..//commentsapi.php:468
-#: ../../..//commentsapi.php:472
+#: /var/www/image.loc/_temp.php:105
+msgid "Author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:106
+msgid "E-Mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:107
+msgid "Status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:108
+msgid "Approved"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:109
+msgid "Pending approval"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:111
+msgid "Contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:119
+msgid "Write your comment"
+msgstr "Оставте ваш коментарий"
+
+#: /var/www/image.loc/_temp.php:120
+#, fuzzy
+msgid "Your answer"
+msgstr "Вааааааааааааше замечание"
+
+#: ../../../commentsapi.php:80
+#: ../../../comments.php:199
+msgid "lang_total_comments"
+msgstr ""
+
+#: ../../../commentsapi.php:103
+#: ../../../commentsapi.php:474
+#: ../../../commentsapi.php:478
 #, fuzzy
 msgid "review"
 msgstr "Смотреть"
 
-#: ../../..//commentsapi.php:101
-#: ../../..//commentsapi.php:468
-#: ../../..//commentsapi.php:472
+#: ../../../commentsapi.php:103
+#: ../../../commentsapi.php:474
+#: ../../../commentsapi.php:478
 #, fuzzy
 msgid "reviews"
 msgstr "Смотреть"
+
+#: ../../../commentsapi.php:103
+msgid "Leave a comment"
+msgstr ""
+
+#: ../../../commentsapi.php:206
+msgid "Time for new  comment has not yet come"
+msgstr ""
+
+#: ../../../commentsapi.php:225
+#: ../../../commentsapi.php:227
+#: ../../../comments.php:272
+#: ../../../comments.php:274
+msgid "Code protection"
+msgstr ""
+
+#: ../../../admin.php:204
+#: ../../../admin.php:224
+msgid "Success"
+msgstr ""
+
+#: ../../../admin.php:204
+#, fuzzy
+msgid "Change saved"
+msgstr "Позиція змінена"
+
+#: ../../../admin.php:224
+#, fuzzy
+msgid "Status updated"
+msgstr "Позиція змінена"
+
+#: ../../../admin.php:247
+msgid "Comment (s) has been successfully deleted"
+msgstr ""
+
+#: ../../../admin.php:305
+msgid "Changes saved"
+msgstr "Сохранено"
+
+#: ../../../comments.php:245
+msgid "error_comments_diabled"
+msgstr ""
+
+#: ../../../comments.php:256
+msgid "error_comments_period"
+msgstr ""
+
+#: ../../../comments.php:365
+msgid "error_comments_text"
+msgstr ""
+
+#: ../../../module_info.php:5
+msgid "Comments module"
+msgstr "Модуль кометарів"
+
+#: ../../../comments_widgets.php:88
+msgid "Number of comments"
+msgstr ""
+
+#: ../../../comments_widgets.php:89
+#: ../../../comments_widgets.php:168
+msgid "Number of characters"
+msgstr ""
+
+#: ../../../comments_widgets.php:102
+#: ../../../comments_widgets.php:181
+#, fuzzy
+msgid "Settings have been saved or settings were saved"
+msgstr "Сохранение настроек прошло успешно"
+
+#: ../../../comments_widgets.php:167
+msgid "Number of responses"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Description "
@@ -420,10 +485,6 @@ msgstr "Смотреть"
 #~ msgstr "Нааааааааамеееееееееее"
 
 #, fuzzy
-#~ msgid "Cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
 #~ msgid "goto site"
 #~ msgstr "Позиція"
 
@@ -440,10 +501,6 @@ msgstr "Смотреть"
 #~ msgstr "Нааааааааамеееееееееее"
 
 #, fuzzy
-#~ msgid "Change category data"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
 #~ msgid "Module name"
 #~ msgstr "Нааааааааамеееееееееее"
 
@@ -453,10 +510,6 @@ msgstr "Смотреть"
 
 #~ msgid "Hello"
 #~ msgstr "Привет"
-
-#, fuzzy
-#~ msgid "Create and exit"
-#~ msgstr "Позиція"
 
 #, fuzzy
 #~ msgid "by date"
@@ -478,20 +531,12 @@ msgstr "Смотреть"
 #~ msgid "Create category"
 #~ msgstr "Нааааааааамеееееееееее"
 
-#, fuzzy
-#~ msgid "System update"
-#~ msgstr "Позиція змінена"
-
 #~ msgid "site"
 #~ msgstr "сайт"
 
 #, fuzzy
 #~ msgid "Manage site"
 #~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Your remark"
-#~ msgstr "Вааааааааааааше замечание"
 
 #, fuzzy
 #~ msgid "ac_val_name"

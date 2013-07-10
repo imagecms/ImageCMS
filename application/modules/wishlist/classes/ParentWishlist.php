@@ -40,7 +40,7 @@ class ParentWishlist extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
+       
         $this->writeCookies();
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));

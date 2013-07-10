@@ -34,6 +34,7 @@ class Commentsapi extends Comments {
     }
 
     public function renderPosts() {
+        textdomain('comments');
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
@@ -103,6 +104,7 @@ class Commentsapi extends Comments {
             'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : lang('Leave a comment'),
             'validation_errors' => $this->validation_errors
         ));
+       textdomain('front');
     }
 
     /**

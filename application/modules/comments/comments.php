@@ -24,6 +24,8 @@ class Comments extends MY_Controller {
         parent::__construct();
         $this->load->module('core');
         $CI = &get_instance();
+        $obj = new MY_Lang();
+        $obj->load('comments'); 
     }
 
     /**

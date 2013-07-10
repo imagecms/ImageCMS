@@ -63,8 +63,7 @@ class MY_Controller extends MX_Controller {
 //        $this->gettext_extension->switchDomain('application/modules/admin/language', 'admin', 'ru_RU');
 //        $this->gettext->switchDomain('application/modules/admin/language', $module, $this->getLangCode($this->gettext_language)[1]);
 
-        $obj = new MY_Lang();
-        $obj->load();
+       
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
             $this->pjaxRequest = true;
             header('X-PJAX: true');

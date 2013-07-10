@@ -1088,7 +1088,7 @@ var pagesAdmin = new Object({
                     $('.modal').modal('hide');
                     if (responseObj.data)
                     {
-                        showMessage('', lang. );
+                        showMessage('');
                         $('#category_selectbox').load('/admin/categories/update_fast_block/' + responseObj.data);
                     }
                     else

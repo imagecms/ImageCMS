@@ -18,6 +18,9 @@ class Admin extends BaseAdminController {
         //cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
+        
+        $obj = new MY_Lang();
+        $obj->load('comments'); 
     }
 
     // Display comments list

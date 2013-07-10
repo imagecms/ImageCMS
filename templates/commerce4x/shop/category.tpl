@@ -62,20 +62,10 @@
                         <span class="v-a_m">{lang("Order by")}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
-<<<<<<< HEAD
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang("No")}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang("On")} {lang("Rating")}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang("From cheap to expensive")}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang("From expensive to cheap")}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang("Popular")}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang("New")}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang("Action")}</option>
-=======
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
                                 {foreach $sort as $s}
                                     <option value="{echo $s['get']}" {if $order_method==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                                 {/foreach}
->>>>>>> development
                             </select>
                         </div>
                     </div>
@@ -142,70 +132,6 @@
                                 </div>
 
                                 <!-- displaying product name -->
-<<<<<<< HEAD
-                                <a href="{shop_url('product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
-
-                                <!-- displaying products first variant price and currency symbol -->
-                                <div class="price price_f-s_16"><span class="f-w_b">{echo $product->firstVariant->toCurrency()}</span> {$CS}&nbsp;&nbsp;<span class="second_cash"></span></div>
-
-                                <!-- displaying buy button according to its availability in stock -->
-
-                                {if (int)$product->getallstock() == 0}
-
-                                    <!-- displaying notify button -->
-                                    <button data-placement="bottom right"
-                                            data-place="noinherit"
-                                            data-duration="500"
-                                            data-effect-off="fadeOut"
-                                            data-effect-on="fadeIn"
-                                            data-drop=".drop-report"
-                                            data-prodid="{echo $product->getId()}"
-                                            type="button"
-                                            class="btn btn_not_avail">
-                                        <span class="icon-but"></span>
-                                        <span class="text-el">{lang("Report the appearance of")}</span>
-                                    </button>
-                                {else:}
-
-                                    <!-- displaying buy or in cart button -->
-                                    <button class="btn btn_buy" type="button"
-                                            data-prodid="{echo $product->getId()}"
-                                            data-varid="{echo $product->firstVariant->getId()}"
-                                            data-price="{echo $product->firstVariant->toCurrency()}"
-                                            data-name="{echo ShopCore::encode($product->getName())}"
-                                            data-number="{echo $product->firstVariant->getnumber()}"
-                                            data-maxcount="{echo $product->firstVariant->getstock()}"
-                                            data-vname="{echo $product->firstVariant->getName()}"
-                                            >
-                                        {lang("Buy")}
-                                    </button>
-                                {/if}
-
-                                <div class="d_i-b">
-
-                                    <!-- to compare button -->
-                                    <button class="btn btn_small_p toCompare"  
-                                            data-prodid="{echo $product->getId()}"  
-                                            type="button" 
-                                            data-title="{lang("add to compare")}"
-                                            data-sectitle="{lang('s_in_compare')}"
-                                            data-rel="tooltip">
-                                        <span class="icon-comprasion_2"></span>
-                                        <span class="text-el">{lang("add to compare")}</span>
-                                    </button>
-
-                                    <!-- to wish list button -->
-                                    <button class="btn btn_small_p toWishlist" 
-                                            data-prodid="{echo $product->getId()}" 
-                                            data-varid="{echo $product->firstVariant->getId()}"  
-                                            type="button" 
-                                            data-title="{lang("add to wish list")}"
-                                            data-sectitle="{lang('s_in_wish_list')}"
-                                            data-rel="tooltip">
-                                        <span class="icon-wish_2"></span>
-                                        <span class="text-el">{lang("add to wish list")}</span>
-                                    </button>
-=======
                                 <a href="{shop_url('product/'.$product->getUrl())}" class="prodName">{echo ShopCore::encode($product->getName())}</a>
                                 <div>
                                     {$hasCode = $product->firstVariant->getNumber() == '';}
@@ -337,7 +263,6 @@
                                             </button>
                                         {/foreach}
                                     </div>
->>>>>>> development
                                 </div>
                                 <div class="short_description">
                                     {if $desc}
