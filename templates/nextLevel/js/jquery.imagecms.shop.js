@@ -45,7 +45,7 @@ String.prototype.trim = function()
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
-    return this.trim().replace(r, ' ');
+    return $.trim(this).replace(r, ' ');
 }
 String.prototype.pasteSAcomm = function() {
     var r = /\s,/g;
@@ -98,7 +98,8 @@ var ie = jQuery.browser.msie,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8);
 function ieInput(els) {
-    els = $('input[type="text"], textarea, input[type="password"]');
+    if (els == undefined)
+        els = $(':input');
     els.not(':hidden').not('.visited').not('.notvis').each(function() {
         $this = $(this);
         $this.css({
@@ -1180,17 +1181,16 @@ function ieInput(els) {
                     methods.hoverComprasion(left, right, elEven);
                     onlyDif.die('click').live('click', function() {
                         methods.onlyDifM(left, right, liLength, elEven);
-                    }).parent('.'+activeClass).children().click();
+                    }).parent('.' + activeClass).children().click();
                     allParams.die('click').live('click', function() {
                         methods.allParamsM(left, right, elEven);
-                    }).parent('.'+activeClass).children().click();
+                    }).parent('.' + activeClass).children().click();
                     after($this);
                 }
             })
             return $this;
         },
         refresh: function(optionCompare) {
-            console.log(1)
             var $this = $(this);
             $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
             $this.equalHorizCell(optionCompare)
@@ -2333,7 +2333,7 @@ var ImageCMSApi = {
                             $(message.success(obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
                             $(message.success(obj.msg)).appendTo(form.parent());
-                        drawIcons(form.parent().find(genObj.msgF).find(selIcons));
+                        $(document).trigger({'type': 'imageapi.pastescsmsg', 'el': form.parent()})
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
