@@ -29,7 +29,10 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <%= item.prodStatus%>
+        <% console.log(item.prodStatus)%>
+        <% _.each(item.prodStatus, function(item, i){%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%- item.name %>
         </a>
@@ -74,7 +77,7 @@
         </td>
         <td class="frame-cur-sum-price">
         <span class="title">Сумма: </span>
-<div class="frame-cur-sum-price">
+        <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
         <span class="price-new">
@@ -91,7 +94,7 @@
         </span>
         </span>
         </div>
-</div>
+        </div>
         </td>
         </tr>
         <% } else { %>
@@ -340,7 +343,7 @@
         </span>
         </span>
         </span>
-</div>
+        </div>
         <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number d_i-b" data-title="количество на складе <%-item.maxcount%>">
@@ -582,16 +585,15 @@
         <a href="{shop_url('product')}/{literal}<%- item.url %>" class="frame-photo-title">
         <span class="photo-block">
         <span class="helper"></span>
-    {/literal}<img src="{base_url()}uploads/shop/products/small/{literal}<%- item.mainImage %>">
+        <img src="<%- item.smallImage %>">
         </span>
         <span class="title"><% print( item.name)  %></span>
         <!-- End. Photo Block and name -->
 
         <span class="description">
         <!-- Start. Product price  -->
-        <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
-        <span class="current-prices f-s_0 var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
+        <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
         <span class="price-new">
         <span>
         <span class="price"><%- Math.round(item.price) %></span>{/literal}
@@ -599,7 +601,6 @@
         </span>
         </span>
         </span>
-</span>
         </span>
         </span>
         <!-- End. Product price  -->
@@ -611,7 +612,7 @@
         <!-- Start. Show link see all results if amount products >0  -->
         <div>
         <div class="btn-autocomplete">{/literal}
-        <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0">
+        <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
         <span class="icon_show_all"></span><span class="text-el">{lang('s_all_result')} →</span>
         </a>
         </div>{literal}
@@ -625,7 +626,6 @@
     </div>
 </script>
 {/literal}
-
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">

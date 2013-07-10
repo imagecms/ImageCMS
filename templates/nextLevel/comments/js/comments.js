@@ -143,7 +143,7 @@
 })(jQuery);
 function initComments() {
     $(".star-big").starRating({
-        width: 26,
+        width: 29,
         afterClick: function(el, value) {
             if (el.hasClass("clicktemprate")) {
                 $('.productRate > div.for_comment').css("width", value * 20 + '%');
