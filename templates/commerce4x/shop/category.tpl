@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="short_description">
                                     {if $desc}
-                                        {echo $desc}
+                                        {echo strip_tags($desc)}
                                     {else:}
                                         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                                     {/if}
@@ -280,7 +280,7 @@
 
                             <!-- creating hot bubble for products image if product is hit -->
                             {if $product->getHit()}
-                                <span class="top_tovar discount">{lang('s_s_hit')}</span>
+                                <span class="top_tovar discount">{lang('s_shit')}</span>
                             {/if}
                         </li>
                     {/foreach}

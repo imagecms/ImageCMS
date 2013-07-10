@@ -1,3 +1,8 @@
+<div class="frame-crumbs">
+    <div class="container">
+        {widget('path')}
+    </div>
+</div>
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
@@ -6,7 +11,7 @@
             <ul class="items items-text-category">
                 {foreach $pages as $p}
                     <li>
-                        <a href="{$p.cat_url}{$p.url}" class="frame-photo-title {if $p.field_field_img}is-img{/if}">
+                        <a href="../{$p.cat_url}{$p.url}" class="frame-photo-title {if $p.field_field_img}is-img{/if}">
                             {if $p.field_field_img}
                                 <span class="photo-block">
                                     <span class="helper"></span>

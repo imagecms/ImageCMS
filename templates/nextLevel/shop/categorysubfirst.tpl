@@ -35,8 +35,12 @@
                             <div class="pager"></div>
                         </div>
                         <div class="group-button-carousel">
-                            <button type="button" class="prev arrow"></button>
-                            <button type="button" class="next arrow"></button>
+                            <button type="button" class="prev arrow">
+                                <span class="icon_arrow_p"></span>
+                            </button>
+                            <button type="button" class="next arrow">
+                                <span class="icon_arrow_n"></span>
+                            </button>
                         </div>
                     </section>
                 </div>

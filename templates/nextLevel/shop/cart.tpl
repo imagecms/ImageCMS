@@ -22,18 +22,20 @@
                 </div>
                 <div class="left-cart">
                     {if !$is_logged_in}
-                        <ul class="items items-order-user">
-                            <li class="new-buyer">
-                                <span>
-                                    <span class="text-el">Я новый покупатель</span>
-                                </span>
-                            </li>
-                            <li class="old-buyer">
-                                <button type="button" data-trigger="#loginButton">
-                                    <span class="d_l text-el">Я уже здесь покупал</span>
-                                </button>
-                            </li>
-                        </ul>
+                        <nav>
+                            <ul class="nav nav-order-user">
+                                <li class="new-buyer">
+                                    <span>
+                                        <span class="text-el">Я новый покупатель</span>
+                                    </span>
+                                </li>
+                                <li class="old-buyer">
+                                    <button type="button" data-trigger="#loginButton">
+                                        <span class="d_l text-el">Я уже здесь покупал</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </nav>
                     {/if}
                     <div class="frameGroupsForm">
                         <div class="horizontal-form">
