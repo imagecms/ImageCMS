@@ -8,11 +8,11 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form ">
-                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', '#data-callback', {literal}{callback: function(msg, status, form, DS) {
+                <form method="post" id="data-callback" onsubmit="ImageCMSApi.formAction('/shop/callbackApi', '#data-callback', {literal}{drop: '.drop-order-call', callback: function(msg, status, form, DS) {
                                 if (status) {
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }
-                                return true; /*for hide form*/
+                                return true; /*for show form after hide and hide error*/
                             }}{/literal});
                         return false;">
                     <label>

@@ -351,7 +351,7 @@ $lang['s_spec_promotion'] = 'Акционное предложение';
 
 $lang['s_shot'] = 'New';
 $lang['s_saction'] = 'Акция';
-$lang['s_s_hit'] = 'Хит';
+$lang['s_shit'] = 'Хит';
 
 $lang['s_found_in_categories'] = 'Найдено в категориях:';
 $lang['s_not_found_in_categories'] = 'В категориях ничего не найдено';
