@@ -251,11 +251,6 @@
                     <!-- End. Share -->
                 </div>
                 <!-- end. right-product-left -->
-                <div class="right-product-right">
-                    <!--Start. Payments method form -->
-                    {widget('payments_delivery_methods_info')}
-                    <!--End. Payments method form -->
-                </div>
             </div>
             <div class="left-product">
                 <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
