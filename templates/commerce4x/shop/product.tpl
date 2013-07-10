@@ -517,6 +517,9 @@
 {/if}
 <!--Kit end-->
 
+{//widget_ajax('similar' , 'article.container')}
+{//widget_ajax('view_product' , 'article.container')}
+
 {widget('view_product')}
 {widget('similar')}
 </article>

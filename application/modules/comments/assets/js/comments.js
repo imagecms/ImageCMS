@@ -202,10 +202,12 @@ function initComments() {
     });
 }
 renderPosts = function(el, data) {
+    var dataSend = "";
     if (data != undefined)
-        var dataSend = data
-    else
-        var dataSend = "";
+        dataSend = data
+    if (el.data() != undefined) {
+        dataSend = el.data()
+    }
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
         dataType: "json",
@@ -230,16 +232,16 @@ renderPosts = function(el, data) {
                     $('#cc').html('');
                     $('#cc').append(obj.commentsCount);
                 }
-                $(document).trigger({'type': 'render_comment', 'el': el});
+                $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }
         }
     });
 }
 
-function post($this) {
+function post(el) {
     $.ajax({
         url: "/comments/commentsapi/newPost",
-        data: $($this).closest('form').serialize() +
+        data: $(el).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",
         type: "post",
@@ -250,11 +252,12 @@ function post($this) {
                 })
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
-                renderPosts($('[name="for_comments"]'));
+                renderPosts($(el).closest('[name="for_comments"]'));
             }
             else {
-                $($this).closest('form').find('.error_text').html('');
-                $($this).closest('form').find('.error_text').append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
+                var errText = $(el).closest('form').find('.error_text')
+                errText.html('');
+                errText.append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
             }
         }
     });

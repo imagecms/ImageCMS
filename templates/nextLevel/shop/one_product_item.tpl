@@ -135,8 +135,7 @@
                                         data-number="{echo $pv->getNumber()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                        data-stock="{echo $pv->getStock()}"
-                                        data-prodStatus ='{promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}'
+                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
                                         >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
@@ -165,7 +164,6 @@
                                     data-number="{echo $pv->getNumber()}"
                                     data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                     data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                    data-stock="{echo $pv->getStock()}"
                                     >
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>

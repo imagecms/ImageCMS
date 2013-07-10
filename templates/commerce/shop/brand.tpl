@@ -165,7 +165,7 @@
                                 <div class="promoblock action">{lang('s_saction')}</div>
                             {/if}
                             {if $product->getHit() == 1}
-                                <div class="promoblock hit">{lang('s_s_hit')}</div>
+                                <div class="promoblock hit">{lang('s_shit')}</div>
                             {/if}
                         </a>
                         <span class="ajax_refer_marg t-a_c">

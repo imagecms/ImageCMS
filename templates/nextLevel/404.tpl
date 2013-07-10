@@ -1,7 +1,8 @@
+{$colorScheme = 'css/color_scheme_1'}
 <div class="frame-inside page-404">
     <div class="container">
         <div class="content">
-            <img src="{$THEME}images/404.png"/>
+            <img src="{$THEME}{$colorScheme}/images/404.png"/>
             <div class="description">
                 {$error}
                 <div class="title">Страница не найдена</div>

@@ -24,10 +24,22 @@
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
                 </div>
                 <span class="frame-variant-name-code">
-                    {$hasCode = $model->firstVariant->getNumber() != '';}
-                    <span class="frame-variant-code" {if !$hasCode}style="display:none;"{/if}>Код товара: <span class="code">{if $hasCode}{trim($model->firstVariant->getNumber())}{/if}</span></span>
-                        {$hasVariant = $model->firstVariant->getName() != '';}
-                    <span class="frame-variant-name" {if !$hasVariant}style="display:none;"{/if}>Вариант: <span class="code">{if $hasVariant}{trim($model->firstVariant->getName())}{/if}</span></span>
+                    <span class="frame-variant-code" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
+                        Код товара: 
+                        <span class="code">
+                            {if $model->firstVariant->getNumber()}
+                                {trim($model->firstVariant->getNumber())}
+                            {/if}
+                        </span>
+                    </span>
+                    <span class="frame-variant-name" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
+                        Вариант: 
+                        <span class="code">
+                            {if $model->firstVariant->getName()}
+                                {trim($model->firstVariant->getName())}
+                            {/if}
+                        </span>
+                    </span>
                 </span>
             </div>
             <div class="right-product">
@@ -43,10 +55,10 @@
                                 <div class="title">Выбор варианта:</div>
                                 <div class="lineForm">
                                     <select name="variant" id="variantSwitcher">
-                                        {foreach $model->getProductVariants() as $key => $pv}
-                                            <option value="{echo $pv->getId()}">
-                                                {if $pv->getName()}
-                                                    {echo ShopCore::encode($pv->getName())}
+                                        {foreach $model->getProductVariants() as $key => $productVariant}
+                                            <option value="{echo $productVariant->getId()}">
+                                                {if $productVariant->getName()}
+                                                    {echo ShopCore::encode($productVariant->getName())}
                                                 {else:}
                                                     {echo ShopCore::encode($model->getName())}
                                                 {/if}        
@@ -93,11 +105,16 @@
                                 </div>
                                 <!-- Start button for main & variants prod -->
                                 <div class="funcs-buttons">
-                                    {foreach $variants as $key => $pv}
-                                        {if $pv->getStock() > 0}
-                                            <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                                    {foreach $variants as $key => $productVariant}
+                                        {if $productVariant->getStock() > 0}
+                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
+                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
+                                            {else:}
+                                                {$discount = 0}
+                                            {/if}
+                                            <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
-                                                    <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
+                                                    <div class="number" data-title="количество на складе {echo $productVariant->getstock()}" data-prodid="{echo $model->getId()}" data-varid="{echo $productVariant->getId()}" data-rel="frameplusminus">
                                                         <div class="frame-change-count">
                                                             <div class="btn-plus">
                                                                 <button type="button">
@@ -110,27 +127,26 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $pv->getstock()}">
+                                                        <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $productVariant->getstock()}">
                                                     </div>
                                                 </div>
                                                 <div class="btn-buy btn-buy-p">
                                                     <button class="btnBuy infoBut"
                                                             type="button"
-                                                            data-id="{echo $pv->getId()}"
+                                                            data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
-                                                            data-varid="{echo $pv->getId()}"
-                                                            data-price="{echo $pv->toCurrency()}"
+                                                            data-varid="{echo $productVariant->getId()}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
-                                                            data-vname="{echo ShopCore::encode($pv->getName())}"
-                                                            data-maxcount="{echo $pv->getstock()}"
-                                                            data-number="{echo $pv->getNumber()}"
-                                                            data-img="{echo $pv->getSmallPhoto()}"
-                                                            data-mainImage="{echo $pv->getMainPhoto()}"
-                                                            data-largeImage="{echo $pv->getlargePhoto()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                                            data-stock="{echo $pv->getStock()}"
-                                                            data-prodStatus ='{promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}'
+                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-maxcount="{echo $productVariant->getstock()}"
+                                                            data-number="{echo $productVariant->getNumber()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
+                                                            data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('s_buy')}</span>
@@ -139,27 +155,26 @@
                                             </div>
                                         {else:}
                                             <div class="d_i-b v-a_m">
-                                                <div class="variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                                                <div class="variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                     <div class="alert-exists">Товара пока нет в наличии</div>
                                                     <div class="btn-not-avail">
                                                         <button
                                                             type="button"
                                                             data-drop=".drop-report"
                                                             data-source="/shop/ajax/getNotifyingRequest"
-                                                            data-id="{echo $pv->getId()}"
+                                                            data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
-                                                            data-varid="{echo $pv->getId()}"
-                                                            data-price="{echo $pv->toCurrency()}"
+                                                            data-varid="{echo $productVariant->getId()}"
+                                                            data-price="{echo $productVariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
-                                                            data-vname="{echo ShopCore::encode($pv->getName())}"
-                                                            data-maxcount="{echo $pv->getstock()}"
-                                                            data-number="{echo $pv->getNumber()}"
-                                                            data-img="{echo $pv->getSmallPhoto()}"
-                                                            data-mainImage="{echo $pv->getMainPhoto()}"
-                                                            data-largeImage="{echo $pv->getlargePhoto()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                                            data-stock="{echo $pv->getStock()}"
+                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-maxcount="{echo $productVariant->getstock()}"
+                                                            data-number="{echo $productVariant->getNumber()}"
+                                                            data-img="{echo $productVariant->getSmallPhoto()}"
+                                                            data-mainImage="{echo $productVariant->getMainPhoto()}"
+                                                            data-largeImage="{echo $productVariant->getlargePhoto()}"
+                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
+                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
                                                             class="infoBut">
                                                             <span class="icon-but"></span>
                                                             <span class="text-el">{lang('s_message_o_report')}</span>
@@ -174,12 +189,12 @@
                             <!-- end. frame-prices-buy -->
                             <div class="frame-wish-compare-list">
                                 <!-- Wish List buttons --------------------->
-                                {foreach $variants as $key => $pv}
-                                    <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $pv->getId()} variant">
+                                {foreach $variants as $key => $productVariant}
+                                    <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $productVariant->getId()} variant">
                                         <button class="toWishlist"
-                                                data-price="{echo $pv->toCurrency()}"
+                                                data-price="{echo $productVariant->toCurrency()}"
                                                 data-prodid="{echo $model->getId()}"
-                                                data-varid="{echo $pv->getId()}"
+                                                data-varid="{echo $productVariant->getId()}"
                                                 type="button"
                                                 data-title="{lang('s_add_to_wish_list')}"
                                                 data-firtitle="{lang('s_add_to_wish_list')}"
@@ -248,19 +263,14 @@
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
-                        {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                            {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
-                        {else:}
-                            {$discount = 0}
-                        {/if}
                         {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                     </span>
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
                 <div class="frame-star t-a_j">
-                    {$CI->load->module('star_rating')->show_star_rating($model)}
                     {if $Comments[$model->getId()][0] != '0' && $model->enable_comments}
+                        {$CI->load->module('star_rating')->show_star_rating($model)}
                         <div class="d-i_b">
                             <span class="s-t">Покупатели оставили</span>
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{$Comments[$model->getId()]}</button>
@@ -344,6 +354,12 @@
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
                                                         <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                        {if $model->getOldPrice() > $model->firstVariant->getPrice()}
+                                                            {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
+                                                        {else:}
+                                                            {$discount = 0}
+                                                        {/if}
+                                                        {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($model->getName())}</span>
                                                 </div>
@@ -385,8 +401,14 @@
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
                                                             <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
+                                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
+                                                            {else:}
+                                                                {$discount = 0}
+                                                            {/if}
+                                                            {promoLabel($kitProduct->getSProducts()->getAction(), $kitProduct->getSProducts()->getHot(), $kitProduct->getSProducts()->getHit(), $discount)}
                                                         </span>
-                                                        <span class="title">{echo ShopCore::encode($kitProduct->getSProducts()->getName())}
+                                                        <span class="title">{echo ShopCore::encode($kitProduct->getSProducts()->getName())}</span>
                                                     </a>
                                                     <div class="description">
                                                         <div class="frame-prices f-s_0">
@@ -515,7 +537,7 @@
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
-                    <button type="button" data-href="#comment" onclick="renderPosts($('[name=for_comments]'))">
+                    <button type="button" data-href="#comment" onclick="renderPosts($('#for_comments_tabs'))">
                         <span class="icon_comment-tab"></span>
                         <span class="text-el">                    
                             <span id="cc">
@@ -592,9 +614,9 @@
                 <div class="inside-padd">
                     <!--Start. Comments block-->
                     <div class="frame-form-comment">
-                        <div name="for_comments_view"></div>
+                        <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
                         {literal}<script type="text/javascript">$(document).ready(function() {
-                            renderPosts($('[name=for_comments_view]'), {countComment: 4});
+                            renderPosts($('#for_comments_view'), {countComment: 4});
                         })</script>{/literal}
                         </div>
 
@@ -665,19 +687,19 @@
                                                     </div>
                                                     <div class="btn-buy">
                                                         <button class="btnBuy"
+                                                                type="button"
                                                                 data-id="{echo $p->getId()}"
                                                                 data-varid="{echo $p->firstVariant->getId()}"
                                                                 data-prodid="{echo $p->getId()}"
                                                                 data-price="{echo $p->firstvariant->toCurrency()}"
                                                                 data-name="{echo ShopCore::encode($p->getName())}"
-                                                                type="button"
                                                                 data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
                                                                 data-number="{echo $p->firstVariant->getnumber()}"
                                                                 data-maxcount="{echo $p->firstVariant->getstock()}"
                                                                 data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                                 data-url="{echo shop_url('product/' . $p->getUrl())}"
                                                                 data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                                data-stock="{echo $p->firstVariant->getStock()}"
+                                                                data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
                                                                 >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
                                                             <span class="text-el">{lang('s_buy')}</span>
@@ -744,7 +766,9 @@
                     <div class="inside-padd">
                         <!--Start. Comments block-->
                         <div class="frame-form-comment">
-                            <div name="for_comments"></div>
+                            <div name="for_comments" id="for_comments_tabs">
+                                <div class="preloader"></div>
+                            </div>
                         </div>
                         <!--End. Comments block-->
                     </div>
@@ -754,7 +778,7 @@
                     <div id="fourth" class="accessories">
                         <div class="inside-padd">
                             <h3>Аксессуары к {echo $model->getName()}</h3>
-                            <ul class="items items-bask row-kits items-default">
+                            <ul class="items items-default">
                                 {foreach $accessories as $p}
                                     {if $p->firstVariant->getStock()}
                                         <li>
@@ -762,6 +786,12 @@
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo $p->firstVariant->getDefaultPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
+                                                    {if $p->getOldPrice() > $p->firstVariant->getPrice()}
+                                                        {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
+                                                    {else:}
+                                                        {$discount = 0}
+                                                    {/if}
+                                                    {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
                                                 </span>
                                                 <span class="title">{echo ShopCore::encode($p->getName())}</span>
                                             </a>
@@ -799,19 +829,19 @@
                                                 </div>
                                                 <div class="btn-buy">
                                                     <button class="btnBuy"
+                                                            type="button"
                                                             data-id="{echo $p->getId()}"
                                                             data-varid="{echo $p->firstVariant->getId()}"
                                                             data-prodid="{echo $p->getId()}"
                                                             data-price="{echo $p->firstvariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($p->getName())}"
-                                                            type="button"
                                                             data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
                                                             data-number="{echo $p->firstVariant->getnumber()}"
                                                             data-maxcount="{echo $p->firstVariant->getstock()}"
                                                             data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                             data-url="{echo shop_url('product/' . $p->getUrl())}"
                                                             data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-stock="{echo $p->firstVariant->getStock()}"
+                                                            data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('s_buy')}</span>

@@ -75,7 +75,7 @@
                             data-url="{echo shop_url('product/'.$item.model->getUrl())}"
 
                             data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
-                            data-stock="{echo $variant->getStock()}"
+                            {echo $variant->getStock()}"
                             >
                         {lang('s_buy')}
                     </button>

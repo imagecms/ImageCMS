@@ -17,7 +17,7 @@
 
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
-    <div class="container">
+    <div id="search" class="container">
         <div class="row">
             <aside class="span3">
                 <div class="filter">
@@ -26,6 +26,7 @@
                         <div class="title">{lang('s_sea_found_in_categories')}:</div>
                         <nav>
                             <ul>
+                                
                                 {foreach $tree as $item}
                                     <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-level="3" data-pid="{echo $item->getParentId()}"{/if}>
                                         {$title=false}
@@ -296,7 +297,7 @@
 
                         <!-- creating hot bubble for products image if product is hit -->
                         {if $product->getHit()}
-                        <span class="top_tovar discount">{lang('s_s_hit')}</span>
+                        <span class="top_tovar discount">{lang('s_shit')}</span>
                         {/if}
                     </li>
                     {/foreach}
@@ -314,7 +315,7 @@
     </div>
 {else:}
     <!--Start. Show message not found-->
-    <article class="container">
+    <article id="search" class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
                 <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
@@ -327,5 +328,6 @@
     <!-- End. Show message -->
 {/if}
 
+{//widget_ajax('view_product', '#search')}
 {widget('view_product')}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
