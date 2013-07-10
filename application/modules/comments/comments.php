@@ -7,6 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Comments component
+ * @property Base $base
  */
 class Comments extends MY_Controller {
 
