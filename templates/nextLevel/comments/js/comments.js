@@ -17,48 +17,44 @@
                     return;
                 }
             }, options);
-            var $this = $(this);
 
-            pasteAfter = settings.pasteAfter;
-            pasteWhat = settings.pasteWhat;
-            evPaste = settings.evPaste;
-            effectIn = settings.effectIn;
-            effectOff = settings.effectOff;
-            duration = settings.duration;
-            wherePasteAdd = settings.wherePasteAdd;
-            whatPasteAdd = settings.whatPasteAdd;
-            before = settings.before;
-            after = settings.after;
+            var $this = $(this),
+                    pasteAfter = settings.pasteAfter,
+                    pasteWhat = settings.pasteWhat,
+                    evPaste = settings.evPaste,
+                    effectIn = settings.effectIn,
+                    effectOff = settings.effectOff,
+                    duration = settings.duration,
+                    wherePasteAdd = settings.wherePasteAdd,
+                    whatPasteAdd = settings.whatPasteAdd,
+                    before = settings.before,
+                    after = settings.after;
 
-            pasteAfter = pasteAfter.split('.'),
-                    $this.on(evPaste, function() {
-                methods.evClick($(this))
-            })
-        },
-        evClick: function($this) {
-            var pasteAfter2 = $this;
-            $.each(pasteAfter, function(i, v) {
-                pasteAfter2 = pasteAfter2[v]();
-            })
-
-            var insertedEl = pasteAfter2.next(),
-                    pasteAfterEL = pasteAfter2;
-
-            before($this);
-
-            if (!pasteAfterEL.hasClass('already')) {
-                pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
-                pasteAfterEL.next()[effectIn](duration, function() {
-                    if (ltie7)
-                        ieInput();
+            pasteAfter = pasteAfter.split('.');
+            $this.unbind(evPaste).bind(evPaste, function() {
+                var $this = $(this);
+                pasteAfter2 = $this;
+                $.each(pasteAfter, function(i, v) {
+                    pasteAfter2 = pasteAfter2[v]();
                 })
-                after($this, pasteAfterEL.next());
-            }
-            else if (insertedEl.is(':visible'))
-                insertedEl[effectOff](duration);
-            else if (!insertedEl.is(':visible'))
-                insertedEl[effectIn](duration);
 
+                var insertedEl = pasteAfter2.next(),
+                        pasteAfterEL = pasteAfter2;
+
+                before($this);
+
+                if (!pasteAfterEL.hasClass('already')) {
+                    pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
+                    pasteAfterEL.next()[effectIn](duration, function() {
+                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)})
+                    })
+                    after($this, pasteAfterEL.next());
+                }
+                else if (insertedEl.is(':visible'))
+                    insertedEl[effectOff](duration);
+                else if (!insertedEl.is(':visible'))
+                    insertedEl[effectIn](duration);
+            })
         }
     };
     $.fn.cloneAddPaste = function(method) {

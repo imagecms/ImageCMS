@@ -59,17 +59,18 @@ if (!function_exists('widget_ajax')) {
 
         echo "
                 <script type=text/javascript>
-
+                    $(document).ready(function(){
                             $.ajax({
                                 async : 'false',
                                 type : 'post',
                                 url : '/shop/ajax/widget/$name',
                                 success : function(data){
                                     $(data).insertAfter($('$container'))
-                                        initBuy();
-                                        initCarusel();
+                                        processPage();
+                                        initBtnBuy();
                                 }
                             })
+                      })
 
                  </script>
             ";

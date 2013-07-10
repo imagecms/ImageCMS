@@ -51,8 +51,10 @@ class Banners extends MY_Controller {
 
 
 
-        if ($cahe = Cache_html::get_html($hash))
+        if ($cahe = Cache_html::get_html($hash)){
             echo $cahe;
+            
+        }
         else {
             $banners = $this->banner_model->get_all_banner($lang);
 

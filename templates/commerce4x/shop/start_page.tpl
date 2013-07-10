@@ -10,17 +10,17 @@
     <!-- Show Banners in circle -->
     {$CI->load->module('banners')->render()}
     <!-- Show banners in circle -->
-    {//widget_ajax('action_products', '.mainFrameBaner')}
+    {widget_ajax('action_products', '.mainFrameBaner')}
     
-    {//widget_ajax('new_products', '.mainFrameBaner')}
+    {widget_ajax('new_products', '.mainFrameBaner')}
     
-    {//widget_ajax('popular_products','.mainFrameBaner')}
+    {widget_ajax('popular_products','.mainFrameBaner')}
     
-    {widget('action_products')}
+    {//widget('action_products')}
     
-    {widget('new_products')}
+    {//widget('new_products')}
     
-    {widget('popular_products')}
+    {//widget('popular_products')}
     
     
 
