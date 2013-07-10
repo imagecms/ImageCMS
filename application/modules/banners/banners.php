@@ -23,11 +23,11 @@ class Banners extends MY_Controller {
         $this->load->model('banner_model');
     }
 
-    
     public function index() {
         if ($this->no_install === false)
             return false;
     }
+
     /**
      * Render banner into template
      * @access public
@@ -43,37 +43,57 @@ class Banners extends MY_Controller {
 
         $type = $this->core->core_data['data_type'];
         $lang = $this->get_main_lang('identif');
-        $painting = $type . '_' . (int)$id;
-        $banners = $this->banner_model->get_all_banner($lang);
-       
-        foreach ($banners as $banner) {
-            $data = unserialize($banner['where_show']);
+        $painting = $type . '_' . (int) $id;
+
+        $hash = 'baners' . $type . $lang . $id;
+        \CMSFactory\assetManager::create()
+                ->registerScript('jquery.cycle.all.min');
+
+
+
+        if ($cahe = Cache_html::get_html($hash)){
+            echo $cahe;
             
-            if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
-                $ban[] = $banner;
         }
-       
-        if (count($ban) > 0) {
+        else {
+            $banners = $this->banner_model->get_all_banner($lang);
+
+            foreach ($banners as $banner) {
+                $data = unserialize($banner['where_show']);
+
+                if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
+                    $ban[] = $banner;
+            }
+
+            if (count($ban) > 0) {
 
 
-            /*
-             * $tpl = $type . '_slider'; // different template for different entity.
-             * For this into directory assets create template (product_slider, brand_slider, main_slider, 
-             *  page_slider, category_slider, shop_category_slider)
-             */
-            $tpl = 'slider'; // in default
+                /*
+                 * $tpl = $type . '_slider'; // different template for different entity.
+                 * For this into directory assets create template (product_slider, brand_slider, main_slider, 
+                 *  page_slider, category_slider, shop_category_slider)
+                 */
+                $tpl = 'slider'; // in default
 
-            \CMSFactory\assetManager::create()
-                    ->registerStyle('style')
-                    
-                    ->registerScript('cycle')
-                    ->registerScript('main')
-                    ->setData(array('banners' => $ban))
-                    ->render($tpl, TRUE);
+                ob_start();
+                \CMSFactory\assetManager::create()
+                        ->registerStyle('style')
+                        ->registerScript('jquery.cycle.all.min')
+                        ->registerScript('main')
+                        ->setData(array('banners' => $ban))
+                        ->render($tpl, TRUE);
+
+                $baners_view = ob_get_clean();
+
+                Cache_html::set_html($baners_view, $hash);
+
+                echo $baners_view;
+            }
+            else
+                return fales;
         }
-        else
-            return fales;
     }
+
     /**
      * install module and create table
      * @access public
@@ -109,6 +129,7 @@ class Banners extends MY_Controller {
         $this->db->where('name', 'banners');
         $this->db->update('components', array('enabled' => 1));
     }
+
     /**
      * deinstall module and drop tables
      * @access public
@@ -124,6 +145,7 @@ class Banners extends MY_Controller {
         $this->dbforge->drop_table('mod_banner');
         $this->dbforge->drop_table('mod_banner_i18n');
     }
+
     /**
      * check current language
      * @access public
