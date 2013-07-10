@@ -18,27 +18,9 @@
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
-    <div class="mainFrameBaner">
-        <section class="container">
-            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(300,$category->id)}
-            {if count($banners)}
-                <div class="frame_baner">
-                    <ul class="cycle">
-                        {foreach $banners as $banner}
-                            <li>
-                                <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
-                    <div class="pager"></div>
-                    <button class="next" type="button"></button>
-                    <button class="prev" type="button"></button>
-                </div>
-            {/if}
-        </section>
-    </div>
+
+    {$CI->load->module('banners')->render($category->getId())}
+
     <!-- Show banners in circle -->
 
     <!-- Block for bread crumbs with a call of shop_helper function to create it according to category model -->
@@ -314,7 +296,10 @@
     </div>
 
 </article>
-
+            
+{//widget_ajax('view_product' , 'article.container')}
 {widget('view_product')}
+
+
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
