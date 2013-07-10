@@ -654,7 +654,7 @@ function recountCartPage(selectDeliv, methodDeliv) {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
     $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    //$('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
     $('.curr').html(curr);
 }
 
@@ -956,8 +956,12 @@ jQuery(document).ready(function() {
         showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
         e.el.find(preloader).remove();
     })
-    $(document).bind('renderorder.after autocomplete.after rendercomment.after', function(e) {
+    $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg', function(e) {
         drawIcons(e.el.find(selIcons))
+    })
+    $(document).bind('comments.showformreply', function(e) {
+        if (ltie7)
+            ieInput();
     })
 
     $('[data-trigger]').live('click', function(e) {
@@ -1027,7 +1031,6 @@ jQuery(document).ready(function() {
     });
     if ($.existsN(methodDeliv) && selectDeliv)
         methodDeliv.bind('change', function() {
-            recountCartPage(selectDeliv, methodDeliv);
             var activeVal = $('span.cuselActive').attr('val');
             changeDeliveryMethod(activeVal, selectDeliv);
         });
@@ -1062,7 +1065,7 @@ jQuery(document).ready(function() {
         if (Shop.Cart.totalCount == 0)
             emptyPopupCart();
         $.fancybox.hideActivity();
-        //$(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     $(document).bind('after_add_to_cart', function(e) {
         initShopPage(true, e.starget, orderDetails);
@@ -1074,7 +1077,7 @@ jQuery(document).ready(function() {
             $('[data-id="popupProduct_' + data.cartItem.id + '_' + data.cartItem.vId + '"]').remove();
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
-        
+
         dropBaskResize();
     });
     $('.' + genObj.toCompare).live('click', function() {
@@ -1332,7 +1335,7 @@ wnd.load(function() {
     $("img.lazy").lazyload({
         effect: "fadeIn"
     });
-    wnd.scroll();
+    wnd.scroll(); //for lazy load start initialize
 //    if cloudzoom
 //    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
     //    body.append('<style id="forCloudZomm"></style>')
