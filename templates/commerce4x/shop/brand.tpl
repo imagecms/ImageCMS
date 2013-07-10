@@ -235,6 +235,7 @@
     </div>
 </article>
 
+{//widget_ajax('view_product', 'article.container')}
 {widget('view_product')}
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
