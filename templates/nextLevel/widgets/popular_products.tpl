@@ -15,7 +15,7 @@
                                 <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        <img data-original="{echo $p->firstVariant->getMediumPhoto()}" src="{$THEME}images/blank.gif" alt="{echo ShopCore::encode($p->getName())}" class="lazy"/>
+                                        <img data-original="{echo $p->firstVariant->getMediumPhoto()}" src="{$THEME}images/blank.gif" alt="{echo ShopCore::encode($p->getName())}" class="lazy vimg"/>
                                         {if $p->getOldPrice() > $p->firstVariant->getPrice()}
                                             {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
                                         {else:}
@@ -75,7 +75,7 @@
                                                     data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                                     data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                    data-stock="{echo $p->firstVariant->getStock()}"
+                                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
                                                     >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                                     <span class="text-el">{lang('s_buy')}</span>
@@ -98,7 +98,6 @@
                                                     data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                                     data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                    data-stock="{echo $p->firstVariant->getStock()}"
                                                     >
                                                     <span class="text-el">Сообщит о появлении</span>
                                                 </button>

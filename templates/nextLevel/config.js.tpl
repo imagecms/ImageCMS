@@ -8,7 +8,10 @@
             toCart = '{lang('s_buy')}',
             pcs = 'Количество:',
             kits = 'Комплектов:',
-            captchaText = 'Код протекции';
+            captchaText = 'Код протекции',
+            s_saction = '{lang('s_saction')}',
+            s_shot = '{lang('s_shot')}',
+            s_shit = '{lang('s_shit')}';
 
     {if $comp = $CI->session->userdata('shopForCompare')}
         {$cnt_comp = count($comp)}

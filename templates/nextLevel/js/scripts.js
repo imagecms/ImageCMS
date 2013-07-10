@@ -3,8 +3,8 @@ var isTouch = 'ontouchstart' in document.documentElement,
         cW = '980',
         selIcons = '[class*=icon_]',
         widhtItemScroll = 256,
-        scrollPane = {animateScroll: true, showArrows: true, arrowButtonSpeed: widhtItemScroll},
-selScrollPane = '.frame-scroll-pane .content-carousel';
+        preloader = '.preloader',
+        selScrollPane = '.frame-scroll-pane .content-carousel';
 var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
@@ -19,10 +19,15 @@ var optionsMenu = {
     durationOn: 200,
     durationOff: 100,
     //sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 600,
+    dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
     frAClass: 'hoverM'
+};
+var scrollPane = {
+    animateScroll: true,
+    showArrows: true,
+    arrowButtonSpeed: 250
 };
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
@@ -32,7 +37,7 @@ var optionCompare = {
     frameScroll: '.items-compare',
     mouseWhell: true,
     scrollNSP: true,
-    jScrollPane: false,
+    jScrollPane: true,
     scrollNSPT: '.items-catalog',
     onlyDif: $('[data-href="#only-dif"]'),
     allParams: $('[data-href="#all-params"]'),
@@ -58,7 +63,48 @@ var optionCompare = {
             else
                 optionCompare.allParams.click();
         }
+    },
+    scrollPane: {
+        animateScroll: true,
+        showArrows: true,
+        arrowButtonSpeed: 250
     }
+};
+var optionsDrop = {
+    overlayColor: '#000',
+    overlayOpacity: '0.6',
+    place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
+    effon: 'fadeIn',
+    effoff: 'fadeOut',
+    duration: 500
+};
+var productStatus = {
+    action: '<span class="product-status action"></span>',
+    hit: '<span class="product-status hit"></span>',
+    hot: '<span class="product-status nowelty"></span>',
+    discount: function(disc) {
+        return '<span class="product-status discount"><span class="text-el">' + disc + '%</span></span>';
+    }
+}
+imageCmsApiDefaults = {
+    hideForm: true,
+    messagePlace: 'ahead', // behind
+    durationHideForm: 3000,
+    cMsgPlace: 'after', //place error
+    captcha: function(ci) {
+        return '<div class="frame-label"><span class="title">' + captchaText + '</span>\n\
+                        <span class="frame-form-field">\n\
+                            <input type="text" name="captcha" value="' + captchaText + '"/> \n\
+                            <span class="help-block" id="for_captcha_image">' + ci + '</span>\n\
+                        </span></div>'
+    },
+    captchaBlock: '#captcha_block',
+    cMsg: function(name, text, classN, form) {
+        form.find('[for="' + name + '"]').remove()
+        return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
+    }
+// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
+// any other
 };
 icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
@@ -164,6 +210,25 @@ message = {
         return '<div class = "msg"><div class = "' + genObj.err + '"><p><span class = "icon_info"></span><span class="text-el">' + text + '</span></p></div></div>'
     }
 };
+function hideDrop(drop, form, durationHideForm) {
+    var drop = $(drop);
+    setTimeout(function() {
+        drop.drop('triggerBtnClick', function() {
+            drop.find(genObj.msgF).hide(function() {
+                $(this).remove();
+                form.show();
+            })
+        });
+    }, durationHideForm - 500/*time fadeout drop see on site*/)
+//    if close "esc" or click on body
+    $(document).unbind('drop.beforeClose').bind('drop.beforeClose', function(e) {
+        if (e.el.is(drop))
+            e.el.find(genObj.msgF).hide(function() {
+                $(this).remove();
+                form.show();
+            })
+    })
+}
 function showHidePart(el) {
     el.each(function() {
         var $this = $(this),
@@ -198,17 +263,6 @@ function showHidePart(el) {
                     });
         }
     });
-}
-function hideDrop(drop, form, durationHideForm) {
-    setTimeout(function() {
-        var drop = $(drop);
-        drop.drop('triggerBtnClick', function() {
-            drop.find(genObj.msgF).fadeOut(function() {
-                $(this).remove();
-                form.show();
-            })
-        });
-    }, durationHideForm - 500/*time fadeout drop see on site*/)
 }
 function dropBaskResize() {
     var wndH = wnd.height(),
@@ -287,7 +341,7 @@ function itemUserToolbar() {
                 $this.hide().next().show();
                 itemsUT.children(hideSet).hide();
                 itemsUT.stop().animate({
-                    'width': '129'
+                    'width': btn.width()
                 })
             }
             else {
@@ -421,7 +475,6 @@ function processPage() {
         if (keys.indexOf(key) != -1) {
             $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
             $this.unbind('click').bind('click', function(e) {
-                $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
                 $.fancybox.showActivity();
                 Shop.Cart.countChanged = false;
                 togglePopupCart(this);
@@ -498,7 +551,7 @@ function initShopPage(showWindow, target, orderDetails) {
                 condTooltip = checkProdStock && inputVal >= input.data('max')
 
             if (condTooltip) {
-                pd.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false});
+                pd.closest(genObj.numberC).tooltip();
             }
             cartItem.count = inputVal;
             Shop.Cart.chCount(cartItem, function() {
@@ -522,7 +575,7 @@ function initShopPage(showWindow, target, orderDetails) {
         $(genObj.frameCount + ' input').bind('keyup', function(e) {
             var $this = $(this);
             if ($this.maxValue(e, function() {
-                $this.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false})
+                $this.closest(genObj.numberC).tooltip()
             }) && !$.testNumber(e)) {
                 $this.minValue();
                 chCountInCart($(this).prev('div'));
@@ -555,7 +608,7 @@ function renderOrderDetails() {
     $(genObj.orderDetails).html(_.template($('#orderDetailsTemplate').html(), {
         cart: Shop.Cart
     }));
-    drawIcons($(genObj.orderDetails).find(selIcons))
+    $(document).trigger({'type': 'renderorder.after', 'el': $(genObj.orderDetails)})
     initShopPage(false, '', orderDetails);
 }
 
@@ -713,13 +766,8 @@ jQuery(document).ready(function() {
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
     $('.menu-main').menuImageCms(optionsMenu);
-    $('.drop').drop({
-        overlayColor: '#000',
-        overlayOpacity: '0.6',
-        place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
-        effon: 'fadeIn',
-        effoff: 'fadeOut',
-        duration: 500,
+    $('.drop').drop(
+            $.extend(optionsDrop, {
         before: function(el, dropEl, isajax) {
             var dropEl = $(dropEl);
             if (dropEl.hasClass('drop-report')) {
@@ -774,7 +822,8 @@ jQuery(document).ready(function() {
             if ($(dropEl).hasClass('frame-already-show'))
                 $('.frame-user-toolbar').css({'width': body.width()})
         }
-    });
+    })
+            );
     $('.tabs').tabs({
         after: function(el) {
             optionCompare.compareChangeCategory(el);
@@ -783,6 +832,13 @@ jQuery(document).ready(function() {
             }
         }
     });
+    $(document).bind('tabs.before', function(e) {
+        e.els.filter('.active').append('<div class="preloader"></div>')
+    })
+    $(document).bind('tabs.after', function(e) {
+        e.els.children('.preloader').remove();
+        $('.drop').drop($.extend(optionsDrop, {dataSource: e.el.find('[data-drop]')}));
+    })
 //    if carousel in compare
 //    $('#compare').change(function() {
 //        var $this = $(this);
@@ -795,7 +851,7 @@ jQuery(document).ready(function() {
         next: 'prev.children(:eq(0))',
         after: function(e, el, input) {
             if (checkProdStock && input.attr('value') == input.data('max'))
-                el.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false});
+                el.closest(genObj.numberC).tooltip();
         }
     });
     $(genObj.popupCart).find(genObj.plusMinus).plusminus({
@@ -831,7 +887,7 @@ jQuery(document).ready(function() {
                     next: 'prev.children(:eq(0))',
                     after: function(e, el, input) {
                         if (checkProdStock && input.attr('value') == input.data('max'))
-                            el.closest(genObj.numberC).tooltip({'durOff': 2000, 'hover': false});
+                            el.closest(genObj.numberC).tooltip();
                     }
                 });
                 var itemThumbs = carGal.find('.items-thumbs');
@@ -869,6 +925,7 @@ jQuery(document).ready(function() {
                 fancyFrame.css({'height': fancyFrame.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
                 setTimeout(function() {
                     var fancyboxFrameC = fancyFrame.contents()
+//                    forThumbFancybox in config.js.tpl
                     fancyboxFrameC.find('body').append('<style>' + forThumbFancybox + '</style>');
                     fancyboxFrameC.find('img').before('<span class="helper"></span>')
                     $('.wOverlay').fadeOut(200);
@@ -895,12 +952,12 @@ jQuery(document).ready(function() {
     }
     showHidePart($('.sub-category'))
 
-    $(document).bind('render_comment', function(e) {
-        drawIcons(e.el.find(selIcons));
-        showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'))
+    $(document).live('rendercomment.after', function(e) {
+        showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
+        e.el.find(preloader).remove();
     })
-    $(document).bind('show_autocomplete', function(e) {
-        drawIcons(e.el.find(selIcons));
+    $(document).bind('renderorder.after autocomplete.after rendercomment.after', function(e) {
+        drawIcons(e.el.find(selIcons))
     })
 
     $('[data-trigger]').live('click', function(e) {
@@ -933,17 +990,8 @@ jQuery(document).ready(function() {
     processWishComp();
     wishListCount();
     compareListCount();
-//    if select
-//    var methodDeliv = $('#method_deliv'),
-//            selectDeliv = true;
-    //    if radio
-    var methodDeliv = $('[name = "deliveryMethodId"]'),
-            selectDeliv = false;
-    recountCartPage(selectDeliv, methodDeliv);
-
     $(genObj.btnBuy).bind('click', function(e) {
         $.fancybox.showActivity();
-        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
         Shop.Cart.countChanged = false;
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
@@ -953,10 +1001,12 @@ jQuery(document).ready(function() {
     });
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart())
 
-    $('svg, svg *').live('click', function(e) {
-        e.stopPropagation();
-    })
-
+//    if select
+//    var methodDeliv = $('#method_deliv'),
+//            selectDeliv = true;
+    //    if radio
+    var methodDeliv = $('[name = "deliveryMethodId"]'),
+            selectDeliv = false;
 //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
@@ -968,25 +1018,19 @@ jQuery(document).ready(function() {
                 changeDeliveryMethod(activeVal, selectDeliv);
             }
         }
-//classRemove: 'b_n',//if not standart
     });
+    recountCartPage(selectDeliv, methodDeliv);
     genObj.pM.nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
+//classRemove: 'b_n',//if not standart
     });
-//Shop.Cart.countChanged = true;
-    initShopPage(false, '', orderDetails);
-    Shop.Cart.countChanged = false;
-    //shipping changing, re-render cart page
     if ($.existsN(methodDeliv) && selectDeliv)
         methodDeliv.bind('change', function() {
             recountCartPage(selectDeliv, methodDeliv);
             var activeVal = $('span.cuselActive').attr('val');
             changeDeliveryMethod(activeVal, selectDeliv);
         });
-    if ($.exists(genObj.orderDetails))
-        renderOrderDetails();
-    //shipping changing, re-render cart page
     if ($.existsN(methodDeliv)) {
         if (selectDeliv) {
             methodDeliv.bind('change', function() {
@@ -999,6 +1043,14 @@ jQuery(document).ready(function() {
             });
         }
     }
+
+    initShopPage(false, '', orderDetails);
+    Shop.Cart.countChanged = false;
+    //shipping changing, re-render cart page
+    if ($.exists(genObj.orderDetails))
+        renderOrderDetails();
+    //shipping changing, re-render cart page
+
     countSumBask();
     //cart content changed
     $(document).live('cart_changed', function() {
@@ -1010,16 +1062,19 @@ jQuery(document).ready(function() {
         if (Shop.Cart.totalCount == 0)
             emptyPopupCart();
         $.fancybox.hideActivity();
+        //$(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     $(document).bind('after_add_to_cart', function(e) {
         initShopPage(true, e.starget, orderDetails);
         Shop.Cart.countChanged = false;
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     $(document).bind('cart_rm', function(data) {
         if (!data.cartItem.kit)
             $('[data-id="popupProduct_' + data.cartItem.id + '_' + data.cartItem.vId + '"]').remove();
         else
             $('[data-id="popupKit_' + data.cartItem.kitId + '"]').remove();
+        
         dropBaskResize();
     });
     $('.' + genObj.toCompare).live('click', function() {
@@ -1030,8 +1085,8 @@ jQuery(document).ready(function() {
     $('.' + genObj.toWishlist).live('click', function() {
         $.fancybox.showActivity();
         var id = $(this).data('prodid'),
-        vid = $(this).data('varid'),
-        price = $(this).data('price');
+                vid = $(this).data('varid'),
+                price = $(this).data('price');
         Shop.WishList.add(id, vid, price, $(this));
     });
     $('.' + genObj.inWishlist).live('click', function() {
@@ -1111,7 +1166,7 @@ jQuery(document).ready(function() {
             optionCompare.allParams.click();
     })
     $('#applyGiftCert').bind('click', function(e) {
-        $thisPreloader = $('.label-gift-cert .preloader');
+        $thisPreloader = $('.label-gift-cert').find(preloader);
         e.preventDefault();
         var inputGiftCert = $('[name="giftcert"]').removeClass(genObj.scs + ' ' + genObj.err)
         inputGiftCert.next(genObj.msgF).remove(),
@@ -1160,7 +1215,7 @@ jQuery(document).ready(function() {
                 vOrigPrice = btnInfo.attr('data-origPrice'), vNumber = btnInfo.attr('data-number'),
                 vLargeImage = btnInfo.attr('data-largeImage'),
                 vMainImage = btnInfo.attr('data-mainImage'),
-                vStock = btnInfo.attr('data-stock');
+                vStock = btnInfo.attr('data-maxcount');
         $(genObj.photoProduct).attr('href', vLargeImage);
         $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
         liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
@@ -1183,7 +1238,7 @@ jQuery(document).ready(function() {
                 vOrigPrice = btnInfo.attr('data-origPrice'),
                 vAddPrice = btnInfo.attr('data-addPrice');
         vNumber = btnInfo.attr('data-number'),
-                vStock = btnInfo.attr('data-stock');
+                vStock = btnInfo.attr('data-maxcount');
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
         liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
@@ -1200,6 +1255,15 @@ jQuery(document).ready(function() {
     })
 });
 wnd.load(function() {
+    function removePreloaderBaner(el) {
+        el.find('img[data-src]').each(function() {
+            var $this = $(this);
+            $this.attr('src', $this.attr('data-src')).load(function() {
+                $(this).fadeIn();
+                $('.baner').find(preloader).remove();
+            })
+        })
+    }
     $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel({
         item: 'li',
         prev: '.prev',
@@ -1207,13 +1271,7 @@ wnd.load(function() {
         content: '.content-carousel',
         groupButtons: '.group-button-carousel',
         after: function(el) {
-            el.find('img[data-src]').each(function() {
-                var $this = $(this);
-                $this.attr('src', $this.attr('data-src')).load(function() {
-                    $(this).fadeIn();
-                    $('.baner .preloader-baner').remove();
-                })
-            })
+//removePreloaderBaner(el);//if not cycle
         }});
     var adding = {vertical: true};
     $('.vertical-carousel .carousel_js:visible').myCarousel({
@@ -1268,13 +1326,9 @@ wnd.load(function() {
         $(next + ',' + prev).show();
     }
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-    cycle.find('img[data-src]').each(function() {
-        var $this = $(this);
-        $this.attr('src', $this.attr('data-src')).load(function() {
-            $(this).fadeIn();
-            $('.baner .preloader').remove();
-        })
-    })
+
+    removePreloaderBaner(cycle); //parent for images
+
     $("img.lazy").lazyload({
         effect: "fadeIn"
     });

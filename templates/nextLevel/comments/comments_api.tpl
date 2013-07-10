@@ -93,7 +93,7 @@
                     </li>
                 {/foreach}
             </ul>
-            {if (count($comments_arr)) == (int)$_POST[countComment] && $_POST[countComment] != NULL}
+            {if (count($comments_arr))+count($comment_ch) == (int)$_POST[countcomment] && $_POST[countcomment] != NULL}
                 <div class="frame-show-all-comments">
                     <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#comment']" data-scroll="true">
                         <span class="icon_arrow"></span>

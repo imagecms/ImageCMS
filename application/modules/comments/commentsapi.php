@@ -49,7 +49,7 @@ class Commentsapi extends Comments {
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module, $_POST[countComment]);
+        $comments = $this->base->get($item_id, 0, $this->module, $_POST[countcomment]);
 
         // Read comments template
         // Set page id for comments form

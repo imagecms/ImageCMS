@@ -200,10 +200,15 @@ function afterAjaxInitializeFilter() {
         elCheckWrap: '.niceCheck',
         evCond: true,
         //classRemove: 'b_n',//if not standart
+        //if evCond: true
         before: function(a, b, c) {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false, true);
         }
+//        after: function(a, b, c) {
+//            console.log(b);
+//            ajaxRecount('#' + b.attr('id'), false, true);
+//        }
     });
     apply.cleaverFilterMethod();
     apply.find('a').click(function() {
@@ -212,13 +217,13 @@ function afterAjaxInitializeFilter() {
     });
     $('.tooltip').tooltip('remove');
 
-    $('.cleare_filter').click(function() {
+    $('.clear-filter').click(function() {
         nm = $(this).data('name');
         $('#' + nm + ' input').attr('checked', false);
         catalogForm.submit();
         return false;
     });
-    $('.cleare_price').click(function() {
+    $('.clear-price').click(function() {
         var defMin = objPrice.valuesObj.defMin,
                 defMax = objPrice.valuesObj.defMax;
 
