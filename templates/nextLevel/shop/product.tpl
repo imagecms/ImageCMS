@@ -49,7 +49,6 @@
                 <div class="right-product-left">
                     <div class="f-s_0 buy-block">
                         <!--Select variant -->
-                        {$variants = $model->getProductVariants()}
                         {if count($variants) > 1}
                             <div class="check-variant-product">
                                 <div class="title">Выбор варианта:</div>
@@ -324,9 +323,6 @@
             </div>
         </div>
     </div>
-    <div class="frame-benefits frame-benefits-product">
-        {widget('benefits')}
-    </div>
     <!--Kit start-->
     {if $model->getShopKits()->count() > 0}             
         <div class="container">
@@ -526,7 +522,7 @@
                 {if trim($model->getShortDescription()) != ''}
                 <li><button data-href="#second">Полное описание</button></li>
                 {/if}
-                {if $accessories = $model->getRelatedProductsModels()}     
+                {if $accessories}     
                 <li><button data-href="#fourth">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
