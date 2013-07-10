@@ -89,7 +89,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:38
 msgid "Help us get better"
-msgstr ""
+msgstr "Допоможіть стати кращими"
 
 #: /var/www/image.loc/_temp.php:39
 msgid "report an error"
@@ -171,7 +171,7 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:171
 #: /var/www/image.loc/_temp.php:180
 msgid "Properties"
-msgstr ""
+msgstr "Характеристики"
 
 #: /var/www/image.loc/_temp.php:62
 #: /var/www/image.loc/_temp.php:102
@@ -691,7 +691,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:62
 msgid "Products catalog"
-msgstr ""
+msgstr "Продукти"
 
 #: /var/www/image.loc/_temp.php:64
 msgid "Products"
@@ -1026,7 +1026,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:246
 msgid "Modules"
-msgstr ""
+msgstr "Модулі"
 
 #: /var/www/image.loc/_temp.php:247
 #: /var/www/image.loc/_temp.php:248
@@ -1595,7 +1595,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:35
 msgid "a_tools_panel"
-msgstr ""
+msgstr "Панель управления"
 
 #: /var/www/image.loc/_temp.php:36
 msgid "Uncategorized"
@@ -1931,7 +1931,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:160
 msgid "New pages"
-msgstr ""
+msgstr "Новие страници"
 
 #: /var/www/image.loc/_temp.php:166
 msgid "Updated pages"
@@ -2132,7 +2132,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:123
 msgid "Items list"
-msgstr ""
+msgstr "Список товаров"
 
 #: /var/www/image.loc/_temp.php:124
 msgid "Mark"
@@ -3127,7 +3127,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:191
 msgid "Orders list"
-msgstr ""
+msgstr "Cписок замовлень"
 
 #: /var/www/image.loc/_temp.php:194
 msgid "Change status"
@@ -3322,7 +3322,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:74
 msgid "New orders"
-msgstr ""
+msgstr "Нові замовлення"
 
 #: /var/www/image.loc/_temp.php:75
 msgid "Bestsellers"
@@ -4455,7 +4455,7 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:83
 #: /var/www/image.loc/_temp.php:113
 msgid "Wish List"
-msgstr ""
+msgstr "Список желаний"
 
 #: /var/www/image.loc/_temp.php:84
 msgid "Notice of appearance"
@@ -6728,4 +6728,8 @@ msgstr ""
 #: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:292
 msgid "Announce a"
 msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:292
+msgid "STAAAAAr"
+msgstr "Зірка22"
 

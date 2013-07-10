@@ -15,9 +15,11 @@ class Admin extends BaseAdminController {
         $this->load->model('rating_model');
         $obj = new MY_Lang();
         $obj->load('star_rating');
+        
     }
 
     public function index() {
+        
         $get_settings = $this->rating_model->get_settings();
         $settings = json_decode($get_settings['settings']);
         $this->template->add_array(array(

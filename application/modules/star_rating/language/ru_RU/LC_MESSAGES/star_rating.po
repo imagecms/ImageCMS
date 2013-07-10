@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-08 15:30+0300\n"
-"PO-Revision-Date: 2013-07-08 15:33+0300\n"
+"POT-Creation-Date: 2013-07-09 15:19+0300\n"
+"PO-Revision-Date: 2013-07-09 15:26+0300\n"
 "Last-Translator: asdasd <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -18,8 +18,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp.php:7
-msgid "fghgh"
-msgstr "АААААААААААААААААААААААААААА"
+msgid "STAAAAAr"
+msgstr "Зііііірка"
 
 #: /var/www/image.loc/_temp.php:8
 msgid "Module settings starRating"
@@ -37,9 +37,12 @@ msgstr ""
 msgid "Save and go back"
 msgstr ""
 
-#: ../../../admin.php:39
+#: ../../../admin.php:37
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
+
+#~ msgid "fghgh"
+#~ msgstr "АААААААААААААААААААААААААААА"
 
 #, fuzzy
 #~ msgid "amt_settings"

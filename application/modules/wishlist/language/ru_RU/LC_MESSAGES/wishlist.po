@@ -1780,7 +1780,7 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:227
 #: /var/www/image.loc/_temp.php:229
 msgid "Buy"
-msgstr "Купить"
+msgstr "Купить Віш ліст"
 
 #: /var/www/image.loc/_temp.php:228
 msgid "Report the appearance of"

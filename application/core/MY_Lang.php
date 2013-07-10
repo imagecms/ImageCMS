@@ -44,17 +44,23 @@ class MY_Lang extends MX_Lang {
 
         return isset($langs[$language])?$langs[$language]:array('en', 'en_US');
     }
+    
+    public function getFrontLangCode($language) {
+        $langs = array(
+            'ru'   => array('ru', 'ru_RU'),
+            'en'   => array('en', 'en_US'),
+            'ge'    => array('de', 'de_CH'),
+            'uk' => array('uk', 'uk_UA')
+        );
+
+        return isset($langs[$language])?$langs[$language]:array('en', 'en_US');
+    }
 
 
     private function _init() {
         if ( !isset($this->ci) )
             $this->ci =& get_instance();
-//        if(!strstr(uri_string(), 'admin')){
-//            
-//             $this->ci->load->library('gettext_php/gettext_extension', array());
-//             $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', 'en_US');
-//             //return;
-//        }
+
         $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
         if ($sett->lang_sel == 'english_lang') {
             $this->ci->config->set_item('language', 'english');
@@ -65,6 +71,7 @@ class MY_Lang extends MX_Lang {
        
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
+        
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $this->getLangCode($this->gettext_language)[1]);
     }
@@ -97,14 +104,26 @@ class MY_Lang extends MX_Lang {
 	 * @return	mixed
 	 */
 	public function load($module = 'admin') {
-        if (!$this->gettext)
-            $this->_init();
-        
-       
-        //var_dumps($module);
-        $this->gettext_domain = $module;
-        $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $this->getLangCode($this->gettext_language)[1]);
-	}
+            if (!$this->gettext)
+                $this->_init();
+            
+            $url = uri_string();
+            if (strstr($url,'admin')){
+                $lang = $this->getLangCode($this->gettext_language)[1];
+
+            }else{
+                $lang = $this->getFrontLangCode(MY_Controller::getCurrentLocale())[1];
+
+            }
+
+           if ($module == 'main'){
+               $this->gettext->switchDomain('application/language/front/', 'front', $lang);
+           }else{
+               $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $lang);
+           }
+           
+        }
+           
 
 	/**
 	 * This method overides the original load method. Its duty is loading the domain files by config or by default internal settings.
