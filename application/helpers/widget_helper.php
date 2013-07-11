@@ -11,14 +11,13 @@ if (!function_exists('widget')) {
 
     /**
      * Run widget
-     * 
+     *
      * @param string $name - widget name
      * @param integer $cache - cache ttl in minutes
      */
     function widget($name = FALSE, $cache = FALSE) {
         $ci = & get_instance();
 
-        $ci->db->limit(1);
         $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
 
         if ($query->num_rows() == 1) {
