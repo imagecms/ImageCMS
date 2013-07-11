@@ -296,9 +296,9 @@
     </div>
 
 </article>
-            
-{widget_ajax('view_product' , 'article.container')}
-{//widget('view_product')}
+
+{//widget_ajax('view_product' , 'article.container')}
+{widget('view_product')}
 
 
 
