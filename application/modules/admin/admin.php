@@ -6,9 +6,9 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  * Admin Class
- * 
+ *
  * TODO:
- * check local ip; 
+ * check local ip;
  *
  */
 class Admin extends MY_Controller {
@@ -95,8 +95,8 @@ class Admin extends MY_Controller {
 
         if ($this->input->get('path'))
             $path = $this->input->get('path');
-      
-       
+
+
 
         $opts = array(
             // 'debug' => true,
@@ -186,9 +186,9 @@ class Admin extends MY_Controller {
         }
         else
             echo '<div class="alert alert-error"> Ваше замечание обязательное поле </div>' ;
-        
 
-        
+
+
     }
 
 }
