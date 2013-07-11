@@ -263,7 +263,7 @@ function processPage() {
     });
 }
 function initBtnBuy(){
-    $(genObj.btnBuy).on('click', function() {
+    $(genObj.btnBuy).unbind().on('click', function() {
         Shop.Cart.countChanged = false;
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
