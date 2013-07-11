@@ -562,7 +562,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 .btn-plus > button, .btn-minus > button{display: block;height: 16px;width: 33px;}
 .btn-plus > button{border-width: 1px 0;border-style: solid;border-top-color: #fff;border-bottom-color: #e1e1e1;}
 .btn-minus > button{border-top: 1px solid #fff;}
-.btn-plus > button:active, .btn-minus > button:active{-moz-box-shadow: inset 0 0 2px #c3c1bf;-webkit-box-shadow: inset 0 0 2px #c3c1bf;box-shadow: inset 0 0 2px #c3c1bf;border-top-color: #d6d3d1;}
+.btn-plus > button:not([disabled="disabled"]):active, .btn-minus > button:not([disabled="disabled"]):active{-moz-box-shadow: inset 0 0 2px #c3c1bf;-webkit-box-shadow: inset 0 0 2px #c3c1bf;box-shadow: inset 0 0 2px #c3c1bf;border-top-color: #d6d3d1;}
 
 .btn-form, .btn-not-avail{
     border: 1px solid #d8d8d8;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: inset 0 1px 1px #fff, 0 1px 1px #cbc7c2;-webkit-box-shadow: inset 0 1px 1px #fff, 0 1px 1px #cbc7c2;box-shadow: inset 0 1px 1px #fff, 0 1px 1px #cbc7c2;
