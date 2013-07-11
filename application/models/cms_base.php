@@ -3,6 +3,9 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ * @property CI_DB_active_record $db
+ */
 class Cms_base extends CI_Model {
 
     public function __construct() {
@@ -16,11 +19,11 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_settings() {
+        $this->db->cache_on();
         $this->db->where('s_name', 'main');
         $query = $this->db->get('settings', 1);
 
         if ($query->num_rows() == 1) {
-//+++++++++++++++++++++++++++
             $arr = $query->row_array();
             $lang_arr = get_main_lang();
             $meta = $this->db
@@ -32,10 +35,11 @@ class Cms_base extends CI_Model {
             $arr['site_title'] = $meta[0]['name'];
             $arr['site_description'] = $meta[0]['description'];
             $arr['site_keywords'] = $meta[0]['keywords'];
+            $this->db->cache_off();
 
             return $arr;
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
         }
+        $this->db->cache_off();
 
         return FALSE;
     }
@@ -47,41 +51,51 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_langs() {
-        $query = $this->db->get('languages');
+        $this->db->cache_on();
+        $query = $this->db
+                ->get('languages')
+                ->result_array();
+        $this->db->cache_off();
 
-        return $query->result_array();
+        return $query;
     }
 
     /**
      * Load modules
      */
     public function get_modules() {
-        $this->db->select('id, name, identif, autoload, enabled');
-        //$this->db->where('enabled', 1);
-        $query = $this->db->get('components');
+        $this->db->cache_on();
+        $query = $this->db
+                ->select('id, name, identif, autoload, enabled')
+                ->get('components');
+        $this->db->cache_off();
 
         return $query;
     }
 
     public function get_category_pages($cat_id) {
+        $this->db->cache_on();
         $this->db->where('category', $cat_id);
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
         $this->db->where('lang_alias', 0);
         $this->db->where('lang', $this->config->item('cur_lang'));
         $this->db->order_by('created', 'desc');
-
         $query = $this->db->get('content');
 
         if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $query = $query->result_array();
+            $this->db->cache_off();
+            return $query;
         } else {
+            $this->db->cache_off();
             return FALSE;
         }
     }
 
     public function get_page_by_id($page_id = FALSE) {
         if ($page_id != FALSE) {
+            $this->db->cache_on();
             $this->db->where('post_status', 'publish');
             $this->db->where('publish_date <=', time());
             $this->db->where('id', $page_id);
@@ -89,8 +103,11 @@ class Cms_base extends CI_Model {
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() == 1) {
-                return $query->row_array();
+                $query = $query->row_array();
+                $this->db->cache_off();
+                return $query;
             }
+            $this->db->cache_off();
         }
 
         return FALSE;
@@ -107,6 +124,7 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_categories() {
+        $this->db->cache_on();
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
 
@@ -118,6 +136,7 @@ class Cms_base extends CI_Model {
             return $categories;
         }
 
+        $this->db->cache_on();
         return FALSE;
     }
 
