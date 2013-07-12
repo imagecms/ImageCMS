@@ -59,7 +59,7 @@
                                                 <div class="controls">
                                                     {form_open_multipart('/admin/components/cp/wishlist/do_upload')}
                                                     <input type="file"
-                                                           name="userfile"
+                                                           name="file"
                                                            size="20"
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
                                                            style="position: relative!important; opacity: 2!important;"/>
@@ -90,7 +90,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang(birthday)}:</label>
                                                     <div class="controls">
-                                                        <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
+                                                        <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
