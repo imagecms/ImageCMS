@@ -702,6 +702,7 @@ class Wishlist_model extends CI_Model {
                 ->update('components', array(
                     'settings' => serialize(
                             array(
+                                'maxUserName' => 256,
                                 'maxListName' => 254,
                                 'maxListsCount' => 10,
                                 'maxItemsCount' => 100,

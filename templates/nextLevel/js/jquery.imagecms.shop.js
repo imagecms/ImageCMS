@@ -4,6 +4,8 @@ wnd = $(window),
         body = $('body');
 /*
  *imagecms frontend plugins
+ ** @author Domovoj
+ * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
  **/
 function pluralStr(i, str) {
     function plural(a) {
@@ -38,10 +40,6 @@ jQuery.expr[':'].regex = function(elem, index, match) {
     return regex.test(jQuery(elem)[attr.method](attr.property));
 }
 
-String.prototype.trim = function()
-{
-    return this.trimRight().trimLeft();
-}
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
@@ -93,6 +91,7 @@ function setcookie(name, value, expires, path, domain, secure)
             ((domain) ? ";domain=" + domain : "") +
             ((secure) ? ";secure" : "");
 }
+
 var ie = jQuery.browser.msie,
         ieV = jQuery.browser.version,
         ltie7 = ie && (ieV <= 7),
@@ -831,10 +830,10 @@ function ieInput(els) {
                         navTabsLi = [],
                         regRefs = [],
                         thisL = this.length,
-                        k = true;
-                refs = [];
-                attrOrdata = [];
-                wST = wnd.scrollTop();
+                        k = true,
+                        refs = [],
+                        attrOrdata = [],
+                        wST = wnd.scrollTop();
                 $this.each(function(index) {
                     var $thiss = $(this),
                             effectOn = settings.effectOn,
@@ -845,31 +844,25 @@ function ieInput(els) {
                     refs[index] = navTabsLi[index].children();
                     attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';
                     var tempO = $([]),
-                            tempO2 = $([]);
+                            tempO2 = $([]),
+                            tempRefs = [];
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
-                        if (ind == 0) {
-                            regRefs[index] = "";
-                            tempO = tempO.add($(tHref));
-                            tempO2 = tempO2.add('[data-id=' + tHref + ']');
-                            regRefs[index] += tHref;
-                        }
-                        else {
-                            tempO = tempO.add($(tHref));
-                            tempO2 = tempO2.add('[data-id=' + tHref + ']');
-                            regRefs[index] += '|' + tHref;
-                        }
+
+                        tempO = tempO.add($(tHref));
+                        tempO2 = tempO2.add('[data-id=' + tHref + ']');
+                        tempRefs.push(tHref);
                     })
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
-                    regRefs[index] = new RegExp(regRefs[index]);
+                    regRefs[index] = tempRefs;
                     refs[index].bind('click.tabs', function(e) {
                         var $this = $(this);
                         if ($this.is('a'))
                             e.preventDefault();
-                        var condRadio = $thiss.data('type') == 'itemsView',
-                                condB = e.button == 0 || e.trigger;
-                        e.trigger = false;
+                        var condRadio = $thiss.data('type') == 'radio',
+                                condB = !e.start;
+
                         if (!$this.parent().hasClass('disabled')) {
                             var $thisA = $this[attrOrdata[index]]('href'),
                                     $thisAO = $($thisA),
@@ -883,17 +876,17 @@ function ieInput(els) {
                                 if (!condRadio || e.button == 0) {
                                     navTabsLi[index].removeClass(activeClass);
                                     $this.parent().addClass(activeClass);
-                                    if (e.start && $thisS != undefined)
-                                        tabsDivT()
 
                                     if (!condRadio) {
+                                        if (e.start && $thisS != undefined)
+                                            tabsDivT()
                                         if ($thisS != undefined && !$thisAO.hasClass('visited')) {
                                             $thisAO.addClass('visited');
 
-                                            $(document).trigger({'type': 'tabs.before', "els": tabsDiv[index], "el": $thisAO})
+                                            $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO})
 
                                             $thisAO.load($thisS, function() {
-                                                $(document).trigger({'type': 'tabs.after', "els": tabsDiv[index], "el": $thisAO})
+                                                $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
                                                 tabsDivT()
                                             })
                                         }
@@ -914,29 +907,36 @@ function ieInput(els) {
                             if (!condRadio) {
                                 if (attrOrdata[index] != 'data') {
                                     if (condB) {
-                                        var wLH = window.location.hash;
-                                        temp = wLH;
+                                        var wLH = window.location.hash,
+                                                reg = null,
+                                                temp = wLH;
                                         try {
+                                            reg = wLH.match(new RegExp(regRefs[index].join('|').toString()));
+                                        } catch (err) {
+                                            reg = null;
+                                        }
+                                        if (reg != null) {
                                             if (wLH.indexOf($thisA) == -1) {
-                                                temp = temp.replace(wLH.match(regRefs[index])[0], $thisA)
+                                                temp = temp.replace(reg, $thisA)
                                             }
-                                            if (wLH.charAt(wLH.indexOf($thisA)) != '') {
+                                            else {
                                                 temp += $thisA;
                                             }
-                                            window.location.hash = temp;
-                                        } catch (e) {
-                                            window.location.hash += $thisA;
                                         }
+                                        else {
+                                            temp += $thisA;
+                                        }
+                                        window.location.hash = temp;
                                     }
                                     else if (!$thisDD && k) {
-                                        window.location.hash = hashs[0].join('');
+                                        window.location.hash = $.unique(hashs[0]).join('');
                                         k = false;
                                     }
                                     if ($thisDD && !condB)
                                         $this.trigger('click.drop')
                                 }
                             }
-                            else if (e.button == 0) {
+                            else if (e.button == 0 && $thiss.data('elchange') != undefined) {
                                 refs[index].each(function() {
                                     var $thisDH = $(this).data('href');
                                     if ($thisDH == $thisA)
@@ -946,9 +946,8 @@ function ieInput(els) {
                                 })
                             }
                         }
-                        if (condB) {
-                            settings.after($thiss);
-                        }
+
+                        settings.after($thiss);
                     })
 
                     wnd.bind('hashchange', function(e) {
@@ -962,28 +961,25 @@ function ieInput(els) {
                             scrollTop(wST - 100);
                         scrollTop(wST);
                     })
-
-                    if (thisL - 1 == index) {
-                        methods.location();
-                        methods.startCheck();
-                    }
+                    if (thisL - 1 == index)
+                        methods.location(regRefs[index], refs);
                 });
             }
             return $this;
         },
-        location: function() {
-            hashs = [];
+        location: function(regrefs, refs) {
+            hashs1 = [];
             hashs2 = [];
             if (location.hash == '')
             {
                 var i = 0,
                         j = 0;
-                $(refs).each(function(index) {
-                    var index = index,
-                            $this = refs[index].first(),
+                _.map(refs, function(n, i) {
+                    var $this = n.first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
+
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
-                        hashs[i] = $this[attrOrdataL]('href');
+                        hashs1[i] = $this[attrOrdataL]('href');
                         i++;
                     }
                     else if (attrOrdataL == 'data') {
@@ -991,13 +987,12 @@ function ieInput(els) {
                         j++;
                     }
                 })
-                return hashs = [hashs, hashs2];
+                hashs = [hashs1, hashs2];
             }
             else {
-                $(refs).each(function(index) {
-                    var index = index,
-                            j = 0,
-                            $this = refs[index].first(),
+                _.map(refs, function(n, i) {
+                    var j = 0,
+                            $this = n.first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
                     if (attrOrdataL == 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
@@ -1020,14 +1015,26 @@ function ieInput(els) {
                 }
                 var i = 0;
                 while (i < pos.length) {
-                    hashs[i] = t.substring(pos[i], pos[i + 1]);
+                    hashs1[i] = t.substring(pos[i], pos[i + 1]);
                     i++;
                 }
-                return hashs = [hashs, hashs2];
+                hashs = [hashs1, hashs2];
             }
+            methods.startCheck(regrefs, hashs);
         },
-        startCheck: function() {
-            $.map(hashs[1].concat(hashs[0]), function(n, i) {
+        startCheck: function(regrefs, hashs) {
+            var i = 0,
+                    hashs = hashs[0].concat(hashs[1]),
+                    hashs2 = [].concat(hashs);
+            $.map(hashs, function(n, j) {
+                if ($.inArray(n, regrefs) >= 0)
+                    i++;
+
+                if ($.inArray(n, regrefs) >= 0 && i > 1) {
+                    hashs2.splice(hashs2.indexOf(n), 1)
+                }
+            })
+            $.map(hashs2, function(n, i) {
                 var attrOrdataNew = "";
                 $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                 $('[' + attrOrdataNew + '=' + n + ']').trigger({'type': 'click.tabs', 'start': true});
@@ -1049,6 +1056,7 @@ function ieInput(els) {
         init: function(options) {
             var $this = $(this),
                     settings = $.extend({
+                refresh: false,
                 after: function() {
                 }
             }, options),
@@ -1059,7 +1067,8 @@ function ieInput(els) {
                     hoverParent = settings.hoverParent,
                     jScrollPane = settings.jScrollPane || false,
                     after = settings.after,
-                    scrollPane = settings.scrollPane;
+                    scrollPane = settings.scrollPane,
+                    refresh = settings.refresh;
             $this.each(function(index) {
                 var $this = $(this),
                         visThis = $this.is(':visible');
@@ -1178,13 +1187,19 @@ function ieInput(els) {
                                 $this.removeClass('oddC').addClass('evenC')
                         });
                     });
-                    methods.hoverComprasion(left, right, elEven);
-                    onlyDif.die('click').live('click', function() {
-                        methods.onlyDifM(left, right, liLength, elEven);
-                    }).parent('.' + activeClass).children().click();
-                    allParams.die('click').live('click', function() {
-                        methods.allParamsM(left, right, elEven);
-                    }).parent('.' + activeClass).children().click();
+                    if (!refresh) {
+                        methods.hoverComprasion(left, right, elEven);
+                        onlyDif.unbind('click.equal').bind('click.equal', function() {
+                            methods.onlyDifM(left, right, liLength, elEven);
+                        });
+                        allParams.unbind('click.equal').bind('click.equal', function() {
+                            methods.allParamsM(left, right, elEven);
+                        });
+                    }
+
+                    onlyDif.parent('.' + activeClass).children().click();
+                    allParams.parent('.' + activeClass).children().click();
+
                     after($this);
                 }
             })
@@ -1193,15 +1208,8 @@ function ieInput(els) {
         refresh: function(optionCompare) {
             var $this = $(this);
             $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
-            $this.equalHorizCell(optionCompare)
+            $this.equalHorizCell($.extend(optionCompare, {refresh: true}))
             return $this;
-        },
-        headComprasion: function() {
-            compHead = $('.comprasion-head');
-            if (compHead.attr('data-equalHorizCell') != undefined && compHead.height() > left.first().height() - 70)
-                compHead.find('.tabs').css('height', left.first().height() - 70);
-            else
-                compHead.find('.tabs').css('height', left.first().height() - 70).attr('data-equalHorizCell');
         },
         hoverComprasion: function(left, right, elEven) {
             left.add(right.find(elEven)).hover(function() {
@@ -1233,7 +1241,8 @@ function ieInput(els) {
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(j))
                 })
-                var tempNabir = nab;
+                var tempNabir = nab,
+                        tempText = '';
                 tempNabir.each(function(index) {
                     var thisCh = $(this);
                     liH[index] = thisCh.text();
@@ -1467,7 +1476,8 @@ function ieInput(els) {
                     var $thisHref = $thisB.attr('href');
                     if ($thisHref != undefined) {
                         var $thisHrefL = $thisHref.length,
-                                wLH = location.hash, wLHL = wLH.length;
+                                wLH = location.hash,
+                                wLHL = wLH.length;
                         try {
                             var indH = wLH.match($thisHref + '(?![a-z])').index;
                             location.hash = wLH.substring(0, indH) + wLH.substring(indH + $thisHrefL, wLHL)
@@ -2243,9 +2253,11 @@ var Shop = {
                 });
             }
 
+
+
             $(document).trigger({
                 type: 'delete_compare',
-                el: $(el),
+                el: $(el)
             });
         },
         sync: function() {
@@ -2370,7 +2382,7 @@ var ImageCMSApi = {
                     });
                 }
                 return this;
-            },
+            }
         }).done(function() {
             ImageCMSApi.returnMsg("=== Api request success!!! ===");
         }).fail(function() {
@@ -2407,7 +2419,6 @@ var ImageCMSApi = {
     /**
      * add captcha block if needed
      * @param {type} captcha_image
-     * @returns {undefined}
      */
     addCaptcha: function(cI, DS) {
         pIn.html(DS.captcha(cI));

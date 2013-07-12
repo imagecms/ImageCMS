@@ -59,7 +59,7 @@ class Admin extends BaseAdminController {
      * @param type $id
      */
     public function userWL($id) {
-        $wishlist = new Wishlist();
+        $wishlist = new  Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
         $wishlist->getUserWL($id, array('public', 'shared', 'private'));
         \CMSFactory\assetManager::create()

@@ -1,3 +1,7 @@
+$(function() {
+    $( "#datepicker" ).datepicker();
+ });
+
 function addToWL(varId) {
     var checkedList = $('#wishCart input[type=radio]:checked');
     if (checkedList.length) {
