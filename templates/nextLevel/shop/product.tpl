@@ -49,7 +49,6 @@
                 <div class="right-product-left">
                     <div class="f-s_0 buy-block">
                         <!--Select variant -->
-                        {$variants = $model->getProductVariants()}
                         {if count($variants) > 1}
                             <div class="check-variant-product">
                                 <div class="title">Выбор варианта:</div>
@@ -224,11 +223,12 @@
                     </div>
                     <!-- end. buy-block -->
                     <!-- Start. Description -->
-                    {if trim($model->getShortDescription()) != ''}
+                    {//if trim($model->getShortDescription()) != ''}
+                    {if false}
                         <div class="short-desc">
                             {echo $model->getShortDescription()}
                         </div>
-                    {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId(), 1)}
+                    {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId())}
                         <div class="short-desc">
                             <p>{echo $props}</p>
                         </div>
@@ -248,11 +248,6 @@
                     <!-- End. Share -->
                 </div>
                 <!-- end. right-product-left -->
-                <div class="right-product-right">
-                    <!--Start. Payments method form -->
-                    {widget('payments_delivery_methods_info')}
-                    <!--End. Payments method form -->
-                </div>
             </div>
             <div class="left-product">
                 <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
@@ -325,9 +320,6 @@
                 <!--End block-->
             </div>
         </div>
-    </div>
-    <div class="frame-benefits frame-benefits-product">
-        {widget('benefits')}
     </div>
     <!--Kit start-->
     {if $model->getShopKits()->count() > 0}             
@@ -528,7 +520,7 @@
                 {if trim($model->getShortDescription()) != ''}
                 <li><button data-href="#second">Полное описание</button></li>
                 {/if}
-                {if $accessories = $model->getRelatedProductsModels()}     
+                {if $accessories}     
                 <li><button data-href="#fourth">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
