@@ -59,7 +59,7 @@ class Admin extends BaseAdminController {
      * @param type $id
      */
     public function userWL($id) {
-        $wishlist = new  Wishlist();
+        $wishlist = new Wishlist();
         $this->session->set_userdata(array('admin_edit_user_id' => $id));
         $wishlist->getUserWL($id, array('public', 'shared', 'private'));
         \CMSFactory\assetManager::create()
@@ -211,8 +211,8 @@ class Admin extends BaseAdminController {
     }
 
     public function delete_user() {
-        $this->wishlist_model->delUser(47);
-//        var_dump($_POST);
+        foreach ($_POST['ids'] as $id)
+            $this->wishlist_model->delUser($id);
     }
 
 }
