@@ -23,6 +23,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if ($this->dx_auth->is_logged_in()) {
             parent::getUserWL($this->dx_auth->get_user_id());
             \CMSFactory\assetManager::create()
+                    ->registerScript('jquery_ui')
+                    ->registerStyle('jquery-ui-1.8.16.custom')
                     ->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel['wishlists'])
@@ -222,7 +224,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * edit wish list
-     * 
+     *
      * @param int $wish_list_id
      */
     public function editWL($wish_list_id) {
@@ -238,7 +240,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * update wish list
-     * 
+     *
      */
     public function updateWL() {
         parent::updateWL();
@@ -247,7 +249,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * delete wish list
-     * 
+     *
      * @param int $wish_list_id
      */
     public function deleteWL($wish_list_id) {
@@ -257,7 +259,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * delete item from wish list
-     * 
+     *
      * @param int $variant_id
      * @param int $wish_list_id
      * @return mixed
@@ -273,30 +275,23 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * delete items by ids
-     * 
+     *
      * @return mixed
      */
     public function deleteItemsByIds() {
         parent::deleteItemsByIds();
-        if ($this->dataModel) {
-            redirect('/wishlist');
-        } else {
-            return $this->errors;
-        }
+        redirect('/wishlist');
     }
 
     /**
      * delete user image
-     * 
+     *
      * @return mixed
      */
     public function deleteImage() {
         parent::deleteImage();
-        if ($this->dataModel) {
-            return $this->dataModel;
-        } else {
-            return $this->errors;
-        }
+
+        redirect('/wishlist');
     }
 
     /**

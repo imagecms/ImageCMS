@@ -27,19 +27,22 @@
 
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
-        <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" /><![endif]-->
-        
+        <!--[if IE 7]>
+            <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
+            <script src="{$THEME}js/localStorageJSON.js"></script>
+        <![endif]-->
+
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
     </head>
-    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])}">
+    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])} not-js">
         <div class="main-body">
             <div class="fon-header">
                 <header>
                     {include_tpl('header')}
                 </header>
-                {\Category\RenderMenu::create()->load('category_menu')}
+                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
             </div>
             <div class="content">
                 {$content}

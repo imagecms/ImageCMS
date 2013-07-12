@@ -72,9 +72,11 @@ class MY_Controller extends MX_Controller {
 
     private function checkForShop() {
         if ($this->db) {
+            $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
                     ->get('components')
                     ->result_array();
+            $this->db->cache_off();
 
             return (bool) count($res);
         }
