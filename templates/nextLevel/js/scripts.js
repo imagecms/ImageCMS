@@ -11,9 +11,13 @@ var optionsMenu = {
     drop: '.frame-item-menu > .frame-drop-menu',
     //countColumn: 5, //if not drop-side
 
-//    if need column partition
+//if need column partition level 2
     columnPart: true,
     columnClassPref: 'column_',
+    //if need column partition level 3
+    columnPart2: true,
+    columnClassPref2: 'column2_',
+            sub3Frame: '.frame-l2',
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
@@ -22,7 +26,10 @@ var optionsMenu = {
     dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
-    frAClass: 'hoverM'
+    frAClass: 'hoverM',
+    menuCache: true,
+    activeFl: '.frame-item-menu > .frame-title > a', //
+    parentTl: '.frame-l2'//prev a level 2
 };
 var scrollPane = {
     animateScroll: true,
@@ -637,7 +644,7 @@ function changeDeliveryMethod(id, selectDeliv) {
                         //classRemove: 'b_n',//if not standart
             });
         if (ltie7)
-            ieInput('.cuselText');
+            ieInput($('.cuselText'));
     });
 }
 
@@ -735,7 +742,22 @@ function condProduct(vStock, liBlock, btnBuy) {
     else
         liBlock.addClass(genObj.toCart)
 }
+function ieInput(els) {
+    if (els == undefined || els == null)
+        els = $(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])');
 
+    els.not(':hidden').not('.visited').each(function() {
+        var $this = $(this);
+        $this.css({
+            'width': function() {
+                return 2 * $this.width() - $this.outerWidth();
+            },
+            'height': function() {
+                return 2 * $this.height() - $this.outerHeight();
+            }
+        }).addClass('visited');
+    });
+}
 jQuery(document).ready(function() {
     $.onlyNumber('.number input');
     if (ltie7) {
@@ -751,7 +773,7 @@ jQuery(document).ready(function() {
         }
         cuSel(params);
         if (ltie7)
-            ieInput('.cuselText');
+            ieInput($('.cuselText'));
     }
     var catalogForm = $('#catalog_form')
     $('#sort').live('change', function() {
@@ -763,6 +785,14 @@ jQuery(document).ready(function() {
         catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
+    l2 = $('.frame-l2');
+    l2.each(function() {
+        var l2l = $(this).find('ul > li').length;
+        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
+        $(this).find('ul > li:gt(' + (Math.ceil(l2l *2/3) - 1) + ')').addClass('column2_2')
+        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
+    })
+
     $('.menu-main').menuImageCms(optionsMenu);
     $('.drop').drop(
             $.extend(optionsDrop, {
@@ -959,7 +989,7 @@ jQuery(document).ready(function() {
     $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg', function(e) {
         drawIcons(e.el.find(selIcons))
     })
-    $(document).bind('comments.showformreply', function(e) {
+    $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {
         if (ltie7)
             ieInput();
     })
