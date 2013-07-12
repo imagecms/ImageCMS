@@ -43,40 +43,8 @@
                 <!-- End. Empty category-->
             {/if}
             <!--Start. Banners block-->
-            {$CI->load->module('banners')->render($category->getID())}
-            {if count($banners)}
-                <div class="frame-baner-catalog frame-baner">
-                    <section class="carousel_js baner container">
-                        <div class="content-carousel">
-                            <ul class="cycle">
-                                {foreach $banners as $banner}
-                                    <li>
-                                        {if trim($banner.url)}
-                                            <a href="{site_url($banner.url)}">
-                                                <img data-src="{media_url('/uploads/shop/banners/'.$banner.image)}" alt="{ShopCore::encode($banner.name)}" />
-                                            </a>
-                                        {else:}
-                                            <span>
-                                                <img data-src="/uploads/shop/banners/{$banner.image}" alt="{ShopCore::encode($banner.name)}" />
-                                            </span>
-                                        {/if}
-                                    </li>
-                                {/foreach}
-                            </ul>
-                            <span class="preloader-baner"></span>
-                            <div class="pager"></div>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </section>
-                </div>
-            {/if}
+            {$CI->load->module('banners')->render($category->getId())}
+
             <!--End. Banners-->
             {include_tpl('catalogue_header')}
             <!-- Start.If count products in category > 0 then show products list and pagination links -->

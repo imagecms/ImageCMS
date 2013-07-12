@@ -16,7 +16,7 @@
         <!--        Start. Show products as list or table-->
         <nav class="f_r frame-catalog-view f-s_0">
             <span class="title">Вид:</span>
-            <ul class="tabs groups-buttons" data-type="itemsView" data-elchange="#items-catalog-main">
+            <ul class="tabs groups-buttons tabs-list-table" data-type="radio" data-elchange="#items-catalog-main">
                 <li class="btn-def {if $_COOKIE['listtable'] == 0}active{/if}">
                     <button type="button" data-href="list" data-title="Списком" data-rel="tooltip">
                         <span class="icon_list_cat"></span><span class="text-el">Списком</span>

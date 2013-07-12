@@ -63,6 +63,8 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 
 .text-left{float: left;width: 227px;}
 .text-right{margin-left: 252px;}
+
+.frame-complect .content-carousel{width: 750px;margin: 0 auto;}
 /*/scaffolding*/
 
 /*base settings*/
@@ -179,7 +181,7 @@ a.f-s_0{display: inline-block;}
 .helper + *{vertical-align: middle;display: inline-block;word-break: break-word;word-wrap: break-word;}
 .t-a_j{text-align: justify !important;font-size: 1px;}
 .t-a_j > *{display: inline-block;vertical-align: middle;float: none !important;}
-.t-a_j:after{content: "1";margin-left: 100%;height: 1px;visibility: hidden;display: inline-block;width: 100%;}
+.t-a_j:after, .ie1{content: "1";margin-left: 100%;height: 1px;visibility: hidden;display: inline-block;width: 100%;}
 /*/methods*/
 
 /*headers*/
@@ -502,7 +504,9 @@ input.input-search{height: 33px;}
 .jspHorizontalBar .jspCap{float: left;}
 .jspTrack{position: relative;}
 .jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag{float: left;height: 100%;}
-.jspDrag{position: relative;top: 0;left: 0;cursor: pointer;height: 15px;top: 1px;}
+.jspHorizontalBar .jspDrag{position: relative;top: 0;left: 0;cursor: pointer;height: 14px;top: 1px;}
+.scrollNSP{right: 0;position: absolute;z-index: 2;}
+.scrollNSP > div{height: 1px;}
 .jspArrow{text-indent: -20000px;display: block;cursor: pointer;}
 .jspArrow.jspDisabled{cursor: default;}
 .jspVerticalBar .jspArrow{height: 16px;}
@@ -528,6 +532,7 @@ input.input-search{height: 33px;}
 .frame-item-menu > .frame-title > .title > .text-el{text-transform: uppercase;}
 .frame-drop-menu{max-width: 100%;display: none;top: 100%;margin-left: 0 !important;margin-top: -2px !important;position: absolute;text-align: left;z-index: 1;}
 .frame-drop-menu > ul{position: relative;}
+.not-js .frame-item-menu:hover .frame-drop-menu{display: block;}
 .menu-row-category .frame-drop-menu > ul > li:after{content: "";position: absolute;top: 0;width: 3px;height: 100%;display: none;}
 .menu-row-category .frame-drop-menu > ul > li.hoverM:after{display: block;}
 .menu-row-category .frame-drop-menu.left-drop > ul > li:after{left: 202px;background-position: 0 0;}
@@ -571,7 +576,7 @@ input.input-search{height: 33px;}
 .start-page-category-menu > li .title{padding-left: 1px;border-bottom: 0;}
 .start-page-category-menu > li{width: 180px;margin-left: 20px;}
 
-.sub-category{max-height: 78px;overflow: hidden;padding-left: 1px;}
+.sub-category{max-height: 81px;overflow: hidden;padding-left: 1px;}
 .sub-category > li{padding-bottom: 7px;}
 /*/start_page category*/
 
@@ -713,7 +718,8 @@ input + .msg{margin-top: 5px;}
 .tabs-data{position: relative;z-index: 1;top: 1px;}
 .tabs li{float: left;}
 .tabs-data > li.active{margin-top: -3px;}
-.tabs-data > li > a, .tabs-data > li > button{padding: 10px 25px;}
+.tabs-data > li > a, .tabs-data > li > button{padding: 10px 25px;display: inline-block;}
+.tabs-data > li > a{text-decoration: none;}
 .tabs-data > li.active > a, .tabs-data > li.active > button{padding-top: 13px;}
 .frame-tabs-ref > div{display: none;min-height: 75px;}
 
@@ -785,7 +791,6 @@ li.clear-pag-item{margin: 0 14px 4px;}
 
 /*product*/
 .frame-complect{margin-bottom: 40px;}
-.frame-complect .content-carousel{width: 750px;margin: 0 auto;}
 .complects-carousel{padding: 40px 0 35px;}
 .complects-carousel .prev{left: 15px;}
 .complects-carousel .next{right: 15px;}
@@ -904,8 +909,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 5px;padding-right: 
 .frame-tabs-compare > div{padding-bottom: 20px;}
 .frame-tabs-compare > div:first-child{display: block;}
 .left-compare, .right-compare{position: relative;z-index: 1;}
-.scrollNSP{right: 0;position: absolute;z-index: 2;}
-.scrollNSP > div{height: 1px;}
 .comprasion-head{position: absolute;left: 0;top: 0;z-index: 3;display: block !important;/*if carousel*/width: 197px;/*else*//*width: 100%;*/}
 .compare-characteristic{margin-top: 45px;}
 .left-compare .compare-characteristic{margin-top: 65px;}
