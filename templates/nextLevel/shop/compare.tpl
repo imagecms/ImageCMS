@@ -20,8 +20,8 @@
                     <div class="frame-title">
                         <h1 class="d_i title">Сравнение товаров</h1>
                     </div>
-                    <ul class="tabs groups-buttons tabs-compare-diferent">
-                        <li class="active btn-def">
+                    <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio">
+                        <li class="btn-def active">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('s_all_par')}</span>
                             </button>
