@@ -23,6 +23,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if ($this->dx_auth->is_logged_in()) {
             parent::getUserWL($this->dx_auth->get_user_id());
             \CMSFactory\assetManager::create()
+                    ->registerScript('jquery_ui')
+                    ->registerStyle('jquery-ui-1.8.16.custom')
                     ->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel['wishlists'])
