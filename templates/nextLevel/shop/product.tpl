@@ -226,11 +226,12 @@
                     </div>
                     <!-- end. buy-block -->
                     <!-- Start. Description -->
-                    {if trim($model->getShortDescription()) != ''}
+                    {//if trim($model->getShortDescription()) != ''}
+                    {if false}
                         <div class="short-desc">
                             {echo $model->getShortDescription()}
                         </div>
-                    {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId(), 1)}
+                    {elseif $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($model->getId())}
                         <div class="short-desc">
                             <p>{echo $props}</p>
                         </div>
