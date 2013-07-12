@@ -604,7 +604,7 @@ function ieInput(els) {
                     durationOn = settings.durationOn,
                     durationOff = settings.durationOff;
                 
-                    condRadio = $thiss.data('type') != 'itemsView';
+                    condRadio = $thiss.data('type') != 'radio';
                     nav_tabs_li[index] = $thiss.children();
                     refs[index] = nav_tabs_li[index].children();
                     attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';

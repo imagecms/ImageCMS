@@ -16,7 +16,7 @@
                                 <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
                                     <span class="photo-block">
                                         <span class="helper"></span>
-                                        <img src="{echo $p->firstVariant->getMediumPhoto()}" alt="{echo ShopCore::encode($p->getName())}" class="lazy vimg"/>
+                                        <img data-original="{echo $p->firstVariant->getMediumPhoto()}" src="{$THEME}images/blank.gif" alt="{echo ShopCore::encode($p->getName())}" class="lazy vimg"/>
                                         {if $p->getOldPrice() > $p->firstVariant->getPrice()}
                                             {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
                                         {else:}
