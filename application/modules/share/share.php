@@ -33,7 +33,6 @@ class Share extends MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-
     }
 
     public function _deinstall() {
@@ -41,7 +40,7 @@ class Share extends MY_Controller {
         ($this->dx_auth->is_admin()) OR exit;
     }
 
-    public function _make_share_form() {
+    public function _make_share_form($url = '') {
         $settings = $this->settings;
         if ($settings['yaru'] == 1) {
             $html .= 'yaru,';
@@ -75,7 +74,11 @@ class Share extends MY_Controller {
         }
         $type = $settings['type'];
         $html = '<script async="async" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                 <span class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="' . $type . '" data-yashareQuickServices="' . $html . '"></span> ';
+                 <span class="yashare-auto-init"
+                       data-yashareL10n="ru"
+                       data-yashareType="' . $type . '"
+                       data-yashareLink="' . $url . '"
+                       data-yashareQuickServices="' . $html . '"></span> ';
         return $html;
     }
 

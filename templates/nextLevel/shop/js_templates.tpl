@@ -29,7 +29,6 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% console.log(item.prodStatus)%>
         <% _.each(item.prodStatus, function(item, i){%>
         <%= productStatus[i]%>
         <%})%>

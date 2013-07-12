@@ -9,20 +9,27 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    countColumn: 5, //if not drop-side
+    //countColumn: 5, //if not drop-side
 
-//    if need column partition
+//if need column partition level 2
     columnPart: true,
     columnClassPref: 'column_',
+    //if need column partition level 3
+    columnPart2: true,
+    columnClassPref2: 'column2_',
+            sub3Frame: '.frame-l2',
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
+    sub2Frame: '.frame-l2', //if drop-side
     dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
-    frAClass: 'hoverM'
+    frAClass: 'hoverM',
+    menuCache: true,
+    activeFl: '.frame-item-menu > .frame-title > a', //
+    parentTl: '.frame-l2'//prev a level 2
 };
 var scrollPane = {
     animateScroll: true,
@@ -56,13 +63,11 @@ var optionCompare = {
         wnd.scroll();
     },
     compareChangeCategory: function() {
-        if ($.exists('.comprasion-head')) {
-            $(optionCompare.frameCompare).equalHorizCell(optionCompare);
-            if (optionCompare.onlyDif.parent().hasClass('active'))
-                optionCompare.onlyDif.click();
-            else
-                optionCompare.allParams.click();
-        }
+        $(optionCompare.frameCompare).equalHorizCell(optionCompare);
+        if (optionCompare.onlyDif.parent().hasClass('active'))
+            optionCompare.onlyDif.click();
+        else
+            optionCompare.allParams.click();
     },
     scrollPane: {
         animateScroll: true,
@@ -639,7 +644,7 @@ function changeDeliveryMethod(id, selectDeliv) {
                         //classRemove: 'b_n',//if not standart
             });
         if (ltie7)
-            ieInput('.cuselText');
+            ieInput($('.cuselText'));
     });
 }
 
@@ -654,7 +659,7 @@ function recountCartPage(selectDeliv, methodDeliv) {
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
     $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
     $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    //$('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
     $('.curr').html(curr);
 }
 
@@ -737,7 +742,22 @@ function condProduct(vStock, liBlock, btnBuy) {
     else
         liBlock.addClass(genObj.toCart)
 }
+function ieInput(els) {
+    if (els == undefined || els == null)
+        els = $(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])');
 
+    els.not(':hidden').not('.visited').each(function() {
+        var $this = $(this);
+        $this.css({
+            'width': function() {
+                return 2 * $this.width() - $this.outerWidth();
+            },
+            'height': function() {
+                return 2 * $this.height() - $this.outerHeight();
+            }
+        }).addClass('visited');
+    });
+}
 jQuery(document).ready(function() {
     $.onlyNumber('.number input');
     if (ltie7) {
@@ -753,7 +773,7 @@ jQuery(document).ready(function() {
         }
         cuSel(params);
         if (ltie7)
-            ieInput('.cuselText');
+            ieInput($('.cuselText'));
     }
     var catalogForm = $('#catalog_form')
     $('#sort').live('change', function() {
@@ -765,6 +785,14 @@ jQuery(document).ready(function() {
         catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
+    l2 = $('.frame-l2');
+    l2.each(function() {
+        var l2l = $(this).find('ul > li').length;
+        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
+        $(this).find('ul > li:gt(' + (Math.ceil(l2l *2/3) - 1) + ')').addClass('column2_2')
+        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
+    })
+
     $('.menu-main').menuImageCms(optionsMenu);
     $('.drop').drop(
             $.extend(optionsDrop, {
@@ -826,24 +854,26 @@ jQuery(document).ready(function() {
             );
     $('.tabs').tabs({
         after: function(el) {
-            optionCompare.compareChangeCategory(el);
-            if (el.data('type') == "itemsView" && !el.hasClass('visited')) {
+            if (el.hasClass('tabs-compare-category')) {
+                optionCompare.compareChangeCategory();
+            }
+            if (el.hasClass('tabs-list-table')) {
                 decorElemntItemProduct();
             }
         }
     });
-    $(document).bind('tabs.before', function(e) {
-        e.els.filter('.active').append('<div class="preloader"></div>')
+    $(document).bind('tabs.beforeload', function(e) {
+        e.els.filter('.active').append('<div class="' + preloader.replace('.', '') + '"></div>')
     })
-    $(document).bind('tabs.after', function(e) {
-        e.els.children('.preloader').remove();
+    $(document).bind('tabs.afterload', function(e) {
+        e.els.children(preloader).remove();
         $('.drop').drop($.extend(optionsDrop, {dataSource: e.el.find('[data-drop]')}));
     })
 //    if carousel in compare
 //    $('#compare').change(function() {
 //        var $this = $(this);
 //        $($this.val()).siblings().hide().end().show();
-//        optionCompare.compareChangeCategory($this);
+//        optionCompare.compareChangeCategory();
 //    }).change();
 
     $(genObj.plusMinus).plusminus({
@@ -959,7 +989,7 @@ jQuery(document).ready(function() {
     $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg', function(e) {
         drawIcons(e.el.find(selIcons))
     })
-    $(document).bind('comments.showformreply', function(e) {
+    $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {
         if (ltie7)
             ieInput();
     })
@@ -1256,6 +1286,15 @@ jQuery(document).ready(function() {
         var $this = $(this);
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.closest(genObj.frameChangeCount).next().val())
     })
+
+    wnd.focus(function() {
+        processPage();
+        checkSyncs();
+        processWishComp();
+        wishListCount();
+        compareListCount();
+        recountCartPage(selectDeliv, methodDeliv);
+    })
 });
 wnd.load(function() {
     function removePreloaderBaner(el) {
@@ -1274,7 +1313,7 @@ wnd.load(function() {
         content: '.content-carousel',
         groupButtons: '.group-button-carousel',
         after: function(el) {
-//removePreloaderBaner(el);//if not cycle
+            //removePreloaderBaner(el);//if not cycle
         }});
     var adding = {vertical: true};
     $('.vertical-carousel .carousel_js:visible').myCarousel({
@@ -1293,7 +1332,7 @@ wnd.load(function() {
             $this.bind('mousewheel', function(e, b, c, delta) {
                 if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
                 {
-//            ширина блоку товару разом з мергінами
+                    //            ширина блоку товару разом з мергінами
                     api.scrollByX(widhtItemScroll);
                     return false;
                 }
@@ -1312,8 +1351,7 @@ wnd.load(function() {
     if (cycle.find('li').length > 1) {
         cycle.cycle({
             speed: 600,
-            timeout: 5000,
-            fx: 'fade',
+            timeout: 5000, fx: 'fade',
             pauseOnPagerHover: true,
             next: next,
             prev: prev,
@@ -1329,7 +1367,6 @@ wnd.load(function() {
         $(next + ',' + prev).show();
     }
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-
     removePreloaderBaner(cycle); //parent for images
 
     $("img.lazy").lazyload({
@@ -1341,20 +1378,8 @@ wnd.load(function() {
     //    body.append('<style id="forCloudZomm"></style>')
     //    margZoomLens();
     //    $('.photoProduct').find('img').load(function() {
-//        margZoomLens();
+    //        margZoomLens();
 //    })
-}).focus(function() {
-    processPage();
-    checkSyncs();
-    processWishComp();
-    wishListCount();
-    compareListCount();
-    //    var methodDeliv = $('#method_deliv'),
-//            selectDeliv = true;
-    //    if radio
-    var methodDeliv = $('[name = "met_del"]'),
-            selectDeliv = false;
-    recountCartPage(selectDeliv, methodDeliv);
 }).resize(function() {
     var userTool = new itemUserToolbar();
     userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));

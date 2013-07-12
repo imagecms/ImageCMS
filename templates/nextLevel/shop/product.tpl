@@ -49,6 +49,7 @@
                 <div class="right-product-left">
                     <div class="f-s_0 buy-block">
                         <!--Select variant -->
+                        {$variants = $model->getProductVariants()}
                         {if count($variants) > 1}
                             <div class="check-variant-product">
                                 <div class="title">Выбор варианта:</div>
@@ -164,7 +165,6 @@
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
-                                                            data-price="{echo $productVariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
@@ -172,8 +172,6 @@
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
                                                             class="infoBut">
                                                             <span class="icon-but"></span>
                                                             <span class="text-el">{lang('s_message_o_report')}</span>
@@ -251,6 +249,11 @@
                     <!-- End. Share -->
                 </div>
                 <!-- end. right-product-left -->
+                <div class="right-product-right">
+                    <!--Start. Payments method form -->
+                    {widget('payments_delivery_methods_info')}
+                    <!--End. Payments method form -->
+                </div>
             </div>
             <div class="left-product">
                 <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
