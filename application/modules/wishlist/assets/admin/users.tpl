@@ -1,4 +1,19 @@
 <div class="container">
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
+    <div class="modal hide fade modal_del">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Удаление пользователей</h3>
+        </div>
+        <div class="modal-body">
+            <p>Удалить пользователей?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/wishlist/delete_user/')">{lang('a_delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
+        </div>
+    </div>
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -16,6 +31,12 @@
                         <i class="icon-wrench"></i>
                         {lang(settings)}
                     </a>
+                    <button type="button"
+                            class="btn btn-small btn-danger disabled action_on"
+                            id="trash_del"
+                            onclick="delete_function.deleteFunction()">
+                        <i class="icon-trash icon-white"></i>{lang('a_delete')}
+                    </button>
                 </div>
             </div>
         </div>
@@ -41,10 +62,12 @@
                         </thead>
                         <tbody>
                             {foreach $users as $u}
-                                <tr class="simple_tr">
+                                <tr>
                                     <td class="t-a_c">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" name="ids" value="{echo $u[id]}"/>
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox" name="ids" value="{echo $u[id]}"/>
+                                            </span>
                                         </span>
                                     </td>
                                     <td>

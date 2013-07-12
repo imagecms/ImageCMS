@@ -38,6 +38,13 @@
                         <div class="inside_padd">
 
                             <div class="control-group">
+                                <label class="control-label" for="settings[maxUserName]">{lang(max_user_name_length)}</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxUserName]" class="textbox_short" value="{$settings['maxUserName']}" id="maxListName"/>
+                                </div>
+                            </div>
+                                
+                            <div class="control-group">
                                 <label class="control-label" for="settings[maxListName]">{lang(max_list_name_length)}</label>
                                 <div class="controls">
                                     <input type = "number" name = "settings[maxListName]" class="textbox_short" value="{$settings['maxListName']}" id="maxListName"/>
