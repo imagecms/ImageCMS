@@ -165,7 +165,6 @@
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
-                                                            data-price="{echo $productVariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
@@ -173,8 +172,6 @@
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
-                                                            data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
                                                             class="infoBut">
                                                             <span class="icon-but"></span>
                                                             <span class="text-el">{lang('s_message_o_report')}</span>
