@@ -208,7 +208,7 @@
             <div>
                 <!-- Start. Render Category Tree. Menu frame -->
                 <div class="mainFrameMenu">
-                    {\Category\RenderMenu::create()->load('category_menu')}
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
                 </div>
                 <!-- End. Render Category Tree. Menu frame -->
 
