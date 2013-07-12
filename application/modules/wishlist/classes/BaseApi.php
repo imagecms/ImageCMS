@@ -153,8 +153,13 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         if (!(strtotime($this->input->post('user_birthday')) + 50000))
             return false;
+         
+        $userName = $this->input->post('user_name');
+        
+        if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
+            $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
 
-        $updated = parent::userUpdate($this->input->post('user_id'), $this->input->post('user_name'), strtotime($this->input->post('user_birthday')) + 50000, $desc);
+        $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
             return $this->dataModel = lang('updated');
         } else {
@@ -216,7 +221,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         foreach ($this->input->post('comment') as $key => $comment) {
             if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
-                $desc[$key] = substr($comment, 0, $this->settings['maxDescLenght']);
+                $desc[$key] = substr($comment, 0, $this->settings['maxCommentLenght']);
             else
                 $desc[$key] = $comment;
         }
