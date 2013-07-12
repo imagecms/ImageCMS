@@ -342,7 +342,7 @@ class Install extends MY_Controller {
             \$db['default']['dbprefix'] = '';
             \$db['default']['pconnect'] = FALSE;
             \$db['default']['db_debug'] = FALSE;
-            \$db['default']['cache_on'] = TRUE;
+            \$db['default']['cache_on'] = FALSE;
             \$db['default']['cachedir'] = 'system/cache';
             \$db['default']['char_set'] = 'utf8';
             \$db['default']['dbcollat'] = 'utf8_general_ci';
