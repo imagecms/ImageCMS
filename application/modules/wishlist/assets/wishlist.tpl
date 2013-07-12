@@ -11,12 +11,12 @@
         {/foreach}
     {/if}
     <div>
-        <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+        <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
     </div>
     {form_open_multipart('/wishlist/do_upload')}
 
     <input type="hidden" value="{echo $user[id]}" name="userID"/>
-    <input type="file" name="userfile" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
+    <input type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg" />
 
     <br /><br />
 
@@ -32,7 +32,7 @@
 <form method="POST" action="/wishlist/userUpdate">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
-    <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
+    <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
     <textarea name="description">{echo $user[description]}</textarea>
     <input type="submit" class="btn"/>
     {form_csrf()}
@@ -93,6 +93,9 @@
                                 <td>
                                     {$w[comment]}
                                 </td>
+                            {if $w['access'] == 'shared'}
+                                {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$w['hash']))}
+                            {/if}
                             </tr>
                         {/foreach}
                     {else:}
