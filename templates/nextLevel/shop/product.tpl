@@ -521,10 +521,10 @@
                 <button data-href="#view">Обзор</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                <li><button data-href="#first">Характеристики</button></li>
+                <li><button data-href="#first" onclick="ProductTabs.renderProperties('{echo $model->getId()}')">Характеристики</button></li>
                 {/if}
                 {if trim($model->getShortDescription()) != ''}
-                <li><button data-href="#second">Полное описание</button></li>
+                <li><button data-href="#second" onclick="ProductTabs.renderFullDescription('{echo $model->getId()}')">Полное описание</button></li>
                 {/if}
                 {if $accessories}     
                 <li><button data-href="#fourth">Аксессуары</button></li>
@@ -595,7 +595,7 @@
                     <!--                        Start. Description block-->
                     <div class="text">
                         <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                        {echo $model->getFullDescription()}
+                            {echo $model->getShortDescription()}
                     </div>
                     {if 10 > 6}
                         <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#second']" data-scroll="true">
@@ -752,7 +752,9 @@
                         <!--                        Start. Description block-->
                         <div class="text">
                             <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            {echo $model->getFullDescription()}
+                            <div class="fullDescription">
+                               {echo $model->getFullDescription()}
+                           </div>
                         </div>
                         <!--                        End. Description block-->
                     </div>
