@@ -7,6 +7,9 @@ class Cache_html {
     
     public static function set_html($html, $file){
         
+        if (!is_dir('system/cache/templates_c/HTML/'))
+            mkdir('system/cache/templates_c/HTML/', 0777);
+        
         $file = $file . MY_Controller::getCurrentLocale();
         file_put_contents(self::$path . md5($file) . '.html', $html);
         
