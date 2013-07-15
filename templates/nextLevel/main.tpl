@@ -42,7 +42,7 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                {\Category\RenderMenu::create()->load('category_menu')}
+                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
             </div>
             <div class="content">
                 {$content}
