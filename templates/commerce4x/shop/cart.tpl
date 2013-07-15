@@ -86,7 +86,7 @@
                                                                     name="met_del"
                                                                     class="met_del"
                                                                     value="{echo $del_id}"
-                                                                    data-price="{echo ceil($deliveryMethod->getPrice())}"
+                                                                    data-price="{echo ShopCore::app()->SCurrencyHelper->convert(ceil($deliveryMethod->getPrice()))}"
                                                                     data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
                                                                 {echo $deliveryMethod->getName()}
                                                                 </option>
