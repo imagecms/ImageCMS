@@ -176,7 +176,7 @@ define('BASEPATH', str_replace("\\", "/", $system_path));
 define('FCPATH', str_replace(SELF, '', __FILE__));
 
 define('PUBPATH', FCPATH);
-define('TEMPLATES_PATH', PUBPATH . '/templates/');
+define('TEMPLATES_PATH', PUBPATH . 'templates/');
 
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
