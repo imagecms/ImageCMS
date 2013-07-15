@@ -50,8 +50,6 @@ class Banners extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->registerScript('jquery.cycle.all.min');
 
-        
-
         if ($cahe = Cache_html::get_html($hash)) {
             echo $cahe;
 
@@ -68,14 +66,12 @@ class Banners extends MY_Controller {
 
             if (count($ban) > 0) {
 
-
-
-                $tpl = $type . '_slider'; // different template for different entity.
+//                $tpl = $type . '_slider'; // different template for different entity.
                 /*
-                 * For this into directory assets create template (product_slider, brand_slider, main_slider, 
+                 * For this into directory assets create template (product_slider, brand_slider, main_slider,
                  *  page_slider, category_slider, shop_category_slider)
                  */
-                //$tpl = 'slider'; // in default
+                $tpl = 'slider'; // in default
 
                 ob_start();
                 \CMSFactory\assetManager::create()
@@ -106,7 +102,7 @@ class Banners extends MY_Controller {
 
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,          
+          `id` int(11) NOT NULL AUTO_INCREMENT,
           `active` tinyint(4) NOT NULL,
           `active_to` int(11) DEFAULT NULL,
           `where_show` text CHARACTER SET utf8,

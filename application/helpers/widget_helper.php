@@ -6,6 +6,7 @@ if (!defined('BASEPATH'))
 /**
  * ImageCMS
  * Widgets helper
+ * @property CI_DB_active_record $db
  */
 if (!function_exists('widget')) {
 
@@ -77,4 +78,26 @@ if (!function_exists('widget_ajax')) {
 
 }
 
-/* End of widget_helper.php */
+if (!function_exists('getWidgetTitle')) {
+
+    function getWidgetTitle($name) {
+        $ci = & get_instance();
+
+        $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
+
+        if ($query->num_rows() == 1) {
+            $widget = $query->row_array();
+        } else {
+            log_message('error', 'Can\'t run widget <b>' . $name . '</b>');
+        }
+
+        $widget = unserialize($widget['settings']);
+
+        return $widget['title'];
+    }
+
+}
+
+    /* End of widget_helper.php */
+
+
