@@ -210,4 +210,9 @@ class Admin extends BaseAdminController {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    public function delete_user() {
+        foreach ($_POST['ids'] as $id)
+            $this->wishlist_model->delUser($id);
+    }
+
 }

@@ -112,7 +112,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($hash, $access = array('public')) {
+    public function show($hash, $access = array('shared')) {
         if (!$hash)
             return FALSE;
 
@@ -541,17 +541,16 @@ class ParentWishlist extends \MY_Controller {
 
         $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
 
-        list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
+        list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
-        if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
+        if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
             $this->errors[] = lang('error_max_image_size_exceeded');
         if ($this->settings['maxImageWidth'] < $width)
             $this->errors[] = lang('error_max_image_width_exceeded');
         if ($this->settings['maxImageHeight'] < $height)
             $this->errors[] = lang('error_max_image_height_exceeded');
-        if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
+        if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
             $this->errors[] = lang('error_invalid_file_format');
-
         if ($this->errors)
             return FALSE;
 
