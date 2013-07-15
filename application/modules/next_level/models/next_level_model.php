@@ -20,6 +20,12 @@ class Next_level_model extends CI_Model {
 
         return $settings;
     }
+    
+     public function setSettings($settings) {
+        return $this->db->where('identif', 'next_level')
+                        ->update('components', array('settings' => serialize($settings)
+        ));
+    }
 
     public function getProperties() {
         return $this->db
@@ -29,6 +35,9 @@ class Next_level_model extends CI_Model {
                     ->result_array();
     }
     public function setPropertyType($propety_id,$type) {
+        $this->db->select('type')
+                    ->where('property_id', $propety_id)
+                    ->get('mod_next_level_product_properties_types', array('type' => $type));
          $this->db
                     ->where('property_id', $propety_id)
                     ->update('mod_next_level_product_properties_types', array('type' => $type));
@@ -39,7 +48,37 @@ class Next_level_model extends CI_Model {
          }
     }
     
-
+     public function deletePropertyType($del_type) {
+         $settings = $this->getSettings();
+         $newPropertiesTypes = $settings['propertiesTypes'];
+         foreach($newPropertiesTypes as $key => $propertyType){
+             if($propertyType==$del_type){
+                 unset($newPropertiesTypes[$key]);
+             }
+         }
+         
+         $settings['propertiesTypes'] = $newPropertiesTypes;
+         $this->setSettings($settings);
+    }
+    
+    public function editPropertyType($oldType, $newType) {
+         $settings = $this->getSettings();
+         $newPropertiesTypes = $settings['propertiesTypes'];
+         foreach($newPropertiesTypes as $key => $propertyType){
+             if($propertyType==$oldType){
+                 $newPropertiesTypes[$key] = $newType;
+             }
+         }
+         
+         $settings['propertiesTypes'] = $newPropertiesTypes;
+         $this->setSettings($settings);
+    }
+    
+    public function addType($newType){
+         $settings = $this->getSettings();
+         array_push($settings['propertiesTypes'], $newType);
+         $this->setSettings($settings);
+    }
 }
 
 ?>

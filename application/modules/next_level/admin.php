@@ -24,6 +24,7 @@ class Admin extends BaseAdminController {
     
     public function settings() {
         \CMSFactory\assetManager::create()
+                  ->registerScript('script')
                 ->setData('settings', $this->next_level_model->getSettings())
                 ->renderAdmin('settings');
     }
@@ -31,8 +32,34 @@ class Admin extends BaseAdminController {
         $type = $this->input->post('type');
         $propertyId = $this->input->post('propertyId');
         if($this->next_level_model->setPropertyType($propertyId, $type)){
-            return 'saccess'
+            return 'saccess';
         }
     }
-
+    
+    public function deletePropertyType(){
+        $type = $this->input->post('type');
+        
+        $this->next_level_model->deletePropertyType($type);
+        
+    }
+    
+    public function editPropertyType(){
+        $oldType = $this->input->post('oldType');
+        $newType = $this->input->post('newType');
+        
+        $this->next_level_model->editPropertyType($oldType, $newType);
+        
+    }
+    
+    public function addType(){
+        $newType = $this->input->post('newType');        
+        $this->next_level_model->addType($newType);
+        return $this->renderNewPropertyType($newType);
+    }
+    
+    public function renderNewPropertyType($type){
+        return \CMSFactory\assetManager::create()
+                    ->setData('type', $type)
+                    ->render('newPropertyType',true);       
+    }
 }

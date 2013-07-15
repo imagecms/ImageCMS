@@ -1,4 +1,4 @@
 <li>
-    <span title="{$title}" class="active">{$title}</span>
+    <a href="{$link}" title="{$title}" class="active">{$title}</a>
     {$wrapper}
 </li>
