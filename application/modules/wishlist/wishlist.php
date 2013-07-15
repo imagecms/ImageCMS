@@ -12,6 +12,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
+        
     }
 
     /**
