@@ -157,11 +157,13 @@ class CI_Upload {
 			return FALSE;
 		}
 
+		if ($i == 0)
+                    $file = $_FILES[$field]['tmp_name'];
+                else
+                    $file = $_FILES[$field]['tmp_name'][$i];
 		// Was the file able to be uploaded? If not, determine the reason why.
-		if ( ! is_uploaded_file($_FILES[$field]['tmp_name'][$i]))
+		if ( ! is_uploaded_file($file))
 		{
-			$error = ( ! isset($_FILES[$field]['error'][$i])) ? 4 : $_FILES[$field]['error'][$i];
-
 			switch($error)
 			{
 				case 1:	// UPLOAD_ERR_INI_SIZE
@@ -191,16 +193,26 @@ class CI_Upload {
 
 			return FALSE;
 		}
+                echo 1;
 
 
 		// Set the uploaded data as class variables
+                if ($i == 0){
+		$this->file_temp = $_FILES[$field]['tmp_name'];
+		$this->file_size = $_FILES[$field]['size'];
+		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $_FILES[$field]['type']);
+		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
+		$this->file_name = $this->_prep_filename($_FILES[$field]['name']);
+		$this->file_ext	 = $this->get_extension($this->file_name);
+                $this->client_name = $this->file_name;}
+                else{
 		$this->file_temp = $_FILES[$field]['tmp_name'][$i];
 		$this->file_size = $_FILES[$field]['size'][$i];
 		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $_FILES[$field]['type'][$i]);
 		$this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
 		$this->file_name = $this->_prep_filename($_FILES[$field]['name'][$i]);
 		$this->file_ext	 = $this->get_extension($this->file_name);
-		$this->client_name = $this->file_name;
+                $this->client_name = $this->file_name;}
 
 		// Is the file type allowed to be uploaded?
 		if ( ! $this->is_allowed_filetype())

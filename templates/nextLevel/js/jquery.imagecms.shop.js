@@ -96,21 +96,6 @@ var ie = jQuery.browser.msie,
         ieV = jQuery.browser.version,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8);
-function ieInput(els) {
-    if (els == undefined)
-        els = $(':input');
-    els.not(':hidden').not('.visited').not('.notvis').each(function() {
-        $this = $(this);
-        $this.css({
-            'width': function() {
-                return 2 * $this.width() - $this.outerWidth();
-            },
-            'height': function() {
-                return 2 * $this.height() - $this.outerHeight();
-            }
-        }).addClass('visited');
-    });
-}
 (function($) {
     var methods = {
         init: function(options) {
@@ -186,7 +171,7 @@ function ieInput(els) {
                 el = this;
             var input = input;
             if (input == undefined)
-                input = this.find("input");
+                input = $(this).find("input");
             el.addClass(activeClass).parent().addClass(activeClass);
             input.attr("checked", true);
             $(document).trigger({'type': 'nstCheck.CC', 'el': el, 'input': input});
@@ -195,9 +180,11 @@ function ieInput(els) {
             var el = el;
             if (el == undefined)
                 el = this;
+
             var input = input;
+
             if (input == undefined)
-                input = this.find("input");
+                input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
             input.attr("checked", false);
             $(document).trigger({'type': 'nstCheck.CUC', 'el': el, 'input': input});
@@ -566,7 +553,11 @@ function ieInput(els) {
                     drop: 'li > ul',
                     countColumn: 'none',
                     columnPart: false,
+                    columnPart2: false,
+                    sub3Frame: 'ul ul',
+                    sub3Item: 'li > ul > li',
                     columnClassPref: 'column_',
+                    columnClassPref2: 'column2_',
                     durationOn: 0,
                     durationOff: 0,
                     dropWidth: null,
@@ -574,6 +565,9 @@ function ieInput(els) {
                     evLF: 'hover',
                     evLS: 'hover',
                     hM: 'hoverM',
+                    menuCache: false,
+                    activeFl: activeClass,
+                    parentTl: 'li',
                     refresh: false
                 }, options);
                 var menuW = menu.width(),
@@ -584,7 +578,11 @@ function ieInput(els) {
                         effOff = settings.effectOff,
                         countColumn = settings.countColumn,
                         columnPart = settings.columnPart,
+                        columnPart2 = settings.columnPart2,
+                        sub3Frame = settings.sub3Frame,
+                        sub3Item = settings.sub3Item,
                         columnClassPref = settings.columnClassPref,
+                        columnClassPref2 = settings.columnClassPref2,
                         itemMenuL = menuItem.length,
                         dropW = settings.dropWidth,
                         sub2Frame = settings.sub2Frame,
@@ -594,7 +592,24 @@ function ieInput(els) {
                         evLF = settings.evLF,
                         evLS = settings.evLS,
                         hM = settings.frAClass,
-                        refresh = settings.refresh;
+                        refresh = settings.refresh,
+                        menuCache = settings.menuCache,
+                        activeFl = settings.activeFl,
+                        parentTl = settings.parentTl;
+
+                if (menuCache) {
+                    menu.find('a').each(function() {
+                        var $this = $(this);
+                        $this.closest(activeFl.split(' ')[0]).removeClass(activeClass);
+                        $this.removeClass(activeClass);
+                    });
+                    menu.find('a[href="' + location.href + '"]').each(function() {
+                        var $this = $(this);
+                        $this.closest(activeFl.split(' ')[0]).addClass(activeClass)
+                        $this.closest(parentTl.split(' ')[0]).prev().addClass(activeClass)
+                        $this.addClass(activeClass);
+                    })
+                }
                 if (isTouch) {
                     evLF = 'toggle';
                     evLS = 'toggle';
@@ -787,6 +802,30 @@ function ieInput(els) {
                             columnsObj.remove();
                         }
                     })
+                if (columnPart2 && !refresh)
+                    dropOJ.find(sub3Frame).each(function() {
+                        var $this = $(this),
+                                columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
+                                numbColumn = [];
+                        columnsObj.each(function(i) {
+                            numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
+                        })
+                        numbColumn = $.unique(numbColumn).sort();
+                        numbColumnL = numbColumn.length;
+                        if (numbColumnL > 1) {
+                            $.map(numbColumn, function(n, i) {
+                                var currC = columnsObj.filter('.' + n),
+                                        classCuurC = currC.first().attr('class');
+                                $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
+                                $this.find('[data-column="' + n + '"]').children().append(currC.clone());
+                                if (sub2Frame)
+                                    $this.addClass('x' + numbColumnL);
+                                else
+                                    $this.closest('[data-column]').addClass('x' + numbColumnL);
+                            })
+                            columnsObj.remove();
+                        }
+                    })
                 menuItem.find('a').click(function(e) {
                     if ($.existsN($(this).find(drop)))
                         e.stopPropagation();
@@ -896,8 +935,8 @@ function ieInput(els) {
 
                                         if (e.scroll)
                                             wnd.scrollTop($this.offset().top);
-                                        if (ltie7)
-                                            ieInput();
+
+                                        $(document).trigger({'type': 'tabs.showtabs', 'el': $thisAO})
                                     }
                                     else {
                                         setcookie('listtable', $this.parent().index(), 0, '/');
@@ -1415,8 +1454,7 @@ function ieInput(els) {
                         }
                         elSetSource[$thisEOn]($thisD, function() {
                             elSetSource.addClass(activeClass);
-                            if (ltie7)
-                                ieInput();
+                            $(document).trigger({'type': 'drop.show', el: elSetSource})
                             settings.after($this, elSetSource, isajax);
                         });
                     }

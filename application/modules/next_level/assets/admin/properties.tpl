@@ -36,14 +36,18 @@
                             {foreach $properties as $propertie}
                                 <tr>
                                     <td>
-                                        <span class="niceCheck b_n">
-                                            {$propertie.id}
-                                        </span>
+                                        {$propertie.id}
                                     </td>
                                     <td>
                                         {$propertie.name}
                                     </td>
                                     <td>
+                                        {foreach $property_types as $type}
+                                             <input type="checkbox" data-properti_Id ="{$propertie.id}" class="propertiesTypes" name="type" value="{echo $type}">{echo $type}<br>
+                                        {/foreach}
+                                       
+                                        
+                                        { /* }
                                         <select data-properti_Id ="{$propertie.id}" class="propertiesTypes">
                                             {if !$propertie.type}
                                                 <option value="">Оберите тип</option> 
@@ -60,6 +64,7 @@
                                             {/if}
                                             
                                         </select>
+                                        { */ }
                                     </td>
                                 </tr>
                             {/foreach}
