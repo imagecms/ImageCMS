@@ -10,7 +10,6 @@
                 rightSlider: $this.find('.right-slider'),
                 valuesObj: null
             }, options);
-
             var slider = settings.slider,
                     minCost = $(settings.minCost),
                     maxCost = $(settings.maxCost),
@@ -21,13 +20,10 @@
                     defMax = valuesObj.defMax,
                     curMin = valuesObj.curMin,
                     curMax = valuesObj.curMax;
-
             if (!$.existsN(minCost))
                 minCost = $('<input type="text" class="minCost" value="' + curMin + '" name="lp" />').appendTo($this.closest('form')).hide();
-
             if (!$.existsN(maxCost))
                 maxCost = $('<input type="text" class="maxCost" value="' + curMax + '" name="rp"/>').appendTo($this.closest('form')).hide();
-
             slider.slider({
                 min: defMin,
                 max: defMax,
@@ -57,7 +53,6 @@
                 var value1 = minCost.val(),
                         value2 = maxCost.val(),
                         minS = minCost.data('mins');
-
                 if (parseInt(value1) > parseInt(value2)) {
                     value1 = value2;
                     maxCost.val(value1);
@@ -72,7 +67,6 @@
                 var value1 = minCost.val(),
                         value2 = maxCost.val(),
                         maxS = maxCost.data('maxs');
-
                 if (value2 > defMax) {
                     value2 = defMax;
                     maxCost.val(defMax);
@@ -106,65 +100,54 @@
 (function($) {
     var methods = {
         init: function(options) {
-            cleaverFilterObj = {
-                mainWraper: $(this),
-                elClosed: $('.icon-times-apply'),
-                elCount: $('#apply-count'),
-                effectIn: 'fadeIn',
-                effectOff: 'fadeOut',
-                duration: '300',
-                location: 'right',
-                elPos: $('.frame-group-checks .frame-label'),
-                cleverFilterFunc: function(elPos, countTov, clas) {
+            $.extend(cleaverFilterObj, {mainWraper: $(this), cleaverFilterFunc: function(elPos, countTov, clas) {
                     cleaverFilterObj.mainWraper.hide();
-                    var left = 0;
 
+                    $(cleaverFilterObj.elCount).text(countTov);
+                    cleaverFilterObj.mainWraper.find(genObj.plurProd).html(pluralStr(countTov, plurProd));
+                    var left = 0;
                     if (cleaverFilterObj.location == 'right') {
                         left = elPos.width() + elPos.offset().left;
                     }
                     if (cleaverFilterObj.location == 'left') {
-                        left = elPos.offset().left - cleaverFilterObj.mainWraper.actual('width');
+                        left = elPos.offset().left - cleaverFilterObj.mainWraper.actual('outerWidth');
                     }
-
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
                         'top': elPos.offset().top
-                    }).removeClass().addClass('apply').addClass(clas);
-                    cleaverFilterObj.elCount.text(countTov);
-
-                    cleaverFilterObj.mainWraper.find(genObj.plurProd).html(pluralStr(countTov, plurProd));
-
-                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration);
+                    }).removeClass().addClass('apply').addClass(clas).addClass(cleaverFilterObj.addingClass);
+                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function(){
+                        $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
+                    });
                     cleaverFilterObj.mainWraper.find('a').focus();
-                }
-            };
-            (function() {
-                cleaverFilterObj.elClosed.click(function() {
-                    methods.triggerBtnClick();
-                });
-                $('body').live('click', function(event) {
-                    event.stopPropagation();
-                    if ($(event.target).parents().is(cleaverFilterObj.mainWraper) || $(event.target).is(cleaverFilterObj.mainWraper) || $(event.target).parents().is(cleaverFilterObj.elPos) || $(event.target).is(cleaverFilterObj.elPos))
-                        return;
-                    else {
-                        methods.triggerBtnClick();
-                    }
+                    
+                }}
+            );
+                    (function() {
+                        $(cleaverFilterObj.elClosed).click(function() {
+                            methods.triggerBtnClick();
+                        });
+                        $('body').live('click', function(event) {
+                            event.stopPropagation();
+                            if ($(event.target).parents().is(cleaverFilterObj.mainWraper) || $(event.target).is(cleaverFilterObj.mainWraper) || $(event.target).parents().is(cleaverFilterObj.elPos) || $(event.target).is(cleaverFilterObj.elPos))
+                                return;
+                            else {
+                                methods.triggerBtnClick();
+                            }
 
-                }).live('keydown', function(e) {
-                    var key, keyChar;
-                    if (!e)
-                        var e = window.event;
-
-                    if (e.keyCode)
-                        key = e.keyCode;
-                    else if (e.which)
-                        key = e.which;
-
-                    if (key == 27) {
-                        methods.triggerBtnClick();
-                    }
-                });
-            })();
+                        }).live('keydown', function(e) {
+                            var key, keyChar;
+                            if (!e)
+                                var e = window.event;
+                            if (e.keyCode)
+                                key = e.keyCode;
+                            else if (e.which)
+                                key = e.which;
+                            if (key == 27) {
+                                methods.triggerBtnClick();
+                            }
+                        });
+                    })();
         },
         triggerBtnClick: function() {
             cleaverFilterObj.mainWraper[cleaverFilterObj.effectOff](cleaverFilterObj.duration);
@@ -180,12 +163,10 @@
         }
     };
 })(jQuery);
-
 function afterAjaxInitializeFilter() {
     var apply = $('.apply'),
             $slider1 = $('#frame-slider1'),
             catalogForm = $('#catalog_form');
-
     //if ($.exists_nabir(frameSlider) == 0) frameSlider = $('<div class="frame-slider"></div>').append('.filter').hide();
 
     var objPrice = {
@@ -194,7 +175,6 @@ function afterAjaxInitializeFilter() {
         valuesObj: slider1
     };
     $slider1.sliderInit(objPrice);
-
     $(".frame-group-checks").nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
@@ -216,7 +196,6 @@ function afterAjaxInitializeFilter() {
         return false;
     });
     $('.tooltip').tooltip('remove');
-
     $('.clear-filter').click(function() {
         nm = $(this).data('name');
         $('#' + nm + ' input').attr('checked', false);
@@ -226,7 +205,6 @@ function afterAjaxInitializeFilter() {
     $('.clear-price').click(function() {
         var defMin = objPrice.valuesObj.defMin,
                 defMax = objPrice.valuesObj.defMax;
-
         $(objPrice.minCost).val(defMin);
         $(objPrice.maxCost).val(defMax);
         catalogForm.submit();
@@ -244,7 +222,6 @@ function ajaxRecount(el, slChk, submit) {
             data = catalogForm.serializeArray(),
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
-
     $.ajax({
         type: 'get',
         url: catUrl,
@@ -257,11 +234,9 @@ function ajaxRecount(el, slChk, submit) {
             catalogForm.find('.popup_container').html(msg);
             afterAjaxInitializeFilter();
             $.fancybox.hideActivity();
-
             if (slChk)
                 otherClass = slChk;
-
-            cleaverFilterObj.cleverFilterFunc($($this), totalProducts, otherClass);
+            cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
         }
     });
     return false;
