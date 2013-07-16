@@ -1,10 +1,10 @@
 $(document).ready(function() {
     $('.propertiesTypes').live('change', function (){
         var checked = $(this).attr('checked');
-        var url = '/next_level/admin/addPropertyType';
+        var url = '/new_level/admin/addPropertyType';
         
         if(!checked){
-            url = '/next_level/admin/removePropertyType';
+            url = '/new_level/admin/removePropertyType';
         }
         
         var value = $(this).val();
@@ -44,7 +44,7 @@ var PropertiesTypes = {
                     data: {
                         type: type
                     },
-                    url: '/next_level/admin/deletePropertyType',
+                    url: '/new_level/admin/deletePropertyType',
                     success: function(data) {
                         curElement.closest('tr').remove();
                         showMessage('Сообщение', 'Тип свойства успешно удален');
@@ -59,7 +59,7 @@ var PropertiesTypes = {
                     oldType: oldType,
                     newType: newType
                 },
-                url: '/next_level/admin/editPropertyType',
+                url: '/new_level/admin/editPropertyType',
                 success: function(data) {
                     curElement.parent('div').text(newType);
                     showMessage('Сообщение', 'Тип свойства успешно обновлен');
@@ -73,7 +73,7 @@ var PropertiesTypes = {
                 data: {
                     newType: newType
                 },
-                url: '/next_level/admin/addType',
+                url: '/new_level/admin/addType',
                 success: function(data) {
                     curElement.parent('div').find('.typeAdd').val('');
                     $('.addTypeContainer').css('display','none');
