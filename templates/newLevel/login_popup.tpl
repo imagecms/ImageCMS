@@ -1,8 +1,8 @@
-{#
+{
 /**
 * @file template file for creating drop-down login form uses imagecms.api.js for submiting and appending validation errors
 */
-#}
+}
 <div class="drop-enter drop drop-style" id="enter">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
@@ -13,8 +13,8 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
-                  <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', '#login_form');
-                      return false;">
+                <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', '#login_form');
+                        return false;">
                     <label>
                         <span class="title">{lang('lang_email')}</span>
                         <span class="frame-form-field">
@@ -57,6 +57,9 @@
                             <a href="/auth/register">Перейти к регистрации</a>
                         </div>
                     </div>
+                    <input type="hidden" name="refresh" value="true"/>
+                    <input type="hidden" name="redirect" value="false"/>
+                    {form_csrf()}
                 </form>
             </div>
         </div>

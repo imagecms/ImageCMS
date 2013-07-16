@@ -22,7 +22,7 @@
                     {$hasVariant = $p->firstVariant->getName() == '';}  
                 <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">{if !$hasVariant}{trim($p->firstVariant->getName())}{/if}</span></span>
             </span>
-            {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+            {if $Comments[$p->getId()] && $p->enable_comments}
                 <div class="frame-star f-s_0">
                     {$CI->load->module('star_rating')->show_star_rating($p)}
                     <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
@@ -109,8 +109,8 @@
                                 </div>
                                 <div class="btn-buy">
                                     <button
-                                        {if $pv->getOldPrice() > $p->firstVariant->getPrice()}
-                                            {$discount = round(100 - ($v->firstVariant->getPrice() / $pv->getOldPrice() * 100))}
+                                        {if $p->getOldPrice() > $pv->getPrice()}
+                                            {$discount = round(100 - ($pv->getPrice() / $p->getOldPrice() * 100))}
                                         {else:}
                                             {$discount = 0}
                                         {/if}
