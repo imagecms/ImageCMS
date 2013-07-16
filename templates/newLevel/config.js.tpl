@@ -4,7 +4,7 @@
             currNext = '{$NextCs}',
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
-            inCart = '{lang('already_in_basket')}',
+            inCart = 'В корзине',
             toCart = '{lang('s_buy')}',
             pcs = 'Количество:',
             kits = 'Комплектов:',

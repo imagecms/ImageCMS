@@ -10,11 +10,11 @@ class New_level extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('new_level_model');
     }
 
     public function index() {
-        $properties = $this->select('id, name')->get('shop_product_properties_i18')->result_array();
-        var_dumps($properties);
+        
     }
 
     public function autoload() {
@@ -25,6 +25,10 @@ class New_level extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->setData('product', $model)
                 ->render('one_product_item', TRUE);
+    }
+    
+    public function getPropertyTypes($property_id){
+        return $this->new_level_model->getPropertyTypes($property_id);
     }
 
     public function _install() {
@@ -56,10 +60,10 @@ class New_level extends MY_Controller {
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_next_level_product_properties_types');
+        $this->dbforge->create_table('mod_new_level_product_properties_types');
 
         $this->db
-                ->where('identif', 'next_level')
+                ->where('identif', 'new_level')
                 ->update('components', array(
                     'settings' => serialize(
                             array(
@@ -71,13 +75,13 @@ class New_level extends MY_Controller {
         ));
 
 
-        $this->db->where('name', 'next_level')
+        $this->db->where('name', 'new_level')
                 ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     public function _deinstall() {
         $this->load->dbforge();
-        $this->dbforge->drop_table('mod_next_level_product_properties_types');
+        $this->dbforge->drop_table('mod_new_level_product_properties_types');
     }
 
 }

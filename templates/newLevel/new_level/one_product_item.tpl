@@ -184,8 +184,25 @@
                     {/foreach}
                     <div class="p_r frame-without-top">
                         <div class="frame-wish-compare-list no-vis-table">
+                            <!--                     Add to compare, if $CI->uri->segment(2) != "compare"-->
+                            {if $CI->uri->segment(2) != "compare"}
+                                <!-- compare buttons ----------------------->
+                                <div class="btn-compare">
+                                    <button class="toCompare"
+                                            data-prodid="{echo $p->getId()}"
+                                            type="button"
+                                            data-title="{lang('s_add_to_compare')}"
+                                            data-firtitle="{lang('s_add_to_compare')}"
+                                            data-sectitle="{lang('s_in_compare')}"
+                                            data-rel="tooltip">
+                                        <span class="icon_compare"></span>
+                                        <span class="text-el d_l">{lang('s_add_to_compare')}</span>
+                                    </button>
+                                </div>
+                                <!-- end of compare buttons ---------------->
+                            {/if}
                             <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
-                            {if $CI->uri->segment(2) == "compare"}
+                            {if $CI->uri->segment(2) != "wish_list"}
                                 <!-- Wish List buttons --------------------->
                                 {foreach $variants as $key => $pv}
                                     <!-- to wish list button -->
@@ -205,23 +222,6 @@
                                     </div>
                                 {/foreach}
                                 <!-- end of Wish List buttons -------------->
-                            {/if}
-                            <!--                     Add to compare, if $CI->uri->segment(2) != "compare"-->
-                            {if $CI->uri->segment(2) != "compare"}
-                                <!-- compare buttons ----------------------->
-                                <div class="btn-compare">
-                                    <button class="toCompare"
-                                            data-prodid="{echo $p->getId()}"
-                                            type="button"
-                                            data-title="{lang('s_add_to_compare')}"
-                                            data-firtitle="{lang('s_add_to_compare')}"
-                                            data-sectitle="{lang('s_in_compare')}"
-                                            data-rel="tooltip">
-                                        <span class="icon_compare"></span>
-                                        <span class="text-el d_l">{lang('s_add_to_compare')}</span>
-                                    </button>
-                                </div>
-                                <!-- end of compare buttons ---------------->
                             {/if}
                         </div>
                     </div>

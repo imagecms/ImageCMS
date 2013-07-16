@@ -9,9 +9,7 @@
             <ul class="tabs tabs-data">
                 <li><button data-href="#my_data" data-source="{shop_url('profile/profile_data')}">Основные данные</button></li>
                 <li><button data-href="#change_pass" data-source="{shop_url('profile/profile_change_pass')}">Смена пароля</button></li>
-                    {if count($orders) > 0}
-                    <li><button data-href="#history_order" data-source="{shop_url('profile/profile_history')}">История заказов</button></li>
-                    {/if}
+                <li><button data-href="#history_order" data-source="{shop_url('profile/profile_history')}">История заказов</button></li>
             </ul>
             <div class="frame-tabs-ref frame-tabs-profile">
                 <div id="my_data">
