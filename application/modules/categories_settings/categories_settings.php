@@ -91,16 +91,26 @@ class Categories_settings extends \MY_Controller {
         $this->load->dbforge();
 
         $fields = array(
-            'category_id' => array('type' => 'INT', 'constraint' => 11),
+            'category_id' => array('type' => 'VARCHAR', 'constraint' => 500),
             'column' => array('type' => 'INT', 'constraint' => 4, 'default' => 0)
         );
 
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_categories_additional_settings', TRUE);
+        
+        
 
         /** Update module settings * */
         $this->db->where('name', 'categories_settings')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+                ->update('components', array(
+                    'settings' => serialize(
+                            array(
+                                'columns' => array('1', '2', '3', '4')
+                            )
+                    ),
+                    'autoload' => '1',
+                    'enabled' => '1')
+                );
     }
     
     /**
@@ -109,14 +119,10 @@ class Categories_settings extends \MY_Controller {
     public function _deinstall() {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_categories_additional_settings');
+           
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_categories_additional_settings_columns');
     }
-
-    
-    
-    
-    
-    
-    
     
     
     /** To database */
