@@ -9,10 +9,10 @@
                             <a href="{echo $banner['url']}">
                         {/if}
                             <img src="{echo $banner['photo']}" alt="banner"/>
-                        {if trim($banner['url'])}    
+                        {if trim($banner['url'])}
                             </a>
                         {/if}
-                        
+
                     </li>
                     {/foreach}
                 </ul>
