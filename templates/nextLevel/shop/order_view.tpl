@@ -27,7 +27,7 @@
             </div>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
-                Shop.Cart.clear();
+                    Shop.Cart.clear();
                 }){/literal}
             </script>
         {else:}
@@ -133,20 +133,20 @@
                     <td>{echo $model->getUserFullName()}</td>
                 </tr>
                 {if $model->getUserPhone()}
-                <tr>
-                    <th>Телефон:</th>
-                    <td>{echo $model->getUserPhone()}</td>
-                </tr>
+                    <tr>
+                        <th>Телефон:</th>
+                        <td>{echo $model->getUserPhone()}</td>
+                    </tr>
                 {/if}
                 <tr>
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
                 </tr>
                 {if $model->getUserEmail()}
-                <tr>
-                    <th>Город:</th>
-                    <td>{echo $model->getUserEmail()}</td>
-                </tr>
+                    <tr>
+                        <th>Город:</th>
+                        <td>{echo $model->getUserEmail()}</td>
+                    </tr>
                 {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
@@ -160,6 +160,8 @@
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
+                
+                {$fields = ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('order',$profile.id,'user')}
                 <!--                End. User info block-->
             </table>
         </div>
@@ -173,13 +175,19 @@
                                 <tbody>
                                     <!-- for single product -->
                                     {foreach $model->getSOrderProductss() as $orderProduct}
+                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                            {if $v->getid() == $orderProduct->variant_id}
+                                                {$Variant = $v}
+                                                {break;}
+                                            {/if}
+                                        {/foreach}
                                         <tr class="items items-bask items-order cartProduct">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
                                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
-                                                        <img alt="{echo ShopCore::encode($orderProduct->product_name)}" src="{echo $orderProduct->getSProducts()->firstVariant->getSmallPhoto()}">
+                                                        <img alt="{echo ShopCore::encode($orderProduct->product_name)}" src="{echo $Variant->getSmallPhoto()}">
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($orderProduct->product_name)}</span>
                                                 </a>
