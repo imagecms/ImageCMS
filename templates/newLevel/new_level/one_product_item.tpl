@@ -1,7 +1,4 @@
-{if !$promos && $products}
-    {$promos = $products}
-{/if}
-{foreach $promos as $p}
+{foreach $products as $p}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li>
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
@@ -41,13 +38,15 @@
                     </span>
                 </span>
             {/if}
-            {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
-                <div class="frame-star f-s_0">
-                    {$CI->load->module('star_rating')->show_star_rating($p)}
-                    <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                        {$Comments[$p->getId()]}
-                    </a>
-                </div>
+            {if !$vertical}
+                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                    <div class="frame-star f-s_0">
+                        {$CI->load->module('star_rating')->show_star_rating($p)}
+                        <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
+                            {$Comments[$p->getId()]}
+                        </a>
+                    </div>
+                {/if}
             {/if}
             <div class="frame-prices f-s_0">
                 <!-- Check for discount-->
@@ -235,7 +234,7 @@
             {if !$widget && !$compare}
                 <div class="p_r frame-without-top">
                     <div class="no-vis-table">
-                        <!--                    Start. Description-->
+                        <!--Start. Description-->
                         {if trim($p->getShortDescription()) != ''}
                             <div class="short-desc">
                                 {echo strip_tags($p->getShortDescription())}

@@ -23,7 +23,7 @@ class New_level extends MY_Controller {
 
     public function OPI($model, $data = array()) {
         \CMSFactory\assetManager::create()
-                ->setData('product', $model)
+                ->setData('products', $model)
                 ->setData($data)
                 ->render('one_product_item', TRUE);
     }
