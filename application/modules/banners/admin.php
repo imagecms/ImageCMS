@@ -37,9 +37,23 @@ class Admin extends BaseAdminController {
         /** Show Banners list */
         \CMSFactory\assetManager::create()
                 ->registerScript('main')
-                ->setData(array('banners' => $banners, 'locale' => $locale))
+                ->setData(array('banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()))
                 ->renderAdmin('list');
     }
+    
+     /**
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function settings(){
+        $st = (int)$_POST['status'];
+        
+        $arr = serialize(array ('show_tpl' => $st));
+        $sql = $this->db->query("update  components set settings = '$arr' where name = 'banners'");
+        
+    }
+
 
     /**
      * Switch Banners activity status

@@ -220,7 +220,7 @@ a:focus, a:active {color: #287fc3;outline: 1px solid #75d9ff;}
 
 .items-news a{text-decoration: none;border-bottom: 1px dotted #d7d1ca;}
 .items-news > li .title{font-size: 18px;font-weight: normal;line-height: 1;}
-.items-news .description{color: #666;}
+.items-news .description{color: #666;margin-bottom: 10px;}
 
 .frame-category-brand .inside-padd{border: 1px solid #e7e2dd;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 
@@ -666,7 +666,6 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 }
 .btn-to-up > button > .text-el{text-transform: uppercase;color: #0c9acb;font-size: 12px;}
 
-.btn-toggle-toolbar:hover .text-el{color: #51d2fe;}
 .items-user-toolbar .btn-toggle-toolbar button{padding: 0;width: 140px;}
 /*/buttons*/
 
@@ -686,7 +685,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .vertical-carousel .group-button-carousel .prev > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 .vertical-carousel .group-button-carousel .next > [class*="icon_arrow"]{left: 1px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 .group-button-carousel .arrow:not([disabled="disabled"]):hover path{fill: #0eb3eb;}
-.icon_cleaner_buy{top: 0;margin: 20px 8px 0 16px;color:#fff;}
+.icon_cleaner_buy{top: 1px;margin: 20px 8px 0 16px;color:#fff;}
 .btn-buy-p .icon_cleaner_buy{top: 4px;margin: 10px 8px 0 10px;}
 .icon_time{color: #373737;margin: 24px 4px 0 22px;}
 [class*="isFirefox"] .icon_time{margin-top: 23px;}

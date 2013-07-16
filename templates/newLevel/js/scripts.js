@@ -117,8 +117,8 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'left',//if vertical has be left
-    addingClass: 'left',//if vertical has be left
+    location: 'right',//if vertical has be left
+    //addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
 }
 icons = {

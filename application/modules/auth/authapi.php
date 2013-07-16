@@ -46,7 +46,8 @@ class Authapi extends MY_Controller {
                     ShopCore::app()->SCart->transferCartData();
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
-                $jsonResponse['refresh'] = TRUE;
+                $jsonResponse['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
+                $jsonResponse['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
             } else {
 
                 /** Check if the user is failed logged in because user is banned user or not */
@@ -96,7 +97,8 @@ class Authapi extends MY_Controller {
             /** Preprate response */
             $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
             $jsonResponse['status'] = TRUE;
-            $jsonResponse['refresh'] = TRUE;
+            $jsonResponse['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
+            $jsonResponse['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';
@@ -143,7 +145,8 @@ class Authapi extends MY_Controller {
                 $json = array();
                 $json['status'] = true;
                 $json['msg'] = 'Register success';
-                $json['refresh'] = true;
+                $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
+                $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -293,7 +296,7 @@ class Authapi extends MY_Controller {
         /** return JSON Data */
         return json_encode($jsonResponse);
     }
-    
+
     function email_check($email) {
 
         $result = $this->dx_auth->is_email_available($email);

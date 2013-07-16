@@ -52,7 +52,6 @@ class Banners extends MY_Controller {
 
         if ($cahe = Cache_html::get_html($hash)) {
             echo $cahe;
-
         } else {
 
             $banners = $this->banner_model->get_all_banner($lang);
@@ -66,12 +65,10 @@ class Banners extends MY_Controller {
 
             if (count($ban) > 0) {
 
-//                $tpl = $type . '_slider'; // different template for different entity.
-                /*
-                 * For this into directory assets create template (product_slider, brand_slider, main_slider,
-                 *  page_slider, category_slider, shop_category_slider)
-                 */
-                $tpl = 'slider'; // in default
+                $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
+
+
+
 
                 ob_start();
                 \CMSFactory\assetManager::create()
