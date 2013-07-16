@@ -205,10 +205,15 @@ class Authapi extends MY_Controller {
                 'status' => true,
             ));
         } else {
+            if($this->dx_auth->_auth_error){
+                $error = $this->dx_auth->_auth_error;
+            }else{
+                 $error = form_error('email');
+            }
             echo json_encode(array(
                 'msg' => validation_errors(),
                 'validations' => array(
-                    'email' => form_error('email'),
+                    'email' => $error,
                 ),
                 'status' => false,
             ));
