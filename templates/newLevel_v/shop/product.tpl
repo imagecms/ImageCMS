@@ -105,8 +105,8 @@
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
                                         {if $productVariant->getStock() > 0}
-                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
+                                            {if $model->getOldPrice() > $productVariant->getPrice()}
+                                                {$discount = round(100 - ($productVariant->getPrice() / $model->getOldPrice() * 100))}
                                             {else:}
                                                 {$discount = 0}
                                             {/if}

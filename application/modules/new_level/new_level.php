@@ -6,7 +6,7 @@
  * Image CMS
  * Module Frame
  */
-class Next_level extends MY_Controller {
+class New_level extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -18,13 +18,19 @@ class Next_level extends MY_Controller {
     }
 
     public function autoload() {
-        
+
+    }
+
+    public function OPI($model) {
+        \CMSFactory\assetManager::create()
+                ->setData('product', $model)
+                ->render('one_product_item', TRUE);
     }
 
     public function _install() {
-        
+
         $this->load->dbforge();
-        
+
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -35,7 +41,7 @@ class Next_level extends MY_Controller {
                 'constraint' => '11',
                 'null' => FALSE
             ),
-             'name' => array(
+            'name' => array(
                 'type' => 'INT',
                 'constraint' => '11',
                 'null' => FALSE
@@ -44,35 +50,34 @@ class Next_level extends MY_Controller {
                 'type' => 'VARCHAR',
                 'constraint' => '500',
                 'null' => FALSE
-            )            
+            )
         );
 
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_next_level_product_properties_types');
-        
+
         $this->db
                 ->where('identif', 'next_level')
                 ->update('components', array(
                     'settings' => serialize(
                             array(
-                                'propertiesTypes' => array('scroll','full','dropDown')
+                                'propertiesTypes' => array('scroll', 'full', 'dropDown')
                             )
                     ),
                     'enabled' => 1,
                     'autoload' => 1
         ));
 
-        
-          $this->db->where('name', 'next_level')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
-         
+
+        $this->db->where('name', 'next_level')
+                ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     public function _deinstall() {
-          $this->load->dbforge();
-          $this->dbforge->drop_table('mod_next_level_product_properties_types');
+        $this->load->dbforge();
+        $this->dbforge->drop_table('mod_next_level_product_properties_types');
     }
 
 }
