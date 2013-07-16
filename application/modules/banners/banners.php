@@ -50,11 +50,8 @@ class Banners extends MY_Controller {
         \CMSFactory\assetManager::create()
                 ->registerScript('jquery.cycle.all.min');
 
-        
-
         if ($cahe = Cache_html::get_html($hash)) {
             echo $cahe;
-
         } else {
 
             $banners = $this->banner_model->get_all_banner($lang);
@@ -68,9 +65,9 @@ class Banners extends MY_Controller {
 
             if (count($ban) > 0) {
 
+                $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
 
-                $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider'; 
-                
+
 
 
                 ob_start();
@@ -102,7 +99,7 @@ class Banners extends MY_Controller {
 
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
-          `id` int(11) NOT NULL AUTO_INCREMENT,          
+          `id` int(11) NOT NULL AUTO_INCREMENT,
           `active` tinyint(4) NOT NULL,
           `active_to` int(11) DEFAULT NULL,
           `where_show` text CHARACTER SET utf8,
