@@ -145,7 +145,7 @@
                 {if $model->getUserEmail()}
                     <tr>
                         <th>Город:</th>
-                        <td>{echo $model->getUserEmail()}</td>
+                        <td>{$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}</td>
                     </tr>
                 {/if}
                 {if $model->getUserDeliverTo()}

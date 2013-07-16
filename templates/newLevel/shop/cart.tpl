@@ -91,9 +91,8 @@
                                         <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
                                     </label>
                                 </div>
-                                        {$fields = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByName('country','order',$profile.id,'user')}
-                                        {//$fields = ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('order',$profile.id,'user')}
-                                        {var_dump($fields)}
+                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
+                                <inp
                                 <div class="groups-form">
                                     <div class="frame-label">
                                         <span class="title">{lang('s_dostavka')}</span>
