@@ -967,15 +967,11 @@ jQuery(document).ready(function() {
 
                 var fancyboxFrameC = fancyFrame.contents()
 //                    forThumbFancybox in config.js.tpl
-$(document).bind('pasteIframeImage', function(e){
-    console.log(e.el)
-})
+     
                 fancyFrame.load(function() {
-                    $(this).find('body').live('load', function(){
-                        alert(1)
-                    })
-                    $(this).append('<style>' + forThumbFancybox + '</style>');
-                    $(this).find('img').before('<span class="helper"></span>');
+                    var $this = $(this.contentWindow.document.getElementsByTagName('body')[0]);
+                    $this.append('<style>' + forThumbFancybox + '</style>');
+                    $this.find('img').before('<span class="helper"></span>');
                     $('.wOverlay').fadeOut(200);
                 })
                 $("#fancybox-wrap").unbind('mousewheel.fb');
@@ -1007,6 +1003,13 @@ $(document).bind('pasteIframeImage', function(e){
     $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
         drawIcons(e.el.find(selIcons))
     })
+    $(document).bind('autocomplete.before drop.click showActivity', function(e) {
+        $.fancybox.showActivity();
+    })
+    $(document).bind('autocomplete.after drop.show', function(e) {
+        $.fancybox.hideActivity();
+    })
+    
     $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {
         if (ltie7)
             ieInput();

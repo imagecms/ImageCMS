@@ -68,7 +68,7 @@
                                                     <li class="compare_product_{echo $p->getId()}">
                                                         <!--                                                Start. Include product template-->
                                                         <ul class="items items-catalog">
-                                                            {include_tpl('one_product_item')}
+                                                            {$CI->load->module('new_level')->OPI($products, array('compare'=>true))}
                                                         </ul>
                                                         <!--                                                End. Include product template-->
                                                         <!--Start. Product characteristics -->

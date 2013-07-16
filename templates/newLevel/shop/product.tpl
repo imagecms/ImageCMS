@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-{var_dumps($CI->load->module('next_level')->getPropertyTypes(26))}
+{/*var_dumps($CI->load->module('next_level')->getPropertyTypes(26))*/}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
