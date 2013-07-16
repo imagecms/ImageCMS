@@ -10,6 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
+{var_dumps($CI->load->module('next_level')->getPropertyTypes(26))}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -92,8 +93,8 @@
                                             {if $NextCSId != null}
                                                 <span class="price-add">
                                                     <span>
-                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',1)}</span>
-                                                        <span class="curr-add">{$NextCs}</span>)
+                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',2)}</span>
+                                                        <span class="curr-add">{$NextCS}</span>)
                                                     </span>
                                                 </span>
                                             {/if}
@@ -373,7 +374,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice('Price',1)}</span>
-                                                                            <span class="curr-add">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -429,7 +430,7 @@
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency()}</span>
-                                                                                <span class="curr-add">{$NextCs}</span>)
+                                                                                <span class="curr-add">{$NextCS}</span>)
                                                                             </span>
                                                                         </span>
                                                                     {/if}
@@ -467,7 +468,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 (<span class="price">{echo $kitProducts->getTotalPrice()}</span>
-                                                                <span class="curr-add">{$NextCs}</span>)
+                                                                <span class="curr-add">{$NextCS}</span>)
                                                             </span>
                                                         </span>
                                                     {/if}
@@ -672,7 +673,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                            <span class="curr-add">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -815,8 +816,8 @@
                                                             {if $NextCSId != null}
                                                                 <span class="price-add">
                                                                     <span>
-                                                                        (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                        <span class="curr-add">{$NextCs}</span>)
+                                                                       (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
+                                                                        <span class="curr-add">{$NextCS}</span>)
                                                                     </span>
                                                                 </span>
                                                             {/if}
