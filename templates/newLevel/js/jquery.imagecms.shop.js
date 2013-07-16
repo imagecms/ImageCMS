@@ -2375,14 +2375,14 @@ var ImageCMSApi = {
             console.log(msg);
         }
     },
-    formAction: function(url, selector, obj) {
+    formAction: function(url, selector, obj, el) {
         //collect data from form
         var DS = this.defSet();
         $.extend(DS, obj)
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
-        else
-            var dataSend = '';
+        else if (el)
+            var dataSend = 'refresh=' + el.data('refresh') + '&redirect=' + el.data('redirect');
         //send api request to api controller
         $.ajax({
             type: "post",
@@ -2412,12 +2412,12 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == true)
+                    if (obj.refresh == 'true' && obj.redirect == 'false')
                         location.reload();
-                    if (obj.redirect !== null && typeof obj.redirect !== 'undefined' && obj.redirect !== false)
+                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
                         location.href = obj.redirect;
 
-                    if (obj.refresh != true && obj.redirect !== 'undefined') {
+                    if (obj.refresh == 'false' && obj.redirect == 'false') {
                         var k = true;
                         if (typeof DS.callback == 'function')
                             k = DS.callback(obj.msg, obj.status, form, DS);

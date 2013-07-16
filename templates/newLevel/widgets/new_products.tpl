@@ -27,7 +27,14 @@
                                     <span class="title">{echo ShopCore::encode($p->getName())}</span>
                                 </a>
                                 <div class="description">
-                                    <div class="frame-star">{$CI->load->module('star_rating')->show_star_rating($p)}</div>
+                                    {if $Comments[$p->getId()] && $p->enable_comments}
+                                        <div class="frame-star f-s_0">
+                                            {$CI->load->module('star_rating')->show_star_rating($p)}
+                                            <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
+                                                {$Comments[$p->getId()]}
+                                            </a>
+                                        </div>
+                                    {/if}
                                     <div class="frame-prices f-s_0">
                                         <!-- Check for discount-->
                                         {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}

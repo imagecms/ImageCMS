@@ -22,7 +22,7 @@ var optionsMenu = {
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
+    sub2Frame: '.frame-l2', //if drop-side
     //dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',

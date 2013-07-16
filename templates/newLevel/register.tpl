@@ -1,4 +1,3 @@
-
 <div class="frame-inside page-register">
     <div class="container">
         <div class="f-s_0 title-register without-crumbs">
@@ -70,6 +69,8 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="refresh" value="false"/>
+                <input type="hidden" name="redirect" value="{shop_url('profile')}"/>
                 {form_csrf()}
             </form>
         </div>
