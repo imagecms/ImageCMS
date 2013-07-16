@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
     totalProducts = parseInt('{$totalProducts}');
     slider1 = new Object();

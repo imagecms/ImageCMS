@@ -376,7 +376,8 @@ footer [class^="box"] > .main-title{color: #9c9c9c;}
 .text th, .text td{border: 1px solid #000;}
 hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 
-.frame-news{background: url("images/fon_seo_text.png") no-repeat 50% 0;}
+.frame-seo-text + .frame-news{background: url("images/fon_seo_text.png") no-repeat 50% 0;}
+.seo-text{margin-bottom: 30px;}
 .seo-text *{color: #999;}
 .seo-text h1{color: #1c1c1c;}
 
@@ -994,7 +995,7 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 .next-kit, .gen-sum-kit, .countOrCompl, .frame-cur-sum-price .title, .s-t, .count, .code{color: #999;}
 .text-discount{color: #ff7e00;}
 
-.frame-crumbs{overflow: hidden;}
+.frame-crumbs{overflow: hidden;padding-bottom: 2px;}
 .crumbs{background-color: #fefefe;}
 .crumbs:after{content: "";position: absolute;width: 110%;top: 100%;left: -5%;height: 2px;margin-top: -2px;-moz-box-shadow: 0 1px 1px #e2ddd7;-webkit-box-shadow: 0 1px 1px #e2ddd7;box-shadow: 0 1px 1px #e2ddd7;}
 
