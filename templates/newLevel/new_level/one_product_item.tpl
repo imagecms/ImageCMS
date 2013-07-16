@@ -102,7 +102,7 @@
 
             <!--            End. Price-->
             <div class="funcs-buttons">
-                {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search" || $CI->uri->segment(2) == "compare" || $CI->uri->segment(2) == "wish_list"}
+                {if $CI->core->core_data == "shop_category" || $CI->core->core_data == "brand" || $CI->core->core_data == "search" || $CI->core->core_data == "compare" || $CI->core->core_data == "wish_list"}
                     <!-- Start. Collect information about Variants, for future processing -->
                     {foreach $variants as $key => $pv}
                         {if $pv->getStock() > 0}
@@ -227,7 +227,7 @@
                     </div>
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
-                {if $CI->uri->segment(2) == "category" || $CI->uri->segment(2) == "brand" || $CI->uri->segment(2) == "search"}
+                {if $CI->core->core_data == "shop_category" || $CI->core->core_data == "brand" || $CI->core->core_data == "search"}
                     <div class="p_r frame-without-top">
                         <div class="no-vis-table">
                             <!--                    Start. Description-->
