@@ -4,7 +4,6 @@
         <ul class="items items-crumbs">
             <li class="btn-crumb">
                 <a href="{site_url()}" typeof="v:Breadcrumb">
-                    <span class="icon_home"></span>
                     <span class="text-el">{lang('s_home')}<span class="divider">→</span></span>
                 </a>
             </li>

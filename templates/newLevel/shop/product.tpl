@@ -595,7 +595,7 @@
                     <!--                        Start. Description block-->
                     <div class="text">
                         <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            {echo $model->getShortDescription()}
+                        {echo $model->getShortDescription()}
                     </div>
                     {if 10 > 6}
                         <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#second']" data-scroll="true">
@@ -611,8 +611,8 @@
                     <div class="frame-form-comment">
                         <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
                         {literal}<script type="text/javascript">$(document).ready(function() {
-                            renderPosts($('#for_comments_view'), {countComment: 4});
-                        })</script>{/literal}
+                        renderPosts($('#for_comments_view'), {countComment: 4});
+                    })</script>{/literal}
                         </div>
 
                         <!--End. Comments block-->
@@ -753,8 +753,8 @@
                         <div class="text">
                             <h3>{echo  ShopCore::encode($model->getName())}</h3>
                             <div class="fullDescription">
-                               {echo $model->getFullDescription()}
-                           </div>
+                                {echo $model->getFullDescription()}
+                            </div>
                         </div>
                         <!--                        End. Description block-->
                     </div>
@@ -815,7 +815,7 @@
                                                             {if $NextCSId != null}
                                                                 <span class="price-add">
                                                                     <span>
-                                                                       (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
+                                                                        (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
                                                                         <span class="curr-add">{$NextCS}</span>)
                                                                     </span>
                                                                 </span>
@@ -856,5 +856,8 @@
             </div>
             <!-- End. Tabs block       -->
         </div>
+    </div>
+    <div class="horizontal-carousel">
+        {widget('similar')}
     </div>
     {widget('latest_news')}

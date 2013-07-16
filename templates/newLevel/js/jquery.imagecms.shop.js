@@ -119,6 +119,9 @@ var ie = jQuery.browser.msie,
                         after = settings.after;
                 wrapper.find(elCheckWrap).children('input').mousedown(function(e) {
                     $(this).closest(wrapper).click();
+                }).keyup(function(e) {
+                    if (e.keyCode == 32)
+                        $(this).closest(wrapper).click();
                 })
                 $.map(frameChecks, function(i, n) {
                     var frameChecks = $(i.replace(' ', ''));
@@ -2497,74 +2500,74 @@ var ProductTabs = {
      * @param string type - type properties to show
      * @returns {undefined}
      */
-  renderProperties: function (product_id, limit, type){
-      if(!limit){
-          limit = false;
-      }
-      
-      if(!type){
-          type = false;
-      }
-      
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id,
-            limit: limit,
-            type: type
-        },
-        url: '/shop/product_api/renderProperties',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                $('.inside-padd .characteristic').html(data.data);
-            }
+    renderProperties: function(product_id, limit, type) {
+        if (!limit) {
+            limit = false;
         }
-    });
-  },
-  /**
-   * render description
-   * @param int product_id
-   * @returns {undefined}
-   */
-  renderFullDescription: function (product_id){
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id
-        },
-        url: '/shop/product_api/renderFullDescription',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                $('.inside-padd .fullDescription').html(data.data);
-            }
+
+        if (!type) {
+            type = false;
         }
-    });
-  },
-  /**
-   * get product accessories
-   * @param int product_id
-   * @returns {undefined}
-   */
-  getAccessories: function (product_id, limit){
-       if(!limit){
-          limit = false;
-      }
-      
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id,
-            limit: limit
-        },
-        url: '/shop/product_api/getAccessories',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                return data.data;
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                limit: limit,
+                type: type
+            },
+            url: '/shop/product_api/renderProperties',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    $('.inside-padd .characteristic').html(data.data);
+                }
             }
+        });
+    },
+    /**
+     * render description
+     * @param int product_id
+     * @returns {undefined}
+     */
+    renderFullDescription: function(product_id) {
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id
+            },
+            url: '/shop/product_api/renderFullDescription',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    $('.inside-padd .fullDescription').html(data.data);
+                }
+            }
+        });
+    },
+    /**
+     * get product accessories
+     * @param int product_id
+     * @returns {undefined}
+     */
+    getAccessories: function(product_id, limit) {
+        if (!limit) {
+            limit = false;
         }
-    });
-  }
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                limit: limit
+            },
+            url: '/shop/product_api/getAccessories',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    return data.data;
+                }
+            }
+        });
+    }
 };
