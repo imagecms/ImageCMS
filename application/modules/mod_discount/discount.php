@@ -190,7 +190,7 @@ class discount extends classes\BaseDiscount {
         foreach ($this->cart_data as $item) {
             if ($item['instance'] == 'SProducts') {
                 $price_origin = $this->discount_model_front->get_price($item['variantId']);
-                if ($price_origin != $item['price'])
+                if (abs($price_origin - $item['price']) > 1)
                     $discount_value += ($price_origin - $item['price']) * $item['quantity'];
             }
         }

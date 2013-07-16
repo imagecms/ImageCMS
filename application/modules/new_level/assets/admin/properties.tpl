@@ -13,6 +13,12 @@
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
                 </div>
+                <div class="d-i_b">
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/init_window/new_level/settings">
+                        <i class="icon-wrench"></i>
+                        Настройки                
+                    </a>
+                </div>
             </div>
         </div>
         <div class="content_big_td row-fluid">
@@ -22,12 +28,12 @@
                         <thead>
                             <tr>
                                 <th class="span1">
-                                   Id
+                                    Id
                                 </th>
-                                <th class="span1">
+                                <th class="span5">
                                     Name
                                 </th>
-                                <th class="span1">
+                                <th class="span5">
                                     Type
                                 </th>                               
                             </tr>
@@ -42,29 +48,14 @@
                                         {$propertie.name}
                                     </td>
                                     <td>
-                                        {foreach $property_types as $type}
-                                             <input type="checkbox" data-properti_Id ="{$propertie.id}" class="propertiesTypes" name="type" value="{echo $type}">{echo $type}<br>
-                                        {/foreach}
-                                       
-                                        
-                                        { /* }
-                                        <select data-properti_Id ="{$propertie.id}" class="propertiesTypes">
-                                            {if !$propertie.type}
-                                                <option value="">Оберите тип</option> 
-                                                {foreach $property_types as $type}
-                                                    <option value="{echo $type}">{echo $type}</option> 
-                                                {/foreach}
-                                            {else:}
-                                                 <option value="{echo $propertie.type}">{echo $propertie.type}</option>
-                                                 {foreach $property_types as $type}
-                                                    {if $type!=$propertie.type}
-                                                             <option value="{echo $type}">{echo $type}</option>
-                                                    {/if}
-                                                 {/foreach}
-                                            {/if}
-                                            
-                                        </select>
-                                        { */ }
+                                        <div class="propertyTypesHolder">
+                                            {foreach $property_types as $type}
+                                                <label for="{echo $type}_{echo $propertie.id}">
+                                                     <input type="checkbox" id="{echo $type}_{echo $propertie.id}" {if in_array($type, unserialize($propertie.type))} checked='checked'{/if} data-properti_Id ="{$propertie.id}" class="propertiesTypes" name="type" value="{echo $type}">          
+                                                    {echo $type}
+                                                </label>
+                                            {/foreach}
+                                        </div>
                                     </td>
                                 </tr>
                             {/foreach}
