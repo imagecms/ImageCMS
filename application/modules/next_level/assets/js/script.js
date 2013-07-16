@@ -1,5 +1,11 @@
 $(document).ready(function() {
     $('.propertiesTypes').live('change', function (){
+        var checked = $(this).attr('checked');
+        var url = '/next_level/admin/addPropertyType';
+        
+        if(!checked){
+            url = '/next_level/admin/removePropertyType';
+        }
         
         var value = $(this).val();
         var propertyId = $(this).data('properti_id');
@@ -9,7 +15,7 @@ $(document).ready(function() {
                 type: value,
                 propertyId: propertyId
             },
-            url: '/next_level/admin/addPropertyType',
+            url: url,
             success: function(data) {
                 showMessage('Сообщение', 'Тип свойства обновлен');
             }
@@ -24,12 +30,13 @@ $(document).ready(function() {
         $(this).closest('tr').find('.icon-refresh').parent('button').css('display', 'inline-block');
         
     });
+    
     $('table.propertyTypes + .addType').live('click', function (){
        $('.addTypeContainer').css('display','block');
-        
     });
     
 });
+
 var PropertiesTypes = {
    delete: function(type, curElement){
                  $.ajax({

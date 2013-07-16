@@ -35,20 +35,50 @@ class Next_level_model extends CI_Model {
                     ->result_array();
     }
     public function setPropertyType($propety_id,$type) {
-        $this->db->select('type')
+            $types = $this->db->select('type')
                     ->where('property_id', $propety_id)
-                    ->get('mod_next_level_product_properties_types', array('type' => $type));
-         $this->db
+                    ->get('mod_next_level_product_properties_types')->row_array();
+            if(!$types){
+                $types =array();
+            }else{
+                $types = unserialize($types['type']);
+            }
+            
+            if(!in_array($type, $types)){
+                array_push($types, $type);
+                 $types = serialize($types);
+                 $this->db
                     ->where('property_id', $propety_id)
-                    ->update('mod_next_level_product_properties_types', array('type' => $type));
-         if(!$this->db->affected_rows()){
-             return  $this->db
+                    ->update('mod_next_level_product_properties_types', array('type' => $types));
+                if(!$this->db->affected_rows()){
+                    return  $this->db
+                           ->where('property_id', $propety_id)
+                           ->insert('mod_next_level_product_properties_types', array('property_id' => $propety_id, 'type' => $types));
+                }
+            }else{
+                return FALSE;
+            }    
+        
+    }
+     public function removePropertyType($propety_id,$type) {
+            $types = $this->db->select('type')
                     ->where('property_id', $propety_id)
-                    ->insert('mod_next_level_product_properties_types', array('property_id' => $propety_id, 'type' => $type));
-         }
+                    ->get('mod_next_level_product_properties_types')->row_array();
+            
+            $types = unserialize($types['type']);
+            
+            if(in_array($type, $types)){
+               unset($types[array_search($type, $types)]);
+                 $types = serialize($types);
+                 $this->db
+                    ->where('property_id', $propety_id)
+                    ->update('mod_next_level_product_properties_types', array('type' => $types));
+            }else{
+                return FALSE;
+            }    
     }
     
-     public function deletePropertyType($del_type) {
+     public function deletePropertyTypeFromSettings($del_type) {
          $settings = $this->getSettings();
          $newPropertiesTypes = $settings['propertiesTypes'];
          foreach($newPropertiesTypes as $key => $propertyType){
@@ -78,6 +108,18 @@ class Next_level_model extends CI_Model {
          $settings = $this->getSettings();
          array_push($settings['propertiesTypes'], $newType);
          $this->setSettings($settings);
+    }
+    public function getPropertyTypes($property_id){
+        $result = $this->db
+                ->select('type')
+                ->where('property_id',$property_id)
+                ->get('mod_next_level_product_properties_types')
+                ->row_array();        
+        if($result){
+            return unserialize($result['type']);
+        }else{
+            return FALSE;
+        }
     }
 }
 
