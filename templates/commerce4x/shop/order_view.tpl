@@ -146,7 +146,7 @@
 
                                         {if $Variant}
                                         {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}
-                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант:sssssssssss <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант: <span class="code">({echo $Variant->getname()})</span></span>{/if}
                                 {/if}
                             </div>
                             <div class="price price_f-s_16">
@@ -273,7 +273,7 @@
                     <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}{/if}</span> {$CS})
                 </div>
 
-                {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
+                {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())}
 
 
                 <span class="f-s_18">Сумма:</span>&nbsp;
