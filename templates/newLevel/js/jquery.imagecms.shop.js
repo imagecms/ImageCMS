@@ -556,7 +556,6 @@ var ie = jQuery.browser.msie,
                     columnPart: false,
                     columnPart2: false,
                     sub3Frame: 'ul ul',
-                    sub3Item: 'li > ul > li',
                     columnClassPref: 'column_',
                     columnClassPref2: 'column2_',
                     durationOn: 0,
@@ -581,7 +580,6 @@ var ie = jQuery.browser.msie,
                         columnPart = settings.columnPart,
                         columnPart2 = settings.columnPart2,
                         sub3Frame = settings.sub3Frame,
-                        sub3Item = settings.sub3Item,
                         columnClassPref = settings.columnClassPref,
                         columnClassPref2 = settings.columnClassPref2,
                         itemMenuL = menuItem.length,
@@ -654,7 +652,7 @@ var ie = jQuery.browser.msie,
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else
-                                        $this.closest('[data-column]').addClass('x' + numbColumnL);
+                                        $this.closest('li').addClass('x' + numbColumnL);
                                 })
                                 columnsObj.remove();
                             }

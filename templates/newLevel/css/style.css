@@ -245,7 +245,6 @@ p {margin-bottom: 10px;line-height: 18px;}
 .text blockquote:before, .text blockquote:after{content: "";position: absolute;width: 100%;left: 0;}
 .text blockquote:before{top: 0;}
 .text blockquote:after{bottom: 0;}
-.seo-text{padding-bottom: 40px;}
 /*/text*/
 
 /*buttons base*/
@@ -342,6 +341,7 @@ input.input-search{height: 33px;}
 .items-news > li{width: 300px;margin-left: 40px;margin-bottom: 30px;}
 .items-news a{display: block;padding-bottom: 12px;margin-bottom: 5px;}
 .items-news .date{display: block;margin-bottom: 2px;}
+.frame-news{padding-top: 40px;}
 .frame-news .frame-title{margin-bottom: 13px;}
 
 .items-search-autocomplete > li{width: 100%;}
@@ -564,7 +564,7 @@ input.input-search{height: 33px;}
 
 
 .frame-l2 > ul > li > ul{margin-bottom: 10px;}
-.frame-l2, .frame-l2 > ul > li > ul > li > ul > li, .frame-l2 > ul > li > ul{padding-left: 10px;}
+.menu-main .frame-l2, .menu-main .frame-l2 > ul > li > ul > li > ul > li, .menu-main .frame-l2 > ul > li > ul{padding-left: 10px;}
 .frame-l2 [data-column] > ul{padding-left: 0;}
 .frame-l2 > ul > li[data-column]{float: left;}
 
