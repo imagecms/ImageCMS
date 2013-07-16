@@ -3,6 +3,10 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
+/**
+ * @property Sample_mail_model $sample_mail_model
+ * @property Cms_admin $cms_admin
+ */
 class Admin extends BaseAdminController {
 
     private $locale;
@@ -11,7 +15,7 @@ class Admin extends BaseAdminController {
         parent::__construct();
 
         //loading model for work with emails
-        $this->load->model('email_model');
+        $this->load->model('sample_mail_model');
 
         $this->load->library('form_validation');
         $this->load->module('core');
@@ -43,7 +47,7 @@ class Admin extends BaseAdminController {
                 $data['settings']['mail_type'] = $this->input->post('mail_type');
                 $data['locale'] = $this->locale;
                 $data['description'] = $this->input->post('mail_desc');
-                $this->email_model->fromArray($data);
+                $this->sample_mail_model->fromArray($data);
                 showMessage("Шаблон создан");
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/sample_mail/index');
@@ -57,9 +61,9 @@ class Admin extends BaseAdminController {
         if ($locale == null)
             $locale = MY_Controller::getCurrentLocale();
         if ($name != '') {
-            $model = $this->email_model->getMailArray($name, $locale);
+            $model = $this->sample_mail_model->getMailArray($name, $locale);
             if (empty($model))
-                $model = $this->email_model->getMailArray($name, MY_Controller::getCurrentLocale());
+                $model = $this->sample_mail_model->getMailArray($name, MY_Controller::getCurrentLocale());
         }
         $settings = unserialize($model['settings']);
         if (empty($_POST)) {
@@ -86,7 +90,7 @@ class Admin extends BaseAdminController {
                 $data['settings']['mail_type'] = $this->input->post('mail_type');
                 $data['locale'] = $locale;
                 $data['description'] = $this->input->post('mail_desc');
-                $this->email_model->fromArray($data);
+                $this->sample_mail_model->fromArray($data);
                 showMessage("Шаблон успешно отредактирован");
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/sample_mail/index');
@@ -107,14 +111,14 @@ class Admin extends BaseAdminController {
 
     public function index() {
         $locale = MY_Controller::getCurrentLocale();
-        $models = $this->email_model->getList($locale);
+        $models = $this->sample_mail_model->getList($locale);
         $this->render('list', array('models' => $models, 'locale' => $locale));
     }
 
     public function delete() {
         $names = $this->input->post('ids');
         if (count($names) > 0) {
-            $this->email_model->delete($names);
+            $this->sample_mail_model->delete($names);
             showMessage("Шаблоны удалены");
         } else {
             return false;
