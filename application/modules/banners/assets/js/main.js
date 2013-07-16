@@ -18,6 +18,17 @@ function DeleteSliderBanner() {
     })
 }
 
+function chckTplParam(el) {
+    if ($(el).attr('checked') == 'checked')
+        var status = 1;
+    else
+        var status = 0;
+
+    
+    $.post('/admin/components/init_window/banners/settings', {status:status})
+
+}
+
 function selectEntity(obj) {
     var el = $(obj);
     var id = el.attr('data-id');

@@ -24,7 +24,7 @@ class Smart_filter extends \Category\BaseCategory {
 
     public function init() {
 
-
+        $this->set_price();
 
         return \CMSFactory\assetManager::create()
                         ->registerScript('jquery.ui-slider', TRUE)
@@ -33,6 +33,8 @@ class Smart_filter extends \Category\BaseCategory {
     }
 
     public function filter() {
+        
+        $this->set_price();
 
 
 
@@ -41,10 +43,26 @@ class Smart_filter extends \Category\BaseCategory {
                         ->render('filter', true);
     }
 
+    public function set_price() {
+        $minPrice = (int) $this->data['priceRange']['minCost'];
+        $maxPrice = (int) $this->data['priceRange']['maxCost'];
+
+        $curMin = $_GET['lp'] ? (int) $_GET['lp'] : $minPrice;
+        $curMax = $_GET['rp'] ? (int) $_GET['rp'] : $maxPrice;
+
+
+        \CMSFactory\assetManager::create()->setData(array(
+            'minPrice' => (int) $this->data['priceRange']['minCost'],
+            'maxPrice' => (int) $this->data['priceRange']['maxCost'],
+            'curMax' => $curMax,
+            'curMin' => $curMin
+        ));
+    }
+
 //    public function ()
 
     public function autoload() {
-
+        
     }
 
     public function _install() {

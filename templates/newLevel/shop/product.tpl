@@ -92,8 +92,8 @@
                                             {if $NextCSId != null}
                                                 <span class="price-add">
                                                     <span>
-                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',1)}</span>
-                                                        <span class="curr-add">{$NextCs}</span>)
+                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',2)}</span>
+                                                        <span class="curr-add">{$NextCS}</span>)
                                                     </span>
                                                 </span>
                                             {/if}
@@ -264,7 +264,7 @@
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
-                {if $Comments[$model->getId()][0] != '0' && $model->enable_comments}
+                {if $Comments[$model->getId()] && $model->enable_comments}
                     <div class="frame-star t-a_j">
                         {$CI->load->module('star_rating')->show_star_rating($model)}
                         <div class="d-i_b">
@@ -373,7 +373,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice('Price',1)}</span>
-                                                                            <span class="curr-add">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -429,7 +429,7 @@
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency()}</span>
-                                                                                <span class="curr-add">{$NextCs}</span>)
+                                                                                <span class="curr-add">{$NextCS}</span>)
                                                                             </span>
                                                                         </span>
                                                                     {/if}
@@ -467,7 +467,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 (<span class="price">{echo $kitProducts->getTotalPrice()}</span>
-                                                                <span class="curr-add">{$NextCs}</span>)
+                                                                <span class="curr-add">{$NextCS}</span>)
                                                             </span>
                                                         </span>
                                                     {/if}
@@ -521,10 +521,10 @@
                 <button data-href="#view">Обзор</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                <li><button data-href="#first">Характеристики</button></li>
+                <li><button data-href="#first" onclick="ProductTabs.renderProperties('{echo $model->getId()}')">Характеристики</button></li>
                 {/if}
                 {if trim($model->getShortDescription()) != ''}
-                <li><button data-href="#second">Полное описание</button></li>
+                <li><button data-href="#second" onclick="ProductTabs.renderFullDescription('{echo $model->getId()}')">Полное описание</button></li>
                 {/if}
                 {if $accessories}     
                 <li><button data-href="#fourth">Аксессуары</button></li>
@@ -595,7 +595,7 @@
                     <!--                        Start. Description block-->
                     <div class="text">
                         <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                        {echo $model->getFullDescription()}
+                            {echo $model->getShortDescription()}
                     </div>
                     {if 10 > 6}
                         <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#second']" data-scroll="true">
@@ -672,7 +672,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                            <span class="curr-add">{$NextCs}</span>)
+                                                                            <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -752,7 +752,9 @@
                         <!--                        Start. Description block-->
                         <div class="text">
                             <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            {echo $model->getFullDescription()}
+                            <div class="fullDescription">
+                               {echo $model->getFullDescription()}
+                           </div>
                         </div>
                         <!--                        End. Description block-->
                     </div>
@@ -813,8 +815,8 @@
                                                             {if $NextCSId != null}
                                                                 <span class="price-add">
                                                                     <span>
-                                                                        (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                        <span class="curr-add">{$NextCs}</span>)
+                                                                       (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
+                                                                        <span class="curr-add">{$NextCS}</span>)
                                                                     </span>
                                                                 </span>
                                                             {/if}
