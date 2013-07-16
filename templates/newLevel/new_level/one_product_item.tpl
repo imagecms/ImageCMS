@@ -1,4 +1,6 @@
-{if !$promos && $products}{$promos = $products}{/if}
+{if !$promos && $products}
+    {$promos = $products}
+{/if}
 {foreach $promos as $p}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li>
@@ -20,11 +22,15 @@
         </a>
         <div class="description">
             <span class="frame-variant-name-code">
-                {$hasCode = $p->firstVariant->getNumber() == '';}
+                {$hasCode = $p->firstVariant->getNumber() == ''}
                 <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул:
-                    <span class="code">{if !$hasCode}{trim($p->firstVariant->getNumber())}{/if}</span>
+                    <span class="code">
+                        {if !$hasCode}
+                            {trim($p->firstVariant->getNumber())}
+                        {/if}
+                    </span>
                 </span>
-                {$hasVariant = $p->firstVariant->getName() == '';}
+                {$hasVariant = $p->firstVariant->getName() == ''}
                 <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант:
                     <span class="code">
                         {if !$hasVariant}
@@ -142,8 +148,7 @@
                                         data-number="{echo $pv->getNumber()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
-                                        >
+                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
                                     </button>
