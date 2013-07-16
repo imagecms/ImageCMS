@@ -17,12 +17,12 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    sub3Frame: '.frame-l2',
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
     sub2Frame: '.frame-l2', //if drop-side
+    sub3Frame: '.frame-l2',
     dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
@@ -117,7 +117,7 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'right',//if vertical has be left
+    location: 'right', //if vertical has be left
     //addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
 }
@@ -348,7 +348,8 @@ function drawIcons(selIcons) {
 
 function itemUserToolbar() {
     this.show = function(itemsUT, btn, hideSet, btnUp) {
-        btn.bind('click.uT', function() {
+        console.log(btn.not('.activeUT'))
+        btn.bind('click.UT', function() {
             var $this = $(this),
                     dataRel = $this.data('rel');
             setcookie('condUserToolbar', dataRel, 0, '/')
@@ -367,7 +368,7 @@ function itemUserToolbar() {
                     itemsUT.children(hideSet).show();
                 })
             }
-        }).not('.activeUT').trigger('click.uT');
+        }).not('.activeUT').trigger('click.UT');
         wnd.unbind('scroll.UT').bind('scroll.UT', function() {
             if (wnd.scrollTop() > wnd.height())
                 btnUp.fadeIn();
@@ -963,13 +964,20 @@ jQuery(document).ready(function() {
                 });
                 var fancyFrame = $('#fancybox-frame');
                 fancyFrame.css({'height': fancyFrame.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
-                setTimeout(function() {
-                    var fancyboxFrameC = fancyFrame.contents()
+
+                var fancyboxFrameC = fancyFrame.contents()
 //                    forThumbFancybox in config.js.tpl
-                    fancyboxFrameC.find('body').append('<style>' + forThumbFancybox + '</style>');
-                    fancyboxFrameC.find('img').before('<span class="helper"></span>')
+$(document).bind('pasteIframeImage', function(e){
+    console.log(e.el)
+})
+                fancyFrame.load(function() {
+                    $(this).find('body').live('load', function(){
+                        alert(1)
+                    })
+                    $(this).append('<style>' + forThumbFancybox + '</style>');
+                    $(this).find('img').before('<span class="helper"></span>');
                     $('.wOverlay').fadeOut(200);
-                }, 100)
+                })
                 $("#fancybox-wrap").unbind('mousewheel.fb');
             }
         })
@@ -996,8 +1004,7 @@ jQuery(document).ready(function() {
         showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
         e.el.find(preloader).remove();
     })
-    $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter', function(e) {
-        console.log(e.el.find(selIcons))
+    $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
         drawIcons(e.el.find(selIcons))
     })
     $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {

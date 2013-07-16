@@ -36,7 +36,8 @@
             {include_tpl('catalogue_header')}
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
-                    {include_tpl('one_product_item')}
+                    <!-- Include template for one product item-->
+                    {$CI->load->module('new_level')->OPI($model)}
                 </ul>
             {/if}            <!--Start. Pagination -->
             {if $pagination}
