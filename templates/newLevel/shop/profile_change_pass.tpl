@@ -1,7 +1,8 @@
 <div class="inside-padd">
     <div class="frame-change-password">
         <div class="horizontal-form">
-            <form method="post" id="form_change_pass">
+            <form method="post" id="form_change_pass" onsubmit="ImageCMSApi.formAction('/auth/authapi/change_password', '#form_change_pass', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+                                    return false;">
                 <label>
                     <span class="title">{lang('lang_old_password')}:</span>
                     <span class="frame-form-field">
@@ -24,11 +25,12 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="Сменить пароль" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', '#form_change_pass', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                                return false;"/>
+                            <input type="submit" value="Сменить пароль"/>
                         </span>
                     </span>
                 </div>
+                <input type="hidden" name="refresh" value="false"/>
+                <input type="hidden" name="redirect" value="false"/>
                 {form_csrf()}
             </form>
         </div>

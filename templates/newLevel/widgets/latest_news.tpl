@@ -11,17 +11,13 @@
                 {foreach $recent_news as $item}
                     {$item = $CI->load->module('cfcm')->connect_fields($item, 'page')}
                     <li>
-                        <span class="date f-s_0">
-                            <span class="icon_time"></span><span class="text-el"></span>
-                            <span class="day">{echo date("d", $item.publish_date)} </span>
-                            <span class="month">{echo date("F", $item.publish_date)} </span>
-                            <span class="year">{echo date("Y ", $item.publish_date)}</span>
-                        </span>
                         <a href="{site_url($item.full_url)}" class="frame-photo-title">
                             {if trim($item.field_field_img) != ""}
-                                <span class="photo-block">
-                                    <span class="helper"></span>
-                                    <img src="{$item.field_field_img}" alt="" />
+                                <span class="d_b">
+                                    <span class="photo-block">
+                                        <span class="helper"></span>
+                                        <img src="{$item.field_field_img}" alt="" />
+                                    </span>
                                 </span>
                             {/if}
                             <span class="title">{$item.title}</span>
@@ -31,6 +27,12 @@
                             {if trim($item.field_info) != ""}
                                 <div class="info">{$item.field_info}</div>
                             {/if}
+                        </div>
+                        <div class="date f-s_0">
+                            <span class="icon_time"></span><span class="text-el"></span>
+                            <span class="day">{echo date("d", $item.publish_date)} </span>
+                            <span class="month">{echo date("F", $item.publish_date)} </span>
+                            <span class="year">{echo date("Y ", $item.publish_date)}</span>
                         </div>
                     </li>
                 {/foreach}
