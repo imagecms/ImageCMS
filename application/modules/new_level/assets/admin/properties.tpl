@@ -14,7 +14,7 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/init_window/next_level/settings">
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/init_window/new_level/settings">
                         <i class="icon-wrench"></i>
                         Настройки                
                     </a>

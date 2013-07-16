@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="{site_url('admin/components/cp/next_level/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
+    <form method="post" action="{site_url('admin/components/cp/new_level/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
                 <tr>

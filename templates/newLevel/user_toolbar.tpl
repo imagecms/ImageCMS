@@ -21,11 +21,11 @@
                 </li>
                 <li class="box-4">
                     <div class="btn-toggle-toolbar">
-                        <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{/if}{if !isset($_COOKIE['condUserToolbar'])} class="activeUT"{/if}>
+                        <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
                             <span class="icon_times"></span>
                             <span class="text-el">Свернуть</span>
                         </button>
-                        <button type="button" data-rel="1" {if $_COOKIE['condUserToolbar'] == 1 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
+                        <button type="button" data-rel="1" {if $_COOKIE['condUserToolbar'] == 1 ||  !isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
                             <span class="text-el">Развернуть</span>
                         </button>
                     </div>
