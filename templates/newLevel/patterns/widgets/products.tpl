@@ -6,10 +6,11 @@
             </div>
         </div>
         <div class="big-container">
-            <div class="carousel_js products-carousel">
+            <div class="products-carousel frame-scroll-pane">
+                {/*frame-scroll-pane || carousel_js*/}
                 <div class="content-carousel container">
                     <ul class="items items-catalog items-h-carousel">
-                        {$CI->load->module('new_level')->OPI($products, array('widget'=>true))}
+                        {$CI->load->module('new_level')->OPI($products)}
                     </ul>
                 </div>
                 <div class="group-button-carousel">

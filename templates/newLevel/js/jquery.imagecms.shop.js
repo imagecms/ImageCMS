@@ -119,6 +119,9 @@ var ie = jQuery.browser.msie,
                         after = settings.after;
                 wrapper.find(elCheckWrap).children('input').mousedown(function(e) {
                     $(this).closest(wrapper).click();
+                }).keyup(function(e) {
+                    if (e.keyCode == 32)
+                        $(this).closest(wrapper).click();
                 })
                 $.map(frameChecks, function(i, n) {
                     var frameChecks = $(i.replace(' ', ''));
@@ -339,12 +342,10 @@ var ie = jQuery.browser.msie,
                 inputString: $('#inputString')
             }, options);
             function postSearch() {
-                $.fancybox.showActivity();
                 $(document).trigger({'type': 'autocomplete.before', 'el': inputString});
                 $.post(searchPath, {
                     queryString: inputString.val()
                 }, function(data) {
-                    $.fancybox.hideActivity();
                     try {
                         var dataObj = JSON.parse(data),
                                 html = _.template($('#searchResultsTemplate').html(), {
@@ -1401,12 +1402,12 @@ var ie = jQuery.browser.msie,
                     duration = settings.duration, close = settings.close,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
+                var $this = $(this);
+                $(document).trigger({'type':'drop.click', 'el':$this})
                 wST = wnd.scrollTop();
-                $.fancybox.showActivity();
                 e.stopPropagation();
                 e.preventDefault();
-                var $this = $(this);
-                elSet = $this.data();
+                var elSet = $this.data();
                 function showDrop(elSetSource, isajax, e) {
                     var place = elSet.place || settings.place,
                             placement = elSet.placement || settings.placement,
@@ -1473,11 +1474,10 @@ var ie = jQuery.browser.msie,
                         }
                         elSetSource[$thisEOn]($thisD, function() {
                             elSetSource.addClass(activeClass);
-                            $(document).trigger({'type': 'drop.show', el: elSetSource})
                             settings.after($this, elSetSource, isajax);
                         });
+                        $(document).trigger({'type': 'drop.show', el: elSetSource})
                     }
-                    $.fancybox.hideActivity();
                     body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
                         if ((e.which || e.button == 0) && e.relatedTarget == null) {
                             methods.triggerBtnClick(false, selector, close);
@@ -1680,9 +1680,11 @@ var ie = jQuery.browser.msie,
                             else
                                 input.val(inputVal + 1);
                             if (settings.ajax && !checkProdStock)
-                                $.fancybox.showActivity();
+                                $(document).trigger({'type':'showActivity'})
+
                             if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
-                                $.fancybox.showActivity();
+                                $(document).trigger({'type':'showActivity'})
+                                
                             if (checkProdStock)
                                 input.maxValue();
                             settings.after(e, el, input);
@@ -1698,7 +1700,7 @@ var ie = jQuery.browser.msie,
                                 input.val(1)
                             else if (inputVal > 1) {
                                 if (ajax)
-                                    $.fancybox.showActivity();
+                                    $(document).trigger({'type':'showActivity'})
                                 input.val(inputVal - 1)
                             }
 
@@ -2497,74 +2499,74 @@ var ProductTabs = {
      * @param string type - type properties to show
      * @returns {undefined}
      */
-  renderProperties: function (product_id, limit, type){
-      if(!limit){
-          limit = false;
-      }
-      
-      if(!type){
-          type = false;
-      }
-      
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id,
-            limit: limit,
-            type: type
-        },
-        url: '/shop/product_api/renderProperties',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                $('.inside-padd .characteristic').html(data.data);
-            }
+    renderProperties: function(product_id, limit, type) {
+        if (!limit) {
+            limit = false;
         }
-    });
-  },
-  /**
-   * render description
-   * @param int product_id
-   * @returns {undefined}
-   */
-  renderFullDescription: function (product_id){
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id
-        },
-        url: '/shop/product_api/renderFullDescription',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                $('.inside-padd .fullDescription').html(data.data);
-            }
+
+        if (!type) {
+            type = false;
         }
-    });
-  },
-  /**
-   * get product accessories
-   * @param int product_id
-   * @returns {undefined}
-   */
-  getAccessories: function (product_id, limit){
-       if(!limit){
-          limit = false;
-      }
-      
-      $.ajax({
-        type: 'POST',
-        data:{
-            product_id: product_id,
-            limit: limit
-        },
-        url: '/shop/product_api/getAccessories',
-        success: function(data) {
-            data = JSON.parse(data);
-            if(data.answer == 'success'){
-                return data.data;
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                limit: limit,
+                type: type
+            },
+            url: '/shop/product_api/renderProperties',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    $('.inside-padd .characteristic').html(data.data);
+                }
             }
+        });
+    },
+    /**
+     * render description
+     * @param int product_id
+     * @returns {undefined}
+     */
+    renderFullDescription: function(product_id) {
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id
+            },
+            url: '/shop/product_api/renderFullDescription',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    $('.inside-padd .fullDescription').html(data.data);
+                }
+            }
+        });
+    },
+    /**
+     * get product accessories
+     * @param int product_id
+     * @returns {undefined}
+     */
+    getAccessories: function(product_id, limit) {
+        if (!limit) {
+            limit = false;
         }
-    });
-  }
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                product_id: product_id,
+                limit: limit
+            },
+            url: '/shop/product_api/getAccessories',
+            success: function(data) {
+                data = JSON.parse(data);
+                if (data.answer == 'success') {
+                    return data.data;
+                }
+            }
+        });
+    }
 };
