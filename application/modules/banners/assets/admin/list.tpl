@@ -9,6 +9,15 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
+
+
+                    <span style="position: relative">
+                        <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">Настройки шаблона</a>
+                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
+                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разние шаблони для разных страниц
+                        </div>
+                    </span>
+
                     <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('a_s_banner_new_r')}</a>
                     <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                 </div>
@@ -60,15 +69,15 @@
                                     </div>
                                     </td>
                                 </tr>
-                            {/foreach}
+                                                  {/foreach}
 
                         </tbody>
                     </table>
-                {else:}
+                                                      {else:}
                     <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                        {lang('a_empty_banners')}
+                                                          {lang('a_empty_banners')}
                     </div>
-                {/if}
+                                                          {/if}
             </div>
         </div>
     </section>

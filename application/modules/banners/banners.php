@@ -69,13 +69,9 @@ class Banners extends MY_Controller {
             if (count($ban) > 0) {
 
 
+                $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider'; 
+                
 
-                $tpl = $type . '_slider'; // different template for different entity.
-                /*
-                 * For this into directory assets create template (product_slider, brand_slider, main_slider, 
-                 *  page_slider, category_slider, shop_category_slider)
-                 */
-                //$tpl = 'slider'; // in default
 
                 ob_start();
                 \CMSFactory\assetManager::create()

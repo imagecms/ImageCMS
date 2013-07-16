@@ -113,8 +113,8 @@
                                 </div>
                                 <div class="btn-buy">
                                     <button
-                                        {if $pv->getOldPrice() > $p->firstVariant->getPrice()}
-                                            {$discount = round(100 - ($v->firstVariant->getPrice() / $pv->getOldPrice() * 100))}
+                                        {if $p->getOldPrice() > $pv->getPrice()}
+                                            {$discount = round(100 - ($pv->getPrice() / $p->getOldPrice() * 100))}
                                         {else:}
                                             {$discount = 0}
                                         {/if}
