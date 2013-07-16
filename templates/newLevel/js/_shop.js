@@ -517,7 +517,7 @@ var Shop = {
         },
         sync: function() {       //sync compareList with server
             $.getJSON('/shop/compare_api/sync', function(data) {
-                //console.log(data);
+                
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
 

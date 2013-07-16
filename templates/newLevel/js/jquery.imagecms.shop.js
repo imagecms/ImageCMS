@@ -2375,14 +2375,14 @@ var ImageCMSApi = {
             console.log(msg);
         }
     },
-    formAction: function(url, selector, obj) {
+    formAction: function(url, selector, obj, el) {
         //collect data from form
         var DS = this.defSet();
         $.extend(DS, obj)
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
-        else
-            var dataSend = '';
+        else if (el)
+            var dataSend = 'refresh=' + el.data('refresh') + '&redirect=' + el.data('redirect');
         //send api request to api controller
         $.ajax({
             type: "post",
@@ -2412,12 +2412,12 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == true)
+                    if (obj.refresh == 'true' && obj.redirect == 'false')
                         location.reload();
-                    if (obj.redirect !== null && typeof obj.redirect !== 'undefined' && obj.redirect !== false)
+                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
                         location.href = obj.redirect;
 
-                    if (obj.refresh != true && obj.redirect !== 'undefined') {
+                    if (obj.refresh == 'false' && obj.redirect == 'false') {
                         var k = true;
                         if (typeof DS.callback == 'function')
                             k = DS.callback(obj.msg, obj.status, form, DS);
@@ -2484,3 +2484,89 @@ var ImageCMSApi = {
         return false;
     }
 }
+
+
+/**
+ * Product Tabs object
+ * 
+ */
+
+var ProductTabs = {
+    /**
+     * render properties
+     * @param int product_id
+     * @param int limit - limit properties to show
+     * @param string type - type properties to show
+     * @returns {undefined}
+     */
+  renderProperties: function (product_id, limit, type){
+      if(!limit){
+          limit = false;
+      }
+      
+      if(!type){
+          type = false;
+      }
+      
+      $.ajax({
+        type: 'POST',
+        data:{
+            product_id: product_id,
+            limit: limit,
+            type: type
+        },
+        url: '/shop/product_api/renderProperties',
+        success: function(data) {
+            data = JSON.parse(data);
+            if(data.answer == 'success'){
+                $('.inside-padd .characteristic').html(data.data);
+            }
+        }
+    });
+  },
+  /**
+   * render description
+   * @param int product_id
+   * @returns {undefined}
+   */
+  renderFullDescription: function (product_id){
+      $.ajax({
+        type: 'POST',
+        data:{
+            product_id: product_id
+        },
+        url: '/shop/product_api/renderFullDescription',
+        success: function(data) {
+            data = JSON.parse(data);
+            if(data.answer == 'success'){
+                $('.inside-padd .fullDescription').html(data.data);
+            }
+        }
+    });
+  },
+  /**
+   * get product accessories
+   * @param int product_id
+   * @returns {undefined}
+   */
+  getAccessories: function (product_id, limit){
+       if(!limit){
+          limit = false;
+      }
+      
+      $.ajax({
+        type: 'POST',
+        data:{
+            product_id: product_id,
+            limit: limit
+        },
+        url: '/shop/product_api/getAccessories',
+        success: function(data) {
+            data = JSON.parse(data);
+            if(data.answer == 'success'){
+                return data.data;
+            }
+        }
+    });
+  }
+};

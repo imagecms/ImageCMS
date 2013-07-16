@@ -961,7 +961,7 @@ class DX_Auth {
                     $data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri') . "{$row->email}/{$data['key']}");
 
                     // Create email
-                    $from = $this->ci->config->item('DX_webmaster_email');
+                    $from = ShopCore::app()->SSettings->userInfoSenderEmail;
                     $subject = $this->ci->lang->line('auth_forgot_password_subject');
 
                     // Trigger event and get email content
