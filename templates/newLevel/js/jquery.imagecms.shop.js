@@ -342,12 +342,10 @@ var ie = jQuery.browser.msie,
                 inputString: $('#inputString')
             }, options);
             function postSearch() {
-                $.fancybox.showActivity();
                 $(document).trigger({'type': 'autocomplete.before', 'el': inputString});
                 $.post(searchPath, {
                     queryString: inputString.val()
                 }, function(data) {
-                    $.fancybox.hideActivity();
                     try {
                         var dataObj = JSON.parse(data),
                                 html = _.template($('#searchResultsTemplate').html(), {
@@ -1404,12 +1402,12 @@ var ie = jQuery.browser.msie,
                     duration = settings.duration, close = settings.close,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
+                var $this = $(this);
+                $(document).trigger({'type':'drop.click', 'el':$this})
                 wST = wnd.scrollTop();
-                $.fancybox.showActivity();
                 e.stopPropagation();
                 e.preventDefault();
-                var $this = $(this);
-                elSet = $this.data();
+                var elSet = $this.data();
                 function showDrop(elSetSource, isajax, e) {
                     var place = elSet.place || settings.place,
                             placement = elSet.placement || settings.placement,
@@ -1476,11 +1474,10 @@ var ie = jQuery.browser.msie,
                         }
                         elSetSource[$thisEOn]($thisD, function() {
                             elSetSource.addClass(activeClass);
-                            $(document).trigger({'type': 'drop.show', el: elSetSource})
                             settings.after($this, elSetSource, isajax);
                         });
+                        $(document).trigger({'type': 'drop.show', el: elSetSource})
                     }
-                    $.fancybox.hideActivity();
                     body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
                         if ((e.which || e.button == 0) && e.relatedTarget == null) {
                             methods.triggerBtnClick(false, selector, close);
@@ -1683,9 +1680,11 @@ var ie = jQuery.browser.msie,
                             else
                                 input.val(inputVal + 1);
                             if (settings.ajax && !checkProdStock)
-                                $.fancybox.showActivity();
+                                $(document).trigger({'type':'showActivity'})
+
                             if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
-                                $.fancybox.showActivity();
+                                $(document).trigger({'type':'showActivity'})
+                                
                             if (checkProdStock)
                                 input.maxValue();
                             settings.after(e, el, input);
@@ -1701,7 +1700,7 @@ var ie = jQuery.browser.msie,
                                 input.val(1)
                             else if (inputVal > 1) {
                                 if (ajax)
-                                    $.fancybox.showActivity();
+                                    $(document).trigger({'type':'showActivity'})
                                 input.val(inputVal - 1)
                             }
 
