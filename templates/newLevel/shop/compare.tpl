@@ -83,67 +83,83 @@
                                                                             {$i = 0}
                                                                             {foreach $pdata[$cval] as $ms}
                                                                                 {echo $ms}
-                                                                            {if $i<(count($pdata[$cval])-1)},{/if}
-                                                                            {$i++}
-                                                                        {/foreach}
-                                                                    </span>
-                                                                </li>
-                                                            {else:}
-                                                                {if $pdata[$cval]}
-                                                                    <li>
-                                                                        <span class="helper"></span>
-                                                                        <span>{echo $pdata[$cval]}</span>
+                                                                                {if $i<(count($pdata[$cval])-1)}
+                                                                                    ,
+                                                                                {/if}
+                                                                                {$i++}
+                                                                            {/foreach}
+                                                                        </span>
                                                                     </li>
                                                                 {else:}
-                                                                    <li>
-                                                                        <span class="helper"></span>
-                                                                        <span>-</span>
-                                                                    </li>
+                                                                    {if $pdata[$cval]}
+                                                                        <li>
+                                                                            <span class="helper"></span>
+                                                                            <span>{echo $pdata[$cval]}</span>
+                                                                        </li>
+                                                                    {else:}
+                                                                        <li>
+                                                                            <span class="helper"></span>
+                                                                            <span>-</span>
+                                                                        </li>
+                                                                    {/if}
                                                                 {/if}
-                                                            {/if}
-                                                        {/foreach}
-                                                    </ul>
-                                                    <!--End. Product characteristics -->
-                                                </li>
-                                            {/if}
-                                        {/foreach}
-                                        <!--                      End. Show product block with characteristic by category-->
-                                    </ul>
-                                </div>
-                                <div class="group-button-carousel">
-                                    <button type="button" class="prev arrow">
-                                        <span class="icon_arrow_p"></span>
-                                    </button>
-                                    <button type="button" class="next arrow">
-                                        <span class="icon_arrow_n"></span>
-                                    </button>
+                                                            {/foreach}
+                                                        </ul>
+                                                        <!--End. Product characteristics -->
+                                                    </li>
+                                                {/if}
+                                            {/foreach}
+                                            <!--                      End. Show product block with characteristic by category-->
+                                        </ul>
+                                    </div>
+                                    <div class="group-button-carousel">
+                                        <button type="button" class="prev arrow">
+                                            <span class="icon_arrow_p"></span>
+                                        </button>
+                                        <button type="button" class="next arrow">
+                                            <span class="icon_arrow_n"></span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {/foreach}
-                </div>
-                <div class="comprasion-head">
-                    <div class="title-h3">Товары из категорий:</div>
-                    <ul class="tabs tabs-compare-category">
-                        {foreach $categories as $category}
-                            <li>
-                                <button data-href="#tab_{$category[Url]}">
-                                    <span class="text-el">{$category[Name]}</span>
-                                </button>
-                            </li>
                         {/foreach}
-                    </ul>
-                    {/*<div class="lineForm">
+                    </div>
+                    <div class="comprasion-head">
+                        <div class="title-h3">Товары из категорий:</div>
+                        <ul class="tabs tabs-compare-category">
+                            {foreach $categories as $category}
+                                <li>
+                                    <button data-href="#tab_{$category[Url]}">
+                                        <span class="text-el">{$category[Name]}</span>
+                                    </button>
+                                </li>
+                            {/foreach}
+                        </ul>
+                        {/*<div class="lineForm">
                         <select name="compare" id="compare">
-                    {foreach $categories as $category}
+                        {foreach $categories as $category}
                                 <option value="#tab_{$category[Url]}">{$category[Name]}</option>
-                    {/foreach}
+                        {/foreach}
                         </select>
                     </div>*/}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="empty">
+            <div class="empty">
+                <div class="f-s_0 title-compare without-crumbs clearfix">
+                    <div class="frame-title">
+                        <h1 class="d_i title">Сравнение товаров</h1>
+                    </div>
+                </div>
+                <div class="msg layout-highlight layout-highlight-msg">
+                    <div class="info">
+                        <span class="icon_info"></span>
+                        <span class="text-el">Вы удалили все товары з сравнения</span>
+                    </div>
+                </div>
+            </div>
+            <!--End. Show compare list if count products >0 -->
+        {else:}
             <div class="f-s_0 title-compare without-crumbs clearfix">
                 <div class="frame-title">
                     <h1 class="d_i title">Сравнение товаров</h1>
@@ -152,23 +168,9 @@
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">Вы удалили все товары з сравнения</span>
+                    <span class="text-el">Список сравнений пуст</span>
                 </div>
             </div>
-        </div>
-        <!--End. Show compare list if count products >0 -->
-    {else:}
-        <div class="f-s_0 title-compare without-crumbs clearfix">
-            <div class="frame-title">
-                <h1 class="d_i title">Сравнение товаров</h1>
-            </div>
-        </div>
-        <div class="msg layout-highlight layout-highlight-msg">
-            <div class="info">
-                <span class="icon_info"></span>
-                <span class="text-el">Список сравнений пуст</span>
-            </div>
-        </div>
-    {/if}
-</div>
+        {/if}
+    </div>
 </div>
