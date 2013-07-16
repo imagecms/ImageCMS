@@ -117,7 +117,7 @@ cleaverFilterObj = {
     effectIn: 'fadeIn',
     effectOff: 'fadeOut',
     duration: '300',
-    location: 'right',//if vertical has be left
+    location: 'right', //if vertical has be left
     //addingClass: 'left',//if vertical has be left
     elPos: '.frame-group-checks .frame-label',
 }
@@ -964,13 +964,20 @@ jQuery(document).ready(function() {
                 });
                 var fancyFrame = $('#fancybox-frame');
                 fancyFrame.css({'height': fancyFrame.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
-                setTimeout(function() {
-                    var fancyboxFrameC = fancyFrame.contents()
+
+                var fancyboxFrameC = fancyFrame.contents()
 //                    forThumbFancybox in config.js.tpl
-                    fancyboxFrameC.find('body').append('<style>' + forThumbFancybox + '</style>');
-                    fancyboxFrameC.find('img').before('<span class="helper"></span>')
+$(document).bind('pasteIframeImage', function(e){
+    console.log(e.el)
+})
+                fancyFrame.load(function() {
+                    $(this).find('body').live('load', function(){
+                        alert(1)
+                    })
+                    $(this).append('<style>' + forThumbFancybox + '</style>');
+                    $(this).find('img').before('<span class="helper"></span>');
                     $('.wOverlay').fadeOut(200);
-                }, 100)
+                })
                 $("#fancybox-wrap").unbind('mousewheel.fb');
             }
         })
