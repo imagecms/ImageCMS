@@ -36,7 +36,7 @@
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
     </head>
-    <body class="is{echo $agent[0]}{echo str_replace('.', '_', $agent[1])} not-js">
+    <body class="is{echo $agent[0]} not-js">
         <div class="main-body">
             <div class="fon-header">
                 <header>
