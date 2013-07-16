@@ -21,9 +21,10 @@ class New_level extends MY_Controller {
 
     }
 
-    public function OPI($model) {
+    public function OPI($model, $data = array()) {
         \CMSFactory\assetManager::create()
-                ->setData('product', $model)
+                ->setData('products', $model)
+                ->setData($data)
                 ->render('one_product_item', TRUE);
     }
     
@@ -61,13 +62,24 @@ class New_level extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_new_level_product_properties_types');
+        
+        
+        $fields = array(
+            'category_id' => array('type' => 'VARCHAR', 'constraint' => 500),
+            'column' => array('type' => 'INT', 'constraint' => 4, 'default' => 0)
+        );
+
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('mod_new_level_columns', TRUE);
+        
 
         $this->db
                 ->where('identif', 'new_level')
                 ->update('components', array(
                     'settings' => serialize(
                             array(
-                                'propertiesTypes' => array('scroll', 'full', 'dropDown')
+                                'propertiesTypes' => array('scroll', 'full', 'dropDown'),
+                                'columns' => array('1', '2', '3', '4')
                             )
                     ),
                     'enabled' => 1,
@@ -82,6 +94,8 @@ class New_level extends MY_Controller {
     public function _deinstall() {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_new_level_product_properties_types');
+        
+        $this->dbforge->drop_table('mod_new_level_columns');
     }
 
 }

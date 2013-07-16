@@ -343,7 +343,7 @@ input.input-search{height: 33px;}
 .items-news > li{width: 300px;margin-left: 40px;margin-bottom: 30px;}
 .items-news a{display: block;padding-bottom: 12px;margin-bottom: 5px;}
 .items-news .date{display: block;margin-bottom: 2px;}
-.frame-news{padding-top: 40px;}
+.frame-seo-text + .frame-news{padding-top: 40px;}
 .frame-news .frame-title{margin-bottom: 13px;}
 
 .items-search-autocomplete > li{width: 100%;}
