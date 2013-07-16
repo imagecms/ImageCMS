@@ -12,15 +12,6 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('a_back')}</span>
                 </a>
-                <a href="{$BASE_URL}admin/components/cp/wishlist" class="btn btn-small pjax">
-                    {lang(users)}
-                </a>
-                <button type="button"
-                        class="btn btn-small btn-primary action_on formSubmit"
-                        data-form="#wishlist_settings_form"
-                        data-action="tomain">
-                    <i class="icon-ok"></i>Сохранить
-                </button>
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@ class Admin extends BaseAdminController {
         $settings = $this->next_level_model->getSettings();
          \CMSFactory\assetManager::create()
                     ->registerScript('script')
+                    ->registerStyle('style')
                     ->setData('properties', $this->next_level_model->getProperties())
                     ->setData('property_types', $settings['propertiesTypes'])
                     ->renderAdmin('properties');
@@ -32,14 +33,20 @@ class Admin extends BaseAdminController {
         $type = $this->input->post('type');
         $propertyId = $this->input->post('propertyId');
         if($this->next_level_model->setPropertyType($propertyId, $type)){
-            return 'saccess';
+            return 'success';
+        }else{
+            return 'error';
         }
     }
     
     public function deletePropertyType(){
         $type = $this->input->post('type');
         
-        $this->next_level_model->deletePropertyType($type);
+        if($this->next_level_model->deletePropertyTypeFromSettings($type)){
+             return 'success';
+        }else{
+            return 'error';
+        }
         
     }
     
@@ -47,8 +54,11 @@ class Admin extends BaseAdminController {
         $oldType = $this->input->post('oldType');
         $newType = $this->input->post('newType');
         
-        $this->next_level_model->editPropertyType($oldType, $newType);
-        
+        if($this->next_level_model->editPropertyType($oldType, $newType)){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
     
     public function addType(){
@@ -61,5 +71,14 @@ class Admin extends BaseAdminController {
         return \CMSFactory\assetManager::create()
                     ->setData('type', $type)
                     ->render('newPropertyType',true);       
+    }
+    public function removePropertyType(){
+        $type = $this->input->post('type');
+        $propertyId = $this->input->post('propertyId');
+        if($this->next_level_model->removePropertyType($propertyId, $type)){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
 }

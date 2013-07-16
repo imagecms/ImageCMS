@@ -10,15 +10,19 @@ class Next_level extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('next_level_model');
     }
 
     public function index() {
-        $properties = $this->select('id, name')->get('shop_product_properties_i18')->result_array();
-        var_dumps($properties);
+        
     }
 
     public function autoload() {
         
+    }
+    
+    public function getPropertyTypes($property_id){
+        return $this->next_level_model->getPropertyTypes($property_id);
     }
 
     public function _install() {
