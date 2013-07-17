@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class email_model extends CI_Model {
+class email_model1 extends CI_Model {
 
     private $db_name;
 
