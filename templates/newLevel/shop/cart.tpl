@@ -77,20 +77,21 @@
                                         <input type="text" value="{$profile.email}" name="userInfo[email]">
                                     </span>
                                 </label>
+                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                                 <label>
                                     <span class="title">{lang('s_address')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[deliverTo]']}
                                             <span class="must">*</span>
                                         {/if}
-                                        <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
+                                        <textarea name="userInfo[deliverTo]">{echo $profile.address}</textarea>
+                                    </span>
                                 </label>
                                 <label>
                                     <span class="title">{lang('s_comment')}</span>
                                     <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
                                 </label>
                             </div>
-                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                             <div class="groups-form">
                                 <div class="frame-label">
                                     <span class="title">{lang('s_dostavka')}</span>
@@ -200,26 +201,7 @@
                                 </div>
                             {/if}
                         </div>
-                        {if ShopCore::app()->SSettings->usegifts == 1}
-                            <div class="groups-form" >
-                                <label for="giftcert" class="label-gift-cert">
-                                    <span class="title">{lang('s_cert_code')}</span>
-                                    <span class="frame-form-field">
-                                        <div class="preloader"></div>
-                                        <div class="btn-def f_r">
-                                            <button id="applyGiftCert"><span class="text-el">{lang('s_apply_sertif')}</span></button>
-                                        </div>
-                                        <div class="o_h">
-                                            <input type="text" name="giftcert" value="" />
-                                            <span class="icon_success"></span>
-                                        </div>
-                                        {if $isRequired['giftcert']}
-                                            <span class="must">*</span>
-                                        {/if}
-                                    </span>
-                                </label>
-                            </div>
-                        {/if}
+                        <div id="gift"></div>
                         <div class="groups-form">
                             <div class="frame-label">
                                 <span class="title">&nbsp;</span>

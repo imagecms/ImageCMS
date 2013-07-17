@@ -211,7 +211,7 @@ a:focus, a:active {color: #51d2ff;}
 
 .items-thumbs > .active .photo-block, .photoProduct.active > .photo-block{border-color: #d8d2cb;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 
-.decor-element{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;left: 0;background-color: #faf8f6;padding: 8px;padding-right: 0;margin: -13px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border: 2px solid transparent;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-webkit-transition: opacity .1s .3s ease-in-out;-moz-transition: opacity .1s .3s ease-in-out;-o-transition: opacity .1s .3s ease-in-out;transition: opacity .1s .3s ease-in-out;}
+.decor-element{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;left: 0;background-color: #faf8f6;padding: 8px;padding-bottom: 15px;padding-right: 0;margin: -13px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border: 2px solid transparent;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-webkit-transition: opacity .1s .3s ease-in-out;-moz-transition: opacity .1s .3s ease-in-out;-o-transition: opacity .1s .3s ease-in-out;transition: opacity .1s .3s ease-in-out;}
 .animateListItems.table > li:hover .decor-element{
     border-color: #0c9acb;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;
 
@@ -738,6 +738,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .hit{background-position: 0 -80px;width: 105px;height: 25px;}
 .discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 30px;text-align: center;}
 
+.items-bask .product-status{top: 0;}
 .items-bask .product-status + .product-status, .items-default .product-status + .product-status{top: 14px;}
 .items-bask .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status{top: 28px;}
 .items-bask .product-status + .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status + .product-status{top: 42px;}
