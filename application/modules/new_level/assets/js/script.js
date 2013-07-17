@@ -22,6 +22,22 @@ $(document).ready(function() {
         });
     });
     
+    $('.cattegoryColumnSaveButtonMod').live('click',function(){
+        var data   = $(this).parent().find('select').val();
+        var column = $(this).data('column');
+        $.ajax({
+            type: "POST",
+            data:  {
+                categories_ids: data,
+                column: column
+            },
+            url: '/new_level/admin/saveCategories',
+            success: function(res) {
+                   showMessage('Сообщение', 'Колонка ' + column + ' обновлена');
+            }
+        });
+    });
+    
     $('table.propertyTypes .icon-edit').live('click', function (){
         var editor = $(this).closest('tr').find('div.propertyType');
         var editValue = editor.text();

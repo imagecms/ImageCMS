@@ -133,6 +133,30 @@ class New_level_model extends CI_Model {
             return FALSE;
         }
     }
+    
+     public function getCategories() {
+       $locale = MY_Controller::getCurrentLocale();
+       $categories = ShopCore::app()->SCategoryTree->getTree();
+       return $categories;
+    }
+    
+    
+     public function getColumnCategories() {
+        $query = $this->db->get('mod_new_level_columns')->result_array();
+        $categories =array();
+        foreach($query as $value){
+            $categories[$value['column']] = unserialize($value['category_id']);
+        }
+        return $categories;
+    }
+    
+     public function saveCategories($categories_ids, $column){
+        $this->db->where('column', $column)->update('mod_new_level_columns', array('category_id' => serialize($categories_ids)));
+        if(!$this->db->affected_rows()){
+            return $this->db
+                            ->insert('mod_new_level_columns', array('category_id' => serialize($categories_ids), 'column' => $column));
+        }
+    }
 }
 
 ?>
