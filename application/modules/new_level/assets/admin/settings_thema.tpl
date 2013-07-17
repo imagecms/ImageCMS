@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                    <a href="/admin/components/init_window/new_level" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
                 </div>
             </div> 
@@ -28,7 +28,7 @@
                                             <div class="controls">                                           
                                                 <select onchange="changethema(this)" style="width:25% !important" name="thema" id="template">
                                                     {foreach $thema as $k => $tm}
-                                                        <option value="{echo $tm}" {if $data['thema'] == $tm} selected="selected" {/if} >{echo $k}</option>
+                                                        <option value="{echo $tm}" {if $cur_thema == $tm} selected="selected" {/if} >{echo $k}</option>
                                                     {/foreach}
                                                 </select> 
                                             </div>
