@@ -1,5 +1,4 @@
 function get_discount() {
-
     var _discount = 0;
     $.ajax({
         async: false,
@@ -8,8 +7,9 @@ function get_discount() {
         success: function(data) {
             if (data != '') {
                 _discount = JSON.parse(data);
+                $(document).trigger({type: 'get_discount_api', obj: _discount})
                 $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {json: data}, function(tpl) {
-                    $('#Discount').html(tpl).show();
+                    $(document).trigger({type: 'get_discount_tpl_from_json_api', tpl: tpl})
                 })
             }
         }
@@ -20,7 +20,9 @@ function get_discount() {
 function load_certificat() {
     var gift = 0;
     if (Shop.Cart.gift == undefined)
-        $('#gift').load('/mod_discount/gift/render_gift_input');
+        $.post('/mod_discount/gift/render_gift_input', function(tpl){
+           $(document).trigger({type: 'render_gift_input', 'tpl': tpl}) 
+        });
     else {
         gift = Shop.Cart.gift;
         if (gift.error) {
@@ -39,7 +41,6 @@ function load_certificat() {
 }
 
 function applyGift(el) {
-
     var gift = 0;
     $.ajax({
         async: false,
@@ -47,15 +48,13 @@ function applyGift(el) {
         data: 'key=' + $('[name=giftcert]').val(),
         type: "POST",
         success: function(data) {
-
             if (data != '')
                 gift = JSON.parse(data);
-
         }
     })
 
     Shop.Cart.gift = gift;
-    recountCartPage(selectDeliv, methodDeliv);
+    recountCartPage(selectDeliv, methodDeliv());
     return false;
 }
 

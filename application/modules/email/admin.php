@@ -3,8 +3,9 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS 
- * Sample Module Admin
+ * Image CMS
+ * Email Module Admin
+ * @property email_model $email_model
  */
 class Admin extends BaseAdminController {
 
@@ -14,7 +15,8 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        
+        \CMSFactory\assetManager::create()
+                ->renderAdmin('list');
     }
     public function settings(){
        \CMSFactory\assetManager::create()
