@@ -189,8 +189,10 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     public function createWishList() {
         $listName = $this->input->post('wishListName');
         $user_id = $this->input->post('user_id');
+        $wlType = $this->input->post('wlTypes');
+        $wlDescription = $this->input->post('wlDescription');
 
-        if (parent::createWishList($user_id, $listName)) {
+        if (parent::createWishList($user_id, $listName, $wlType, $wlDescription)) {
             return $this->dataModel = lang('created');
         } else {
             return $this->errors;
@@ -217,30 +219,32 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
      * @return mixed
      */
     public function updateWL() {
-        $id = $this->input->post('WLID');
+         $id = $this->input->post('WLID');
+        $wlDescription = $this->input->post('description');
+        
+        if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
+            $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
+            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+        }
 
         foreach ($this->input->post('comment') as $key => $comment) {
             if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
-                $desc[$key] = substr($comment, 0, $this->settings['maxCommentLenght']);
+                $desc[$key] = mb_substr($comment, 0, $this->settings['maxCommentLenght']);
             else
                 $desc[$key] = $comment;
         }
-
         if ($this->settings['maxListName'] < iconv_strlen($this->input->post('title'), 'UTF-8'))
-            $title = substr($this->input->post('title'), 0, $this->settings['maxListName']);
+            $title = mb_substr($this->input->post('title'), 0, $this->settings['maxListName'], 'UTF-8');
         else
             $title = $this->input->post('title');
 
         $data = array(
             'access' => $this->input->post('access'),
+            'description' => $wlDescription,
             'title' => $title,
         );
 
-        if (parent::updateWL($id, $data, $desc)) {
-            return $this->dataModel;
-        } else {
-            return $this->errors;
-        }
+        parent::updateWL($id, $data, $desc);
     }
 
     /**

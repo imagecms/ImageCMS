@@ -262,7 +262,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function createWishList($user_id, $listName) {
+    public function createWishList($user_id, $listName, $wlType, $wlDescription) {
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
 
@@ -270,13 +270,18 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
-
+        
+        if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
+            $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
+            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+        }
+        
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
             }
-            $this->wishlist_model->createWishList($listName, $user_id);
+            $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
             $this->errors[] = lang('error_listname_empty');
         }
