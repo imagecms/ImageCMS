@@ -237,27 +237,31 @@
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount">bla-bla</span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
+        <span class="text-discount current-discount"><span class="genDiscount"><%-Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%></span> <span class="curr"><%-curr%></span></span>
+        <%}%>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price">500</span>
-        <span class="curr">RUR</span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
+        <span class="price genSumDiscount"><%-Shop.Cart.totalPriceOrigin.toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
+        <span class="price topCartTotalPrice"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         </span>
         <span class="price-add">
         <span>
-        <span class="price" id="popupCartTotaladdprice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
+        <span class="price topCartTotalAddPrice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
@@ -502,20 +506,24 @@
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount">bla-bla</span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
+        <span class="text-discount current-discount"><span class="genDiscount"><%-Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%></span> <span class="curr"><%-curr%></span></span>
+        <%}%>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price">500</span>
-        <span class="curr">RUR</span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
+        <span class="price genSumDiscount"><%-Shop.Cart.totalPriceOrigin.toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" id="popupCartTotal"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
+        <span class="price topCartTotalPrice"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
