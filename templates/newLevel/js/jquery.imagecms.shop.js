@@ -1366,7 +1366,7 @@ var ie = jQuery.browser.msie,
                 clone.css({
                     position: 'absolute',
                     top: '-9999px'
-                }).show().appendTo(body).find('*').show();
+                }).show().appendTo(body).find('*:not([style*="display:none"])').show();
 
             var dimS = clone[dim]();
             clone.remove();
@@ -1882,6 +1882,7 @@ var Shop = {
     currentItem: {},
     Cart: {
         totalPrice: 0,
+        totalAddPrice: 0,
         totalCount: 0,
         totalPriceOrigin: 0,
         discount: 0,
@@ -2067,6 +2068,7 @@ var Shop = {
             var items = this.getAllItems();
 
             this.totalPrice = 0;
+            this.totalAddPrice = 0;
             this.totalCount = 0;
             this.totalPriceOrigin = 0;
 
@@ -2075,7 +2077,9 @@ var Shop = {
                     this.totalPriceOrigin += items[i].origprice * items[i].count;
                 else
                     this.totalPriceOrigin += items[i].price * items[i].count;
+
                 this.totalPrice += items[i].price * items[i].count;
+                this.totalAddPrice += items[i].addprice * items[i].count;
                 this.totalCount += parseInt(items[i].count);
             }
 
@@ -2088,17 +2092,17 @@ var Shop = {
             else
                 return this.totalPrice;
         },
+        getTotalAddPrice: function() {
+            if (this.totalAddPrice == 0)
+                return this.totalRecount().totalAddPrice;
+            else
+                return this.totalAddPrice;
+        },
         getTotalPriceOrigin: function() {
             if (this.totalPrice == 0)
                 return this.totalRecount().totalPriceOrigin;
             else
                 return this.totalPriceOrigin;
-        },
-        getTotalAddPrice: function() {
-            if (this.totalPrice == 0)
-                return this.totalRecount().totalPrice;
-            else
-                return this.totalPrice;
         },
 //        getFinalAmount: function() {
 //            if (this.shipFreeFrom > 0)

@@ -106,36 +106,65 @@
             <div class="funcs-buttons">
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
-                    {if $pv->getStock() > 0}
-                        <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                            {if !widget}
-                                <div class="frame-count">
-                                    <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
-                                        <div class="frame-change-count">
-                                            <div class="btn-plus">
-                                                <button type="button">
-                                                    <span class="icon-plus"></span>
-                                                </button>
+                    {$widgetWOV = ($widget && $key < 1) || !$widget}
+                    {if $widgetWOV}
+                        {if $pv->getStock() > 0}
+                            <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
+                                {if !widget}
+                                    <div class="frame-count">
+                                        <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
+                                            <div class="frame-change-count">
+                                                <div class="btn-plus">
+                                                    <button type="button">
+                                                        <span class="icon-plus"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="btn-minus">
+                                                    <button type="button">
+                                                        <span class="icon-minus"></span>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="btn-minus">
-                                                <button type="button">
-                                                    <span class="icon-minus"></span>
-                                                </button>
-                                            </div>
+                                            <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $pv->getstock()}">
                                         </div>
-                                        <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
+                                {/if}
+                                <div class="btn-buy">
+                                    <button
+                                        {if $pv->getOldPrice() > $p->firstVariant->getPrice()}
+                                            {$discount = round(100 - ($v->firstVariant->getPrice() / $pv->getOldPrice() * 100))}
+                                        {else:}
+                                            {$discount = 0}
+                                        {/if}
+                                        class="btnBuy infoBut"
+                                        type="button"
+                                        data-id="{echo $pv->getId()}"
+                                        data-prodid="{echo $p->getId()}"
+                                        data-varid="{echo $pv->getId()}"
+                                        data-price="{echo $pv->toCurrency()}"
+                                        data-name="{echo ShopCore::encode($p->getName())}"
+                                        data-vname="{echo ShopCore::encode($pv->getName())}"
+                                        data-maxcount="{echo $pv->getstock()}"
+                                        data-number="{echo trim($pv->getNumber())}"
+                                        data-mediumImage="{echo $pv->getMediumPhoto()}"
+                                        data-img="{echo $pv->getSmallPhoto()}"
+                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                        data-price="{echo $pv->toCurrency()}"
+                                        data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                        data-addPrice="{echo $pv->toCurrency('Price',1)}"
+                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="text-el">{lang('s_buy')}</span>
+                                    </button>
                                 </div>
-                            {/if}
-                            <div class="btn-buy">
+                            </div>
+                        {else:}
+                            <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
-                                    {if $pv->getOldPrice() > $p->firstVariant->getPrice()}
-                                        {$discount = round(100 - ($v->firstVariant->getPrice() / $pv->getOldPrice() * 100))}
-                                    {else:}
-                                        {$discount = 0}
-                                    {/if}
-                                    class="btnBuy infoBut"
+                                    class="infoBut"
                                     type="button"
+                                    data-drop=".drop-report"
+                                    data-source="/shop/ajax/getNotifyingRequest"
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
@@ -143,46 +172,18 @@
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo ShopCore::encode($pv->getName())}"
                                     data-maxcount="{echo $pv->getstock()}"
-                                    data-number="{echo $pv->getNumber()}"
+                                    data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
-                                    data-number="{echo $pv->getNumber()}"
                                     data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                    data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                    data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
-                                    <span class="icon_cleaner icon_cleaner_buy"></span>
-                                    <span class="text-el">{lang('s_buy')}</span>
+                                    data-addPrice="{echo $pv->toCurrency('Price',1)}">
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
                             </div>
-                        </div>
-                    {else:}
-                        <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                            <button
-                                class="infoBut"
-                                type="button"
-                                data-drop=".drop-report"
-                                data-source="/shop/ajax/getNotifyingRequest"
-                                data-id="{echo $pv->getId()}"
-                                data-prodid="{echo $p->getId()}"
-                                data-varid="{echo $pv->getId()}"
-                                data-price="{echo $pv->toCurrency()}"
-                                data-name="{echo ShopCore::encode($p->getName())}"
-                                data-vname="{echo ShopCore::encode($pv->getName())}"
-                                data-maxcount="{echo $pv->getstock()}"
-                                data-number="{echo $pv->getNumber()}"
-                                data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                data-img="{echo $pv->getSmallPhoto()}"
-                                data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                data-price="{echo $pv->toCurrency()}"
-                                data-number="{echo $pv->getNumber()}"
-                                data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                data-addPrice="{echo $pv->toCurrency('Price',1)}">
-                                <span class="icon-but"></span>
-                                <span class="text-el">{lang('s_message_o_report')}</span>
-                            </button>
-                        </div>
+                        {/if}
                     {/if}
                 {/foreach}
             </div>
