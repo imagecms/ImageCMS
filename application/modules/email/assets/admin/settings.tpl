@@ -65,7 +65,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="settings[wraper]">Обгортка</label>
                                 <div class="controls">
-                                    <textarea name='settings[wraper]' class="textarea"  id="wraper">{$settings['wraper']}</textarea>
+                                    <textarea name='settings[wraper]' class="elRTE"  id="wraper">{$settings['wraper']}</textarea>
                                 </div>
                             </div>
 
@@ -83,7 +83,11 @@
                             <div class="control-group">
                                 <label class="control-label" for="settings[protocol]">Протокол</label>
                                 <div class="controls">
-                                    <input type = "text" name = "settings[protocol]" class="textbox_short" value="{$settings['protocol']}" id="protocol"/>
+                                    <select>
+                                        <option></option>
+                                        <option></option>
+                                        <input type = "text" name = "settings[protocol]" class="textbox_short" value="{$settings['protocol']}" id="protocol"/>
+                                    </select>
                                 </div>
                             </div>
                                 
