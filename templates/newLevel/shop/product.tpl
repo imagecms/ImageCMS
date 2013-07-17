@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-{var_dumps($CI->load->module('next_level')->getPropertyTypes(26))}
+{//var_dumps($CI->load->module('next_level')->getPropertyTypes(26))}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -412,7 +412,7 @@
                                                             {if $kitProduct->getDiscount()}
                                                                 <span class="price-discount">
                                                                     <span>
-                                                                        <span class="price priceOrigVariant">{//echo $kitProduct->getBeforePrice()}</span>
+                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getBeforePrice()}</span>
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
@@ -422,7 +422,7 @@
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
+                                                                            <span class="price priceVariant">{echo $kitProduct->getDiscountProductPrice()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
