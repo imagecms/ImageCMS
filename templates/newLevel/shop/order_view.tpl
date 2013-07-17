@@ -206,7 +206,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 <span class="price">{echo $orderProduct->getPrice()}</span>
-                                                                <span class="curr-add">{$NextCs}</span>
+                                                                <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
                                                     </span>
@@ -226,7 +226,7 @@
                                                             <span class="price-add">
                                                                 <span>
                                                                     <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
-                                                                    <span class="curr-add">{$NextCs}</span>
+                                                                    <span class="curr-add">{$NextCS}</span>
                                                                 </span>
                                                             </span>
                                                         </span>
@@ -264,7 +264,7 @@
                                                                     <span class="price-add">
                                                                         <span>
                                                                             <span class="price">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span>
-                                                                            <span class="curr">{$NextCs}</span>
+                                                                            <span class="curr">{$NextCS}</span>
                                                                         </span>
                                                                     </span>
                                                                 </span>
@@ -317,7 +317,7 @@
                                                         <span class="price-add">
                                                             <span>
                                                                 <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
-                                                                <span class="curr-add">{$NextCs}</span>
+                                                                <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
                                                     </span>
@@ -388,7 +388,7 @@
                                     <span class="price-add">
                                         <span>
                                             (<span class="price" id="totalPriceAdd">bla-bla</span>
-                                            <span class="curr-add">{$NextCs}</span>)
+                                            <span class="curr-add">{$NextCS}</span>)
                                         </span>
                                     </span>
                                 </span>
