@@ -1360,6 +1360,7 @@ var ie = jQuery.browser.msie,
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] == 'string') {
             var dim = arguments[0];
+
             clone = $(this).clone().addClass(clonedC);
             if (arguments[1] == undefined)
                 clone.css({
@@ -1403,7 +1404,7 @@ var ie = jQuery.browser.msie,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
                 var $this = $(this);
-                $(document).trigger({'type':'drop.click', 'el':$this})
+                $(document).trigger({'type': 'drop.click', 'el': $this})
                 wST = wnd.scrollTop();
                 e.stopPropagation();
                 e.preventDefault();
@@ -1543,10 +1544,7 @@ var ie = jQuery.browser.msie,
                     }
                     var dropOver = $('.overlayDrop');
                     if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
-                        if ($(document).height() - wnd.height() > 0) {
-                            dropOver.removeClass('dropOverlayFixed');
-                            body.removeClass('isScroll');
-                        }
+                        body.removeClass('isScroll');
                         dropOver.hide();
                     }
                     $this[$thisEOff]($thisD, function() {
@@ -1566,8 +1564,8 @@ var ie = jQuery.browser.msie,
         },
         dropScroll: function(elSetSource) {
             elSetSource.css({
-                'top': (wnd.height() - elSetSource.actual('height')) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.actual('width')) / 2 + wnd.scrollLeft()
+                'top': (wnd.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
+                'left': (wnd.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
             }, {
                 queue: false
             });
@@ -1598,9 +1596,11 @@ var ie = jQuery.browser.msie,
                     dataSourceW = -elSetSource.actual('width') + $thisW;
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
+
                 if ($thisL < 0)
                     $thisL = 0;
-                elSetSource.css({'top': $thisT,
+                elSetSource.css({
+                    'top': $thisT,
                     'left': $thisL
                 });
                 if ($thisL == 0)
@@ -1609,7 +1609,6 @@ var ie = jQuery.browser.msie,
             if ($thisP == 'center') {
                 if ($(document).height() - wnd.height() > 0) {
                     body.addClass('isScroll');
-                    dropOver.addClass('dropOverlayFixed');
                 }
             }
             wnd.bind('resize.drop', function() {
@@ -1680,11 +1679,11 @@ var ie = jQuery.browser.msie,
                             else
                                 input.val(inputVal + 1);
                             if (settings.ajax && !checkProdStock)
-                                $(document).trigger({'type':'showActivity'})
+                                $(document).trigger({'type': 'showActivity'})
 
                             if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
-                                $(document).trigger({'type':'showActivity'})
-                                
+                                $(document).trigger({'type': 'showActivity'})
+
                             if (checkProdStock)
                                 input.maxValue();
                             settings.after(e, el, input);
@@ -1700,7 +1699,7 @@ var ie = jQuery.browser.msie,
                                 input.val(1)
                             else if (inputVal > 1) {
                                 if (ajax)
-                                    $(document).trigger({'type':'showActivity'})
+                                    $(document).trigger({'type': 'showActivity'})
                                 input.val(inputVal - 1)
                             }
 
@@ -1884,6 +1883,8 @@ var Shop = {
     Cart: {
         totalPrice: 0,
         totalCount: 0,
+        totalPriceOrigin: 0,
+        discount: 0,
         popupCartSelector: 'script#cartPopupTemplate',
         countChanged: false,
         shipping: 0,
@@ -2050,14 +2051,34 @@ var Shop = {
                     length++;
             return length;
         },
+//        totalRecount: function() {
+//            var items = this.getAllItems();
+//            this.totalPrice = 0;
+//            this.totalCount = 0;
+//            for (var i = 0; i < items.length; i++) {
+//                this.totalPrice += items[i].price * items[i].count;
+//                this.totalCount += parseInt(items[i].count);
+//            }
+//
+//            return this;
+//        },
+
         totalRecount: function() {
             var items = this.getAllItems();
+
             this.totalPrice = 0;
             this.totalCount = 0;
+            this.totalPriceOrigin = 0;
+
             for (var i = 0; i < items.length; i++) {
+                if (items[i].origprice != '')
+                    this.totalPriceOrigin += items[i].origprice * items[i].count;
+                else
+                    this.totalPriceOrigin += items[i].price * items[i].count;
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalCount += parseInt(items[i].count);
             }
+
 
             return this;
         },
@@ -2067,17 +2088,30 @@ var Shop = {
             else
                 return this.totalPrice;
         },
+        getTotalPriceOrigin: function() {
+            if (this.totalPrice == 0)
+                return this.totalRecount().totalPriceOrigin;
+            else
+                return this.totalPriceOrigin;
+        },
         getTotalAddPrice: function() {
             if (this.totalPrice == 0)
                 return this.totalRecount().totalPrice;
             else
                 return this.totalPrice;
         },
+//        getFinalAmount: function() {
+//            if (this.shipFreeFrom > 0)
+//                if (this.shipFreeFrom <= this.getTotalPrice())
+//                    this.shipping = 0.0;
+//            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
+//        },
         getFinalAmount: function() {
             if (this.shipFreeFrom > 0)
-                if (this.shipFreeFrom <= this.getTotalPrice())
+                if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0.0;
-            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
+
+            return (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
         renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
@@ -2151,6 +2185,7 @@ var Shop = {
             url: obj.url ? obj.url : '',
             img: obj.img ? obj.img : '',
             prodStatus: obj.prodStatus ? obj.prodStatus : '',
+            origprice: obj.origprice ? obj.origprice : '',
             storageId: function() {
                 return 'cartItem_' + this.id + '_' + this.vId;
             }
@@ -2174,16 +2209,8 @@ var Shop = {
         cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
         cartItem.prodStatus = $context.data('prodstatus');
+        cartItem.origprice = $context.data('origprice')
         return cartItem;
-    },
-    //settings manager
-    Settings: {get: function(key) {
-            return localStorage.getItem(key);
-        },
-        set: function(key, value) {
-            localStorage.setItem(key, value);
-            return this;
-        }
     },
     WishList: {
         items: [],
