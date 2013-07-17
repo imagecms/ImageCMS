@@ -10,6 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
+
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -72,13 +73,23 @@
                                 <!-- $model->hasDiscounts() - check for a discount. And show old price-->
                                 <div class="frame-prices f-s_0">
                                     <!-- Check for discount-->
-                                    {if $model->hasDiscounts()}
+                                    {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0}
+                                    {if $oldoprice}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                <span class="price priceOrigVariant">{echo $model->getOldPrice()}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
+                                    {else:}
+                                        {if $model->hasDiscounts()}
+                                            <span class="price-discount">
+                                                <span>
+                                                    <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                </span>
+                                            </span>
+                                        {/if}
                                     {/if}
                                     <!-- Start. Product price-->
                                     {if $model->firstVariant->toCurrency() > 0}
@@ -92,7 +103,7 @@
                                             {if $NextCSId != null}
                                                 <span class="price-add">
                                                     <span>
-                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',2)}</span>
+                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
                                                         <span class="curr-add">{$NextCS}</span>)
                                                     </span>
                                                 </span>
@@ -105,10 +116,10 @@
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
                                         {if $productVariant->getStock() > 0}
-                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
-                                            {else:}
-                                                {$discount = 0}
+                                            {$discount = 0}
+                                            {if $model->hasDiscounts()}
+
+                                                {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                             {/if}
                                             <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
@@ -138,7 +149,7 @@
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
-                                                            data-number="{echo $productVariant->getNumber()}"
+                                                            data-number="{echo trim($productVariant->getNumber())}"
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
@@ -166,7 +177,7 @@
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
-                                                            data-number="{echo $productVariant->getNumber()}"
+                                                            data-number="{echo trim($productVariant->getNumber())}"
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
@@ -254,11 +265,18 @@
                 </div>
             </div>
             <div class="left-product">
-                <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
+                <a {if !$sizeAddImg}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     {/*rel="position: 'xBlock'" */}
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
+
+                        {$discount = 0}
+                        {if $model->hasDiscounts() && !$oldoprice}
+                            {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency()*100}
+                        {/if}
+                        {var_dump($discount)}
                         {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                     </span>
                 </a>
@@ -281,7 +299,7 @@
                 {/if}
                 <!-- End. Star rating-->
                 <!--Additional images-->
-                {if sizeof($productImages = $model->getSProductImagess()) > 0}
+                {if $sizeAddImg > 0}
                     <ul data-rel="mainThumbPhoto">
                         <li class="d_n">
                             <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
@@ -338,8 +356,6 @@
                     <div class="content-carousel">
                         <ul class="items-complect items">
                             {foreach $model->getShopKits() as $key => $kitProducts}
-                                {$arrUrl = array()}
-                                {$arrImg = array()}
                                 <li>
                                     <ul class="items items-bask row-kits">
                                         <!-- main product -->
@@ -349,19 +365,12 @@
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
                                                         <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
-                                                        {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                                                            {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
-                                                        {else:}
-                                                            {$discount = 0}
-                                                        {/if}
-                                                        {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($model->getName())}</span>
                                                 </div>
                                                 <div class="description">
                                                     <div class="frame-prices f-s_0">
                                                         <!-- Start. Product price-->
-                                                        {if $model->firstVariant->toCurrency() > 0}
                                                             <span class="current-prices f-s_0">
                                                                 <span class="price-new">
                                                                     <span>
@@ -372,20 +381,19 @@
                                                                 {if $NextCSId != null}
                                                                     <span class="price-add">
                                                                         <span>
-                                                                            (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice('Price',1)}</span>
+
+                                                                            (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
+
                                                                             <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
                                                                 {/if}
                                                             </span>
-                                                        {/if}
                                                         <!-- End. Product price-->
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
-                                        {$arrUrl[] = shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}
-                                        {$arrImg[] = $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}
                                         <!-- /end main product -->
                                         {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                             <!-- additional product -->
@@ -396,11 +404,9 @@
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
                                                             <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
-                                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
-                                                            {else:}
-                                                                {$discount = 0}
-                                                            {/if}
+                                                            
+                                                            {$discount = $kitProduct->getDiscount()}
+
                                                             {promoLabel($kitProduct->getSProducts()->getAction(), $kitProduct->getSProducts()->getHot(), $kitProduct->getSProducts()->getHit(), $discount)}
                                                         </span>
                                                         <span class="title">{echo ShopCore::encode($kitProduct->getSProducts()->getName())}</span>
@@ -411,37 +417,35 @@
                                                             {if $kitProduct->getDiscount()}
                                                                 <span class="price-discount">
                                                                     <span>
-                                                                        <span class="price priceOrigVariant">{//echo $kitProduct->getBeforePrice()}</span>
+                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getKitProductPrice()}</span>
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
                                                             {/if}
                                                             <!-- Start. Product price-->
-                                                            {if $model->firstVariant->toCurrency() > 0}
+
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
+                                                                            <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
                                                                     {if $NextCSId != null}
                                                                         <span class="price-add">
                                                                             <span>
-                                                                                (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency()}</span>
+                                                                                (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
                                                                                 <span class="curr-add">{$NextCS}</span>)
                                                                             </span>
                                                                         </span>
                                                                     {/if}
                                                                 </span>
-                                                            {/if}
+
                                                             <!-- End. Product price-->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
-                                            {$arrUrl[] = shop_url('product/' . $kitProduct->getSProducts()->getUrl())}
-                                            {$arrImg[] = $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}
                                             <!-- /additional product -->
                                         {/foreach}
                                     </ul>
@@ -452,7 +456,7 @@
                                             <div class="frame-prices f-s_0">
                                                 <span class="price-discount">
                                                     <span>
-                                                        <span class="price">{echo $kitProducts->getAllPriceBefore()}</span>
+                                                        <span class="price">{echo $kitProducts->getTotalPriceOld()}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
@@ -466,7 +470,7 @@
                                                     {if $NextCSId != null}
                                                         <span class="price-add">
                                                             <span>
-                                                                (<span class="price">{echo $kitProducts->getTotalPrice()}</span>
+                                                                (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
                                                                 <span class="curr-add">{$NextCS}</span>)
                                                             </span>
                                                         </span>
@@ -478,14 +482,14 @@
                                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                         data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                        data-addprice="{echo $kitProducts->getTotalPrice()}"
-                                                        data-addprices="{echo json_encode($kitProducts->getPriceCart())}"
+                                                        data-addprice="{if $NextCSId != null}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
+                                                        data-addprices="{if $NextCSId != null}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
                                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                                         data-kit="true"
                                                         data-kitId="{echo $kitProducts->getId()}"
                                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
-                                                        data-url='{echo json_encode($arrUrl)}'
-                                                        data-img='{echo json_encode($arrImg)}'
+                                                        data-url='{echo json_encode($kitProducts->getUrls())}'
+                                                        data-img='{echo json_encode($kitProducts->getImgs())}'
                                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -689,7 +693,7 @@
                                                                 data-price="{echo $p->firstvariant->toCurrency()}"
                                                                 data-name="{echo ShopCore::encode($p->getName())}"
                                                                 data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
-                                                                data-number="{echo $p->firstVariant->getnumber()}"
+                                                                data-number="{echo trim($p->firstVariant->getnumber())}"
                                                                 data-maxcount="{echo $p->firstVariant->getstock()}"
                                                                 data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                                 data-url="{echo shop_url('product/' . $p->getUrl())}"
@@ -833,7 +837,7 @@
                                                             data-price="{echo $p->firstvariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($p->getName())}"
                                                             data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
-                                                            data-number="{echo $p->firstVariant->getnumber()}"
+                                                            data-number="{echo trim($p->firstVariant->getnumber())}"
                                                             data-maxcount="{echo $p->firstVariant->getstock()}"
                                                             data-img="{echo $p->firstVariant->getSmallPhoto()}"
                                                             data-url="{echo shop_url('product/' . $p->getUrl())}"

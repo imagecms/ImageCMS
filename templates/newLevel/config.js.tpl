@@ -1,7 +1,7 @@
 <!-- php vars to js -->
 <script type="text/javascript">
     var curr = '{$CS}',
-            currNext = '{$NextCs}',
+            currNext = '{$NextCS}',
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
             inCart = 'В корзине',

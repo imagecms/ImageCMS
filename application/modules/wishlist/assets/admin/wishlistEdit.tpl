@@ -55,6 +55,12 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="banner_type">{lang('Description')}:</label>
+                                                <div class="controls">
+                                                    <textarea name="description">{$wishlist['0']['description']}</textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
