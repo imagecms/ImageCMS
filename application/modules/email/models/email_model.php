@@ -63,42 +63,42 @@ class Email_model extends CI_Model {
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'from_email' => array(
+            'from_email' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'theme' => array(
+            'theme' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'type' => array(
+            'type' => array(
                 'type' => 'ENUM',
                 'constraint' => "'HTML','Text'",
                 'default' => "HTML"
             ),
-	'user_message' => array(
+            'user_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'user_message_active' => array(
+            'user_message_active' => array(
                 'type' => 'BOOLEAN',
-               'default' => TRUE
+                'default' => TRUE
             ),
-	'admin_message' => array(
+            'admin_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'admin_message_active' => array(
+            'admin_message_active' => array(
                 'type' => 'BOOLEAN',
-               'default' => TRUE
+                'default' => TRUE
             ),
-	'description' => array(
+            'description' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'variables' => array(
+            'variables' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             )
@@ -110,9 +110,9 @@ class Email_model extends CI_Model {
         $this->dbforge->create_table('mod_email_paterns');
 
 
-	
 
-	$this->db
+
+        $this->db
                 ->where('identif', 'email')
                 ->update('components', array(
                     'settings' => serialize(
@@ -122,8 +122,8 @@ class Email_model extends CI_Model {
                                 'from_email' => 'default@from.ua',
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
-				'wraper_activ' => true,
-				'protocol' => 'SMTP',
+                                'wraper_activ' => true,
+                                'protocol' => 'SMTP',
                                 'port' => '80'
                             )
                     ),
