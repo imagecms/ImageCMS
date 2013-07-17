@@ -80,7 +80,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="settings[maxWLDescLenght]">{lang(max_description_length)}</label>
+                                <label class="control-label" for="settings[maxWLDescLenght]">{lang(max_wl_description_length)}</label>
                                 <div class="controls">
                                     <input type = "number" name = "settings[maxWLDescLenght]" class="textbox_short" value="{$settings['maxWLDescLenght']}" id="maxWLDescLenght"/>
                                 </div>
