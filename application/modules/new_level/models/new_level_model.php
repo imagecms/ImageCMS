@@ -157,6 +157,18 @@ class New_level_model extends CI_Model {
                             ->insert('mod_new_level_columns', array('category_id' => serialize($categories_ids), 'column' => $column));
         }
     }
+    
+    public function getColumns(){
+        $query = $this->db->get('mod_new_level_columns');
+        if($query){
+            return $query->result_array();
+        }else{
+            return 0;
+        }
+    }
+    
+    
+    
 }
 
 ?>
