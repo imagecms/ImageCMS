@@ -31,7 +31,7 @@ class Email_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-        return $this->db->where('identif', 'wishlist')
+        return $this->db->where('identif', 'email')
                         ->update('components', array('email' => serialize($settings)
         ));
     }
@@ -49,39 +49,87 @@ class Email_model extends CI_Model {
                 'type' => 'INT',
                 'auto_increment' => TRUE
             ),
-            'title' => array(
+            'name' => array(
                 'type' => 'VARCHAR',
-                'constraint' => '254',
+                'constraint' => '256',
                 'null' => FALSE
             ),
-            'description' => array(
-                'type' => 'Text',
-                'null' => TRUE
+            'patern' => array(
+                'type' => 'TEXT',
+                'null' => FALSE
             ),
-            'access' => array(
+            'from' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+	'from_email' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+	'theme' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+	'type' => array(
                 'type' => 'ENUM',
-                'constraint' => "'public','private','shared'",
-                'default' => "shared"
+                'constraint' => "'HTML','Text'",
+                'default' => "HTML"
             ),
-            'user_id' => array(
-                'type' => 'INT',
+	'user_message' => array(
+                'type' => 'TEXT',
                 'null' => FALSE
             ),
-            'review_count' => array(
-                'type' => 'INT',
-                'null' => FALSE,
-                'default' => 0
+	'user_message_active' => array(
+                'type' => 'BOOLEAN',
+               'default' => TRUE
             ),
-            'hash' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '16',
+	'admin_message' => array(
+                'type' => 'TEXT',
+                'null' => FALSE
+            ),
+	'admin_message_active' => array(
+                'type' => 'BOOLEAN',
+               'default' => TRUE
+            ),
+	'description' => array(
+                'type' => 'TEXT',
+                'null' => FALSE
+            ),
+	'variables' => array(
+                'type' => 'TEXT',
                 'null' => FALSE
             )
         );
 
+
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_email_patterns');
+        $this->dbforge->create_table('mod_email_paterns');
+
+
+	
+
+	$this->db
+                ->where('identif', 'email')
+                ->update('components', array(
+                    'settings' => serialize(
+                            array(
+                                'name' => 'Default Name',
+                                'from' => 'Default From',
+                                'from_email' => 'default@from.ua',
+                                'theme' => 'Default Theme',
+                                'wraper' => 'Default $content Wraper',
+				'wraper_activ' => true,
+				'protocol' => 'SMTP',
+                                'port' => '80'
+                            )
+                    ),
+                    'enabled' => 1,
+                    'autoload' => 1
+        ));
 
         return TRUE;
     }
@@ -93,7 +141,7 @@ class Email_model extends CI_Model {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 
-        $this->dbforge->drop_table('mod_email_patterns');
+        $this->dbforge->drop_table('mod_email_paterns');
 
         return TRUE;
     }

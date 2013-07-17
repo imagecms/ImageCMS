@@ -108,7 +108,6 @@ class New_level extends MY_Controller {
 
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_new_level_columns', TRUE);
-        
 
         $this->db
                 ->where('identif', 'new_level')
