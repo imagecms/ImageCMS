@@ -103,7 +103,7 @@ class New_level extends MY_Controller {
         
         $fields = array(
             'category_id' => array('type' => 'VARCHAR', 'constraint' => 500),
-            'column' => array('type' => 'INT', 'constraint' => 4, 'default' => 0)
+            'column' => array('type' => 'VARCHAR', 'constraint' => 256)
         );
 
         $this->dbforge->add_field($fields);

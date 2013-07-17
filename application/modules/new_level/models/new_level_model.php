@@ -175,7 +175,44 @@ class New_level_model extends CI_Model {
         }
     }
     
+    public function deleteColumnFromSettings($del_column) {
+         $settings = $this->getSettings();
+         $newColumns = $settings['columns'];
+         
+         foreach($newColumns as $key => $column){
+             if($column==$del_column){
+                 unset($newColumns[$key]);
+             }
+         }
+         
+         $columns = $this->db->where('column',$del_column)
+                    ->delete('mod_new_level_columns');
+         
+         $settings['columns'] = $newColumns;
+         $this->setSettings($settings);
+    }
     
+    public function addColumn($newColumn){
+         $settings = $this->getSettings();
+         array_push($settings['columns'], $newColumn);
+         $this->setSettings($settings);
+    }
+    
+    public function editColumn($oldColumn, $newColumn) {
+         $settings = $this->getSettings();
+         $newColumns = $settings['columns'];
+         
+         foreach($newColumns as $key => $column){
+             if($column==$oldColumn){
+                 $newColumns[$key] = $newColumn;
+             }
+         }
+         
+         $this->db->where('column', $oldColumn)->update('mod_new_level_columns', array('column' => $newColumn));
+         
+         $settings['columns'] = $newColumns;
+         $this->setSettings($settings);
+    }    
     
 }
 
