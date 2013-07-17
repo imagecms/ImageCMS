@@ -1,6 +1,6 @@
 <div class="groups-form" >
     <label for="giftcert" class="label-gift-cert">
-        <span class="title">{lang('s_cert_code')}</span>
+        <span class="title">Промо код</span>
         <span class="frame-form-field">
             <div class="preloader"></div>
             <div class="btn-def f_r">
