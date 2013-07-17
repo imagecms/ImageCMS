@@ -2010,7 +2010,7 @@ var Shop = {
         sync: function() {
             $.getJSON('/shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.parse(data));
+                    localStorage.setItem('wishList', JSON.stringify(data));
 
                     $(document).trigger({
                         type: 'compare_list_sync'
