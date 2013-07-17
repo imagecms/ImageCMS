@@ -132,8 +132,10 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function createWishList() {
         $listName = $this->input->post('wishListName');
         $user_id = $this->input->post('user_id');
+        $wlType = $this->input->post('wlTypes');
+        $wlDescription = $this->input->post('wlDescription');
 
-        if (parent::createWishList($user_id, $listName)) {
+        if (parent::createWishList($user_id, $listName, $wlType, $wlDescription)) {
             return $this->dataModel = lang('created');
         } else {
             return $this->errors;
@@ -173,6 +175,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function updateWL() {
 
         $id = $this->input->post('WLID');
+        $wlDescription = $this->input->post('description');
+        
+        if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
+            $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
+            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+        }
 
         foreach ($this->input->post('comment') as $key => $comment) {
             if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
@@ -187,6 +195,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         $data = array(
             'access' => $this->input->post('access'),
+            'description' => $wlDescription,
             'title' => $title,
         );
 
