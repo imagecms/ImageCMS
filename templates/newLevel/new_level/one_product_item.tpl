@@ -72,8 +72,8 @@
                         {if $NextCSId != null}
                             <span class="price-add">
                                 <span>
-                                    (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',1)}</span>
-                                    <span class="curr-add">{$NextCs}</span>)
+                                    (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
+                                    <span class="curr-add">{$NextCS}</span>)
                                 </span>
                             </span>
                         {/if}

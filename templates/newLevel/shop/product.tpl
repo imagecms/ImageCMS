@@ -73,13 +73,23 @@
                                 <!-- $model->hasDiscounts() - check for a discount. And show old price-->
                                 <div class="frame-prices f-s_0">
                                     <!-- Check for discount-->
-                                    {if $model->hasDiscounts()}
+                                    {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0}
+                                    {if $oldoprice}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                <span class="price priceOrigVariant">{echo $model->getOldPrice()}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
+                                    {else:}
+                                        {if $model->hasDiscounts()}
+                                            <span class="price-discount">
+                                                <span>
+                                                    <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                </span>
+                                            </span>
+                                        {/if}
                                     {/if}
                                     <!-- Start. Product price-->
                                     {if $model->firstVariant->toCurrency() > 0}
@@ -93,7 +103,7 @@
                                             {if $NextCSId != null}
                                                 <span class="price-add">
                                                     <span>
-                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',2)}</span>
+                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
                                                         <span class="curr-add">{$NextCS}</span>)
                                                     </span>
                                                 </span>
@@ -106,10 +116,10 @@
                                 <div class="funcs-buttons">
                                     {foreach $variants as $key => $productVariant}
                                         {if $productVariant->getStock() > 0}
-                                            {if $model->getOldPrice() > $model->firstVariant->getPrice()}
-                                                {$discount = round(100 - ($model->firstVariant->getPrice() / $model->getOldPrice() * 100))}
-                                            {else:}
-                                                {$discount = 0}
+                                            {$discount = 0}
+                                            {if $model->hasDiscounts()}
+
+                                                {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                             {/if}
                                             <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                                 <div class="frame-count">
@@ -255,11 +265,18 @@
                 </div>
             </div>
             <div class="left-product">
-                <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
+                <a {if !$sizeAddImg}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     {/*rel="position: 'xBlock'" */}
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
+
+                        {$discount = 0}
+                        {if $model->hasDiscounts() && !$oldoprice}
+                            {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency()*100}
+                        {/if}
+                        {var_dump($discount)}
                         {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                     </span>
                 </a>
@@ -282,7 +299,7 @@
                 {/if}
                 <!-- End. Star rating-->
                 <!--Additional images-->
-                {if sizeof($productImages = $model->getSProductImagess()) > 0}
+                {if $sizeAddImg > 0}
                     <ul data-rel="mainThumbPhoto">
                         <li class="d_n">
                             <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
@@ -373,7 +390,7 @@
                                                                 {if $NextCSId != null}
                                                                     <span class="price-add">
                                                                         <span>
-                                                                            (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice('Price',1)}</span>
+                                                                            (<span class="price addCurrPrice">{// --***echo $kitProducts->getMainProductPrice('Price',$NextCSId)}</span>
                                                                             <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
