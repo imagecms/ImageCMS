@@ -32,7 +32,7 @@ class Email_model extends CI_Model {
      */
     public function setSettings($settings) {
         return $this->db->where('identif', 'email')
-                        ->update('components', array('email' => serialize($settings)
+                        ->update('components', array('settings' => serialize($settings)
         ));
     }
 
@@ -64,6 +64,11 @@ class Email_model extends CI_Model {
                 'null' => FALSE
             ),
             'from_email' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+            'admin_email' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
@@ -117,9 +122,9 @@ class Email_model extends CI_Model {
                 ->update('components', array(
                     'settings' => serialize(
                             array(
-                                'name' => 'Default Name',
                                 'from' => 'Default From',
                                 'from_email' => 'default@from.ua',
+                                'admin_email' => 'admin@from.ua',
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
                                 'wraper_activ' => true,

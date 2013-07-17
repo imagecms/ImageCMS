@@ -1,4 +1,6 @@
 /system/cache/
+/logs/nginx.access.log
+/logs/*
 /application/logs
 /captcha
 /uploads
