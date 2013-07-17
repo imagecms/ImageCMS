@@ -12,22 +12,23 @@
                 <div class="inside_padd">
                     <div class="row-fluid">
                         <div class="span3">
-                            <div class="control-group">
-                                <label class="control-label" for="iddCategory">Колонка:</label>
-                                <div class="controls number">
-                                    <form  type="post">
-                                        <input id="cattegoryColumnMod" name="column" type="text" value="{echo $data['column']}" maxlength="1">
-                                        <input id="cattegoryIdMod" type="hidden"  name="categoryId" value="{echo $data['categoryId']}" >
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row-fluid">
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="button" class="btn btn-small btn-primary btn-success" id="cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>Сохранить</button>
-                            </div>
+                            {foreach $columns as $column}
+                                <div class="control-group">
+                                    <label class="control-label" for="iddCategory">Колонка {echo $column}:</label>
+                                    <div class="controls ">
+                                        <select  id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:100px !important;">
+                                            {foreach $categories as $category}
+                                                {if in_array($category->getId(), $columnCategories[$column])}
+                                                    <option selected {if $category->getLevel() == 0}style="font-weight: bold;"{/if} {if in_array($category->getId(),$currentCategories)} selected {/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}</option>
+                                                {else:}
+                                                    <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} {if in_array($category->getId(),$currentCategories)} selected {/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}</option>
+                                                {/if}
+                                            {/foreach}
+                                        </select>
+                                        <button type="button" data-column="{echo $column}" class="btn btn-small btn-primary btn-success cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>Сохранить</button>
+                                    </div>
+                                </div>                               
+                            {/foreach}
                         </div>
                     </div>
                 </div>

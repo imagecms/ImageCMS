@@ -1,8 +1,8 @@
 {/*/**
-* @file Render shop product; 
+* @file Render shop product;
 * @partof main.tpl;
 * @updated 26 February 2013;
-* Variables 
+* Variables
 *  $model : PropelObjectCollection of (object) instance of SProducts
 *   $model->hasDiscounts() : Check whether the discount on the product.
 *   $model->firstVariant : variable which contains the first variant of product;
@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-{/*var_dumps($CI->load->module('next_level')->getPropertyTypes(26))*/}
+
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -24,7 +24,7 @@
                 </div>
                 <span class="frame-variant-name-code">
                     <span class="frame-variant-code" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
-                        Код товара: 
+                        Код товара:
                         <span class="code">
                             {if $model->firstVariant->getNumber()}
                                 {trim($model->firstVariant->getNumber())}
@@ -32,7 +32,7 @@
                         </span>
                     </span>
                     <span class="frame-variant-name" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
-                        Вариант: 
+                        Вариант:
                         <span class="code">
                             {if $model->firstVariant->getName()}
                                 {trim($model->firstVariant->getName())}
@@ -60,7 +60,7 @@
                                                     {echo ShopCore::encode($productVariant->getName())}
                                                 {else:}
                                                     {echo ShopCore::encode($model->getName())}
-                                                {/if}        
+                                                {/if}
                                             </option>
                                         {/foreach}
                                     </select>
@@ -346,7 +346,7 @@
         </div>
     </div>
     <!--Kit start-->
-    {if $model->getShopKits()->count() > 0}             
+    {if $model->getShopKits()->count() > 0}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="title-complect">
@@ -429,7 +429,7 @@
                                                             {if $kitProduct->getDiscount()}
                                                                 <span class="price-discount">
                                                                     <span>
-                                                                        <span class="price priceOrigVariant">{//echo $kitProduct->getBeforePrice()}</span>
+                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getBeforePrice()}</span>
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
@@ -439,7 +439,7 @@
                                                                 <span class="current-prices f-s_0">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
+                                                                            <span class="price priceVariant">{echo $kitProduct->getDiscountProductPrice()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
@@ -492,7 +492,7 @@
                                                 </span>
                                             </div>
                                             <div class="btn-buy">
-                                                <button class="btnBuy" type="button"                                    
+                                                <button class="btnBuy" type="button"
                                                         data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                         data-price="{echo $kitProducts->getTotalPrice()}"
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
@@ -544,7 +544,7 @@
                 {if trim($model->getShortDescription()) != ''}
                 <li><button data-href="#second" onclick="ProductTabs.renderFullDescription('{echo $model->getId()}')">Полное описание</button></li>
                 {/if}
-                {if $accessories}     
+                {if $accessories}
                 <li><button data-href="#fourth">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
@@ -552,7 +552,7 @@
                 <li>
                     <button type="button" data-href="#comment" onclick="renderPosts($('#for_comments_tabs'))">
                         <span class="icon_comment-tab"></span>
-                        <span class="text-el">                    
+                        <span class="text-el">
                             <span id="cc">
                                 {if $Comments[$model->getId()][0] !== '0'}
                                     {echo $Comments[$model->getId()]}
@@ -567,7 +567,7 @@
         </ul>
         <div class="frame-tabs-ref frame-tabs-product">
             <div id="view">
-                <!--             Start. Characteristic-->                 
+                <!--             Start. Characteristic-->
                 <div class="inside-padd">
                     <h3>Характеристики</h3>
                     <div class="characteristic">
@@ -727,7 +727,7 @@
                         </div>
                     {/if}
                 </div>
-                <!--             Start. Characteristic-->                 
+                <!--             Start. Characteristic-->
                 <div id="first">
                     <div class="inside-padd">
                         <h3>Характеристики</h3>
