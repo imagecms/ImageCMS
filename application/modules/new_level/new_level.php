@@ -18,7 +18,14 @@ class New_level extends MY_Controller {
     }
 
     public function autoload() {
+        
 
+        $settings = $this->new_level_model->getthema();
+
+        if (!$settings)
+            $settings = 'css/color_scheme_1';
+
+        $this->template->assign('colorScheme', $settings);
     }
     
     /**

@@ -11,12 +11,13 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->model('new_level_model');
+        $this->path = TEMPLATES_PATH . 'newLevel';
     }
 
     public function index() {
         $settings = $this->new_level_model->getSettings();
         $categories = $this->new_level_model->getCategories();
-        
+
         \CMSFactory\assetManager::create()
                 ->registerScript('script')
                 ->registerStyle('style')
@@ -26,6 +27,40 @@ class Admin extends BaseAdminController {
                 ->setData('columnCategories', $this->new_level_model->getColumnCategories())
                 ->setData('columns', $settings['columns'])
                 ->renderAdmin('index');
+    }
+
+    public function get_thema() {
+        
+               
+        if ($_POST) {
+            $settings = $this->new_level_model->getSettings();
+            $settings['thema'] = $_POST['thema'];
+            $sql = "update components set settings = '" . serialize($settings) . "' where name = 'new_level'";
+            $this->db->query($sql);
+            showMessage('Даные сохранены');
+        } else {
+
+            $thema = array();
+
+            if ($handle = opendir($this->path . '/css/')) {
+                while (false !== ($file = readdir($handle))) {
+                    if ($file != "." && $file != "..") {
+                        if (!is_file($this->path . '/css/' . $file)) {
+                            $thema[$file] = "css/$file";
+                        }
+                    }
+                }
+                closedir($handle);
+            }
+
+            $cur_thema = $this->new_level_model->getthema();
+            
+
+            \CMSFactory\assetManager::create()
+                    ->registerScript('script')
+                    ->setData(array('cur_thema' => $cur_thema, 'thema' => $thema, 'img' => '/templates/newLevel/' . $cur_thema . '/'))
+                    ->renderAdmin('settings_thema');
+        }
     }
 
     public function saveCategories() {

@@ -22,6 +22,7 @@ class New_level_model extends CI_Model {
     }
     
      public function setSettings($settings) {
+         $settings['thema'] = $this->getthema();
         return $this->db->where('identif', 'new_level')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -59,6 +60,13 @@ class New_level_model extends CI_Model {
                 return FALSE;
             }    
         
+    }
+    
+    public function getthema(){
+        
+        $sql = "select settings from components where name = 'new_level'";
+        $data = unserialize($this->db->query($sql)->row()->settings);
+        return $data['thema'];
     }
      public function removePropertyType($propety_id,$type) {
             $types = $this->db->select('type')
