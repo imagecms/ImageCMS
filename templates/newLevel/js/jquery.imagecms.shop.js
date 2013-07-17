@@ -1554,6 +1554,7 @@ var ie = jQuery.browser.msie,
                         if (typeof sel == 'function')
                             sel();
                     });
+                    $(document).trigger({'type': 'drop.hide', el: elSetSource})
                 });
             }
             else {

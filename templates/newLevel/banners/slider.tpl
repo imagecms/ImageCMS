@@ -16,7 +16,7 @@
                     </li>
                 {/foreach}
             </ul>
-            <span class="preloader-baner"></span>
+            <span class="preloader"></span>
             <div class="pager"></div>
         </div>
         <div class="group-button-carousel">

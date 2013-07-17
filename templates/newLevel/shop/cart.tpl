@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="no-empty">
+        <div class="no-empty {if count($items) == 0} d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
                     <h1 class="d_i">Оформление заказа</h1>
@@ -201,7 +201,9 @@
                                 </div>
                             {/if}
                         </div>
-                        <div id="gift"></div>
+                        <div id="gift">
+                            <div class="preloader"></div>
+                        </div>
                         <div class="groups-form">
                             <div class="frame-label">
                                 <span class="title">&nbsp;</span>
@@ -211,22 +213,21 @@
                                             <span class="s-t">Стоимость доставки:</span>
                                             <span class="price-item">
                                                 <span>
-                                                    <span class="text-el">+</span><span id="shipping"></span>
+                                                    <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
                                                     <span class="curr"></span>
                                                 </span>
                                             </span>
                                         </li>
-                                        <li>
-                                            <span class="s-t">Ваша текущая скидка:</span>
-                                            <span class="price-item">
-                                                <span class="text-discount">
-                                                    <span class="text-el">-</span><span id="currDiscount">bla-bla</span>
-                                                    <span class="curr"></span>
-                                                </span>
-                                            </span>
-                                        </li>
+                                    </ul>
+                                    <div class="p_r">
+                                        <ul class="items items-order-gen-info" id="discount">
+
+                                        </ul>
+                                        <div class="preloader"></div>
+                                    </div>
+                                    <ul class="items items-order-gen-info">
                                         <li id="giftCertSpan" style="display: none;">
-                                            <span class="s-t">Подарочный сертификат:</span>
+                                            <span class="s-t">Промо код:</span>
                                             <span class="price-item">
                                                 <span class="text-discount">
                                                     <span class="text-el">-</span><span id="giftCertPrice"></span>
@@ -279,11 +280,10 @@
                     </form>
                 </div>
             </div>
-            <div id="Discount"></div>
         </div>
         <div class="right-cart">
-            <div class="preloader"></div>
             <div id="orderDetails">
+                <div class="preloader"></div>
             </div>
         </div>
     </div>
