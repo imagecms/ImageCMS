@@ -142,20 +142,6 @@ class discount_api extends \mod_discount\discount {
         }
 
     }
-    /**
-     * get comulativ discount
-     * @access public
-     * @author DevImageCms
-     * @param model 
-     * @return boolean
-     * @copyright (c) 2013, ImageCMS
-     */   
-    public function get_comulativ_discount(){
-        if ($this->check_module_install()) {
-            return $this->init()->discount_type['comulativ'];
-            
-        }
-        
-    }
+
 
 }
