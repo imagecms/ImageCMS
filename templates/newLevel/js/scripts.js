@@ -99,7 +99,7 @@ var productStatus = {
     hit: '<span class="product-status hit"></span>',
     hot: '<span class="product-status nowelty"></span>',
     discount: function(disc) {
-        return '<span class="product-status discount"><span class="text-el">' + disc + '%</span></span>';
+        return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(pricePrecision) + '%</span></span>';
     }
 }
 imageCmsApiDefaults = {
@@ -169,7 +169,9 @@ var genObj = {
     textEl: '.text-el', //селектор
     popupCart: '#popupCart',
     pageCart: '.page-cart',
-    pM: $('.paymentMethod'),
+    pM: function() {
+        return $('.paymentMethod');
+    },
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
     countOrCompl: '.countOrCompl', //селектор
@@ -190,6 +192,7 @@ var genObj = {
     plurProd: '.plurProd',
     countBask: '.topCartCount',
     sumBask: '.topCartTotalPrice',
+    addSumBask: '.topCartTotalAddPrice',
     tinyBask: '.tiny-bask', //селектор
     bask: '.bask', //селектор
     blockEmpty: '.empty',
@@ -216,8 +219,8 @@ var genObj = {
     priceAddPrice: '.addCurrPrice',
     photoProduct: '.photoProduct',
     userToolbar: $('.items-user-toolbar'),
-    popupCartTotal: '#popupCartTotal',
-    popupCartTotaladdprice: '#popupCartTotaladdprice',
+//    popupCartTotal: '#popupCartTotal',
+//    popupCartTotaladdprice: '#popupCartTotaladdprice',
     orderDetails: '#orderDetails',
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
@@ -225,10 +228,13 @@ var genObj = {
     numberC: '.number', //количество на складе
     msgF: '.msg',
     err: 'error', //клас
-    scs: 'success'//клас
-
+    scs: 'success', //клас
+    frameDiscount: function() {
+        return $('#discount');
+    }
 };
 message = {
+    asdf: '11',
     success: function(text) {
         return '<div class = "msg"><div class = "' + genObj.scs + '"><p><span class = "icon_info"></span><span class="text-el">' + text + '</span></p></div></div>'
     },
@@ -465,16 +471,30 @@ function countSumBask() {
     $(genObj.sumBask).each(function() {
         $(this).html(parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision));
     });
+    $(genObj.addSumBask).each(function() {
+        $(this).html(Shop.Cart.totalAddPrice.toFixed(pricePrecision));
+    })
     $(genObj.bask + ' ' + genObj.plurProd).each(function() {
         $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
     });
+    if ($.existsN($('.genDiscount')) || $.existsN($('.genSumDiscount'))) {
+        if ($.isFunction(window.get_discount)) {
+            get_discount();
+            $(document).bind('get_discount_api', function(e) {
+                $('.genDiscount').each(function() {
+                    $(this).html(e.obj.sum_discount_product.toFixed(pricePrecision));
+                });
+                $('.genSumDiscount').each(function() {
+                    $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
+                });
+            })
+        }
+    }
 }
 function cart_changed(methodDeliv, selectDeliv) {
     Shop.Cart.totalRecount();
     processPage();
-    if ($.existsN(methodDeliv))
-        recountCartPage(selectDeliv, methodDeliv);
-    popupCartRecGenSum();
+
     if (Shop.Cart.totalCount == 0) {
         $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).addClass('d_n');
         $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).addClass('d_b');
@@ -555,14 +575,14 @@ function processPage() {
     })
 }
 
-function popupCartRecGenSum() {
-    $(genObj.popupCartTotal).each(function() {
-        $(this).html(Shop.Cart.totalPrice.toFixed(pricePrecision));
-    })
-    $(genObj.popupCartTotaladdprice).each(function() {
-        $(this).html(Shop.Cart.totalAddPrice.toFixed(pricePrecision));
-    })
-}
+//function popupCartRecGenSum() {
+//    $(genObj.popupCartTotal).each(function() {
+//        $(this).html(Shop.Cart.totalPrice.toFixed(pricePrecision));
+//    })
+//    $(genObj.popupCartTotaladdprice).each(function() {
+//        $(this).html(Shop.Cart.totalAddPrice.toFixed(pricePrecision));
+//    })
+//}
 
 function initShopPage(showWindow, target, orderDetails) {
     if (Shop.Cart.countChanged == false) {
@@ -607,7 +627,6 @@ function initShopPage(showWindow, target, orderDetails) {
             Shop.Cart.chCount(cartItem, function() {
                 input.focus();
             });
-            countSumBask();
             totalPrice = cartItem.count * cartItem.price;
             var pdTrs = $('[data-id =' + $(pd).closest('tr').data('id') + ']')
             pdTrs.each(function() {
@@ -620,7 +639,7 @@ function initShopPage(showWindow, target, orderDetails) {
                 pdTr.find(genObj.priceAddPrice).html((cartItem.count * cartItem.addprice).toFixed(pricePrecision));
                 pdTr.find(genObj.countOrCompl).html(word);
             })
-            popupCartRecGenSum();
+            countSumBask();
         }
         $(genObj.frameCount + ' input').bind('keyup', function(e) {
             var $this = $(this);
@@ -663,7 +682,7 @@ function renderOrderDetails() {
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
-    genObj.pM.next().show();
+    genObj.pM().next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         data = JSON.parse(dataStr);
         var replaceStr = '';
@@ -676,14 +695,14 @@ function changeDeliveryMethod(id, selectDeliv) {
                 data: data
             });
         }
-        genObj.pM.html(replaceStr);
-        genObj.pM.next().hide();
+        genObj.pM().html(replaceStr);
+        genObj.pM().next().hide();
         if (selectDeliv)
             cuSel({
                 changedEl: '#paymentMethod'
             });
         else
-            genObj.pM.nStRadio({
+            genObj.pM().nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
                         //classRemove: 'b_n',//if not standart
@@ -708,7 +727,6 @@ function changeDeliveryMethod(id, selectDeliv) {
 //    $('.curr').html(curr);
 //}
 function recountCartPage(selectDeliv, methodDeliv) {
-    console.log(1)
     var ca = "";
     if (selectDeliv)
         ca = $('span.cuselActive');
@@ -717,12 +735,15 @@ function recountCartPage(selectDeliv, methodDeliv) {
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
 
-    if ($.isFunction(window.load_certificat)) {
-        load_certificat();
-    }
-
     if ($.isFunction(window.get_discount)) {
+        var frameDiscountO = genObj.frameDiscount();
+        frameDiscountO.empty();
+        frameDiscountO.next().show();
         get_discount();
+        $(document).bind('get_discount_tpl_from_json_api', function(e) {
+            frameDiscountO.html(e.tpl);
+            frameDiscountO.next().hide();
+        })
     }
 
     var discount = Shop.Cart.discount;
@@ -1086,7 +1107,7 @@ jQuery(document).ready(function() {
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).bind('autocomplete.after drop.show', function(e) {
+    $(document).bind('autocomplete.after drop.show drop.hide', function(e) {
         $.fancybox.hideActivity();
     })
 
@@ -1134,11 +1155,6 @@ jQuery(document).ready(function() {
         decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
         return true;
     });
-    $(genObj.popupCart).html(Shop.Cart.renderPopupCart())
-    $(document).trigger({
-        type: 'render_popup_cart',
-        el: $(genObj.popupCart)
-    });
 
 //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
@@ -1152,7 +1168,16 @@ jQuery(document).ready(function() {
         }
     });
     recountCartPage(selectDeliv, methodDeliv());
-    genObj.pM.nStRadio({
+    if ($.isFunction(window.load_certificat)) {
+        load_certificat();
+        $(document).bind('render_gift_input', function(e) {
+            if (e.tpl == '')
+                $('#gift').empty();
+            else
+                $('#gift').html(e.tpl);
+        })
+    }
+    genObj.pM().nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
 //classRemove: 'b_n',//if not standart
