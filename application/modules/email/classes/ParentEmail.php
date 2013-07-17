@@ -16,6 +16,7 @@ class ParentEmail extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('email_model');
     }
 
     public function autoload() {
