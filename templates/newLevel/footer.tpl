@@ -9,7 +9,7 @@
         </div>
         <div class="box-2">
             <div class="main-title">Продукция</div>
-            {\Category\RenderMenu::create()->load('footer_category_menu')}
+            {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
         </div>
         <!--End. Load menu in footer-->
 

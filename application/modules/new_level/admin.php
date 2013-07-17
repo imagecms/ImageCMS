@@ -22,6 +22,23 @@ class Admin extends BaseAdminController {
                     ->setData('property_types', $settings['propertiesTypes'])
                     ->renderAdmin('properties');
     }
+    public function columns() {
+        $settings = $this->new_level_model->getSettings();
+        $categories = $this->new_level_model->getCategories();
+        \CMSFactory\assetManager::create()
+                ->registerStyle('style')
+                 ->registerScript('script')
+                ->setData('categories', $categories)
+                ->setData('columnCategories', $this->new_level_model->getColumnCategories())
+                ->setData('columns', $settings['columns'])
+                ->renderAdmin('columns');
+    }
+    
+    public function saveCategories(){
+        $categories_ids = $this->input->post('categories_ids');
+        $column = $this->input->post('column');
+        $this->new_level_model->saveCategories($categories_ids, $column);
+    }
     
     public function settings() {
         \CMSFactory\assetManager::create()

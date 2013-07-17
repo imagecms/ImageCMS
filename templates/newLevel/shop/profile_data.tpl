@@ -24,12 +24,7 @@
                         <span class="help-block">{lang('s_email_is_login')}</span>
                     </span>
                 </label>
-                <label>
-                    <span class="title">Город:</span>
-                    <span class="frame-form-field">
-                        <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
-                    </span>
-                </label>
+                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
                 <label>
                     <span class="title">Адрес:</span>
                     <span class="frame-form-field">
