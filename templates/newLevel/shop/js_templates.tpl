@@ -258,7 +258,7 @@
         <span class="price-add">
         <span>
         <span class="price" id="popupCartTotaladdprice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-curr%></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
