@@ -28,7 +28,7 @@ class Admin extends BaseAdminController {
      * updare settings for email
      */
     public function update_settings() {
-        
+
         if ($_POST) {
             $this->email_model->setSettings($_POST['settings']);
         }

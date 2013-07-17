@@ -12,18 +12,6 @@ class Email extends \email\classes\BaseEmail {
         parent::__construct();
     }
 
-    public function autoload() {
-
-    }
-
-    public function _install() {
-        parent::_install();
-    }
-
-    public function _deinstall() {
-        parent::_deinstall();
-    }
-
 }
 
 /* End of file email.php */
