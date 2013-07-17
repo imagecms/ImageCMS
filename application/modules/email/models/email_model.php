@@ -31,7 +31,6 @@ class Email_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-        var_dumps($settings);
         return $this->db->where('identif', 'email')
                         ->update('components', array('settings' => serialize($settings)
         ));
