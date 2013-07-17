@@ -1,3 +1,14 @@
+//if select
+//        var methodDeliv = function() {
+//    return $('#method_deliv')
+//},
+//        selectDeliv = true;
+//if radio
+var methodDeliv = function() {
+    return $('[name = "deliveryMethodId"]')
+},
+        selectDeliv = false;
+
 var isTouch = 'ontouchstart' in document.documentElement,
         mainBody = $('.main-body'),
         cW = '980',
@@ -157,8 +168,7 @@ icons = {
 var genObj = {
     textEl: '.text-el', //селектор
     popupCart: '#popupCart',
-    emptyCarthideElement: "#popupCart .no-empty, #shopCartPage",
-    emptyCartshowElement: "#popupCart .empty, #shopCartPageEmpty",
+    pageCart: '.page-cart',
     pM: $('.paymentMethod'),
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
@@ -207,6 +217,7 @@ var genObj = {
     photoProduct: '.photoProduct',
     userToolbar: $('.items-user-toolbar'),
     popupCartTotal: '#popupCartTotal',
+    popupCartTotaladdprice: '#popupCartTotaladdprice',
     orderDetails: '#orderDetails',
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
@@ -305,7 +316,7 @@ function decorElemntItemProduct(el) {
             $thisLi.find('.no-vis-table').each(function() {
                 var $this = $(this);
                 $this.css('width', $thisLi.find('.description').width());
-                var $thisH = $this.actual('height');
+                var $thisH = $this.actual('outerHeight');
                 $this.css('width', '');
                 $this.parent().css('top', sumH);
                 sumH = sumH + $thisH;
@@ -348,7 +359,6 @@ function drawIcons(selIcons) {
 
 function itemUserToolbar() {
     this.show = function(itemsUT, btn, hideSet, btnUp) {
-        console.log(btn.not('.activeUT'))
         btn.bind('click.UT', function() {
             var $this = $(this),
                     dataRel = $this.data('rel');
@@ -459,6 +469,23 @@ function countSumBask() {
         $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
     });
 }
+function cart_changed(methodDeliv, selectDeliv) {
+    Shop.Cart.totalRecount();
+    processPage();
+    if ($.existsN(methodDeliv))
+        recountCartPage(selectDeliv, methodDeliv);
+    popupCartRecGenSum();
+    if (Shop.Cart.totalCount == 0) {
+        $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).addClass('d_n');
+        $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).addClass('d_b');
+    }
+    else {
+        $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockNoEmpty).removeClass('d_n');
+        $(genObj.popupCart).add(genObj.pageCart).find(genObj.blockEmpty).removeClass('d_b');
+    }
+    $.fancybox.hideActivity();
+    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+}
 var orderDetails = $.exists(genObj.orderDetails)
 function processPage() {
 //update page content
@@ -532,12 +559,19 @@ function popupCartRecGenSum() {
     $(genObj.popupCartTotal).each(function() {
         $(this).html(Shop.Cart.totalPrice.toFixed(pricePrecision));
     })
+    $(genObj.popupCartTotaladdprice).each(function() {
+        $(this).html(Shop.Cart.totalAddPrice.toFixed(pricePrecision));
+    })
 }
 
 function initShopPage(showWindow, target, orderDetails) {
     if (Shop.Cart.countChanged == false) {
         Shop.Cart.totalRecount();
         $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
+        $(document).trigger({
+            type: 'render_popup_cart',
+            el: $(genObj.popupCart)
+        });
         $(genObj.frameBasks + ' ' + genObj.plusMinus).plusminus({
             prev: 'prev.children(:eq(1))',
             next: 'prev.children(:eq(0))',
@@ -660,7 +694,21 @@ function changeDeliveryMethod(id, selectDeliv) {
 }
 
 
+//function recountCartPage(selectDeliv, methodDeliv) {
+//    var ca = "";
+//    if (selectDeliv)
+//        ca = $('span.cuselActive');
+//    else
+//        ca = methodDeliv.filter(':checked');
+//    Shop.Cart.shipping = parseFloat(ca.data('price'));
+//    Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
+//    $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
+//    $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
+//    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+//    $('.curr').html(curr);
+//}
 function recountCartPage(selectDeliv, methodDeliv) {
+    console.log(1)
     var ca = "";
     if (selectDeliv)
         ca = $('span.cuselActive');
@@ -668,17 +716,34 @@ function recountCartPage(selectDeliv, methodDeliv) {
         ca = methodDeliv.filter(':checked');
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-    $('#totalPrice').html(parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision));
-    $('#finalAmount').html(parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision));
-    $('#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
-    $('.curr').html(curr);
-}
 
-function emptyPopupCart() {
-    $(genObj.emptyCarthideElement).hide();
-    $(genObj.emptyCartshowElement).removeClass("d_n").show()
-}
+    if ($.isFunction(window.load_certificat)) {
+        load_certificat();
+    }
 
+    if ($.isFunction(window.get_discount)) {
+        get_discount();
+    }
+
+    var discount = Shop.Cart.discount;
+    var finalAmount = parseFloat(Shop.Cart.getFinalAmount());
+
+    if (discount != null && discount != 0)
+        finalAmount = finalAmount - parseFloat(discount['result_sum_discount_convert']);
+
+
+    if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
+        finalAmount = finalAmount - parseFloat(Shop.Cart.gift.value);
+
+    if (finalAmount - Shop.Cart.shipping < 0)
+        finalAmount = Shop.Cart.shipping;
+
+    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
+    $('span#finalAmount').html(finalAmount.toFixed(pricePrecision));
+    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+
+    $('span.curr').html(curr);
+}
 function checkSyncs() {
     if (inServerCompare != NaN)
     {
@@ -902,19 +967,24 @@ jQuery(document).ready(function() {
     });
     $('#suggestions').autocomplete();
     try {
+        var frameAddImgThumb = $('[data-rel="mainThumbPhoto"]').children();
+        if (!$(genObj.photoProduct).is('[rel="group"]'))
+            $(genObj.photoProduct).click(function(e) {
+                e.preventDefault();
+                frameAddImgThumb.find('a').click();
+            })
         $('[rel="group"]').fancybox({
             'padding': 5,
             'margin': 0,
             'overlayOpacity': 0.7,
             'overlayColor': '#212024',
-            'scrolling': 'no',
-            'autoScale': false,
-            'centerOnScroll': 'yes',
+            'autoDimensions': false,
             'width': wnd.width() * 0.95,
             'height': wnd.height() * 0.90,
             'type': 'iframe',
             'titlePosition': 'inside',
             'onComplete': function() {
+                body.addClass('isScroll');
                 var fancyC = $('#fancybox-content');
                 fancyC.prepend('<div class="wOverlay"></div>');
                 fancyC.append('<div class="fancy-footer"></div>');
@@ -932,7 +1002,7 @@ jQuery(document).ready(function() {
                     }
                 });
                 var itemThumbs = carGal.find('.items-thumbs');
-                itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend($('[data-rel="mainThumbPhoto"]').children().clone(true).removeClass('d_n'));
+                itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend(frameAddImgThumb.clone(true).removeClass('d_n'));
                 if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
                     itemThumbs.unwrap();
                 fancyTitle.prependTo(fancyC);
@@ -967,7 +1037,7 @@ jQuery(document).ready(function() {
 
                 var fancyboxFrameC = fancyFrame.contents()
 //                    forThumbFancybox in config.js.tpl
-     
+
                 fancyFrame.load(function() {
                     var $this = $(this.contentWindow.document.getElementsByTagName('body')[0]);
                     $this.append('<style>' + forThumbFancybox + '</style>');
@@ -975,6 +1045,9 @@ jQuery(document).ready(function() {
                     $('.wOverlay').fadeOut(200);
                 })
                 $("#fancybox-wrap").unbind('mousewheel.fb');
+            },
+            onClosed: function() {
+                body.removeClass('isScroll');
             }
         })
 
@@ -1000,8 +1073,15 @@ jQuery(document).ready(function() {
         showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
         e.el.find(preloader).remove();
     })
-    $(document).bind('renderorder.after autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
-        drawIcons(e.el.find(selIcons))
+    $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
+        if (e.el.is(':visible'))
+            drawIcons(e.el.find(selIcons))
+    })
+    $(document).bind('render_popup_cart', function(e) {
+        if (e.el.is(':visible')) {
+            dropBaskResize();
+            body.drop('dropScroll', e.el);
+        }
     })
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
@@ -1009,7 +1089,7 @@ jQuery(document).ready(function() {
     $(document).bind('autocomplete.after drop.show', function(e) {
         $.fancybox.hideActivity();
     })
-    
+
     $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {
         if (ltie7)
             ieInput();
@@ -1055,45 +1135,42 @@ jQuery(document).ready(function() {
         return true;
     });
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart())
+    $(document).trigger({
+        type: 'render_popup_cart',
+        el: $(genObj.popupCart)
+    });
 
-//    if select
-//    var methodDeliv = $('#method_deliv'),
-//            selectDeliv = true;
-    //    if radio
-    var methodDeliv = $('[name = "deliveryMethodId"]'),
-            selectDeliv = false;
 //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio',
         after: function(el, start) {
-            recountCartPage(selectDeliv, methodDeliv);
             if (!start) {
                 var activeVal = el.val();
                 changeDeliveryMethod(activeVal, selectDeliv);
             }
         }
     });
-    recountCartPage(selectDeliv, methodDeliv);
+    recountCartPage(selectDeliv, methodDeliv());
     genObj.pM.nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
 //classRemove: 'b_n',//if not standart
     });
-    if ($.existsN(methodDeliv) && selectDeliv)
-        methodDeliv.bind('change', function() {
+    if ($.existsN(methodDeliv()) && selectDeliv)
+        methodDeliv().bind('change', function() {
             var activeVal = $('span.cuselActive').attr('val');
             changeDeliveryMethod(activeVal, selectDeliv);
         });
-    if ($.existsN(methodDeliv)) {
+    if ($.existsN(methodDeliv())) {
         if (selectDeliv) {
-            methodDeliv.bind('change', function() {
-                recountCartPage(selectDeliv, methodDeliv);
+            methodDeliv().bind('change', function() {
+                recountCartPage(selectDeliv, methodDeliv());
             });
         }
         else {
-            methodDeliv.parent().parent().bind('click', function() {
-                recountCartPage(selectDeliv, methodDeliv);
+            methodDeliv().parent().parent().bind('click', function() {
+                recountCartPage(selectDeliv, methodDeliv());
             });
         }
     }
@@ -1106,17 +1183,10 @@ jQuery(document).ready(function() {
     //shipping changing, re-render cart page
 
     countSumBask();
+
     //cart content changed
     $(document).live('cart_changed', function() {
-        Shop.Cart.totalRecount();
-        processPage();
-        if ($.existsN(methodDeliv))
-            recountCartPage(selectDeliv, methodDeliv);
-        popupCartRecGenSum();
-        if (Shop.Cart.totalCount == 0)
-            emptyPopupCart();
-        $.fancybox.hideActivity();
-        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+        cart_changed(methodDeliv(), selectDeliv);
     });
     $(document).bind('after_add_to_cart', function(e) {
         initShopPage(true, e.starget, orderDetails);
@@ -1219,44 +1289,44 @@ jQuery(document).ready(function() {
         else
             optionCompare.allParams.click();
     })
-    $('#applyGiftCert').bind('click', function(e) {
-        $thisPreloader = $('.label-gift-cert').find(preloader);
-        e.preventDefault();
-        var inputGiftCert = $('[name="giftcert"]').removeClass(genObj.scs + ' ' + genObj.err)
-        inputGiftCert.next(genObj.msgF).remove(),
-                inputGiftCertVT = $.trim(inputGiftCert.val());
-        if (inputGiftCertVT != '') {
-            $.ajax({
-                url: '/shop/cart_api/getGiftCert',
-                beforeSend: function() {
-                    $thisPreloader.show()
-                },
-                type: 'post',
-                data: 'checkCert=1&giftcert=' + inputGiftCertVT,
-                success: function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        Shop.Cart.giftCertPrice = dataObj.cert_price;
-                        if (Shop.Cart.giftCertPrice > 0)
-                        {
-                            inputGiftCert.addClass(genObj.scs);
-                            $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision));
-                            $('#giftCertSpan').show();
-                        }
-                        else {
-                            inputGiftCert.addClass(genObj.err).after(message.error(dataObj.errors));
-                            $('#giftCertSpan').hide();
-                            drawIcons(inputGiftCert.next().find(selIcons));
-                        }
-                        $thisPreloader.hide();
-                        Shop.Cart.totalRecount();
-                        recountCartPage(selectDeliv, methodDeliv);
-                    } catch (e) {
-                    }
-                }
-            });
-        }
-    });
+//    $('#applyGiftCert').bind('click', function(e) {
+//        $thisPreloader = $('.label-gift-cert').find(preloader);
+//        e.preventDefault();
+//        var inputGiftCert = $('[name="giftcert"]').removeClass(genObj.scs + ' ' + genObj.err)
+//        inputGiftCert.next(genObj.msgF).remove(),
+//                inputGiftCertVT = $.trim(inputGiftCert.val());
+//        if (inputGiftCertVT != '') {
+//            $.ajax({
+//                url: '/shop/cart_api/getGiftCert',
+//                beforeSend: function() {
+//                    $thisPreloader.show()
+//                },
+//                type: 'post',
+//                data: 'checkCert=1&giftcert=' + inputGiftCertVT,
+//                success: function(data) {
+//                    try {
+//                        var dataObj = JSON.parse(data);
+//                        Shop.Cart.giftCertPrice = dataObj.cert_price;
+//                        if (Shop.Cart.giftCertPrice > 0)
+//                        {
+//                            inputGiftCert.addClass(genObj.scs);
+//                            $('#giftCertPrice').html(parseFloat(Shop.Cart.giftCertPrice).toFixed(pricePrecision));
+//                            $('#giftCertSpan').show();
+//                        }
+//                        else {
+//                            inputGiftCert.addClass(genObj.err).after(message.error(dataObj.errors));
+//                            $('#giftCertSpan').hide();
+//                            drawIcons(inputGiftCert.next().find(selIcons));
+//                        }
+//                        $thisPreloader.hide();
+//                        Shop.Cart.totalRecount();
+//                        recountCartPage(selectDeliv, methodDeliv());
+//                    } catch (e) {
+//                    }
+//                }
+//            });
+//        }
+//    });
     //variants
 
     $('#variantSwitcher').live('change', function() {
@@ -1314,7 +1384,9 @@ jQuery(document).ready(function() {
         processWishComp();
         wishListCount();
         compareListCount();
-        recountCartPage(selectDeliv, methodDeliv);
+        cart_changed(methodDeliv(), selectDeliv);
+        if ($.exists(genObj.orderDetails))
+            renderOrderDetails();
     })
 });
 wnd.load(function() {

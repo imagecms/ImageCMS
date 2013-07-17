@@ -41,7 +41,18 @@
 <br /><br />
 <form method="POST" action="/wishlist/createWishList">
     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
+    Типи списков
+    <br>
+    <select name="wlTypes">
+        <option value="shared">Shared</option>
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+    </select>
+    <br>
+    Название Списка
     <input type="text" value="" name="wishListName"/>
+    Описание Списка
+    <textarea name="wlDescription"></textarea>
     <input type="submit" value="Создать новий список" class="btn"/>
     {form_csrf()}
 </form>

@@ -22,6 +22,7 @@ class New_level_model extends CI_Model {
     }
     
      public function setSettings($settings) {
+         $settings['thema'] = $this->getthema();
         return $this->db->where('identif', 'new_level')
                         ->update('components', array('settings' => serialize($settings)
         ));
@@ -59,6 +60,13 @@ class New_level_model extends CI_Model {
                 return FALSE;
             }    
         
+    }
+    
+    public function getthema(){
+        
+        $sql = "select settings from components where name = 'new_level'";
+        $data = unserialize($this->db->query($sql)->row()->settings);
+        return $data['thema'];
     }
      public function removePropertyType($propety_id,$type) {
             $types = $this->db->select('type')
@@ -157,6 +165,55 @@ class New_level_model extends CI_Model {
                             ->insert('mod_new_level_columns', array('category_id' => serialize($categories_ids), 'column' => $column));
         }
     }
+    
+    public function getColumns(){
+        $query = $this->db->get('mod_new_level_columns');
+        if($query){
+            return $query->result_array();
+        }else{
+            return 0;
+        }
+    }
+    
+    public function deleteColumnFromSettings($del_column) {
+         $settings = $this->getSettings();
+         $newColumns = $settings['columns'];
+         
+         foreach($newColumns as $key => $column){
+             if($column==$del_column){
+                 unset($newColumns[$key]);
+             }
+         }
+         
+         $columns = $this->db->where('column',$del_column)
+                    ->delete('mod_new_level_columns');
+         
+         $settings['columns'] = $newColumns;
+         $this->setSettings($settings);
+    }
+    
+    public function addColumn($newColumn){
+         $settings = $this->getSettings();
+         array_push($settings['columns'], $newColumn);
+         $this->setSettings($settings);
+    }
+    
+    public function editColumn($oldColumn, $newColumn) {
+         $settings = $this->getSettings();
+         $newColumns = $settings['columns'];
+         
+         foreach($newColumns as $key => $column){
+             if($column==$oldColumn){
+                 $newColumns[$key] = $newColumn;
+             }
+         }
+         
+         $this->db->where('column', $oldColumn)->update('mod_new_level_columns', array('column' => $newColumn));
+         
+         $settings['columns'] = $newColumns;
+         $this->setSettings($settings);
+    }    
+    
 }
 
 ?>

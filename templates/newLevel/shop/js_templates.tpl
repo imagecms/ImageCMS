@@ -258,7 +258,7 @@
         <span class="price-add">
         <span>
         <span class="price" id="popupCartTotaladdprice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-curr%></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -269,7 +269,7 @@
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
-        <span class="icon_form"></span>
+        
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>
@@ -296,7 +296,7 @@
         </div>
         <div class="btn-form">
         <button type="button" onclick="togglePopupCart()">
-        <span class="icon_form"></span>
+        
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>
@@ -528,7 +528,7 @@
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
-        <span class="icon_form"></span>
+        
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>

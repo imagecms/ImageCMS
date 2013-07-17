@@ -412,8 +412,6 @@
                     <ul class="items items_catalog">
                         {foreach $model->getShopKits() as $key => $kitProducts}
                             <li class="container">
-                                {$arrUrl = array()}
-                                {$arrImg = array()}
                                 <ul class="items items_middle">
                                     <li class="span3">
                                         <div class="item_set">
@@ -439,8 +437,7 @@
                                         </div>
                                         <div class="d_i-b">+</div>
                                     </li>
-                                    {$arrUrl[] = shop_url('product/' . $kitProducts->getMainProduct()->getUrl())}
-                                    {$arrImg[] = $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}
+
                                     <!--Output of goods subsidiaries set-->
                                     {foreach $kitProducts->getShopKitProducts() as  $key => $kitProduct}
                                         <li class="{if $kitProducts->countProducts() >= 2}span2{else:}span3{/if}">
@@ -454,12 +451,12 @@
                                                         {if $kitProduct->getDiscount()}
                                                             <span class="d_b old_price">
                                                                 <!--$kitProduct->getBeforePrice() - Price before discount-->
-                                                                <span class="f-w_b">{echo $kitProduct->getBeforePrice()} </span>
+                                                                <span class="f-w_b">{echo $kitProduct->getKitProductPrice()} </span>
                                                                 {$CS}
                                                             </span>
                                                         {/if}
                                                         <!--$kitProduct->getDiscountProductPrice() - discount price-->
-                                                        <span class="f-w_b">{echo $kitProduct->getDiscountProductPrice()} </span>
+                                                        <span class="f-w_b">{echo $kitProduct->getKitNewPrice()} </span>
                                                         {$CS}
                                                     </div>
                                                 </div>
@@ -476,8 +473,6 @@
                                             <div class="d_i-b">
                                         {if $kitProducts->countProducts() == $key}={else:}+{/if}
                                     </div>
-                                    {$arrUrl[] = shop_url('product/' . $kitProduct->getSProducts()->getUrl())}
-                                    {$arrImg[] = $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}
                                 </li>
                             {/foreach}
                             <!--Output of goods subsidiaries set END-->
@@ -485,7 +480,7 @@
                                 <div class="price price_f-s_24">
                                     <span class="d_b old_price">
                                         <!--$kitProducts->getAllPriceBefore() - The entire set of output price without discount-->
-                                        <span class="f-w_b">{echo $kitProducts->getAllPriceBefore()} </span> {$CS}
+                                        <span class="f-w_b">{echo $kitProducts->getTotalPriceOld()} </span> {$CS}
                                     </span>
                                     <!-- $kitProducts->getTotalPrice() - the entire set of output price with discount-->
                                     <span class="f-w_b">{echo $kitProducts->getTotalPrice()} </span> {$CS}
@@ -499,8 +494,8 @@
                                         data-kit="true"
                                         data-kitId="{echo $kitProducts->getId()}"
                                         data-varid="{echo $kitProducts->getMainProduct()->firstVariant->getId()}"
-                                        data-url='{echo json_encode($arrUrl)}'
-                                        data-img='{echo json_encode($arrImg)}'
+                                        data-url='{echo json_encode($kitProducts->getUrls())}'
+                                        data-img='{echo json_encode($kitProducts->getImgs())}'
                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                         >
                                     {lang('s_buy')}

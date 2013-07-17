@@ -18,7 +18,38 @@ class New_level extends MY_Controller {
     }
 
     public function autoload() {
+        
 
+        $settings = $this->new_level_model->getthema();
+
+        if (!$settings)
+            $settings = 'css/color_scheme_1';
+
+        $this->template->assign('colorScheme', $settings);
+    }
+    
+    /**
+     * get category columns
+     * 
+     * use in template: {echo $CI->load->module('new_level')->getCategoryColumns($category_id)}
+     * 
+     * @param int $category_id
+     * @return string
+     */
+    public function getCategoryColumns($category_id){
+       $columns = $this->new_level_model->getColumns();
+       $category_columns = array();
+       
+       foreach($columns as $column){
+           if(in_array($category_id ,unserialize($column['category_id']))){
+               $category_columns[] = $column['column'];
+           }
+       }
+       if($category_columns){
+           return implode('_',$category_columns);
+       }else{
+           return '';
+       }
     }
 
     public function OPI($model, $data = array()) {
@@ -28,6 +59,12 @@ class New_level extends MY_Controller {
                 ->render('one_product_item', TRUE);
     }
     
+    /**
+     * get property types 
+     * 
+     * @param int $property_id
+     * @return type
+     */
     public function getPropertyTypes($property_id){
         return $this->new_level_model->getPropertyTypes($property_id);
     }
@@ -66,7 +103,7 @@ class New_level extends MY_Controller {
         
         $fields = array(
             'category_id' => array('type' => 'VARCHAR', 'constraint' => 500),
-            'column' => array('type' => 'INT', 'constraint' => 4, 'default' => 0)
+            'column' => array('type' => 'VARCHAR', 'constraint' => 256)
         );
 
         $this->dbforge->add_field($fields);

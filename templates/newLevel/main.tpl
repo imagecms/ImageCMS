@@ -18,7 +18,6 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        {$colorScheme = 'css/color_scheme_1'}
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
 
