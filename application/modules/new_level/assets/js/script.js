@@ -47,8 +47,21 @@ $(document).ready(function() {
         
     });
     
+    $('table.columns .icon-edit').live('click', function (){
+        var editor = $(this).closest('tr').find('div.columns');
+        var editValue = editor.text();
+        editor.empty();
+        editor.parent().find('.columnEdit').css('display', 'block').val(editValue);
+        $(this).closest('tr').find('.icon-refresh').parent('button').css('display', 'inline-block');
+        
+    });
+    
     $('table.propertyTypes + .addType').live('click', function (){
        $('.addTypeContainer').css('display','block');
+    });
+    
+    $('table.columns + .addColumn').live('click', function (){
+       $('.addColumnContainer').css('display','block');
     });
     
 });
@@ -100,3 +113,50 @@ var PropertiesTypes = {
     }
 };
  
+ 
+ var Columns = {
+   delete: function(column, curElement){
+                 $.ajax({
+                    type: 'POST',
+                    data: {
+                        column: column
+                    },
+                    url: '/new_level/admin/deleteColumn',
+                    success: function(data) {
+                        curElement.closest('tr').remove();
+                        showMessage('Сообщение', 'Колонка ' + column + ' успешно удалена');
+                    }
+                });
+            },
+    edit: function(curElement, oldColumn){
+            var newColumn = curElement.parent('div').find('.columnEdit').val();
+            $.ajax({
+                type: 'POST',
+                data: {
+                    oldColumn: oldColumn,
+                    newColumn: newColumn
+                },
+                url: '/new_level/admin/editColumn',
+                success: function(data) {
+                    curElement.parent('div').text(newColumn);
+                    showMessage('Сообщение', 'Колонка успешно обновлена');
+                }
+            });
+        },
+    add: function(curElement){
+        var newColumn = curElement.parent('div').find('.columnAdd').val();
+         $.ajax({
+                type: 'POST',
+                data: {
+                    newColumn: newColumn
+                },
+                url: '/new_level/admin/addColumn',
+                success: function(data) {
+                    curElement.parent('div').find('.columnAdd').val('');
+                    $('.addColumnContainer').css('display','none');
+                    $(data).insertBefore('table.columns .addColumnContainer');
+                    showMessage('Сообщение', 'Колонка ' + newColumn + ' успешно додана');
+                }
+            });
+    }
+};

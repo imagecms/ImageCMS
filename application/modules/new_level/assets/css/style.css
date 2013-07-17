@@ -13,3 +13,6 @@
 .cattegoryColumnSaveButtonMod{
     margin-top: 20px;
 }
+.addColumnContainer td {
+    width: 500px;
+}

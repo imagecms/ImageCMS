@@ -89,5 +89,34 @@ class Admin extends BaseAdminController {
             return 'error';
         }
     }
+    
+    public function deleteColumn() {
+        $column = $this->input->post('column');
 
+        return $this->new_level_model->deleteColumnFromSettings($column);
+    }
+
+    public function addColumn() {
+        $newColumn = $this->input->post('newColumn');
+        $this->new_level_model->addColumn($newColumn);
+        return $this->renderNewColumn($newColumn);
+    }
+    
+     public function renderNewColumn($column) {
+        return \CMSFactory\assetManager::create()
+                        ->setData('column', $column)
+                        ->render('newColumn', true);
+    }
+    
+     public function editColumn() {
+        $oldColumn = $this->input->post('oldColumn');
+        $newColumn = $this->input->post('newColumn');
+
+        if ($this->new_level_model->editColumn($oldColumn, $newColumn)) {
+//            return 'success';
+        } else {
+//            return 'error';
+        }
+    }
+    
 }
