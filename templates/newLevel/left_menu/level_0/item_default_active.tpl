@@ -1,6 +1,6 @@
-<li>
-    <a href="{$link}" class="{if $wrapper}is-sub{/if}">
+<li class="active">
+    <span class="{if $wrapper}is-sub{/if}">
         <span class="text-el">{$title}</span>
-    </a>
+    </span>
     {$wrapper}
 </li>

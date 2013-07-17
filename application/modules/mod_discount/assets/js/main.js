@@ -6,11 +6,9 @@ function get_discount() {
         url: '/mod_discount/discount_api/get_discount_api',
         type: "POST",
         success: function(data) {
-
             if (data != '') {
                 _discount = JSON.parse(data);
                 $.post('/mod_discount/discount_api/get_discount_tpl_from_json_api', {json: data}, function(tpl) {
-
                     $('#Discount').html(tpl).show();
                 })
             }
