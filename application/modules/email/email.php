@@ -6,7 +6,7 @@
  * Image CMS
  * Emails
  */
-class Email extends MY_Controller {
+class Email extends email\classes\ParentEmail {
 
     public function __construct() {
         parent::__construct();
