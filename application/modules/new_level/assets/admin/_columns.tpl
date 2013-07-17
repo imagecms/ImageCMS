@@ -1,4 +1,3 @@
-{//var_dumps($columnCategories)}
 <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
         <tr>

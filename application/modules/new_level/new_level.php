@@ -20,6 +20,30 @@ class New_level extends MY_Controller {
     public function autoload() {
 
     }
+    
+    /**
+     * get category columns
+     * 
+     * use in template: {echo $CI->load->module('new_level')->getCategoryColumns($category_id)}
+     * 
+     * @param int $category_id
+     * @return string
+     */
+    public function getCategoryColumns($category_id){
+       $columns = $this->new_level_model->getColumns();
+       $category_columns = array();
+       
+       foreach($columns as $column){
+           if(in_array($category_id ,unserialize($column['category_id']))){
+               $category_columns[] = $column['column'];
+           }
+       }
+       if($category_columns){
+           return implode('_',$category_columns);
+       }else{
+           return '';
+       }
+    }
 
     public function OPI($model, $data = array()) {
         \CMSFactory\assetManager::create()
@@ -28,6 +52,12 @@ class New_level extends MY_Controller {
                 ->render('one_product_item', TRUE);
     }
     
+    /**
+     * get property types 
+     * 
+     * @param int $property_id
+     * @return type
+     */
     public function getPropertyTypes($property_id){
         return $this->new_level_model->getPropertyTypes($property_id);
     }
