@@ -29,6 +29,10 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/email/settings">
+                        <i class="icon-wrench"></i>
+                        Настройки
+                    </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
