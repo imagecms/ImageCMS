@@ -5,7 +5,7 @@ namespace email\classes;
 /**
  * Image CMS
  * Module Wishlist
- * @property \Wishlist_model $email_model
+ * @property \Email_model $email_model
  * @property \DX_Auth $dx_auth
  * @property \CI_URI $uri
  * @property \CI_DB_active_record $db

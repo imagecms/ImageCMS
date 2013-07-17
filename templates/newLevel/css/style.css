@@ -58,7 +58,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .right-catalog-first{float: right;width: 23.5%;}
 
 .left-cart{float: left;width: 45%;}
-.right-cart{float: right;width: 52%;/*because has preloader*/position: relative;}
+.right-cart{float: right;width: 52%;}
 
 .left-order{float: left;width: 45%;}
 .right-order{float: right;width: 52%;}
@@ -110,7 +110,8 @@ a{cursor: pointer;}
 /*/links*/
 .baner a:active, .baner a:focus, .items > li > a:focus, .items > li > a:active, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus{outline: none}
 
-.preloader{min-height: 35px;width: 100%;height: 100%;position: absolute;left: 0;top: 0;}
+.preloader{min-height: 35px;width: 100%;}
+.baner .preloader, .p_r .preloader{position: absolute;left: 0;top: 0;height: 100%;}
 /*/base settings*/
 
 /*base images*/
@@ -1031,12 +1032,13 @@ footer .footer{height: 65px;width: 100%;position: absolute;left: 0;bottom: 0;}
 footer [class^="box"] .main-title{text-transform: uppercase;margin-bottom: 6px;}
 
 footer .container{padding-top: 21px;}
-footer [class^="box"]{height: 195px;width: 188px;overflow: hidden;padding-left: 42px;padding-right: 17px;float: left;}
-footer .box-1{padding-left: 1px;}
-footer .box-2{padding-right: 18px;}
-footer .box-4{width: 258px;margin-top: -21px;padding-top: 21px;padding-left: 0;}
+footer [class^="box"]{overflow: hidden;float: left;width: 23%;}
+footer [class^="box"] > .inside-padd{padding-left: 42px;padding-right: 17px;height: 195px;}
+footer .box-4{width: 31%;margin-top: -21px;}
+footer .box-1 > .inside-padd{padding-left: 1px;}
+footer .box-2 > .inside-padd{padding-right: 18px;}
 footer .box-4 a{text-transform: none;}
-footer .box-4 .inside-padd{padding: 0 28px;}
+footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .footer-footer .container{padding-top: 22px;}
 /*/footer*/
 
