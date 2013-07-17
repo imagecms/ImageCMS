@@ -24,8 +24,10 @@
         <div class="content_big_td row-fluid">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
+                    
                     <a href="#properties" class="btn btn-small active">Свойства</a>
                     <a href="#columns" class="btn btn-small">Колонки</a>
+                    <a href="/admin/components/init_window/new_level/get_thema" class="btn btn-small">Цветовая схема</a>
                 </div>
             </div>
             <div class="tab-content">
