@@ -480,11 +480,12 @@ class Wishlist_model extends CI_Model {
      * @param $user_id
      * @return boolean
      */
-    public function createWishList($listName, $user_id, $access = 'shared') {
+    public function createWishList($listName, $user_id, $access = 'shared', $description) {
         $this->createUserIfNotExist($user_id);
         $data = array(
             'title' => $listName,
             'user_id' => $user_id,
+            'description' => $description,
             'hash' => random_string('unique', 16),
             'access' => $access
         );
@@ -622,6 +623,10 @@ class Wishlist_model extends CI_Model {
                 'constraint' => '254',
                 'null' => FALSE
             ),
+            'description' => array(
+                'type' => 'Text',
+                'null' => TRUE
+            ),
             'access' => array(
                 'type' => 'ENUM',
                 'constraint' => "'public','private','shared'",
@@ -708,6 +713,7 @@ class Wishlist_model extends CI_Model {
                                 'maxItemsCount' => 100,
                                 'maxCommentLenght' => 500,
                                 'maxDescLenght' => 1000,
+                                'maxWLDescLenght' => 1000,
                                 'maxImageWidth' => 150,
                                 'maxImageHeight' => 150,
                                 'maxImageSize' => 2000000
