@@ -9,6 +9,7 @@ $lang['error_no_views'] = '<p>Нет просмотров</p>';
 $lang['error_wrong_query'] = '<p>Неверний запрос</p>';
 $lang['error_list_limit_exhausted'] = '<p>Лимит Списков Желаний исчерпан</p>';
 $lang['error_listname_limit_exhausted'] = '<p>Название Списка Желаний будет изменено</p>';
+$lang['error_list_description_limit_exhausted'] = '<p>Описание Списка Желаний будет изменено</p>';
 $lang['error_listname_empty'] = '<p>Название Списка Желаний не должно быть пустым!</p>';
 $lang['error_items_delete'] = '<p>Невозможно удалить товары из Списка Желаний</p>';
 $lang['error_WL_delete'] = '<p>Невозможно удалить Список Желаний</p>';
@@ -31,6 +32,7 @@ $lang['error'] = '<p>Ошибка</p>';
  */
 $lang['list_max_count'] = '<p>Максимум списков</p>';
 $lang['listname_max_count'] = '<p>Максимальная длина имени Списка Желаний</p>';
+$lang['list_description_max_count'] = '<p>Максимальная длина описания Списка Желаний</p>';
 $lang['created'] = '<p>Создано</p>';
 $lang['success'] = '<p>Операция успешна</p>';
 $lang['added'] = '<p>Добавлено</p>';
@@ -66,6 +68,9 @@ $lang['edit'] = 'Редактировать';
 $lang['unsubscribe'] = 'Отписаться';
 $lang['product'] = 'Товар';
 $lang['comment'] = 'Комментарий';
+$lang['Description'] = 'Описание';
+$lang['Type'] = 'Тип';
+
 $lang['move'] = 'Переместить';
 $lang['empty_list'] = 'Список пуст';
 $lang['list_name'] = 'Название списка';

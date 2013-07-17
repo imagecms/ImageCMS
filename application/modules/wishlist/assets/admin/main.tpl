@@ -43,7 +43,7 @@
                                     <input type = "number" name = "settings[maxUserName]" class="textbox_short" value="{$settings['maxUserName']}" id="maxListName"/>
                                 </div>
                             </div>
-                                
+
                             <div class="control-group">
                                 <label class="control-label" for="settings[maxListName]">{lang(max_list_name_length)}</label>
                                 <div class="controls">
@@ -76,6 +76,13 @@
                                 <label class="control-label" for="settings[maxDescLenght]">{lang(max_description_length)}</label>
                                 <div class="controls">
                                     <input type = "number" name = "settings[maxDescLenght]" class="textbox_short" value="{$settings['maxDescLenght']}" id="maxDescLenght"/>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="settings[maxWLDescLenght]">{lang(max_description_length)}</label>
+                                <div class="controls">
+                                    <input type = "number" name = "settings[maxWLDescLenght]" class="textbox_short" value="{$settings['maxWLDescLenght']}" id="maxWLDescLenght"/>
                                 </div>
                             </div>
 
