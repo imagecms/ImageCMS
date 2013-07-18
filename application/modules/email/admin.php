@@ -19,6 +19,9 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('list');
     }
     public function settings(){
+        $email = new \email\classes\ParentEmail();
+        var_dumps($email->replaceVariables());
+        
        \CMSFactory\assetManager::create()
                ->registerScript('script')
                 ->setData('settings', $this->email_model->getSettings())

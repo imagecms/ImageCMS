@@ -35,6 +35,37 @@ class Email_model extends CI_Model {
                         ->update('components', array('settings' => serialize($settings)
         ));
     }
+    
+    /**
+     * get wraper
+     * 
+     * @return string
+     */
+    public function getWraper(){
+        $settings = $this->getSettings();
+        if($settings['wraper_activ']){
+            return $settings['wraper'];            
+        }else{
+            return FALSE;
+        }
+    }
+    
+    /**
+     * get email type
+     * 
+     * @param string $patern
+     * @return string
+     */
+    public function getEmailType($patern){
+        $query = $this->db->select('type')->where('name', $patern)->get('mod_email_paterns');
+        if($query){
+            return $query->result_row();
+        }else{
+            return '';
+        }
+    }
+    
+    
 
     /**
      * install module(create db tables, set default values)
