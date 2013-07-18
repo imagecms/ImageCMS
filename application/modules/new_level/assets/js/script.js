@@ -5,7 +5,7 @@ function changethema(el){
 }
 
 $(document).ready(function() {
-    $('.propertiesTypes').live('change', function (){
+    $('.propertiesTypes').die().live('change', function (){
         var checked = $(this).attr('checked');
         var url = '/new_level/admin/addPropertyType';
         
@@ -28,7 +28,7 @@ $(document).ready(function() {
         });
     });
     
-    $('.cattegoryColumnSaveButtonMod').live('click',function(){
+    $('.cattegoryColumnSaveButtonMod').die().live('click',function(){
         var data   = $(this).parent().find('select').val();
         var column = $(this).data('column');
         $.ajax({

@@ -32,9 +32,40 @@ class Email_model extends CI_Model {
      */
     public function setSettings($settings) {
         return $this->db->where('identif', 'email')
-                        ->update('components', array('email' => serialize($settings)
+                        ->update('components', array('settings' => serialize($settings)
         ));
     }
+    
+    /**
+     * get wraper
+     * 
+     * @return string
+     */
+    public function getWraper(){
+        $settings = $this->getSettings();
+        if($settings['wraper_activ']){
+            return $settings['wraper'];            
+        }else{
+            return FALSE;
+        }
+    }
+    
+    /**
+     * get email type
+     * 
+     * @param string $patern
+     * @return string
+     */
+    public function getEmailType($patern){
+        $query = $this->db->select('type')->where('name', $patern)->get('mod_email_paterns');
+        if($query){
+            return $query->result_row();
+        }else{
+            return '';
+        }
+    }
+    
+    
 
     /**
      * install module(create db tables, set default values)
@@ -64,6 +95,11 @@ class Email_model extends CI_Model {
                 'null' => FALSE
             ),
             'from_email' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+            'admin_email' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
@@ -117,9 +153,9 @@ class Email_model extends CI_Model {
                 ->update('components', array(
                     'settings' => serialize(
                             array(
-                                'name' => 'Default Name',
                                 'from' => 'Default From',
                                 'from_email' => 'default@from.ua',
+                                'admin_email' => 'admin@from.ua',
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
                                 'wraper_activ' => true,
