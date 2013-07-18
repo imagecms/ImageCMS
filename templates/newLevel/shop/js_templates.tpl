@@ -245,8 +245,8 @@
         <div class="frame-foot">
         <div class="header-frame-foot">
         <div class="inside-padd">
-        <span class="s-t">Ваша текущая скидка:</span>
         <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
+        <span class="s-t">Ваша текущая скидка:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
         <%}%>
         <span class="s-t">Всего:</span>
@@ -534,6 +534,12 @@
         <span>
         <span class="price topCartTotalPrice"><%- parseFloat(Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price topCartTotalAddPrice"></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>

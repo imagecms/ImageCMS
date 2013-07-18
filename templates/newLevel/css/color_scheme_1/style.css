@@ -312,7 +312,7 @@ footer{
     background: -o-linear-gradient(top,  #e2dedb 0%,#e5e2e0 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #e2dedb 0%,#e5e2e0 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #e2dedb 0%,#e5e2e0 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2dedb', endColorstr='#e5e2e0',GradientType=0 );  IE6-9 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2dedb', endColorstr='#e5e2e0',GradientType=0 );  /*IE6-9 */
 }
 .jspDrag{
     -moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;
@@ -324,7 +324,7 @@ footer{
     background: -o-linear-gradient(top,  #eeeeee 1%,#dddddd 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #eeeeee 1%,#dddddd 100%); /* IE10+ */
     background: linear-gradient(to bottom,  #eeeeee 1%,#dddddd 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 );  IE6-9 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 );  /*IE6-9*/ 
 }
 .jspDrag:after, .jspArrow:after{content: "";position: absolute;background: url("images/scroll.png") no-repeat;}
 .jspDrag:after{width: 8px;height: 7px;left: 50%;margin-left: -4px;top: 50%;margin-top: -4px;background-position: 0 0;}
@@ -742,11 +742,11 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .items-bask .product-status + .product-status, .items-default .product-status + .product-status{top: 14px;}
 .items-bask .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status{top: 28px;}
 .items-bask .product-status + .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status + .product-status{top: 42px;}
-.items-bask .product-status.discount .text-el, .items-default .product-status.discount .text-el{font-size: 10px;font-weight: normal;}
+.items-bask .product-status.discount .text-el, .items-default .product-status.discount .text-el{font-size: 8px;font-weight: normal;}
 .items-bask .action, .items-default .action{background-position: -120px 0;width: 49px;height: 16px;}
 .items-bask .nowelty, .items-default .nowelty{background-position: -120px -40px;width: 56px;height: 16px;}
 .items-bask .hit, .items-default .hit{background-position: -120px -80px;width: 63px;height: 15px;}
-.items-bask .discount, .items-default .discount{background-position: -120px -120px;width: 31px;height: 18px;line-height: 18px;}
+.items-bask .discount, .items-default .discount{background-position: -120px -120px;width: 27px;height: 18px;line-height: 15px;}
 /*/ product status*/
 
 /*form*/
@@ -1052,7 +1052,7 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 .frame-delivery-payment .frame-list-delivery{border-bottom: 1px solid #eae5e1;}
 .frame-phone-product{border: 1px solid #eae5e1;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
 .frame-phone-product .title > .text-el{color: #0c9acb;font-weight: bold;}
-.accessories > .inside-padd{background-color: #f6f6f6;}
+.accessories > .inside-padd{background-color: #fbfbfb;}
 .accessories .title-default{border-top: 1px solid #eae5e1;}
 .accessories .items-default > li{width: 217px;}
 .characteristic tbody tr:nth-child(odd) th, .characteristic tbody tr:nth-child(odd) td{background-color: #f4eee9;}
