@@ -113,11 +113,12 @@ class discount_api extends \mod_discount\discount {
      */
     public function get_user_discount_api($tpl = null) {
         if ($this->check_module_install()) {
+            $this->discount_type['comulativ'] = $this->get_comulativ_discount_api();
             $this->init();
             if (null === $tpl)
-                return $this->result_discount;
+                return $this->discount_type;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info_user', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->discount_type))->render('discount_info_user', true);
         }
     }
     
@@ -142,6 +143,32 @@ class discount_api extends \mod_discount\discount {
         }
 
     }
+    /**
+     * get comulativ discount
+     * @access public
+     * @author DevImageCms
+     * @param --
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_comulativ_discount_api() {
+        if ($this->check_module_install()) {
+            $disc_comul = $this->init()->discount_type['comulativ'];
+            foreach ($disc_comul as $key1 => $disc1)
+                foreach ($disc_comul as $key2 => $disc2)
+                    if ($disc_comul[$key1]['begin_value'] < $disc_comul[$key2]['begin_value']){
+                        $disc_aux = $disc_comul[$key1];
+                        $disc_comul[$key1] = $disc_comul[$key2];
+                        $disc_comul[$key2] = $disc_aux;
+                    }
+                      
+        }
+        
+        return $disc_comul;
 
+    }
+    
+
+    
 
 }
