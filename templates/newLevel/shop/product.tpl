@@ -74,22 +74,22 @@
                                 <div class="frame-prices f-s_0">
                                     <!-- Check for discount-->
                                     {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0}
-                                    {if $oldoprice}
+                                    {$hasDiscounts = $model->hasDiscounts()}
+                                    {if $hasDiscounts}
+                                        <span class="price-discount">
+                                            <span>
+                                                <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                <span class="curr">{$CS}</span>
+                                            </span>
+                                        </span>
+                                    {/if}
+                                    {if $oldoprice && !$hasDiscounts}
                                         <span class="price-discount">
                                             <span>
                                                 <span class="price priceOrigVariant">{echo $model->getOldPrice()}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
-                                    {else:}
-                                        {if $model->hasDiscounts()}
-                                            <span class="price-discount">
-                                                <span>
-                                                    <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
-                                                    <span class="curr">{$CS}</span>
-                                                </span>
-                                            </span>
-                                        {/if}
                                     {/if}
                                     <!-- Start. Product price-->
                                     {if $model->firstVariant->toCurrency() > 0}
@@ -117,8 +117,7 @@
                                     {foreach $variants as $key => $productVariant}
                                         {if $productVariant->getStock() > 0}
                                             {$discount = 0}
-                                            {if $model->hasDiscounts()}
-
+                                            {if $hasDiscounts}
                                                 {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                             {/if}
                                             <div class="frame-count-buy variant_{echo $productVariant->getId()} variant" {if $key != 0}style="display:none"{/if}>
@@ -273,10 +272,9 @@
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
 
                         {$discount = 0}
-                        {if $model->hasDiscounts() && !$oldoprice}
+                        {if $hasDiscounts}
                             {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency()*100}
                         {/if}
-                        {var_dump($discount)}
                         {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                     </span>
                 </a>
@@ -365,30 +363,31 @@
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
                                                         <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                        {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($model->getName())}</span>
                                                 </div>
                                                 <div class="description">
                                                     <div class="frame-prices f-s_0">
                                                         <!-- Start. Product price-->
-                                                            <span class="current-prices f-s_0">
-                                                                <span class="price-new">
+                                                        <span class="current-prices f-s_0">
+                                                            <span class="price-new">
+                                                                <span>
+                                                                    <span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
+                                                                    <span class="curr">{$CS}</span>
+                                                                </span>
+                                                            </span>
+                                                            {if $NextCSId != null}
+                                                                <span class="price-add">
                                                                     <span>
-                                                                        <span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
-                                                                        <span class="curr">{$CS}</span>
+
+                                                                        (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
+
+                                                                        <span class="curr-add">{$NextCS}</span>)
                                                                     </span>
                                                                 </span>
-                                                                {if $NextCSId != null}
-                                                                    <span class="price-add">
-                                                                        <span>
-
-                                                                            (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
-
-                                                                            <span class="curr-add">{$NextCS}</span>)
-                                                                        </span>
-                                                                    </span>
-                                                                {/if}
-                                                            </span>
+                                                            {/if}
+                                                        </span>
                                                         <!-- End. Product price-->
                                                     </div>
                                                 </div>
@@ -404,7 +403,7 @@
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
                                                             <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
-                                                            
+
                                                             {$discount = $kitProduct->getDiscount()}
 
                                                             {promoLabel($kitProduct->getSProducts()->getAction(), $kitProduct->getSProducts()->getHot(), $kitProduct->getSProducts()->getHit(), $discount)}
@@ -424,22 +423,22 @@
                                                             {/if}
                                                             <!-- Start. Product price-->
 
-                                                                <span class="current-prices f-s_0">
-                                                                    <span class="price-new">
+                                                            <span class="current-prices f-s_0">
+                                                                <span class="price-new">
+                                                                    <span>
+                                                                        <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
+                                                                        <span class="curr">{$CS}</span>
+                                                                    </span>
+                                                                </span>
+                                                                {if $NextCSId != null}
+                                                                    <span class="price-add">
                                                                         <span>
-                                                                            <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>
+                                                                            (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
+                                                                            <span class="curr-add">{$NextCS}</span>)
                                                                         </span>
                                                                     </span>
-                                                                    {if $NextCSId != null}
-                                                                        <span class="price-add">
-                                                                            <span>
-                                                                                (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
-                                                                                <span class="curr-add">{$NextCS}</span>)
-                                                                            </span>
-                                                                        </span>
-                                                                    {/if}
-                                                                </span>
+                                                                {/if}
+                                                            </span>
 
                                                             <!-- End. Product price-->
                                                         </div>
@@ -491,6 +490,9 @@
                                                         data-url='{echo json_encode($kitProducts->getUrls())}'
                                                         data-img='{echo json_encode($kitProducts->getImgs())}'
                                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                                        data-kitstatus='{echo $kitProducts->getKitStatus()}'
+                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
+                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                                     <span class="text-el">{lang('s_buy')}</span>
@@ -615,8 +617,8 @@
                     <div class="frame-form-comment">
                         <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
                         {literal}<script type="text/javascript">$(document).ready(function() {
-                        renderPosts($('#for_comments_view'), {countComment: 4});
-                    })</script>{/literal}
+                                renderPosts($('#for_comments_view'), {countComment: 4});
+                                })</script>{/literal}
                         </div>
 
                         <!--End. Comments block-->
@@ -636,78 +638,7 @@
                             </div>
                             <div class="inside-padd">
                                 <ul class="items items-default">
-                                    {foreach $accessories as $p}
-                                        {if $p->firstVariant->getStock()}
-                                            <li>
-                                                <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
-                                                    <span class="photo-block">
-                                                        <span class="helper"></span>
-                                                        <img src="{echo $p->firstVariant->getDefaultPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
-                                                        {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                                                            {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
-                                                        {else:}
-                                                            {$discount = 0}
-                                                        {/if}
-                                                        {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
-                                                    </span>
-                                                    <span class="title">{echo ShopCore::encode($p->getName())}</span>
-                                                </a>
-                                                <div class="description">
-                                                    <div class="frame-prices f-s_0">
-                                                        <!-- Check for discount-->
-                                                        {if $p->hasDiscounts()}
-                                                            <span class="price-discount">
-                                                                <span>
-                                                                    <span class="price priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
-                                                                    <span class="curr">{$CS}</span>
-                                                                </span>
-                                                            </span>
-                                                        {/if}
-                                                        <!-- Start. Product price-->
-                                                        {if $model->firstVariant->toCurrency() > 0}
-                                                            <span class="current-prices f-s_0">
-                                                                <span class="price-new">
-                                                                    <span>
-                                                                        <span class="price priceVariant">{echo $p->firstVariant->toCurrency()}</span>
-                                                                        <span class="curr">{$CS}</span>
-                                                                    </span>
-                                                                </span>
-                                                                {if $NextCSId != null}
-                                                                    <span class="price-add">
-                                                                        <span>
-                                                                            (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                            <span class="curr-add">{$NextCS}</span>)
-                                                                        </span>
-                                                                    </span>
-                                                                {/if}
-                                                            </span>
-                                                        {/if}
-                                                        <!-- End. Product price-->
-                                                    </div>
-                                                    <div class="btn-buy">
-                                                        <button class="btnBuy"
-                                                                type="button"
-                                                                data-id="{echo $p->getId()}"
-                                                                data-varid="{echo $p->firstVariant->getId()}"
-                                                                data-prodid="{echo $p->getId()}"
-                                                                data-price="{echo $p->firstvariant->toCurrency()}"
-                                                                data-name="{echo ShopCore::encode($p->getName())}"
-                                                                data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
-                                                                data-number="{echo trim($p->firstVariant->getnumber())}"
-                                                                data-maxcount="{echo $p->firstVariant->getstock()}"
-                                                                data-img="{echo $p->firstVariant->getSmallPhoto()}"
-                                                                data-url="{echo shop_url('product/' . $p->getUrl())}"
-                                                                data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                                data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
-                                                                >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('s_buy')}</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        {/if}
-                                    {/foreach}
+                                    {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true))}
                                 </ul>
                             </div>
                         </div>
@@ -780,78 +711,7 @@
                         <div class="inside-padd">
                             <h3>Аксессуары к {echo $model->getName()}</h3>
                             <ul class="items items-default">
-                                {foreach $accessories as $p}
-                                    {if $p->firstVariant->getStock()}
-                                        <li>
-                                            <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
-                                                <span class="photo-block">
-                                                    <span class="helper"></span>
-                                                    <img src="{echo $p->firstVariant->getDefaultPhoto()}" alt="{echo ShopCore::encode($p->getName())}"/>
-                                                    {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                                                        {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
-                                                    {else:}
-                                                        {$discount = 0}
-                                                    {/if}
-                                                    {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
-                                                </span>
-                                                <span class="title">{echo ShopCore::encode($p->getName())}</span>
-                                            </a>
-                                            <div class="description">
-                                                <div class="frame-prices f-s_0">
-                                                    <!-- Check for discount-->
-                                                    {if $p->hasDiscounts()}
-                                                        <span class="price-discount">
-                                                            <span>
-                                                                <span class="price priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
-                                                                <span class="curr">{$CS}</span>
-                                                            </span>
-                                                        </span>
-                                                    {/if}
-                                                    <!-- Start. Product price-->
-                                                    {if $model->firstVariant->toCurrency() > 0}
-                                                        <span class="current-prices f-s_0">
-                                                            <span class="price-new">
-                                                                <span>
-                                                                    <span class="price priceVariant">{echo $p->firstVariant->toCurrency()}</span>
-                                                                    <span class="curr">{$CS}</span>
-                                                                </span>
-                                                            </span>
-                                                            {if $NextCSId != null}
-                                                                <span class="price-add">
-                                                                    <span>
-                                                                        (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price', 1)}</span>
-                                                                        <span class="curr-add">{$NextCS}</span>)
-                                                                    </span>
-                                                                </span>
-                                                            {/if}
-                                                        </span>
-                                                    {/if}
-                                                    <!-- End. Product price-->
-                                                </div>
-                                                <div class="btn-buy">
-                                                    <button class="btnBuy"
-                                                            type="button"
-                                                            data-id="{echo $p->getId()}"
-                                                            data-varid="{echo $p->firstVariant->getId()}"
-                                                            data-prodid="{echo $p->getId()}"
-                                                            data-price="{echo $p->firstvariant->toCurrency()}"
-                                                            data-name="{echo ShopCore::encode($p->getName())}"
-                                                            data-vname="{echo ShopCore::encode($p->firstVariant->getName())}"
-                                                            data-number="{echo trim($p->firstVariant->getnumber())}"
-                                                            data-maxcount="{echo $p->firstVariant->getstock()}"
-                                                            data-img="{echo $p->firstVariant->getSmallPhoto()}"
-                                                            data-url="{echo shop_url('product/' . $p->getUrl())}"
-                                                            data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
-                                                            >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                        <span class="text-el">{lang('s_buy')}</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {/if}
-                                {/foreach}
+                                {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true))}
                             </ul>
                         </div>
                     </div>

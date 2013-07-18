@@ -1,19 +1,25 @@
-$(document).ready(function(){
-    $('.protocolSettings').change(function(){
-        if($(this).val() === "SMTP"){
+$(document).ready(function() {
+    $('.protocolSettings').on('change', function() {
+        if ($(this).val() === "SMTP") {
             $('.portControlGroup').css('display', 'block');
-        }else{
+        } else {
             $('.portControlGroup').css('display', 'none');
         }
     });
-    
-    $('.niceCheck').click(function(){
-        if($(this).find('.wraper_activSettings').attr('checked')){
+
+    $('.niceCheck').on('click', function() {
+        if ($(this).find('.wraper_activSettings').attr('checked')) {
             $('.wraperControlGroup').slideUp(500);
-        }else{
+        } else {
             $('.wraperControlGroup').slideDown(500);
         }
-       
+    });
+
+    $('#userMailVariables').on('click', function() {
+        $('#userMailText').append(' ' + $(this).val() + ' ');
+    });
+    $('#adminMailVariables').on('click', function() {
+        $('#adminMailText').append(' ' + $(this).val() + ' ');
     });
 });
 
@@ -26,7 +32,6 @@ function mailTest(){
     var mailpath = $('#mailpath').val();
     var send_to = $('#admin_email').val();
     
-  //  console.log(from +" "+ from_email+" "+theme+" "+protocol+" "+port+" "+type+" "+mailpath);
     $.ajax({
             type: 'POST',
             data: {
