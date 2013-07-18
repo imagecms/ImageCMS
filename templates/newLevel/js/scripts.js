@@ -20,7 +20,7 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    //countColumn: 5, //if not drop-side
+    countColumn: 5, //if not drop-side
 
 //if need column partition level 2
     columnPart: true,
@@ -32,7 +32,7 @@ var optionsMenu = {
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    sub2Frame: '.frame-l2', //if drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
     sub3Frame: '.frame-l2',
     dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
@@ -97,10 +97,11 @@ var optionsDrop = {
 var productStatus = {
     action: '<span class="product-status action"></span>',
     hit: '<span class="product-status hit"></span>',
-    hot: '<span class="product-status nowelty"></span>',
-    discount: function(disc) {
-        return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(pricePrecision) + '%</span></span>';
-    }
+    hot: '<span class="product-status nowelty"></span>'
+//    ,
+//    disc: function(disc) {
+//        return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(pricePrecision) + '%</span></span>';
+//    }
 }
 imageCmsApiDefaults = {
     hideForm: true,
@@ -472,7 +473,7 @@ function countSumBask() {
         $(this).html(parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision));
     });
     $(genObj.addSumBask).each(function() {
-        $(this).html(Shop.Cart.totalAddPrice.toFixed(pricePrecision));
+        $(this).html(parseFloat(Shop.Cart.totalAddPrice).toFixed(pricePrecision));
     })
     $(genObj.bask + ' ' + genObj.plurProd).each(function() {
         $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
@@ -480,7 +481,8 @@ function countSumBask() {
     if ($.existsN($('.genDiscount')) || $.existsN($('.genSumDiscount'))) {
         if ($.isFunction(window.get_discount)) {
             get_discount();
-            $(document).bind('get_discount_api', function(e) {
+            console.log(1)
+            $(document).unbind('get_discount_api').bind('get_discount_api', function(e) {
                 $('.genDiscount').each(function() {
                     $(this).html(e.obj.sum_discount_product.toFixed(pricePrecision));
                 });
@@ -511,7 +513,7 @@ function processPage() {
 //update page content
 //update products count
     Shop.Cart.totalRecount();
-    countSumBask();
+//    countSumBask();
     if (!Shop.Cart.totalCount) {
         $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).show();
@@ -639,7 +641,7 @@ function initShopPage(showWindow, target, orderDetails) {
                 pdTr.find(genObj.priceAddPrice).html((cartItem.count * cartItem.addprice).toFixed(pricePrecision));
                 pdTr.find(genObj.countOrCompl).html(word);
             })
-            countSumBask();
+            //countSumBask();
         }
         $(genObj.frameCount + ' input').bind('keyup', function(e) {
             var $this = $(this);
@@ -740,7 +742,7 @@ function recountCartPage(selectDeliv, methodDeliv) {
         frameDiscountO.empty();
         frameDiscountO.next().show();
         get_discount();
-        $(document).bind('get_discount_tpl_from_json_api', function(e) {
+        $(document).unbind('get_discount_tpl_from_json_api').bind('get_discount_tpl_from_json_api', function(e) {
             frameDiscountO.html(e.tpl);
             frameDiscountO.next().hide();
         })
@@ -882,13 +884,13 @@ jQuery(document).ready(function() {
         catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
-    l2 = $('.frame-l2');
-    l2.each(function() {
-        var l2l = $(this).find('ul > li').length;
-        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
-        $(this).find('ul > li:gt(' + (Math.ceil(l2l * 2 / 3) - 1) + ')').addClass('column2_2')
-        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
-    })
+//    l2 = $('.frame-l2');
+//    l2.each(function() {
+//        var l2l = $(this).find('ul > li').length;
+//        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
+//        $(this).find('ul > li:gt(' + (Math.ceil(l2l * 2 / 3) - 1) + ')').addClass('column2_2')
+//        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
+//    })
 
     $('.menu-main').menuImageCms(optionsMenu);
     $('.drop').drop(
@@ -1213,6 +1215,10 @@ jQuery(document).ready(function() {
     $(document).live('cart_changed', function() {
         cart_changed(methodDeliv(), selectDeliv);
     });
+    $(document).live('count_changed', function() {
+        countSumBask();
+    });
+    
     $(document).bind('after_add_to_cart', function(e) {
         initShopPage(true, e.starget, orderDetails);
         Shop.Cart.countChanged = false;
