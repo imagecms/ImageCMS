@@ -63,7 +63,7 @@
     {if count($propertiesInCat) > 0}
         {foreach $propertiesInCat as $prop}
             <div class="frame-group-checks">
-                <div class="inside-padd">
+                <div class="inside-padd {implode(" ",$CI->load->module('new_level')->getPropertyTypes($prop->property_id))}">
                     <div class="title">{echo $prop->name}</div>
                     <ul>
                         {foreach $prop->possibleValues as $item}

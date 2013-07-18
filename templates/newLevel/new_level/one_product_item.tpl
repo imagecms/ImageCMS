@@ -8,17 +8,16 @@
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
                      class="vimg lazy"/>
-                {if $p->getOldPrice() > $p->firstVariant->getPrice()}
-                    {$discount = round(100 - ($p->firstVariant->getPrice() / $p->getOldPrice() * 100))}
-                {else:}
-                    {$discount = 0}
+                {$discount = 0}
+                {if $p->hasDiscounts()}
+                    {$discount = $p->firstVariant->getvirtual('numDiscount')/$p->firstVariant->toCurrency()*100}
                 {/if}
                 {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
                     <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул:
@@ -50,13 +49,20 @@
             {/if}
             <div class="frame-prices f-s_0">
                 <!-- Check for discount-->
-                {if ShopCore::$ci->dx_auth->is_logged_in() === true && $p->firstVariant->toCurrency() != $p->firstVariant->toCurrency('OrigPrice')}
-                    {$discount = true}
-                {/if}
-                {if $p->hasDiscounts()}
+                {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0}
+                {$hasDiscounts = $p->hasDiscounts()}
+                {if $hasDiscounts}
                     <span class="price-discount">
                         <span>
                             <span class="price priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
+                            <span class="curr">{$CS}</span>
+                        </span>
+                    </span>
+                {/if}
+                {if $oldoprice && !$hasDiscounts}
+                    <span class="price-discount">
+                        <span>
+                            <span class="price priceOrigVariant">{echo $p->getOldPrice()}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
@@ -81,7 +87,7 @@
                 {/if}
             </div>
             {$variants = $p->getProductVariants()}
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
                         <div class="lineForm">
@@ -107,10 +113,11 @@
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
                     {$widgetWOV = ($widget && $key < 1) || !$widget}
-                    {if $widgetWOV}
+                    {$defoultWOV = ($defaultItem && $key < 1) || !$defaultItem}
+                    {if $widgetWOV || $defoultWOV}
                         {if $pv->getStock() > 0}
                             <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                                {if !widget}
+                                {if !widget && !$defaultItem}
                                     <div class="frame-count">
                                         <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                             <div class="frame-change-count">
@@ -131,10 +138,9 @@
                                 {/if}
                                 <div class="btn-buy">
                                     <button
-                                        {if $pv->getOldPrice() > $p->firstVariant->getPrice()}
-                                            {$discount = round(100 - ($v->firstVariant->getPrice() / $pv->getOldPrice() * 100))}
-                                        {else:}
-                                            {$discount = 0}
+                                        {$discount = 0}
+                                        {if $hasDiscounts}
+                                            {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
                                         {/if}
                                         class="btnBuy infoBut"
                                         type="button"
@@ -152,7 +158,7 @@
                                         data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                        data-prodStatus='{echo json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
                                     </button>
@@ -165,6 +171,7 @@
                                     type="button"
                                     data-drop=".drop-report"
                                     data-source="/shop/ajax/getNotifyingRequest"
+                                    
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
@@ -176,9 +183,6 @@
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                    data-price="{echo $pv->toCurrency()}"
-                                    data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                    data-addPrice="{echo $pv->toCurrency('Price',1)}">
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
@@ -187,7 +191,7 @@
                     {/if}
                 {/foreach}
             </div>
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
                         {if !$compare}
@@ -232,7 +236,7 @@
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$compare}
+            {if !$widget && !$compare && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="no-vis-table">
                         <!--Start. Description-->
