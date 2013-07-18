@@ -9,7 +9,7 @@
             <p>Удалить выбраные шаблоны?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/sample_mail/delete/')" >Удалить</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/email/delete/')" >Удалить</a>
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
         </div>
     </div>
@@ -29,13 +29,17 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/email/settings">
+                        <i class="icon-wrench"></i>
+                        Настройки
+                    </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
                         <i class="icon-trash icon-white"></i>{lang('a_delete')}
                     </button>
-                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
+                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/email/create" >
                         <i class="icon-list-alt icon-white"></i>Создать шаблон
                     </a>
                 </div>
@@ -72,7 +76,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/sample_mail/edit/{echo $model.name}/{echo $locale}">{echo $model.name}</a>
+                                            <a class="pjax" href="/admin/components/cp/email/edit/{echo $model.name}/{echo $locale}">{echo $model.name}</a>
                                         </td>
                                         <td>
                                             <p>{echo $model.description}</p>
