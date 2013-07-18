@@ -14,12 +14,36 @@ namespace email\classes;
  */
 class ParentEmail extends \MY_Controller {
 
+    /**
+     *
+     * @var string
+     */
     private $from;
+
+    /**
+     *
+     * @var string
+     */
     private $from_email;
+
+    /**
+     *
+     * @var string
+     */
     private $send_to;
+
+    /**
+     *
+     * @var string
+     */
     private $theme;
+
+    /**
+     *
+     * @var string
+     */
     private $message;
-    private $CI;
+
     /**
      * Array of errors
      * @var array
@@ -44,7 +68,7 @@ class ParentEmail extends \MY_Controller {
         }
 
         $wraper = $this->email_model->getWraper();
-     
+
         if ($wraper) {
             $patern = str_replace('$content', $patern, $wraper);
         }
@@ -53,14 +77,14 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * send email
-     * 
+     *
      * @param string $send_to
      * @param string $patern_name
      * @return bool
      */
     public function sendEmail($send_to = 'send@mail.to', $patern_name = "my_patern") {
         $this->load->library('email');
-        
+
         $patern_settings = $this->email_model->getPaternSettings($patern_name);
         $default_settings = $this->email_model->getSettings();
 
@@ -74,13 +98,13 @@ class ParentEmail extends \MY_Controller {
                 }
             }
         }
-        
+
         $default_settings['type'] = strtolower($patern_settings['type']);
-        
+
         $this->set_config($default_settings);
 
         if ($patern_settings['user_message_active']) {
-            
+
             $this->from_email = $patern_settings['from_email'];
             $this->from = $patern_settings['from'];
             $this->send_to = $send_to;
@@ -161,7 +185,7 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * send email
-     * 
+     *
      * @return bool
      */
     private function _sendEmail() {
@@ -174,28 +198,28 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * set email config
-     * 
+     *
      * @param array $settings
-     * @return bool 
+     * @return bool
      */
     private function set_config($settings) {
-        
+
         $config['protocol'] = $settings['protocol'];
-        
+
         if (strtolower($settings['protocol']) == strtolower("SMTP")) {
             $config['smtp_port'] = $settings['port'];
         }
-        
+
         $config['mailtype'] = strtolower($settings['type']);
         $config['mailpath'] = $settings['mailpath'];
-        
-        return  $this->email->initialize($config);
+
+        return $this->email->initialize($config);
     }
-    
-    public  function mailTest() {
+
+    public function mailTest() {
         $this->load->library('email');
         $this->email->clear();
-        
+
         $from = $this->input->post('from');
         $from_email = $this->input->post('from_email');
         $port = $this->input->post('port');
@@ -204,12 +228,12 @@ class ParentEmail extends \MY_Controller {
         $send_to = $this->input->post('send_to');
         $theme = $this->input->post('theme');
         $type = 'text';
-        
+
         $config = array('port' => $port, 'protocol' => $protocol, 'mailpath' => $mailpath, 'type' => $type);
         $this->set_config($config);
-        
+
         $this->email->initialize($config);
-        
+
         $this->email->from($from_email, $from);
         $this->email->to($send_to);
 
@@ -219,13 +243,10 @@ class ParentEmail extends \MY_Controller {
         $this->email->send();
 
         echo $this->email->print_debugger();
-        
     }
-    
-    
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {
