@@ -95,7 +95,7 @@
                                 <div class="control-group portControlGroup span4" {if $settings['protocol'] != "SMTP"} style="display: none"  {/if} >
                                     <label class="control-label" for="settings[port]">Протокол</label>
                                     <div class="controls ">
-                                        <input type = "text" name = "settings[port]" class=" textbox_short portSettings" {if $settings['protocol'] != "SMTP"} value="0"   {else:} value="{$settings['port']}"  {/if} id="port"/>
+                                        <input type = "text" name = "settings[port]" class=" textbox_short portSettings"  value="{$settings['port']}"  id="port"/>
                                     </div>
                                 </div>
 
