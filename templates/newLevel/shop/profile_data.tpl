@@ -45,72 +45,87 @@
             </form>
         </div>
     </div>
-    {$discount = ShopCore::app()->SDiscountsManager->getActive();}
-    {if $discount['0']!=null && $discount['0']->getDiscount() != null}
-        <div class="layout-highlight info-discount">
-            <div class="title-default">
-                <div class="title">Накопительная скидка</div>
-            </div>
-            <div class="content">
-                <ul class="items items-info-discount">
-                    <li class="inside-padd">
+
+    {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
+
+
+
+
+
+
+
+    <div class="layout-highlight info-discount">
+        <div class="title-default">
+            <div class="title">Скидки пользователя</div>
+        </div>
+        <div class="content">
+            <ul class="items items-info-discount">
+                <li class="inside-padd">
+                    <div>
+                        Куплено товаров на сумму:
+                        <span class="price-item">
+                            <span class="text-discount">
+                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
+                                <span class="curr">{$CS}</span>
+                            </span>
+                        </span>
+                    </div>
+                    {if $discount['user']}  
                         <div>
-                            Куплено товаров на сумму:
+                            Ваша текущая скидка пользователя:
                             <span class="price-item">
-                                <span class="text-discount">
-                                    <span class="price"></span>
-                                    <span class="curr">{$CS}</span>
-                                </span>
+                                <span class="text-discount">{echo $discount['user'][0]['value']}{if $discount['user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                             </span>
                         </div>
+                    {/if}
+                    {if $discount['group_user']}    
                         <div>
-                            Ваша текущая скидка:
+                            Ваша текущая скидка групи пользователя:
                             <span class="price-item">
-                                <span class="text-discount">{echo $discount['0']->getDiscount()}%</span>
+                                <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                             </span>
                         </div>
-                    </li>
-                    <li class="inside-padd">
-                        <div>Для следующей <b>скидки 20%</b> осталось</div>
-                        <div>совершить покупок на сумму: <b>3500 грн</b></div>
-                    </li>
-                    <li class="inside-padd">
-                        <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">Просмотр таблицы скидок</button>
-                    </li>
-                </ul>
+                    {/if}
+
+                </li>
+                <li class="inside-padd">
+                    <div>Для следующей <b>скидки 20%</b> осталось</div>
+                    <div>совершить покупок на сумму: <b>3500 грн</b></div>
+                </li>
+                <li class="inside-padd">
+                    <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">Просмотр таблицы скидок</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {if  $discount['comulativ']}
+        <div class="drop-style drop drop-comulativ-discounts">
+            <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+            <div class="drop-header">
+                <div class="title">Накопительные скидки</div>
             </div>
+            <div class="drop-content">
+                <div class="inside-padd characteristic">
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th>Процент скидки</th>
+                                <th>Сумма покупок от</th>
+                                <th>Сумма покупок до</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $discount['comulativ'] as $disc}
+                                <tr>
+                                    <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
+                                    <td>{echo $disc['begin_value']} {$CS}</td>
+                                    <td>{echo $disc['end_value']} {$CS}</td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="drop-footer"></div>
         </div>
     {/if}
-</div>
-<div class="drop-style drop drop-comulativ-discounts">
-    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
-    <div class="drop-header">
-        <div class="title">Накопительные скидки</div>
-    </div>
-    <div class="drop-content">
-        <div class="inside-padd characteristic">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Процент скидки</th>
-                        <th>Сумма покупок от</th>
-                        <th>Сумма покупок до</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-discount">11%</td>
-                        <td>415 {$CS}</td>
-                        <td>425 {$CS}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-discount">11%</td>
-                        <td>415 {$CS}</td>
-                        <td>425 {$CS}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="drop-footer"></div>
-</div>
