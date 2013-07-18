@@ -1,4 +1,3 @@
-{//var_dumps($settings)}
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">

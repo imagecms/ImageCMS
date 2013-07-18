@@ -83,22 +83,20 @@
                             <div class="control-group">
                                 <label class="control-label" for="settings[protocol]">Протокол</label>
                                 <div class="controls">
-                                    <select>
-                                        <option></option>
-                                        <option></option>
-                                        <input type = "text" name = "settings[protocol]" class="textbox_short" value="{$settings['protocol']}" id="protocol"/>
+                                    <select name = "settings[protocol]" class="protocolSettings">
+                                        <option {if $settings['protocol'] == "SMTP"} selected {/if} value="SMTP" >SMTP</option>
+                                        <option {if $settings['protocol'] == "sendmail"} selected {/if} value="sendmail">sendmail</option>
+                                        <option {if $settings['protocol'] == "mail"} selected {/if} value="mail">mail</option>
                                     </select>
                                 </div>
                             </div>
                                 
-                            <div class="control-group">
+                            <div class="control-group portControlGroup span4" {if $settings['protocol'] != "SMTP"} style="display: none"  {/if} >
                                 <label class="control-label" for="settings[port]">Протокол</label>
-                                <div class="controls">
-                                    <input type = "text" name = "settings[port]" class="textbox_short" value="{$settings['port']}" id="port"/>
+                                <div class="controls ">
+                                    <input type = "text" name = "settings[port]" class=" textbox_short portSettings" {if $settings['protocol'] != "SMTP"} value="0"   {else:} value="{$settings['port']}"  {/if} id="port"/>
                                 </div>
                             </div>
-
-
 
                         </div>
                     </td>

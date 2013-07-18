@@ -20,6 +20,7 @@ class Admin extends BaseAdminController {
     }
     public function settings(){
        \CMSFactory\assetManager::create()
+               ->registerScript('script')
                 ->setData('settings', $this->email_model->getSettings())
                 ->renderAdmin('settings');
     }
@@ -28,9 +29,10 @@ class Admin extends BaseAdminController {
      * updare settings for email
      */
     public function update_settings() {
-
+        var_dumps($_POST['settings']);
         if ($_POST) {
-            $this->email_model->setSettings($_POST['settings']);
+            if($this->email_model->setSettings($_POST['settings']))
+                showMessage ('Настройки сохранены', 'Сообщение');
         }
     }
 }
