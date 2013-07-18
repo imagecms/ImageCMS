@@ -48,7 +48,7 @@ class New_level extends MY_Controller {
        if($category_columns){
            return implode('_',$category_columns);
        }else{
-           return '';
+           return '0';
        }
     }
 
