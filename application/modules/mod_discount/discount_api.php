@@ -76,8 +76,7 @@ class discount_api extends \mod_discount\discount {
                 elseif (1 === $tpl)
                     \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
                 elseif ('json' === $tpl)
-                    echo json_encode ($arr);
-                    
+                    echo json_encode($arr);
             }
             else
                 return false;
@@ -113,15 +112,15 @@ class discount_api extends \mod_discount\discount {
      */
     public function get_user_discount_api($tpl = null) {
         if ($this->check_module_install()) {
-            $this->discount_type['comulativ'] = $this->get_comulativ_discount_api();
             $this->init();
+            $this->discount_type['comulativ'] = $this->get_comulativ_discount_api();
             if (null === $tpl)
                 return $this->discount_type;
             else
                 \CMSFactory\assetManager::create()->setData(array('discount' => $this->discount_type))->render('discount_info_user', true);
         }
     }
-    
+
     /**
      * is product discount
      * @access public
@@ -141,10 +140,10 @@ class discount_api extends \mod_discount\discount {
             else
                 return false;
         }
-
     }
+
     /**
-     * get comulativ discount
+     * get comulativ discount sorting
      * @access public
      * @author DevImageCms
      * @param --
@@ -152,23 +151,13 @@ class discount_api extends \mod_discount\discount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_comulativ_discount_api() {
-        if ($this->check_module_install()) {
-            $disc_comul = $this->init()->discount_type['comulativ'];
-            foreach ($disc_comul as $key1 => $disc1)
-                foreach ($disc_comul as $key2 => $disc2)
-                    if ($disc_comul[$key1]['begin_value'] < $disc_comul[$key2]['begin_value']){
-                        $disc_aux = $disc_comul[$key1];
-                        $disc_comul[$key1] = $disc_comul[$key2];
-                        $disc_comul[$key2] = $disc_aux;
-                    }
-                      
+
+        function cmp($a, $b) {
+            return strnatcmp($a["begin_value"], $b["begin_value"]);
         }
-        
-        return $disc_comul;
-
+        if ($this->check_module_install())
+            usort($this->discount_type['comulativ'], 'cmp');
+        return $this->discount_type['comulativ'];
     }
-    
-
-    
 
 }
