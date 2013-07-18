@@ -65,7 +65,18 @@ class Email_model extends CI_Model {
         }
     }
     
+    public function getPaternSettings($patern_name){
+        $query = $this->db->where('name', $patern_name)->get('mod_email_paterns');
+        
+        if($query){
+            return $query->row_array();
+        }else{
+            return '';
+        }
+    }
+
     
+
 
     /**
      * install module(create db tables, set default values)
@@ -159,6 +170,7 @@ class Email_model extends CI_Model {
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
                                 'wraper_activ' => true,
+                                'mailpath' => '/usr/sbin/sendmail',
                                 'protocol' => 'SMTP',
                                 'port' => '80'
                             )
