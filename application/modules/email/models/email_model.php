@@ -32,9 +32,40 @@ class Email_model extends CI_Model {
      */
     public function setSettings($settings) {
         return $this->db->where('identif', 'email')
-                        ->update('components', array('email' => serialize($settings)
+                        ->update('components', array('settings' => serialize($settings)
         ));
     }
+    
+    /**
+     * get wraper
+     * 
+     * @return string
+     */
+    public function getWraper(){
+        $settings = $this->getSettings();
+        if($settings['wraper_activ']){
+            return $settings['wraper'];            
+        }else{
+            return FALSE;
+        }
+    }
+    
+    /**
+     * get email type
+     * 
+     * @param string $patern
+     * @return string
+     */
+    public function getEmailType($patern){
+        $query = $this->db->select('type')->where('name', $patern)->get('mod_email_paterns');
+        if($query){
+            return $query->result_row();
+        }else{
+            return '';
+        }
+    }
+    
+    
 
     /**
      * install module(create db tables, set default values)
@@ -63,42 +94,47 @@ class Email_model extends CI_Model {
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'from_email' => array(
+            'from_email' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'theme' => array(
+            'admin_email' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
             ),
-	'type' => array(
+            'theme' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '256',
+                'null' => FALSE
+            ),
+            'type' => array(
                 'type' => 'ENUM',
                 'constraint' => "'HTML','Text'",
                 'default' => "HTML"
             ),
-	'user_message' => array(
+            'user_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'user_message_active' => array(
+            'user_message_active' => array(
                 'type' => 'BOOLEAN',
-               'default' => TRUE
+                'default' => TRUE
             ),
-	'admin_message' => array(
+            'admin_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'admin_message_active' => array(
+            'admin_message_active' => array(
                 'type' => 'BOOLEAN',
-               'default' => TRUE
+                'default' => TRUE
             ),
-	'description' => array(
+            'description' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
-	'variables' => array(
+            'variables' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             )
@@ -110,20 +146,20 @@ class Email_model extends CI_Model {
         $this->dbforge->create_table('mod_email_paterns');
 
 
-	
 
-	$this->db
+
+        $this->db
                 ->where('identif', 'email')
                 ->update('components', array(
                     'settings' => serialize(
                             array(
-                                'name' => 'Default Name',
                                 'from' => 'Default From',
                                 'from_email' => 'default@from.ua',
+                                'admin_email' => 'admin@from.ua',
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
-				'wraper_activ' => true,
-				'protocol' => 'SMTP',
+                                'wraper_activ' => true,
+                                'protocol' => 'SMTP',
                                 'port' => '80'
                             )
                     ),

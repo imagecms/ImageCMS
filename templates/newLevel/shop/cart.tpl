@@ -77,7 +77,7 @@
                                         <input type="text" value="{$profile.email}" name="userInfo[email]">
                                     </span>
                                 </label>
-                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
+                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('street','order',$profile.id,'user')->asHtml()}
                                 <label>
                                     <span class="title">{lang('s_address')}:</span>
                                     <span class="frame-form-field">
