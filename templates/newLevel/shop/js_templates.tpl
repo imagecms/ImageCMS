@@ -29,7 +29,8 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% _.each(item.prodStatus, function(item, i){%>
+        <% prodS = item.prodStatus; if (typeof item.prodStatus == 'string') prodS = JSON.parse(item.prodStatus)%>
+        <% _.each(prodS, function(item, i){%>
         <%= productStatus[i]%>
         <%})%>
         </span>
@@ -39,6 +40,14 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <%if (item.origprice) { %>
+        <span class="price-discount">
+        <span>
+        <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <% } %>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -238,7 +247,7 @@
         <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
         <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
-        <span class="text-discount current-discount"><span class="genDiscount"><%-Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%></span> <span class="curr"><%-curr%></span></span>
+        <span class="text-discount current-discount"><span class="genDiscount"><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
         <%}%>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
@@ -246,7 +255,7 @@
         <span class="price-discount">
         <span>
         <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
-        <span class="price genSumDiscount"><%-Shop.Cart.totalPriceOrigin.toFixed(pricePrecision)%></span>
+        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         <%}%>
         </span>
@@ -273,7 +282,7 @@
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
-        
+
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>
@@ -300,7 +309,7 @@
         </div>
         <div class="btn-form">
         <button type="button" onclick="togglePopupCart()">
-        
+
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>
@@ -507,7 +516,7 @@
         <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
         <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
-        <span class="text-discount current-discount"><span class="genDiscount"><%-Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%></span> <span class="curr"><%-curr%></span></span>
+        <span class="text-discount current-discount"><span class="genDiscount"><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
         <%}%>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
@@ -515,7 +524,7 @@
         <span class="price-discount">
         <span>
         <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
-        <span class="price genSumDiscount"><%-Shop.Cart.totalPriceOrigin.toFixed(pricePrecision)%></span>
+        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         <%}%>
         </span>
@@ -536,7 +545,7 @@
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
         <button type="button" onclick="togglePopupCart()">
-        
+
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
         </div>
