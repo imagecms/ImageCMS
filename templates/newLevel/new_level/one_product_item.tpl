@@ -17,7 +17,7 @@
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
                     <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул:
@@ -87,7 +87,7 @@
                 {/if}
             </div>
             {$variants = $p->getProductVariants()}
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 {if count($variants) > 1}
                     <div class="check-variant-catalog">
                         <div class="lineForm">
@@ -113,10 +113,11 @@
                 <!-- Start. Collect information about Variants, for future processing -->
                 {foreach $variants as $key => $pv}
                     {$widgetWOV = ($widget && $key < 1) || !$widget}
-                    {if $widgetWOV}
+                    {$defoultWOV = ($defaultItem && $key < 1) || !$defaultItem}
+                    {if $widgetWOV || $defoultWOV}
                         {if $pv->getStock() > 0}
                             <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
-                                {if !widget}
+                                {if !widget && !$defaultItem}
                                     <div class="frame-count">
                                         <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                             <div class="frame-change-count">
@@ -190,7 +191,7 @@
                     {/if}
                 {/foreach}
             </div>
-            {if !$widget}
+            {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
                         {if !$compare}
@@ -235,7 +236,7 @@
                 </div>
             {/if}
             <!-- End. Collect information about Variants, for future processing -->
-            {if !$widget && !$compare}
+            {if !$widget && !$compare && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="no-vis-table">
                         <!--Start. Description-->
