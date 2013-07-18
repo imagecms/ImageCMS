@@ -536,6 +536,12 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <span class="price-add">
+        <span>
+        <span class="price topCartTotalAddPrice"></span>
+        <span class="curr-add"><%-currNext%></span>
+        </span>
+        </span>
         </span>
         </span>
         </span>
