@@ -82,9 +82,16 @@
                                 </div>
 
                                 <div class="control-group">
+                                    <label class="control-label" for="settings[mailpath]">Серверный путь к Sendmail</label>
+                                    <div class="controls">
+                                        <input type = "text" name = "settings[mailpath]" class="textbox_short" value="{$settings['mailpath']}" id="mailpath"/>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
                                     <label class="control-label" for="settings[protocol]">Протокол</label>
                                     <div class="controls">
-                                        <select name = "settings[protocol]" class="protocolSettings">
+                                        <select name = "settings[protocol]" class="protocolSettings" id="protocol">
                                             <option {if $settings['protocol'] == "SMTP"} selected {/if} value="SMTP" >SMTP</option>
                                             <option {if $settings['protocol'] == "sendmail"} selected {/if} value="sendmail">sendmail</option>
                                             <option {if $settings['protocol'] == "mail"} selected {/if} value="mail">mail</option>
@@ -98,6 +105,16 @@
                                         <input type = "text" name = "settings[port]" class=" textbox_short portSettings"  value="{$settings['port']}"  id="port"/>
                                     </div>
                                 </div>
+                                    
+                                <br>
+                                
+                                <div class="control-group" >
+                                    <div class="controls ">
+                                        <a href="#" onclick="mailTest()">Проверка отправки почты</a>
+                                    </div>
+                                    <br>
+                                    <div class="controls mailTestResults"></div>                                    
+                                </div>                              
 
                             </div>
                         </td>
