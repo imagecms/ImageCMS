@@ -363,6 +363,7 @@
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
                                                         <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                        {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
                                                     </span>
                                                     <span class="title">{echo ShopCore::encode($model->getName())}</span>
                                                 </div>
@@ -489,6 +490,9 @@
                                                         data-url='{echo json_encode($kitProducts->getUrls())}'
                                                         data-img='{echo json_encode($kitProducts->getImgs())}'
                                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
+                                                        data-kitstatus='{echo $kitProducts->getKitStatus()}'
+                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
+                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                                     <span class="text-el">{lang('s_buy')}</span>
