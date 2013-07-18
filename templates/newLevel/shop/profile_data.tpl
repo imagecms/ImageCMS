@@ -86,12 +86,31 @@
                             </span>
                         </div>
                     {/if}
+                    {if $discount['comulativ']}
+                        {foreach $discount['comulativ'] as $key => $disc}
+                            {if $disc['begin_value'] < $profile->getamout() and $profile->getamout() < $disc['end_value']}
+                                {$discount_comul_next = $discount['comulativ'][$key + 1];}
+                                {$discount_comul_curr = $discount['comulativ'][$key];}
+                            {/if}
+                        {/foreach}
+                    {/if}
+                    {if $discount_comul_curr}
+                    <div>
+                        Ваша текущая скидка накопительная:
+                        <span class="price-item">
+                            <span class="text-discount">{echo $discount_comul_curr['value']}{if  $discount_comul_curr['type_value'] == 1}%{else:}{$CS}{/if}</span>
+                        </span>
+                    </div>
+                    {/if}
 
                 </li>
-                <li class="inside-padd">
-                    <div>Для следующей <b>скидки 20%</b> осталось</div>
-                    <div>совершить покупок на сумму: <b>3500 грн</b></div>
-                </li>
+
+                {if $discount_comul_next}
+                    <li class="inside-padd">
+                        <div>Для следующей <b>скидки {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> осталось</div>
+                        <div>совершить покупок на сумму: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                    </li>
+                {/if}
                 <li class="inside-padd">
                     <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">Просмотр таблицы скидок</button>
                 </li>
@@ -119,7 +138,7 @@
                                 <tr>
                                     <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
                                     <td>{echo $disc['begin_value']} {$CS}</td>
-                                    <td>{echo $disc['end_value']} {$CS}</td>
+                                    <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}бесконечно{/if}</td>
                                 </tr>
                             {/foreach}
                         </tbody>
