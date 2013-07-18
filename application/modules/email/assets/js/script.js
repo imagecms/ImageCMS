@@ -16,3 +16,34 @@ $(document).ready(function(){
        
     });
 });
+
+function mailTest(){
+    var from = $('#from').val();
+    var from_email = $('#from_email').val();
+    var theme = $('#theme').val();
+    var protocol = $('#protocol').val();
+    var port = $('#port').val();
+    var mailpath = $('#mailpath').val();
+    var send_to = $('#admin_email').val();
+    
+  //  console.log(from +" "+ from_email+" "+theme+" "+protocol+" "+port+" "+type+" "+mailpath);
+    $.ajax({
+            type: 'POST',
+            data: {
+                from: from,
+                from_email: from_email,
+                theme: theme,
+                protocol: protocol,
+                port: port,
+                mailpath: mailpath,
+                send_to: send_to
+            },
+            url: '/email/mailTest',
+            success: function(data) {
+                $('.mailTestResults').html(data);
+            }
+        });
+    
+    return false;
+    
+}
