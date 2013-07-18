@@ -25,35 +25,3 @@
         </div>
     </div>
 </div>
-<div class="drop-style drop drop-comulativ-discounts">
-    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
-    <div class="drop-header">
-        <div class="title">Накопительные скидки</div>
-    </div>
-    <div class="drop-content">
-        <div class="inside-padd characteristic">
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Процент скидки</th>
-                        <th>Сумма покупок от</th>
-                        <th>Сумма покупок до</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-discount">11%</td>
-                        <td>415 {$CS}</td>
-                        <td>425 {$CS}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-discount">11%</td>
-                        <td>415 {$CS}</td>
-                        <td>425 {$CS}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="drop-footer"></div>
-</div>
