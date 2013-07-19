@@ -1669,42 +1669,53 @@ var ie = jQuery.browser.msie,
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
                     })
-                    $thisNext.not('[disabled="disabled"]').unbind('click.pM').bind('click.pM', function(e) {
-                        var el = $(this),
-                                input = $this.focus(),
-                                inputVal = parseInt(input.val());
-                        if (!input.is(':disabled')) {
-                            settings.before(e, el, input);
-                            if (isNaN(inputVal))
-                                input.val(1);
-                            else
-                                input.val(inputVal + 1);
-                            if (settings.ajax && !checkProdStock)
-                                $(document).trigger({'type': 'showActivity'})
+                    $thisNext.unbind('click.pM').bind('click.pM', function(e) {
+                        var el = $(this);
+                        $thisPrev.removeAttr('disabled', 'disabled')
+                        if (!el.is(':disabled')) {
+                            var input = $this.focus(),
+                                    inputVal = parseInt(input.val());
+                            if (!input.is(':disabled')) {
+                                settings.before(e, el, input);
+                                if (isNaN(inputVal))
+                                    input.val(1);
+                                else
+                                    input.val(inputVal + 1);
+                                if (ajax && !checkProdStock)
+                                    $(document).trigger({'type': 'showActivity'})
 
-                            if (settings.ajax && inputVal + 1 <= input.data('max') && checkProdStock)
-                                $(document).trigger({'type': 'showActivity'})
+                                if (ajax && inputVal + 1 <= input.data('max') && checkProdStock)
+                                    $(document).trigger({'type': 'showActivity'})
+                                if (ajax && inputVal + 1 == input.data('max'))
+                                    $thisNext.attr('disabled', 'disabled')
 
-                            if (checkProdStock)
-                                input.maxValue();
-                            settings.after(e, el, input);
+                                if (checkProdStock)
+                                    input.maxValue();
+                                settings.after(e, el, input);
+                            }
                         }
                     })
-                    $thisPrev.not('[disabled="disabled"]').unbind('click.pM').bind('click.pM', function(e) {
-                        var el = $(this),
-                                input = $this.focus(),
-                                inputVal = parseInt(input.val());
-                        if (!input.is(':disabled')) {
-                            settings.before(e, el, input);
-                            if (isNaN(inputVal))
-                                input.val(1)
-                            else if (inputVal > 1) {
-                                if (ajax)
-                                    $(document).trigger({'type': 'showActivity'})
-                                input.val(inputVal - 1)
-                            }
+                    $thisPrev.unbind('click.pM').bind('click.pM', function(e) {
+                        var el = $(this);
+                        $thisNext.removeAttr('disabled', 'disabled')
+                        if (!el.is(':disabled')) {
+                            var input = $this.focus(),
+                                    inputVal = parseInt(input.val());
+                            if (!input.is(':disabled')) {
+                                settings.before(e, el, input);
+                                if (isNaN(inputVal))
+                                    input.val(1)
+                                else if (inputVal > 1) {
+                                    if (ajax) {
+                                        $(document).trigger({'type': 'showActivity'})
+                                    }
+                                    input.val(inputVal - 1)
+                                    if (ajax && inputVal - 1 == input.data('min'))
+                                        $thisPrev.attr('disabled', 'disabled')
+                                }
 
-                            settings.after(e, el, input);
+                                settings.after(e, el, input);
+                            }
                         }
                     })
                 })
@@ -1888,7 +1899,6 @@ var Shop = {
         totalPriceOrigin: 0,
         discount: 0,
         popupCartSelector: 'script#cartPopupTemplate',
-        countChanged: false,
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
@@ -1965,12 +1975,11 @@ var Shop = {
             });
             return this;
         },
-        chCount: function(cartItem, f) {
+        chCount: function(cartItem, f, change) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
-            if (Shop.Cart.currentItem) {
+            if (Shop.Cart.currentItem && !change) {
 
                 Shop.Cart.currentItem.count = cartItem.count;
-                //this.countChanged = true;
 
                 Shop.currentCallbackFn = f;
                 if (cartItem.kit)
@@ -2171,26 +2180,25 @@ var Shop = {
                 number: '',
                 vname: false,
                 url: false,
-                addprices: false,
-                addprice: false
             };
         return prototype = {id: obj.id ? obj.id : 0,
             vId: obj.vId ? obj.vId : 0,
             price: obj.price ? obj.price : 0,
+            prices: obj.prices ? obj.prices : 0,
             addprice: obj.addprice ? obj.addprice : 0,
+            addprices: obj.addprices ? obj.addprices : 0,
+            origprice: obj.origprice ? obj.origprice : 0,
+            origprices: obj.origprices ? obj.origprices : 0,
             name: obj.name ? obj.name : '',
             count: obj.count ? obj.count : 1,
             kit: obj.kit ? obj.kit : false,
-            prices: obj.prices ? obj.prices : 0,
-            addprices: obj.addprices ? obj.addprices : 0,
             kitId: obj.kitId ? obj.kitId : 0,
             maxcount: obj.maxcount ? obj.maxcount : 0,
             number: obj.number ? obj.number : 0,
             vname: obj.vname ? obj.vname : '',
             url: obj.url ? obj.url : '',
             img: obj.img ? obj.img : '',
-            prodStatus: obj.prodStatus ? obj.prodStatus : '',
-            origprice: obj.origprice ? obj.origprice : '',
+            prodstatus: obj.prodstatus ? obj.prodstatus : '',
             storageId: function() {
                 return 'cartItem_' + this.id + '_' + this.vId;
             }
@@ -2201,20 +2209,21 @@ var Shop = {
         cartItem.id = $context.data('prodid');
         cartItem.vId = $context.data('varid');
         cartItem.count = $context.attr('data-count');
-        cartItem.price = parseFloat($context.data('price')).toFixed(pricePrecision);
-        cartItem.addprice = parseFloat($context.data('addprice')).toFixed(pricePrecision);
+        cartItem.price = $context.data('price');
+        cartItem.prices = $context.data('prices');
+        cartItem.addprice = $context.data('addprice');
+        cartItem.addprices = $context.data('addprices');
+        cartItem.origprice = $context.data('origprice')
+        cartItem.origprices = $context.data('origprices')
         cartItem.name = $context.data('name');
         cartItem.kit = $context.data('kit');
-        cartItem.prices = $context.data('prices');
-        cartItem.addprices = $context.data('addprices');
         cartItem.kitId = $context.data('kitid');
         cartItem.maxcount = $context.data('maxcount');
         cartItem.number = $context.data('number');
         cartItem.vname = $context.data('vname');
         cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
-        cartItem.prodStatus = $context.data('prodstatus');
-        cartItem.origprice = $context.data('origprice')
+        cartItem.prodstatus = $context.data('prodstatus');
         return cartItem;
     },
     WishList: {

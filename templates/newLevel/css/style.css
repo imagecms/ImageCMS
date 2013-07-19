@@ -357,7 +357,6 @@ input.input-search{height: 33px;}
 .items-bask .photo-block, .item-report.items-bask .photo-block{width: 62px;height: 62px;float: left;margin-right: 18px;}
 .items-bask .description{margin-left: 80px;}
 .items-bask .description .frame-prices{padding-top: 8px;}
-.items-bask .frame-cur-sum-price{padding-top: 5px;}
 .row-kits .description{margin-left: 0;}
 .row-kits td{padding-bottom: 10px !important;}
 .row-kits li{width: 185px;margin-bottom: 10px;}
@@ -897,7 +896,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 /*bask*/
 .current-discount{margin-right: 25px;}
 
-td.frame-cur-sum-price {vertical-align: middle;padding-left: 5px;padding-right: 5px;}
+td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}
 .frame-cur-sum-price .frame-prices{padding-bottom: 0;}
 
 /*drop-bask*/
@@ -909,7 +908,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 5px;padding-right: 
 .frame-foot .table-order{table-layout: fixed;}
 .drop-bask .drop-header{text-align: left;}
 .frame-bask-scroll {overflow: auto;overflow-x: hidden;}
-.frame-remove-bask-btn{width: 38px;text-align: center;vertical-align: middle;}
+.frame-remove-bask-btn{width: 38px;text-align: center;vertical-align: middle !important;}
 .frame-kits-gen-sum{text-align: center;}
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
 .row-kits .frame-items{width: 555px;}
@@ -918,7 +917,8 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 5px;padding-right: 
 .drop-bask .countOrCompl{display: block;}
 /*.table-order .frame-variant-name{display: none;}
 .table-order .frame-variant-code{display: none;}*/
-.table-order > tbody > tr > td{padding: 20px 0;}
+.table-order > tbody > tr > td{padding: 20px 0;vertical-align: top;}
+.table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;}
 .table-order > tbody > tr:first-child > td{border-top: 0;}
 .header-frame-foot{text-align: center;}
 .right-order .header-frame-foot{text-align: left;}
@@ -927,11 +927,12 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 5px;padding-right: 
 .drop-bask .content-frame-foot > .inside-padd{padding: 15px 26px 26px;}
 .drop-bask .no-empty, .right-cart .no-empty{display: block;}
 .drop-bask .empty .inside-padd{padding: 26px;}
+.frame-bask-order .row-kits + tr > td{border-top: 0 !important;padding-top: 0 !important;}
 
 /*/drop-bask*/
 .frame-bask-order{}
 .frame-count{vertical-align: middle;min-width: 80px;}
-.frame-count > .number{display: inline-block;vertical-align: middle;}
+.frame-count > .number{display: inline-block;vertical-align: middle;min-width: 80px;}
 .frame-change-count{float: right;}
 .frame-count > input{float: left;height: 33px;}
 .countOrCompl{vertical-align: middle;}
