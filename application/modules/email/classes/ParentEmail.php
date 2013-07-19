@@ -107,14 +107,13 @@ class ParentEmail extends \MY_Controller {
      * @param string $patern_name
      * @return bool
      */
-    public function sendEmail($send_to, $patern_name) {
+    public function sendEmail($send_to, $patern_name, $variables) {
         $this->load->library('email');
 
         $patern_settings = $this->email_model->getPaternSettings($patern_name);
         $default_settings = $this->email_model->getSettings();
 
         if ($patern_settings) {
-            $variables = unserialize($patern_settings['variables']);
             foreach ($patern_settings as $key => $value) {
                 if (!$value) {
                     if ($default_settings[$key]) {

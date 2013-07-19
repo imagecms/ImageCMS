@@ -57,6 +57,9 @@ class Admin extends BaseAdminController {
     }
 
     public function edit($id) {
+        $model = $this->email_model->getTemplateById($id);
+        $variables = unserialize($model['variables']);
+        
         if ($_POST) {
             $email = new Email();
             $email->edit($id);
@@ -64,7 +67,8 @@ class Admin extends BaseAdminController {
         }
         else
             \CMSFactory\assetManager::create()
-                    ->setData('model', $this->email_model->getTemplateById($id))
+                    ->setData('model', $model)
+                    ->setData('variables', $variables)
                     ->registerScript('email')
                     ->renderAdmin('edit');
     }
@@ -74,14 +78,47 @@ class Admin extends BaseAdminController {
      */
     public function update_settings() {
         if ($_POST) {
-            $wraper = htmlentities($_POST['settings']['wraper']);
-            if(strstr('$content', $wraper)){
+//            $wraper = htmlentities($_POST['settings']['wraper']);
+//            var_dumps($wraper);
+//            if(strstr('$content', $wraper)){
                 if ($this->email_model->setSettings($_POST['settings']))
                 showMessage('Настройки сохранены', 'Сообщение');
-            }else{
-                showMessage('Поле "Обгортка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
-            }
+//            }else{
+//                showMessage('Поле "Обгортка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
+//            }
         }
+    }
+    
+    public function deleteVariable(){
+        $template_id = $this->input->post('template_id');
+        $variable = $this->input->post('variable');
+        
+        $this->email_model->deleteVariable($template_id, $variable);
+    }
+    
+    public function updateVariable(){
+        $template_id = $this->input->post('template_id');
+        $variable = $this->input->post('variable');
+        $variableNewValue = $this->input->post('variableValue');
+        $oldVariable = $this->input->post('oldVariable');
+        $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+    }
+    
+    public function addVariable(){
+        $template_id = $this->input->post('template_id');
+        $variable = $this->input->post('variable');
+        $variableValue = $this->input->post('variableValue');
+        
+       if($this->email_model->addVariable($template_id, $variable, $variableValue)){
+           return \CMSFactory\assetManager::create()
+                    ->setData('template_id', $template_id)
+                    ->setData('variable', $variable)
+                    ->setData('variable_value', $variableValue)
+                    ->render('newVariable', true);
+       }else{
+           return FALSE;
+       }
+        
     }
 
 }
