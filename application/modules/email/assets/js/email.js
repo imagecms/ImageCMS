@@ -49,12 +49,7 @@ $(document).ready(function() {
     $('.addVariable').on('click', function() {
         $('.addVariableContainer').css('display', '');
     });
-
-
 });
-
-
-
 
 function mailTest() {
     var from = $('#from').val();
@@ -81,11 +76,13 @@ function mailTest() {
             $('.mailTestResults').html(data);
             $('.mailTestResults').css('display', 'block');
             $('.mailTestResultsHide').css('display', 'block');
+            var curPos = $(document).scrollTop();
+            var height = $("body").height();
+            var scrollTime = (height - curPos) / 1.73;
+            $("body,html").animate({"scrollTop": height}, scrollTime);
         }
     });
-
     return false;
-
 }
 
 var EmailTemplateVariables = {
@@ -176,6 +173,4 @@ var EmailTemplateVariables = {
             exit;
         }
     }
-
-
 };

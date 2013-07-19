@@ -183,16 +183,16 @@ class ParentEmail extends \MY_Controller {
     /**
      *
      * @param array $data keys from list:
-      'name',
-      'from',
-      'from_email',
-      'theme',
-      'type',
-      'user_message',
-      'user_message_active',
-      'admin_message',
-      'admin_message_active',
-      'description',
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'description'
      * @return boolean
      */
     public function create($data = array()) {
@@ -237,16 +237,16 @@ class ParentEmail extends \MY_Controller {
     /**
      *
      * @param array $data keys from list:
-      'name',
-      'from',
-      'from_email',
-      'theme',
-      'type',
-      'user_message',
-      'user_message_active',
-      'admin_message',
-      'admin_message_active',
-      'description',
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'description'
      * @param int $id ID of element
      * @return boolean
      */
@@ -286,6 +286,10 @@ class ParentEmail extends \MY_Controller {
             else
                 return FALSE;
         }
+    }
+
+    public function delete($ids) {
+        $this->email_model->deleteTemplateByID($ids);
     }
 
     /**
