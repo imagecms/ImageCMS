@@ -6,6 +6,7 @@
  * Image CMS
  * Email Module Admin
  * @property email_model $email_model
+ * @property Cache $cache
  */
 class Admin extends BaseAdminController {
 
@@ -18,7 +19,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->model('email_model');
-        $this->email = new Email();
+        $this->email = Email::getInstance();
     }
 
     public function index() {
@@ -105,6 +106,8 @@ class Admin extends BaseAdminController {
                 if ($this->email_model->setSettings($_POST['settings']))
                     showMessage('Настройки сохранены', 'Сообщение');
             }
+
+            $this->cache->delete_all();
         }
     }
 
