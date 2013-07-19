@@ -1,3 +1,6 @@
+<script>
+    var orderDetails = true;
+</script>
 <div class="frame-inside page-cart">
     <div class="container">
         <div class="empty{if count($items) == 0} d_b{/if}">
@@ -78,6 +81,8 @@
                                     </span>
                                 </label>
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
+                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('country','order',$profile.id,'user')->asHtml()}
+                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('Selo','order',$profile.id,'user')->asHtml()}
                                 <label>
                                     <span class="title">{lang('s_address')}:</span>
                                     <span class="frame-form-field">
@@ -290,4 +295,3 @@
 </div>
 </div>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
-<script type="text/javascript" src="{$THEME}js/jquery.inputmask-multi.js"></script>

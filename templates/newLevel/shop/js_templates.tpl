@@ -29,8 +29,8 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
-        <% prodS = item.prodStatus; if (typeof item.prodStatus == 'string') prodS = JSON.parse(item.prodStatus)%>
-        <% _.each(prodS, function(item, i){%>
+        <% _.each(JSON.parse(item.prodstatus), function(item, i){%>
+        <% if (!$.isFunction(productStatus[i]))%>
         <%= productStatus[i]%>
         <%})%>
         </span>
@@ -68,7 +68,7 @@
         <td class="frame-count">
         <span class="countOrCompl"><%-pcs%></span>
         <div class="number" data-title="количество на складе <%-item.maxcount%>">
-        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>">
+        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
         <span class="icon-plus"></span>
@@ -87,6 +87,14 @@
         <span class="title">Сумма: </span>
         <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
+        <%if (item.origprice) { %>
+        <span class="price-discount">
+        <span>
+        <span class="price" data-rel="priceOrigOrder"><%- parseFloat(item.count*item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <% } %>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -96,7 +104,7 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price addCurrPrice"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
@@ -111,8 +119,11 @@
         <% var names = item.name %>
         <% var ids = item.id %>
         <% var prices = item.prices %>
+        <% var addprices = item.addprices %>
+        <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
+        <% var prodstatus = item.prodstatus %>
 
         <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td colspan="4">
@@ -133,6 +144,12 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% if ($.isFunction(productStatus[i]))%>
+        <%= productStatus[i](parseFloat(item))%>
+        <%else%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%- names[i] %></span>
         </a>
@@ -140,6 +157,12 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <span class="price-discount">
+        <span>
+        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -149,7 +172,7 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price"><%- parseFloat(0).toFixed(pricePrecision) %></span>
+        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
@@ -162,6 +185,12 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% if ($.isFunction(productStatus[i]))%>
+        <%= productStatus[i](parseFloat(item))%>
+        <%else%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -169,6 +198,12 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <span class="price-discount">
+        <span>
+        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -178,7 +213,7 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price"><%- (0).toFixed(pricePrecision)%></span>
+        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
@@ -194,7 +229,7 @@
         <td class="frame-count">
         <span class="countOrCompl"><%-kits%></span>
         <div class="number" data-title="количество на складе <%-item.maxcount%>">
-        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit %>">
+        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
         <span class="icon-plus"></span>
@@ -212,6 +247,12 @@
         <td class="frame-cur-sum-price">
         <span class="title">Сумма: </span>
         <div class="frame-prices f-s_0">
+        <span class="price-discount">
+        <span>
+        <span class="price" data-rel="priceOrigOrder"><%- parseFloat(item.count*item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -221,8 +262,8 @@
         </span>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceaddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-curr%></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -245,19 +286,15 @@
         <div class="frame-foot">
         <div class="header-frame-foot">
         <div class="inside-padd">
-        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount"><span class="genDiscount"><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
-        <%}%>
+        <span class="text-discount current-discount"><span class="genDiscount"><% if (Shop.Cart.discount.sum_discount_product != undefined) -Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
         <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
-        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
@@ -340,6 +377,10 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- item.img%>" alt="<%- '('+item.vname+')'%>">
+        <% _.each(JSON.parse(item.prodstatus), function(item, i){%>
+        <% if (!$.isFunction(productStatus[i]))%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%- item.name %>
         </a>
@@ -347,6 +388,14 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <%if (item.origprice) { %>
+        <span class="price-discount">
+        <span>
+        <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <% } %>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -354,12 +403,18 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <span class="price-add">
+        <span>
+        <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
+        </span>
+        </span>
         </span>
         </div>
         <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number d_i-b" data-title="количество на складе <%-item.maxcount%>">
-        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>">
+        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
         <span class="icon-plus"></span>
@@ -377,13 +432,26 @@
         </div>
         </div>
         <div class="frame-cur-sum-price">
-        <span class="title">На сумму: </span>
         <div class="frame-prices f-s_0">
+        <%if (item.origprice) { %>
+        <span class="price-discount">
+        <span>
+        <span class="price" data-rel="priceOrigOrder"><%- parseFloat(item.count*item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <% } %>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
         <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -399,10 +467,13 @@
         <% var names = item.name %>
         <% var ids = item.id %>
         <% var prices = item.prices %>
+        <% var addprices = item.addprices %>
+        <% var origprices = item.origprices %>
         <% var images = item.img %>
         <% var urls = item.url %>
+        <% var prodstatus = item.prodstatus %>
 
-        <tr class="row-kits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
+        <tr class="row-kits">
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
         <% var idsL = ids.length; _.each(ids, function(id){  %>
@@ -416,6 +487,12 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% if ($.isFunction(productStatus[i]))%>
+        <%= productStatus[i](parseFloat(item))%>
+        <%else%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%- names[i] %></span>
         </a>
@@ -423,11 +500,23 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <span class="price-discount">
+        <span>
+        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i]%></span>
+        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -439,6 +528,12 @@
         <span class="photo-block">
         <span class="helper"></span>
         <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        <% _.each(JSON.parse(item.prodstatus[i]), function(item, i){%>
+        <% if ($.isFunction(productStatus[i]))%>
+        <%= productStatus[i](parseFloat(item))%>
+        <%else%>
+        <%= productStatus[i]%>
+        <%})%>
         </span>
         <span class="title"><%-names[i]%></span>
         </a>
@@ -446,11 +541,23 @@
         <%if(item.vname){ %><span class="frame-variant-name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span> <% } %>
         <%if (item.number) { %><span class="frame-variant-code">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
         <div class="frame-prices f-s_0">
+        <span class="price-discount">
+        <span>
+        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i]%></span>
+        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <span class="price-add">
+        <span>
+        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
         </span>
@@ -463,7 +570,7 @@
         </ul>
         </td>
         </tr>
-        <tr>
+        <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-kits-gen-sum">
         <div class="kits-gen-sum">
         <img src="<%-theme%>/images/kits_sum.png" />
@@ -471,7 +578,7 @@
         <div class="frame-frame-count">
         <div class="frame-count">
         <div class="number" data-title="количество на складе <%-item.maxcount%>">
-        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-kit="<%-item.kit %>">
+        <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
         <span class="icon-plus"></span>
@@ -490,8 +597,15 @@
         </div>
         </div>
         <div class="frame-cur-sum-price">
-        <span class="title">На сумму: </span>
         <div class="frame-prices f-s_0">
+        <%if (item.origprice) { %>
+        <span class="price-discount">
+        <span>
+        <span class="price" data-rel="priceOrigOrder"><%- parseFloat(item.count*item.origprice).toFixed(pricePrecision) %></span>
+        <span class="curr"><%-curr%></span>
+        </span>
+        </span>
+        <% } %>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
@@ -499,7 +613,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <span class="price-add">
+        <span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="curr-add"><%-currNext%></span>
         </span>
+        </span>
+        </span>
+        </div>
         </div>
         </div>
         </tr>
@@ -515,18 +636,16 @@
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="s-t">Ваша текущая скидка:</span>
-        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%>
-        <span class="text-discount current-discount"><span class="genDiscount"><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
-        <%}%>
+
+        <span class="text-discount current-discount"><span class="genDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
+
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
-        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
+        <span class="price genSumDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %><%}%></span>
         <span class="curr"><%-curr%></span>
-        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
