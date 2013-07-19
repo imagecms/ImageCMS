@@ -125,8 +125,10 @@ class ParentEmail extends \MY_Controller {
     /**
      * send email
      *
-     * @param string $send_to
-     * @param string $patern_name
+     * @param string $send_to - recepient email
+     * @param string $patern_name - email patern  name 
+     * @param array $variables - variables to raplase in message:
+     *   $variables = array('%user%' => 'UserName')
      * @return bool
      */
     public function sendEmail($send_to, $patern_name, $variables) {
