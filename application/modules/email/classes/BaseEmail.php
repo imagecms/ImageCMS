@@ -44,7 +44,6 @@ class BaseEmail extends \email\classes\ParentEmail {
             $data['type'] = $this->input->post('mail_type');
             $data['user_message'] = $this->input->post('userMailText');
             $data['user_message_active'] = $this->input->post('userMailTextRadio');
-            var_dumps($data['user_message_active']);
             $data['admin_message'] = $this->input->post('adminMailText');
             $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
             $data['description'] = $this->input->post('mail_desc');
