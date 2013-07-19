@@ -146,7 +146,7 @@
                                                             data-varid="{echo $productVariant->getId()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
-                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
@@ -174,7 +174,7 @@
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
-                                                            data-vname="{echo ShopCore::encode($productVariant->getName())}"
+                                                            data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
@@ -483,6 +483,8 @@
                                                         data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
                                                         data-addprice="{if $NextCSId != null}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
                                                         data-addprices="{if $NextCSId != null}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
+                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
+                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
                                                         data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
                                                         data-kit="true"
                                                         data-kitId="{echo $kitProducts->getId()}"
@@ -490,9 +492,7 @@
                                                         data-url='{echo json_encode($kitProducts->getUrls())}'
                                                         data-img='{echo json_encode($kitProducts->getImgs())}'
                                                         data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
-                                                        data-kitstatus='{echo $kitProducts->getKitStatus()}'
-                                                        data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
-                                                        data-origprice='{echo $kitProducts->getTotalPriceOld()}'
+                                                        data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
                                                     <span class="text-el">{lang('s_buy')}</span>
