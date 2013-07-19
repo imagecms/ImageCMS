@@ -89,14 +89,31 @@ class Admin extends BaseAdminController {
      */
     public function update_settings() {
         if ($_POST) {
-//            $wraper = htmlentities($_POST['settings']['wraper']);
-//            var_dumps($wraper);
-//            if(strstr('$content', $wraper)){
-            if ($this->email_model->setSettings($_POST['settings']))
-                showMessage('Настройки сохранены', 'Сообщение');
-//            }else{
-//                showMessage('Поле "Обвертка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
-//            }
+            $this->form_validation->set_rules('settings[admin_email]', 'Емейл администратора', 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from_email]', 'Емейл отправителя', 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from]', 'От кого', 'required|xss_clean');
+            $this->form_validation->set_rules('settings[theme]', 'Тема письма', 'xss_clean|required');
+
+            if ($_POST['settings']['wraper_activ'])
+                $this->form_validation->set_rules('settings[wraper]', 'Обгортка', 'required|xss_clean|callback_wraper_check');
+            else
+                $this->form_validation->set_rules('settings[wraper]', 'Обгортка', 'xss_clean');
+
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), 'Сообщение', 'r');
+            } else {
+                if ($this->email_model->setSettings($_POST['settings']))
+                    showMessage('Настройки сохранены', 'Сообщение');
+            }
+        }
+    }
+
+    public function wraper_check($wraper) {
+        if (preg_match('/\$content/', htmlentities($wraper))) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('wraper_check', 'Поле %s должно содержать переменную $content');
+            return FALSE;
         }
     }
 
@@ -126,6 +143,18 @@ class Admin extends BaseAdminController {
                             ->setData('variable', $variable)
                             ->setData('variable_value', $variableValue)
                             ->render('newVariable', true);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getTemplateVariables() {
+        $template_id = $this->input->post('template_id');
+        $variables = $this->email_model->getTemplateVariables($template_id);
+        if ($variables) {
+            return \CMSFactory\assetManager::create()
+                            ->setData('variables', $variables)
+                            ->render('variablesSelectOptions', true);
         } else {
             return FALSE;
         }

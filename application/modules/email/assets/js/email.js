@@ -16,7 +16,7 @@ $(document).ready(function() {
     });
 
     $('#userMailVariables').on('click', function() {
-        $('#userMailText').append(' ' + $(this).val() + ' ');
+        $('#userMailText #tinymce').append(' ' + $(this).val() + ' ');
     });
 
     $('#adminMailVariables').on('click', function() {
@@ -44,8 +44,6 @@ $(document).ready(function() {
 
         $(this).parent('.editVariable').css('display', 'none');
         $(this).closest('tr').find('.refreshVariable').css('display', 'block');
-
-        //$(this).closest('tr').find('.icon-refresh').parent('button').css('display', 'inline-block');
 
     });
     $('.addVariable').on('click', function() {
@@ -105,11 +103,9 @@ var EmailTemplateVariables = {
     update: function(curElement, template_id, oldVariable) {
         var variable = curElement.closest('tr').find('.variableEdit');
         var variableValue = curElement.closest('tr').find('.variableValueEdit');
-        var variableTMP = variable.val();
-        if (variableTMP[0] != '%' || variableTMP[variableTMP.length - 1] != '%') {
-            showMessage('Сообщение', 'Значение переменной должни окружать %', 'r');
-            return false;
-        }
+
+        this.validateVariable(variable.val(), variableValue.val());
+
         $.ajax({
             type: 'POST',
             data: {
@@ -133,11 +129,9 @@ var EmailTemplateVariables = {
     add: function(curElement, template_id) {
         var variable = curElement.closest('tr').find('.variableEdit');
         var variableValue = curElement.closest('tr').find('.variableValueEdit');
-        var variableTMP = variable.val();
-        if (variableTMP[0] != '%' || variableTMP[variableTMP.length - 1] != '%') {
-            showMessage('Сообщение', 'Значение переменной должни окружать %', 'r');
-            return false;
-        }
+
+        this.validateVariable(variable.val(), variableValue.val());
+
         $.ajax({
             type: 'POST',
             data: {
@@ -153,5 +147,30 @@ var EmailTemplateVariables = {
                 showMessage('Сообщение', 'Переменная успешно додана');
             }
         });
+    },
+    updateVariablesList: function(curElement, template_id) {
+        if (!curElement.hasClass('active')) {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    template_id: template_id
+                },
+                url: '/email/admin/getTemplateVariables',
+                success: function(data) {
+                    $('#userMailVariables').html(data);
+                    $('#adminMailVariables').html(data);
+                }
+            });
+        }
+    },
+    validateVariable: function(variable, variableValue) {
+        if (variable[0] != '%' || variable[variable.length - 1] != '%') {
+            showMessage('Сообщение', 'Переменну должни окружать %', 'r');
+            exit;
+        }
+        if (!variableValue) {
+            showMessage('Сообщение', 'Переменная должна иметь значение', 'r');
+            exit;
+        }
     }
 };

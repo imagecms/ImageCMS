@@ -22,7 +22,7 @@
     <div class="content_big_td row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#settings" class="btn btn-small active">Настройки шаблона</a>
+                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}')">Настройки шаблона</a>
                 <a href="#variables" class="btn btn-small">Переменние шаблона</a>
             </div>
         </div>
@@ -89,18 +89,9 @@
                                                     <label class="control-label" for="userMailText">Шаблон письма пользователю:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="userMailVariables" size="20">
-                                                            <option title="Переменная для вставки имя пользователя %userName%" value="%userName%"> Имя пользователя    </option>
-                                                            <option title="Переменная для вставки email пользователя %userEmail%" value="%userEmail%">Email пользователя</option>
-                                                            <option title="Переменная для вставки телефона пользователя %userPhone%" value="%userPhone%">Телефон пользователя</option>
-                                                            <option title="Переменная для вставки адреса доставки %userDeliver%" value="%userDeliver%">Адресс доставки</option>
-                                                            <option title="Переменная для вставки номера заказа %orderId%" value="%orderId%">Номер заказа</option>
-                                                            <option title="Ключ заказа для просмотра заказа на сайте %orderKey%"value="%orderKey%">Ключ заказа</option>
-                                                            <option title="Ссылка для просмотра заказа на сайте %orderLink%" value="%orderLink%">Ссылка на заказ</option>
-                                                            <option title="Комментарий пользователя %userComment%" value="%userComment%">Комментарий пользователя</option>
-                                                            <option title="Ключ списка желаний %wishKey%" value="%wishKey%">Ключ списка желаний</option>
-                                                            <option title="Ссылка для просмотра списка желаний" value="%wishLink%">Ссылка на список желаний</option>
-                                                            <option title="Дата создания списка желаний %wishDateCreated%" value="%wishDateCreated%">Дата создания списка желаний</option>
-                                                            <option title="IP адресс пользователя %userIP%" value="%userIP%">Ip пользователя</option>
+                                                            {foreach $variables as $variable => $variableValue}
+                                                                 <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                            {/foreach}
                                                         </select>
                                                     </label>
                                                     <div class="controls">
@@ -130,18 +121,9 @@
                                                     <label class="control-label" for="adminMailText">Шаблон письма:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="20">
-                                                            <option title="Переменная для вставки имя пользователя %userName%" value="%userName%"> Имя пользователя    </option>
-                                                            <option title="Переменная для вставки email пользователя %userEmail%" value="%userEmail%">Email пользователя</option>
-                                                            <option title="Переменная для вставки телефона пользователя %userPhone%" value="%userPhone%">Телефон пользователя</option>
-                                                            <option title="Переменная для вставки адреса доставки %userDeliver%" value="%userDeliver%">Адресс доставки</option>
-                                                            <option title="Переменная для вставки номера заказа %orderId%" value="%orderId%">Номер заказа</option>
-                                                            <option title="Ключ заказа для просмотра заказа на сайте %orderKey%"value="%orderKey%">Ключ заказа</option>
-                                                            <option title="Ссылка для просмотра заказа на сайте %orderLink%" value="%orderLink%">Ссылка на заказ</option>
-                                                            <option title="Комментарий пользователя %userComment%" value="%userComment%">Комментарий пользователя</option>
-                                                            <option title="Ключ списка желаний %wishKey%" value="%wishKey%">Ключ списка желаний</option>
-                                                            <option title="Ссылка для просмотра списка желаний" value="%wishLink%">Ссылка на список желаний</option>
-                                                            <option title="Дата создания списка желаний %wishDateCreated%" value="%wishDateCreated%">Дата создания списка желаний</option>
-                                                            <option title="IP адресс пользователя %userIP%" value="%userIP%">Ip пользователя</option>
+                                                            {foreach $variables as $variable => $variableValue}
+                                                                 <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                            {/foreach}
                                                         </select>
                                                     </label>
                                                     <div class="controls">
@@ -244,7 +226,7 @@
                                 </td>
                             </tr>
                     </table>
-                    <a href="#" class="btn btn-small btn-success addVariable">
+                    <a href="#variables" class="btn btn-small btn-success addVariable">
                         <i class="icon-plus icon-white"></i>&nbsp;Добавить новую переменную
                     </a>
                 </div>
