@@ -166,12 +166,12 @@ class ParentEmail extends \MY_Controller {
         $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
         $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
 
-        if ($_POST['userMailTextRadio'] == 'YES')
+        if ($_POST['userMailTextRadio'])
             $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
         else
             $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
 
-        if ($_POST['adminMailTextRadio'] == 'YES')
+        if ($_POST['adminMailTextRadio'])
             $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
         else
             $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
@@ -190,13 +190,13 @@ class ParentEmail extends \MY_Controller {
         $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
         $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
         $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
-
-        if ($_POST['userMailTextRadio'] == 'YES')
+        
+        if ($_POST['userMailTextRadio'])
             $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
         else
             $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
 
-        if ($_POST['adminMailTextRadio'] == 'YES')
+        if ($_POST['adminMailTextRadio'])
             $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
         else
             $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
