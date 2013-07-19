@@ -169,17 +169,16 @@ class Email_model extends CI_Model {
                 'null' => FALSE
             ),
             'user_message_active' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '3',
-                'default' => TRUE
+                'type' => 'TINYINT',
+                'constraint' => '1'
             ),
             'admin_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
             'admin_message_active' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '3'
+                'type' => 'TINYINT',
+                'constraint' => '1'
             ),
             'description' => array(
                 'type' => 'TEXT',

@@ -71,7 +71,7 @@
                                                 &nbsp; Text &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="mail_type" value="text" {if $model['type'] == 'text'}checked="checked"{/if} id="comcount5"/>
+                                                        <input type="radio" name="mail_type" value="text" {if $model['type'] == 'Text'}checked="checked"{/if} id="comcount5"/>
                                                     </span>
                                                 </span>
                                             </div>
@@ -106,13 +106,13 @@
                                                 &nbsp; ДА &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="userMailTextRadio" value="YES" {if $model['user_message_active'] == 'YES'}checked="checked"{/if} id="userMailTextRadio"/>
+                                                        <input type="radio" name="userMailTextRadio" value="1" {if $model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
                                                     </span>
                                                 </span>
                                                 &nbsp; НЕТ &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="userMailTextRadio" value="NO" {if $model['user_message_active'] == 'NO'}checked="checked"{/if} id="userMailTextRadio"/>
+                                                        <input type="radio" name="userMailTextRadio" value="0" {if !$model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
                                                     </span>
                                                 </span>
                                             </div>
@@ -147,13 +147,13 @@
                                                 &nbsp; ДА &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="adminMailTextRadio" value="YES" {if $model['admin_message_active'] == 'YES'}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                        <input type="radio" name="adminMailTextRadio" value="1" {if $model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
                                                     </span>
                                                 </span>
                                                 &nbsp; НЕТ &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="adminMailTextRadio" value="NO" {if $model['admin_message_active'] == 'NO'}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                        <input type="radio" name="adminMailTextRadio" value="0" {if !$model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
                                                     </span>
                                                 </span>
                                             </div>

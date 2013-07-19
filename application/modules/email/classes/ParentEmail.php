@@ -15,40 +15,87 @@ namespace email\classes;
 class ParentEmail extends \MY_Controller {
 
     /**
-     *
+     * Email sender name
      * @var string
      */
-    private $from;
+    protected $from;
 
     /**
-     *
+     *Email sender email address
      * @var string
      */
-    private $from_email;
+    protected $from_email;
 
     /**
-     *
+     *Receiver email
      * @var string
      */
-    private $send_to;
+    protected $send_to;
 
     /**
-     *
+     *Email theme
      * @var string
      */
-    private $theme;
+    protected $theme;
 
     /**
-     *
+     *Email message
      * @var string
      */
-    private $message;
+    protected $message;
+
+    /**
+     *Mail protocol
+     * @var string
+     */
+    protected $protocol;
+
+    /**
+     *Mail port
+     * @var int
+     */
+    protected $port;
+
+    /**
+     *Mail content type
+     * @var string
+     */
+    protected $type;
+
+    /**
+     *Server path to Sendmail
+     * @var string
+     */
+    protected $mailpath;
 
     /**
      * Array of errors
      * @var array
      */
     public $errors = array();
+
+    /**
+     * Array of data
+     * @var array
+     */
+    public $data_model = array();
+
+    /**
+     * List of accepted params
+     * @var array
+     */
+    public $accepted_params = array(
+        'name',
+        'from',
+        'from_email',
+        'theme',
+        'type',
+        'user_message',
+        'user_message_active',
+        'admin_message',
+        'admin_message_active',
+        'description',
+    );
 
     public function __construct() {
         parent::__construct();
@@ -62,7 +109,7 @@ class ParentEmail extends \MY_Controller {
      * @param string $patern
      * @return string
      */
-    public function replaceVariables($patern = 'sdfsdf %user% asdfsdf, %user% sdfsd, %user_email% fsdfsdfsdfsdf', $variables = array('%user%' => 'Mark', '%user_email%' => 'sheme4ko@mail.ru')) {
+    public function replaceVariables($patern, $variables) {
         foreach ($variables as $variable => $replase_value) {
             $patern = str_replace($variable, $replase_value, $patern);
         }
@@ -82,7 +129,7 @@ class ParentEmail extends \MY_Controller {
      * @param string $patern_name
      * @return bool
      */
-    public function sendEmail($send_to = 'send@mail.to', $patern_name = "my_patern") {
+    public function sendEmail($send_to, $patern_name) {
         $this->load->library('email');
 
         $patern_settings = $this->email_model->getPaternSettings($patern_name);
@@ -100,8 +147,7 @@ class ParentEmail extends \MY_Controller {
         }
 
         $default_settings['type'] = strtolower($patern_settings['type']);
-
-        $this->set_config($default_settings);
+        $this->_set_config($patern_settings);
 
         if ($patern_settings['user_message_active']) {
 
@@ -110,7 +156,9 @@ class ParentEmail extends \MY_Controller {
             $this->send_to = $send_to;
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
-            $this->_sendEmail();
+            if (!$this->_sendEmail()) {
+                $this->errors[] = "Сообщение пользователю не отправлено";
+            }
         }
 
         if ($patern_settings['admin_message_active']) {
@@ -127,59 +175,117 @@ class ParentEmail extends \MY_Controller {
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
 
-            $this->_sendEmail();
+            if (!$this->_sendEmail()) {
+                $this->errors[] = "Сообщение администратору не отправлено";
+            }
         }
     }
 
-    public function create() {
+    /**
+     *
+     * @param array $data keys from list:
+      'name',
+      'from',
+      'from_email',
+      'theme',
+      'type',
+      'user_message',
+      'user_message_active',
+      'admin_message',
+      'admin_message_active',
+      'description',
+     * @return boolean
+     */
+    public function create($data = array()) {
+        if ($_POST) {
+            $this->form_validation->set_rules('mail_name', 'Название шаблона', 'required|xss_clean');
+            $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
+            $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
 
-        $this->form_validation->set_rules('mail_name', 'Название шаблона', 'required|xss_clean');
-        $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
-        $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
-        $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
+            if ($_POST['userMailTextRadio'])
+                $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
+            else
+                $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
 
-        if ($_POST['userMailTextRadio'] == 'YES')
-            $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
-        else
-            $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
+            if ($_POST['adminMailTextRadio'])
+                $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
+            else
+                $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
 
-        if ($_POST['adminMailTextRadio'] == 'YES')
-            $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
-        else
-            $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
+            $this->form_validation->set_rules('admin_email', 'Адресс администратора', 'xss_clean|valid_email');
 
-        $this->form_validation->set_rules('admin_email', 'Адресс администратора', 'xss_clean|valid_email');
-
-        if ($this->form_validation->run($this) == FALSE) {
-            $this->errors = validation_errors();
-            return FALSE;
+            if ($this->form_validation->run($this) == FALSE) {
+                $this->errors = validation_errors();
+                return FALSE;
+            } else {
+                return TRUE;
+            }
         } else {
-            return TRUE;
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $key => $d)
+                    if (!in_array($key, $this->accepted_params))
+                        unset($data[$key]);
+
+                $this->data_model = $data;
+                return TRUE;
+            }
+            else
+                return FALSE;
         }
     }
 
-    public function edit() {
-        $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
-        $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
-        $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
+    /**
+     *
+     * @param array $data keys from list:
+      'name',
+      'from',
+      'from_email',
+      'theme',
+      'type',
+      'user_message',
+      'user_message_active',
+      'admin_message',
+      'admin_message_active',
+      'description',
+     * @param int $id ID of element
+     * @return boolean
+     */
+    public function edit($id, $data = array()) {
+        if ($_POST) {
+            $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
+            $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean|required');
 
-        if ($_POST['userMailTextRadio'] == 'YES')
-            $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
-        else
-            $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
+            if ($_POST['userMailTextRadio'])
+                $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'required|xss_clean');
+            else
+                $this->form_validation->set_rules('userMailText', 'Шаблон письма пользователю', 'xss_clean');
 
-        if ($_POST['adminMailTextRadio'] == 'YES')
-            $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
-        else
-            $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
+            if ($_POST['adminMailTextRadio'])
+                $this->form_validation->set_rules('adminMailText', 'Шаблон письма администратору', 'required|xss_clean');
+            else
+                $this->form_validation->set_rules('adminMailText', 'Шаблон письма анминистратору', 'xss_clean');
 
-        $this->form_validation->set_rules('admin_email', 'Адресс администратора', 'xss_clean|valid_email');
+            $this->form_validation->set_rules('admin_email', 'Адресс администратора', 'xss_clean|valid_email');
 
-        if ($this->form_validation->run($this) == FALSE) {
-            $this->errors = validation_errors();
-            return FALSE;
+            if ($this->form_validation->run($this) == FALSE) {
+                $this->errors = validation_errors();
+                return FALSE;
+            } else {
+                return TRUE;
+            }
         } else {
-            return TRUE;
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $key => $d)
+                    if (!in_array($key, $this->accepted_params))
+                        unset($data[$key]);
+                    
+                $this->data_model = $data;
+                return TRUE;
+            }
+            else
+                return FALSE;
         }
     }
 
@@ -202,8 +308,7 @@ class ParentEmail extends \MY_Controller {
      * @param array $settings
      * @return bool
      */
-    private function set_config($settings) {
-
+    private function _set_config($settings) {
         $config['protocol'] = $settings['protocol'];
 
         if (strtolower($settings['protocol']) == strtolower("SMTP")) {
@@ -216,28 +321,19 @@ class ParentEmail extends \MY_Controller {
         return $this->email->initialize($config);
     }
 
-    public function mailTest() {
+    /**
+     * test mail sending
+     */
+    public function mailTest($config) {
         $this->load->library('email');
         $this->email->clear();
 
-        $from = $this->input->post('from');
-        $from_email = $this->input->post('from_email');
-        $port = $this->input->post('port');
-        $protocol = $this->input->post('protocol');
-        $mailpath = $this->input->post('mailpath');
-        $send_to = $this->input->post('send_to');
-        $theme = $this->input->post('theme');
-        $type = 'text';
-
-        $config = array('port' => $port, 'protocol' => $protocol, 'mailpath' => $mailpath, 'type' => $type);
-        $this->set_config($config);
-
+        $this->_set_config($config);
         $this->email->initialize($config);
 
-        $this->email->from($from_email, $from);
-        $this->email->to($send_to);
-
-        $this->email->subject($theme);
+        $this->email->from($this->from_email, $this->from);
+        $this->email->to($this->send_to);
+        $this->email->subject($this->theme);
         $this->email->message('Проверка отправки почты.');
 
         $this->email->send();

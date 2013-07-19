@@ -106,13 +106,13 @@
                                                 &nbsp; ДА &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="userMailTextRadio" value="YES" checked="checked" id="userMailTextRadio"/>
+                                                        <input type="radio" name="userMailTextRadio" value="1" checked="checked" id="userMailTextRadio"/>
                                                     </span>
                                                 </span>
                                                 &nbsp; НЕТ &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="userMailTextRadio" value="NO" id="userMailTextRadio"/>
+                                                        <input type="radio" name="userMailTextRadio" value="0" id="userMailTextRadio"/>
                                                     </span>
                                                 </span>
                                             </div>
@@ -147,13 +147,13 @@
                                                 &nbsp; ДА &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="adminMailTextRadio" value="YES" checked="checked" id="adminMailTextRadio"/>
+                                                        <input type="radio" name="adminMailTextRadio" value="1" checked="checked" id="adminMailTextRadio"/>
                                                     </span>
                                                 </span>
                                                 &nbsp; НЕТ &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
-                                                        <input type="radio" name="adminMailTextRadio" value="NO" id="adminMailTextRadio"/>
+                                                        <input type="radio" name="adminMailTextRadio" value="0" id="adminMailTextRadio"/>
                                                     </span>
                                                 </span>
                                             </div>

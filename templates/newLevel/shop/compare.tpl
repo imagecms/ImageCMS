@@ -63,12 +63,10 @@
                                             <!--                                    Start. Show product block with characteristic by category-->
                                             {foreach $products as $p}
                                                 {if $p->category_id == $category['Id']}
-                                                    {$promos[0] = $p}
-                                                    {$CI->template->assign('promos',$promos)}
                                                     <li class="compare_product_{echo $p->getId()}">
                                                         <!--                                                Start. Include product template-->
                                                         <ul class="items items-catalog">
-                                                            {$CI->load->module('new_level')->OPI($products, array('compare'=>true))}
+                                                            {$CI->load->module('new_level')->OPI(array($p), array('compare'=>true))}
                                                         </ul>
                                                         <!--                                                End. Include product template-->
                                                         <!--Start. Product characteristics -->
