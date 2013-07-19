@@ -178,6 +178,12 @@ class ParentEmail extends \MY_Controller {
                 $this->errors[] = "Сообщение администратору не отправлено";
             }
         }
+        
+        if($this->errors){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
     }
 
     /**

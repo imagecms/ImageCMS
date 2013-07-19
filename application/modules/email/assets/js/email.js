@@ -16,11 +16,11 @@ $(document).ready(function() {
     });
 
     $('#userMailVariables').on('click', function() {
-        $('#userMailText #tinymce').append(' ' + $(this).val() + ' ');
+        $('#userMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
     $('#adminMailVariables').on('click', function() {
-        $('#adminMailText').append(' ' + $(this).val() + ' ');
+        $('#adminMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
     $('.mailTestResultsHide').on('click', function() {
