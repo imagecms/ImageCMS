@@ -261,7 +261,7 @@ $shopMenu = array(
                 'link'      => $ADMIN_URL.'banners/index',
                 'text'      => 'a_banners',
             ),
-            array(
+            /*array(
                 'link'      => $ADMIN_URL.'discounts/index',
                 'text'      => 'a_reg_discount_sh',
             ),
@@ -272,7 +272,7 @@ $shopMenu = array(
             array(
                 'link'      => $ADMIN_URL.'gifts',
                 'text'      => 'a_gift_certs',
-            ),
+            ),*/
             array(
                 'link'      => $ADMIN_URL.'customfields',
                 'text'      => 'a_customfields',
