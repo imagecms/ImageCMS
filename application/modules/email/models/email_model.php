@@ -35,37 +35,87 @@ class Email_model extends CI_Model {
                         ->update('components', array('settings' => serialize($settings)
         ));
     }
-    
+
     /**
      * get wraper
-     * 
+     *
      * @return string
      */
-    public function getWraper(){
+    public function getWraper() {
         $settings = $this->getSettings();
-        if($settings['wraper_activ']){
-            return $settings['wraper'];            
-        }else{
+        if ($settings['wraper_activ']) {
+            return $settings['wraper'];
+        } else {
             return FALSE;
         }
     }
-    
+
     /**
      * get email type
-     * 
+     *
      * @param string $patern
      * @return string
      */
-    public function getEmailType($patern){
-        $query = $this->db->select('type')->where('name', $patern)->get('mod_email_paterns');
-        if($query){
+    public function getEmailType($patern) {
+        $query = $this->db
+                ->select('type')
+                ->where('name', $patern)
+                ->get('mod_email_paterns');
+        if ($query) {
             return $query->result_row();
-        }else{
+        } else {
             return '';
         }
     }
     
+    public function getPaternSettings($patern_name){
+        $query = $this->db->where('name', $patern_name)->get('mod_email_paterns');
+        
+        if($query){
+            return $query->row_array();
+        }else{
+            return '';
+        }
+    }
+
     
+
+    public function create($data) {
+        $this->db->insert('mod_email_paterns', $data);
+    }
+
+    public function edit($id, $data) {
+        $this->db
+                ->where('id', $id)
+                ->update('mod_email_paterns', $data);
+    }
+
+    public function getAllTemplates() {
+        return $this->db
+                        ->get('mod_email_paterns')
+                        ->result_array();
+    }
+
+    public function getTemplateById($id) {
+        return $this->db
+                        ->where('id', $id)
+                        ->get('mod_email_paterns')
+                        ->row_array();
+    }
+
+    public function getTemplateByName($name) {
+        return $this->db
+                        ->where('name', $name)
+                        ->get('mod_email_paterns')
+                        ->row_array();
+    }
+
+    public function deleteTemplate($ids) {
+        $this->db
+                ->where_in('id', $ids)
+                ->delete('mod_email_paterns');
+    }
+
 
     /**
      * install module(create db tables, set default values)
@@ -119,16 +169,16 @@ class Email_model extends CI_Model {
                 'null' => FALSE
             ),
             'user_message_active' => array(
-                'type' => 'BOOLEAN',
-                'default' => TRUE
+                'type' => 'TINYINT',
+                'constraint' => '1'
             ),
             'admin_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
             'admin_message_active' => array(
-                'type' => 'BOOLEAN',
-                'default' => TRUE
+                'type' => 'TINYINT',
+                'constraint' => '1'
             ),
             'description' => array(
                 'type' => 'TEXT',
@@ -159,6 +209,7 @@ class Email_model extends CI_Model {
                                 'theme' => 'Default Theme',
                                 'wraper' => 'Default $content Wraper',
                                 'wraper_activ' => true,
+                                'mailpath' => '/usr/sbin/sendmail',
                                 'protocol' => 'SMTP',
                                 'port' => '80'
                             )

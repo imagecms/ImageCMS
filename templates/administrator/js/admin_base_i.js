@@ -805,10 +805,6 @@ $(document).ready(function() {
         });
     });
 
-    $('#mailVariables').live('click', function() {
-        $('#mailText').elrte()[0].elrte.selection.insertHtml(' ' + $(this).val() + ' ');
-    });
-
     $('[data-del="wares"]').live('click', function() {
         //event.preventDefault();
         $(this).parent('div').remove();

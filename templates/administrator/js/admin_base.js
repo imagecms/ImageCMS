@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-//***************Scripts for modules table***************    
+//***************Scripts for modules table***************
 
     //*****changes autoload for any module*****
     $('.autoload_ch').live('click', function() {
@@ -94,7 +94,7 @@ $(document).ready(function() {
     });
     //*****change module visibility in menu*****
 
-//***************Scripts for modules table***************            
+//***************Scripts for modules table***************
 
 //***************Scripts for languages page***************
 
@@ -442,7 +442,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $('#translateProductUrl').live('click', function() {
         var str = $('#Name').attr('value');
         $.ajax({
@@ -512,7 +512,7 @@ $(document).ready(function() {
         });
     }
 
-    //  sortstop blocks end    
+    //  sortstop blocks end
 
     $('.kit_change_active').live('click', function() {
         var id = $(this).attr('data-kid');
@@ -1071,7 +1071,7 @@ var delete_currency_function = new Object({
                 alert('error');
             }
         });
-       
+
         return true;
     }
 

@@ -71,19 +71,19 @@
                                         <td class="t-a_c">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
-                                                    <input type="checkbox" name="ids" value="{echo $model.name}"/>
+                                                    <input type="checkbox" name="ids" value="{echo $model.id}"/>
                                                 </span>
                                             </span>
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/email/edit/{echo $model.name}/{echo $locale}">{echo $model.name}</a>
+                                            <a class="pjax" href="/admin/components/cp/email/edit/{echo $model.id}">{echo $model.name}</a>
                                         </td>
                                         <td>
                                             <p>{echo $model.description}</p>
                                         </td>
                                         {$settings = unserialize($model.settings)}
-                                        <td>{echo $settings.theme}</td>
-                                        <td>{echo $settings.from}</td>
+                                        <td>{echo $model.theme}</td>
+                                        <td>{echo $model.from}</td>
                                     </tr>
                                 {/foreach}
                             </tbody>
