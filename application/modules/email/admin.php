@@ -74,8 +74,13 @@ class Admin extends BaseAdminController {
      */
     public function update_settings() {
         if ($_POST) {
-            if ($this->email_model->setSettings($_POST['settings']))
+            $wraper = htmlentities($_POST['settings']['wraper']);
+            if(strstr('$content', $wraper)){
+                if ($this->email_model->setSettings($_POST['settings']))
                 showMessage('Настройки сохранены', 'Сообщение');
+            }else{
+                showMessage('Поле "Обгортка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
+            }
         }
     }
 
