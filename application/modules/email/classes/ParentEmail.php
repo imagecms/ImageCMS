@@ -126,7 +126,7 @@ class ParentEmail extends \MY_Controller {
      * send email
      *
      * @param string $send_to - recepient email
-     * @param string $patern_name - email patern  name 
+     * @param string $patern_name - email patern  name
      * @param array $variables - variables to raplase in message:
      *   $variables = array('%user%' => 'UserName')
      * @return bool
@@ -180,7 +180,7 @@ class ParentEmail extends \MY_Controller {
                 $this->errors[] = "Сообщение администратору не отправлено";
             }
         }
-        
+
         if($this->errors){
             return FALSE;
         }else{
@@ -350,14 +350,6 @@ class ParentEmail extends \MY_Controller {
         $this->email->send();
 
         echo $this->email->print_debugger();
-    }
-
-    public function autoload() {
-
-    }
-
-    public static function adminAutoload() {
-        parent::adminAutoload();
     }
 
     public function _install() {
