@@ -18,7 +18,7 @@ class New_level extends MY_Controller {
     }
 
     public function autoload() {
-        
+
 
         $settings = $this->new_level_model->getthema();
 
@@ -27,7 +27,7 @@ class New_level extends MY_Controller {
 
         $this->template->assign('colorScheme', $settings);
     }
-    
+
     /**
      * get category columns
      * 
@@ -36,20 +36,20 @@ class New_level extends MY_Controller {
      * @param int $category_id
      * @return string
      */
-    public function getCategoryColumns($category_id){
-       $columns = $this->new_level_model->getColumns();
-       $category_columns = array();
-       
-       foreach($columns as $column){
-           if(in_array($category_id ,unserialize($column['category_id']))){
-               $category_columns[] = $column['column'];
-           }
-       }
-       if($category_columns){
-           return implode('_',$category_columns);
-       }else{
-           return '0';
-       }
+    public function getCategoryColumns($category_id) {
+        $columns = $this->new_level_model->getColumns();
+        $category_columns = array();
+
+        foreach ($columns as $column) {
+            if (in_array($category_id, unserialize($column['category_id']))) {
+                $category_columns[] = $column['column'];
+            }
+        }
+        if ($category_columns) {
+            return implode('_', $category_columns);
+        } else {
+            return '0';
+        }
     }
 
     public function OPI($model, $data = array()) {
@@ -58,14 +58,14 @@ class New_level extends MY_Controller {
                 ->setData($data)
                 ->render('one_product_item', TRUE);
     }
-    
+
     /**
      * get property types 
      * 
      * @param int $property_id
      * @return type
      */
-    public function getPropertyTypes($property_id){
+    public function getPropertyTypes($property_id) {
         return $this->new_level_model->getPropertyTypes($property_id);
     }
 
@@ -99,8 +99,8 @@ class New_level extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_new_level_product_properties_types');
-        
-        
+
+
         $fields = array(
             'category_id' => array('type' => 'VARCHAR', 'constraint' => 500),
             'column' => array('type' => 'VARCHAR', 'constraint' => 256)
@@ -130,7 +130,7 @@ class New_level extends MY_Controller {
     public function _deinstall() {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_new_level_product_properties_types');
-        
+
         $this->dbforge->drop_table('mod_new_level_columns');
     }
 

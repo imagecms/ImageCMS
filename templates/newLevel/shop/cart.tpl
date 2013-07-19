@@ -1,3 +1,6 @@
+<script>
+    var orderDetails = true;
+</script>
 <div class="frame-inside page-cart">
     <div class="container">
         <div class="empty{if count($items) == 0} d_b{/if}">
@@ -292,4 +295,3 @@
 </div>
 </div>
 {/* <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}
-<script type="text/javascript" src="{$THEME}js/jquery.inputmask-multi.js"></script>
