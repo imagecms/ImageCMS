@@ -23,10 +23,11 @@ class Admin extends BaseAdminController {
 
     public function settings() {
         $email = new Email();
-        var_dumps($email->replaceVariables());
+        var_dumps($email->sendEmail('sheme4ko@mail.ru', 'my_patern'));
 
         \CMSFactory\assetManager::create()
                 ->registerScript('email')
+                ->registerStyle('style')
                 ->setData('settings', $this->email_model->getSettings())
                 ->renderAdmin('settings');
     }

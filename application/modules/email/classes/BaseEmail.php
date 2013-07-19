@@ -54,5 +54,37 @@ class BaseEmail extends \email\classes\ParentEmail {
         }
     }
 
+    /**
+     * send email
+     * @param string $send_to
+     * @param string $patern_name
+     * @return type
+     */
+    public function sendEmail($send_to, $patern_name) {
+        if (parent::sendEmail($send_to, $patern_name)) {
+            return TRUE;
+        } else {
+            return $this->errors;
+        }
+    }
+
+    /**
+     * test email sending
+     * @return string
+     */
+    public function mailTest() {
+        $this->from = $this->input->post('from');
+        $this->from_email = $this->input->post('from_email');
+        $this->send_to = $this->input->post('send_to');
+        $this->theme = $this->input->post('theme');
+        $this->port = $this->input->post('port');
+        $this->protocol = $this->input->post('protocol');
+        $this->mailpath = $this->input->post('mailpath');
+        $this->type = 'text';
+        $config = array('port' => $this->port, 'protocol' => $this->protocol, 'mailpath' => $this->mailpath, 'type' => $this->type);
+
+        return parent::mailTest($config);
+    }
+
 }
 

@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/modules_table"
+                    <a href="{$BASE_URL}admin/components/init_window/email"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
@@ -105,15 +105,21 @@
                                         <input type = "text" name = "settings[port]" class=" textbox_short portSettings"  value="{$settings['port']}"  id="port"/>
                                     </div>
                                 </div>
-                                    
+
                                 <br>
-                                
+
                                 <div class="control-group" >
                                     <div class="controls ">
                                         <a href="#" onclick="mailTest()">Проверка отправки почты</a>
                                     </div>
                                     <br>
-                                    <div class="controls mailTestResults"></div>                                    
+                                    <div class="controls ">
+                                        <button type="button" class="btn delete_image mailTestResultsHide">
+                                            <i class="icon-remove"></i>
+                                        </button>
+                                        <div class="mailTestResults">
+                                        </div>
+                                    </div>                                    
                                 </div>                              
 
                             </div>
