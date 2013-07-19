@@ -45,14 +45,14 @@
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from_email]">Email отправителя</label>
                                     <div class="controls">
-                                        <input type = "email" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
+                                        <input type = "text" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="settings[admin_email]">Email администратора</label>
                                     <div class="controls">
-                                        <input type = "email" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
+                                        <input type = "text" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
                                     </div>
                                 </div>
 
