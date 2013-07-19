@@ -14,12 +14,15 @@ namespace email\classes;
  */
 class ParentEmail extends \MY_Controller {
 
-    private $from;
-    private $from_email;
-    private $send_to;
-    private $theme;
-    private $message;
-    private $CI;
+    public $from;
+    public $from_email;
+    public $send_to;
+    public $theme;
+    public $message;
+    public $protocol;
+    public $port;
+    public $type;
+    public $mailpath;
     /**
      * Array of errors
      * @var array
@@ -38,7 +41,7 @@ class ParentEmail extends \MY_Controller {
      * @param string $patern
      * @return string
      */
-    public function replaceVariables($patern = 'sdfsdf %user% asdfsdf, %user% sdfsd, %user_email% fsdfsdfsdfsdf', $variables = array('%user%' => 'Mark', '%user_email%' => 'sheme4ko@mail.ru')) {
+    public function replaceVariables($patern, $variables) {
         foreach ($variables as $variable => $replase_value) {
             $patern = str_replace($variable, $replase_value, $patern);
         }
@@ -58,7 +61,7 @@ class ParentEmail extends \MY_Controller {
      * @param string $patern_name
      * @return bool
      */
-    public function sendEmail($send_to = 'send@mail.to', $patern_name = "my_patern") {
+    public function sendEmail($send_to, $patern_name) {
         $this->load->library('email');
         
         $patern_settings = $this->email_model->getPaternSettings($patern_name);
@@ -76,8 +79,7 @@ class ParentEmail extends \MY_Controller {
         }
         
         $default_settings['type'] = strtolower($patern_settings['type']);
-        
-        $this->set_config($default_settings);
+        $this->_set_config($patern_settings);
 
         if ($patern_settings['user_message_active']) {
             
@@ -86,7 +88,9 @@ class ParentEmail extends \MY_Controller {
             $this->send_to = $send_to;
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
-            $this->_sendEmail();
+            if(!$this->_sendEmail()){
+                $this->errors[] = "Сообщение пользователю не отправлено";
+            }
         }
 
         if ($patern_settings['admin_message_active']) {
@@ -103,7 +107,9 @@ class ParentEmail extends \MY_Controller {
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
 
-            $this->_sendEmail();
+            if(!$this->_sendEmail()){
+                $this->errors[] = "Сообщение администратору не отправлено";
+            }
         }
     }
 
@@ -178,7 +184,7 @@ class ParentEmail extends \MY_Controller {
      * @param array $settings
      * @return bool 
      */
-    private function set_config($settings) {
+    private function _set_config($settings) {
         
         $config['protocol'] = $settings['protocol'];
         
@@ -192,34 +198,24 @@ class ParentEmail extends \MY_Controller {
         return  $this->email->initialize($config);
     }
     
-    public  function mailTest() {
+    /**
+     * test mail sending
+     */
+    public  function mailTest($config) {
         $this->load->library('email');
         $this->email->clear();
-        
-        $from = $this->input->post('from');
-        $from_email = $this->input->post('from_email');
-        $port = $this->input->post('port');
-        $protocol = $this->input->post('protocol');
-        $mailpath = $this->input->post('mailpath');
-        $send_to = $this->input->post('send_to');
-        $theme = $this->input->post('theme');
-        $type = 'text';
-        
-        $config = array('port' => $port, 'protocol' => $protocol, 'mailpath' => $mailpath, 'type' => $type);
-        $this->set_config($config);
-        
+ 
+        $this->_set_config($config);
         $this->email->initialize($config);
         
-        $this->email->from($from_email, $from);
-        $this->email->to($send_to);
-
-        $this->email->subject($theme);
+        $this->email->from($this->from_email, $this->from);
+        $this->email->to($this->send_to);
+        $this->email->subject($this->theme);
         $this->email->message('Проверка отправки почты.');
 
         $this->email->send();
 
         echo $this->email->print_debugger();
-        
     }
     
     

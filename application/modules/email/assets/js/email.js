@@ -21,6 +21,14 @@ $(document).ready(function() {
     $('#adminMailVariables').on('click', function() {
         $('#adminMailText').append(' ' + $(this).val() + ' ');
     });
+    
+    $('.mailTestResultsHide').on('click', function() {
+        $('.mailTestResults').css('display', 'none');
+        $(this).css('display', 'none');
+        
+    });
+    
+    
 });
 
 function mailTest(){
@@ -46,6 +54,8 @@ function mailTest(){
             url: '/email/mailTest',
             success: function(data) {
                 $('.mailTestResults').html(data);
+                $('.mailTestResults').css('display', 'block');
+                $('.mailTestResultsHide').css('display','block');
             }
         });
     
