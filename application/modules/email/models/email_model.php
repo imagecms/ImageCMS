@@ -67,18 +67,16 @@ class Email_model extends CI_Model {
             return '';
         }
     }
-    
-    public function getPaternSettings($patern_name){
+
+    public function getPaternSettings($patern_name) {
         $query = $this->db->where('name', $patern_name)->get('mod_email_paterns');
-        
-        if($query){
+
+        if ($query) {
             return $query->row_array();
-        }else{
+        } else {
             return '';
         }
     }
-
-    
 
     public function create($data) {
         $this->db->insert('mod_email_paterns', $data);
@@ -110,12 +108,17 @@ class Email_model extends CI_Model {
                         ->row_array();
     }
 
-    public function deleteTemplate($ids) {
+    public function deleteTemplateByID($ids) {
         $this->db
                 ->where_in('id', $ids)
                 ->delete('mod_email_paterns');
     }
 
+    public function deleteTemplateByNames($names) {
+        $this->db
+                ->where_in('name', $names)
+                ->delete('mod_email_paterns');
+    }
 
     /**
      * install module(create db tables, set default values)
