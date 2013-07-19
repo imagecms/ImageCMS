@@ -9,22 +9,25 @@
  */
 class Admin extends BaseAdminController {
 
+    /**
+     * Object of Email class
+     * @var Email
+     */
+    public $email;
+
     public function __construct() {
         parent::__construct();
         $this->load->model('email_model');
+        $this->email = new Email();
     }
 
     public function index() {
-        $email = new Email();
         \CMSFactory\assetManager::create()
-                ->setData('models', $email->email_model->getAllTemplates())
+                ->setData('models', $this->email->email_model->getAllTemplates())
                 ->renderAdmin('list');
     }
 
     public function settings() {
-//        $email = new Email();
-//        var_dumps($email->sendEmail('sheme4ko@mail.ru', 'my_patern'));
-
         \CMSFactory\assetManager::create()
                 ->registerScript('email')
                 ->registerStyle('style')
@@ -34,8 +37,7 @@ class Admin extends BaseAdminController {
 
     public function create() {
         if ($_POST) {
-            $email = new Email();
-            if ($email->create()) {
+            if ($this->email->create()) {
 
                 showMessage("Шаблон создан");
                 if ($this->input->post('action') == 'tomain')
@@ -45,7 +47,7 @@ class Admin extends BaseAdminController {
                     pjax('/admin/components/cp/email/edit/' . $this->db->insert_id());
             }
             else {
-                showMessage($email->errors, '', 'r');
+                showMessage($this->email->errors, '', 'r');
             }
         }
         else
@@ -56,21 +58,19 @@ class Admin extends BaseAdminController {
     }
 
     public function delete() {
-        $email = new Email();
-        $email->email_model->deleteTemplate($_POST['ids']);
+        $this->email->delete($_POST['ids']);
     }
 
     public function edit($id) {
         if ($_POST) {
-            $email = new Email();
-            if ($email->edit($id)) {
+            if ($this->email->edit($id)) {
                 showMessage("Шаблон отредактирован");
 
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/email/index');
             }
             else {
-                showMessage($email->errors, '', 'r');
+                showMessage($this->email->errors, '', 'r');
             }
         }
         else
@@ -90,7 +90,7 @@ class Admin extends BaseAdminController {
                 if ($this->email_model->setSettings($_POST['settings']))
                     showMessage('Настройки сохранены', 'Сообщение');
             }else {
-                showMessage('Поле "Обгортка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
+                showMessage('Поле "Обвертка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
             }
         }
     }
