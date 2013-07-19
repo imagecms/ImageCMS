@@ -18,6 +18,7 @@ $(document).ready(function() {
     $('#userMailVariables').on('click', function() {
         $('#userMailText').append(' ' + $(this).val() + ' ');
     });
+
     $('#adminMailVariables').on('click', function() {
         $('#adminMailText').append(' ' + $(this).val() + ' ');
     });

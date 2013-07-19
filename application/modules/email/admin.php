@@ -22,8 +22,8 @@ class Admin extends BaseAdminController {
     }
 
     public function settings() {
-        $email = new Email();
-        var_dumps($email->sendEmail('sheme4ko@mail.ru', 'my_patern'));
+//        $email = new Email();
+//        var_dumps($email->sendEmail('sheme4ko@mail.ru', 'my_patern'));
 
         \CMSFactory\assetManager::create()
                 ->registerScript('email')
