@@ -115,7 +115,7 @@ a{cursor: pointer;}
 /*/base settings*/
 
 /*base images*/
-a.f-s_0{display: inline-block;}
+a.f-s_0{display: inline-block;text-decoration: none;}
 [class*="frame-icon"]{text-align: center;float: left;}
 [class*="icon_"], [class*="icon-"]{display: inline-block;font-size: 0;line-height: 0;position: relative;width: 0;height: 0;}
 [class*="icon_"]{position: absolute;}
@@ -790,6 +790,7 @@ input + .msg{margin-top: 5px;}
 .tabs-data > li > a{text-decoration: none;}
 .tabs-data > li.active > a, .tabs-data > li.active > button{padding-top: 13px;}
 .frame-tabs-ref > div{display: none;min-height: 75px;}
+.frame-tabs-ref > div:first-child{display: block;}
 
 .frame-tabs-ref > div > .inside-padd{padding: 15px 25px;}
 .frame-tabs-profile > div > .inside-padd{padding: 25px 25px;}

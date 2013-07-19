@@ -67,6 +67,7 @@ input.input-search{-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 
 
 /*links*/
 a, .ref{color: #287fc3;text-decoration: underline;}
+a.f-s_0 .text-el{border-bottom: 1px solid #287fc3;}
 a:hover, .selected a, .ref:hover{color: #51d2ff;text-decoration: none;}
 a.c_w:hover{color: #51d2ff !important;}
 a:focus, a:active {color: #51d2ff;}
