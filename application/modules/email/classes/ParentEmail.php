@@ -16,55 +16,55 @@ class ParentEmail extends \MY_Controller {
 
 
     /**
-     *
+     * Email sender name
      * @var string
      */
     protected $from;
 
     /**
-     *
+     *Email sender email address
      * @var string
      */
     protected $from_email;
 
     /**
-     *
+     *Receiver email
      * @var string
      */
     protected $send_to;
 
     /**
-     *
+     *Email theme
      * @var string
      */
     protected $theme;
 
     /**
-     *
+     *Email message
      * @var string
      */
     protected $message;
     
     /**
-     *
+     *Mail protocol
      * @var string
      */
     protected $protocol;
     
     /**
-     *
+     *Mail port
      * @var int
      */
     protected $port;
     
     /**
-     *
+     *Mail content type
      * @var string
      */
     protected $type;
     
     /**
-     *
+     *Server path to Sendmail
      * @var string
      */
     protected $mailpath;
