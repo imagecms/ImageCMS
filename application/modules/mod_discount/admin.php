@@ -49,7 +49,22 @@ class Admin extends \ShopAdminController{
                 $postArray = $this->input->post();
                 $typeDiscount = $postArray['type_discount'];
                 $typeDiscountTableName = 'mod_discount_'.$typeDiscount;
-
+                
+                if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value']){
+                    showMessage('Сумма "от" не может быть больше суммы "до"!','','r');
+                    exit;
+                }
+                
+                if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']){
+                    showMessage('Введите товар, который есть в базе','','r');
+                    exit;
+                }
+                
+                if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']){
+                    showMessage('Введите пользователя, который есть в базе','','r');
+                    exit;
+                }
+                
                 //Check have any comulativ discount max end value
                 if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()){
                     showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!','','r');
@@ -129,6 +144,20 @@ class Admin extends \ShopAdminController{
             if ($this->form_validation->run()){
                 $postArray = $this->input->post();
                 $typeDiscount = $postArray['type_discount'];
+                
+                if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value']){
+                    showMessage('Сумма "от" не может быть больше суммы "до"!','','r');
+                    exit;
+                }
+                
+                if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']){
+                    showMessage('Введите товар, который есть в базе','','r');
+                    exit;
+                }
+                if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']){
+                    showMessage('Введите пользователя, который есть в базе','','r');
+                    exit;
+                }
 
                 //Check have any comulativ discount max end value
                 if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)){
