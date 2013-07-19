@@ -30,12 +30,14 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
                 $data['description'] = $this->input->post('mail_desc');
+
                 $this->email_model->create($data);
             } else {
                 $this->email_model->create($this->data_model);
             }
+            return TRUE;
         } else {
-            showMessage($this->errors);
+            return FALSE;
         }
     }
 
@@ -51,14 +53,14 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
                 $data['description'] = $this->input->post('mail_desc');
-                $data['descriptiasdasdon'] = $this->input->post('mail_desc');
 
                 $this->email_model->edit($id, $data);
             } else {
                 $this->email_model->edit($id, $this->data_model);
             }
+            return TRUE;
         } else {
-            showMessage($this->errors);
+            return FALSE;
         }
     }
 

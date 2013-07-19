@@ -35,14 +35,18 @@ class Admin extends BaseAdminController {
     public function create() {
         if ($_POST) {
             $email = new Email();
-            $email->create();
+            if ($email->create()) {
 
-            showMessage("Шаблон создан");
-            if ($this->input->post('action') == 'tomain')
-                pjax('/admin/components/cp/email/index');
+                showMessage("Шаблон создан");
+                if ($this->input->post('action') == 'tomain')
+                    pjax('/admin/components/cp/email/index');
 
-            if ($this->input->post('action') == 'save')
-                pjax('/admin/components/cp/email/edit/' . $this->db->insert_id());
+                if ($this->input->post('action') == 'save')
+                    pjax('/admin/components/cp/email/edit/' . $this->db->insert_id());
+            }
+            else {
+                showMessage($email->errors, '', 'r');
+            }
         }
         else
             \CMSFactory\assetManager::create()
@@ -59,8 +63,15 @@ class Admin extends BaseAdminController {
     public function edit($id) {
         if ($_POST) {
             $email = new Email();
-            $email->edit($id);
-            showMessage("Шаблон отредактирован");
+            if ($email->edit($id)) {
+                showMessage("Шаблон отредактирован");
+
+                if ($this->input->post('action') == 'tomain')
+                    pjax('/admin/components/cp/email/index');
+            }
+            else {
+                showMessage($email->errors, '', 'r');
+            }
         }
         else
             \CMSFactory\assetManager::create()
@@ -75,10 +86,10 @@ class Admin extends BaseAdminController {
     public function update_settings() {
         if ($_POST) {
             $wraper = htmlentities($_POST['settings']['wraper']);
-            if(strstr('$content', $wraper)){
+            if (strstr('$content', $wraper)) {
                 if ($this->email_model->setSettings($_POST['settings']))
-                showMessage('Настройки сохранены', 'Сообщение');
-            }else{
+                    showMessage('Настройки сохранены', 'Сообщение');
+            }else {
                 showMessage('Поле "Обгортка" должно содержать переменную <b>$content</b>', 'Ошибка', 'r');
             }
         }

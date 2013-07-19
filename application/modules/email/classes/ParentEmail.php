@@ -21,49 +21,49 @@ class ParentEmail extends \MY_Controller {
     protected $from;
 
     /**
-     *Email sender email address
+     * Email sender email address
      * @var string
      */
     protected $from_email;
 
     /**
-     *Receiver email
+     * Receiver email
      * @var string
      */
     protected $send_to;
 
     /**
-     *Email theme
+     * Email theme
      * @var string
      */
     protected $theme;
 
     /**
-     *Email message
+     * Email message
      * @var string
      */
     protected $message;
 
     /**
-     *Mail protocol
+     * Mail protocol
      * @var string
      */
     protected $protocol;
 
     /**
-     *Mail port
+     * Mail port
      * @var int
      */
     protected $port;
 
     /**
-     *Mail content type
+     * Mail content type
      * @var string
      */
     protected $type;
 
     /**
-     *Server path to Sendmail
+     * Server path to Sendmail
      * @var string
      */
     protected $mailpath;
@@ -280,7 +280,7 @@ class ParentEmail extends \MY_Controller {
                 foreach ($data as $key => $d)
                     if (!in_array($key, $this->accepted_params))
                         unset($data[$key]);
-                    
+
                 $this->data_model = $data;
                 return TRUE;
             }
