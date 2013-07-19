@@ -66,12 +66,13 @@ class BaseEmail extends \email\classes\ParentEmail {
 
     /**
      * send email
-     * @param string $send_to
-     * @param string $patern_name
-     * @return type
+     * @param type $send_to
+     * @param type $patern_name
+     * @param type $variables
+     * @return boolean
      */
-    public function sendEmail($send_to, $patern_name) {
-        if (parent::sendEmail($send_to, $patern_name)) {
+    public function sendEmail($send_to, $patern_name, $variables) {
+        if (parent::sendEmail($send_to, $patern_name, $variables)) {
             return TRUE;
         } else {
             return $this->errors;
