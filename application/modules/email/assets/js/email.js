@@ -16,11 +16,11 @@ $(document).ready(function() {
     });
 
     $('#userMailVariables').on('click', function() {
-        $('#userMailText #tinymce').append(' ' + $(this).val() + ' ');
+        $('#userMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
     $('#adminMailVariables').on('click', function() {
-        $('#adminMailText').append(' ' + $(this).val() + ' ');
+        $('#adminMailText_ifr').contents().find('#tinymce p').append(' ' + $(this).val() + ' ');
     });
 
     $('.mailTestResultsHide').on('click', function() {
@@ -31,13 +31,11 @@ $(document).ready(function() {
 
     $('table.variablesTable .icon-edit').live('click', function() {
         var editor = $(this).closest('tr').find('div.variable');
-        console.log(editor);
         var editValue = $.trim(editor.text());
         editor.empty();
         editor.parent().find('.variableEdit').css('display', 'block').val(editValue);
 
         var editor = $(this).closest('tr').find('div.variableValue');
-        console.log(editor);
         var editValue = $.trim(editor.text());
         editor.empty();
         editor.parent().find('.variableValueEdit').css('display', 'block').val(editValue);
@@ -46,6 +44,7 @@ $(document).ready(function() {
         $(this).closest('tr').find('.refreshVariable').css('display', 'block');
 
     });
+    
     $('.addVariable').on('click', function() {
         $('.addVariableContainer').css('display', '');
     });
