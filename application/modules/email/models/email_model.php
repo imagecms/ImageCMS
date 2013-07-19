@@ -235,7 +235,47 @@ class Email_model extends CI_Model {
 
         return TRUE;
     }
+    
+    public function deleteVariable($template_id, $variable){
+        $paternVariables =  $this->getTemplateVariables($template_id);
+        $paternVariables[$variable] = $variableValue;
+        
+        unset($paternVariables[$variable]);
+        
+        return $this->setTemplateVariables($template_id, $paternVariables);
+    }
+    
+    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable){
+        $paternVariables =  $this->getTemplateVariables($template_id);
+        $paternVariables[$variable] = $variableValue;
+        
+        unset($paternVariables[$oldVariable]); 
+        $paternVariables[$variable] = $variableNewValue;
+        
+        return $this->setTemplateVariables($template_id, $paternVariables);
+    }
 
+    public function addVariable($template_id, $variable, $variableValue){
+        $paternVariables =  $this->getTemplateVariables($template_id);
+        $paternVariables[$variable] = $variableValue;
+        
+        return $this->setTemplateVariables($template_id, $paternVariables);
+    }
+    
+    public function getTemplateVariables($template_id){
+        $query = $this->db->where('id', $template_id)->get('mod_email_paterns');
+        if($query){
+            $patern = $query->row_array();
+            return unserialize($patern['variables']);
+        }else{
+            return FALSE; 
+        }
+    }
+    public function setTemplateVariables($template_id, $paternVariables){
+        return $this->db
+                ->where('id', $template_id)
+                ->update('mod_email_paterns', array('variables' => serialize($paternVariables)));
+    }
 }
 
 ?>
