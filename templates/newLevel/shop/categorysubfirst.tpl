@@ -22,6 +22,7 @@
 
     </div>
 </div>
+{widget('latest_news')}
 {if trim($category->getDescription()) != ""}
     <div class="frame-seo-text">
         <div class="container">
@@ -31,3 +32,4 @@
         </div>
     </div>
 {/if}
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>

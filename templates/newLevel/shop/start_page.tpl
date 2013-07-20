@@ -23,3 +23,4 @@
     </div>
 </div>
 {widget('latest_news')}
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>

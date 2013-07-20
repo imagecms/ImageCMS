@@ -8,17 +8,25 @@
                 <li class="box-2">
                     {include_shop_tpl('compare_data')}
                 </li>
-                <li class="box-3">
-                    <div class="btn-already-show">
-                        <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
-                            <span class="icon_already_show"></span>
-                            <span class="text-view-list">
-                                <span class="text-el d_l_1">Вы уже смотрели</span>
-                                <span class="text-el">&nbsp;({echo count($CI->session->userdata('page'))})</span>
-                            </span>
-                        </button>
-                    </div>
-                </li>
+                {if $view = count($CI->session->userdata('page'))}
+                    {$view = count($view);}
+                {else:}
+                    {$view = 0;}
+                {/if}
+
+                {if $view > 0}
+                    <li class="box-3">
+                        <div class="btn-already-show">
+                            <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
+                                <span class="icon_already_show"></span>
+                                <span class="text-view-list">
+                                    <span class="text-el d_l_1">Вы уже смотрели</span>
+                                    <span class="text-el">&nbsp;({echo $view})</span>
+                                </span>
+                            </button>
+                        </div>
+                    </li>
+                {/if}
                 <li class="box-4">
                     <div class="btn-toggle-toolbar">
                         <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
