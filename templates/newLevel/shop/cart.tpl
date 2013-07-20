@@ -1,9 +1,6 @@
-<script>
-    var orderDetails = true;
-</script>
 <div class="frame-inside page-cart">
     <div class="container">
-        <div class="empty{if count($items) == 0} d_b{/if}">
+        <div class="empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
                     <h1 class="d_i">Корзина</h1>
@@ -16,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="no-empty {if count($items) == 0} d_n{/if}">
+        <div class="no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
                     <h1 class="d_i">Оформление заказа</h1>
@@ -157,7 +154,7 @@
                             {if count($paymentMethods)}
                                 <div class="frame-label">
                                     <span class="title">Способ оплаты</span>
-                                    <div class="frame-form-field check-variant-payment">
+                                    <div class="frame-form-field check-variant-payment p_r">
                                         <div class="paymentMethod">
                                             {/*<div class="lineForm">
                                                     <select name="paymentMethodId" id="paymentMethod">

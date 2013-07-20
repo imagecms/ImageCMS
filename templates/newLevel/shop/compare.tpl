@@ -172,3 +172,5 @@
         {/if}
     </div>
 </div>
+<script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
