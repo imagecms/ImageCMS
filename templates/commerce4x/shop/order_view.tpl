@@ -219,7 +219,7 @@
 
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
-                                                        {echo $kitProducts->getDiscountProductPrice()}
+                                                        {echo $kitProduct->getKitNewPrice()}
                                                     </span>{$CS}
                                                 </div>
                                             </div>

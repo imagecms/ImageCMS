@@ -160,7 +160,7 @@
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
-                
+
                 {$fields = ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('order',$profile.id,'user')}
                 <!--                End. User info block-->
             </table>
@@ -222,13 +222,15 @@
                                                                     <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
                                                                     <span class="curr">{$CS}</span>
                                                                 </span>
-                                                            </span>
-                                                            <span class="price-add">
-                                                                <span>
-                                                                    <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
-                                                                    <span class="curr-add">{$NextCS}</span>
+                                                            </span> 
+                                                            {if $NextCSId}    
+                                                                <span class="price-add">
+                                                                    <span>
+                                                                        <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity($NextCSId)}</span>
+                                                                        <span class="curr-add">{$NextCS}</span>
+                                                                    </span>
                                                                 </span>
-                                                            </span>
+                                                            {/if}
                                                         </span>
                                                     </span>
                                                 </div>
@@ -257,16 +259,18 @@
                                                                 <span class="current-prices">
                                                                     <span class="price-new">
                                                                         <span>
-                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span>
+                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProductPrice()}</span>
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
-                                                                    <span class="price-add">
-                                                                        <span>
-                                                                            <span class="price">{echo $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getPrice()}</span>
-                                                                            <span class="curr">{$NextCS}</span>
+                                                                    {if $NextCSId}
+                                                                        <span class="price-add">
+                                                                            <span>
+                                                                                <span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
+                                                                                <span class="curr">{$NextCS}</span>
+                                                                            </span>
                                                                         </span>
-                                                                    </span>
+                                                                    {/if}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -286,16 +290,32 @@
                                                                 <span class="title">{echo ShopCore::encode($kitProducts->getSProducts()->getName())}</span>
                                                             </a>
                                                             <div class="description">
-                                                                {/*<div class="frame-prices">
-                                                                    <span class="current-prices">
-                                                                        <span class="price-new">
+                                                                <div class="frame-prices">
+                                                                    {if $kitProducts->getDiscount()}
+                                                                        <span class="price-discount">
                                                                             <span>
-                                                                                <span class="price">{echo $kitProducts->getDiscountProductPrice()}</span>
+                                                                                <span class="price priceOrigVariant">{echo $kitProducts->getKitProductPrice()}</span>
                                                                                 <span class="curr">{$CS}</span>
                                                                             </span>
                                                                         </span>
+                                                                    {/if}
+                                                                    <span class="current-prices">
+                                                                        <span class="price-new">
+                                                                            <span>
+                                                                                <span class="price">{echo $kitProducts->getKitNewPrice()}</span>
+                                                                                <span class="curr">{$CS}</span>
+                                                                            </span>
+                                                                        </span>
+                                                                        {if $NextCSId}    
+                                                                            <span class="price-new">
+                                                                                <span>
+                                                                                    <span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
+                                                                                    <span class="curr">{$CS}</span>
+                                                                                </span>
+                                                                            </span>
+                                                                        {/if}
                                                                     </span>
-                                                                </div>*/}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -307,6 +327,12 @@
                                                 <span class="count">{echo $orderProduct->getQuantity()}</span>
                                                 <span class="s-t">на сумму:</span>
                                                 <span class="frame-prices">
+                                                    <span class="price-discount">
+                                                        <span>
+                                                            <span class="price">{echo $orderProduct->getKit()->getTotalPriceOld()}</span>
+                                                            <span class="curr">{$CS}</span>
+                                                        </span>
+                                                    </span>
                                                     <span class="current-prices f-s_0">
                                                         <span class="price-new">
                                                             <span>
@@ -314,12 +340,14 @@
                                                                 <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
+                                                        {if $NextCSId}     
                                                         <span class="price-add">
                                                             <span>
-                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice()}</span>
+                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
                                                                 <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
+                                                        {/if}
                                                     </span>
                                                 </span>
                                             </div>
@@ -345,7 +373,8 @@
                                     </span>
                                 </span>
                             </li>
-
+                            {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount()}
+                            {//$discountKit = $CI->load->module('shop/cart_api')->}
                             <li>
                                 <span class="s-t">Ваша текущая скидка:</span>
                                 <span class="price-item">
