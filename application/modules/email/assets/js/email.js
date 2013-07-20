@@ -44,7 +44,7 @@ $(document).ready(function() {
         $(this).closest('tr').find('.refreshVariable').css('display', 'block');
 
     });
-    
+
     $('.addVariable').on('click', function() {
         $('.addVariableContainer').css('display', '');
     });

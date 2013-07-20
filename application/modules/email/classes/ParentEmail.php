@@ -94,6 +94,7 @@ class ParentEmail extends \MY_Controller {
         'user_message_active',
         'admin_message',
         'admin_message_active',
+        'admin_email',
         'description',
     );
 
@@ -181,9 +182,9 @@ class ParentEmail extends \MY_Controller {
             }
         }
 
-        if($this->errors){
+        if ($this->errors) {
             return FALSE;
-        }else{
+        } else {
             return TRUE;
         }
     }
@@ -200,6 +201,7 @@ class ParentEmail extends \MY_Controller {
      * 'user_message_active',
      * 'admin_message',
      * 'admin_message_active',
+     * 'admin_email',
      * 'description'
      * @return boolean
      */
@@ -254,6 +256,7 @@ class ParentEmail extends \MY_Controller {
      * 'user_message_active',
      * 'admin_message',
      * 'admin_message_active',
+     * 'admin_email',
      * 'description'
      * @param int $id ID of element
      * @return boolean
