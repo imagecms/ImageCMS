@@ -267,8 +267,10 @@ var ie = jQuery.browser.msie,
                 wrapper: $(".frame-label:has(.niceRadio)"),
                 elCheckWrap: '.niceRadio',
                 classRemove: null,
+                before: function() {
+                },
                 after: function() {
-                }
+                },
             }, options),
                     settings = optionsRadio;
             var $this = $(this);
@@ -276,6 +278,7 @@ var ie = jQuery.browser.msie,
                 $this.each(function() {
                     var $this = $(this);
                     var after = settings.after,
+                            before = settings.before,
                             classRemove = settings.classRemove,
                             wrapper = settings.wrapper,
                             elCheckWrap = settings.elCheckWrap;
@@ -283,7 +286,10 @@ var ie = jQuery.browser.msie,
                         methods.changeRadioStart($(this), classRemove, after, true);
                     });
                     $this.find(wrapper).unbind('click.radio').bind('click.radio', function(e) {
-                        methods.changeRadio($(this).find(elCheckWrap), after, false);
+                        if (!$(this).find('input').is(':disabled')) {
+                            before($(this));
+                            methods.changeRadio($(this).find(elCheckWrap), after, false);
+                        }
                     });
                     $this.find(elCheckWrap).find('input').bind('mousedown change', function(e) {
                         return false;
@@ -309,10 +315,10 @@ var ie = jQuery.browser.msie,
             el.addClass(activeClass);
             el.parent().addClass(activeClass);
             input.attr("checked", true);
-            after(input, start);
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
                 methods.radioUnCheck($(this).parent(), $(this))
             })
+            after(el, start);
             $(document).trigger({'type': 'nStRadio.RC', 'el': el, 'input': input});
         },
         radioUnCheck: function(el, input) {
@@ -986,7 +992,7 @@ var ie = jQuery.browser.msie,
                                         window.location.hash = temp;
                                     }
                                     else if (!$thisDD && k) {
-                                        window.location.hash = $.unique(hashs[0]).join('');
+                                        window.location.hash = $.unique(tabs.hashs[0]).join('');
                                         k = false;
                                     }
                                     if ($thisDD && !condB)
@@ -1025,8 +1031,8 @@ var ie = jQuery.browser.msie,
             return $this;
         },
         location: function(regrefs, refs) {
-            hashs1 = [];
-            hashs2 = [];
+            var hashs1 = [],
+                    hashs2 = [];
             if (location.hash == '')
             {
                 var i = 0,
@@ -1044,7 +1050,7 @@ var ie = jQuery.browser.msie,
                         j++;
                     }
                 })
-                hashs = [hashs1, hashs2];
+                var hashs = [hashs1, hashs2];
             }
             else {
                 _.map(refs, function(n, i) {
@@ -1075,9 +1081,11 @@ var ie = jQuery.browser.msie,
                     hashs1[i] = t.substring(pos[i], pos[i + 1]);
                     i++;
                 }
-                hashs = [hashs1, hashs2];
+                var hashs = [hashs1, hashs2];
             }
-            methods.startCheck(regrefs, hashs);
+            tabs = new Object();
+            tabs.hashs = hashs;
+            methods.startCheck(regrefs, tabs.hashs);
         },
         startCheck: function(regrefs, hashs) {
             var i = 0,
@@ -1431,7 +1439,7 @@ var ie = jQuery.browser.msie,
                             $thisD = elSet.duration || duration,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
-                    condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+                    var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
                     if (condOverlay) {
                         if (!$.exists('.overlayDrop')) {
                             body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
@@ -1506,9 +1514,9 @@ var ie = jQuery.browser.msie,
                         $.post(elSet.source, function(data) {
                             body.append(data);
                             elSetSource = $(elSet.drop);
-                            showDrop(elSetSource, true, e);
                             var el = elSetSource.find('[data-drop]');
                             methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
+                            showDrop(elSetSource, true, e);
                         })
                     }
                 }
@@ -1690,7 +1698,7 @@ var ie = jQuery.browser.msie,
                                     $thisNext.attr('disabled', 'disabled')
 
                                 if (checkProdStock)
-                                    input.maxValue();
+                                    input.maxValue(e);
                                 settings.after(e, el, input);
                             }
                         }
@@ -1975,9 +1983,9 @@ var Shop = {
             });
             return this;
         },
-        chCount: function(cartItem, f, change) {
+        chCount: function(cartItem, f) {
             Shop.Cart.currentItem = this.load(cartItem.storageId());
-            if (Shop.Cart.currentItem && !change) {
+            if (Shop.Cart.currentItem) {
 
                 Shop.Cart.currentItem.count = cartItem.count;
 

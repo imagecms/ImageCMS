@@ -74,14 +74,14 @@ a:focus, a:active {color: #51d2ff;}
 
 /*dotted lines*/
 [class*="d_l"]{text-decoration: none;cursor: pointer;position: relative;display: inline-block;border-bottom: 1px dotted transparent;line-height: 1.2;}
-.d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
+.d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l, .frame-group-checks .title .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
 .d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l{color: #51d2ff;border-bottom-color: #51d2ff;}
 .active > a > [class*="d_l"], .active > button > [class*="d_l"], .active > [class*="d_l"]{color: #51d2ff;border-bottom-color: #51d2ff;}
 .d_l_r_f{color: #fff;border-bottom-color: #fff;}
 .count-response, .count-null-response{border-bottom-color: #999;color:#999;}
 
 .btn-already-show .d_l_1{color: #fff;border-bottom-color: #fff;}
-.btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el{color: #51d2fe;border-bottom-color: #51d2fe;}
+.btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el, .frames-checks-sliders .title > .c_p:hover .d_l{color: #51d2fe;border-bottom-color: #51d2fe;}
 /*/dotted lines*/
 
 .list-style-1 li{position: relative;padding-left: 22px;}
@@ -197,7 +197,7 @@ a:focus, a:active {color: #51d2ff;}
 .menu-row-category li:hover > .title-category-l1{
     background: #31b3dd; /* Old browsers */
     background: -moz-linear-gradient(top,  #31b3dd 0%, #31b3dd 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#31b3dd), color-stop(100%,#31b3dd)); /* Chrome,Safari4+ */
+    background: -webkit-gradient(linear, cleft top, left bottom, color-stop(0%,#31b3dd), color-stop(100%,#31b3dd)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,  #31b3dd 0%,#31b3dd 100%); /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top,  #31b3dd 0%,#31b3dd 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(top,  #31b3dd 0%,#31b3dd 100%); /* IE10+ */
@@ -208,6 +208,12 @@ a:focus, a:active {color: #51d2ff;}
 
 .check-filter li{color: #eb6b2b;}
 .check-filter li.ref:hover{color: #eba92b;}
+.frames-checks-sliders > .frame-group-checks{border-top: 1px solid #eae5e1;}
+.frames-checks-sliders > .frame-group-checks:first-child{border-top: 0;}
+.frame-group-checks[data-rel*="dropDown"] .icon-arrow{border-width: 5px 7px;border-style: solid;border-color: transparent;border-left-color: #0c9acb;margin-right: -2px;background-image: none;}
+.frame-group-checks[data-rel*="dropDown"] .c_p:hover .icon-arrow{border-left-color: #51d2fe;}
+.frame-group-checks[data-rel*="dropDown"] .c_p.valuePD .icon-arrow{border-color: transparent;border-top-color: #0c9acb;border-width: 7px 5px;margin-right: 2px;position: relative;top: 5px;}
+.frame-group-checks[data-rel*="dropDown"] .c_p.valuePD:hover .icon-arrow{border-top-color: #51d2fe;}
 
 .items-thumbs > .active .photo-block, .photoProduct.active > .photo-block{border-color: #d8d2cb;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 
@@ -738,7 +744,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .hit{background-position: 0 -80px;width: 105px;height: 25px;}
 .discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
 
-.items-bask .product-status{top: 0;}
+.items-bask .product-status, .items-default .product-status{top: 0;}
 .items-bask .product-status + .product-status, .items-default .product-status + .product-status{top: 14px;}
 .items-bask .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status{top: 28px;}
 .items-bask .product-status + .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status + .product-status{top: 42px;}

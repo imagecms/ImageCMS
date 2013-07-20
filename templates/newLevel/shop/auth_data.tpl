@@ -15,7 +15,7 @@
             <span class="text-el">или</span>
         </li>
         <li class="btn-register">
-            <a href="/auth/register">
+            <a href="/auth/register" rel=”nofollow”>
                 <span class="icon_reg"></span>
                 <span class="text-el">Регистрация</span>
             </a>

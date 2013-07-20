@@ -102,7 +102,7 @@ textarea{overflow: auto;display: block;height: 64px;padding-top: 4px;padding-bot
 sub, sup {position: relative;font-size: 75%;line-height: 0;}
 sup {top: -0.5em;vertical-align: super;font-size: smaller;}
 sub {bottom: -0.25em;vertical-align: sub;font-size: smaller;}
-.pointer, .arrow, .ref{cursor: pointer;}
+.pointer, .arrow, .ref, .c_p{cursor: pointer;}
 
 /*links*/
 a{cursor: pointer;}
@@ -155,7 +155,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 .b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 
-.empty, .no-empty{display: none;}
+.empty, .no-empty, .frameCurDiscount{display: none;}
 /*/adding selectors*/
 
 /*icons*/
@@ -330,8 +330,7 @@ input.input-search{height: 33px;}
 .items-catalog .star{margin-right: 11px;}
 
 .animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}
-.animateListItems > li{-webkit-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;-moz-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;-o-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;transition: width 0.3s ease-in-out, height 0.3s ease-in-out;}
-.animateListItems.table > li{overflow: hidden;}
+.animateListItems > li{overflow: hidden;-webkit-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;-moz-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;-o-transition: width 0.3s ease-in-out, height 0.3s ease-in-out;transition: width 0.3s ease-in-out, height 0.3s ease-in-out;}
 .animateListItems.table > li:hover{z-index: 1;overflow: visible;}
 .items-catalog.list{margin-left: 0;}
 .items-catalog.list > li{width: 100% !important;margin-left: 0;}
@@ -772,6 +771,7 @@ input + .msg{margin-top: 5px;}
 .vertical-form .frame-label label, .vertical-form label label{margin: 0;}
 
 .label-gift-cert .preloader{display: none;}
+.gift-success{position: relative;top: 8px;}
 /*/form*/
 
 /*crumbs*/
@@ -817,7 +817,11 @@ input + .msg{margin-top: 5px;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 100%;top: 0;}
 .frame-slider .inside-padd{padding: 14px 18px;}
-.frame-group-checks .inside-padd{padding: 10px 18px;}
+    /*if filter style*/
+.frame-group-checks[data-rel]{display: none;}
+.frame-group-checks[data-rel] ul{max-height: 196px;overflow: auto;}
+.frame-group-checks[data-rel*="dropDown"] ul{display: none;}
+.frame-group-checks .inside-padd{padding: 10px 0 10px 18px;}
 .frame-group-checks .frame-label{cursor: pointer;}
 /*.filter*/
 
