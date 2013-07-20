@@ -9,7 +9,6 @@
 *   $site_keywords : variable for insert site keywords
 *   $content : variable for insert content of page
 */}
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,6 +29,8 @@
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
             <script src="{$THEME}js/localStorageJSON.js"></script>
         <![endif]-->
+
+        <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
     <body class="is{echo $agent[0]} not-js">
         <div class="main-body">
@@ -51,22 +52,14 @@
 
         {include_tpl('config.js')}
 
-        <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
-        
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
+
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-
-        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
-
-        <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
-
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
+        
+        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         {include_shop_tpl('js_templates')}

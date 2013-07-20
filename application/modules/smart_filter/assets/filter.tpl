@@ -62,9 +62,16 @@
 
     {if count($propertiesInCat) > 0}
         {foreach $propertiesInCat as $prop}
-            <div class="frame-group-checks">
-                <div class="inside-padd {implode(" ",$CI->load->module('new_level')->getPropertyTypes($prop->property_id))}">
-                    <div class="title">{echo $prop->name}</div>
+            {$typeProperty = $CI->load->module('new_level')->getPropertyTypes($prop->property_id)}
+            {$condTypeProperty = $typeProperty != ''}
+            <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if}>
+                <div class="inside-padd">
+                    <div class="title f-s_0">
+                        <span class="c_p">
+                            <span class="icon-arrow"></span>
+                            <span class="text-el">{echo $prop->name}</span>
+                        </span>
+                    </div>
                     <ul>
                         {foreach $prop->possibleValues as $item}
                             {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
@@ -93,7 +100,8 @@
                     </ul>
                 </div>
             </div>
-        {/foreach}
-    {/if}
+        {if $condTypeProperty}<div class="preloader"></div>{/if}
+    {/foreach}
+{/if}
 </div>
 <input disabled="disabled" type="hidden" name="requestUri" value="{echo site_url($CI->uri->uri_string())}"/>

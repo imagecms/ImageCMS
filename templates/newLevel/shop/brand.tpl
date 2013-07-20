@@ -69,7 +69,7 @@
 
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($products)}
                 </ul>
             {/if}
             {$pagination}
@@ -121,3 +121,4 @@
 
     </div>
 </div>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
