@@ -341,6 +341,7 @@ input.input-search{height: 33px;}
 
 .items-news{margin-left: -40px;}
 .items-news .photo-block{margin-bottom: 7px;height: 120px;}
+.items-news .photo-block > img{max-height: 110px;}
 .items-news > li{width: 300px;margin-left: 40px;margin-bottom: 30px;}
 .items-news a{display: block;padding-bottom: 12px;margin-bottom: 5px;}
 .items-news .date{display: block;margin-bottom: 2px;}

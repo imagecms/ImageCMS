@@ -1155,7 +1155,7 @@ jQuery(document).ready(function() {
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).bind('autocomplete.after drop.show drop.hide', function(e) {
+    $(document).bind('autocomplete.after drop.show drop.hide hideActivity sync_cart', function(e) {
         $.fancybox.hideActivity();
     })
 
@@ -1241,9 +1241,6 @@ jQuery(document).ready(function() {
     initShopPage(false, '', orderDetails);
     countSumBask();
 
-    if (Shop.Cart.length() == 0)
-        $.fancybox.hideActivity();
-
     //shipping changing, re-render cart page
     if (orderDetails) {
         renderOrderDetails();
@@ -1261,6 +1258,7 @@ jQuery(document).ready(function() {
     $(document).live('cart_changed', function() {
         cart_changed(methodDeliv(), selectDeliv);
     });
+
     $(document).live('count_changed', function() {
         countSumBask();
         if (!orderDetails)
@@ -1424,7 +1422,7 @@ jQuery(document).ready(function() {
     })
 
     wnd.focus(function() {
-        $.fancybox.showActivity();
+//        $.fancybox.showActivity();
         processPage();
         checkSyncs();
         processWishComp();
@@ -1433,15 +1431,11 @@ jQuery(document).ready(function() {
         initShopPage(false, '', orderDetails);
         countSumBask();
         //shipping changing, re-render cart page
-        if (orderDetails)
+        if (orderDetails) {
             renderOrderDetails();
-        //shipping changing, re-render cart page
-
-        if (orderDetails)
+            //shipping changing, re-render cart page
             recountCartPage(selectDeliv, methodDeliv());
-
-        if (Shop.Cart.length() == 0)
-            $.fancybox.hideActivity();
+        }
     })
 });
 wnd.load(function() {

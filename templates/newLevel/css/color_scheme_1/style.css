@@ -1247,6 +1247,7 @@ footer .box-4 .main-title{color: #9c9c9c;}
 #comment__icsi-css .frame-drop-comment__icsi-css{padding-bottom: 0;}
 #comment__icsi-css .frame-drop-comment__icsi-css .frame-comments__icsi-css{margin-bottom: 0;}
 .frame-show-all-comments{background-color: #faf7f5;text-align: center;padding: 12px 0;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
+.page-text #comment__icsi-css .main-form-comments__icsi-css{width: 60%;}
 
 /*fancybox*/
 #fancybox-loading{position:fixed;top:50%;left:50%;width:40px;height:40px;margin-top:-20px;margin-left:-20px;cursor:pointer;overflow:hidden;z-index:1104;display:none}
