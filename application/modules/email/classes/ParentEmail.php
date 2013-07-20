@@ -21,49 +21,49 @@ class ParentEmail extends \MY_Controller {
     protected $from;
 
     /**
-     *Email sender email address
+     * Email sender email address
      * @var string
      */
     protected $from_email;
 
     /**
-     *Receiver email
+     * Receiver email
      * @var string
      */
     protected $send_to;
 
     /**
-     *Email theme
+     * Email theme
      * @var string
      */
     protected $theme;
 
     /**
-     *Email message
+     * Email message
      * @var string
      */
     protected $message;
 
     /**
-     *Mail protocol
+     * Mail protocol
      * @var string
      */
     protected $protocol;
 
     /**
-     *Mail port
+     * Mail port
      * @var int
      */
     protected $port;
 
     /**
-     *Mail content type
+     * Mail content type
      * @var string
      */
     protected $type;
 
     /**
-     *Server path to Sendmail
+     * Server path to Sendmail
      * @var string
      */
     protected $mailpath;
@@ -125,18 +125,19 @@ class ParentEmail extends \MY_Controller {
     /**
      * send email
      *
-     * @param string $send_to
-     * @param string $patern_name
+     * @param string $send_to - recepient email
+     * @param string $patern_name - email patern  name
+     * @param array $variables - variables to raplase in message:
+     *   $variables = array('%user%' => 'UserName')
      * @return bool
      */
-    public function sendEmail($send_to, $patern_name) {
+    public function sendEmail($send_to, $patern_name, $variables) {
         $this->load->library('email');
 
         $patern_settings = $this->email_model->getPaternSettings($patern_name);
         $default_settings = $this->email_model->getSettings();
 
         if ($patern_settings) {
-            $variables = unserialize($patern_settings['variables']);
             foreach ($patern_settings as $key => $value) {
                 if (!$value) {
                     if ($default_settings[$key]) {
@@ -179,21 +180,27 @@ class ParentEmail extends \MY_Controller {
                 $this->errors[] = "Сообщение администратору не отправлено";
             }
         }
+
+        if($this->errors){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
     }
 
     /**
      *
      * @param array $data keys from list:
-      'name',
-      'from',
-      'from_email',
-      'theme',
-      'type',
-      'user_message',
-      'user_message_active',
-      'admin_message',
-      'admin_message_active',
-      'description',
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'description'
      * @return boolean
      */
     public function create($data = array()) {
@@ -238,16 +245,16 @@ class ParentEmail extends \MY_Controller {
     /**
      *
      * @param array $data keys from list:
-      'name',
-      'from',
-      'from_email',
-      'theme',
-      'type',
-      'user_message',
-      'user_message_active',
-      'admin_message',
-      'admin_message_active',
-      'description',
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'description'
      * @param int $id ID of element
      * @return boolean
      */
@@ -280,13 +287,17 @@ class ParentEmail extends \MY_Controller {
                 foreach ($data as $key => $d)
                     if (!in_array($key, $this->accepted_params))
                         unset($data[$key]);
-                    
+
                 $this->data_model = $data;
                 return TRUE;
             }
             else
                 return FALSE;
         }
+    }
+
+    public function delete($ids) {
+        $this->email_model->deleteTemplateByID($ids);
     }
 
     /**
@@ -339,14 +350,6 @@ class ParentEmail extends \MY_Controller {
         $this->email->send();
 
         echo $this->email->print_debugger();
-    }
-
-    public function autoload() {
-
-    }
-
-    public static function adminAutoload() {
-        parent::adminAutoload();
     }
 
     public function _install() {
