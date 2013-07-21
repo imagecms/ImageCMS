@@ -30,7 +30,7 @@ class Admin extends BaseAdminController {
 
     public function settings() {
         \CMSFactory\assetManager::create()
-                ->registerScript('email')
+                ->registerScript('email', TRUE)
                 ->registerStyle('style')
                 ->setData('settings', $this->email_model->getSettings())
                 ->renderAdmin('settings');
@@ -53,7 +53,7 @@ class Admin extends BaseAdminController {
         }
         else
             \CMSFactory\assetManager::create()
-                    ->registerScript('email')
+                    ->registerScript('email', TRUE)
                     ->setData('settings', $this->email_model->getSettings())
                     ->renderAdmin('create');
     }
@@ -81,7 +81,7 @@ class Admin extends BaseAdminController {
             \CMSFactory\assetManager::create()
                     ->setData('model', $model)
                     ->setData('variables', $variables)
-                    ->registerScript('email')
+                    ->registerScript('email', TRUE)
                     ->renderAdmin('edit');
     }
 

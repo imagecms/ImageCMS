@@ -29,6 +29,7 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['user_message_active'] = $this->input->post('userMailTextRadio');
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
+                $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
                 $this->email_model->create($data);
@@ -52,6 +53,7 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['user_message_active'] = $this->input->post('userMailTextRadio');
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
+                $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
                 $this->email_model->edit($id, $data);
