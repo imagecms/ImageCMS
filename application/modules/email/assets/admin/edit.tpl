@@ -118,7 +118,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="adminMailText">Шаблон письма:
+                                                    <label class="control-label" for="adminMailText">Шаблон письма администратору:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}

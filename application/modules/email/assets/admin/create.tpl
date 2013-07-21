@@ -78,6 +78,7 @@
                                         </div>
 
                                         <div class="control-group">
+                                            <label class="control-label" for="userMailText">Шаблон письма пользователю:</label>
                                             <div class="controls">
                                                 <textarea class="elRTE" name="userMailText" id="userMailText"></textarea>
                                             </div>
@@ -102,6 +103,7 @@
                                         </div>
 
                                         <div class="control-group">
+                                            <label class="control-label" for="adminMailText">Шаблон письма администратору:</label>
                                             <div class="controls">
                                                 <textarea class="elRTE" name="adminMailText" id="adminMailText"></textarea>
                                             </div>
