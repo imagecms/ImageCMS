@@ -257,7 +257,7 @@
                                                 {if $NextCSId != null}
                                                     <span class="price-add">
                                                         <span>
-                                                            (<span class="price" id="totalPriceAdd">bla-bla</span>
+                                                            (<span class="price" id="finalAmountAdd"></span>
                                                             <span class="curr-add">{$NextCS}</span>)
                                                         </span>
                                                     </span>
