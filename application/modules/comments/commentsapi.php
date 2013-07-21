@@ -80,7 +80,8 @@ class Commentsapi extends Comments {
             'comment_controller' => $this->comment_controller,
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha
+            'use_captcha' => $this->use_captcha,
+            'use_moderation' => $this->use_moderation
         );
 
         if ($this->use_captcha == TRUE) {
