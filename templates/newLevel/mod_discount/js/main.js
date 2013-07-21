@@ -1,7 +1,6 @@
 function get_discount(discTpl) {
     var _discount = 0;
     $.ajax({
-        async: false,
         url: '/mod_discount/discount_api/get_discount_api',
         type: "POST",
         success: function(data) {
@@ -16,9 +15,9 @@ function get_discount(discTpl) {
                 displayInfoDiscount('');
             }
             displayDiscount(_discount);
+            Shop.Cart.discount = _discount;
         }
     })
-    Shop.Cart.discount = _discount;
 }
 
 function load_certificat() {
