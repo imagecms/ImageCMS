@@ -124,7 +124,7 @@ class Admin extends BaseAdminController {
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
 
-        $this->email_model->deleteVariable($template_id, $variable);
+        return  $this->email_model->deleteVariable($template_id, $variable);
     }
 
     public function updateVariable() {
@@ -132,7 +132,7 @@ class Admin extends BaseAdminController {
         $variable = $this->input->post('variable');
         $variableNewValue = $this->input->post('variableValue');
         $oldVariable = $this->input->post('oldVariable');
-        $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+        return $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
     }
 
     public function addVariable() {

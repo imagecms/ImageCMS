@@ -337,6 +337,12 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * test mail sending
+     * 
+     * @param array $config cohfiguration options for sending email:
+     * 'protocol',
+     * 'smtp_port',
+     * 'type',
+     * 'mailpath'
      */
     public function mailTest($config) {
         $this->load->library('email');
