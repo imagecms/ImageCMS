@@ -373,22 +373,23 @@
                                     </span>
                                 </span>
                             </li>
-                            {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount()}
-                            {//$discountKit = $CI->load->module('shop/cart_api')->}
+                            {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
+                            {if $discount}
                             <li>
                                 <span class="s-t">Ваша текущая скидка:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="text-discount current-discount">bla-bla</span>
+                                        <span class="text-discount current-discount">{echo $discount}{$CS}</span>
                                     </span>
                                 </span>
                             </li>
-                            {if $giftCond}
+                            {/if}
+                            {if $model->getGiftCertPrice() > 0}
                                 <li>
                                     <span class="s-t">Подарочный сертификат:</span>
                                     <span class="price-item">
                                         <span class="text-discount">
-                                            <span class="price">-{echo $giftPrice}</span>
+                                            <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>
@@ -399,10 +400,10 @@
                         <div class="gen-sum-order">
                             <span class="title">Итого к оплате:</span>
                             <span class="frame-prices f-s_0">
-                                {if $giftCond}
+                                {if $model->getOriginPrice()}
                                     <span class="price-discount">
                                         <span>
-                                            <span class="price">{echo $total+$giftPrice}</span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>
@@ -410,16 +411,18 @@
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">
                                         <span>
-                                            <span class="price">{echo $total}</span>
+                                            <span class="price">{echo $model->gettotalprice()}</span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>
+                                    {if $NextCSId}     
                                     <span class="price-add">
                                         <span>
-                                            (<span class="price" id="totalPriceAdd">bla-bla</span>
+                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>
                                             <span class="curr-add">{$NextCS}</span>)
                                         </span>
                                     </span>
+                                    {/if}
                                 </span>
                             </span>
                         </div>
