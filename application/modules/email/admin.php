@@ -135,7 +135,6 @@ class Admin extends BaseAdminController {
     }
 
     public function addVariable() {
-        echo 1;
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
         $variableValue = $this->input->post('variableValue');

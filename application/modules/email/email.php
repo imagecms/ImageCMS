@@ -14,6 +14,8 @@ class email extends \email\classes\BaseEmail {
 
     public function __construct() {
         parent::__construct();
+
+        $this->load->model('../modules/email/models/email_model');
     }
 
     private function __clone() {
