@@ -849,7 +849,7 @@ class DX_Auth {
             'phone' => $phone,
             'last_ip' => $this->ci->input->ip_address()
         );
-
+        
         // Do we need to send email to activate user
 
         if ($this->ci->config->item('DX_email_activation')) {
@@ -864,7 +864,6 @@ class DX_Auth {
 
             // Activation Link
             $new_user['activate_url'] = site_url($this->ci->config->item('DX_activate_uri') . "{$new_user['email']}/{$new_user['activation_key']}");
-
             // Trigger event and get email content
             $this->ci->dx_auth_event->sending_activation_email($new_user, $message);
 
@@ -913,6 +912,18 @@ class DX_Auth {
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
                 }
+                
+            $user_variables = array(
+                '$user_name$' => $username,
+                '$user_password$' => $password,
+                '$user_address$' => $address,
+                '$user_email$' => $email,
+                '$user_phone$' => $phone
+                );
+            
+            \email\email::getInstance()->sendEmail($email, 'Создание пользователя', $user_variables);
+                
+                
                 if($login_user){
                     if ($this->login($email, $password)) {
                         if (class_exists('ShopCore'))
@@ -965,10 +976,21 @@ class DX_Auth {
                     $subject = $this->ci->lang->line('auth_forgot_password_subject');
 
                     // Trigger event and get email content
-                    $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                   // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                    
+//                    $replaceData = array(
+//                        '$webSiteName$' => $this->ci->config->item('DX_website_name'),
+//                        '$resetPasswordUri$' => $data['reset_password_uri'],
+//                        '$password$' => $data['password'],
+//                        '$key$' => $data['key'],
+//                        '$webMasterEmail$' => $this->ci->config->item('DX_webmaster_email')
+//                    );
+//                    
+//                    $this->ci->load->module('email')->getInstance()->sendEmail($email, 'Создание пользователя', $replaceData);
+                    
 
                     // Send instruction email
-                    $this->_email($row->email, $from, $subject, $message);
+                    //$this->_email($row->email, $from, $subject, $message);
 
                     $result = TRUE;
                 } else {
