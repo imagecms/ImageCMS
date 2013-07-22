@@ -337,7 +337,7 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * test mail sending
-     * 
+     *
      * @param array $config cohfiguration options for sending email:
      * 'protocol',
      * 'smtp_port',
@@ -359,6 +359,38 @@ class ParentEmail extends \MY_Controller {
         $this->email->send();
 
         echo $this->email->print_debugger();
+    }
+
+    public function getAllTemplates() {
+        return $this->email_model->getAllTemplates();
+    }
+
+    public function getSettings() {
+        return $this->email_model->getSettings();
+    }
+
+    public function getTemplateById($id) {
+        return $this->email_model->getTemplateById($id);
+    }
+
+    public function setSettings($settings) {
+        return $this->email_model->setSettings($settings);
+    }
+
+    public function deleteVariable($template_id, $variable) {
+        return $this->email_model->deleteVariable($template_id, $variable);
+    }
+
+    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable) {
+        return $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+    }
+
+    public function addVariable($template_id, $variable, $variableValue) {
+        return $this->email_model->addVariable($template_id, $variable, $variableValue);
+    }
+
+    public function getTemplateVariables($template_id) {
+        return $this->email_model->getTemplateVariables($template_id);
     }
 
     public function _install() {
