@@ -111,7 +111,7 @@ class ParentEmail extends \MY_Controller {
      */
     public function replaceVariables($patern, $variables) {
         foreach ($variables as $variable => $replase_value) {
-            $patern = str_replace($variable, $replase_value, $patern);
+            $patern = str_replace('$' . $variable . '$', $replase_value, $patern);
         }
 
         $wraper = $this->email_model->getWraper();
