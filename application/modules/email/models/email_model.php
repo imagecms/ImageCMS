@@ -261,13 +261,9 @@ class Email_model extends CI_Model {
 
     public function addVariable($template_id, $variable, $variableValue) {
         $paternVariables = $this->getTemplateVariables($template_id);
-        if ($paternVariables) {
-            $paternVariables[$variable] = $variableValue;
+        $paternVariables[$variable] = $variableValue;
 
-            return $this->setTemplateVariables($template_id, $paternVariables);
-        } else {
-            return FALSE;
-        }
+        return $this->setTemplateVariables($template_id, $paternVariables);
     }
 
     public function getTemplateVariables($template_id) {
