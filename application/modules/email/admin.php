@@ -131,7 +131,7 @@ class Admin extends BaseAdminController {
         $variable = $this->input->post('variable');
         $variableNewValue = $this->input->post('variableValue');
         $oldVariable = $this->input->post('oldVariable');
-        return $this->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+        return $this->email->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
     }
 
     public function addVariable() {
