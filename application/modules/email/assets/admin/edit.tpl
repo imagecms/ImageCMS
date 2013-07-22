@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">редактирование шаблона письма</span>
+            <span class="title">{lang('Email_template_editing')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -22,8 +22,8 @@
     <div class="content_big_td row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}')">Настройки шаблона</a>
-                <a href="#variables" class="btn btn-small">Переменние шаблона</a>
+                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}')">{lang('Template_settings')}</a>
+                <a href="#variables" class="btn btn-small">{lang('Template_variables')}</a>
             </div>
         </div>
         <div class="tab-content">
@@ -40,35 +40,35 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount">Название шаблона письма:</label>
+                                                    <label class="control-label" for="comcount">{lang('Template_name_only_latin')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount" type="text" name="mail_name" value="{$model['name']}" disabled="disabled"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount2">От кого:</label>
+                                                    <label class="control-label" for="comcount2">{lang('From')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount2" type="text" name="sender_name" value="{$model['from']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount3">От кого (mail):</label>
+                                                    <label class="control-label" for="comcount3">{lang('From_email')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount3" type="text" name="from_email" value="{$model['from_email']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount4">Тема:</label>
+                                                    <label class="control-label" for="comcount4">{lang('Theme')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount4" type="text" name="mail_theme" value="{$model['theme']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount5">Тип письма:</label>
+                                                    <label class="control-label" for="comcount5">{lang('Message_type')}:</label>
                                                     <div class="controls">
                                                         &nbsp; HTML &nbsp;
                                                         <span class="frame_label">
@@ -86,7 +86,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="userMailText">Шаблон письма пользователю:
+                                                    <label class="control-label" for="userMailText">{lang('Template_user_mail')}:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="userMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
@@ -100,15 +100,15 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="userMailTextRadio">Отправлять письмо пользователю:</label>
+                                                    <label class="control-label" for="userMailTextRadio">{lang('Send_email_to_user')}:</label>
                                                     <div class="controls">
-                                                        &nbsp; ДА &nbsp;
+                                                        &nbsp; {lang('Yes')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="userMailTextRadio" value="1" {if $model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
                                                             </span>
                                                         </span>
-                                                        &nbsp; НЕТ &nbsp;
+                                                        &nbsp; {lang('No')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="userMailTextRadio" value="0" {if !$model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
@@ -118,7 +118,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="adminMailText">Шаблон письма администратору:
+                                                    <label class="control-label" for="adminMailText">{lang('Template_admin_mail')}:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
@@ -132,15 +132,15 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="adminMailTextRadio">Отправлять письмо администратору:</label>
+                                                    <label class="control-label" for="adminMailTextRadio">{lang('Send_email_to_admin')}:</label>
                                                     <div class="controls">
-                                                        &nbsp; ДА &nbsp;
+                                                        &nbsp; {lang('Yes')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="adminMailTextRadio" value="1" {if $model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
                                                             </span>
                                                         </span>
-                                                        &nbsp; НЕТ &nbsp;
+                                                        &nbsp; {lang('No')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="adminMailTextRadio" value="0" {if !$model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
@@ -150,14 +150,14 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount3">Адресс администратора:</label>
+                                                    <label class="control-label" for="comcount3">{lang('Admin_address')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount3" type="text" name="admin_email" value="{$model['admin_email']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="symcount2">Описание шаблона:</label>
+                                                    <label class="control-label" for="symcount2">{lang('Template_description')}:</label>
                                                     <div class="controls">
                                                         <textarea class="elRTE" name="mail_desc" id="symcount2">{$model['description']}</textarea>
                                                     </div>
@@ -178,10 +178,10 @@
                 <div class="inside_padd">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable">
                         <thead>
-                        <th>Переменние</th>
-                        <th>Значения</th>
-                        <th class="span2">Редактировать</th>
-                        <th class="span1">Удалить</th>
+                        <th>{lang('Variables')}</th>
+                        <th>{lang('Values')}</th>
+                        <th class="span2">{lang('Edit')}</th>
+                        <th class="span1">{lang('Delete')}</th>
                         </thead>
                             {foreach $variables as $variable => $variable_value}
                                 <tr>
@@ -227,7 +227,7 @@
                             </tr>
                     </table>
                     <a href="#variables" class="btn btn-small btn-success addVariable">
-                        <i class="icon-plus icon-white"></i>&nbsp;Добавить новую переменную
+                        <i class="icon-plus icon-white"></i>&nbsp;{lang('Add_new_variable')}
                     </a>
                 </div>
             </div>
