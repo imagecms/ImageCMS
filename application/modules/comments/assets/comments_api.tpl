@@ -2,7 +2,7 @@
     <label>
         <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
     </label>
-{/if}
+{/if}{echo $use_moderation}
 <div id="comment__icsi-css" class="comment__icsi-css">
     {if $comments_arr}
         <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
@@ -116,15 +116,17 @@
                                 </div>
                                 <!-- End star reiting -->
                                 {if !$is_logged_in}
-                                    <label>
-                                        <span class="frame_form_field__icsi-css">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    Коментарий будет отправлен на модерацию
+                                    {if $use_moderation}
+                                        <label>
+                                            <span class="frame_form_field__icsi-css">
+                                                <div class="msg">
+                                                    <div class="success">
+                                                        Коментарий будет отправлен на модерацию
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </span>
-                                    </label>
+                                            </span>
+                                        </label>
+                                    {/if}
                                     <label>
                                         <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                                         <span class="frame_form_field__icsi-css">
@@ -214,16 +216,17 @@
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                         </span>
                     </label>
-
-                    <label>
-                        <span class="frame_form_field__icsi-css">
-                            <div class="msg">
-                                <div class="success">
-                                    Коментарий будет отправлен на модерацию
+                    {if $use_moderation}
+                        <label>
+                            <span class="frame_form_field__icsi-css">
+                                <div class="msg">
+                                    <div class="success">
+                                        Коментарий будет отправлен на модерацию
+                                    </div>
                                 </div>
-                            </div>
-                        </span>
-                    </label>
+                            </span>
+                        </label>
+                    {/if}
                 {/if}
                 <label>
                     <span class="title__icsi-css">Комментарий</span>

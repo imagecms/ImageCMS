@@ -73,7 +73,7 @@
                                 <!-- $model->hasDiscounts() - check for a discount. And show old price-->
                                 <div class="frame-prices f-s_0">
                                     <!-- Check for discount-->
-                                    {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0}
+                                    {$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0 && $model->getOldPrice() > $model->firstVariant->toCurrency()}
                                     {$hasDiscounts = $model->hasDiscounts()}
                                     {if $hasDiscounts}
                                         <span class="price-discount">
@@ -617,8 +617,8 @@
                     <div class="frame-form-comment">
                         <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
                         {literal}<script type="text/javascript">$(document).ready(function() {
-                                renderPosts($('#for_comments_view'), {countComment: 4});
-                                })</script>{/literal}
+                        renderPosts($('#for_comments_view'), {countComment: 4});
+                    })</script>{/literal}
                         </div>
 
                         <!--End. Comments block-->
@@ -725,3 +725,5 @@
         {widget('similar')}
     </div>
     {widget('latest_news')}
+    <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+    {/*}<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>{*/}

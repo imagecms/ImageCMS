@@ -116,38 +116,38 @@
                         'left': left,
                         'top': elPos.offset().top
                     }).removeClass().addClass('apply').addClass(clas).addClass(cleaverFilterObj.addingClass);
-                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function(){
+                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
                     });
                     cleaverFilterObj.mainWraper.find('a').focus();
-                    
+
                 }}
             );
-                    (function() {
-                        $(cleaverFilterObj.elClosed).click(function() {
-                            methods.triggerBtnClick();
-                        });
-                        $('body').live('click', function(event) {
-                            event.stopPropagation();
-                            if ($(event.target).parents().is(cleaverFilterObj.mainWraper) || $(event.target).is(cleaverFilterObj.mainWraper) || $(event.target).parents().is(cleaverFilterObj.elPos) || $(event.target).is(cleaverFilterObj.elPos))
-                                return;
-                            else {
-                                methods.triggerBtnClick();
-                            }
+            (function() {
+                $(cleaverFilterObj.elClosed).click(function() {
+                    methods.triggerBtnClick();
+                });
+                $('body').live('click', function(event) {
+                    event.stopPropagation();
+                    if ($(event.target).parents().is(cleaverFilterObj.mainWraper) || $(event.target).is(cleaverFilterObj.mainWraper) || $(event.target).parents().is(cleaverFilterObj.elPos) || $(event.target).is(cleaverFilterObj.elPos))
+                        return;
+                    else {
+                        methods.triggerBtnClick();
+                    }
 
-                        }).live('keydown', function(e) {
-                            var key, keyChar;
-                            if (!e)
-                                var e = window.event;
-                            if (e.keyCode)
-                                key = e.keyCode;
-                            else if (e.which)
-                                key = e.which;
-                            if (key == 27) {
-                                methods.triggerBtnClick();
-                            }
-                        });
-                    })();
+                }).live('keydown', function(e) {
+                    var key, keyChar;
+                    if (!e)
+                        var e = window.event;
+                    if (e.keyCode)
+                        key = e.keyCode;
+                    else if (e.which)
+                        key = e.which;
+                    if (key == 27) {
+                        methods.triggerBtnClick();
+                    }
+                });
+            })();
         },
         triggerBtnClick: function() {
             cleaverFilterObj.mainWraper[cleaverFilterObj.effectOff](cleaverFilterObj.duration);
@@ -189,6 +189,33 @@ function afterAjaxInitializeFilter() {
 //            console.log(b);
 //            ajaxRecount('#' + b.attr('id'), false, true);
 //        }
+    });
+    $(".frame-group-checks").each(function() {
+        var $this = $(this),
+                $thisRel = $this.data('rel');
+        if ($thisRel != undefined) {
+            var arr = $thisRel.split(' '),
+                    arrL = arr.length;
+            $.map(arr, function(n, i) {
+                switch (n) {
+                    case 'dropDown':
+                        $this.find('.title .text-el').addClass('d_l');
+                        $this.find('.title > .c_p').click(function() {
+                            var $this = $(this);
+                            $this.parent().next().slideToggle(function() {
+                                $this.toggleClass('valuePD');
+                            });
+                        });
+                    case 'scroll':
+                        $this.find('ul').addClass('scroll');
+                }
+                if (arrL - 1 == i)
+                    setTimeout(function() {
+                        $this.fadeIn();
+                        $this.next(preloader).hide()
+                    }, 1000);
+            });
+        }
     });
     apply.cleaverFilterMethod();
     apply.find('a').click(function() {

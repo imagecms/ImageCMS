@@ -45,14 +45,14 @@
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from_email]">Email отправителя</label>
                                     <div class="controls">
-                                        <input type = "email" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
+                                        <input type = "text" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="settings[admin_email]">Email администратора</label>
                                     <div class="controls">
-                                        <input type = "email" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
+                                        <input type = "text" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                 </div>
 
                                 <div class="control-group wraperControlGroup" {if !$settings['wraper_activ']} style="display: none" {/if}>
-                                    <label class="control-label" for="settings[wraper]">Обгортка</label>
+                                    <label class="control-label" for="settings[wraper]">Обвертка</label>
                                     <div class="controls">
                                         <textarea name='settings[wraper]' class="elRTE"  id="wraper">{$settings['wraper']}</textarea>
                                     </div>
@@ -110,7 +110,10 @@
 
                                 <div class="control-group" >
                                     <div class="controls ">
-                                        <a href="#" onclick="mailTest()">Проверка отправки почты</a>
+                                        <button type="button" class="btn" onclick="mailTest()" >
+                                            <i class="icon-envelope"></i>
+                                            Проверка отправки почты
+                                        </button>
                                     </div>
                                     <br>
                                     <div class="controls ">
@@ -119,8 +122,8 @@
                                         </button>
                                         <div class="mailTestResults">
                                         </div>
-                                    </div>                                    
-                                </div>                              
+                                    </div>
+                                </div>
 
                             </div>
                         </td>

@@ -67,7 +67,7 @@ class discount extends classes\BaseDiscount {
             $discount_all_order = $this->get_all_order_discount_register();
             
         }
-        
+
         $this->result_discount = array(
                                 'all_order'=>$discount_all_order, 
                                 'comulative' => $discount_comulativ, 

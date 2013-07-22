@@ -29,13 +29,16 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['user_message_active'] = $this->input->post('userMailTextRadio');
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
+                $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
+
                 $this->email_model->create($data);
             } else {
                 $this->email_model->create($this->data_model);
             }
+            return TRUE;
         } else {
-            showMessage($this->errors);
+            return FALSE;
         }
     }
 
@@ -50,26 +53,28 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['user_message_active'] = $this->input->post('userMailTextRadio');
                 $data['admin_message'] = $this->input->post('adminMailText');
                 $data['admin_message_active'] = $this->input->post('adminMailTextRadio');
+                $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
-                $data['descriptiasdasdon'] = $this->input->post('mail_desc');
 
                 $this->email_model->edit($id, $data);
             } else {
                 $this->email_model->edit($id, $this->data_model);
             }
+            return TRUE;
         } else {
-            showMessage($this->errors);
+            return FALSE;
         }
     }
 
     /**
      * send email
-     * @param string $send_to
-     * @param string $patern_name
-     * @return type
+     * @param type $send_to
+     * @param type $patern_name
+     * @param type $variables
+     * @return boolean
      */
-    public function sendEmail($send_to, $patern_name) {
-        if (parent::sendEmail($send_to, $patern_name)) {
+    public function sendEmail($send_to, $patern_name, $variables) {
+        if (parent::sendEmail($send_to, $patern_name, $variables)) {
             return TRUE;
         } else {
             return $this->errors;
