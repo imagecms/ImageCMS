@@ -920,7 +920,7 @@ class DX_Auth {
                 '$user_email$' => $email,
                 '$user_phone$' => $phone
                 );
-            
+                
             \email\email::getInstance()->sendEmail($email, 'Создание пользователя', $user_variables);
                 
                 
