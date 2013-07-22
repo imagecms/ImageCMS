@@ -147,7 +147,7 @@ var EmailTemplateVariables = {
                 variableValue: variableValue.val(),
                 template_id: template_id
             },
-            url: '/email/admin/addVariable',
+            url: '/admin/components/cp/email/addVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не додана', 'r');

@@ -17,9 +17,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        $this->load->module('email');
         $this->load->language('email');
-        $this->email = Email::getInstance();
+        $this->email = \email\email::getInstance();
     }
 
     public function index() {
@@ -136,16 +135,17 @@ class Admin extends BaseAdminController {
     }
 
     public function addVariable() {
+        echo 1;
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
         $variableValue = $this->input->post('variableValue');
 
         if ($this->email->addVariable($template_id, $variable, $variableValue)) {
-            return \CMSFactory\assetManager::create()
-                            ->setData('template_id', $template_id)
-                            ->setData('variable', $variable)
-                            ->setData('variable_value', $variableValue)
-                            ->render('newVariable', true);
+            \CMSFactory\assetManager::create()
+                    ->setData('template_id', $template_id)
+                    ->setData('variable', $variable)
+                    ->setData('variable_value', $variableValue)
+                    ->render('newVariable', true);
         } else {
             return FALSE;
         }
