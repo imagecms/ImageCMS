@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Создание шаблона письма</span>
+            <span class="title">{lang('Creating_mail_template')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -32,35 +32,35 @@
                                 <div class="inside_padd">
                                     <div class="row-fluid">
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount">Название шаблона письма (только латиница):</label>
+                                            <label class="control-label" for="comcount">{lang('Template_name_only_latin')}:</label>
                                             <div class="controls">
                                                 <input id="comcount" type="text" name="mail_name" value=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount2">От кого:</label>
+                                            <label class="control-label" for="comcount2">{lang('From')}:</label>
                                             <div class="controls">
                                                 <input id="comcount2" type="text" name="sender_name" value=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount3">От кого (mail):</label>
+                                            <label class="control-label" for="comcount3">{lang('From_email')}:</label>
                                             <div class="controls">
                                                 <input id="comcount3" type="text" name="from_email" value=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount4">Тема:</label>
+                                            <label class="control-label" for="comcount4">{lang('Theme')}:</label>
                                             <div class="controls">
                                                 <input id="comcount4" type="text" name="mail_theme" value=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount5">Тип письма:</label>
+                                            <label class="control-label" for="comcount5">{lang('Message_type')}:</label>
                                             <div class="controls">
                                                 &nbsp; HTML &nbsp;
                                                 <span class="frame_label">
@@ -78,22 +78,22 @@
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="userMailText">Шаблон письма пользователю:</label>
+                                            <label class="control-label" for="userMailText">{lang('Template_user_mail')}:</label>
                                             <div class="controls">
                                                 <textarea class="elRTE" name="userMailText" id="userMailText"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="userMailTextRadio">Отправлять письмо пользователю:</label>
+                                            <label class="control-label" for="userMailTextRadio">{lang('Send_email_to_user')}:</label>
                                             <div class="controls">
-                                                &nbsp; ДА &nbsp;
+                                                &nbsp; {lang('Yes')} &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="userMailTextRadio" value="1" checked="checked" id="userMailTextRadio"/>
                                                     </span>
                                                 </span>
-                                                &nbsp; НЕТ &nbsp;
+                                                &nbsp; {lang('No')} &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="userMailTextRadio" value="0" id="userMailTextRadio"/>
@@ -103,22 +103,22 @@
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="adminMailText">Шаблон письма администратору:</label>
+                                            <label class="control-label" for="adminMailText">{lang('Template_admin_mail')}:</label>
                                             <div class="controls">
                                                 <textarea class="elRTE" name="adminMailText" id="adminMailText"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="adminMailTextRadio">Отправлять письмо администратору:</label>
+                                            <label class="control-label" for="adminMailTextRadio">{lang('Send_email_to_admin')}:</label>
                                             <div class="controls">
-                                                &nbsp; ДА &nbsp;
+                                                &nbsp; {lang('Yes')} &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="adminMailTextRadio" value="1" checked="checked" id="adminMailTextRadio"/>
                                                     </span>
                                                 </span>
-                                                &nbsp; НЕТ &nbsp;
+                                                &nbsp; {lang('No')} &nbsp;
                                                 <span class="frame_label">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="adminMailTextRadio" value="0" id="adminMailTextRadio"/>
@@ -128,14 +128,14 @@
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="comcount3">Адресс администратора:</label>
+                                            <label class="control-label" for="comcount3">{lang('Admin_address')}:</label>
                                             <div class="controls">
                                                 <input id="comcount3" type="text" name="admin_email" value=""/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="symcount2">Описание шаблона:</label>
+                                            <label class="control-label" for="symcount2">{lang('Template_description')}:</label>
                                             <div class="controls">
                                                 <textarea class="elRTE" name="mail_desc" id="symcount2"></textarea>
                                             </div>

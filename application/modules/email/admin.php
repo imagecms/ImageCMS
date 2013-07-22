@@ -18,6 +18,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->module('email');
+        $this->load->language('email');
         $this->email = Email::getInstance();
     }
 
@@ -39,7 +40,7 @@ class Admin extends BaseAdminController {
         if ($_POST) {
             if ($this->email->create()) {
 
-                showMessage("Шаблон создан");
+                showMessage(lang('Template_created'));
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/email/index');
 
@@ -67,7 +68,7 @@ class Admin extends BaseAdminController {
 
         if ($_POST) {
             if ($this->email->edit($id)) {
-                showMessage("Шаблон отредактирован");
+                showMessage(lang('Template_edited'));
 
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/email/index');
@@ -89,21 +90,21 @@ class Admin extends BaseAdminController {
      */
     public function update_settings() {
         if ($_POST) {
-            $this->form_validation->set_rules('settings[admin_email]', 'Емейл администратора', 'required|xss_clean|valid_email');
-            $this->form_validation->set_rules('settings[from_email]', 'Емейл отправителя', 'required|xss_clean|valid_email');
-            $this->form_validation->set_rules('settings[from]', 'От кого', 'required|xss_clean');
-            $this->form_validation->set_rules('settings[theme]', 'Тема письма', 'xss_clean|required');
+            $this->form_validation->set_rules('settings[admin_email]', lang('Admin_email'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from_email]', lang('Sender_eamil'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from]', lang('From'), 'required|xss_clean');
+            $this->form_validation->set_rules('settings[theme]', lang('From_email'), 'xss_clean|required');
 
             if ($_POST['settings']['wraper_activ'])
-                $this->form_validation->set_rules('settings[wraper]', 'Обгортка', 'required|xss_clean|callback_wraper_check');
+                $this->form_validation->set_rules('settings[wraper]', lang('Wraper'), 'required|xss_clean|callback_wraper_check');
             else
-                $this->form_validation->set_rules('settings[wraper]', 'Обгортка', 'xss_clean');
+                $this->form_validation->set_rules('settings[wraper]', lang('Wraper'), 'xss_clean');
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors(), 'Сообщение', 'r');
+                showMessage(validation_errors(), lang('Message'), 'r');
             } else {
-                if ($this->email->setSettings($_POST['settings']))
-                    showMessage('Настройки сохранены', 'Сообщение');
+                if ($this->email_model->setSettings($_POST['settings']))
+                    showMessage(lang('Settings_saved'), lang('Message'));
             }
 
             $this->cache->delete_all();
@@ -114,7 +115,7 @@ class Admin extends BaseAdminController {
         if (preg_match('/\$content/', htmlentities($wraper))) {
             return TRUE;
         } else {
-            $this->form_validation->set_message('wraper_check', 'Поле %s должно содержать переменную $content');
+            $this->form_validation->set_message('wraper_check', lang('Field') . ' %s ' . lang('must_contain_variable') . ' $content');
             return FALSE;
         }
     }
