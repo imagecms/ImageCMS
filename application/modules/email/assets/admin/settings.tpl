@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Настройки</span>
+                <span class="title">{lang('Settings')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            Настройки
+                            {lang('Settings')}
                         </th>
                     </tr>
                 </thead>
@@ -36,35 +36,35 @@
                             <div class="inside_padd">
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[from]">От кого</label>
+                                    <label class="control-label" for="settings[from]">{lang('From')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[from]" class="textbox_short" value="{$settings['from']}" id="from"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[from_email]">Email отправителя</label>
+                                    <label class="control-label" for="settings[from_email]">{lang('From_email')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[admin_email]">Email администратора</label>
+                                    <label class="control-label" for="settings[admin_email]">{lang('Admin_email')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[theme]">Тема письма</label>
+                                    <label class="control-label" for="settings[theme]">{lang('Theme')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[theme]" class="textbox_short" value="{$settings['theme']}" id="theme"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[wraper_activ]">Использовать обгортку</label>
+                                    <label class="control-label" for="settings[wraper_activ]">{lang('Use_wraper')}</label>
                                     <div class="controls">
                                         <span class="frame_label no_connection active">
                                             <span class="niceCheck" style="background-position: -46px -17px;">
@@ -75,21 +75,21 @@
                                 </div>
 
                                 <div class="control-group wraperControlGroup" {if !$settings['wraper_activ']} style="display: none" {/if}>
-                                    <label class="control-label" for="settings[wraper]">Обвертка</label>
+                                    <label class="control-label" for="settings[wraper]">{lang('Wraper')}</label>
                                     <div class="controls">
                                         <textarea name='settings[wraper]' class="elRTE"  id="wraper">{$settings['wraper']}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[mailpath]">Серверный путь к Sendmail</label>
+                                    <label class="control-label" for="settings[mailpath]">{lang('Server_path_to_sendmail')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[mailpath]" class="textbox_short" value="{$settings['mailpath']}" id="mailpath"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="settings[protocol]">Протокол</label>
+                                    <label class="control-label" for="settings[protocol]">{lang('Protocol')}</label>
                                     <div class="controls">
                                         <select name = "settings[protocol]" class="protocolSettings" id="protocol">
                                             <option {if $settings['protocol'] == "SMTP"} selected {/if} value="SMTP" >SMTP</option>
@@ -100,7 +100,7 @@
                                 </div>
 
                                 <div class="control-group portControlGroup span4" {if $settings['protocol'] != "SMTP"} style="display: none"  {/if} >
-                                    <label class="control-label" for="settings[port]">Протокол</label>
+                                    <label class="control-label" for="settings[port]">{lang('Port')}</label>
                                     <div class="controls ">
                                         <input type = "text" name = "settings[port]" class=" textbox_short portSettings"  value="{$settings['port']}"  id="port"/>
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="controls ">
                                         <button type="button" class="btn" onclick="mailTest()" >
                                             <i class="icon-envelope"></i>
-                                            Проверка отправки почты
+                                            {lang('Check_email_sending')}
                                         </button>
                                     </div>
                                     <br>
