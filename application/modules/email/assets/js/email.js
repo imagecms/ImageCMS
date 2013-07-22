@@ -92,7 +92,7 @@ var EmailTemplateVariables = {
                 template_id: template_id,
                 variable: variable
             },
-            url: '/email/admin/deleteVariable',
+            url: '/admin/components/cp/email/deleteVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не удалена', 'r');
@@ -118,7 +118,7 @@ var EmailTemplateVariables = {
                 oldVariable: oldVariable,
                 template_id: template_id
             },
-            url: '/email/admin/updateVariable',
+            url: '/admin/components/cp/email/updateVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не обновлена', 'r');
@@ -167,7 +167,7 @@ var EmailTemplateVariables = {
                 data: {
                     template_id: template_id
                 },
-                url: '/email/admin/getTemplateVariables',
+                url: '/admin/components/cp/email/getTemplateVariables',
                 success: function(data) {
                     $('#userMailVariables').html(data);
                     $('#adminMailVariables').html(data);

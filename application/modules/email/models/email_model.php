@@ -1,9 +1,9 @@
 <?php
-
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
+
 class Email_model extends CI_Model {
 
     function __construct() {
@@ -197,8 +197,16 @@ class Email_model extends CI_Model {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_email_paterns');
+        //$this->db->query("");
+        //read the file
+       // $file = $this->load->file('paterns.sql', true);
 
-
+//        //explode it in an array
+//        $file_array = explode(';', $file);
+//
+//        //execute the exploded text content
+//        foreach($file_array as $query)
+//            $this->db->query($query); 
 
 
         $this->db
@@ -261,9 +269,10 @@ class Email_model extends CI_Model {
 
     public function addVariable($template_id, $variable, $variableValue) {
         $paternVariables = $this->getTemplateVariables($template_id);
-        $paternVariables[$variable] = $variableValue;
+            $paternVariables[$variable] = $variableValue;
 
-        return $this->setTemplateVariables($template_id, $paternVariables);
+            return $this->setTemplateVariables($template_id, $paternVariables);
+        
     }
 
     public function getTemplateVariables($template_id) {
