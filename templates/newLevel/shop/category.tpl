@@ -63,8 +63,20 @@
         <!--widget for popular products in this category-->
     </div>
 </div>
+{widget('latest_news')}
+{if trim($category->getDescription()) != ""}
+    <div class="frame-seo-text">
+        <div class="container">
+            <div class="text seo-text">
+                {echo trim($category->getDescription())}
+            </div>
+        </div>
+    </div>
+{/if}
 <!--Start. Popular products -->
 <div class="horizontal-carousel">
     {widget('popular_products')}
 </div>
 <!--End. Popular products -->
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

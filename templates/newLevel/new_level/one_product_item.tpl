@@ -4,7 +4,11 @@
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
-                <img data-original="{echo $p->firstVariant->getMediumPhoto()}"
+                {$photo = $p->firstVariant->getMediumPhoto()}
+                {if $defaultItem}
+                    {$photo = $p->firstVariant->getDefaultPhoto()}
+                {/if}
+                <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
                      class="vimg lazy"/>
@@ -49,7 +53,7 @@
             {/if}
             <div class="frame-prices f-s_0">
                 <!-- Check for discount-->
-                {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0}
+                {$oldoprice = $p->getOldPrice() && $p->getOldPrice() != 0 && $p->getOldPrice() > $p->firstVariant->toCurrency()}
                 {$hasDiscounts = $p->hasDiscounts()}
                 {if $hasDiscounts}
                     <span class="price-discount">
@@ -158,7 +162,7 @@
                                         data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{echo $pv->toCurrency('Price',1)}"
-                                        data-prodStatus='{echo json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
+                                        data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
                                     </button>
@@ -171,7 +175,7 @@
                                     type="button"
                                     data-drop=".drop-report"
                                     data-source="/shop/ajax/getNotifyingRequest"
-                                    
+
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
@@ -257,8 +261,8 @@
         <!--        Start. Remove buttons if compare or wishlist-->
         {if $compare}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
-        {/if}
-        {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
+            {/if}
+            {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
             <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->

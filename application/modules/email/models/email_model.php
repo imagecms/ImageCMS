@@ -67,18 +67,16 @@ class Email_model extends CI_Model {
             return '';
         }
     }
-    
-    public function getPaternSettings($patern_name){
+
+    public function getPaternSettings($patern_name) {
         $query = $this->db->where('name', $patern_name)->get('mod_email_paterns');
-        
-        if($query){
+
+        if ($query) {
             return $query->row_array();
-        }else{
+        } else {
             return '';
         }
     }
-
-    
 
     public function create($data) {
         $this->db->insert('mod_email_paterns', $data);
@@ -110,12 +108,17 @@ class Email_model extends CI_Model {
                         ->row_array();
     }
 
-    public function deleteTemplate($ids) {
+    public function deleteTemplateByID($ids) {
         $this->db
                 ->where_in('id', $ids)
                 ->delete('mod_email_paterns');
     }
 
+    public function deleteTemplateByNames($names) {
+        $this->db
+                ->where_in('name', $names)
+                ->delete('mod_email_paterns');
+    }
 
     /**
      * install module(create db tables, set default values)
@@ -231,6 +234,56 @@ class Email_model extends CI_Model {
         $this->dbforge->drop_table('mod_email_paterns');
 
         return TRUE;
+    }
+
+    public function deleteVariable($template_id, $variable) {
+        $paternVariables = $this->getTemplateVariables($template_id);
+        if ($paternVariables) {
+            unset($paternVariables[$variable]);
+
+            return $this->setTemplateVariables($template_id, $paternVariables);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable) {
+        $paternVariables = $this->getTemplateVariables($template_id);
+        if ($paternVariables) {
+            unset($paternVariables[$oldVariable]);
+            $paternVariables[$variable] = $variableNewValue;
+
+            return $this->setTemplateVariables($template_id, $paternVariables);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function addVariable($template_id, $variable, $variableValue) {
+        $paternVariables = $this->getTemplateVariables($template_id);
+        if ($paternVariables) {
+            $paternVariables[$variable] = $variableValue;
+
+            return $this->setTemplateVariables($template_id, $paternVariables);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getTemplateVariables($template_id) {
+        $query = $this->db->where('id', $template_id)->get('mod_email_paterns');
+        if ($query) {
+            $patern = $query->row_array();
+            return unserialize($patern['variables']);
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function setTemplateVariables($template_id, $paternVariables) {
+        return $this->db
+                        ->where('id', $template_id)
+                        ->update('mod_email_paterns', array('variables' => serialize($paternVariables)));
     }
 
 }
