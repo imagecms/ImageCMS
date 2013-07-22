@@ -29,7 +29,7 @@ $(document).ready(function() {
 
     });
 
-    $('table.variablesTable .icon-edit').live('click', function() {
+    $('table.variablesTable .icon-edit').on('click', function() {
         var editor = $(this).closest('tr').find('div.variable');
         var editValue = $.trim(editor.text());
         editor.empty();
@@ -94,14 +94,19 @@ var EmailTemplateVariables = {
             },
             url: '/email/admin/deleteVariable',
             success: function(data) {
+                if(!data){
+                    showMessage('Ошибка', 'Переменная не удалена', 'r');
+                    return false;
+                }
                 curElement.closest('tr').remove();
-                showMessage('Сообщение', 'Переменная успешно удалена');
+                showMessage('Сообщение', 'Переменная ' + variable + ' успешно удалена');
             }
         });
     },
     update: function(curElement, template_id, oldVariable) {
-        var variable = curElement.closest('tr').find('.variableEdit');
-        var variableValue = curElement.closest('tr').find('.variableValueEdit');
+        var closestTr = curElement.closest('tr');
+        var variable = closestTr.find('.variableEdit');
+        var variableValue = closestTr.find('.variableValueEdit');
 
         this.validateVariable(variable.val(), variableValue.val());
 
@@ -115,12 +120,16 @@ var EmailTemplateVariables = {
             },
             url: '/email/admin/updateVariable',
             success: function(data) {
-                curElement.closest('tr').find('.variable').text(variable.val());
-                curElement.closest('tr').find('.variableValue').text(variableValue.val());
+                if(!data){
+                    showMessage('Ошибка', 'Переменная не обновлена', 'r');
+                    return false;
+                }
+                closestTr.find('.variable').text(variable.val());
+                closestTr.find('.variableValue').text(variableValue.val());
                 variable.css('display', 'none');
                 variableValue.css('display', 'none');
-                curElement.closest('tr').find('.editVariable').css('display', 'block');
-                curElement.closest('tr').find('.refreshVariable').css('display', 'none');
+                closestTr.find('.editVariable').css('display', 'block');
+                closestTr.find('.refreshVariable').css('display', 'none');
                 showMessage('Сообщение', 'Переменная успешно обновлена');
             }
         });
@@ -140,10 +149,14 @@ var EmailTemplateVariables = {
             },
             url: '/email/admin/addVariable',
             success: function(data) {
+                if(!data){
+                    showMessage('Ошибка', 'Переменная не додана', 'r');
+                    return false;
+                }
                 curElement.parent('div').find('.typeVariable').val('');
                 $('.addVariableContainer').css('display', 'none');
                 $(data).insertBefore('table.variablesTable .addVariableContainer');
-                showMessage('Сообщение', 'Переменная успешно додана');
+                showMessage('Сообщение', 'Переменная ' + variable.val() + ' успешно додана');
             }
         });
     },
