@@ -914,11 +914,11 @@ class DX_Auth {
                 }
                 
             $user_variables = array(
-                '$user_name$' => $username,
-                '$user_password$' => $password,
-                '$user_address$' => $address,
-                '$user_email$' => $email,
-                '$user_phone$' => $phone
+                'user_name' => $username,
+                'user_password' => $password,
+                'user_address' => $address,
+                'user_email' => $email,
+                'user_phone' => $phone
                 );
                 
             \email\email::getInstance()->sendEmail($email, 'Создание пользователя', $user_variables);
@@ -979,14 +979,14 @@ class DX_Auth {
                    // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
                     
                     $replaceData = array(
-                        '$webSiteName$' => $this->ci->config->item('DX_website_name'),
-                        '$resetPasswordUri$' => $data['reset_password_uri'],
-                        '$password$' => $data['password'],
-                        '$key$' => $data['key'],
-                        '$webMasterEmail$' => $this->ci->config->item('DX_webmaster_email')
+                        'webSiteName' => $this->ci->config->item('DX_website_name'),
+                        'resetPasswordUri' => $data['reset_password_uri'],
+                        'password' => $data['password'],
+                        'key' => $data['key'],
+                        'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
                     );
                     
-                    \email\email::getInstance()->sendEmail($email, 'Смена пароля', $replaceData);
+                    \email\email::getInstance()->sendEmail($row->email, 'Востановление пароля', $replaceData);
                     
 
                     // Send instruction email
@@ -1081,12 +1081,12 @@ class DX_Auth {
         if ($query = $this->ci->users->get_user_by_id($this->ci->session->userdata('DX_user_id')) AND $query->num_rows() > 0) {
             // Get current logged in user
             $row = $query->row();
-
             $pass = $this->_encode($old_pass);
 
             // Check if old password correct
             if (crypt($pass, $row->password) === $row->password) {
                 // Crypt and encode new password
+                $new_pass_for_user = $new_pass;
                 $new_pass = crypt($this->_encode($new_pass));
 
                 // Replace old password with new password
@@ -1094,6 +1094,13 @@ class DX_Auth {
 
                 // Trigger event
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
+                
+                $replaceData = array(
+                        'user_name' => $row->username,
+                        'password' => $new_pass_for_user
+                    );
+                    
+                \email\email::getInstance()->sendEmail($row->email, 'Смена пароля', $replaceData);
 
                 $result = TRUE;
             } else {
