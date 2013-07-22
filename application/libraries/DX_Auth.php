@@ -978,15 +978,15 @@ class DX_Auth {
                     // Trigger event and get email content
                    // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
                     
-//                    $replaceData = array(
-//                        '$webSiteName$' => $this->ci->config->item('DX_website_name'),
-//                        '$resetPasswordUri$' => $data['reset_password_uri'],
-//                        '$password$' => $data['password'],
-//                        '$key$' => $data['key'],
-//                        '$webMasterEmail$' => $this->ci->config->item('DX_webmaster_email')
-//                    );
-//                    
-//                    $this->ci->load->module('email')->getInstance()->sendEmail($email, 'Создание пользователя', $replaceData);
+                    $replaceData = array(
+                        '$webSiteName$' => $this->ci->config->item('DX_website_name'),
+                        '$resetPasswordUri$' => $data['reset_password_uri'],
+                        '$password$' => $data['password'],
+                        '$key$' => $data['key'],
+                        '$webMasterEmail$' => $this->ci->config->item('DX_webmaster_email')
+                    );
+                    
+                    \email\email::getInstance()->sendEmail($email, 'Смена пароля', $replaceData);
                     
 
                     // Send instruction email
