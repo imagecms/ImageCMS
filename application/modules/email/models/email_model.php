@@ -1,9 +1,9 @@
 <?php
-
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
+
 class Email_model extends CI_Model {
 
     function __construct() {
@@ -261,9 +261,10 @@ class Email_model extends CI_Model {
 
     public function addVariable($template_id, $variable, $variableValue) {
         $paternVariables = $this->getTemplateVariables($template_id);
-        $paternVariables[$variable] = $variableValue;
+            $paternVariables[$variable] = $variableValue;
 
-        return $this->setTemplateVariables($template_id, $paternVariables);
+            return $this->setTemplateVariables($template_id, $paternVariables);
+        
     }
 
     public function getTemplateVariables($template_id) {
