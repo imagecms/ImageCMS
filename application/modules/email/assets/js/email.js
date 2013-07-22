@@ -176,8 +176,8 @@ var EmailTemplateVariables = {
         }
     },
     validateVariable: function(variable, variableValue) {
-        if (variable[0] != '%' || variable[variable.length - 1] != '%') {
-            showMessage('Сообщение', 'Переменну должни окружать %', 'r');
+        if (variable[0] != '$' || variable[variable.length - 1] != '$') {
+            showMessage('Сообщение', 'Переменну должни окружать $', 'r');
             exit;
         }
         if (!variableValue) {
