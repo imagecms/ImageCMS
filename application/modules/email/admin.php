@@ -5,7 +5,6 @@
 /**
  * Image CMS
  * Email Module Admin
- * @property email_model $email_model
  * @property Cache $cache
  */
 class Admin extends BaseAdminController {
@@ -18,14 +17,13 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('email_model');
         $this->load->language('email');
-        $this->email = Email::getInstance();
+        $this->email = \email\email::getInstance();
     }
 
     public function index() {
         \CMSFactory\assetManager::create()
-                ->setData('models', $this->email->email_model->getAllTemplates())
+                ->setData('models', $this->email->getAllTemplates())
                 ->renderAdmin('list');
     }
 
@@ -33,7 +31,7 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()
                 ->registerScript('email', TRUE)
                 ->registerStyle('style')
-                ->setData('settings', $this->email_model->getSettings())
+                ->setData('settings', $this->email->getSettings())
                 ->renderAdmin('settings');
     }
 
@@ -55,7 +53,7 @@ class Admin extends BaseAdminController {
         else
             \CMSFactory\assetManager::create()
                     ->registerScript('email', TRUE)
-                    ->setData('settings', $this->email_model->getSettings())
+                    ->setData('settings', $this->email->getSettings())
                     ->renderAdmin('create');
     }
 
@@ -64,7 +62,7 @@ class Admin extends BaseAdminController {
     }
 
     public function edit($id) {
-        $model = $this->email_model->getTemplateById($id);
+        $model = $this->email->getTemplateById($id);
         $variables = unserialize($model['variables']);
 
         if ($_POST) {
@@ -125,7 +123,7 @@ class Admin extends BaseAdminController {
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
 
-        return  $this->email_model->deleteVariable($template_id, $variable);
+        return $this->email->deleteVariable($template_id, $variable);
     }
 
     public function updateVariable() {
@@ -133,20 +131,21 @@ class Admin extends BaseAdminController {
         $variable = $this->input->post('variable');
         $variableNewValue = $this->input->post('variableValue');
         $oldVariable = $this->input->post('oldVariable');
-        return $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+        return $this->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
     }
 
     public function addVariable() {
+        echo 1;
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
         $variableValue = $this->input->post('variableValue');
 
-        if ($this->email_model->addVariable($template_id, $variable, $variableValue)) {
-            return \CMSFactory\assetManager::create()
-                            ->setData('template_id', $template_id)
-                            ->setData('variable', $variable)
-                            ->setData('variable_value', $variableValue)
-                            ->render('newVariable', true);
+        if ($this->email->addVariable($template_id, $variable, $variableValue)) {
+            \CMSFactory\assetManager::create()
+                    ->setData('template_id', $template_id)
+                    ->setData('variable', $variable)
+                    ->setData('variable_value', $variableValue)
+                    ->render('newVariable', true);
         } else {
             return FALSE;
         }
@@ -154,7 +153,7 @@ class Admin extends BaseAdminController {
 
     public function getTemplateVariables() {
         $template_id = $this->input->post('template_id');
-        $variables = $this->email_model->getTemplateVariables($template_id);
+        $variables = $this->email->getTemplateVariables($template_id);
         if ($variables) {
             return \CMSFactory\assetManager::create()
                             ->setData('variables', $variables)

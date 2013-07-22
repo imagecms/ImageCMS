@@ -1,12 +1,14 @@
 <?php
 
+namespace email;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
  * Emails
  */
-class Email extends \email\classes\BaseEmail {
+class email extends \email\classes\BaseEmail {
 
     protected static $_instance;
 
