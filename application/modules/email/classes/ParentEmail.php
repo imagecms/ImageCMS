@@ -128,7 +128,7 @@ class ParentEmail extends \MY_Controller {
      * @param string $send_to - recepient email
      * @param string $patern_name - email patern  name
      * @param array $variables - variables to raplase in message:
-     *   $variables = array('%user%' => 'UserName')
+     *   $variables = array('$user$' => 'UserName')
      * @return bool
      */
     public function sendEmail($send_to, $patern_name, $variables) {
@@ -159,6 +159,16 @@ class ParentEmail extends \MY_Controller {
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
+            }else{
+                \CMSFactory\Events::create()->registerEvent(
+                    array(
+                        'from'=>$this->from, 
+                        'from_email' =>$this->from_email,
+                        'send_to' =>  $this->send_to,
+                        'theme' =>  $this->theme,
+                        'message' => $this->message
+                    ),'ParentEmail:userSend');
+                \CMSFactory\Events::runFactory();
             }
         }
 
@@ -178,8 +188,19 @@ class ParentEmail extends \MY_Controller {
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
+            }else{
+                 \CMSFactory\Events::create()->registerEvent(
+                    array(
+                        'from'=>$this->from, 
+                        'from_email' =>$this->from_email,
+                        'send_to' =>  $this->send_to,
+                        'theme' =>  $this->theme,
+                        'message' => $this->message
+                    ),'ParentEmail:adminSend');
+                \CMSFactory\Events::runFactory();
             }
         }
+        
 
         if ($this->errors) {
             return FALSE;
