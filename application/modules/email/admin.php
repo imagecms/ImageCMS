@@ -63,6 +63,11 @@ class Admin extends BaseAdminController {
 
     public function edit($id) {
         $model = $this->email->getTemplateById($id);
+        if(!$model){
+            $this->load->module('core');
+            $this->core->error_404();
+            exit;            
+        }
         $variables = unserialize($model['variables']);
 
         if ($_POST) {
@@ -159,6 +164,16 @@ class Admin extends BaseAdminController {
                             ->render('variablesSelectOptions', true);
         } else {
             return FALSE;
+        }
+    }
+    
+    /**
+     * import templates from file
+     */
+    public function import_templates(){
+        $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
+        if($this->db->query($file)){
+              redirect('/admin/components/cp/email/');
         }
     }
 
