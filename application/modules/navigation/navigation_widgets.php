@@ -28,7 +28,7 @@ class Navigation_Widgets extends MY_Controller {
         }else{
             $data_type = $this->core->core_data['data_type'];
         }
-        
+
         switch ($data_type) {
             case 'category':
                 $cur_category = $this->core->cat_content;
@@ -67,7 +67,6 @@ class Navigation_Widgets extends MY_Controller {
                             ->join('shop_brands_i18n', 'shop_brands_i18n.id=shop_brands.id')
                             ->limit(1)
                             ->get('shop_brands')->row_array();
-                    var_dumps($brand);
                     $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands'));
                     $navi_cats[] = array('path_url' => $brand['url'], 'name' => $brand['name']);
                     $tpl_data = array('navi_cats' => $navi_cats);
@@ -79,8 +78,8 @@ class Navigation_Widgets extends MY_Controller {
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     }
                 }
-                
-                
+
+
                 break;
             case 'compare';
                         $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare'));
