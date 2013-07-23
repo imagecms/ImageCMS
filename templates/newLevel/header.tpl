@@ -16,7 +16,15 @@
 <div class="content-header">
     <div class="container">
         <!--        Logo-->
-        <a href="{site_url('')}" class="logo"><img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/></a>
+        {if  $CI->uri->uri_string() == ''}
+            <span class="logo">
+                <img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/>
+            </span>
+        {else:}
+            <a href="{site_url('')}" class="logo">
+                <img src="{$THEME}{$colorScheme}/images/logo.png" alt="logo.png"/>
+            </a>
+        {/if}
         <div class="left-content-header">
             <div class="header-left-content-header">
                 <!--                Start. contacts block-->
@@ -65,7 +73,7 @@
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>
-                    </div>        
+                    </div>
                 </div>
                 <!--                End. Show search form-->
             </div>
