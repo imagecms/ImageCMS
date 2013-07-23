@@ -193,7 +193,6 @@ class CI_Upload {
 
 			return FALSE;
 		}
-                echo 1;
 
 
 		// Set the uploaded data as class variables
