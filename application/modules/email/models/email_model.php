@@ -89,9 +89,16 @@ class Email_model extends CI_Model {
     }
 
     public function getAllTemplates() {
-        return $this->db
-                        ->get('mod_email_paterns')
-                        ->result_array();
+        $query = $this->db
+                        ->get('mod_email_paterns');
+                        
+        if($query){
+            return $query->result_array();
+            
+        }else{
+            return '';
+        }
+        
     }
 
     public function getTemplateById($id) {
@@ -197,17 +204,8 @@ class Email_model extends CI_Model {
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_email_paterns');
-        //$this->db->query("");
-        //read the file
-       // $file = $this->load->file('paterns.sql', true);
 
-//        //explode it in an array
-//        $file_array = explode(';', $file);
-//
-//        //execute the exploded text content
-//        foreach($file_array as $query)
-//            $this->db->query($query); 
-
+       
 
         $this->db
                 ->where('identif', 'email')
@@ -231,6 +229,7 @@ class Email_model extends CI_Model {
 
         return TRUE;
     }
+    
 
     /**
      * deinstall module

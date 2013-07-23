@@ -412,6 +412,7 @@ class ParentEmail extends \MY_Controller {
     public function getTemplateVariables($template_id) {
         return $this->email_model->getTemplateVariables($template_id);
     }
+    
 
     public function _install() {
         $this->email_model->install();

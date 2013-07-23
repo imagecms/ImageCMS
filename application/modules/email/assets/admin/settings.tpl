@@ -36,6 +36,12 @@
                             <div class="inside_padd">
 
                                 <div class="control-group">
+                                    <div class="controls">
+                                        <a href="{site_url('admin/components/cp/email/import_templates')}" style="float:right">Установить стандартние шаблони</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
                                     <label class="control-label" for="settings[from]">{lang('From')}</label>
                                     <div class="controls">
                                         <input type = "text" name = "settings[from]" class="textbox_short" value="{$settings['from']}" id="from"/>
