@@ -29,6 +29,7 @@ class Auth extends MY_Controller {
     }
 
     public function index() {
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         $this->login();
     }
 
@@ -104,7 +105,7 @@ class Auth extends MY_Controller {
             $val->set_rules('password', lang('lang_password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
 
-            // Set captcha rules if login attempts exceed max attempts in config           
+            // Set captcha rules if login attempts exceed max attempts in config
             if ($this->dx_auth->is_max_login_attempts_exceeded()) {
                 if ($this->dx_auth->use_recaptcha)
                     $val->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|xss_clean|required|callback_captcha_check');
@@ -115,7 +116,7 @@ class Auth extends MY_Controller {
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
 //                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
                 // Redirect to homepage
-                
+
                 if (class_exists('ShopCore') && SHOP_INSTALLED)
                     ShopCore::app()->SCart->transferCartData();
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
@@ -259,7 +260,7 @@ class Auth extends MY_Controller {
         } else {
 //             ($hook = get_hook('auth_logout_to_reg')) ? eval($hook) : NULL;
             redirect(site_url(), 301);
-//            
+//
 //            $data['auth_message'] = lang('lang_logout_to_reg');
 //
 //            $this->template->assign('content', $data['auth_message']);
