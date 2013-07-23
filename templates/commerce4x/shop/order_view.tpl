@@ -219,7 +219,7 @@
 
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
-                                                        {echo $kitProduct->getKitNewPrice()}
+                                                        {echo $kitProducts->getKitNewPrice()}
                                                     </span>{$CS}
                                                 </div>
                                             </div>
@@ -277,7 +277,7 @@
 
 
                 <span class="f-s_18">Сумма:</span>&nbsp;
-                <span class="f-s_24">{echo $model->getTotalPrice() + ShopCore::app()->SCurrencyHelper->convert($delivery)}</span>&nbsp;
+                <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
                 <span class="f-s_24"> {$CS}</span>
                 {//var_dump(json_decode($model->getdiscountinfo()))}
 
