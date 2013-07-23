@@ -21,7 +21,7 @@
                     <script type="text/javascript">
                         {literal}
                             $(function() {
-                                renderPosts(this);
+                                renderPosts($('[name=for_comments]'));
                             })
                         {/literal}
                     </script>

@@ -62,7 +62,15 @@ var ImageCMSApi = {
                         ImageCMSApi.sendValidations(obj.validations, selector);
                     }
                     
-                    location.reload();
+                    
+                    if (url.indexOf('forgot') + 1)
+                        setTimeout((function() {
+                            $('.msg').hide();
+                            $('#' + selector).show();
+
+                        }), 3000);
+                    else
+                        location.reload();
                     
                     /*
                     if (obj.refresh == true)

@@ -42,6 +42,7 @@
             {/if}
             <!--Start. Banners block-->
             {$CI->load->module('banners')->render($category->getId())}
+            {$CI->load->module('shop_news')->getShopNews($limit = 20)}
 
             <!--End. Banners-->
             {include_tpl('catalogue_header')}
