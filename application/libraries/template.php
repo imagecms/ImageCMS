@@ -397,7 +397,7 @@ class Template extends Mabilis {
                 $tpl .= self::$result_after;
             else
             if (!strstr($tpl, self::$result_after))
-                $tpl = preg_replace('/\<\/body\>/', self::$result_after . "</body>\n", $tpl, 1);
+                $tpl = preg_replace('/\<\/body>(\s*|\n)<\/html>$/', self::$result_after . "</body></html>", $tpl, 1);
 
 //
 //        if ($result_js_before) {
