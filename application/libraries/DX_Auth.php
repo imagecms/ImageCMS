@@ -849,7 +849,7 @@ class DX_Auth {
             'phone' => $phone,
             'last_ip' => $this->ci->input->ip_address()
         );
-
+        
         // Do we need to send email to activate user
 
         if ($this->ci->config->item('DX_email_activation')) {
@@ -864,7 +864,6 @@ class DX_Auth {
 
             // Activation Link
             $new_user['activate_url'] = site_url($this->ci->config->item('DX_activate_uri') . "{$new_user['email']}/{$new_user['activation_key']}");
-
             // Trigger event and get email content
             $this->ci->dx_auth_event->sending_activation_email($new_user, $message);
 
@@ -913,6 +912,18 @@ class DX_Auth {
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
                 }
+                
+            $user_variables = array(
+                'user_name' => $username,
+                'user_password' => $password,
+                'user_address' => $address,
+                'user_email' => $email,
+                'user_phone' => $phone
+                );
+                
+            \email\email::getInstance()->sendEmail($email, 'Создание пользователя', $user_variables);
+                
+                
                 if($login_user){
                     if ($this->login($email, $password)) {
                         if (class_exists('ShopCore'))
@@ -965,10 +976,21 @@ class DX_Auth {
                     $subject = $this->ci->lang->line('auth_forgot_password_subject');
 
                     // Trigger event and get email content
-                    $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                   // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                    
+                    $replaceData = array(
+                        'webSiteName' => $this->ci->config->item('DX_website_name'),
+                        'resetPasswordUri' => $data['reset_password_uri'],
+                        'password' => $data['password'],
+                        'key' => $data['key'],
+                        'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
+                    );
+                    
+                    \email\email::getInstance()->sendEmail($row->email, 'Востановление пароля', $replaceData);
+                    
 
                     // Send instruction email
-                    $this->_email($row->email, $from, $subject, $message);
+                    //$this->_email($row->email, $from, $subject, $message);
 
                     $result = TRUE;
                 } else {
@@ -1059,12 +1081,12 @@ class DX_Auth {
         if ($query = $this->ci->users->get_user_by_id($this->ci->session->userdata('DX_user_id')) AND $query->num_rows() > 0) {
             // Get current logged in user
             $row = $query->row();
-
             $pass = $this->_encode($old_pass);
 
             // Check if old password correct
             if (crypt($pass, $row->password) === $row->password) {
                 // Crypt and encode new password
+                $new_pass_for_user = $new_pass;
                 $new_pass = crypt($this->_encode($new_pass));
 
                 // Replace old password with new password
@@ -1072,6 +1094,13 @@ class DX_Auth {
 
                 // Trigger event
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
+                
+                $replaceData = array(
+                        'user_name' => $row->username,
+                        'password' => $new_pass_for_user
+                    );
+                    
+                \email\email::getInstance()->sendEmail($row->email, 'Смена пароля', $replaceData);
 
                 $result = TRUE;
             } else {

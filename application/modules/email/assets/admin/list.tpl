@@ -3,14 +3,14 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Удаление шаблона письма</h3>
+            <h3>{lang('Template_email_deleting')}</h3>
         </div>
         <div class="modal-body">
-            <p>Удалить выбраные шаблоны?</p>
+            <p>{lang('Delete_selected_templates')}?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/email/delete/')" >Удалить</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/email/delete/')" >{lang('Delete')}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Просмотр списка шаблонов</span>
+                <span class="title">{lang('Template_list_view')}</span>
             </div>
             <div class="pull-right">
                 <span class="help-inline"></span>
@@ -31,7 +31,7 @@
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/email/settings">
                         <i class="icon-wrench"></i>
-                        Настройки
+                        {lang('Settings')}
                     </a>
                     <button type="button"
                             class="btn btn-small btn-danger disabled action_on"
@@ -40,7 +40,7 @@
                         <i class="icon-trash icon-white"></i>{lang('a_delete')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/email/create" >
-                        <i class="icon-list-alt icon-white"></i>Создать шаблон
+                        <i class="icon-list-alt icon-white"></i>{lang('Create_template')}
                     </a>
                 </div>
             </div>
@@ -60,9 +60,9 @@
                                         </span>
                                     </th>
                                     <th>{lang('a_name')}</th>
-                                    <th>Описание</th>
-                                    <th>Тема</th>
-                                    <th>От кого</th>
+                                    <th>{lang('Description')}</th>
+                                    <th>{lang('Theme')}</th>
+                                    <th>{lang("From")}</th>
                                 </tr>
                             </thead>
                             <tbody class="sortable">
@@ -93,7 +93,7 @@
             {else:}
                 </br>
                 <div class="alert alert-info">
-                    Список шаблонов пустой
+                    {lang('Template_list_empty')}
                 </div>
             {/if}
         </div>

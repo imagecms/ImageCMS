@@ -1,17 +1,21 @@
 <?php
 
+namespace email;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
  * Emails
  */
-class Email extends \email\classes\BaseEmail {
+class email extends \email\classes\BaseEmail {
 
     protected static $_instance;
 
     public function __construct() {
         parent::__construct();
+
+        $this->load->model('../modules/email/models/email_model');
     }
 
     private function __clone() {
