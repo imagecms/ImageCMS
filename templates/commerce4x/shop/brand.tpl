@@ -19,10 +19,10 @@
 *   $Comments: array which contains count of comments for each product
 */
 #}
-
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <div class="row">
+        {widget('path')}
         {include_tpl('filter')}
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>

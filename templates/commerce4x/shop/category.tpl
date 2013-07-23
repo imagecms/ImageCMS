@@ -35,7 +35,7 @@
         <div class="span9 right">
 
             <!-- category title and products count output -->
-            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>
+            <h1 class="d_i">{echo $title}</h1>
             {if count($products)>0}
                 <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
