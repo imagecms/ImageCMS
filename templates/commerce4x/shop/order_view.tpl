@@ -266,7 +266,7 @@
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
                             (Сумма товаров: <span class="f-w_b">{if $model->getOriginPrice()}{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}{else:}{echo $model->gettotalprice()}{/if}</span> {$CS})
-                        {if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
+                        {if $CI->load->module('mod_discount')->check_module_install()}{if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}{/if}
 
 
                     {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
