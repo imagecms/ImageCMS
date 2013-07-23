@@ -137,6 +137,7 @@
                                                                   data-vname="{echo ShopCore::encode($pv->getName())}"
                                                                   data-maxcount="{echo $pv->getstock()}"
                                                                   data-number="{echo $pv->getNumber()}"
+                                                                  data-url="{echo shop_url('product/' . $model->getUrl())}"
                                                                   data-img="{echo $pv->getSmallPhoto()}"
                                                                   data-mainImage="{echo $pv->getMainPhoto()}"
                                                                   data-largeImage="{echo $pv->getlargePhoto()}"

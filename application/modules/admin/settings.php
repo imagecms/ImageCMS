@@ -2,7 +2,9 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-
+/**
+ * @property CI_Cache $cache
+ */
 class Settings extends BaseAdminController {
 
     function __construct() {
@@ -17,7 +19,7 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
-        
+
         $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
@@ -47,8 +49,8 @@ class Settings extends BaseAdminController {
 
         $this->template->assign('parent_id', $settings['main_page_cat']);
         $this->template->assign('id', 0);
-        
-///+++++++++++++++++++++++++++++++
+
+///++++++++++++++++++++
 
         $langs = $this->db->get('languages')->result_array();
         $lang_meta = array();
@@ -61,7 +63,7 @@ class Settings extends BaseAdminController {
         }
         $this->template->assign('langs', $langs);
         $this->template->assign('meta_langs', $lang_meta);
-        
+
 //++++++++++++++++++++
 
         ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
@@ -72,7 +74,7 @@ class Settings extends BaseAdminController {
         $this->template->show('settings', FALSE);
     }
 
-    
+
  //++++++++++++++
         public function translate_meta() {
 
@@ -91,7 +93,7 @@ class Settings extends BaseAdminController {
                 $key = $this->input->post('keywords');
                 $lang = $this->input->post('lang_ident');
                 if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array()))
-                    $this->db->query("UPDATE settings_i18n 
+                    $this->db->query("UPDATE settings_i18n
                                                             SET
                                                                 name = '$name',
                                                                 short_name = '$short_name',
@@ -99,7 +101,7 @@ class Settings extends BaseAdminController {
                                                                 keywords = '$key'
                                                             WHERE lang_ident = '$lang'");
                 else
-                    $this->db->query("INSERT INTO settings_i18n( 
+                    $this->db->query("INSERT INTO settings_i18n(
                                                                 lang_ident,
                                                                 name,
                                                                 short_name,
@@ -115,7 +117,7 @@ class Settings extends BaseAdminController {
             }
 
     }
-//+++++++++++++++++++++++++++++++++++++++++    
+//+++++++++++++++++++++++++++++++++++++++++
     /**
      * Main Page settings
      */
@@ -214,14 +216,14 @@ class Settings extends BaseAdminController {
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
         );
-        
+
         $this->translate_meta();
 
         ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
 
         $this->cms_admin->save_settings($data_m);
 
-        $this->cache->delete('main_site_settings');
+        $this->cache->delete_all();
 
         $this->lib_admin->log(lang('ac_changed_site_sett'));
 
@@ -229,20 +231,20 @@ class Settings extends BaseAdminController {
         if (!validation_errors())
          showMessage(lang('ac_sett_saved'));
     }
-    
+
     public function switch_admin_lang($lang)
     {
         $langs = Array(
             'english',
             'russian'
         );
-        
+
         if (in_array($lang, $langs) && $this->config->item('language') != $lang)
         {
             $this->db->set('lang_sel', $lang.'_lang')
                 ->update('settings');
         }
-        
+
         redirect($_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:'/admin/dashboard');
     }
 
@@ -252,7 +254,7 @@ class Settings extends BaseAdminController {
      * @access public
      */
     function save_main() {
-        
+
     }
 
 }
