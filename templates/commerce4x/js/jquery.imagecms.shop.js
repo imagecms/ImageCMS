@@ -1570,7 +1570,7 @@ var Shop = {
             else
                 currentItem = cartItem;
                                         
-            console.log(currentItem)
+            //console.log(currentItem)
             this.save(currentItem);
 
 
@@ -1855,6 +1855,8 @@ var Shop = {
         cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
         cartItem.origprice = $context.data('origprice')
+        
+
         return cartItem;
     },
     //settings manager

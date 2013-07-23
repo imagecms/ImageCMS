@@ -368,7 +368,7 @@
                                 <span class="s-t">Стоимость доставки:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="price">{echo round($model->getDeliveryPrice())}</span>
+                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert(($model->getDeliveryPrice())}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>

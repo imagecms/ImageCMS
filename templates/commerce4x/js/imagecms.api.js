@@ -61,6 +61,10 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector);
                     }
+                    
+                    location.reload();
+                    
+                    /*
                     if (obj.refresh == true)
                         location.reload();
                     if (obj.redirect !== null)
@@ -75,6 +79,7 @@ var ImageCMSApi = {
 
                         }), 3000);
                     }
+                    */
                 }
                 return this;
             }
