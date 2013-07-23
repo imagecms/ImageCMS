@@ -84,6 +84,7 @@ $lang['Use_wraper'] = 'Использовать обгортку';
 $lang['Server_path_to_sendmail'] = 'Серверный путь к Sendmail';
 $lang['Port'] = 'Порт';
 $lang['Protocol'] = 'Протокол';
+$lang['Install_standart_templates'] = 'Установить стандартние шаблони';
 
 
 
