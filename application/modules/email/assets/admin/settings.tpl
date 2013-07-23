@@ -37,7 +37,7 @@
 
                                 <div class="control-group">
                                     <div class="controls">
-                                        <a href="{site_url('admin/components/cp/email/import_templates')}" style="float:right">Установить стандартние шаблони</a>
+                                        <a href="{site_url('admin/components/cp/email/import_templates')}" style="float:right">{lang('Install_standart_templates')}</a>
                                     </div>
                                 </div>
                                 
