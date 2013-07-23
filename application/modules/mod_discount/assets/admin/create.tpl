@@ -43,7 +43,7 @@
                                     <div class="control-group">
                                         <label class="control-label bold_text" for="Text">Укажите код скидки и к-ство использования:</label>
                                         <div class="controls width150">
-                                            <input id="discountKey" type="text" name="key" value="" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                            <input readonly id="discountKey" type="text" name="key" value="" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                             <button class="btn btn-small" type="button" id="generateDiscountKey">
                                                 <i class="icon-refresh"></i>
                                             </button>
