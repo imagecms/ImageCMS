@@ -118,9 +118,10 @@ class Navigation_Widgets extends MY_Controller {
                         $full_path_ids = unserialize($full_path_ids);
                         $result = array();
                         if (is_array($full_path_ids) && !empty($full_path_ids)) {
-                            $result = $ci->db->select(array('full_path', 'name'))
+                            $result = $ci->db->select('*')
                                     ->where('locale', MY_Controller::getCurrentLocale())
                                     ->where_in('shop_category.id', $full_path_ids)
+                                    ->order_by('full_path_ids')
                                     ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                     ->get('shop_category');
                             if ($result) {
