@@ -34,7 +34,7 @@
                             </a>
                             {/if}
                         </div>
-
+<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>
                         <!-- displaying product name -->
                         <a href="{shop_url('product/'.$hotProduct->getUrl())}">
                             {echo ShopCore::encode($hotProduct->getName())}

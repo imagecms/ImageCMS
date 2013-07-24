@@ -34,7 +34,7 @@
                             </a>
                             {/if}
                         </div>
-
+<span class="under_order"><span class="icon-under_order"></span><span>Товар под заказ</span></span>
                         <!-- displaying product name -->
                         <a href="{shop_url('product/'.$hotProduct->getUrl())}">
                             {echo ShopCore::encode($hotProduct->getName())}
