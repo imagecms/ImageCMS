@@ -19,10 +19,11 @@ class Auth extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        
         $this->min_password = ($this->config->item('DX_login_min_length')) ? $this->config->item('DX_login_min_length') : $this->min_password;
         $this->max_password = ($this->config->item('DX_login_max_length')) ? $this->config->item('DX_login_max_length') : $this->max_password;
 
+        $this->load->language('auth');
         $this->load->helper('url');
         $this->load->library('Form_validation');
 //        $this->form_validation->this = & $this;
@@ -96,7 +97,7 @@ class Auth extends MY_Controller {
 
     function login() {
 //         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
-
+            $this->core->set_meta_tags(lang('lang_authorization'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 
