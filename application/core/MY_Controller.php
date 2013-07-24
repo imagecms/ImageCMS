@@ -136,3 +136,13 @@ class MY_Controller extends MX_Controller {
     }
 
 }
+
+//trait Imagecms {
+//    
+//    public static function whoAmI()
+//    {
+//        echo get_class($this);
+//        return get_class($this);
+//    }
+//    
+//}
