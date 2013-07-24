@@ -96,7 +96,7 @@ class Search extends MY_Controller {
                 $config['per_page'] = $this->row_count;
                 $config['uri_segment'] = 4;
 
-                $config['page_query_string'] = true;
+                $config['page_query_string'] = FALSE;
 
                 $config['next_link'] = 'Вперед→';
                 $config['prev_link'] = '←В начало';
