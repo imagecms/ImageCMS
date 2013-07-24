@@ -10,6 +10,7 @@ $lang['mod_auth_remember_me'] = 'Запомнить меня';
 $lang['mod_auth_usr_notfound'] = 'Пользователь с таким логином и паролем не найден';
 
 $lang['lang_register'] = 'Регистрация';
+$lang['lang_authorization'] = 'Авторизация';
 $lang['lang_email_form'] = 'Введите email';
 $lang['lang_login'] = 'Логин';
 $lang['orderind_shop_sg'] = 'Оформление заказа';
