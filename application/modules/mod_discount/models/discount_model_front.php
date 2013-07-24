@@ -72,12 +72,17 @@ class Discount_model_front extends CI_Model {
     
     public function updateapply($key, $gift = null){
         
+        $sql = "update mod_shop_discounts set count_apply = 0 where `key` = '$key' and max_apply IS NOT NULL and count_apply IS NULL";
+        $this->db->query($sql);
+        
         $sql = "update mod_shop_discounts set count_apply = count_apply + 1 where `key` = '$key' and max_apply IS NOT NULL";
+        $this->db->query($sql);
+        
         
         if ($gift !== Null)
             $this->db->query("update mod_shop_discounts set active = 0 where `key` = '$key'");
         
-        return $this->db->query($sql);
+        return true;
         
     }
     

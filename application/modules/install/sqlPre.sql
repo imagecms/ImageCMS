@@ -10366,6 +10366,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 -- Структура таблиці `mod_email_paterns`
 --
 
+DROP TABLE IF EXISTS `mod_email_paterns`;
 CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
