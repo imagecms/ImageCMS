@@ -873,7 +873,10 @@ var orders = new Object({
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
 
-        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
+//        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
+//            $('.notifications').append(data);
+//        });
+        $.post('/admin/components/run/shop/orders/ajaxEditOrderCartNew/' + id, data, function(data) {
             $('.notifications').append(data);
         });
     },
