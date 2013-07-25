@@ -223,8 +223,7 @@ class Email_model extends CI_Model {
                                 'port' => '80'
                             )
                     ),
-                    'enabled' => 1,
-                    'autoload' => 1
+                    'enabled' => 1
         ));
 
         return TRUE;
