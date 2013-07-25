@@ -56,6 +56,10 @@ class Admin extends BaseAdminController {
                     ->setData('settings', $this->email->getSettings())
                     ->renderAdmin('create');
     }
+    
+    public function mailTest($config) {
+        echo $this->email->mailTest();
+    }
 
     public function delete() {
         $this->email->delete($_POST['ids']);
@@ -171,6 +175,7 @@ class Admin extends BaseAdminController {
      * import templates from file
      */
     public function import_templates(){
+        $this->db->where_in('id', array(1,2,3,4,5,6))->delete('mod_email_paterns');
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
         if($this->db->query($file)){
               redirect('/admin/components/cp/email/');
