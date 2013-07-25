@@ -10,7 +10,7 @@
                     {if $page.id == 68 || $page.lang_alias == 68}
                         <div class="map">
                             <img src="{$THEME}images/map.jpg" alt="map"/>
-                        </div> 
+                        </div>
                             {$page.full_text}
                     {else:}
                         {$page.full_text}
@@ -21,7 +21,7 @@
                     <script type="text/javascript">
                         {literal}
                             $(function() {
-                                renderPosts(this);
+                                renderPosts($('[name=for_comments]'));
                             })
                         {/literal}
                     </script>
