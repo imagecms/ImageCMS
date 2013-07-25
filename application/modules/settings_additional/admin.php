@@ -31,7 +31,7 @@ class Admin extends BaseAdminController {
             }
             closedir($handle);
         }
-        
+
         return $new_arr;
     }
 
@@ -68,7 +68,7 @@ class Admin extends BaseAdminController {
 
             //var_dump($this->db->get('settings')->result()->site_template);
 
-            
+
             $new_arr = $this->getstyle($path);
 
 
@@ -87,6 +87,27 @@ class Admin extends BaseAdminController {
                     ->registerScript('script')
                     ->setData(array('data' => $settings, 'subStyle' => $new_arr, 'templ' => $new_arr_2))
                     ->renderAdmin('settings');
+        }
+    }
+
+    public function heder() {
+        
+        $templ = $this->cms_base->get_settings();
+        $templ = $templ['site_template'];
+        
+        
+        $text = file_get_contents("templates/$templ/widgets/heder.tpl");
+        
+        //var_dump($text);
+
+        if ($_POST) {
+            file_put_contents("templates/$templ/widgets/heder.tpl", $_POST['heder']);
+            showMessage('Даные сохранены');
+            
+        } else {
+
+            \CMSFactory\assetManager::create()->setData(array('text'=>$text))
+                    ->renderAdmin('heder');
         }
     }
 

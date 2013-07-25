@@ -20,6 +20,14 @@
                 </div>
             </div> 
         </div>
+        <div class="clearfix">
+            <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
+                <a href="/admin/components/init_window/settings_additional/heder" class="btn btn-small">Править шапку сайта</a>
+
+
+
+            </div>
+        </div>
         <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
             <thead>
             <th class="span1">Настройки</th>
@@ -82,16 +90,16 @@
 
 
 
-                                        </div>
                                     </div>
                                 </div>
-                                {form_csrf()}
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </div>
+                            {form_csrf()}
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        </section>
-    </div>
+    </section>
+</div>
 
