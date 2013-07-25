@@ -32,6 +32,7 @@ class email extends \email\classes\BaseEmail {
         }
         return self::$_instance;
     }
+    
 
 }
 
