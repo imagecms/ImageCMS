@@ -270,7 +270,6 @@
                     {/if}
                     <!--Output of the block comments END-->
                 </ul>
-
                 <div class="frame_tabs">
                     <!--Piece of information about the product Start-->
                     {if $model->getFullDescription() != ''}
@@ -385,8 +384,9 @@
                         </div>
                     {/if}
                     <!--Block Accessories End-->
+                    {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
                     <div id="comment">
-                        <div id="for_comments" name="for_comments"></div>
+                        <div id="for_comments" name="for_comments">{echo $c['comments']}</div>
                     </div>
                 </div>
             </div>
