@@ -2341,6 +2341,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
   `external_id` varchar(255) DEFAULT NULL,
   `show_in_filter` tinyint(1) DEFAULT NULL,
   `main_property` tinyint(1) DEFAULT NULL,
+  `show_faq` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_product_properties_I_2` (`active`),
   KEY `shop_product_properties_I_3` (`show_on_site`),
