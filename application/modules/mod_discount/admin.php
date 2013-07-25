@@ -49,13 +49,13 @@ class Admin extends \ShopAdminController {
 
             if ($typeDiscount == 'comulativ') {
                 $this->form_validation->set_rules('comulativ[begin_value]', 'Значение от', 'trim|required|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|integer|xss_clean');
             }
             if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|integer|xss_clean');
             }
 
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value']) {
+            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
                 showMessage('Сумма "от" не может быть больше суммы "до"!', '', 'r');
                 exit;
             }
@@ -153,14 +153,14 @@ class Admin extends \ShopAdminController {
             $typeDiscount = $postArray['type_discount'];
             
             if ($typeDiscount == 'comulativ') {
-                $this->form_validation->set_rules('comulativ[begin_value]', 'Значение от', 'trim|required|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[begin_value]', 'Значение от', 'trim|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|integer|xss_clean');
             }
             if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|integer|xss_clean');
             }
 
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value']) {
+            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
                 showMessage('Сумма "от" не может быть больше суммы "до"!', '', 'r');
                 exit;
             }
