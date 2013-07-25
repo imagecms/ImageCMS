@@ -188,6 +188,7 @@
                                     <!-- Start. Collect information about Variants, for future processing -->
                                     {foreach $product->getProductVariants() as $key => $pv}
                                         {if $pv->getStock() > 0}
+                                            <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>Товар под заказ</span></span>{/if}</div>
                                             <button {if $key != 0}style="display:none"{/if}
                                                                   class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
                                                                   type="button"

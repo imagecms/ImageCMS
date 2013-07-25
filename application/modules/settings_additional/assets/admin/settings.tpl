@@ -1,4 +1,8 @@
-
+{literal}
+    <style type="text/css">
+        .br {border: 1px solid red}
+    </style>
+{/literal}
 <div class="container">
 
     <section class="mini-layout">
@@ -24,63 +28,70 @@
 
                 <tr id="">
                     <td>
-                    <form method="post" class="form-horizontal" id="saveMenu">
-                        <div class="inside_padd">
-                            <div class="form-horizontal">
-                                <div class="row-fluid">
-                                    
+                        <form method="post" class="form-horizontal" id="saveMenu">
+                            <div class="inside_padd">
+                                <div class="form-horizontal">
+                                    <div class="row-fluid">
 
-                                    <div class="control-group">
-                                        <label class="control-label" for="template">Template:</label>
-                                        <div class="controls">                                           
-                                            <select onchange="changelogo(this)" style="width:25% !important" name="templ" id="template">
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="template">Template:</label>
+                                            <div class="controls templ">  
                                                 {foreach $templ as $style}
-                                                    <option value="{echo $style}" {if $data['templ'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                                    <img alt="{echo $style}" class="{if $style == $data['templ']}br{/if}" data-templ="{echo $style}" onclick="changelogo(this)" id="logo" style="max-width: 200px; padding: 5px" src="{echo '/templates/' . $style}/screenshot.png"/>
                                                 {/foreach}
-                                            </select> 
-                                            
+                                                <input type="hidden" name="templ" value="{echo $data['templ']}">
+                                                {/*}
+                                                <select onchange="changelogo(this)" style="width:25% !important" name="templ" id="template">
+                                                    {foreach $templ as $style}
+                                                        <option value="{echo $style}" {if $data['templ'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                                    {/foreach}
+                                                </select> 
+                                                { */}
 
+
+                                            </div>
                                         </div>
-                                    </div>
-                                            
-                                            
-                                    <div class="control-group">
-                                        <label class="control-label" for="substyle">SubTemplate:</label>
-                                        <div class="controls">                                           
-                                            <select style="width:25% !important" name="substyle" id="substyle">
-                                                <option {if !$data['substyle']} selected="selected"{/if} value="0">--не определено--</option>
+
+
+                                        <div class="control-group">
+                                            <label class="control-label" for="substyle">SubTemplate:</label>
+                                            <div class="controls substyle">  
                                                 {foreach $subStyle as $style}
-                                                    <option value="{echo $style}" {if $data['substyle'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                                    <img  class="{if $style == $data['substyle']}br{/if}" data-substyle="{echo $style}" onclick="changesublogo(this)" id="logo" style="max-width: 200px; padding: 5px" src="/templates/{echo $data['templ']}/stylesets/{echo $style}/screenshot.png" />
                                                 {/foreach}
-                                            </select>
-                                            <span class="help-block">Для работы дополнительных стилей надо, чтоб они были установлен для каждого из шаблонов</span>
+                                                <input type="hidden" name="substyle" value="{echo $data['substyle']}">
+
+                                                {/*}
+                                                <select onchange="changesublogo(this)" style="width:25% !important" name="substyle" id="substyle">
+                                                    <option {if !$data['substyle']} selected="selected"{/if} value="0">--не определено--</option>
+                                                    {foreach $subStyle as $style}
+                                                        <option value="{echo $style}" {if $data['substyle'] == $style} selected="selected" {/if} >{echo $style}</option>
+                                                    {/foreach}
+                                                </select>
+                                                { */}
+
+                                                <span class="help-block">Для работы дополнительных стилей надо, чтоб они были установлен для каждого из шаблонов</span>
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+
 
                                         </div>
                                     </div>
-                                            
-                                    <div class="control-group">
-                                        
-                                        <div class="controls">                                           
-                                            <img id="logo" style="max-width: 200px" src="{echo '/templates/' . $data['templ']}/screenshot.png"/>
-
-                                        </div>
-                                    </div>        
-                                            
-                                    
-
-
-
-
                                 </div>
-                            </div>
-                        </div>
-                    {form_csrf()}
-                    </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                                {form_csrf()}
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-    </section>
-</div>
+        </section>
+    </div>
 

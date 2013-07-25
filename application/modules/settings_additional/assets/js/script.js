@@ -17,16 +17,28 @@ function ChangeProductInStock(el, id, pid) {
 
 
 function changelogo(el) {
-    $('#logo').attr('src', '/templates/' + $(el).val() + '/screenshot.png');
+    $('[name="templ"]').val($(el).data('templ'));
+    $('.templ img').removeClass('br');
+    $(el).addClass('br');
+    
 
-    $.post('/admin/components/init_window/settings_additional/change_sub_style', {templ: $(el).val()}, function(data) {
+//
+    $.post('/admin/components/init_window/settings_additional/change_sub_style', {templ: $(el).data('templ')}, function(data) {
         dani = JSON.parse(data);
-        $('#substyle').empty();
-        $('#substyle').append('<option value="0">--не определено--</option>');
+        $('.substyle img').remove();
+        $('[name="substyle"]').val();
         for (var i in dani) {
-            $('#substyle').append('<option value="'+dani[i]+'">'+dani[i]+'</option>');
+            $('.substyle').append('<img  class="" data-substyle="'+dani[i]+'" onclick="changesublogo(this)" id="logo" style="padding:5px; max-width: 200px" src="/templates/'+$(el).data('templ')+'/stylesets/'+dani[i]+'/screenshot.png" />');
         }
 
     })
+}
+
+function changesublogo(el) {
+    $('[name="substyle"]').val($(el).data('substyle'));
+    $('.substyle img').removeClass('br');
+    $(el).addClass('br');
+
+
 }
 

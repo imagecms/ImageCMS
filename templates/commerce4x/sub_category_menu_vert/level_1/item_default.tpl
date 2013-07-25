@@ -3,6 +3,6 @@
 
         {$title}
     </a>
-    {$wrapper}
+    
     
 </li>
