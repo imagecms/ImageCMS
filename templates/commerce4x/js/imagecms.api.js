@@ -69,8 +69,11 @@ var ImageCMSApi = {
                             $('#' + selector).show();
 
                         }), 3000);
-                    else
-                        location.reload();
+                    else{
+                        if (obj.refresh == true)
+                            location.reload();
+                    }
+                        
                     
                     /*
                     if (obj.refresh == true)

@@ -1656,3 +1656,57 @@ $(window).load(function() {
         notificationsInitialized = true;
     }
 })
+
+$('table.orderMethodsTable .orderMethodsEdit').on('click', function(){
+    $(this).next('.orderMethodsRefresh').css('display', 'block');
+    $(this).css('display', 'none');
+    
+    var closestTr = $(this).closest('tr');
+    closestTr.find('.name').css('display', 'none');
+    closestTr.find('[name=name]').css('display', 'block');
+    closestTr.find('.name_front').css('display', 'none');
+    closestTr.find('[name=name_front]').css('display', 'block');
+    closestTr.find('.get').css('display', 'none');
+    closestTr.find('[name=get]').css('display', 'block');
+    closestTr.find('.tooltip_s').css('display', 'none');
+    closestTr.find('[name=tooltip]').css('display', 'block');
+});
+
+$('table.orderMethodsTable .orderMethodsRefresh').on('click', function(){
+    $(this).prev('.orderMethodsEdit').css('display', 'block');
+    $(this).css('display', 'none');
+    var closestTr = $(this).closest('tr');
+    
+    var name =  closestTr.find('[name=name]').val();
+    var name_front = closestTr.find('[name=name_front]').val();
+    var get = closestTr.find('[name=get]').val();
+    var tooltip = closestTr.find('[name=tooltip]').val();
+    var locale = closestTr.data('locale');
+    var id = closestTr.data('id');
+    
+    
+    closestTr.find('.name').text(name).css('display', 'block');
+    closestTr.find('[name=name]').css('display', 'none');
+    closestTr.find('.name_front').text(name_front).css('display', 'block');
+    closestTr.find('[name=name_front]').css('display', 'none');
+    closestTr.find('.get').text(get).css('display', 'block');
+    closestTr.find('[name=get]').css('display', 'none');
+    closestTr.find('.tooltip_s').text(tooltip).css('display', 'block');
+    closestTr.find('[name=tooltip]').css('display', 'none');
+    
+    $.ajax({
+            type: "POST",
+            data:  {
+                id: id,
+                locale: locale,
+                name: name,
+                name_front: name_front,
+                get: get,
+                tooltip: tooltip                
+            },
+            url: '/admin/components/run/shop/settings/setSorting',
+            success: function(res) {
+                showMessage('Сообщение', 'Метод сортировки обновлен');
+            }
+    });
+});
