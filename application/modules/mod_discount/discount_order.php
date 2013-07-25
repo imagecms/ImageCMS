@@ -40,7 +40,7 @@ class Discount_order extends classes\BaseDiscount {
             $discobj = new \mod_discount\discount;
             $discount = $discobj->init()->get_result_discount(1);
             
-            include 'gift.php';
+            require_once 'gift.php';
             $obkGift = new \Gift();
             
             $gift = json_decode($obkGift->get_gift_certificate($data['key']));
