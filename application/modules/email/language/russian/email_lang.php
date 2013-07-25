@@ -85,8 +85,7 @@ $lang['Server_path_to_sendmail'] = 'Серверный путь к Sendmail';
 $lang['Port'] = 'Порт';
 $lang['Protocol'] = 'Протокол';
 $lang['Install_standart_templates'] = 'Установить стандартние шаблони';
-
-
+$lang['email_sent'] = 'Ваше сообщение успешно отправлено';
 
 
 

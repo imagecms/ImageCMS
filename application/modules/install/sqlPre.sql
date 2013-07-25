@@ -10398,6 +10398,89 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 (7, 'Смена пароля', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Смена пароля', 'HTML', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', 1, '', 0, '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}');
 
 
+--
+-- Table structure for table `shop_sorting`
+--
+DROP TABLE IF EXISTS `shop_sorting`;
+CREATE TABLE IF NOT EXISTS `shop_sorting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pos` int(11) DEFAULT NULL,
+  `get` varchar(25) NOT NULL,
+  `active` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `shop_sorting`
+--
+
+INSERT INTO `shop_sorting` (`id`, `pos`, `get`, `active`) VALUES
+(1, 4, 'rating', 1),
+(2, 1, 'price', 1),
+(3, 2, 'price_desc', 1),
+(4, 3, 'hit', 1),
+(5, 5, 'hot', 1),
+(6, 0, 'action', 1),
+(7, 8, 'name', 0),
+(8, 9, 'name_desc', 0),
+(9, 6, 'views', 0),
+(10, 7, 'topsales', 0),
+(11, 4, 'rating', 1),
+(12, 1, 'price', 0),
+(13, 2, 'price_desc', 0),
+(14, 3, 'hit', 1),
+(15, 5, 'hot', 1),
+(16, 0, 'action', 0),
+(17, 8, 'name', 0),
+(18, 9, 'name_desc', 0),
+(19, 6, 'views', 0),
+(20, 7, 'topsales', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_sorting_i18n`
+--
+
+DROP TABLE IF EXISTS `shop_sorting_i18n`;
+CREATE TABLE IF NOT EXISTS `shop_sorting_i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(11) DEFAULT 'ru',
+  `name` varchar(50) NOT NULL,
+  `name_front` varchar(50) DEFAULT NULL,
+  `tooltip` varchar(256) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- Dumping data for table `shop_sorting_i18n`
+--
+
+INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`) VALUES
+(1, 'ru', 'По рейтингу', 'Рейтинг', ''),
+(2, 'ru', 'От дешевих к дорогим', 'От дешевих к дорогим', ''),
+(3, 'ru', 'От дорогих к дешевым', 'От дорогих к дешевим', ''),
+(4, 'ru', 'Популярные', 'Популярние', 's'),
+(5, 'ru', 'Новинки', 'Новинки', '44'),
+(6, 'ru', 'Акции', 'Акции', 'es4werw'),
+(7, 'ru', 'А-Я', 'Имени', ''),
+(8, 'ru', 'Я-А', 'Имени(Я-А)', ''),
+(9, 'ru', 'Просмотров', 'Количеству просмотров', ''),
+(10, 'ru', 'Топ продаж', 'Топ продаж', ''),
+(11, 'en', 'Rate', 'Rate', ''),
+(12, 'en', 'From cheap to expensive', 'From cheap to expensive', ''),
+(13, 'en', 'From expensive to cheap', 'From expensive to cheap', 'asdas'),
+(14, 'en', 'Popular', 'Popular', ''),
+(15, 'en', 'Novelty', 'Novelty', ''),
+(16, 'en', 'Action', 'Action', 'yy'),
+(17, 'en', 'A-Z', 'Name', ''),
+(18, 'en', 'Z-A', 'Name(Z-A)', ''),
+(19, 'en', 'Views', 'Count Views', ''),
+(20, 'en', 'Top sales', 'Top sales', '');
+
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

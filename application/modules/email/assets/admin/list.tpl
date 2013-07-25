@@ -69,11 +69,13 @@
                                 {foreach $models as $model}
                                     <tr>
                                         <td class="t-a_c">
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" name="ids" value="{echo $model.id}"/>
+                                            {if $model.id > 6}
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox" name="ids" value="{echo $model.id}"/>
+                                                    </span>
                                                 </span>
-                                            </span>
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="pjax" href="/admin/components/cp/email/edit/{echo $model.id}">{echo $model.name}</a>

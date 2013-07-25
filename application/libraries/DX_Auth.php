@@ -921,7 +921,7 @@ class DX_Auth {
                 'user_phone' => $phone
                 );
                 
-            \email\email::getInstance()->sendEmail($email, 'Создание пользователя', $user_variables);
+            \email\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
                 
                 
                 if($login_user){
@@ -986,7 +986,7 @@ class DX_Auth {
                         'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
                     );
                     
-                    \email\email::getInstance()->sendEmail($row->email, 'Востановление пароля', $replaceData);
+                    \email\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
                     
 
                     // Send instruction email
@@ -1100,7 +1100,7 @@ class DX_Auth {
                         'password' => $new_pass_for_user
                     );
                     
-                \email\email::getInstance()->sendEmail($row->email, 'Смена пароля', $replaceData);
+                \email\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
                 $result = TRUE;
             } else {

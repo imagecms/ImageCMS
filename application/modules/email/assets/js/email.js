@@ -70,7 +70,7 @@ function mailTest() {
             mailpath: mailpath,
             send_to: send_to
         },
-        url: '/email/mailTest',
+        url: '/admin/components/cp/email/mailTest',
         success: function(data) {
             $('.mailTestResults').html(data);
             $('.mailTestResults').css('display', 'block');
