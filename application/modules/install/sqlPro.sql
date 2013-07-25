@@ -181,6 +181,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (135, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 1),
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
+(177, 'banners', 'banners', 1, 0, 0, 'a:1:{s:8:"show_tpl";i:1;}', 55),
 (188, 'email', 'email', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
 
 -- --------------------------------------------------------
@@ -9572,6 +9573,51 @@ INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`
 (19, 'en', 'Views', 'Count Views', ''),
 (20, 'en', 'Top sales', 'Top sales', '');
 
+--
+-- Структура таблиці `mod_banner`
+--
+
+DROP TABLE IF EXISTS `mod_banner`;
+CREATE TABLE IF NOT EXISTS `mod_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(4) NOT NULL,
+  `active_to` int(11) DEFAULT NULL,
+  `where_show` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Дамп даних таблиці `mod_banner`
+--
+
+INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`) VALUES
+(1, 0, 1512158400, 'a:1:{i:0;s:6:"main_0";}'),
+(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}'),
+(3, 1, 1564776000, 'a:1:{i:0;s:6:"main_0";}');
+
+--
+-- Структура таблиці `mod_banner_i18n`
+--
+
+DROP TABLE IF EXISTS `mod_banner_i18n`;
+CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+  `id` int(11) NOT NULL,
+  `url` text,
+  `locale` varchar(5) NOT NULL,
+  `name` varchar(25) DEFAULT NULL,
+  `description` text,
+  `photo` varchar(255) DEFAULT NULL,
+  KEY `id` (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп даних таблиці `mod_banner_i18n`
+--
+
+INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
+(1, 'shop/brand/epson', 'ru', 'epson', '', '/uploads/shop/banners/template-imageshop-banner-1.jpg'),
+(2, '/shop/brand/sony', 'ru', 'sony', '', '/uploads/shop/banners/template-imageshop-banner-2.jpg'),
+(3, 'shop/brand/samsung', 'ru', 'apple/samsung', '', '/uploads/shop/banners/template-imageshop-banner-3.jpg');
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
