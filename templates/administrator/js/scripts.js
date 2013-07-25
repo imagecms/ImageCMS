@@ -1322,6 +1322,10 @@ $(document).ready(
             $('.listFilterForm select').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
+            
+            $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
+                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+            });
 
             /* menu */
             var found = false;
