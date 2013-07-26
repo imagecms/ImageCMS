@@ -9564,7 +9564,7 @@ INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`
 (10, 'ru', 'Топ продаж', 'Топ продаж', ''),
 (11, 'en', 'Rate', 'Rate', ''),
 (12, 'en', 'From cheap to expensive', 'From cheap to expensive', ''),
-(13, 'en', 'From expensive to cheap', 'From expensive to cheap', 'asdas'),
+(13, 'en', 'From expensive to cheap', 'From expensive to cheap', ''),
 (14, 'en', 'Popular', 'Popular', ''),
 (15, 'en', 'Novelty', 'Novelty', ''),
 (16, 'en', 'Action', 'Action', 'yy'),
