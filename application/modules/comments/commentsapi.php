@@ -33,6 +33,79 @@ class Commentsapi extends Comments {
         }
     }
 
+    public function renderAsArray($url) {
+        $comments = array();
+        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
+
+        $this->load->model('base');
+        $this->init_settings();
+
+//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
+//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
+//            // Comments fetched from cahce file
+//        } else {
+//        $this->db->where('module', 'shop');
+        $this->module = $this->getModule($url);
+        $item_id = $this->parsUrl($url);
+        $commentsCount = $this->getTotalCommentsForProducts($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module, 999);
+
+        // Read comments template
+        // Set page id for comments form
+        if ($comments != FALSE) {
+            $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
+        }
+
+        if ($comments != null)
+            $comments_count = count($comments);
+        else
+            $comments_count = 0;
+
+        if (is_array($comments)) {
+            $i = 0;
+            foreach ($comments as $comment) {
+                if ($comment['parent'] > 0) {
+                    $comment_ch[] = $comment;
+                    unset($comments[$i]);
+                }
+                $i++;
+            }
+        }
+
+        $data = array(
+            'comments_arr' => $comments,
+            'comment_ch' => $comment_ch,
+            'comment_controller' => $this->comment_controller,
+            'total_comments' => lang('lang_total_comments') . count($comments),
+            'can_comment' => $this->can_comment,
+            'use_captcha' => $this->use_captcha,
+            'use_moderation' => $this->use_moderation
+        );
+
+        if ($this->use_captcha == TRUE) {
+            $this->dx_auth->captcha();
+            $data['cap_image'] = $this->dx_auth->get_captcha_image();
+        }
+        ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
+
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else
+            $comments = '';
+
+        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
+
+        return array(
+            'comments' => $comments,
+            'commentsCount' => $commentsCount[$item_id],
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
+            'validation_errors' => $this->validation_errors
+        );
+    }
+
     public function renderPosts() {
         textdomain('comments');
         $comments = array();
@@ -48,8 +121,9 @@ class Commentsapi extends Comments {
 //        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
-//        var_dump($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module);
+
+        $commentsCount = $this->getTotalCommentsForProducts($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module, $_POST[countcomment]);
 
         // Read comments template
         // Set page id for comments form
@@ -80,7 +154,8 @@ class Commentsapi extends Comments {
             'comment_controller' => $this->comment_controller,
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha
+            'use_captcha' => $this->use_captcha,
+            'use_moderation' => $this->use_moderation
         );
 
         if ($this->use_captcha == TRUE) {
@@ -102,6 +177,7 @@ class Commentsapi extends Comments {
         echo json_encode(array(
             'comments' => $comments,
             'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : lang('Leave a comment'),
+            'commentsCount' => $commentsCount[$item_id],
             'validation_errors' => $this->validation_errors
         ));
        textdomain('front');
@@ -125,7 +201,7 @@ class Commentsapi extends Comments {
                     ->get('shop_products')
                     ->row();
 
-            if ($id->enable_comments === 0)
+            if ($id->enable_comments == 0)
                 $this->enable_comments = false;
             else
                 return $id->id;
@@ -151,13 +227,12 @@ class Commentsapi extends Comments {
                     ->get('settings')
                     ->row();
 
-            if ($id->comments_status === 0)
+            if ($id->comments_status == 0)
                 $this->enable_comments = false;
             else
                 return $id->main_page_id;
         }
 
-//        if (strstr($url, '/bloh/')) {
         $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
 
@@ -165,15 +240,18 @@ class Commentsapi extends Comments {
                 ->where('url', $paths)
                 ->get('content')
                 ->row();
-        if ($id->comments_status === 0)
-            $this->enable_comments = false;
+
+        if ($id->comments_status == 0)
+            $this->enable_comments = FALSE;
         else
             return $id->id;
-//        }
     }
 
     public function getModule($url) {
         if (strstr($url, '/shop/'))
+            return 'shop';
+        
+        if (strstr($url, 'shop/'))
             return 'shop';
 
         if (strstr($url, '/bloh/'))
@@ -497,14 +575,14 @@ class Commentsapi extends Comments {
             return $words[1];
         return $words[2];
     }
-    
+
     /**
      * Get count answers to comment by id
      * @param int $commentId
      * @return boolean|int
      */
-    public function getCountCommentAnswersByCommentId($commentId){
-        $query = $this->db->where('parent',$commentId)->get('comments')->result_array();
+    public function getCountCommentAnswersByCommentId($commentId) {
+        $query = $this->db->where('parent', $commentId)->get('comments')->result_array();
         if ($query)
             return count($query);
         else

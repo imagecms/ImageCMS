@@ -15,10 +15,12 @@ class Wishlist_model extends CI_Model {
      * @return array
      */
     public function getSettings() {
+        $this->db->cache_on();
         $settings = $this->db->select('settings')
                 ->where('identif', 'wishlist')
                 ->get('components')
                 ->row_array();
+        $this->db->cache_off();
         $settings = unserialize($settings['settings']);
         return $settings;
     }
@@ -139,6 +141,7 @@ class Wishlist_model extends CI_Model {
      */
     public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
+
         $query = $this->db
                 ->where_in('access', $access)
                 ->where('mod_wish_list.hash', $hash)
@@ -202,7 +205,6 @@ class Wishlist_model extends CI_Model {
      */
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
-
         $queryFirst = $this->db
                 ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
                 ->where('mod_wish_list.user_id', $user_id)
@@ -247,7 +249,9 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function delWishListById($id) {
-        $this->db->delete('mod_wish_list', array('id' => $id));
+        $this->db
+                ->where_in('id', $id)
+                ->delete('mod_wish_list');
         return $this->db->affected_rows();
     }
 
@@ -258,7 +262,7 @@ class Wishlist_model extends CI_Model {
      * @return boolean
      */
     public function delWishListProductsByWLId($id) {
-        $this->db->where('wish_list_id', $id);
+        $this->db->where_in('wish_list_id', (array) $id);
         $this->db->delete('mod_wish_list_products');
         return $this->db->affected_rows();
     }
@@ -476,11 +480,12 @@ class Wishlist_model extends CI_Model {
      * @param $user_id
      * @return boolean
      */
-    public function createWishList($listName, $user_id, $access = 'shared') {
+    public function createWishList($listName, $user_id, $access = 'shared', $description) {
         $this->createUserIfNotExist($user_id);
         $data = array(
             'title' => $listName,
             'user_id' => $user_id,
+            'description' => $description,
             'hash' => random_string('unique', 16),
             'access' => $access
         );
@@ -585,6 +590,21 @@ class Wishlist_model extends CI_Model {
     }
 
     /**
+     *
+     * @param int $userID
+     * @return bool
+     */
+    public function delUser($userID) {
+        $WLs = $this->getAllUserWLs($userID);
+        $this->delWishListProductsByWLId($WLs);
+        $this->delWishListById($WLs);
+        $this->db
+                ->where('id', $userID)
+                ->delete('mod_wish_list_users');
+        return TRUE;
+    }
+
+    /**
      * install module(create db tables, set default values)
      */
     public function install() {
@@ -602,6 +622,10 @@ class Wishlist_model extends CI_Model {
                 'type' => 'VARCHAR',
                 'constraint' => '254',
                 'null' => FALSE
+            ),
+            'description' => array(
+                'type' => 'Text',
+                'null' => TRUE
             ),
             'access' => array(
                 'type' => 'ENUM',
@@ -683,11 +707,13 @@ class Wishlist_model extends CI_Model {
                 ->update('components', array(
                     'settings' => serialize(
                             array(
+                                'maxUserName' => 256,
                                 'maxListName' => 254,
                                 'maxListsCount' => 10,
                                 'maxItemsCount' => 100,
                                 'maxCommentLenght' => 500,
                                 'maxDescLenght' => 1000,
+                                'maxWLDescLenght' => 1000,
                                 'maxImageWidth' => 150,
                                 'maxImageHeight' => 150,
                                 'maxImageSize' => 2000000

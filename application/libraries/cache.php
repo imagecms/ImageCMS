@@ -335,6 +335,17 @@ class Cache {
             }
         }
 
+        $files_all = opendir("./system/cache/templates_c/HTML");
+        
+        while (false !== ($fileT = readdir($files_all)))
+            if ($fileT != "." && $fileT != ".." && $fileT != "/"){
+                //echo $files_all . "/" . $fileT . '<br/>';
+                @unlink('./system/cache/templates_c/HTML/' . $fileT);
+            }
+
+
+
+
         $this->log_cache_error('All cache files deleted');
 
         return $n;

@@ -2,12 +2,13 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-/*
+
+/**
  * Image CMS
  *
  * core.php
+ * @property Cms_base $cms_base
  */
-
 class Core extends MY_Controller {
 
     public $langs = array(); // Langs array
@@ -51,7 +52,8 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
 
         $this->load->library('template');
-        if (!empty($_GET))
+
+        if (!empty($_GET) && $this->uri->uri_string() == '')
             $this->template->registerCanonical(site_url());
 
         $last_element = key($this->uri->uri_to_assoc(0));
@@ -76,16 +78,12 @@ class Core extends MY_Controller {
 
                 $uri_lang = $this->uri->segment(1);
 
-                //$this->template->add_array($this->lang->load('main', $this->langs[$uri_lang]['folder'],TRUE));
-
-
                 $this->config->set_item('language', $this->langs[$uri_lang]['folder']);
                 $this->lang->load('main', $this->langs[$uri_lang]['folder']);
 
                 $this->config->set_item('cur_lang', $this->langs[$uri_lang]['id']);
 
                 // Set language template
-                // $this->template->template_dir = TEMPLATES_PATH.$this->langs[$uri_lang]['template'].'/';
 
                 $this->config->set_item('template', $this->langs[$uri_lang]['template']);
 
@@ -137,6 +135,7 @@ class Core extends MY_Controller {
 
         // Load modules
         $query = $this->cms_base->get_modules();
+
         if ($query->num_rows() > 0) {
             $this->modules = $query->result_array();
 

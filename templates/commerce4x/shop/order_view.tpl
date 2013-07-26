@@ -125,27 +125,28 @@
                     <tbody>
                         <!-- Start. Render Ordered Products -->
                         {foreach $model->getOrderProducts() as $orderProduct}
+                            {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                {if $v->getid() == $orderProduct->variant_id}
+                                    {$Variant = $v}
+                                    {break;}
+                                {/if}
+                            {/foreach}
                             <tr>
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="photo">
-                                        <figure>
-                                            <img src="{echo $orderProduct->getSProducts()->firstVariant->getSmallPhoto()}"
+                                       {if $Variant} <figure>
+                                            <img src="{echo $Variant->getSmallPhoto()}"
                                                  alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
-                                        </figure>
+                                        </figure>{/if}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">{echo ShopCore::encode($orderProduct->product_name)}</a>
                                     <div class="m-b_10">
-                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
-                                            {if $v->getid() == $orderProduct->variant_id}
-                                                {$Variant = $v}
-                                                {break;}
-                                            {/if}
-                                        {/foreach}
+
                                         {if $Variant}
                                         {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}
-                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант:sssssssssss <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант: <span class="code">({echo $Variant->getname()})</span></span>{/if}
                                 {/if}
                             </div>
                             <div class="price price_f-s_16">
@@ -218,7 +219,7 @@
 
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
-                                                        {echo $kitProducts->getDiscountProductPrice()}
+                                                        {echo $kitProducts->getKitNewPrice()}
                                                     </span>{$CS}
                                                 </div>
                                             </div>
@@ -240,8 +241,8 @@
 
                             </ul>
                             <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
-                            
-                            
+
+
 
                             <!-- Start. Render kit summary -->
                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
@@ -264,31 +265,31 @@
                 <div class="t-a_r inside_padd">
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
-                            (Сумма товаров: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
-                            {if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
-
-                            
-                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
-                        <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
-                    </div>
-                    
-                    {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
+                            (Сумма товаров: <span class="f-w_b">{if $model->getOriginPrice()}{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}{else:}{echo $model->gettotalprice()}{/if}</span> {$CS})
+                        {if $CI->load->module('mod_discount')->check_module_install()}{if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}{/if}
 
 
-                    <span class="f-s_18">Сумма:</span>&nbsp;
-                    <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
-                    <span class="f-s_24"> {$CS}</span>
-                    {//var_dump(json_decode($model->getdiscountinfo()))}
-
+                    {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
+                    <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}{/if}</span> {$CS})
                 </div>
+
+                {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())}
+
+
+                <span class="f-s_18">Сумма:</span>&nbsp;
+                <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
+                <span class="f-s_24"> {$CS}</span>
+                {//var_dump(json_decode($model->getdiscountinfo()))}
+
             </div>
-        </td>
-    </tr>
-    <!-- End. Display Order summary -->
+        </div>
+    </td>
+</tr>
+<!-- End. Display Order summary -->
 
 </tfoot>
 </table>
-                    
+
 </div>
 </div>
 </div>

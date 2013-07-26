@@ -112,7 +112,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($hash, $access = array('public')) {
+    public function show($hash, $access = array('shared')) {
         if (!$hash)
             return FALSE;
 
@@ -262,7 +262,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function createWishList($user_id, $listName) {
+    public function createWishList($user_id, $listName, $wlType, $wlDescription) {
         if ($listName)
             $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
 
@@ -270,13 +270,18 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
-
+        
+        if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
+            $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
+            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+        }
+        
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
                 $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
             }
-            $this->wishlist_model->createWishList($listName, $user_id);
+            $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
             $this->errors[] = lang('error_listname_empty');
         }
@@ -541,17 +546,16 @@ class ParentWishlist extends \MY_Controller {
 
         $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
 
-        list($width, $height, $type, $attr) = getimagesize($_FILES["userfile"]['tmp_name']);
+        list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
-        if ($this->settings['maxImageSize'] < $_FILES["userfile"]['size'])
+        if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
             $this->errors[] = lang('error_max_image_size_exceeded');
         if ($this->settings['maxImageWidth'] < $width)
             $this->errors[] = lang('error_max_image_width_exceeded');
         if ($this->settings['maxImageHeight'] < $height)
             $this->errors[] = lang('error_max_image_height_exceeded');
-        if (!in_array($_FILES["userfile"]['type'], $allowedFileFormats))
+        if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
             $this->errors[] = lang('error_invalid_file_format');
-
         if ($this->errors)
             return FALSE;
 

@@ -18,27 +18,9 @@
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
-    <div class="mainFrameBaner">
-        <section class="container">
-            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(300,$category->id)}
-            {if count($banners)}
-                <div class="frame_baner">
-                    <ul class="cycle">
-                        {foreach $banners as $banner}
-                            <li>
-                                <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
-                    <div class="pager"></div>
-                    <button class="next" type="button"></button>
-                    <button class="prev" type="button"></button>
-                </div>
-            {/if}
-        </section>
-    </div>
+
+    {$CI->load->module('banners')->render($category->getId())}
+
     <!-- Show banners in circle -->
 
     <!-- Block for bread crumbs with a call of shop_helper function to create it according to category model -->
@@ -53,7 +35,7 @@
         <div class="span9 right">
 
             <!-- category title and products count output -->
-            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>
+            <h1 class="d_i">{echo $title}</h1>
             {if count($products)>0}
                 <span class="c_97">{lang("Found")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product"), lang("product"), lang("product")))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
@@ -121,7 +103,6 @@
 
                                     <!-- displaying product's rate -->
                                     {$CI->load->module('star_rating')->show_star_rating($product)}
-                                    {$CI->load->module('wishlist')->renderWLButton($product->firstvariant->getId())}
 
                                     <!-- displaying comments count -->
                                     {if $Comments[$product->getId()][0] != '0' && $product->enable_comments}
@@ -266,7 +247,7 @@
                                 </div>
                                 <div class="short_description">
                                     {if $desc}
-                                        {echo $desc}
+                                        {echo strip_tags($desc)}
                                     {else:}
                                         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                                     {/if}
@@ -298,7 +279,7 @@
 
                             <!-- creating hot bubble for products image if product is hit -->
                             {if $product->getHit()}
-                                <span class="top_tovar discount">{lang("Hit")}</span>
+                                <span class="top_tovar discount">{lang('Hit')}</span>
                             {/if}
                         </li>
                     {/foreach}
@@ -315,6 +296,9 @@
 
 </article>
 
+{//widget_ajax('view_product' , 'article.container')}
 {widget('view_product')}
+
+<script type="text/javascript" src="{$THEME}js/jquery.cycle.all.min.js"></script>
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

@@ -47,6 +47,7 @@ class Authapi extends MY_Controller {
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
                 $jsonResponse['refresh'] = TRUE;
+                $jsonResponse['redirect'] = TRUE;
             } else {
 
                 /** Check if the user is failed logged in because user is banned user or not */
@@ -67,9 +68,13 @@ class Authapi extends MY_Controller {
 
                     /** Return json data for render login form */
                     $jsonResponse['status'] = false;
+                    $jsonResponse['refresh'] = false;
+                    $jsonResponse['redirect'] =  false;
                 }
             }
         } else {
+            $jsonResponse['refresh'] = false;
+            $jsonResponse['redirect'] =  false;
             $jsonResponse['status'] = false;
             $jsonResponse['msg'] = 'User is already logged in';
         }
@@ -97,6 +102,7 @@ class Authapi extends MY_Controller {
             $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
             $jsonResponse['status'] = TRUE;
             $jsonResponse['refresh'] = TRUE;
+            $jsonResponse['redirect'] = TRUE;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';
@@ -143,7 +149,8 @@ class Authapi extends MY_Controller {
                 $json = array();
                 $json['status'] = true;
                 $json['msg'] = 'Register success';
-                $json['refresh'] = true;
+                $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
+                $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -202,10 +209,15 @@ class Authapi extends MY_Controller {
                 'status' => true,
             ));
         } else {
+            if($this->dx_auth->_auth_error){
+                $error = $this->dx_auth->_auth_error;
+            }else{
+                 $error = form_error('email');
+            }
             echo json_encode(array(
                 'msg' => validation_errors(),
                 'validations' => array(
-                    'email' => form_error('email'),
+                    'email' => $error,
                 ),
                 'status' => false,
             ));
@@ -288,7 +300,7 @@ class Authapi extends MY_Controller {
         /** return JSON Data */
         return json_encode($jsonResponse);
     }
-    
+
     function email_check($email) {
 
         $result = $this->dx_auth->is_email_available($email);
