@@ -19,9 +19,9 @@
 *   $Comments: array which contains count of comments for each product
 */
 #}
-
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
+    {widget('path')}
     <div class="row">
         {include_tpl('filter')}
         <div class="span9 right">
@@ -235,6 +235,7 @@
     </div>
 </article>
 
+{//widget_ajax('view_product', 'article.container')}
 {widget('view_product')}
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

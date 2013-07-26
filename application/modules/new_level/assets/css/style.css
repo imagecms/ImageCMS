@@ -1,0 +1,18 @@
+.propertyTypesHolder label{
+    display: inline;
+}
+.table-columns td {
+    border: 0px  solid !important;
+}
+.table-columns tr td{
+    width: 253px !important;
+}
+.columnName{
+    font-size: 14px;
+}
+.cattegoryColumnSaveButtonMod{
+    margin-top: 20px;
+}
+.addColumnContainer td {
+    width: 500px;
+}

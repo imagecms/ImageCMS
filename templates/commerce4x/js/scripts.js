@@ -262,6 +262,15 @@ function processPage() {
         }
     });
 }
+function initBtnBuy(){
+    $(genObj.btnBuy).unbind().on('click', function() {
+        Shop.Cart.countChanged = false;
+        $(this).attr('disabled', 'disabled');
+        var cartItem = Shop.composeCartItem($(this));
+        Shop.Cart.add(cartItem);
+        return true;
+    });
+}
 
 function initShopPage(showWindow) {
     if (Shop.Cart.countChanged == false) {
@@ -579,13 +588,7 @@ $(document).ready(function() {
     $('#popupCart').html(Shop.Cart.renderPopupCart())
 
     //click 'add to cart'
-    $(genObj.btnBuy).on('click', function() {
-        Shop.Cart.countChanged = false;
-        $(this).attr('disabled', 'disabled');
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem);
-        return true;
-    });
+    initBtnBuy();
 
     if ($('#orderDetails'))
         renderOrderDetails();

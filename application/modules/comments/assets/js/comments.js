@@ -201,10 +201,17 @@ function initComments() {
         });
     });
 }
-renderPosts = function(el) {
+renderPosts = function(el, data) {
+    var dataSend = "";
+    if (data != undefined)
+        dataSend = data
+    if (el.data() != undefined) {
+        dataSend = el.data()
+    }
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
         dataType: "json",
+        data: dataSend,
         type: "post",
         success: function(obj) {
             el.each(function() {
@@ -221,20 +228,20 @@ renderPosts = function(el) {
                         initComments();
                 })
 
-                if (obj.total_comments !== 0) {
+                if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').append(obj.total_comments);
+                    $('#cc').append(obj.commentsCount);
                 }
-                drawIcons(el.find(selIcons));
+                $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }
         }
     });
 }
 
-function post($this) {
+function post(el) {
     $.ajax({
         url: "/comments/commentsapi/newPost",
-        data: $($this).closest('form').serialize() +
+        data: $(el).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",
         type: "post",
@@ -245,11 +252,12 @@ function post($this) {
                 })
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
-                renderPosts($('[name="for_comments"]'));
+                renderPosts($(el).closest('[name="for_comments"]'));
             }
             else {
-                $($this).closest('form').find('.error_text').html('');
-                $($this).closest('form').find('.error_text').append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
+                var errText = $(el).closest('form').find('.error_text')
+                errText.html('');
+                errText.append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
             }
         }
     });

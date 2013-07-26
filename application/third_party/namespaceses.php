@@ -8,8 +8,9 @@ function modules_namespaces_initialize() {
 }
 
 function __nsautoload($class) {
+
     if (strpos($class, "\\")) {
-        if (file_exists($file = APPPATH. 'modules/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT) || file_exists($file = APPPATH. 'modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT))
+        if (file_exists($file = APPPATH. 'modules/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT) || file_exists($file = APPPATH. 'modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT) )
             require $file;
     }
 }

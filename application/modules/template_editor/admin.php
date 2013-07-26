@@ -7,13 +7,13 @@
  */
 
 class Admin extends BaseAdminController {
-	
+
     public function __construct()
     {
             parent::__construct();
         //cp_check_perm('module_admin');
 
-    //TEMPLATES_PATH 
+    //TEMPLATES_PATH
     $this->load->helper('directory');
     }
 
@@ -30,22 +30,22 @@ class Admin extends BaseAdminController {
     	else
     		$this->display_tpl($tpl);
     }
-    
+
     /**
      * Display template file
-     */ 
+     */
 	private function display_tpl($file = '')
 	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file;  
+        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file;
 		$this->template->show('file:'.$file);
 	}
 
     /**
      * Fetch template file
-     */ 
+     */
 	private function fetch_tpl($file = '')
 	{
-        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';  
+        $file = realpath(dirname(__FILE__)).'/templates/admin/'.$file.'.tpl';
 		return $this->template->fetch('file:'.$file);
 	}
 

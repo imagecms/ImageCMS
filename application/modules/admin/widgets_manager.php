@@ -51,7 +51,6 @@ class Widgets_manager extends BaseAdminController {
             }
         }
 
-
         $this->template->add_array(array(
             'widgets' => $widgets
         ));
@@ -81,7 +80,7 @@ class Widgets_manager extends BaseAdminController {
             showMessage(lang("Set the directory access rights to continue the work with widgets") . '<b>' . $this->widgets_path . '</b>', '', 'r');
             exit;
         }
-        //cp_check_perm('widget_create'); 
+        //cp_check_perm('widget_create');
 
         $this->load->library('form_validation');
 
@@ -116,7 +115,12 @@ class Widgets_manager extends BaseAdminController {
                 // Copy widgets template
                 $moduleInfo = $this->load->module('admin/components')->get_module_info($data['data']);
                 $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
-                $tpl_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '.tpl';
+
+                $currentTemplate = $this->db->get('settings')->row()->site_template;
+                if (file_exists(TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl'))
+                    $tpl_file = TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl';
+                else
+                    $tpl_file = PUBPATH . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '.tpl';
 
                 if (file_exists($tpl_file)) {
                     // Get current template folder
@@ -219,7 +223,7 @@ class Widgets_manager extends BaseAdminController {
                 $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('show_settings', $widget));
             } elseif ($widget['type'] == 'html') {
-                
+
             }
         } else {
             show_error(lang("Error: widget not found!"));
@@ -311,7 +315,7 @@ class Widgets_manager extends BaseAdminController {
     }
 
     public function delete() {
-        //cp_check_perm('widget_delete'); 
+        //cp_check_perm('widget_delete');
 
         $name = $this->input->post('ids');
         $this->db->where_in('name', $name);
@@ -338,11 +342,11 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
-        
+
         /** Init Event. Pre Create Category */
         \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetHTML:preUpdate');
         \CMSFactory\Events::runFactory();
-        
+
         $this->template->add_array(array(
             'widget' => $widget->row_array()
         ));
@@ -351,14 +355,14 @@ class Widgets_manager extends BaseAdminController {
     }
 
     public function edit_module_widget($id) {
-        //cp_check_perm('widget_access_settings'); 
+        //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id);
-        
+
         /** Init Event. Pre Create Category */
         \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetModule:preUpdate');
         \CMSFactory\Events::runFactory();
-        
+
         $this->template->add_array(array(
             'widget' => $widget->row_array()
         ));

@@ -1570,7 +1570,7 @@ var Shop = {
             else
                 currentItem = cartItem;
                                         
-            console.log(currentItem)
+            //console.log(currentItem)
             this.save(currentItem);
 
 
@@ -1855,6 +1855,8 @@ var Shop = {
         cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
         cartItem.origprice = $context.data('origprice')
+        
+
         return cartItem;
     },
     //settings manager
@@ -2010,7 +2012,7 @@ var Shop = {
         sync: function() {
             $.getJSON('/shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.parse(data));
+                    localStorage.setItem('wishList', JSON.stringify(data));
 
                     $(document).trigger({
                         type: 'compare_list_sync'

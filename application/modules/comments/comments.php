@@ -7,6 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Comments component
+ * @property Base $base
  */
 class Comments extends MY_Controller {
 
@@ -117,19 +118,19 @@ class Comments extends MY_Controller {
      * Autoload function. Load language and comments.
      */
     public function autoload() {
-        ($hook = get_hook('comments_on_autoload')) ? eval($hook) : NULL;
-
-        $this->load->helper('cookie');
-
-        // Load language
-        $this->load->language('comments');
-
-        // Build comments only for pages with comments_status 1
-        if ($this->core->core_data['data_type'] == 'page' AND $this->core->page_content['comments_status'] == 1) {
-            $this->build_comments($this->core->page_content['id']);
-        } else {
-            return FALSE;
-        }
+//        ($hook = get_hook('comments_on_autoload')) ? eval($hook) : NULL;
+//
+//        $this->load->helper('cookie');
+//
+//        // Load language
+//        $this->load->language('comments');
+//
+//        // Build comments only for pages with comments_status 1
+//        if ($this->core->core_data['data_type'] == 'page' AND $this->core->page_content['comments_status'] == 1) {
+//            $this->build_comments($this->core->page_content['id']);
+//        } else {
+//            return FALSE;
+//        }
     }
 
     private function init_settings() {

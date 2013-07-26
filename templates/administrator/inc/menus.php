@@ -261,7 +261,7 @@ $shopMenu = array(
                 'link'      => $ADMIN_URL.'banners/index',
                 'text'      => 'Banners',
             ),
-            array(
+            /*array(
                 'link'      => $ADMIN_URL.'discounts/index',
                 'text'      => 'Regular discounts',
             ),
@@ -271,8 +271,8 @@ $shopMenu = array(
             ),
             array(
                 'link'      => $ADMIN_URL.'gifts',
-                'text'      => 'Gift certificates',
-            ),
+                'text'      => 'a_gift_certs',
+            ),*/
             array(
                 'link'      => $ADMIN_URL.'customfields',
                 'text'      => 'Custom fields',

@@ -64,9 +64,7 @@
                                             <span class="icon-address"></span>
                                             <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                     </label>
-
                                     {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getCustomFields('order',$profile.id,'user')->asHtml()}
-
                                     <div class="groups_form">
                                         <div class="frameLabel" style="position: relative; z-index: 6;">
                                             <span class="title">Способ доставки</span>
@@ -86,7 +84,7 @@
                                                                     name="met_del"
                                                                     class="met_del"
                                                                     value="{echo $del_id}"
-                                                                    data-price="{echo ceil($deliveryMethod->getPrice())}"
+                                                                    data-price="{echo ShopCore::app()->SCurrencyHelper->convert(ceil($deliveryMethod->getPrice()))}"
                                                                     data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
                                                                 {echo $deliveryMethod->getName()}
                                                                 </option>

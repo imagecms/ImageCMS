@@ -765,6 +765,7 @@ $(document).ready(function() {
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
         clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
+        clonedVarTr.find('.newImage').attr('name', 'image' + countVarRows);
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
@@ -803,10 +804,6 @@ $(document).ready(function() {
                 $('.position_after').html(data);
             }
         });
-    });
-
-    $('#mailVariables').live('click', function() {
-        $('#mailText').elrte()[0].elrte.selection.insertHtml(' ' + $(this).val() + ' ');
     });
 
     $('[data-del="wares"]').live('click', function() {

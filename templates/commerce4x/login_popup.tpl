@@ -40,6 +40,7 @@
                             <input type="submit" value="Войти" class="btn btn_cart f_r" />
                         </span>
                     </div>
+                    
                 </form>
             </div>
         </div>

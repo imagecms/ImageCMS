@@ -67,12 +67,12 @@ class discount extends classes\BaseDiscount {
             $discount_all_order = $this->get_all_order_discount_register();
             
         }
-        
+
         $this->result_discount = array(
                                 'all_order'=>$discount_all_order, 
                                 'comulative' => $discount_comulativ, 
-                                'user' => $discount_group_user, 
-                                'user_group' => $discount_user);
+                                'user' => $discount_user, 
+                                'user_group' => $discount_group_user);
         
         return $this;
     }
@@ -190,7 +190,7 @@ class discount extends classes\BaseDiscount {
         foreach ($this->cart_data as $item) {
             if ($item['instance'] == 'SProducts') {
                 $price_origin = $this->discount_model_front->get_price($item['variantId']);
-                if ($price_origin != $item['price'])
+                if (abs($price_origin - $item['price']) > 1)
                     $discount_value += ($price_origin - $item['price']) * $item['quantity'];
             }
         }
@@ -211,7 +211,7 @@ class discount extends classes\BaseDiscount {
         $all_order_arr_reg = array();
         foreach ($this->discount_type['all_order'] as $disc)
             if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= $this->total_price)
+                if ($disc['begin_value'] <= (int)$this->total_price)
                     $all_order_arr_reg[] = $disc;
 
         if (count($all_order_arr_reg) > 0)

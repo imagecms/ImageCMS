@@ -19,16 +19,18 @@ class Auth extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
+        
         $this->min_password = ($this->config->item('DX_login_min_length')) ? $this->config->item('DX_login_min_length') : $this->min_password;
         $this->max_password = ($this->config->item('DX_login_max_length')) ? $this->config->item('DX_login_max_length') : $this->max_password;
 
+        $this->load->language('auth');
         $this->load->helper('url');
         $this->load->library('Form_validation');
 //        $this->form_validation->this = & $this;
     }
 
     public function index() {
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         $this->login();
     }
 
@@ -95,7 +97,7 @@ class Auth extends MY_Controller {
 
     function login() {
 //         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
-
+            $this->core->set_meta_tags(lang('lang_authorization'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 
@@ -104,7 +106,7 @@ class Auth extends MY_Controller {
             $val->set_rules('password', lang("Password"), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
 
-            // Set captcha rules if login attempts exceed max attempts in config           
+            // Set captcha rules if login attempts exceed max attempts in config
             if ($this->dx_auth->is_max_login_attempts_exceeded()) {
                 if ($this->dx_auth->use_recaptcha)
                     $val->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
@@ -115,7 +117,7 @@ class Auth extends MY_Controller {
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
 //                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
                 // Redirect to homepage
-                
+
                 if (class_exists('ShopCore') && SHOP_INSTALLED)
                     ShopCore::app()->SCart->transferCartData();
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
