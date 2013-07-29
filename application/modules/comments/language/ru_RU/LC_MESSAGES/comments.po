@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 15:01+0300\n"
-"PO-Revision-Date: 2013-07-26 15:01+0300\n"
+"POT-Creation-Date: 2013-07-29 10:03+0300\n"
+"PO-Revision-Date: 2013-07-29 10:03+0300\n"
 "Last-Translator: asdasd <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -300,7 +300,7 @@ msgid "Contents"
 msgstr ""
 
 #: ../../../commentsapi.php:79
-#: ../../../commentsapi.php:155
+#: ../../../commentsapi.php:153
 #: ../../../comments.php:202
 msgid "lang_total_comments"
 msgstr ""
@@ -320,30 +320,30 @@ msgstr "Смотреть"
 msgid "s_review_tre"
 msgstr "Смотреть"
 
-#: ../../../commentsapi.php:179
-#: ../../../commentsapi.php:554
-#: ../../../commentsapi.php:558
+#: ../../../commentsapi.php:177
+#: ../../../commentsapi.php:551
+#: ../../../commentsapi.php:555
 #, fuzzy
 msgid "review"
 msgstr "Смотреть"
 
-#: ../../../commentsapi.php:179
-#: ../../../commentsapi.php:554
-#: ../../../commentsapi.php:558
+#: ../../../commentsapi.php:177
+#: ../../../commentsapi.php:551
+#: ../../../commentsapi.php:555
 #, fuzzy
 msgid "reviews"
 msgstr "Смотреть"
 
-#: ../../../commentsapi.php:179
+#: ../../../commentsapi.php:177
 msgid "Leave a comment"
 msgstr ""
 
-#: ../../../commentsapi.php:286
+#: ../../../commentsapi.php:283
 msgid "Time for new  comment has not yet come"
 msgstr ""
 
-#: ../../../commentsapi.php:305
-#: ../../../commentsapi.php:307
+#: ../../../commentsapi.php:302
+#: ../../../commentsapi.php:304
 #: ../../../comments.php:275
 #: ../../../comments.php:277
 msgid "Code protection"

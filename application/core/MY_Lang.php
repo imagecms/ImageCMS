@@ -49,8 +49,8 @@ class MY_Lang extends MX_Lang {
         $langs = array(
             'ru'   => array('ru', 'ru_RU'),
             'en'   => array('en', 'en_US'),
-            'ge'    => array('de', 'de_CH'),
-            'uk' => array('uk', 'uk_UA')
+            'ge'   => array('de', 'de_CH'),
+            'uk'   => array('uk', 'uk_UA')
         );
 
         return isset($langs[$language])?$langs[$language]:array('en', 'en_US');
