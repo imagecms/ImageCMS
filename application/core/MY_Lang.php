@@ -73,7 +73,8 @@ class MY_Lang extends MX_Lang {
         $this->gettext_language = $this->ci->config->item('language');
         
         $this->ci->load->library('gettext_php/gettext_extension', array());
-        $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $this->getLangCode($this->gettext_language)[1]);
+        $lang = $this->getLangCode($this->gettext_language);
+        $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $lang[1]);
     }
 
 	private function _language() {
@@ -103,21 +104,22 @@ class MY_Lang extends MX_Lang {
 	 * @param	string	the language (english, etc.)
 	 * @return	mixed
 	 */
-	public function load($module = 'admin') {
+	public function load($module = 'main') {
             if (!$this->gettext)
                 $this->_init();
-            
+            $language = $this->getLangCode($this->gettext_language);
+            $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $url = uri_string();
+            
             if (strstr($url,'admin')){
-                $lang = $this->getLangCode($this->gettext_language)[1];
-
+                $lang = $language[1];
             }else{
-                $lang = $this->getFrontLangCode(MY_Controller::getCurrentLocale())[1];
-
+                $lang = $languageFront[1];
+//                $lang = 'en_US';
             }
-
+           
            if ($module == 'main'){
-               $this->gettext->switchDomain('application/language/front/', 'front', $lang);
+               $this->gettext->switchDomain('application/language/main/', 'main', $lang);
            }else{
                $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $lang);
            }

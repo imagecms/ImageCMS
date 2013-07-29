@@ -2,8 +2,8 @@
 $gettext_pattern = array(
   "~\{\"([^\"]+)\"\|_([^\}]*)\}~",  // search for smarty modifier: {"Text to be localized"|_}
   "~\{t\}([^\{]+)\{/t\}~",
-  "~lang\(\'(.*?)\'\)~",
-  "~lang\(\"(.*?)\"\)~" // search for smarty modifier: {t}Text to be localized{/t}
+  "~lang\(\'(.*?)\'~",
+  "~lang\(\"(.*?)\"~" // search for smarty modifier: {t}Text to be localized{/t}
 );
 
 define('_DAT', '/var/www/image.loc/_temp.php');

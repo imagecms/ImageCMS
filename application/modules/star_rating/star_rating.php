@@ -31,17 +31,6 @@ class Star_rating extends MY_Controller {
         $obj = new MY_Lang();
         $obj->load('star_rating'); 
     }
-//    
-//    public function pre (){
-//        textdomain('star_rating');
-//        return $this;
-//    }
-//    
-//    public function after (){
-//        textdomain('admin');
-//        return $this;        
-//    }
-
     
     public static function adminAutoload() {
         parent::adminAutoload();
@@ -56,15 +45,12 @@ class Star_rating extends MY_Controller {
      * @param SProducts $item
      */
     public function show_star_rating($item = null) {
-        textdomain('star_rating');
        $get_settings = $this->rating_model->get_settings();
-
         //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null) {
             $this->list_for_show = array();
         }
-
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
 
@@ -101,7 +87,6 @@ class Star_rating extends MY_Controller {
                 $template = 'star_rating';
             } else {
                 $template = null;
-                textdomain('front');
                 return false;
             }
         }
@@ -114,7 +99,7 @@ class Star_rating extends MY_Controller {
                     if ($template != 'product_star_rating')
                         $renderTemplate->registerScript('scripts');
                     $renderTemplate->render($template, true);
-        textdomain('front');
+        return $this;
     }
 
     /**
