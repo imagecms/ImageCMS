@@ -252,7 +252,7 @@
                     {/if}
                     <!--Output of the block if there is one accessory END-->
                     <!--Output of the block comments-->
-                    {if $Comments && $model->enable_comments}
+                    {if $Comments}
                         <li>
                             <button type="button" data-href="#comment" onclick="renderPosts($('[name=for_comments]'))">
                                 <span class="icon-comment-tab"></span>

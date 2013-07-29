@@ -24,6 +24,8 @@ class Comments extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
+        $this->load->language('comments');
+        $this->load->helper('cookie');
         $CI = &get_instance();
     }
 
@@ -63,7 +65,7 @@ class Comments extends MY_Controller {
 
         $ids = array();
         foreach ($array as $key => $a)
-            $ids[$key] = $a[item_id];
+            $ids[$key] = $a['item_id'];
 
         $CI->db->where_in('item_id', $ids);
         $CI->db->where('module', 'shop');
