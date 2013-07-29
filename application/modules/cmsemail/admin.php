@@ -111,7 +111,7 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), lang('Message'), 'r');
             } else {
-                if ($this->cmsemail_model->setSettings($_POST['settings']))
+                if ($this->email->setSettings($_POST['settings']))
                     showMessage(lang('Settings_saved'), lang('Message'));
             }
 
