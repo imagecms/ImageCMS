@@ -107,10 +107,8 @@ class Commentsapi extends Comments {
     }
 
     public function renderPosts() {
-        textdomain('comments');
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
-
         $this->load->model('base');
         $this->init_settings();
 
@@ -180,7 +178,6 @@ class Commentsapi extends Comments {
             'commentsCount' => $commentsCount[$item_id],
             'validation_errors' => $this->validation_errors
         ));
-       textdomain('front');
     }
 
     /**

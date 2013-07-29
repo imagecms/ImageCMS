@@ -42,7 +42,7 @@
                                 <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                     <span class="icon-comment__icsi-css">
                                     </span>
-                                    {lang('s_comment_answer')}
+                                   {lang('s_comment_answer', 'comments')}
                                 </button>
                             </div>
 
@@ -89,32 +89,14 @@
         </ul>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
-<<<<<<< HEAD
-        <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
-            <div class="frame-comments__icsi-css layout-highlight">
-                <div class="title_h2__icsi-css title-default">
-                    <div class="title">{lang("Write your comment")}</div>
-                </div>
-                <!-- Start of new comment fild -->
-                <div class="form-comment__icsi-css form__icsi-css main-form-comments">
-                    <div class="inside-padd">
-                        <form method="post">
-                            <label class="err-label">
-                                <span class="frame_form_field__icsi-css">
-                                    <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-                                </span>
-                            </label>
-                            {if !$is_logged_in}
-=======
         <div class="main-form-comments__icsi-css">
             <div class="frame-comments__icsi-css">
                 <div class="inside-padd">
-                    <div class="title_h2__icsi-css">{lang('s_leave_your_comment')}</div>
+                    <div class="title_h2__icsi-css">{lang('Write your comment')}</div>
                     <!-- Start of new comment fild -->
                     <div class="form-comment__icsi-css form__icsi-css horizontal-form">
                         <div class="inside-padd">
                             <form method="post">
->>>>>>> 0099e926f5534772b19b7ffb9d438cadbf360602
                                 <label>
                                     <span class="frame_form_field__icsi-css">
                                         <div class="frameLabel__icsi-css error_text" name="error_text"></div>
@@ -213,15 +195,6 @@
     {/if}
 
     <div class="frame-drop-comment__icsi-css" data-rel="whoCloneAddPaste">
-<<<<<<< HEAD
-        <div class="form-comment__icsi-css form__icsi-css layout-highlight frame-comments__icsi-css">
-            <div class="title_h2__icsi-css title-default">
-                <div class="title">{lang("Your answer")}</div>
-            </div>
-            <div class="inside-padd">
-                <form>
-                    <label class="err-label">
-=======
         <div class="form-comment__icsi-css form__icsi-css">
             <form>
                 <label>
@@ -233,26 +206,10 @@
                 {if !$is_logged_in}
                     <label>
                         <span class="title__icsi-css">{lang('lang_comment_author')}</span>
->>>>>>> 0099e926f5534772b19b7ffb9d438cadbf360602
                         <span class="frame_form_field__icsi-css">
                             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                         </span>
                     </label>
-<<<<<<< HEAD
-                    {if !$is_logged_in}
-                        <label>
-                            <span class="title__icsi-css">{lang('lang_comment_author')}</span>
-                            <span class="frame_form_field__icsi-css">
-                                <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
-                            </span>
-                        </label>
-                        <label>
-                            <span class="title__icsi-css">{lang('lang_comment_email')} </span>
-                            <span class="frame_form_field__icsi-css">
-                                <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                            </span>
-                        </label>
-=======
                     <label>
                         <span class="title__icsi-css">{lang('lang_comment_email')} </span>
                         <span class="frame_form_field__icsi-css">
@@ -260,7 +217,6 @@
                         </span>
                     </label>
                     {if $use_moderation}
->>>>>>> 0099e926f5534772b19b7ffb9d438cadbf360602
                         <label>
                             <span class="frame_form_field__icsi-css">
                                 <div class="msg">
@@ -271,25 +227,6 @@
                             </span>
                         </label>
                     {/if}
-<<<<<<< HEAD
-                    <label>
-                        <span class="title__icsi-css">Комментарий</span>
-                        <span class="frame_form_field__icsi-css">
-                            <textarea class="comment_text" name="comment_text"></textarea>
-                        </span>
-                    </label>
-                    <div class="frameLabel__icsi-css">
-                        <span class="frame_form_field__icsi-css">
-
-                            <input type="hidden" id="parent" name="comment_parent" value="">
-                            <span class="btn-form">
-                                <input type="submit" value="{lang('s_leave_comment')}" onclick="post(this)"/>
-                            </span>
-                        </span>
-                    </div>
-                </form>
-            </div>  
-=======
                 {/if}
                 <label>
                     <span class="title__icsi-css">Комментарий</span>
@@ -305,7 +242,6 @@
                     </span>
                 </div>
             </form>
->>>>>>> 0099e926f5534772b19b7ffb9d438cadbf360602
         </div>
     </div>
 </div>
