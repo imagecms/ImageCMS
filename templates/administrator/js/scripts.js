@@ -199,7 +199,7 @@ function changeRadio(el)
 function changeCheckallchecks(el)
 {
     var el = el,
-            input = el.find("input");
+    input = el.find("input");
     el.css("background-position", active_b_p);
     el.parent().addClass('active');
     input.attr("checked", true);
@@ -218,7 +218,7 @@ function changeCheckallchecks(el)
 function changeCheckallreset(el)
 {
     var el = el,
-            input = el.find("input");
+    input = el.find("input");
     el.css("background-position", n_active_b_p);
     el.parent().removeClass('active');
     input.attr("checked", false);
@@ -238,7 +238,7 @@ function changeCheckallreset(el)
 function changeCheckStart(el)
 {
     var el = el,
-            input = el.find("input");
+    input = el.find("input");
     if (input.attr("checked")) {
         check1(el, input);
     }
@@ -250,7 +250,7 @@ function changeCheckStart(el)
 function changeRadioStart(el)
 {
     var el = el,
-            input = el.find("input");
+    input = el.find("input");
     el.removeClass('b_n');
     if (input.attr("checked")) {
         check3(el, input);
@@ -299,23 +299,23 @@ function init_2() {
     initNiceCheck()
 
     //autocomplete for resize in settings
-    
-   if($('#product_name').length){
-            $('#product_name').autocomplete({
-             source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
-             select: function(event, ui) {
-                 productName = ui.item.label;
-                 $('#product_id').val(ui.item.value);
-                 vKeys = Object.keys(ui.item.variants);
-                 $('#product_variant_name').empty();
 
-                 for (var i = 0; i < vKeys.length; i++)
-                     $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
-             },
-             close: function() {
-                 $('#product_name').val(productName);
-             }
-         });
+    if($('#product_name').length){
+        $('#product_name').autocomplete({
+         source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+         select: function(event, ui) {
+             productName = ui.item.label;
+             $('#product_id').val(ui.item.value);
+             vKeys = Object.keys(ui.item.variants);
+             $('#product_variant_name').empty();
+
+             for (var i = 0; i < vKeys.length; i++)
+                 $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+         },
+         close: function() {
+             $('#product_name').val(productName);
+         }
+     });
     }
 
     //Autocomplete for orders
@@ -342,7 +342,7 @@ function init_2() {
             }
         });
     }
-     /* Autocomplete users in orders */
+    /* Autocomplete users in orders */
     if($('#usersForOrders').length){
         $('#usersForOrders').autocomplete({
             source: '/admin/components/run/shop/orders/autoComplite/?limit=25',
@@ -440,43 +440,43 @@ function init_2() {
         return false;
     });
 
-    $(".frame_label:has(.niceRadio)").die('click').click(function() {
-        var $this = $(this);
-        changeRadio($this.find('> span:eq(0)'));
-    });
+$(".frame_label:has(.niceRadio)").die('click').click(function() {
+    var $this = $(this);
+    changeRadio($this.find('> span:eq(0)'));
+});
 
-    $('.all_select').toggle(function() {
-        $(this).parents('table').find('tbody .frame_label').each(function() {
-            changeCheckallchecks($(this).find('> span:eq(0)'));
-        })
-    },
-            function() {
-                $(this).parents('table').find('tbody .frame_label').each(function() {
-                    changeCheckallreset($(this).find('> span:eq(0)'));
-                })
-            });
-    $('.all_diselect').die('click').live('click', function() {
-        $(this).parents('table').find('.frame_label').each(function() {
-            changeCheckallreset($(this).find('> span:eq(0)'));
-        })
+$('.all_select').toggle(function() {
+    $(this).parents('table').find('tbody .frame_label').each(function() {
+        changeCheckallchecks($(this).find('> span:eq(0)'));
     })
+},
+function() {
+    $(this).parents('table').find('tbody .frame_label').each(function() {
+        changeCheckallreset($(this).find('> span:eq(0)'));
+    })
+});
+$('.all_diselect').die('click').live('click', function() {
+    $(this).parents('table').find('.frame_label').each(function() {
+        changeCheckallreset($(this).find('> span:eq(0)'));
+    })
+})
 
-    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
-        $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
-            'delay': {
-                show: 500,
-                hide: 100
-            }
-        });
-    $('[data-max]').die('keyup').live('keyup', function(event) {
-        $this = $(this);
-        if (parseInt($this.val()) > $this.data('max')) {
-            if ($this.val().toString().match(/%/))
-                $this.val(100 + '%');
-            else
-                $this.val(100);
+if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
+    $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
+        'delay': {
+            show: 500,
+            hide: 100
         }
     });
+$('[data-max]').die('keyup').live('keyup', function(event) {
+    $this = $(this);
+    if (parseInt($this.val()) > $this.data('max')) {
+        if ($this.val().toString().match(/%/))
+            $this.val(100 + '%');
+        else
+            $this.val(100);
+    }
+});
 }
 function dropDownMenu() {
     $('.to_pspam').unbind('click').on('click', function() {
@@ -485,10 +485,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 2
-                },
+        {
+            id: arr,
+            status: 2
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -500,10 +500,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 1
-                },
+        {
+            id: arr,
+            status: 1
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -516,10 +516,10 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 0
-                },
+        {
+            id: arr,
+            status: 0
+        },
         function(data) {
             $('.notifications').append(data);
         }
@@ -586,61 +586,61 @@ function autocomplete() {
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">ID</span>' +
-                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">Имя</span>' +
-                        '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">Скидка %</span>' +
-                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
-                        '</span>&nbsp;' +
-                        '<span class="d-i_b v-a_b">' +
-                        '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                        '</span>' +
-                        '</div>');
-            },
-            close: function(event, ui) {
-                $('#AttachedProducts').attr('value', '');
-            }
-        });
-    }
-    if ($.exists('#RelatedProducts')) {
-        $('#RelatedProducts').autocomplete({
-            minChars: 0,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
-            select: function(event, ui) {
-                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                        '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
-                        '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
-                        '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
-                        '</span>' +
-                        '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
-                        '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
-                        '</span>' +
-                        '</div>');
-            },
-            close: function(event, ui) {
-                $('#RelatedProducts').attr('value', '');
-            }
-        });
-    }
-    if ($.exists('#emailAutoC')) {
-        $('#emailAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
-        });
-    }
-    if ($.exists('#nameAutoC')) {
-        $('#nameAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">ID</span>' +
+                    '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<span class="help-inline d_b">Имя</span>' +
+                    '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b number v-a_b">' +
+                    '<span class="help-inline d_b">Скидка %</span>' +
+                    '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
+                    '</span>&nbsp;' +
+                    '<span class="d-i_b v-a_b">' +
+                    '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
+                    '</span>' +
+                    '</div>');
+},
+close: function(event, ui) {
+    $('#AttachedProducts').attr('value', '');
+}
+});
+}
+if ($.exists('#RelatedProducts')) {
+    $('#RelatedProducts').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/kits/get_products_list/' + $('#RelatedProducts').attr('value') + '&limit=20',
+        select: function(event, ui) {
+            $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
+                '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
+                '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
+                '</span>' +
+                '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                '</span>' +
+                '</div>');
+        },
+        close: function(event, ui) {
+            $('#RelatedProducts').attr('value', '');
+        }
+    });
+}
+if ($.exists('#emailAutoC')) {
+    $('#emailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
+    });
+}
+if ($.exists('#nameAutoC')) {
+    $('#nameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
 
-        });
-    }
+    });
+}
 
     // AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
 
@@ -702,7 +702,7 @@ handleFileSelect = function(evt) {
                 // Render thumbnail.
                 var span = document.createElement('div');
                 span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
-                    '" title="', escape(theFile.name), '"/>'].join('');
+                '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
                 $('#picsToUpload img').fadeIn(500);
@@ -746,12 +746,12 @@ function getScrollTop() {
         //Netscape compliant
         scrOfY = window.pageYOffset;
     } else if (document.body
-            && (document.body.scrollLeft
+        && (document.body.scrollLeft
             || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
-            && (document.documentElement.scrollLeft
+        && (document.documentElement.scrollLeft
             || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
@@ -992,17 +992,17 @@ function initAdminArea() {
 
     function mouseDown(e) {
         if (
-                (e.target.nodeName != "HTML") &&
-                (e.target.nodeName != "TEXTAREA") &&
-                (e.target.nodeName != "SELECT") &&
-                (e.target.nodeName != "OPTION") &&
-                (e.target.nodeName != "INPUT") &&
-                (e.target.nodeName != "TR") &&
-                (e.target.nodeName != "P") &&
-                (e.target.nodeName != "SPAN") &&
-                (!e.target.nodeName != "A") &&
-                (e.target.nodeName != "DD")
-                )
+            (e.target.nodeName != "HTML") &&
+            (e.target.nodeName != "TEXTAREA") &&
+            (e.target.nodeName != "SELECT") &&
+            (e.target.nodeName != "OPTION") &&
+            (e.target.nodeName != "INPUT") &&
+            (e.target.nodeName != "TR") &&
+            (e.target.nodeName != "P") &&
+            (e.target.nodeName != "SPAN") &&
+            (!e.target.nodeName != "A") &&
+            (e.target.nodeName != "DD")
+            )
         {
             e = e || event;
             cancelEvent(e);
@@ -1046,69 +1046,69 @@ function initAdminArea() {
     // $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
     // });
 
-    $('.listFilterSubmitButton').die('click').live('click', function() {
-        if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
-        {
-            $('#loading').stop().fadeIn(100);
-            $('.listFilterForm').ajaxSubmit({
-                target: '#mainContent',
-                headers: {
-                    'X-PJAX': 'X-PJAX'
-                }
-            });
-
-        }
-    });
-
-
-    $('.controls img.img-polaroid').die('click').live('click', function() {
-        $(this).closest('.control-group').find('input:file').click();
-    });
-
-    $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
-        $this = $(this);
-        $type_file = $this.val();
-
-        var file = this.files[0];
-
-        var img = document.createElement("img");
-        var reader = new FileReader();
-        reader.onloadend = function() {
-            img.src = reader.result;
-        }
-
-        reader.readAsDataURL(file);
-        $(img).addClass('img-polaroid').css({
-            width: '100px'
+$('.listFilterSubmitButton').die('click').live('click', function() {
+    if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
+    {
+        $('#loading').stop().fadeIn(100);
+        $('.listFilterForm').ajaxSubmit({
+            target: '#mainContent',
+            headers: {
+                'X-PJAX': 'X-PJAX'
+            }
         });
-        $(this).closest('.control-group').find('.controls').html(img);
-        $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
 
-        isChanged = $(this).closest('td').find('.changeImage').val('1');
-        console.log(isChanged);
+    }
+});
 
+
+$('.controls img.img-polaroid').die('click').live('click', function() {
+    $(this).closest('.control-group').find('input:file').click();
+});
+
+$('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
+    $this = $(this);
+    $type_file = $this.val();
+
+    var file = this.files[0];
+
+    var img = document.createElement("img");
+    var reader = new FileReader();
+    reader.onloadend = function() {
+        img.src = reader.result;
+    }
+
+    reader.readAsDataURL(file);
+    $(img).addClass('img-polaroid').css({
+        width: '100px'
     });
+    $(this).closest('.control-group').find('.controls').html(img);
+    $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
+
+    isChanged = $(this).closest('td').find('.changeImage').val('1');
+    console.log(isChanged);
+
+});
 
 
-    $('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
-        event.preventDefault();
-        $('#loading').fadeIn(100);
-        $.pjax({
-            url: $(this).attr('href'),
-            container: '#mainContent',
-            timeout: 0
-
-        })
-        return false;
-    });
-
-    $(document).on('pjax:start', function() {
-        $('#loading').fadeIn(100);
+$('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
+    event.preventDefault();
+    $('#loading').fadeIn(100);
+    $.pjax({
+        url: $(this).attr('href'),
+        container: '#mainContent',
+        timeout: 0
 
     })
-            .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+    return false;
+});
+
+$(document).on('pjax:start', function() {
+    $('#loading').fadeIn(100);
+
+})
+.on('pjax:end', function() {
+    $('#loading').fadeOut(300);
+});
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1118,9 +1118,9 @@ function initAdminArea() {
             else
                 $('#order' + orderField).find('a').after('&darr;');
 
-    if ($('textarea.elRTE').length > 0)
+            if ($('textarea.elRTE').length > 0)
         //        initElRTE();
-        initTextEditor(textEditor);
+    initTextEditor(textEditor);
 
     if ($('#elFinderTPLEd').length > 0)
         elFinderTPLEd();
@@ -1168,24 +1168,24 @@ function change_per_page(el) {
 //+++++++++++++++++++++++++++++++
 
 $(document).ready(
-        function() {
+    function() {
 
-            $('ul.auto_search li').live('click', function() {
-                tex = $('[name=Products]').val();
-                if (tex == '')
-                    tex = $(this).attr('data-id');
-                else
-                    tex = tex + ',' + $(this).attr('data-id');
-                $('[name=Products]').val(tex);
-            })
+        $('ul.auto_search li').live('click', function() {
+            tex = $('[name=Products]').val();
+            if (tex == '')
+                tex = $(this).attr('data-id');
+            else
+                tex = tex + ',' + $(this).attr('data-id');
+            $('[name=Products]').val(tex);
+        })
 
-            if ($('#shopSearch').length) {
-                initShopSearch();
-            }
+        if ($('#shopSearch').length) {
+            initShopSearch();
+        }
 
-            if ($.exists('#topPanelNotifications'))
-                updateNotificationsTotal();
-            initAdminArea();
+        if ($.exists('#topPanelNotifications'))
+            updateNotificationsTotal();
+        initAdminArea();
             //$('.nav .dropdown-menu a').die('click');
 
             $('a.pjax').not('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
@@ -1200,6 +1200,11 @@ $(document).ready(
                 $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
                 return true;
             });
+
+
+            var txt_val = $('.now-active-prod').text();
+            $('.discount-out #productForDiscount').attr('value', txt_val)
+            console.log(txt_val);
 
 
             $('.main_body').append('<div class="overlay"></div>');
@@ -1283,24 +1288,24 @@ $(document).ready(
                 return false;
             });
 
-            $('[name="cancel_button"]').live('click', function() {
-                var overlay = $('.overlay');
-                overlay.trigger('click');
+$('[name="cancel_button"]').live('click', function() {
+    var overlay = $('.overlay');
+    overlay.trigger('click');
                 //$('.frame_rep_bug').hide('slow');
             });
-            if ($.exists('#chart'))
-                brands();
-            if ($.exists('#wrapper_gistogram'))
-                gistogram();
+if ($.exists('#chart'))
+    brands();
+if ($.exists('#wrapper_gistogram'))
+    gistogram();
 
-            if ($.exists('#addPictures'))
-                $('#addPictures').live('change', handleFileSelect);
+if ($.exists('#addPictures'))
+    $('#addPictures').live('change', handleFileSelect);
 
-            $(document).die('keydown').live('keydown', function(e) {
-                var dataSubmit = $("[data-submit]");
-                e = e || window.event;
-                if (e.ctrlKey)
-                    $('#baseSearch, #shopSearch').blur();
+$(document).die('keydown').live('keydown', function(e) {
+    var dataSubmit = $("[data-submit]");
+    e = e || window.event;
+    if (e.ctrlKey)
+        $('#baseSearch, #shopSearch').blur();
                 //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
                 if (e.keyCode === 83 && e.ctrlKey) {
                     if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
@@ -1309,8 +1314,8 @@ $(document).ready(
                 }
             });
 
-            init_2();
-            autocomplete();
+init_2();
+autocomplete();
             //list filter
 
             $('.listFilterForm').die('keydown').live('keydown', function(event) {
@@ -1322,7 +1327,7 @@ $(document).ready(
             $('.listFilterForm select').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
-            
+
             $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
@@ -1357,7 +1362,7 @@ $(document).ready(
 
                 if (!parseInt(column) && parseInt(column)!=0)
                     showMessage('Сообщение','Введите номер колонки','r');
-                    
+
                 $.ajax({
                     type: 'POST',
                     data: 'categoryId='+categoryId+'&column='+column,
@@ -1372,7 +1377,7 @@ $(document).ready(
                     }
                 });
             });
-            
+
         });
 
 $(window).load(function() {
@@ -1398,7 +1403,7 @@ $('#addImageSizesBlock').live('click', function() {
     clonedSizesBlock.removeAttr('id');
     $('#AppendHolder').append(clonedSizesBlock);
 });
-//update fields names   
+//update fields names
 $('.keyupSizes').live('keyup', function() {
     var thisInput = $(this);
     var name = $(this).val();
@@ -1454,7 +1459,7 @@ $('#variantsForOrders').live('change', function() {
     $('#productText').html('<b>Товар: ' + productName + '</b>');
     if (variantName != '')
         $('#productText').append('<br/>Вариант: ' + variantName + '');
-    
+
     $('#productText').append('<br/>Цена: ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
     $('#productStock').html('<br/>Остаток: ' + stock);
@@ -1513,7 +1518,7 @@ $('#createUserButton').live('click', function() {
                     $('#createUserEmail').val('');
                     $('#createUserPhone').val('');
                     $('#createUserAddress').val('');
-                    
+
                     data = JSON.parse(response);
                     if (data != null){
                         /*Make created user selected */
@@ -1531,9 +1536,9 @@ $('#createUserButton').live('click', function() {
                 }
             }
         });
-    } else {
-        showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
-    }
+} else {
+    showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
+}
 })
 
 /** Update data in orders*/
@@ -1664,7 +1669,7 @@ $(window).load(function() {
 $('table.orderMethodsTable .orderMethodsEdit').on('click', function(){
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
-    
+
     var closestTr = $(this).closest('tr');
     closestTr.find('.name').css('display', 'none');
     closestTr.find('[name=name]').css('display', 'block');
@@ -1680,15 +1685,15 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function(){
     $(this).prev('.orderMethodsEdit').css('display', 'block');
     $(this).css('display', 'none');
     var closestTr = $(this).closest('tr');
-    
+
     var name =  closestTr.find('[name=name]').val();
     var name_front = closestTr.find('[name=name_front]').val();
     var get = closestTr.find('[name=get]').val();
     var tooltip = closestTr.find('[name=tooltip]').val();
     var locale = closestTr.data('locale');
     var id = closestTr.data('id');
-    
-    
+
+
     closestTr.find('.name').text(name).css('display', 'block');
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
@@ -1697,20 +1702,20 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function(){
     closestTr.find('[name=get]').css('display', 'none');
     closestTr.find('.tooltip_s').text(tooltip).css('display', 'block');
     closestTr.find('[name=tooltip]').css('display', 'none');
-    
+
     $.ajax({
-            type: "POST",
-            data:  {
-                id: id,
-                locale: locale,
-                name: name,
-                name_front: name_front,
-                get: get,
-                tooltip: tooltip                
-            },
-            url: '/admin/components/run/shop/settings/setSorting',
-            success: function(res) {
-                showMessage('Сообщение', 'Метод сортировки обновлен');
-            }
+        type: "POST",
+        data:  {
+            id: id,
+            locale: locale,
+            name: name,
+            name_front: name_front,
+            get: get,
+            tooltip: tooltip
+        },
+        url: '/admin/components/run/shop/settings/setSorting',
+        success: function(res) {
+            showMessage('Сообщение', 'Метод сортировки обновлен');
+        }
     });
 });
