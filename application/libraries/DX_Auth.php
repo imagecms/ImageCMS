@@ -849,7 +849,7 @@ class DX_Auth {
             'phone' => $phone,
             'last_ip' => $this->ci->input->ip_address()
         );
-        
+
         // Do we need to send email to activate user
 
         if ($this->ci->config->item('DX_email_activation')) {
@@ -912,7 +912,7 @@ class DX_Auth {
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
                 }
-                
+
             $user_variables = array(
                 'user_name' => $username,
                 'user_password' => $password,
@@ -920,10 +920,10 @@ class DX_Auth {
                 'user_email' => $email,
                 'user_phone' => $phone
                 );
-                
-            \email\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
-                
-                
+
+            \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
+
+
                 if($login_user){
                     if ($this->login($email, $password)) {
                         if (class_exists('ShopCore'))
@@ -977,7 +977,7 @@ class DX_Auth {
 
                     // Trigger event and get email content
                    // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
-                    
+
                     $replaceData = array(
                         'webSiteName' => $this->ci->config->item('DX_website_name'),
                         'resetPasswordUri' => $data['reset_password_uri'],
@@ -985,9 +985,9 @@ class DX_Auth {
                         'key' => $data['key'],
                         'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
                     );
-                    
-                    \email\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
-                    
+
+                    \cmsemail\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
+
 
                     // Send instruction email
                     //$this->_email($row->email, $from, $subject, $message);
@@ -1094,13 +1094,13 @@ class DX_Auth {
 
                 // Trigger event
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
-                
+
                 $replaceData = array(
                         'user_name' => $row->username,
                         'password' => $new_pass_for_user
                     );
-                    
-                \email\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
+
+                \cmsemail\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
                 $result = TRUE;
             } else {
@@ -1291,7 +1291,7 @@ class DX_Auth {
     private function _get_recaptcha_data() {
         return $this->get_recaptcha_html();
     }
-    
+
     /* End of Recaptcha function */
 }
 
