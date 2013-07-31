@@ -22,7 +22,6 @@ class CMSEmail extends MY_Controller {
 
     public function _deinstall() {
         $this->cmsemail_model->deinstall();
-
     }
 
 }
