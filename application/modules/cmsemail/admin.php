@@ -18,7 +18,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->language('email');
-        $this->email = \email\email::getInstance();
+        $this->email = \cmsemail\email::getInstance();
     }
 
     public function index() {
@@ -41,10 +41,10 @@ class Admin extends BaseAdminController {
 
                 showMessage(lang('Template_created'));
                 if ($this->input->post('action') == 'tomain')
-                    pjax('/admin/components/cp/email/index');
+                    pjax('/admin/components/cp/cmsemail/index');
 
                 if ($this->input->post('action') == 'save')
-                    pjax('/admin/components/cp/email/edit/' . $this->db->insert_id());
+                    pjax('/admin/components/cp/cmsemail/edit/' . $this->db->insert_id());
             }
             else {
                 showMessage($this->email->errors, '', 'r');
@@ -56,7 +56,7 @@ class Admin extends BaseAdminController {
                     ->setData('settings', $this->email->getSettings())
                     ->renderAdmin('create');
     }
-    
+
     public function mailTest($config) {
         echo $this->email->mailTest();
     }
@@ -70,7 +70,7 @@ class Admin extends BaseAdminController {
         if(!$model){
             $this->load->module('core');
             $this->core->error_404();
-            exit;            
+            exit;
         }
         $variables = unserialize($model['variables']);
 
@@ -79,7 +79,7 @@ class Admin extends BaseAdminController {
                 showMessage(lang('Template_edited'));
 
                 if ($this->input->post('action') == 'tomain')
-                    pjax('/admin/components/cp/email/index');
+                    pjax('/admin/components/cp/cmsemail/index');
             }
             else {
                 showMessage($this->email->errors, '', 'r');
@@ -111,7 +111,7 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), lang('Message'), 'r');
             } else {
-                if ($this->email_model->setSettings($_POST['settings']))
+                if ($this->email->setSettings($_POST['settings']))
                     showMessage(lang('Settings_saved'), lang('Message'));
             }
 
@@ -170,7 +170,7 @@ class Admin extends BaseAdminController {
             return FALSE;
         }
     }
-    
+
     /**
      * import templates from file
      */
@@ -178,7 +178,7 @@ class Admin extends BaseAdminController {
         $this->db->where_in('id', array(1,2,3,4,5,6))->delete('mod_email_paterns');
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
         if($this->db->query($file)){
-              redirect('/admin/components/cp/email/');
+              redirect('/admin/components/cp/cmsemail/');
         }
     }
 

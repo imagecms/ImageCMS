@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/cp/email/index" class="t-d_n m-r_15 pjax">
+                <a href="{$BASE_URL}admin/components/cp/cmsemail/index" class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('a_return')}</span>
                 </a>
@@ -29,7 +29,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="settings">
                 <div class="inside_padd">
-                    <form action="{$BASE_URL}admin/components/cp/email/edit/{$model['id']}" id="email_form" method="post" class="form-horizontal">
+                    <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}" id="email_form" method="post" class="form-horizontal">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
                             <th>{lang('a_sett')}</th>

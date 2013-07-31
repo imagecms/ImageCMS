@@ -70,7 +70,7 @@ function mailTest() {
             mailpath: mailpath,
             send_to: send_to
         },
-        url: '/admin/components/cp/email/mailTest',
+        url: '/admin/components/cp/cmsemail/mailTest',
         success: function(data) {
             $('.mailTestResults').html(data);
             $('.mailTestResults').css('display', 'block');
@@ -92,7 +92,7 @@ var EmailTemplateVariables = {
                 template_id: template_id,
                 variable: variable
             },
-            url: '/admin/components/cp/email/deleteVariable',
+            url: '/admin/components/cp/cmsemail/deleteVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не удалена', 'r');
@@ -118,7 +118,7 @@ var EmailTemplateVariables = {
                 oldVariable: oldVariable,
                 template_id: template_id
             },
-            url: '/admin/components/cp/email/updateVariable',
+            url: '/admin/components/cp/cmsemail/updateVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не обновлена', 'r');
@@ -147,7 +147,7 @@ var EmailTemplateVariables = {
                 variableValue: variableValue.val(),
                 template_id: template_id
             },
-            url: '/admin/components/cp/email/addVariable',
+            url: '/admin/components/cp/cmsemail/addVariable',
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не додана', 'r');
@@ -167,7 +167,7 @@ var EmailTemplateVariables = {
                 data: {
                     template_id: template_id
                 },
-                url: '/admin/components/cp/email/getTemplateVariables',
+                url: '/admin/components/cp/cmsemail/getTemplateVariables',
                 success: function(data) {
                     $('#userMailVariables').html(data);
                     $('#adminMailVariables').html(data);

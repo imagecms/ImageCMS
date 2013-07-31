@@ -1,10 +1,10 @@
 <?php
+
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-
-class Email_model extends CI_Model {
+class Cmsemail_model extends \CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -17,7 +17,7 @@ class Email_model extends CI_Model {
     public function getSettings() {
         $this->db->cache_on();
         $settings = $this->db->select('settings')
-                ->where('identif', 'email')
+                ->where('identif', 'cmsemail')
                 ->get('components')
                 ->row_array();
         $this->db->cache_off();
@@ -31,7 +31,7 @@ class Email_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings) {
-        return $this->db->where('identif', 'email')
+        return $this->db->where('identif', 'cmsemail')
                         ->update('components', array('settings' => serialize($settings)
         ));
     }
@@ -90,15 +90,13 @@ class Email_model extends CI_Model {
 
     public function getAllTemplates() {
         $query = $this->db
-                        ->get('mod_email_paterns');
-                        
-        if($query){
+                ->get('mod_email_paterns');
+
+        if ($query) {
             return $query->result_array();
-            
-        }else{
+        } else {
             return '';
         }
-        
     }
 
     public function getTemplateById($id) {
@@ -205,10 +203,10 @@ class Email_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_email_paterns');
 
-       
+
 
         $this->db
-                ->where('identif', 'email')
+                ->where('identif', 'cmsemail')
                 ->update('components', array(
                     'settings' => serialize(
                             array(
@@ -226,9 +224,11 @@ class Email_model extends CI_Model {
                     'enabled' => 1
         ));
 
+        $sql = file_get_contents('./application/modules/cmsemail/models/paterns.sql');
+        $this->db->query($sql);
+
         return TRUE;
     }
-    
 
     /**
      * deinstall module
@@ -267,10 +267,9 @@ class Email_model extends CI_Model {
 
     public function addVariable($template_id, $variable, $variableValue) {
         $paternVariables = $this->getTemplateVariables($template_id);
-            $paternVariables[$variable] = $variableValue;
+        $paternVariables[$variable] = $variableValue;
 
-            return $this->setTemplateVariables($template_id, $paternVariables);
-        
+        return $this->setTemplateVariables($template_id, $paternVariables);
     }
 
     public function getTemplateVariables($template_id) {
