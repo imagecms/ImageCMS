@@ -42,7 +42,7 @@ class Star_rating extends MY_Controller {
      * Show star_rating
      * @param SProducts $item
      */
-    public function show_star_rating($item = null) {
+    public function show_star_rating($item = null, $registerScript = true) {
         $get_settings = $this->rating_model->get_settings();
 
         //prepare array with pages which can display "Star rating"
@@ -96,7 +96,8 @@ class Star_rating extends MY_Controller {
             $renderTemplate= CMSFactory\assetManager::create();
                     $renderTemplate->setData($data)
                     ->registerStyle('style');
-                    if ($template != 'product_star_rating')
+//                    if ($template != 'product_star_rating')$registerScript
+                      if ($registerScript)
                         $renderTemplate->registerScript('scripts');
                     $renderTemplate->render($template, true);
 
