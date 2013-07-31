@@ -39,5 +39,7 @@ $lang['lang_user_banned'] = 'Ваш аккаунт заблокирован.';
 $lang['lang_forgot_password'] = 'Забыли Пароль?';
 $lang['lang_forgot_pass'] = 'Забыли Пароль';
 $lang['lang_remember_me'] = 'Запомнить меня';
+$lang['lang_user_logined'] = 'Пользователь залогований';
+$lang['lang_user_not_logined'] = 'Пользователь не залогований';
 
 /** End of file auth/language/russian/auth_lang.php */
