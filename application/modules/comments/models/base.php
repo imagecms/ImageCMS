@@ -9,7 +9,7 @@ class Base extends CI_Model {
         parent::__construct();
     }
 
-    function get($item_id, $status = 0, $module, $limit) {
+    function get($item_id, $status = 0, $module, $limit = 999999) {
         $this->db->where('item_id', $item_id);
         $this->db->where('status', $status);
         $this->db->where('module', $module);

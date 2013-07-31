@@ -101,7 +101,7 @@ class ParentEmail extends \MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model('cmsemail_model');
+        $this->load->model('../modules/cmsemail/models/cmsemail_model');
     }
 
     /**
@@ -161,15 +161,15 @@ class ParentEmail extends \MY_Controller {
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
-            }else{
+            } else {
                 \CMSFactory\Events::create()->registerEvent(
-                    array(
-                        'from'=>$this->from,
-                        'from_email' =>$this->from_email,
-                        'send_to' =>  $this->send_to,
-                        'theme' =>  $this->theme,
-                        'message' => $this->message
-                    ),'ParentEmail:userSend');
+                        array(
+                    'from' => $this->from,
+                    'from_email' => $this->from_email,
+                    'send_to' => $this->send_to,
+                    'theme' => $this->theme,
+                    'message' => $this->message
+                        ), 'ParentEmail:userSend');
                 \CMSFactory\Events::runFactory();
             }
         }
@@ -190,15 +190,15 @@ class ParentEmail extends \MY_Controller {
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
-            }else{
-                 \CMSFactory\Events::create()->registerEvent(
-                    array(
-                        'from'=>$this->from,
-                        'from_email' =>$this->from_email,
-                        'send_to' =>  $this->send_to,
-                        'theme' =>  $this->theme,
-                        'message' => $this->message
-                    ),'ParentEmail:adminSend');
+            } else {
+                \CMSFactory\Events::create()->registerEvent(
+                        array(
+                    'from' => $this->from,
+                    'from_email' => $this->from_email,
+                    'send_to' => $this->send_to,
+                    'theme' => $this->theme,
+                    'message' => $this->message
+                        ), 'ParentEmail:adminSend');
                 \CMSFactory\Events::runFactory();
             }
         }
@@ -413,15 +413,6 @@ class ParentEmail extends \MY_Controller {
 
     public function getTemplateVariables($template_id) {
         return $this->cmsemail_model->getTemplateVariables($template_id);
-    }
-
-
-    public function _install() {
-        $this->cmsemail_model->install();
-    }
-
-    public function _deinstall() {
-        $this->cmsemail_model->deinstall();
     }
 
 }
