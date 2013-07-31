@@ -3,7 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'Email', // Menu name
+    'menu_name' => 'CMSEmail', // Menu name
     'description' => 'Email module',            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe

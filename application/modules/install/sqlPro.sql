@@ -182,7 +182,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
 (177, 'banners', 'banners', 1, 0, 0, 'a:1:{s:8:"show_tpl";i:1;}', 55),
-(188, 'email', 'email', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
+(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
 
 -- --------------------------------------------------------
 
@@ -9556,19 +9556,19 @@ INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`
 (1, 'ru', 'По рейтингу', 'Рейтинг', ''),
 (2, 'ru', 'От дешевих к дорогим', 'От дешевих к дорогим', ''),
 (3, 'ru', 'От дорогих к дешевым', 'От дорогих к дешевим', ''),
-(4, 'ru', 'Популярные', 'Популярние', 's'),
-(5, 'ru', 'Новинки', 'Новинки', '44'),
-(6, 'ru', 'Акции', 'Акции', 'es4werw'),
+(4, 'ru', 'Популярные', 'Популярние', ''),
+(5, 'ru', 'Новинки', 'Новинки', ''),
+(6, 'ru', 'Акции', 'Акции', ''),
 (7, 'ru', 'А-Я', 'Имени', ''),
 (8, 'ru', 'Я-А', 'Имени(Я-А)', ''),
 (9, 'ru', 'Просмотров', 'Количеству просмотров', ''),
 (10, 'ru', 'Топ продаж', 'Топ продаж', ''),
 (11, 'en', 'Rate', 'Rate', ''),
 (12, 'en', 'From cheap to expensive', 'From cheap to expensive', ''),
-(13, 'en', 'From expensive to cheap', 'From expensive to cheap', 'asdas'),
+(13, 'en', 'From expensive to cheap', 'From expensive to cheap', ''),
 (14, 'en', 'Popular', 'Popular', ''),
 (15, 'en', 'Novelty', 'Novelty', ''),
-(16, 'en', 'Action', 'Action', 'yy'),
+(16, 'en', 'Action', 'Action', ''),
 (17, 'en', 'A-Z', 'Name', ''),
 (18, 'en', 'Z-A', 'Name(Z-A)', ''),
 (19, 'en', 'Views', 'Count Views', ''),

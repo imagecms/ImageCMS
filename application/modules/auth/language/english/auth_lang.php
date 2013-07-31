@@ -44,5 +44,7 @@ $lang['lang_new_password'] = 'The new password';
 $lang['lang_pass_changed'] = 'Your password was successfully changed.';
 $lang['lang_access_deny'] = 'You are not allowed to view the page.';
 $lang['lang_user_banned'] = 'Your account has been blocked.';
+$lang['lang_user_logined'] = 'User is already logged';
+$lang['lang_user_not_logined'] = 'User is not logged';
 
 /** End of file auth/language/english/auth_lang.php */

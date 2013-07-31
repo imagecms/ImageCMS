@@ -1,6 +1,6 @@
 <?php
 
-namespace email\classes;
+namespace cmsemail\classes;
 
 /**
  * Image CMS
@@ -11,7 +11,7 @@ namespace email\classes;
  * @property \CI_DB_active_record $db
  * @property \CI_Input $input
  */
-class BaseEmail extends \email\classes\ParentEmail {
+class BaseEmail extends ParentEmail {
 
     public function __construct() {
         parent::__construct();
@@ -32,9 +32,9 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
-                $this->email_model->create($data);
+                $this->cmsemail_model->create($data);
             } else {
-                $this->email_model->create($this->data_model);
+                $this->cmsemail_model->create($this->data_model);
             }
             return TRUE;
         } else {
@@ -56,9 +56,9 @@ class BaseEmail extends \email\classes\ParentEmail {
                 $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
-                $this->email_model->edit($id, $data);
+                $this->cmsemail_model->edit($id, $data);
             } else {
-                $this->email_model->edit($id, $this->data_model);
+                $this->cmsemail_model->edit($id, $this->data_model);
             }
             return TRUE;
         } else {

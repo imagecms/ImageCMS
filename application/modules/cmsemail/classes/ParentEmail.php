@@ -1,11 +1,11 @@
 <?php
 
-namespace email\classes;
+namespace cmsemail\classes;
 
 /**
  * Image CMS
  * Module Wishlist
- * @property \Email_model $email_model
+ * @property \Cmsemail_model $cmsemail_model
  * @property \DX_Auth $dx_auth
  * @property \CI_URI $uri
  * @property \CI_DB_active_record $db
@@ -100,6 +100,8 @@ class ParentEmail extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $this->load->model('../modules/cmsemail/models/cmsemail_model');
     }
 
     /**
@@ -114,7 +116,7 @@ class ParentEmail extends \MY_Controller {
             $patern = str_replace('$' . $variable . '$', $replase_value, $patern);
         }
 
-        $wraper = $this->email_model->getWraper();
+        $wraper = $this->cmsemail_model->getWraper();
 
         if ($wraper) {
             $patern = str_replace('$content', $patern, $wraper);
@@ -134,8 +136,8 @@ class ParentEmail extends \MY_Controller {
     public function sendEmail($send_to, $patern_name, $variables) {
         $this->load->library('email');
 
-        $patern_settings = $this->email_model->getPaternSettings($patern_name);
-        $default_settings = $this->email_model->getSettings();
+        $patern_settings = $this->cmsemail_model->getPaternSettings($patern_name);
+        $default_settings = $this->cmsemail_model->getSettings();
 
         if ($patern_settings) {
             foreach ($patern_settings as $key => $value) {
@@ -159,15 +161,15 @@ class ParentEmail extends \MY_Controller {
             $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
-            }else{
+            } else {
                 \CMSFactory\Events::create()->registerEvent(
-                    array(
-                        'from'=>$this->from, 
-                        'from_email' =>$this->from_email,
-                        'send_to' =>  $this->send_to,
-                        'theme' =>  $this->theme,
-                        'message' => $this->message
-                    ),'ParentEmail:userSend');
+                        array(
+                    'from' => $this->from,
+                    'from_email' => $this->from_email,
+                    'send_to' => $this->send_to,
+                    'theme' => $this->theme,
+                    'message' => $this->message
+                        ), 'ParentEmail:userSend');
                 \CMSFactory\Events::runFactory();
             }
         }
@@ -188,19 +190,19 @@ class ParentEmail extends \MY_Controller {
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
-            }else{
-                 \CMSFactory\Events::create()->registerEvent(
-                    array(
-                        'from'=>$this->from, 
-                        'from_email' =>$this->from_email,
-                        'send_to' =>  $this->send_to,
-                        'theme' =>  $this->theme,
-                        'message' => $this->message
-                    ),'ParentEmail:adminSend');
+            } else {
+                \CMSFactory\Events::create()->registerEvent(
+                        array(
+                    'from' => $this->from,
+                    'from_email' => $this->from_email,
+                    'send_to' => $this->send_to,
+                    'theme' => $this->theme,
+                    'message' => $this->message
+                        ), 'ParentEmail:adminSend');
                 \CMSFactory\Events::runFactory();
             }
         }
-        
+
 
         if ($this->errors) {
             return FALSE;
@@ -320,7 +322,7 @@ class ParentEmail extends \MY_Controller {
     }
 
     public function delete($ids) {
-        $this->email_model->deleteTemplateByID($ids);
+        $this->cmsemail_model->deleteTemplateByID($ids);
     }
 
     /**
@@ -382,44 +384,35 @@ class ParentEmail extends \MY_Controller {
     }
 
     public function getAllTemplates() {
-        return $this->email_model->getAllTemplates();
+        return $this->cmsemail_model->getAllTemplates();
     }
 
     public function getSettings() {
-        return $this->email_model->getSettings();
+        return $this->cmsemail_model->getSettings();
     }
 
     public function getTemplateById($id) {
-        return $this->email_model->getTemplateById($id);
+        return $this->cmsemail_model->getTemplateById($id);
     }
 
     public function setSettings($settings) {
-        return $this->email_model->setSettings($settings);
+        return $this->cmsemail_model->setSettings($settings);
     }
 
     public function deleteVariable($template_id, $variable) {
-        return $this->email_model->deleteVariable($template_id, $variable);
+        return $this->cmsemail_model->deleteVariable($template_id, $variable);
     }
 
     public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable) {
-        return $this->email_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+        return $this->cmsemail_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
     }
 
     public function addVariable($template_id, $variable, $variableValue) {
-        return $this->email_model->addVariable($template_id, $variable, $variableValue);
+        return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue);
     }
 
     public function getTemplateVariables($template_id) {
-        return $this->email_model->getTemplateVariables($template_id);
-    }
-    
-
-    public function _install() {
-        $this->email_model->install();
-    }
-
-    public function _deinstall() {
-        $this->email_model->deinstall();
+        return $this->cmsemail_model->getTemplateVariables($template_id);
     }
 
 }

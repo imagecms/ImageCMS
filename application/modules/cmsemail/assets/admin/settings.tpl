@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/init_window/email"
+                    <a href="{$BASE_URL}admin/components/init_window/cmsemail"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="{site_url('admin/components/cp/email/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
+        <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
             <table class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
@@ -37,10 +37,10 @@
 
                                 <div class="control-group">
                                     <div class="controls">
-                                        <a href="{site_url('admin/components/cp/email/import_templates')}" style="float:right">{lang('Install_standart_templates')}</a>
+                                        <a href="{site_url('admin/components/cp/cmsemail/import_templates')}" style="float:right">{lang('Install_standart_templates')}</a>
                                     </div>
                                 </div>
-                                
+
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from]">{lang('From')}</label>
                                     <div class="controls">

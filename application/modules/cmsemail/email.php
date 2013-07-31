@@ -1,6 +1,6 @@
 <?php
 
-namespace email;
+namespace cmsemail;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -8,14 +8,12 @@ namespace email;
  * Image CMS
  * Emails
  */
-class email extends \email\classes\BaseEmail {
+class email extends classes\BaseEmail {
 
     protected static $_instance;
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->model('../modules/email/models/email_model');
     }
 
     private function __clone() {
@@ -24,7 +22,7 @@ class email extends \email\classes\BaseEmail {
 
     /**
      *
-     * @return Email
+     * @return email
      */
     public static function getInstance() {
         if (null === self::$_instance) {
@@ -32,7 +30,7 @@ class email extends \email\classes\BaseEmail {
         }
         return self::$_instance;
     }
-    
+
 
 }
 

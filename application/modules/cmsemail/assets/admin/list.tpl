@@ -9,7 +9,7 @@
             <p>{lang('Delete_selected_templates')}?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/email/delete/')" >{lang('Delete')}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/cmsemail/delete/')" >{lang('Delete')}</a>
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
         </div>
     </div>
@@ -29,7 +29,7 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/email/settings">
+                    <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/cmsemail/settings">
                         <i class="icon-wrench"></i>
                         {lang('Settings')}
                     </a>
@@ -39,7 +39,7 @@
                             id="del_sel_property">
                         <i class="icon-trash icon-white"></i>{lang('a_delete')}
                     </button>
-                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/email/create" >
+                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/cmsemail/create" >
                         <i class="icon-list-alt icon-white"></i>{lang('Create_template')}
                     </a>
                 </div>
@@ -78,7 +78,7 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/email/edit/{echo $model.id}">{echo $model.name}</a>
+                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}">{echo $model.name}</a>
                                         </td>
                                         <td>
                                             <p>{echo $model.description}</p>
