@@ -44,7 +44,7 @@
             {if !$vertical}
                 {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
                     <div class="frame-star f-s_0">
-                        {$CI->load->module('star_rating')->show_star_rating($p)}
+                       {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {$Comments[$p->getId()]}
                         </a>
