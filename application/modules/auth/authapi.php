@@ -352,6 +352,23 @@ class Authapi extends MY_Controller {
             'status' => true,
         ));
     }
+    
+     /**
+     * Check if user logined
+     */
+    public function is_logined() {
+        if($this->dx_auth->is_logged_in()){
+            echo json_encode(array(
+                'msg' => lang('lang_user_logined'),
+                'status' => true,
+            ));
+        }else{
+            echo json_encode(array(
+                'msg' => lang('lang_user_not_logined'),
+                'status' => false,
+            ));
+        }
+    }
 
     /**
      * Callback for Form Validation Class
