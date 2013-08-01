@@ -287,12 +287,12 @@
 
                         <!-- creating hot bubble for products image if product is hot -->
                         {if $p->getHot()}
-                            <span class="top_tovar nowelty">{lang("New")}</span>
+                            <span class="top_tovar nowelty">{lang("New","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is action -->
                         {if $p->getAction()}
-                            <span class="top_tovar promotion">{lang("Promotion")}</span>
+                            <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is hit -->
@@ -318,11 +318,11 @@
     <article id="search" class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
-                <div class="d_i title_h1">{lang("You searched for")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
+                <div class="d_i title_h1">{lang("You searched for","admin")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match"))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match","admin"))}</div>
         </div>
     </article>
     <!-- End. Show message -->

@@ -29,7 +29,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if (!function_exists('ftp_connect'))
         {
-            showMessage(lang("FTP_connect function is not available"),false,'r');
+            showMessage(lang("FTP_connect function is not available","admin"),false,'r');
             exit;
         }
 
@@ -45,7 +45,7 @@ class Sys_upgrade extends BaseAdminController {
         }
         else
         {
-            showMessage(lang("You are using the latest version"),lang("Congratulations!"),'g');
+            showMessage(lang("You are using the latest version","admin"),lang("Congratulations!","admin"),'g');
             exit;
         }
 
@@ -93,7 +93,7 @@ class Sys_upgrade extends BaseAdminController {
             if(($fh = fopen($file, 'r')) == FALSE)
             {
                 $this->ftp->close();
-                showMessage(lang("Error downloading update file"),false,'r');
+                showMessage(lang("Error downloading update file","admin"),false,'r');
                 exit;
             }
             else
@@ -126,7 +126,7 @@ class Sys_upgrade extends BaseAdminController {
                     @rmdir($tmp_folder);
                     @unlink($tmp_file);
 
-                    showMessage(lang("Exploding error"),false,'r');
+                    showMessage(lang("Exploding error","admin"),false,'r');
                     exit;
                 }
 
@@ -159,7 +159,7 @@ class Sys_upgrade extends BaseAdminController {
                 $this->load->library('cms_hooks');
                 $this->cms_hooks->build_hooks();
 
-                showMessage(lang("Updating has been completed"),false,'g');
+                showMessage(lang("Updating has been completed","admin"),false,'g');
                 updateDiv('page', site_url('admin/dashboard/index'));
             }
         } 
@@ -177,7 +177,7 @@ class Sys_upgrade extends BaseAdminController {
 
         if(($fh = @fopen($this->upgrade_server.'migrates.xml', 'r')) == FALSE)
         {
-            //die(lang('Error loading file versions') . '.');
+            //die(lang('Error loading file versions','admin') . '.');
             $is_update = FALSE;
         }
         else

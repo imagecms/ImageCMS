@@ -144,7 +144,7 @@
                                                                   data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                   data-stock="{echo $pv->getStock()}"
                                                                   >
-                                               {lang("Buy")}
+                                               {lang("Buy","admin")}
                                             </button>
                                         {else:}
                                             <button  {if $key != 0}style="display:none"{/if}

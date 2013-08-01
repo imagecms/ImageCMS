@@ -72,7 +72,7 @@
                                 data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
-                             {lang("Buy")}
+                             {lang("Buy","admin")}
                         </button>
                         {else:}
                         <button 
@@ -81,7 +81,7 @@
                                 type="button"
                                 class="btn btn_not_avail">
                             <span class="icon-but"></span>
-                            {lang("Report the appearance of")}
+                            {lang("Report the appearance of","admin")}
                         </button> 
                         {/if} 
                         <!-- displaying products small mod image -->

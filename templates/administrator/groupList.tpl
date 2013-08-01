@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Roles groups list")}</span>
+            <span class="title">{lang("Roles groups list","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group')}</a>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group','admin')}</a>
             </div>
         </div>  
     </div>
@@ -25,9 +25,9 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID")}</th>
-                                <th>{lang("Name")}</th>
-                                <th>{lang("Description")}</th>
+                                <th class="span1">{lang("ID","admin")}</th>
+                                <th>{lang("Name","admin")}</th>
+                                <th>{lang("Description","admin")}</th>
                             </tr>    
                         </thead>
                         <tbody id="rltbl">
@@ -56,7 +56,7 @@
         {else:}
             </br>
             <div class="alert alert-info">
-                {lang("List")} {lang("Group")} {lang('a_privilegy')} {lang("Empty.")}
+                {lang("List",'admin')} {lang("Group",'admin')} {lang('Privilegy','admin')} {lang("Empty.",'admin')}
             </div>
         {/if}
     </div>
@@ -65,19 +65,19 @@
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('Delete selected groups')}</h3>
+        <h3>{lang('Delete selected groups','admin')}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang('Delete group')}?</p>
+        <p>{lang('Delete group','admin')}?</p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}groupDelete')" >{lang("Delete")}</a>
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel')}</a>
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}groupDelete')" >{lang("Delete","admin")}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
     </div>
 </div>
 
 
 <div id="delete_dialog" style="display: none">
-    {lang("Remove roles?")}
+    {lang("Remove roles?","admin")}
 </div>
 <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->

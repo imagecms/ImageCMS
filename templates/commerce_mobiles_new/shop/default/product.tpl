@@ -18,7 +18,7 @@
                             <a href="{shop_url('cart')}" onclick="orderForm.submit();return false;">
                                 <span class="helper"></span>
                                 <!--<span class="v-a_m">Купить</span>-->
-                                <span class="v-a_m">{lang("Buy")}</span>
+                                <span class="v-a_m">{lang("Buy","admin")}</span>
                             </a>
                                 <input type="hidden" name="productId" value="{echo $model->getId()}" />
                                 <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />

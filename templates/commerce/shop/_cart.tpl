@@ -1,9 +1,9 @@
 <div class="center content">
-    <h1>{lang("Ordering")}</h1>
+    <h1>{lang("Ordering","admin")}</h1>
     {if count($items) > 0}
         <form method="post" action="{site_url(uri_string())}" id="cartForm">
             <table class="cleaner_table forCartProducts" cellspacing="0">
-                <caption>{lang("Basket")}</caption>
+                <caption>{lang("Basket","admin")}</caption>
                 <colgroup>
                     <col span="1" width="120">
                     <col span="1" width="396">
@@ -133,7 +133,7 @@
                                                 {/if}
                                                 {echo $total}
                                                 <sub>{$CS}</sub>
-                                                {if $item.delivery_price > 0}<span style="font-size:16px;">{lang("Delivery")}: {echo $item.delivery_price} {$CS}</span>{/if}
+                                                {if $item.delivery_price > 0}<span style="font-size:16px;">{lang("Delivery","admin")}: {echo $item.delivery_price} {$CS}</span>{/if}
                                                 {if $item.gift_cert_price > 0}<span style="font-size:16px;">{lang('s_do_you_syrp_pr')}: {echo $item.gift_cert_price} {$CS}</span>{/if}
                                             </div>
                                         </div>
@@ -267,7 +267,7 @@
 </form>
 {else:}
     <div class="comparison_slider">
-        <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Basket empty"))}</div>
+        <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Basket empty","admin"))}</div>
     </div>
 {/if}
 </div>

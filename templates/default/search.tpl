@@ -3,7 +3,7 @@
 <br />
 
 {if !$items}
-        <p>{lang("Nothing was found")}</p>
+        <p>{lang("Nothing was found","admin")}</p>
 {/if}
 
 <ul>

@@ -97,7 +97,7 @@ class Auth extends MY_Controller {
 
     function login() {
 //         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
-            $this->core->set_meta_tags(lang('lang_authorization'));
+            $this->core->set_meta_tags(lang('Authorization', 'auth'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 

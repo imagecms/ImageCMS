@@ -37,11 +37,11 @@
             <!-- category title and products count output -->
             <h1 class="d_i">{echo $title}</h1>
             {if count($products)>0}
-                <span class="c_97">{lang("Found")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product"), lang("product"), lang("product")))}</span>
+                <span class="c_97">{lang("Found","admin")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
                     <!-- sort block -->
                     <div class="f_l">
-                        <span class="v-a_m">{lang("Order by")}:</span>
+                        <span class="v-a_m">{lang("Order by","admin")}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -54,7 +54,7 @@
 
                     <!-- products on page count -->
                     <div class="f_r">
-                        <span class="v-a_m">{lang("Products per page")}:</span>
+                        <span class="v-a_m">{lang("Products per page","admin")}:</span>
                         <div class="lineForm w_70 sort">
                             {if ShopCore::$_GET['user_per_page'] == null}
                                 {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -72,8 +72,8 @@
 
                     <!-- selecting product list type -->
                     <div class="groupButton list_pic_btn">
-                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang("Image view")}</span></button>
-                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang("List view")}</span></button>
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang("Image view","admin")}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang("List view","admin")}</span></button>
                     </div>
                 </div>
 
@@ -269,12 +269,12 @@
 
                             <!-- creating hot bubble for products image if product is hot -->
                             {if $product->getHot()}
-                                <span class="top_tovar nowelty">{lang("New")}</span>
+                                <span class="top_tovar nowelty">{lang("New","admin")}</span>
                             {/if}
 
                             <!-- creating hot bubble for products image if product is action -->
                             {if $product->getAction()}
-                                <span class="top_tovar promotion">{lang("Promotion")}</span>
+                                <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                             {/if}
 
                             <!-- creating hot bubble for products image if product is hit -->

@@ -47,14 +47,14 @@
                 {$CI->load->module('mailer')}
                 <div class="frame_form_search">
                     <form name="search" class="clearfix" action="{shop_url('search')}" method="get" id="autocomlete">
-                        <input type="text" name="text" value="{lang("Search this site")}"  onfocus="if(this.value=='{lang("Search this site")}') this.value='';" onblur="if(this.value=='') this.value='{lang("Search this site")}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
-                        <input type="submit" id="search_submit"  value="{lang("Search")}" class="icon"/>
+                        <input type="text" name="text" value="{lang("Search this site","admin")}"  onfocus="if(this.value=='{lang("Search this site","admin")}') this.value='';" onblur="if(this.value=='') this.value='{lang("Search this site","admin")}';"  id="inputString" autocomplete="off" onkeyup="lookup(event);" class="place_hold"/>
+                        <input type="submit" id="search_submit"  value="{lang("Search","admin")}" class="icon"/>
                         <span id="suggestions" style="display: none; width: 0px; right: 0px;"></span>
                     </form>
                 </div>
                 <div class="phone">
                     <address>(095)<span> 555-55-55</span></address>
-                    <span class="js showCallback">{lang("Request Call")}</span>
+                    <span class="js showCallback">{lang("Request Call","admin")}</span>
                 </div>
                 <ul class="user_menu">
                     <!--    Show callback's form    -->
@@ -97,15 +97,15 @@
                 {load_menu('footer_menu')}
                 <ul class="contacts f_l">
                     <li>
-                        <span class="b">{lang("Phone.")}:</span>
+                        <span class="b">{lang("Phone.","admin")}:</span>
                         <span>(095) 555-55-55</span>
                     </li>
                     <li>
-                        <span class="b">{lang("Email")}:</span>
+                        <span class="b">{lang("Email","admin")}:</span>
                         <span>Info@imagecms.net</span>
                     </li>
                     <li>
-                        <span class="b">{lang("Skype")}:</span>
+                        <span class="b">{lang("Skype","admin")}:</span>
                         <span>ImageCMS</span>
                     </li>
                     {$CI->load->module('star_rating')->show_star_rating()}

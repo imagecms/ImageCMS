@@ -172,7 +172,7 @@
                                                 <input type="text"
                                                        name="text"
                                                        value=""
-                                                       placeholder="{lang("Search this site")}" 
+                                                       placeholder="{lang("Search this site","admin")}" 
                                                        autocomplete="off"
                                                        class="place_hold"
                                                        id="inputString"/>
@@ -197,7 +197,7 @@
                                                         data-drop=".drop-order-call">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
-                                                        {lang("Request Call")}
+                                                        {lang("Request Call","admin")}
                                                     </span>
                                                 </button>
                                             </li>

@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>{lang("Operation panel")} - Image CMS</title>
-        <meta name="description" content="{lang("Operation panel")} - Image CMS" />
+        <title>{lang("Operation panel","admin")} - Image CMS</title>
+        <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
@@ -20,7 +20,7 @@
         {if $ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php')}
             {chmod(APPPATH.'modules/install/install.php', 0777)}
             {if !rename(APPPATH.'modules/install/install.php', APPPATH.'modules/install/_install.php')}
-                {die('<span style="font-size:18px;"><br/><br/>'.lang("Delete the file to continue").'/application/modules/install/install.php</div>')}
+                {die('<span style="font-size:18px;"><br/><br/>'.lang("Delete the file to continue","admin").'/application/modules/install/install.php</div>')}
             {/if}
         {/if}
 
@@ -32,7 +32,7 @@
                 <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
                     {if $login_failed}
                         <label>
-                            {lang('Users with such Email not found')}
+                            {lang('Users with such Email not found','admin')}
                         </label>
                         {$login_failed}
                     {/if}
@@ -41,7 +41,7 @@
                         <span class="icon-user"></span>
                     </label>
                     <label>
-                        <input type="password" name="password" placeholder="{lang("Password")}"/>{$password_error}
+                        <input type="password" name="password" placeholder="{lang("Password","admin")}"/>{$password_error}
                         <span class="icon-lock"></span>
                     </label>
                     {if $use_captcha == "1"}
@@ -49,7 +49,7 @@
                         <label style="margin-bottom:50px">
                             {$lang_captcha}:<br/>
                             <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang("Update the code")}</a>
+                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang("Update the code","admin")}</a>
                             <input type="text" name="captcha" />{$captcha_error}
                         </label>
                     {/if}
@@ -59,12 +59,12 @@
                                 <span class="niceCheck">
                                     <input type="checkbox" name="remember" value="1"/>
                                 </span>
-                                {lang("Remember")}
+                                {lang("Remember","admin")}
                             </span>
                         </div>
-                        <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang("Forgot your password")}</a>
+                        <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang("Forgot your password","admin")}</a>
                     </div>
-                    <input type="submit" value="{lang("Log in")}" class="btn btn-info" style="margin-top: 26px;"/>
+                    <input type="submit" value="{lang("Log in","admin")}" class="btn btn-info" style="margin-top: 26px;"/>
                     {form_csrf()}
                 </form>
             </div>

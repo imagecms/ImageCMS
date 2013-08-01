@@ -3,20 +3,20 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang("Delete category")}</h3>
+            <h3>{lang("Delete category","admin")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang("Remove selected categories")}?</p>
+            <p>{lang("Remove selected categories","admin")}?</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/categories/delete')" >{lang("Delete")}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/categories/delete')" >{lang("Delete","admin")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
         </div>
     </div>
 
 
-    <div id="delete_dialog" title="{lang("Delete a category")}" style="display: none">
-        {lang("Delete category")}?
+    <div id="delete_dialog" title="{lang("Delete a category","admin")}" style="display: none">
+        {lang("Delete category","admin")}?
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
@@ -24,12 +24,12 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Categories")}</span>
+                <span class="title">{lang("Categories","admin")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang("Create category")}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang("Create category","admin")}</button>
                 </div>
             </div>                            
         </div>       
@@ -43,10 +43,10 @@
                             </span>
                         </span>
                     </div>
-                    <div>{lang("ID")}</div>
-                    <div>{lang("Title")}</div>
-                    <div>{lang("URL")}</div>
-                    <div>{lang("Pages")}</div>
+                    <div>{lang("ID","admin")}</div>
+                    <div>{lang("Title","admin")}</div>
+                    <div>{lang("URL","admin")}</div>
+                    <div>{lang("Pages","admin")}</div>
                 </div>
                 <div class="body_category frame_level">
                     <div class="sortable save_positions" data-url="/admin/categories/save_positions/">

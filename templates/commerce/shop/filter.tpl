@@ -28,7 +28,7 @@
         <input type="hidden" name="user_per_page" value="{echo ShopCore::$_GET['user_per_page']}">
         {if ($_GET['lp'] and $_GET['lp'] > $priceRange.minCost) or ($_GET['rp'] and $_GET['rp'] < $priceRange.maxCost) or $_GET['p'] or $_GET['brand']}
             <div class="checked_filter padding_filter">
-                <span class="c_4f">{$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product"), lang("product"), lang("product")))} {lang("with filters")}:</span>
+                <span class="c_4f">{$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))} {lang("with filters","admin")}:</span>
                 <ul>
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
@@ -62,11 +62,11 @@
                                 <a href="{echo str_replace(array('&lp=' . ShopCore::$_GET['lp'], '&rp=' . ShopCore::$_GET['rp'], '?rp=' . ShopCore::$_GET['rp'], '?lp=' . ShopCore::$_GET['lp']), "", $aurl)}">
                                     <i class="icon-times-red"></i>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
-                                        {lang("of")} 
+                                        {lang("of","admin")} 
                                         {echo ShopCore::$_GET['lp']} {$CS}
                                     {/if}
                                     {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
-                                        {lang("to")} 
+                                        {lang("to","admin")} 
                                         {echo ShopCore::$_GET['rp']} {$CS}
                                     {/if}
                                 </a>
@@ -74,12 +74,12 @@
                         {/if}
                     {/if}
                 </ul>
-                <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang("Reset all filters")}</a>
+                <a href="{site_url($CI->uri->uri_string())}" class="reset"><span class="icon-reset"></span>{lang("Reset all filters","admin")}</a>
             </div>
         {/if}
         <div class="content-filter">
             <div class="clearfix padding_filter">
-                <div class="title">{lang("Price")}</div>
+                <div class="title">{lang("Price","admin")}</div>
                 <div class="sliderCont">
                     <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
                         <div class="ui-slider-range ui-widget-header"></div>
@@ -88,9 +88,9 @@
                     </div>
                 </div>
                 <div class="formCost f_l">
-                    <label>{lang("of")}</label>
+                    <label>{lang("of","admin")}</label>
                     <input type="text" id="minCost" name="lp" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" autocomplete="off"/>
-                    <label>{lang("to")}</label>
+                    <label>{lang("to","admin")}</label>
                     <input type="text" id="maxCost" name="rp" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" autocomplete="off"/>
                     <div class="buttons button_bs">
                         <input type="submit" value="ok" name="pricebutton"/>
@@ -100,7 +100,7 @@
             <div class="padding_filter">
                 {if count($brands)>0}
                     <div class="check_frame">
-                        <div class="title">{lang("Brands in category")}</div>
+                        <div class="title">{lang("Brands in category","admin")}</div>
                         <div class="clearfix check_form">
                             {foreach $brands as $br}
                                 <label>
@@ -116,7 +116,7 @@
                         {if empty($p->possibleValues)}{$show[] = "1"}{/if}
                     {/foreach}
                     {if count($show) != count($propertiesInCat)}
-                        <div class="title">{lang("Properties")}</div>
+                        <div class="title">{lang("Properties","admin")}</div>
                         <div class="clearfix check_form">
                             {foreach $propertiesInCat as $prop}
                                 {if empty($prop->possibleValues)}{continue}{/if}

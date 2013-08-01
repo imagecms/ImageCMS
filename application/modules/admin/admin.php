@@ -54,26 +54,26 @@ class Admin extends MY_Controller {
 
         $param = $this->input->post('param');
 
-        $this->lib_admin->log(lang("Cleared the cache"));
+        $this->lib_admin->log(lang("Cleared the cache","admin"));
 
         switch ($param) {
             case 'all':
                 $files = $this->cache->delete_all();
                 if ($files)
-                    $message = lang("Files deleted") . ':' . $files;
+                    $message = lang("Files deleted","admin") . ':' . $files;
                 else
-                    $message = lang("Cache has been cleared");
+                    $message = lang("Cache has been cleared","admin");
                 break;
 
             case 'expried':
                 $files = $this->cache->Clean();
                 if ($files)
-                    $message = lang("Outdated files  have been deleted") . $files;
+                    $message = lang("Outdated files  have been deleted","admin") . $files;
                 else
-                    $message = lang("Cache has been cleared");
+                    $message = lang("Cache has been cleared","admin");
                 break;
             default: {
-                    $message = lang("Clearing cache error");
+                    $message = lang("Clearing cache error","admin");
                     $result = false;
                 }
         }
@@ -154,10 +154,9 @@ class Admin extends MY_Controller {
      * @access public
      */
     public function logout() {
-        $this->lib_admin->log(lang("exited the control panel"));
+        $this->lib_admin->log(lang("exited the control panel","admin"));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
-        
     }
 
     public function report_bug() {
@@ -170,7 +169,7 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-         $message .= lang("Site address") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page") .': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message") . ': ' . trim(strip_tags($_GET['text']));
+        $message .= lang("Site address","admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page","admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name","admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message","admin") . ': ' . trim(strip_tags($_GET['text']));
         $text = trim($_GET['text']);
         if (!empty($text)) {
             /* send message */
@@ -179,17 +178,14 @@ class Admin extends MY_Controller {
             $this->email->bcc('dev@imagecms.net');
             $this->email->subject('Admin report from "' . trim(strip_tags($_GET['hostname'])) . '"');
             $this->email->message(stripslashes($message));
-            if (!$this->email->send()){
-                echo '<div class="alert alert-error"> Произашла ошибка отправки сообщения </div>';
+            if (!$this->email->send()) {
+                echo '<div class="alert alert-error">' . lang('An error occurred while sending a message', 'admin') . '</div>';
                 exit;
             }
-            echo '<div class="alert alert-success">Ваше сообщение отправено</div>';
+            echo '<div class="alert alert-success">' . lang('Your message has been sent', 'admin') . '</div>';
         }
         else
-            echo '<div class="alert alert-error"> Ваше замечание обязательное поле </div>' ;
-
-
-
+            echo '<div class="alert alert-error">' . lang('Comment is a required field', 'admin') . '</div>';
     }
 
 }

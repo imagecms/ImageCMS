@@ -24,7 +24,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <!-- Show greeting message  -->
             <h1 class="d_i v-a_m m-r_45">
-                {lang("Thank you for your order.")}
+                {lang("Thank you for your order.","admin")}
             </h1>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
@@ -35,7 +35,7 @@
 
         <!-- Start. Render goto profile button -->
         <a href="{shop_url('profile')}" class="btn v-a_m">
-            {lang("Go to profile")}
+            {lang("Go to profile","admin")}
         </a>
         <!-- End. Render goto profile button -->
 
@@ -43,26 +43,26 @@
 
             <!-- Start. Displays a information block about Order -->
             <div class="frameGroupsForm span5">
-                <div class="header_title">{lang("Order data")}</div>
+                <div class="header_title">{lang("Order data","admin")}</div>
                 <div class="inside_padd">
                     <table class="tableOrderData">
                         <!-- Start. Render Order number -->
                         <tr>
-                            <th>{lang("Order")} #:</th>
+                            <th>{lang("Order","admin")} #:</th>
                             <td>{echo ShopCore::encode($model->getId())}</td>
                         </tr>
                         <!-- End. Render Order number -->
 
                         <!-- Start. Display Paid status -->
                         <tr>
-                            <th>{lang("Paid")}:</th>
-                            <td>{if $model->getPaid() == true} {lang("Yes")}{else:}{lang("No")}{/if}</td>
+                            <th>{lang("Paid","admin")}:</th>
+                            <td>{if $model->getPaid() == true} {lang("Yes","admin")}{else:}{lang("No","admin")}{/if}</td>
                         </tr>
                         <!-- End. Display Paid status -->
 
                         <!-- Start. Show Order status name -->
                         <tr>
-                            <th>{lang("Status")}:</th>
+                            <th>{lang("Status","admin")}:</th>
                             <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
                         </tr>
                         <!-- End. Show Order status name -->
@@ -88,7 +88,7 @@
                         <!-- Start. Delivery Method name -->
                         {if $model->getDeliveryMethod() > 0}
                             <tr>
-                                <th>{lang("Delivery")}:</th>
+                                <th>{lang("Delivery","admin")}:</th>
                                 <td>{echo $model->getSDeliveryMethods()->getName()}</td>
                             </tr>
                         {/if}

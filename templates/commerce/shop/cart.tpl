@@ -1,10 +1,10 @@
 <div class="center content">
-    <h1>{lang("Ordering")}</h1>
+    <h1>{lang("Ordering","admin")}</h1>
     {if count($items) > 0}
         <form method="post" action="{site_url(uri_string())}" id="cartForm">
             <div class="order-cleaner">
                 <table class="cleaner_table forCartProducts" cellspacing="0">
-<!--                    <caption>{lang("Basket")}</caption>-->
+<!--                    <caption>{lang("Basket","admin")}</caption>-->
                     <colgroup>
                         <col span="1" width="120">
                         <col span="1" width="390">
@@ -139,13 +139,13 @@
             <div class="order-cleaner clearfix">
                 <div class="f_l method_deliver_buy">
                     {if ShopCore::app()->SSettings->__get('usegifts') == 1}
-                        <div class="block_title_18"><span class="title_18">{lang("Do you have a gift certificate?")}</span></div>
+                        <div class="block_title_18"><span class="title_18">{lang("Do you have a gift certificate?","admin")}</span></div>
                         <label>
                             <input type="text" name="giftcert" id="giftcertkey"/>
-                            <input type="button" name="giftcert" value="{lang("Apply")}" class="giftcertcheck"/>
+                            <input type="button" name="giftcert" value="{lang("Apply","admin")}" class="giftcertcheck"/>
                         </label>
                     {/if}
-                    <div class="block_title_18"><span class="title_18">{lang("Select a delivery method")}</span></div>
+                    <div class="block_title_18"><span class="title_18">{lang("Select a delivery method","admin")}</span></div>
                     {$counter = true}
                     {foreach $deliveryMethods as $deliveryMethod}
                         {$del_id = $deliveryMethod->getId()}
@@ -168,7 +168,7 @@
 
                     <!--    Show payment methods    -->
                     {if sizeof($paymentMethods) > 0}
-                        <div class="block_title_18"><span class="title_18">{lang("Select a payment method")}</span></div>
+                        <div class="block_title_18"><span class="title_18">{lang("Select a payment method","admin")}</span></div>
                         <div id="paymentMethods">
                             {$counter = true}
                             {foreach $paymentMethods as $paymentMethod}
@@ -193,14 +193,14 @@
                         {if validation_errors()}
                             <div class="foot_cleaner red" style="background-color: #FFBFBF;border: 1px solid #FF0400;padding: 0 7px">{validation_errors()}</div>
                         {/if}
-                        <span class="title_18">{lang("Address of the recipient")}</span>
+                        <span class="title_18">{lang("Address of the recipient","admin")}</span>
                     </div>
                     <div class="label_block">
                         <label class="f_l">
                             {if $isRequired['userInfo[fullName]']}
                                 <span class="red">*</span>
                             {/if}
-                            {lang("You name")}
+                            {lang("You name","admin")}
                             <input type="text"{if $isRequired['userInfo[fullName]']} class="required"{/if} name="userInfo[fullName]" value="{$profile.name}">
                         </label>
                         <label class="f_l">
@@ -214,14 +214,14 @@
                             {if $isRequired['userInfo[phone]']}
                                 <span class="red">*</span>
                             {/if}
-                            {lang("Phone")}
+                            {lang("Phone","admin")}
                             <input type="text"{if $isRequired['userInfo[phone]']} class="required"{/if} name="userInfo[phone]" value="{$profile.phone}">
                         </label>
                         <label class="f_l">
                             {if $isRequired['userInfo[deliverTo]']}
                                 <span class="red">*</span>
                             {/if}
-                            {lang("Address of the recipient")}
+                            {lang("Address of the recipient","admin")}
                             <input type="text"{if $isRequired['userInfo[deliverTo]']} class="required"{/if} name="userInfo[deliverTo]" value="{echo $profile.address}">
                         </label>
                     </div>
@@ -229,7 +229,7 @@
                         {if $isRequired['userInfo[commentText]']}
                             <span class="red">*</span>
                         {/if}
-                        {lang("Comment")}
+                        {lang("Comment","admin")}
                         <textarea{if $isRequired['userInfo[commentText]']} class="required"{/if} name="userInfo[commentText]"></textarea> 
                     </label>
                     <div class="label_block">
@@ -244,7 +244,7 @@
                     <span class="c_3 f-s_18">&nbsp;&nbsp;Сумма товаров: <span class="f-s_26 b" id="price3">{echo $total + $deliveryMethod->getPrice()}</span> {$CS}</span>
                 </span>
                 <div class="buttons button_big_blue v-a_m">
-                    <input type="submit" value="{lang("Formulation order")}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
+                    <input type="submit" value="{lang("Formulation order","admin")}" id="orderSubmit" data-logged="{if ShopCore::$ci->dx_auth->is_logged_in()===true}1{else:}0{/if}"/>
                 </div>
             </div>
             <input type="hidden" name="deliveryMethodId" id="deliveryMethodId" value="{echo $del_id}" />
@@ -256,7 +256,7 @@
         </form>
                         {else:}
         <div class="comparison_slider">
-            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Basket empty"))}</div>
+            <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Basket empty","admin"))}</div>
         </div>
                             {/if}
 </div>

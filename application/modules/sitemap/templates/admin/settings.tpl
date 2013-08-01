@@ -89,7 +89,7 @@
             </table>
             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
     `           <thead>
-                    <th>{lang('a_shop_sett_xml_set_map')}</th>
+                    <th>{lang('XML Site Map')}</th>
                 </thead>
                 <tbody>
                     <tr>

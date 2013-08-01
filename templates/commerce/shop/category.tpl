@@ -45,7 +45,7 @@
                 <!--   New products block     -->
                 {if count(getPromoBlock('hot', 3, $product->category_id))}
                     <div class="box_title">
-                        <span>{lang("New")}</span>
+                        <span>{lang("New","admin")}</span>
                     </div>
                     <ul>
                         {foreach getPromoBlock('hot', 3, $product->category_id) as $hotProduct}
@@ -78,7 +78,7 @@
                 <!--   Promo products block     -->
                 {if count(getPromoBlock('action', 3, $product->category_id))}
                     <div class="box_title">
-                        <span>{lang("Action")}</span>
+                        <span>{lang("Action","admin")}</span>
                     </div>
                     <ul>
                         {foreach getPromoBlock('action', 3, $product->category_id) as $hotProduct}
@@ -120,21 +120,21 @@
                 </div>
                 <form method="GET">
                     <div class="f_l">
-                        <span class="v-a_m">{lang("Order by")}:&nbsp;</span>
+                        <span class="v-a_m">{lang("Order by","admin")}:&nbsp;</span>
                         <div class="lineForm w_145 v-a_m">
                             <select id="sort" name="order">
-                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang("No")}-</option>
-                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang("On")} {lang("Rating")}</option>
-                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang("From cheap to expensive")}</option>
-                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang("From expensive to cheap")}</option>
-                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang("Popular")}</option>
-                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang("New")}</option>
-                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang("Action")}</option>
+                                <option value="" {if !ShopCore::$_GET['order']}selected="selected"{/if}>-{lang("No","admin")}-</option>
+                                <option value="rating" {if ShopCore::$_GET['order']=='rating'}selected="selected"{/if}>{lang("On","admin")} {lang("Rating","admin")}</option>
+                                <option value="price" {if ShopCore::$_GET['order']=='price'}selected="selected"{/if}>{lang("From cheap to expensive","admin")}</option>
+                                <option value="price_desc" {if ShopCore::$_GET['order']=='price_desc'}selected="selected"{/if} >{lang("From expensive to cheap","admin")}</option>
+                                <option value="hit" {if ShopCore::$_GET['order']=='hit'}selected="selected"{/if}>{lang("Popular","admin")}</option>
+                                <option value="hot" {if ShopCore::$_GET['order']=='hot'}selected="selected"{/if}>{lang("New","admin")}</option>
+                                <option value="action" {if ShopCore::$_GET['order']=='action'}selected="selected"{/if}>{lang("Action","admin")}</option>
                             </select>
                         </div>
                     </div>
                     <div class="f_r">
-                        <span class="v-a_m">{lang("Products per page")}:&nbsp;</span>
+                        <span class="v-a_m">{lang("Products per page","admin")}:&nbsp;</span>
                         <div class="lineForm w_50 v-a_m">
                             <select id="count" name="user_per_page">
                                 <option value="12" {if ShopCore::$_GET['user_per_page']=='12'}selected="selected"{/if} >12</option>
@@ -167,7 +167,7 @@
                         {if trim($category->getDescription())}
                             <li>
                                 <div class="box_title">
-                                    <span class="f-s_18">{lang("Description")}</span>
+                                    <span class="f-s_18">{lang("Description","admin")}</span>
                                 </div>
                                 {echo ShopCore::encode($category->getDescription())}
                             </li>
@@ -183,14 +183,14 @@
                                     <img id="mim{echo $product->getId()}" src="{productImageUrl($product->getMainModImage())}" alt="{echo ShopCore::encode($product->getName())} - {echo $product->getId()}" />
                                     <img id="vim{echo $product->getId()}" class="smallpimagev" src="" alt="" />
                                     {if $product->getHot() == 1}
-                                        <div class="promoblock nowelty">{lang("New")}</div>
+                                        <div class="promoblock nowelty">{lang("New","admin")}</div>
                                     {/if}
                                     {if $product->getAction() == 1}
-                                        <div class="promoblock action">{lang("Promotion")}</div>
+                                        <div class="promoblock action">{lang("Promotion","admin")}</div>
                                     {/if}
 
                                     {if $product->getHit() == 1}
-                                        <div class="promoblock hit">{lang("Hit")}</div>
+                                        <div class="promoblock hit">{lang("Hit","admin")}</div>
                                     {/if}
                                 </a>
 
@@ -198,11 +198,11 @@
                                     <span data-prodid="{echo $product->getId()}" class="compare
                                           {if $forCompareProducts && in_array($product->getId(), $forCompareProducts)}
                                               is_avail">
-                                              <a href="{shop_url('compare')}" class="red">{lang("Compare")}</a>
+                                              <a href="{shop_url('compare')}" class="red">{lang("Compare","admin")}</a>
                                           {else:}
                                               toCompare blue">
-                                              <span class="js blue">{lang("Add to compare")}</span>
-                                              <a href="{shop_url('compare')}" class="red" style="display: none;">{lang("Compare")}</a>
+                                              <span class="js blue">{lang("Add to compare","admin")}</span>
+                                              <a href="{shop_url('compare')}" class="red" style="display: none;">{lang("Compare","admin")}</a>
                                           {/if}
                                     </span>
                                 </span>
@@ -212,14 +212,14 @@
                                 <div class="f-s_0">
                                     {if $product->firstVariant->getNumber()}
                                         <span id="code{echo $product->getId()}" class="code">
-                                            {lang("ID")} {echo ShopCore::encode($product->firstVariant->getNumber())}
+                                            {lang("ID","admin")} {echo ShopCore::encode($product->firstVariant->getNumber())}
                                         </span>
                                     {/if}
                                     <div>
                                         {$CI->load->module('star_rating')->show_star_rating($product)}
                                         <a href="{shop_url('product/'.$product->id.'#four')}" rel="nofollow" class="response">
                                             {totalComments($product->getId())}
-                                            {echo SStringHelper::Pluralize((int)totalComments($product->getId()), array(lang("review"), lang("reviews"), lang("review")))}
+                                            {echo SStringHelper::Pluralize((int)totalComments($product->getId()), array(lang("review","admin"), lang("reviews","admin"), lang("review","admin")))}
                                         </a>
                                         {if count($product->getProductVariants())>1}
                                             <select class="m-l_10" name="selectVar">
@@ -279,11 +279,11 @@
                                                   data-prodid="{echo $product->getId()}"
                                                   class="addToWList">
                                                 <span class="icon-wish"></span>
-                                                <span class="js blue">{lang("Save to Wish List")}</span>
+                                                <span class="js blue">{lang("Save to Wish List","admin")}</span>
                                             </span>
-                                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang("Already wishlist")}</a>
+                                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                                         {else:}
-                                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang("Already wishlist")}</a>
+                                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                                         {/if}
                                     </span> 
                                 </div>
@@ -291,7 +291,7 @@
                                 {if ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
                                     <p class="c_b">
                                         {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($product->getId())}
-                                        &nbsp;&nbsp;<a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">{lang("More")}</span> →</a>
+                                        &nbsp;&nbsp;<a href="{shop_url('product/' . $product->getUrl())}" class="t-d_n"><span class="t-d_u">{lang("More","admin")}</span> →</a>
                                     </p>
                                 {/if}
                             </div>

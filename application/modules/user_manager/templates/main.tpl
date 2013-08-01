@@ -29,15 +29,15 @@
                 <div class="d-i_b">
                     <a href="/admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$SELF_URL}/create_user/'"><i class="icon-plus-sign icon-white"></i>{lang('User create')}</button>
-                    <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/components/cp/user_manager/create'"><i class="icon-plus-sign icon-white"></i>{lang('a_u_manager_create_group')}</button>-->
+                    <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/components/cp/user_manager/create'"><i class="icon-plus-sign icon-white"></i>{lang('Create a Group')}</button>-->
                 </div>
             </div>                            
         </div>
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#users" class="btn btn-small active">{lang('Users')}</a>
-                <!--<a href="#group" class="btn btn-small">{lang('amt_groups')}</a>-->
-                <!--<a href="#privilege" class="btn btn-small">{lang('amt_perm_div')}</a>-->
+                <!--<a href="#group" class="btn btn-small">{lang('Groups')}</a>-->
+                <!--<a href="#privilege" class="btn btn-small">{lang('Access rights differentiation system')}</a>-->
 
             </div>   
         </div>
@@ -74,7 +74,7 @@
                                 <td><input type="text" id="emailAutoC"  name="s_email"/></td>
 
                                 <td><select name="role" id="role">
-                                        <option value ="0">{lang('amt_all_groups')}</option>
+                                        <option value ="0">{lang('All groups')}</option>
                                         {foreach $roles as $role}
                                             <option value ="{$role.id}">{$role.alt_name}</option>
                                         {/foreach}

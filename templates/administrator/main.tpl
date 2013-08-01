@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{lang("Operation panel")} | Image CMS</title>
+        <title>{lang("Operation panel","admin")} | Image CMS</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-        <meta name="description" content="{lang("Operation panel")} - Image CMS" />
+        <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
 
@@ -51,7 +51,7 @@
                             <div class="pull-right span4">
                                 <div class="clearfix">
                                     <span class="m-r_10">
-                                        {lang("Hello")},
+                                        {lang("Hello","admin")},
                                         {if $CI->dx_auth->get_username()}
                                             <a href="
                                                {if SHOP_INSTALLED}/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}
@@ -64,10 +64,10 @@
                                                 <i class="my_icon exit_ico"></i>
                                             </a>
                                         {else:}
-                                            {echo lang("Guest")}
+                                            {echo lang("Guest","admin")}
                                         {/if}
                                     </span>
-                                    <span class="m-l_10">{lang('Preview')} <a href="{$BASE_URL}" target="_blank">{lang('site')} <span class="f-s_14">→</span></a></span>
+                                    <span class="m-l_10">{lang('Preview','admin')} <a href="{$BASE_URL}" target="_blank">{lang('site','admin')} <span class="f-s_14">→</span></a></span>
                                 </div>
                                 <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}admin/admin_search{/if}" id="adminAdvancedSearch">
                                     <div class="input-append search">
@@ -84,10 +84,10 @@
                             {if SHOP_INSTALLED}
                                 <div class="btn-group" id="topPanelNotifications" style="display: block;">
                                     <div class="span4 d-i_b">
-                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="{lang('Orders')}" data-rel="tooltip" data-original-title="{lang('Orders')}">
+                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="{lang('Orders','admin')}" data-rel="tooltip" data-original-title="{lang('Orders','admin')}">
                                             <i class="icon-bask "></i>
                                         </a>
-                                        <a href="#" class="btn btn-large pjax" data-title="{lang("Products without icons")}" data-rel="tooltip" data-original-title="">
+                                        <a href="#" class="btn btn-large pjax" data-title="{lang("Products without icons","admin")}" data-rel="tooltip" data-original-title="">
                                             <i class="icon-report_exists"></i>
                                         </a>
                                         <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
@@ -125,7 +125,7 @@
                                                             {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                         {/if}
 
-                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Control or Operation")}</a></li>
+                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Control or Operation","admin")}</a></li>
                                                         <li class="divider"></li>
                                                             {foreach $menus as $menu}
                                                             <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
@@ -159,7 +159,7 @@
                             </ul>
 
                             {if SHOP_INSTALLED}
-                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop')}<span class="f-s_14">→</span></a>
+                                <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>
                             {/if}
                             {$CI->lang->load($langDomain)}
                         </nav>
@@ -193,7 +193,7 @@
                                         </li>
                                     {/foreach}
                                 </ul>
-                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site')} </a>
+                                <a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>
                             </nav>
                         </div>
                     {/if}
@@ -211,25 +211,25 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span4">
-                        {lang('Interface')}:
+                        {lang('Interface','admin')}:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 {lang('a_'.$this->CI->config->item('language'))}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/admin/settings/switch_admin_lang/english">{lang("English")} (beta)</a></li>
-                                <li><a href="/admin/settings/switch_admin_lang/russian">{lang("Russian")}</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/english">{lang("English","admin")} (beta)</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/russian">{lang("Russian","admin")}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        {lang("Version")}: <b>{echo getCMSNumber()}</b>
-                        <div class="muted">{lang('Help us get better')} - <a href="#" id="rep_bug">{lang('report an error')}</a></div>
+                        {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>
+                        <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © ImageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation')}</a>
+                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
                     </div>
                 </div>
             </div>
@@ -239,19 +239,19 @@
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
                 <label>
-                    {lang('Your Name')}:
+                    {lang('Your Name','admin')}:
                     <input type=text name="name"/>
                 </label>
                 <label>
-                    {lang('Your Email')}:
+                    {lang('Your Email','admin')}:
                     <input type=text name="email"/>
                 </label>
                 <label>
-                    {lang("Your remark")}:
+                    {lang("Your remark","admin")}:
                     <textarea></textarea>
                 </label>
-                <input type="submit" value="{lang("Send")}" class="btn btn-info"/>
-                <input type="button" value="{lang("Cancel")}" class="btn btn-info" style="float:right" name="cancel_button"/>
+                <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
+                <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
                 <input type="hidden" value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
             </form>
         </div>
@@ -309,8 +309,8 @@
             {else:}
                                     var isShop = false;
             {/if}
-                var lang_only_number = "{lang("numbers only")}";
-                var show_tovar_text = "{lang("show")}";
+                var lang_only_number = "{lang("numbers only","admin")}";
+                var show_tovar_text = "{lang("show","admin")}";
                 var hide_tovar_text = "{lang('don\'t show')}";
             {literal}
 
