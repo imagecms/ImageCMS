@@ -201,11 +201,7 @@ class Admin extends BaseAdminController {
         $oldColumn = $this->input->post('oldColumn');
         $newColumn = $this->input->post('newColumn');
 
-        if ($this->new_level_model->editColumn($oldColumn, $newColumn)) {
-//            return 'success';
-        } else {
-//            return 'error';
-        }
+        $this->new_level_model->editColumn($oldColumn, $newColumn);
     }
     
 }
