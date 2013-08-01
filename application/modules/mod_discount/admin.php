@@ -80,6 +80,11 @@ class Admin extends \ShopAdminController {
                 showMessage('Неверный диапазон дат!', '', 'r');
                 exit;
             }
+            
+            if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
+                showMessage('Проценты скидки не могут быть больше 99!', '', 'r');
+                exit;
+            }
 
             $this->form_validation->set_rules($this->discount_model_admin->rules());
             if ($this->form_validation->run()) {
@@ -185,6 +190,15 @@ class Admin extends \ShopAdminController {
                 showMessage('Неверный диапазон дат!', '', 'r');
                 exit;
             }
+            
+
+            
+            if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
+                showMessage('Проценты скидки не могут быть больше 99!', '', 'r');
+                exit;
+            }
+            
+            
             if ($this->form_validation->run()) {
 
 

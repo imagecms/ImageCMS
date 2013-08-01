@@ -3,7 +3,7 @@
 var currencySymbolJS = '{echo $CS}';
 </script>
 <!--End. Global js variables -->
-<section class="mini-layout">
+<section class="mini-layout">        
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -41,7 +41,7 @@ var currencySymbolJS = '{echo $CS}';
                                 </div>
                                 <label class="">
                                     <span class="span4">Название скидки:</span>
-                                    <span class="span8 discount-name"><input type="text" value="{echo $discount['name']}" /></span>
+                                    <span class="span8 discount-name"><input type="text" name='name' value="{echo $discount['name']}" /></span>
                                 </label>
                                 <label class="">
                                     <span class="span4">Код скидки:</span>
@@ -137,7 +137,7 @@ var currencySymbolJS = '{echo $CS}';
                              <!--Start. Show if discount type is all_orders -->
                              <div id="all_orderBlock" class="forHide" {if $discount['type_discount'] != 'all_order'}style="display: none;"{/if}>
                                 <span class="d_b m-b_10">
-                                    <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{echo $discount['all_order']['begin_value']}" maxlength="9" /></span>
+                                    <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{if !$discount['all_order']['begin_value']}0{else:}{echo $discount['all_order']['begin_value']}{/if}" maxlength="9" /></span>
                                     <span class="d-i_b">{echo $CS}</span>
                                 </span>
                                 <div class="m-b_5">
