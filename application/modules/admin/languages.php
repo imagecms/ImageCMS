@@ -44,11 +44,11 @@ class Languages extends BaseAdminController {
     function insert() {
         //cp_check_perm('lang_create');
 
-        $this->form_validation->set_rules('name', lang("Title"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
-        $this->form_validation->set_rules('image', lang("Image"), 'max_length[250]');
-        $this->form_validation->set_rules('folder', lang("Folder"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template"), 'required|max_length[250]');
+        $this->form_validation->set_rules('name', lang("Title","admin"), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('identif', lang("Identifier","admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+        $this->form_validation->set_rules('image', lang("Image","admin"), 'max_length[250]');
+        $this->form_validation->set_rules('folder', lang("Folder","admin"), 'required|max_length[250]');
+        $this->form_validation->set_rules('template', lang("Template","admin"), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -67,11 +67,11 @@ class Languages extends BaseAdminController {
 
             $this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log(lang("Create a language") . $data['lang_name']);
+            $this->lib_admin->log(lang("Create a language","admin") . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
-            showMessage(lang("Language has been created"));
+            showMessage(lang("Language has been created","admin"));
 
             pjax('/admin/languages/');
         }
@@ -102,11 +102,11 @@ class Languages extends BaseAdminController {
     function update($lang_id) {
         //cp_check_perm('lang_edit');
 
-        $this->form_validation->set_rules('lang_name', lang("Title"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
-        $this->form_validation->set_rules('image', lang("Image"), 'max_length[250]');
-        $this->form_validation->set_rules('folder', lang("Folder"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template"), 'required|max_length[250]');
+        $this->form_validation->set_rules('lang_name', lang("Title","admin"), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('identif', lang("Identifier","admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+        $this->form_validation->set_rules('image', lang("Image","admin"), 'max_length[250]');
+        $this->form_validation->set_rules('folder', lang("Folder","admin"), 'required|max_length[250]');
+        $this->form_validation->set_rules('template', lang("Template","admin"), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -125,11 +125,11 @@ class Languages extends BaseAdminController {
 
             $this->cms_admin->update_lang($data, $lang_id);
 
-            $this->lib_admin->log(lang("Changed a language") . $data['lang_name']);
+            $this->lib_admin->log(lang("Changed a language","admin") . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
-            showMessage(lang("Changes has been saved"));
+            showMessage(lang("Changes has been saved","admin"));
 
             $action = $_POST['action'];
             if ($action == 'edit') {
@@ -152,7 +152,7 @@ class Languages extends BaseAdminController {
                 $lang = $this->cms_admin->get_lang($item);
                 ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
                 if ($lang['default'] == 1) {
-                    showMessage(lang("This language has been used by default and can not be deleted"), lang("Blocking"), 'r');
+                    showMessage(lang("This language has been used by default and can not be deleted","admin"), lang("Blocking","admin"), 'r');
                     exit;
                 }
                 $this->cms_admin->delete_lang($item);
@@ -160,7 +160,7 @@ class Languages extends BaseAdminController {
                 $this->db->where('lang', $item);
                 $this->db->delete('content');
                 $this->cache->delete('main_site_langs');
-                $this->lib_admin->log(lang("Deleted the ID language") . $item);
+                $this->lib_admin->log(lang("Deleted the ID language","admin") . $item);
             }
         } else {
             $lang = $this->cms_admin->get_lang($id);
@@ -168,7 +168,7 @@ class Languages extends BaseAdminController {
             ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
 
             if ($lang['default'] == 1) {
-                showMessage(lang("This language has been used by default and can not be deleted"), lang("Blocking"), 'r');
+                showMessage(lang("This language has been used by default and can not be deleted","admin"), lang("Blocking","admin"), 'r');
                 exit;
             }
 
@@ -180,9 +180,9 @@ class Languages extends BaseAdminController {
 
             $this->cache->delete('main_site_langs');
 
-            $this->lib_admin->log(lang("Deleted the ID language") . $id);
+            $this->lib_admin->log(lang("Deleted the ID language","admin") . $id);
         }
-        showMessage(lang("the language has been deleted"));
+        showMessage(lang("the language has been deleted","admin"));
         pjax('/admin/languages');
         //updateDiv('languages_page_w_content', site_url('admin/languages/'));
     }
@@ -203,9 +203,9 @@ class Languages extends BaseAdminController {
 
         $lang = $this->cms_admin->get_lang($lang_id);
 
-        $this->lib_admin->log(lang("Specified a language or selected a language") . $lang['lang_name'] . lang("by default"));
+        $this->lib_admin->log(lang("Specified a language or selected a language","admin") . $lang['lang_name'] . lang("by default","admin"));
 
-        showMessage(lang("The language has been installed by default") . '<b>' . $lang['lang_name'] . '</b>');
+        showMessage(lang("The language has been installed by default","admin") . '<b>' . $lang['lang_name'] . '</b>');
     }
 
     /**

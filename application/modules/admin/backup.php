@@ -79,7 +79,7 @@ class Backup extends BaseAdminController {
 
             $this->email->to($_POST['email']);
             $this->email->from($user['email']);
-            $this->email->subject(lang("Backup copying") . date('d-m-Y H:i:s'));
+            $this->email->subject(lang("Backup copying","admin") . date('d-m-Y H:i:s'));
             $this->email->message(' ');
             $this->email->attach($tmp_file);
             $this->email->send();
@@ -110,7 +110,7 @@ class Backup extends BaseAdminController {
     }
 
     private function done() {
-        showMessage(lang("Backup copying has been completed"));
+        showMessage(lang("Backup copying has been completed","admin"));
     }
 
     private function generate_file_name($file_type) {

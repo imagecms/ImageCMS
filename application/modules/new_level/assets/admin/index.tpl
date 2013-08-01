@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/modules_table"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back')}</span>
                     </a>
                 </div>
                 <div class="d-i_b">

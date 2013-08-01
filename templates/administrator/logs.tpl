@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Event journal")}</span>
+                <span class="title">{lang("Event journal","admin")}</span>
             </div>                                                   
         </div>
         <div class="tab-content">
@@ -13,9 +13,9 @@
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>                                              
-                                    <th class="span2">{lang("User")}</th>
+                                    <th class="span2">{lang("User","admin")}</th>
                                     <th class="span3">{lang("Date/time")}</th>
-                                    <th class="span5">{lang("Action")}</th>
+                                    <th class="span5">{lang("Action","admin")}</th>
                                 </tr>
                             </thead>
                             <tbody class="sortable ui-sortable">

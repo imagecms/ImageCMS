@@ -2,14 +2,14 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Roles group create")}</span>
+            <span class="title">{lang("Roles group create","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/groupList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#group_cr_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Have been saved")}</button>
-                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="tocreate"><i class="icon-check"></i>{lang('Save and create a new group')}</button>
-                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="toedit"><i class="icon-check"></i>{lang('Save and edit')}</button>
+                <a href="{$BASE_URL}admin/rbac/groupList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#group_cr_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="tocreate"><i class="icon-check"></i>{lang('Save and create a new group','admin')}</button>
+                <button type="button" class="btn btn-small  formSubmit" data-form="#group_cr_form" data-action="toedit"><i class="icon-check"></i>{lang('Save and edit','admin')}</button>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang("Properties")}
+                                {lang("Properties","admin")}
                             </th>
                         </tr>
                     </thead>
@@ -30,20 +30,20 @@
                             <td colspan="6">
                                 <div class="inside_padd span9">
                                     <div class="control-group m-t_10">
-                                        <label class="control-label" for="Name">{lang("Name")}:</label>
+                                        <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                         <div class="controls">
                                             <input type="text" name="Name" id="Name" value="" />
                                         </div>
                                     </div>
                                         <!--required-->
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">{lang("Description")}:</label>
+                                        <label class="control-label" for="Description">{lang("Description","admin")}:</label>
                                         <div class="controls">
                                             <input type="text" name="Description" id="Description" value=""/>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="Description">{lang('Group')}:</label>
+                                        <label class="control-label" for="Description">{lang('Group','admin')}:</label>
                                         <div class="controls">
                                             <select name="type">
                                                 <option value="shop">Shop</option>

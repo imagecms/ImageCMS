@@ -2,14 +2,14 @@
     <ul class="categories_tree_list">
         {echo ShopCore::app()->SCategoryTree->ul()}
 	</ul>
-    <h3>{lang("All Brands Shop")}</h3>
+    <h3>{lang("All Brands Shop","admin")}</h3>
     <div class="brand">
         {foreach SBrandsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->find() as $brand}
             <a href="{shop_url('brand/' . $brand->getUrl())}">{echo $brand->getName()}</a>
         {/foreach}
     </div>
 
-    <h3>{lang("Brands Alphabetical")}</h3>
+    <h3>{lang("Brands Alphabetical","admin")}</h3>
     <div class="brand">
         {foreach ShopCore::app()->SBrandsHelper->getBrandsCharaters(false, array('EN')) as $brandsCharater=>$brands}
             {if $brands}

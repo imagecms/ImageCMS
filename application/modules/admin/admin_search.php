@@ -84,8 +84,8 @@ class Admin_search extends BaseAdminController {
                 $config['total_rows'] = $result['total_rows'];
                 $config['per_page'] = $this->search->row_count;
                 $config['uri_segment'] = 5;
-                $config['first_link'] = lang('first_link');
-                $config['last_link'] = lang('last_link');
+                $config['first_link'] = lang('First link','admin');
+                $config['last_link'] = lang('Last link','admin');
 
                 $config['cur_tag_open'] = '<span class="active">';
                 $config['cur_tag_close'] = '</span>';
@@ -205,8 +205,8 @@ class Admin_search extends BaseAdminController {
         $config['total_rows'] = $this->_filter_pages($ids, $search_data, TRUE);
         $config['per_page'] = $this->items_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
-        $config['first_link'] = lang('first_link');
-        $config['last_link'] = lang('last_link');
+        $config['first_link'] = lang('First link','admin');
+        $config['last_link'] = lang('Last link','admin');
 
         $config['cur_tag_open'] = '<span class="active">';
         $config['cur_tag_close'] = '</span>';
@@ -257,7 +257,7 @@ class Admin_search extends BaseAdminController {
         $this->load->module('cfcm/admin')->_set_forms_config();
         $form = $this->filter->create_filter_form($group_id);
 
-        // Перезаполним форму при поиске
+        // overfilling form on search
         if ($attributes AND $form)
             $form->setAttributes($attributes);
 

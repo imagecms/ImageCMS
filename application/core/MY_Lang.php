@@ -111,11 +111,14 @@ class MY_Lang extends MX_Lang {
             $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $url = uri_string();
             
+            //var_dump(MY_Controller::getCurrentLocale());
+            
+            
             if (strstr($url,'admin')){
                 $lang = $language[1];
             }else{
-                $lang = $languageFront[1];
-//                $lang = 'en_US';
+//                $lang = $languageFront[1];
+                $lang = 'en_US';
             }
            
            if ($module == 'main'){

@@ -1,4 +1,4 @@
-<h3>{lang("Recently Reviewed")}</h3>
+<h3>{lang("Recently Reviewed","admin")}</h3>
 <div class="news">
 	{foreach $comments as $comment}
 		<div class="newsitem">

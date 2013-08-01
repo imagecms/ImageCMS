@@ -35,7 +35,7 @@
                     <thead>
                         <tr>
                             <th class="t-a_c span1"></th>
-                            <th class="span1">{lang('a_ID')}</th>
+                            <th class="span1">{lang('ID')}</th>
                             <th class="span4">Контактная информация</th>
                             <th class="span4">Вопрос</th>
                             <th class="span5">Ссылка на товар</th>
@@ -76,7 +76,7 @@
     {else:}
         </br>
         <div class="alert alert-info">
-            {lang('amt_nothing_found')}
+            {lang('No data has been found or Nothing has been found')}
         </div>
     {/if}
 </div>

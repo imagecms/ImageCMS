@@ -32,9 +32,9 @@ class Authapi extends MY_Controller {
         if (!$this->dx_auth->is_logged_in()) {
 
             /** Set form validation rules */
-            $this->form_validation->set_rules('email', lang('mod_auth_email'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
+            $this->form_validation->set_rules('email', lang('Почта', 'auth'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
             $this->form_validation->set_rules('password', lang('mod_auth_psw'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
-            $this->form_validation->set_rules('remember', lang('mod_auth_remember_me'), 'integer');
+            $this->form_validation->set_rules('remember', lang('Запомнить меня', 'auth'), 'integer');
 
             /** Validate rules and change password */
             $validationResult = $this->form_validation->run();
@@ -59,8 +59,8 @@ class Authapi extends MY_Controller {
 
                     $validationResult = validation_errors();
                     if (empty($validationResult)) {
-                        $jsonResponse['msg'] = lang('mod_auth_usr_notfound');
-                        $jsonResponse['validations'] = array('email' => lang('mod_auth_usr_notfound'));
+                        $jsonResponse['msg'] = lang('Пользователь с таким логином и паролем не найден', 'auth');
+                        $jsonResponse['validations'] = array('email' => lang('Пользователь с таким логином и паролем не найден', 'auth'));
                     } else {
                         $jsonResponse['msg'] = $validationResult;
                         $jsonResponse['validations'] = array('email' => form_error('email'), 'password' => form_error('password'), 'remember' => form_error('remember'));
@@ -99,7 +99,7 @@ class Authapi extends MY_Controller {
             $this->dx_auth->logout();
 
             /** Preprate response */
-            $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
+            $jsonResponse['msg'] = lang('Logout completed', 'auth');
             $jsonResponse['status'] = TRUE;
             $jsonResponse['refresh'] = TRUE;
             $jsonResponse['redirect'] = TRUE;
@@ -269,9 +269,9 @@ class Authapi extends MY_Controller {
         if ($this->dx_auth->is_logged_in()) {
 
             /** Set form validation */
-            $this->form_validation->set_rules('old_password', lang('mod_auth_old_psw'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
-            $this->form_validation->set_rules('new_password', lang('mod_auth_new_psw'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
-            $this->form_validation->set_rules('confirm_new_password', lang('mod_auth_cfrm_n_psw'), 'trim|required|xss_clean');
+            $this->form_validation->set_rules('old_password', lang('Старый пароль', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
+            $this->form_validation->set_rules('new_password', lang('Новый пароль', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
+            $this->form_validation->set_rules('confirm_new_password', lang('Повторите новый пароль', 'auth'), 'trim|required|xss_clean');
 
             /** Validate rules and change password */
             $validationResult = $this->form_validation->run();
@@ -288,7 +288,7 @@ class Authapi extends MY_Controller {
                     $jsonResponse['validations'] = array('old_password' => form_error('old_password'), 'new_password' => form_error('new_password'), 'confirm_new_password' => form_error('confirm_new_password'));
                     $jsonResponse['status'] = FALSE;
                 } else {
-                    $jsonResponse['validations'] = array('old_password' => lang('mod_auth_error_old_psw'));
+                    $jsonResponse['validations'] = array('old_password' => lang('Поле Старый пароль указано не верно', 'auth'));
                     $jsonResponse['status'] = FALSE;
                 }
             }

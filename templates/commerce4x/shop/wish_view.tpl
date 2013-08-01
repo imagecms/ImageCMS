@@ -8,7 +8,7 @@
 */
 #}
 <article class="container">
-    <h1>{lang("Wish List")}</h1>
+    <h1>{lang("Wish List","admin")}</h1>
     <div class="row">
         <div class="text span8"><!-- Some text --></div>
     </div>
@@ -16,7 +16,7 @@
         <!--If empty list show message -->
         {if !$items}
             <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty "))}</div>
+                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
             </div>
         {else:}
             <!--If not empty list show list of products -->
@@ -59,7 +59,7 @@
                                                 data-name="{echo $item.model->getName()}"
                                                 data-number="{echo $item.model->firstVariant->getnumber()}"
                                                 data-maxcount="{echo $item.model->firstVariant->getstock()}">
-                                            {lang("Buy")}
+                                            {lang("Buy","admin")}
                                         </button>
                                     {else:}
                                         <button
@@ -68,7 +68,7 @@
                                                 type="button"
                                                 class="btn btn_not_avail">
                                             <span class="icon-but"></span>
-                                            <span class="text-el">{lang("Report the appearance of")}</span>
+                                            <span class="text-el">{lang("Report the appearance of","admin")}</span>
                                         </button>
                                     {/if}
                                 {/if}

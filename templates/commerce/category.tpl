@@ -10,7 +10,7 @@
             <h5><a href="{site_url($page.full_url)}">{$page.title}</a></h5>
             <span class="post-pub-info">
                 {date('d-m-Y', $page.publish_date)} |
-                {lang("Section")}: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
+                {lang("Section","admin")}: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
             </span>
 
             {$page.prev_text}

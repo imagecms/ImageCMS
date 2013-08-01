@@ -2,7 +2,7 @@
 
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
-            <div class="title_h1 d_i-b v-a_m">{lang("Similar products")}</div>
+            <div class="title_h1 d_i-b v-a_m">{lang("Similar products","admin")}</div>
             <div class="d_i-b groupButton v-a_m">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
@@ -53,7 +53,7 @@
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
-                                {lang("Buy")}
+                                {lang("Buy","admin")}
                             </button>
                         </div>
                         <div class="photo-block">

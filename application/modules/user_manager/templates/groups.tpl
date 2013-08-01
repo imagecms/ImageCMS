@@ -27,7 +27,7 @@
 			</table>
 		</div>
 
-	<h4 title="{lang('amt_params')}">{lang('amt_to_create')}</h4>
+	<h4 title="{lang('Options')}">{lang('Create')}</h4>
 		<div>
 		<form action="{$BASE_URL}admin/components/cp/user_manager/create" method="post" id="groups_create_form" style="width:100%;">
 			<div class="form_text">{lang('Name')}:</div>

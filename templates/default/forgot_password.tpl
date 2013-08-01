@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Forgot your password?")}</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Forgot your password?","admin")}</span></h5></div>
 
 {if validation_errors() OR $info_message}
     <div class="errors"> 
@@ -12,18 +12,18 @@
 	<div class="comment_form_info">
 	
     <div class="textbox">
-        <input type="text" size="30" name="email" id="login" value="{lang("Email")}" onfocus="if(this.value=='{lang("Email")}') this.value='';" onblur="if(this.value=='') this.value='{lang("Email")}';" />
+        <input type="text" size="30" name="email" id="login" value="{lang("Email","admin")}" onfocus="if(this.value=='{lang("Email","admin")}') this.value='';" onblur="if(this.value=='') this.value='{lang("Email","admin")}';" />
     </div>
 	
 	<br /><br /><br /><br />
-    <input type="submit" id="submit" class="submit" value="{lang("Send")}" />
+    <input type="submit" id="submit" class="submit" value="{lang("Send","admin")}" />
 	
     <br/><br />
 	</div>
     <label class="left">&nbsp;</label> 
     <a href="{site_url('auth/login')}">Вход</a>
     &nbsp;
-    <a href="{site_url($modules.auth . '/register')}">{lang("Registration")}</a>
+    <a href="{site_url($modules.auth . '/register')}">{lang("Registration","admin")}</a>
 
 {form_csrf()}
 </form>

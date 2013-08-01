@@ -68,7 +68,7 @@
                                                             class="btn btn-danger btn-small"
                                                             data-rel="tooltip"
                                                             onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')"
-                                                            data-title="{lang('a_delete')}"
+                                                            data-title="{lang('Delete')}"
                                                             data-remove="">
                                                         <i class="icon-trash icon-white"></i> {lang('Delete albums')}
                                                     </button>

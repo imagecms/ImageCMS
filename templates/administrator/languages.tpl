@@ -4,15 +4,15 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang("Delete language")}</h3>
+            <h3>{lang("Delete language","admin")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang("Delete selected languages?")}</p>
+            <p>{lang("Delete selected languages?","admin")}</p>
             <p>{lang("Attention! All pages in this language will be deleted!")}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang("Delete")}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang("Delete","admin")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
         </div>
     </div>
 
@@ -22,12 +22,12 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Languages")}</span>
+                <span class="title">{lang("Languages","admin")}</span>
             </div>  
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create language")}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create language","admin")}</button>
                 </div>
             </div>
         </div>
@@ -46,12 +46,12 @@
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="span4">{lang("Name")}</th>
-                                        <th class="span4">{lang("Folder")}</th>
-                                        <th class="span4">{lang("Identifier")}</th>
-                                        <th class="span4">{lang("Template")}</th>
-                                        <th class="span2">{lang("Image")}</th>
-                                        <th class="span2">{lang("by default")}</th>
+                                        <th class="span4">{lang("Name","admin")}</th>
+                                        <th class="span4">{lang("Folder","admin")}</th>
+                                        <th class="span4">{lang("Identifier","admin")}</th>
+                                        <th class="span4">{lang("Template","admin")}</th>
+                                        <th class="span2">{lang("Image","admin")}</th>
+                                        <th class="span2">{lang("by default","admin")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,7 +64,7 @@
                                                 </span>
                                             </span>
                                         </td>
-                                        <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}" data-rel="tooltip" data-title="{lang("Editing")}">{$lang.lang_name}</a></p></td>
+                                        <td><p><a href="{$BASE_URL}admin/languages/edit/{$lang.id}" data-rel="tooltip" data-title="{lang("Editing","admin")}">{$lang.lang_name}</a></p></td>
                                         <td><p>{$lang.folder}</p></td>
                                         <td><p>{$lang.identif}</p></td>
                                         <td><p>{$lang.template}</p></td>

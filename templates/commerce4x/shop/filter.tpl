@@ -35,7 +35,7 @@
 
             {//displaying count of found products}
             <div class="title">
-                {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product"), lang("product"), lang("product")))} {lang("with filters")}:
+                {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))} {lang("with filters","admin")}:
             </div>
             <ul>
                 {//displaying checked brands filters}
@@ -102,11 +102,11 @@
 
                                     <span class="times">&times;</span>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
-                                        {lang("of")} 
+                                        {lang("of","admin")} 
                                         {echo ShopCore::$_GET['lp']} {$CS}
                                     {/if}
                                     {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
-                                        {lang("to")} 
+                                        {lang("to","admin")} 
                                         {echo ShopCore::$_GET['rp']} {$CS}
                                     {/if}
                                 </a>
@@ -117,7 +117,7 @@
             </ul>
 
             {//link to remove all checked filters}
-            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang("Reset all filters")}</a>
+            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang("Reset all filters","admin")}</a>
         </div>
     {/if}
 
@@ -131,7 +131,7 @@
             {if (int)$priceRange.minCost >= 0 && (int)$priceRange.maxCost != 0}
                 <div class="boxFilter">
                     {//meet slider}
-                    <div class="title">{lang("Price")}</div>
+                    <div class="title">{lang("Price","admin")}</div>
                     <div class="sliderCont">
                         <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
                             <img src="{$THEME}images/slider.png" alt="slider"/>
@@ -164,7 +164,7 @@
             {//displaying all possible brands in current category}        
             {if count($brands)>0}
                 <div class="boxFilter">
-                    <div class="title">{lang("Brands in category")}</div>
+                    <div class="title">{lang("Brands in category","admin")}</div>
                     <div class="clearfix check_form">
                         {//loop for which outputs all brands}
                         {foreach $brands as $br}

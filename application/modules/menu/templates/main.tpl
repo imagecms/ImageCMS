@@ -46,7 +46,7 @@
                             <div>{lang("ID")}</div>
                             <div>{lang("Name")}</div>
                             <div>{lang("Link")}</div>
-                            {/*}<div>{lang('amt_type')}</div>{*/}
+                            {/*}<div>{lang('Type')}</div>{*/}
                             <div>Показывать</div>
                         </div>
                         <div class=" body_category frame_level">

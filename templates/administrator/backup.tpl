@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Backup copying")}</span>
+            <span class="title">{lang("Backup copying","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create")}</button>
+                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
             </div>
         </div>                            
     </div>
@@ -16,7 +16,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang("Properties")}
+                            {lang("Properties","admin")}
                         </th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                                             <span class="niceRadio b_n">
                                                 <input type="radio" name="save_type" value="local" checked="checked" id="inputName"/>
                                             </span>
-                                            {lang("Copy to the local computer")}
+                                            {lang("Copy to the local computer","admin")}
                                         </span>
                                     </div>
                                 </div>
@@ -43,9 +43,9 @@
                                             <span class="niceRadio b_n">
                                                 <input type="radio" name="save_type" value="server" /> 
                                             </span>
-                                            {lang("Save on the server")}
+                                            {lang("Save on the server","admin")}
                                         </span>
-                                        <p class="help-block">{lang("File will be saved in the directory")} ./application/backups.</p>
+                                        <p class="help-block">{lang("File will be saved in the directory","admin")} ./application/backups.</p>
                                     </div>
                                 </div>
 
@@ -56,13 +56,13 @@
                                             <span class="niceRadio b_n">
                                                 <input type="radio" name="save_type" value="email" />
                                             </span>
-                                            {lang("Send to your email")}
+                                            {lang("Send to your email","admin")}
                                         </span>
                                         <input type="text" name="email" class="input-large" value="{$user.email}" />
                                     </div>
                                 </div>
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="inputLocal">{lang("File format")}:</label>
+                                    <label class="control-label" for="inputLocal">{lang("File format","admin")}:</label>
                                     <div class="controls">
                                         <span class="frame_label no_connection m-r_15">
                                             <span class="niceRadio b_n">

@@ -2,13 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Role create")}</span>
+            <span class="title">{lang("Role create","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#role_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Save and go back")}</button>
+                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#role_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang("Properties")}
+                        {lang("Properties","admin")}
                     </th>
                 </tr>
             </thead>
@@ -28,19 +28,19 @@
                         <div class="inside_padd">
                             <div class="row-fluid">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang("Name")}:</label>
+                                    <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Name" id="Name" value="" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">{lang("Description")}:</label>
+                                    <label class="control-label" for="Description">{lang("Description","admin")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Description" id="Description" value=""/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">{lang("Importance")}:</label>
+                                    <label class="control-label" for="Description">{lang("Importance","admin")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Importance" id="Description" value=""/>
                                     </div>

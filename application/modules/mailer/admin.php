@@ -116,7 +116,7 @@ class Admin extends BaseAdminController {
 
             showMessage(lang("Subscribers removal"));
         } else {
-            showMessage(lang('a_base_mailer_del_2', '', 'r'));
+            showMessage(lang('ID is not', '', 'r'));
         }
     }
 
