@@ -14,6 +14,9 @@ class Admin extends BaseAdminController {
         $this->path = TEMPLATES_PATH . 'newLevel';
     }
 
+    /**
+     * render admin page
+     */
     public function index() {
         $settings = $this->new_level_model->getSettings();
         $categories = $this->new_level_model->getCategories();
@@ -29,6 +32,9 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('index');
     }
 
+    /**
+     * render settings page for theme
+     */
     public function get_thema() {
         
                
@@ -63,6 +69,9 @@ class Admin extends BaseAdminController {
         }
     }
 
+    /**
+     * save categories
+     */
     public function saveCategories() {
         $categories_ids = $this->input->post('categories_ids');
         $column = $this->input->post('column');
@@ -70,6 +79,9 @@ class Admin extends BaseAdminController {
         $this->new_level_model->saveCategories($categories_ids, $column);
     }
 
+    /**
+     * render settings page
+     */
     public function settings() {
         \CMSFactory\assetManager::create()
                 ->registerScript('script')
@@ -77,6 +89,10 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('settings');
     }
 
+    /**
+     * add property type
+     * @return string
+     */
     public function addPropertyType() {
         $type = $this->input->post('type');
         $propertyId = $this->input->post('propertyId');
@@ -87,12 +103,20 @@ class Admin extends BaseAdminController {
         }
     }
 
+    /**
+     * delete property type
+     * @return type
+     */
     public function deletePropertyType() {
         $type = $this->input->post('type');
 
         return $this->new_level_model->deletePropertyTypeFromSettings($type);
     }
 
+    /**
+     * edit property type
+     * @return string
+     */
     public function editPropertyType() {
         $oldType = $this->input->post('oldType');
         $newType = $this->input->post('newType');
@@ -104,18 +128,31 @@ class Admin extends BaseAdminController {
         }
     }
 
+    /**
+     * add new type
+     * @return type
+     */
     public function addType() {
         $newType = $this->input->post('newType');
         $this->new_level_model->addType($newType);
         return $this->renderNewPropertyType($newType);
     }
 
+    /**
+     * render new property type template
+     * @param string $type
+     * @return type
+     */
     public function renderNewPropertyType($type) {
         return \CMSFactory\assetManager::create()
                         ->setData('type', $type)
                         ->render('newPropertyType', true);
     }
 
+    /**
+     * remove property type 
+     * @return string
+     */
     public function removePropertyType() {
         $type = $this->input->post('type');
         $propertyId = $this->input->post('propertyId');
@@ -126,25 +163,41 @@ class Admin extends BaseAdminController {
         }
     }
     
+    /**
+     * delete column
+     * @return type
+     */
     public function deleteColumn() {
         $column = $this->input->post('column');
 
         return $this->new_level_model->deleteColumnFromSettings($column);
     }
 
+    /**
+     * add new column
+     * @return type
+     */
     public function addColumn() {
         $newColumn = $this->input->post('newColumn');
         $this->new_level_model->addColumn($newColumn);
         return $this->renderNewColumn($newColumn);
     }
     
-     public function renderNewColumn($column) {
+    /**
+     * render new column template
+     * @param string $column
+     * @return type
+     */
+    public function renderNewColumn($column) {
         return \CMSFactory\assetManager::create()
                         ->setData('column', $column)
                         ->render('newColumn', true);
     }
     
-     public function editColumn() {
+    /**
+     * edit column
+     */
+    public function editColumn() {
         $oldColumn = $this->input->post('oldColumn');
         $newColumn = $this->input->post('newColumn');
 
