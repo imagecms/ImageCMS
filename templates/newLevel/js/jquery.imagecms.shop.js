@@ -2548,7 +2548,7 @@ var ProductTabs = {
      * @param string type - type properties to show
      * @returns {undefined}
      */
-    renderProperties: function(product_id, limit, type) {
+    renderProperties: function(curElement, product_id, limit, type) {
         if (!limit) {
             limit = false;
         }
@@ -2556,7 +2556,9 @@ var ProductTabs = {
         if (!type) {
             type = false;
         }
-
+        
+        this.changeHash(curElement);
+        
         $.ajax({
             type: 'POST',
             data: {
@@ -2578,7 +2580,8 @@ var ProductTabs = {
      * @param int product_id
      * @returns {undefined}
      */
-    renderFullDescription: function(product_id) {
+    renderFullDescription: function(curElement, product_id) {
+        this.changeHash(curElement);
         $.ajax({
             type: 'POST',
             data: {
@@ -2598,7 +2601,8 @@ var ProductTabs = {
      * @param int product_id
      * @returns {undefined}
      */
-    getAccessories: function(product_id, limit) {
+    getAccessories: function(curElement, product_id, limit) {
+        this.changeHash(curElement);
         if (!limit) {
             limit = false;
         }
@@ -2617,5 +2621,9 @@ var ProductTabs = {
                 }
             }
         });
+    },
+    changeHash: function(curElement){
+        var hash = curElement.data('href');
+        location.hash =  hash;
     }
 };

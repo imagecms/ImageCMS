@@ -226,7 +226,8 @@ renderPosts = function(el, data) {
 
                 if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').append(obj.commentsCount);
+                    $('#cc').append(parseInt(obj.commentsCount));
+                    console.log(parseInt(obj.commentsCount))
                 }
                 $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }
