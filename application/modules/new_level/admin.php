@@ -66,6 +66,7 @@ class Admin extends BaseAdminController {
     public function saveCategories() {
         $categories_ids = $this->input->post('categories_ids');
         $column = $this->input->post('column');
+        $this->new_level_model->clear_other_columns($categories_ids, $column);
         $this->new_level_model->saveCategories($categories_ids, $column);
     }
 

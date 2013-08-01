@@ -159,13 +159,36 @@ class New_level_model extends CI_Model {
     }
     
      public function saveCategories($categories_ids, $column){
+        $column_exist = $this->db->where('column', $column)->get('mod_new_level_columns')->result_array();
         $this->db->where('column', $column)->update('mod_new_level_columns', array('category_id' => serialize($categories_ids)));
-        if(!$this->db->affected_rows()){
+        if(!$column_exist){
             return $this->db
                             ->insert('mod_new_level_columns', array('category_id' => serialize($categories_ids), 'column' => $column));
         }
     }
     
+    public function clear_other_columns($categories_ids, $column){
+        $query = $this->db->where('column !=', $column)->get('mod_new_level_columns');
+        if($query){
+            foreach ($query->result_array() as $columns){
+                $categories = unserialize($columns['category_id']);
+                foreach ($categories as $category){
+                     if(in_array($category, $categories_ids)){
+                         if(($key = array_search($category, $categories)) !== false) {
+                            unset($categories[$key]);
+                        }
+                     }
+                }
+                $this->db
+                        ->where('column', $columns['column'])
+                        ->update('mod_new_level_columns', array('category_id' => serialize($categories)));
+            }
+        }else{
+            return FALSE;
+        }
+        
+    }
+
     public function getColumns(){
         $query = $this->db->get('mod_new_level_columns');
         if($query){
@@ -212,7 +235,8 @@ class New_level_model extends CI_Model {
          
          $settings['columns'] = $newColumns;
          $this->setSettings($settings);
-    }    
+    }
+    
     
 }
 

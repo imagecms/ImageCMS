@@ -285,7 +285,7 @@
                        {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
                             <span class="s-t">Покупатели оставили</span>
-                            <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{$Comments[$model->getId()]}</button>
+                            <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{intval($Comments[$model->getId()])}</button>
                         </div>
                     </div>
                 {else:}
@@ -529,10 +529,10 @@
                 <button data-href="#view">Обзор</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                <li><button data-href="#first" onclick="ProductTabs.renderProperties('{echo $model->getId()}')">Характеристики</button></li>
+                <li><button data-href="#first" onclick="ProductTabs.renderProperties($(this),'{echo $model->getId()}')">Характеристики</button></li>
                 {/if}
-                {if trim($model->getShortDescription()) != ''}
-                <li><button data-href="#second" onclick="ProductTabs.renderFullDescription('{echo $model->getId()}')">Полное описание</button></li>
+                {if true}
+                <li><button data-href="#second" onclick="ProductTabs.renderFullDescription($(this), '{echo $model->getId()}')">Полное описание</button></li>
                 {/if}
                 {if $accessories}
                 <li><button data-href="#fourth">Аксессуары</button></li>
