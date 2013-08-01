@@ -1899,7 +1899,7 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   `created` int(11) NOT NULL,
   `updated` int(11) NOT NULL,
   `old_price` float(10,2) DEFAULT NULL,
-  `views` int(11) DEFAULT NULL,
+  `views` int(11) DEFAULT '0',
   `hot` tinyint(1) DEFAULT NULL,
   `action` tinyint(1) DEFAULT NULL,
   `added_to_cart_count` int(11) DEFAULT NULL,
