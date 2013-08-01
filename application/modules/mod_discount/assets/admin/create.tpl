@@ -82,7 +82,7 @@ var currencySymbolJS = '{echo $CS}';
                             <div class="span8">
                                 <div class="d-i_b m-r_15">
                                     <select name="type_value" id="selectTypeValue">
-                                        <option value="1">Процентний</option>
+                                        <option value="1">Процентный</option>
                                         <option value="2">Фиксированный</option>
                                     </select>
                                 </div>
