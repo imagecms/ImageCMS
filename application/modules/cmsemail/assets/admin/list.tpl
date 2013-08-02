@@ -78,7 +78,7 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}">{echo $model.name}</a>
+                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}/#settings">{echo $model.name}</a>
                                         </td>
                                         <td>
                                             <p>{echo $model.description}</p>
