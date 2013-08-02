@@ -71,7 +71,7 @@ class Admin extends BaseAdminController {
                 ->get('content_fields_groups_relations')
                 ->result_array()
         ));
-        
+
         $groups = $this->db->get('content_field_groups');
 
         if ($groups->num_rows() > 0) {
@@ -103,7 +103,7 @@ class Admin extends BaseAdminController {
             }
 
             if ($form->isValid()) {
-                
+
                 $data = $form->getData();
                 $groups = $data['groups'];
                 $data['data']=  serialize($data);
@@ -116,9 +116,9 @@ class Admin extends BaseAdminController {
                     $this->db->select_max('weight');
                     $query = $this->db->get('content_fields')->row();
                     $data['weight'] = $query->weight + 1;
-                    
+
                     $this->db->insert('content_fields', $data);
-                    
+
                     //write relations
                     $toInsert = array();
                     if (count($groups))
@@ -131,7 +131,7 @@ class Admin extends BaseAdminController {
                         if (count($toInsert))
                             $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
                     }
-                    
+
                     showMessage(lang('amt_field_created'));
                     pjax( $this->get_url('edit_field/' . $data['field_name']));
                     exit;
@@ -195,16 +195,16 @@ class Admin extends BaseAdminController {
 
     public function delete_field($field_name) {
         $field_name = urldecode($field_name);
-        
+
         $this->db->where('field_name', $field_name)
                 ->delete('content_fields');
 
         $this->db->where('field_name', $field_name)
                 ->delete('content_fields_data');
-        
+
         $this->db->where('field_name', $field_name)
                 ->delete('content_fields_groups_relations');
-        
+
         showMessage(lang('a_field_deleted_success'));
         pjax($this->get_url('index'));
     }
@@ -222,7 +222,7 @@ class Admin extends BaseAdminController {
 
             $form->title = lang('amt_field_editing') . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
-            
+
             $form->setAttributes($field_data);
 
             $form->validation->setInitial(str_replace('required|', '', $field_data['validation']));
@@ -233,15 +233,15 @@ class Admin extends BaseAdminController {
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
                 unset($data['validation_required']);
-                
+
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update('content_fields', array('data' => serialize($data),
                                                           'type' => $data['type'],
-                                                          'label' => $data['label'],  
-                    
+                                                          'label' => $data['label'],
+
                     ));
-                
-               
+
+
                 $groups = $data['groups'];
                 $data['field_name'] = end($this->uri->segment_array());;
                 if (count($groups))
@@ -266,7 +266,7 @@ class Admin extends BaseAdminController {
             $this->template->add_array(array(
                 'form' => $form,
             ));
-            
+
 //             $this->display_tpl('_form');
             $this->render('_form');
         }
@@ -274,7 +274,7 @@ class Admin extends BaseAdminController {
             echo lang('amt_field_not_found');
     }
 
-    public function create_group() 
+    public function create_group()
     {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
@@ -344,7 +344,7 @@ class Admin extends BaseAdminController {
         ));
 
 //         $this->display_tpl('_form');
-        
+
         $this->render('_form');
     }
 
@@ -358,17 +358,17 @@ class Admin extends BaseAdminController {
 
         $this->db->where('field_group', $id)
                 ->update('category', array('field_group' => '-1'));
-        
+
         $this->db->where('category_field_group', $id)
                 ->update('category', array('category_field_group' => '-1'));
-        
+
         showMessage(lang('a_group_deleted_success'));
             pjax('/admin/components/cp/cfcm#fields_groups');
     }
 
     // Create form from category field group
     // on add/edit page tpl.
-    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE) 
+    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE)
     {
         if ('page' === $category_id ) {
             $item_type = 'page';
@@ -402,7 +402,7 @@ class Admin extends BaseAdminController {
                 ->where("content_fields_groups_relations.group_id = $category->field_group")
                 ->order_by('weight', 'ASC')
                 ->get();
-            
+
             if ($query->num_rows() > 0) {
                 $form_fields = array();
                 $fields = $query->result_array();
@@ -411,7 +411,7 @@ class Admin extends BaseAdminController {
                     $f_data = unserialize($field['data']);
                     if ($f_data == FALSE)
                         $f_data = array();
-                    
+
                     $form_fields[$field['field_name']] = array(
                         'type' => $field['type'],
                         'label' => encode($field['label']),
@@ -424,7 +424,7 @@ class Admin extends BaseAdminController {
 
                 // Set form attributes
                 if ($item_id != FALSE AND $item_type != FALSE) {
-                    
+
                     $attributes = $this->get_form_attributes($fields, $item_id, $item_type);
 
                     if (count($attributes) > 0 AND is_array($attributes)) {
@@ -434,15 +434,15 @@ class Admin extends BaseAdminController {
                 $form->title = $group->name;
 
                 $gid = isset($group->id)?$group->id:-1;
-                
+
                 $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
                 $this->template->add_array(array(
                     'form'  => $form,
-                    'hf'    => $hiddenField  
+                    'hf'    => $hiddenField
                 ));
-                
+
                 $this->display_tpl('_onpage_form');
-                
+
             } else {
                 echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
                     .lang('amt_no_field_in_group').
@@ -489,14 +489,14 @@ class Admin extends BaseAdminController {
             }
         }
     }
-    
+
 //     render template
     public function render($viewName, $data = array(), $return = false) {
     	if (!empty($data))
     		$this->template->add_array($data);
-    
 
-		if ($this->ajaxRequest)    	
+
+		if ($this->ajaxRequest)
     		echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
 		else
 			$this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
