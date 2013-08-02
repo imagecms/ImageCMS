@@ -9,12 +9,11 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-
-
+                    
                     <span style="position: relative">
                         <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">Настройки шаблона</a>
                         <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
-                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разние шаблони для разных страниц
+                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разные шаблоны для разных страниц
                         </div>
                     </span>
 

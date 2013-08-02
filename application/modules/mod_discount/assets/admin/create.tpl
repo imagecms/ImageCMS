@@ -38,7 +38,7 @@ var currencySymbolJS = '{echo $CS}';
                                 </div>
                                 <label class="">
                                     <span class="span4">Название скидки:</span>
-                                    <span class="span8 discount-name"><input type="text" value="{echo $discount['name']}" /></span>
+                                    <span class="span8 discount-name"><input type="text" name='name' /></span>
                                 </label>
                                 <label class="">
                                     <span class="span4">Код скидки:</span>
@@ -52,11 +52,8 @@ var currencySymbolJS = '{echo $CS}';
                             <div class="noLimitC">
                                 <div class="span4"><i class="icon-info-sign"></i>Количество использования:</div>
                                 <div class="span8">
-                                    {if $discount['max_apply'] != null && $discount['max_apply'] != '0'}
-                                    {$maxApply = true;}
-                                    {/if}
                                     <span class="d-i_b m-r_10">
-                                        <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"{if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="7"/>
+                                        <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"  disabled='disabled' maxlength="7"/>
                                     </span>
                                     <span class="d-i_b v-a_m">
                                         <span class="frame_label no_connection m-r_15 spanForNoLimit" >
@@ -85,7 +82,7 @@ var currencySymbolJS = '{echo $CS}';
                             <div class="span8">
                                 <div class="d-i_b m-r_15">
                                     <select name="type_value" id="selectTypeValue">
-                                        <option value="1">Процентний</option>
+                                        <option value="1">Процентный</option>
                                         <option value="2">Фиксированный</option>
                                     </select>
                                 </div>
@@ -135,7 +132,7 @@ var currencySymbolJS = '{echo $CS}';
                       <!--Start. Show if discount type is all_orders -->
                       <div id="all_orderBlock" class="forHide" style="display: none;">
                         <span class="d_b m-b_10">
-                            <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="" maxlength="9" /></span>
+                            <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="0" maxlength="9" /></span>
                             <span class="d-i_b">{echo $CS}</span>
                         </span>
                         <div class="m-b_5">
@@ -165,9 +162,6 @@ var currencySymbolJS = '{echo $CS}';
                             <input class="input-small onlyNumbersInput required" type="text" name="comulativ[begin_value]" value="" maxlength="9" />
                         </span>
                         <div class="noLimitC d-i_b">
-                            {if $discount['comulativ']['end_value'] != null && $discount['comulativ']['end_value'] != '0'}
-                            {$endValue = true;}
-                            {/if}
                             <span class="d-i_b m-r_5">до</span>
                             <span class="d-i_b">
                                 <input class="input-small onlyNumbersInput" type="text" name="comulativ[end_value]" value="" maxlength="9"/>
@@ -191,11 +185,11 @@ var currencySymbolJS = '{echo $CS}';
                         <div>
                             <div>
                                 <label class="hideAfterAutocomlite"> Текущий пользователь :
-                                    {echo $discount['user']['userInfo']}
+                                   
                                 </label>
                                 <label> ID / ФИО / E-mail    :</label>
                                 <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-                                <input id="discountUserId" type="hidden" name="user[user_id]" value="{echo $discount['user']['user_id']}"/>
+                                <input id="discountUserId" type="hidden" name="user[user_id]" value=""/>
                             </div>
                         </div>
                     </div>
@@ -204,10 +198,10 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <!--Start. Show if discount type is group of users-->
                     <div id="group_userBlock" class="forHide" style="display: none;">
-                        {if $discount['group_user']['group_id'] == null}{$checked = 'checked=checked'}{/if}
+                        
                         {foreach $userGroups as $group}
                         <label>
-                            <input type="radio" name="group_user[group_id]" {$checked} value="{echo $group[id]}" {echo $checked}>{echo $group['alt_name']}<br/>
+                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" >{echo $group['alt_name']}<br/>
                         </label>
                         {$checked=''}
                         {/foreach}
@@ -230,11 +224,11 @@ var currencySymbolJS = '{echo $CS}';
                <div id="productBlock" class="forHide" style="display: none;">
                 <div>
                     <label class="hideAfterAutocomlite"> Текущий товар :
-                        <span class="now-active-prod">{echo $discount['product']['productInfo']}</span>
+                        <span class="now-active-prod"></span>
                     </label>
                     <label> Название / ID :</label>
                     <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
-                    <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
+                    <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                 </div>
             </div>
             <!-- End. Show if discount type is product-->
@@ -270,24 +264,22 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <span class="d-i_b">
                         <label class="p_r">
-                            <input class="datepicker required" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
+                            <input class="datepicker required" type="text" value="" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                             <span class="icon-calendar"></span>
                         </label>
                     </span>
                     <span class="d-i_b m-r_10 m-l_10">до</span>
                     <span class="d-i_b">
                         <div class="noLimitC">
-                            {if $discount['date_end'] != null && $discount['date_end'] != '0'}
-                            {$endDate = true;}
-                            {/if}
+
                             <label class="d-i_b p_r">
-                                <input class="datepicker" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                <input class="datepicker" type="text"  value="" disabled="disabled" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                 <span class="icon-calendar"></span>
                             </label>
                             <div class="d-i_b m-l_10 v-a_m">
                                 <span class="frame_label no_connection m-r_15 spanForNoLimit" >
                                     <span class="niceCheck" style="background-position: -46px 0px; ">
-                                        <input type="checkbox" {if !$endDate} checked {/if}class="noLimitCountCheck">
+                                        <input type="checkbox"  checked class="noLimitCountCheck">
                                     </span>
                                     Постоянная скидка
                                 </span>
