@@ -1291,3 +1291,13 @@ label.error{margin-top: 7px;padding: 2px 11px;}
 
 .isSafari .navHorizontal, .isSafari .frameUndef_1, .isSafari .items, .isSafari .groupButton{letter-spacing: -5px;}
 .isSafari .navHorizontal > li, .isSafari .frameUndef_1 > div, .isSafari .items > li, .isSafari .groupButton > li{letter-spacing: normal;}
+/*Brands columns*/
+ .columnBrand {
+        width: 195px;
+        float: left;
+ }
+ .columnBrandsHolder{
+     padding-left: 150px;
+ }
+ 
+ /*Brands columns*/
