@@ -20,7 +20,7 @@
                     <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('a_s_banner_new_r')}</a>
                     <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
                 </div>
-            </div>                            
+            </div>
         </div>
         <div class="tab-content">
             <div class="row-fluid">
@@ -64,7 +64,7 @@
                                                   onclick="ChangeBannerSliderActive(this,{echo $b['id']});"></span>
                                         </div>
                                     </td>
-                                    
+
                                     </div>
                                     </td>
                                 </tr>
