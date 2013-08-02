@@ -80,6 +80,9 @@ class Gallery extends MY_Controller {
 
     // Display album images
     function album($id = 0) {
+        if (preg_match("/[A-Z]/", $this->uri->uri_string()))
+            redirect(site_url(strtolower($this->uri->uri_string())), 'location', 301);
+
         $album = $this->gallery_m->get_album($id);
         if ($this->uri->total_segments() > 5)
             $params = $this->uri->uri_to_assoc(5);
@@ -152,6 +155,9 @@ class Gallery extends MY_Controller {
     }
 
     function thumbnails($id = 0, $page = 0) {
+        if (preg_match("/[A-Z]/", $this->uri->uri_string()))
+            redirect(site_url(strtolower($this->uri->uri_string())), 'location', 301);
+
         $album = $this->gallery_m->get_album($id, true, 15, $page * 15);
 
         if ($album == FALSE) {
