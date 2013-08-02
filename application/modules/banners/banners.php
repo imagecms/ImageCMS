@@ -85,7 +85,7 @@ class Banners extends MY_Controller {
                 echo $baners_view;
             }
             else
-                return fales;
+                return FALSE;
         }
     }
 
