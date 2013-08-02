@@ -11,7 +11,7 @@
                             <ul>
                                 {foreach $model[$char] as $m}
                                     <li>
-                                        <a href="{shop_url('brand/'.$m[url])}" 
+                                        <a href="{shop_url('brand/'.$m[url])}"
                                            title="{echo $m[name]}">
                                             {echo $m[name]}
                                         </a>
@@ -22,6 +22,6 @@
                     {/if}
                 {/foreach}
             </ul>
-        </div>                            
+        </div>
     </div>
 </article>
