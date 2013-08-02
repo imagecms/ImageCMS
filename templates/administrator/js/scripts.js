@@ -1433,19 +1433,38 @@ $('[name="makeResize"]').live('click', function() {
 });
 
 
+$('#categoryForOrders option').live('mouseup click', function() {
+    var categoryId = $(this).val();
+    $('#categoryForOrders ').val(categoryId)
+});
+
+
 //Get products
 $('#categoryForOrders').live('change', function() {
     var categoryId = $(this).val();
     orders.getProductsInCategory(categoryId);
 });
 
+$('#productsForOrders option').live('mouseup click', function() {
+    var productId = $(this).val();
+    $('#productsForOrders ').val(productId)
+})
+
+
 //Get product variants
 $('#productsForOrders').live('change', function() {
     var productId = $(this).val();
     var productName = $('#productsForOrders option:selected').data('productname');
-
+    
     orders.getProductVariantsByProduct(productId, productName);
 });
+
+$('#variantsForOrders option').live('click', function() {
+    var variantId = $(this).val();
+    $('#variantsForOrders ').val(variantId)
+    
+});
+
 //Get variants info
 $('#variantsForOrders').live('change', function() {
     var variantId = $(this).val();
