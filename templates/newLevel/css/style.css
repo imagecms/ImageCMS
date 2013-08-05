@@ -111,7 +111,7 @@ a{cursor: pointer;}
 .baner a:active, .baner a:focus, .items > li > a:focus, .items > li > a:active, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus{outline: none}
 
 .preloader{min-height: 35px;width: 100%;}
-.baner .preloader, .p_r .preloader{position: absolute;left: 0;top: 0;height: 100%;}
+.baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;}
 /*/base settings*/
 
 /*base images*/
@@ -377,6 +377,7 @@ input.input-search{height: 33px;}
 .item-product .frame-count-buy > .frame-count, .fancy-footer .frame-count{display: inline-block;vertical-align: middle;}
 .item-product .frame-count, .fancy-footer .frame-count{margin-right: 10px;}
 .item-product .frame-photo-title{display: block;margin-bottom: 11px;}
+.product-charac{max-height: 125px;overflow: hidden;}
 .photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}

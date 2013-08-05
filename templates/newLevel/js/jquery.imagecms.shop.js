@@ -183,9 +183,7 @@ var ie = jQuery.browser.msie,
             var el = el;
             if (el == undefined)
                 el = this;
-
             var input = input;
-
             if (input == undefined)
                 input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
@@ -602,7 +600,6 @@ var ie = jQuery.browser.msie,
                         menuCache = settings.menuCache,
                         activeFl = settings.activeFl,
                         parentTl = settings.parentTl;
-
                 if (menuCache && !refresh) {
                     menu.find('a').each(function() {
                         var $this = $(this);
@@ -911,7 +908,6 @@ var ie = jQuery.browser.msie,
                             tempRefs = [];
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
-
                         tempO = tempO.add($(tHref));
                         tempO2 = tempO2.add('[data-id=' + tHref + ']');
                         tempRefs.push(tHref);
@@ -925,11 +921,12 @@ var ie = jQuery.browser.msie,
                             e.preventDefault();
                         var condRadio = $thiss.data('type') == 'radio',
                                 condB = !e.start;
-
                         if (!$this.parent().hasClass('disabled')) {
                             var $thisA = $this[attrOrdata[index]]('href'),
                                     $thisAO = $($thisA),
                                     $thisS = $this.data('source'),
+                                    $thisData = $this.data('data'),
+                                    $thisSel = $this.data('selector'),
                                     $thisDD = $this.data('drop') != undefined;
                             function tabsDivT() {
                                 tabsDiv[index].add(tabsId[index])[effectOff](durationOff).removeClass(activeClass);
@@ -939,19 +936,28 @@ var ie = jQuery.browser.msie,
                                 if (!condRadio || e.button == 0) {
                                     navTabsLi[index].removeClass(activeClass);
                                     $this.parent().addClass(activeClass);
-
                                     if (!condRadio) {
                                         if (e.start && $thisS != undefined)
                                             tabsDivT()
                                         if ($thisS != undefined && !$thisAO.hasClass('visited')) {
                                             $thisAO.addClass('visited');
-
-                                            $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO})
-
-                                            $thisAO.load($thisS, function() {
-                                                $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
-                                                tabsDivT()
-                                            })
+                                            $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO});
+                                            if ($thisData != undefined)
+                                                $.ajax({
+                                                    type: 'post',
+                                                    url: $thisS,
+                                                    data: $thisData,
+                                                    success: function(data) {
+                                                        $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                        tabsDivT();
+                                                        $thisAO.find($thisSel).html(data)
+                                                    }
+                                                })
+                                            else
+                                                $thisAO.load($thisS, function() {
+                                                    $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                    tabsDivT()
+                                                })
                                         }
                                         else {
                                             tabsDivT()
@@ -959,7 +965,6 @@ var ie = jQuery.browser.msie,
 
                                         if (e.scroll)
                                             wnd.scrollTop($this.offset().top);
-
                                         $(document).trigger({'type': 'tabs.showtabs', 'el': $thisAO})
                                     }
                                     else {
@@ -1040,7 +1045,6 @@ var ie = jQuery.browser.msie,
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
@@ -1094,7 +1098,6 @@ var ie = jQuery.browser.msie,
             $.map(hashs, function(n, j) {
                 if ($.inArray(n, regrefs) >= 0)
                     i++;
-
                 if ($.inArray(n, regrefs) >= 0 && i > 1) {
                     hashs2.splice(hashs2.indexOf(n), 1)
                 }
@@ -1264,7 +1267,6 @@ var ie = jQuery.browser.msie,
 
                     onlyDif.parent('.' + activeClass).children().click();
                     allParams.parent('.' + activeClass).children().click();
-
                     after($this);
                 }
             })
@@ -1368,14 +1370,12 @@ var ie = jQuery.browser.msie,
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] == 'string') {
             var dim = arguments[0];
-
             clone = $(this).clone().addClass(clonedC);
             if (arguments[1] == undefined)
                 clone.css({
                     position: 'absolute',
                     top: '-9999px'
                 }).show().appendTo(body).find('*:not([style*="display:none"])').show();
-
             var dimS = clone[dim]();
             clone.remove();
             return dimS;
@@ -1605,7 +1605,6 @@ var ie = jQuery.browser.msie,
                     dataSourceW = -elSetSource.actual('width') + $thisW;
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-
                 if ($thisL < 0)
                     $thisL = 0;
                 elSetSource.css({
@@ -1988,7 +1987,6 @@ var Shop = {
             if (Shop.Cart.currentItem) {
 
                 Shop.Cart.currentItem.count = cartItem.count;
-
                 Shop.currentCallbackFn = f;
                 if (cartItem.kit)
                     var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
@@ -2084,18 +2082,15 @@ var Shop = {
 
         totalRecount: function() {
             var items = this.getAllItems();
-
             this.totalPrice = 0;
             this.totalAddPrice = 0;
             this.totalCount = 0;
             this.totalPriceOrigin = 0;
-
             for (var i = 0; i < items.length; i++) {
                 if (items[i].origprice != '')
                     this.totalPriceOrigin += items[i].origprice * items[i].count;
                 else
                     this.totalPriceOrigin += items[i].price * items[i].count;
-
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalAddPrice += items[i].addprice * items[i].count;
                 this.totalCount += parseInt(items[i].count);
@@ -2132,7 +2127,6 @@ var Shop = {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0.0;
-
             return (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
         renderPopupCart: function(selector) {
@@ -2461,12 +2455,11 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == 'true' && obj.redirect == 'false')
+                    if (obj.refresh == true && obj.redirect == false)
                         location.reload();
-                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
+                    if (obj.refresh == false && obj.redirect != true && obj.redirect != false)
                         location.href = obj.redirect;
-
-                    if (obj.refresh == 'false' && obj.redirect == 'false') {
+                    if (obj.refresh == false && obj.redirect == false) {
                         var k = true;
                         if (typeof DS.callback == 'function')
                             k = DS.callback(obj.msg, obj.status, form, DS);
@@ -2482,7 +2475,6 @@ var ImageCMSApi = {
                                 form = $this.closest('form'),
                                 $thisТ = $this.attr('name'),
                                 elMsg = form.find('[for=' + $thisТ + ']');
-
                         if ($.exists(elMsg)) {
                             $this.removeClass(genObj.err + ' ' + genObj.scs);
                             elMsg.hide();
@@ -2533,97 +2525,3 @@ var ImageCMSApi = {
         return false;
     }
 }
-
-
-/**
- * Product Tabs object
- * 
- */
-
-var ProductTabs = {
-    /**
-     * render properties
-     * @param int product_id
-     * @param int limit - limit properties to show
-     * @param string type - type properties to show
-     * @returns {undefined}
-     */
-    renderProperties: function(curElement, product_id, limit, type) {
-        if (!limit) {
-            limit = false;
-        }
-
-        if (!type) {
-            type = false;
-        }
-        
-        this.changeHash(curElement);
-        
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id,
-                limit: limit,
-                type: type
-            },
-            url: '/shop/product_api/renderProperties',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    $('.inside-padd .characteristic').html(data.data);
-                }
-            }
-        });
-    },
-    /**
-     * render description
-     * @param int product_id
-     * @returns {undefined}
-     */
-    renderFullDescription: function(curElement, product_id) {
-        this.changeHash(curElement);
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id
-            },
-            url: '/shop/product_api/renderFullDescription',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    $('.inside-padd .fullDescription').html(data.data);
-                }
-            }
-        });
-    },
-    /**
-     * get product accessories
-     * @param int product_id
-     * @returns {undefined}
-     */
-    getAccessories: function(curElement, product_id, limit) {
-        this.changeHash(curElement);
-        if (!limit) {
-            limit = false;
-        }
-
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id,
-                limit: limit
-            },
-            url: '/shop/product_api/getAccessories',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    return data.data;
-                }
-            }
-        });
-    },
-    changeHash: function(curElement){
-        var hash = curElement.data('href');
-        location.hash =  hash;
-    }
-};
