@@ -282,7 +282,7 @@
                 <!-- Star rating -->
                 {if $Comments[$model->getId()] && $model->enable_comments}
                     <div class="frame-star t-a_j">
-                       {$CI->load->module('star_rating')->show_star_rating($model, false)}
+                        {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
                             <span class="s-t">Покупатели оставили</span>
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{intval($Comments[$model->getId()])}</button>
@@ -529,13 +529,13 @@
                 <button data-href="#view">Обзор</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
-                <li><button data-href="#first" onclick="ProductTabs.renderProperties($(this),'{echo $model->getId()}')">Характеристики</button></li>
+                <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".characteristic">Характеристики</button></li>
                 {/if}
                 {if true}
-                <li><button data-href="#second" onclick="ProductTabs.renderFullDescription($(this), '{echo $model->getId()}')">Полное описание</button></li>
+                <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Полное описание</button></li>
                 {/if}
                 {if $accessories}
-                <li><button data-href="#fourth">Аксессуары</button></li>
+                <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
@@ -561,41 +561,13 @@
                 <div class="inside-padd">
                     <h3>Характеристики</h3>
                     <div class="characteristic">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Краткие характеристики</th>
-                                    <td>Экран 11.6'' (1366x768) HD LED, глянцевый </td>
-                                </tr>
-                                <tr>
-                                    <th>Экран</th>
-                                    <td>11.6" (1366x768) WXGA</td>
-                                </tr>
-                                <tr>
-                                    <th>Процессор</th>
-                                    <td>Двухъядерный AMD Dual-Core C-60 (1.0 -1.33 ГГц)</td>
-                                </tr>
-                                <tr>
-                                    <th>Объем оперативной памяти</th>
-                                    <td>2 ГБ</td>
-                                </tr>
-                                <tr>
-                                    <th>Тип оперативной памяти</th>
-                                    <td>DDR3-1066</td>
-                                </tr>
-                                <tr>
-                                    <th>Чипсет</th>
-                                    <td>AMD A68M Fusion</td>
-                                </tr>
-                                {/*echo $dl_properties*/}
-                            </tbody>
-                        </table>
-                        {if 10 > 6}
-                            <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#first']" data-scroll="true">
-                                <span class="icon_arrow"></span>
-                                <span class="text-el">Смотреть все характеристики</span>
-                            </button>
-                        {/if}
+                        <div class="product-charac">
+                            {echo $dl_properties}
+                        </div>
+                        <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#first']" data-scroll="true">
+                            <span class="icon_arrow"></span>
+                            <span class="text-el" data-hide='Скрыть все характеристики' data-show='Смотреть все характеристики'></span>
+                        </button>
                     </div>
                 </div>
 
@@ -619,8 +591,8 @@
                     <div class="frame-form-comment">
                         <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
                         {literal}<script type="text/javascript">$(document).ready(function() {
-                        renderPosts($('#for_comments_view'), {countComment: 4});
-                    })</script>{/literal}
+                            renderPosts($('#for_comments_view'), {countComment: 4});
+                        })</script>{/literal}
                         </div>
 
                         <!--End. Comments block-->
@@ -649,72 +621,25 @@
                 <!--             Start. Characteristic-->
                 <div id="first">
                     <div class="inside-padd">
-                        <h3>Характеристики</h3>
                         <div class="characteristic">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <th>Краткие характеристики</th>
-                                        <td>Экран 11.6'' (1366x768) HD LED, глянцевый </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Экран</th>
-                                        <td>11.6" (1366x768) WXGA</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Процессор</th>
-                                        <td>Двухъядерный AMD Dual-Core C-60 (1.0 -1.33 ГГц)</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Объем оперативной памяти</th>
-                                        <td>2 ГБ</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Тип оперативной памяти</th>
-                                        <td>DDR3-1066</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Чипсет</th>
-                                        <td>AMD A68M Fusion</td>
-                                    </tr>
-                                    {/*echo $dl_properties*/}
-                                </tbody>
-                            </table>
+                            <div class="preloader"></div>
                         </div>
                     </div>
                 </div>
                 <!--                    End. Characteristic-->
                 <div id="second">
                     <div class="inside-padd">
-                        <!--                        Start. Description block-->
-                        <div class="text">
-                            <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            <div class="fullDescription">
-                                {echo $model->getFullDescription()}
-                            </div>
-                        </div>
-                        <!--                        End. Description block-->
+                        <div class="preloader"></div>
                     </div>
                 </div>
                 <div id="comment">
-                    <div class="inside-padd">
-                        <!--Start. Comments block-->
-                        <div class="frame-form-comment">
-                            <div name="for_comments" id="for_comments_tabs">
-                                <div class="preloader"></div>
-                            </div>
-                        </div>
-                        <!--End. Comments block-->
-                    </div>
+
                 </div>
                 <!--Block Accessories Start-->
                 {if $accessories}
                     <div id="fourth" class="accessories">
                         <div class="inside-padd">
-                            <h3>Аксессуары к {echo $model->getName()}</h3>
-                            <ul class="items items-default">
-                                {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true))}
-                            </ul>
+                            <div class="preloader"></div>
                         </div>
                     </div>
                 {/if}
