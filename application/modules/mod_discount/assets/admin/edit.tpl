@@ -272,7 +272,7 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <span class="d-i_b">
                         <label class="p_r">
-                            <input class="datepicker required" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
+                            <input class="datepicker required discountDate" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                             <span class="icon-calendar"></span>
                         </label>
                     </span>
