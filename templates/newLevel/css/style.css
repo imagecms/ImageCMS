@@ -1092,3 +1092,10 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .tooltip{position:absolute;z-index:1104;display:block;visibility:visible;padding:3px 8px;display: none;margin-top: -5px;padding:5px;}
 .tooltip:after{content: "";position:absolute;width:0;height:0;bottom:-5px;left:50%;margin-left:-5px;}
 /*/tooltip*/
+
+/*Brands columns*/
+ .columnBrand {
+        width: 195px;
+        float: left;
+ }
+ /*Brands columns*/

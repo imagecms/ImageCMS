@@ -1,5 +1,8 @@
 $(function() {
-    $( "#datepicker" ).datepicker();
+    if($( "#datepicker" ).length){
+        $( "#datepicker" ).datepicker();
+    }
+    
  });
 
 function addToWL(varId) {

@@ -65,10 +65,10 @@
                                         <tr data-id="{$module.id}">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
-                                                    {if $module.name != 'shop'}
-                                                    <span class="niceCheck b_n">
-                                                        <input type="checkbox" name="ids" value="{$module.name}"/>
-                                                    </span>
+                                                    {if $module.name != 'shop' && $module.name != 'email'}
+                                                        <span class="niceCheck b_n">
+                                                            <input type="checkbox" name="ids" value="{$module.name}"/>
+                                                        </span>
                                                     {/if}
                                                 </span>
                                             </td>
@@ -88,11 +88,11 @@
                                                 <p>{$module.description}</p>
                                             </td>
                                             <td class="urlholder">
-                                                 {if $module['admin_file'] == 1}
+                                                {if $module['admin_file'] == 1}
                                                     {if $module.name == 'shop'}
                                                         {$module.menu_name}
                                                     {else:}
-                                                         <p>{if $module['enabled'] == "1"}{anchor($module.name,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
+                                                        <p>{if $module['enabled'] == "1"}{anchor($module.name,$module.identif,array('target'=>'_blank'))}{else:}-{/if}</p>
                                                     {/if}
                                                 {else:}
                                                     <p>{if $module['enabled'] == "1"}{$module.identif}{else:}-{/if}</p>

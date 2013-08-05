@@ -26,34 +26,26 @@
                         <div class="title">{lang('s_sea_found_in_categories')}:</div>
                         <nav>
                             <ul>
-                                
-                                {foreach $tree as $item}
-                                    <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-level="3" data-pid="{echo $item->getParentId()}"{/if}>
-                                        {$title=false}
-                                        {foreach $item->getSubtree() as $subItem}
-                                            {$count_item = $categories[$subItem->getId()];}
-                                            {if $count_item}
-                                                {if !$title}
-                                                    <div class="title">
-                                                        {echo trim($item->getName())}
-                                                        {$title=true}
-                                                    </div>
+                            {foreach $categories as $key => $category}
+                                <ul  data-pid="{echo $key}">
+                                    <div class="title">
+                                        {echo trim(key($category))}
+                                    </div>
+                                    {foreach $category[key($category)] as $subItem}
+                                        <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
+                                            <span>
+                                                {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                                    {echo $subItem['name']}
+                                                {else:}
+                                                    <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
                                                 {/if}
-                                                <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                    <span>
-                                                        {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                                                            {echo $subItem->getName()}
-                                                        {else:}
-                                                            <a class="filter_by_cat" rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
-                                                        {/if}
-                                                        <span class="count">({echo $count_item})</span>
-                                                    </span>
-                                                </li>
-                                            {/if}
-                                        {/foreach}
-                                    </ul>
-                                {/foreach}
-                            </ul>
+                                                <span class="count">({echo $subItem['count']})</span>
+                                            </span>
+                                        </li>
+
+                                    {/foreach}
+                                </ul>
+                            {/foreach}
                         </nav>
                     </div>
                     <!-- End. Categories tree with navigation -->

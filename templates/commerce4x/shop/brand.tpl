@@ -19,9 +19,9 @@
 *   $Comments: array which contains count of comments for each product
 */
 #}
-
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
+    {widget('path')}
     <div class="row">
         {include_tpl('filter')}
         <div class="span9 right">

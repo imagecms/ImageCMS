@@ -10,6 +10,7 @@ $lang['mod_auth_remember_me'] = 'Запомнить меня';
 $lang['mod_auth_usr_notfound'] = 'Пользователь с таким логином и паролем не найден';
 
 $lang['lang_register'] = 'Registration';
+$lang['lang_authorization'] = 'Authorization';
 $lang['lang_email_form'] = 'Enter email';
 $lang['lang_login'] = 'Login';
 $lang['lang_password'] = 'Password';
@@ -43,5 +44,7 @@ $lang['lang_new_password'] = 'The new password';
 $lang['lang_pass_changed'] = 'Your password was successfully changed.';
 $lang['lang_access_deny'] = 'You are not allowed to view the page.';
 $lang['lang_user_banned'] = 'Your account has been blocked.';
+$lang['lang_user_logined'] = 'User is already logged';
+$lang['lang_user_not_logined'] = 'User is not logged';
 
 /** End of file auth/language/english/auth_lang.php */

@@ -29,8 +29,21 @@ $(document).ready(function() {
     });
     
     $('.cattegoryColumnSaveButtonMod').die().live('click',function(){
+        var savedSelect = $(this).parent().find('select');
         var data   = $(this).parent().find('select').val();
         var column = $(this).data('column');
+        
+        $('.ColumnsSelect').each(function (){
+            if(this.id != savedSelect.data('id')){
+                $(this).find('option:selected').each(function (){
+                    if($.inArray($(this).val(), data) > -1 ){
+                        $(this).removeAttr('selected');
+                    }
+                });
+            }
+
+        });
+        
         $.ajax({
             type: "POST",
             data:  {
@@ -39,7 +52,7 @@ $(document).ready(function() {
             },
             url: '/new_level/admin/saveCategories',
             success: function(res) {
-                   showMessage('Сообщение', 'Колонка ' + column + ' обновлена');
+                showMessage('Сообщение', 'Колонка ' + column + ' обновлена');
             }
         });
     });
@@ -69,6 +82,8 @@ $(document).ready(function() {
     $('table.columns + .addColumn').live('click', function (){
        $('.addColumnContainer').css('display','block');
     });
+    
+    
     
 });
 

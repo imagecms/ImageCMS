@@ -46,8 +46,8 @@ class Authapi extends MY_Controller {
                     ShopCore::app()->SCart->transferCartData();
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
-                $jsonResponse['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
-                $jsonResponse['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
+                $jsonResponse['refresh'] = TRUE;
+                $jsonResponse['redirect'] = TRUE;
             } else {
 
                 /** Check if the user is failed logged in because user is banned user or not */
@@ -68,9 +68,13 @@ class Authapi extends MY_Controller {
 
                     /** Return json data for render login form */
                     $jsonResponse['status'] = false;
+                    $jsonResponse['refresh'] = false;
+                    $jsonResponse['redirect'] =  false;
                 }
             }
         } else {
+            $jsonResponse['refresh'] = false;
+            $jsonResponse['redirect'] =  false;
             $jsonResponse['status'] = false;
             $jsonResponse['msg'] = 'User is already logged in';
         }
@@ -97,8 +101,8 @@ class Authapi extends MY_Controller {
             /** Preprate response */
             $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
             $jsonResponse['status'] = TRUE;
-            $jsonResponse['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
-            $jsonResponse['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
+            $jsonResponse['refresh'] = TRUE;
+            $jsonResponse['redirect'] = TRUE;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';
@@ -347,6 +351,23 @@ class Authapi extends MY_Controller {
             'msg' => lang('lang_user_banned') . $this->ban_reason,
             'status' => true,
         ));
+    }
+    
+     /**
+     * Check if user logined
+     */
+    public function is_logined() {
+        if($this->dx_auth->is_logged_in()){
+            echo json_encode(array(
+                'msg' => lang('lang_user_logined'),
+                'status' => true,
+            ));
+        }else{
+            echo json_encode(array(
+                'msg' => lang('lang_user_not_logined'),
+                'status' => false,
+            ));
+        }
     }
 
     /**

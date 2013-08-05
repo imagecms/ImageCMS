@@ -102,11 +102,11 @@
 
                                     <span class="times">&times;</span>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
-                                        {lang('s_from')} 
+                                        {lang('s_from')}
                                         {echo ShopCore::$_GET['lp']} {$CS}
                                     {/if}
-                                    {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
-                                        {lang('s_do')} 
+                                    {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost}
+                                        {lang('s_do')}
                                         {echo ShopCore::$_GET['rp']} {$CS}
                                     {/if}
                                 </a>
@@ -117,7 +117,10 @@
             </ul>
 
             {//link to remove all checked filters}
-            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang('s_filter_all_reset')}</a>
+            <a href="{site_url($CI->uri->uri_string())}">
+                <span class="icon-return"></span>
+                {lang('s_filter_all_reset')}
+            </a>
         </div>
     {/if}
 
@@ -146,7 +149,7 @@
                         <label>
 
                             {//left price value}
-                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры" data-minS="{echo (int)$priceRange.minCost}"/> 
+                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры" data-minS="{echo (int)$priceRange.minCost}"/>
                         </label>
                         <span class="f-s_12">&ndash;</span>
                         <label>
@@ -156,12 +159,15 @@
                         </label>
 
                         {//button for submiting filter}
-                        <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
+                        <button type="submit" class="btn f-s_0 filterSubmit">
+                            <span class="icon-filter"></span>
+                            <span class="text-el">Подобрать</span>
+                        </button>
                     </div>
                 </div>
             {/if}
 
-            {//displaying all possible brands in current category}        
+            {//displaying all possible brands in current category}
             {if count($brands)>0}
                 <div class="boxFilter">
                     <div class="title">{lang('s_brands_in_cat')}</div>
@@ -192,80 +198,84 @@
 
             {//checking all properties with empty possible values}
             {foreach $propertiesInCat as $p}
-            {if empty($p->possibleValues)}{$show[] = "1"}{/if}
-        {/foreach}
+                {if empty($p->possibleValues)}
+                    {$show[] = "1"}
+                {/if}
+            {/foreach}
 
-        {//display properties only if they have possible values}
-        {if count($show) != count($propertiesInCat)}
+            {//display properties only if they have possible values}
+            {if count($show) != count($propertiesInCat)}
 
-            {//loop for properties array}
-            {foreach $propertiesInCat as $prop}
-                {//check if property has not empty possible values}
-            {if empty($prop->possibleValues)}{continue}{/if}
+                {//loop for properties array}
+                {foreach $propertiesInCat as $prop}
+                    {//check if property has not empty possible values}
+                    {if empty($prop->possibleValues)}
+                        {continue}
+                    {/if}
 
-            {//property possible values container}
-            <div class="boxFilter">
+                    {//property possible values container}
+                    <div class="boxFilter">
 
-                {//displaying property name}
-                <div class="title">{echo ShopCore::encode($prop->name) }</div>
+                        {//displaying property name}
+                        <div class="title">{echo ShopCore::encode($prop->name)}</div>
 
-                <div class="clearfix check_form">
+                        <div class="clearfix check_form">
 
-                    {//loop for displaying all current property possible values}
-                    {foreach $prop->possibleValues as $item}
-                        <div class="frameLabel">
-                            <span class="niceCheck b_n">
-                                {//if we dont have products in current category with such possible value, we will disable checkbox}
-                                <input id="prop_{echo $prop->property_id}_{echo $item.value}" {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
-                            </span>
+                            {//loop for displaying all current property possible values}
+                            {foreach $prop->possibleValues as $item}
+                                <div class="frameLabel">
+                                    <span class="niceCheck b_n">
+                                        {//if we dont have products in current category with such possible value, we will disable checkbox}
+                                        <input id="prop_{echo $prop->property_id}_{echo $item.value}" {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                    </span>
 
-                            {//displaying possible value}
-                            <span class="filterLable">{echo $item.value}&nbsp;
+                                    {//displaying possible value}
+                                    <span class="filterLable">{echo $item.value}&nbsp;
 
-                                {//displaying possible value products count}
-                                <span>({//if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}{///if}{echo $item.count})</span>
-                            </span>
+                                        {//displaying possible value products count}
+                                        <span>({//if $item.count != 0 && is_array(ShopCore::$_GET['p'][$prop->property_id]) && !in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}{///if}{echo $item.count})</span>
+                                    </span>
+                                </div>
+                            {/foreach}
                         </div>
-                    {/foreach}
-                </div>
-            </div>
-        {/foreach}
-    {/if}
-
-    {//displaying all possible categories in current brand}        
-    {if count($categoriesInBrand)>0}
-        <div class="boxFilter">
-            <div class="title">Категории</div>
-            <div class="clearfix check_form">
-                {//loop which outputs all brands}
-                {foreach $categoriesInBrand as $category}
-                    <div class="frameLabel">
-                        <span class="niceCheck b_n">
-
-                            {//one category checkbox input}
-                            <input id="category_{echo $category->category_id}" type="checkbox" {if $category->countProducts == 0}disabled="disabled"{/if} name="category[]" value="{echo $category->category_id}" type="checkbox" {if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && in_array($category->category_id, ShopCore::$_GET['category'])}checked="checked"{/if}/>
-                        </span>
-                        <span class="filterLable">
-
-                            {//displaying category name}
-                            {echo ShopCore::encode($category->name)}&nbsp;
-
-                            {//displaying products number with this category in current brand}
-                            <span>({if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && !in_array($category->category_id, ShopCore::$_GET['category'])}+{/if}{echo $category->countProducts})</span>
-                        </span>
                     </div>
                 {/foreach}
-            </div>
-        </div>
-    {/if}
-    {//hidden input for saving users order method}
-    <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
+            {/if}
 
-    {//hidden input for saving users products per page count}
-    <input type="hidden" name="user_per_page" value="{echo ShopCore::$_GET['user_per_page']}">
+            {//displaying all possible categories in current brand}
+            {if count($categoriesInBrand)>0}
+                <div class="boxFilter">
+                    <div class="title">Категории</div>
+                    <div class="clearfix check_form">
+                        {//loop which outputs all brands}
+                        {foreach $categoriesInBrand as $category}
+                            <div class="frameLabel">
+                                <span class="niceCheck b_n">
 
-    {//container for displaying price range slider}
-</form>
-</div>
+                                    {//one category checkbox input}
+                                    <input id="category_{echo $category->category_id}" type="checkbox" {if $category->countProducts == 0}disabled="disabled"{/if} name="category[]" value="{echo $category->category_id}" type="checkbox" {if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && in_array($category->category_id, ShopCore::$_GET['category'])}checked="checked"{/if}/>
+                                </span>
+                                <span class="filterLable">
+
+                                    {//displaying category name}
+                                    {echo ShopCore::encode($category->name)}&nbsp;
+
+                                    {//displaying products number with this category in current brand}
+                                    <span>({if $category->countProducts !=0 && is_array(ShopCore::$_GET['category']) && !in_array($category->category_id, ShopCore::$_GET['category'])}+{/if}{echo $category->countProducts})</span>
+                                </span>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            {/if}
+            {//hidden input for saving users order method}
+            <input type="hidden" name="order" value="{echo ShopCore::$_GET['order']}">
+
+            {//hidden input for saving users products per page count}
+            <input type="hidden" name="user_per_page" value="{echo ShopCore::$_GET['user_per_page']}">
+
+            {//container for displaying price range slider}
+        </form>
+    </div>
 </aside>
 <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
