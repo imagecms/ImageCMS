@@ -2,7 +2,7 @@
     <div class="row">
         <div class="columnBrandsHolder">
             <div class="columnBrand">
-                {$counter=0;}
+                {$counter=0}
                 {foreach $alphabet as $key => $char}
                     {if $model[$char] != null}
                         {if $counter >= $iteration-1}
@@ -22,6 +22,7 @@
                             <a href="{shop_url('brand/'.$m[url])}" title="{echo $m[name]}">
                                 {echo $m[name]}
                             </a>
+
                             <br>
                             {$counter++}
                         {/foreach}
@@ -29,5 +30,5 @@
                 {/foreach}
             </div>
         </div>
-    </div>                            
+    </div>
 </article>
