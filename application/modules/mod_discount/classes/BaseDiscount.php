@@ -221,12 +221,11 @@ class BaseDiscount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_max_discount($discount, $price) {
-
+//        var_dumps($discount);
         $discount = array_filter(
                 $discount, function($el) {
                     return !empty($el);
                 });
-
         $max_discount = 0;
         foreach ($discount as $key => $disc) {
             $discount_value = $this->get_discount_value($disc, $price);
