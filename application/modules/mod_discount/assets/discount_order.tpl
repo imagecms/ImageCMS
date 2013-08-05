@@ -1,5 +1,4 @@
 {//var_dump($discount->all_active_discount->comulativ)}
-
 {//var_dump($discount)}
 
 Используется максимально возможная скидка <br />
