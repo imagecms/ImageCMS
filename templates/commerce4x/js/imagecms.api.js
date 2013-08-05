@@ -61,6 +61,21 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector);
                     }
+                    
+                    
+                    if (url.indexOf('forgot') + 1)
+                        setTimeout((function() {
+                            $('.msg').hide();
+                            $('#' + selector).show();
+
+                        }), 3000);
+                    else{
+                        if (obj.refresh == true)
+                            location.reload();
+                    }
+                        
+                    
+                    /*
                     if (obj.refresh == true)
                         location.reload();
                     if (obj.redirect !== null)
@@ -75,6 +90,7 @@ var ImageCMSApi = {
 
                         }), 3000);
                     }
+                    */
                 }
                 return this;
             }

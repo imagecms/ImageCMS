@@ -311,6 +311,7 @@ class Install extends MY_Controller {
 
         mysql_query($sql, $link);
 
+        $this->cache->delete_all();
         // Rewrite config file
         $this->write_config_file();
 

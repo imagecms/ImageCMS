@@ -52,7 +52,8 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
 
         $this->load->library('template');
-        if (!empty($_GET))
+
+        if (!empty($_GET) && $this->uri->uri_string() == '')
             $this->template->registerCanonical(site_url());
 
         $last_element = key($this->uri->uri_to_assoc(0));

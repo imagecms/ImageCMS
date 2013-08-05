@@ -33,18 +33,79 @@ class Commentsapi extends Comments {
         }
     }
 
-    public function renderPosts() {
+    public function renderAsArray($url) {
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
         $this->load->model('base');
         $this->init_settings();
 
-//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
-//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
-//            // Comments fetched from cahce file
-//        } else {
-//        $this->db->where('module', 'shop');
+        $this->module = $this->getModule($url);
+        $item_id = $this->parsUrl($url);
+        $commentsCount = $this->getTotalCommentsForProducts($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module, 999);
+
+        // Read comments template
+        // Set page id for comments form
+        if ($comments != FALSE) {
+            $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
+        }
+
+        if ($comments != null)
+            $comments_count = count($comments);
+        else
+            $comments_count = 0;
+
+        if (is_array($comments)) {
+            $i = 0;
+            foreach ($comments as $comment) {
+                if ($comment['parent'] > 0) {
+                    $comment_ch[] = $comment;
+                    unset($comments[$i]);
+                }
+                $i++;
+            }
+        }
+
+        $data = array(
+            'comments_arr' => $comments,
+            'comment_ch' => $comment_ch,
+            'comment_controller' => $this->comment_controller,
+            'total_comments' => lang('lang_total_comments') . count($comments),
+            'can_comment' => $this->can_comment,
+            'use_captcha' => $this->use_captcha,
+            'use_moderation' => $this->use_moderation,
+            'enable_comments' => $this->enable_comments
+        );
+
+        if ($this->use_captcha == TRUE) {
+            $this->dx_auth->captcha();
+            $data['cap_image'] = $this->dx_auth->get_captcha_image();
+        }
+        ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
+
+        $comments = \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->registerStyle('comments')
+                ->fetchTemplate($this->tpl_name);
+
+
+        ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
+
+        return array(
+            'comments' => $comments,
+            'commentsCount' => $commentsCount[$item_id],
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
+            'validation_errors' => $this->validation_errors
+        );
+    }
+
+    public function renderPosts() {
+        $comments = array();
+        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
+
+        $this->load->model('base');
+        $this->init_settings();
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
@@ -80,7 +141,9 @@ class Commentsapi extends Comments {
             'comment_controller' => $this->comment_controller,
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha
+            'use_captcha' => $this->use_captcha,
+            'use_moderation' => $this->use_moderation,
+            'enable_comments' => $this->enable_comments
         );
 
         if ($this->use_captcha == TRUE) {
@@ -89,13 +152,11 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        if ($this->enable_comments)
-            $comments = \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->registerStyle('comments')
-                    ->fetchTemplate($this->tpl_name);
-        else
-            $comments = '';
+        $comments = \CMSFactory\assetManager::create()
+                ->setData($data)
+                ->registerStyle('comments')
+                ->fetchTemplate($this->tpl_name);
+
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -127,8 +188,7 @@ class Commentsapi extends Comments {
 
             if ($id->enable_comments == 0)
                 $this->enable_comments = false;
-            else
-                return $id->id;
+            return $id->id;
         }
 
         if (strstr($url, "/image/")) {
@@ -153,8 +213,7 @@ class Commentsapi extends Comments {
 
             if ($id->comments_status == 0)
                 $this->enable_comments = false;
-            else
-                return $id->main_page_id;
+            return $id->main_page_id;
         }
 
         $paths = explode('/', $url);
@@ -167,12 +226,14 @@ class Commentsapi extends Comments {
 
         if ($id->comments_status == 0)
             $this->enable_comments = FALSE;
-        else
-            return $id->id;
+        return $id->id;
     }
 
     public function getModule($url) {
         if (strstr($url, '/shop/'))
+            return 'shop';
+
+        if (strstr($url, 'shop/'))
             return 'shop';
 
         if (strstr($url, '/bloh/'))
@@ -277,7 +338,7 @@ class Commentsapi extends Comments {
         }
         if ($this->input->post('action') == 'newPost') {
             $email = $this->db->select('email')
-                    ->get_where('users', array('username' => $this->dx_auth->get_username()), 1)
+                    ->get_where('users', array('id' => $this->dx_auth->get_user_id()), 1)
                     ->row();
 
             if (!validation_errors()) {

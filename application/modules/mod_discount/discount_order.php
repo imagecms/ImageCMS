@@ -40,7 +40,7 @@ class Discount_order extends classes\BaseDiscount {
             $discobj = new \mod_discount\discount;
             $discount = $discobj->init()->get_result_discount(1);
             
-            include 'gift.php';
+            require_once 'gift.php';
             $obkGift = new \Gift();
             
             $gift = json_decode($obkGift->get_gift_certificate($data['key']));
@@ -59,7 +59,7 @@ class Discount_order extends classes\BaseDiscount {
             }
             
             if ($discount['result_sum_discount']){
-                $pricetotal_gift_disc = (float)$data['price'] -(float)$pricetotal_gift - (float)$discount['result_sum_discount'];
+                $pricetotal_gift_disc = (float)$data['price'] - (float)$gift->val_orig - (float)$discount['result_sum_discount'];
                 if ($pricetotal_gift_disc < 0)
                     $pricetotal_gift_disc = 0;
                 $data['order']->setdiscount($discount['result_sum_discount']);
