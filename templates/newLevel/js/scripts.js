@@ -1182,7 +1182,8 @@ jQuery(document).ready(function() {
     });
 
     //some front funcions
-    showHidePart($('.sub-category'))
+    showHidePart($('.sub-category'));
+    showHidePart($('.product-charac'));
     drawIcons($(selIcons));
     var userTool = new itemUserToolbar(),
             btnToUp = $('.btn-to-up');
