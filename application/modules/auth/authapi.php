@@ -47,7 +47,7 @@ class Authapi extends MY_Controller {
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
                 $jsonResponse['refresh'] = TRUE;
-                $jsonResponse['redirect'] = TRUE;
+                $jsonResponse['redirect'] = FAlSE;
             } else {
 
                 /** Check if the user is failed logged in because user is banned user or not */
@@ -102,7 +102,7 @@ class Authapi extends MY_Controller {
             $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
             $jsonResponse['status'] = TRUE;
             $jsonResponse['refresh'] = TRUE;
-            $jsonResponse['redirect'] = TRUE;
+            $jsonResponse['redirect'] = FALSE;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';

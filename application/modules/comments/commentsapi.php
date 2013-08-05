@@ -84,11 +84,14 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
-
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else {
+            $comment = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -152,11 +155,14 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
-
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else {
+            $comment = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
