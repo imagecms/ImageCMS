@@ -80,7 +80,7 @@
                                         <li>
                                             <div class="o_h">
                                                 {//link to unckeck current filter}
-                                                <a class="del_filter_item" data-id="prop_{echo $prop->property_id}_{echo $key.value}" href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
+                                                <a class="del_filter_item" data-id="prop_{echo $prop->property_id}" href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
                                             </div>
                                         </li>
                                     {/if}
@@ -226,7 +226,7 @@
                                 <div class="frameLabel">
                                     <span class="niceCheck b_n">
                                         {//if we dont have products in current category with such possible value, we will disable checkbox}
-                                        <input id="prop_{echo $prop->property_id}_{echo $item.value}" {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
+                                        <input id="prop_{echo $prop->property_id}" {if $item.count == 0}disabled="disabled"{/if} class="propertyCheck" name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id]) && $item.count != 0}checked="checked"{/if}/>
                                     </span>
 
                                     {//displaying possible value}
