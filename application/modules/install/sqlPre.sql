@@ -182,6 +182,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
 (177, 'banners', 'banners', 1, 0, 0, 'a:1:{s:8:"show_tpl";i:1;}', 55),
+(205, 'mod_discount', 'mod_discount', 1, 1, 0, NULL, NULL),
 (188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
 
 -- --------------------------------------------------------
