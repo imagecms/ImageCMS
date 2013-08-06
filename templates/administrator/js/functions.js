@@ -864,7 +864,7 @@ var orders = new Object({
 
         $('.totalOrderPrice').html(totalPrice);
     },
-    updateOrderItem: function(id, btn)
+    updateOrderItem: function(id, btn, order)
     {
         var data = {};
         if ($(btn).data('update') == 'price')
