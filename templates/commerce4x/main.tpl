@@ -24,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
         <!--[if lte IE 8]>
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
