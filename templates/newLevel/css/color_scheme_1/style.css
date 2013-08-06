@@ -1164,7 +1164,7 @@ footer .box-4 .main-title{color: #9c9c9c;}
 /*/show all href*/
 
 .text-wish-list, .text-compare-list, .text-view-list, .items-user-toolbar .text-el{color: #fff;}
-.items-user-toolbar > .box-1, .items-user-toolbar > .box-2{border-right: 1px solid #0f80ab;}
+.items-user-toolbar > .box-1 > div, .items-user-toolbar > .box-2 > div{border-right: 1px solid #0f80ab;}
 .items-user-toolbar > li:hover{
     background: #2bbce6; /* Old browsers */
     background: -moz-linear-gradient(top,  #2bbce6 0%, #1097d6 100%); /* FF3.6+ */

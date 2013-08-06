@@ -59,8 +59,6 @@
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         {include_shop_tpl('js_templates')}
     </body>
