@@ -26,7 +26,6 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
-
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
@@ -50,13 +49,13 @@ String.prototype.pasteSAcomm = function() {
     return this.replace(r, ',');
 }
 
-jQuery.exists = function(selector) {
+$.exists = function(selector) {
     return ($(selector).length > 0);
 }
-jQuery.existsN = function(nabir) {
+$.existsN = function(nabir) {
     return (nabir.length > 0);
 }
-jQuery.testNumber = function(e) {
+$.testNumber = function(e) {
     if (!e)
         var e = window.event;
     var key = e.keyCode;
@@ -69,7 +68,7 @@ jQuery.testNumber = function(e) {
     else
         return true;
 }
-jQuery.onlyNumber = function(el) {
+$.onlyNumber = function(el) {
     $(el).live('keypress', function(e) {
         if (!$.testNumber(e)) {
             $(this).tooltip();
@@ -268,7 +267,7 @@ var ie = jQuery.browser.msie,
                 before: function() {
                 },
                 after: function() {
-                },
+                }
             }, options),
                     settings = optionsRadio;
             var $this = $(this);
@@ -656,7 +655,7 @@ var ie = jQuery.browser.msie,
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else
-                                        $this.closest('li').addClass('x' + numbColumnL);
+                                        $this.closest('[data-column]').addClass('x' + numbColumnL);
                                 })
                                 columnsObj.remove();
                             }
@@ -673,6 +672,7 @@ var ie = jQuery.browser.msie,
                                 count += $this.children().children(':not(:regex(class,x([0-9]+)))').length;
                                 $this.addClass('x' + count)
                             })
+                            $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                     }
                 }
                 var k = [],
@@ -735,6 +735,7 @@ var ie = jQuery.browser.msie,
                                 hoverTO = setTimeout(function() {
                                     $thisDrop[effOn](durationOn, function() {
                                         kk++;
+                                        $(document).trigger({type: 'menu.showDrop', el: $thisDrop})
                                         if ($thisDrop.length != 0)
                                             menu.addClass(hM);
                                         if (sub2Frame) {
@@ -1450,8 +1451,6 @@ var ie = jQuery.browser.msie,
                             'opacity': overlayOpacity
                         });
                     }
-                    else
-                        dropOver = $([]);
                     if (elSetSource.is('.' + activeClass)) {
                         methods.triggerBtnClick(elSetSource, selector, close);
                     }
@@ -1805,8 +1804,10 @@ var ie = jQuery.browser.msie,
                     item: 'li',
                     prev: '.prev',
                     next: '.next',
-                    content: '.content-carousel',
-                    groupButtons: '.group-button-carousel',
+                    content: '.c-carousel',
+                    groupButtons: '.b-carousel',
+                    vCarousel: '.v-carousel',
+                    hCarousel: '.h-carousel',
                     before: function() {
                     },
                     after: function() {
@@ -1816,7 +1817,10 @@ var ie = jQuery.browser.msie,
                         prev = settings.prev,
                         next = settings.next,
                         content = settings.content,
-                        groupButtons = settings.groupButtons, adding = settings.adding;
+                        groupButtons = settings.groupButtons,
+                        adding = settings.adding,
+                        hCarousel = settings.hCarousel,
+                        vCarousel = settings.vCarousel;
                 $jsCarousel.each(function() {
                     var $this = $(this),
                             $item = $this.find(content).children().children(item + ':visible'),
@@ -1833,8 +1837,8 @@ var ie = jQuery.browser.msie,
                             groupButton = $this.find(groupButtons);
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
-                    var k = false, isVert = $.existsN($this.closest('.vertical-carousel')),
-                            isHorz = $.existsN($this.closest('.horizontal-carousel')),
+                    var k = false, isVert = $.existsN($this.closest(hCarousel)),
+                            isHorz = $.existsN($this.closest(vCarousel)),
                             condH = $itemW * $itemL - $marginR > contW && isHorz,
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
                     if (condH || condV)
@@ -2095,8 +2099,6 @@ var Shop = {
                 this.totalAddPrice += items[i].addprice * items[i].count;
                 this.totalCount += parseInt(items[i].count);
             }
-
-
             return this;
         },
         getTotalPrice: function() {
@@ -2127,7 +2129,7 @@ var Shop = {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0.0;
-            return (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
+            return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
         renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
@@ -2181,7 +2183,7 @@ var Shop = {
                 maxcount: 0,
                 number: '',
                 vname: false,
-                url: false,
+                url: false
             };
         return prototype = {id: obj.id ? obj.id : 0,
             vId: obj.vId ? obj.vId : 0,
@@ -2521,7 +2523,7 @@ var ImageCMSApi = {
      * @param {type} captcha_image
      */
     addCaptcha: function(cI, DS) {
-        pIn.html(DS.captcha(cI));
+        DS.captchaBlock.html(DS.captcha(cI));
         return false;
     }
 }

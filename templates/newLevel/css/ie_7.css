@@ -21,7 +21,6 @@ body{overflow: visible;}
 .frame-count > .number{width: 80px;}
 
 .logo{position: relative;}
-.frame-form-field{border: 1px solid red;}
 
 .frame-menu-category-first > .items > li{width: 44%;}
 .item-product .frame-wish-compare-list .btn-compare, .item-product .frame-wish-compare-list .btn-wish{width: 49.5%;}
@@ -29,3 +28,5 @@ body{overflow: visible;}
 
 .clear-filter > button, .clear-price > button{display: block;}
 .name-check-filter{position: relative;}
+footer ul li button{text-align: left;}
+.items-user-toolbar > li{float: left;}

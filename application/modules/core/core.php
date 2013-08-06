@@ -53,7 +53,7 @@ class Core extends MY_Controller {
 
         $this->load->library('template');
 
-        if (!empty($_GET) && $this->uri->uri_string() == '')
+        if ((!empty($_GET) || strstr($_SERVER['REQUEST_URI'], '?')) && $this->uri->uri_string() == '')
             $this->template->registerCanonical(site_url());
 
         $last_element = key($this->uri->uri_to_assoc(0));
@@ -930,7 +930,7 @@ class Core extends MY_Controller {
                 $description = '';
             if ($this->settings['create_keywords'] == 'empty')
                 $keywords = '';
-            
+
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => strip_tags($description),
