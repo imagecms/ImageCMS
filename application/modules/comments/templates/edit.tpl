@@ -7,11 +7,11 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>                   
+                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang('amt_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>Создать и выйти</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>Сохранить и выйти</button>
                 </div>
-            </div>                            
+            </div>
         </div>
         <div class="tab-pane">
             <table class="table table-striped table-bordered table-hover table-condensed">
@@ -53,7 +53,7 @@
                                                         <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang('amt_spam')}</option>
                                                     </select>
                                                 </div>
-                                            </div>  
+                                            </div>
                                             <div class="control-group">
                                                 <label class="control-label" for="email">{lang('amt_content')}:</label>
                                                 <div class="controls">
@@ -67,7 +67,7 @@
                         </td>
                     </tr>
                 </tbody>
-            </table> 
+            </table>
         </div>
     </section>
 </div>

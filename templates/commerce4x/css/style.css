@@ -1153,6 +1153,9 @@ footer{background-color: #303030\0/;*background-color: #303030;}
 .btn_small_p{padding-top: 6px\0/;*padding-top: 6px;}
 .scrollNSP > div{*height: 18px;}
 
+.fancy_cleaner{max-width: none\0/;}
+.frame_form_field select{width: 100%\0/;height: 25px\0/;}
+
 .navStaticPages{margin-bottom: 20px;background-color: #f6f6f6;text-align: right;-moz-box-shadow: 0 3px 9px #d0d0d0;-webkit-box-shadow: 0 3px 9px #d0d0d0;box-shadow: 0 3px 9px #d0d0d0;}
 .navStaticPages .title{
     font-size: 18px;font-weight: bold;color: #5c5c5c;text-shadow: 0 1px 0 #fff;padding: 6px 20px;border-bottom: 1px solid #e9e9e9;
