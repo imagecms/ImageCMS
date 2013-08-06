@@ -521,7 +521,7 @@
 {widget('view_product')}
 {widget('similar')}
 </article>
-{var_dump(productPhotoFancybox == "1")}
+
 {if productPhotoFancybox == "1"}
     <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
 {/if}
