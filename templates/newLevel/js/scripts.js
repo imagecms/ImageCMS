@@ -902,15 +902,16 @@ function itemUserToolbar() {
         return itemsUT;
     }
 }
-//if cloudzoom
-//function margZoomLens() {
-//    $('#photoGroup').find('img').each(function() {
-//        var $this = $(this)
-//        mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
-//        mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
-//        $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
-//    })
-//}
+if (productPhotoCZoom) {
+    function margZoomLens() {
+        $('#photoGroup').find('img').each(function() {
+            var $this = $(this)
+            mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
+            mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
+            $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
+        })
+    }
+}
 
 function ieInput(els) {
     if (els == undefined || els == null)
@@ -1057,94 +1058,102 @@ jQuery(document).ready(function() {
         }
     });
     $('#suggestions').autocomplete();
-    try {
-        var frameAddImgThumb = $('[data-rel="mainThumbPhoto"]').children();
-        if (!$(genObj.photoProduct).is('[rel="group"]'))
-            $(genObj.photoProduct).click(function(e) {
-                e.preventDefault();
-                frameAddImgThumb.find('a').click();
-            })
-        $('[rel="group"]').fancybox({
-            'padding': 5,
-            'margin': 0,
-            'overlayOpacity': 0.7,
-            'overlayColor': '#212024',
-            'autoDimensions': false,
-            'width': wnd.width() * 0.95,
-            'height': wnd.height() * 0.90,
-            'type': 'iframe',
-            'titlePosition': 'inside',
-            'onComplete': function() {
-                body.addClass('isScroll');
-                var fancyC = $('#fancybox-content');
-                fancyC.prepend('<div class="wOverlay"></div>');
-                fancyC.append('<div class="fancy-footer"></div>');
-                var fancyFooter = $('.fancy-footer').append($('.frame-prices-buy').clone(true)),
-                        frameThumbs = $('.frame-thumbs'),
-                        frameButton = frameThumbs.children('.group-button-carousel')
-                carGal = frameThumbs.children('.content-carousel').clone(true).prependTo(fancyC).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone()),
-                        fancyTitle = $('#fancybox-title');
-                fancyC.find(genObj.plusMinus).plusminus({
-                    prev: 'prev.children(:eq(1)).children',
-                    next: 'prev.children(:eq(0)).children',
-                    after: function(e, el, input) {
-                        if (checkProdStock && input.attr('value') == input.data('max'))
-                            el.closest(genObj.numberC).tooltip();
-                    }
-                });
-                var itemThumbs = carGal.find('.items-thumbs');
-                itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend(frameAddImgThumb.clone(true).removeClass('d_n'));
-                if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
-                    itemThumbs.unwrap();
-                fancyTitle.prependTo(fancyC);
-                var itemGal = carGal.find('.items-thumbs > li'),
-                        itemGalL = itemGal.length,
-                        pActEl = arguments[1] - itemGalL;
-                var adding = {};
-                if (pActEl == 0) {
-                    pActEl = itemGalL - 1;
-                }
-                else if (pActEl < 0) {
-                    if (pActEl + itemGalL == 0)
-                        pActEl = 0;
-                    else
-                        pActEl = pActEl + itemGalL - 1;
-                }
-                else {
-                    pActEl = pActEl - 1;
-                }
-                adding = {start: pActEl}
-                itemGal.eq(pActEl).addClass('active');
-                carGal.parent().myCarousel($.extend(carousel, {
-                    adding: adding
-                }));
-                var fancyFrame = $('#fancybox-frame');
-                fancyFrame.css({'height': fancyFrame.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
-
-                fancyFrame.load(function() {
-                    var $this = $(this.contentWindow.document.getElementsByTagName('body')[0]);
-                    $this.append('<style>' + forThumbFancybox + '</style>');
-                    $this.find('img').before('<span class="helper"></span>');
-                    $('.wOverlay').fadeOut(200);
+    if (productPhotoFancybox) {
+        try {
+            var frameAddImgThumb = $('[data-rel="mainThumbPhoto"]').children();
+            if (!$(genObj.photoProduct).is('[rel="group"]'))
+                $(genObj.photoProduct).click(function(e) {
+                    e.preventDefault();
+                    frameAddImgThumb.find('a').click();
                 })
-                $("#fancybox-wrap").unbind('mousewheel.fb');
-            },
-            onClosed: function() {
-                body.removeClass('isScroll');
-            }
-        })
+            $('[rel="group"]').fancybox({
+                'padding': 5,
+                'margin': 0,
+                'overlayOpacity': 0.7,
+                'overlayColor': '#212024',
+                'autoDimensions': false,
+                'width': wnd.width() * 0.95,
+                'height': wnd.height() * 0.90,
+                'type': 'iframe',
+                'titlePosition': 'inside',
+                'onComplete': function() {
+                    body.addClass('isScroll');
+                    var fancyC = $('#fancybox-content');
+                    fancyC.prepend('<div class="wOverlay"></div>');
+                    fancyC.append('<div class="fancy-footer"></div>');
+                    var fancyFooter = $('.fancy-footer').append($('.frame-prices-buy').clone(true)),
+                            frameThumbs = $('.frame-thumbs'),
+                            frameButton = frameThumbs.children('.group-button-carousel')
+                    carGal = frameThumbs.children('.content-carousel').clone(true).prependTo(fancyC).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone()),
+                            fancyTitle = $('#fancybox-title');
+                    fancyC.find(genObj.plusMinus).plusminus({
+                        prev: 'prev.children(:eq(1)).children',
+                        next: 'prev.children(:eq(0)).children',
+                        after: function(e, el, input) {
+                            if (checkProdStock && input.attr('value') == input.data('max'))
+                                el.closest(genObj.numberC).tooltip();
+                        }
+                    });
+                    var itemThumbs = carGal.find('.items-thumbs');
+                    itemThumbs.removeAttr('style').children().removeAttr('style').end().prepend(frameAddImgThumb.clone(true).removeClass('d_n'));
+                    if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
+                        itemThumbs.unwrap();
+                    fancyTitle.prependTo(fancyC);
+                    var itemGal = carGal.find('.items-thumbs > li'),
+                            itemGalL = itemGal.length,
+                            pActEl = arguments[1] - itemGalL;
+                    var adding = {};
+                    if (pActEl == 0) {
+                        pActEl = itemGalL - 1;
+                    }
+                    else if (pActEl < 0) {
+                        if (pActEl + itemGalL == 0)
+                            pActEl = 0;
+                        else
+                            pActEl = pActEl + itemGalL - 1;
+                    }
+                    else {
+                        pActEl = pActEl - 1;
+                    }
+                    adding = {start: pActEl}
+                    itemGal.eq(pActEl).addClass('active');
+                    carGal.parent().myCarousel($.extend(carousel, {
+                        adding: adding
+                    }));
+                    var fancyFrame = $('#fancybox-frame');
+                    fancyFrame.css({'height': fancyFrame.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
 
-        //if cloudzoom
-//    $('.item-product .items-thumbs > li > a').bind('click', function(e) {
-//        e.preventDefault();
-//        var $this = $(this);
-        //        $this.parent().siblings().removeClass('active').end().addClass('active');
-        //    //if cloudzoom not initialize
-//        $('.photoProduct').find('img').attr('src', $this.attr('href')).end().click(function(e) {
-//            e.preventDefault()
-//        });
-//})
-    } catch (e) {
+                    fancyFrame.load(function() {
+                        var $this = $(this.contentWindow.document.getElementsByTagName('body')[0]);
+                        $this.append('<style>' + forThumbFancybox + '</style>');
+                        $this.find('img').before('<span class="helper"></span>');
+                        $('.wOverlay').fadeOut(200);
+                    })
+                    $("#fancybox-wrap").unbind('mousewheel.fb');
+                },
+                onClosed: function() {
+                    body.removeClass('isScroll');
+                }
+            })
+
+            if (productPhotoCZoom) {
+                $('.item-product .items-thumbs > li > a').bind('click', function(e) {
+                    e.preventDefault();
+                    var $this = $(this);
+                    $this.parent().siblings().removeClass('active').end().addClass('active');
+                })
+            }
+        } catch (e) {
+        }
+    }
+    if (!productPhotoFancybox && !productPhotoCZoom) {
+        $('.item-product .items-thumbs > li > a').bind('click', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            $('.photoProduct').find('img').attr('src', $this.attr('href')).end().click(function(e) {
+                e.preventDefault()
+            });
+        });
     }
     try {
         $('a.fancybox').fancybox();
@@ -1518,13 +1527,15 @@ wnd.load(function() {
         effect: "fadeIn"
     });
     wnd.scroll(); //for lazy load start initialize
-//    if cloudzoom
-//    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-    //    body.append('<style id="forCloudZomm"></style>')
-    //    margZoomLens();
-    //    $('.photoProduct').find('img').load(function() {
-    //        margZoomLens();
-//    })
+    console.log(productPhotoCZoom)
+    if (productPhotoCZoom) {
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+        body.append('<style id="forCloudZomm"></style>')
+        margZoomLens();
+        $('.photoProduct').find('img').load(function() {
+            margZoomLens();
+        })
+    }
 }).resize(function() {
     var userTool = new itemUserToolbar();
     userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
