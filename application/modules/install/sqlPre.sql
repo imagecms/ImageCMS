@@ -10530,6 +10530,139 @@ INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `ph
 (3, 'shop/brand/samsung', 'ru', 'apple/samsung', '', '/uploads/shop/banners/template-imageshop-banner-3.jpg');
 
 
+--
+-- Структура таблиці `mod_discount_all_order`
+--
+
+DROP TABLE IF EXISTS `mod_discount_all_order`;
+CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `for_autorized` tinyint(4) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  `is_gift` tinyint(4) DEFAULT NULL,
+  `begin_value` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_brand`
+--
+
+DROP TABLE IF EXISTS `mod_discount_brand`;
+CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `brand_id` (`brand_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_category`
+--
+
+DROP TABLE IF EXISTS `mod_discount_category`;
+CREATE TABLE IF NOT EXISTS `mod_discount_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_comulativ`
+--
+
+DROP TABLE IF EXISTS `mod_discount_comulativ`;
+CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) DEFAULT NULL,
+  `begin_value` int(11) DEFAULT NULL,
+  `end_value` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_group_user`
+--
+
+DROP TABLE IF EXISTS `mod_discount_group_user`;
+CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_product`
+--
+
+DROP TABLE IF EXISTS `mod_discount_product`;
+CREATE TABLE IF NOT EXISTS `mod_discount_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_user`
+--
+
+DROP TABLE IF EXISTS `mod_discount_user`;
+CREATE TABLE IF NOT EXISTS `mod_discount_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_shop_discounts`
+--
+
+DROP TABLE IF EXISTS `mod_shop_discounts`;
+CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(25) DEFAULT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `active` tinyint(4) DEFAULT NULL,
+  `max_apply` int(11) DEFAULT NULL,
+  `count_apply` int(11) DEFAULT NULL,
+  `date_begin` int(11) DEFAULT NULL,
+  `date_end` int(11) DEFAULT NULL,
+  `type_value` tinyint(4) DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `type_discount` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key_UNIQUE` (`key`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
