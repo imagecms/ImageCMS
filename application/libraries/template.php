@@ -40,10 +40,10 @@ class Template extends Mabilis {
 
 
 
-       // $this->provide = new \Fenom\Provider($this->template_dir);
-       // $this->fenom = new Fenom($this->provide);
-       // $this->fenom->setCompileDir($config['compile_path']);
-       // $this->fenom->setOptions($options);
+        // $this->provide = new \Fenom\Provider($this->template_dir);
+        // $this->fenom = new Fenom($this->provide);
+        // $this->fenom->setCompileDir($config['compile_path']);
+        // $this->fenom->setOptions($options);
 
 
         /** URL to JS folder */
@@ -163,16 +163,15 @@ class Template extends Mabilis {
     public function view($file, $data = array(), $return = FALSE) {
 
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
-       // $file = ltrim($file, 'file:');
-       // $file_arr = explode('/', $file);
-       // $file = $file_arr[count($file_arr)-1];
-       // unset($file_arr[count($file_arr)-1]);
-       // $dir = realpath(implode('/', $file_arr));
-       // $this->provide->set_template($dir);
+        // $file = ltrim($file, 'file:');
+        // $file_arr = explode('/', $file);
+        // $file = $file_arr[count($file_arr)-1];
+        // unset($file_arr[count($file_arr)-1]);
+        // $dir = realpath(implode('/', $file_arr));
+        // $this->provide->set_template($dir);
         //return $this->splitTplFiles($this->fenom->display($file, $data));
 
         return $this->splitTplFiles(parent::view($file, $data, $return));
-
     }
 
     public function include_tpl($name, $path) {
@@ -196,6 +195,12 @@ class Template extends Mabilis {
     private static $arr = array();
     private static $result_before = '';
     private static $result_after = '';
+
+    /**
+     * is tpl trimed
+     * @var bool
+     */
+    public $trimed = false;
 
 //    public function registerCssCode($name, $code, $position = 'before') {
 //        $position = $this->_check_postion($position);
@@ -266,6 +271,10 @@ class Template extends Mabilis {
 //        $result_js_after = '';
         // split css files
         //self::$arr++;
+        if (!$this->trimed) {
+            $tpl = trim($tpl);
+            $this->trimed = TRUE;
+        }
 
         if (sizeof($this->_css_files) > 0) {
             foreach ($this->_css_files as $url => $pos) {
