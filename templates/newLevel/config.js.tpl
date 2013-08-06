@@ -26,6 +26,8 @@
     plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
     plurComments = ['отзыв', 'отзыва', 'отзывов'];
 
+    var productPhotoFancybox = "0",
+            productPhotoCZoom = "1";
 </script>
 {literal}
     <script type="text/javascript">
