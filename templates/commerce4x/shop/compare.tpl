@@ -86,12 +86,12 @@
                                             <!-- End. Price -->
                                             <!--Start. Check amount of goods -->
                                             {if $product->firstvariant->getstock() != 0}
-                                            <button class="btn btn_buy btnBuy" 
-                                                    type="button" 
+                                            <button class="btn btn_buy btnBuy"
+                                                    type="button"
 
                                                     data-prodid="{echo $product->getId()}"
                                                     data-varid="{echo $product->firstVariant->getId()}"
-                                                    data-price="{echo $product->firstVariant->toCurrency()}" 
+                                                    data-price="{echo $product->firstVariant->toCurrency()}"
                                                     data-name="{echo ShopCore::encode($product->getName())}"
                                                     data-maxcount="{echo $product->firstVariant->getstock()}"
                                                     data-number="{echo $product->firstVariant->getNumber()}"
@@ -114,10 +114,10 @@
                                             {/if}
                                             <!-- End. Check amount of goods -->
                                             <!-- to wish list button -->
-                                            <button class="btn btn_small_p toWishlist" 
+                                            <button class="btn btn_small_p toWishlist"
                                                     data-price="{echo $product->firstVariant->toCurrency()}"
-                                                    data-prodid="{echo $product->getId()}" 
-                                                    data-varid="{echo $product->firstVariant->getId()}"  
+                                                    data-prodid="{echo $product->getId()}"
+                                                    data-varid="{echo $product->firstVariant->getId()}"
                                                     type="button"
                                                     data-title="{lang('s_add_to_wish_list')}"
                                                     data-sectitle="{lang('s_in_wish_list')}"
@@ -203,3 +203,4 @@
         <!--End. Show message if compare list is empty -->
     </div>
 </article>
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
