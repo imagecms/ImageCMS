@@ -1,4 +1,7 @@
-{foreach $products as $p}
+{foreach $products as $key => $p}
+    {if $key >= $limit && isset($limit)}
+        {break}
+    {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li>
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
@@ -42,11 +45,13 @@
                 </span>
             {/if}
             {if !$vertical}
-                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                {if $Comments[$p->getId()] && $p->enable_comments}
                     <div class="frame-star f-s_0">
-                       {$CI->load->module('star_rating')->show_star_rating($p, false)}
+                        {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                            {intval($Comments[$p->getId()])}
+                            {$cc=$Comments[$p->getId()]}
+                            {intval($cc)}
+                            {echo SStringHelper::Pluralize($cc, array('отзыв','отзыва','отзывов'))}
                         </a>
                     </div>
                 {/if}
@@ -261,8 +266,8 @@
         <!--        Start. Remove buttons if compare or wishlist-->
         {if $compare}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
-            {/if}
-            {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
+        {/if}
+        {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
             <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->

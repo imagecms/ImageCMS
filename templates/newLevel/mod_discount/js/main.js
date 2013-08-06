@@ -3,6 +3,7 @@ function get_discount(discTpl) {
     $.ajax({
         url: '/mod_discount/discount_api/get_discount_api',
         type: "POST",
+        async: false,
         success: function(data) {
             if (data != '') {
                 _discount = JSON.parse(data);
@@ -14,6 +15,7 @@ function get_discount(discTpl) {
             else {
                 displayInfoDiscount('');
             }
+            console.log(1)
             displayDiscount(_discount);
             Shop.Cart.discount = _discount;
         }
