@@ -902,7 +902,6 @@ class Core extends MY_Controller {
                 else
                     $description = "$description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
 
-
             if ($this->settings['add_site_name_to_cat'])
                 if ($category != '')
                     $title .= ' - ' . $category;
@@ -927,6 +926,11 @@ class Core extends MY_Controller {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
 
+            if ($this->settings['create_description'] == 'empty')
+                $description = '';
+            if ($this->settings['create_keywords'] == 'empty')
+                $keywords = '';
+            
             $this->template->add_array(array(
                 'site_title' => $title,
                 'site_description' => strip_tags($description),
