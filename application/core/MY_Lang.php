@@ -123,6 +123,7 @@ class MY_Lang extends MX_Lang {
            
            if ($module == 'main'){
                $this->gettext->switchDomain('application/language/main/', 'main', $lang);
+               //$this->gettext->switchDomain('1/language/1/', '1', $lang);
            }else{
                $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $lang);
            }

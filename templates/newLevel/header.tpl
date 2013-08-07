@@ -40,7 +40,7 @@
                         <li class="btn-order-call">
                             <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
                                 <span class="icon_order_call"></span>
-                                <span class="text-el d_l">Заказать звонок</span>
+                                <span class="text-el d_l">{lang('Request a call','newLevel')}</span>
                             </a>
                         </li>
                     </ul>
