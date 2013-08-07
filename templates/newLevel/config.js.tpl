@@ -4,11 +4,11 @@
             currNext = '{$NextCS}',
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
-            inCart = 'В корзине',
+            inCart = '{lang('In cart','newLevel')}',
             toCart = '{lang('s_buy')}',
-            pcs = 'Количество:',
-            kits = 'Комплектов:',
-            captchaText = 'Код протекции',
+            pcs = '{lang('Quantity','newLevel')}',
+            kits = '{lang('Sets','newLevel')}:',
+            captchaText = '{lang('Protection code','newLevel')}',
             s_saction = '{lang('s_saction')}',
             s_shot = '{lang('s_shot')}',
             s_shit = '{lang('s_shit')}';
@@ -22,8 +22,10 @@
             inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}"),
             inServerCompare = parseInt("{$cnt_comp}"),
             theme = "{$THEME}";
-    plurProd = ['товар', 'товара', 'товаров'];
-    plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
+    //plurProd = ['товар', 'товара', 'товаров'];
+    //plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
+    plurProd = [{lang('product','newLevel')}, {lang('product','newLevel')}, {lang('products','newLevel')}];
+    plurKits = [{lang('set','newLevel')}, {lang('set','newLevel')}, {lang('sets','newLevel')}];
 
 </script>
 {literal}

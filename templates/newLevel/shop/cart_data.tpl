@@ -7,7 +7,7 @@
             <span class="empty">
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el">В корзине пусто</span>
+                    <span class="text-el">{lang('Cart is empty','newLevel')}</span>
                 </span>
             </span>
             <span class="no-empty">
@@ -15,7 +15,7 @@
                 <span>
                     <span class="text-el topCartCount"></span>
                     <span class="text-el">&nbsp;</span>
-                    <span class="text-el plurProd">товар</span>
+                    <span class="text-el plurProd">{lang('product','newLevel')}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
                         <span class="text-el topCartTotalPrice"></span>
