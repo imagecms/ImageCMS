@@ -781,7 +781,7 @@ $(document).ready(function() {
         container.find('img').css('width', '50px');
     });
     $('.change_image').live('click', function() {
-        $(this).closest('td').find('[type="file"]').attr('accept',"image/gif, image/jpeg, image/png").click();
+        $(this).closest('td').find('[type="file"]').attr('accept', "image/gif, image/jpeg, image/png").click();
     })
 
 
@@ -865,7 +865,7 @@ $(document).ready(function() {
                     }
                     ;
 
-                    $('#progressLabel').html('<b>Ресайз изображений для товаров</b><br/>Всего найдено товаров: ' + countAll + '  (Обработано : 0 )');
+                    $('#progressLabel').html('<b>' + lang.resizeProductsImages + '</b><br/>' + lang.productsFound + ': ' + countAll);
                     $('#progressBlock').fadeIn(100);
 
                     //Prepare portion of images
@@ -895,13 +895,13 @@ $(document).ready(function() {
                 url: "/admin/components/run/shop/settings/getAllProductsIds",
                 type: "post",
                 success: function(data) {
-                    if (data != 'false'){
+                    if (data != 'false') {
                         var idsAdditional = $.parseJSON(data);
                         var countAllAdditional = idsAdditional.length;
                         var portionAdditional = 0;
                         var arrayForProcessAdditional = new Array();
                         var doneAdditional = 0;
-    //                        console.log(idsAdditional);
+                        //                        console.log(idsAdditional);
 
                         function makeResizeAdditional(array) {
                             data = JSON.stringify(array);
@@ -913,12 +913,12 @@ $(document).ready(function() {
                                 complete: function() {
                                     doneAdditional += array.length;
                                     $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
-    //                                    console.log((doneAdditional / countAllAdditional) * 100);
+                                    $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': ' + doneAdditional + ' )');
+                                    //                                    console.log((doneAdditional / countAllAdditional) * 100);
                                     if (doneAdditional == countAllAdditional) {
                                         $('#fixPage').fadeOut(100);
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage("Картинки обновлены", "Завершено");
+                                        showMessage(lang.imagesUpdated, lang.completed);
                                         window.onbeforeunload = null;
                                     }
                                 }
@@ -926,7 +926,7 @@ $(document).ready(function() {
                         }
                         ;
 
-                        $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
+                        $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': 0 )');
                         $('#progressBlock').fadeIn(100);
                         $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
 
@@ -944,9 +944,9 @@ $(document).ready(function() {
                             arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
                             makeResizeAdditional(arrayForProcessAdditional);
                         }
-                    }else{
+                    } else {
                         $('#progressBlock').fadeOut(100);
-                        showMessage("Картинки обновлены", "Завершено");
+                        showMessage(lang.imagesUpdated, lang.completed);
                     }
                 }
             });

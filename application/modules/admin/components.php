@@ -47,7 +47,7 @@ class Components extends BaseAdminController {
         $count = count($db_modules);
         for ($i = 0; $i < $count; $i++) {
             $module_name = $db_modules[$i]['name'];
-            if ($this->module_exists($module_name)){
+            if ($this->module_exists($module_name)) {
 
                 $info = $this->get_module_info($module_name);
                 $db_modules[$i]['menu_name'] = $info['menu_name'];
@@ -60,10 +60,9 @@ class Components extends BaseAdminController {
                 } else {
                     $db_modules[$i]['admin_file'] = 0;
                 }
-            }else{
-                 unset($db_modules[$i]);
+            } else {
+                unset($db_modules[$i]);
             }
-
         }
 
 
@@ -101,7 +100,7 @@ class Components extends BaseAdminController {
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
 
-            $this->lib_admin->log(lang("Installed a module","admin") . $data['name']);
+            $this->lib_admin->log(lang("Installed a module", "admin") . $data['name']);
 
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
                 $result = true;
@@ -136,11 +135,11 @@ class Components extends BaseAdminController {
 
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
-                $this->lib_admin->log(lang("Deleted a module","admin") . $module);
-                showMessage(lang("The module successfully uninstall","admin"));
+                $this->lib_admin->log(lang("Deleted a module", "admin") . $module);
+                showMessage(lang("The module successfully uninstall", "admin"));
                 pjax('/admin/components/modules_table');
             } else {
-                showMessage(lang("Module deletion error","admin"), false, 'r');
+                showMessage(lang("Module deletion error", "admin"), false, 'r');
                 pjax('/admin/components/modules_table');
             }
 
@@ -149,13 +148,14 @@ class Components extends BaseAdminController {
             $this->cms_hooks->build_hooks();
         }
     }
+
     /**
      * Check is module exixts
      * @param string $module_name module name
      * @return boolean
      */
-    function module_exists($module_name){
-        return opendir(APPPATH . 'modules/' . $module_name. '/');
+    function module_exists($module_name) {
+        return opendir(APPPATH . 'modules/' . $module_name . '/');
     }
 
     function find_components($in_menu = FALSE) {
@@ -245,7 +245,7 @@ class Components extends BaseAdminController {
             $this->db->where('name', $component);
             $this->db->update('components', $data);
 
-            $this->lib_admin->log(lang("Changed the module settings","admin") . $com['name']);
+            $this->lib_admin->log(lang("Changed the module settings", "admin") . $com['name']);
 
             //showMessage(lang('Settings are saved','admin'));
         } else {
@@ -336,11 +336,11 @@ class Components extends BaseAdminController {
         $com_info = $this->get_module_info($this->input->post('component'));
 
         if ($com_info != FALSE) {
-            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang("Author","admin") . '</b> ' . $com_info['author'] . '<br/><b>' . lang("Version ","admin") . '</b> ' . $com_info['version'] . '</p>';
+            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang("Author", "admin") . '</b> ' . $com_info['author'] . '<br/><b>' . lang("Version ", "admin") . '</b> ' . $com_info['version'] . '</p>';
 
             jsCode("alertBox.info('" . $info_text . "');");
         } else {
-            showMessage(lang("Can't load module info file"), false . 'r');
+            showMessage(lang("Can't load module info file", "admin"), false . 'r');
         }
     }
 
@@ -407,9 +407,9 @@ class Components extends BaseAdminController {
                 }
             }
             if ($result)
-                showMessage(lang("Positions updated","admin"));
+                showMessage(lang("Positions updated", "admin"));
             else
-                showMessage(lang("Fail","admin"));
+                showMessage(lang("Fail", "admin"));
         }
     }
 
@@ -423,7 +423,7 @@ class Components extends BaseAdminController {
             else
                 $in_menu = 1;
             if ($this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components')) {
-                showMessage(lang("Changes saved","admin"));
+                showMessage(lang("Changes saved", "admin"));
             }
         }
     }

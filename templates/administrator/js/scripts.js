@@ -299,27 +299,27 @@ function init_2() {
     initNiceCheck()
 
     //autocomplete for resize in settings
-    
-   if($('#product_name').length){
-            $('#product_name').autocomplete({
-             source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
-             select: function(event, ui) {
-                 productName = ui.item.label;
-                 $('#product_id').val(ui.item.value);
-                 vKeys = Object.keys(ui.item.variants);
-                 $('#product_variant_name').empty();
 
-                 for (var i = 0; i < vKeys.length; i++)
-                     $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
-             },
-             close: function() {
-                 $('#product_name').val(productName);
-             }
-         });
+    if ($('#product_name').length) {
+        $('#product_name').autocomplete({
+            source: '/admin/components/run/shop/orders/ajaxGetProductList/?categoryId=' + $('#Categories').val(),
+            select: function(event, ui) {
+                productName = ui.item.label;
+                $('#product_id').val(ui.item.value);
+                vKeys = Object.keys(ui.item.variants);
+                $('#product_variant_name').empty();
+
+                for (var i = 0; i < vKeys.length; i++)
+                    $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+            },
+            close: function() {
+                $('#product_name').val(productName);
+            }
+        });
     }
 
     //Autocomplete for orders
-    if($('#productNameForOrders').length){
+    if ($('#productNameForOrders').length) {
         $('#productNameForOrders').autocomplete({
             source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
             select: function(event, ui) {
@@ -342,8 +342,8 @@ function init_2() {
             }
         });
     }
-     /* Autocomplete users in orders */
-    if($('#usersForOrders').length){
+    /* Autocomplete users in orders */
+    if ($('#usersForOrders').length) {
         $('#usersForOrders').autocomplete({
             source: '/admin/components/run/shop/orders/autoComplite/?limit=25',
             select: function(event, ui) {
@@ -591,11 +591,11 @@ function autocomplete() {
                         '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">Имя</span>' +
+                        '<span class="help-inline d_b">' + lang.name + '</span>' +
                         '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">Скидка %</span>' +
+                        '<span class="help-inline d_b">' + lang.discount + ' %</span>' +
                         '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
@@ -1322,7 +1322,7 @@ $(document).ready(
             $('.listFilterForm select').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
-            
+
             $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
@@ -1355,24 +1355,24 @@ $(document).ready(
                 var categoryId = btn.data('id');
                 var column = btn.parent().find('input').val();
 
-                if (!parseInt(column) && parseInt(column)!=0)
-                    showMessage('Сообщение','Введите номер колонки','r');
-                    
+                if (!parseInt(column) && parseInt(column) != 0)
+                    showMessage(lang.message, lang.enterColumnNum, 'r');
+
                 $.ajax({
                     type: 'POST',
-                    data: 'categoryId='+categoryId+'&column='+column,
+                    data: 'categoryId=' + categoryId + '&column=' + column,
                     url: base_url + 'admin/components/run/shop/categories/ajaxUpdateCategoryColumn/',
                     success: function(data) {
-                        if (data == true){
-                            showMessage('Сообщение','Номер колонки обновлен','success');
+                        if (data == true) {
+                            showMessage(lang.message, lang.columnNumUpdated, 'success');
                             btn.hide();
-                        }else{
-                            showMessage('Сообщение','Не удалось обновить номер колонки','errror');
+                        } else {
+                            showMessage(lang.message, lang.failColumnNumUodate, 'errror');
                         }
                     }
                 });
             });
-            
+
         });
 
 $(window).load(function() {
@@ -1451,13 +1451,13 @@ $('#variantsForOrders').live('change', function() {
     var stock = $('#variantsForOrders option:selected').data('stock');
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
 
-    $('#productText').html('<b>Товар: ' + productName + '</b>');
+    $('#productText').html('<b>' + lang.product + ': ' + productName + '</b>');
     if (variantName != '')
-        $('#productText').append('<br/>Вариант: ' + variantName + '');
-    
-    $('#productText').append('<br/>Цена: ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
+        $('#productText').append('<br/>' + lang.variant + ': ' + variantName + '');
+
+    $('#productText').append('<br/>' + lang.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
-    $('#productStock').html('<br/>Остаток: ' + stock);
+    $('#productStock').html('<br/>' + lang.balance + ': ' + stock);
 
     //Show info product block
     if (variantId != undefined)
@@ -1465,13 +1465,13 @@ $('#variantsForOrders').live('change', function() {
 
     //Disable button if stock =0
     if (checkProdStock == 1 && stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html('Нет в наличии');
+        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(lang.outOfStock);
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html('В корзину');
+        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(lang.addToCart);
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
     }
 
     dataForButton = $('#variantsForOrders option:selected').data();
@@ -1482,7 +1482,7 @@ $('#variantsForOrders').live('change', function() {
 $('#addVariantToCart').die().live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $(this).removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
     }
 
 })
@@ -1506,16 +1506,16 @@ $('#createUserButton').live('click', function() {
             data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
             success: function(response) {
                 if (response == 'email') {
-                    showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
+                    showMessage(lang.message, lang.thisEmailUserExists, "error");
                 } else if (response != 'false') {
                     $('#collapsed').click();
                     $('#createUserName').val('');
                     $('#createUserEmail').val('');
                     $('#createUserPhone').val('');
                     $('#createUserAddress').val('');
-                    
+
                     data = JSON.parse(response);
-                    if (data != null){
+                    if (data != null) {
                         /*Make created user selected */
                         $('#userIdforOrder').html(data.id);
                         $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + data.id);
@@ -1525,14 +1525,14 @@ $('#createUserButton').live('click', function() {
                         $('#userPhoneforOrder').html(data.phone);
                         $('#userAddressforOrder').html(data.address);
                     }
-                    showMessage("Сообщение", "Создан новый пользователь", "success");
+                    showMessage(lang.message, lang.newUserCreated, "success");
                 } else {
-                    showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+                    showMessage(lang.error, lang.failToCreateUser, "error");
                 }
             }
         });
     } else {
-        showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
+        showMessage(lang.error, lang.checkAndFillAll, "error");
     }
 })
 
@@ -1620,7 +1620,7 @@ $('#checkOrderGiftCert').live('click', function() {
             totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
             $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
-            $('#giftPrice').html('Текущий сертификат (сумма):' + data.price);
+            $('#giftPrice').html(lang.curCertificate + data.price);
             $('#currentGiftCertInfo').show();
         }
     })
@@ -1661,10 +1661,10 @@ $(window).load(function() {
     }
 })
 
-$('table.orderMethodsTable .orderMethodsEdit').on('click', function(){
+$('table.orderMethodsTable .orderMethodsEdit').on('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
-    
+
     var closestTr = $(this).closest('tr');
     closestTr.find('.name').css('display', 'none');
     closestTr.find('[name=name]').css('display', 'block');
@@ -1676,19 +1676,19 @@ $('table.orderMethodsTable .orderMethodsEdit').on('click', function(){
     closestTr.find('[name=tooltip]').css('display', 'block');
 });
 
-$('table.orderMethodsTable .orderMethodsRefresh').on('click', function(){
+$('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     $(this).prev('.orderMethodsEdit').css('display', 'block');
     $(this).css('display', 'none');
     var closestTr = $(this).closest('tr');
-    
-    var name =  closestTr.find('[name=name]').val();
+
+    var name = closestTr.find('[name=name]').val();
     var name_front = closestTr.find('[name=name_front]').val();
     var get = closestTr.find('[name=get]').val();
     var tooltip = closestTr.find('[name=tooltip]').val();
     var locale = closestTr.data('locale');
     var id = closestTr.data('id');
-    
-    
+
+
     closestTr.find('.name').text(name).css('display', 'block');
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
@@ -1697,20 +1697,20 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function(){
     closestTr.find('[name=get]').css('display', 'none');
     closestTr.find('.tooltip_s').text(tooltip).css('display', 'block');
     closestTr.find('[name=tooltip]').css('display', 'none');
-    
+
     $.ajax({
-            type: "POST",
-            data:  {
-                id: id,
-                locale: locale,
-                name: name,
-                name_front: name_front,
-                get: get,
-                tooltip: tooltip                
-            },
-            url: '/admin/components/run/shop/settings/setSorting',
-            success: function(res) {
-                showMessage('Сообщение', 'Метод сортировки обновлен');
-            }
+        type: "POST",
+        data: {
+            id: id,
+            locale: locale,
+            name: name,
+            name_front: name_front,
+            get: get,
+            tooltip: tooltip
+        },
+        url: '/admin/components/run/shop/settings/setSorting',
+        success: function(res) {
+            showMessage(lang.message, lang.sortMethodUpdated);
+        }
     });
 });
