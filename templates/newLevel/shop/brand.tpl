@@ -30,7 +30,7 @@
                 <div class="frame-title">
                     <h1 class="d_i">{echo $model->getName()}</h1>
                 </div>
-                <span class="count">({lang('Found','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('{lang('product','newLevel')}','{lang('product','newLevel')}','{lang('products','newLevel')}'))})</span>
+                <span class="count">({lang('Found','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('{lang("product","newLevel")}','{lang("product","newLevel")}','{lang("products","newLevel")}'))})</span>
             </div>
 
             {if $totalProducts == 0}

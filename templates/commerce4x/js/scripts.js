@@ -262,7 +262,7 @@ function processPage() {
         }
     });
 }
-function initBtnBuy(){
+function initBtnBuy() {
     $(genObj.btnBuy).unbind().on('click', function() {
         Shop.Cart.countChanged = false;
         $(this).attr('disabled', 'disabled');
@@ -309,7 +309,7 @@ function initShopPage(showWindow) {
 
 
             $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');
-            totalPrice = cartItem.count * cartItem.price;
+            var totalPrice = cartItem.count * cartItem.price;
 
             pd.closest('tr').find(genObj.priceOrder).html(totalPrice.toFixed(pricePrecision));
 
@@ -368,19 +368,21 @@ function changeDeliveryMethod(id) {
         });
         $(genObj.pM).html(replaceStr);
 
-        cuSel({
-            changedEl: '#paymentMethod'
-        });
+        if (!ltie8)
+            cuSel({
+                changedEl: '#paymentMethod'
+            });
     });
 }
 
 
 function recountCartPage() {
     var ca = $('span.cuselActive');
+    if (ltie8)
+        ca = $('.met_del[selected]');
+
     Shop.Cart.shipping = parseFloat(ca.data('price'));
     Shop.Cart.shipFreeFrom = parseFloat(ca.data('freefrom'));
-    delete ca;
-
 
     if ($.isFunction(window.load_certificat)) {
         load_certificat();
@@ -396,11 +398,11 @@ function recountCartPage() {
 
     if (discount != null && discount != 0)
         finalAmount = finalAmount - parseFloat(discount['result_sum_discount_convert']);
-    
+
 
     if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
         finalAmount = finalAmount - parseFloat(Shop.Cart.gift.value);
-    
+
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
 
@@ -502,7 +504,9 @@ $(document).ready(function() {
         maxCost: $('#maxCost')
     });
 
-    if ($.exists('.lineForm')) {
+    $('.menu-main').menuPacket2(optionsMenu);
+
+    if (($.exists('.lineForm') && !$('#orderDetails').length > 0) || !ltie8) {
         var params = {
             changedEl: ".lineForm select",
             visRows: 100,
@@ -510,8 +514,7 @@ $(document).ready(function() {
         }
         cuSel(params);
     }
-    $('.menu-main').menuPacket2(optionsMenu);
-
+    
     $('.drop').drop({
         overlayColor: '#000',
         overlayOpacity: '0.6',
@@ -598,19 +601,17 @@ $(document).ready(function() {
     //Shop.Cart.countChanged = false;
 
     //shipping changing, re-render cart page
-    if ($.exists_nabir(methodDeliv))
-        methodDeliv.on('change', function() {
-            recountCartPage();
-            changeDeliveryMethod($('span.cuselActive').attr('val'));
-        });
 
     if ($('#orderDetails'))
         renderOrderDetails();
 
-    //shipping changing, re-render cart page
     if ($.exists_nabir(methodDeliv))
         methodDeliv.on('change', function() {
             recountCartPage();
+            if (!ltie8)
+                changeDeliveryMethod($('span.cuselActive').attr('val'));
+            else
+                changeDeliveryMethod($('.met_del[selected]').attr('value'));
         });
 
     $('#topCartCount').html(' (' + Shop.Cart.totalCount + ')');

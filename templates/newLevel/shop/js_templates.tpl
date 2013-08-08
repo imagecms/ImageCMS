@@ -316,7 +316,7 @@
         </span>
         </span>
         </div>
-        <% if (!document.getElementById('orderDetails')) { %>
+        <% if (!orderDetails) { %>
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
@@ -663,7 +663,7 @@
         </span>
         </span>
         </div>
-        <% if (!document.getElementById('orderDetails')) { %>
+        <% if (!orderDetails) { %>
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">

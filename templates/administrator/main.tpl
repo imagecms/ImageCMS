@@ -69,7 +69,7 @@
                                     </span>
                                     <span class="m-l_10">{lang('Preview','admin')} <a href="{$BASE_URL}" target="_blank">{lang('site','admin')} <span class="f-s_14">→</span></a></span>
                                 </div>
-                                <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}admin/admin_search{/if}" id="adminAdvancedSearch">
+                                <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
                                     <div class="input-append search">
                                         <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
                                         <div class="o_h">

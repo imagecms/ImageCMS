@@ -59,6 +59,8 @@ class discount extends classes\BaseDiscount {
             $this->get_amout_user();
             
             $discount_user = $this->get_user_discount();
+            
+            $discount_category = $this->discount_type['category'][0];
 
             $discount_group_user = $this->get_user_group_discount();
 
@@ -67,9 +69,10 @@ class discount extends classes\BaseDiscount {
             $discount_all_order = $this->get_all_order_discount_register();
             
         }
-
+   
         $this->result_discount = array(
                                 'all_order'=>$discount_all_order, 
+                                'category' => $discount_category,
                                 'comulative' => $discount_comulativ, 
                                 'user' => $discount_user, 
                                 'user_group' => $discount_group_user);
@@ -86,12 +89,11 @@ class discount extends classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_result_discount($render = null, $totalPrice = null) {
-
         if (null === $totalPrice)
             $totalPrice = $this->total_price;
         
         $discount_max = $this->get_max_discount($this->result_discount, $totalPrice);        
-
+        
         $discount_value_no_product = $this->get_discount_value($discount_max, $totalPrice);
 
         $discount_product_value = $this->get_discount_products();
@@ -213,7 +215,7 @@ class discount extends classes\BaseDiscount {
             if (!$disc['is_gift'])
                 if ($disc['begin_value'] <= (int)$this->total_price)
                     $all_order_arr_reg[] = $disc;
-
+                
         if (count($all_order_arr_reg) > 0)
             return $this->get_max_discount($all_order_arr_reg, $this->total_price);
         else

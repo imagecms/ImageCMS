@@ -9,19 +9,18 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-
-
+                    
                     <span style="position: relative">
                         <a href="#" onclick="$(this).next().slideToggle();return false" class="btn btn-small">Настройки шаблона</a>
                         <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
-                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разние шаблони для разных страниц
+                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> Использовать разные шаблоны для разных страниц
                         </div>
                     </span>
 
                     <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner')}</a>
                     <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('Delete')}</button>
                 </div>
-            </div>                            
+            </div>
         </div>
         <div class="tab-content">
             <div class="row-fluid">
@@ -65,7 +64,7 @@
                                                   onclick="ChangeBannerSliderActive(this,{echo $b['id']});"></span>
                                         </div>
                                     </td>
-                                    
+
                                     </div>
                                     </td>
                                 </tr>

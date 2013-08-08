@@ -53,7 +53,7 @@ class Core extends MY_Controller {
 
         $this->load->library('template');
 
-        if (!empty($_GET) && $this->uri->uri_string() == '')
+        if ((!empty($_GET) || strstr($_SERVER['REQUEST_URI'], '?')) && $this->uri->uri_string() == '')
             $this->template->registerCanonical(site_url());
 
         $last_element = key($this->uri->uri_to_assoc(0));
@@ -902,7 +902,6 @@ class Core extends MY_Controller {
                 else
                     $description = "$description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
 
-
             if ($this->settings['add_site_name_to_cat'])
                 if ($category != '')
                     $title .= ' - ' . $category;
@@ -926,6 +925,11 @@ class Core extends MY_Controller {
             if ($this->settings['add_site_name'] == 1 && $showsitename != 1) {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
+
+            if ($this->settings['create_description'] == 'empty')
+                $description = '';
+            if ($this->settings['create_keywords'] == 'empty')
+                $keywords = '';
 
             $this->template->add_array(array(
                 'site_title' => $title,

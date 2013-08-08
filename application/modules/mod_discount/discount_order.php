@@ -35,7 +35,6 @@ class Discount_order extends classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */        
     public function update_order_discount($data){
-
         if ($this->check_module_install()) {
             $discobj = new \mod_discount\discount;
             $discount = $discobj->init()->get_result_discount(1);

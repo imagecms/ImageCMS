@@ -97,7 +97,7 @@ class Admin extends BaseAdminController {
                 $config['total_rows'] = $total;
                 $config['per_page'] = $this->per_page;
                 $config['uri_segment'] = $this->uri->total_segments();
-                
+
                 $config['separate_controls'] = true;
                 $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
                 $config['full_tag_close'] = '</ul></div>';
@@ -114,7 +114,7 @@ class Admin extends BaseAdminController {
                 $config['num_tag_close'] = '</li>';
                 $config['num_tag_open'] = '<li>';
                 $config['num_tag_close'] = '</li>';
-                
+
                 $this->pagination->num_links = 5;
                 $this->pagination->initialize($config);
                 $this->template->assign('paginator', $this->pagination->create_links_ajax());
@@ -126,7 +126,7 @@ class Admin extends BaseAdminController {
 
         if(is_array($comments))
             $comments = $this->proccess_child_comments($comments);
-        
+
         $all_comments = count($this->db->get('comments')->result_array());
         $this->render('comments_list', array(
             'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
@@ -138,7 +138,7 @@ class Admin extends BaseAdminController {
             'all_comm_show' => $all_comments,
         ));
     }
-    
+
      public function proccess_child_comments($comments = array()) {
         $i = 0;
         foreach ($comments as $comment) {
@@ -192,7 +192,7 @@ class Admin extends BaseAdminController {
             'user_mail' => htmlspecialchars($this->input->post('user_mail')),
             'status' => (int) $this->input->post('status'),
         );
-        
+
         $this->comments->update($this->input->post('id'), $data);
 
         $comment = $this->comments->get_one($this->input->post('id'));
@@ -201,19 +201,18 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-//        $resp = "<script type='text/javascript'> showMessage(lang('Change saved'), lang('Success') . '<br/><strong>' . lang('Queries to the database') . ': 6</strong>',''); </script>";
-//
-//        echo json_encode(array('response'=> $resp, 'result'=> 'success'));
+
         showMessage(lang('Success'), lang('Change saved'));
-        $this->load->helper('url');
-        $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
-        pjax($url);
+
+        if ($this->input->post('action')=='exit')
+            pjax('/admin/components/run/shop/dashboard#last_comments');
+
     }
 
     public function update_status() {
         $this->db->where_in('id', $this->input->post('id'));
         $this->db->update('comments', array('status' => $this->input->post('status')));
-        
+
         //for children comments
 //        $this->db->where_in('parent', $this->input->post('id'));
 //        $this->db->update('comments', array('status' => $this->input->post('status')));
@@ -241,13 +240,14 @@ class Admin extends BaseAdminController {
             $this->drop_cache($id);
             $comment = $this->comments->get_one($id);
         }
-        
+
 
         $this->comments->delete($id);
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
-        
-        showMessage(lang('Comment (s) has been successfully deleted'));
+
+        showMessage(lang('Comment(s) deleted'));
+
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -329,13 +329,13 @@ class Admin extends BaseAdminController {
 
 	private function display_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;
 		$this->template->show('file:'.$file);
 	}
 
 	private function fetch_tpl($file)
 	{
-        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;  
+        $file =  realpath(dirname(__FILE__)).'/templates/'.$file;
 		return $this->template->show('file:'.$file);
 	}
 

@@ -111,7 +111,7 @@
                                         If there is a discount of "$model->firstVariant->toCurrency()" or "$model->firstVariant->getPrice"
                                         will display the price already discounted
                                         -->
-                                        <span class="f-w_b priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
+                                        <span class="f-w_b priceVariant">{echo $model->firstVariant->toCurrency()}</span> {$CS}
                                         <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
                                     </div>
                                     <!--
@@ -223,7 +223,7 @@
                         <li>
                             <button type="button" data-href="#info">
                                 <span class="icon-info"></span>
-                                <span class="text-el">Информацию</span>
+                                <span class="text-el">Информация</span>
                             </button>
                         </li>
                     {/if}
@@ -251,7 +251,7 @@
                     {/if}
                     <!--Output of the block if there is one accessory END-->
                     <!--Output of the block comments-->
-                    {if $Comments && $model->enable_comments}
+                    {if $Comments}
                         <li>
                             <button type="button" data-href="#comment" onclick="renderPosts($('[name=for_comments]'))">
                                 <span class="icon-comment-tab"></span>
@@ -260,7 +260,7 @@
                                         {if $Comments[$model->getId()][0] !== '0'}
                                             {echo $Comments[$model->getId()]}
                                         {else:}
-                                            Оставить отзыв
+                                            0 отзывов
                                         {/if}
                                     </span>
                                 </span>
@@ -519,5 +519,10 @@
 {widget('view_product')}
 {widget('similar')}
 </article>
+
 <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
+
+{if productPhotoCZoom == "1"}
+    <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
+{/if}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

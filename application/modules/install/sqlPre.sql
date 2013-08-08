@@ -182,7 +182,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (137, 'mailer', 'mailer', 1, 0, 0, NULL, 2),
 (153, 'share', 'share', 1, 0, 0, 'a:16:{s:4:"yaru";s:1:"1";s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:9:"odnoclass";s:1:"1";s:7:"myworld";s:1:"1";s:2:"lj";s:1:"1";s:2:"ff";s:1:"1";s:2:"mc";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:6:"button";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:5:"ghfgh";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', NULL),
 (177, 'banners', 'banners', 1, 0, 0, 'a:1:{s:8:"show_tpl";i:1;}', 55),
-(188, 'email', 'email', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
+(205, 'mod_discount', 'mod_discount', 1, 1, 0, NULL, NULL),
+(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
 
 -- --------------------------------------------------------
 
@@ -1901,7 +1902,7 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   `created` int(11) NOT NULL,
   `updated` int(11) NOT NULL,
   `old_price` float(10,2) DEFAULT NULL,
-  `views` int(11) DEFAULT NULL,
+  `views` int(11) DEFAULT '0',
   `hot` tinyint(1) DEFAULT NULL,
   `action` tinyint(1) DEFAULT NULL,
   `added_to_cart_count` int(11) DEFAULT NULL,
@@ -10394,10 +10395,11 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `theme`, `type`, `user_message`, `user_message_active`, `admin_message`, `admin_message_active`, `description`, `variables`) VALUES
 (1, 'make_order', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'Заказ товара', 'HTML', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Мы благодарны Вам за то, что совершили заказ в нашем магазине "ImageCMS Shop"</span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span></p>', 1, '<p>Пользователь&nbsp;<span>$userName$ совершил заказ товара&nbsp;</span></p>\n<p><span><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span></span></p>', 1, '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";}'),
 (2, 'change_order_status', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'Смена статуса заказа', 'HTML', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус вашего заказа изменен на&nbsp;<span>$status$</span></span><br /><br /><span>Вы указали следующие контактные данные:</span><br /><br /><span>Email адрес: $userEmail$</span><br /><br /><span>Номер телефона: $userPhone$</span><br /><br /><span>Адрес доставки: $userDeliver$</span><br /><br /><span>Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</span><br /><br /><span>Также, Вы можете всегда посмотреть за статусом Вашего заказа, перейдя по ссылке:&nbsp; $orderLink$.</span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', 1, '', 0, '<p>Смена статуса заказа</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";}'),
-(3, 'notification_email', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'Увидомление', 'HTML', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус товара $productName$&nbsp;за которым вы следите изменен на <span>$status$</span></span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', 1, '', 0, '<p>Увидомление о появлении</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";}'),
-(4, 'create_user', '', 'Admin', 'no-replay@shop.com', '', 'Создание пользователя', 'HTML', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', 1, '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', 1, '<p>Шаблон письма на создание пользователя.</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
-(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Восстановление пароля', 'HTML', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', 1, '', 0, 'Шаблон письма на  востановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на востановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
+(3, 'notification_email', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'Уведомление', 'HTML', '<p><span>Здравствуйте, $userName$.</span><br /><br /><span>Статус товара $productName$&nbsp;за которым вы следите изменен на <span>$status$</span></span><br /><br /><span>Спасибо за ваш заказ, искренне Ваши, сотрудники ImageCMS Shop.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь за телефонами:</span><br /><br /><span>+7 (095) 222-33-22 +38 (098) 222-33-22</span>&nbsp;</p>', 1, '', 0, '<p>Уведомление о появлении</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";}'),
+(4, 'create_user', '', 'Admin', 'no-replay@shop.com', '', 'Создание пользователя', 'HTML', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', 1, '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', 1, '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
+(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Восстановление пароля', 'HTML', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', 1, '', 0, 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
 (6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Смена пароля', 'HTML', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', 1, '', 0, '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}');
+
 
 
 --
@@ -10528,6 +10530,139 @@ INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `ph
 (3, 'shop/brand/samsung', 'ru', 'apple/samsung', '', '/uploads/shop/banners/template-imageshop-banner-3.jpg');
 
 
+--
+-- Структура таблиці `mod_discount_all_order`
+--
+
+DROP TABLE IF EXISTS `mod_discount_all_order`;
+CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `for_autorized` tinyint(4) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  `is_gift` tinyint(4) DEFAULT NULL,
+  `begin_value` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_brand`
+--
+
+DROP TABLE IF EXISTS `mod_discount_brand`;
+CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `brand_id` (`brand_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_category`
+--
+
+DROP TABLE IF EXISTS `mod_discount_category`;
+CREATE TABLE IF NOT EXISTS `mod_discount_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_comulativ`
+--
+
+DROP TABLE IF EXISTS `mod_discount_comulativ`;
+CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discount_id` int(11) DEFAULT NULL,
+  `begin_value` int(11) DEFAULT NULL,
+  `end_value` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_group_user`
+--
+
+DROP TABLE IF EXISTS `mod_discount_group_user`;
+CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_product`
+--
+
+DROP TABLE IF EXISTS `mod_discount_product`;
+CREATE TABLE IF NOT EXISTS `mod_discount_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_discount_user`
+--
+
+DROP TABLE IF EXISTS `mod_discount_user`;
+CREATE TABLE IF NOT EXISTS `mod_discount_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `discount_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `discount_id` (`discount_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_shop_discounts`
+--
+
+DROP TABLE IF EXISTS `mod_shop_discounts`;
+CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(25) DEFAULT NULL,
+  `name` varchar(150) DEFAULT NULL,
+  `active` tinyint(4) DEFAULT NULL,
+  `max_apply` int(11) DEFAULT NULL,
+  `count_apply` int(11) DEFAULT NULL,
+  `date_begin` int(11) DEFAULT NULL,
+  `date_end` int(11) DEFAULT NULL,
+  `type_value` tinyint(4) DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `type_discount` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key_UNIQUE` (`key`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

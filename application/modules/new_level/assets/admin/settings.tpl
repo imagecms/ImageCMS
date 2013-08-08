@@ -74,7 +74,7 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <a href="#" class="btn btn-small btn-success addType">
+                                                <a href="#properties" class="btn btn-small btn-success addType">
                                                     <i class="icon-plus icon-white"></i>&nbsp;Добавить новый тип свойства
                                                 </a>
                                             </div>
@@ -139,7 +139,7 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <a href="#" class="btn btn-small btn-success addColumn">
+                                                <a href="#columns" class="btn btn-small btn-success addColumn">
                                                     <i class="icon-plus icon-white"></i>&nbsp;Добавить новый тип свойства
                                                 </a>
                                             </div>

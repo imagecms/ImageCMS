@@ -256,6 +256,8 @@ class Pages extends BaseAdminController {
 
             $this->load->module('cfcm')->save_item_data($page_id, 'page');
 
+            $this->cache->delete_all();
+
             $this->on_page_add($data);
 
             $this->lib_admin->log(
@@ -579,6 +581,8 @@ class Pages extends BaseAdminController {
             $this->on_page_update($data);
 
             $this->load->module('cfcm')->save_item_data($page_id, 'page');
+
+            $this->cache->delete_all();
 
             //($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
 

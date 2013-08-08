@@ -40,11 +40,6 @@ class Commentsapi extends Comments {
         $this->load->model('base');
         $this->init_settings();
 
-//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
-//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
-//            // Comments fetched from cahce file
-//        } else {
-//        $this->db->where('module', 'shop');
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
@@ -79,7 +74,8 @@ class Commentsapi extends Comments {
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
-            'use_moderation' => $this->use_moderation
+            'use_moderation' => $this->use_moderation,
+            'enable_comments' => $this->enable_comments
         );
 
         if ($this->use_captcha == TRUE) {
@@ -93,8 +89,9 @@ class Commentsapi extends Comments {
                     ->setData($data)
                     ->registerStyle('comments')
                     ->fetchTemplate($this->tpl_name);
-        else
-            $comments = '';
+        else {
+            $comment = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -111,12 +108,6 @@ class Commentsapi extends Comments {
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
         $this->load->model('base');
         $this->init_settings();
-
-//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
-//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
-//            // Comments fetched from cahce file
-//        } else {
-//        $this->db->where('module', 'shop');
 
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
@@ -153,7 +144,8 @@ class Commentsapi extends Comments {
             'total_comments' => lang('lang_total_comments') . count($comments),
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
-            'use_moderation' => $this->use_moderation
+            'use_moderation' => $this->use_moderation,
+            'enable_comments' => $this->enable_comments
         );
 
         if ($this->use_captcha == TRUE) {
@@ -167,8 +159,9 @@ class Commentsapi extends Comments {
                     ->setData($data)
                     ->registerStyle('comments')
                     ->fetchTemplate($this->tpl_name);
-        else
-            $comments = '';
+        else {
+            $comment = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -200,8 +193,7 @@ class Commentsapi extends Comments {
 
             if ($id->enable_comments == 0)
                 $this->enable_comments = false;
-            else
-                return $id->id;
+            return $id->id;
         }
 
         if (strstr($url, "/image/")) {
@@ -226,8 +218,7 @@ class Commentsapi extends Comments {
 
             if ($id->comments_status == 0)
                 $this->enable_comments = false;
-            else
-                return $id->main_page_id;
+            return $id->main_page_id;
         }
 
         $paths = explode('/', $url);
@@ -240,14 +231,13 @@ class Commentsapi extends Comments {
 
         if ($id->comments_status == 0)
             $this->enable_comments = FALSE;
-        else
-            return $id->id;
+        return $id->id;
     }
 
     public function getModule($url) {
         if (strstr($url, '/shop/'))
             return 'shop';
-        
+
         if (strstr($url, 'shop/'))
             return 'shop';
 
@@ -353,7 +343,7 @@ class Commentsapi extends Comments {
         }
         if ($this->input->post('action') == 'newPost') {
             $email = $this->db->select('email')
-                    ->get_where('users', array('username' => $this->dx_auth->get_username()), 1)
+                    ->get_where('users', array('id' => $this->dx_auth->get_user_id()), 1)
                     ->row();
 
             if (!validation_errors()) {
