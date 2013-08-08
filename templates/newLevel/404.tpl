@@ -5,11 +5,11 @@
             <img src="{$THEME}{$colorScheme}/images/404.png"/>
             <div class="description">
                 {$error}
-                <div class="title">Страница не найдена</div>
-                <p><b>Такой страницы не существует или она была удалена.</b></p>
-                <p>Для продолжения работы вы можете проверить правильность написания адреса страницы, перейти на главную страницу сайта, воспользоваться поиском либо посетить предложенные разделы сайта</p>
+                <div class="title">{lang('Page not found','newLevel')}</div>
+                <p><b>{lang('This page does not exist or has been removed.','newLevel')}</b></p>
+                <p>{lang('To continue, you can check your address of the page, go to the home page, use the search or visit the proposed site sections','newLevel')}
                 <div class="btn-buy">
-                    <a href="{site_url()}" class="text-el">Перейти на главную</a>
+                    <a href="{site_url()}" class="text-el">{lang('Go to the home page','newLevel')}</a>
                 </div>
             </div>
         </div>
