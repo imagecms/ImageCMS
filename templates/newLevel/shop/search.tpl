@@ -3,7 +3,7 @@
 * @file Template for search results
 * @updated 26 February 2013;
 * Variables
-* $products:(оbject) instance of SProducts
+* $products:(object) instance of SProducts
 * $totalProducts: (int) Products amount
 * $brandsInSearchResult: (object) instance of SBrands
 * $pagination: (string) Show pagination
@@ -20,16 +20,16 @@
             {if $totalProducts != 0}
                 <div class="f-s_0 title-category">
                     <div class="frame-title">
-                        <h1 class="d_i"><span class="s-t">Результаты поиска</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
+                        <h1 class="d_i"><span class="s-t">{lang('Search results','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                     </div>
-                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
+                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('product','newLevel')}","{lang('product','newLevel')}","{lang('products','newLevel')}"))})</span>
                 </div>
             {/if}
             {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">По вашему запросу товаров не найдено</span>
+                        <span class="text-el">{lang('No items found','newLevel')}</span>
                     </div>
                 </div>
             {/if}
@@ -57,7 +57,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">Найдено в категориях:</div>
+                            <div class="title-h3 title">{lang('Found in categories','newLevel')}:</div>
                         </div>
                     </div>
                     <div class="inside-padd">
@@ -87,7 +87,7 @@
         {/if}
     </div>
 </div>
-    
+
 { /* }
 {count($tree)}
 {foreach $tree as $item}

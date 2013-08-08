@@ -9,8 +9,8 @@
 </style>	
 {/literal}
 <div class="error">
-	<h3 align="center">Внимание!</h3>
-	<p>Не обнаружен необходимый файл шаблона для меню <b>{$menu}</b></p>
+	<h3 align="center">{lang('Attention','newLevel')}!</h3>
+	<p>{lang('Not found the required template file for the menu','newLevel')}<b>{$menu}</b></p>
 	<ul>
 	{foreach $errors as $e}
 	<li>{if $tpl_folder}{$THEME}{$e.user_template}{else:}{$e.system_template}{/if}</li>
@@ -18,9 +18,9 @@
 	</ul>
 	<p>
 		{if $tpl_folder}
-		Проверьте наличие файла или измените настройки меню <b>{$menu}</b>
+		{lang('Check the file existing or change the menu settings','newLevel')} <b>{$menu}</b>
 		{else:}
-		Переустановите модуль меню
+		{lang('Reinstall the menu module','newLevel')}
 		{/if}
 	</p>
 </div>	
