@@ -5,7 +5,7 @@
         <button onclick="location='{shop_url('wish_list')}'">
             <span class="icon_wish_list"></span>
             <span class="text-wish-list f-s_0">
-                <span class="text-el">Список желаний (</span>
+                <span class="text-el">{lang('Wishlist','newLevel')}</span>
                 <span class="empty f-s_0">
                     <span class="text-el wishListCount"></span>
                 </span>

@@ -52,7 +52,7 @@
 
                             <div class="f_r__icsi-css">
                                 <span>
-                                    <span class="s-t">{lang('Сomment was helpful?','newLevel')}</span>
+                                    <span class="s-t">{lang('Comment was helpful?','newLevel')}</span>
                                     <span class="btn__icsi-css like__icsi-css">
                                         <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
                                             <span class="text-el">{lang('Yes','newLevel')} <span id="yesholder{$comment.id}">({echo $comment.like})</span></span>
@@ -73,7 +73,7 @@
                                     {if $com_ch.parent == $comment.id}
                                         <li>
                                             <div class="author-data-comment__icsi-css">
-                                                <span class="s-t">{lang('Сomment from','newLevel')}</span>
+                                                <span class="s-t">{lang('Comment from','newLevel')}</span>
                                                 <span class="author-comment__icsi-css">{$com_ch.user_name}</span>
                                                 <span class="date-comment__icsi-css">{date('d-m-Y H:i', $com_ch.date)}</span>
                                             </div>
