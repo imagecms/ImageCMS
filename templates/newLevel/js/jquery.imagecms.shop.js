@@ -2004,6 +2004,7 @@ var Shop = {
         totalCount: 0,
         totalPriceOrigin: 0,
         discount: 0,
+        kitDiscount: 0,
         popupCartSelector: 'script#cartPopupTemplate',
         shipping: 0,
         shipFreeFrom: 0,
