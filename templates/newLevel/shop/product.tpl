@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-
+{$NextCSIdCond = $NextCSId != null}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -100,7 +100,7 @@
                                                     <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
-                                            {if $NextCSId != null}
+                                            {if $NextCSIdCond}
                                                 <span class="price-add">
                                                     <span>
                                                         (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
@@ -153,7 +153,7 @@
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',1)}{/if}"
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -258,7 +258,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a {if !$sizeAddImg}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a {if $sizeAddImg == 0}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     {/*rel="position: 'xBlock'" */}
                     <span class="photo-block">
                         <span class="helper"></span>
@@ -374,7 +374,7 @@
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
-                                                                {if $NextCSId != null}
+                                                                {if $NextCSIdCond}
                                                                     <span class="price-add">
                                                                         <span>
 
@@ -427,7 +427,7 @@
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
-                                                                    {if $NextCSId != null}
+                                                                    {if $NextCSIdCond}
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
@@ -463,7 +463,7 @@
                                                                 <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
-                                                        {if $NextCSId != null}
+                                                        {if $NextCSIdCond}
                                                             <span class="price-add">
                                                                 <span>
                                                                     (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
@@ -478,8 +478,8 @@
                                                             data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                             data-price="{echo $kitProducts->getTotalPrice()}"
                                                             data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                            data-addprice="{if $NextCSId != null}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
-                                                            data-addprices="{if $NextCSId != null}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
+                                                            data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
+                                                            data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
                                                             data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
                                                             data-origprice='{echo $kitProducts->getTotalPriceOld()}'
                                                             data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
@@ -528,7 +528,7 @@
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".characteristic">Характеристики</button></li>
                 {/if}
                 {if $fullDescription = $model->getFullDescription()}
-                <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Полное описание</button></li>
+                <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">Полное описание</button></li>
                 {/if}
                 {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Аксессуары</button></li>
@@ -588,12 +588,10 @@
                 <div class="inside-padd">
                     <!--Start. Comments block-->
                     <div class="frame-form-comment">
-                        <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
-                        {literal}<script type="text/javascript">$(document).ready(function() {
-                            renderPosts($('#for_comments_view'), {countComment: 4});
-                        })</script>{/literal}
+                        {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
+                        <div name="for_comments" id="for_comments_view">
+                            {echo $c['comments']}
                         </div>
-
                         <!--End. Comments block-->
                     </div>
                     {if $accessories}
@@ -617,43 +615,46 @@
                         </div>
                     {/if}
                 </div>
-                <!--             Start. Characteristic-->
-                <div id="first">
-                    <div class="inside-padd">
-                        <div class="characteristic">
-                            <div class="preloader"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--                    End. Characteristic-->
-                <div id="second">
-                    <div class="inside-padd">
-                        <div class="preloader"></div>
-                    </div>
-                </div>
-                <div id="comment">
-                    <div class="inside-padd" name="for_comments">
-                        <div class="preloader"></div>
-                    </div>
-                </div>
-                <!--Block Accessories Start-->
-                {if $accessories}
-                    <div id="fourth" class="accessories">
-                        <div class="inside-padd">
-                            <div class="preloader"></div>
-                        </div>
-                    </div>
-                {/if}
-                <!--End. Block Accessories-->
             </div>
-            <!-- End. Tabs block       -->
+            <!--             Start. Characteristic-->
+            <div id="first">
+                <div class="inside-padd">
+                    <div class="characteristic">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <!--                    End. Characteristic-->
+            <div id="second">
+                <div class="inside-padd">
+                    <div class="text">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="comment">
+                <div class="inside-padd" name="for_comments">
+                    <div class="preloader"></div>
+                </div>
+            </div>
+            <!--Block Accessories Start-->
+            {if $accessories}
+                <div id="fourth" class="accessories">
+                    <div class="inside-padd">
+                        <div class="preloader"></div>
+                    </div>
+                </div>
+            {/if}
+            <!--End. Block Accessories-->
         </div>
+        <!-- End. Tabs block       -->
     </div>
-    <div class="horizontal-carousel">
-        {widget('similar')}
-    </div>
-    {widget('latest_news')}
+</div>
+<div class="horizontal-carousel">
+    {widget('similar')}
+</div>
+{widget('latest_news')}
 
-    <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-    {/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
-    <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

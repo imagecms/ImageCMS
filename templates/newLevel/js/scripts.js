@@ -127,7 +127,7 @@ var productStatus = {
     hit: '<span class="product-status hit"></span>',
     hot: '<span class="product-status nowelty"></span>',
     disc: function(disc) {
-        return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(pricePrecision) + '%</span></span>';
+        return '<span class="product-status discount"><span class="text-el">' + disc.toFixed(0) + '%</span></span>';
     }
 }
 imageCmsApiDefaults = {
@@ -353,6 +353,7 @@ function displayInfoDiscount(tpl) {
 }
 function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
+    Shop.Cart.kitDiscount = kitDiscount;
     if (obj != 0 || kitDiscount != 0) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
@@ -647,15 +648,18 @@ function recountCartPage(selectDeliv, methodDeliv) {
     }
 
     var discount = Shop.Cart.discount,
+            kitDiscount = parseFloat(Shop.Cart.kitDiscount),
             finalAmount = parseFloat(Shop.Cart.getFinalAmount()).toFixed(pricePrecision);
     if (discount != null && discount != 0)
         finalAmount = finalAmount - parseFloat(discount['result_sum_discount_convert']);
+    if (kitDiscount != 0)
+        finalAmount = finalAmount - kitDiscount;
     if (Shop.Cart.gift != undefined && Shop.Cart.gift != 0 && !Shop.Cart.gift.error)
         finalAmount = finalAmount - parseFloat(Shop.Cart.gift.value);
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
     $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
-    $('span#finalAmount').html(finalAmount.toFixed(pricePrecision));
+    $('span#finalAmount').html(parseFloat(finalAmount).toFixed(pricePrecision));
     $('span#finalAmountAdd').html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
     $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
     $('span.curr').html(curr);
@@ -1416,6 +1420,7 @@ jQuery(document).ready(function() {
     $('#variantSwitcher').live('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
+        console.log(liBlock);
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
         var vId = btnInfo.attr('data-id'),
                 vName = btnInfo.attr('data-vname'),

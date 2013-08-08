@@ -165,7 +165,7 @@
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-addPrice="{echo $pv->toCurrency('Price',1)}"
+                                        data-addPrice="{if $NextCSId != null}{echo $pv->toCurrency('Price',1)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
@@ -267,7 +267,7 @@
         {if $compare}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
-        {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
+        {if $wishlist && ShopCore::$ci->dx_auth->is_logged_in() === true}
             <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->

@@ -2,6 +2,7 @@
 <script type="text/javascript">
     var curr = '{$CS}',
             currNext = '{$NextCS}',
+            nextCs = '{$NextCSId != null ? true : false}'
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
             inCart = 'В корзине',
