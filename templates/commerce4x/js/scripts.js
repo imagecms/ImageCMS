@@ -506,15 +506,17 @@ $(document).ready(function() {
 
     $('.menu-main').menuPacket2(optionsMenu);
 
-    if ($.exists('.lineForm') && ($('#orderDetails').length > 0 && !ltie8)) {
-        var params = {
-            changedEl: ".lineForm select",
-            visRows: 100,
-            scrollArrows: true
+    if ($.exists('.lineForm')) {
+        if (!($('#orderDetails').length > 0 && ltie8)) {
+            var params = {
+                changedEl: ".lineForm select",
+                visRows: 100,
+                scrollArrows: true
+            }
+            cuSel(params);
         }
-        cuSel(params);
     }
-    
+
     $('.drop').drop({
         overlayColor: '#000',
         overlayOpacity: '0.6',
