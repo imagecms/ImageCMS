@@ -2,7 +2,7 @@
     <div class="frame-news">
         <div class="container">
             <div class="frame-title">
-                <div class="title-h1 d_i">Новости</div>
+                <div class="title-h1 d_i">{lang('News','newLevel')}</div>
                 <span class="s-all-d s-all-marg">
                     <a href="{site_url('novosti')}" class="t-d_n f-s_0"><span class="icon_arrow"></span><span class="text-el">Смотреть все</span></a>
                 </span>

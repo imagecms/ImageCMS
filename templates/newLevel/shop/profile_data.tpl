@@ -26,7 +26,7 @@
                 </label>
                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
                 <label>
-                    <span class="title">Адрес:</span>
+                    <span class="title">{lang('Address','newLevel')}:</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                     </span>
@@ -35,7 +35,7 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="Сохранить данные"/>
+                            <input type="submit" value="{lang('Save data','newLevel')}"/>
                         </span>
                     </span>
                 </div>
@@ -56,13 +56,13 @@
 
     <div class="layout-highlight info-discount">
         <div class="title-default">
-            <div class="title">Скидки пользователя</div>
+            <div class="title">{lang('User discounts','newLevel')}</div>
         </div>
         <div class="content">
             <ul class="items items-info-discount">
                 <li class="inside-padd">
                     <div>
-                        Куплено товаров на сумму:
+                        {lang('Bought goods worth','newLevel')}:
                         <span class="price-item">
                             <span class="text-discount">
                                 <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
