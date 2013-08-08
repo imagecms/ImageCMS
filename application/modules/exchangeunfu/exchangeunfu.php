@@ -13,7 +13,8 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        $e = new \exchangeunfu\exc();
+        $e->index();
     }
 
     public function autoload() {
