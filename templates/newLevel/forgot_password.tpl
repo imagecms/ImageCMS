@@ -9,18 +9,18 @@
         <div class="inside-padd">
             <div class="horizontal-form">
                 <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', '#forgot_password_form', {literal}{drop: '.drop-forgot', callback: function(msg, status, form, DS) {
-                    if (status) {
-                        hideDrop(DS.drop, form, DS.durationHideForm);
-                    }
-                    return true; /*for hide form*/
-                }}{/literal});
+                                if (status) {
+                                    hideDrop(DS.drop, form, DS.durationHideForm);
+                                }
+                                return true; /*for hide form*/
+                            }}{/literal});
                         return false;">
                     <div class="horizontal-form">
                         <label>
                             <span class="title">E-mail:</span>
                             <span class="frame-form-field">
                                 <input type="text" name="email" id="login" />
-                                <span class="help-block">На Вашу почту будет отправлен пароль</span>
+                                <span class="help-block">{lang('Password will be sent on your Email ','newLevel')}</span>
                                 <span class="must">*</span>
                             </span>
                         </label>
@@ -29,15 +29,15 @@
                             <div class="btn-form">
                                 <button type="submit">
                                     <span class="icon_forgot_password"></span>
-                                    <span class="text-el">Отправить</span>
+                                    <span class="text-el">{lang('Send','newLevel')}</span>
                                 </button>
                             </div>
                         </div>
                         <div class="frame-label">
                             <span class="title">&nbsp;</span>
                             <div class="frame-form-field">
-                                <div class="help-block">Я еще не зарегистрирован</div>
-                                <a href="/auth/register">Перейти к регистрации</a>
+                                <div class="help-block">{lang('I am not registered yet','newLevel')}</div>
+                                <a href="/auth/register">{lang('Go to the registration','newLevel')}</a>
                             </div>
                         </div>
                     </div>

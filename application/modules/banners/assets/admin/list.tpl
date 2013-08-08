@@ -60,7 +60,7 @@
 
                                     <td><p>{echo date('Y-m-d',$b['active_to'])}</p></td>
                                     <td>
-                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $b['active'] == 1}{lang('show')}{else:}{lang('don't show')}{/if}" >
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $b['active'] == 1}{lang('show')}{else:}{lang("don't show")}{/if}" >
                                             <span class="prod-on_off {if $b['active'] != 1 }disable_tovar{/if}" style="{if $b['active'] != 1 }left: -28px;{/if}" {if $b['active'] == 1 }rel="true"{else:}rel="false"{/if}
                                                   onclick="ChangeBannerSliderActive(this,{echo $b['id']});"></span>
                                         </div>
