@@ -45,13 +45,12 @@
                 </span>
             {/if}
             {if !$vertical}
-                {if $Comments[$p->getId()] && $p->enable_comments}
+                {if $Comments[$p->getId()] && $p->enable_comments && $Comments[$p->getId()] != 0}
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                            {$cc=$Comments[$p->getId()]}
-                            {intval($cc)}
-                            {echo SStringHelper::Pluralize($cc, array('отзыв','отзыва','отзывов'))}
+                            {intval($Comments[$p->getId()])}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array('отзыв','отзыва','отзывов'))}
                         </a>
                     </div>
                 {/if}
@@ -223,6 +222,7 @@
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons --------------------->
                             {foreach $variants as $key => $pv}
+                                {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 <!-- to wish list button -->
                                 <div class="variant_{echo $pv->getId()} variant btn-wish" {if $key != 0}style="display:none"{/if}>
                                     <button class="toWishlist"

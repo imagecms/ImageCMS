@@ -43,7 +43,7 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    countColumn: 5, //if not drop-side
+    //countColumn: 5, //if not drop-side
 
 //if need column partition level 2
     columnPart: true,
@@ -55,9 +55,9 @@ var optionsMenu = {
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
+    sub2Frame: '.frame-l2', //if drop-side
     sub3Frame: '.frame-l2',
-    //dropWidth: 600, //if not define than will be actual width needs when drop-side
+    dropWidth: 600, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
     frAClass: 'hoverM',
@@ -119,7 +119,8 @@ var optionsDrop = {
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     effon: 'fadeIn',
     effoff: 'fadeOut',
-    duration: 500
+    duration: 500,
+    notificationPlace: '.notification'
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -267,12 +268,11 @@ var genObj = {
     frameCurDiscount: '.frame-discount'
 };
 message = {
-    asdf: '11',
     success: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.scs + '"><p><span class = "icon_info"></span><span class="text-el">' + text + '</span></p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
     },
     error: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.err + '"><p><span class = "icon_info"></span><span class="text-el">' + text + '</span></p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
     }
 };
 //declaration shop functions
@@ -295,19 +295,19 @@ function deleteWishListItem(el, id, vid) {
 }
 function processWishComp() {
 //wishlist checking
-    var WishList = Shop.WishList.all();
-    $('.' + genObj.toWishlist).each(function() {
-        if (WishList.indexOf($(this).data('prodid') + '_' + $(this).data('varid')) !== -1) {
-            var $this = $(this);
-            $this.removeClass(genObj.toWishlist).addClass(genObj.inWishlist).parent().addClass(genObj.wishListIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
-        }
-    });
-    $('.' + genObj.inWishlist).each(function() {
-        if (WishList.indexOf($(this).data('prodid') + '_' + $(this).data('varid')) === -1) {
-            var $this = $(this);
-            $this.addClass(genObj.toWishlist).removeClass(genObj.inWishlist).parent().removeClass(genObj.wishListIn).end().attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
-        }
-    });
+//    var WishList = Shop.WishList.all();
+//    $('.' + genObj.toWishlist).each(function() {
+//        if (WishList.indexOf($(this).data('prodid') + '_' + $(this).data('varid')) !== -1) {
+//            var $this = $(this);
+//            $this.removeClass(genObj.toWishlist).addClass(genObj.inWishlist).parent().addClass(genObj.wishListIn).end().attr('data-title', $this.attr('data-sectitle')).find(genObj.textEl).text($this.attr('data-sectitle'));
+//        }
+//    });
+//    $('.' + genObj.inWishlist).each(function() {
+//        if (WishList.indexOf($(this).data('prodid') + '_' + $(this).data('varid')) === -1) {
+//            var $this = $(this);
+//            $this.addClass(genObj.toWishlist).removeClass(genObj.inWishlist).parent().removeClass(genObj.wishListIn).end().attr('data-title', $this.attr('data-firtitle')).find(genObj.textEl).text($this.attr('data-firtitle'));
+//        }
+//    });
     //comparelist checking
     var comparelist = Shop.CompareList.all();
     $('.' + genObj.toCompare).each(function() {
@@ -1013,14 +1013,28 @@ jQuery(document).ready(function() {
                 carouselInDrop.addClass('visited')
                 carouselInDrop.myCarousel(carousel);
             }
+            if (dropEl.hasClass('drop-wishlist')) {
+                dropEl.nStRadio({
+                    wrapper: $(".frame-label"),
+                    elCheckWrap: '.niceRadio',
+                });
+            }
             dropEl.find('form input[type="text"]:first').focus();
         },
         close: function(el, dropEl) {
             if ($(dropEl).hasClass('frame-already-show'))
                 $('.frame-user-toolbar').css({'width': body.width(), 'z-index': 100})
         }
+    }));
+    $(document).bind('drop.successJson', function(e) {
+        if (e.el.is('#notification')) {
+            if (e.datas.answer == "success")
+                e.el.find(optionsDrop.notificationPlace).empty().append(message.success(e.datas.data))
+            else
+                e.el.find(optionsDrop.notificationPlace).empty().append(message.error(e.datas.data))
+        }
     })
-            );
+
     $('.tabs').tabs({
         after: function(el) {
             if (el.hasClass('tabs-compare-category')) {
@@ -1058,6 +1072,9 @@ jQuery(document).ready(function() {
         }
     });
     $('#suggestions').autocomplete();
+    $(document).bind('autocomplete.fewLength', function(e) {
+        e.inputString.tooltip({'title': text.search(e.minValue)})
+    })
     if (productPhotoFancybox) {
         try {
             var frameAddImgThumb = $('[data-rel="mainThumbPhoto"]').children();
@@ -1136,15 +1153,15 @@ jQuery(document).ready(function() {
                 }
             })
 
-            if (productPhotoCZoom) {
-                $('.item-product .items-thumbs > li > a').bind('click', function(e) {
-                    e.preventDefault();
-                    var $this = $(this);
-                    $this.parent().siblings().removeClass('active').end().addClass('active');
-                })
-            }
         } catch (e) {
         }
+    }
+    if (productPhotoCZoom) {
+        $('.item-product .items-thumbs > li > a').bind('click', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            $this.parent().siblings().removeClass('active').end().addClass('active');
+        })
     }
     if (!productPhotoFancybox && !productPhotoCZoom) {
         $('.item-product .items-thumbs > li > a').bind('click', function(e) {
@@ -1527,7 +1544,6 @@ wnd.load(function() {
         effect: "fadeIn"
     });
     wnd.scroll(); //for lazy load start initialize
-    console.log(productPhotoCZoom)
     if (productPhotoCZoom) {
         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
         body.append('<style id="forCloudZomm"></style>')

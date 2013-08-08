@@ -26,6 +26,10 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
+function serializeForm(el) {
+    var $this = $(el);
+    return $this.attr('data-data', $this.closest('form').serialize());
+}
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
@@ -76,6 +80,46 @@ $.onlyNumber = function(el) {
         }
     });
 }
+$.fn.pricetext = function(e, rank) {
+    var $this = $(this);
+    rank != undefined ? rank = rank : rank = true;
+    $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
+    return $this;
+}
+
+$(document).bind('textanimatechange', function(e) {
+    var $this = e.el,
+            nv = e.nvalue,
+            ov = e.ovalue,
+            rank = e.rank,
+            dif = nv - ov,
+            temp = ov;
+
+    if (dif > 0) {
+        var ndif = dif,
+                step = Math.floor(dif / 100);
+    }
+    else
+    {
+        ndif = Math.abs(dif),
+                step = -Math.floor(ndif / 100);
+    }
+    var cond = '',
+            numb = setInterval(function() {
+        temp += step;
+        cond = temp < nv;
+        if (dif < 0)
+            cond = temp > nv;
+        if (cond && step != 0)
+            $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp)
+        else {
+            $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv)
+            clearInterval(numb)
+            temp = nv;
+        }
+    }, 1)
+
+})
 function setcookie(name, value, expires, path, domain, secure)
 {
     var today = new Date();
@@ -219,7 +263,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass(activeClass).parent().removeClass(activeClass);
                 input.attr("checked", false);
             });
@@ -230,7 +274,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass(activeClass).addClass('disabled').parent().addClass('disabled').removeClass(activeClass);
                 input.attr('disabled', 'disabled').removeAttr('checked');
             });
@@ -241,7 +285,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass('disabled').parent().removeClass('disabled');
                 input.removeAttr('disabled');
             });
@@ -273,22 +317,30 @@ var ie = jQuery.browser.msie,
             var $this = $(this);
             if ($.existsN($this)) {
                 $this.each(function() {
-                    var $this = $(this);
-                    var after = settings.after,
+                    var $this = $(this),
+                            after = settings.after,
                             before = settings.before,
                             classRemove = settings.classRemove,
                             wrapper = settings.wrapper,
-                            elCheckWrap = settings.elCheckWrap;
+                            elCheckWrap = settings.elCheckWrap,
+                            input = $this.find(elCheckWrap).find('input');
                     $this.find(elCheckWrap).each(function() {
                         methods.changeRadioStart($(this), classRemove, after, true);
                     });
+                    input.each(function() {
+                        var input = $(this);
+                        $(input.data('link')).focus(function(e) {
+                            if (e.which == 0)
+                                methods.radioCheck(input.parent(), input, after, false);
+                        })
+                    })
                     $this.find(wrapper).unbind('click.radio').bind('click.radio', function(e) {
                         if (!$(this).find('input').is(':disabled')) {
                             before($(this));
                             methods.changeRadio($(this).find(elCheckWrap), after, false);
                         }
                     });
-                    $this.find(elCheckWrap).find('input').bind('mousedown change', function(e) {
+                    input.bind('mousedown change', function(e) {
                         return false;
                     })
                 })
@@ -297,7 +349,7 @@ var ie = jQuery.browser.msie,
         changeRadioStart: function(el, classRemove, after, start)
         {
             var input = el.find("input");
-            if (input.attr("checked")) {
+            if (input.is(":checked")) {
                 methods.radioCheck(el, input, after, start);
             }
             el.removeClass(classRemove);
@@ -312,9 +364,10 @@ var ie = jQuery.browser.msie,
             el.addClass(activeClass);
             el.parent().addClass(activeClass);
             input.attr("checked", true);
+            $(input.data('link')).focus();
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
                 methods.radioUnCheck($(this).parent(), $(this))
-            })
+            });
             after(el, start);
             $(document).trigger({'type': 'nStRadio.RC', 'el': el, 'input': input});
         },
@@ -342,7 +395,8 @@ var ie = jQuery.browser.msie,
                 item: 'ul > li',
                 duration: 300,
                 searchPath: "/shop/search/ac",
-                inputString: $('#inputString')
+                inputString: $('#inputString'),
+                minValue: 3
             }, options);
             function postSearch() {
                 $(document).trigger({'type': 'autocomplete.before', 'el': inputString});
@@ -445,15 +499,23 @@ var ie = jQuery.browser.msie,
                     durationA = settings.duration,
                     searchPath = settings.searchPath,
                     selectorPosition = -1,
-                    inputString = settings.inputString;
+                    inputString = settings.inputString,
+                    minValue = settings.minValue;
+
             inputString.keyup(function(event) {
-                if (!event)
-                    var event = window.event;
-                var code = event.keyCode;
-                if (code != 27 && code != 40 && code != 38 && code != 13 && inputString.val().length != 0 && $.trim(inputString.val()) != "")
-                    postSearch();
-                else if (inputString.val().length == 0)
-                    closeFrame();
+                var inputValL = inputString.val().length;
+                if (inputValL > minValue) {
+                    inputString.tooltip('remove');
+                    if (!event)
+                        var event = window.event;
+                    var code = event.keyCode;
+                    if (code != 27 && code != 40 && code != 38 && code != 13 && inputValL != 0 && $.trim(inputString.val()) != "")
+                        postSearch();
+                    else if (inputValL == 0)
+                        closeFrame();
+                }
+                else 
+                    $(document).trigger({type: 'autocomplete.fewLength', el:inputString, value: minValue});
             }).blur(function() {
                 closeFrame();
             });
@@ -486,14 +548,28 @@ var ie = jQuery.browser.msie,
             tooltip.text(settings.title);
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'notalways')
+
+            var tempeff = false;
+            if (settings.effect == 'notalways') {
                 tooltip.hide();
-            tooltip.css({
-                'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
-                'top': this.offset().top - tooltip.actual('outerHeight')
-            }).stop().fadeIn(300, function() {
-                $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
-            });
+                tempeff = 'stop';
+            }
+            if (tempeff) {
+                tooltip.css({
+                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                    'top': this.offset().top - tooltip.actual('outerHeight')
+                }).stop().fadeIn(300, function() {
+                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                });
+            }
+            else {
+                tooltip.css({
+                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                    'top': this.offset().top - tooltip.actual('outerHeight')
+                }).fadeIn(300, function() {
+                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                });
+            }
             $this.unbind('mouseout.tooltip').bind('mouseout.tooltip', function() {
                 $(this).tooltip('remove');
             })
@@ -672,7 +748,7 @@ var ie = jQuery.browser.msie,
                                 count += $this.children().children(':not(:regex(class,x([0-9]+)))').length;
                                 $this.addClass('x' + count)
                             })
-                            $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
+                        $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                     }
                 }
                 var k = [],
@@ -1395,6 +1471,8 @@ var ie = jQuery.browser.msie,
                 place: 'center',
                 dataSource: $('[data-drop]'),
                 placement: 'noinherit',
+                notification: false,
+                always: false,
                 before: function() {
                 },
                 after: function() {
@@ -1410,6 +1488,8 @@ var ie = jQuery.browser.msie,
                     effon = settings.effon,
                     effoff = settings.effoff,
                     duration = settings.duration, close = settings.close,
+                    notification = settings.notification,
+                    always = settings.always,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
                 var $this = $(this);
@@ -1436,7 +1516,6 @@ var ie = jQuery.browser.msie,
                         });
                     });
                     var $thisEOn = elSet.effectOn || effon,
-                            $thisEOff = elSet.effectOff || effoff,
                             $thisD = elSet.duration || duration,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
@@ -1501,22 +1580,38 @@ var ie = jQuery.browser.msie,
                 }
 
                 $this.parent().addClass(activeClass);
-                elSetSource = $(elSet.drop);
-                if ($.existsN(elSetSource)) {
+                var elSetSource = $(elSet.drop),
+                        newNotification = elSet.notification || notification;
+                newAlways = elSet.always || always;
+                if ($.existsN(elSetSource) && !newNotification && !newAlways) {
                     if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                         body.append(elSetSource)
                     showDrop(elSetSource, false, e);
                 }
-                else if (elSet.source) {
-                    if ($.inArray(elSet.source, arrDrop) != 0) {
+                else if (elSet.source || newAlways) {
+                    if ($.inArray(elSet.source, arrDrop) != 0 || newNotification || newAlways) {
                         arrDrop.push(elSet.source);
-                        $.post(elSet.source, function(data) {
-                            body.append(data);
-                            elSetSource = $(elSet.drop);
-                            var el = elSetSource.find('[data-drop]');
-                            methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
-                            showDrop(elSetSource, true, e);
-                        })
+                        if (!newNotification)
+                            elSetSource.remove();
+                        $.ajax({
+                            type: "post",
+                            data: elSet.data,
+                            url: elSet.source,
+                            dataType: elSet.type ? elSet.type : 'html',
+                            success: function(data) {
+                                if (elSet.type != 'html' && elSet.type != undefined && newNotification) {
+                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
+                                }
+                                else {
+                                    $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
+                                    body.append(data);
+                                }
+                                console.log(1)
+                                elSetSource = $(elSet.drop);
+                                var el = elSetSource.find('[data-drop]');
+                                methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
+                                showDrop(elSetSource, true, e);
+                            }})
                     }
                 }
                 return false;
@@ -1561,7 +1656,7 @@ var ie = jQuery.browser.msie,
                         if (typeof sel == 'function')
                             sel();
                     });
-                    $(document).trigger({'type': 'drop.hide', el: elSetSource})
+                    $(document).trigger({'type': 'drop.hide', el: $this})
                 });
             }
             else {
@@ -1613,7 +1708,7 @@ var ie = jQuery.browser.msie,
                 if ($thisL == 0)
                     elSetSource.css('margin-left', 0);
             }
-            if ($thisP == 'center') {
+            if ($thisP == 'center' && !$this.data('notification')) {
                 if ($(document).height() - wnd.height() > 0) {
                     body.addClass('isScroll');
                 }

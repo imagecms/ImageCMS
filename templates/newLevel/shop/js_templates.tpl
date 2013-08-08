@@ -295,8 +295,10 @@
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
+        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
+        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
@@ -631,7 +633,7 @@
         <div class="frame-foot">
         <div class="header-frame-foot">
         <div class="inside-padd">
-        
+
         <span class="frame-discount">
         <span class="s-t">Ваша текущая скидка:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
@@ -642,8 +644,10 @@
         <span class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price genSumDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %><%}%></span>
+        <%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%>
+        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
+        <%}%>
         </span>
         </span>
         <span class="current-prices f-s_0">
@@ -772,4 +776,12 @@
             <div class="description">Найдено <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
+    </div>
+    <div class="drop drop-style" id="notification">
+        <div class="drop-content">
+            <div class="inside-padd notification">
+
+            </div>
+        </div>
+        <div class="drop-footer"></div>
     </div>
