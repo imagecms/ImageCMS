@@ -6,7 +6,7 @@ $gettext_pattern = array(
   "~lang\(\"(.*?)\"~" // search for smarty modifier: {t}Text to be localized{/t}
 );
 
-define('_DAT', '/var/www/image.loc/_temp2.php');
+define('_DAT', '/var/www/image.loc/_temp.php');
 
 function _log($s) {
 	$f=fopen(_DAT,'wb');

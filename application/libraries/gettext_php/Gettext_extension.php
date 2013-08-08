@@ -80,7 +80,7 @@ class Gettext_Extension extends Gettext
 
     public function switchDomain($directory, $domain, $locale) {
         $this->addDomain($directory, $domain, $locale);
-        textdomain($domain);
+        //textdomain($domain);
     }
 
     /**
