@@ -1,19 +1,29 @@
 <?php
+
 namespace exchangeunfu;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
  * Module Frame
  */
-class Exc extends MY_Controller {
+class exc {
+
+    /**
+     * Path to upload dir
+     * @var string
+     */
+    private $pass = './application/modules/exchangeunfu/';
 
     public function __construct() {
-        parent::__construct();
+
     }
 
     public function index() {
-        echo 1;
+        $xml = simplexml_load_file($this->pass . 'export.xml');
+
+        var_dump($xml->СписокОрганизаций);
     }
 
 }
