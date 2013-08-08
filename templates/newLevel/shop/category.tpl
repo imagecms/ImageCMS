@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="d_i title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('{lang('product','newLevel')}','{lang('product','newLevel')}','{lang('products','newLevel')}'))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('product','newLevel')}","{lang('product','newLevel')}","{lang('products','newLevel')}"))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}

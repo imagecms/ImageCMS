@@ -226,7 +226,7 @@ renderPosts = function(el, data) {
 
                 if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').append(obj.commentsCount);
+                    $('#cc').html(parseInt(obj.commentsCount) +' '+ pluralStr(parseInt(obj.commentsCount), plurComments));
                 }
                 $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }

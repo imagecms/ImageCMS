@@ -249,6 +249,21 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         parent::do_upload();
         return $this->return_json();
     }
+    
+    /**
+     * return sting format information about user wish list items
+     */
+    public function sync() {
+        $user_id = $this->dx_auth->get_user_id();
+        if ($user_id) {
+            $wish_lists = $this->wishlist_model->getUserWishListsByID($user_id);
+            $str = '[';
+            foreach ($wish_lists as $key => $value) {
+                $str .= '"' . $value['wish_list_id'] . '_' . $value['product_id'] . '_' . $value['variant_id'] . '",';
+            }
+            echo rtrim($str, ',') . ']';
+        }
+    }
 
     /**
      * return json method results

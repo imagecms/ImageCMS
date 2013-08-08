@@ -2,7 +2,7 @@
     <label>
         <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
     </label>
-{/if}{echo $use_moderation}
+{/if}
 <div id="comment__icsi-css" class="comment__icsi-css">
     {if $comments_arr}
         <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
@@ -38,6 +38,7 @@
                     </div>
                     <div class="func-button-comment__icsi-css">
                         {if $can_comment == 0 OR $is_logged_in}
+
                             <div class="btn__icsi-css f_l__icsi-css">
                                 <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                     <span class="icon-comment__icsi-css">
@@ -89,6 +90,7 @@
         </ul>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
+
         <div class="main-form-comments__icsi-css">
             <div class="frame-comments__icsi-css">
                 <div class="inside-padd">
@@ -193,7 +195,6 @@
             </div>
         </div>
     {/if}
-
     <div class="frame-drop-comment__icsi-css" data-rel="whoCloneAddPaste">
         <div class="form-comment__icsi-css form__icsi-css">
             <form>
@@ -244,4 +245,5 @@
             </form>
         </div>
     </div>
+
 </div>

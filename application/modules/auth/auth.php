@@ -19,7 +19,7 @@ class Auth extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        
+
         $this->min_password = ($this->config->item('DX_login_min_length')) ? $this->config->item('DX_login_min_length') : $this->min_password;
         $this->max_password = ($this->config->item('DX_login_max_length')) ? $this->config->item('DX_login_max_length') : $this->max_password;
 

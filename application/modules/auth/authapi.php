@@ -47,7 +47,7 @@ class Authapi extends MY_Controller {
                 $jsonResponse['msg'] = 'User logged in success';
                 $jsonResponse['status'] = TRUE;
                 $jsonResponse['refresh'] = TRUE;
-                $jsonResponse['redirect'] = TRUE;
+                $jsonResponse['redirect'] = FAlSE;
             } else {
 
                 /** Check if the user is failed logged in because user is banned user or not */
@@ -102,7 +102,7 @@ class Authapi extends MY_Controller {
             $jsonResponse['msg'] = lang('Logout completed', 'auth');
             $jsonResponse['status'] = TRUE;
             $jsonResponse['refresh'] = TRUE;
-            $jsonResponse['redirect'] = TRUE;
+            $jsonResponse['redirect'] = FALSE;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';
@@ -351,6 +351,23 @@ class Authapi extends MY_Controller {
             'msg' => lang("Your account has been blocked.") . $this->ban_reason,
             'status' => true,
         ));
+    }
+    
+     /**
+     * Check if user logined
+     */
+    public function is_logined() {
+        if($this->dx_auth->is_logged_in()){
+            echo json_encode(array(
+                'msg' => lang('lang_user_logined'),
+                'status' => true,
+            ));
+        }else{
+            echo json_encode(array(
+                'msg' => lang('lang_user_not_logined'),
+                'status' => false,
+            ));
+        }
     }
 
     /**

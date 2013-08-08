@@ -83,11 +83,9 @@
                                                                     {/if}
                                                                     name="met_del"
                                                                     class="met_del"
-                                                                    value="{echo $del_id}"
                                                                     data-price="{echo ShopCore::app()->SCurrencyHelper->convert(ceil($deliveryMethod->getPrice()))}"
-                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
-                                                                {echo $deliveryMethod->getName()}
-                                                                </option>
+                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
+                                                                    value="{echo $del_id}">{echo $deliveryMethod->getName()}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -110,8 +108,7 @@
                                                                                 {$counter = false}
                                                                                 {$pay_id = $paymentMethod->getId()}
                                                                             {/if}
-                                                                            value="{echo $pay_id}"
-                                                                            />
+                                                                            value="{echo $pay_id}">
                                                                         {echo $paymentMethod->getName()}
                                                                         </option>
                                                                     </label>

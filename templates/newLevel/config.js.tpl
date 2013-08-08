@@ -22,11 +22,15 @@
             inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}"),
             inServerCompare = parseInt("{$cnt_comp}"),
             theme = "{$THEME}";
+
     //plurProd = ['товар', 'товара', 'товаров'];
     //plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
-    plurProd = [{lang('product','newLevel')}, {lang('product','newLevel')}, {lang('products','newLevel')}];
-    plurKits = [{lang('set','newLevel')}, {lang('set','newLevel')}, {lang('sets','newLevel')}];
+    plurProd = [{lang("product","newLevel")}, {lang("product","newLevel")}, {lang("products","newLevel")}];
+    plurKits = [{lang("set","newLevel")}, {lang("set","newLevel")}, {lang("sets","newLevel")}];
+    plurComments = [{lang("comment","newLevel")}, {lang("comment","newLevel")}, {lang("comments","newLevel")}];
 
+    var productPhotoFancybox = "0",
+            productPhotoCZoom = "1";
 </script>
 {literal}
     <script type="text/javascript">

@@ -157,13 +157,21 @@ class CI_Upload {
 			return FALSE;
 		}
 
-		if ($i == 0)
+		if ($i == 0){
                     $file = $_FILES[$field]['tmp_name'];
+                    $error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];
+
+                }
                 else
+                {
                     $file = $_FILES[$field]['tmp_name'][$i];
+                    $error = ( ! isset($_FILES[$field]['error'][$i])) ? 4 : $_FILES[$field]['error'][$i];
+
+                }
 		// Was the file able to be uploaded? If not, determine the reason why.
 		if ( ! is_uploaded_file($file))
 		{
+
 			switch($error)
 			{
 				case 1:	// UPLOAD_ERR_INI_SIZE

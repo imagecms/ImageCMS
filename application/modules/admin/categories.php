@@ -231,7 +231,7 @@ class Categories extends BaseAdminController {
 
                     $this->load->module('cfcm')->save_item_data($cat_id, 'category');
 
-                    $this->lib_category->clear_cache();
+                    $this->cache->delete_all();
 
                     // Clear lib_category data
                     $this->lib_category->categories = array();
@@ -261,7 +261,7 @@ class Categories extends BaseAdminController {
                     break;
             }
 
-            $this->lib_category->clear_cache();
+            $this->cache->delete_all();
 
             //updateDiv('categories', site_url('/admin/categories/update_block')); // Update categories on workspace
         }
@@ -345,7 +345,7 @@ class Categories extends BaseAdminController {
                 ($hook = get_hook('admin_fast_cat_insert')) ? eval($hook) : NULL;
 
                 $id = $this->cms_admin->create_category($data);
-                $this->lib_category->clear_cache();
+                $this->cache->delete_all();
 
                 $this->lib_admin->log(
                         lang("Category has been created or created a category","admin") .
@@ -382,7 +382,7 @@ class Categories extends BaseAdminController {
      */
     function edit($id) {
         //cp_check_perm('category_edit');
-    
+
         $cat = $this->cms_admin->get_category($id);
 
         /** Init Event. Pre Create Category */
@@ -465,8 +465,10 @@ class Categories extends BaseAdminController {
                     $this->db->update('category_translate', $data);
                 }
 
-                $this->lib_category->clear_cache();
+
+                $this->cache->delete_all();
                 showMessage(lang("Category translation updated","admin"));
+
                 $active = $_POST['action'];
 
                 if ($active == 'close') {
@@ -592,8 +594,10 @@ class Categories extends BaseAdminController {
         if ($CI->db->get_where('components', array('name' => 'sitemap'))->row())
             $CI->load->module('sitemap')->ping_google($this);
 
-        $this->lib_category->clear_cache();
-        showMessage(lang("Category has been deleted","admin"));
+
+        $this->cache->delete_all();
+
+        showMessage(lang("Category deleted","admin"));
 
         return TRUE;
     }
