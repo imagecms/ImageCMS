@@ -245,7 +245,7 @@
                     <!--  End. Description -->
                     <!--Start .Share-->
                     <dl class="social-product">
-                        
+
                     </dl>
                     <!-- End. Share -->
                 </div>
@@ -279,10 +279,8 @@
                         <div class="d-i_b">
                             <span class="s-t">Покупатели оставили</span>
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
-                                {$cc=$Comments[$model->getId()]}
-                                {intval($cc)}
-                                {echo SStringHelper::Pluralize($cc, array('отзыв','отзыва','отзывов'))}
-                                {$cc=0}
+                                {intval($Comments[$model->getId()])}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array('отзыв','отзыва','отзывов'))}
                             </button>
                         </div>
                     </div>
@@ -556,33 +554,36 @@
         <div class="frame-tabs-ref frame-tabs-product">
             <div id="view">
                 <!--             Start. Characteristic-->
-                <div class="inside-padd">
-                    <h3>Характеристики</h3>
-                    <div class="characteristic">
-                        <div class="product-charac">
-                            {echo $dl_properties}
+                {if $dl_properties}
+                    <div class="inside-padd">
+                        <h3>Характеристики</h3>
+                        <div class="characteristic patch-product-view">
+                            <div class="product-charac">
+                                {echo $dl_properties}
+                            </div>
+                            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
+                                <span class="icon_arrow"></span>
+                                <span class="text-el">Смотреть все характеристики</span>
+                            </button>
                         </div>
-                        <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
+                    </div>
+                {/if}
+                {if $fullDescription != ''}
+                    <div class="inside-padd">
+                        <!--                        Start. Description block-->
+                        <div class="product-descr patch-product-view">
+                            <div class="text">
+                                <h3>{echo  ShopCore::encode($model->getName())}</h3>
+                                {echo $fullDescription}
+                            </div>
+                        </div>
+                        <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                             <span class="icon_arrow"></span>
-                            <span class="text-el">Смотреть все характеристики</span>
+                            <span class="text-el">Смотреть полное описание</span>
                         </button>
+                        <!--                        End. Description block-->
                     </div>
-                </div>
-
-                <div class="inside-padd">
-                    <!--                        Start. Description block-->
-                    <div class="product-descr">
-                        <div class="text">
-                            <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            {echo $fullDescription}
-                        </div>
-                    </div>
-                    <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
-                        <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть полное описание</span>
-                    </button>
-                    <!--                        End. Description block-->
-                </div>
+                {/if}
 
                 <div class="inside-padd">
                     <!--Start. Comments block-->
@@ -631,7 +632,7 @@
                     </div>
                 </div>
                 <div id="comment">
-                    <div class="inside-padd">
+                    <div class="inside-padd" name="for_comments">
                         <div class="preloader"></div>
                     </div>
                 </div>
@@ -652,6 +653,7 @@
         {widget('similar')}
     </div>
     {widget('latest_news')}
-    <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+
     <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-    {/*}<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>{*/}
+    {/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
+    <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

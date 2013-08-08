@@ -1,10 +1,11 @@
 {include_tpl('filter_opt')}
 <div class="frames-checks-sliders">
-    <div class="frame-slider" id="frame-slider1">
+    <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
             <div class="title">Цена в гривнах</div>
             <div class="slider-cont">
                 <noscript>Джаваскрипт не включен</noscript>
+                {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
                 <div class="slider" id="slider1">
                     <a href="#" class="ui-slider-handle left-slider"></a>
                     <a href="#" class="ui-slider-handle right-slider"></a>
@@ -12,6 +13,7 @@
             </div>
             <div class="form-cost number">
                 <div class="t-a_j">
+                    {/*may been delete*/}
                     <label>
                         <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
                     </label>
@@ -66,8 +68,8 @@
             {$condTypeProperty = $typeProperty != ''}
             <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if}>
                 <div class="inside-padd">
-                    <div class="title f-s_0">
-                        <span class="c_p">
+                    <div class="title">
+                        <span class="c_p f-s_0">
                             <span class="icon-arrow"></span>
                             <span class="text-el">{echo $prop->name}</span>
                         </span>

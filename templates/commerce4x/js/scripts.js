@@ -506,7 +506,7 @@ $(document).ready(function() {
 
     $('.menu-main').menuPacket2(optionsMenu);
 
-    if (($.exists('.lineForm') && !$('#orderDetails').length > 0) || !ltie8) {
+    if ($.exists('.lineForm') && ($('#orderDetails').length > 0 && !ltie8)) {
         var params = {
             changedEl: ".lineForm select",
             visRows: 100,
