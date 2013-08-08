@@ -291,7 +291,7 @@
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
                                 {$cc=$Comments[$model->getId()]}
                                 {intval($cc)}
-                                {echo SStringHelper::Pluralize($cc, array('отзыв','отзыва','отзывов'))}
+                                {echo SStringHelper::Pluralize($cc, array('lang("comment","newLevel")','lang("comment","newLevel")','lang("comments","newLevel")'))}
                                 {$cc=0}
                             </button>
 
@@ -579,7 +579,7 @@
                         </div>
                         <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
                             <span class="icon_arrow"></span>
-                            <span class="text-el">Смотреть все характеристики</span>
+                            <span class="text-el">{lang('See all specifications','newLevel')}</span>
                         </button>
                     </div>
                 </div>
@@ -594,7 +594,7 @@
                     </div>
                     <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть полное описание</span>
+                        <span class="text-el">{lang('See full description','newLevel')}</span>
                     </button>
                     <!--                        End. Description block-->
                 </div>
@@ -614,11 +614,11 @@
                         <div class="accessories">
                             <div class="title-default">
                                 <div class="title">
-                                    <h3 class="d_i">Аксессуары к {echo $model->getName()}</h3>
+                                    <h3 class="d_i">{lang('Accessories for','newLevel')} {echo $model->getName()}</h3>
                                     {if count($accessories) > 4}
                                         <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                             <span class="icon_arrow"></span>
-                                            <span class="text-el">Смотреть все аксессуры</span>
+                                            <span class="text-el">{lang('See all accessories','newLevel')}</span>
                                         </button>
                                     {/if}
                                 </div>
