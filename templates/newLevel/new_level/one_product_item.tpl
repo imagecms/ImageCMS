@@ -164,10 +164,11 @@
                                         data-addPrice="{echo $pv->toCurrency('Price',1)}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('s_buy')}</span>
+                                        <span class="text-el">{lang('s_buy', 'newLevel')}</span>
                                     </button>
                                 </div>
                             </div>
+                                    {var_dumps(lang('s_buy', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button

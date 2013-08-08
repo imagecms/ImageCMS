@@ -111,18 +111,16 @@ class MY_Lang extends MX_Lang {
             $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $url = uri_string();
             
-            //var_dump(MY_Controller::getCurrentLocale());
-            
-            
             if (strstr($url,'admin')){
                 $lang = $language[1];
             }else{
-//                $lang = $languageFront[1];
-                $lang = 'en_US';
+                $lang = $languageFront[1];
             }
            
            if ($module == 'main'){
+               $template_name = \CI_Controller::get_instance()->config->item('template');
                $this->gettext->switchDomain('application/language/main/', 'main', $lang);
+               $this->gettext->switchDomain('templates/'. $template_name .'/language/'. $template_name .'/', $template_name, $lang);
            }else{
                $this->gettext->switchDomain('application/modules/'.$module.'/language', $module, $lang);
            }

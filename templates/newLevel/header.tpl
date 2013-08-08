@@ -69,7 +69,7 @@
                                 <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('search_find')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="" placeholder="{lang('s_se_thi_sit')}" />
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="" placeholder="{lang('s_se_thi_sit', 'newLevel')}" />
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>
