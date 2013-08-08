@@ -35,6 +35,6 @@ function promoLabelBtn($action, $hot, $hit, $disc) {
 
     return $out;
 }
-
+lang('ddddddddd', 'newLevel');
 //}
 ?>
