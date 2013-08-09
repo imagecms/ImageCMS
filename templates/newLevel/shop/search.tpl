@@ -68,16 +68,15 @@
                                         {echo trim(key($category))}
                                     </div>
                                     {foreach $category[key($category)] as $subItem}
-                                        {if key($subItem)}
-                                            <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
-                                                {if $_GET['category'] && $_GET['category'] == $subItem['id']}
-                                                    {echo $subItem['name']}
-                                                {else:}
-                                                    <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
-                                                {/if}
-                                                <span class="count">({echo $subItem['count']})</span>
-                                            </li>
+                                        {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                        <li class="active">
+                                            {echo $subItem['name']}
+                                        {else:}
+                                        <li>
+                                            <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
                                         {/if}
+                                            <span class="count">({echo $subItem['count']})</span>
+                                        </li>
                                     {/foreach}
                                 </ul>
                             {/foreach}
