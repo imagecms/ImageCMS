@@ -1,0 +1,32 @@
+AddDefaultCharset UTF-8
+
+
+Options +FollowSymLinks
+Options -Indexes
+
+RewriteEngine on
+
+# RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
+# RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
+
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault "access 7 days"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresByType application/x-shockwave-flash "access 1 year"
+</IfModule>
+
+
+RewriteCond $1 !^(index\.php|test.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|application/modules/.*/assets/js|application/modules/.*/assets/css|application/modules/.*/assets/images|CHANGELOG.xml|templates|js|robots\.txt|application/controllers/install/images/.*)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+####################################
+# or
+# RewriteRule ^(.+)$ index.php?$1 [L]
+# or
+# RewriteRule ^(.*)$ /index.php?/$1 [L,QSA]
