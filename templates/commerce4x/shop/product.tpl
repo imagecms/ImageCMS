@@ -519,10 +519,5 @@
 {widget('view_product')}
 {widget('similar')}
 </article>
-
 <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox.pack.js"></script>
-
-{if productPhotoCZoom == "1"}
-    <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
-{/if}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

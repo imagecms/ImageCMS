@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-
+{$NextCSIdCond = $NextCSId != null}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -100,7 +100,7 @@
                                                     <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
-                                            {if $NextCSId != null}
+                                            {if $NextCSIdCond}
                                                 <span class="price-add">
                                                     <span>
                                                         (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
@@ -153,7 +153,7 @@
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{echo $productVariant->toCurrency('Price',1)}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',1)}{/if}"
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -246,15 +246,6 @@
                     <!--Start .Share-->
                     <dl class="social-product">
 
-                        <dt class="s-t text-social-like">{lang('Liked the product?','newLevel')}</dt>
-                        <dd class="social-like">
-                            {echo $CI->load->module('share')->_make_like_buttons()}
-                        </dd>
-                        <dt class="s-t text-social-tell">{lang('Tell friends','newLevel')}:</dt>
-                        <dd class="social-tell">
-                            {echo $CI->load->module('share')->_make_share_form()}
-                        </dd>
-
                     </dl>
                     <!-- End. Share -->
                 </div>
@@ -267,7 +258,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a {if !$sizeAddImg}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a {if $sizeAddImg == 0}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     {/*rel="position: 'xBlock'" */}
                     <span class="photo-block">
                         <span class="helper"></span>
@@ -289,10 +280,10 @@
 
                             <span class="s-t">{lang('Buyers left','newLevel')}</span>
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
-                                {$cc=$Comments[$model->getId()]}
-                                {intval($cc)}
-                                {echo SStringHelper::Pluralize($cc, array('lang("comment","newLevel")','lang("comment","newLevel")','lang("comments","newLevel")'))}
-                                {$cc=0}
+
+                                {intval($Comments[$model->getId()])}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array('lang("comment","newLevel")','lang("comment","newLevel")','lang("comments","newLevel")'))}
+
                             </button>
 
                         </div>
@@ -389,7 +380,7 @@
                                                                         <span class="curr">{$CS}</span>
                                                                     </span>
                                                                 </span>
-                                                                {if $NextCSId != null}
+                                                                {if $NextCSIdCond}
                                                                     <span class="price-add">
                                                                         <span>
 
@@ -442,7 +433,7 @@
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
-                                                                    {if $NextCSId != null}
+                                                                    {if $NextCSIdCond}
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
@@ -478,7 +469,7 @@
                                                                 <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
-                                                        {if $NextCSId != null}
+                                                        {if $NextCSIdCond}
                                                             <span class="price-add">
                                                                 <span>
                                                                     (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
@@ -493,8 +484,8 @@
                                                             data-prodid="{echo json_encode(array_merge($kitProducts->getProductIdCart()))}"
                                                             data-price="{echo $kitProducts->getTotalPrice()}"
                                                             data-prices ="{echo json_encode($kitProducts->getPriceCart())}"
-                                                            data-addprice="{if $NextCSId != null}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
-                                                            data-addprices="{if $NextCSId != null}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
+                                                            data-addprice="{if $NextCSIdCond}{echo $kitProducts->getTotalPrice($NextCSId)}{/if}"
+                                                            data-addprices="{if $NextCSIdCond}{echo json_encode($kitProducts->getPriceCart($NextCSId))}{/if}"
                                                             data-origprices='{echo json_encode($kitProducts->getOrigPriceCart())}'
                                                             data-origprice='{echo $kitProducts->getTotalPriceOld()}'
                                                             data-name="{echo ShopCore::encode(json_encode($kitProducts->getNamesCart()))}"
@@ -544,9 +535,11 @@
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".characteristic">{lang('Properties','newLevel')}</button></li>
                 {/if}
                 {if $fullDescription = $model->getFullDescription()}
-                <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">{lang('Full description','newLevel')}</button></li>
-                {/if}
-                {if $accessories}
+
+                <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Full description','newLevel')}</button></li>
+
+            {/if}
+            {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">{lang('Accesories','newLevel')}</button></li>
 
             {/if}
@@ -570,103 +563,110 @@
         </ul>
         <div class="frame-tabs-ref frame-tabs-product">
             <div id="view">
-                <!--             Start. Characteristic-->
-                <div class="inside-padd">
-                    <h3>{lang('Properties','newLevel')}</h3>
-                    <div class="characteristic">
-                        <div class="product-charac">
-                            {echo $dl_properties}
+
+                {if $dl_properties}
+                    <div class="inside-padd">
+                        <h3>{lang('Properties','newLevel')}</h3>
+                        <div class="characteristic patch-product-view">
+                            <div class="product-charac">
+                                {echo $dl_properties}
+                            </div>
+                            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
+                                <span class="icon_arrow"></span>
+                                <span class="text-el">{lang('See all specifications','newLevel')}</span>
+                            </button>
                         </div>
-                        <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
+
+                    </div>
+                {/if}
+                {if $fullDescription != ''}
+                    <div class="inside-padd">
+                        <!--                        Start. Description block-->
+                        <div class="product-descr patch-product-view">
+                            <div class="text">
+                                <h3>{echo  ShopCore::encode($model->getName())}</h3>
+                                {echo $fullDescription}
+                            </div>
+                        </div>
+                        <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                             <span class="icon_arrow"></span>
-                            <span class="text-el">{lang('See all specifications','newLevel')}</span>
+                            <span class="text-el">{lang('See full description','newLevel')}</span>
                         </button>
+                        <!--                        End. Description block-->
                     </div>
-                </div>
+ 
+            {/if}
 
-                <div class="inside-padd">
-                    <!--                        Start. Description block-->
-                    <div class="product-descr">
-                        <div class="text">
-                            <h3>{echo  ShopCore::encode($model->getName())}</h3>
-                            {echo $fullDescription}
-                        </div>
+            <div class="inside-padd">
+                <!--Start. Comments block-->
+                <div class="frame-form-comment">
+                    {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
+                    <div name="for_comments" id="for_comments_view">
+                        {echo $c['comments']}
                     </div>
-                    <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#second']" data-scroll="true">
-                        <span class="icon_arrow"></span>
-                        <span class="text-el">{lang('See full description','newLevel')}</span>
-                    </button>
-                    <!--                        End. Description block-->
+                    <!--End. Comments block-->
                 </div>
-
-                <div class="inside-padd">
-                    <!--Start. Comments block-->
-                    <div class="frame-form-comment">
-                        <div name="for_comments" id="for_comments_view" data-countComment="4"></div>
-                        {literal}<script type="text/javascript">$(document).ready(function() {
-                            renderPosts($('#for_comments_view'), {countComment: 4});
-                        })</script>{/literal}
-                        </div>
-
-                        <!--End. Comments block-->
-                    </div>
-                    {if $accessories}
-                        <div class="accessories">
-                            <div class="title-default">
-                                <div class="title">
-                                    <h3 class="d_i">{lang('Accessories for','newLevel')} {echo $model->getName()}</h3>
-                                    {if count($accessories) > 4}
-                                        <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
-                                            <span class="icon_arrow"></span>
-                                            <span class="text-el">{lang('See all accessories','newLevel')}</span>
-                                        </button>
-                                    {/if}
-                                </div>
-                            </div>
-                            <div class="inside-padd">
-                                <ul class="items items-default">
-                                    {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
-                                </ul>
-                            </div>
-                        </div>
-                    {/if}
-                </div>
-                <!--             Start. Characteristic-->
-                <div id="first">
-                    <div class="inside-padd">
-                        <div class="characteristic">
-                            <div class="preloader"></div>
-                        </div>
-                    </div>
-                </div>
-                <!--                    End. Characteristic-->
-                <div id="second">
-                    <div class="inside-padd">
-                        <div class="preloader"></div>
-                    </div>
-                </div>
-                <div id="comment">
-                    <div class="inside-padd">
-                        <div class="preloader"></div>
-                    </div>
-                </div>
-                <!--Block Accessories Start-->
                 {if $accessories}
-                    <div id="fourth" class="accessories">
+                    <div class="accessories">
+                        <div class="title-default">
+                            <div class="title">
+                                <h3 class="d_i">{lang('Accessories for','newLevel')} {echo $model->getName()}</h3>
+                                {if count($accessories) > 4}
+                                    <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
+                                        <span class="icon_arrow"></span>
+                                        <span class="text-el">{lang('See all accessories','newLevel')}</span>
+                                    </button>
+                                {/if}
+                            </div>
+                        </div>
                         <div class="inside-padd">
-                            <div class="preloader"></div>
+                            <ul class="items items-default">
+                                {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
+                            </ul>
                         </div>
                     </div>
                 {/if}
-                <!--End. Block Accessories-->
             </div>
-            <!-- End. Tabs block       -->
         </div>
+        <!--             Start. Characteristic-->
+        <div id="first">
+            <div class="inside-padd">
+                <div class="characteristic">
+                    <div class="preloader"></div>
+                </div>
+            </div>
+        </div>
+        <!--                    End. Characteristic-->
+        <div id="second">
+            <div class="inside-padd">
+                <div class="text">
+                    <div class="preloader"></div>
+                </div>
+            </div>
+        </div>
+        <div id="comment">
+            <div class="inside-padd" name="for_comments">
+                <div class="preloader"></div>
+            </div>
+        </div>
+        <!--Block Accessories Start-->
+        {if $accessories}
+            <div id="fourth" class="accessories">
+                <div class="inside-padd">
+                    <div class="preloader"></div>
+                </div>
+            </div>
+        {/if}
+        <!--End. Block Accessories-->
     </div>
-    <div class="horizontal-carousel">
-        {widget('similar')}
-    </div>
-    {widget('latest_news')}
-    <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-    <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-    {/*}<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>{*/}
+    <!-- End. Tabs block       -->
+</div>
+</div>
+<div class="horizontal-carousel">
+    {widget('similar')}
+</div>
+{widget('latest_news')}
+
+<script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
+<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
