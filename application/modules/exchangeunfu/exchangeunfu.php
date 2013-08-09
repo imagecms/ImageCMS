@@ -44,7 +44,11 @@ class Exchangeunfu extends MY_Controller {
             'region' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-            )
+            ),
+            'price' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ),
         );
 
         $this->dbforge->add_key('id', TRUE);
@@ -69,6 +73,35 @@ NULL ,  \'892\',  \'873\',  \'lviv\'
 
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_exchangeunfu');
+    }
+
+    /**
+     * Colect ids form model and return prices for current region
+     * @param SProducts $model
+     */
+    public function getPriceForRegion($model) {
+//        var_dump(count($model));
+
+        if (count($model) == 1) {
+            // product
+            $ids[] = $model->getId();
+        } elseif (count($model) > 1) {
+            // category/brand/search
+            foreach ($model as $product) {
+                $ids[] = $product->getid();
+//                var_dump($product->getId());
+            }
+        } else {
+            // an empty model else
+            return false;
+        }
+
+        $array = $this->db
+                ->where_in('product_id', $ids)
+                ->get('mod_exchangeunfu');
+
+        if ($array)
+            $array->result_array();
     }
 
 }
