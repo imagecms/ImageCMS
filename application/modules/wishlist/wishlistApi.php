@@ -1,6 +1,6 @@
 <?php
 
-namespace wishlist;
+//namespace wishlist;
 
 /**
  * Image CMS
@@ -220,6 +220,26 @@ class WishlistApi extends \wishlist\classes\BaseApi {
             $data['answer'] = 'error';
         }
         return json_encode($data);
+    }
+    
+    /**
+     * render popup for adding to wishlist
+     * @param type $varId
+     * @param type $wish_list_id
+     * @return mixed
+     */
+    public function renderPopupTpl($varId, $wish_list_id = '') {
+        $wish_lists = $this->wishlist_model->getWishLists();
+        $data = array('wish_lists' => $wish_lists);
+
+        return $popup = \CMSFactory\assetManager::create()
+                ->registerStyle('style')
+                ->setData('class', 'btn')
+                ->setData('wish_list_id', $wish_list_id)
+                ->setData('varId', $varId)
+                ->setData($data)
+                ->setData('max_lists_count', $this->settings['maxListsCount'])
+                ->render('wishPopup', TRUE);
     }
 
     /**

@@ -3,42 +3,42 @@
 /**
  * error
  */
-$lang['error_no_user'] = '<p>Нет пользователей</p>';
-$lang['error_no_lists'] = '<p>Нет списков</p>';
-$lang['error_no_views'] = '<p>Нет просмотров</p>';
-$lang['error_wrong_query'] = '<p>Неверний запрос</p>';
-$lang['error_list_limit_exhausted'] = '<p>Лимит Списков Желаний исчерпан</p>';
-$lang['error_listname_limit_exhausted'] = '<p>Название Списка Желаний будет изменено</p>';
-$lang['error_listname_empty'] = '<p>Название Списка Желаний не должно быть пустым!</p>';
-$lang['error_items_delete'] = '<p>Невозможно удалить товары из Списка Желаний</p>';
-$lang['error_WL_delete'] = '<p>Невозможно удалить Список Желаний</p>';
-$lang['error_items_limit_exhausted'] = '<p>Исчерпан лимит продуктов в Списке Желаний</p>';
-$lang['error_user_not_autorized'] = '<p>Пользователь не залогинен</p>';
-$lang['error_cant_add'] = '<p>Невозможно добавить</p>';
-$lang['error_cant_move'] = '<p>Не удалось переместить</p>';
-$lang['error_cant_update'] = '<p>Не обновлено</p>';
-$lang['error_cant_delete'] = '<p>Невозможно удалить</p>';
-$lang['error_download'] = '<p>Ошибка загрузки</p>';
-$lang['error_no_user_data'] = '<p>Данные пользователя ненайдены</p>';
-$lang['error_user_id'] = '<p>Не введен пользователь</p>';
-$lang['error_max_image_size_exceeded'] = '<p>Превышен максимальный размер изображения</p>';
-$lang['error_max_image_width_exceeded'] = '<p>Превышен максимальня ширина изображения</p>';
-$lang['error_invalid_file_format'] = '<p>Недопустимый формат файла</p>';
-$lang['error'] = '<p>Ошибка</p>';
+$lang['error_no_user'] = 'Нет пользователей';
+$lang['error_no_lists'] = 'Нет списков';
+$lang['error_no_views'] = 'Нет просмотров';
+$lang['error_wrong_query'] = 'Неверний запрос';
+$lang['error_list_limit_exhausted'] = 'Лимит Списков Желаний исчерпан';
+$lang['error_listname_limit_exhausted'] = 'Название Списка Желаний будет изменено';
+$lang['error_listname_empty'] = 'Название Списка Желаний не должно быть пустым!';
+$lang['error_items_delete'] = 'Невозможно удалить товары из Списка Желаний';
+$lang['error_WL_delete'] = 'Невозможно удалить Список Желаний';
+$lang['error_items_limit_exhausted'] = 'Исчерпан лимит продуктов в Списке Желаний';
+$lang['error_user_not_autorized'] = 'Пользователь не залогинен';
+$lang['error_cant_add'] = 'Невозможно добавить';
+$lang['error_cant_move'] = 'Не удалось переместить';
+$lang['error_cant_update'] = 'Не обновлено';
+$lang['error_cant_delete'] = 'Невозможно удалить';
+$lang['error_download'] = 'Ошибка загрузки';
+$lang['error_no_user_data'] = 'Данные пользователя ненайдены';
+$lang['error_user_id'] = 'Не введен пользователь';
+$lang['error_max_image_size_exceeded'] = 'Превышен максимальный размер изображения';
+$lang['error_max_image_width_exceeded'] = 'Превышен максимальня ширина изображения';
+$lang['error_invalid_file_format'] = 'Недопустимый формат файла';
+$lang['error'] = 'Ошибка';
 
 /**
  * messeges
  */
-$lang['list_max_count'] = '<p>Максимум списков</p>';
-$lang['listname_max_count'] = '<p>Максимальная длина имени Списка Желаний</p>';
-$lang['created'] = '<p>Создано</p>';
-$lang['success'] = '<p>Операция успешна</p>';
-$lang['added'] = '<p>Добавлено</p>';
-$lang['updated'] = '<p>Обновлено</p>';
-$lang['deleted'] = '<p>Успешно удалено</p>';
-$lang['picture_uploaded'] = '<p>Картинка загружена</p>';
-$lang['create_new_list'] = '<p>Создать новый список</p>';
-$lang[''] = '<p></p>';
+$lang['list_max_count'] = 'Максимум списков';
+$lang['listname_max_count'] = 'Максимальная длина имени Списка Желаний';
+$lang['created'] = 'Создано';
+$lang['success'] = 'Операция успешна';
+$lang['added'] = 'Добавлено';
+$lang['updated'] = 'Обновлено';
+$lang['deleted'] = 'Успешно удалено';
+$lang['picture_uploaded'] = 'Картинка загружена';
+$lang['create_new_list'] = 'Создать новый список';
+$lang[''] = '';
 
 /**
  * buttons
