@@ -1,3 +1,4 @@
+{$CI->load->module('wishlist')->renderWL()}
 <div class="frame-inside page-profile">
     <div class="container">
         <div class="f-s_0 title-profile without-crumbs">

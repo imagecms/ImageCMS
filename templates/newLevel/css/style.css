@@ -181,7 +181,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .icon_already_show{width: 22px;height: 12px;}
 .icon_arrow{width: 8px;height: 10px;}
 .icon_info{width: 20px;height: 20px;float: left;}
-.icon_info + .text-el{margin-left: 26px;display: block;}
+.icon_info + .text-el{margin-left: 31px;display: block;}
 .icon_home{width: 11px;height: 11px;}
 .icon_list_cat{width: 14px;height: 14px;}
 .icon_table_cat{width: 14px;height: 14px;}
@@ -378,7 +378,7 @@ input.input-search{height: 33px;}
 .item-product .frame-count, .fancy-footer .frame-count{margin-right: 10px;}
 .item-product .frame-photo-title{display: block;margin-bottom: 10px;}
 .product-charac{max-height: 100px;overflow: hidden;margin-bottom: 10px;}
-.product-descr{max-height: 100px;overflow: hidden;margin-bottom: 10px;}
+.product-descr{max-height: 150px;overflow: hidden;margin-bottom: 10px;}
 .photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}
@@ -743,7 +743,7 @@ li[class*="x"] .title-category-l1{width: 100%;text-align: center;display: block;
 
 .frame-form-field{display: block;position: relative;}
 .frame-label{display: inline-block;}
-.frame-label .frame-label{cursor: pointer;}
+.frame-label .frame-label, .frame-radio .frame-label{cursor: pointer;}
 .frame-radio{overflow: hidden;}
 .help-block{margin-top: 3px;}
 .help-block p{margin-bottom: 0;}
@@ -901,6 +901,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 /*/product*/
 
 /*bask*/
+.frame-discount{display: none;}
 .current-discount{margin-right: 25px;}
 
 td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}
@@ -1058,6 +1059,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
 .drop-content .inside-padd{padding: 24px 43px 24px 24px;}
+.drop-content .inside-padd.notification{padding: 24px 24px 1px 24px;}
 
 .drop-enter, .drop-forgot, .drop-order-call, .drop-comulativ-discounts{width: 403px;}
 .drop-comulativ-discounts .inside-padd{padding: 15px 10px;}
@@ -1067,6 +1069,8 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .frame-already-show{position: static;width: auto !important;margin-left: 0;}
 .content-already-show .inside-padd{padding: 25px 30px;}
 .frame-already-show .special-proposition{margin-bottom: 0;}
+
+.drop-wishlist .icon_times_drop{right: 20px;}
 /*/drop*/
 
 /*user-toolbar*/

@@ -37,6 +37,20 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             $this->core->error_404();
     }
 
+    function renderWL() {
+        parent::getUserWL($this->dx_auth->get_user_id());
+        \CMSFactory\assetManager::create()
+                ->registerScript('jquery_ui')
+                ->registerStyle('jquery-ui-1.8.16.custom')
+                ->registerScript('wishlist')
+                ->registerStyle('style')
+                ->setData('wishlists', $this->dataModel['wishlists'])
+                ->setData('user', $this->dataModel['user'])
+                ->setData('settings', $this->settings)
+                ->setData('errors', $this->errors)
+                ->render('wishlist', TRUE);
+    }
+
     /**
      * add item to wishlist
      * @param type $varId
