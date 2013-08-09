@@ -13,7 +13,7 @@ function promoLabel($action, $hot, $hit, $disc) {
     if ($hit && (int) $hit > 0)
         $out .= '<span class="product-status hit"></span>';
     if ($disc && (float) $disc > 0)
-        $out .= '<span class="product-status discount"><span class="text-el">' . round($disc, $pricePrecision) . '%</span></span>';
+        $out .= '<span class="product-status discount"><span class="text-el">' . round($disc, 0) . '%</span></span>';
     return $out;
     
     
@@ -31,7 +31,7 @@ function promoLabelBtn($action, $hot, $hit, $disc) {
     if ($hit && (int) $hit > 0)
         $out['hit'] = $hit;
     if ($disc && (float) $disc > 0)
-        $out['disc'] = $disc;
+        $out['disc'] = round($disc, 0);
 
     return $out;
 }
