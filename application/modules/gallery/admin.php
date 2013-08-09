@@ -13,7 +13,7 @@ class Admin extends BaseAdminController {
 
     // Gallery config
     public $conf = array(
-        'engine' => 'gd2', // Image library. Possible values: GD, GD2, ImageMagick, NetPBM 
+        'engine' => 'gd2', // Image library. Possible values: GD, GD2, ImageMagick, NetPBM
         'max_file_size' => 5, // Max file size for upload in Mb.
         'max_archive_size' => 50,
         'max_width' => 0, // Max image width.
@@ -29,12 +29,12 @@ class Admin extends BaseAdminController {
         'thumb_marker' => '', // Thumb suffix
         'thumbs_folder' => '_thumbs', // Thumbs folder name. ! Without ending slash.
         'prev_img_marker' => '_prev', // Preview image suffix
-        'maintain_ratio' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing. 
-        'maintain_ratio_prev' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing prev image. 
+        'maintain_ratio' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing.
+        'maintain_ratio_prev' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing prev image.
         'maintain_ratio_icon' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing icon.
         'crop' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing.
         'crop_prev' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
-        'crop_icon' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing icon. 
+        'crop_icon' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing icon.
         'prev_img_width' => '500', // Preview image width
         'prev_img_height' => '375', // Preview image height
         // Watermark params
@@ -43,7 +43,7 @@ class Admin extends BaseAdminController {
         'watermark_image_opacity' => '', // Watermark image opacity.
         'watermark_type' => 'overlay', // Watermark type. Possible values: text/overlay.
         'wm_vrt_alignment' => 'bottom', // Watermark vertical position. Possible values: top, middle, bottom.
-        'wm_hor_alignment' => 'right', // Watermark horizontal position. Possible values: left, center, right. 
+        'wm_hor_alignment' => 'right', // Watermark horizontal position. Possible values: left, center, right.
         'watermark_font_path' => './system/fonts/1.ttf', // Path to watermark font.
         'watermark_font_size' => 16, // Watermark font size.
         'watermark_padding' => '-5', // Watermark padding.
@@ -282,7 +282,7 @@ class Admin extends BaseAdminController {
             // Create thumbs folder
             @mkdir($this->conf['upload_path'] . $album_id . '/' . $this->conf['thumbs_folder']);
 
-            // Create folder for admin thumbs 
+            // Create folder for admin thumbs
             @mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
             showMessage(lang('Album created'));
@@ -681,26 +681,26 @@ class Admin extends BaseAdminController {
     /**
      * Upload image
      *
-     * Upload image to album folder. 
+     * Upload image to album folder.
      *
      */
     public function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
-
 //         check if it's an atchive
 // exit;
 //         for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
+//        var_dump($_FILES);
 // 			for ($i = 0; $i <= count($_FILES['file[]'])-1; $i++) {
         if (is_array($_FILES['newPic'])) {
             $i = 0;
             foreach ($_FILES['newPic']['name'] as $n) {
-                //             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
-                //                 if ((count($_FILES['file']['type']) - 1) == 0) {
-                //                     $this->upload_archive($album_id);
-                //                     exit;
-                //                 } else
-                //                     continue;
-                //             }
+//                             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
+//                                 if ((count($_FILES['file']['type']) - 1) == 0) {
+//                                     $this->upload_archive($album_id);
+//                                     exit;
+//                                 } else
+//                                     continue;
+//                             }
 
                 $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
 
@@ -714,7 +714,7 @@ class Admin extends BaseAdminController {
 
                 $this->load->library('upload', $config);
 
-                if (!$this->upload->do_upload('newPic', $i)) {
+                if (!$this->upload->do_upload('newPic', $i, TRUE)) {
                     $data = array('error' => $this->upload->display_errors('', ''));
                 } else {
                     $data[$i] = array('upload_data' => $this->upload->data());
@@ -784,7 +784,7 @@ class Admin extends BaseAdminController {
                 //scan directory and add all images to album
 
                 if (!($dir = opendir($unpack_path))) {
-                    
+
                 }
 
                 $album_data = $this->gallery_m->get_album($album_id);
@@ -864,10 +864,10 @@ class Admin extends BaseAdminController {
                 $config['height'] = $this->conf['max_height'];
                 $config['quality'] = $this->conf['quality'];
 
-                if (($this->conf['maintain_ratio']) AND ($this->conf['crop'])) { // Уменьшаем изображение и обрезаем края 
+                if (($this->conf['maintain_ratio']) AND ($this->conf['crop'])) { // Уменьшаем изображение и обрезаем края
                     $size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
 
-                    $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+                    $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim
 
                     $this->image_lib->clear();
                     $this->image_lib->initialize($config);
@@ -902,10 +902,10 @@ class Admin extends BaseAdminController {
             $config['height'] = $this->conf['prev_img_height'];
             $config['quality'] = $this->conf['quality'];
 
-            if (($this->conf['maintain_ratio_prev']) AND ($this->conf['crop_prev'])) { // Уменьшаем изображение и обрезаем края 
+            if (($this->conf['maintain_ratio_prev']) AND ($this->conf['crop_prev'])) { // Уменьшаем изображение и обрезаем края
                 $size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
 
-                $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+                $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
@@ -948,10 +948,10 @@ class Admin extends BaseAdminController {
             $config['quality'] = $this->conf['quality'];
 
 
-            if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) { // Уменьшаем изображение и обрезаем края 
+            if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) { // Уменьшаем изображение и обрезаем края
                 $size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
 
-                $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim 
+                $size['width'] >= $size['height'] ? $config['master_dim'] = "height" : $config['master_dim'] = "width"; // Задаем master_dim
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);

@@ -4,6 +4,7 @@ namespace CMSFactory;
 
 /**
  * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+ * @property \CI_Input $input
  */
 class assetManager {
 
@@ -177,6 +178,9 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function render($tpl, $ignoreWrap = FALSE) {
+        if (\CI_Controller::get_instance()->input->post('ignoreWrap'))
+            $ignoreWrap = TRUE;
+
         try {
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));

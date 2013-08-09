@@ -8,40 +8,45 @@
                 maxCost: null,
                 leftSlider: $this.find('.left-slider'),
                 rightSlider: $this.find('.right-slider'),
-                valuesObj: null
             }, options);
             var slider = settings.slider,
                     minCost = $(settings.minCost),
                     maxCost = $(settings.maxCost),
                     left = settings.leftSlider,
                     right = settings.rightSlider,
-                    valuesObj = settings.valuesObj,
-                    defMin = valuesObj.defMin,
-                    defMax = valuesObj.defMax,
-                    curMin = valuesObj.curMin,
-                    curMax = valuesObj.curMax;
-            if (!$.existsN(minCost))
-                minCost = $('<input type="text" class="minCost" value="' + curMin + '" name="lp" />').appendTo($this.closest('form')).hide();
-            if (!$.existsN(maxCost))
-                maxCost = $('<input type="text" class="maxCost" value="' + curMax + '" name="rp"/>').appendTo($this.closest('form')).hide();
+                    defMin = settings.defMin,
+                    defMax = settings.defMax,
+                    curMin = settings.curMin,
+                    curMax = settings.curMax,
+                    lS = settings.lS,
+                    rS = settings.rS;
+            if (!$.existsN(minCost)) {
+                minCost = $('<input type="text" class="minCost" data-mins="' + defMin + '" value="' + curMin + '" name="' + lS + '" />').appendTo($this.closest('form')).hide();
+            }
+            if (!$.existsN(maxCost)) {
+                maxCost = $('<input type="text" class="maxCost" data-maxs="' + defMax + '" value="' + curMax + '" name="' + rS + '"/>').appendTo($this.closest('form')).hide();
+            }
             slider.slider({
                 min: defMin,
                 max: defMax,
                 values: [curMin, curMax],
                 range: true,
                 slide: function(event, ui) {
-//                    if ($(ui.handle).is(left))
+//                    if ($(ui.handle).is(left)) {
 //                        $(ui.handle).tooltip({
 //                            'title': ui.values[0],
 //                            'effect': 'always',
 //                            'otherClass': 'tooltip-slider'
 //                        });
-//                    if ($(ui.handle).is(right))
+//                    }
+//                    if ($(ui.handle).is(right)) {
 //                        $(ui.handle).tooltip({
 //                            'title': ui.values[1],
 //                            'effect': 'always',
 //                            'otherClass': 'tooltip-slider'
 //                        })
+//                    }
+
                     minCost.val(ui.values[0]);
                     maxCost.val(ui.values[1]);
                 },
@@ -165,16 +170,14 @@
 })(jQuery);
 function afterAjaxInitializeFilter() {
     var apply = $('.apply'),
-            $slider1 = $('#frame-slider1'),
+            $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
     //if ($.exists_nabir(frameSlider) == 0) frameSlider = $('<div class="frame-slider"></div>').append('.filter').hide();
 
-    var objPrice = {
-        minCost: '.minCost',
-        maxCost: '.maxCost',
-        valuesObj: slider1
-    };
-    $slider1.sliderInit(objPrice);
+    $sliders.each(function() {
+        var $this = $(this);
+        $this.sliderInit(eval($this.data('rel')));
+    });
     $(".frame-group-checks").nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
@@ -185,10 +188,6 @@ function afterAjaxInitializeFilter() {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false, true);
         }
-//        after: function(a, b, c) {
-//            console.log(b);
-//            ajaxRecount('#' + b.attr('id'), false, true);
-//        }
     });
     $(".frame-group-checks").each(function() {
         var $this = $(this),
@@ -229,12 +228,12 @@ function afterAjaxInitializeFilter() {
         catalogForm.submit();
         return false;
     });
-    $('.clear-price').click(function() {
-        var defMin = objPrice.valuesObj.defMin,
-                defMax = objPrice.valuesObj.defMax;
-        $(objPrice.minCost).val(defMin);
-        $(objPrice.maxCost).val(defMax);
+    $('.clear-slider').click(function() {
+        var obj = eval($(this).data('rel'));
+        $(obj.minCost).val(obj.defMin);
+        $(obj.maxCost).val(obj.defMax);
         catalogForm.submit();
+
         return false;
     });
 }
@@ -265,6 +264,8 @@ function ajaxRecount(el, slChk, submit) {
                 otherClass = slChk;
             cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
         }
+    }).fail(function() {
+        alert(1)
     });
     return false;
 }
