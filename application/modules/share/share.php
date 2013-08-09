@@ -73,7 +73,7 @@ class Share extends MY_Controller {
             $html .= 'gplus,';
         }
         $type = $settings['type'];
-        $html = '<script async="async" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+        $html = '<script async="async" defer="defer" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
                  <span class="yashare-auto-init"
                        data-yashareL10n="ru"
                        data-yashareType="' . $type . '"
@@ -86,7 +86,7 @@ class Share extends MY_Controller {
         $settings = $this->settings;
         if ($settings['facebook_like'] == 1) {
             $string['facebook'] = '<td>   <div id="fb-root"></div>
-                        <script async="async">(function(d, s, id) {
+                        <script async="async" defer="defer">(function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
@@ -99,15 +99,15 @@ class Share extends MY_Controller {
             $string['vk'] = '<td> <html>
                 <head>
                 <!-- Put this script tag to the <head> of your page -->
-                <script async="async" type="text/javascript" src="http://userapi.com/js/api/openapi.js"></script>
-                <script async="async" type="text/javascript">
+                <script async="async" defer="defer" type="text/javascript" src="http://userapi.com/js/api/openapi.js"></script>
+                <script async="async" defer="defer" type="text/javascript">
                     VK.init({apiId: ' . $settings['vk_apiid'] . ', onlyWidgets: true});
                 </script>
                 </head>
                 <body>
                 <!-- Put this div tag to the place, where the Like block will be -->
                 <div id="vk_like"></div>
-                <script async="async" type="text/javascript">
+                <script async="async" defer="defer" type="text/javascript">
                     VK.Widgets.Like("vk_like", {type: "mini"});
                 </script>
                 </body>
@@ -117,7 +117,7 @@ class Share extends MY_Controller {
             $string['google'] = '<td>     <!-- Place this tag where you want the +1 button to render. -->
                         <div class="g-plusone"></div>
                         <!-- Place this tag after the last +1 button tag. -->
-                        <script async="async" type="text/javascript">
+                        <script async="async" defer="defer" type="text/javascript">
                         (function() {
                         var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
                         po.src = "https://apis.google.com/js/plusone.js";
@@ -127,7 +127,7 @@ class Share extends MY_Controller {
         }
         if ($settings['twitter_like'] == 1) {
             $string['twitter'] = '<td><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-                    <script async="async">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
+                    <script async="async" defer="defer">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
                     {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>';
         }
         $html = '<table>
