@@ -15,6 +15,8 @@ class exc {
      * @var string
      */
     private $pass = './application/modules/exchangeunfu/';
+    
+    /** Arrays for db data storage  */
     private $prod = array();
     private $users = array();
     private $orders = array();
@@ -25,16 +27,18 @@ class exc {
     private $prices = array();
     private $cat = array();
 
-    /** contains shop category table name */
-    private $categories_table = 'shop_category';
+    /** Arrays for insert data storage  */
     private $insert = array();
     private $insert_categories_i18n = array();
     private $insert_order_products = array();
+    
+    /** Arrays for update data storage  */
     private $update = array();
     private $update_categories_i18n = array();
     private $update_order_products = array();
 
-    /** contains shop products table name */
+    /** DB tables names */
+    private $categories_table = 'shop_category';
     private $products_table = 'shop_products';
     private $users_table = 'users';
     private $orders_table = 'shop_orders';
@@ -42,11 +46,15 @@ class exc {
     private $productivity_table = 'mod_exchangeunfu_productivity';
     private $partners_table = 'mod_exchangeunfu_partners';
     private $prices_table = 'mod_exchangeunfu_prices';
-
-    /** contains shop products variants name */
     private $product_variants_table = 'shop_product_variants';
+    
+    /** xml document for import */
     private $xml;
+    
+    /** object instance of ci */
     private $ci;
+    
+    /** contains default locale */
     private $locale;
 
     public function __construct() {
@@ -59,9 +67,14 @@ class exc {
 //        $xml = simplexml_load_file($this->pass . 'export.xml');
     }
 
+    /**
+     * start import process
+     * @return string "success" if success
+     */
     public function import() {
         $start = microtime(true);
 
+        //load db data
         $this->prod = load_product();
         $this->cat = load_cat();
         $this->users = load_users();
@@ -83,6 +96,7 @@ class exc {
             $this->importProducts();
         }
 
+        //import partners
         if ($this->xml->СписокОрганизаций) {
             $this->importPartners();
         }
@@ -91,18 +105,28 @@ class exc {
             $this->importPrices();
         }
 
+        //import orders
         if (isset($this->xml->СписокЗаказыПокупателя)) {
             $this->importOrders();
         }
 
+        //import productivity
         if (isset($this->xml->СписокПродуктивность)) {
             $this->importProductivity();
         }
+        
+        echo "success";
+        
 
         $time = microtime(true) - $start;
         printf('Скрипт выполнялся %.4F сек.', $time);
+        exit();
     }
 
+    /**
+     * import products
+     * @return boolean
+     */
     public function importProducts() {
         $insert_products_i18n = array();
         $insert_categories = array();
@@ -236,18 +260,21 @@ class exc {
             }
         }
 
+        //update products
         $this->updateData($this->products_table, 'id');
+        //update products_i18n
         $this->update = $update_products_i18n;
         $this->updateData($this->products_table . "_i18n", 'id');
+        //update products_variants
         $this->update = $update_product_variants;
         $this->updateData($this->product_variants_table, 'product_id');
 
-//        var_dumps($this->insert);
+        //insert products
         $this->insertData($this->products_table);
 
         $inserted_products = load_product();
 
-
+        //prepare insert data
         foreach ($inserted_products as $id => $external_id) {
             foreach ($insert_products_i18n as $key => $product_i18n) {
                 if ($product_i18n['external_id'] == $external_id) {
@@ -269,17 +296,21 @@ class exc {
                 }
             }
         }
+        //insert products_i18n
         $this->insert = $insert_products_i18n;
         $this->insertData($this->products_table . '_i18n');
 
+        //insert products_categories
         $this->insert = $insert_categories;
         $this->insertData('shop_product_categories');
 
+        //insert producs variants
         $this->insert = $insert_product_variants;
         $this->insertData($this->product_variants_table);
 
         $inserted_product_variants = $this->ci->db->get('shop_product_variants')->result_array();
 
+        //prepare insert data
         foreach ($inserted_product_variants as $value) {
             foreach ($insert_product_variants_i18n as $key => $variant_i18n) {
                 if ($variant_i18n['external_id'] == $value['external_id']) {
@@ -289,10 +320,16 @@ class exc {
             }
         }
 
+        //insert products_variants_i18n
         $this->insert = $insert_product_variants_i18n;
         $this->insertData($this->product_variants_table . '_i18n');
     }
 
+    /**
+     * import categories
+     * @param array $categories
+     * @param type $parent
+     */
     public function importCategories($categories, $parent = null) {
         foreach ($categories as $category) {
             if ($category->ЭтоГруппа == 'true') {
@@ -340,10 +377,16 @@ class exc {
         $this->updateData($this->categories_table . '_i18n', 'id');
     }
 
+    /**
+     * insert category into db
+     * @param array $data
+     * @param type $parent
+     * @param type $category
+     * @param array $searchedCat
+     */
     public function insertCategory($data = array(), $parent = null, $category, $searchedCat = array()) {
-        //category not found, it should be inserted
-        $translit = translit_url($category->Наименование) . '';
         //preparing data for insert
+        $translit = translit_url($category->Наименование) . '';
         $data = array();
         $data['url'] = $translit;
         $data['external_id'] = $category->ID . "";
@@ -386,11 +429,16 @@ class exc {
         );
     }
 
+    /**
+     * update category into db
+     * @param array $data
+     * @param type $parent
+     * @param type $category
+     * @param array $searchedCat
+     */
     public function updateCategory($data = array(), $parent = null, $category, $searchedCat = array()) {
-        //category found - we'll update it
-
-        $translit = translit_url($category->Наименование) . '';
         //preparing data for update
+        $translit = translit_url($category->Наименование) . '';
         $data = array();
         $data['url'] = $translit;
         $data['active'] = TRUE;
@@ -425,6 +473,9 @@ class exc {
 //        }
     }
 
+    /**
+     * import partners
+     */
     public function importPartners() {
         foreach ($this->xml->СписокОрганизаций as $partner) {
             $data = array();
@@ -444,6 +495,10 @@ class exc {
         }
     }
 
+    /**
+     * import prices
+     * @return boolean
+     */
     private function importPrices() {
         $this->prod = load_product();
         $this->partners = load_partners();
@@ -467,13 +522,16 @@ class exc {
             if (is_price($data, $this->prices)) {
                 $this->ci->db->where('product_external_id', $data['product_external_id'])
                         ->where('partner_external_id', $data['partner_external_id'])
-                        ->update('mod_exchangeunfu_prices', $data);
+                        ->update($this->prices_table, $data);
             } else {
-                $this->ci->db->insert('mod_exchangeunfu_prices', $data);
+                $this->ci->db->insert($this->prices_table, $data);
             }
         }
     }
 
+    /**
+     * import users
+     */
     public function importUsers() {
         foreach ($this->xml->СписокКонтрагентов as $user) {
             $data = array();
@@ -495,6 +553,10 @@ class exc {
         $this->updateData($this->users_table, 'external_id');
     }
 
+    /**
+     * import orders
+     * @return boolean
+     */
     public function importOrders() {
         $this->users = load_users();
         $this->products_i18n = load_products_i18n();
@@ -506,6 +568,7 @@ class exc {
             $data['user_phone'] = $order->КонтактныйТелефон . '';
             $data['paid'] = (int) $order->ПризнакПередоплаты;
             $data['external_id'] = $order->ID . '';
+            $data['partner_external_id'] = $order->IDОрганизация . '';
             
             $user = is_user($order->IDКонтрагент, $this->users);
             if ($user) {
@@ -543,6 +606,12 @@ class exc {
         $this->updateData($this->orders_products_table, 'external_id');
     }
 
+    /**
+     * insert orders into db
+     * @param object $order
+     * @param array $data
+     * @return boolean
+     */
     public function insertOrder($order, $data) {
         $total_price = 0;
         $this->insert[] = $data;
@@ -568,7 +637,7 @@ class exc {
 
                 $total_price += (int) $product->Сумма;
             }
-            
+            //update order total price
             $data = array();
             $data['total_price'] = $total_price;
             $data['external_id'] = $order->ID . '';
@@ -576,6 +645,12 @@ class exc {
         }
     }
 
+    /**
+     * update order into db
+     * @param object $order
+     * @param array $data
+     * @return boolean
+     */
     public function updateOrder($order, $data) {
         $total_price = 0;
         $this->update[] = $data;
@@ -608,6 +683,7 @@ class exc {
                 $total_price += (int) $product->Сумма;
             }
             
+            //update order total price
             $data = array();
             $data['total_price'] = $total_price;
             $data['external_id'] = $order->ID . '';
@@ -615,9 +691,12 @@ class exc {
         }
     }
 
+    /**
+     * import productivity
+     * @return boolean
+     */
     public function importProductivity() {
         foreach ($this->xml->СписокПродуктивность as $productivity) {
-
             $data = array();
             $data['date'] = strtotime($productivity->Дата . '');
             $data['hour'] = $productivity->Час . '';
@@ -639,6 +718,11 @@ class exc {
 //        $this->updateData($this->productivity_table, '');
     }
 
+    /**
+     * insert data into db tables
+     * @param string $table
+     * @return boolean
+     */
     private function insertData($table) {
         if (!empty($this->insert)) {
             $result = $this->ci->db->insert_batch($table, $this->insert);
@@ -648,6 +732,12 @@ class exc {
         }
     }
 
+    /**
+     * update data into db tables
+     * @param string $table
+     * @param string $where - where condition, can contains only one column name
+     * @return boolean
+     */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
             $result = $this->ci->db->update_batch($table, $this->update, $where);
