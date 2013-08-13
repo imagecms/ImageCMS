@@ -677,6 +677,45 @@ class Admin extends BaseAdminController {
     }
 
     /**
+     * In CI's class Upload not provided the input's files array (name='somefile[]')
+     * So the structure of $_FILES must be
+     * Array (
+     *      [somefile] => Array (
+     *            [name] => qwe.jpg
+     *               ...
+     *  ))
+     * But in case of many file it is like this: 
+     * Array (
+     *      [somefile] => Array (
+     *            [name] => Array (
+     *                  [0] => 'qwe.jpg',
+     *                  [1] => 'asd.jpg',
+     *                  ...
+     *            )
+     *               ...
+     *  ))
+     * There is a need to transform $_FILES like each file come from his own input
+     *
+     *  @param string $field name of the input[name]
+     */
+    private function transform_FILES($field = 'userfile') {
+        if (!key_exists($field, $_FILES))
+            return FALSE;
+
+        $newFiles = array();
+        $count = count($_FILES[$field]['name']);
+        for ($i = 0; $i < $count; $i++) {
+            $oneFileData = array();
+            foreach ($_FILES[$field] as $assocKey => $fileDataArray) {
+                $oneFileData[$assocKey] = $fileDataArray[$i];
+            }
+            $newFiles[$field . "_" . $i] = $oneFileData;
+        }
+        $_FILES = $newFiles;
+        return TRUE;
+    }
+
+    /**
      * Upload image
      *
      * Upload image to album folder.
@@ -684,51 +723,44 @@ class Admin extends BaseAdminController {
      */
     public function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
-//         check if it's an atchive
-// exit;
-//         for ($i = 0; $i <= count($_FILES['file']['type']) - 1; $i++) {
-//        var_dump($_FILES);
-// 			for ($i = 0; $i <= count($_FILES['file[]'])-1; $i++) {
         if (is_array($_FILES['newPic'])) {
+            // making transformation of $_FILES array for CodeIgniter's Upload class
+            $this->transform_FILES('newPic');
+
+            // configs for Upload
+            $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
+            if (!is_dir($this->conf['upload_path']))
+                mkdir($this->conf['upload_path']);
+            $config['upload_path'] = $this->conf['upload_path'];
+
+            $config['allowed_types'] = $this->conf['allowed_types'];
+            $config['max_size'] = 1024 * 1024 * $this->max_file_size;
+
+            // init Upload
+            $this->load->library('upload', $config);
+
+            // saving each file
+            $data = array();
             $i = 0;
-            foreach ($_FILES['newPic']['name'] as $n) {
-//                             if (in_array($_FILES['file']['type'][$i], array('application/x-zip', 'application/zip', 'application/x-zip-compressed', 'application/octet-stream'))) {
-//                                 if ((count($_FILES['file']['type']) - 1) == 0) {
-//                                     $this->upload_archive($album_id);
-//                                     exit;
-//                                 } else
-//                                     continue;
-//                             }
-
-                $this->conf['upload_path'] = $this->conf['upload_path'] . $album_id;
-
-                if (!is_dir($this->conf['upload_path']))
-                    mkdir($this->conf['upload_path']);
-
-                $config['upload_path'] = $this->conf['upload_path'];
-
-                $config['allowed_types'] = $this->conf['allowed_types'];
-                $config['max_size'] = 1024 * 1024 * $this->max_file_size;
-
-                $this->load->library('upload', $config);
-
-                if (!$this->upload->do_upload('newPic', $i, TRUE)) {
-                    $data = array('error' => $this->upload->display_errors('', ''));
+            foreach ($_FILES as $fieldName => $filesData) {
+                if (!$this->upload->do_upload($fieldName)) {
+                    $error = $filesData['name'] . " - " . $this->upload->display_errors('', '') . "<br /> ";
+                    $data['error'] .= $error;
                 } else {
                     $data[$i] = array('upload_data' => $this->upload->data());
 
                     // Resize Image and create thumb
-
                     $this->resize_and_thumb($data[$i]['upload_data']);
-
                     $this->add_image($album_id, $data[$i]['upload_data']);
                 }
                 $this->conf = $temp_conf;
                 $i++;
             }
-            if (isset($data['error']))
+
+
+            if (isset($data['error'])) {
                 showMessage($data['error'], '', 'r');
-            else {
+            } else {
                 showMessage('Upload success');
                 pjax('');
             }
@@ -759,7 +791,7 @@ class Admin extends BaseAdminController {
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload()) {
+        if (!$this->upload->do_upload('file')) {
             $data = array('error' => $this->upload->display_errors('', ''));
         } else {
             $data = array('upload_data' => $this->upload->data());
@@ -782,7 +814,7 @@ class Admin extends BaseAdminController {
                 //scan directory and add all images to album
 
                 if (!($dir = opendir($unpack_path))) {
-
+                    
                 }
 
                 $album_data = $this->gallery_m->get_album($album_id);
