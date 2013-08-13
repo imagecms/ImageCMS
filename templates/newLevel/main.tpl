@@ -17,6 +17,8 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
 
@@ -54,12 +56,13 @@
 
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js?{echo rand()}"></script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
         {include_shop_tpl('js_templates')}
     </body>
 </html>
