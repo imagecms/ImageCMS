@@ -92,7 +92,32 @@ class Menu extends MY_Controller {
      * @access public
      */
     public function render($menu) {
-       
+        $this->clear();
+
+        $this->prepare_current_uri(); // правильно определяет текущий uri, фикс бага многоязычности
+
+        $this->prepare_menu_array($menu);
+
+        $this->get_expand_items($this->current_uri);
+
+        $array_keys = array_keys($this->menu_array);
+        $start_index = $array_keys[0];
+        $this->tpl_folder = $this->menu_array[$start_index]['tpl'];
+
+        $this->prepare_menu_recursion(); // Инициализируем первый элемент для начала итераций
+
+        $this->display_menu($this->menu_array);
+
+        if ($this->errors) {
+            $data = array(
+                'menu' => $menu,
+                'errors' => array_unique($this->errors),
+                'tpl_folder' => $this->tpl_folder,
+            );
+            $this->display_tpl('error', $data);
+        } else {
+            echo $this->arranged_menu_array[-1]['html'];
+    }
     }
 
     private function prepare_menu_recursion() {
