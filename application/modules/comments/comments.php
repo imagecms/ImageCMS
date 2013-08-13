@@ -97,7 +97,7 @@ class Comments extends MY_Controller {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
-            if ($this->core->core_data[module] != 'shop') {
+            if ($this->core->core_data['module'] != 'shop') {
                 foreach ((array) $model as $key => $id) {
                     if (is_array($id))
                         $ids[$key] = $id[id];

@@ -2,6 +2,15 @@
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
+            {if $category->hasSubCats()}
+                <h5><b>Категории</b></h5>
+                <ul>
+                    {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
+                        <li>-<a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
+                        {/foreach}
+                </ul>
+                <br>
+            {/if}
             <div class="title">Цена в гривнах</div>
             <div class="slider-cont">
                 <noscript>Джаваскрипт не включен</noscript>

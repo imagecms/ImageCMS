@@ -117,7 +117,7 @@ class Menu extends MY_Controller {
             $this->display_tpl('error', $data);
         } else {
             echo $this->arranged_menu_array[-1]['html'];
-        }
+    }
     }
 
     private function prepare_menu_recursion() {
