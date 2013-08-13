@@ -31,11 +31,13 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 500px;}
+body, .overlayDrop{min-width: 580px;}
 article, .container, .horizontal-carousel .special-proposition > .frame-title{max-width: 980px;}
+.container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
 
 .frame-baner-start_page .content-carousel{margin-left: -50%;width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.content-carousel.container, .carousel_js.container{padding: 0;}
 
 .right-catalog{width: 74.5%;float: right;}
 .left-catalog{width: 23.5%;float: left;}
@@ -87,8 +89,9 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 /*base settings*/
 html, body{height: 100%;}
 html {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+body.isScroll{overflow: hidden;padding-right: 17px;}
+body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
-body.isScroll{min-width: 963px;padding-right: 17px;overflow: hidden;}
 body, input, select, button, textarea {font: 12px Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background: none;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
@@ -155,7 +158,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 .b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 
-.empty, .no-empty, .frameCurDiscount{display: none;}
+.empty, .no-empty, .frameCurDiscount, .frame-price-discount{display: none;}
 /*/adding selectors*/
 
 /*icons*/
@@ -199,7 +202,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .helper + *{vertical-align: middle;display: inline-block;word-break: break-word;word-wrap: break-word;}
 .t-a_j{text-align: justify !important;font-size: 1px;}
 .t-a_j > *{display: inline-block;vertical-align: middle;float: none !important;}
-.t-a_j:after, .ie1{content: "1";margin-left: 100%;height: 1px;visibility: hidden;display: inline-block;width: 100%;}
+.t-a_j:after, .t-a_j .ie{content: "1";margin-left: 100%;height: 1px;visibility: hidden;display: inline-block;width: 100%;}
 /*/methods*/
 
 /*headers*/
@@ -524,13 +527,16 @@ input.input-search{height: 33px;}
 .jspHorizontalBar .jspCap{float: left;}
 .jspTrack{position: relative;}
 .jspHorizontalBar .jspTrack, .jspHorizontalBar .jspDrag{float: left;height: 100%;}
-.jspHorizontalBar .jspDrag{position: relative;top: 0;left: 0;cursor: pointer;height: 14px;top: 1px;}
+.jspDrag{position: relative;top: 0;left: 0;cursor: pointer;}
+.jspHorizontalBar .jspDrag{height: 14px;top: 1px;}
+.jspVerticalBar .jspDrag{width: 14px;left: 1px;}
 .scrollNSP{right: 0;position: absolute;z-index: 2;}
 .scrollNSP > div{height: 1px;}
 .jspArrow{text-indent: -20000px;display: block;cursor: pointer;}
 .jspArrow.jspDisabled{cursor: default;}
 .jspVerticalBar .jspArrow{height: 16px;}
 .jspHorizontalBar .jspArrow{width: 16px;float: left;height: 100%;}
+.jspVerticalBar .jspArrow{width: 100%;}
 .jspVerticalBar .jspArrow:focus{outline: none;}
 .jspCorner{float: left;height: 100%;}
 /*/carousels*/
@@ -564,6 +570,8 @@ input.input-search{height: 33px;}
 .not-js .frame-item-menu:hover .frame-drop-menu{display: block;}
 .menu-row-category .frame-drop-menu > ul > li:after{content: "";position: absolute;top: 0;width: 3px;height: 100%;display: none;}
 .menu-row-category .frame-drop-menu > ul > li.hoverM:after{display: block;}
+.left-drop{right: auto !important;}
+.right-drop{left: auto !important;}
 .menu-row-category .frame-drop-menu.left-drop > ul > li:after{left: 197px;background-position: 0 0;}
 .menu-row-category .frame-drop-menu.right-drop > ul > li:after{right: 197px;background-position: -4px 0;}
 .menu-row-category .frame-drop-menu > ul > li.hoverM > .frame-l2{display: block;}
@@ -643,6 +651,7 @@ li[class*="x"] .title-category-l1{width: 100%;text-align: center;display: block;
 .start-page-category-menu > li .photo-block{display: block;margin:0;width: 95px;height: 77px;padding: 20px;margin-bottom: 15px;}
 .start-page-category-menu > li .title{padding-left: 1px;border-bottom: 0;}
 .start-page-category-menu > li{width: 180px;margin-left: 20px;}
+.start-page-category-menu > li .sub-category > li{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 100%;}
 
 .sub-category{max-height: 81px;overflow: hidden;padding-left: 1px;}
 .sub-category > li{padding-bottom: 7px;}
@@ -820,7 +829,7 @@ input + .msg{margin-top: 5px;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 100%;top: 0;}
 .frame-slider .inside-padd{padding: 14px 18px;}
-    /*if filter style*/
+/*if filter style*/
 .frame-group-checks[data-rel]{display: none;}
 .frame-group-checks[data-rel] ul{max-height: 196px;overflow: auto;}
 .frame-group-checks[data-rel*="dropDown"] ul{display: none;}
@@ -915,7 +924,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .table-order, .table-order table{table-layout: auto;}
 .frame-foot .table-order{table-layout: fixed;}
 .drop-bask .drop-header{text-align: left;}
-.frame-bask-scroll {overflow: auto;overflow-x: hidden;}
 .frame-remove-bask-btn{width: 38px;text-align: center;vertical-align: middle !important;}
 .frame-kits-gen-sum{text-align: center;}
 .row-kits .frame-count, .row-kits .frame-cur-sum-price{vertical-align: top;}
@@ -1054,10 +1062,11 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*/footer*/
 
 /*drop*/
-.drop{margin-left: -13px;display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
+.drop{display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;text-transform: lowercase;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
+.drop-content{overflow: auto;}
 .drop-content .inside-padd{padding: 24px 43px 24px 24px;}
 .drop-content .inside-padd.notification{padding: 24px 24px 1px 24px;}
 
@@ -1100,8 +1109,8 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*/tooltip*/
 
 /*Brands columns*/
- .columnBrand {
-        width: 195px;
-        float: left;
- }
- /*Brands columns*/
+.columnBrand {
+    width: 195px;
+    float: left;
+}
+/*Brands columns*/
