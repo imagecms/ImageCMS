@@ -1,7 +1,5 @@
 <?php
 
-//if (function_exists('promoLabel')) {
-
 function promoLabel($action, $hot, $hit, $disc) {
     $pricePrecision = ShopCore::app()->SSettings->pricePrecision;
     $out = "";
@@ -19,9 +17,6 @@ function promoLabel($action, $hot, $hit, $disc) {
     
 }
 
-//}
-//if (function_exists('promoLabelBtn')) {
-
 function promoLabelBtn($action, $hot, $hit, $disc) {
     $out = array();
     if ($action && (int) $action > 0)
@@ -35,6 +30,4 @@ function promoLabelBtn($action, $hot, $hit, $disc) {
 
     return $out;
 }
-
-//}
 ?>

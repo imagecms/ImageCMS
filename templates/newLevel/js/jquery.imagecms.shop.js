@@ -1,7 +1,9 @@
-var activeClass = 'active',
+var isTouch = 'ontouchstart' in document.documentElement,
+        activeClass = 'active',
         clonedC = 'cloned';
 wnd = $(window),
-        body = $('body');
+        body = $('body'),
+        mainBody = $('.main-body');
 /*
  *imagecms frontend plugins
  ** @author Domovoj
@@ -300,6 +302,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.nStCheck');
         }
     };
+    $.nStCheck = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -386,6 +391,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
         }
+    };
+    $.nStRadio = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -503,19 +511,20 @@ var ie = jQuery.browser.msie,
                     minValue = settings.minValue;
 
             inputString.keyup(function(event) {
-                var inputValL = inputString.val().length;
+                var $this = $(this);
+                var inputValL = $this.val().length;
                 if (inputValL > minValue) {
-                    inputString.tooltip('remove');
+                    $this.tooltip('remove');
                     if (!event)
                         var event = window.event;
                     var code = event.keyCode;
-                    if (code != 27 && code != 40 && code != 38 && code != 13 && inputValL != 0 && $.trim(inputString.val()) != "")
+                    if (code != 27 && code != 40 && code != 38 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
                         postSearch();
                     else if (inputValL == 0)
                         closeFrame();
                 }
-                else 
-                    $(document).trigger({type: 'autocomplete.fewLength', el:inputString, value: minValue});
+                else
+                    $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
             }).blur(function() {
                 closeFrame();
             });
@@ -529,6 +538,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.autocomplete');
         }
+    };
+    $.autocomplete = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -592,6 +604,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.tooltip');
         }
+    };
+    $.tooltip = function(m) {
+        return methods[m];
     };
     $('[data-rel="tooltip"]').live('mouseover', function() {
         $(this).tooltip();
@@ -838,30 +853,39 @@ var ie = jQuery.browser.msie,
                                                         isSub2.css('width', dropW);
                                                     }
                                                 }
-                                            })[evLS](function(e) {
+                                            }).unbind(evLS)[evLS](function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-                                                if (e.type == 'click' && evLS == 'toggle') {
-                                                    $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                if ($.existsN($this.next())) {
+                                                    if (e.type == 'click' && evLS == 'toggle') {
+                                                        $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                    }
+                                                    else
+                                                        $this.has(sub2Frame).addClass(hM);
+                                                    $thisDrop.css('width', '');
+                                                    $thisDrop.children().add(subFrame).css('height', '');
+                                                    var dropW = $this.parent().parent().width(),
+                                                            sumW = dropW + subFrame.width(),
+                                                            subHL2 = subFrame.height(),
+                                                            dropDH = $thisDrop.children().data('height');
+                                                    if (subHL2 < dropDH)
+                                                        subHL2 = dropDH;
+                                                    $thisDrop.css('width', sumW);
+                                                    $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                    e.preventDefault();
                                                 }
-                                                else
-                                                    $this.has(sub2Frame).addClass(hM);
-                                                $thisDrop.css('width', '');
-                                                $thisDrop.children().add(subFrame).css('height', '');
-                                                var dropW = $this.parent().parent().width(),
-                                                        sumW = dropW + subFrame.width(),
-                                                        subHL2 = subFrame.height(),
-                                                        dropDH = $thisDrop.children().data('height');
-                                                if (subHL2 < dropDH)
-                                                    subHL2 = dropDH;
-                                                $thisDrop.css('width', sumW);
-                                                $thisDrop.children().add(subFrame).css('height', subHL2);
-                                            }, function(e) {
+                                                else {
+                                                    return true;
+                                                }
+                                            }
+                                            , function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-                                                $thisDrop.css('width', '')
-                                                $thisDrop.children().add(subFrame).css('height', '')
-                                                $this.removeClass(hM)
+                                                if ($.existsN($this.next())) {
+                                                    $thisDrop.css('width', '')
+                                                    $thisDrop.children().add(subFrame).css('height', '')
+                                                    $this.removeClass(hM)
+                                                }
                                             });
                                         }
                                     });
@@ -921,11 +945,21 @@ var ie = jQuery.browser.msie,
                         closeMenu(menu, e);
                     }
                 });
+
                 dropOJ.find('a').click(function(e) {
-                    e.stopPropagation();
+                    if (evLS == 'toggle') {
+                        if ($.existsN($(this).next()) && sub2Frame) {
+                            e.preventDefault();
+                            return true;
+                        }
+                        e.stopPropagation();
+                        return true;
+                    }
+                    else
+                        e.stopPropagation();
                 });
                 menuItem.find('a').click(function(e) {
-                    if ($.existsN($(this).find(drop)))
+                    if (!$.existsN($(this).closest(menuItem).find(drop)))
                         e.stopPropagation();
                 });
             }
@@ -944,6 +978,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.menuImageCms');
         }
+    };
+    $.menuImageCms = function(m) {
+        return methods[m];
     };
 })(jQuery);
 /*plugin menuImageCms end*/
@@ -969,8 +1006,7 @@ var ie = jQuery.browser.msie,
                         thisL = this.length,
                         k = true,
                         refs = [],
-                        attrOrdata = [],
-                        wST = wnd.scrollTop();
+                        attrOrdata = [];
                 $this.each(function(index) {
                     var $thiss = $(this),
                             effectOn = settings.effectOn,
@@ -993,6 +1029,7 @@ var ie = jQuery.browser.msie,
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
                     refs[index].bind('click.tabs', function(e) {
+                        wST = wnd.scrollTop();
                         var $this = $(this);
                         if ($this.is('a'))
                             e.preventDefault();
@@ -1091,24 +1128,26 @@ var ie = jQuery.browser.msie,
                                 })
                             }
                         }
-
                         settings.after($thiss);
+                        return false;
                     })
 
-                    wnd.bind('hashchange', function(e) {
-                        function scrollTop(wST) {
-                            if (e.scroll || e.scroll == undefined)
-                                wnd.scrollTop(wST);
-                        }
-
-                        //chrome bug
-                        if ($.browser.webkit)
-                            scrollTop(wST - 100);
-                        scrollTop(wST);
-                    })
                     if (thisL - 1 == index)
                         methods.location(regRefs[index], refs);
                 });
+                wnd.bind('hashchange', function(e) {
+                    function scrollTop(wST) {
+                        if (e.scroll || e.scroll == undefined)
+                            wnd.scrollTop(wST);
+                        wST = wnd.scrollTop();
+                    }
+
+                    //chrome bug
+                    if ($.browser.webkit)
+                        scrollTop(wST - 100);
+                    scrollTop(wST);
+                    return false;
+                })
             }
             return $this;
         },
@@ -1195,6 +1234,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.tabs');
         }
     }
+    $.tabs = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -1277,8 +1319,10 @@ var ie = jQuery.browser.msie,
                         }
                         if (jScrollPane)
                             api = initNSS();
-                        if (mouseWhell && scrollW > 0) {
+                        if ((mouseWhell && scrollW > 0) || isTouch) {
                             firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
+                                var deltaY = deltaY == undefined ? arguments[0].deltaY : deltaY;
+                                console.log(deltaY)
                                 if (jScrollPane)
                                     $thisSL = api.getContentPositionX();
                                 else
@@ -1298,6 +1342,34 @@ var ie = jQuery.browser.msie,
                                     return false;
                                 }
                             });
+                            var e = jQuery.Event("mousewheel", {event: event, delta: 0, deltaX: 0, deltaY: -1});
+                            firstScrl.trigger(e);
+                            if (isTouch) {
+                                firstScrl.unbind('touchstart touchmove touchend');
+                                firstScrl.bind('touchstart', function(e) {
+                                    sP = e.originalEvent.touches[0];
+                                    sP = sP.pageX;
+                                });
+                                firstScrl.bind('touchmove', function(e) {
+                                    eP = e.originalEvent.touches[0];
+                                    eP = eP.pageX;
+                                    return false;
+                                });
+                                firstScrl.bind('touchend', function(e) {
+                                    if (Math.abs(eP - sP) > 150) {
+                                        if (eP - sP > 0) {
+                                            var e = jQuery.Event("mousewheel", {event: e, delta: 0, deltaX: 0, deltaY: 1});
+                                            firstScrl.trigger(e);
+                                        }
+                                        else {
+                                            var e = jQuery.Event("mousewheel", {event: e, delta: 0, deltaX: 0, deltaY: -1});
+                                            firstScrl.trigger(e);
+                                        }
+                                        firstScrl.mousewheel(e, 0, 0, 1);
+                                        return false;
+                                    }
+                                });
+                            }
                         }
                         if (jScrollPane)
                             api.scrollToX(0)
@@ -1442,6 +1514,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.equalHorizCell');
         }
     };
+    $.equalHorizCell = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     $.fn.actual = function() {
@@ -1473,11 +1548,14 @@ var ie = jQuery.browser.msie,
                 placement: 'noinherit',
                 notification: false,
                 always: false,
+                animate: false,
                 before: function() {
                 },
                 after: function() {
                 },
                 close: function() {
+                },
+                closed: function() {
                 }
             }, options);
             var settings = optionsDrop,
@@ -1487,14 +1565,17 @@ var ie = jQuery.browser.msie,
                     exit = $(settings.exit),
                     effon = settings.effon,
                     effoff = settings.effoff,
-                    duration = settings.duration, close = settings.close,
+                    duration = settings.duration,
+                    close = settings.close,
+                    closed = settings.closed,
                     notification = settings.notification,
                     always = settings.always,
+                    animate = settings.animate,
+                    dropContent = settings.dropContent,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
                 var $this = $(this);
                 $(document).trigger({'type': 'drop.click', 'el': $this})
-                wST = wnd.scrollTop();
                 e.stopPropagation();
                 e.preventDefault();
                 var elSet = $this.data();
@@ -1502,15 +1583,15 @@ var ie = jQuery.browser.msie,
                     var place = elSet.place || settings.place,
                             placement = elSet.placement || settings.placement,
                             $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration || duration;
+                            $thisD = elSet.duration || duration,
+                            $thisA = elSet.animate != undefined ? elSet.animate : animate;
                     $this.each(function() {
                         var $this = $(this),
                                 $thisSource = elSet.drop;
-                        $this.attr('data-placement', placement);
-                        $this.attr('data-place', place);
-                        $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
+                        $this.data({'placement': placement, 'place': place, 'animate': $thisA});
+                        $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'duration': $thisD, 'dropContent': dropContent}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
                             if ($(selector + '.' + activeClass).length > 1 && place == 'center')
-                                methods.triggerBtnClick($(selector + '.' + activeClass).not($(this)), selector, close);
+                                methods.triggerBtnClick($(selector + '.' + activeClass).not($(this)), selector, close, closed);
                             if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
                                 e.stopImmediatePropagation();
                         });
@@ -1531,17 +1612,17 @@ var ie = jQuery.browser.msie,
                         });
                     }
                     if (elSetSource.is('.' + activeClass)) {
-                        methods.triggerBtnClick(elSetSource, selector, close);
+                        methods.triggerBtnClick(elSetSource, selector, close, closed);
                     }
                     else {
                         settings.before($this, elSetSource, isajax);
                         //                            starget trigger click in drop on show drop element (js_template.tpl showCart)
                         $thisDrop = $this.closest('[data-elrun]');
                         if ($.existsN($thisDrop))
-                            methods.triggerBtnClick($thisDrop, selector, close);
+                            methods.triggerBtnClick($thisDrop, selector, close, closed);
                         $thisDrop = $(e.starget).closest('[data-elrun]');
                         if ($.existsN($thisDrop))
-                            methods.triggerBtnClick($thisDrop, selector, close);
+                            methods.triggerBtnClick($thisDrop, selector, close, closed);
                         if (e.button == undefined && place != "center")
                             wnd.scrollTop($this.offset().top);
                         var wndW = wnd.width();
@@ -1550,31 +1631,46 @@ var ie = jQuery.browser.msie,
                         else
                             elSetSource.removeAttr('style');
                         methods.positionDrop($this, placement, place);
-                        if (place == "center")
-                            methods.dropScroll(elSetSource);
+
+                        methods.dropCenter(elSetSource);
+
                         if (condOverlay) {
-                            dropOver.show()
-                            dropOver.unbind('click').bind('click', function(e) {
+                            dropOver.show().unbind('click').bind('click', function(e) {
                                 e.stopPropagation();
-                                methods.triggerBtnClick(false, selector, close);
+                                methods.triggerBtnClick(false, selector, close, closed);
                             })
                         }
                         elSetSource[$thisEOn]($thisD, function() {
+                            var dropContent = elSetSource.find(elSetSource.data('dropContent'));
+
+                            $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: elSetSource});
+
                             elSetSource.addClass(activeClass);
+                            if (place == 'center' && !(elSet.notification || notification)) {
+                                if ($(document).height() - wnd.height() > 0) {
+                                    optionsDrop.wST = wnd.scrollTop();
+                                    body.addClass('isScroll');
+                                    body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
+                                    if (isTouch)
+                                        dropOver.bind('touchmove.drop', function(e) {
+                                            return false;
+                                        });
+                                }
+                            }
                             settings.after($this, elSetSource, isajax);
                         });
                         $(document).trigger({'type': 'drop.show', el: elSetSource})
                     }
                     body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
                         if ((e.which || e.button == 0) && e.relatedTarget == null) {
-                            methods.triggerBtnClick(false, selector, close);
+                            methods.triggerBtnClick(false, selector, close, closed);
                         }
                     }).bind('keydown.bodydrop', function(e) {
                         if (!e)
                             var e = window.event;
                         key = e.keyCode;
                         if (key == 27) {
-                            methods.triggerBtnClick(false, selector, close);
+                            methods.triggerBtnClick(false, selector, close, closed);
                         }
                     });
                 }
@@ -1606,7 +1702,6 @@ var ie = jQuery.browser.msie,
                                     $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
                                     body.append(data);
                                 }
-                                console.log(1)
                                 elSetSource = $(elSet.drop);
                                 var el = elSetSource.find('[data-drop]');
                                 methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
@@ -1617,10 +1712,10 @@ var ie = jQuery.browser.msie,
                 return false;
             })
             exit.live('click', function() {
-                methods.triggerBtnClick($(this).closest('[data-elrun]'), selector, close);
+                methods.triggerBtnClick($(this).closest('[data-elrun]'), selector, close, closed);
             })
         },
-        triggerBtnClick: function(sel, selector, close) {
+        triggerBtnClick: function(sel, selector, close, closed) {
             if (!sel || typeof sel == 'function')
                 var drop = $('[data-elrun].' + activeClass);
             else
@@ -1629,9 +1724,10 @@ var ie = jQuery.browser.msie,
                 $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                 drop.removeClass(activeClass).each(function() {
                     var $this = $(this),
-                            $thisEOff = $this.attr('data-effect-off'),
-                            $thisD = $this.attr('data-duration');
+                            $thisEOff = $this.data('effect-off'),
+                            $thisD = $this.data('duration');
                     var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
+                    close($thisB, $(this));
                     $thisB.parent().removeClass(activeClass);
                     var $thisHref = $thisB.attr('href');
                     if ($thisHref != undefined) {
@@ -1644,19 +1740,25 @@ var ie = jQuery.browser.msie,
                         } catch (err) {
                         }
                     }
-                    var dropOver = $('.overlayDrop');
-                    if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
+                    var dropOver = $('.overlayDrop'),
+                            condScroll = !$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible');
+                    if (condScroll) {
                         body.removeClass('isScroll');
+                        wnd.scrollTop(optionsDrop.wST);
                         dropOver.hide();
+                        $('.scrollEmulation').remove();
+                        if (isTouch)
+                            dropOver.unbind('touchmove.drop');
                     }
+
                     $this[$thisEOff]($thisD, function() {
                         $(this).removeAttr('style');
-                        if (close != undefined)
-                            close($thisB, $(this));
+                        if (closed != undefined)
+                            closed($thisB, $(this));
                         if (typeof sel == 'function')
                             sel();
+                        $(document).trigger({'type': 'drop.hide', el: $this})
                     });
-                    $(document).trigger({'type': 'drop.hide', el: $this})
                 });
             }
             else {
@@ -1665,16 +1767,21 @@ var ie = jQuery.browser.msie,
             }
             wnd.unbind('resize.drop');
         },
-        dropScroll: function(elSetSource) {
-            elSetSource.css({
-                'top': (wnd.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
-            }, {
-                queue: false
-            });
+        dropCenter: function(elSetSource) {
+            if (elSetSource.data('place') == 'center') {
+                var method = elSetSource.data('animate') ? 'animate' : 'css';
+                elSetSource[method]({
+                    'top': (body.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
+                    'left': (body.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
+                }, {
+                    queue: false
+                });
+                return elSetSource;
+            }
+            else return false;
         },
-        positionDrop: function($this, placement, place) {
-            var $this = $this;
+        positionDrop: function(el, placement, place) {
+            var $this = el;
             if ($this == undefined)
                 $this = $(this);
             if (placement == undefined)
@@ -1708,17 +1815,10 @@ var ie = jQuery.browser.msie,
                 if ($thisL == 0)
                     elSetSource.css('margin-left', 0);
             }
-            if ($thisP == 'center' && !$this.data('notification')) {
-                if ($(document).height() - wnd.height() > 0) {
-                    body.addClass('isScroll');
-                }
-            }
             wnd.bind('resize.drop', function() {
-                if ($thisP == 'center') {
-                    methods.dropScroll(elSetSource)
-                }
+                methods.dropCenter(elSetSource)
             });
-        }
+        },
     };
     $.fn.drop = function(method) {
         if (methods[method]) {
@@ -1728,6 +1828,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.drop');
         }
+    };
+    $.drop = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -1774,8 +1877,10 @@ var ie = jQuery.browser.msie,
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
-                            var input = $this.focus(),
+                            var input = $this,
                                     inputVal = parseInt(input.val());
+                            if (!isTouch)
+                                input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
@@ -1800,8 +1905,10 @@ var ie = jQuery.browser.msie,
                         var el = $(this);
                         $thisNext.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
-                            var input = $this.focus(),
+                            var input = $this,
                                     inputVal = parseInt(input.val());
+                            if (!isTouch)
+                                input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
@@ -1832,6 +1939,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.plusminus');
         }
     };
+    $.plusminus = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -1855,6 +1965,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.minValue');
         }
+    };
+    $.minValue = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -1884,6 +1997,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.maxValue');
         }
+    };
+    $.maxValue = function(m) {
+        return methods[m];
     };
     $('[data-max]').live('keydown keyup', function(e) {
         $(this).maxValue(e);
@@ -1950,6 +2066,27 @@ var ie = jQuery.browser.msie,
                                 , mainO)).addClass('iscarousel');
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
+                        groupButton.append($thisNext.add($thisPrev));
+                        if (isTouch) {
+                            $this.bind('touchstart', function(e) {
+                                sP = e.originalEvent.touches[0];
+                                sP = sP.pageX;
+                            });
+                            $this.bind('touchmove', function(e) {
+                                eP = e.originalEvent.touches[0];
+                                eP = eP.pageX;
+                                return false;
+                            });
+                            $this.bind('touchend', function(e) {
+                                if (Math.abs(eP - sP) > 150) {
+                                    if (eP - sP > 0)
+                                        $thisPrev.click();
+                                    else
+                                        $thisNext.click();
+                                    return false;
+                                }
+                            });
+                        }
                     }
                     else {
                         if (isHorz)
@@ -1981,6 +2118,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.myCarousel');
         }
     }
+    $.myCarousel = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 /*
  *imagecms shop plugins
@@ -2553,11 +2693,11 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == true && obj.redirect == false)
+                    if (obj.refresh == 'true' && obj.redirect == 'false')
                         location.reload();
-                    if (obj.refresh == false && obj.redirect != true && obj.redirect != false)
+                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
                         location.href = obj.redirect;
-                    if (obj.refresh == false && obj.redirect == false) {
+                    if (obj.refresh == 'false' && obj.redirect == 'false') {
                         var k = true;
                         if (typeof DS.callback == 'function')
                             k = DS.callback(obj.msg, obj.status, form, DS);
