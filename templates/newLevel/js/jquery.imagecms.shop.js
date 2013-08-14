@@ -766,8 +766,7 @@ var ie = jQuery.browser.msie,
                         $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                     }
                 }
-                var k = [],
-                        kk = 0;
+                var k = [];
                 menuItem.each(function(index) {
                     var $this = $(this),
                             $thisW = $this.width(),
@@ -784,6 +783,7 @@ var ie = jQuery.browser.msie,
                             dropW2 = dropW;
                         methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame);
                     }
+                    $this.data('kk', 0);
                 }).css('height', sH);
                 menuItem.find('.helper:first').css('height', sH)
 
@@ -820,12 +820,12 @@ var ie = jQuery.browser.msie,
                                 $this.addClass('firstH');
                             if ($thisI == itemMenuL - 1)
                                 $this.addClass('lastH');
-                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || kk == 0)
+                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') == 0)
                                 k[$thisI] = true;
                             if (k[$thisI]) {
                                 hoverTO = setTimeout(function() {
                                     $thisDrop[effOn](durationOn, function() {
-                                        kk++;
+                                        $this.data('kk', $this.data('kk') + 1);
                                         $(document).trigger({type: 'menu.showDrop', el: $thisDrop})
                                         if ($thisDrop.length != 0)
                                             menu.addClass(hM);
@@ -920,12 +920,16 @@ var ie = jQuery.browser.msie,
                 })
                 menu.unbind('hover')['hover'](
                         function(e) {
-                            kk = 0;
+                            menuItem.each(function() {
+                                $(this).data('kk', 0);
+                            })
                             e.stopImmediatePropagation();
                             return timeDurM = 0;
                         },
                         function(e) {
-                            kk = -1;
+                            menuItem.each(function() {
+                                $(this).data('kk', -1);
+                            })
                             e.stopImmediatePropagation();
                             if (evLF == 'toggle' || evLS == 'toggle') {
                                 $(this).find('.' + hM).click();
@@ -1319,31 +1323,31 @@ var ie = jQuery.browser.msie,
                         }
                         if (jScrollPane)
                             api = initNSS();
+                        function scrollNst(deltaY) {
+                            if (jScrollPane)
+                                $thisSL = api.getContentPositionX();
+                            else
+                                $thisSL = $(this).scrollLeft();
+                            if ($thisSL != scrollW && deltaY < 0) {
+                                if (jScrollPane)
+                                    api.scrollToX($thisSL + w / frameScrollCL)
+                                else
+                                    firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
+                                return false;
+                            }
+                            if ($thisSL > 0 && deltaY > 0) {
+                                if (jScrollPane)
+                                    api.scrollToX($thisSL - w / frameScrollCL)
+                                else
+                                    firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
+                                return false;
+                            }
+                        }
                         if ((mouseWhell && scrollW > 0) || isTouch) {
                             firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
-                                var deltaY = deltaY == undefined ? arguments[0].deltaY : deltaY;
-                                console.log(deltaY)
-                                if (jScrollPane)
-                                    $thisSL = api.getContentPositionX();
-                                else
-                                    $thisSL = $(this).scrollLeft();
-                                if ($thisSL != scrollW && deltaY < 0) {
-                                    if (jScrollPane)
-                                        api.scrollToX($thisSL + w / frameScrollCL)
-                                    else
-                                        firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
-                                    return false;
-                                }
-                                if ($thisSL > 0 && deltaY > 0) {
-                                    if (jScrollPane)
-                                        api.scrollToX($thisSL - w / frameScrollCL)
-                                    else
-                                        firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
-                                    return false;
-                                }
+                                scrollNst(deltaY);
                             });
-                            var e = jQuery.Event("mousewheel", {event: event, delta: 0, deltaX: 0, deltaY: -1});
-                            firstScrl.trigger(e);
+
                             if (isTouch) {
                                 firstScrl.unbind('touchstart touchmove touchend');
                                 firstScrl.bind('touchstart', function(e) {
@@ -1351,22 +1355,20 @@ var ie = jQuery.browser.msie,
                                     sP = sP.pageX;
                                 });
                                 firstScrl.bind('touchmove', function(e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
                                     eP = e.originalEvent.touches[0];
                                     eP = eP.pageX;
-                                    return false;
                                 });
                                 firstScrl.bind('touchend', function(e) {
-                                    if (Math.abs(eP - sP) > 150) {
+                                    e.stopPropagation();
+                                    if (Math.abs(eP - sP) > 200) {
                                         if (eP - sP > 0) {
-                                            var e = jQuery.Event("mousewheel", {event: e, delta: 0, deltaX: 0, deltaY: 1});
-                                            firstScrl.trigger(e);
+                                            scrollNst(1);
                                         }
                                         else {
-                                            var e = jQuery.Event("mousewheel", {event: e, delta: 0, deltaX: 0, deltaY: -1});
-                                            firstScrl.trigger(e);
+                                            scrollNst(-1);
                                         }
-                                        firstScrl.mousewheel(e, 0, 0, 1);
-                                        return false;
                                     }
                                 });
                             }
@@ -1605,8 +1607,8 @@ var ie = jQuery.browser.msie,
                         if (!$.exists('.overlayDrop')) {
                             body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
                         }
-                        dropOver = $('.overlayDrop');
-                        dropOver.css({
+                        optionsDrop.dropOver = $('.overlayDrop');
+                        optionsDrop.dropOver.css({
                             'background-color': overlayColor,
                             'opacity': overlayOpacity
                         });
@@ -1635,13 +1637,13 @@ var ie = jQuery.browser.msie,
                         methods.dropCenter(elSetSource);
 
                         if (condOverlay) {
-                            dropOver.show().unbind('click').bind('click', function(e) {
+                            optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
                                 e.stopPropagation();
                                 methods.triggerBtnClick(false, selector, close, closed);
                             })
                         }
                         elSetSource[$thisEOn]($thisD, function() {
-                            var dropContent = elSetSource.find(elSetSource.data('dropContent'));
+                            var dropContent = elSetSource.find(elSetSource.data('dropContent')).first();
 
                             $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: elSetSource});
 
@@ -1649,12 +1651,7 @@ var ie = jQuery.browser.msie,
                             if (place == 'center' && !(elSet.notification || notification)) {
                                 if ($(document).height() - wnd.height() > 0) {
                                     optionsDrop.wST = wnd.scrollTop();
-                                    body.addClass('isScroll');
-                                    body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
-                                    if (isTouch)
-                                        dropOver.bind('touchmove.drop', function(e) {
-                                            return false;
-                                        });
+                                    methods.scrollEmulate();
                                 }
                             }
                             settings.after($this, elSetSource, isajax);
@@ -1740,15 +1737,10 @@ var ie = jQuery.browser.msie,
                         } catch (err) {
                         }
                     }
-                    var dropOver = $('.overlayDrop'),
-                            condScroll = !$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible');
+                    optionsDrop.dropOver = $('.overlayDrop'),
+                            condScroll = !$.existsN($(selector + '.' + activeClass)) && optionsDrop.dropOver.is(':visible');
                     if (condScroll) {
-                        body.removeClass('isScroll');
-                        wnd.scrollTop(optionsDrop.wST);
-                        dropOver.hide();
-                        $('.scrollEmulation').remove();
-                        if (isTouch)
-                            dropOver.unbind('touchmove.drop');
+                        methods.scrollEmulateRemove();
                     }
 
                     $this[$thisEOff]($thisD, function() {
@@ -1778,7 +1770,8 @@ var ie = jQuery.browser.msie,
                 });
                 return elSetSource;
             }
-            else return false;
+            else
+                return false;
         },
         positionDrop: function(el, placement, place) {
             var $this = el;
@@ -1819,6 +1812,27 @@ var ie = jQuery.browser.msie,
                 methods.dropCenter(elSetSource)
             });
         },
+        scrollEmulate: function() {
+            var conDropOver = optionsDrop.dropOver != undefined;
+            body.addClass('isScroll');
+            body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
+            if (isTouch)
+                if (conDropOver)
+                    optionsDrop.dropOver.bind('touchmove.drop', function(e) {
+                        return false;
+                    });
+        },
+        scrollEmulateRemove: function() {
+            var conDropOver = optionsDrop.dropOver != undefined;
+            body.removeClass('isScroll');
+            wnd.scrollTop(optionsDrop.wST);
+            if (conDropOver)
+                optionsDrop.dropOver.hide();
+            $('.scrollEmulation').remove();
+            if (isTouch)
+                if (conDropOver)
+                    optionsDrop.dropOver.unbind('touchmove.drop');
+        }
     };
     $.fn.drop = function(method) {
         if (methods[method]) {
@@ -2048,8 +2062,8 @@ var ie = jQuery.browser.msie,
                             groupButton = $this.find(groupButtons);
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
-                    var k = false, isVert = $.existsN($this.closest(hCarousel)),
-                            isHorz = $.existsN($this.closest(vCarousel)),
+                    var k = false, isVert = $.existsN($this.closest(vCarousel)),
+                            isHorz = $.existsN($this.closest(hCarousel)),
                             condH = $itemW * $itemL - $marginR > contW && isHorz,
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
                     if (condH || condV)
@@ -2073,17 +2087,18 @@ var ie = jQuery.browser.msie,
                                 sP = sP.pageX;
                             });
                             $this.bind('touchmove', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
                                 eP = e.originalEvent.touches[0];
                                 eP = eP.pageX;
-                                return false;
                             });
                             $this.bind('touchend', function(e) {
-                                if (Math.abs(eP - sP) > 150) {
+                                e.stopPropagation();
+                                if (Math.abs(eP - sP) > 200) {
                                     if (eP - sP > 0)
                                         $thisPrev.click();
                                     else
                                         $thisNext.click();
-                                    return false;
                                 }
                             });
                         }
@@ -2663,7 +2678,7 @@ var ImageCMSApi = {
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         else if (el)
-            var dataSend = 'refresh=' + el.data('refresh') + '&redirect=' + el.data('redirect');
+            var dataSend = {'refresh': el.data('refresh'), 'redirect': el.data('redirect')};
         //send api request to api controller
         $.ajax({
             type: "post",
@@ -2693,11 +2708,11 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == 'true' && obj.redirect == 'false')
+                    if (obj.refresh == true && obj.redirect == false)
                         location.reload();
-                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
+                    if (obj.refresh == false && obj.redirect != true && obj.redirect != false)
                         location.href = obj.redirect;
-                    if (obj.refresh == 'false' && obj.redirect == 'false') {
+                    if (obj.refresh == false && obj.redirect == false) {
                         var k = true;
                         if (typeof DS.callback == 'function')
                             k = DS.callback(obj.msg, obj.status, form, DS);

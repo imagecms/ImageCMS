@@ -199,14 +199,19 @@ function afterAjaxInitializeFilter() {
                 switch (n) {
                     case 'dropDown':
                         $this.find('.title .text-el').addClass('d_l');
-                        $this.find('.title > .c_p').click(function() {
+                        $this.find('.title > span').click(function() {
                             var $this = $(this);
                             $this.parent().next().slideToggle(function() {
                                 $this.toggleClass('valuePD');
                             });
                         });
                     case 'scroll':
-                        $this.find('ul').addClass('scroll');
+                        $this.show().find('.fitlers-content').show().jScrollPane(scrollPane);
+                        //$this.find('.fitlers-content').addClass('scroll');
+                }
+                switch (n) {
+                    case 'dropDown':
+                        $this.find('.fitlers-content').hide();
                 }
                 if (arrL - 1 == i)
                     setTimeout(function() {

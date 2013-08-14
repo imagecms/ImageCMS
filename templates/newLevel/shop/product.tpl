@@ -308,7 +308,6 @@
                     <div class="horizontal-carousel">
                         <div class="frame-thumbs carousel_js">
                             {/*carousel_js*/}
-                            {/*if mask-carousel*/}
                             <div class="content-carousel">
                                 <ul class="items-thumbs items">
                                     {foreach $productImages as $key => $image}
@@ -557,8 +556,8 @@
                 {if $dl_properties}
                     <div class="inside-padd">
                         <h3>Характеристики</h3>
-                        <div class="characteristic patch-product-view">
-                            <div class="product-charac">
+                        <div class="characteristic">
+                            <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
                             </div>
                             <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
@@ -589,7 +588,7 @@
                     <!--Start. Comments block-->
                     <div class="frame-form-comment">
                         {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div name="for_comments" id="for_comments_view">
+                        <div name="for_comments">
                             {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
@@ -654,7 +653,13 @@
     {widget('similar')}
 </div>
 {widget('latest_news')}
-
+{literal}
+    <script type="text/javascript">
+                        var productPhotoFancybox = true,
+                                productPhotoCZoom = false,
+                                forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
+    </script>
+{/literal}
 <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
 {/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

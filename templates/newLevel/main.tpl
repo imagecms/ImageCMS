@@ -34,7 +34,7 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body class="is{echo $agent[0]} not-js">
+    <body class="is{echo $agent[0]} not-js">        
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -61,6 +61,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
         {include_shop_tpl('js_templates')}
