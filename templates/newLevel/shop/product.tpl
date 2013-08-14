@@ -555,7 +555,7 @@
                 <!--             Start. Characteristic-->
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h3>Характеристики</h3>
+                        <h2>Характеристики</h2>
                         <div class="characteristic">
                             <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
@@ -572,7 +572,7 @@
                         <!--                        Start. Description block-->
                         <div class="product-descr patch-product-view">
                             <div class="text">
-                                <h3>{echo  ShopCore::encode($model->getName())}</h3>
+                                <h2>{echo  ShopCore::encode($model->getName())}</h2>
                                 {echo $fullDescription}
                             </div>
                         </div>
@@ -598,7 +598,7 @@
                     <div class="accessories">
                         <div class="title-default">
                             <div class="title">
-                                <h3 class="d_i">Аксессуары к {echo $model->getName()}</h3>
+                                <h2 class="d_i">Аксессуары к {echo $model->getName()}</h2>
                                 {if count($accessories) > 4}
                                     <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                                         <span class="icon_arrow"></span>

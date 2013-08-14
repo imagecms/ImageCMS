@@ -43,7 +43,6 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    
     //direction: 'left',//when menu place left and drop go to right
     countColumn: 5, //if not drop-side
     //sub2Frame: '.frame-l2', //if drop-side
@@ -80,7 +79,6 @@ var carousel = {
     groupButtons: '.group-button-carousel',
     vCarousel: '.vertical-carousel',
     hCarousel: '.horizontal-carousel'
-
 };
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
@@ -977,10 +975,9 @@ jQuery(document).ready(function() {
                 dropEl.find('li').children().remove();
                 dropEl.find('[data-clone="data-report"]').remove();
                 var parentEl = el.closest(genObj.parentBtnBuy)
-                if ($.existsN(el.closest('.items-catalog')))
+                if (!$.existsN(el.closest('.item-product')))
                     var elWrap = parentEl.clone(true).removeAttr('style').children();
                 else {
-
                     var elWrap = parentEl.find('.frame-photo-title > .photo-block').clone(true);
                     elWrap.after('<div class="description"><span class="title">' + $('h1').text() + '</span>' + parentEl.find('.frame-prices').clone().html() + '</div>')
                 }
@@ -1011,6 +1008,7 @@ jQuery(document).ready(function() {
             var carouselInDrop = dropEl.find('.carousel_js');
             if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited')) {
                 carouselInDrop.addClass('visited')
+                console.log(carousel)
                 carouselInDrop.myCarousel(carousel);
             }
             if (dropEl.hasClass('drop-wishlist')) {
@@ -1060,8 +1058,10 @@ jQuery(document).ready(function() {
     });
     wnd.bind('resize', function() {
         $('[data-elrun]:visible').each(function() {
-            var $this = $(this);
-            $(document).trigger({type: 'drop.contentHeight', el: $this.find($this.data('dropContent')), drop: $this})
+            var $this = $(this),
+                    dropContent = $this.find($this.data('dropContent'));
+            if ($.existsN(dropContent))
+                $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
         })
     })
 
@@ -1147,11 +1147,10 @@ jQuery(document).ready(function() {
                     fancyTitle.prependTo(fancyC);
                     var itemGal = carGal.find('.items-thumbs > li'),
                             itemGalL = itemGal.length;
-                    var adding = {};
                     var pActEl = arguments[1] < itemGalL ? arguments[1] : arguments[1] - itemGalL;
-                    adding = {start: pActEl}
+                    var adding = {start: pActEl}
                     itemGal.eq(pActEl).addClass('active');
-                    carGal.parent().myCarousel($.extend(carousel, {
+                    carGal.parent().myCarousel($.extend($.extend({}, carousel), {
                         adding: adding
                     }));
                     var fancyFrame = $('#fancybox-frame');
@@ -1517,7 +1516,7 @@ wnd.load(function() {
     }
     $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
     var adding = {vertical: true};
-    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend(carousel, {
+    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend($.extend({}, carousel), {
         adding: adding
     }));
     if ($.exists(selScrollPane)) {
