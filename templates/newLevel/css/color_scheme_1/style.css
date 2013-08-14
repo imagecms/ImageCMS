@@ -811,7 +811,7 @@ label.error, .error .text-el{color: #ff7264;}
 .cusel .cusel-scroll-wrap{background: #fff;}
 .msg > .error{border: 1px solid #ff7264;background-color: #ffe7e5;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 .msg > .error .text-el{color: #ff7264;font-weight: normal;}
-.msg > .success{background-color: #ECFFE8;border: 1px solid #80C232;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
+.msg > .success{background-color: #ECFFE8;border: 1px solid #80C232;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;color: #5FA335;padding: 3px;}
 .msg > .success .text-el{color: #5FA335;font-weight: normal;}
 .drop .msg > .success{background-color: transparent;border: 0;-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;}
 .drop .msg > .success .text-el{color: #333;}

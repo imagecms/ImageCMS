@@ -1070,9 +1070,9 @@ var ie = jQuery.browser.msie,
                                                     url: $thisS,
                                                     data: $thisData,
                                                     success: function(data) {
-                                                        $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
                                                         tabsDivT();
                                                         $thisAO.find($thisSel).html(data)
+                                                        $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
                                                     }
                                                 })
                                             else
@@ -1595,7 +1595,7 @@ var ie = jQuery.browser.msie,
                         var $this = $(this),
                                 $thisSource = elSet.drop;
                         $this.data({'placement': placement, 'place': place, 'animate': $thisA});
-                        $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'duration': $thisD, 'dropContent': dropContent}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
+                        $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
                             if ($(selector + '.' + activeClass).length > 1 && place == 'center')
                                 methods.triggerBtnClick($(selector + '.' + activeClass).not($(this)), selector, close, closed);
                             if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
@@ -1705,7 +1705,7 @@ var ie = jQuery.browser.msie,
                                 }
                                 elSetSource = $(elSet.drop);
                                 var el = elSetSource.find('[data-drop]');
-                                methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
+                                methods.init.call(selector, $.extend($.extend({}, optionsDrop), {dataSource: el}));
                                 showDrop(elSetSource, true, e);
                             }})
                     }
@@ -1812,8 +1812,12 @@ var ie = jQuery.browser.msie,
                 if ($thisL == 0)
                     elSetSource.css('margin-left', 0);
             }
+            var dropTimeout = '';
             wnd.bind('resize.drop', function() {
-                methods.dropCenter(elSetSource)
+                clearTimeout(dropTimeout);
+                dropTimeout = setTimeout(function() {
+                    methods.dropCenter(elSetSource)
+                }, 300)
             });
         },
         scrollEmulate: function() {
@@ -2072,6 +2076,7 @@ var ie = jQuery.browser.msie,
                             isHorz = $.existsN($this.closest(hCarousel)),
                             condH = $itemW * $itemL - $marginR > contW && isHorz,
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
+                    var vertical = condV ? true : false;
                     if (condH || condV)
                         k = true;
                     if (k) {
@@ -2079,7 +2084,8 @@ var ie = jQuery.browser.msie,
                             buttonNextHTML: $thisNext,
                             buttonPrevHTML: $thisPrev,
                             visible: $countV,
-                            scroll: 1
+                            scroll: 1,
+                            vertical: vertical
                         }
                         $this.jcarousel($.extend(
                                 mainO
@@ -2088,7 +2094,7 @@ var ie = jQuery.browser.msie,
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
-                        if (isTouch) {
+                        if (isTouch && isHorz) {
                             $this.bind('touchstart', function(e) {
                                 sP = e.originalEvent.touches[0];
                                 sP = sP.pageX;
@@ -2098,6 +2104,27 @@ var ie = jQuery.browser.msie,
                                 e.preventDefault();
                                 eP = e.originalEvent.touches[0];
                                 eP = eP.pageX;
+                            });
+                            $this.bind('touchend', function(e) {
+                                e.stopPropagation();
+                                if (Math.abs(eP - sP) > 200) {
+                                    if (eP - sP > 0)
+                                        $thisPrev.click();
+                                    else
+                                        $thisNext.click();
+                                }
+                            });
+                        }
+                        if (isTouch && isVert) {
+                            $this.bind('touchstart', function(e) {
+                                sP = e.originalEvent.touches[0];
+                                sP = sP.pageY;
+                            });
+                            $this.bind('touchmove', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                eP = e.originalEvent.touches[0];
+                                eP = eP.pageY;
                             });
                             $this.bind('touchend', function(e) {
                                 e.stopPropagation();
@@ -2707,7 +2734,7 @@ var ImageCMSApi = {
                             $(message.success(obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
                             $(message.success(obj.msg)).appendTo(form.parent());
-                        $(document).trigger({'type': 'imageapi.pastescsmsg', 'el': form.parent()})
+                        $(document).trigger({'type': 'imageapi.pastemsg', 'el': form.parent()})
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
@@ -2738,6 +2765,7 @@ var ImageCMSApi = {
                         if ($.exists(elMsg)) {
                             $this.removeClass(genObj.err + ' ' + genObj.scs);
                             elMsg.hide();
+                            $(document).trigger({'type': 'imageapi.hidemsg', 'el': form})
                         }
                     });
                 }
@@ -2772,6 +2800,7 @@ var ImageCMSApi = {
                     thisSelector.find(':input.' + genObj.err + ':first').focus();
                 }
             }
+            $(document).trigger({'type': 'imageapi.pastemsg', 'el': thisSelector})
         } else {
             return false;
         }

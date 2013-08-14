@@ -153,7 +153,7 @@
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',1)}{/if}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -530,7 +530,7 @@
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">Полное описание</button></li>
                 {/if}
                 {if $accessories}
-                <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Аксессуары</button></li>
+                <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .items">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
@@ -572,6 +572,7 @@
                         <!--                        Start. Description block-->
                         <div class="product-descr patch-product-view">
                             <div class="text">
+                                <div class="title-h2">Описание</div>
                                 <h2>{echo  ShopCore::encode($model->getName())}</h2>
                                 {echo $fullDescription}
                             </div>
@@ -618,6 +619,7 @@
             <!--             Start. Characteristic-->
             <div id="first">
                 <div class="inside-padd">
+                    <div class="title-h2">Характеристики</div>
                     <div class="characteristic">
                         <div class="preloader"></div>
                     </div>
@@ -626,6 +628,7 @@
             <!--                    End. Characteristic-->
             <div id="second">
                 <div class="inside-padd">
+                    <div class="title-h2">Описание</div>
                     <div class="text">
                         <div class="preloader"></div>
                     </div>
@@ -640,7 +643,10 @@
             {if $accessories}
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
-                        <div class="preloader"></div>
+                        <div class="title-h2">Аксессуары к {echo $model->getName()}</div>
+                        <ul class="items items-default">
+                            <div class="preloader"></div>
+                        </ul>
                     </div>
                 </div>
             {/if}
