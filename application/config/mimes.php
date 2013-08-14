@@ -176,8 +176,7 @@ return array(
     'wma' => array('audio/x-ms-wma', 'video/x-ms-asf'),
     'jar' => array('application/java-archive', 'application/x-java-application', 'application/x-jar', 'application/x-compressed'),
     
-    // font mime-types (added 14.08.2013)
-    'ttf' => 'application/x-font-ttf'
+  
 );
 
 /* End of file mimes.php */
