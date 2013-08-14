@@ -246,6 +246,7 @@ class Admin extends BaseAdminController {
                     'sort_order' => $this->input->post('sort_order'),
                 );
 
+
                 $this->db->where('name', 'gallery');
                 $this->db->update('components', array('settings' => serialize($params)));
 

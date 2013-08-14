@@ -192,7 +192,7 @@
 
                                                         <div class="control-group m-t_10">
                                                             <label class="control-label" for="main_types">{lang('a_page')}:</label>
-                                                            <div class="controls">
+                                                            <div class="controls number">
 
                                                                 <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
 

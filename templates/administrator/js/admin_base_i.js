@@ -781,7 +781,7 @@ $(document).ready(function() {
         container.find('img').css('width', '50px');
     });
     $('.change_image').live('click', function() {
-        $(this).closest('td').find('[type="file"]').attr('accept',"image/gif, image/jpeg, image/png").click();
+        $(this).closest('td').find('[type="file"]').attr('accept', "image/gif, image/jpeg, image/png").click();
     })
 
 
@@ -895,13 +895,13 @@ $(document).ready(function() {
                 url: "/admin/components/run/shop/settings/getAllProductsIds",
                 type: "post",
                 success: function(data) {
-                    if (data != 'false'){
+                    if (data != 'false') {
                         var idsAdditional = $.parseJSON(data);
                         var countAllAdditional = idsAdditional.length;
                         var portionAdditional = 0;
                         var arrayForProcessAdditional = new Array();
                         var doneAdditional = 0;
-    //                        console.log(idsAdditional);
+                        //                        console.log(idsAdditional);
 
                         function makeResizeAdditional(array) {
                             data = JSON.stringify(array);
@@ -914,7 +914,7 @@ $(document).ready(function() {
                                     doneAdditional += array.length;
                                     $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
                                     $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
-    //                                    console.log((doneAdditional / countAllAdditional) * 100);
+                                    //                                    console.log((doneAdditional / countAllAdditional) * 100);
                                     if (doneAdditional == countAllAdditional) {
                                         $('#fixPage').fadeOut(100);
                                         $('#progressBlock').fadeOut(1000);
@@ -944,7 +944,7 @@ $(document).ready(function() {
                             arrayForProcessAdditional = idsAdditional.splice(0, portionAdditional);
                             makeResizeAdditional(arrayForProcessAdditional);
                         }
-                    }else{
+                    } else {
                         $('#progressBlock').fadeOut(100);
                         showMessage("Картинки обновлены", "Завершено");
                     }
@@ -1000,4 +1000,102 @@ $(document).ready(function() {
         });
     });
 
+
+
+
+    /*--------------------------------TA391-----------------------------------*/
+
+    // font color field validator
+    $("#watermark_text_color").live('keyup', colorFieldValidator);
+    $("input#watermark_color").live('keyup', colorFieldValidator);
+
+
+    function colorFieldValidator() {
+        var currentValue = $(this).val();
+        var pattern = /^[A-Za-z0-9]{1,6}$/;
+        if (!currentValue.match(pattern)) { // has banned symbols
+            var caretPosition = caret($(this)); // get the caret position
+            var newValue = currentValue.substr(0, 6)
+            newValue = newValue.replace(/[^A-Za-z0-9]/, '');
+            $(this).val(newValue);
+            caret(this, caretPosition.begin)
+        }
+    }
+
+
+    // image watermark correlation
+    $("#inputWatermarkInterest").live('keyup', function() {
+        var currentValue = $(this).val();
+        var pattern = /^[0-9]{1,3}$/;
+        if (!currentValue.match(pattern) || parseInt(currentValue) > 100) { // has banned symbols
+            var caretPosition = caret($(this)); // get the caret position
+            var newValue = currentValue.replace(/[^0-9]/, '');
+            if (parseInt(newValue) > 100) {
+                newValue = newValue.substr(0, 3) == "100" ? "100" : newValue.substr(0, 2);
+            }
+            $(this).val(newValue);
+            caret(this, caretPosition.begin)
+        }
+    });
+
+
+
+    /**
+     * Getting/Setting caret position
+     * @param node domObject
+     * @param int begin
+     * @param int end
+     *
+     */
+    function caret(domObject, begin, end) {
+        var range;
+
+        if (typeof begin == 'number') {
+            end = (typeof end === 'number') ? end : begin;
+            return $(domObject).each(function() {
+                if (domObject.setSelectionRange) {
+                    domObject.setSelectionRange(begin, end);
+                } else if (domObject.createTextRange) {
+                    range = domObject.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', end);
+                    range.moveStart('character', begin);
+                    range.select();
+                }
+            });
+        } else {
+            if (domObject[0].setSelectionRange) {
+                begin = domObject[0].selectionStart;
+                end = domObject[0].selectionEnd;
+            } else if (document.selection && document.selection.createRange) {
+                range = document.selection.createRange();
+                begin = 0 - range.duplicate().moveStart('character', -100000);
+                end = begin + range.text.length;
+            }
+            return {begin: begin, end: end};
+        }
+    }
+
+
+    // module Categories - Settings
+    $("#watermark_padding2").live('keypress', function(eventData) {
+        var ignoreCodes = [8, 109, 37, 38, 39, 40, 36, 35, 144, 17, 18, 9, 13, 16, 36, 17, 16]; // for example backspase, shift, minus, arrows...
+        for (var i = 0; i < ignoreCodes.length; i++)
+            if (ignoreCodes[i] == eventData.keyCode)
+                return true;
+        var keyChar = String.fromCharCode(eventData.which);
+        var pattern = /^[0-9\-]+$/;
+        if (keyChar.match(pattern)) {
+            return true;
+        }
+        return false;
+    });
+
+
+
+
 });
+
+
+
+
