@@ -15,7 +15,6 @@
         </div>
         <div class="drop-content">
         <div class="no-empty">
-        <div class="frame-bask-scroll">
         <div class="frame-bask-main">
         <div class="inside-padd">
         <table class="table-order">
@@ -295,6 +294,8 @@
         </div>
         </div>
         </div>
+        </div>
+        <div class="no-empty">
         <div class="frame-foot">
         <div class="header-frame-foot">
         <div class="inside-padd">
@@ -306,9 +307,9 @@
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
-        <span>
+        <span class="frame-discount">
         <span class="price genSumDiscount"><% if(discC){ %><%- parseFloat(Shop.Cart.totalPriceOrigin).toFixed(pricePrecision)%><% } %></span>
-        <span class="curr"><% if(discC){ %><%-curr%><% } %></span>
+        <span class="curr"><%-curr%></span>
         </span>
         </span>
         <span class="current-prices f-s_0">
@@ -350,7 +351,6 @@
         <% } %>
         </div>
         </div>
-        </div>
         <div class="empty">
         <div class="drop-header">
         <div class="title">В вашей корзине <span class="add-info">пусто</span></div>
@@ -380,7 +380,6 @@
         <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask frame-bask-order">
         <div class="no-empty">
-        <div class="frame-bask-scroll">
         <div class="frame-bask-main">
         <div class="inside-padd">
         <table class="table-order">
@@ -653,7 +652,6 @@
         </table>
         </div>
         </div>
-        </div>
         <div class="frame-foot">
         <div class="header-frame-foot">
         <div class="inside-padd">
@@ -667,9 +665,9 @@
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
-        <span>
+        <span class="frame-discount">
         <span class="price genSumDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.totalPriceOrigin + Shop.Cart.kitDiscount).toFixed(pricePrecision) %><%}%></span>
-        <span class="curr"><%if(discC){%><%-curr%><%}%></span>
+        <span class="curr"><%-curr%></span>
         </span>
         </span>
         <span class="current-prices f-s_0">
