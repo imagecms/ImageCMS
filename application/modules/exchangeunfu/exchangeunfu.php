@@ -16,8 +16,8 @@ class Exchangeunfu extends MY_Controller {
 
     public function index() {
         $e = new \exchangeunfu\export();
-        $e->export();
-        $i = new \exchangeunfu\exc();
+        $e->export('4643d461-aa49-4b70-9486-a59f80ee6af8');
+        $i = new \exchangeunfu\import();
 //        $i->import();
     }
 

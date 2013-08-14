@@ -8,7 +8,7 @@ namespace exchangeunfu;
  * Image CMS
  * Module Frame
  */
-class exc {
+class Import {
 
     /**
      * Path to upload dir

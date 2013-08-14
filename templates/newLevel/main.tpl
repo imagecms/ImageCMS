@@ -48,8 +48,12 @@
             <div class="h-footer"></div>
         </div>
         <footer>
+            <!--Load star rating-->
+                    {$CI->load->module('star_rating')->show_star_rating()}
             {include_tpl('footer')}
+            
         </footer>
+        
         {include_tpl('user_toolbar')}
 
         {include_tpl('config.js')}
