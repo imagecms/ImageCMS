@@ -3,7 +3,7 @@ var isTouch = 'ontouchstart' in document.documentElement,
         clonedC = 'cloned';
 wnd = $(window),
         body = $('body'),
-        mainBody = $('.main-body');
+        checkProdStock = checkProdStock == "" ? false : true;
 /*
  *imagecms frontend plugins
  ** @author Domovoj
@@ -616,8 +616,8 @@ var ie = jQuery.browser.msie,
 })(jQuery); /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
-        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2) {
-            if (menuW - $thisL < dropW) {
+        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
+            if ((menuW - $thisL < dropW && dropW < menuW && direction != 'left') || direction == 'right') {
                 drop.removeClass('left-drop')
                 if (drop.children().children().length >= countColumn && !sub2)
                     drop.css('right', 0).addClass('right-drop');
@@ -627,11 +627,11 @@ var ie = jQuery.browser.msie,
                         right = menuW - dropW;
                     drop.css('right', right).addClass('right-drop');
                 }
-            } else {
+            } else if(direction != 'right' || direction == 'left') {
                 drop.removeClass('right-drop')
                 if (sub2 && dropW > menuW)
                     drop.css('left', $thisL).addClass('left-drop');
-                else if (drop.children().children().length >= countColumn)
+                else if (drop.children().children().length >= countColumn || dropW > menuW)
                     drop.css('left', 0).addClass('left-drop');
                 else
                     drop.css('left', $thisL).addClass('left-drop');
@@ -643,6 +643,7 @@ var ie = jQuery.browser.msie,
                 var sH = 0,
                         settings = $.extend({
                     item: this.find('li'),
+                    direction: null,
                     effectOn: 'fadeIn',
                     effectOff: 'fadeOut',
                     duration: 0,
@@ -667,6 +668,7 @@ var ie = jQuery.browser.msie,
                 }, options);
                 var menuW = menu.width(),
                         menuItem = settings.item,
+                        direction = settings.direction,
                         drop = settings.drop,
                         dropOJ = $(drop),
                         effOn = settings.effectOn,
@@ -743,10 +745,12 @@ var ie = jQuery.browser.msie,
                                             classCuurC = currC.first().attr('class');
                                     $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
                                     $this.find('[data-column="' + n + '"]').children().append(currC.clone());
+
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else
-                                        $this.closest('[data-column]').addClass('x' + numbColumnL);
+                                        //$this.closest('[data-column]').addClass('x' + numbColumnL);
+                                        $this.closest('li').addClass('x' + numbColumnL);
                                 })
                                 columnsObj.remove();
                             }
@@ -781,7 +785,7 @@ var ie = jQuery.browser.msie,
                             dropW2 = $thisDrop.actual('width');
                         else
                             dropW2 = dropW;
-                        methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame);
+                        methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
                     $this.data('kk', 0);
                 }).css('height', sH);
