@@ -42,7 +42,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Client ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "googleClientID" value = "{$settings['googleClientID']}"/>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Application ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "vkClientID" value = "{$settings['vkClientID']}"/>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">App ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "facebookClientID" value = "{$settings['facebookClientID']}"/>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Id приложения:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "yandexClientID" value = "{$settings['yandexClientID']}"/>
                                 </div>
                             </div>
