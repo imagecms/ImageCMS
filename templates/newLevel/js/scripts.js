@@ -146,7 +146,7 @@ imageCmsApiDefaults = {
     },
     captchaBlock: '#captcha_block',
     cMsg: function(name, text, classN, form) {
-        form.find('[for="' + name + '"]').remove()
+        form.find('[for="' + name + '"]').remove();
         return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
     }
 // callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
@@ -273,6 +273,9 @@ message = {
         return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
+lazyload = {
+    effect: "fadeIn"
+}
 //declaration shop functions
 var orderDetails = $.exists(genObj.orderDetails);
 function recountWishListTotalPrise(deletedItemPrice, id, vid) {
@@ -425,6 +428,16 @@ function cartChanged() {
     $.fancybox.hideActivity();
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
 }
+function btnbuyInitialize(el) {
+    el.find(genObj.btnBuy).bind('click', function(e) {
+        $.fancybox.showActivity();
+        $(this).attr('disabled', 'disabled');
+        var cartItem = Shop.composeCartItem($(this));
+        Shop.Cart.add(cartItem, this);
+        decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
+        return true;
+    });
+}
 function processPage() {
 //update page content
 //update products count
@@ -435,8 +448,7 @@ function processPage() {
             keys.push(item.id + '_' + item.vId);
         });
         //update all product buttons
-
-        $(genObj.btnBuy).each(function() {
+        $(':not(.' + genObj.btnCartCss + ') ' + genObj.btnBuy).each(function() {
             var $this = $(this),
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) != -1) {
@@ -965,10 +977,7 @@ jQuery(document).ready(function() {
 //        $(this).find('ul > li:gt(' + (Math.ceil(l2l * 2 / 3) - 1) + ')').addClass('column2_2')
 //        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
 //    })
-
-    $('.menu-main').menuImageCms(optionsMenu);
-    $('.drop').drop(
-            $.extend(optionsDrop, {
+    callbackDrop = {
         before: function(el, dropEl, isajax) {
             var dropEl = $(dropEl);
             if (dropEl.hasClass('drop-report')) {
@@ -1027,7 +1036,9 @@ jQuery(document).ready(function() {
             if ($('#fancybox-wrap').is(':visible'))
                 $.drop('scrollEmulate')();
         }
-    }));
+    }
+    $('.menu-main').menuImageCms(optionsMenu);
+    $('.drop').drop($.extend($.extend({}, optionsDrop), callbackDrop));
     $(document).bind('drop.successJson', function(e) {
         if (e.el.is('#notification')) {
             if (e.datas.answer == "success")
@@ -1047,22 +1058,27 @@ jQuery(document).ready(function() {
             var elC = el.find('.jspPane'),
                     elCH = elC.outerHeight(),
                     api = el.data('jsp');
-            var footerHeader = elDrop.find('.drop-header').height() + elDrop.find('.drop-footer').height();
+            var footerHeader = elDrop.find('.drop-header').outerHeight(true) + elDrop.find('.drop-footer').outerHeight(true);
+            console.log(elCH)
             if (elCH + footerHeader > wndH)
-                el.css('height', wndH - (footerHeader + 40));
+                el.css('height', wndH - footerHeader - 40);
             else
                 el.css('height', elCH);
             api.reinitialise();
-            $.drop('dropCenter')(elDrop)
+            $.drop('dropCenter')(elDrop);
         }
     });
+    var dropContentTimeout = "";
     wnd.bind('resize', function() {
-        $('[data-elrun]:visible').each(function() {
-            var $this = $(this),
-                    dropContent = $this.find($this.data('dropContent'));
-            if ($.existsN(dropContent))
-                $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
-        })
+        clearTimeout(dropContentTimeout);
+        setTimeout(function(){
+            $('[data-elrun]:visible').each(function() {
+                var $this = $(this),
+                        dropContent = $this.find($this.data('dropContent'));
+                if ($.existsN(dropContent))
+                    $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
+            })
+        }, 300)
     })
 
     $('.tabs').tabs({
@@ -1083,7 +1099,12 @@ jQuery(document).ready(function() {
     })
     $(document).bind('tabs.afterload', function(e) {
         e.els.children(preloader).remove();
-        $('.drop').drop($.extend(optionsDrop, {dataSource: e.el.find('[data-drop]')}));
+        e.el.find("img.lazy").lazyload(lazyload);
+        wnd.scroll();//for lazyload
+        drawIcons(e.el.find(selIcons));
+        btnbuyInitialize(e.el);
+        processPage();
+        $('.drop').drop($.extend($.extend($.extend({}, optionsDrop), callbackDrop), {dataSource: e.el.find('[data-drop]')}));
     })
 //    if carousel in compare
 //    $('#compare').change(function() {
@@ -1201,9 +1222,14 @@ jQuery(document).ready(function() {
         showHidePart(e.el.find('.product-comment'));
         e.el.find(preloader).remove();
     })
-    $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
+    $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload', function(e) {
         if (e.el.is(':visible'))
             drawIcons(e.el.find(selIcons))
+    })
+    $(document).bind('imageapi.pastemsg imageapi.hidemsg', function(e) {
+        var $this = e.el.closest('[data-elrun]'),
+                dropContent = $this.find($this.data('dropContent'));
+        $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
     })
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
@@ -1240,6 +1266,7 @@ jQuery(document).ready(function() {
     //some front funcions
     showHidePart($('.sub-category'));
     showHidePart($('.patch-product-view'));
+    showHidePart($('.frame-list-comment__icsi-css.sub-2'));
     drawIcons($(selIcons));
     var userTool = new itemUserToolbar(),
             btnToUp = $('.btn-to-up');
@@ -1263,14 +1290,7 @@ jQuery(document).ready(function() {
     processWishComp();
     wishListCount();
     compareListCount();
-    $(genObj.btnBuy).bind('click', function(e) {
-        $.fancybox.showActivity();
-        $(this).attr('disabled', 'disabled');
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem, this);
-        decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
-        return true;
-    });
+    btnbuyInitialize(body);//where find
 //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
@@ -1515,10 +1535,7 @@ wnd.load(function() {
         })
     }
     $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    var adding = {vertical: true};
-    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend($.extend({}, carousel), {
-        adding: adding
-    }));
+    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
     if ($.exists(selScrollPane)) {
         $(selScrollPane).each(function() {
             var $this = $(this),
@@ -1564,9 +1581,7 @@ wnd.load(function() {
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
     removePreloaderBaner(cycle); //parent for images
 
-    $("img.lazy").lazyload({
-        effect: "fadeIn"
-    });
+    $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     if (productPhotoCZoom) {
         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
