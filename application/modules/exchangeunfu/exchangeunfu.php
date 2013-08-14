@@ -11,11 +11,14 @@ class Exchangeunfu extends MY_Controller {
     public function __construct() {
         parent::__construct();
         include 'application/modules/exchangeunfu/helpers/ex_helper.php';
+       
     }
 
     public function index() {
-        $e = new \exchangeunfu\exc();
-        $e->import();
+        $e = new \exchangeunfu\export();
+        $e->export();
+        $i = new \exchangeunfu\exc();
+//        $i->import();
     }
 
 //    public function autoload() {
