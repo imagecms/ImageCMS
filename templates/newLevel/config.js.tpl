@@ -1,5 +1,6 @@
 <!-- php vars to js -->
 <script type="text/javascript">
+    var product_parent_category = '{$parent_category}';
     var curr = '{$CS}',
             currNext = '{$NextCS}',
             nextCs = '{$NextCSId != null ? true : false}'
