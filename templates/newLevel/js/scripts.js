@@ -4,6 +4,8 @@
 //},
 //        selectDeliv = true;
 //if radio
+var productPhotoCZoom = productPhotoCZoom != undefined;
+var productPhotoFancybox = productPhotoFancybox != undefined;
 var methodDeliv = function() {
     return $('[name = "deliveryMethodId"]')
 },
@@ -41,7 +43,11 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
+    
+    //direction: 'left',//when menu place left and drop go to right
     countColumn: 5, //if not drop-side
+    //sub2Frame: '.frame-l2', //if drop-side
+    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
 //if need column partition level 2
     columnPart: true,
@@ -53,9 +59,7 @@ var optionsMenu = {
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
     sub3Frame: '.frame-l2',
-    //dropWidth: 475, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
     frAClass: 'hoverM', //active class
@@ -351,7 +355,8 @@ function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
     kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
     Shop.Cart.kitDiscount = kitDiscount;
-    if (obj != 0 || kitDiscount != 0) {
+    var discC = (Shop.Cart.discount.sum_discount_product != 0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount != 0;
+    if (discC) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
             $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + kitDiscount).toFixed(pricePrecision));
@@ -361,7 +366,7 @@ function displayDiscount(obj) {
     else {
         $(genObj.frameCurDiscount).hide();
     }
-    if ((Shop.Cart.discount.sum_discount_product != 0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount != 0)
+    if (discC)
         $(genObj.genSumDiscount).each(function() {
             $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
         });

@@ -593,27 +593,27 @@
                         </div>
                         <!--End. Comments block-->
                     </div>
-                    {if $accessories}
-                        <div class="accessories">
-                            <div class="title-default">
-                                <div class="title">
-                                    <h3 class="d_i">Аксессуары к {echo $model->getName()}</h3>
-                                    {if count($accessories) > 4}
-                                        <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
-                                            <span class="icon_arrow"></span>
-                                            <span class="text-el">Смотреть все аксессуры</span>
-                                        </button>
-                                    {/if}
-                                </div>
-                            </div>
-                            <div class="inside-padd">
-                                <ul class="items items-default">
-                                    {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
-                                </ul>
+                </div>
+                {if $accessories}
+                    <div class="accessories">
+                        <div class="title-default">
+                            <div class="title">
+                                <h3 class="d_i">Аксессуары к {echo $model->getName()}</h3>
+                                {if count($accessories) > 4}
+                                    <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
+                                        <span class="icon_arrow"></span>
+                                        <span class="text-el">Смотреть все аксессуры</span>
+                                    </button>
+                                {/if}
                             </div>
                         </div>
-                    {/if}
-                </div>
+                        <div class="inside-padd">
+                            <ul class="items items-default">
+                                {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
+                            </ul>
+                        </div>
+                    </div>
+                {/if}
             </div>
             <!--             Start. Characteristic-->
             <div id="first">
@@ -656,7 +656,7 @@
 {literal}
     <script type="text/javascript">
                         var productPhotoFancybox = true,
-                                productPhotoCZoom = false,
+                                //productPhotoCZoom,
                                 forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>
 {/literal}

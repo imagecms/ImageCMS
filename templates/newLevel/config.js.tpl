@@ -22,9 +22,11 @@
     plurProd = ['товар', 'товара', 'товаров'];
     plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
     plurComments = ['отзыв', 'отзыва', 'отзывов'];
+    {literal}
     text = {
         search: function(text) {
             return 'Введите боллее ' + text + ' символов';
         }
     }
+    {/literal}
 </script>
