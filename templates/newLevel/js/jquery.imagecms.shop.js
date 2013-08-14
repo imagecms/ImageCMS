@@ -627,7 +627,7 @@ var ie = jQuery.browser.msie,
                         right = menuW - dropW;
                     drop.css('right', right).addClass('right-drop');
                 }
-            } else if(direction != 'right' || direction == 'left') {
+            } else if (direction != 'right' || direction == 'left') {
                 drop.removeClass('right-drop')
                 if (sub2 && dropW > menuW)
                     drop.css('left', $thisL).addClass('left-drop');
@@ -2037,6 +2037,7 @@ var ie = jQuery.browser.msie,
                     groupButtons: '.b-carousel',
                     vCarousel: '.v-carousel',
                     hCarousel: '.h-carousel',
+                    adding: {},
                     before: function() {
                     },
                     after: function() {
@@ -2047,9 +2048,10 @@ var ie = jQuery.browser.msie,
                         next = settings.next,
                         content = settings.content,
                         groupButtons = settings.groupButtons,
-                        adding = settings.adding,
                         hCarousel = settings.hCarousel,
-                        vCarousel = settings.vCarousel;
+                        vCarousel = settings.vCarousel,
+                        addO = settings.adding;
+
                 $jsCarousel.each(function() {
                     var $this = $(this),
                             $item = $this.find(content).children().children(item + ':visible'),
@@ -2080,8 +2082,9 @@ var ie = jQuery.browser.msie,
                             scroll: 1
                         }
                         $this.jcarousel($.extend(
-                                adding
-                                , mainO)).addClass('iscarousel');
+                                mainO
+                                , addO)).addClass('iscarousel');
+
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
