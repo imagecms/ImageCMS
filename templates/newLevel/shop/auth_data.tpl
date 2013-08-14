@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="btn-exit-shop">
-            <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', '', $(this))" data-refresh="true" data-redirect="false">
+            <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', '', $(this));">
                 <span class="icon_exit"></span>
                 <span class="text-el">Выход</span>
             </button>

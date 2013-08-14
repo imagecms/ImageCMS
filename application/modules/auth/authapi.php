@@ -41,12 +41,12 @@ class Authapi extends MY_Controller {
             $doLoginResult = $this->dx_auth->login($this->input->post('email'), $this->input->post('password'), $this->input->post('remember'));
 
             /** Prepare response */
-            if (TRUE === $validationResult AND TRUE === $doLoginResult) {
+            if (true === $validationResult AND true === $doLoginResult) {
                 if (class_exists('ShopCore') && SHOP_INSTALLED)
                     ShopCore::app()->SCart->transferCartData();
                 $jsonResponse['msg'] = 'User logged in success';
-                $jsonResponse['status'] = TRUE;
-                $jsonResponse['refresh'] = TRUE;
+                $jsonResponse['status'] = true;
+                $jsonResponse['refresh'] = true;
                 $jsonResponse['redirect'] = FAlSE;
             } else {
 
@@ -100,13 +100,13 @@ class Authapi extends MY_Controller {
 
             /** Preprate response */
             $jsonResponse['msg'] = lang('mod_auth_scfl_logout');
-            $jsonResponse['status'] = TRUE;
-            $jsonResponse['refresh'] = TRUE;
-            $jsonResponse['redirect'] = FALSE;
+            $jsonResponse['status'] = true;
+            $jsonResponse['refresh'] = true;
+            $jsonResponse['redirect'] = false;
         } else {
             /** Preprate response */
             $jsonResponse['msg'] = 'You are not loggin to make loggout';
-            $jsonResponse['status'] = FALSE;
+            $jsonResponse['status'] = false;
         }
 
         /** return JSON Data */
@@ -149,8 +149,8 @@ class Authapi extends MY_Controller {
                 $json = array();
                 $json['status'] = true;
                 $json['msg'] = 'Register success';
-                $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : FALSE;
-                $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : FALSE;
+                $json['refresh'] = $this->input->post('refresh') ? $this->input->post('refresh') : false;
+                $json['redirect'] = $this->input->post('redirect') ? $this->input->post('redirect') : false;
                 echo json_encode($json);
             } else {
                 // Is registration using captcha
@@ -278,23 +278,23 @@ class Authapi extends MY_Controller {
             $changePasswordResult = $this->dx_auth->change_password($this->input->post('old_password'), $this->input->post('new_password'));
 
             /** Prepare response */
-            if (TRUE === $validationResult AND TRUE === $changePasswordResult) {
+            if (true === $validationResult AND true === $changePasswordResult) {
                 $jsonResponse['msg'] = lang('lang_pass_changed');
-                $jsonResponse['status'] = TRUE;
+                $jsonResponse['status'] = true;
             } else {
                 $validationErrors = validation_errors();
                 if (!empty($validationErrors)) {
                     $jsonResponse['msg'] = $validationErrors;
                     $jsonResponse['validations'] = array('old_password' => form_error('old_password'), 'new_password' => form_error('new_password'), 'confirm_new_password' => form_error('confirm_new_password'));
-                    $jsonResponse['status'] = FALSE;
+                    $jsonResponse['status'] = false;
                 } else {
                     $jsonResponse['validations'] = array('old_password' => lang('mod_auth_error_old_psw'));
-                    $jsonResponse['status'] = FALSE;
+                    $jsonResponse['status'] = false;
                 }
             }
         } else {
             $jsonResponse['msg'] = 'You are not logged in to change password';
-            $jsonResponse['status'] = FALSE;
+            $jsonResponse['status'] = false;
         }
 
         /** return JSON Data */
@@ -391,7 +391,7 @@ class Authapi extends MY_Controller {
      */
     private function initialize() {
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters(FALSE, FALSE);
+        $this->form_validation->set_error_delimiters(false, false);
         $this->load->language('auth');
         $this->load->module('auth');
         $this->min_username = $this->auth->min_username;

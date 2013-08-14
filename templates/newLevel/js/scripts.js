@@ -58,7 +58,7 @@ var optionsMenu = {
     //dropWidth: 475, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
-    frAClass: 'hoverM',//active class
+    frAClass: 'hoverM', //active class
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
     parentTl: '.frame-l2'//prev a level 2
@@ -197,9 +197,7 @@ var genObj = {
     textEl: '.text-el', //селектор
     popupCart: '#popupCart',
     pageCart: '.page-cart',
-    pM: function() {
-        return $('.paymentMethod');
-    },
+    pM: $('.paymentMethod'),
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
     countOrCompl: '.countOrCompl', //селектор
@@ -259,9 +257,7 @@ var genObj = {
     msgF: '.msg',
     err: 'error', //клас
     scs: 'success', //клас
-    frameDiscount: function() {
-        return $('#discount');
-    },
+    frameDiscount: $('#discount'),
     gift: '#gift',
     genDiscount: '.genDiscount',
     genSumDiscount: '.genSumDiscount',
@@ -269,10 +265,10 @@ var genObj = {
 };
 message = {
     success: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
     error: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
 //declaration shop functions
@@ -341,14 +337,14 @@ function getDiscount(k) {
     }
 }
 function hideInfoDiscount() {
-    var frameDiscountO = genObj.frameDiscount();
+    var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.empty();
-    frameDiscountO.next().show();
+    frameDiscountO.next().show();//preloader
 }
 function displayInfoDiscount(tpl) {
-    var frameDiscountO = genObj.frameDiscount();
+    var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.html(tpl);
-    frameDiscountO.next().hide();
+    frameDiscountO.next().hide();//preloader
     $.fancybox.hideActivity();
 }
 function displayDiscount(obj) {
@@ -483,7 +479,8 @@ function processPage() {
 function initShopPage(showWindow, target, orderDetails) {
     Shop.Cart.totalRecount();
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
-    dropBaskResize();
+    if ($(genObj.popupCart).is(':visible'))
+        dropBaskResize();
     if (showWindow || $(genObj.popupCart).is(':visible'))
         $(document).trigger({
             type: 'render_popup_cart',
@@ -583,7 +580,7 @@ function renderOrderDetails() {
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
-    genObj.pM().next().show();
+    genObj.pM.next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         data = JSON.parse(dataStr);
         var replaceStr = '';
@@ -596,14 +593,14 @@ function changeDeliveryMethod(id, selectDeliv) {
                 data: data
             });
         }
-        genObj.pM().html(replaceStr);
-        genObj.pM().next().hide();
+        genObj.pM.html(replaceStr);
+        genObj.pM.next().hide();
         if (selectDeliv)
             cuSel({
                 changedEl: '#paymentMethod'
             });
         else
-            genObj.pM().nStRadio({
+            genObj.pM.nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
                         //classRemove: 'b_n',//if not standart
@@ -681,7 +678,6 @@ function checkSyncs() {
 
     if (inServerWish != NaN)
     {
-
         if (Shop.WishList.all().length != inServerWish) {
             Shop.WishList.sync();
         }
@@ -804,7 +800,7 @@ function showHidePart(el) {
     });
 }
 function dropBaskResize() {
-    $(document).trigger({type: 'drop.contentHeight', el: $(genObj.popupCart).find('.drop-content'), drop: $(genObj.popupCart)});
+    $(document).trigger({type: 'drop.contentHeight', el: $(genObj.popupCart).find('.drop-content').first(), drop: $(genObj.popupCart)});
 }
 function decorElemntItemProduct(el) {
     if (!el)
@@ -1001,9 +997,6 @@ jQuery(document).ready(function() {
             dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
         },
         after: function(el, dropEl, isajax) {
-            if (dropEl.is(genObj.popupCart)) {
-                //dropBaskResize();
-            }
             if (isajax)
                 drawIcons(dropEl.find(selIcons));
             if (dropEl.is(genObj.popupCart)) {
@@ -1028,6 +1021,8 @@ jQuery(document).ready(function() {
         closed: function(el, dropEl) {
             if ($(dropEl).hasClass('frame-already-show'))
                 $('.frame-user-toolbar').css({'width': body.width(), 'z-index': 100})
+            if ($('#fancybox-wrap').is(':visible'))
+                $.drop('scrollEmulate')();
         }
     }));
     $(document).bind('drop.successJson', function(e) {
@@ -1042,31 +1037,21 @@ jQuery(document).ready(function() {
         var wndH = wnd.height(),
                 el = e.el,
                 elDrop = e.drop;
+        if ($.existsN(el)) {
+            el.jScrollPane(scrollPane);
+            el.find('.jspContainer').css({'height': '100%'});
 
-        el.jScrollPane(scrollPane);
-        el.find('.jspContainer').css({'height': '100%'});
-        el.unbind('touchstart touchmove touchend');
-
-        var elC = el.find('.jspPane'),
-                elCH = elC.outerHeight(),
-                api = el.data('jsp');
-
-        el.css('height', 'auto');
-        elC.css('position', 'static')
-        var elDropH = elDrop.height();
-        if (elDropH > wndH) {
-            el.css({'height': elCH - elDropH + wndH, 'max-height': 'none'});
-            elC.css('position', 'absolute');
+            var elC = el.find('.jspPane'),
+                    elCH = elC.outerHeight(),
+                    api = el.data('jsp');
+            var footerHeader = elDrop.find('.drop-header').height() + elDrop.find('.drop-footer').height();
+            if (elCH + footerHeader > wndH)
+                el.css('height', wndH - (footerHeader + 40));
+            else
+                el.css('height', elCH);
             api.reinitialise();
-            el.bind('touchstart touchmove touchend', function(e) {
-                return false;
-            });
+            $.drop('dropCenter')(elDrop)
         }
-        else {
-            el.css('max-height', wndH);
-            api.reinitialise();
-        }
-        $.drop('dropCenter')(elDrop)
     });
     wnd.bind('resize', function() {
         $('[data-elrun]:visible').each(function() {
@@ -1084,8 +1069,7 @@ jQuery(document).ready(function() {
                 decorElemntItemProduct();
             }
             if (el.hasClass('tabs-product')) {
-                showHidePart($('.product-charac'));
-                showHidePart($('.product-descr'));
+                showHidePart($('.patch-product-view'));
             }
         }
     });
@@ -1134,7 +1118,7 @@ jQuery(document).ready(function() {
                 'type': 'iframe',
                 'titlePosition': 'inside',
                 'onComplete': function() {
-                    body.addClass('isScroll');
+                    $.drop('scrollEmulate')();
                     var fancyC = $('#fancybox-content');
                     fancyC.prepend('<div class="wOverlay"></div>');
                     fancyC.append('<div class="fancy-footer"></div>');
@@ -1157,21 +1141,9 @@ jQuery(document).ready(function() {
                         itemThumbs.unwrap();
                     fancyTitle.prependTo(fancyC);
                     var itemGal = carGal.find('.items-thumbs > li'),
-                            itemGalL = itemGal.length,
-                            pActEl = arguments[1] - itemGalL;
+                            itemGalL = itemGal.length;
                     var adding = {};
-                    if (pActEl == 0) {
-                        pActEl = itemGalL - 1;
-                    }
-                    else if (pActEl < 0) {
-                        if (pActEl + itemGalL == 0)
-                            pActEl = 0;
-                        else
-                            pActEl = pActEl + itemGalL - 1;
-                    }
-                    else {
-                        pActEl = pActEl - 1;
-                    }
+                    var pActEl = arguments[1] < itemGalL ? arguments[1] : arguments[1] - itemGalL;
                     adding = {start: pActEl}
                     itemGal.eq(pActEl).addClass('active');
                     carGal.parent().myCarousel($.extend(carousel, {
@@ -1189,7 +1161,7 @@ jQuery(document).ready(function() {
                     $("#fancybox-wrap").unbind('mousewheel.fb');
                 },
                 onClosed: function() {
-                    body.removeClass('isScroll');
+                    $.drop('scrollEmulateRemove')();
                 }
             })
 
@@ -1216,20 +1188,18 @@ jQuery(document).ready(function() {
         $('a.fancybox').fancybox();
     } catch (e) {
     }
+    if ($.isFunction(window.initComments))
+        initComments();
 
 //sample of events front
     $(document).live('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
+        showHidePart(e.el.find('.product-comment'));
         e.el.find(preloader).remove();
     })
     $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
         if (e.el.is(':visible'))
             drawIcons(e.el.find(selIcons))
-    })
-    $(document).bind('render_popup_cart', function(e) {
-        if (e.el.is(':visible')) {
-            //dropBaskResize();
-        }
     })
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
@@ -1241,6 +1211,14 @@ jQuery(document).ready(function() {
     $(document).bind('comments.showformreply tabs.showtabs drop.show', function(e) {
         if (ltie7)
             ieInput(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
+    })
+    $(document).bind('comments.showformreply', function(e) {
+        var patchCom = e.el.closest('.patch-product-view');
+        patchCom.css('height', patchCom.height() + e.el.height())
+    })
+    $(document).bind('comments.hideformreply', function(e) {
+        var patchCom = e.el.closest('.patch-product-view');
+        patchCom.css('height', patchCom.height() - e.el.height())
     })
     $(document).bind('menu.showDrop', function(e) {
         if (ltie7)
@@ -1257,8 +1235,7 @@ jQuery(document).ready(function() {
     });
     //some front funcions
     showHidePart($('.sub-category'));
-    showHidePart($('.product-charac'));
-    showHidePart($('.product-descr'));
+    showHidePart($('.patch-product-view'));
     drawIcons($(selIcons));
     var userTool = new itemUserToolbar(),
             btnToUp = $('.btn-to-up');
@@ -1307,7 +1284,7 @@ jQuery(document).ready(function() {
             }
         }
     });
-    genObj.pM().nStRadio({
+    genObj.pM.nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
 //classRemove: 'b_n',//if not standart
@@ -1330,6 +1307,10 @@ jQuery(document).ready(function() {
     //if (!orderDetails)
     $(document).bind('render_popup_cart', function() {
         getDiscount(false);
+    })
+
+    $(document).bind('sync_сart', function() {
+        countSumBask();
     })
 
     //sample of events shop
@@ -1596,7 +1577,6 @@ wnd.load(function() {
     userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
     $('.menu-main').menuImageCms('refresh');
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-    //dropBaskResize();
 });
 if ($.exists(selScrollPane)) {
     $(selScrollPane).each(function() {

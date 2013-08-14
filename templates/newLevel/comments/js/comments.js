@@ -51,9 +51,13 @@
                     after($this, pasteAfterEL.next());
                 }
                 else if (insertedEl.is(':visible'))
-                    insertedEl[effectOff](duration);
+                    insertedEl[effectOff](duration, function() {
+                        $(document).trigger({'type': 'comments.hideformreply', 'el': $(this)})
+                    });
                 else if (!insertedEl.is(':visible'))
-                    insertedEl[effectIn](duration);
+                    insertedEl[effectIn](duration, function() {
+                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)})
+                    });
             })
         }
     };
@@ -166,7 +170,7 @@ function initComments() {
             });
         }
     });
-    $('#comment__icsi-css form').submit(function(e) {
+    $('.comment__icsi-css form').submit(function(e) {
         e.preventDefault();
     });
     $('.usefullyes').bind('click', function() {
@@ -226,7 +230,7 @@ renderPosts = function(el, data) {
 
                 if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').html(parseInt(obj.commentsCount) +' '+ pluralStr(parseInt(obj.commentsCount), plurComments));
+                    $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));
                 }
                 $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }
@@ -251,9 +255,10 @@ function post(el) {
                 renderPosts($(el).closest('[name="for_comments"]'));
             }
             else {
-                var errText = $(el).closest('form').find('.error_text')
-                errText.html('');
-                errText.append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
+                var form = $(el).closest('form');
+                form.find('.error_text').remove()
+                form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>')
+                drawIcons(form.find('.error_text').find(selIcons));
             }
         }
     });

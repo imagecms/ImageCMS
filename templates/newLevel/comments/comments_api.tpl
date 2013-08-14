@@ -3,11 +3,11 @@
         <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
     </label>
 {/if}
-<div id="comment__icsi-css">
+<div class="comment__icsi-css" id="comment__icsi-css">
     {if $comments_arr}
         <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
         <div class="frame-list-comment__icsi-css">
-            <ul class="sub-1">
+            <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
                     <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
                     <li>
@@ -93,14 +93,10 @@
                     </li>
                 {/foreach}
             </ul>
-            {if (count($comments_arr))+count($comment_ch) == (int)$_POST[countcomment] && $_POST[countcomment] != NULL}
-                <div class="frame-show-all-comments">
-                    <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#comment']" data-scroll="true">
-                        <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть все отзывы покупателей</span>
-                    </button>
-                </div>
-            {/if}
+            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+                <span class="icon_arrow"></span>
+                <span class="text-el">Смотреть все отзывы покупателей</span>
+            </button>
         </div>
     {/if}
 
@@ -114,11 +110,6 @@
                 <div class="form-comment__icsi-css form__icsi-css main-form-comments">
                     <div class="inside-padd">
                         <form method="post">
-                            <label class="err-label">
-                                <span class="frame_form_field__icsi-css">
-                                    <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-                                </span>
-                            </label>
                             {if !$is_logged_in}
                                 <label>
                                     <span class="frame_form_field__icsi-css">
@@ -195,7 +186,7 @@
                 <form>
                     <label class="err-label">
                         <span class="frame_form_field__icsi-css">
-                            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
+                            <div class="frameLabel__icsi-css error" name="error_text"></div>
                         </span>
                     </label>
 
