@@ -32,18 +32,25 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public static function _extendPageAdmin($data) {
-        $ci = &get_instance();
-        $array = $ci->db
-                ->where('product_id', $data['model']->getid())
-                ->get('mod_exchangeunfu')
-                ->result_array();
-
-        $view = \CMSFactory\assetManager::create()
-                ->setData('data', $array)
-                ->fetchTemplate('main');
-
-        \CMSFactory\assetManager::create()
-                ->appendData('moduleAdditions', $view);
+//        $ci = &get_instance();
+//        
+//        $array = $ci->db
+//                ->where('product_id', $data['model']->getid())
+//                ->get('mod_exchangeunfu');
+//        if($array){
+//            $array = $array->result_array();
+//        }else{
+//            $array = array();
+//        }
+//            
+//                
+//
+//        $view = \CMSFactory\assetManager::create()
+//                ->setData('data', $array)
+//                ->fetchTemplate('main');
+//
+//        \CMSFactory\assetManager::create()
+//                ->appendData('moduleAdditions', $view);
     }
 
     public function _install() {
