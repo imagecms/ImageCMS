@@ -699,14 +699,17 @@ var ie = jQuery.browser.msie,
                         refresh = settings.refresh,
                         menuCache = settings.menuCache,
                         activeFl = settings.activeFl,
-                        parentTl = settings.parentTl;
+                        parentTl = settings.parentTl,
+                        otherPage = settings.otherPage;
                 if (menuCache && !refresh) {
-                    menu.find('a').each(function() {
-                        var $this = $(this);
-                        $this.closest(activeFl.split(' ')[0]).removeClass(activeClass);
-                        $this.removeClass(activeClass);
-                    });
-                    menu.find('a[href="' + location.href + '"]').each(function() {
+//                    menu.find('a').each(function() {
+//                        var $this = $(this);
+//                        $this.closest(activeFl.split(' ')[0]).removeClass(activeClass);
+//                        $this.removeClass(activeClass);
+//                    });
+                    var locHref = location.href;
+                    var locationHref = otherPage != undefined ? otherPage : locHref
+                    menu.find('a[href="' + locationHref + '"]').each(function() {
                         var $this = $(this);
                         $this.closest(activeFl.split(' ')[0]).addClass(activeClass);
                         $this.closest(parentTl.split(' ')[0]).addClass(activeClass).prev().addClass(activeClass);
