@@ -2,8 +2,8 @@
 <script type="text/javascript">
     var curr = '{$CS}',
             currNext = '{$NextCS}',
-            nextCs = '{$NextCSId != null ? true : false}'
-    pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+            nextCs = '{echo $NextCSId}',
+            pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
             inCart = 'В корзине',
             toCart = '{lang('s_buy')}',
@@ -23,10 +23,10 @@
     plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
     plurComments = ['отзыв', 'отзыва', 'отзывов'];
     {literal}
-    text = {
-        search: function(text) {
-            return 'Введите боллее ' + text + ' символов';
+        text = {
+            search: function(text) {
+                return 'Введите боллее ' + text + ' символов';
+            }
         }
-    }
     {/literal}
 </script>

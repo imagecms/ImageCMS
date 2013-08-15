@@ -2705,14 +2705,12 @@ var ImageCMSApi = {
             console.log(msg);
         }
     },
-    formAction: function(url, selector, obj, el) {
+    formAction: function(url, selector, obj) {
         //collect data from form
         var DS = this.defSet();
         $.extend(DS, obj)
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
-        else if (el)
-            var dataSend = {'refresh': el.data('refresh'), 'redirect': el.data('redirect')};
         //send api request to api controller
         $.ajax({
             type: "post",

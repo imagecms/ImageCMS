@@ -10,30 +10,6 @@ var methodDeliv = function() {
     return $('[name = "deliveryMethodId"]')
 },
         selectDeliv = false;
-if (!$.isFunction($.fancybox)) {
-    var loadingTimer, loadingFrame = 1;
-    $('body').append(loading = $('<div id="fancybox-loading"><div></div></div>'));
-    _animate_loading = function() {
-        if (!loading.is(':visible')) {
-            clearInterval(loadingTimer);
-            return;
-        }
-
-        $('div', loading).css('top', (loadingFrame * -40) + 'px');
-        loadingFrame = (loadingFrame + 1) % 12;
-    };
-    $.fancybox = function() {
-    };
-    $.fancybox.showActivity = function() {
-        clearInterval(loadingTimer);
-        loading.show();
-        loadingTimer = setInterval(_animate_loading, 66);
-    };
-    $.fancybox.hideActivity = function() {
-        loading.hide();
-    };
-}
-
 var cW = '980',
         selIcons = '[class*=icon_]',
         widhtItemScroll = 256,
@@ -344,12 +320,12 @@ function getDiscount(k) {
 function hideInfoDiscount() {
     var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.empty();
-    frameDiscountO.next().show();//preloader
+    frameDiscountO.next(preloader).show();//preloader
 }
 function displayInfoDiscount(tpl) {
     var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.html(tpl);
-    frameDiscountO.next().hide();//preloader
+    frameDiscountO.next(preloader).hide();//preloader
     $.fancybox.hideActivity();
 }
 function displayDiscount(obj) {
@@ -757,6 +733,29 @@ function condProduct(vStock, liBlock, btnBuy) {
 }
 
 //declaration front functions
+if (!$.isFunction($.fancybox)) {
+    var loadingTimer, loadingFrame = 1;
+    $('body').append(loading = $('<div id="fancybox-loading"><div></div></div>'));
+    _animate_loading = function() {
+        if (!loading.is(':visible')) {
+            clearInterval(loadingTimer);
+            return;
+        }
+
+        $('div', loading).css('top', (loadingFrame * -40) + 'px');
+        loadingFrame = (loadingFrame + 1) % 12;
+    };
+    $.fancybox = function() {
+    };
+    $.fancybox.showActivity = function() {
+        clearInterval(loadingTimer);
+        loading.show();
+        loadingTimer = setInterval(_animate_loading, 66);
+    };
+    $.fancybox.hideActivity = function() {
+        loading.hide();
+    };
+}
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
     setTimeout(function() {
@@ -943,7 +942,7 @@ function ieInput(els) {
 jQuery(document).ready(function() {
     if (isTouch)
         body.addClass('isTouch');
-//call front plugins
+//call front plugins and functions
     $.onlyNumber('.number input');
     if (ltie7) {
         ieInput();
@@ -961,22 +960,16 @@ jQuery(document).ready(function() {
             ieInput($('.cuselText'));
     }
     var catalogForm = $('#catalog_form')
-    $('#sort').live('change', function() {
+    $('#sort').bind('change', function() {
         $('input[name=order]').val($(this).val())
         catalogForm.submit();
     });
-    $('#sort2').live('change', function() {
+    $('#sort2').bind('change', function() {
         $('input[name=user_per_page]').val($(this).val())
         catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
-//    l2 = $('.frame-l2');
-//    l2.each(function() {
-//        var l2l = $(this).find('ul > li').length;
-//        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
-//        $(this).find('ul > li:gt(' + (Math.ceil(l2l * 2 / 3) - 1) + ')').addClass('column2_2')
-//        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
-//    })
+
     callbackDrop = {
         before: function(el, dropEl, isajax) {
             var dropEl = $(dropEl);
@@ -1071,7 +1064,7 @@ jQuery(document).ready(function() {
     var dropContentTimeout = "";
     wnd.bind('resize', function() {
         clearTimeout(dropContentTimeout);
-        setTimeout(function(){
+        setTimeout(function() {
             $('[data-elrun]:visible').each(function() {
                 var $this = $(this),
                         dropContent = $this.find($this.data('dropContent'));
@@ -1133,7 +1126,7 @@ jQuery(document).ready(function() {
                     e.preventDefault();
                     frameAddImgThumb.find('a').click();
                 })
-            $('[rel="group"]').fancybox({
+            $('.fbP').fancybox({
                 'padding': 5,
                 'margin': 0,
                 'overlayOpacity': 0.7,
@@ -1284,6 +1277,7 @@ jQuery(document).ready(function() {
             'z-index': frLabL - index
         })
     });
+    /*/call front plugins and functions*/
     //    call shop functions
     processPage();
     checkSyncs();
@@ -1457,7 +1451,7 @@ jQuery(document).ready(function() {
             optionCompare.allParams.click();
     })
     //variants
-    $('#variantSwitcher').live('change', function() {
+    $('#variantSwitcher').bind('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
@@ -1479,7 +1473,7 @@ jQuery(document).ready(function() {
         liBlock.find(genObj.prefV + vId).show();
     });
     /**Variants in Category*/
-    $('[id ^= сVariantSwitcher_]').live('change', function() {
+    $('[id ^= сVariantSwitcher_]').bind('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
@@ -1523,7 +1517,9 @@ jQuery(document).ready(function() {
             recountCartPage(selectDeliv, methodDeliv());
         }
     })
+    /*/call shop functions*/
 });
+var genTimeout = "";
 wnd.load(function() {
     function removePreloaderBaner(el) {
         el.find('img[data-src]').each(function() {
@@ -1592,10 +1588,13 @@ wnd.load(function() {
         })
     }
 }).resize(function() {
-    var userTool = new itemUserToolbar();
-    userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
-    $('.menu-main').menuImageCms('refresh');
-    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+    clearTimeout(genTimeout);
+    genTimeout = setTimeout(function() {
+        var userTool = new itemUserToolbar();
+        userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
+        $('.menu-main').menuImageCms('refresh');
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+    }, 300)
 });
 if ($.exists(selScrollPane)) {
     $(selScrollPane).each(function() {

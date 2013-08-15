@@ -39,8 +39,6 @@
                         </span>
                     </span>
                 </div>
-                <input type="hidden" name="refresh" value="false"/>
-                <input type="hidden" name="redirect" value="false"/>
                 {form_csrf()}
             </form>
         </div>
@@ -48,7 +46,6 @@
 </div>
 
 {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
-
 
 <div class="layout-highlight info-discount">
     <div class="title-default">
@@ -107,9 +104,11 @@
                     <div>совершить покупок на сумму: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                 </li>
             {/if}
+            {if  $discount['comulativ']}
             <li class="inside-padd">
                 <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">Просмотр таблицы скидок</button>
             </li>
+            {/if}
         </ul>
     </div>
 </div>

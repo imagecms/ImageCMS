@@ -98,6 +98,19 @@ if (!function_exists('getWidgetTitle')) {
 
 }
 
+if (!function_exists('getProductViewsCount')) {
+
+    function getProductViewsCount() {
+        $ci = & get_instance();
+        $count = count($ci->session->userdata('page'));
+        if(!$count){
+            $count = 0;
+        }
+        return $count;
+    }
+
+}
+
     /* End of widget_helper.php */
 
 
