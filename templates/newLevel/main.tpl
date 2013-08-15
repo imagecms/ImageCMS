@@ -17,7 +17,6 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />

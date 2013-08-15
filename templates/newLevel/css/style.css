@@ -31,7 +31,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 580px;}
+body, .overlayDrop{min-width: 480px;}
 article, .container, .horizontal-carousel .special-proposition > .frame-title{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
@@ -214,6 +214,8 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .photo-block .helper{height: 100%!important;}
 .photo-block img{max-height: 100%;}
 .photo-block a{display: block;}
+.lazy{width: 100%;height: 100%;}
+.lazy.load{width: auto;height: auto;}
 /*/photo-block*/
 
 /*base nav*/
@@ -738,7 +740,7 @@ li[class*="x"] .title-category-l1{width: 100%;text-align: center;display: block;
 
 /*not standart checkbox radio*/
 .frame-label:hover .niceCheck{}
-.niceCheck{float: left;position: relative;top: 4px;margin-right: 5px;}
+.niceCheck{float: left;position: relative;top: 1px;margin-right: 5px;}
 .niceCheck.active{}
 .niceCheck.disabled{}
 .niceCheck input, .niceRadio input{display: none;}
@@ -1116,3 +1118,8 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .tooltip{position:absolute;z-index:1104;display:block;visibility:visible;padding:3px 8px;display: none;margin-top: -5px;padding:5px;}
 .tooltip:after{content: "";position:absolute;width:0;height:0;bottom:-5px;left:50%;margin-left:-5px;}
 /*/tooltip*/
+
+/*safari inline-block fix*/
+.isSafari .nav-enter-reg, .isSafari .items{letter-spacing: -5px;}
+.isSafari .nav-enter-reg li, .isSafari .items > li{letter-spacing: normal;}
+/*/safari inline-block fix*/

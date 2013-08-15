@@ -6,6 +6,7 @@
 //if radio
 var productPhotoCZoom = productPhotoCZoom != undefined;
 var productPhotoFancybox = productPhotoFancybox != undefined;
+var hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 var methodDeliv = function() {
     return $('[name = "deliveryMethodId"]')
 },
@@ -38,9 +39,12 @@ var optionsMenu = {
     evLF: 'hover',
     evLS: 'hover',
     frAClass: 'hoverM', //active class
+
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
-    parentTl: '.frame-l2'//prev a level 2
+    parentTl: '.frame-l2', //prev a level 2
+
+    otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 };
 var scrollPane = {
     animateScroll: true,
@@ -270,6 +274,14 @@ function deleteWishListItem(el, id, vid) {
     }
     el.closest(genObj.parentBtnBuy).remove();
 }
+function pasteItemsTovars(el) {
+    el.find("img.lazy").lazyload(lazyload);
+    wnd.scroll();//for lazyload
+    drawIcons(el.find(selIcons));
+    btnbuyInitialize(el);
+    processPage(el);
+    $('.drop').drop($.extend($.extend($.extend({}, optionsDrop), callbackDrop), {dataSource: el.find('[data-drop]')}));
+}
 function processWishComp() {
 //wishlist checking
 //    var WishList = Shop.WishList.all();
@@ -414,9 +426,10 @@ function btnbuyInitialize(el) {
         return true;
     });
 }
-function processPage() {
+function processPage(el) {
 //update page content
 //update products count
+    el = el == undefined ? body : el;
     if (!orderDetails) {
         Shop.Cart.totalRecount();
         var keys = [];
@@ -424,7 +437,7 @@ function processPage() {
             keys.push(item.id + '_' + item.vId);
         });
         //update all product buttons
-        $(':not(.' + genObj.btnCartCss + ') ' + genObj.btnBuy).each(function() {
+        el.find(':not(.' + genObj.btnCartCss + ') ' + genObj.btnBuy).each(function() {
             var $this = $(this),
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) != -1) {
@@ -436,7 +449,7 @@ function processPage() {
                 }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
             }
         });
-        $('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
+        el.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
             var $this = $(this),
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) == -1) {
@@ -449,7 +462,7 @@ function processPage() {
             }
         });
     }
-    $('[data-rel="frameplusminus"]').each(function() {
+    el.find('[data-rel="frameplusminus"]').each(function() {
         var $this = $(this),
                 key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
@@ -940,6 +953,9 @@ function ieInput(els) {
     });
 }
 jQuery(document).ready(function() {
+    $(document).bind('lazy.after', function(e) {
+        e.el.addClass('load');
+    })
     if (isTouch)
         body.addClass('isTouch');
 //call front plugins and functions
@@ -1091,13 +1107,7 @@ jQuery(document).ready(function() {
         e.els.filter('.active').append('<div class="' + preloader.replace('.', '') + '"></div>')
     })
     $(document).bind('tabs.afterload', function(e) {
-        e.els.children(preloader).remove();
-        e.el.find("img.lazy").lazyload(lazyload);
-        wnd.scroll();//for lazyload
-        drawIcons(e.el.find(selIcons));
-        btnbuyInitialize(e.el);
-        processPage();
-        $('.drop').drop($.extend($.extend($.extend({}, optionsDrop), callbackDrop), {dataSource: e.el.find('[data-drop]')}));
+        pasteItemsTovars(e.el);
     })
 //    if carousel in compare
 //    $('#compare').change(function() {
@@ -1276,6 +1286,9 @@ jQuery(document).ready(function() {
             'position': 'relative',
             'z-index': frLabL - index
         })
+    });
+    $(document).bind('widget_ajax', function(e) {
+        pasteItemsTovars(e.el);
     });
     /*/call front plugins and functions*/
     //    call shop functions
@@ -1521,61 +1534,58 @@ jQuery(document).ready(function() {
 });
 var genTimeout = "";
 wnd.load(function() {
-    function removePreloaderBaner(el) {
-        el.find('img[data-src]').each(function() {
-            var $this = $(this);
-            $this.attr('src', $this.attr('data-src')).load(function() {
-                $(this).fadeIn();
-                $('.baner').find(preloader).remove();
-            })
-        })
-    }
-    $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
-    if ($.exists(selScrollPane)) {
-        $(selScrollPane).each(function() {
-            var $this = $(this),
-                    api = $this.jScrollPane(scrollPane),
-                    api = api.data('jsp');
-            $this.bind('mousewheel', function(e, b, c, delta) {
-                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
-                {
+    function initCarouselJscrollPaneCycle(el) {
+        el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
+        el.find('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
+        if ($.exists(selScrollPane)) {
+            el.find(selScrollPane).each(function() {
+                var $this = $(this),
+                        api = $this.jScrollPane(scrollPane),
+                        api = api.data('jsp');
+                $this.bind('mousewheel', function(e, b, c, delta) {
+                    if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
+                    {
 //            ширина блоку товару разом з мергінами
-                    api.scrollByX(widhtItemScroll);
-                    return false;
-                }
-                if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-widhtItemScroll);
-                    return false;
-                }
+                        api.scrollByX(widhtItemScroll);
+                        return false;
+                    }
+                    if (delta == 1 && api.getContentPositionX() != 0) {
+                        api.scrollByX(-widhtItemScroll);
+                        return false;
+                    }
 
+                })
             })
-        })
-    }
+        }
 
-    var cycle = $('.cycle'),
-            next = '.baner .next',
-            prev = '.baner .prev';
-    if (cycle.find('li').length > 1) {
-        cycle.cycle({
-            speed: 600,
-            timeout: 5000, fx: 'fade',
-            pauseOnPagerHover: true,
-            next: next,
-            prev: prev,
-            pager: '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            cycle.cycle('pause');
-        }, function() {
-            cycle.cycle('resume');
-        });
-        $(next + ',' + prev).show();
+        var cycle = el.find('.cycle'),
+                next = '.baner .next',
+                prev = '.baner .prev';
+        if (cycle.find('li').length > 1) {
+            cycle.cycle({
+                speed: 600,
+                timeout: 5000, fx: 'fade',
+                pauseOnPagerHover: true,
+                next: next,
+                prev: prev,
+                pager: '.pager',
+                pagerAnchorBuilder: function(idx, slide) {
+                    return '<a href="#"></a>';
+                }
+            }).hover(function() {
+                cycle.cycle('pause');
+            }, function() {
+                cycle.cycle('resume');
+            });
+            $(next + ',' + prev).show();
+        }
     }
+    initCarouselJscrollPaneCycle(body);
+    $(document).bind('widget_ajax', function(e) {
+        initCarouselJscrollPaneCycle(e.el);
+    });
+
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-    removePreloaderBaner(cycle); //parent for images
 
     $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize

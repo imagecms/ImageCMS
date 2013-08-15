@@ -8,9 +8,17 @@
     </div>
 </div>
 <div class="horizontal-carousel">
-    {widget('action_products')}
-    {widget('new_products')}
-    {widget('popular_products')}
+    <div id="action_products">
+        <div class="preloader"></div>
+        {widget_ajax('action_products', '#action_products')}
+    </div>
+    <div id="new_products">
+        <div class="preloader"></div>
+        {widget_ajax('new_products', '#new_products')}
+    </div>
+    <div id="popular_products">
+        {widget('popular_products')}
+    </div>
     {widget('brands')}
 </div>
 <div class="frame-seo-text">
