@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-        {foreach $data as $k => $d}
+        {foreach $data1 as $k => $datas}
             <tr>
                 <td>{echo $k}</td>
                 <td>{echo $d['region']}</td>
