@@ -492,6 +492,7 @@ var ie = jQuery.browser.msie,
                             $thisS.closest('form').submit();
                         }
                     }
+                    return false;
                 })
             }
 
@@ -518,7 +519,7 @@ var ie = jQuery.browser.msie,
                     if (!event)
                         var event = window.event;
                     var code = event.keyCode;
-                    if (code != 27 && code != 40 && code != 38 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
+                    if (code != 27 && code != 40 && code != 38 && code != 39 && code != 37 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
                         postSearch();
                     else if (inputValL == 0)
                         closeFrame();
@@ -528,6 +529,13 @@ var ie = jQuery.browser.msie,
             }).blur(function() {
                 closeFrame();
             });
+            inputString.keypress(function(event) {
+                if (!event)
+                    var event = window.event;
+                var code = event.keyCode;
+                if (code == 13 && inputString.val().length <= minValue)
+                    return false;
+            })
         }
     }
     $.fn.autocomplete = function(method) {

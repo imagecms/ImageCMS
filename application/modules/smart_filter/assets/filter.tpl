@@ -1,22 +1,22 @@
 {include_tpl('filter_opt')}
-<div class="frame-category-menu layout-highlight">
-    <div class="title-menu-category">
-        <div class="title-default">
-            <div class="title-h3 title">Категории:</div>
+{if $category->hasSubCats()}
+    <div class="frame-category-menu layout-highlight">
+        <div class="title-menu-category">
+            <div class="title-default">
+                <div class="title-h3 title">Категории:</div>
+            </div>
         </div>
-    </div>
-    <div class="inside-padd">
-        <nav class="nav-category">
-            {if $category->hasSubCats()}
+        <div class="inside-padd">
+            <nav class="nav-category">
                 <ul class="nav nav-vertical" data-pid="{echo $key}">
                     {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
                         <li class="title"><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
                         {/foreach}
                 </ul>
-            {/if}
-        </nav>
+            </nav>
+        </div>
     </div>
-</div>
+{/if}
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
