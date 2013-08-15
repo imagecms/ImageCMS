@@ -49,7 +49,7 @@
         </div>
         <footer>
             <!--Load star rating-->
-                    {$CI->load->module('star_rating')->show_star_rating()}
+                    {//$CI->load->module('star_rating')->show_star_rating()}
             {include_tpl('footer')}
             
         </footer>
