@@ -97,8 +97,9 @@ class Star_rating extends MY_Controller {
                     $renderTemplate->setData($data)
                     ->registerStyle('style');
 //                    if ($template != 'product_star_rating')$registerScript
-                      if ($registerScript)
-                        $renderTemplate->registerScript('scripts');
+                      if ($registerScript){
+                          $renderTemplate->registerScript('scripts');
+                      }
                     $renderTemplate->render($template, true);
 
     }

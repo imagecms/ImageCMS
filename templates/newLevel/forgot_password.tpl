@@ -41,8 +41,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="refresh" value="true"/>
-                    <input type="hidden" name="redirect" value="false"/>
                     {form_csrf()}
                 </form>
             </div>
