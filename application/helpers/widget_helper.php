@@ -101,16 +101,13 @@ if (!function_exists('getProductViewsCount')) {
 
     function getProductViewsCount() {
         $ci = & get_instance();
-        if ($comp = $ci->session->userdata('page')) {
-            $cnt_comp = count($comp);
-        } else {
-            $cnt_comp = 0;
+
+        $count = count($ci->session->userdata('page'));
+        if (!$count) {
+            $count = 0;
         }
-        return $cnt_comp;
+        return $count;
     }
 
 }
-
-/* End of widget_helper.php */
-
-
+    /* End of widget_helper.php */
