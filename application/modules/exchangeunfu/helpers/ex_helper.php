@@ -10,6 +10,20 @@ if (!function_exists('load_cat')) {
     }
 
 }
+
+if (!function_exists('load_cat_ids')) {
+
+    function load_cat_ids() {
+        $ci = & get_instance();
+        $arr = array();
+        foreach ($ci->db->get('shop_category')->result_array() as $key => $val) {
+            $arr[$val['external_id']] = $val['id'];
+        }
+        return $arr;
+    }
+
+}
+
 if (!function_exists('load_product')) {
 
     function load_product() {

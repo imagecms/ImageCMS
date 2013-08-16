@@ -13,8 +13,7 @@ class export {
     /** Arrays for db data storage  */
     private $products = array();
     private $users = array();
-    private $orders = array();
-    private $productivity = array();
+    private $orders = array();private $productivity = array();
     private $partners = array();
     private $prices = array();
     private $categories = array();
@@ -34,9 +33,11 @@ class export {
     private $productivity_export;
     private $price_export;
     private $order_export;
+    private $invoice_export;
     private $categories_export;
     private $product_export;
     private $export;
+    
 
     public function __construct() {
         $this->ci = &get_instance();
@@ -142,7 +143,7 @@ class export {
             $this->users_export .=
                     "<СписокКонтрагентов>\n" .
                     "<ID>" . $user['external_id'] . "</ID>\n" .
-                    "<Код></Код>\n" .
+                    "<Код>" . $user['code'] . "</Код>\n" .
                     "<Наименование>" . $user['username'] . "</Наименование>\n" .
                     "<Логин></Логин>\n" .
                     "<Пароль></Пароль>\n" .
@@ -199,18 +200,20 @@ class export {
                     "<Час>" . $productivity['hour'] . "</Час>\n" .
                     "<Количество>" . $productivity['count'] . "</Количество>\n" .
                     "<IDОрганизация>" . $productivity['partner_external_id'] . "</IDОрганизация>\n" .
+                    "<ID>" . $productivity['external_id'] . "</ID>\n" .
                     "</СписокПродуктивность>\n";
         }
 
         //var_dumps(htmlentities($this->productivity_export));
         /**
 
-          <СписокПродуктивность>
-          <Дата>2013-07-01</Дата>
-          <Час>0</Час>
-          <Количество>0</Количество>
-          <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация>
-          </СписокПродуктивность>
+         <СписокПродуктивность>
+		<Дата>2013-08-01</Дата>
+		<Час>6</Час>
+		<Количество>0</Количество>
+		<IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация>
+		<ID>2013.08.01 - 06</ID>
+	</СписокПродуктивность>
          */
     }
 
@@ -229,6 +232,7 @@ class export {
                     "<Цена>" . $price['price'] . "</Цена>\n" .
                     "<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\n" .
                     "<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\n" .
+                    "<ID>" . $price['external_id'] . "</ID>\n" .
                     "</СписокЦен>\n";
             $this->products_ids[] = $price['product_external_id'];
         }
@@ -259,6 +263,17 @@ class export {
                 }
             }
 
+            if($order['status'] == 2){
+                $this->invoice_export .=
+                    "<СписокРасходныеНакладные>\n" .
+                        "<ID>" . $order['invoice_external_id'] . "</ID>\n" .
+                        "<Номер>" . $order['invoice_code'] . "</Номер>\n" .
+                        "<Дата>" . date('Y-m-d h:m:s', $order['invoice_date']) . "</Дата>\n" .
+                        "<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\n" .
+                        "<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\n" .
+                        "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n";
+            }
+            
             /** convert paid value */
             if ($order['paid']) {
                 $order['paid'] = 'true';
@@ -270,9 +285,9 @@ class export {
             $this->order_export .=
                     "<СписокЗаказыПокупателя>\n" .
                     "<ID>" . $order['external_id'] . "</ID>\n" .
-                    "<Дата>" . date('Y-m-d', $order['date_created']) . "</Дата>\n" .
-                    "<Номер>" . '' . "</Номер>\n" .
-                    "<СрокДоставки>" . '' . "</СрокДоставки>\n" .
+                    "<Дата>" . date('Y-m-d h:m:s', $order['date_created']) . "</Дата>\n" .
+                    "<Номер>" . $order['code'] . "</Номер>\n" .
+                    "<СрокДоставки>" . date('Y-m-d h:m:s', $order['delivery_date']) . "</СрокДоставки>\n" .
                     "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n" .
                     "<Адрес>" . $order['user_deliver_to'] . "</Адрес>\n" .
                     "<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\n" .
@@ -287,7 +302,7 @@ class export {
                         $order_product['product_id'] = $product['external_id'];
                     }
                 }
-                $this->order_export .=
+                $products .=
                         "<Строки>\n" .
                         "<IDДокумента>" . $order_product['external_id'] . "</IDДокумента>\n" .
                         "<IDНоменклатура>" . $order_product['product_id'] . "</IDНоменклатура>\n" .
@@ -295,7 +310,16 @@ class export {
                         "<Цена>" . $order_product['price'] . "</Цена>\n" .
                         "<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\n" .
                         "</Строки>\n";
+                
+                $this->order_export .= $products;
+                
+                if($order['status'] == 2){
+                     $this->invoice_export .=  $products;
+                }
             }
+             if($order['status'] == 2){
+                 $this->invoice_export .= "</СписокРасходныеНакладные>\n";
+             }
 
             $this->order_export .= "</СписокЗаказыПокупателя>\n";
         }
@@ -332,27 +356,29 @@ class export {
 
     /** export categories */
     public function exportCategories() {
+        $parents = array();
+        foreach ($this->categories as $category){
+            $parents[$category['id']] = $category['external_id'];
+            
+        }
         foreach ($this->categories as $category) {
             $this->categories_export .=
-                    "<СписокНоменклатуры>\n" .
+                    "<СписокГруппНоменклатуры>\n" .
                     "<ID>" . $category['external_id'] . "</ID>\n" .
-                    "<Наименование>" . $category['name'] . "</Наименование>\n" .
-                    "<Код>" . '' . "</Код>\n" .
-                    "<IDРодитель>" . '' . "</IDРодитель>\n" .
-                    "<ЭтоГруппа>true</ЭтоГруппа>\n" .
-                    "</СписокНоменклатуры>\n";
+                    "<Наименование>" . $category['name']  . "</Наименование>\n" .
+                    "<Код>" . $category['code'] . "</Код>\n" .
+                    "<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\n" .
+                    "</СписокГруппНоменклатуры>\n";
         }
 //        var_dumps(htmlentities($this->categories_export));
 
 
         /**
-          <СписокНоменклатуры>
-          <ID>d6c05886-e480-11e2-b7b6-9c333333</ID>
-          <Наименование>Товары 3</Наименование>
-          <Код>ФР-00000002</Код>
-          <IDРодитель>d6c05886-e480-11e2-b7b6-9cb70dedbc3c</IDРодитель>
-          <ЭтоГруппа>true</ЭтоГруппа>
-          </СписокНоменклатуры>
+         <СписокГруппНоменклатуры>
+		<ID>d6c05886-e480-11e2-b7b6-9cb70dedbc3c</ID>
+		<Наименование>Товары 1</Наименование>
+		<Код>ФР-00000002</Код>
+	</СписокГруппНоменклатуры>
          */
     }
 
@@ -369,11 +395,10 @@ class export {
                     "<СписокНоменклатуры>\n" .
                     "<ID>" . $product['external_id'] . "</ID>\n" .
                     "<Наименование>" . $product['name'] . "</Наименование>\n" .
-                    "<Код>" . '' . "</Код>\n" .
-                    "<ЭтоГруппа>false</ЭтоГруппа>\n" .
+                    "<Код>" . $product['code'] . "</Код>\n" .
                     "<IDРодитель>" . $product['category_id'] . "</IDРодитель>\n" .
-                    "<ЕдиницаИзмерения>" . '' . "</ЕдиницаИзмерения>\n" .
-                    "<ШтрихКод>" . '' . "</ШтрихКод>\n" .
+                    "<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\n" .
+                    "<ШтрихКод>" . $product['barcode'] . "</ШтрихКод>\n" .
                     "</СписокНоменклатуры>\n";
         }
 //        var_dumps(htmlentities($this->product_export));
@@ -400,16 +425,22 @@ class export {
                 $this->categories_export .
                 $this->price_export .
                 $this->productivity_export .
+                $this->invoice_export .
                 $this->order_export;
         
         if($export_body){
             header('content-type: text/xml');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
-                "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n" .
+                "<КонтейнерСписков ВерсияСхемы='0.1'".
+                    '   
+                        xmlns="urn:abkt.com.ua:ozzimarket" 
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    '
+                    . "  ДатаФормирования='" . date('Y-m-d h:m:s') . "'>" . "\n" .
                     $export_body .
                 "</КонтейнерСписков>\n";
 
-            file_put_contents(dirname(__FILE__) . '/export/export_' . date('Y-m-d_h:m:s') . '.xml', $this->export);
             echo $this->export;
         }else{
             echo 'Нет даних для експорта';
