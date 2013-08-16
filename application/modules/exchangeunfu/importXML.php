@@ -8,7 +8,7 @@ namespace exchangeunfu;
  * Image CMS
  * Module Frame
  */
-class Import {
+class ImportXML {
 
     /**
      * Path to upload dir
@@ -61,15 +61,20 @@ class Import {
     private $locale;
 
     public function __construct() {
-
-        $this->xml = simplexml_load_file($this->pass . 'export.xml');
+        $this->getXML($this->pass . 'export.xml');
         $this->ci = &get_instance();
         $this->ci->load->helper('translit');
         $this->locale = 'ru';
     }
 
     public function index() {
-//        $xml = simplexml_load_file($this->pass . 'export.xml');
+        
+    }
+
+    public function getXML($file) {
+        $this->xml = @new \SimpleXMLElement($file, FALSE, TRUE);
+
+        return $this->xml;
     }
 
     /**
@@ -77,7 +82,7 @@ class Import {
      * @return string "success" if success
      */
     public function import() {
-        $start = microtime(true);
+//        $start = microtime(true);
 
         //load db data
         $this->prod = load_product();
@@ -125,9 +130,9 @@ class Import {
         echo "success";
 
 
-        $time = microtime(true) - $start;
-        echo '<br>';
-        printf('Скрипт выполнялся %.4F сек.', $time);
+//        $time = microtime(true) - $start;
+//        echo '<br>';
+//        printf('Скрипт выполнялся %.4F сек.', $time);
         exit();
     }
 
@@ -136,6 +141,7 @@ class Import {
      * @return boolean
      */
     public function importProducts() {
+        $this->cat = load_cat();
         $insert_products_i18n = array();
         $insert_categories = array();
         $insert_product_variants = array();
@@ -162,7 +168,7 @@ class Import {
                     $data['category_id'] = $categoryId;
                 }
 
-            
+
                 $data['active'] = true;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
@@ -435,7 +441,7 @@ class Import {
         $data['full_path'] = $this->categories_full_puth[$data['external_id']];
         unset($data['full_path_ids']);
         $this->insert[] = $data;
-        
+
         //preparing data for i18n table insert
         $i18n_data['external_id'] = $category->ID . "";
         $i18n_data['name'] = $category->Наименование . "";
@@ -548,6 +554,7 @@ class Import {
             $data['name'] = $partner->Наименование . '';
             $data['prefix'] = $partner->Префикс . '';
             $data['code'] = $partner->Код . '';
+            $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
 
             if (is_partner($data['external_id'], $this->partners)) {
@@ -819,6 +826,11 @@ class Import {
             $result = $this->ci->db->insert_batch($table, $this->insert);
             $this->insert = array();
 
+            if (!$result && !empty($this->insert)) {
+                echo 'Ошибка при вставке данных в таблицу: ' . $table . ' !!!';
+                exit();
+            }
+
             return $result;
         }
     }
@@ -833,6 +845,11 @@ class Import {
         if (!empty($this->update)) {
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
+
+            if (!$result && !empty($this->update)) {
+                echo 'Ошибка при обновлении данных в таблице: ' . $table . ' !!!';
+                exit();
+            }
 
             return $result;
         }
