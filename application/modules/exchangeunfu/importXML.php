@@ -82,7 +82,7 @@ class ImportXML {
      * @return string "success" if success
      */
     public function import() {
-        $start = microtime(true);
+//        $start = microtime(true);
 
         //load db data
         $this->prod = load_product();
@@ -130,9 +130,9 @@ class ImportXML {
         echo "success";
 
 
-        $time = microtime(true) - $start;
-        echo '<br>';
-        printf('Скрипт выполнялся %.4F сек.', $time);
+//        $time = microtime(true) - $start;
+//        echo '<br>';
+//        printf('Скрипт выполнялся %.4F сек.', $time);
         exit();
     }
 
