@@ -8,7 +8,7 @@ namespace exchangeunfu;
  * Image CMS
  * Module Frame
  */
-class Import {
+class ImportXML {
 
     /**
      * Path to upload dir
@@ -548,6 +548,7 @@ class Import {
             $data['name'] = $partner->Наименование . '';
             $data['prefix'] = $partner->Префикс . '';
             $data['code'] = $partner->Код . '';
+            $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
 
             if (is_partner($data['external_id'], $this->partners)) {
