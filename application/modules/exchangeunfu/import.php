@@ -126,6 +126,7 @@ class Import {
 
 
         $time = microtime(true) - $start;
+        echo '<br>';
         printf('Скрипт выполнялся %.4F сек.', $time);
         exit();
     }
@@ -161,11 +162,8 @@ class Import {
                     $data['category_id'] = $categoryId;
                 }
 
-                if ($product->Статус == 'Удален')
-                    $data['active'] = false;
-                else
-                    $data['active'] = true;
-
+            
+                $data['active'] = true;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
@@ -406,6 +404,7 @@ class Import {
         $data['parent_id'] = 0;
         $data['full_path_ids'] = array();
 
+        //preparing full_path_ids, full_path, and parent ids
         if (isset($category->IDРодитель)) {
             $data['parent_id'] = $category->IDРодитель . '';
             $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
@@ -435,21 +434,8 @@ class Import {
 
         $data['full_path'] = $this->categories_full_puth[$data['external_id']];
         unset($data['full_path_ids']);
-//        $data['full_path_ids'] =  $this->categories_full_puth_ids[$data['external_id']];
-//        var_dumps($data['full_path_ids'] );
         $this->insert[] = $data;
-        //update full path ids if have parent
-//        if ($parent) {
-//            $data['full_path_ids'] = unserialize($parent['full_path_ids']);
-//            if (empty($data['full_path_ids']))
-//                $data['full_path_ids'] = array((int) $parent['id']);
-//            else {
-//                $data['full_path_ids'][] = (int) $parent['id'];
-//            }
-//            $this->ci->db
-//                    ->where('id', $insert_id)
-//                    ->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
-//        }
+        
         //preparing data for i18n table insert
         $i18n_data['external_id'] = $category->ID . "";
         $i18n_data['name'] = $category->Наименование . "";
@@ -482,7 +468,7 @@ class Import {
         $data['parent_id'] = 0;
         $data['external_id'] = $searchedCat['external_id'];
 
-
+        //preparing full_path_ids, full_path, and parent ids
         if (isset($category->IDРодитель)) {
             $data['parent_id'] = $category->IDРодитель . '';
             $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
@@ -521,6 +507,10 @@ class Import {
         $this->update_categories_i18n[] = $i18n_data;
     }
 
+    /**
+     * update category full_path, full_path_ids and parent_id fields
+     * @param array $insert
+     */
     public function updateCategoryFilds($insert) {
         $cat_ids = load_cat_ids();
         foreach ($this->categories_full_puth_ids as $key => $category_full_puth_id) {
@@ -816,7 +806,7 @@ class Import {
         }
 
         $this->insertData($this->productivity_table);
-//        $this->updateData($this->productivity_table, '');
+        $this->updateData($this->productivity_table, 'external_id');
     }
 
     /**
