@@ -8,23 +8,30 @@
  */
 class Exchangeunfu extends MY_Controller {
 
+    /** Import/export objects */
+    private $import;
+    private $export;
+    
     public function __construct() {
         parent::__construct();
+        $this->export = new \exchangeunfu\exportXML();
+        $this->import = new \exchangeunfu\importXML();
         include 'application/modules/exchangeunfu/helpers/ex_helper.php';
 
     }
 
     public function index() {
-        $e = new \exchangeunfu\export();
-        $e->export();
-        $i = new \exchangeunfu\import();
-//        $i->import();
+        
+    }
+    
+    public function import(){
+        $this->import->import();
     }
 
-//    public function autoload() {
-//
-//    }
-
+    public function export($partner_id = null){
+        $this->export->export($partner_id);
+    }
+    
     public static function adminAutoload() {
         \CMSFactory\Events::create()
                 ->onShopProductPreUpdate()
@@ -42,8 +49,6 @@ class Exchangeunfu extends MY_Controller {
         }else{
             $array = array();
         }
-
-
 
         $view = \CMSFactory\assetManager::create()
                 ->setData('data1', $array)
@@ -154,6 +159,10 @@ class Exchangeunfu extends MY_Controller {
                 'constraint' => 255
             ),
             'code' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ),            
+            'region' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ),

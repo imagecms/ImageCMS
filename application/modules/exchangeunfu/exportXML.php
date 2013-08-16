@@ -8,12 +8,13 @@ namespace exchangeunfu;
  * Image CMS
  * Export
  */
-class export {
+class ExportXML {
 
     /** Arrays for db data storage  */
     private $products = array();
     private $users = array();
-    private $orders = array();private $productivity = array();
+    private $orders = array();
+    private $productivity = array();
     private $partners = array();
     private $prices = array();
     private $categories = array();
@@ -38,7 +39,6 @@ class export {
     private $product_export;
     private $export;
 
-
     public function __construct() {
         $this->ci = &get_instance();
         $this->locale = 'ru';
@@ -61,8 +61,6 @@ class export {
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
         if ($partner_id) {
-            /** export for partner */
-
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
@@ -83,8 +81,8 @@ class export {
                 $this->exportOrder();
             }
 
-            /** products export for pertner*/
-            if(!empty($this->products_ids)){
+            /** products export for partner */
+            if (!empty($this->products_ids)) {
                 $this->products = $this->ci->export_model->getProducts($this->products_ids);
 
                 /** export products */
@@ -92,10 +90,8 @@ class export {
                     $this->exportProducts();
                 }
             }
-
         } else {
-            /** all export*/
-
+            /** all export */
             /** export users */
             if ($this->users) {
                 $this->exportUsers();
@@ -137,14 +133,27 @@ class export {
         exit();
     }
 
-    /** export users */
+    /**
+     * export users
+     * <br>
+      <СписокКонтрагентов><br>
+     * <ID>f8c151f0-d9db-11e2-90f0-d067e5501078</ID><br>
+     * <Код>ФР-000001</Код><br>
+     * <Наименование>Покупатель 001</Наименование><br>
+     * <Логин/><br>
+     * <Пароль/><br>
+     * <Емейл>email@mail.com</Емейл><br>
+     * <Телефон>067 2556678</Телефон><br>
+     * <Адрес>м. Львів, вул. Дорошенка 23 / 25</Адрес><br>
+      </СписокКонтрагентов>
+     */
     public function exportUsers() {
         foreach ($this->users as $user) {
             $this->users_export .=
                     "<СписокКонтрагентов>\n" .
                     "<ID>" . $user['external_id'] . "</ID>\n" .
                     "<Код>" . $user['code'] . "</Код>\n" .
-                    "<Наименование>" . $user['username'] . "</Наименование>\n" .
+                    "<Наименование>" . htmlspecialchars($user['username']) . "</Наименование>\n" .
                     "<Логин></Логин>\n" .
                     "<Пароль></Пароль>\n" .
                     "<Емейл>" . $user['email'] . "</Емейл>\n" .
@@ -152,72 +161,63 @@ class export {
                     "<Адрес>" . $user['address'] . "</Адрес>\n" .
                     "</СписокКонтрагентов>\n";
         }
-//        var_dumps(htmlentities($this->users_export));
-        /**
-          <СписокКонтрагентов>
-          <ID>f8c151f0-d9db-11e2-90f0-d067e5501078</ID>
-          <Код>ФР-000001</Код>
-          <Наименование>Покупатель 001</Наименование>
-          <Логин/>
-          <Пароль/>
-          <Емейл>email@mail.com</Емейл>
-          <Телефон>067 2556678</Телефон>
-          <Адрес>м. Львів, вул. Дорошенка 23 / 25</Адрес>
-          </СписокКонтрагентов>
-         */
     }
 
-    /** export partners */
+    /** export partners
+     * <br>
+      <СписокОрганизаций><br>
+     * <Наименование>Наша фирма</Наименование><br>
+     * <Префикс>НФ</Префикс><br>
+     * <Код>00-000001</Код><br>
+     * <ID>4643d461-aa49-4b70-9486-a59f80ee6af8</ID><br>
+      </СписокОрганизаций>
+     */
     public function exportPartners() {
         foreach ($this->partners as $partner) {
             $this->partners_export .=
                     "<СписокОрганизаций>" .
-                    "<Наименование>" . $partner['name'] . "</Наименование>\n" .
+                    "<Наименование>" . htmlspecialchars($partner['name']) . "</Наименование>\n" .
                     "<Префикс>" . $partner['prefix'] . "</Префикс>\n" .
                     "<Код>" . $partner['code'] . "</Код>\n" .
                     "<ID>" . $partner['external_id'] . "</ID>\n" .
+                    "<Регион>" . $partner['region'] . "</Регион>\n" .
                     "</СписокОрганизаций>\n";
         }
-
-//        var_dumps(htmlentities($this->partners_export));
-        /**
-          <СписокОрганизаций>
-          <Наименование>Наша фирма</Наименование>
-          <Префикс>НФ</Префикс>
-          <Код>00-000001</Код>
-          <ID>4643d461-aa49-4b70-9486-a59f80ee6af8</ID>
-          </СписокОрганизаций>
-         */
     }
 
-    /** export productivity */
+    /** export productivity
+     * <br>
+      <СписокПродуктивность><br>
+     * <Дата>2013-08-01</Дата><br>
+     * <Час>6</Час><br>
+     * <Количество>0</Количество><br>
+     * <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация><br>
+     * <ID>2013.08.01 - 06</ID><br>
+      </СписокПродуктивность>
+     */
     public function exportProductivity() {
 
         foreach ($this->productivity as $productivity) {
             $this->productivity_export .=
                     "<СписокПродуктивность>\n" .
-                    "<Дата>" . date('Y-m-d', $productivity['date']) . "</Дата>\n" .
+                    "<Дата>" . date('Y-m-dTh:m:s', $productivity['date']) . "</Дата>\n" .
                     "<Час>" . $productivity['hour'] . "</Час>\n" .
                     "<Количество>" . $productivity['count'] . "</Количество>\n" .
                     "<IDОрганизация>" . $productivity['partner_external_id'] . "</IDОрганизация>\n" .
                     "<ID>" . $productivity['external_id'] . "</ID>\n" .
                     "</СписокПродуктивность>\n";
         }
-
-        //var_dumps(htmlentities($this->productivity_export));
-        /**
-
-         <СписокПродуктивность>
-		<Дата>2013-08-01</Дата>
-		<Час>6</Час>
-		<Количество>0</Количество>
-		<IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация>
-		<ID>2013.08.01 - 06</ID>
-	</СписокПродуктивность>
-         */
     }
 
-    /** export prices */
+    /** export prices
+     * <br>
+      <СписокЦен><br>
+     * <ЭтоАкционнаяЦена>false</ЭтоАкционнаяЦена><br>
+     * <Цена>61</Цена><br>
+     * <IDНоменклатура>67deae56-ed30-11e2-a8fe-9cb70dedbc3c</IDНоменклатура><br>
+     * <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация><br>
+      </СписокЦен>
+     */
     public function exportPrices() {
         foreach ($this->prices as $price) {
             if ($price['action']) {
@@ -236,18 +236,29 @@ class export {
                     "</СписокЦен>\n";
             $this->products_ids[] = $price['product_external_id'];
         }
-//        var_dumps(htmlentities($this->price_export));
-        /**
-          <СписокЦен>
-          <ЭтоАкционнаяЦена>false</ЭтоАкционнаяЦена>
-          <Цена>61</Цена>
-          <IDНоменклатура>67deae56-ed30-11e2-a8fe-9cb70dedbc3c</IDНоменклатура>
-          <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация>
-          </СписокЦен>
-         */
     }
 
-    /** export orders */
+    /** export orders
+     * <br>
+      <СписокЗаказыПокупателя><br>
+     * <ID>4f9838cf-da6d-11e2-abcd-d067e5501078</ID><br>
+     * <Номер>НФФР-000001</Номер><br>
+     * <Дата>2013-06-21T15:23:00</Дата><br>
+     * <СрокДоставки>0001-01-01T00:00:00</СрокДоставки><br>
+     * <IDКонтрагент>f8c151f0-d9db-11e2-90f0-d067e5501078</IDКонтрагент><br>
+     * <Адрес>м. Львів, вул. Дорошенка 23 / 25</Адрес><br>
+     * <КонтактныйТелефон>067 2556678</КонтактныйТелефон><br>
+     * <ПризнакПередоплаты>false</ПризнакПередоплаты><br>
+     * <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация><br>
+     * <Строки><br>
+     * <IDДокумента>4f9838cf-da6d-11e2-abcd-d067e5501079</IDДокумента><br>
+     * <IDНоменклатура>99b84de5-d9da-11e2-90f0-d067e5501078</IDНоменклатура><br>
+     * <Количество>11</Количество><br>
+     * <Цена>201</Цена><br>
+     * <Сумма>2001</Сумма><br>
+     * </Строки><br>
+      </СписокЗаказыПокупателя>
+     */
     public function exportOrder() {
         /** add order products to order */
         foreach ($this->orders as $key => $order) {
@@ -263,12 +274,12 @@ class export {
                 }
             }
 
-            if($order['status'] == 2){
+            if ($order['status'] == 2) {
                 $this->invoice_export .=
-                    "<СписокРасходныеНакладные>\n" .
+                        "<СписокРасходныеНакладные>\n" .
                         "<ID>" . $order['invoice_external_id'] . "</ID>\n" .
                         "<Номер>" . $order['invoice_code'] . "</Номер>\n" .
-                        "<Дата>" . date('Y-m-d h:m:s', $order['invoice_date']) . "</Дата>\n" .
+                        "<Дата>" . date('Y-m-dTh:m:s', $order['invoice_date']) . "</Дата>\n" .
                         "<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\n" .
                         "<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\n" .
                         "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n";
@@ -285,9 +296,9 @@ class export {
             $this->order_export .=
                     "<СписокЗаказыПокупателя>\n" .
                     "<ID>" . $order['external_id'] . "</ID>\n" .
-                    "<Дата>" . date('Y-m-d h:m:s', $order['date_created']) . "</Дата>\n" .
+                    "<Дата>" . date('Y-m-dTh:m:s', $order['date_created']) . "</Дата>\n" .
                     "<Номер>" . $order['code'] . "</Номер>\n" .
-                    "<СрокДоставки>" . date('Y-m-d h:m:s', $order['delivery_date']) . "</СрокДоставки>\n" .
+                    "<СрокДоставки>" . date('Y-m-dTh:m:s', $order['delivery_date']) . "</СрокДоставки>\n" .
                     "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n" .
                     "<Адрес>" . $order['user_deliver_to'] . "</Адрес>\n" .
                     "<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\n" .
@@ -313,76 +324,54 @@ class export {
 
                 $this->order_export .= $products;
 
-                if($order['status'] == 2){
-                     $this->invoice_export .=  $products;
+                if ($order['status'] == 2) {
+                    $this->invoice_export .= $products;
                 }
             }
-             if($order['status'] == 2){
-                 $this->invoice_export .= "</СписокРасходныеНакладные>\n";
-             }
+            if ($order['status'] == 2) {
+                $this->invoice_export .= "</СписокРасходныеНакладные>\n";
+            }
 
             $this->order_export .= "</СписокЗаказыПокупателя>\n";
         }
-//        var_dumps(htmlentities($this->order_export));
-
-        /**
-          <СписокЗаказыПокупателя>
-          <ID>4f9838cf-da6d-11e2-abcd-d067e5501078</ID>
-          <Номер>НФФР-000001</Номер>
-          <Дата>2013-06-21T15:23:00</Дата>
-          <СрокДоставки>0001-01-01T00:00:00</СрокДоставки>
-          <IDКонтрагент>f8c151f0-d9db-11e2-90f0-d067e5501078</IDКонтрагент>
-          <Адрес>м. Львів, вул. Дорошенка 23 / 25</Адрес>
-          <КонтактныйТелефон>067 2556678</КонтактныйТелефон>
-          <ПризнакПередоплаты>false</ПризнакПередоплаты>
-          <IDОрганизация>4643d461-aa49-4b70-9486-a59f80ee6af8</IDОрганизация>
-          <Строки>
-          <IDДокумента>4f9838cf-da6d-11e2-abcd-d067e5501078</IDДокумента>
-          <IDНоменклатура>99b84de5-d9da-11e2-90f0-d067e5501078</IDНоменклатура>
-          <Количество>10</Количество>
-          <Цена>200</Цена>
-          <Сумма>2000</Сумма>
-          </Строки>
-          <Строки>
-          <IDДокумента>4f9838cf-da6d-11e2-abcd-d067e5501079</IDДокумента>
-          <IDНоменклатура>99b84de5-d9da-11e2-90f0-d067e5501078</IDНоменклатура>
-          <Количество>11</Количество>
-          <Цена>201</Цена>
-          <Сумма>2001</Сумма>
-          </Строки>
-          </СписокЗаказыПокупателя>
-         */
     }
 
-    /** export categories */
+    /** export categories
+     * <br>
+      <СписокГруппНоменклатуры><br>
+     * <ID>d6c05886-e480-11e2-b7b6-9cb70dedbc3c</ID><br>
+     * <Наименование>Товары 1</Наименование><br>
+     * <Код>ФР-00000002</Код><br>
+      </СписокГруппНоменклатуры>
+     */
     public function exportCategories() {
         $parents = array();
-        foreach ($this->categories as $category){
+        foreach ($this->categories as $category) {
             $parents[$category['id']] = $category['external_id'];
-
         }
         foreach ($this->categories as $category) {
             $this->categories_export .=
                     "<СписокГруппНоменклатуры>\n" .
                     "<ID>" . $category['external_id'] . "</ID>\n" .
-                    "<Наименование>" . $category['name']  . "</Наименование>\n" .
+                    "<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\n" .
                     "<Код>" . $category['code'] . "</Код>\n" .
                     "<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\n" .
                     "</СписокГруппНоменклатуры>\n";
         }
-//        var_dumps(htmlentities($this->categories_export));
-
-
-        /**
-         <СписокГруппНоменклатуры>
-		<ID>d6c05886-e480-11e2-b7b6-9cb70dedbc3c</ID>
-		<Наименование>Товары 1</Наименование>
-		<Код>ФР-00000002</Код>
-	</СписокГруппНоменклатуры>
-         */
     }
 
-    /** export roducts */
+    /** export roducts
+     * <br>
+      <СписокНоменклатуры><br>
+     * <ID>67deae56-ed30-11e2-a8fe-9cb70dedbc3c</ID><br>
+     * <Наименование>SMX КАСТРУЛЯ 1,5Л,COLOR</Наименование><br>
+     * <Код>ФР-00000032</Код><br>
+     * <ЭтоГруппа>false</ЭтоГруппа><br>
+     * <IDРодитель>3fde83ef-ed24-11e2-a8fe-9cb70dedbc3c</IDРодитель><br>
+     * <ЕдиницаИзмерения>шт</ЕдиницаИзмерения><br>
+     * <ШтрихКод>8593419900020</ШтрихКод><br>
+      </СписокНоменклатуры>
+     */
     public function exportProducts() {
         foreach ($this->products as $product) {
             foreach ($this->categories as $category) {
@@ -394,26 +383,13 @@ class export {
             $this->product_export .=
                     "<СписокНоменклатуры>\n" .
                     "<ID>" . $product['external_id'] . "</ID>\n" .
-                    "<Наименование>" . $product['name'] . "</Наименование>\n" .
+                    "<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\n" .
                     "<Код>" . $product['code'] . "</Код>\n" .
                     "<IDРодитель>" . $product['category_id'] . "</IDРодитель>\n" .
                     "<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\n" .
                     "<ШтрихКод>" . $product['barcode'] . "</ШтрихКод>\n" .
                     "</СписокНоменклатуры>\n";
         }
-//        var_dumps(htmlentities($this->product_export));
-
-        /**
-          <СписокНоменклатуры>
-          <ID>67deae56-ed30-11e2-a8fe-9cb70dedbc3c</ID>
-          <Наименование>SMX КАСТРУЛЯ 1,5Л,COLOR</Наименование>
-          <Код>ФР-00000032</Код>
-          <ЭтоГруппа>false</ЭтоГруппа>
-          <IDРодитель>3fde83ef-ed24-11e2-a8fe-9cb70dedbc3c</IDРодитель>
-          <ЕдиницаИзмерения>шт</ЕдиницаИзмерения>
-          <ШтрихКод>8593419900020</ШтрихКод>
-          </СписокНоменклатуры>
-         */
     }
 
     /** wrap all export results */
@@ -428,10 +404,11 @@ class export {
                 $this->invoice_export .
                 $this->order_export;
 
-        if($export_body){
+
+        if ($export_body) {
             header('content-type: text/xml');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
-                "<КонтейнерСписков ВерсияСхемы='0.1'".
+                    "<КонтейнерСписков ВерсияСхемы='0.1'" .
                     '
                         xmlns="urn:abkt.com.ua:ozzimarket"
                         xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -439,15 +416,12 @@ class export {
                     '
                     . "  ДатаФормирования='" . date('Y-m-d h:m:s') . "'>" . "\n" .
                     $export_body .
-                "</КонтейнерСписков>\n";
+                    "</КонтейнерСписков>\n";
 
             echo $this->export;
-        }else{
+        } else {
             echo 'Нет даних для експорта';
         }
-
-
-//        var_dumps(htmlentities($this->export));
     }
 
 }
