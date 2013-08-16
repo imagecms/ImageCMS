@@ -437,7 +437,7 @@ class export {
                         xmlns:xs="http://www.w3.org/2001/XMLSchema"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     '
-                    . "  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n" .
+                    . "  ДатаФормирования='" . date('Y-m-d h:m:s') . "'>" . "\n" .
                     $export_body .
                 "</КонтейнерСписков>\n";
 
