@@ -188,7 +188,7 @@ class Update {
      */
     public function parse_md5($directory = null) {
 
-        $dir = null === $directory ? $this->path_parse : $directory;
+        $dir = null === $directory ? realpath('') : $directory;
 
         if ($handle = opendir($dir))
             while (FALSE !== ($file = readdir($handle)))
@@ -201,7 +201,7 @@ class Update {
 
         strstr($this->path_parse, $this->update_directory) ? file_put_contents($this->file_mass_old, serialize($this->arr_files)) : file_put_contents($this->file_mass_curr, serialize($this->arr_files));
 
-        //return $this->arr_files;
+        return $this->arr_files;
     }
 
     /**
