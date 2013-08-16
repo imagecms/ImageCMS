@@ -10,6 +10,23 @@ if (!function_exists('load_cat')) {
     }
 
 }
+<<<<<<< HEAD
+=======
+
+if (!function_exists('load_cat_ids')) {
+
+    function load_cat_ids() {
+        $ci = & get_instance();
+        $arr = array();
+        foreach ($ci->db->get('shop_category')->result_array() as $key => $val) {
+            $arr[$val['external_id']] = $val['id'];
+        }
+        return $arr;
+    }
+
+}
+
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
 if (!function_exists('load_product')) {
 
     function load_product() {
