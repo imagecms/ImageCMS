@@ -5,13 +5,14 @@
                 {foreach $banners as $banner}
                     <li>
                         {if trim($banner.url)}
-                            <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}" class="lazy"/></a>
+                            <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></a>
                             {else:}
-                            <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}" class="lazy"/></span>
+                            <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></span>
                             {/if}
                     </li>
                 {/foreach}
             </ul>
+            <div class="preloader"></div>
             <div class="pager"></div>
         </div>
         <div class="group-button-carousel">

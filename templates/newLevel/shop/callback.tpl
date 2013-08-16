@@ -12,7 +12,6 @@
                                 if (status) {
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }
-                                return true; /*for show form after hide and hide error*/
                             }}{/literal});
                         return false;">
                     <label>

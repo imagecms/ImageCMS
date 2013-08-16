@@ -191,7 +191,7 @@
                             </div>
                             <!-- end. frame-prices-buy -->
                             <div class="frame-wish-compare-list">
-                                <!-- Wish List buttons --------------------->
+                                <!-- Wish List buttons -->
                                 {foreach $variants as $key => $productVariant}
                                     <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $productVariant->getId()} variant">
                                         <button class="toWishlist"
@@ -208,8 +208,8 @@
                                         </button>
                                     </div>
                                 {/foreach}
-                                <!-- end of Wish List buttons -------------->
-                                <!-- compare buttons ----------------------->
+                                <!-- end of Wish List buttons -->
+                                <!-- compare buttons -->
                                 <div class="btn-compare" data-prodid="{echo $model->getId()}">
                                     <button class="toCompare"
                                             data-prodid="{echo $model->getId()}"
@@ -222,7 +222,7 @@
                                         <span class="text-el d_l">{lang('s_add_to_compare')}</span>
                                     </button>
                                 </div>
-                                <!-- end of compare buttons ---------------->
+                                <!-- end of compare buttons -->
                             </div>
                             <!-- End button for main & variants prod -->
                         </div>
@@ -496,7 +496,7 @@
                                 {/foreach}
                             </ul>
                         </div>
-                        <!--                        Start. Buttons for next/prev kit-->
+                        <!-- Start. Buttons for next/prev kit-->
                         <div class="group-button-carousel">
                             <button type="button" class="prev arrow">
                                 <span class="icon_arrow_p"></span>
@@ -505,7 +505,7 @@
                                 <span class="icon_arrow_n"></span>
                             </button>
                         </div>
-                        <!--                        Start. Buttons for next/prev kit-->
+                        <!-- Start. Buttons for next/prev kit-->
                     </div>
                 </section>
             </div>
@@ -584,7 +584,7 @@
                     <!--Start. Comments block-->
                     <div class="frame-form-comment">
                         {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div name="for_comments">
+                        <div class="for_comments">
                             {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
@@ -630,7 +630,7 @@
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd" name="for_comments">
+                <div class="inside-padd for_comments">
                     <div class="preloader"></div>
                 </div>
             </div>

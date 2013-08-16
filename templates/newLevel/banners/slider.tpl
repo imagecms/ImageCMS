@@ -6,16 +6,17 @@
                     <li>
                         {if trim($banner.url)}
                             <a href="{echo $banner['url']}">
-                                <img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{echo $banner['name']}" class="lazy"/>
+                                <img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{echo $banner['name']}"/>
                             </a>
                         {else:}
                             <span>
-                                <img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{echo $banner['name']}" class="lazy"/>
+                                <img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{echo $banner['name']}"/>
                             </span>
                         {/if}
                     </li>
                 {/foreach}
             </ul>
+            <div class="preloader"></div>
             <div class="pager"></div>
         </div>
         <div class="group-button-carousel">
