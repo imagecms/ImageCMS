@@ -46,7 +46,7 @@ class ExportXML {
     }
 
     public function index() {
-        
+
     }
 
     /** export */
@@ -61,7 +61,6 @@ class ExportXML {
         $this->productivity = $this->ci->export_model->getProductivity($partner_id);
 
         if ($partner_id) {
-            /** export for partner */
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
@@ -82,7 +81,7 @@ class ExportXML {
                 $this->exportOrder();
             }
 
-            /** products export for pertner */
+            /** products export for partner */
             if (!empty($this->products_ids)) {
                 $this->products = $this->ci->export_model->getProducts($this->products_ids);
 
@@ -135,8 +134,8 @@ class ExportXML {
     }
 
     /**
-     * export users 
-     * <br> 
+     * export users
+     * <br>
       <СписокКонтрагентов><br>
      * <ID>f8c151f0-d9db-11e2-90f0-d067e5501078< /ID><br>
      * <Код>ФР-000001< /Код><br>
@@ -164,17 +163,16 @@ class ExportXML {
         }
     }
 
-    /** export partners 
-     * <br> 
-      <СписокОрганизаций><br> 
-     * <Наименование>Наша фирма</Наименование><br> 
-     * <Префикс>НФ</Префикс><br> 
-     * <Код>00-000001</Код><br> 
-     * <ID>4643d461-aa49-4b70-9486-a59f80ee6af8</ID><br> 
+    /** export partners
+     * <br>
+      <СписокОрганизаций><br>
+     * <Наименование>Наша фирма</Наименование><br>
+     * <Префикс>НФ</Префикс><br>
+     * <Код>00-000001</Код><br>
+     * <ID>4643d461-aa49-4b70-9486-a59f80ee6af8</ID><br>
       </СписокОрганизаций>
      */
     public function exportPartners() {
-        $this->exportU
         foreach ($this->partners as $partner) {
             $this->partners_export .=
                     "<СписокОрганизаций>" .
@@ -406,12 +404,13 @@ class ExportXML {
                 $this->invoice_export .
                 $this->order_export;
 
+
         if ($export_body) {
             header('content-type: text/xml');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
                     "<КонтейнерСписков ВерсияСхемы='0.1'" .
-                    '   
-                        xmlns="urn:abkt.com.ua:ozzimarket" 
+                    '
+                        xmlns="urn:abkt.com.ua:ozzimarket"
                         xmlns:xs="http://www.w3.org/2001/XMLSchema"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     '
