@@ -61,15 +61,20 @@ class ImportXML {
     private $locale;
 
     public function __construct() {
-
-        $this->xml = simplexml_load_file($this->pass . 'export.xml');
+        $this->getXML($this->pass . 'export.xml');
         $this->ci = &get_instance();
         $this->ci->load->helper('translit');
         $this->locale = 'ru';
     }
 
     public function index() {
-//        $xml = simplexml_load_file($this->pass . 'export.xml');
+        
+    }
+
+    public function getXML($file) {
+        $this->xml = @new \SimpleXMLElement($file, FALSE, TRUE);
+
+        return $this->xml;
     }
 
     /**
@@ -136,6 +141,7 @@ class ImportXML {
      * @return boolean
      */
     public function importProducts() {
+        $this->cat = load_cat();
         $insert_products_i18n = array();
         $insert_categories = array();
         $insert_product_variants = array();
@@ -162,7 +168,7 @@ class ImportXML {
                     $data['category_id'] = $categoryId;
                 }
 
-            
+
                 $data['active'] = true;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
@@ -435,7 +441,7 @@ class ImportXML {
         $data['full_path'] = $this->categories_full_puth[$data['external_id']];
         unset($data['full_path_ids']);
         $this->insert[] = $data;
-        
+
         //preparing data for i18n table insert
         $i18n_data['external_id'] = $category->ID . "";
         $i18n_data['name'] = $category->Наименование . "";
@@ -820,6 +826,11 @@ class ImportXML {
             $result = $this->ci->db->insert_batch($table, $this->insert);
             $this->insert = array();
 
+            if (!$result && !empty($this->insert)) {
+                echo 'Ошибка при вставке данных в таблицу: ' . $table . ' !!!';
+                exit();
+            }
+
             return $result;
         }
     }
@@ -834,6 +845,11 @@ class ImportXML {
         if (!empty($this->update)) {
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
+
+            if (!$result && !empty($this->update)) {
+                echo 'Ошибка при обновлении данных в таблице: ' . $table . ' !!!';
+                exit();
+            }
 
             return $result;
         }
