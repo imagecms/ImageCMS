@@ -15,7 +15,6 @@
                         $(DS.drop).find('.items > li').children().remove();
                         hideDrop(DS.drop, form, DS.durationHideForm);
                     }
-                    return true; /*for hide form*/
                 }}{/literal});
             return false;">
         <div class="horizontal-form">

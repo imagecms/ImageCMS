@@ -1,22 +1,4 @@
 {include_tpl('filter_opt')}
-{if $category->hasSubCats()}
-    <div class="frame-category-menu layout-highlight">
-        <div class="title-menu-category">
-            <div class="title-default">
-                <div class="title-h3 title">Категории:</div>
-            </div>
-        </div>
-        <div class="inside-padd">
-            <nav class="nav-category">
-                <ul class="nav nav-vertical" data-pid="{echo $key}">
-                    {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
-                        <li class="title"><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
-                        {/foreach}
-                </ul>
-            </nav>
-        </div>
-    </div>
-{/if}
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
@@ -81,18 +63,21 @@
 
 
     {if count($propertiesInCat) > 0}
+        {$flagScroll = 0}
         {foreach $propertiesInCat as $prop}
             {$typeProperty = $CI->load->module('new_level')->getPropertyTypes($prop->property_id)}
             {$condTypeProperty = $typeProperty != '' && sizeof($typeProperty) != 0}
-            <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if}>
+            <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if} {if in_array('dropDown', $typeProperty)}id="dropDown{$flagScroll}"{$flagScroll++}{/if}>
                 <div class="inside-padd">
                     <div class="title">
                         <span class="f-s_0">
                             <span class="icon-arrow"></span>
-                            <span class="text-el">{echo $prop->name}</span>
+                            <span class="d_b">
+                                <span class="text-el">{echo $prop->name}</span>
+                            </span>
                         </span>
                     </div>
-                    <div class="fitlers-content">
+                    <div class="filters-content">
                         <ul>
                             {foreach $prop->possibleValues as $item}
                                 {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
@@ -109,7 +94,7 @@
                                 <li>
                                     <div class="frame-label {$class}" id="p_{echo $prop->property_id}_{echo $item.id}">
                                         <span class="niceCheck b_n">
-                                            <input {$dis} name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {$check} />
+                                            <input {$dis} name="p[{echo $prop->property_id}][]" value='{echo $item.value}' type="checkbox" {$check} />
                                         </span>
                                         <div class="name-count">
                                             <span class="text-el">{echo $item.value}</span>

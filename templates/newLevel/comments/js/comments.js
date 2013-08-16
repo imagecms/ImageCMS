@@ -182,7 +182,9 @@ function initComments() {
             url: '/comments/commentsapi/setyes',
             success: function(obj) {
                 if (obj !== null)
-                    $('#yesholder' + comid).html("(" + obj.y_count + ")");
+                    $('.yesholder' + comid).each(function(){
+                        $(this).html("(" + obj.y_count + ")");
+                    })
             }
         });
     });
@@ -196,7 +198,9 @@ function initComments() {
             url: '/comments/commentsapi/setno',
             success: function(obj) {
                 if (obj !== null)
-                    $('#noholder' + comid).html("(" + obj.n_count + ")");
+                    $('.noholder' + comid).each(function(){
+                        $(this).html("(" + obj.n_count + ")");
+                    })
             }
         });
     });
@@ -252,7 +256,7 @@ function post(el) {
                 })
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
-                renderPosts($(el).closest('[name="for_comments"]'));
+                renderPosts($(el).closest('.for_comments'));
             }
             else {
                 var form = $(el).closest('form');

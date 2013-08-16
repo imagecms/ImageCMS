@@ -8,7 +8,7 @@
                     <tbody>
                         <tr>
                             {$wrapper}
-                        </
+                        </tr>
                     </tbody>
                 </table>
             </nav>

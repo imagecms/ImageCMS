@@ -163,7 +163,6 @@
                                         data-mediumImage="{echo $pv->getMediumPhoto()}"
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                         data-addPrice="{if $NextCSId != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
@@ -190,7 +189,7 @@
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
-                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}">
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
@@ -203,7 +202,7 @@
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
                         {if !$compare}
-                            <!-- compare buttons ----------------------->
+                            <!-- compare buttons -->
                             <div class="btn-compare">
                                 <button class="toCompare"
                                         data-prodid="{echo $p->getId()}"
@@ -216,11 +215,11 @@
                                     <span class="text-el d_l">{lang('s_add_to_compare')}</span>
                                 </button>
                             </div>
-                            <!-- end of compare buttons ---------------->
+                            <!-- end of compare buttons -->
                         {/if}
                         <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
                         {if $CI->uri->segment(2) != "wish_list"}
-                            <!-- Wish List buttons --------------------->
+                            <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
                                 {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 <!-- to wish list button -->
@@ -239,7 +238,7 @@
                                     </button>
                                 </div>
                             {/foreach}
-                            <!-- end of Wish List buttons -------------->
+                            <!-- end of Wish List buttons -->
                         {/if}
                     </div>
                 </div>
