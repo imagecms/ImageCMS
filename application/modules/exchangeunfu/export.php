@@ -17,7 +17,7 @@ class export {
     private $partners = array();
     private $prices = array();
     private $categories = array();
-    
+
     /** array for products ids for partner */
     private $products_ids = array();
 
@@ -37,7 +37,7 @@ class export {
     private $categories_export;
     private $product_export;
     private $export;
-    
+
 
     public function __construct() {
         $this->ci = &get_instance();
@@ -46,7 +46,7 @@ class export {
     }
 
     public function index() {
-        
+
     }
 
     /** export */
@@ -62,12 +62,12 @@ class export {
 
         if ($partner_id) {
             /** export for partner */
-            
+
             /** export partners */
             if ($this->partners) {
                 $this->exportPartners();
             }
-            
+
             /** export productivity */
             if ($this->productivity) {
                 $this->exportProductivity();
@@ -77,25 +77,25 @@ class export {
             if ($this->prices) {
                 $this->exportPrices();
             }
-           
+
             /** export orders */
             if ($this->orders) {
                 $this->exportOrder();
             }
-            
+
             /** products export for pertner*/
             if(!empty($this->products_ids)){
                 $this->products = $this->ci->export_model->getProducts($this->products_ids);
-                
+
                 /** export products */
                 if ($this->products) {
                     $this->exportProducts();
                 }
             }
-            
+
         } else {
             /** all export*/
-            
+
             /** export users */
             if ($this->users) {
                 $this->exportUsers();
@@ -273,7 +273,7 @@ class export {
                         "<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\n" .
                         "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n";
             }
-            
+
             /** convert paid value */
             if ($order['paid']) {
                 $order['paid'] = 'true';
@@ -310,9 +310,9 @@ class export {
                         "<Цена>" . $order_product['price'] . "</Цена>\n" .
                         "<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\n" .
                         "</Строки>\n";
-                
+
                 $this->order_export .= $products;
-                
+
                 if($order['status'] == 2){
                      $this->invoice_export .=  $products;
                 }
@@ -359,7 +359,7 @@ class export {
         $parents = array();
         foreach ($this->categories as $category){
             $parents[$category['id']] = $category['external_id'];
-            
+
         }
         foreach ($this->categories as $category) {
             $this->categories_export .=
@@ -427,13 +427,13 @@ class export {
                 $this->productivity_export .
                 $this->invoice_export .
                 $this->order_export;
-        
+
         if($export_body){
             header('content-type: text/xml');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
                 "<КонтейнерСписков ВерсияСхемы='0.1'".
-                    '   
-                        xmlns="urn:abkt.com.ua:ozzimarket" 
+                    '
+                        xmlns="urn:abkt.com.ua:ozzimarket"
                         xmlns:xs="http://www.w3.org/2001/XMLSchema"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     '
@@ -445,8 +445,8 @@ class export {
         }else{
             echo 'Нет даних для експорта';
         }
-        
-        
+
+
 //        var_dumps(htmlentities($this->export));
     }
 
