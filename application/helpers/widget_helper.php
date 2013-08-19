@@ -59,15 +59,14 @@ if (!function_exists('widget_ajax')) {
 
         echo "
                 <script type=text/javascript>
-                    $(document).ready(function(){
+                    $(window).load(function(){
                             $.ajax({
                                 async : 'false',
                                 type : 'post',
                                 url : '/shop/ajax/widget/$name',
                                 success : function(data){
-                                    $(data).insertAfter($('$container'))
-                                        processPage();
-                                        initBtnBuy();
+                                    $('$container').html(data);
+                                    $(document).trigger({type: 'widget_ajax', el: $('$container')})
                                 }
                             })
                       })
@@ -102,15 +101,16 @@ if (!function_exists('getProductViewsCount')) {
 
     function getProductViewsCount() {
         $ci = & get_instance();
-        $count = count($ci->session->userdata('page'));
-        if(!$count){
+        
+        $views = $ci->session->userdata('page');
+        if($views){
+            $count = count($views);
+        }else{
             $count = 0;
         }
+        
         return $count;
     }
 
 }
-
     /* End of widget_helper.php */
-
-

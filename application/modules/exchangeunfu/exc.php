@@ -8,14 +8,14 @@ namespace exchangeunfu;
  * Image CMS
  * Module Frame
  */
-class ImportXML {
+class exc {
 
     /**
      * Path to upload dir
      * @var string
      */
     private $pass = './application/modules/exchangeunfu/';
-
+    
     /** Arrays for db data storage  */
     private $prod = array();
     private $users = array();
@@ -26,15 +26,12 @@ class ImportXML {
     private $partners = array();
     private $prices = array();
     private $cat = array();
-    private $categories_full_puth = array();
-    private $categories_full_puth_ids = array();
-    private $category_parents = array();
 
     /** Arrays for insert data storage  */
     private $insert = array();
     private $insert_categories_i18n = array();
     private $insert_order_products = array();
-
+    
     /** Arrays for update data storage  */
     private $update = array();
     private $update_categories_i18n = array();
@@ -50,30 +47,24 @@ class ImportXML {
     private $partners_table = 'mod_exchangeunfu_partners';
     private $prices_table = 'mod_exchangeunfu_prices';
     private $product_variants_table = 'shop_product_variants';
-
+    
     /** xml document for import */
     private $xml;
-
+    
     /** object instance of ci */
     private $ci;
-
+    
     /** contains default locale */
     private $locale;
 
     public function __construct() {
+        $this->xml = simplexml_load_file($this->pass . 'export.xml');
         $this->ci = &get_instance();
-        $this->ci->load->helper('translit');
         $this->locale = 'ru';
     }
 
     public function index() {
-        
-    }
-
-    public function getXML($file) {
-        $this->xml = @new \SimpleXMLElement($file, FALSE, TRUE);
-
-        return $this->xml;
+//        $xml = simplexml_load_file($this->pass . 'export.xml');
     }
 
     /**
@@ -81,8 +72,7 @@ class ImportXML {
      * @return string "success" if success
      */
     public function import() {
-        $this->getXML($this->pass . 'export.xml');
-//        $start = microtime(true);
+        $start = microtime(true);
 
         //load db data
         $this->prod = load_product();
@@ -95,16 +85,14 @@ class ImportXML {
         $this->partners = load_partners();
         $this->prices = load_prices();
 
+
         // Import users
         if (isset($this->xml->СписокКонтрагентов)) {
             $this->importUsers();
         }
         // Import categories
-        if (isset($this->xml->СписокГруппНоменклатуры)) {
-            $this->importCategories($this->xml->СписокГруппНоменклатуры);
-        }
-
         if (isset($this->xml->СписокНоменклатуры)) {
+            $this->importCategories($this->xml->СписокНоменклатуры);
             $this->importProducts();
         }
 
@@ -126,13 +114,12 @@ class ImportXML {
         if (isset($this->xml->СписокПродуктивность)) {
             $this->importProductivity();
         }
-
+        
         echo "success";
+        
 
-
-//        $time = microtime(true) - $start;
-//        echo '<br>';
-//        printf('Скрипт выполнялся %.4F сек.', $time);
+        $time = microtime(true) - $start;
+        printf('Скрипт выполнялся %.4F сек.', $time);
         exit();
     }
 
@@ -141,7 +128,6 @@ class ImportXML {
      * @return boolean
      */
     public function importProducts() {
-        $this->cat = load_cat();
         $insert_products_i18n = array();
         $insert_categories = array();
         $insert_product_variants = array();
@@ -151,127 +137,126 @@ class ImportXML {
         $update_product_variants = array();
 
         foreach ($this->xml->СписокНоменклатуры as $product) {
-            $searchedProduct = is_prod($product->ID, $this->prod);
+            if ($product->ЭтоГруппа == 'false') {
+                $searchedProduct = is_prod($product->ID, $this->prod);
 
-            if (!$searchedProduct) {
-                //product not found, should be inserted
-                //preparing insert data for shop_products table
-                $data = array();
-                $data['external_id'] = $product->ID . "";
-
-                if (isset($product->IDРодитель)) {
-                    $categ = is_cat($product->IDРодитель, $this->cat);
-                    if ($categ)
-                        $categoryId = $categ['id'];
-                    else
-                        return false;
-                    $data['category_id'] = $categoryId;
-                }
-
-
-                $data['active'] = true;
-                $data['hit'] = false;
-                $data['code'] = $product->Код . '';
-                $data['measure'] = $product->ЕдиницаИзмерения . '';
-                $data['barcode'] = $product->ШтрихКод . '';
-                $data['brand_id'] = 0;
-                $data['created'] = time();
-                $data['updated'] = '';
-                $data['old_price'] = '0.00';
-                $data['views'] = 0;
-                $data['hot'] = false;
-                $data['action'] = false;
-                $data['added_to_cart_count'] = 0;
-                $data['enable_comments'] = true;
-
-                if (in_array(translit_url($product->Наименование), $this->urls)) {
-                    $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
-                } else {
-                    $data['url'] = translit_url($product->Наименование);
-                    $this->urls[] .= $data['url'];
-                }
-
-                //inserting prepared data to shop_products table
-                $this->insert[] = $data;
-
-                //preparing data for shop_products_i18n table
-                $data = array();
-                $data['external_id'] = $product->ID . "";
-                $data['locale'] = $this->locale;
-                $data['name'] = $product->Наименование . "";
-                $insert_products_i18n[] = $data;
-
-                //preparing data for shop_products_categories
-                $data = array();
-                if ($categoryId) {
-                    $data['external_id'] = $product->ID . "";
-                    $data['category_id'] = $categoryId;
-                    $insert_categories[] = $data;
-                }
-
-                //preparing insert data for shop_product_variants
-                $data = array();
-                $data['price'] = '0.00000';
-                $data['external_id'] = $product->ID . "";
-                $data['number'] = $product->Код . "";
-                $data['stock'] = 0;
-                $data['position'] = 0;
-                $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
-                if (!empty($mainCurrencyId))
-                    $mainCurrencyId = $mainCurrencyId['id'];
-                $data['currency'] = $mainCurrencyId;
-                $data['price_in_main'] = '0.00000';
-                $insert_product_variants[] = $data;
-
-                //preparing insert data for shop_product_variants_i18n table
-                $data = array();
-                $data['external_id'] = $product->ID . "";
-                $data['locale'] = $this->locale;
-                $data['name'] = '';
-                $insert_product_variants_i18n[] = $data;
-            } else {
-                //product found and should be updated
-                //preparing update data for shop_products table
-                $data = array();
-                $data['code'] = $product->Код . '';
-                $data['measure'] = $product->ЕдиницаИзмерения . '';
-                $data['barcode'] = $product->ШтрихКод . '';
-
-                if (isset($product->IDРодитель)) {
-                    $categ = is_cat($product->IDРодитель, $this->cat);
-                    if ($categ)
-                        $categoryId = $categ['id'];
-                    else
-                        return false;
-                    $data['category_id'] = $categoryId;
-                }
-                $data['updated'] = time();
-                $data['id'] = $searchedProduct['id'];
-                $this->update[] = $data;
-
-                //preparing data for shop_products_i18n table
-                $data = array();
-                $data['name'] = $product->Наименование . "";
-                $data['id'] = $searchedProduct['id'];
-                $update_products_i18n[] = $data;
-
-                //preparing data for shop_products_categories
-                if ($categoryId) {
+                if (!$searchedProduct) {
+                    //product not found, should be inserted
+                    //preparing insert data for shop_products table
                     $data = array();
-                    $data['product_id'] = $searchedProduct['id'];
-                    $data['category_id'] = $categoryId;
-                    if ($this->ci->db->where($data)->get('shop_product_categories')->num_rows() == 0) {
+                    $data['external_id'] = $product->ID . "";
+
+                    if (isset($product->IDРодитель)) {
+                        $categ = is_cat($product->IDРодитель, $this->cat);
+                        if ($categ)
+                            $categoryId = $categ['id'];
+                        else
+                            return false;
+                        $data['category_id'] = $categoryId;
+                    }
+
+                    if ($product->Статус == 'Удален')
+                        $data['active'] = false;
+                    else
+                        $data['active'] = true;
+
+                    $data['hit'] = false;
+                    $data['brand_id'] = 0;
+                    $data['created'] = time();
+                    $data['updated'] = '';
+                    $data['old_price'] = '0.00';
+                    $data['views'] = 0;
+                    $data['hot'] = false;
+                    $data['action'] = false;
+                    $data['added_to_cart_count'] = 0;
+                    $data['enable_comments'] = true;
+
+                    if (in_array(translit_url($product->Наименование), $this->urls)) {
+                        $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
+                    } else {
+                        $data['url'] = translit_url($product->Наименование);
+                        $this->urls[] .= $data['url'];
+                    }
+
+                    //inserting prepared data to shop_products table
+                    $this->insert[] = $data;
+
+                    //preparing data for shop_products_i18n table
+                    $data = array();
+                    $data['external_id'] = $product->ID . "";
+                    $data['locale'] = $this->locale;
+                    $data['name'] = $product->Наименование . "";
+                    $insert_products_i18n[] = $data;
+
+                    //preparing data for shop_products_categories
+                    $data = array();
+                    if ($categoryId) {
                         $data['external_id'] = $product->ID . "";
+                        $data['category_id'] = $categoryId;
                         $insert_categories[] = $data;
                     }
-                }
 
-                //preparing update data for shop_product_variants
-                $data = array();
-                $data['number'] = $product->Код . "";
-                $data['external_id'] = $product->ID . "";
-                $data['product_id'] = $searchedProduct['id'];
-                $update_product_variants[] = $data;
+                    //preparing insert data for shop_product_variants
+                    $data = array();
+                    $data['price'] = '0.00000';
+                    $data['external_id'] = $product->ID . "";
+                    $data['number'] = $product->Код . "";
+                    $data['stock'] = 0;
+                    $data['position'] = 0;
+                    $mainCurrencyId = $this->ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
+                    if (!empty($mainCurrencyId))
+                        $mainCurrencyId = $mainCurrencyId['id'];
+                    $data['currency'] = $mainCurrencyId;
+                    $data['price_in_main'] = '0.00000';
+                    $insert_product_variants[] = $data;
+
+                    //preparing insert data for shop_product_variants_i18n table
+                    $data = array();
+                    $data['external_id'] = $product->ID . "";
+                    $data['locale'] = $this->locale;
+                    $data['name'] = '';
+                    $insert_product_variants_i18n[] = $data;
+                } else {
+                    //product found and should be updated
+                    //preparing update data for shop_products table
+                    $data = array();
+
+                    if (isset($product->IDРодитель)) {
+                        $categ = is_cat($product->IDРодитель, $this->cat);
+                        if ($categ)
+                            $categoryId = $categ['id'];
+                        else
+                            return false;
+                        $data['category_id'] = $categoryId;
+                    }
+                    $data['updated'] = time();
+                    $data['id'] = $searchedProduct['id'];
+                    $this->update[] = $data;
+
+                    //preparing data for shop_products_i18n table
+                    $data = array();
+                    $data['name'] = $product->Наименование . "";
+                    $data['id'] = $searchedProduct['id'];
+                    $update_products_i18n[] = $data;
+
+                    //preparing data for shop_products_categories
+                    if ($categoryId) {
+                        $data = array();
+                        $data['product_id'] = $searchedProduct['id'];
+                        $data['category_id'] = $categoryId;
+                        if ($this->ci->db->where($data)->get('shop_product_categories')->num_rows() == 0) {
+                            $data['external_id'] = $product->ID . "";
+                            $insert_categories[] = $data;
+                        }
+                    }
+
+                    //preparing update data for shop_product_variants
+                    $data = array();
+                    $data['number'] = $product->Код . "";
+                    $data['external_id'] = $product->ID . "";
+                    $data['product_id'] = $searchedProduct['id'];
+                    $update_product_variants[] = $data;
+                }
             }
         }
 
@@ -347,20 +332,24 @@ class ImportXML {
      */
     public function importCategories($categories, $parent = null) {
         foreach ($categories as $category) {
-            $searchedCat = is_cat($category->ID, $this->cat);
+            if ($category->ЭтоГруппа == 'true') {
+                $searchedCat = is_cat($category->ID, $this->cat);
 
-            if (!$searchedCat) {
-                $this->insertCategory($data, $parent, $category, $searchedCat);
-            } else {
-                $this->updateCategory($data, $parent, $category, $searchedCat);
+                if (!$searchedCat) {
+                    $this->insertCategory($data, $parent, $category, $searchedCat);
+                } else {
+                    $this->updateCategory($data, $parent, $category, $searchedCat);
+                }
+//                if (isset($category->IDРодитель)) {
+//
+//                    //$parent_cat брати з масиву
+//                    $parentCat = is_cat($category->ID, $this->cat);
+//                    //$this->ci->db->select("id, url, full_path, full_path_ids")->where('external_id', $category->Ид . "")->get($this->categories_table)->row_array();
+//                    $this->importCategories($category->IDРодитель, $parentCat);
+//                }
             }
         }
-
-        $insert = $this->insert;
-        $update = $this->update;
-
         $this->insertData($this->categories_table);
-
 
         $inserted_categories = load_cat();
 
@@ -386,9 +375,6 @@ class ImportXML {
 
         $this->update = $this->update_categories_i18n;
         $this->updateData($this->categories_table . '_i18n', 'id');
-
-        $this->updateCategoryFilds($insert);
-        $this->updateCategoryFilds($update);
     }
 
     /**
@@ -399,49 +385,35 @@ class ImportXML {
      * @param array $searchedCat
      */
     public function insertCategory($data = array(), $parent = null, $category, $searchedCat = array()) {
-
         //preparing data for insert
         $translit = translit_url($category->Наименование) . '';
         $data = array();
         $data['url'] = $translit;
         $data['external_id'] = $category->ID . "";
         $data['active'] = TRUE;
-        $data['code'] = $category->Код . '';
-        $data['parent_id'] = 0;
-        $data['full_path_ids'] = array();
-
-        //preparing full_path_ids, full_path, and parent ids
-        if (isset($category->IDРодитель)) {
-            $data['parent_id'] = $category->IDРодитель . '';
-            $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
-            $data['full_path_ids'] = $this->categories_full_puth_ids[$category->IDРодитель . ''];
-
-            if (!$this->categories_full_puth_ids[$data['external_id']]) {
-                $this->categories_full_puth_ids[$data['external_id']] = array();
-            }
-
-            if (in_array($this->categories_full_puth_ids[$data['external_id']], $data['external_id'])) {
-                array_push($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-            } else {
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], array($data['external_id']));
-            }
-
-            if (strstr($this->categories_full_puth[$data['external_id']], $data['url'])) {
-                $this->categories_full_puth[$data['external_id']] .= $data['full_path'];
-            } else {
-                $this->categories_full_puth[$data['external_id']] .= $data['full_path'] . '/' . $data['url'];
-            }
-            $this->category_parents[$data['external_id']] = $category->IDРодитель . '';
+        if (!$parent) {
+            $data['parent_id'] = 0;
+            $data['full_path'] = $translit;
+            $ids = array();
+            $data['full_path_ids'] = serialize($ids);
         } else {
-            $this->categories_full_puth[$data['external_id']] = $data['url'];
-            $this->categories_full_puth_ids[$data['external_id']] = array(0);
+            $data['parent_id'] = $parent['id'];
+            $data['full_path'] = $parent['full_path'] . "/" . $translit;
         }
-
-        $data['full_path'] = $this->categories_full_puth[$data['external_id']];
-        unset($data['full_path_ids']);
         $this->insert[] = $data;
 
+        //update full path ids if have parent
+//        if ($parent) {
+//            $data['full_path_ids'] = unserialize($parent['full_path_ids']);
+//            if (empty($data['full_path_ids']))
+//                $data['full_path_ids'] = array((int) $parent['id']);
+//            else {
+//                $data['full_path_ids'][] = (int) $parent['id'];
+//            }
+//            $this->ci->db
+//                    ->where('id', $insert_id)
+//                    ->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
+//        }
         //preparing data for i18n table insert
         $i18n_data['external_id'] = $category->ID . "";
         $i18n_data['name'] = $category->Наименование . "";
@@ -470,79 +442,35 @@ class ImportXML {
         $data = array();
         $data['url'] = $translit;
         $data['active'] = TRUE;
-        $data['code'] = $category->Код . '';
-        $data['parent_id'] = 0;
         $data['external_id'] = $searchedCat['external_id'];
-
-        //preparing full_path_ids, full_path, and parent ids
-        if (isset($category->IDРодитель)) {
-            $data['parent_id'] = $category->IDРодитель . '';
-            $data['full_path'] = $this->categories_full_puth[$category->IDРодитель . ''];
-            $data['full_path_ids'] = $this->categories_full_puth_ids[$category->IDРодитель . ''];
-
-            if (!$this->categories_full_puth_ids[$data['external_id']]) {
-                $this->categories_full_puth_ids[$data['external_id']] = array();
-            }
-
-            if (in_array($this->categories_full_puth_ids[$data['external_id']], $data['external_id'])) {
-                array_push($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-            } else {
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], $data['full_path_ids']);
-                $this->categories_full_puth_ids[$data['external_id']] = array_merge($this->categories_full_puth_ids[$data['external_id']], array($data['external_id']));
-            }
-
-            if (strstr($this->categories_full_puth[$data['external_id']], $data['url'])) {
-                $this->categories_full_puth[$data['external_id']] .= $data['full_path'];
-            } else {
-                $this->categories_full_puth[$data['external_id']] .= $data['full_path'] . '/' . $data['url'];
-            }
-            $this->category_parents[$data['external_id']] = $category->IDРодитель . '';
+        if (!$parent) {
+            $data['parent_id'] = 0;
+            $data['full_path'] = $translit;
+            $ids = array();
+            $data['full_path_ids'] = serialize($ids);
         } else {
-            $this->categories_full_puth[$data['external_id']] = $data['url'];
-            $this->categories_full_puth_ids[$data['external_id']] = array(0);
+            $data['parent_id'] = $parent['id'];
+            $data['full_path'] = $parent['full_path'] . "/" . $translit;
         }
-
-        $data['full_path'] = $this->categories_full_puth[$data['external_id']];
-        unset($data['full_path_ids']);
-
         $this->update[] = $data;
 
         //preparing data for i18n table update
         $i18n_data['name'] = $category->Наименование . "";
         $i18n_data['id'] = $searchedCat['id'];
         $this->update_categories_i18n[] = $i18n_data;
-    }
 
-    /**
-     * update category full_path, full_path_ids and parent_id fields
-     * @param array $insert
-     */
-    public function updateCategoryFilds($insert) {
-        $cat_ids = load_cat_ids();
-        foreach ($this->categories_full_puth_ids as $key => $category_full_puth_id) {
-            foreach ($category_full_puth_id as $key1 => $ids) {
-                if ($cat_ids[$ids]) {
-                    $this->categories_full_puth_ids[$key][$key1] = (int) $cat_ids[$ids];
-                }
-            }
-        }
-
-        $parents = array();
-        foreach ($this->category_parents as $key => $parent) {
-            $parents[$key] = $cat_ids[$parent];
-        }
-
-        foreach ($insert as $key => $category) {
-            if ($this->categories_full_puth_ids[$category['external_id']]) {
-                $insert[$key]['full_path_ids'] = serialize($this->categories_full_puth_ids[$category['external_id']]);
-            }
-            if ($this->category_parents[$insert[$key]['external_id']]) {
-                $insert[$key]['parent_id'] = $parents[$insert[$key]['external_id']];
-            }
-        }
-
-        $this->update = $insert;
-        $this->updateData($this->categories_table, 'external_id');
+        //update full path ids if have parent
+//        if ($parent) {
+//            $data['full_path_ids'] = unserialize($parent['full_path_ids']);
+//            if (empty($data['full_path_ids']))
+//                $data['full_path_ids'] = array($searchedCat['id']);
+//            else {
+//                $data['full_path_ids'][] = $searchedCat['id'];
+//            }
+//            $this->ci->db
+//                    ->where('id', $searchedCat['id'])
+//                    ->update($this->categories_table, array('full_path_ids' => serialize($data['full_path_ids'])));
+//        }
     }
 
     /**
@@ -554,7 +482,6 @@ class ImportXML {
             $data['name'] = $partner->Наименование . '';
             $data['prefix'] = $partner->Префикс . '';
             $data['code'] = $partner->Код . '';
-            $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
 
             if (is_partner($data['external_id'], $this->partners)) {
@@ -575,11 +502,10 @@ class ImportXML {
     private function importPrices() {
         $this->prod = load_product();
         $this->partners = load_partners();
-
+         
         foreach ($this->xml->СписокЦен as $offer) {
             //prepare update data
             $data = array();
-            $data['external_id'] = $offer->ID . '';
             $data['price'] = (float) $offer->Цена;
             $data['action'] = (int) $offer->ЭтоАкционнаяЦена;
             $data['product_external_id'] = $offer->IDНоменклатура . '';
@@ -594,13 +520,13 @@ class ImportXML {
             }
 
             if (is_price($data, $this->prices)) {
-                $this->update[] = $data;
+                $this->ci->db->where('product_external_id', $data['product_external_id'])
+                        ->where('partner_external_id', $data['partner_external_id'])
+                        ->update($this->prices_table, $data);
             } else {
-                $this->insert[] = $data;
+                $this->ci->db->insert($this->prices_table, $data);
             }
         }
-        $this->insertData($this->prices_table);
-        $this->updateData($this->prices_table, 'external_id');
     }
 
     /**
@@ -613,7 +539,6 @@ class ImportXML {
             $data['password'] = $user->Пароль . '';
             $data['email'] = $user->Емейл . '';
             $data['phone'] = $user->Телефон . '';
-            $data['code'] = $user->Код . '';
             $data['address'] = $user->Адрес . '';
             $data['external_id'] = $user->ID . '';
 
@@ -635,19 +560,7 @@ class ImportXML {
     public function importOrders() {
         $this->users = load_users();
         $this->products_i18n = load_products_i18n();
-        if (isset($this->xml->СписокРасходныеНакладные)) {
-            $statuses = array();
-            foreach ($this->xml->СписокРасходныеНакладные as $status) {
-                if ($status->IDЗаказПокупателя . '') {
-                    $statuses[$status->IDЗаказПокупателя . ''] = array(
-                        'id' => $status->ID . '',
-                        'code' => $status->Номер . '',
-                        'date' => strtotime($status->Дата . '')
-                    );
-                }
-            }
-        }
-
+        
         foreach ($this->xml->СписокЗаказыПокупателя as $order) {
             $data = array();
             $data['date_created'] = strtotime($order->Дата . '');
@@ -655,18 +568,8 @@ class ImportXML {
             $data['user_phone'] = $order->КонтактныйТелефон . '';
             $data['paid'] = (int) $order->ПризнакПередоплаты;
             $data['external_id'] = $order->ID . '';
-            $data['code'] = $order->Номер . '';
-            $data['delivery_date'] = strtotime($order->СрокДоставки . '');
             $data['partner_external_id'] = $order->IDОрганизация . '';
-
-            $data['status'] = 1;
-            if ($statuses[$data['external_id']]) {
-                $data['status'] = 2;
-                $data['invoice_external_id'] = $statuses[$data['external_id']]['id'];
-                $data['invoice_code'] = $statuses[$data['external_id']]['code'];
-                $data['invoice_date'] = $statuses[$data['external_id']]['date'];
-            }
-
+            
             $user = is_user($order->IDКонтрагент, $this->users);
             if ($user) {
                 $data['user_id'] = $user['id'];
@@ -680,7 +583,7 @@ class ImportXML {
                 $this->updateOrder($order, $data);
             }
         }
-
+        
         $this->insertData($this->orders_table);
 
         $inserted_orders = load_orders();
@@ -693,12 +596,12 @@ class ImportXML {
                 }
             }
         }
-
+        
         $this->insert = $this->insert_order_products;
         $this->insertData($this->orders_products_table);
-
+        
         $this->updateData($this->orders_table, 'external_id');
-
+        
         $this->update = $this->update_order_products;
         $this->updateData($this->orders_products_table, 'external_id');
     }
@@ -751,7 +654,7 @@ class ImportXML {
     public function updateOrder($order, $data) {
         $total_price = 0;
         $this->update[] = $data;
-
+    
         $order_id = is_order($order->ID . '', $this->orders);
         if (isset($order->Строки)) {
             foreach ($order->Строки as $product) {
@@ -779,7 +682,7 @@ class ImportXML {
 
                 $total_price += (int) $product->Сумма;
             }
-
+            
             //update order total price
             $data = array();
             $data['total_price'] = $total_price;
@@ -795,7 +698,6 @@ class ImportXML {
     public function importProductivity() {
         foreach ($this->xml->СписокПродуктивность as $productivity) {
             $data = array();
-            $data['external_id'] = $productivity->ID . '';
             $data['date'] = strtotime($productivity->Дата . '');
             $data['hour'] = $productivity->Час . '';
             $data['count'] = (int) $productivity->Количество;
@@ -813,7 +715,7 @@ class ImportXML {
         }
 
         $this->insertData($this->productivity_table);
-        $this->updateData($this->productivity_table, 'external_id');
+//        $this->updateData($this->productivity_table, '');
     }
 
     /**
@@ -825,11 +727,6 @@ class ImportXML {
         if (!empty($this->insert)) {
             $result = $this->ci->db->insert_batch($table, $this->insert);
             $this->insert = array();
-
-            if (!$result && !empty($this->insert)) {
-                echo 'Ошибка при вставке данных в таблицу: ' . $table . ' !!!';
-                exit();
-            }
 
             return $result;
         }
@@ -845,11 +742,6 @@ class ImportXML {
         if (!empty($this->update)) {
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
-
-            if (!$result && !empty($this->update)) {
-                echo 'Ошибка при обновлении данных в таблице: ' . $table . ' !!!';
-                exit();
-            }
 
             return $result;
         }

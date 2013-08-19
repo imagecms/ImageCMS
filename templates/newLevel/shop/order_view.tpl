@@ -205,7 +205,7 @@
                                                         </span>
                                                         <span class="price-add">
                                                             <span>
-                                                                <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
                                                                 <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
@@ -368,7 +368,7 @@
                                 <span class="s-t">Стоимость доставки:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert(($model->getDeliveryPrice())}</span>
+                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
