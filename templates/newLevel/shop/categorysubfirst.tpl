@@ -15,9 +15,7 @@
             {\Category\RenderMenu::create()->load('category_menu_first')}
         </div>
         <div class="right-catalog-first">
-            <div class="vertical-carousel carousel-category-popular">
-                {widget('popular_products_category')}
-            </div>
+            {widget('popular_products_category')}
         </div>
 
     </div>

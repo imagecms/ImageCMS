@@ -17,6 +17,7 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
+        <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
 
@@ -32,7 +33,7 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body class="is{echo $agent[0]} not-js">
+    <body class="is{echo $agent[0]} not-js">        
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -46,22 +47,26 @@
             <div class="h-footer"></div>
         </div>
         <footer>
+            <!--Load star rating-->
+                    {//$CI->load->module('star_rating')->show_star_rating()}
             {include_tpl('footer')}
+            
         </footer>
+        
         {include_tpl('user_toolbar')}
 
         {include_tpl('config.js')}
 
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js?{echo rand()}"></script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-
-        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
         {include_shop_tpl('js_templates')}
     </body>
 </html>

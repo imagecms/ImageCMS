@@ -3,7 +3,9 @@
 <a href="#" data-drop="#popupCart" id="showCart" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">
-    {literal}   
+    {literal}
+        <% var discC = (Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount!=0 %>
+        <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask">
         <button type="button" class="icon_times_drop" data-closed="closed-js" onclick="togglePopupCart()"></button>
         <div class="no-empty">
@@ -13,7 +15,6 @@
         </div>
         <div class="drop-content">
         <div class="no-empty">
-        <div class="frame-bask-scroll">
         <div class="frame-bask-main">
         <div class="inside-padd">
         <table class="table-order">
@@ -55,12 +56,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -102,12 +105,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -159,23 +164,25 @@
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(origprices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(prices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -200,23 +207,25 @@
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(origprices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(prices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -260,12 +269,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </td>
@@ -283,19 +294,21 @@
         </div>
         </div>
         </div>
-        <div class="frame-foot">
+        </div>
+        <div class="no-empty">
+        <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="frame-discount">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount"><span class="genDiscount"><% if (Shop.Cart.discount.sum_discount_product != undefined) -Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
+        <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(Shop.Cart.discount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
         </span>
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
-        <span>
-        <span class="price genSumDiscount"><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %></span>
+        <span class="frame-discount">
+        <span class="price genSumDiscount"><% if(discC){ %><%- parseFloat(Shop.Cart.totalPriceOrigin).toFixed(pricePrecision)%><% } %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
@@ -307,16 +320,18 @@
         </span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price topCartTotalAddPrice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </span>
         </div>
-        <% if (!document.getElementById('orderDetails')) { %>
+        <% if (!orderDetails) { %>
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
@@ -362,9 +377,10 @@
 
 <script type="text/template" id="orderDetailsTemplate">
     {literal}   
+        <% var discC = (Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount!=0 %>
+        <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask frame-bask-order">
         <div class="no-empty">
-        <div class="frame-bask-scroll">
         <div class="frame-bask-main">
         <div class="inside-padd">
         <table class="table-order">
@@ -405,12 +421,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         <div class="frame-frame-count">
@@ -450,12 +468,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -475,7 +495,7 @@
         <% var urls = item.url %>
         <% var prodstatus = item.prodstatus %>
 
-        <tr class="row-kits">
+        <tr class="row-kits" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
         <% var idsL = ids.length; _.each(ids, function(id){  %>
@@ -505,16 +525,18 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(prices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -539,23 +561,25 @@
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
-        <span class="price"><%-origprices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(origprices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price"><%-prices[i].toFixed(pricePrecision)%></span>
+        <span class="price"><%-parseFloat(prices[i]).toFixed(pricePrecision)%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price"><%- addprices[i].toFixed(pricePrecision) %></span>
+        <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -609,12 +633,14 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </div>
         </div>
@@ -627,22 +653,21 @@
         </table>
         </div>
         </div>
-        </div>
-        <div class="frame-foot">
+        <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
-        
+
         <span class="frame-discount">
         <span class="s-t">Ваша текущая скидка:</span>
-        <span class="text-discount current-discount"><span class="genDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined){%><%- Shop.Cart.discount.sum_discount_product.toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
+        <span class="text-discount current-discount"><span class="genDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.discount.sum_discount_product).toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
         </span>
 
         <span class="s-t">Всего:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
-        <span>
-        <span class="price genSumDiscount"><%if(Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0){%><%- Shop.Cart.totalPriceOrigin.toFixed(pricePrecision) %><%}%></span>
+        <span class="frame-discount">
+        <span class="price genSumDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.totalPriceOrigin + Shop.Cart.kitDiscount).toFixed(pricePrecision) %><%}%></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
@@ -653,17 +678,19 @@
         <span class="curr"><%-curr%></span>
         </span>
         </span>
+        <%if (nextCsCond){%>
         <span class="price-add">
         <span>
         <span class="price topCartTotalAddPrice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-currNext%></span>
         </span>
         </span>
+        <%}%>
         </span>
         </span>
         </span>
         </div>
-        <% if (!document.getElementById('orderDetails')) { %>
+        <% if (!orderDetails) { %>
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
@@ -772,4 +799,12 @@
             <div class="description">Найдено <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
+    </div>
+    <div class="drop drop-style" id="notification">
+        <div class="drop-content">
+            <div class="inside-padd notification">
+
+            </div>
+        </div>
+        <div class="drop-footer"></div>
     </div>

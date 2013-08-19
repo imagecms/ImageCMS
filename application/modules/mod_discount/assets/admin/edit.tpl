@@ -88,7 +88,7 @@ var currencySymbolJS = '{echo $CS}';
                                 <div class="span8">
                                     <div class="d-i_b m-r_15">
                                         <select name="type_value" id="selectTypeValue">
-                                            <option value="1" {if $discount['type_value'] == 1}selected {/if}>Процентний</option>
+                                            <option value="1" {if $discount['type_value'] == 1}selected {/if}>Процентный</option>
                                             <option value="2" {if $discount['type_value'] == 2}selected {/if}>Фиксированный</option>
                                         </select>
                                     </div>
@@ -272,7 +272,7 @@ var currencySymbolJS = '{echo $CS}';
                 <div class="">
                     <span class="d-i_b">
                         <label class="p_r">
-                            <input class="datepicker required" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
+                            <input class="datepicker required discountDate" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                             <span class="icon-calendar"></span>
                         </label>
                     </span>
@@ -283,7 +283,7 @@ var currencySymbolJS = '{echo $CS}';
                             {$endDate = true;}
                             {/if}
                             <label class="d-i_b p_r">
-                                <input class="datepicker" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                <input class="datepicker discountDate" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                 <span class="icon-calendar"></span>
                             </label>
                             <div class="d-i_b m-l_10 v-a_m">

@@ -61,22 +61,21 @@
                         </div>
                     </div>
                     <div class="inside-padd">
-                        <nav>
+                        <nav class="nav-category">
                             {foreach $categories as $key => $category}
-                                <ul  data-pid="{echo $key}">
-                                    <div class="title">
-                                        {echo trim(key($category))}
-                                    </div>
+                                <ul class="nav nav-vertical" data-pid="{echo $key}">
+                                    <li class="title">
+                                        <span>{echo trim(key($category))}</span>
+                                    </li>
                                     {foreach $category[key($category)] as $subItem}
-                                        <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
-                                            {if $_GET['category'] && $_GET['category'] == $subItem['id']}
-                                                {echo $subItem['name']}
+                                        {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                            <li class="active">
+                                                <span>{echo $subItem['name']}</span>
                                             {else:}
-                                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
+                                            <li>
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"><span class="text-el">{echo $subItem['name']}</span> <span class="count">({echo $subItem['count']})</span></a>
                                             {/if}
-                                            <span class="count">({echo $subItem['count']})</span>
                                         </li>
-
                                     {/foreach}
                                 </ul>
                             {/foreach}
@@ -87,29 +86,4 @@
         {/if}
     </div>
 </div>
-    
-{ /* }
-{count($tree)}
-{foreach $tree as $item}
-    {if $categories[$item->getId()]}
-        <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-pid="{echo $item->getParentId()}"{/if}>
-            <div class="title">
-                {echo trim($item->getName())}
-            </div>
-            {foreach $item->getSubtree() as $subItem}
-                {if $categories[$item->getId()][$subItem->getId()]}
-                    <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                        {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                            {echo $subItem->getName()}
-                        {else:}
-                            <a rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
-                        {/if}
-                        <span class="count">({echo $categories[$item->getId()][$subItem->getId()]})</span>
-                    </li>
-                {/if}
-            {/foreach}
-        </ul>
-    {/if}
-{/foreach}
-{ */ }
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

@@ -1,4 +1,7 @@
-{foreach $products as $p}
+{foreach $products as $key => $p}
+    {if $key >= $limit && isset($limit)}
+        {break}
+    {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li>
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
@@ -42,11 +45,12 @@
                 </span>
             {/if}
             {if !$vertical}
-                {if $Comments[$p->getId()][0] != '0' && $p->enable_comments}
+                {if $Comments[$p->getId()] && $p->enable_comments && $Comments[$p->getId()] != 0}
                     <div class="frame-star f-s_0">
-                       {$CI->load->module('star_rating')->show_star_rating($p, false)}
+                        {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {intval($Comments[$p->getId()])}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array('отзыв','отзыва','отзывов'))}
                         </a>
                     </div>
                 {/if}
@@ -159,9 +163,8 @@
                                         data-mediumImage="{echo $pv->getMediumPhoto()}"
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        data-price="{echo $pv->toCurrency()}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-addPrice="{echo $pv->toCurrency('Price',1)}"
+                                        data-addPrice="{if $NextCSId != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
@@ -186,7 +189,7 @@
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     data-img="{echo $pv->getSmallPhoto()}"
-                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}">
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
@@ -199,7 +202,7 @@
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
                         {if !$compare}
-                            <!-- compare buttons ----------------------->
+                            <!-- compare buttons -->
                             <div class="btn-compare">
                                 <button class="toCompare"
                                         data-prodid="{echo $p->getId()}"
@@ -212,12 +215,13 @@
                                     <span class="text-el d_l">{lang('s_add_to_compare')}</span>
                                 </button>
                             </div>
-                            <!-- end of compare buttons ---------------->
+                            <!-- end of compare buttons -->
                         {/if}
                         <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
                         {if $CI->uri->segment(2) != "wish_list"}
-                            <!-- Wish List buttons --------------------->
+                            <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
+                                {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 <!-- to wish list button -->
                                 <div class="variant_{echo $pv->getId()} variant btn-wish" {if $key != 0}style="display:none"{/if}>
                                     <button class="toWishlist"
@@ -234,7 +238,7 @@
                                     </button>
                                 </div>
                             {/foreach}
-                            <!-- end of Wish List buttons -------------->
+                            <!-- end of Wish List buttons -->
                         {/if}
                     </div>
                 </div>
@@ -261,8 +265,8 @@
         <!--        Start. Remove buttons if compare or wishlist-->
         {if $compare}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
-            {/if}
-            {if $CI->uri->segment(2) == "wish_list" && ShopCore::$ci->dx_auth->is_logged_in() === true}
+        {/if}
+        {if $wishlist && ShopCore::$ci->dx_auth->is_logged_in() === true}
             <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->

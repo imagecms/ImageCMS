@@ -6,6 +6,7 @@
                     id="loginButton"
                     data-drop=".drop-enter"
                     data-source="{site_url('auth')}"
+                    data-animate="true"
                     >
                 <span class="icon_enter"></span>
                 <span class="text-el">Войти</span>
@@ -29,7 +30,7 @@
             </a>
         </li>
         <li class="btn-exit-shop">
-            <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', '', $(this))" data-refresh="true" data-redirect="false">
+            <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', '');">
                 <span class="icon_exit"></span>
                 <span class="text-el">Выход</span>
             </button>

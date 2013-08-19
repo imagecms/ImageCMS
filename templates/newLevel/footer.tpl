@@ -66,6 +66,7 @@
                             <span class="text-el">partner@imagecms.net</span>
                         </a>
                     </li>
+                     
                 </ul>
             </div>
         </div>
@@ -86,3 +87,4 @@
         </div>
     </div>
 </div>
+                    
