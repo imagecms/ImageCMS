@@ -2,8 +2,8 @@
 
 /**
  * ImageCMS System Update Class
- * @version 0.1 big start
  * @copyright ImageCMS(c) 2013
+ * @version 0.1 big start
  */
 class Update {
 
@@ -85,7 +85,6 @@ class Update {
     public function checkForVersion($modulName = 'reliz') {
 
         $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
-
 
         $url = 'http://pftest.imagecms.net/shop/test';
 
@@ -437,6 +436,7 @@ class Update {
     /**
      * database restore
      * @param string $file_name
+     * @todo доробити видалення і непоказувати лишні файли
      */
     public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
         if (is_readable('./application/backups/' . $file_name)) {
