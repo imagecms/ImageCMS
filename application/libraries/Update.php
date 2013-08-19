@@ -24,7 +24,19 @@ class Update {
      * папки, які не враховувати при обновлені
      * @var array
      */
-    private $distinct = array('.', '..', '.git');
+    private $distinct = array(
+        '.',
+        '..',
+        '.git',
+        'uploads',
+        'cache',
+        'templates',
+        'tests',
+        'captcha',
+        'nbproject',
+        'uploads_site',
+        'backups'
+    );
 
     /**
      * назва архіву і папки з скачаним старим текущим релізом в оригіналі
@@ -54,7 +66,7 @@ class Update {
      * шлях до архіву старого релізу
      * @var string
      */
-    public $path_old_relith = '';
+    public $path_old_reliz = '';
 
     /**
      * instance of ci
@@ -64,6 +76,46 @@ class Update {
 
     public function __construct() {
         $this->ci = &get_instance();
+    }
+
+    /**
+     * check for new version exist
+     */
+    public function checkForVersion($modulName = 'reliz') {
+
+        $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
+
+
+        $url = 'http://pftest.imagecms.net/shop/test';
+
+        $headers = array(
+            "Content-type: text/xml;charset=\"utf-8\"",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
+            "Authorization: Basic " . base64_encode($credentials)
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
+
+        // Apply the XML to our curl call
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        if (curl_errno($ch)) {
+            print "Error: " . curl_error($ch);
+        } else {
+            // Show me the result
+            var_dump($data);
+        }
     }
 
     /**
@@ -128,6 +180,9 @@ class Update {
 
         var_dump($array);
     }
+    public function getOldMD5File() {
+        return (array)json_decode(read_file('md5.txt'));
+    }
 
     /**
      * Оприділення шляхів відносно настройок
@@ -185,6 +240,7 @@ class Update {
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
+     * @return Array
      */
     public function parse_md5($directory = null) {
 
@@ -194,7 +250,7 @@ class Update {
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
                     if (is_file($dir . DIRECTORY_SEPARATOR . $file))
-                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = md5($dir . DIRECTORY_SEPARATOR . $file);
+                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = hash_file('md5',$dir . DIRECTORY_SEPARATOR . $file);
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
