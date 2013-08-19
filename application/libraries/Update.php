@@ -197,7 +197,7 @@ class Update {
         $zip = new ZipArchive();
         $time = time();
         $filename = "./application/backups/backup.zip";
-        rename($filename, './application/backups/'.time().'.zip');
+        rename($filename, './application/backups/' . time() . '.zip');
 
         if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
@@ -430,7 +430,7 @@ class Update {
             $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
             write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
         } else {
-            $this->error_log('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
     }
 
@@ -443,7 +443,7 @@ class Update {
             $restore = file_get_contents('./application/backups/' . $file_name);
             $this->query_from_file($restore);
         } else {
-            $this->error_log('Невозможно открить файл, проверте папку /application/backups на возможность чтения');
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
     }
 
@@ -454,13 +454,14 @@ class Update {
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
+
                 if (filetype($filename) != 'dir') {
-                    $fs = filesize('./application/backups/' . $filename);
-                    echo "Имя: " . $filename . "\nРазмер: " . $fs . "<br>";
+                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
                 }
             }
+            return $restore_dbs;
         } else {
-            $this->error_log('Невозможно папку, проверте папку /application/backups на возможность чтения');
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
     }
 
@@ -473,7 +474,7 @@ class Update {
             $restore = file_get_contents('./application/backups/' . $file_name);
             $this->query_from_file($restore);
         } else {
-            $this->error_log('Невозможно открить файл, проверте папку /application/backups на возможность чтения');
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
     }
 
