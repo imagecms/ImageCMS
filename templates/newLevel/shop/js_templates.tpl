@@ -296,7 +296,7 @@
         </div>
         </div>
         <div class="no-empty">
-        <div class="frame-foot">
+        <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="frame-discount">
@@ -349,6 +349,7 @@
         </div>
         </div>
         <% } %>
+        </div>
         </div>
         </div>
         <div class="empty">
@@ -652,7 +653,7 @@
         </table>
         </div>
         </div>
-        <div class="frame-foot">
+        <div class="frame-foot drop-footer">
         <div class="header-frame-foot">
         <div class="inside-padd">
 

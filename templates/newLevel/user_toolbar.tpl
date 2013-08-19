@@ -43,8 +43,9 @@
     </div>
     <div class="drop frame-already-show">
         <div class="content-already-show">
-            <div class="horizontal-carousel">
-                {widget('ViewedProducts')}
+            <div class="horizontal-carousel p_r" id="ViewedProducts">
+                <div class="preloader"></div>
+                {widget_ajax('ViewedProducts', '#ViewedProducts')}
             </div>
         </div>
     </div>

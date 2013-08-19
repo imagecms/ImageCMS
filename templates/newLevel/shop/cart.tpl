@@ -1,3 +1,4 @@
+
 <div class="frame-inside page-cart">
     <div class="container">
         <div class="empty {if count($items) == 0}d_b{/if}">
@@ -216,7 +217,7 @@
                                             <span class="price-item">
                                                 <span>
                                                     <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
-                                                    <span class="curr"></span>
+                                                    <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
                                         </li>
@@ -233,7 +234,7 @@
                                             <span class="price-item">
                                                 <span class="text-discount">
                                                     <span class="text-el">-</span><span id="giftCertPrice"></span>
-                                                    <span class="curr"></span>
+                                                    <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
                                         </li>
@@ -242,16 +243,16 @@
                                         <span class="title">Итого к оплате:</span>
                                         <span class="frame-prices f-s_0">
                                             <span class="price-discount">
-                                                <span>
+                                                <span class="frame-discount">
                                                     <span class="price" id="totalPrice"></span>
-                                                    <span class="curr"></span>
+                                                    <span class="curr">{$CS}</span>
                                                 </span>
                                             </span>
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
                                                         <span class="price" id="finalAmount"></span>
-                                                        <span class="curr"></span>
+                                                        <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
                                                 {if $NextCSId != null}

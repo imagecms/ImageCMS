@@ -61,6 +61,10 @@ class Exchangeunfu extends MY_Controller {
     public function _install() {
 
         $this->load->dbforge();
+        
+        $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders_products` ADD `external_id` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `partner_external_id` VARCHAR( 255 ) NOT NULL');
 
         $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
         $this->db->query('ALTER TABLE `users` ADD `code` VARCHAR( 250 ) NOT NULL');
@@ -105,12 +109,9 @@ class Exchangeunfu extends MY_Controller {
                 'constraint' => 100,
             ),
         );
-
-
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu', TRUE);
-
 
         $fields = array(
             'id' => array(
