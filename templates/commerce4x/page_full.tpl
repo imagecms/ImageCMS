@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="span3">
-            {load_menu('left_menu')}
+            {if  $CI->uri->uri_string() != ''}
+                 {load_menu('left_menu')}
+            {/if}
         </div>
         <div class="span6">
             <article>

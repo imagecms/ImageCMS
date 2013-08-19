@@ -140,7 +140,7 @@ class CI_Upload {
 	 *
 	 * @return	bool
 	 */
-	public function do_upload($field = 'file', $i = 0)
+	public function do_upload($field = 'file', $i = 0, $is_array=false)
 	{
 
 	// Is $_FILES[$field] set? If not, no reason to continue.
@@ -157,7 +157,7 @@ class CI_Upload {
 			return FALSE;
 		}
 
-		if ($i == 0){
+		if ($i == 0 && !$is_array){
                     $file = $_FILES[$field]['tmp_name'];
                     $error = ( ! isset($_FILES[$field]['error'])) ? 4 : $_FILES[$field]['error'];
 
@@ -204,7 +204,7 @@ class CI_Upload {
 
 
 		// Set the uploaded data as class variables
-                if ($i == 0){
+                if ($i == 0 && !$is_array){
 		$this->file_temp = $_FILES[$field]['tmp_name'];
 		$this->file_size = $_FILES[$field]['size'];
 		$this->file_type = preg_replace("/^(.+?);.*$/", "\\1", $_FILES[$field]['type']);

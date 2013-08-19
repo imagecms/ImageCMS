@@ -12,7 +12,6 @@
                                 if (status) {
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }
-                                return true; /*for show form after hide and hide error*/
                             }}{/literal});
                         return false;">
                     <label>
@@ -45,8 +44,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="refresh" value="false"/>
-                    <input type="hidden" name="redirect" value="false"/>
                     {form_csrf()}
                 </form>
             </div>

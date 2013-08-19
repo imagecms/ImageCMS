@@ -864,7 +864,7 @@ var orders = new Object({
 
         $('.totalOrderPrice').html(totalPrice);
     },
-    updateOrderItem: function(id, btn)
+    updateOrderItem: function(id, btn, order)
     {
         var data = {};
         if ($(btn).data('update') == 'price')
@@ -917,6 +917,9 @@ var orders = new Object({
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
                             ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
+                    
+                    $($('#variantsForOrders').find('option')[0]).trigger('click');
+                    $('#variantsForOrders').trigger('change');
                 }
             }
         });

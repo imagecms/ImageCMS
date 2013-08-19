@@ -43,7 +43,7 @@ class Commentsapi extends Comments {
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module, 999);
+        $comments = $this->base->get($item_id, 0, $this->module, 99999);
 
         // Read comments template
         // Set page id for comments form
@@ -84,11 +84,14 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
-
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else {
+            $comments = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 
@@ -152,11 +155,14 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        $comments = \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->registerStyle('comments')
-                ->fetchTemplate($this->tpl_name);
-
+        if ($this->enable_comments)
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments')
+                    ->fetchTemplate($this->tpl_name);
+        else {
+            $comment = '';
+        }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 

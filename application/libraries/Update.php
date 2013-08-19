@@ -1,30 +1,138 @@
 <?php
 
-/*
- * ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
+/**
+ * @todo ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
+ * @property CI $ci
  */
-
 class Update {
 
     private $arr_files;
-    public $path_parse; // шлях до сканування папок
-    public $update_directory = 'update'; // назва папки з обновленням відносно корня сайту
-    private $distinct = array('.', '..', '.git'); // папки, які не враховувати при обновлені
-    public $old_reliz = 'old_relith'; // назва архіву і папки з скачаним старим текущим релізом в оригіналі 
-    public $update_file = 'update_file'; // назва архіву і папки з скачаним обновленням
-    public $marge_file = 'marge_file'; // назва папки з обєднаними файлами
-    public $path_update = ''; // шлях до архіву з обновленням
-    public $path_old_relith = ''; // шлях до архіву старого релізу
+
+    /**
+     * шлях до сканування папок
+     * @var string
+     */
+    public $path_parse;
+
+    /**
+     * назва папки з обновленням відносно корня сайту
+     * @var string
+     */
+    public $update_directory = 'update';
+
+    /**
+     * папки, які не враховувати при обновлені
+     * @var array
+     */
+    private $distinct = array('.', '..', '.git');
+
+    /**
+     * назва архіву і папки з скачаним старим текущим релізом в оригіналі
+     * @var string
+     */
+    public $old_reliz = 'old_relith';
+
+    /**
+     * назва архіву і папки з скачаним обновленням
+     * @var string
+     */
+    public $update_file = 'update_file';
+
+    /**
+     * назва папки з обєднаними файлами
+     * @var string
+     */
+    public $marge_file = 'marge_file';
+
+    /**
+     * шлях до архіву з обновленням
+     * @var string
+     */
+    public $path_update = '';
+
+    /**
+     * шлях до архіву старого релізу
+     * @var string
+     */
+    public $path_old_relith = '';
+
+    /**
+     * instance of ci
+     * @var CI
+     */
+    public $ci;
 
     public function __construct() {
-        
+        $this->ci = &get_instance();
     }
-    
-     /*  Оприділення шляхів відносно настройок
+
+    /**
+     * send php auth data to server
      */
+    public function sendData() {
+        $credentials = "username1:password1";
 
+        // Read the XML to send to the Web Service
+//        $request_file = "./SampleRequest.xml";
+//        $fh = fopen($request_file, 'r');
+//        $xml_data = fread($fh, filesize($request_file));
+        $xml_data = 'grant_type=authorization_code';
+//        fclose($fh);
+
+        $url = 'http://pftest.imagecms.net/shop/test';
+        $page = "/services/calculation";
+        $headers = array(
+            "POST " . $page . " HTTP/1.0",
+            "Content-type: text/xml;charset=\"utf-8\"",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
+//            "SOAPAction: \"run\"",
+//            "Content-length: " . strlen($xml_data),
+            "Authorization: Basic " . base64_encode($credentials)
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
+
+        // Apply the XML to our curl call
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        if (curl_errno($ch)) {
+            print "Error: " . curl_error($ch);
+        } else {
+            // Show me the result
+            var_dump(json_decode($data));
+        }
+    }
+
+    /**
+     * form XML doc
+     */
+    public function formXml() {
+        $modules = get_dir_file_info('./application/modules/');
+        $array = array();
+        foreach ($modules as $key => $modul) {
+            $ver = read_file("./application/modules/$key/module_info.php");
+            preg_match("/'version'(\s*)=>(\s*)'(.*)',/", $ver, $find);
+            $array[$key] = end($find);
+        }
+
+        var_dump($array);
+    }
+
+    /**
+     * Оприділення шляхів відносно настройок
+     */
     public function paths() {
-
         // шлях до корня сайту /var/www
         $this->dir_curr = realpath('') . DIRECTORY_SEPARATOR;
         // шлях до папки з обновленням з "/" вкінці
@@ -43,27 +151,26 @@ class Update {
         // шлях до файлу з масивом про дані файлів які не обєднюються
         $this->file_dont_marge = $this->update_directory . DIRECTORY_SEPARATOR . 'dont_marge_mas.txt';
 
-
         // шлях до файлу з архівом старого релізу
         $this->file_zip_old = $this->update_directory . DIRECTORY_SEPARATOR . $this->old_reliz . '.zip';
         // шлях до файлу з архівом обновлення
         $this->file_zip_upd = $this->update_directory . DIRECTORY_SEPARATOR . $this->update_file . '.zip';
     }
 
-    /* Вказуються папки, як пропускаються в обновленні
+    /**
+     *  Вказуються папки, як пропускаються в обновленні
      */
-
     public function set_distinct($array) {
 
         $this->distinct = array_merge($this->distinct, $array);
         return $this;
     }
 
-    /* Скачує і розархівовує архіви обновлення і архів старої теперішньої версії. 
+    /**
+     * Скачує і розархівовує архіви обновлення і архів старої теперішньої версії.
      * Записує і розпаковує у відповідні файли і папки які вказуються в настройках
      * Доробити розархівування
      */
-
     public function download_and_unzip() {
 
         copy($this->path_update, $this->file_zip_upd);
@@ -72,16 +179,16 @@ class Update {
         //unzip() to $this->update . DIRECTORY_SEPARATOR . $label
     }
 
-    /*  Бере контрольні суми файлів текущих файлів і файлів старої теперішньої версії 
+    /**
+     * Бере контрольні суми файлів текущих файлів і файлів старої теперішньої версії
      * Записує іх у відповідні файли з настройок, як серіалізований масив ключ - шлях до файлу, значення - контрольна сума
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
      */
-
     public function parse_md5($directory = null) {
 
-        $dir = null === $directory ? $this->path_parse : $directory;
+        $dir = null === $directory ? realpath('') : $directory;
 
         if ($handle = opendir($dir))
             while (FALSE !== ($file = readdir($handle)))
@@ -94,13 +201,13 @@ class Update {
 
         strstr($this->path_parse, $this->update_directory) ? file_put_contents($this->file_mass_old, serialize($this->arr_files)) : file_put_contents($this->file_mass_curr, serialize($this->arr_files));
 
-        //return $this->arr_files;
+        return $this->arr_files;
     }
 
-    /*  Аналізує які файли текущі відрізняються від старих текущих файлів версії 
+    /**
+     * Аналізує які файли текущі відрізняються від старих текущих файлів версії
      * результат записується у відаповідний файл з настройок, як серіалізований масив значення якого - шлях до файлу від "application"
      */
-
     public function get_analiz_differents() {
 
         $arr_current = unserialize(file_get_contents($this->file_mass_curr));
@@ -115,13 +222,11 @@ class Update {
         file_put_contents($this->file_mass_diff, serialize($arr_diff));
     }
 
-
-
-    /*  Спроба обєднання файлів які різняться 
-     * записує файли які вдалося обєднати у відповідну з настройок деректорії, 
+    /**
+     * Спроба обєднання файлів які різняться
+     * записує файли які вдалося обєднати у відповідну з настройок деректорії,
      * та записується масив файлів у відповідний з настройок файл, фкі не вдалося обєднати, ключ масиву - шлях до файлу
      */
-
     public function parse_to_marge() {
 
         $arr_diff = unserialize(file_get_contents($this->file_mass_diff));
@@ -137,16 +242,16 @@ class Update {
         file_put_contents($this->file_dont_marge, serialize($arr_dont_marge));
     }
 
-    /*  порядкова система обєднання файлів, які різняться  
+    /**
+     * Порядкова система обєднання файлів, які різняться
      */
-
     public function marging($file = null) {
 
         $file_curr = file_get_contents($this->dir_curr . $file);
         $file_old = file_get_contents($this->dir_old_upd . $file);
         if (file_exists($this->dir_upd . $file)) { // якщо файл обновлення існує
             $file_upd = file_get_contents($this->dir_upd . $file);
-            
+
             // видалення пустих рядків у файлах
             $file_curr_arr = $this->delete_baks($file_curr);
             $file_old_arr = $this->delete_baks($file_old);
@@ -173,9 +278,9 @@ class Update {
             return false;
     }
 
-    /*  видалення пустих рядків у файлах ???????????  
+    /**
+     * Видалення пустих рядків у файлах ???????????
      */
-
     private function delete_baks($file) {
 
         $file_line_arr = explode("\n", $file);
@@ -187,12 +292,12 @@ class Update {
         return $file_line_arr;
     }
 
-    /*  Заміна файлів з обновлення
+    /**
+     * Заміна файлів з обновлення
      * 1. Заміняються файли, які не відрізняються від старої текущої версії
      * 2. заміняються файли які вдалося обєднати
      * 3. Створюється файл з приставкою _update в текущій папці даного файлу (користувач сам обєднює такі файли або обєднює такі файли система, не несучи за це відповідальності)
      */
-
     public function replacement() {
 
         $arr_curr_file = unserialize(file_get_contents($this->file_mass_curr));
@@ -216,11 +321,11 @@ class Update {
     }
 
     public function get_settings() {
-        
+
     }
 
     public function set_settings() {
-        
+
     }
 
 }

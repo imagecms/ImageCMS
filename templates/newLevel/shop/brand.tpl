@@ -88,30 +88,23 @@
                         </div>
                     </div>
                     <div class="inside-padd">
-                        <nav>
-                            {foreach $tree as $item}
-                                <div data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-pid="{echo $item->getParentId()}"{/if}>
-                                    {$title=false}
-                                    {foreach $item->getSubtree() as $subItem}
-                                        {$count_item = $categories[$subItem->getId()];}
-                                        {if $count_item}
-                                            {if !$title}
-                                                <div class="title">
-                                                    {echo trim($item->getName())}
-                                                </div>
-                                                {$title = true}
+                        <nav class="nav-category">
+                            {foreach $categories as $key => $category}
+                                <ul class="nav nav-vertical" data-pid="{echo $key}">
+                                    <li class="title">
+                                        <span>{echo trim(key($category))}</span>
+                                    </li>
+                                    {foreach $category[key($category)] as $subItem}
+                                        {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                            <li class="active">
+                                                <span>{echo $subItem['name']}</span>
+                                            {else:}
+                                            <li>
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"><span class="text-el">{echo $subItem['name']}</span> <span class="count">({echo $subItem['count']})</span></a>
                                             {/if}
-                                            <div{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                                                    {echo $subItem->getName()}
-                                                {else:}
-                                                    <a rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
-                                                {/if}
-                                                <span class="count">({echo $count_item})</span>
-                                            </div>
-                                        {/if}
+                                        </li>
                                     {/foreach}
-                                </div>
+                                </ul>
                             {/foreach}
                         </nav>
                     </div>

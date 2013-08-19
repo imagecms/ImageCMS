@@ -1,7 +1,9 @@
-var activeClass = 'active',
+var isTouch = 'ontouchstart' in document.documentElement,
+        activeClass = 'active',
         clonedC = 'cloned';
 wnd = $(window),
-        body = $('body');
+        body = $('body'),
+        checkProdStock = checkProdStock == "" ? false : true;
 /*
  *imagecms frontend plugins
  ** @author Domovoj
@@ -26,7 +28,10 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
-
+function serializeForm(el) {
+    var $this = $(el);
+    return $this.attr('data-data', $this.closest('form').serialize());
+}
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
@@ -50,13 +55,13 @@ String.prototype.pasteSAcomm = function() {
     return this.replace(r, ',');
 }
 
-jQuery.exists = function(selector) {
+$.exists = function(selector) {
     return ($(selector).length > 0);
 }
-jQuery.existsN = function(nabir) {
+$.existsN = function(nabir) {
     return (nabir.length > 0);
 }
-jQuery.testNumber = function(e) {
+$.testNumber = function(e) {
     if (!e)
         var e = window.event;
     var key = e.keyCode;
@@ -69,7 +74,7 @@ jQuery.testNumber = function(e) {
     else
         return true;
 }
-jQuery.onlyNumber = function(el) {
+$.onlyNumber = function(el) {
     $(el).live('keypress', function(e) {
         if (!$.testNumber(e)) {
             $(this).tooltip();
@@ -77,6 +82,45 @@ jQuery.onlyNumber = function(el) {
         }
     });
 }
+$.fn.pricetext = function(e, rank) {
+    var $this = $(this);
+    rank != undefined ? rank = rank : rank = true;
+    $(document).trigger({type: 'textanimatechange', el: $this, ovalue: parseFloat($this.text().replace(/\s+/g, '')), nvalue: e, rank: rank})
+    return $this;
+}
+
+$(document).bind('textanimatechange', function(e) {
+    var $this = e.el,
+            nv = e.nvalue,
+            ov = e.ovalue,
+            rank = e.rank,
+            dif = nv - ov,
+            temp = ov;
+    if (dif > 0) {
+        var ndif = dif,
+                step = Math.floor(dif / 100);
+    }
+    else
+    {
+        ndif = Math.abs(dif),
+                step = -Math.floor(ndif / 100);
+    }
+    var cond = '',
+            numb = setInterval(function() {
+        temp += step;
+        cond = temp < nv;
+        if (dif < 0)
+            cond = temp > nv;
+        if (cond && step != 0)
+            $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp)
+        else {
+            $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv)
+            clearInterval(numb)
+            temp = nv;
+        }
+    }, 1)
+
+})
 function setcookie(name, value, expires, path, domain, secure)
 {
     var today = new Date();
@@ -117,7 +161,7 @@ var ie = jQuery.browser.msie,
                         classRemove = settings.classRemove,
                         frameChecks = frameChecks.selector.split(','),
                         after = settings.after;
-                wrapper.find(elCheckWrap).children('input').mousedown(function(e) {
+                wrapper.children('input').mousedown(function(e) {
                     $(this).closest(wrapper).click();
                 }).keyup(function(e) {
                     if (e.keyCode == 32)
@@ -183,9 +227,7 @@ var ie = jQuery.browser.msie,
             var el = el;
             if (el == undefined)
                 el = this;
-
             var input = input;
-
             if (input == undefined)
                 input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
@@ -222,7 +264,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass(activeClass).parent().removeClass(activeClass);
                 input.attr("checked", false);
             });
@@ -233,7 +275,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass(activeClass).addClass('disabled').parent().addClass('disabled').removeClass(activeClass);
                 input.attr('disabled', 'disabled').removeAttr('checked');
             });
@@ -244,7 +286,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             el.each(function() {
-                input = el.find("input");
+                var input = el.find("input");
                 el.removeClass('disabled').parent().removeClass('disabled');
                 input.removeAttr('disabled');
             });
@@ -259,6 +301,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.nStCheck');
         }
     };
+    $.nStCheck = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -270,28 +315,36 @@ var ie = jQuery.browser.msie,
                 before: function() {
                 },
                 after: function() {
-                },
+                }
             }, options),
                     settings = optionsRadio;
             var $this = $(this);
             if ($.existsN($this)) {
                 $this.each(function() {
-                    var $this = $(this);
-                    var after = settings.after,
+                    var $this = $(this),
+                            after = settings.after,
                             before = settings.before,
                             classRemove = settings.classRemove,
                             wrapper = settings.wrapper,
-                            elCheckWrap = settings.elCheckWrap;
+                            elCheckWrap = settings.elCheckWrap,
+                            input = $this.find(elCheckWrap).find('input');
                     $this.find(elCheckWrap).each(function() {
                         methods.changeRadioStart($(this), classRemove, after, true);
                     });
+                    input.each(function() {
+                        var input = $(this);
+                        $(input.data('link')).focus(function(e) {
+                            if (e.which == 0)
+                                methods.radioCheck(input.parent(), input, after, false);
+                        })
+                    })
                     $this.find(wrapper).unbind('click.radio').bind('click.radio', function(e) {
                         if (!$(this).find('input').is(':disabled')) {
                             before($(this));
                             methods.changeRadio($(this).find(elCheckWrap), after, false);
                         }
                     });
-                    $this.find(elCheckWrap).find('input').bind('mousedown change', function(e) {
+                    input.bind('mousedown change', function(e) {
                         return false;
                     })
                 })
@@ -300,7 +353,7 @@ var ie = jQuery.browser.msie,
         changeRadioStart: function(el, classRemove, after, start)
         {
             var input = el.find("input");
-            if (input.attr("checked")) {
+            if (input.is(":checked")) {
                 methods.radioCheck(el, input, after, start);
             }
             el.removeClass(classRemove);
@@ -315,9 +368,10 @@ var ie = jQuery.browser.msie,
             el.addClass(activeClass);
             el.parent().addClass(activeClass);
             input.attr("checked", true);
+            $(input.data('link')).focus();
             input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
                 methods.radioUnCheck($(this).parent(), $(this))
-            })
+            });
             after(el, start);
             $(document).trigger({'type': 'nStRadio.RC', 'el': el, 'input': input});
         },
@@ -337,6 +391,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
         }
     };
+    $.nStRadio = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -345,7 +402,8 @@ var ie = jQuery.browser.msie,
                 item: 'ul > li',
                 duration: 300,
                 searchPath: "/shop/search/ac",
-                inputString: $('#inputString')
+                inputString: $('#inputString'),
+                minValue: 3
             }, options);
             function postSearch() {
                 $(document).trigger({'type': 'autocomplete.before', 'el': inputString});
@@ -433,6 +491,7 @@ var ie = jQuery.browser.msie,
                             $thisS.closest('form').submit();
                         }
                     }
+                    return false;
                 })
             }
 
@@ -448,18 +507,33 @@ var ie = jQuery.browser.msie,
                     durationA = settings.duration,
                     searchPath = settings.searchPath,
                     selectorPosition = -1,
-                    inputString = settings.inputString;
+                    inputString = settings.inputString,
+                    minValue = settings.minValue;
             inputString.keyup(function(event) {
-                if (!event)
-                    var event = window.event;
-                var code = event.keyCode;
-                if (code != 27 && code != 40 && code != 38 && code != 13 && inputString.val().length != 0 && $.trim(inputString.val()) != "")
-                    postSearch();
-                else if (inputString.val().length == 0)
-                    closeFrame();
+                var $this = $(this);
+                var inputValL = $this.val().length;
+                if (inputValL > minValue) {
+                    $this.tooltip('remove');
+                    if (!event)
+                        var event = window.event;
+                    var code = event.keyCode;
+                    if (code != 27 && code != 40 && code != 38 && code != 39 && code != 37 && code != 13 && inputValL != 0 && $.trim($this.val()) != "")
+                        postSearch();
+                    else if (inputValL == 0)
+                        closeFrame();
+                }
+                else
+                    $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
             }).blur(function() {
                 closeFrame();
             });
+            inputString.keypress(function(event) {
+                if (!event)
+                    var event = window.event;
+                var code = event.keyCode;
+                if (code == 13 && inputString.val().length <= minValue)
+                    return false;
+            })
         }
     }
     $.fn.autocomplete = function(method) {
@@ -470,6 +544,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.autocomplete');
         }
+    };
+    $.autocomplete = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -489,14 +566,27 @@ var ie = jQuery.browser.msie,
             tooltip.text(settings.title);
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'notalways')
+            var tempeff = false;
+            if (settings.effect == 'notalways') {
                 tooltip.hide();
-            tooltip.css({
-                'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
-                'top': this.offset().top - tooltip.actual('outerHeight')
-            }).stop().fadeIn(300, function() {
-                $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
-            });
+                tempeff = 'stop';
+            }
+            if (tempeff) {
+                tooltip.css({
+                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                    'top': this.offset().top - tooltip.actual('outerHeight')
+                }).stop().fadeIn(300, function() {
+                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                });
+            }
+            else {
+                tooltip.css({
+                    'left': Math.ceil(this.offset().left - (tooltip.actual('outerWidth') - this.outerWidth()) / 2),
+                    'top': this.offset().top - tooltip.actual('outerHeight')
+                }).fadeIn(300, function() {
+                    $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
+                });
+            }
             $this.unbind('mouseout.tooltip').bind('mouseout.tooltip', function() {
                 $(this).tooltip('remove');
             })
@@ -520,6 +610,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.tooltip');
         }
     };
+    $.tooltip = function(m) {
+        return methods[m];
+    };
     $('[data-rel="tooltip"]').live('mouseover', function() {
         $(this).tooltip();
     }).live('mouseout', function() {
@@ -528,8 +621,8 @@ var ie = jQuery.browser.msie,
 })(jQuery); /*plugin menuImageCms for main menu shop*/
 (function($) {
     var methods = {
-        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2) {
-            if (menuW - $thisL < dropW) {
+        position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
+            if ((menuW - $thisL < dropW && dropW < menuW && direction != 'left') || direction == 'right') {
                 drop.removeClass('left-drop')
                 if (drop.children().children().length >= countColumn && !sub2)
                     drop.css('right', 0).addClass('right-drop');
@@ -539,11 +632,11 @@ var ie = jQuery.browser.msie,
                         right = menuW - dropW;
                     drop.css('right', right).addClass('right-drop');
                 }
-            } else {
+            } else if (direction != 'right' || direction == 'left') {
                 drop.removeClass('right-drop')
                 if (sub2 && dropW > menuW)
                     drop.css('left', $thisL).addClass('left-drop');
-                else if (drop.children().children().length >= countColumn)
+                else if (drop.children().children().length >= countColumn || dropW >= menuW)
                     drop.css('left', 0).addClass('left-drop');
                 else
                     drop.css('left', $thisL).addClass('left-drop');
@@ -555,6 +648,7 @@ var ie = jQuery.browser.msie,
                 var sH = 0,
                         settings = $.extend({
                     item: this.find('li'),
+                    direction: null,
                     effectOn: 'fadeIn',
                     effectOff: 'fadeOut',
                     duration: 0,
@@ -579,6 +673,7 @@ var ie = jQuery.browser.msie,
                 }, options);
                 var menuW = menu.width(),
                         menuItem = settings.item,
+                        direction = settings.direction,
                         drop = settings.drop,
                         dropOJ = $(drop),
                         effOn = settings.effectOn,
@@ -601,15 +696,17 @@ var ie = jQuery.browser.msie,
                         refresh = settings.refresh,
                         menuCache = settings.menuCache,
                         activeFl = settings.activeFl,
-                        parentTl = settings.parentTl;
-
+                        parentTl = settings.parentTl,
+                        otherPage = settings.otherPage;
                 if (menuCache && !refresh) {
-                    menu.find('a').each(function() {
+                    menu.find('a').each(function() {//if start without cache and remove active item
                         var $this = $(this);
                         $this.closest(activeFl.split(' ')[0]).removeClass(activeClass);
                         $this.removeClass(activeClass);
                     });
-                    menu.find('a[href="' + location.href + '"]').each(function() {
+                    var locHref = location.href;
+                    var locationHref = otherPage != undefined ? otherPage : locHref
+                    menu.find('a[href="' + locationHref + '"]').each(function() {
                         var $this = $(this);
                         $this.closest(activeFl.split(' ')[0]).addClass(activeClass);
                         $this.closest(parentTl.split(' ')[0]).addClass(activeClass).prev().addClass(activeClass);
@@ -621,25 +718,6 @@ var ie = jQuery.browser.msie,
                     evLS = 'toggle';
                 }
                 if (!refresh) {
-                    if (columnPart && !sub2Frame)
-                        dropOJ.each(function() {
-                            var $this = $(this),
-                                    columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
-                                    numbColumn = [];
-                            columnsObj.each(function(i) {
-                                numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
-                            })
-                            numbColumn = $.unique(numbColumn).sort();
-                            if (numbColumn.length > 1) {
-                                $.map(numbColumn, function(n, i) {
-                                    var currC = columnsObj.filter('.' + columnClassPref + n),
-                                            classCuurC = currC.first().attr('class');
-                                    $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
-                                    $this.find('[data-column="' + n + '"]').children().append(currC.clone());
-                                })
-                                columnsObj.remove();
-                            }
-                        })
                     if (columnPart2) {
                         dropOJ.find(sub3Frame).each(function() {
                             var $this = $(this),
@@ -659,27 +737,48 @@ var ie = jQuery.browser.msie,
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else
-                                        $this.closest('li').addClass('x' + numbColumnL);
+                                        //$this.closest('[data-column]').addClass('x' + numbColumnL);
+                                        $this.closest('li').addClass('x' + numbColumnL).attr('data-x', numbColumnL);
                                 })
                                 columnsObj.remove();
                             }
                         })
-                        if (!sub2Frame)
-                            dropOJ.each(function() {
-                                var $this = $(this),
-                                        count = 0;
-                                $this.find(':regex(class,x([0-9]+))').each(function() {
-                                    var $this = $(this),
-                                            cxc = $this.attr('class').match(/(x[0-9]+)/);
-                                    count += parseInt(cxc[0].match(/([0-9]+)/)[0]);
-                                })
-                                count += $this.children().children(':not(:regex(class,x([0-9]+)))').length;
-                                $this.addClass('x' + count)
-                            })
                     }
+                    if (columnPart && !sub2Frame)
+                        dropOJ.each(function() {
+                            var $this = $(this),
+                                    columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]+))'),
+                                    numbColumn = [];
+                            columnsObj.each(function(i) {
+                                numbColumn[i] = $(this).attr('class').match(/([0-9]+)/)[0];
+                            })
+                            numbColumn = $.unique(numbColumn).sort();
+                            if (numbColumn.length > 1) {
+                                $.map(numbColumn, function(n, i) {
+                                    var $thisLi = columnsObj.filter('.' + columnClassPref + n),
+                                            sumx = 0;
+                                    $thisLi.each(function() {
+                                        var datax = $(this).attr('data-x');
+                                        sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
+                                    })
+                                    $this.children().append('<li class="x' + sumx + '" data-column="' + n + '"><ul></ul></li>');
+                                    $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
+                                })
+                                columnsObj.remove();
+                            }
+                            var sumx = 0,
+                                    $thisLi = $this.children().children(),
+                                    $thisLiL = $thisLi.length;
+                            $thisLi.each(function() {
+                                var datax = $(this).attr('data-x');
+                                sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
+                            })
+                            if ($thisLiL != sumx)
+                                $this.addClass('x' + sumx);
+                        })
+                    $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                 }
-                var k = [],
-                        kk = 0;
+                var k = [];
                 menuItem.each(function(index) {
                     var $this = $(this),
                             $thisW = $this.width(),
@@ -690,12 +789,17 @@ var ie = jQuery.browser.msie,
                     if ($thisH > sH)
                         sH = $thisH;
                     if ($.existsN($thisDrop)) {
-                        if (!dropW)
-                            dropW2 = $thisDrop.actual('width');
+                        if (!dropW) {
+                            menu.css('overflow', 'hidden');
+                            dropW2 = $thisDrop.show().width();
+                            $thisDrop.hide();
+                            menu.css('overflow', '');
+                        }
                         else
                             dropW2 = dropW;
-                        methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame);
+                        methods.position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                     }
+                    $this.data('kk', 0);
                 }).css('height', sH);
                 menuItem.find('.helper:first').css('height', sH)
 
@@ -732,12 +836,13 @@ var ie = jQuery.browser.msie,
                                 $this.addClass('firstH');
                             if ($thisI == itemMenuL - 1)
                                 $this.addClass('lastH');
-                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || kk == 0)
+                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') == 0)
                                 k[$thisI] = true;
                             if (k[$thisI]) {
                                 hoverTO = setTimeout(function() {
                                     $thisDrop[effOn](durationOn, function() {
-                                        kk++;
+                                        $this.data('kk', $this.data('kk') + 1);
+                                        $(document).trigger({type: 'menu.showDrop', el: $thisDrop})
                                         if ($thisDrop.length != 0)
                                             menu.addClass(hM);
                                         if (sub2Frame) {
@@ -764,30 +869,39 @@ var ie = jQuery.browser.msie,
                                                         isSub2.css('width', dropW);
                                                     }
                                                 }
-                                            })[evLS](function(e) {
+                                            }).unbind(evLS)[evLS](function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-                                                if (e.type == 'click' && evLS == 'toggle') {
-                                                    $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                if ($.existsN($this.next())) {
+                                                    if (e.type == 'click' && evLS == 'toggle') {
+                                                        $this.addClass(hM).siblings().filter('.' + hM).click()
+                                                    }
+                                                    else
+                                                        $this.has(sub2Frame).addClass(hM);
+                                                    $thisDrop.css('width', '');
+                                                    $thisDrop.children().add(subFrame).css('height', '');
+                                                    var dropW = $this.parent().parent().width(),
+                                                            sumW = dropW + subFrame.width(),
+                                                            subHL2 = subFrame.height(),
+                                                            dropDH = $thisDrop.children().data('height');
+                                                    if (subHL2 < dropDH)
+                                                        subHL2 = dropDH;
+                                                    $thisDrop.css('width', sumW);
+                                                    $thisDrop.children().add(subFrame).css('height', subHL2);
+                                                    e.preventDefault();
                                                 }
-                                                else
-                                                    $this.has(sub2Frame).addClass(hM);
-                                                $thisDrop.css('width', '');
-                                                $thisDrop.children().add(subFrame).css('height', '');
-                                                var dropW = $this.parent().parent().width(),
-                                                        sumW = dropW + subFrame.width(),
-                                                        subHL2 = subFrame.height(),
-                                                        dropDH = $thisDrop.children().data('height');
-                                                if (subHL2 < dropDH)
-                                                    subHL2 = dropDH;
-                                                $thisDrop.css('width', sumW);
-                                                $thisDrop.children().add(subFrame).css('height', subHL2);
-                                            }, function(e) {
+                                                else {
+                                                    return true;
+                                                }
+                                            }
+                                            , function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-                                                $thisDrop.css('width', '')
-                                                $thisDrop.children().add(subFrame).css('height', '')
-                                                $this.removeClass(hM)
+                                                if ($.existsN($this.next())) {
+                                                    $thisDrop.css('width', '')
+                                                    $thisDrop.children().add(subFrame).css('height', '')
+                                                    $this.removeClass(hM)
+                                                }
                                             });
                                         }
                                     });
@@ -822,12 +936,16 @@ var ie = jQuery.browser.msie,
                 })
                 menu.unbind('hover')['hover'](
                         function(e) {
-                            kk = 0;
+                            menuItem.each(function() {
+                                $(this).data('kk', 0);
+                            })
                             e.stopImmediatePropagation();
                             return timeDurM = 0;
                         },
                         function(e) {
-                            kk = -1;
+                            menuItem.each(function() {
+                                $(this).data('kk', -1);
+                            })
                             e.stopImmediatePropagation();
                             if (evLF == 'toggle' || evLS == 'toggle') {
                                 $(this).find('.' + hM).click();
@@ -848,10 +966,19 @@ var ie = jQuery.browser.msie,
                     }
                 });
                 dropOJ.find('a').click(function(e) {
-                    e.stopPropagation();
+                    if (evLS == 'toggle') {
+                        if ($.existsN($(this).next()) && sub2Frame) {
+                            e.preventDefault();
+                            return true;
+                        }
+                        e.stopPropagation();
+                        return true;
+                    }
+                    else
+                        e.stopPropagation();
                 });
                 menuItem.find('a').click(function(e) {
-                    if ($.existsN($(this).find(drop)))
+                    if (!$.existsN($(this).closest(menuItem).find(drop)))
                         e.stopPropagation();
                 });
             }
@@ -870,6 +997,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.menuImageCms');
         }
+    };
+    $.menuImageCms = function(m) {
+        return methods[m];
     };
 })(jQuery);
 /*plugin menuImageCms end*/
@@ -895,8 +1025,7 @@ var ie = jQuery.browser.msie,
                         thisL = this.length,
                         k = true,
                         refs = [],
-                        attrOrdata = [],
-                        wST = wnd.scrollTop();
+                        attrOrdata = [];
                 $this.each(function(index) {
                     var $thiss = $(this),
                             effectOn = settings.effectOn,
@@ -911,7 +1040,6 @@ var ie = jQuery.browser.msie,
                             tempRefs = [];
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
-
                         tempO = tempO.add($(tHref));
                         tempO2 = tempO2.add('[data-id=' + tHref + ']');
                         tempRefs.push(tHref);
@@ -920,16 +1048,18 @@ var ie = jQuery.browser.msie,
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
                     refs[index].bind('click.tabs', function(e) {
+                        wST = wnd.scrollTop();
                         var $this = $(this);
                         if ($this.is('a'))
                             e.preventDefault();
                         var condRadio = $thiss.data('type') == 'radio',
                                 condB = !e.start;
-
                         if (!$this.parent().hasClass('disabled')) {
                             var $thisA = $this[attrOrdata[index]]('href'),
                                     $thisAO = $($thisA),
                                     $thisS = $this.data('source'),
+                                    $thisData = $this.data('data'),
+                                    $thisSel = $this.data('selector'),
                                     $thisDD = $this.data('drop') != undefined;
                             function tabsDivT() {
                                 tabsDiv[index].add(tabsId[index])[effectOff](durationOff).removeClass(activeClass);
@@ -939,19 +1069,28 @@ var ie = jQuery.browser.msie,
                                 if (!condRadio || e.button == 0) {
                                     navTabsLi[index].removeClass(activeClass);
                                     $this.parent().addClass(activeClass);
-
                                     if (!condRadio) {
                                         if (e.start && $thisS != undefined)
                                             tabsDivT()
                                         if ($thisS != undefined && !$thisAO.hasClass('visited')) {
                                             $thisAO.addClass('visited');
-
-                                            $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO})
-
-                                            $thisAO.load($thisS, function() {
-                                                $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
-                                                tabsDivT()
-                                            })
+                                            $(document).trigger({'type': 'tabs.beforeload', "els": tabsDiv[index], "el": $thisAO});
+                                            if ($thisData != undefined)
+                                                $.ajax({
+                                                    type: 'post',
+                                                    url: $thisS,
+                                                    data: $thisData,
+                                                    success: function(data) {
+                                                        tabsDivT();
+                                                        $thisAO.find($thisSel).html(data)
+                                                        $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                    }
+                                                })
+                                            else
+                                                $thisAO.load($thisS, function() {
+                                                    $(document).trigger({'type': 'tabs.afterload', "els": tabsDiv[index], "el": $thisAO})
+                                                    tabsDivT()
+                                                })
                                         }
                                         else {
                                             tabsDivT()
@@ -959,7 +1098,6 @@ var ie = jQuery.browser.msie,
 
                                         if (e.scroll)
                                             wnd.scrollTop($this.offset().top);
-
                                         $(document).trigger({'type': 'tabs.showtabs', 'el': $thisAO})
                                     }
                                     else {
@@ -1009,24 +1147,26 @@ var ie = jQuery.browser.msie,
                                 })
                             }
                         }
-
                         settings.after($thiss);
+                        return false;
                     })
 
-                    wnd.bind('hashchange', function(e) {
-                        function scrollTop(wST) {
-                            if (e.scroll || e.scroll == undefined)
-                                wnd.scrollTop(wST);
-                        }
-
-                        //chrome bug
-                        if ($.browser.webkit)
-                            scrollTop(wST - 100);
-                        scrollTop(wST);
-                    })
                     if (thisL - 1 == index)
                         methods.location(regRefs[index], refs);
                 });
+                wnd.bind('hashchange', function(e) {
+                    function scrollTop(wST) {
+                        if (e.scroll || e.scroll == undefined)
+                            wnd.scrollTop(wST);
+                        wST = wnd.scrollTop();
+                    }
+
+                    //chrome bug
+                    if ($.browser.webkit)
+                        scrollTop(wST - 100);
+                    scrollTop(wST);
+                    return false;
+                })
             }
             return $this;
         },
@@ -1040,7 +1180,6 @@ var ie = jQuery.browser.msie,
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
                             attrOrdataL = $this.attr('href') != undefined ? 'attr' : 'data';
-
                     if ($this.data('drop') == undefined && attrOrdataL != 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
@@ -1094,7 +1233,6 @@ var ie = jQuery.browser.msie,
             $.map(hashs, function(n, j) {
                 if ($.inArray(n, regrefs) >= 0)
                     i++;
-
                 if ($.inArray(n, regrefs) >= 0 && i > 1) {
                     hashs2.splice(hashs2.indexOf(n), 1)
                 }
@@ -1115,6 +1253,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.tabs');
         }
     }
+    $.tabs = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -1197,27 +1338,54 @@ var ie = jQuery.browser.msie,
                         }
                         if (jScrollPane)
                             api = initNSS();
-                        if (mouseWhell && scrollW > 0) {
-                            firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
+                        function scrollNst(deltaY) {
+                            if (jScrollPane)
+                                $thisSL = api.getContentPositionX();
+                            else
+                                $thisSL = $(this).scrollLeft();
+                            if ($thisSL != scrollW && deltaY < 0) {
                                 if (jScrollPane)
-                                    $thisSL = api.getContentPositionX();
+                                    api.scrollToX($thisSL + w / frameScrollCL)
                                 else
-                                    $thisSL = $(this).scrollLeft();
-                                if ($thisSL != scrollW && deltaY < 0) {
-                                    if (jScrollPane)
-                                        api.scrollToX($thisSL + w / frameScrollCL)
-                                    else
-                                        firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
-                                    return false;
-                                }
-                                if ($thisSL > 0 && deltaY > 0) {
-                                    if (jScrollPane)
-                                        api.scrollToX($thisSL - w / frameScrollCL)
-                                    else
-                                        firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
-                                    return false;
-                                }
+                                    firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
+                                return false;
+                            }
+                            if ($thisSL > 0 && deltaY > 0) {
+                                if (jScrollPane)
+                                    api.scrollToX($thisSL - w / frameScrollCL)
+                                else
+                                    firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
+                                return false;
+                            }
+                        }
+                        if ((mouseWhell && scrollW > 0) || isTouch) {
+                            firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
+                                scrollNst(deltaY);
                             });
+                            if (isTouch) {
+                                firstScrl.unbind('touchstart touchmove touchend');
+                                firstScrl.bind('touchstart', function(e) {
+                                    sP = e.originalEvent.touches[0];
+                                    sP = sP.pageX;
+                                });
+                                firstScrl.bind('touchmove', function(e) {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    eP = e.originalEvent.touches[0];
+                                    eP = eP.pageX;
+                                });
+                                firstScrl.bind('touchend', function(e) {
+                                    e.stopPropagation();
+                                    if (Math.abs(eP - sP) > 200) {
+                                        if (eP - sP > 0) {
+                                            scrollNst(1);
+                                        }
+                                        else {
+                                            scrollNst(-1);
+                                        }
+                                    }
+                                });
+                            }
                         }
                         if (jScrollPane)
                             api.scrollToX(0)
@@ -1264,7 +1432,6 @@ var ie = jQuery.browser.msie,
 
                     onlyDif.parent('.' + activeClass).children().click();
                     allParams.parent('.' + activeClass).children().click();
-
                     after($this);
                 }
             })
@@ -1363,19 +1530,20 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.equalHorizCell');
         }
     };
+    $.equalHorizCell = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] == 'string') {
             var dim = arguments[0];
-
             clone = $(this).clone().addClass(clonedC);
             if (arguments[1] == undefined)
                 clone.css({
                     position: 'absolute',
                     top: '-9999px'
                 }).show().appendTo(body).find('*:not([style*="display:none"])').show();
-
             var dimS = clone[dim]();
             clone.remove();
             return dimS;
@@ -1394,11 +1562,17 @@ var ie = jQuery.browser.msie,
                 place: 'center',
                 dataSource: $('[data-drop]'),
                 placement: 'noinherit',
+                notification: false,
+                always: false,
+                animate: false,
+                moreoneNC: true,
                 before: function() {
                 },
                 after: function() {
                 },
                 close: function() {
+                },
+                closed: function() {
                 }
             }, options);
             var settings = optionsDrop,
@@ -1408,12 +1582,18 @@ var ie = jQuery.browser.msie,
                     exit = $(settings.exit),
                     effon = settings.effon,
                     effoff = settings.effoff,
-                    duration = settings.duration, close = settings.close,
+                    duration = settings.duration,
+                    close = settings.close,
+                    closed = settings.closed,
+                    notification = settings.notification,
+                    always = settings.always,
+                    animate = settings.animate,
+                    dropContent = settings.dropContent,
+                    moreoneNC = settings.moreoneNC,
                     arrDrop = [];
             dataSource.bind('click.drop', function(e) {
                 var $this = $(this);
                 $(document).trigger({'type': 'drop.click', 'el': $this})
-                wST = wnd.scrollTop();
                 e.stopPropagation();
                 e.preventDefault();
                 var elSet = $this.data();
@@ -1421,21 +1601,20 @@ var ie = jQuery.browser.msie,
                     var place = elSet.place || settings.place,
                             placement = elSet.placement || settings.placement,
                             $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration || duration;
+                            $thisD = elSet.duration || duration,
+                            $thisA = elSet.animate != undefined ? elSet.animate : animate;
                     $this.each(function() {
                         var $this = $(this),
                                 $thisSource = elSet.drop;
-                        $this.attr('data-placement', placement);
-                        $this.attr('data-place', place);
-                        $($thisSource).attr('data-effect-off', $thisEOff).attr('data-duration', $thisD).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
+                        $this.data({'placement': placement, 'place': place, 'animate': $thisA});
+                        $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'placement': placement, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA, 'close': close, 'closed': closed}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
                             if ($(selector + '.' + activeClass).length > 1 && place == 'center')
-                                methods.triggerBtnClick($(selector + '.' + activeClass).not($(this)), selector, close);
+                                methods.triggerBtnClick($(selector + '.' + activeClass).not($(this)));
                             if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
                                 e.stopImmediatePropagation();
                         });
                     });
                     var $thisEOn = elSet.effectOn || effon,
-                            $thisEOff = elSet.effectOff || effoff,
                             $thisD = elSet.duration || duration,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
@@ -1444,26 +1623,35 @@ var ie = jQuery.browser.msie,
                         if (!$.exists('.overlayDrop')) {
                             body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
                         }
-                        dropOver = $('.overlayDrop');
-                        dropOver.css({
+                        optionsDrop.dropOver = $('.overlayDrop');
+                        optionsDrop.dropOver.css({
                             'background-color': overlayColor,
                             'opacity': overlayOpacity
                         });
                     }
-                    else
-                        dropOver = $([]);
                     if (elSetSource.is('.' + activeClass)) {
-                        methods.triggerBtnClick(elSetSource, selector, close);
+                        methods.triggerBtnClick(elSetSource);
                     }
                     else {
                         settings.before($this, elSetSource, isajax);
-                        //                            starget trigger click in drop on show drop element (js_template.tpl showCart)
-                        $thisDrop = $this.closest('[data-elrun]');
+
+                        // if drop reference in drop
+                        var $thisDrop = $this.closest('[data-elrun]');
                         if ($.existsN($thisDrop))
-                            methods.triggerBtnClick($thisDrop, selector, close);
+                            methods.triggerBtnClick($thisDrop);
+
+                        // starget trigger click in drop on show drop element (js_template.tpl showCart)
                         $thisDrop = $(e.starget).closest('[data-elrun]');
                         if ($.existsN($thisDrop))
-                            methods.triggerBtnClick($thisDrop, selector, close);
+                            $thisDrop = $(e.starget).closest('[data-elrun]');
+
+                        // if visible no center drop and show center drop
+                        $thisDrop = $('[data-elrun]:visible');
+                        if ($thisDrop.data('place') != 'center' && elSetSource.data('place') != 'center' && !moreoneNC)
+                            methods.triggerBtnClick($thisDrop);
+                        if (elSetSource.data('place') == 'center')
+                            methods.triggerBtnClick($thisDrop);
+
                         if (e.button == undefined && place != "center")
                             wnd.scrollTop($this.offset().top);
                         var wndW = wnd.width();
@@ -1472,72 +1660,92 @@ var ie = jQuery.browser.msie,
                         else
                             elSetSource.removeAttr('style');
                         methods.positionDrop($this, placement, place);
-                        if (place == "center")
-                            methods.dropScroll(elSetSource);
+                        methods.dropCenter(elSetSource);
                         if (condOverlay) {
-                            dropOver.show()
-                            dropOver.unbind('click').bind('click', function(e) {
+                            optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
                                 e.stopPropagation();
-                                methods.triggerBtnClick(false, selector, close);
+                                methods.triggerBtnClick(false);
                             })
                         }
                         elSetSource[$thisEOn]($thisD, function() {
+                            var dropContent = elSetSource.find(elSetSource.data('dropContent')).first();
+                            $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: elSetSource});
                             elSetSource.addClass(activeClass);
+                            if (place == 'center' && !(elSet.notification || notification)) {
+                                if ($(document).height() - wnd.height() > 0) {
+                                    optionsDrop.wST = wnd.scrollTop();
+                                    methods.scrollEmulate();
+                                }
+                            }
                             settings.after($this, elSetSource, isajax);
                         });
                         $(document).trigger({'type': 'drop.show', el: elSetSource})
                     }
                     body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
                         if ((e.which || e.button == 0) && e.relatedTarget == null) {
-                            methods.triggerBtnClick(false, selector, close);
+                            methods.triggerBtnClick(false);
                         }
                     }).bind('keydown.bodydrop', function(e) {
                         if (!e)
                             var e = window.event;
                         key = e.keyCode;
                         if (key == 27) {
-                            methods.triggerBtnClick(false, selector, close);
+                            methods.triggerBtnClick(false);
                         }
                     });
                 }
 
                 $this.parent().addClass(activeClass);
-                elSetSource = $(elSet.drop);
-                if ($.existsN(elSetSource)) {
+                var elSetSource = $(elSet.drop),
+                        newNotification = elSet.notification || notification;
+                newAlways = elSet.always || always;
+                if ($.existsN(elSetSource) && !newNotification && !newAlways) {
                     if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                         body.append(elSetSource)
                     showDrop(elSetSource, false, e);
                 }
-                else if (elSet.source) {
-                    if ($.inArray(elSet.source, arrDrop) != 0) {
+                else if (elSet.source || newAlways) {
+                    if ($.inArray(elSet.source, arrDrop) != 0 || newNotification || newAlways) {
                         arrDrop.push(elSet.source);
-                        $.post(elSet.source, function(data) {
-                            body.append(data);
-                            elSetSource = $(elSet.drop);
-                            var el = elSetSource.find('[data-drop]');
-                            methods.init.call(selector, $.extend(optionsDrop, {dataSource: el}));
-                            showDrop(elSetSource, true, e);
-                        })
+                        if (!newNotification)
+                            elSetSource.remove();
+                        $.ajax({
+                            type: "post",
+                            data: elSet.data,
+                            url: elSet.source,
+                            dataType: elSet.type ? elSet.type : 'html',
+                            success: function(data) {
+                                if (elSet.type != 'html' && elSet.type != undefined && newNotification) {
+                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
+                                }
+                                else {
+                                    $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
+                                    body.append(data);
+                                }
+                                elSetSource = $(elSet.drop);
+                                var el = elSetSource.find('[data-drop]');
+                                methods.init.call(selector, $.extend($.extend({}, optionsDrop), {dataSource: el}));
+                                showDrop(elSetSource, true, e);
+                            }})
                     }
                 }
                 return false;
             })
             exit.live('click', function() {
-                methods.triggerBtnClick($(this).closest('[data-elrun]'), selector, close);
+                methods.triggerBtnClick($(this).closest('[data-elrun]'));
             })
         },
-        triggerBtnClick: function(sel, selector, close) {
-            if (!sel || typeof sel == 'function')
-                var drop = $('[data-elrun].' + activeClass);
-            else
-                var drop = sel;
+        triggerBtnClick: function(sel) {
+            var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                 drop.removeClass(activeClass).each(function() {
                     var $this = $(this),
-                            $thisEOff = $this.attr('data-effect-off'),
-                            $thisD = $this.attr('data-duration');
-                    var $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
+                            $thisEOff = $this.data('effect-off'),
+                            $thisD = $this.data('duration');
+                    $thisB = $('.' + activeClass + ' > [data-drop = "' + $this.attr('data-elrun') + '"]');
+                    if ($this.data('close') != undefined)
+                        $this.data('close')($thisB, $(this));
                     $thisB.parent().removeClass(activeClass);
                     var $thisHref = $thisB.attr('href');
                     if ($thisHref != undefined) {
@@ -1550,37 +1758,34 @@ var ie = jQuery.browser.msie,
                         } catch (err) {
                         }
                     }
-                    var dropOver = $('.overlayDrop');
-                    if (!$.existsN($(selector + '.' + activeClass)) && dropOver.is(':visible')) {
-                        body.removeClass('isScroll');
-                        dropOver.hide();
-                    }
+                    optionsDrop.dropOver = $('.overlayDrop');
+                    if (!$.existsN($('[data-elrun].' + activeClass)) && optionsDrop.dropOver.is(':visible'))
+                        methods.scrollEmulateRemove();
+
                     $this[$thisEOff]($thisD, function() {
                         $(this).removeAttr('style');
-                        if (close != undefined)
-                            close($thisB, $(this));
-                        if (typeof sel == 'function')
-                            sel();
+                        if ($this.data('closed') != undefined)
+                            $this.data('closed')($thisB, $(this));
+                        $(document).trigger({'type': 'drop.hide', el: $this})
                     });
-                    $(document).trigger({'type': 'drop.hide', el: elSetSource})
                 });
-            }
-            else {
-                if (typeof sel == 'function')
-                    sel();
             }
             wnd.unbind('resize.drop');
         },
-        dropScroll: function(elSetSource) {
-            elSetSource.css({
-                'top': (wnd.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
-                'left': (wnd.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
-            }, {
-                queue: false
-            });
+        dropCenter: function(elSetSource) {
+            if (elSetSource.data('place') == 'center') {
+                var method = elSetSource.data('animate') ? 'animate' : 'css';
+                elSetSource[method]({
+                    'top': (body.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
+                    'left': (body.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
+                }, {
+                    queue: false
+                });
+            }
+            return elSetSource;
         },
-        positionDrop: function($this, placement, place) {
-            var $this = $this;
+        positionDrop: function(el, placement, place) {
+            var $this = el;
             if ($this == undefined)
                 $this = $(this);
             if (placement == undefined)
@@ -1596,7 +1801,7 @@ var ie = jQuery.browser.msie,
             if ($thisP == 'noinherit') {
                 var $thisPMT = placement.toLowerCase().split(' ');
                 if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
-                    dataSourceH = -elSetSource.actual('height');
+                    dataSourceH = elSetSource.actual('height');
                 if ($thisPMT[0] == 'top' || $thisPMT[1] == 'top')
                     dataSourceH = $thisH;
                 if ($thisPMT[0] == 'left' || $thisPMT[1] == 'left')
@@ -1605,26 +1810,46 @@ var ie = jQuery.browser.msie,
                     dataSourceW = -elSetSource.actual('width') + $thisW;
                 $thisT = $this.offset().top + dataSourceH;
                 $thisL = $this.offset().left + dataSourceW;
-
                 if ($thisL < 0)
                     $thisL = 0;
                 elSetSource.css({
                     'top': $thisT,
                     'left': $thisL
                 });
-                if ($thisL == 0)
-                    elSetSource.css('margin-left', 0);
+                if ($thisPMT[0] == 'bottom' || $thisPMT[1] == 'bottom')
+                    elSetSource.css({
+                        'top': 'auto',
+                        'bottom': body.height() - $thisT + dataSourceH + $thisH
+                    });
             }
-            if ($thisP == 'center') {
-                if ($(document).height() - wnd.height() > 0) {
-                    body.addClass('isScroll');
-                }
-            }
+            var dropTimeout = '';
             wnd.bind('resize.drop', function() {
-                if ($thisP == 'center') {
-                    methods.dropScroll(elSetSource)
-                }
+                clearTimeout(dropTimeout);
+                dropTimeout = setTimeout(function() {
+                    methods.dropCenter(elSetSource)
+                }, 300)
             });
+        },
+        scrollEmulate: function() {
+            var conDropOver = optionsDrop.dropOver != undefined;
+            body.addClass('isScroll');
+            body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
+            if (isTouch)
+                if (conDropOver)
+                    optionsDrop.dropOver.bind('touchmove.drop', function(e) {
+                        return false;
+                    });
+        },
+        scrollEmulateRemove: function() {
+            var conDropOver = optionsDrop.dropOver != undefined;
+            body.removeClass('isScroll');
+            wnd.scrollTop(optionsDrop.wST);
+            if (conDropOver)
+                optionsDrop.dropOver.hide();
+            $('.scrollEmulation').remove();
+            if (isTouch)
+                if (conDropOver)
+                    optionsDrop.dropOver.unbind('touchmove.drop');
         }
     };
     $.fn.drop = function(method) {
@@ -1635,6 +1860,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.drop');
         }
+    };
+    $.drop = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -1681,8 +1909,10 @@ var ie = jQuery.browser.msie,
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
-                            var input = $this.focus(),
+                            var input = $this,
                                     inputVal = parseInt(input.val());
+                            if (!isTouch)
+                                input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
@@ -1707,8 +1937,10 @@ var ie = jQuery.browser.msie,
                         var el = $(this);
                         $thisNext.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
-                            var input = $this.focus(),
+                            var input = $this,
                                     inputVal = parseInt(input.val());
+                            if (!isTouch)
+                                input.focus();
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input);
                                 if (isNaN(inputVal))
@@ -1739,6 +1971,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.plusminus');
         }
     };
+    $.plusminus = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 (function($) {
     var methods = {
@@ -1762,6 +1997,9 @@ var ie = jQuery.browser.msie,
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.minValue');
         }
+    };
+    $.minValue = function(m) {
+        return methods[m];
     };
 })(jQuery);
 (function($) {
@@ -1792,6 +2030,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.maxValue');
         }
     };
+    $.maxValue = function(m) {
+        return methods[m];
+    };
     $('[data-max]').live('keydown keyup', function(e) {
         $(this).maxValue(e);
     })
@@ -1806,8 +2047,11 @@ var ie = jQuery.browser.msie,
                     item: 'li',
                     prev: '.prev',
                     next: '.next',
-                    content: '.content-carousel',
-                    groupButtons: '.group-button-carousel',
+                    content: '.c-carousel',
+                    groupButtons: '.b-carousel',
+                    vCarousel: '.v-carousel',
+                    hCarousel: '.h-carousel',
+                    adding: {},
                     before: function() {
                     },
                     after: function() {
@@ -1817,7 +2061,10 @@ var ie = jQuery.browser.msie,
                         prev = settings.prev,
                         next = settings.next,
                         content = settings.content,
-                        groupButtons = settings.groupButtons, adding = settings.adding;
+                        groupButtons = settings.groupButtons,
+                        hCarousel = settings.hCarousel,
+                        vCarousel = settings.vCarousel,
+                        addO = settings.adding;
                 $jsCarousel.each(function() {
                     var $this = $(this),
                             $item = $this.find(content).children().children(item + ':visible'),
@@ -1834,10 +2081,11 @@ var ie = jQuery.browser.msie,
                             groupButton = $this.find(groupButtons);
                     settings.before($this);
                     var $countV = (contW / $itemW).toFixed(1);
-                    var k = false, isVert = $.existsN($this.closest('.vertical-carousel')),
-                            isHorz = $.existsN($this.closest('.horizontal-carousel')),
+                    var k = false, isVert = $.existsN($this.closest(vCarousel)),
+                            isHorz = $.existsN($this.closest(hCarousel)),
                             condH = $itemW * $itemL - $marginR > contW && isHorz,
                             condV = ($itemH * $itemL - $marginB > contH) && isVert;
+                    var vertical = condV ? true : false;
                     if (condH || condV)
                         k = true;
                     if (k) {
@@ -1845,13 +2093,57 @@ var ie = jQuery.browser.msie,
                             buttonNextHTML: $thisNext,
                             buttonPrevHTML: $thisPrev,
                             visible: $countV,
-                            scroll: 1
+                            scroll: 1,
+                            vertical: vertical
                         }
                         $this.jcarousel($.extend(
-                                adding
-                                , mainO)).addClass('iscarousel');
+                                mainO
+                                , addO)).addClass('iscarousel');
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
+                        groupButton.append($thisNext.add($thisPrev));
+                        if (isTouch && isHorz) {
+                            $this.bind('touchstart', function(e) {
+                                sP = e.originalEvent.touches[0];
+                                sP = sP.pageX;
+                            });
+                            $this.bind('touchmove', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                eP = e.originalEvent.touches[0];
+                                eP = eP.pageX;
+                            });
+                            $this.bind('touchend', function(e) {
+                                e.stopPropagation();
+                                if (Math.abs(eP - sP) > 200) {
+                                    if (eP - sP > 0)
+                                        $thisPrev.click();
+                                    else
+                                        $thisNext.click();
+                                }
+                            });
+                        }
+                        if (isTouch && isVert) {
+                            $this.bind('touchstart', function(e) {
+                                sP = e.originalEvent.touches[0];
+                                sP = sP.pageY;
+                            });
+                            $this.bind('touchmove', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                eP = e.originalEvent.touches[0];
+                                eP = eP.pageY;
+                            });
+                            $this.bind('touchend', function(e) {
+                                e.stopPropagation();
+                                if (Math.abs(eP - sP) > 200) {
+                                    if (eP - sP > 0)
+                                        $thisPrev.click();
+                                    else
+                                        $thisNext.click();
+                                }
+                            });
+                        }
                     }
                     else {
                         if (isHorz)
@@ -1883,6 +2175,9 @@ var ie = jQuery.browser.msie,
             $.error('Method ' + method + ' does not exist on jQuery.myCarousel');
         }
     }
+    $.myCarousel = function(m) {
+        return methods[m];
+    };
 })(jQuery);
 /*
  *imagecms shop plugins
@@ -1906,6 +2201,7 @@ var Shop = {
         totalCount: 0,
         totalPriceOrigin: 0,
         discount: 0,
+        kitDiscount: 0,
         popupCartSelector: 'script#cartPopupTemplate',
         shipping: 0,
         shipFreeFrom: 0,
@@ -1988,7 +2284,6 @@ var Shop = {
             if (Shop.Cart.currentItem) {
 
                 Shop.Cart.currentItem.count = cartItem.count;
-
                 Shop.currentCallbackFn = f;
                 if (cartItem.kit)
                     var postName = 'kits[ShopKit_' + Shop.Cart.currentItem.kitId + ']';
@@ -2084,24 +2379,19 @@ var Shop = {
 
         totalRecount: function() {
             var items = this.getAllItems();
-
             this.totalPrice = 0;
             this.totalAddPrice = 0;
             this.totalCount = 0;
             this.totalPriceOrigin = 0;
-
             for (var i = 0; i < items.length; i++) {
                 if (items[i].origprice != '')
                     this.totalPriceOrigin += items[i].origprice * items[i].count;
                 else
                     this.totalPriceOrigin += items[i].price * items[i].count;
-
                 this.totalPrice += items[i].price * items[i].count;
                 this.totalAddPrice += items[i].addprice * items[i].count;
                 this.totalCount += parseInt(items[i].count);
             }
-
-
             return this;
         },
         getTotalPrice: function() {
@@ -2132,8 +2422,7 @@ var Shop = {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0.0;
-
-            return (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPriceOrigin() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
+            return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
         renderPopupCart: function(selector) {
             if (typeof selector == 'undefined' || selector == '')
@@ -2187,7 +2476,7 @@ var Shop = {
                 maxcount: 0,
                 number: '',
                 vname: false,
-                url: false,
+                url: false
             };
         return prototype = {id: obj.id ? obj.id : 0,
             vId: obj.vId ? obj.vId : 0,
@@ -2424,14 +2713,11 @@ var ImageCMSApi = {
             console.log(msg);
         }
     },
-    formAction: function(url, selector, obj, el) {
+    formAction: function(url, selector, obj) {
         //collect data from form
-        var DS = this.defSet();
-        $.extend(DS, obj)
+        var DS = $.extend($.extend({}, this.defSet()), obj)
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
-        else if (el)
-            var dataSend = 'refresh=' + el.data('refresh') + '&redirect=' + el.data('redirect');
         //send api request to api controller
         $.ajax({
             type: "post",
@@ -2446,6 +2732,22 @@ var ImageCMSApi = {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    if (obj.refresh == true && obj.redirect == false)
+                        location.reload();
+                    if (obj.refresh == false && obj.redirect != true && obj.redirect != false)
+                        location.href = obj.redirect;
+                    if (obj.refresh == false && obj.redirect == false) {
+                        if (typeof DS.callback == 'function')
+                            DS.callback(obj.msg, obj.status, form, DS);
+                        else
+                            setTimeout((function() {
+                                form.parent().find(genObj.msgF).fadeOut(function() {
+                                    $(this).remove();
+                                });
+                                if (DS.hideForm)
+                                    form.show();
+                            }), DS.durationHideForm);
+                    }
                     if (obj.status == true) {
                         if (DS.hideForm)
                             form.hide();
@@ -2453,7 +2755,7 @@ var ImageCMSApi = {
                             $(message.success(obj.msg)).prependTo(form.parent());
                         if (DS.messagePlace == 'behind')
                             $(message.success(obj.msg)).appendTo(form.parent());
-                        $(document).trigger({'type': 'imageapi.pastescsmsg', 'el': form.parent()})
+                        $(document).trigger({'type': 'imageapi.pastemsg', 'el': form.parent()})
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
@@ -2461,31 +2763,15 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    if (obj.refresh == 'true' && obj.redirect == 'false')
-                        location.reload();
-                    if (obj.refresh == 'false' && obj.redirect != 'true' && obj.redirect != 'false')
-                        location.href = obj.redirect;
-
-                    if (obj.refresh == 'false' && obj.redirect == 'false') {
-                        var k = true;
-                        if (typeof DS.callback == 'function')
-                            k = DS.callback(obj.msg, obj.status, form, DS);
-                        if (k)
-                            setTimeout((function() {
-                                form.parent().find(genObj.msgF).fadeOut();
-                                if (DS.hideForm)
-                                    form.show();
-                            }), DS.durationHideForm);
-                    }
                     $(form).find(':input').unbind('input').bind('input', function() {
                         var $this = $(this),
                                 form = $this.closest('form'),
                                 $thisТ = $this.attr('name'),
                                 elMsg = form.find('[for=' + $thisТ + ']');
-
                         if ($.exists(elMsg)) {
                             $this.removeClass(genObj.err + ' ' + genObj.scs);
                             elMsg.hide();
+                            $(document).trigger({'type': 'imageapi.hidemsg', 'el': form})
                         }
                     });
                 }
@@ -2520,6 +2806,7 @@ var ImageCMSApi = {
                     thisSelector.find(':input.' + genObj.err + ':first').focus();
                 }
             }
+            $(document).trigger({'type': 'imageapi.pastemsg', 'el': thisSelector})
         } else {
             return false;
         }
@@ -2529,101 +2816,7 @@ var ImageCMSApi = {
      * @param {type} captcha_image
      */
     addCaptcha: function(cI, DS) {
-        pIn.html(DS.captcha(cI));
+        DS.captchaBlock.html(DS.captcha(cI));
         return false;
     }
 }
-
-
-/**
- * Product Tabs object
- * 
- */
-
-var ProductTabs = {
-    /**
-     * render properties
-     * @param int product_id
-     * @param int limit - limit properties to show
-     * @param string type - type properties to show
-     * @returns {undefined}
-     */
-    renderProperties: function(curElement, product_id, limit, type) {
-        if (!limit) {
-            limit = false;
-        }
-
-        if (!type) {
-            type = false;
-        }
-        
-        this.changeHash(curElement);
-        
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id,
-                limit: limit,
-                type: type
-            },
-            url: '/shop/product_api/renderProperties',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    $('.inside-padd .characteristic').html(data.data);
-                }
-            }
-        });
-    },
-    /**
-     * render description
-     * @param int product_id
-     * @returns {undefined}
-     */
-    renderFullDescription: function(curElement, product_id) {
-        this.changeHash(curElement);
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id
-            },
-            url: '/shop/product_api/renderFullDescription',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    $('.inside-padd .fullDescription').html(data.data);
-                }
-            }
-        });
-    },
-    /**
-     * get product accessories
-     * @param int product_id
-     * @returns {undefined}
-     */
-    getAccessories: function(curElement, product_id, limit) {
-        this.changeHash(curElement);
-        if (!limit) {
-            limit = false;
-        }
-
-        $.ajax({
-            type: 'POST',
-            data: {
-                product_id: product_id,
-                limit: limit
-            },
-            url: '/shop/product_api/getAccessories',
-            success: function(data) {
-                data = JSON.parse(data);
-                if (data.answer == 'success') {
-                    return data.data;
-                }
-            }
-        });
-    },
-    changeHash: function(curElement){
-        var hash = curElement.data('href');
-        location.hash =  hash;
-    }
-};

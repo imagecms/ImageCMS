@@ -12,7 +12,6 @@
                     if (status) {
                         hideDrop(DS.drop, form, DS.durationHideForm);
                     }
-                    return true; /*for hide form*/
                 }}{/literal});
                         return false;">
                     <div class="horizontal-form">
@@ -41,8 +40,6 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="refresh" value="true"/>
-                    <input type="hidden" name="redirect" value="false"/>
                     {form_csrf()}
                 </form>
             </div>
