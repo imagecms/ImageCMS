@@ -35,7 +35,7 @@ class Update {
         'captcha',
         'nbproject',
         'uploads_site',
-        'backups'
+        'backups',
     );
 
     /**
@@ -180,8 +180,29 @@ class Update {
 
         var_dump($array);
     }
+
     public function getOldMD5File() {
-        return (array)json_decode(read_file('md5.txt'));
+        return (array) json_decode(read_file('md5.txt'));
+    }
+
+    /**
+     * zipping files
+     * @param array $files
+     */
+    public function add_to_ZIP($files = array()) {
+        $zip = new ZipArchive();
+        $filename = "./application/backups/test112.zip";
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
+            exit("cannot open <$filename>\n");
+        }
+        foreach ($files as $key => $value) {
+            $zip->addFile('.' . $key, $key);
+        }
+
+        echo "numfiles: " . $zip->numFiles . "\n";
+        echo "status:" . $zip->status . "\n";
+        $zip->close();
     }
 
     /**
@@ -246,16 +267,15 @@ class Update {
 
         $dir = null === $directory ? realpath('') : $directory;
 
-        if ($handle = opendir($dir))
+        $handle = opendir($dir);
+        if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
                     if (is_file($dir . DIRECTORY_SEPARATOR . $file))
-                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = hash_file('md5',$dir . DIRECTORY_SEPARATOR . $file);
+                        $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
-
-        strstr($this->path_parse, $this->update_directory) ? file_put_contents($this->file_mass_old, serialize($this->arr_files)) : file_put_contents($this->file_mass_curr, serialize($this->arr_files));
 
         return $this->arr_files;
     }

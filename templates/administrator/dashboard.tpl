@@ -119,15 +119,14 @@
                         <tr>
                             <td>
                                 <p>
-                                    {lang('a_version')}: {$cms_number} <br />
-                                    {if $sys_status.is_update == TRUE}
-                                        <a href="#" onclick="ajax_div('page', base_url + 'admin/sys_upgrade');
-                                                return false;">{lang('a_updates_to_version')} {$next_v}</a>
-                                    {else:}
-                                        {lang('a_no_updates')}.
-                                    {/if}
+                                    <a href="/admin/sys_update">
+                                        <button type="button" class="btn btn-small btn-primary btn-info">
+                                            <span class="icon-download"></span>
+                                            Проверить обновления
+                                        </button>
+                                    </a>
                                     <br/>
-                                    <a href="/admin/sys_info" class="pjax">{lang('a_info')}</a> 
+                                    <a href="/admin/sys_info" class="pjax">{lang('a_info')}</a>
                                 </p>
                             </td>
                         </tr>
@@ -175,7 +174,7 @@
                         <thead>
                         <th>{lang('a_cms_news')}</th>
                         </thead>
-                        <tbody> 
+                        <tbody>
                             {foreach $api_news as $a}
                                 <tr>
                                     <td>
@@ -187,7 +186,7 @@
                                 </tr>
                             {/foreach}
                         </tbody>
-                    </table>        
+                    </table>
                 {/if}
             </div>
         </div>
