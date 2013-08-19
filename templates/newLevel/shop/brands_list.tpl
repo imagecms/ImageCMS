@@ -8,32 +8,37 @@
                 <h1 class="d_i title">Бренды магазина</h1>
             </div>
         </div>
-        <div class="columnBrand">
-        {$counter=0;}
-            {foreach $alphabet as $key => $char}
-                {if $model[$char] != null}
-                    {if $counter >= $iteration-1}
-                        {echo '</div>'}
-                        {echo '<div class="columnBrand">'}
-                        {$counter=0}
-                    {/if}
-                    <div href="#{$char}" class="brandName" >
-                        {$char}
-                    </div>
-                    {foreach $model[$char] as $m}
-                        {if $counter >= $iteration}
-                           {echo '</div>'}
-                           {echo '<div class="columnBrand">'}
-                           {$counter=0}
+        <ul class="items items-brand-list">
+            <li>
+                {foreach $alphabet as $key => $char}
+                    {if $model[$char] != null}
+                        {if $counter >= $iteration-1}
+                            {echo '</li>'}
+                            {echo '<li>'}
+                            {$counter=0}
                         {/if}
-                         <a href="{shop_url('brand/'.$m[url])}" title="{echo $m[name]}">
-                                {echo $m[name]}
+                        <a href="#{$char}">
+                            {$char}
                         </a>
-                        <br>
-                    {$counter++}
-                    {/foreach}
-                {/if}
-            {/foreach}
-        </div>
+
+                        <ul>
+                            {foreach $model[$char] as $m}
+                                <li>
+                                    {if $counter >= $iteration}
+                                        {echo '</li></ul>'}
+                                        {echo '<li><ul>'}
+                                        {$counter=0}
+                                    {/if}
+                                    <a href="{shop_url('brand/'.$m[url])}" title="{echo $m[name]}">
+                                        {echo $m[name]}
+                                    </a>
+                                </li>
+                                {$counter++}
+                            {/foreach}
+                        </ul>
+                    {/if}
+                {/foreach}
+            </li>
+        </ul>
     </div>
 </div>

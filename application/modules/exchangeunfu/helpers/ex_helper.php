@@ -10,6 +10,8 @@ if (!function_exists('load_cat')) {
     }
 
 }
+<<<<<<< HEAD
+=======
 
 if (!function_exists('load_cat_ids')) {
 
@@ -24,6 +26,7 @@ if (!function_exists('load_cat_ids')) {
 
 }
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
 if (!function_exists('load_product')) {
 
     function load_product() {

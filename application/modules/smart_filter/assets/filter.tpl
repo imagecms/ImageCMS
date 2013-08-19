@@ -2,15 +2,6 @@
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
-            {if $category->hasSubCats()}
-                <h5><b>Категории</b></h5>
-                <ul>
-                    {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
-                        <li>-<a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
-                        {/foreach}
-                </ul>
-                <br>
-            {/if}
             <div class="title">Цена в гривнах</div>
             <div class="slider-cont">
                 <noscript>Джаваскрипт не включен</noscript>
@@ -72,43 +63,48 @@
 
 
     {if count($propertiesInCat) > 0}
+        {$flagScroll = 0}
         {foreach $propertiesInCat as $prop}
             {$typeProperty = $CI->load->module('new_level')->getPropertyTypes($prop->property_id)}
-            {$condTypeProperty = $typeProperty != ''}
-            <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if}>
+            {$condTypeProperty = $typeProperty != '' && sizeof($typeProperty) != 0}
+            <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if} {if in_array('dropDown', $typeProperty)}id="dropDown{$flagScroll}"{$flagScroll++}{/if}>
                 <div class="inside-padd">
                     <div class="title">
-                        <span class="c_p f-s_0">
+                        <span class="f-s_0">
                             <span class="icon-arrow"></span>
-                            <span class="text-el">{echo $prop->name}</span>
+                            <span class="d_b">
+                                <span class="text-el">{echo $prop->name}</span>
+                            </span>
                         </span>
                     </div>
-                    <ul>
-                        {foreach $prop->possibleValues as $item}
-                            {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
-                                {$check = 'checked="checked"'}
-                            {else:}
-                                {$check = ''}
-                            {/if}
-                            {if $item.count == 0}
-                                {//$class = "disabled"}
-                                {$dis = 'disabled="disabled"'}
-                            {else:}
-                                {$class = $dis = ""}
-                            {/if}
-                            <li>
-                                <div class="frame-label {$class}" id="p_{echo $prop->property_id}_{echo $item.id}">
-                                    <span class="niceCheck b_n">
-                                        <input {$dis} name="p[{echo $prop->property_id}][]" value="{echo $item.value}" type="checkbox" {$check} />
-                                    </span>
-                                    <div class="name-count">
-                                        <span class="text-el">{echo $item.value}</span>
-                                        <span class="count">({echo $item.count})</span>
+                    <div class="filters-content">
+                        <ul>
+                            {foreach $prop->possibleValues as $item}
+                                {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
+                                    {$check = 'checked="checked"'}
+                                {else:}
+                                    {$check = ''}
+                                {/if}
+                                {if $item.count == 0}
+                                    {//$class = "disabled"}
+                                    {$dis = 'disabled="disabled"'}
+                                {else:}
+                                    {$class = $dis = ""}
+                                {/if}
+                                <li>
+                                    <div class="frame-label {$class}" id="p_{echo $prop->property_id}_{echo $item.id}">
+                                        <span class="niceCheck b_n">
+                                            <input {$dis} name="p[{echo $prop->property_id}][]" value='{echo $item.value}' type="checkbox" {$check} />
+                                        </span>
+                                        <div class="name-count">
+                                            <span class="text-el">{echo $item.value}</span>
+                                            <span class="count">({echo $item.count})</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        {/foreach}
-                    </ul>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </div>
                 </div>
             </div>
         {if $condTypeProperty}<div class="preloader"></div>{/if}

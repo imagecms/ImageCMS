@@ -14,6 +14,17 @@ class Exchangeunfu extends MY_Controller {
     
     public function __construct() {
         parent::__construct();
+<<<<<<< HEAD
+        include 'application/modules/exchangeunfu/helpers/ex_helper.php';
+       
+    }
+
+    public function index() {
+        $e = new \exchangeunfu\export();
+        $e->export();
+        $i = new \exchangeunfu\exc();
+//        $i->import();
+=======
         $this->export = new \exchangeunfu\exportXML();
         $this->import = new \exchangeunfu\importXML();
         include 'application/modules/exchangeunfu/helpers/ex_helper.php';
@@ -26,6 +37,7 @@ class Exchangeunfu extends MY_Controller {
     
     public function import(){
         $this->import->import();
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
     }
 
     public function export($partner_id = null){
@@ -61,6 +73,10 @@ class Exchangeunfu extends MY_Controller {
     public function _install() {
 
         $this->load->dbforge();
+        
+        $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders_products` ADD `external_id` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `partner_external_id` VARCHAR( 255 ) NOT NULL');
 
         $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
         $this->db->query('ALTER TABLE `users` ADD `code` VARCHAR( 250 ) NOT NULL');
@@ -105,13 +121,22 @@ class Exchangeunfu extends MY_Controller {
                 'constraint' => 100,
             ),
         );
+<<<<<<< HEAD
+       
+        
+=======
 
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu', TRUE);
 
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -133,6 +158,15 @@ class Exchangeunfu extends MY_Controller {
             'partner_external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
+<<<<<<< HEAD
+            )
+        );
+        
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('mod_exchangeunfu_prices', TRUE);
+        
+=======
             ),
             'external_id' => array(
                 'type' => 'VARCHAR',
@@ -144,6 +178,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_prices', TRUE);
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
          $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -161,21 +196,32 @@ class Exchangeunfu extends MY_Controller {
             'code' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
+<<<<<<< HEAD
+=======
             ),            
             'region' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
             ),
             'external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
             )
         );
+<<<<<<< HEAD
+         
+        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table('mod_exchangeunfu_partners', TRUE);
+         
+=======
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_partners', TRUE);
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -217,6 +263,11 @@ class Exchangeunfu extends MY_Controller {
 
     public function _deinstall() {
         $this->db->query('ALTER TABLE `users` DROP `external_id`');
+<<<<<<< HEAD
+        $this->db->query('ALTER TABLE `shop_orders_products` DROP `external_id`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `partner_external_id`');
+        
+=======
         $this->db->query('ALTER TABLE `users` DROP `code`');
         $this->db->query('ALTER TABLE `shop_orders_products` DROP `external_id`');
         $this->db->query('ALTER TABLE `shop_orders` DROP `partner_external_id`');
@@ -230,10 +281,16 @@ class Exchangeunfu extends MY_Controller {
         $this->db->query('ALTER TABLE `shop_products` DROP `measure`');
         $this->db->query('ALTER TABLE `shop_products` DROP `barcode`');
 
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_exchangeunfu');
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
+<<<<<<< HEAD
+        
+        
+=======
+>>>>>>> 97ee46c47364ce139ed39459b927571f5908a023
     }
 
     /**
