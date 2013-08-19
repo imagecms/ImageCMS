@@ -181,7 +181,7 @@ class Update {
         var_dump($array);
     }
     public function getOldMD5File() {
-        return json_decode(read_file('md5.txt'));
+        return (array)json_decode(read_file('md5.txt'));
     }
 
     /**
