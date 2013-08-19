@@ -327,5 +327,10 @@ class Update {
     public function set_settings() {
 
     }
+    
+    public function db_backup() {
+
+    }
+    
 
 }
