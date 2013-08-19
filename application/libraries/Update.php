@@ -180,8 +180,9 @@ class Update {
 
         var_dump($array);
     }
+
     public function getOldMD5File() {
-        return (array)json_decode(read_file('md5.txt'));
+        return (array) json_decode(read_file('md5.txt'));
     }
 
     /**
@@ -250,7 +251,7 @@ class Update {
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
                     if (is_file($dir . DIRECTORY_SEPARATOR . $file))
-                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = hash_file('md5',$dir . DIRECTORY_SEPARATOR . $file);
+                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = hash_file('md5', $dir . DIRECTORY_SEPARATOR . $file);
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
@@ -377,16 +378,85 @@ class Update {
     }
 
     public function get_settings() {
-
+        
     }
 
     public function set_settings() {
-
+        
     }
-    
+
+    /**
+     * database backup
+     */
     public function db_backup() {
-
+        if (is_really_writable('./application/backups')) {
+            $this->ci->load->dbutil();
+            $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
+            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
+        } else {
+            $this->error_log('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
     }
-    
+
+    /**
+     * database restore
+     * @param string $file_name
+     */
+    public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable('./application/backups/' . $file_name)) {
+            $restore = file_get_contents('./application/backups/' . $file_name);
+            $this->query_from_file($restore);
+        } else {
+            $this->error_log('Невозможно открить файл, проверте папку /application/backups на возможность чтения');
+        }
+    }
+
+    /**
+     * restore files list
+     */
+    public function restore_db_files_list() {
+        if (is_readable('./application/backups/')) {
+            $dh = opendir('./application/backups/');
+            while ($filename = readdir($dh)) {
+                if(filetype($filename)!= 'dir') {
+                    $fs = filesize('./application/backups/' . $filename);
+                    echo "Имя: " . $filename . "\nРазмер: " . $fs ."<br>";
+                }
+            }
+        } else {
+            $this->error_log('Невозможно папку, проверте папку /application/backups на возможность чтения');
+        }
+    }
+
+    /**
+     * db update
+     * @param string $file_name
+     */
+    public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable('./application/backups/' . $file_name)) {
+            $restore = file_get_contents('./application/backups/' . $file_name);
+            $this->query_from_file($restore);
+        } else {
+            $this->error_log('Невозможно открить файл, проверте папку /application/backups на возможность чтения');
+        }
+    }
+
+    /**
+     * ganerate sql query from file
+     * @param string $file
+     */
+    public function query_from_file($file) {
+        $string_query = rtrim($file, "\n;");
+        $array_query = explode(";\n", $string_query);
+
+        foreach ($array_query as $query) {
+            if ($query) {
+                if(!$this->ci->db->query($query)){
+                    echo 'Невозможно виполнить запрос: <br>';
+                    var_dumps($query);
+                }
+            }
+        }
+    }
 
 }
