@@ -20,28 +20,26 @@ class Sys_update extends BaseAdminController {
 
     public function index() {
         // Show upgrade window;
-        $update = new Update();
-        $old = $update->getOldMD5File();
-        $array = $update->parse_md5();
+        $old = $this->update->getOldMD5File();
+        $array = $this->update->parse_md5();
 //        var_dump($array);
 //        var_dump($old);
         $diff = array_diff($array, $old);
 //        var_dumps($diff);
-        $update->add_to_ZIP($diff);
-//        var_dump(write_file('md5.txt', json_encode($update->parse_md5())));
-//        echo json_encode($update->parse_md5());
-//        $update->formXml();
-//        $update->sendData();
+        $this->update->add_to_ZIP($diff);
+//        var_dump(write_file('md5.txt', json_encode($this->update->parse_md5())));
+//        echo json_encode($this->update->parse_md5());
+//        $this->update->formXml();
+//        $this->update->sendData();
+//        $this->update->restoreFromZIP();
 
-//        $update->restoreFromZIP();
-
-        $this->template->assign('files_dbs', $update->restore_db_files_list());
-//        $this->template->add_array('files_dbs', $update->restore_db_files_list());
+        $this->template->assign('files_dbs', $this->update->restore_db_files_list());
+//        $this->template->add_array('files_dbs', $this->update->restore_db_files_list());
 
         $this->template->show('sys_update', FALSE);
     }
 
-    public function restore_db($file_name){
+    public function restore_db($file_name) {
         $this->update->db_restore($file_name);
     }
 
