@@ -14,7 +14,7 @@ class Sys_upgrade extends BaseAdminController {
         admin_or_redirect();
 
 		$this->load->library('lib_admin');
-		$this->lib_admin->init_settings(); 
+		$this->lib_admin->init_settings();
 	}
 
     public function index()
@@ -35,7 +35,7 @@ class Sys_upgrade extends BaseAdminController {
 
         $this->load->library('ftp');
         $this->load->helper('string');
-        $this->load->helper('file'); 
+        $this->load->helper('file');
 
         $status = $this->_check_status();
 
@@ -62,7 +62,7 @@ class Sys_upgrade extends BaseAdminController {
             showMessage(lang('ac_err_conn_to_serv'),false,'r');
             exit;
         }
-        
+
         $root = '/'.trim_slashes($path_to_index_php).'/';
 
         if ($root == '//') $root = '/';
@@ -80,7 +80,7 @@ class Sys_upgrade extends BaseAdminController {
         }
 
         if ($error == TRUE)
-        { 
+        {
             $this->ftp->close();
             showMessage(lang('ac_err_wrong_path_to_root'),false,'r');
             exit;
@@ -162,7 +162,7 @@ class Sys_upgrade extends BaseAdminController {
                 showMessage(lang('ac_update_completed'),false,'g');
                 updateDiv('page', site_url('admin/dashboard/index'));
             }
-        } 
+        }
     }
 
     public function _check_status()
@@ -182,7 +182,7 @@ class Sys_upgrade extends BaseAdminController {
         }
         else
         {
-            $xml = stream_get_contents($fh); 
+            $xml = stream_get_contents($fh);
 
             $parser = xml_parser_create();
         	xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
