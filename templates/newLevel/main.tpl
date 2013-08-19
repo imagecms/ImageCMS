@@ -17,7 +17,6 @@
         <meta name="description" content="{$site_description}" />
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
@@ -34,7 +33,7 @@
 
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body class="is{echo $agent[0]} not-js">
+    <body class="is{echo $agent[0]} not-js">        
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -65,6 +64,7 @@
         <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
 
         <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
         {include_shop_tpl('js_templates')}

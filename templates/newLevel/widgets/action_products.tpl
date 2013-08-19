@@ -25,4 +25,3 @@
         </div>
     </section>
 {/if}
-<script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>

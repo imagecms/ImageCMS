@@ -3,7 +3,7 @@
     var product_parent_category = '{$parent_category}';
     var curr = '{$CS}',
             currNext = '{$NextCS}',
-            nextCs = '{$NextCSId != null ? true : false}'
+            nextCs = '{echo $NextCSId}',
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
             inCart = 'В корзине',
@@ -23,16 +23,11 @@
     plurProd = ['товар', 'товара', 'товаров'];
     plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
     plurComments = ['отзыв', 'отзыва', 'отзывов'];
-    var productPhotoFancybox = true,
-            productPhotoCZoom = false;
-</script>
-{literal}
-    <script type="text/javascript">
-        forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
+    {literal}
         text = {
             search: function(text) {
                 return 'Введите боллее ' + text + ' символов';
             }
         }
-    </script>
-{/literal}
+    {/literal}
+</script>

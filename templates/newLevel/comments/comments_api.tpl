@@ -3,14 +3,14 @@
         <span class="title__icsi-css">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</span>
     </label>
 {/if}
-<div id="comment__icsi-css">
+<div class="comment__icsi-css" id="comment__icsi-css">
     {if $comments_arr}
         <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
         <div class="frame-list-comment__icsi-css">
-            <ul class="sub-1">
+            <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
-                    <input type="hidden" id="comment_item_id" name="comment_item_id" value="{$comment['id']}"/>
                     <li>
+                        <input type="hidden" name="comment_item_id" value="{$comment['id']}"/>
                         <div class="author-data-comment__icsi-css">
                             <span class="f-s_0"><span class="icon_comment"></span><span class="author-comment__icsi-css">{$comment.user_name}, </span></span>
                             <span class="date-comment__icsi-css"> {date('d-m-Y H:i', $comment.date)}</span>
@@ -55,12 +55,12 @@
                                     <span class="s-t">Отзыв полезен?</span>
                                     <span class="btn__icsi-css like__icsi-css">
                                         <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                            <span class="text-el">Да <span id="yesholder{$comment.id}">({echo $comment.like})</span></span>
+                                            <span class="text-el">Да <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
                                         </button>
                                     </span>
                                     <span class="btn__icsi-css dis-like__icsi-css">
                                         <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                            <span class="text-el">Нет <span id="noholder{$comment.id}">({echo $comment.disslike})</span></span>
+                                            <span class="text-el">Нет <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
                                         </button>
                                     </span>
                                 </span>
@@ -93,14 +93,10 @@
                     </li>
                 {/foreach}
             </ul>
-            {if (count($comments_arr))+count($comment_ch) == (int)$_POST[countcomment] && $_POST[countcomment] != NULL}
-                <div class="frame-show-all-comments">
-                    <button class="t-d_n f-s_0 s-all-d ref" data-trigger="[data-href='#comment']" data-scroll="true">
-                        <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть все отзывы покупателей</span>
-                    </button>
-                </div>
-            {/if}
+            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+                <span class="icon_arrow"></span>
+                <span class="text-el">Смотреть все отзывы покупателей</span>
+            </button>
         </div>
     {/if}
 
@@ -114,11 +110,6 @@
                 <div class="form-comment__icsi-css form__icsi-css main-form-comments">
                     <div class="inside-padd">
                         <form method="post">
-                            <label class="err-label">
-                                <span class="frame_form_field__icsi-css">
-                                    <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-                                </span>
-                            </label>
                             {if !$is_logged_in}
                                 <label>
                                     <span class="frame_form_field__icsi-css">
@@ -132,7 +123,7 @@
                                 <label>
                                     <span class="title__icsi-css">Представтесь:</span>
                                     <span class="frame_form_field__icsi-css">
-                                        <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
+                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                     </span>
                                 </label>
                                 <label>
@@ -148,7 +139,7 @@
                                 <div class="frame_form_field__icsi-css">
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
-                                            <div class="for_comment"style="width: 0%"></div>
+                                            <div class="for_comment" style="width: 0%"></div>
                                             <input id="ratec" name="ratec" type="hidden" value=""/>
                                         </div>
                                     </div>
@@ -195,7 +186,7 @@
                 <form>
                     <label class="err-label">
                         <span class="frame_form_field__icsi-css">
-                            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
+                            <div class="frameLabel__icsi-css error" name="error_text"></div>
                         </span>
                     </label>
 
@@ -203,13 +194,13 @@
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_author')}</span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
+                                <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
                             <span class="title__icsi-css">{lang('lang_comment_email')} </span>
                             <span class="frame_form_field__icsi-css">
-                                <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
                         <label>

@@ -7,7 +7,7 @@
         </div>
         <div class="big-container">
             <div class="products-carousel frame-scroll-pane">
-                {/*frame-scroll-pane || carousel_js*/}
+                {/*frame-scroll-pane || carousel_js || ''*/}
                 <div class="content-carousel container">
                     <ul class="items items-catalog items-h-carousel">
                         {$CI->load->module('new_level')->OPI($simProduct, array('widget'=>true))}
@@ -25,4 +25,3 @@
         </div>
     </section>
 {/if}
-<script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
