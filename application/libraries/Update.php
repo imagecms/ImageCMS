@@ -1,8 +1,9 @@
 <?php
 
 /**
- * @todo ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
- * @property CI $ci
+ * ImageCMS System Update Class
+ * @version 0.1 big start
+ * @copyright ImageCMS(c) 2013
  */
 class Update {
 
@@ -190,18 +191,34 @@ class Update {
      * @param array $files
      */
     public function add_to_ZIP($files = array()) {
-        $zip = new ZipArchive();
-        $filename = "./application/backups/test112.zip";
+        if (empty($files))
+            return FALSE;
 
-        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
+        $zip = new ZipArchive();
+        $time = time();
+        $filename = "./application/backups/backup.zip";
+        rename($filename, './application/backups/'.time().'.zip');
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
-        }
-        foreach ($files as $key => $value) {
+
+        foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-        }
 
         echo "numfiles: " . $zip->numFiles . "\n";
         echo "status:" . $zip->status . "\n";
+        $zip->close();
+    }
+
+    /**
+     * restore files from zip
+     * @param string $file path to zip file
+     * @param type $destination path to destination folder
+     */
+    public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
+        $zip = new ZipArchive();
+        $zip->open($file);
+        $zip->extractTo($destination);
         $zip->close();
     }
 
@@ -437,9 +454,9 @@ class Update {
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
-                if(filetype($filename)!= 'dir') {
+                if (filetype($filename) != 'dir') {
                     $fs = filesize('./application/backups/' . $filename);
-                    echo "Имя: " . $filename . "\nРазмер: " . $fs ."<br>";
+                    echo "Имя: " . $filename . "\nРазмер: " . $fs . "<br>";
                 }
             }
         } else {
@@ -470,7 +487,7 @@ class Update {
 
         foreach ($array_query as $query) {
             if ($query) {
-                if(!$this->ci->db->query($query)){
+                if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
                 }
