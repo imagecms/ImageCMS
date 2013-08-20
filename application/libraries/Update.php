@@ -455,11 +455,28 @@ class Update {
      * restore files list
      */
     public function restore_db_files_list() {
+        
+//         $zip = new ZipArchive();
+//        $zip->open($file);
+//        $zip->extractTo($destination);
+//        $zip->close();
+        
+        
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
-
                 if (filetype($filename) != 'dir') {
+//                    $file_type = '';
+//                    preg_match('/\.[a-z]{2,3}/',$filename, $file_type);
+//                    if($file_type[0] == '.zip'){
+//                        $zip = new ZipArchive();
+//                        $zip->open('./application/backups/' . $filename);
+//                        $zip->extractTo('./application/backups/zip');
+//                        if($zip->numFiles == 1){
+//                            
+//                        }
+//                        $zip->close();
+//                    }
                     $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
                 }
             }
