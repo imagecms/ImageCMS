@@ -9,6 +9,7 @@ class Update {
 
     private $arr_files;
     private $files_dates = array();
+    private $restore_files = array();
 
     /**
      * шлях до сканування папок
@@ -237,8 +238,9 @@ class Update {
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
         $zip = new ZipArchive();
         $zip->open($file);
-        $zip->extractTo($destination);
+        $rez = $zip->extractTo($destination);
         $zip->close();
+        return $rez;
     }
 
     /**
@@ -435,11 +437,11 @@ class Update {
     }
 
     public function get_settings() {
-
+        
     }
 
     public function set_settings() {
-
+        
     }
 
     /**
@@ -463,12 +465,11 @@ class Update {
      * @param string $file_name
      * @todo доробити видалення і непоказувати лишні файли
      */
-    public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
-        if (is_readable('./application/backups/' . $file_name)) {
-            $restore = file_get_contents('./application/backups/' . $file_name);
+    public function db_restore($file = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable($file)) {
+            $restore = file_get_contents($file);
             return $this->query_from_file($restore);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
             return FALSE;
         }
     }
@@ -477,35 +478,44 @@ class Update {
      * restore files list
      */
     public function restore_db_files_list() {
-
-//         $zip = new ZipArchive();
-//        $zip->open($file);
-//        $zip->extractTo($destination);
-//        $zip->close();
-
-
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
                 if (filetype($filename) != 'dir') {
-//                    $file_type = '';
-//                    preg_match('/\.[a-z]{2,3}/',$filename, $file_type);
-//                    if($file_type[0] == '.zip'){
-//                        $zip = new ZipArchive();
-//                        $zip->open('./application/backups/' . $filename);
-//                        $zip->extractTo('./application/backups/zip');
-//                        if($zip->numFiles == 1){
-//
-//                        }
-//                        $zip->close();
-//                    }
-                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+                    $file_type = '';
+                    preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
+                    if ($file_type[0] == '.zip') {
+                        $zip = new ZipArchive();
+                        $zip->open('./application/backups/' . $filename);
+                        $zip->extractTo('./application/backups/zip');
+                        if (file_exists('./application/backups/zip/backup.sql')) {
+                            $this->restore_files[] = array(
+                            'name' => $filename,
+                            'size' => filesize('./application/backups/' . $filename),
+                            'create_date' => filemtime('./application/backups/' . $filename)
+                            );
+                        }
+                        $this->removeDirRec('./application/backups/zip');
+                        $zip->close();
+                    }
                 }
             }
-            return $restore_dbs;
+            return $this->restore_files;
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
+    }
+
+    /**
+     * remove dir recursive
+     * @param string $dir - path to directory
+     */
+    public function removeDirRec($dir) {
+        if ($objs = glob($dir . "/*"))
+            foreach ($objs as $obj)
+                is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
+        if (is_dir($dir))
+            rmdir($dir);
     }
 
     /**

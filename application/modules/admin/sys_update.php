@@ -18,7 +18,7 @@ class Sys_update extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    public function index() {
+    public function index($sort_by = "create_date", $order = 'asc') {
 
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
@@ -34,15 +34,27 @@ class Sys_update extends BaseAdminController {
 //        $this->update->sendData();
 //        $this->update->restoreFromZIP();
 //        $this->update->checkForVersion();
+//        $this->update->sendData();
+
+        $this->template->assign('sort_by', $sort_by);
+        $this->template->assign('order', $order);
         $this->template->assign('diff_files_dates', $this->update->get_files_dates());
         $this->template->assign('diff_files', $diff);
-        $this->template->assign('files_dbs', $this->update->restore_db_files_list());
+        $this->template->assign('restore_files', $this->sort($this->update->restore_db_files_list(), $sort_by, $order));
 //        $this->template->add_array('files_dbs', $a->restore_db_files_list());
         $this->template->show('sys_update', FALSE);
     }
 
-    public function restore_db($file_name) {
-//        echo $this->update->db_restore($file_name);
+    public function restore($file_name) {
+        echo $this->update->restoreFromZIP($file_name);
+    }
+
+    public function renderFile(){
+        $file_path = $this->input->post('file_path');
+         if (file_exists('.' . $file_path))
+            echo htmlspecialchars(file_get_contents('.' . $file_path));
+        else
+            echo '';
     }
 
     public function get_license() {
@@ -58,6 +70,30 @@ class Sys_update extends BaseAdminController {
         //move_uploaded_file($_FILES['Filedata3']['tmp_name'], 'uploads/file_111');
     }
 
+    public function sort($array, $sort_by, $order) {
+        for ($i = 0; $i < count($array); $i++) {
+            for ($y = ($i + 1); $y < count($array); $y++) {
+                if ($order == 'asc') {
+                    if ($array[$i][$sort_by] < $array[$y][$sort_by]) {
+                        $c = $array[$i];
+                        $array[$i] = $array[$y];
+                        $array[$y] = $c;
+                    }
+                } else {
+                    if ($array[$i][$sort_by] > $array[$y][$sort_by]) {
+                        $c = $array[$i];
+                        $array[$i] = $array[$y];
+                        $array[$y] = $c;
+                    }
+                }
+            }
+        }
+        return $array;
+    }
+
+    public function delete_backup($file_name){
+//        echo unlink('./application/backups/' . $file_name);
+    }
 //    public function test() { // method controller's server's update
 //
 //        $obj = new serverUpdate();
