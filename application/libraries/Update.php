@@ -129,14 +129,14 @@ class Update {
 //        $request_file = "./SampleRequest.xml";
 //        $fh = fopen($request_file, 'r');
 //        $xml_data = fread($fh, filesize($request_file));
-        $xml_data = 'grant_type=authorization_code';
+        $xml_data = 'asdasdasgrant_type=authorization_code';
 //        fclose($fh);
 
         $url = 'http://pftest.imagecms.net/shop/test';
         $page = "/services/calculation";
         $headers = array(
             "POST " . $page . " HTTP/1.0",
-            "Content-type: text/xml;charset=\"utf-8\"",
+            "Content-type: text/xml/file;charset=\"utf-8\"",
             "Accept: text/xml",
             "Cache-Control: no-cache",
             "Pragma: no-cache",
@@ -163,7 +163,7 @@ class Update {
             print "Error: " . curl_error($ch);
         } else {
             // Show me the result
-            var_dump(json_decode($data));
+            var_dump($data);
         }
     }
 
@@ -216,12 +216,17 @@ class Update {
 
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-
+        var_dump($this->db_backup());
+        $db = $this->db_backup();
+        $zip->addFile('./application/backups/' . $db, $db);
 
         echo "numfiles: " . $zip->numFiles . "\n";
         echo "status:" . $zip->status . "\n";
 
         $zip->close();
+        
+        chmod('./application/backups/' . $db, 0777);
+        unlink('./application/backups/' . $db);
     }
 
     /**
@@ -302,7 +307,7 @@ class Update {
         if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)){
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                         $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
                     }
@@ -444,10 +449,13 @@ class Update {
         if (is_really_writable('./application/backups')) {
             $this->ci->load->dbutil();
             $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
-            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'sql', $backup);
+            $name = "backup.sql";
+            write_file('./application/backups/' . $name, $backup);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
+
+        return $name;
     }
 
     /**
@@ -469,13 +477,13 @@ class Update {
      * restore files list
      */
     public function restore_db_files_list() {
-        
+
 //         $zip = new ZipArchive();
 //        $zip->open($file);
 //        $zip->extractTo($destination);
 //        $zip->close();
-        
-        
+
+
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
@@ -487,7 +495,7 @@ class Update {
 //                        $zip->open('./application/backups/' . $filename);
 //                        $zip->extractTo('./application/backups/zip');
 //                        if($zip->numFiles == 1){
-//                            
+//
 //                        }
 //                        $zip->close();
 //                    }
@@ -527,17 +535,17 @@ class Update {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
                     return FALSE;
-                }else{
+                } else {
                     return TRUE;
                 }
             }
         }
     }
-    
-    public function get_files_dates(){
-        if(!empty($this->files_dates)){
+
+    public function get_files_dates() {
+        if (!empty($this->files_dates)) {
             return $this->files_dates;
-        }else{
+        } else {
             return FALSE;
         }
     }
