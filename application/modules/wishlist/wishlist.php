@@ -23,9 +23,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if ($this->dx_auth->is_logged_in()) {
             parent::getUserWL($this->dx_auth->get_user_id());
             \CMSFactory\assetManager::create()
-                    ->registerScript('jquery_ui')
-                    ->registerStyle('jquery-ui-1.8.16.custom')
-                    ->registerScript('wishlist')
+//                    ->registerScript('jquery_ui')
+//                    ->registerStyle('jquery-ui-1.8.16.custom')
+//                    ->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel['wishlists'])
                     ->setData('user', $this->dataModel['user'])
@@ -40,9 +40,9 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     function renderWL() {
         parent::getUserWL($this->dx_auth->get_user_id());
         \CMSFactory\assetManager::create()
-                ->registerScript('jquery_ui')
-                ->registerStyle('jquery-ui-1.8.16.custom')
-                ->registerScript('wishlist')
+//                ->registerScript('jquery_ui')
+//                ->registerStyle('jquery-ui-1.8.16.custom')
+//                ->registerScript('wishlist')
                 ->registerStyle('style')
                 ->setData('wishlists', $this->dataModel['wishlists'])
                 ->setData('user', $this->dataModel['user'])
@@ -196,7 +196,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
         if (!in_array($varId, $this->userWishProducts))
             \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
+//                    ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('value', lang('btn_add_2_WL'))
@@ -206,7 +206,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->render('button', true);
         else
             \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
+//                    ->registerScript('wishlist')
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('href', $href)

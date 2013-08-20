@@ -111,15 +111,17 @@
                     <div class="inside-padd">
                         <form method="post">
                             {if !$is_logged_in}
-                                <label>
-                                    <span class="frame_form_field__icsi-css">
-                                        <div class="msg">
-                                            <div class="success">
-                                                Коментарий будет отправлен на модерацию
+                                {if $use_moderation}
+                                    <label>
+                                        <span class="frame_form_field__icsi-css">
+                                            <div class="msg">
+                                                <div class="success">
+                                                    Коментарий будет отправлен на модерацию
+                                                </div>
                                             </div>
-                                        </div>
-                                    </span>
-                                </label>
+                                        </span>
+                                    </label>
+                                {/if}
                                 <label>
                                     <span class="title__icsi-css">Представтесь:</span>
                                     <span class="frame_form_field__icsi-css">
