@@ -178,7 +178,19 @@ class Update {
             $array[$key] = end($find);
         }
 
-        var_dump($array);
+        $array['core'] = IMAGECMS_NUMBER;
+        header('content-type: text/xml');
+        $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
+                "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
+        foreach ($array as $key => $arr) {
+            $xml.='<modul>';
+            $xml.="<name>$key</name>";
+            $xml.="<version>$arr</version>";
+            $xml.='</modul>';
+        }
+        $xml .= "</КонтейнерСписков>\n";
+        echo $xml;
+        exit;
     }
 
     public function getOldMD5File() {

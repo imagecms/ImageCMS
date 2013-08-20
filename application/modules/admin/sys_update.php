@@ -20,13 +20,13 @@ class Sys_update extends BaseAdminController {
 
     public function index() {
         // Show upgrade window;
-        $old = $this->update->getOldMD5File();
-        $array = $this->update->parse_md5();
+//        $old = $this->update->getOldMD5File();
+//        $array = $this->update->parse_md5();
 //        var_dump($array);
 //        var_dump($old);
-        $diff = array_diff($array, $old);
+//        $diff = array_diff($array, $old);
 //        var_dumps($diff);
-        $this->update->add_to_ZIP($diff);
+//        $this->update->add_to_ZIP($diff);
 //        var_dump(write_file('md5.txt', json_encode($this->update->parse_md5())));
 //        echo json_encode($this->update->parse_md5());
 //        $this->update->formXml();
