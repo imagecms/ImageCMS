@@ -7,12 +7,12 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/cp/wishlist"
+                    <a href="{$BASE_URL}admin/"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a class="btn btn-small pjax btn-success" href="/admin/pages/index">
+                    <a class="btn btn-small pjax btn-success" href="#">
                         <i class="icon-plus-sign icon-white"></i>
                         Обновить
                     </a>
@@ -48,7 +48,7 @@
                                         Контрольная сумма
                                     </th>
                                     <th>
-                                        Дата
+                                        Дата изменения
                                     </th>
                                 </tr>
                             </thead>
@@ -63,7 +63,7 @@
                                             </span>
                                         </td>
                                         <td >
-                                            <span>{echo $file_path}</span>
+                                            <a onclick="Update.renderFile('{echo $file_path}', $(this))"><span>{echo $file_path}</span></a>
                                         </td>
                                         <td >
                                             <span>{echo $md5}</span>
@@ -82,26 +82,63 @@
                     {/if}
                 </div>
                 <div class="tab-pane" id="restore">
-                    {if $files_dbs}
+                    {if $restore_files}
                         <table class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th >Название</th>
-                                    <th >Размер(байт)</th>
-                                    <th >Восстановление</th>
+                                    <th >
+                                        {if $sort_by == 'size'}
+                                            {if $order == 'asc'}
+                                                <a class="pjax" href="/admin/sys_update/index/size/desc#restore">Размер(байт)</a>
+                                                <span class="f-s_14">↓</span>
+                                            {else:}
+                                                <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                                <span class="f-s_14">↑</span>                                            
+                                            {/if}
+                                        {else:}
+                                            <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                        {/if}
+                                    </th>
+                                    <th >
+                                        {if $sort_by == 'create_date'}
+                                            {if $order == 'asc'}
+                                                <a class="pjax" href="/admin/sys_update/index/create_date/desc#restore">Дата создания</a>
+                                                <span class="f-s_14">↓</span>
+                                            {else:}
+                                                <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
+                                                <span class="f-s_14">↑</span>                                            
+                                            {/if}
+                                        {else:}
+                                            <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
+                                        {/if}
+                                    <th class="span2">Восстановление</th>
+                                    <th class="span1">Удаление</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach $files_dbs as $db_name => $db_size}
+                                {foreach $restore_files as $file_inf}
                                     <tr>
                                         <td >
-                                            <h5>{echo $db_name}</h5>
+                                            {echo $file_inf['name']}
                                         </td>
                                         <td >
-                                            <h5>{echo $db_size}</h5>
+                                            {echo $file_inf['size']}
                                         </td>
-                                        <td >
-                                            <h5><a href="#" onclick="Update.restore_db('{echo $db_name}')">Восстановить</a></h5>
+                                        <td>
+                                            {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
+                                        </td>
+                                        <td class="span2">
+                                            <button class="btn my_btn_s btn-small btn-success" type="button" onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
+                                                <i class="icon-refresh"></i>
+                                            </button>
+                                        </td>
+                                        <td class="span1">
+                                            {if $file_inf['name'] != 'backup.zip'}
+                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}')">
+                                                    <i class="icon-trash"></i>
+                                                </button>
+                                            {/if}
                                         </td>
                                     </tr>
                                 {/foreach}
