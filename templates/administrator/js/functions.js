@@ -1,6 +1,25 @@
 var editorsEnabled = false;
 //temporary
 
+
+function get_update(){
+    //var host=prompt('ftp server?');
+    //var user=prompt('ftp_user?');
+    //var pass=prompt('ftp_password?');
+    $.post('/admin/sys_update/get_license', function(data){
+        var key = data;
+        $.post('/admin/sys_update/test', {ftp:host, ftp_user:user, ftp_pass:pass, key:key}, function(data){
+
+              var Obj = JSON.parse(data);
+              if (Obj.error == 1)
+                  alert(Obj.mess)
+              
+                  
+    
+        })
+    })
+}
+
 function ajaxLoadChildCategory(el, id) {
 
     var container = $(el).closest('.row-category');
