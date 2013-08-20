@@ -1,7 +1,5 @@
 <?php
 
-use ZipArchive;
-
 /**
  * ImageCMS System Update Class
  * @copyright ImageCMS(c) 2013
