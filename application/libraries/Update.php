@@ -1,5 +1,7 @@
 <?php
 
+use ZipArchive;
+
 /**
  * ImageCMS System Update Class
  * @copyright ImageCMS(c) 2013
@@ -210,14 +212,14 @@ class Update {
         $zip = new ZipArchive();
         $time = time();
         $filename = "./application/backups/backup.zip";
-        rename($filename, './application/backups/' . time() . '.zip');
+        rename($filename, "./application/backups/$time.zip");
 
         if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
 
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-        var_dump($this->db_backup());
+
         $db = $this->db_backup();
         $zip->addFile('./application/backups/' . $db, $db);
 
