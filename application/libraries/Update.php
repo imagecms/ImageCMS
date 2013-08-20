@@ -204,8 +204,8 @@ class Update {
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
 
-        echo "numfiles: " . $zip->numFiles . "\n";
-        echo "status:" . $zip->status . "\n";
+        //echo "numfiles: " . $zip->numFiles . "\n";
+        //echo "status:" . $zip->status . "\n";
         $zip->close();
     }
 
