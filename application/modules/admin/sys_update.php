@@ -20,7 +20,6 @@ class Sys_update extends BaseAdminController {
 
     public function index() {
         // Show upgrade window;
-
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
 //        var_dumps($array);
@@ -31,7 +30,8 @@ class Sys_update extends BaseAdminController {
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
 //        echo json_encode( $this->update->parse_md5());
 //        $this->update->formXml();
-//         $this->update->sendData();
+//        $this->update->sendData();
+//         $update->restoreFromZIP();
         $this->template->assign('diff_files_dates', $this->update->get_files_dates());
         $this->template->assign('diff_files', $diff);
         $this->template->assign('files_dbs', $this->update->restore_db_files_list());
