@@ -1738,3 +1738,20 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
         }
     });
 });
+
+var Update = {
+    restore_db: function (file_name){
+        $.ajax({
+        type: "GET",
+        data: {
+            file_name: file_name
+        },
+        url: '/admin/sys_update/restore_db',
+        success: function(res) {
+            if(res){
+                showMessage('Сообщение','Вашы данние успешно воставлены!');                
+            }
+        }
+    });
+    }
+};
