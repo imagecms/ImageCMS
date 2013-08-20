@@ -61,7 +61,6 @@ class ImportXML {
     private $locale;
 
     public function __construct() {
-        $this->getXML($this->pass . 'export.xml');
         $this->ci = &get_instance();
         $this->ci->load->helper('translit');
         $this->locale = 'ru';
@@ -82,6 +81,7 @@ class ImportXML {
      * @return string "success" if success
      */
     public function import() {
+        $this->getXML($this->pass . 'export.xml');
 //        $start = microtime(true);
 
         //load db data

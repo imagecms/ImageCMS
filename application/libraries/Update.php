@@ -1,8 +1,9 @@
 <?php
 
 /**
- * @todo ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
- * @property CI $ci
+ * ImageCMS System Update Class
+ * @copyright ImageCMS(c) 2013
+ * @version 0.1 big start
  */
 class Update {
 
@@ -24,7 +25,19 @@ class Update {
      * папки, які не враховувати при обновлені
      * @var array
      */
-    private $distinct = array('.', '..', '.git');
+    private $distinct = array(
+        '.',
+        '..',
+        '.git',
+        'uploads',
+        'cache',
+        'templates',
+        'tests',
+        'captcha',
+        'nbproject',
+        'uploads_site',
+        'backups',
+    );
 
     /**
      * назва архіву і папки з скачаним старим текущим релізом в оригіналі
@@ -54,7 +67,7 @@ class Update {
      * шлях до архіву старого релізу
      * @var string
      */
-    public $path_old_relith = '';
+    public $path_old_reliz = '';
 
     /**
      * instance of ci
@@ -64,6 +77,45 @@ class Update {
 
     public function __construct() {
         $this->ci = &get_instance();
+    }
+
+    /**
+     * check for new version exist
+     */
+    public function checkForVersion($modulName = 'reliz') {
+
+        $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
+
+        $url = 'http://pftest.imagecms.net/shop/test';
+
+        $headers = array(
+            "Content-type: text/xml;charset=\"utf-8\"",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
+            "Authorization: Basic " . base64_encode($credentials)
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
+
+        // Apply the XML to our curl call
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        if (curl_errno($ch)) {
+            print "Error: " . curl_error($ch);
+        } else {
+            // Show me the result
+            var_dump($data);
+        }
     }
 
     /**
@@ -129,6 +181,46 @@ class Update {
         var_dump($array);
     }
 
+    public function getOldMD5File() {
+        return (array) json_decode(read_file('md5.txt'));
+    }
+
+    /**
+     * zipping files
+     * @param array $files
+     */
+    public function add_to_ZIP($files = array()) {
+        if (empty($files))
+            return FALSE;
+
+        $zip = new ZipArchive();
+        $time = time();
+        $filename = "./application/backups/backup.zip";
+        rename($filename, './application/backups/' . time() . '.zip');
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
+            exit("cannot open <$filename>\n");
+
+        foreach ($files as $key => $value)
+            $zip->addFile('.' . $key, $key);
+
+        echo "numfiles: " . $zip->numFiles . "\n";
+        echo "status:" . $zip->status . "\n";
+        $zip->close();
+    }
+
+    /**
+     * restore files from zip
+     * @param string $file path to zip file
+     * @param type $destination path to destination folder
+     */
+    public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
+        $zip = new ZipArchive();
+        $zip->open($file);
+        $zip->extractTo($destination);
+        $zip->close();
+    }
+
     /**
      * Оприділення шляхів відносно настройок
      */
@@ -185,21 +277,21 @@ class Update {
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
+     * @return Array
      */
     public function parse_md5($directory = null) {
 
         $dir = null === $directory ? realpath('') : $directory;
 
-        if ($handle = opendir($dir))
+        $handle = opendir($dir);
+        if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
                     if (is_file($dir . DIRECTORY_SEPARATOR . $file))
-                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = md5($dir . DIRECTORY_SEPARATOR . $file);
+                        $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
-
-        strstr($this->path_parse, $this->update_directory) ? file_put_contents($this->file_mass_old, serialize($this->arr_files)) : file_put_contents($this->file_mass_curr, serialize($this->arr_files));
 
         return $this->arr_files;
     }
@@ -326,6 +418,82 @@ class Update {
 
     public function set_settings() {
 
+    }
+
+    /**
+     * database backup
+     */
+    public function db_backup() {
+        if (is_really_writable('./application/backups')) {
+            $this->ci->load->dbutil();
+            $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
+            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
+        } else {
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
+    }
+
+    /**
+     * database restore
+     * @param string $file_name
+     * @todo доробити видалення і непоказувати лишні файли
+     */
+    public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable('./application/backups/' . $file_name)) {
+            $restore = file_get_contents('./application/backups/' . $file_name);
+            $this->query_from_file($restore);
+        } else {
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
+    }
+
+    /**
+     * restore files list
+     */
+    public function restore_db_files_list() {
+        if (is_readable('./application/backups/')) {
+            $dh = opendir('./application/backups/');
+            while ($filename = readdir($dh)) {
+
+                if (filetype($filename) != 'dir') {
+                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+                }
+            }
+            return $restore_dbs;
+        } else {
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
+    }
+
+    /**
+     * db update
+     * @param string $file_name
+     */
+    public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable('./application/backups/' . $file_name)) {
+            $restore = file_get_contents('./application/backups/' . $file_name);
+            $this->query_from_file($restore);
+        } else {
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
+    }
+
+    /**
+     * ganerate sql query from file
+     * @param string $file
+     */
+    public function query_from_file($file) {
+        $string_query = rtrim($file, "\n;");
+        $array_query = explode(";\n", $string_query);
+
+        foreach ($array_query as $query) {
+            if ($query) {
+                if (!$this->ci->db->query($query)) {
+                    echo 'Невозможно виполнить запрос: <br>';
+                    var_dumps($query);
+                }
+            }
+        }
     }
 
 }
