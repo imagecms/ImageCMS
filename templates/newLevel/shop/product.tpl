@@ -256,7 +256,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a rel="position: 'xBlock'" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom {if $sizeAddImg == 0}fbP{/if}" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a {if $sizeAddImg == 0}rel="group"{/if} {/*rel="position: 'xBlock'"*/} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
@@ -293,10 +293,10 @@
                 {if $sizeAddImg > 0}
                     <ul data-rel="mainThumbPhoto">
                         <li class="d_n">
-                            <a href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery fbP">
+                            <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}">
                                 <span class="photo-block">
                                     <span class="helper"></span>
-                                    <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                    <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}"/>
                                 </span>
                             </a>
                         </li>
@@ -306,9 +306,21 @@
                             {/*carousel_js*/}
                             <div class="content-carousel">
                                 <ul class="items-thumbs items">
+                                    <!--if cloudzoom-->
+                                    {/*}
+                                    <li class="active">
+                                        <a rel="useZoom: 'photoGroup', smallImage: '{echo $model->firstVariant->getMainPhoto()}'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                            <span class="photo-block">
+                                                <span class="helper"></span>
+                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}"/>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    { */}
+                                    <!--if cloudzoom -->
                                     {foreach $productImages as $key => $image}
                                         <li>
-                                            <a rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery fbP">
+                                            <a rel="group" {/*rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'"*/} href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
@@ -659,7 +671,8 @@
 </script>
 {literal}
     <script type="text/javascript">
-        var productPhotoFancybox = true,
+        var
+                productPhotoFancybox = true,
                 //productPhotoCZoom
                 forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>

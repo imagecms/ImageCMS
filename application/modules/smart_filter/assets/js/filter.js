@@ -125,6 +125,7 @@ function filtertype(el, totalProducts, otherClass) {
             $.extend(cleaverFilterObj, {
                 mainWraper: $(this),
                 cleaverFilterFunc: function(elPos, countTov, clas) {
+                    console.log(2)
                     cleaverFilterObj.mainWraper.hide();
 
                     $(cleaverFilterObj.elCount).text(countTov);
@@ -161,12 +162,15 @@ function filtertype(el, totalProducts, otherClass) {
 
                 }).live('keydown', function(e) {
                     var key, keyChar;
-                    if (!e)
+                    if (!e) {
                         var e = window.event;
-                    if (e.keyCode)
+                    }
+                    if (e.keyCode) {
                         key = e.keyCode;
-                    else if (e.which)
+                    }
+                    else if (e.which) {
                         key = e.which;
+                    }
                     if (key == 27) {
                         methods.triggerBtnClick();
                     }
@@ -207,7 +211,7 @@ function afterAjaxInitializeFilter() {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false, true);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
-            if ($thisframechecks.data('rel') != undefined)
+            if ($thisframechecks.data('rel') != undefined) {
                 if ($thisframechecks.data('rel').match('scroll')) {
                     var scrollabel = $thisframechecks.find('.jspScrollable'),
                             scrollabelH = scrollabel.height(),
@@ -215,9 +219,15 @@ function afterAjaxInitializeFilter() {
                             addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
                     cleaverFilterObj.currentPosScroll = scrollabel.data('jsp').getContentPositionY() + addH;
                 }
+                else {
+                    cleaverFilterObj.currentPosScroll = 0;
+                }
+            }
+            else {
+                cleaverFilterObj.currentPosScroll = 0;
+            }
         }
     });
-    var i = 0;
     $(framechecks).each(function() {
         var $this = $(this),
                 $thisRel = $this.data('rel'),
@@ -233,16 +243,18 @@ function afterAjaxInitializeFilter() {
                         $this.find('.title > span').bind('click.filter', function(e) {
                             var $thisi = $(this);
                             $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
-                                if ($(this).is(':visible'))
-                                    cleaverFilterObj.dropDownArr.push($this.attr('id'))
-                                else
-                                    cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1)
+                                if ($(this).is(':visible')) {
+                                    cleaverFilterObj.dropDownArr.push($this.attr('id'));
+                                }
+                                else {
+                                    cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
+                                }
                                 $thisi.toggleClass('valuePD');
                             });
                         });
                         cleaverFilterObj.dropDownArr
                     case 'scroll':
-                        $this.show()
+                        $this.show();
                         var el = filtersContent.show().jScrollPane(scrollPane);
                         el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
                         //$this.find('.filters-content').addClass('scroll');
@@ -257,7 +269,8 @@ function afterAjaxInitializeFilter() {
                 }
             });
             if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
-                filtersContent.show()
+                filtersContent.show();
+                console.log(1)
                 $this.find('.title').children().addClass('valuePD');
             }
         }
@@ -286,8 +299,9 @@ function afterAjaxInitializeFilter() {
 function ajaxRecount(el, slChk, submit) {
 
 //    var catalogForm = $('#catalog_form');
-//    if (submit)
+//    if (submit){
 //        catalogForm.submit();
+//}
 
     var catalogForm = $('#catalog_form'),
             $this = el,
@@ -306,15 +320,16 @@ function ajaxRecount(el, slChk, submit) {
             catalogForm.find('.popup_container').html(msg);
             afterAjaxInitializeFilter();
             $.fancybox.hideActivity();
-            if (slChk)
+            if (slChk) {
                 otherClass = slChk;
-            if ($($this).closest(framechecks).data('rel') == undefined)
+            }
+            if ($($this).closest(framechecks).data('rel') == undefined) {
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
-            else
+            }
+            else {
                 filtertype($($this), totalProducts, otherClass);
+            }
         }
-    }).fail(function() {
-
     });
     return false;
 }
