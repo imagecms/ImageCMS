@@ -1,8 +1,9 @@
 <?php
 
 /**
- * @todo ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
- * @property CI $ci
+ * ImageCMS System Update Class
+ * @copyright ImageCMS(c) 2013
+ * @version 0.1 big start
  */
 class Update {
 
@@ -85,7 +86,6 @@ class Update {
     public function checkForVersion($modulName = 'reliz') {
 
         $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
-
 
         $url = 'http://pftest.imagecms.net/shop/test';
 
@@ -191,18 +191,34 @@ class Update {
      * @param array $files
      */
     public function add_to_ZIP($files = array()) {
-        $zip = new ZipArchive();
-        $filename = "./application/backups/test112.zip";
+        if (empty($files))
+            return FALSE;
 
-        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
+        $zip = new ZipArchive();
+        $time = time();
+        $filename = "./application/backups/backup.zip";
+        rename($filename, './application/backups/' . time() . '.zip');
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
-        }
-        foreach ($files as $key => $value) {
+
+        foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-        }
 
 //        echo "numfiles: " . $zip->numFiles . "\n";
 //        echo "status:" . $zip->status . "\n";
+        $zip->close();
+    }
+
+    /**
+     * restore files from zip
+     * @param string $file path to zip file
+     * @param type $destination path to destination folder
+     */
+    public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
+        $zip = new ZipArchive();
+        $zip->open($file);
+        $zip->extractTo($destination);
         $zip->close();
     }
 
@@ -423,6 +439,7 @@ class Update {
     /**
      * database restore
      * @param string $file_name
+     * @todo доробити видалення і непоказувати лишні файли
      */
     public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
         if (is_readable('./application/backups/' . $file_name)) {
@@ -441,8 +458,9 @@ class Update {
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
-                if(filetype($filename)!= 'dir') {
-                   $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+
+                if (filetype($filename) != 'dir') {
+                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
                 }
             }
             return $restore_dbs;
@@ -474,7 +492,7 @@ class Update {
 
         foreach ($array_query as $query) {
             if ($query) {
-                if(!$this->ci->db->query($query)){
+                if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
                     return FALSE;
