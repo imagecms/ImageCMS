@@ -29,7 +29,7 @@ class Dashboard extends BaseAdminController {
         $this->db->where('lang_alias', 0);
         $updated = $this->db->get('content')->result_array();
 
-        // get comments        
+        // get comments
         if ($this->db->get_where('components', array('name' => 'comments'))->row()) {
             $first = memory_get_usage();
             $comments = $this->db->where('status', '0')
@@ -93,9 +93,9 @@ class Dashboard extends BaseAdminController {
         }
 
         // Get system upgrade info
-        $this->load->module('admin/sys_upgrade');
+//        $this->load->module('admin/sys_upgrade');
 
-        $status = $this->sys_upgrade->_check_status();
+//        $status = $this->sys_upgrade->_check_status();
 
         // Get next version number
         $next_v = explode('_', $status['upgrade_file']);
@@ -108,10 +108,10 @@ class Dashboard extends BaseAdminController {
             'cms_number' => IMAGECMS_NUMBER,
             'sys_status' => $status,
         ));
-        
+
         \CMSFactory\Events::create()->registerEvent('', 'Dashboard:show');
         \CMSFactory\Events::runFactory();
-        
+
         $this->template->show('dashboard', FALSE);
     }
 

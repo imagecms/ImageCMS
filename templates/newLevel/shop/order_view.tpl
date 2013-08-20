@@ -205,7 +205,7 @@
                                                         </span>
                                                         <span class="price-add">
                                                             <span>
-                                                                <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
                                                                 <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
