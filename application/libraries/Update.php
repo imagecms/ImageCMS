@@ -302,7 +302,7 @@ class Update {
         if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)){
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                         $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
                     }
@@ -430,11 +430,11 @@ class Update {
     }
 
     public function get_settings() {
-
+        
     }
 
     public function set_settings() {
-
+        
     }
 
     /**
@@ -469,29 +469,43 @@ class Update {
      * restore files list
      */
     public function restore_db_files_list() {
-        
+
 //         $zip = new ZipArchive();
 //        $zip->open($file);
 //        $zip->extractTo($destination);
 //        $zip->close();
-        
-        
+
+
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
                 if (filetype($filename) != 'dir') {
-//                    $file_type = '';
-//                    preg_match('/\.[a-z]{2,3}/',$filename, $file_type);
-//                    if($file_type[0] == '.zip'){
+                    $file_type = '';
+                    preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
+                    if ($file_type[0] == '.zip') {
 //                        $zip = new ZipArchive();
 //                        $zip->open('./application/backups/' . $filename);
 //                        $zip->extractTo('./application/backups/zip');
-//                        if($zip->numFiles == 1){
-//                            
+//                        if ($zip->numFiles == 1) {
+//                            $dh2 = opendir('./application/backups/zip');
+//                            while ($filename = readdir($dh2)) {
+//                                $file_type = '';
+//                                preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
+//                                if ($file_type[0] == '.sql') {
+//                                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+//                                }
+//                            }
 //                        }
+//                        $dir = './application/backups/zip'; // путь к папке
+//                        $files_array = scandir($dir); // перечень файлов
+//                        for ($i = 2; $i < count($files_array); $i++) { // первые два элеменета - служебные
+//                            unlink($dir . '/' . $files_array[$i]); // удаляем содержимое папки
+//                        }
+//                        rmdir($dir); // удаляем саму папку
 //                        $zip->close();
-//                    }
-                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+//                    } else {
+                        $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+                    }
                 }
             }
             return $restore_dbs;
@@ -527,17 +541,17 @@ class Update {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
                     return FALSE;
-                }else{
+                } else {
                     return TRUE;
                 }
             }
         }
     }
-    
-    public function get_files_dates(){
-        if(!empty($this->files_dates)){
+
+    public function get_files_dates() {
+        if (!empty($this->files_dates)) {
             return $this->files_dates;
-        }else{
+        } else {
             return FALSE;
         }
     }
