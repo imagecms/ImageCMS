@@ -27,7 +27,7 @@ class Sys_update extends BaseAdminController {
 //        var_dumps($old);
         $diff = array_diff($array, $old);
 //        var_dumps($diff);
-//         $this->update->add_to_ZIP($diff);
+         $this->update->add_to_ZIP($diff);
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
 //        echo json_encode( $this->update->parse_md5());
 
