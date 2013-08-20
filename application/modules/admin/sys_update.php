@@ -43,4 +43,29 @@ class Sys_update extends BaseAdminController {
         $this->update->db_restore($file_name);
     }
 
+    public function get_license() {
+        if (file_exists('application/modules/shop/license.key'))
+            echo file_get_contents('application/modules/shop/license.key');
+        else
+            echo 0;
+    }
+
+    public function test() {
+        $obj = new serverUpdate();
+        $mess = $obj->ftp_connect();
+        if ($mess !== TRUE)
+            echo json_encode(array(
+                'error' => 1,
+                'mess' => $mess,
+            ));
+        else {
+            $mess2 = $obj->get_update();
+            if ($mess2 !== TRUE)
+                echo json_encode(array(
+                    'error' => 1,
+                    'mess' => $mess2,
+                ));
+        }
+    }
+
 }
