@@ -8,6 +8,7 @@
 class Update {
 
     private $arr_files;
+    private $files_dates = array();
 
     /**
      * шлях до сканування папок
@@ -178,7 +179,19 @@ class Update {
             $array[$key] = end($find);
         }
 
-        var_dump($array);
+        $array['core'] = IMAGECMS_NUMBER;
+        header('content-type: text/xml');
+        $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
+                "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
+        foreach ($array as $key => $arr) {
+            $xml.='<modul>';
+            $xml.="<name>$key</name>";
+            $xml.="<version>$arr</version>";
+            $xml.='</modul>';
+        }
+        $xml .= "</КонтейнерСписков>\n";
+        echo $xml;
+        exit;
     }
 
     public function getOldMD5File() {
@@ -204,8 +217,10 @@ class Update {
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
 
-        //echo "numfiles: " . $zip->numFiles . "\n";
-        //echo "status:" . $zip->status . "\n";
+
+        echo "numfiles: " . $zip->numFiles . "\n";
+        echo "status:" . $zip->status . "\n";
+
         $zip->close();
     }
 
@@ -287,8 +302,10 @@ class Update {
         if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file))
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)){
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
+                        $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
+                    }
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
@@ -426,8 +443,8 @@ class Update {
     public function db_backup() {
         if (is_really_writable('./application/backups')) {
             $this->ci->load->dbutil();
-            $backup = & $this->ci->dbutil->backup(array('format' => 'txt'));
-            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'txt', $backup);
+            $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
+            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'sql', $backup);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
@@ -441,9 +458,10 @@ class Update {
     public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
         if (is_readable('./application/backups/' . $file_name)) {
             $restore = file_get_contents('./application/backups/' . $file_name);
-            $this->query_from_file($restore);
+            return $this->query_from_file($restore);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            return FALSE;
         }
     }
 
@@ -491,8 +509,19 @@ class Update {
                 if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
+                    return FALSE;
+                }else{
+                    return TRUE;
                 }
             }
+        }
+    }
+    
+    public function get_files_dates(){
+        if(!empty($this->files_dates)){
+            return $this->files_dates;
+        }else{
+            return FALSE;
         }
     }
 
