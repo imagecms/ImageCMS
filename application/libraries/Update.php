@@ -467,12 +467,11 @@ class Update {
      * @param string $file_name
      * @todo доробити видалення і непоказувати лишні файли
      */
-    public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
-        if (is_readable('./application/backups/' . $file_name)) {
-            $restore = file_get_contents('./application/backups/' . $file_name);
+    public function db_restore($file = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable($file)) {
+            $restore = file_get_contents($file);
             return $this->query_from_file($restore);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
             return FALSE;
         }
     }
