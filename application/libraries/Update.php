@@ -9,6 +9,7 @@ class Update {
 
     private $arr_files;
     private $files_dates = array();
+    private $restore_files = array();
 
     /**
      * шлях до сканування папок
@@ -129,14 +130,14 @@ class Update {
 //        $request_file = "./SampleRequest.xml";
 //        $fh = fopen($request_file, 'r');
 //        $xml_data = fread($fh, filesize($request_file));
-        $xml_data = 'grant_type=authorization_code';
+        $xml_data = 'asdasdasgrant_type=authorization_code';
 //        fclose($fh);
 
         $url = 'http://pftest.imagecms.net/shop/test';
         $page = "/services/calculation";
         $headers = array(
             "POST " . $page . " HTTP/1.0",
-            "Content-type: text/xml;charset=\"utf-8\"",
+            "Content-type: text/xml/file;charset=\"utf-8\"",
             "Accept: text/xml",
             "Cache-Control: no-cache",
             "Pragma: no-cache",
@@ -163,7 +164,7 @@ class Update {
             print "Error: " . curl_error($ch);
         } else {
             // Show me the result
-            var_dump(json_decode($data));
+            var_dump($data);
         }
     }
 
@@ -216,12 +217,17 @@ class Update {
 
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-
+        var_dump($this->db_backup());
+        $db = $this->db_backup();
+        $zip->addFile('./application/backups/' . $db, $db);
 
         echo "numfiles: " . $zip->numFiles . "\n";
         echo "status:" . $zip->status . "\n";
 
         $zip->close();
+
+        chmod('./application/backups/' . $db, 0777);
+        unlink('./application/backups/' . $db);
     }
 
     /**
@@ -232,8 +238,9 @@ class Update {
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
         $zip = new ZipArchive();
         $zip->open($file);
-        $zip->extractTo($destination);
+        $rez = $zip->extractTo($destination);
         $zip->close();
+        return $rez;
     }
 
     /**
@@ -444,10 +451,13 @@ class Update {
         if (is_really_writable('./application/backups')) {
             $this->ci->load->dbutil();
             $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
-            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'sql', $backup);
+            $name = "backup.sql";
+            write_file('./application/backups/' . $name, $backup);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
+
+        return $name;
     }
 
     /**
@@ -469,13 +479,6 @@ class Update {
      * restore files list
      */
     public function restore_db_files_list() {
-
-//         $zip = new ZipArchive();
-//        $zip->open($file);
-//        $zip->extractTo($destination);
-//        $zip->close();
-
-
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
@@ -483,35 +486,37 @@ class Update {
                     $file_type = '';
                     preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
                     if ($file_type[0] == '.zip') {
-//                        $zip = new ZipArchive();
-//                        $zip->open('./application/backups/' . $filename);
-//                        $zip->extractTo('./application/backups/zip');
-//                        if ($zip->numFiles == 1) {
-//                            $dh2 = opendir('./application/backups/zip');
-//                            while ($filename = readdir($dh2)) {
-//                                $file_type = '';
-//                                preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
-//                                if ($file_type[0] == '.sql') {
-//                                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
-//                                }
-//                            }
-//                        }
-//                        $dir = './application/backups/zip'; // путь к папке
-//                        $files_array = scandir($dir); // перечень файлов
-//                        for ($i = 2; $i < count($files_array); $i++) { // первые два элеменета - служебные
-//                            unlink($dir . '/' . $files_array[$i]); // удаляем содержимое папки
-//                        }
-//                        rmdir($dir); // удаляем саму папку
-//                        $zip->close();
-//                    } else {
-                        $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+                        $zip = new ZipArchive();
+                        $zip->open('./application/backups/' . $filename);
+                        $zip->extractTo('./application/backups/zip');
+                        if (file_exists('./application/backups/zip/backup.sql')) {
+                            $this->restore_files[] = array(
+                            'name' => $filename,
+                            'size' => filesize('./application/backups/' . $filename),
+                            'create_date' => filemtime('./application/backups/' . $filename)
+                            );
+                        }
+                        $this->removeDirRec('./application/backups/zip');
+                        $zip->close();
                     }
                 }
             }
-            return $restore_dbs;
+            return $this->restore_files;
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
+    }
+
+    /**
+     * remove dir recursive
+     * @param string $dir - path to directory
+     */
+    public function removeDirRec($dir) {
+        if ($objs = glob($dir . "/*"))
+            foreach ($objs as $obj)
+                is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
+        if (is_dir($dir))
+            rmdir($dir);
     }
 
     /**

@@ -491,11 +491,11 @@ input.input-search{height: 33px;}
 .frame-view-products{padding: 35px 0 43px;}
 
 .items-v-carousel{margin-left: 0;}
-.items-v-carousel > li{display: block;width: 100%;height: 245px !important;margin-left: 0;margin-bottom: 0;overflow: hidden;text-overflow: ellipsis;}
+.items-v-carousel > li{display: block;width: 100%;height: 245px !important;margin-left: 0;margin-bottom: 0;overflow: hidden;text-overflow: ellipsis;float: none !important;}
 .vertical-carousel .frame-photo-title > .title{margin: 0 5px;white-space: nowrap;}
 .vertical-carousel .photo-block{margin-top: 22px;}
 .vertical-carousel .description{margin-left: 15px;margin-right: 15px;}
-.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{height: 736px;}/*has be 738px*/
+.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{height: 738px;}/*has be 738px*/
 .vertical-carousel .iscarousel{padding: 40px 0 40px;}
 .carousel-category-popular .frame-title{position: relative;overflow: hidden;}
 
@@ -596,7 +596,8 @@ input.input-search{height: 33px;}
 
 .menu-row-category .frame-l2{width: 270px;}
 .frame-drop-menu .frame-l2 > ul > li > a, .frame-l2 > ul > li > ul > li > a, .frame-drop-menu .frame-l2 > ul > li > .active, .frame-drop-menu .frame-l2 > ul > li > ul > li > .active{display: inline-block;text-transform: capitalize;}
-.frame-drop-menu .frame-l2 > ul > li{width: 100%;padding-right: 16px;margin-bottom: 1px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.frame-drop-menu .frame-l2 > ul > li{padding-right: 16px;margin-bottom: 1px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.menu-col-category .frame-drop-menu .frame-l2 > ul > li{width: 100%;}
 
 .menu-col-category .frame-drop-menu > ul{padding: 5px 17px 0;}
 .menu-col-category .frame-drop-menu > ul > li{width: 176px;padding-right: 8px;padding-bottom: 10px;}
@@ -1082,9 +1083,8 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;text-transform: lowercase;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
-.drop-content{overflow: auto;}
 .drop-content .inside-padd{padding: 24px 43px 24px 24px;}
-.drop-content .inside-padd.notification{padding: 24px 24px 1px 24px;}
+.drop-content .inside-padd.notification{padding: 12px 24px 1px 24px;}
 
 .drop-enter, .drop-forgot, .drop-order-call, .drop-comulativ-discounts{width: 403px;}
 .drop-comulativ-discounts .inside-padd{padding: 15px 10px;}
