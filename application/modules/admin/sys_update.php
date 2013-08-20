@@ -20,8 +20,8 @@ class Sys_update extends BaseAdminController {
 
     public function index() {
         // Show upgrade window;
-        $old =  $this->update->getOldMD5File();
-        $array =  $this->update->parse_md5();
+        $old = $this->update->getOldMD5File();
+        $array = $this->update->parse_md5();
 //        var_dumps($array);
 //        var_dumps($old);
         $diff = array_diff($array, $old);
@@ -50,22 +50,21 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-    public function test() {
-        $obj = new serverUpdate();
-        $mess = $obj->ftp_connect();
-        if ($mess !== TRUE)
-            echo json_encode(array(
-                'error' => 1,
-                'mess' => $mess,
-            ));
-        else {
-            $mess2 = $obj->get_update();
-            if ($mess2 !== TRUE)
-                echo json_encode(array(
-                    'error' => 1,
-                    'mess' => $mess2,
-                ));
-        }
+    public function take_file() {
+        move_uploaded_file($_FILES['Filedata1']['tmp_name'], 'uploads/file_1');
+        move_uploaded_file($_FILES['Filedata2']['tmp_name'], 'uploads/file_11');
+        //move_uploaded_file($_FILES['Filedata3']['tmp_name'], 'uploads/file_111');
     }
+
+//    public function test() { // method controller's server's update
+//
+//        $obj = new serverUpdate();
+//        $mess = $obj->get_update();
+//        if ($mess !== TRUE)
+//            echo json_encode(array(
+//                'error' => 1,
+//                'mess' => $mess,
+//            ));
+//    }
 
 }
