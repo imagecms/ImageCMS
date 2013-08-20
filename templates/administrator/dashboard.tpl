@@ -119,11 +119,9 @@
                         <tr>
                             <td>
                                 <p>
+                                    {lang('a_version')}: {$cms_number} <br />
                                     <a href="/admin/sys_update">
-                                        <button type="button" class="btn btn-small btn-primary btn-info">
-                                            <span class="icon-download"></span>
                                             Проверить обновления
-                                        </button>
                                     </a>
                                     <br/>
                                     <a href="/admin/sys_info" class="pjax">{lang('a_info')}</a>
