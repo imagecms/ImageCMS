@@ -21,11 +21,11 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
-        $client = new soapclient('http://pftest.imagecms.net/shop/test');
+//        $client = new soapclient('http://pftest.imagecms.net/shop/test');
 // Вызываем SOAP-метод
-        $result = $client->call('hello', array('name' => 'Scott'));
-        var_dump($result);
-        exit;
+//        $result = $client->call('hello', array('name' => 'Scott'));
+//        var_dump($result);
+//        exit;
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
