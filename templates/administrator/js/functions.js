@@ -1,26 +1,6 @@
 var editorsEnabled = false;
 //temporary
 
-
-function get_update(){
-    $.post('/admin/sys_update/get_license', function(data){
-        var key = data;
-<<<<<<< HEAD
-        $.post('http://www.pftest.imagecms.net/shop/test/server', {key:key}, function(data){
-=======
-        $.post('http://pftest.imagecms.net/shop/test/server', {key:key}, function(data){
->>>>>>> c3652d5ab027437d321a0aa44889069da7d678e6
-
-              var Obj = JSON.parse(data);
-              if (Obj.error == 1)
-                  alert(Obj.mess)
-
-
-
-        })
-    })
-}
-
 function ajaxLoadChildCategory(el, id) {
 
     var container = $(el).closest('.row-category');
