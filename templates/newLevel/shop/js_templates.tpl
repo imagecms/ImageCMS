@@ -785,7 +785,7 @@
         <!-- End. Show link  -->
         <% } else {%>    
     {/literal}<div class="msg f-s_0">
-    <div class="success"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('s_not_found'))}</span></div>
+    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('s_not_found'))}</span></div>
     </div>{literal}
     <% }%>
     </div>

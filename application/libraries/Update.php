@@ -240,6 +240,10 @@ class Update {
         $zip->open($file);
         $rez = $zip->extractTo($destination);
         $zip->close();
+
+        if ($rez)
+            $this->db_restore($destination . '/backup.sql');
+
         return $rez;
     }
 
@@ -437,11 +441,11 @@ class Update {
     }
 
     public function get_settings() {
-        
+
     }
 
     public function set_settings() {
-        
+
     }
 
     /**
@@ -462,10 +466,13 @@ class Update {
 
     /**
      * database restore
-     * @param string $file_name
+     * @param string $file
      * @todo доробити видалення і непоказувати лишні файли
      */
-    public function db_restore($file = '') {
+    public function db_restore($file) {
+        if (empty($file))
+            return FALSE;
+
         if (is_readable($file)) {
             $restore = file_get_contents($file);
             return $this->query_from_file($restore);
@@ -490,9 +497,9 @@ class Update {
                         $zip->extractTo('./application/backups/zip');
                         if (file_exists('./application/backups/zip/backup.sql')) {
                             $this->restore_files[] = array(
-                            'name' => $filename,
-                            'size' => filesize('./application/backups/' . $filename),
-                            'create_date' => filemtime('./application/backups/' . $filename)
+                                'name' => $filename,
+                                'size' => filesize('./application/backups/' . $filename),
+                                'create_date' => filemtime('./application/backups/' . $filename)
                             );
                         }
                         $this->removeDirRec('./application/backups/zip');
