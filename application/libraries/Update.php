@@ -465,7 +465,7 @@ class Update {
      * @param string $file_name
      * @todo доробити видалення і непоказувати лишні файли
      */
-    public function db_restore($file = 'sql_19-08-2013_17.16.14.txt') {
+    public function db_restore($file = '') {
         if (is_readable($file)) {
             $restore = file_get_contents($file);
             return $this->query_from_file($restore);
