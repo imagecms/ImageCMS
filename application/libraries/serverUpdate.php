@@ -21,12 +21,16 @@ class serverUpdate {
     }
 
     public function check_rule($domen, $careKey) {
-
+        /*
         $sql = "select from update_key where key = '$careKey' and domen = '$domen'";
         if ($this->ci->db->query($sql)->num_rows() > 0)
             return true;
         else
             return false;
+         * 
+         * 
+         */
+        return true;
     }
 
     public function getHash($domen, $imagecmsNumber, $buildId, $careKey) {
@@ -49,22 +53,32 @@ class serverUpdate {
             return file_get_contents($this->path_to_corp . '/md5_corp.txt');
         }
     }
+    
+    public function generatePremHref(){
+        
+    }
+    public function generateProHref(){
+        
+    }
+    public function generateCorpHref(){
+        
+    }
 
     public function getUpdateFile($domen, $imagecmsNumber, $buildId, $careKey) {
         
 
         if (strstr($imagecmsNumber, 'Premium')) {
             if ($this->check_rule($domen, $careKey))
-                return file_get_contents($this->path_to_prem . '/premium.zip');
+                return $this->generatePremHref();
             else
                 return false;
         }elseif (strstr($imagecmsNumber, 'Pro')) {
             if ($this->check_rule($domen, $careKey))
-                return file_get_contents($this->path_to_pro . '/pro.zip');
+                return $this->generateProHref();
             else
                 return false;
         }else {
-            return file_get_contents($this->path_to_corp . '/corp.zip');
+            return $this->generateCorpHref();
         }
     }
 

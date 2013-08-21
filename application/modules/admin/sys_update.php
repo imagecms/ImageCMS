@@ -77,8 +77,10 @@ class Sys_update extends BaseAdminController {
             $result = json_decode($result);
             if ($er = $result->error)
                 echo $er;
-            else
-                file_put_contents('12121.zip', $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key));
+            else {
+                $href = $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+                //return $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            }
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
