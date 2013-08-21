@@ -86,10 +86,21 @@ class Sys_update extends BaseAdminController {
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
 
-            $client = new SoapClient("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
+            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
 
-            $result = $client->getPath("us", "russia");
-            echo $result;
+            $domen = $_SERVER['SERVER_NAME'];
+
+            $result = $client->getStatus($domen, BUILD_ID);
+            var_dump($result);
+
+            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            $result = json_decode($result);
+            if ($er = $result->error)
+                echo $er;
+            else {
+                $href = $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+                //return $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            }
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
