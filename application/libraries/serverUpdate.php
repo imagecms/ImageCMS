@@ -14,7 +14,7 @@ class serverUpdate {
     }
 
     public function change_shop() {
-        /*
+        
         $ch = curl_init($this->host_www . '/shop/cart');
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -22,9 +22,7 @@ class serverUpdate {
         if (strstr($res, 'HTTP/1.1 200 OK'))
             $this->shop = true;
         curl_close($ch);
-         * 
-         */
-        $this->shop = false;
+
     }
 
     public function select_lic() {
@@ -55,30 +53,32 @@ class serverUpdate {
     }
 
     //ajax 
-    public function get_update() {
-
-        $this->get_host();
-        $this->change_shop();
+    public function get_update($license, $upd_key) {
         
-        if (!$this->shop) {
-            $this->upload_corporate();
-            return true;
-        } else {
-            if ($this->select_lic() && $this->check_paid() && $this->check_key()) {
-                $this->upload_shop();
-                return true;
-            } else {
-                $sql = "insert into pirate(domen) values('" . $this->host . "')";
-                $this->ci->db->query($sql);
-                return 'Ваша лицензия не зарегистрирована!';
-                
-            }
-        }
+        return $license . $upd_key;
+
+//        $this->get_host();
+//        $this->change_shop();
+//        
+//        if (!$this->shop) {
+//            $this->upload_corporate();
+//            return true;
+//        } else {
+//            if ($this->select_lic() && $this->check_paid() && $this->check_key()) {
+//                $this->upload_shop();
+//                return true;
+//            } else {
+//                $sql = "insert into pirate(domen) values('" . $this->host . "')";
+//                $this->ci->db->query($sql);
+//                return 'Ваша лицензия не зарегистрирована!';
+//                
+//            }
+//        }
     }
 
 
     public function post_file($data) {
-        $url = "http://pftest.imagecms.net/shop/test/server";
+        $url = $this->host . "/admin/shop/sys_update";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -96,7 +96,7 @@ class serverUpdate {
         $this->post_file(array(
             'Filedata1' => '@index.php',
             'Filedata2' => '@history.txt',
-            //'Filedata3' => '@',
+            'Filedata3' => '@',
         ));
 
     }
@@ -106,7 +106,7 @@ class serverUpdate {
         $this->post_file(array(
             'Filedata1' => '@history.txt',
             'Filedata2' => '@index.php',
-            //'Filedata3' => '@',
+            'Filedata3' => '@',
         ));
 
 
