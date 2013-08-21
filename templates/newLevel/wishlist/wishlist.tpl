@@ -7,7 +7,7 @@
                 </div>
             {/foreach}
         {/if}
-        <form action="/wishlist/wishlistApi/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <form action="/wishlist/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="hidden" value="{echo $user[id]}" name="userID"/>
             <ul class="items items-row items-wish-data">
                 <li class="clearfix">
@@ -51,7 +51,9 @@
                     </div>
                 </li>
             </ul>
-            <input type="submit" value="upload" class="v_h"/>
+            <div class="btn-def">
+                <input type="submit" value="загрузить катринку"/>
+            </div>
             {form_csrf()}
         </form>
         <div class="form-data drop">
