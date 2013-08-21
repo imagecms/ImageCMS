@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-{$NextCSIdCond = $NextCSId != null}
+{$NextCSIdCond = $NextCS != null}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}

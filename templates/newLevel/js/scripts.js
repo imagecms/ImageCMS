@@ -1619,11 +1619,17 @@ jQuery(document).ready(function() {
 var genTimeout = "";
 wnd.load(function() {
     function removePreloaderBaner(el) {
-        el.find('img[data-original]').each(function() {
+        var el = el.find('img[data-original]'),
+                elL = el.length,
+                i = 0;
+        el.each(function() {
             var $this = $(this);
             $this.attr('src', $this.attr('data-original')).load(function() {
                 $(this).fadeIn();
                 $('.baner').find(preloader).remove();
+                i++;
+                if (i == elL)
+                    banerResize('.baner:has(.cycle)');
             })
         })
     }
@@ -1673,7 +1679,6 @@ wnd.load(function() {
             $(next + ',' + prev).show();
         }
         removePreloaderBaner(cycle); //cycle - parent for images
-        banerResize('.baner:has(.cycle)');
     }
     initCarouselJscrollPaneCycle(body);
     $(document).bind('widget_ajax', function(e) {
@@ -1681,7 +1686,6 @@ wnd.load(function() {
     });
 
     $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-
     reinitializeScrollPane(body);
 
     $("img.lazy").lazyload(lazyload);
@@ -1697,7 +1701,6 @@ wnd.load(function() {
 
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var $this = $(this);
-        console.log($this)
         file = this.files[0],
                 img = document.createElement("img"),
                 reader = new FileReader();
@@ -1705,23 +1708,7 @@ wnd.load(function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
-var val = $this.val();
         $('#wishlistphoto').html($(img));
-
-        $('#do_load').remove();
-        $('<iframe />', {
-            "name": "do_load",
-            "id": "do_load"
-        }).appendTo('body')
-        $('#do_load').each(function() {
-            $('<form />', {
-                'action': "/wishlist/wishlistApi/do_upload",
-                'method': "post",
-                'accept-charset': "utf-8",
-                'enctype': "multipart/form-data"
-            }).appendTo($(this).contents().find('body')).append($this.clone().attr('value', val)).append($this.closest('form').find('[type="hidden"]').clone());
-            
-        })
     });
     $('[data-rel="post"]').click(function() {
         var $thisD = $(this).data();
