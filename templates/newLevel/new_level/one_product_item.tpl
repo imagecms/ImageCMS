@@ -83,7 +83,7 @@
                                 <span class="curr">{$CS}</span>
                             </span>
                         </span>
-                        {if $NextCSId != null}
+                        {if $NextCS != null}
                             <span class="price-add">
                                 <span>
                                     (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
@@ -164,7 +164,7 @@
                                         data-img="{echo $pv->getSmallPhoto()}"
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         data-origPrice="{if $p->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-addPrice="{if $NextCSId != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                        data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('s_buy')}</span>
