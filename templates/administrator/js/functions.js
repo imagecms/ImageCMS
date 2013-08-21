@@ -5,7 +5,7 @@ var editorsEnabled = false;
 function get_update(){
     $.post('/admin/sys_update/get_license', function(data){
         var key = data;
-        $.post('http://server_update/admin/sys_update/test', {key:key}, function(data){
+        $.post('http://www.pftest.imagecms.net/shop/test/server', {key:key}, function(data){
 
               var Obj = JSON.parse(data);
               if (Obj.error == 1)
