@@ -134,7 +134,7 @@
                                         </td>
                                         <td class="span1">
                                             {if $file_inf['name'] != 'backup.zip'}
-                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}')">
+                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             {/if}

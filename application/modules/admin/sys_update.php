@@ -91,7 +91,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function delete_backup($file_name){
-//        echo unlink('./application/backups/' . $file_name);
+        echo unlink('./application/backups/' . $file_name);
     }
 //    public function test() { // method controller's server's update
 //
