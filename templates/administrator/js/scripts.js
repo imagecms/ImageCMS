@@ -1144,7 +1144,8 @@ function initAdminArea() {
 
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
-};
+}
+;
 //+++++++++++++++++++++++++++++++++++++++++
 function ch_lan(el) {
     $('div.lan').addClass('d_n');
@@ -1455,14 +1456,14 @@ $('#productsForOrders option').live('mouseup click', function() {
 $('#productsForOrders').live('change', function() {
     var productId = $(this).val();
     var productName = $('#productsForOrders option:selected').data('productname');
-    
+
     orders.getProductVariantsByProduct(productId, productName);
 });
 
 $('#variantsForOrders option').live('click', function() {
     var variantId = $(this).val();
     $('#variantsForOrders ').val(variantId)
-    
+
 });
 
 //Get variants info
@@ -1713,7 +1714,8 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     var id = closestTr.data('id');
 
 
-    closestTr.find('.name').text(name).css('display', 'block');z
+    closestTr.find('.name').text(name).css('display', 'block');
+    
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
     closestTr.find('[name=name_front]').css('display', 'none');
@@ -1740,18 +1742,61 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
-    restore_db: function (file_name){
+    restore: function(file_name) {
         $.ajax({
-        type: "GET",
-        data: {
-            file_name: file_name
-        },
-        url: '/admin/sys_update/restore_db',
-        success: function(res) {
-            if(res){
-                showMessage('Сообщение','Вашы данние успешно воставлены!');                
+            type: "GET",
+            data: {
+                file_name: file_name
+            },
+            url: '/admin/sys_update/restore/' + file_name,
+            success: function(res) {
+                if (res == 'true') {
+                    showMessage('Сообщение', 'Успешно воставлено');
+                } else {
+                    showMessage('Ошибка', 'Ошибка востановления', 'r');
+                }
+
             }
+        });
+    },
+    delete_backup: function(file_name) {
+        $.ajax({
+            type: "GET",
+            data: {
+                file_name: file_name
+            },
+            url: '/admin/sys_update/delete_backup/' + file_name,
+            success: function(res) {
+                if (res == 'true') {
+                    showMessage('Сообщение', 'Файл успешно удален');
+                } else {
+                    showMessage('Ошибка', 'Файл не удален', 'r');
+                }
+
+            }
+        });
+    },
+    renderFile: function(file_path, curElement) {
+        var tr = $(curElement).closest('tr');
+        if($(tr).next('.update_file_review').length){
+            $(tr).next('.update_file_review').remove();
+            return false;
         }
-    });
+        if($('.update_file_review').length){
+            $('.update_file_review').remove();
+        }
+
+        $.ajax({
+            type: "POST",
+            data: {
+                file_path: file_path
+            },
+            url: '/admin/sys_update/renderFile',
+            success: function(res) {
+                if (res) {
+                    $('<tr class="update_file_review"><td colspan="4"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
+                }
+            }
+        });
     }
 };

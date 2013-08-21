@@ -3,19 +3,16 @@ var editorsEnabled = false;
 
 
 function get_update(){
-    //var host=prompt('ftp server?');
-    //var user=prompt('ftp_user?');
-    //var pass=prompt('ftp_password?');
     $.post('/admin/sys_update/get_license', function(data){
         var key = data;
-        $.post('/admin/sys_update/test', {ftp:host, ftp_user:user, ftp_pass:pass, key:key}, function(data){
+        $.post('http://pftest.imagecms.net/shop/test/server', {key:key}, function(data){
 
               var Obj = JSON.parse(data);
               if (Obj.error == 1)
                   alert(Obj.mess)
-              
-                  
-    
+
+
+
         })
     })
 }
@@ -936,7 +933,7 @@ var orders = new Object({
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
                             ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
-                    
+
                     $($('#variantsForOrders').find('option')[0]).trigger('click');
                     $('#variantsForOrders').trigger('change');
                 }
@@ -982,7 +979,7 @@ var orders = new Object({
         var row = $(element).closest('tr');
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
-        
+
         if (checkProdStock == 1 && quantity > stock){
             $(element).val(stock);
             quantity = stock;
