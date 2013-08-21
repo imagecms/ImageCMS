@@ -17,15 +17,9 @@ class Sys_update extends BaseAdminController {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
 
-        require_once('./application/libraries/nusoap/nusoap.php');
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
-//        $client = new soapclient('http://pftest.imagecms.net/shop/test');
-// Вызываем SOAP-метод
-//        $result = $client->call('hello', array('name' => 'Scott'));
-//        var_dump($result);
-//        exit;
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
@@ -34,7 +28,7 @@ class Sys_update extends BaseAdminController {
         $diff = array_diff($array, $old);
 //        var_dumps($diff);
 
-        $this->update->add_to_ZIP($diff);
+//        $this->update->add_to_ZIP($diff);
 
 
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
@@ -75,18 +69,21 @@ class Sys_update extends BaseAdminController {
     public function get_update() { // method controller's server's update
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
-            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
-            var_dump($client->__getFunctions());
+
+            $client = new SoapClient("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
+
             $result = $client->getPath("us", "russia");
-            var_dump(unserialize($result));
+            echo $result;
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
     }
 
+
     public function backup() {
         $this->update->createBackUp();
     }
+
 
     public function sort($array, $sort_by, $order) {
         for ($i = 0; $i < count($array); $i++) {
