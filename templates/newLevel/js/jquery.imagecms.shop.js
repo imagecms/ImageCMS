@@ -1587,7 +1587,7 @@ var ie = jQuery.browser.msie,
                     moreoneNC = settings.moreoneNC,
                     arrDrop = [];
 
-            $(this).add($('[data-drop]')).unbind('click.drop').bind('click.drop', function(e) {
+            $(this).add($('[data-drop]')).not('[disabled]').unbind('click.drop').bind('click.drop', function(e) {
                 var $this = $(this);
                 $(document).trigger({'type': 'drop.click', 'el': $this})
                 e.stopPropagation();
@@ -1597,19 +1597,17 @@ var ie = jQuery.browser.msie,
                     var place = elSet.place || settings.place,
                             placement = elSet.placement || settings.placement,
                             $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration || duration,
+                            $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
                             $thisA = elSet.animate != undefined ? elSet.animate : animate;
-                    $this.each(function() {
-                        var $thisSource = elSet.drop;
-                        $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'placement': placement, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA, 'close': close, 'closed': closed}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
-                            var dropA = $('[data-elrun].' + activeClass)//hide other drop if place == 'center'
-                            if ($.existsN(dropA) && place == 'center')
-                                methods.triggerBtnClick(dropA.not($(this)));
-                            if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
-                                e.stopImmediatePropagation();
-                        });
+
+                    var $thisSource = elSet.drop;
+                    $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'placement': placement, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA, 'close': close, 'closed': closed}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
+                        var dropA = $('[data-elrun].' + activeClass)//hide other drop if place == 'center'
+                        if ($.existsN(dropA) && place == 'center')
+                            methods.triggerBtnClick(dropA.not($(this)));
+                        if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
+                            e.stopImmediatePropagation();
                     });
-                    console.log(elSet.effectOn)
                     var $thisEOn = elSet.effectOn || effon,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
@@ -1618,8 +1616,7 @@ var ie = jQuery.browser.msie,
                         if (!$.exists('.overlayDrop')) {
                             body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
                         }
-                        optionsDrop.dropOver = $('.overlayDrop');
-                        optionsDrop.dropOver.css({
+                        optionsDrop.dropOver = $('.overlayDrop').css({
                             'background-color': overlayColor,
                             'opacity': overlayOpacity
                         });
@@ -1637,6 +1634,10 @@ var ie = jQuery.browser.msie,
                         var $thisDrop = $this.closest('[data-elrun]');
                         if ($.existsN($thisDrop))
                             methods.triggerBtnClick($thisDrop);
+
+                        // if visble drop which show with refer in new showing drop
+                        if ($(elSetSource.find('[data-drop]').data('drop')).is(':visible'))
+                            methods.triggerBtnClick($(elSetSource.find('[data-drop]').data('drop')));
 
                         // starget trigger click in drop on show drop element (js_template.tpl showCart)
                         $thisDrop = $(e.starget).closest('[data-elrun]');
@@ -1657,9 +1658,11 @@ var ie = jQuery.browser.msie,
                             elSetSource.css('width', wndW - 40);
                         else
                             elSetSource.removeAttr('style');
-                        methods.positionDrop($this, placement, place);
+                        if (place == 'noinherit')
+                            methods.positionDrop($this, placement, place);
                         var dC = elSetSource.find(elSetSource.data('dropContent')).first();
-                        methods.dropCenter(elSetSource);
+                        if (place == 'center')
+                            methods.dropCenter(elSetSource);
                         if (condOverlay) {
                             optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
                                 e.stopPropagation();
@@ -1715,6 +1718,7 @@ var ie = jQuery.browser.msie,
                             success: function(data) {
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
                                     $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
+                                    eval(elSet.callback)($this);
                                 }
                                 else {
                                     $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})

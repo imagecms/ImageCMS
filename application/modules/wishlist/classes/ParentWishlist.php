@@ -626,6 +626,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function deleteImage($image) {
+        $this->db->where('id', $this->dx_auth->get_user_id())->update('mod_wish_list_users', array('user_image'=>''));
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }

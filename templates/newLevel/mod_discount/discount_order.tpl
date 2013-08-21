@@ -18,7 +18,7 @@
 {else:}
 {if $discount->max_discount->type_value == 1} {$type_value = "%"} {else:}{$type_value = "числовый"}{/if}
 <li>
-    <span class="s-t">Назва скидки:</span>
+    <span class="s-t">Название скидки:</span>
     <span class="price-item">{echo $discount->max_discount->name}</span>
 </li>
 <li>
