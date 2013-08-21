@@ -16,7 +16,7 @@
                         <i class="icon-refresh"></i>
                         Обновить
                     </button>
-                    <button onclick="$.post('/admin/sys_update/backup')"
+                    <button onclick="$.post('/admin/sys_update/backup'); location.reload();"
                        class="btn btn-small btn-primary">
                         <span class="icon-hdd"></span>
                         Создать BackUp
