@@ -1709,21 +1709,15 @@ wnd.load(function() {
         };
         reader.readAsDataURL(file);
         $('#wishlistphoto').html($(img));
+        $('[data-wishlist="do_upload"]').removeAttr('disabled');
     });
-    $('[data-rel="post"]').click(function() {
-        var $thisD = $(this).data();
-        $.ajax({
-            type: "post",
-            data: $thisD.datas,
-            url: $thisD.url,
-            success: function(data) {
-                $thisD.callback;
-            }})
-        return false;
+    $('[data-wishlist="do_upload"]').click(function(){
+        
     })
-    function a() {
-        $('#wishlistphoto').empty()
-    }
+    $('[data-wishlist="delete_img"]').click(function(){
+        
+    })
+    
 }).resize(function() {
     clearTimeout(genTimeout);
     genTimeout = setTimeout(function() {
@@ -1734,3 +1728,16 @@ wnd.load(function() {
         banerResize('.baner:has(.cycle)');
     }, 300)
 });
+
+function deleteImage(el) {
+    el.parent().remove();
+    var img = $('#wishlistphoto img');
+    img.attr('src', img.data('src'));
+}
+function changeDataWishlist(el){
+    $('[data-wishlist-name]').each(function(){
+        var $this = $(this);
+        console.log(el.closest('form').find('[name='+$this.data('wishlistName')+']'))
+        $this.html(el.closest('form').find('[name='+$this.data('wishlistName')+']').val())
+    })
+}
