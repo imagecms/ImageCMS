@@ -1715,7 +1715,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 
 
     closestTr.find('.name').text(name).css('display', 'block');
-    z
+    
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
     closestTr.find('[name=name_front]').css('display', 'none');
