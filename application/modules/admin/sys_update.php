@@ -16,7 +16,6 @@ class Sys_update extends BaseAdminController {
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
-
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
@@ -27,10 +26,7 @@ class Sys_update extends BaseAdminController {
 //        var_dumps($old);
         $diff = array_diff($array, $old);
 //        var_dumps($diff);
-
 //        $this->update->add_to_ZIP($diff);
-
-
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
 //        echo json_encode( $this->update->parse_md5());
 //        $this->update->formXml();
@@ -71,32 +67,26 @@ class Sys_update extends BaseAdminController {
         try {
 
             $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
-            
+
             $domen = $_SERVER['SERVER_NAME'];
-            
-//            $result = $client->getStatus($domen, BUILD_ID);
-//            var_dump($result);
-            
-//            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-//            $result = json_decode($result);
-//            if ($er = $result->error)
-//                echo $er;
-//              else
-            
-            
 
-            file_put_contents('12121.zip',$client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key));
+            $result = $client->getStatus($domen, BUILD_ID);
+            var_dump($result);
 
+            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            $result = json_decode($result);
+            if ($er = $result->error)
+                echo $er;
+            else
+                file_put_contents('12121.zip', $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key));
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
     }
 
-
     public function backup() {
         $this->update->createBackUp();
     }
-
 
     public function sort($array, $sort_by, $order) {
         for ($i = 0; $i < count($array); $i++) {
