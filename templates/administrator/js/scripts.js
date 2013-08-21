@@ -1759,15 +1759,16 @@ var Update = {
             }
         });
     },
-    delete_backup: function(file_name) {
+    delete_backup: function(file_name, curElement) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             data: {
                 file_name: file_name
             },
             url: '/admin/sys_update/delete_backup/' + file_name,
             success: function(res) {
-                if (res == 'true') {
+                if (res) {
+                    $(curElement).closest('tr').remove();
                     showMessage('Сообщение', 'Файл успешно удален');
                 } else {
                     showMessage('Ошибка', 'Файл не удален', 'r');
