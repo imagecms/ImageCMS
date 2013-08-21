@@ -9,6 +9,7 @@ class Update {
 
     private $arr_files;
     private $files_dates = array();
+    private $restore_files = array();
 
     /**
      * шлях до сканування папок
@@ -129,14 +130,14 @@ class Update {
 //        $request_file = "./SampleRequest.xml";
 //        $fh = fopen($request_file, 'r');
 //        $xml_data = fread($fh, filesize($request_file));
-        $xml_data = 'grant_type=authorization_code';
+        $xml_data = 'asdasdasgrant_type=authorization_code';
 //        fclose($fh);
 
         $url = 'http://pftest.imagecms.net/shop/test';
         $page = "/services/calculation";
         $headers = array(
             "POST " . $page . " HTTP/1.0",
-            "Content-type: text/xml;charset=\"utf-8\"",
+            "Content-type: text/xml/file;charset=\"utf-8\"",
             "Accept: text/xml",
             "Cache-Control: no-cache",
             "Pragma: no-cache",
@@ -163,7 +164,7 @@ class Update {
             print "Error: " . curl_error($ch);
         } else {
             // Show me the result
-            var_dump(json_decode($data));
+            var_dump($data);
         }
     }
 
@@ -209,7 +210,7 @@ class Update {
         $zip = new ZipArchive();
         $time = time();
         $filename = "./application/backups/backup.zip";
-        rename($filename, './application/backups/' . time() . '.zip');
+        rename($filename, "./application/backups/$time.zip");
 
         if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
@@ -217,11 +218,16 @@ class Update {
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
 
+        $db = $this->db_backup();
+        $zip->addFile('./application/backups/' . $db, $db);
 
         echo "numfiles: " . $zip->numFiles . "\n";
         echo "status:" . $zip->status . "\n";
 
         $zip->close();
+
+        chmod('./application/backups/' . $db, 0777);
+        unlink('./application/backups/' . $db);
     }
 
     /**
@@ -232,8 +238,13 @@ class Update {
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
         $zip = new ZipArchive();
         $zip->open($file);
-        $zip->extractTo($destination);
+        $rez = $zip->extractTo($destination);
         $zip->close();
+
+        if ($rez)
+            $this->db_restore($destination . '/backup.sql');
+
+        return $rez;
     }
 
     /**
@@ -302,7 +313,7 @@ class Update {
         if ($handle)
             while (FALSE !== ($file = readdir($handle)))
                 if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)){
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                         $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
                     }
@@ -444,23 +455,28 @@ class Update {
         if (is_really_writable('./application/backups')) {
             $this->ci->load->dbutil();
             $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
-            write_file('./application/backups/' . "sql_" . date("d-m-Y_H.i.s.") . 'sql', $backup);
+            $name = "backup.sql";
+            write_file('./application/backups/' . $name, $backup);
         } else {
             showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
         }
+
+        return $name;
     }
 
     /**
      * database restore
-     * @param string $file_name
+     * @param string $file
      * @todo доробити видалення і непоказувати лишні файли
      */
-    public function db_restore($file_name = 'sql_19-08-2013_17.16.14.txt') {
-        if (is_readable('./application/backups/' . $file_name)) {
-            $restore = file_get_contents('./application/backups/' . $file_name);
+    public function db_restore($file) {
+        if (empty($file))
+            return FALSE;
+
+        if (is_readable($file)) {
+            $restore = file_get_contents($file);
             return $this->query_from_file($restore);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
             return FALSE;
         }
     }
@@ -468,36 +484,45 @@ class Update {
     /**
      * restore files list
      */
-    public function restore_db_files_list() {
-        
-//         $zip = new ZipArchive();
-//        $zip->open($file);
-//        $zip->extractTo($destination);
-//        $zip->close();
-        
-        
+    public function restore_files_list() {
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
                 if (filetype($filename) != 'dir') {
-//                    $file_type = '';
-//                    preg_match('/\.[a-z]{2,3}/',$filename, $file_type);
-//                    if($file_type[0] == '.zip'){
-//                        $zip = new ZipArchive();
-//                        $zip->open('./application/backups/' . $filename);
-//                        $zip->extractTo('./application/backups/zip');
-//                        if($zip->numFiles == 1){
-//                            
-//                        }
-//                        $zip->close();
-//                    }
-                    $restore_dbs[$filename] = filesize('./application/backups/' . $filename);
+                    $file_type = '';
+                    preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
+                    if ($file_type[0] == '.zip') {
+                        $zip = new ZipArchive();
+                        $zip->open('./application/backups/' . $filename);
+                        $zip->extractTo('./application/backups/zip');
+                        if (file_exists('./application/backups/zip/backup.sql')) {
+                            $this->restore_files[] = array(
+                                'name' => $filename,
+                                'size' => filesize('./application/backups/' . $filename),
+                                'create_date' => filemtime('./application/backups/' . $filename)
+                            );
+                        }
+                        $this->removeDirRec('./application/backups/zip');
+                        $zip->close();
+                    }
                 }
             }
-            return $restore_dbs;
+            return $this->restore_files;
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            return FALSE;
         }
+    }
+
+    /**
+     * remove dir recursive
+     * @param string $dir - path to directory
+     */
+    public function removeDirRec($dir) {
+        if ($objs = glob($dir . "/*"))
+            foreach ($objs as $obj)
+                is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
+        if (is_dir($dir))
+            rmdir($dir);
     }
 
     /**
@@ -509,7 +534,7 @@ class Update {
             $restore = file_get_contents('./application/backups/' . $file_name);
             $this->query_from_file($restore);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            return FALSE;
         }
     }
 
@@ -527,17 +552,17 @@ class Update {
                     echo 'Невозможно виполнить запрос: <br>';
                     var_dumps($query);
                     return FALSE;
-                }else{
+                } else {
                     return TRUE;
                 }
             }
         }
     }
-    
-    public function get_files_dates(){
-        if(!empty($this->files_dates)){
+
+    public function get_files_dates() {
+        if (!empty($this->files_dates)) {
             return $this->files_dates;
-        }else{
+        } else {
             return FALSE;
         }
     }
