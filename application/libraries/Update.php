@@ -477,7 +477,7 @@ class Update {
     /**
      * restore files list
      */
-    public function restore_db_files_list() {
+    public function restore_files_list() {
         if (is_readable('./application/backups/')) {
             $dh = opendir('./application/backups/');
             while ($filename = readdir($dh)) {
@@ -502,7 +502,7 @@ class Update {
             }
             return $this->restore_files;
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            return FALSE;
         }
     }
 
@@ -527,7 +527,7 @@ class Update {
             $restore = file_get_contents('./application/backups/' . $file_name);
             $this->query_from_file($restore);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            return FALSE;
         }
     }
 

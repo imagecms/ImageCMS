@@ -40,8 +40,7 @@ class Sys_update extends BaseAdminController {
         $this->template->assign('order', $order);
         $this->template->assign('diff_files_dates', $this->update->get_files_dates());
         $this->template->assign('diff_files', $diff);
-        $this->template->assign('restore_files', $this->sort($this->update->restore_db_files_list(), $sort_by, $order));
-//        $this->template->add_array('files_dbs', $a->restore_db_files_list());
+        $this->template->assign('restore_files', $this->sort($this->update->restore_files_list(), $sort_by, $order));
         $this->template->show('sys_update', FALSE);
     }
 
