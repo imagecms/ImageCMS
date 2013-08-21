@@ -19,6 +19,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
+
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
@@ -30,7 +31,10 @@ class Sys_update extends BaseAdminController {
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
 //        echo json_encode( $this->update->parse_md5());
 //        $this->update->formXml();
-//         $this->update->sendData();
+//        $this->update->sendData();
+//        $this->update->restoreFromZIP();
+//        $this->update->checkForVersion();
+//        $this->update->sendData();
 
         $this->template->assign('sort_by', $sort_by);
         $this->template->assign('order', $order);
@@ -44,7 +48,7 @@ class Sys_update extends BaseAdminController {
     public function restore($file_name) {
         echo $this->update->restoreFromZIP($file_name);
     }
-    
+
     public function renderFile(){
         $file_path = $this->input->post('file_path');
          if (file_exists('.' . $file_path))
@@ -86,7 +90,7 @@ class Sys_update extends BaseAdminController {
         }
         return $array;
     }
-    
+
     public function delete_backup($file_name){
 //        echo unlink('./application/backups/' . $file_name);
     }
@@ -100,5 +104,4 @@ class Sys_update extends BaseAdminController {
 //                'mess' => $mess,
 //            ));
 //    }
-
 }
