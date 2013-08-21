@@ -12,7 +12,15 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#update_form" data-submit><i class="icon-refresh"></i>Обновить</button>
+                    <button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#update_form" data-submit>
+                        <i class="icon-refresh"></i>
+                        Обновить
+                    </button>
+                    <button onclick="$.post('/admin/sys_update/backup')"
+                       class="btn btn-small btn-primary">
+                        <span class="icon-hdd"></span>
+                        Создать BackUp
+                    </button>
                 </div>
             </div>
         </div>
@@ -76,7 +84,7 @@
                         </form>
                     {else:}
                         <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                            Список файлов пуст.                           
+                            Список файлов пуст.
                         </div>
                     {/if}
                 </div>
@@ -93,7 +101,7 @@
                                                 <span class="f-s_14">↓</span>
                                             {else:}
                                                 <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
-                                                <span class="f-s_14">↑</span>                                            
+                                                <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
                                             <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
@@ -106,7 +114,7 @@
                                                 <span class="f-s_14">↓</span>
                                             {else:}
                                                 <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
-                                                <span class="f-s_14">↑</span>                                            
+                                                <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
                                             <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
@@ -134,7 +142,7 @@
                                         </td>
                                         <td class="span1">
                                             {if $file_inf['name'] != 'backup.zip'}
-                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}')">
+                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
                                                     <i class="icon-trash"></i>
                                                 </button>
                                             {/if}
@@ -145,7 +153,7 @@
                         </table>
                     {else:}
                         <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                            Нет файлов восстановления.                           
+                            Нет файлов восстановления.
                         </div>
                     {/if}
                 </div>
