@@ -50,9 +50,9 @@ class Sys_update extends BaseAdminController {
         echo $this->update->restoreFromZIP($file_name);
     }
 
-    public function renderFile(){
+    public function renderFile() {
         $file_path = $this->input->post('file_path');
-         if (file_exists('.' . $file_path))
+        if (file_exists('.' . $file_path))
             echo htmlspecialchars(file_get_contents('.' . $file_path));
         else
             echo '';
@@ -65,20 +65,16 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-
-
     public function get_update() { // method controller's server's update
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
-            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");  
-            var_dump($client->__getFunctions());
+            $client = new SoapClient("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
             $result = $client->getPath("us", "russia");
-            var_dump(unserialize($result));
+            echo $result;
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
     }
-
 
     public function sort($array, $sort_by, $order) {
         for ($i = 0; $i < count($array); $i++) {
@@ -101,9 +97,10 @@ class Sys_update extends BaseAdminController {
         return $array;
     }
 
-    public function delete_backup($file_name){
+    public function delete_backup($file_name) {
         echo unlink('./application/backups/' . $file_name);
     }
+
 //    public function test() { // method controller's server's update
 //
 //        $obj = new serverUpdate();
@@ -114,5 +111,4 @@ class Sys_update extends BaseAdminController {
 //                'mess' => $mess,
 //            ));
 //    }
-
 }
