@@ -143,6 +143,8 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .b_n{background: none !important;}
 .p_r{position: relative!important;}
 .f-s_0, .f-s_0 .f-s_0{font-size: 0;}
+.f-s_12{font-size: 12px;}
+.f-s_11{font-size: 11px;}
 .v-a_b{vertical-align: bottom !important;}
 .v-a_bl{vertical-align: baseline !important;}
 .v-a_t{vertical-align: top !important;}
@@ -157,7 +159,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .o_5, [rel="group"].active, .active > [rel="group"], .active .cloud-zoom-gallery, .active.cloud-zoom, .not-avail img{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
 .b-r_5{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
 .b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
+.b-r_3{-moz-border-radius: 3px;-webkit-border-rad.help-blockius: 3px;border-radius: 3px;}
 
 .empty, .no-empty, .frameCurDiscount, .frame-price-discount{display: none;}
 /*/adding selectors*/
@@ -411,7 +413,8 @@ input.input-search{height: 33px;}
 
 .items-wish-data > li > .frame-photo-title{width: 170px;float: left;position: relative;}
 .items-wish-data > li > .description{margin-left: 205px;}
-.items-wish-data .photo-block{width: 170px;height: 170px;}
+.items-wish-data .photo-block{width: 170px;height: 170px;position: relative;}
+.items-wish-data .photo-block > span{max-width: 100%;}
 .items-wish-data .frame-photo-title .group-buttons{position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin: auto;z-index: 1;width: 78px;height: 31px;display: none;}
 .items-wish-data > li > .frame-photo-title .overlay{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
 .items-wish-data > li > .frame-photo-title:hover .overlay{background-color: rgba(0,0,0, 0.3);}
@@ -782,7 +785,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .frame-label{display: inline-block;}
 .frame-label .frame-label, .frame-radio .frame-label{cursor: pointer;}
 .frame-radio{overflow: hidden;}
-.help-block{margin-top: 3px;}
+.help-block{margin-top: 3px;line-height: 1.2;}
 .help-block p{margin-bottom: 0;}
 .must{position: absolute;left: 100%;top: 5px;margin-left: 2px;}
 form .f_r + .o_h, form .f_l + .o_h{position: relative;}
@@ -1099,7 +1102,8 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 
 /*drop*/
 .drop{display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
-.drop.form-data{position: static;}
+.drop.inherit{position: static;}
+.drop.form-data{float: left;width: 100%;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;text-transform: lowercase;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
