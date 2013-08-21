@@ -120,7 +120,7 @@
                             <td>
                                 <p>
                                     {lang('a_version')}: {$cms_number} <br />
-                                    <a onclick="get_update(); return false;" href="/admin/sys_update">
+                                    <a href="/admin/sys_update">
                                             Проверить обновления
                                     </a>
                                     <br/>
