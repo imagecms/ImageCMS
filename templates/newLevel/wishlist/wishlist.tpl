@@ -7,67 +7,110 @@
                 </div>
             {/foreach}
         {/if}
-        <form action="/wishlist/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            <input type="hidden" value="{echo $user[id]}" name="userID"/>
-            <ul class="items items-row items-wish-data">
-                <li class="clearfix">
-                    <div class="frame-photo-title">
-                        <div class="group-buttons f-s_0">
-                            <div class="btn-edit-photo-wishlist">
-                                <button class="p_r hidden" type="button">
-                                    <span class="icon_edit"></span>
-                                    <input type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
-                                </button>
-                            </div>
-                            <div class="btn-remove-photo-wishlist">
-                                <button class="p_r hidden" type="button" data-url="/wishlist/wishlistApi/deleteImage" data-datas='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}' data-rel="post" data-callback="a()">
-                                    <span class="icon_remove"></span>
-                                </button>
-                            </div>
-                        </div>
+        <ul class="items items-row items-wish-data">
+            <li class="clearfix">
+                <div class="frame-photo-title">
+                    <form action="/wishlist/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                        <input type="hidden" value="{echo $user[id]}" name="userID"/>
                         <div class="photo-block">
                             <span class="helper"></span>
                             <span id="wishlistphoto">
-                                <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+                                {if $user['user_image']!=''}
+                                    <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                                {else:}
+                                    <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                                {/if}
                             </span>
+                            <div class="group-buttons f-s_0">
+                                <div class="btn-edit-photo-wishlist">
+                                    <button class="p_r hidden" type="button">
+                                        <span class="icon_edit"></span>
+                                        <input data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
+                                    </button>
+                                </div>
+                                {if $user['user_image']!=''}
+                                    <div class="btn-remove-photo-wishlist">
+                                        <button 
+                                            type="button"
+                                            data-source="/wishlist/wishlistApi/deleteImage"
+                                            data-type="json"
+                                            data-modal="true"
+                                            data-overlayopacity= "0"
+                                            data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
+                                            data-drop="#notification"
+                                            data-callback="deleteImage"
+                                            data-wishlist="delete_img"
+                                            >
+                                            <span class="icon_remove"></span>
+                                        </button>
+                                    </div>
+                                {/if}
+                            </div>
+                            <div class="overlay"></div>
                         </div>
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="description">
-                        <h2>{echo $user[user_name]}</h2>
-                        <div class="date f-s_0">
-                            <span class="day">{echo date("d", $user[user_birthday])} </span>
+                        <span class="help-block f-s_11">Максимальный размер {echo $settings[maxImageWidth]}&times;{echo $settings[maxImageHeight]} пикселей</span>
+                        <div class="btn-def">
+                            <input type="submit" value="загрузить катринку" data-wishlist="do_upload" disabled="disabled"/>
+                        </div>
+                        {form_csrf()}
+                    </form>
+                </div>
+                <div class="description">
+                    <h2 data-wishlist-name="user_name">{echo $user[user_name]}</h2>
+                    <div class="date f-s_0">
+                        <span data-wishlist-name="user_birthday">{echo date('Y-m-d', $user[user_birthday])}</span>
+                        {/*<span class="day">{echo date("d", $user[user_birthday])} </span>
                             <span class="month">{echo date("F", $user[user_birthday])} </span>
-                            <span class="year">{echo date("Y ", $user[user_birthday])}</span>
-                        </div>
-                        <div class="text">
-                            <p>{echo $user[description]}</p>
-                        </div>
-                        <div class="btn-edit-data-wishlist">
-                            <button type="button">
-                                <span class="text-el d_l_1" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0" data-effect-on="slideDown" data-effect-off="slideUp">Редактировать</span>
-                            </button>
-                        </div>
+                            <span class="year">{echo date("Y ", $user[user_birthday])}</span>*/}
                     </div>
-                </li>
-            </ul>
-            <div class="btn-def">
-                <input type="submit" value="загрузить катринку"/>
-            </div>
-            {form_csrf()}
-        </form>
-        <div class="form-data drop">
-            <form method="POST" action="/wishlist/userUpdate">
-                <input type="hidden" value="{echo $user[id]}" name="user_id"/>
-                <input type="text" value="{echo $user[user_name]}" name="user_name"/>
-                <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
-                <textarea name="description">{echo $user[description]}</textarea>
-                <input type="submit" class="btn"/>
-                {form_csrf()}
-            </form>
-        </div>
-
-
+                    <div class="text">
+                        <p data-wishlist-name="description">{echo $user[description]}</p>
+                    </div>
+                    <div class="btn-edit-data-wishlist">
+                        <button type="button">
+                            <span class="text-el d_l_1" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0">Редактировать</span>
+                        </button>
+                    </div>
+                    <div class="form-data drop horizontal-form">
+                        <form>
+                            <input type="hidden" value="{echo $user[id]}" name="user_id"/>
+                            <label>
+                                <span class="title"></span>
+                                <span class="frame-form-field">
+                                    <input type="text" value="{echo $user[user_name]}" name="user_name"/>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title"></span>
+                                <span class="frame-form-field">
+                                    <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
+                                </span>
+                            </label>
+                            <label>
+                                <span class="title"></span>
+                                <span class="frame-form-field">
+                                    <textarea name="description">{echo $user[description]}</textarea>
+                                </span>
+                            </label>
+                            <div class="btn-def">
+                                <button
+                                    type="button"
+                                    data-source="/wishlist/wishlistApi/userUpdate"
+                                    data-type="json"
+                                    data-modal="true"
+                                    data-overlayopacity= "0"
+                                    data-drop="#notification"
+                                    onclick="serializeForm(this)"
+                                    data-callback="changeDataWishlist"
+                                    >
+                                    <span class="text-el">Сохранить</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
 
         <br /><br />
