@@ -125,7 +125,6 @@ function filtertype(el, totalProducts, otherClass) {
             $.extend(cleaverFilterObj, {
                 mainWraper: $(this),
                 cleaverFilterFunc: function(elPos, countTov, clas) {
-                    console.log(2)
                     cleaverFilterObj.mainWraper.hide();
 
                     $(cleaverFilterObj.elCount).text(countTov);
@@ -270,7 +269,6 @@ function afterAjaxInitializeFilter() {
             });
             if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
                 filtersContent.show();
-                console.log(1)
                 $this.find('.title').children().addClass('valuePD');
             }
         }
@@ -324,6 +322,7 @@ function ajaxRecount(el, slChk, submit) {
                 otherClass = slChk;
             }
             if ($($this).closest(framechecks).data('rel') == undefined) {
+                cleaverFilterObj.currentPosScroll = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
             else {

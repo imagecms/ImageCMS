@@ -177,7 +177,9 @@ icons = {
     icon_payment: "M16,1.466C7.973,1.466,1.466,7.973,1.466,16c0,8.027,6.507,14.534,14.534,14.534c8.027,0,14.534-6.507,14.534-14.534C30.534,7.973,24.027,1.466,16,1.466z M17.255,23.88v2.047h-1.958v-2.024c-3.213-0.44-4.621-3.08-4.621-3.08l2.002-1.673c0,0,1.276,2.223,3.586,2.223c1.276,0,2.244-0.683,2.244-1.849c0-2.729-7.349-2.398-7.349-7.459c0-2.2,1.738-3.785,4.137-4.159V5.859h1.958v2.046c1.672,0.22,3.652,1.1,3.652,2.993v1.452h-2.596v-0.704c0-0.726-0.925-1.21-1.959-1.21c-1.32,0-2.288,0.66-2.288,1.584c0,2.794,7.349,2.112,7.349,7.415C21.413,21.614,19.785,23.506,17.255,23.88z",
     icon_comment: "M16,5.333c-7.732,0-14,4.701-14,10.5c0,1.982,0.741,3.833,2.016,5.414L2,25.667l5.613-1.441c2.339,1.317,5.237,2.107,8.387,2.107c7.732,0,14-4.701,14-10.5C30,10.034,23.732,5.333,16,5.333z",
     icon_success: "M2.379,14.729 5.208,11.899 12.958,19.648 25.877,6.733 28.707,9.561 12.958,25.308z",
-    icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z"
+    icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z",
+    icon_edit: "M25.31,2.872l-3.384-2.127c-0.854-0.536-1.979-0.278-2.517,0.576l-1.334,2.123l6.474,4.066l1.335-2.122C26.42,4.533,26.164,3.407,25.31,2.872zM6.555,21.786l6.474,4.066L23.581,9.054l-6.477-4.067L6.555,21.786zM5.566,26.952l-0.143,3.819l3.379-1.787l3.14-1.658l-6.246-3.925L5.566,26.952z",
+    icon_remove: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z"
 };
 var genObj = {
     popupCart: '#popupCart',
@@ -248,11 +250,11 @@ var genObj = {
     certPrice: '#giftCertPrice',
     certFrame: '#giftCertSpan',
     orderDetailsTemplate: '#orderDetailsTemplate',
-    
     textEl: '.text-el', //селектор
     msgF: '.msg',
     err: 'error', //клас
-    scs: 'success' //клас
+    scs: 'success', //клас
+    info: 'info' //клас
 };
 message = {
     success: function(text) {
@@ -260,6 +262,9 @@ message = {
     },
     error: function(text) {
         return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+    },
+    info: function(text) {
+        return '<div class = "msg"><div class = "' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
 lazyload = {
@@ -778,8 +783,8 @@ if (!$.isFunction($.fancybox)) {
         loading.hide();
     };
 }
-function banerResize() {
-    $('.baner:has(.cycle)').each(function() {
+function banerResize(el) {
+    $(el).each(function() {
         var h = 0,
                 $this = $(this).css('height', ''),
                 img = $this.find('img');
@@ -787,7 +792,7 @@ function banerResize() {
             var $thisH = $(this).height()
             h = $thisH > h ? $thisH : h;
         });
-        $this.css('height', h)
+        $this.css('height', h + $this.children().outerHeight() - $this.children().height())
     })
 }
 function hideDrop(drop, form, durationHideForm) {
@@ -1175,6 +1180,7 @@ jQuery(document).ready(function() {
             }
             if (el.hasClass('tabs-product')) {
                 showHidePart($('.patch-product-view'));
+                showHidePart($('.frame-list-comment__icsi-css.sub-2'));
             }
         }
     });
@@ -1248,7 +1254,6 @@ jQuery(document).ready(function() {
                     var itemGal = carGal.find('.items-thumbs > li'),
                             itemGalL = itemGal.length;
                     var pActEl = arguments[1] < itemGalL ? arguments[1] : arguments[1] - itemGalL;
-                    console.log(arguments[1])
                     var adding = {start: pActEl}
                     itemGal.eq(pActEl).addClass('active');
                     carGal.parent().myCarousel($.extend($.extend({}, carousel), {
@@ -1458,7 +1463,8 @@ jQuery(document).ready(function() {
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
     });
-    $('.' + genObj.toWishlist).live('click.toWish', function() {
+
+    $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).live('click.toWish', function() {
         $.fancybox.showActivity();
         var id = $(this).data('prodid'),
                 vid = $(this).data('varid'),
@@ -1667,7 +1673,7 @@ wnd.load(function() {
             $(next + ',' + prev).show();
         }
         removePreloaderBaner(cycle); //cycle - parent for images
-        banerResize();
+        banerResize('.baner:has(.cycle)');
     }
     initCarouselJscrollPaneCycle(body);
     $(document).bind('widget_ajax', function(e) {
@@ -1688,6 +1694,49 @@ wnd.load(function() {
             margZoomLens();
         })
     }
+
+    $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
+        var $this = $(this);
+        console.log($this)
+        file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+var val = $this.val();
+        $('#wishlistphoto').html($(img));
+
+        $('#do_load').remove();
+        $('<iframe />', {
+            "name": "do_load",
+            "id": "do_load"
+        }).appendTo('body')
+        $('#do_load').each(function() {
+            $('<form />', {
+                'action': "/wishlist/wishlistApi/do_upload",
+                'method': "post",
+                'accept-charset': "utf-8",
+                'enctype': "multipart/form-data"
+            }).appendTo($(this).contents().find('body')).append($this.clone().attr('value', val)).append($this.closest('form').find('[type="hidden"]').clone());
+            
+        })
+    });
+    $('[data-rel="post"]').click(function() {
+        var $thisD = $(this).data();
+        $.ajax({
+            type: "post",
+            data: $thisD.datas,
+            url: $thisD.url,
+            success: function(data) {
+                $thisD.callback;
+            }})
+        return false;
+    })
+    function a() {
+        $('#wishlistphoto').empty()
+    }
 }).resize(function() {
     clearTimeout(genTimeout);
     genTimeout = setTimeout(function() {
@@ -1695,6 +1744,6 @@ wnd.load(function() {
         userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
         $('.menu-main').menuImageCms('refresh');
         $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-        banerResize();
+        banerResize('.baner:has(.cycle)');
     }, 300)
 });

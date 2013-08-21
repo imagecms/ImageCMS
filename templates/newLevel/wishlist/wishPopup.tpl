@@ -8,7 +8,7 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
-                <form method="post" action="">
+                <form method="post" action="" onsubmit="return false;">
                     <div class="frame-radio">
                         {foreach $wish_lists as $wish_list}
                             <div class="frame-label">

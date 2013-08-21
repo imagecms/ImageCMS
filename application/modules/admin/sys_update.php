@@ -19,7 +19,6 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
-
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
