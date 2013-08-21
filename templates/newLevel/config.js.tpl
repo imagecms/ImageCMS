@@ -3,7 +3,7 @@
     var product_parent_category = '{$parent_category}';
     var curr = '{$CS}',
             currNext = '{$NextCS}',
-            nextCs = '{echo $NextCSId}',
+            nextCs = '{echo $NextCS}',
             pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
             checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",
             inCart = 'В корзине',
