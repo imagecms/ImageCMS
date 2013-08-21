@@ -12,10 +12,7 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <a class="btn btn-small pjax btn-success" href="#">
-                        <i class="icon-plus-sign icon-white"></i>
-                        Обновить
-                    </a>
+                    <button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#update_form" data-submit><i class="icon-refresh"></i>Обновить</button>
                 </div>
             </div>
         </div>
@@ -31,50 +28,52 @@
                 <div class="tab-pane active" id="update">
                     <h4>Файлы которые будут изменены</h4>
                     {if $diff_files}
-                        <table class="table table-striped table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="span1">
-                                        <span class="frame_label">
-                                            <span class="niceCheck" style="background-position: -46px 0px;">
-                                                <input type="checkbox">
-                                            </span>
-                                        </span>
-                                    </th>
-                                    <th>
-                                        Путь к файлу
-                                    </th>
-                                    <th>
-                                        Контрольная сумма
-                                    </th>
-                                    <th>
-                                        Дата изменения
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach $diff_files as $file_path => $md5}
+                        <form  action="{$ADMIN_URL}" method="post"  id="update_form">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
                                     <tr>
-                                        <td class="span1">
+                                        <th class="span1">
                                             <span class="frame_label">
                                                 <span class="niceCheck" style="background-position: -46px 0px;">
-                                                    <input type="checkbox" name="files_md5" value="{echo $md5}">
+                                                    <input type="checkbox">
                                                 </span>
                                             </span>
-                                        </td>
-                                        <td >
-                                            <a onclick="Update.renderFile('{echo $file_path}', $(this))"><span>{echo $file_path}</span></a>
-                                        </td>
-                                        <td >
-                                            <span>{echo $md5}</span>
-                                        </td>
-                                        <td>
-                                            {echo date('Y-m-d  h:m:s',$diff_files_dates[$file_path])}
-                                        </td>
+                                        </th>
+                                        <th>
+                                            Путь к файлу
+                                        </th>
+                                        <th>
+                                            Контрольная сумма
+                                        </th>
+                                        <th>
+                                            Дата изменения
+                                        </th>
                                     </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {foreach $diff_files as $file_path => $md5}
+                                        <tr>
+                                            <td class="span1">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck" style="background-position: -46px 0px;">
+                                                        <input type="checkbox" name="files_md5" value="{echo $md5}">
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td >
+                                                <a onclick="Update.renderFile('{echo $file_path}', $(this))"><span>{echo $file_path}</span></a>
+                                            </td>
+                                            <td >
+                                                <span>{echo $md5}</span>
+                                            </td>
+                                            <td>
+                                                {echo date('Y-m-d  h:m:s',$diff_files_dates[$file_path])}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </form>
                     {else:}
                         <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
                             Список файлов пуст.                           
