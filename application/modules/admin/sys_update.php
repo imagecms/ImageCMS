@@ -26,7 +26,10 @@ class Sys_update extends BaseAdminController {
 //        var_dumps($old);
         $diff = array_diff($array, $old);
 //        var_dumps($diff);
-//         $this->update->add_to_ZIP($diff);
+
+        $this->update->add_to_ZIP($diff);
+
+
 //        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
 //        echo json_encode( $this->update->parse_md5());
 //        $this->update->formXml();
@@ -62,10 +65,16 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-    public function take_file() {
-        move_uploaded_file($_FILES['Filedata1']['tmp_name'], 'uploads/file_1');
-        move_uploaded_file($_FILES['Filedata2']['tmp_name'], 'uploads/file_11');
-        //move_uploaded_file($_FILES['Filedata3']['tmp_name'], 'uploads/file_111');
+    public function get_update() { // method controller's server's update
+        ini_set("soap.wsdl_cache_enabled", "0");
+        try {
+            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
+            var_dump($client->__getFunctions());
+            $result = $client->getPath("us", "russia");
+            var_dump(unserialize($result));
+        } catch (SoapFault $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function backup() {

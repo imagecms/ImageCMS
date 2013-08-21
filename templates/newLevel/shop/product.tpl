@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                             <!-- end. frame-prices-buy -->
-                            <div class="frame-wish-compare-list">
+                            <div class="frame-wish-compare-list f-s_0">
                                 <!-- Wish List buttons -->
                                 {foreach $variants as $key => $productVariant}
                                     <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $productVariant->getId()} variant">
