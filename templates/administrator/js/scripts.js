@@ -1715,7 +1715,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 
 
     closestTr.find('.name').text(name).css('display', 'block');
-    z
+    
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
     closestTr.find('[name=name_front]').css('display', 'none');
@@ -1778,6 +1778,10 @@ var Update = {
     },
     renderFile: function(file_path, curElement) {
         var tr = $(curElement).closest('tr');
+        if($(tr).next('.update_file_review').length){
+            $(tr).next('.update_file_review').remove();
+            return false;
+        }
         if($('.update_file_review').length){
             $('.update_file_review').remove();
         }
@@ -1790,7 +1794,7 @@ var Update = {
             url: '/admin/sys_update/renderFile',
             success: function(res) {
                 if (res) {
-                    $('<tr class="update_file_review"><td colspan="4"><textarea rows="20">' + res + '</textarea></td></tr>').insertAfter($(tr));
+                    $('<tr class="update_file_review"><td colspan="4"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
                 }
             }
         });
