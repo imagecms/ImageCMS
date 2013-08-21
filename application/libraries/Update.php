@@ -218,12 +218,27 @@ class Update {
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
 
+
+//        echo "numfiles: " . $zip->numFiles . "\n";
+//        echo "status:" . $zip->status . "\n";
+
+        $zip->close();
+    }
+
+    public function createBackUp() {
+        $old = $this->getOldMD5File();
+        $array = $this->parse_md5();
+
+        $diff = array_diff($array, $old);
+
+        $this->add_to_ZIP($diff);
+
+
+        $filename = "./application/backups/backup.zip";
+        $zip = new ZipArchive();
+        $zip->open($filename);
         $db = $this->db_backup();
         $zip->addFile('./application/backups/' . $db, $db);
-
-        echo "numfiles: " . $zip->numFiles . "\n";
-        echo "status:" . $zip->status . "\n";
-
         $zip->close();
 
         chmod('./application/backups/' . $db, 0777);

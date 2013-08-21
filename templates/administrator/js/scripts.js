@@ -1715,7 +1715,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 
 
     closestTr.find('.name').text(name).css('display', 'block');
-    
+
     closestTr.find('[name=name]').css('display', 'none');
     closestTr.find('.name_front').text(name_front).css('display', 'block');
     closestTr.find('[name=name_front]').css('display', 'none');
@@ -1761,13 +1761,13 @@ var Update = {
     },
     delete_backup: function(file_name) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             data: {
                 file_name: file_name
             },
             url: '/admin/sys_update/delete_backup/' + file_name,
             success: function(res) {
-                if (res == 'true') {
+                if (res) {
                     showMessage('Сообщение', 'Файл успешно удален');
                 } else {
                     showMessage('Ошибка', 'Файл не удален', 'r');
