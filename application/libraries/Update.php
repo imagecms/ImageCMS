@@ -469,14 +469,10 @@ class Update {
      * @param string $file
      * @todo доробити видалення і непоказувати лишні файли
      */
-<<<<<<< HEAD
     public function db_restore($file) {
         if (empty($file))
             return FALSE;
 
-=======
-    public function db_restore($file = '') {
->>>>>>> bef053d1fdab9986ee9f5d40311c1475d33d3ec2
         if (is_readable($file)) {
             $restore = file_get_contents($file);
             return $this->query_from_file($restore);
