@@ -22,7 +22,7 @@ class Server_update  {
     public function update() {
 
         ini_set("soap.wsdl_cache_enabled", "0");
-        $server = new SoapServer("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
+        $server = new SoapServer("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
         $server->setClass('Server_update');
         $server->handle();
     }

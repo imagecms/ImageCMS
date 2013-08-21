@@ -69,18 +69,21 @@ class Sys_update extends BaseAdminController {
     public function get_update() { // method controller's server's update
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
-            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
-            var_dump($client->__getFunctions());
+
+            $client = new SoapClient("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
+
             $result = $client->getPath("us", "russia");
-            var_dump(unserialize($result));
+            echo $result;
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
         }
     }
 
+
     public function backup() {
         $this->update->createBackUp();
     }
+
 
     public function sort($array, $sort_by, $order) {
         for ($i = 0; $i < count($array); $i++) {
