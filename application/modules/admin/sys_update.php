@@ -16,9 +16,16 @@ class Sys_update extends BaseAdminController {
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+
+        require_once('./application/libraries/nusoap/nusoap.php');
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
+        $client = new soapclient('http://pftest.imagecms.net/shop/test');
+// Вызываем SOAP-метод
+        $result = $client->call('hello', array('name' => 'Scott'));
+        var_dump($result);
+        exit;
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
