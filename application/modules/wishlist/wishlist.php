@@ -61,7 +61,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             redirect($this->input->cookie('url'));
         } else {
             \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
+                    //->registerScript('wishlist')
                     ->setData('errors', $this->errors)
                     ->render('errors');
         }
@@ -244,7 +244,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function editWL($wish_list_id) {
         if (parent::renderUserWLEdit($wish_list_id))
             \CMSFactory\assetManager::create()
-                    ->registerScript('wishlist')
+                    //->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel)
                     ->render('wishlistEdit');

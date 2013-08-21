@@ -736,7 +736,6 @@ var ie = jQuery.browser.msie,
                                     if (sub2Frame)
                                         $this.addClass('x' + numbColumnL);
                                     else
-                                        //$this.closest('[data-column]').addClass('x' + numbColumnL);
                                         $this.closest('li').addClass('x' + numbColumnL).attr('data-x', numbColumnL);
                                 })
                                 columnsObj.remove();
@@ -871,14 +870,15 @@ var ie = jQuery.browser.msie,
                                             }).unbind(evLS)[evLS](function(e) {
                                                 var $this = $(this),
                                                         subFrame = $this.find(sub2Frame);
-                                                if ($.existsN($this.next())) {
+                                                $this.siblings().removeClass(hM);
+                                                if ($.existsN($this.children(':first').next())) {
                                                     if (e.type == 'click' && evLS == 'toggle') {
                                                         $this.addClass(hM).siblings().filter('.' + hM).click()
                                                     }
                                                     else
                                                         $this.has(sub2Frame).addClass(hM);
                                                     $thisDrop.css('width', '');
-                                                    $thisDrop.children().add(subFrame).css('height', '');
+                                                    $thisDrop.children().removeClass(hM).add(subFrame).css('height', '');
                                                     var dropW = $this.parent().parent().width(),
                                                             sumW = dropW + subFrame.width(),
                                                             subHL2 = subFrame.height(),
@@ -1106,7 +1106,7 @@ var ie = jQuery.browser.msie,
                                     }
                                 }
                             }
-                            if (attrOrdata[index] != 'data') {
+                            if (!condRadio && attrOrdata[index] != 'data') {
                                 if (condStart) {
                                     var wLH = window.location.hash,
                                             reg = null,
@@ -1137,7 +1137,7 @@ var ie = jQuery.browser.msie,
                                     $this.trigger('click.drop')
                             }
 
-                            if (e.button == 0 && $thiss.data('elchange') != undefined) {
+                            else if (e.button == 0 && $thiss.data('elchange') != undefined) {
                                 refs[index].each(function() {
                                     var $thisDH = $(this).data('href');
                                     if ($thisDH == $thisA)
@@ -1585,9 +1585,9 @@ var ie = jQuery.browser.msie,
                     animate = settings.animate,
                     dropContent = settings.dropContent,
                     moreoneNC = settings.moreoneNC,
-                    arrDrop = [],
-                    nS = 'drop';
-            $(this).unbind('click.drop').bind('click.drop', function(e) {
+                    arrDrop = [];
+
+            $(this).add($('[data-drop]')).unbind('click.drop').bind('click.drop', function(e) {
                 var $this = $(this);
                 $(document).trigger({'type': 'drop.click', 'el': $this})
                 e.stopPropagation();
@@ -1609,8 +1609,8 @@ var ie = jQuery.browser.msie,
                                 e.stopImmediatePropagation();
                         });
                     });
+                    console.log(elSet.effectOn)
                     var $thisEOn = elSet.effectOn || effon,
-                            $thisD = elSet.duration || duration,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
                     var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
@@ -1623,6 +1623,9 @@ var ie = jQuery.browser.msie,
                             'background-color': overlayColor,
                             'opacity': overlayOpacity
                         });
+                    }
+                    else {
+                        optionsDrop.dropOver == undefined;
                     }
                     if (elSetSource.is('.' + activeClass)) {
                         methods.triggerBtnClick(elSetSource);
@@ -1832,11 +1835,10 @@ var ie = jQuery.browser.msie,
             var conDropOver = optionsDrop.dropOver != undefined;
             body.addClass('isScroll');
             body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
-            if (isTouch)
-                if (conDropOver)
-                    optionsDrop.dropOver.bind('touchmove.drop', function(e) {
-                        return false;
-                    });
+            if (isTouch && conDropOver)
+                optionsDrop.dropOver.bind('touchmove.drop', function(e) {
+                    return false;
+                });
         },
         scrollEmulateRemove: function() {
             var conDropOver = optionsDrop.dropOver != undefined;
@@ -1845,9 +1847,8 @@ var ie = jQuery.browser.msie,
             if (conDropOver)
                 optionsDrop.dropOver.hide();
             $('.scrollEmulation').remove();
-            if (isTouch)
-                if (conDropOver)
-                    optionsDrop.dropOver.unbind('touchmove.drop');
+            if (isTouch && conDropOver)
+                optionsDrop.dropOver.unbind('touchmove.drop');
         }
     };
     $.fn.drop = function(method) {
@@ -2112,7 +2113,7 @@ var ie = jQuery.browser.msie,
                                 eP = e.originalEvent.touches[0];
                                 eP = eP.pageX;
                             });
-                            $this.unbind('touchmove' + nS).bind('touchend' + nS, function(e) {
+                            $this.unbind('touchend' + nS).bind('touchend' + nS, function(e) {
                                 e.stopPropagation();
                                 if (Math.abs(eP - sP) > 200) {
                                     if (eP - sP > 0)
@@ -2156,7 +2157,7 @@ var ie = jQuery.browser.msie,
                     if (body.lazyload() == body) {
                         $thisNext.add($thisPrev).bind('click', function(e) {
                             if (!$(this).is('[disabled="disabled"]'))
-                                wnd.scroll();
+                                wnd.scroll(); // for lazyload
                         })
                     }
                     settings.after($this);
