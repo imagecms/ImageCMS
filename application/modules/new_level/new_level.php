@@ -52,11 +52,11 @@ class New_level extends MY_Controller {
         }
     }
 
-    public function OPI($model, $data = array()) {
+    public function OPI($model, $data = array(), $tpl = 'one_product_item') {
         \CMSFactory\assetManager::create()
                 ->setData('products', $model)
                 ->setData($data)
-                ->render('one_product_item', TRUE);
+                ->render($tpl, TRUE);
     }
 
     /**
