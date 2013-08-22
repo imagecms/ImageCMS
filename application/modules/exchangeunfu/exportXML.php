@@ -46,7 +46,7 @@ class ExportXML {
     }
 
     public function index() {
-
+        
     }
 
     /** export */
@@ -300,7 +300,7 @@ class ExportXML {
             /** order export data */
             $this->order_export .=
                     "<СписокЗаказыПокупателя>\n" .
-                     "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
+                    "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
                     "<ID>" . $order['external_id'] . "</ID>\n" .
                     "<Дата>" . date('Y-m-dTh:m:s', $order['date_created']) . "</Дата>\n" .
                     "<Номер>" . $order['code'] . "</Номер>\n" .
@@ -321,7 +321,7 @@ class ExportXML {
                 }
                 $products .=
                         "<Строки>\n" .
-                         "<IDWeb>" . $order_product['id'] . "</IDWeb>\n" .
+                        "<IDWeb>" . $order_product['id'] . "</IDWeb>\n" .
                         "<IDДокумента>" . $order_product['external_id'] . "</IDДокумента>\n" .
                         "<IDНоменклатура>" . $order_product['product_id'] . "</IDНоменклатура>\n" .
                         "<Количество>" . $order_product['quantity'] . "</Количество>\n" .
@@ -371,13 +371,13 @@ class ExportXML {
     /** export roducts
      * <br>
       <СписокНоменклатуры><br>
-      *<ID>67deae56-ed30-11e2-a8fe-9cb70dedbc3c< /ID><br>
-      *<Наименование>SMX КАСТРУЛЯ 1,5Л,COLOR< /Наименование><br>
-      *<Код>ФР-00000032< /Код><br>
-      *<ЭтоГруппа>false< /ЭтоГруппа><br>
-      *<IDРодитель>3fde83ef-ed24-11e2-a8fe-9cb70dedbc3c< /IDРодитель><br>
-      *<ЕдиницаИзмерения>шт< /ЕдиницаИзмерения><br>
-      *<ШтрихКод>8593419900020< /ШтрихКод><br>
+     * <ID>67deae56-ed30-11e2-a8fe-9cb70dedbc3c< /ID><br>
+     * <Наименование>SMX КАСТРУЛЯ 1,5Л,COLOR< /Наименование><br>
+     * <Код>ФР-00000032< /Код><br>
+     * <ЭтоГруппа>false< /ЭтоГруппа><br>
+     * <IDРодитель>3fde83ef-ed24-11e2-a8fe-9cb70dedbc3c< /IDРодитель><br>
+     * <ЕдиницаИзмерения>шт< /ЕдиницаИзмерения><br>
+     * <ШтрихКод>8593419900020< /ШтрихКод><br>
       < /СписокНоменклатуры>
      */
     public function exportProducts() {
@@ -390,7 +390,7 @@ class ExportXML {
             }
             $this->product_export .=
                     "<СписокНоменклатуры>\n" .
-                     "<IDWeb>" . $product['id'] . "</IDWeb>\n" .
+                    "<IDWeb>" . $product['id'] . "</IDWeb>\n" .
                     "<ID>" . $product['external_id'] . "</ID>\n" .
                     "<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\n" .
                     "<Код>" . $product['code'] . "</Код>\n" .
