@@ -237,7 +237,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      */
     public function deleteImage() {
         $image = $this->input->post('image');
-        if (parent::deleteImage($image)) {
+        $user_id = $this->input->post('user_id');
+
+        if (!$user_id) {
+            $user_id = $this->dx_auth->get_user_id();
+        }
+
+        if (parent::deleteImage($image, $user_id)) {
             return $this->dataModel[] = lang('deleted');
         } else {
             return $this->errors[] = lang('error_cant_delete');

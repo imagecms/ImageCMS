@@ -16,7 +16,7 @@
 * @updated 27 January 2013;
 */
 #}
-
+{$NextCSIdCond = $NextCS != null}
 <div class="frame-inside page-order">
     <div class="container">
         {if $CI->session->flashdata('makeOrder') === true}
@@ -205,7 +205,7 @@
                                                         </span>
                                                         <span class="price-add">
                                                             <span>
-                                                                <span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
                                                                 <span class="curr-add">{$NextCS}</span>
                                                             </span>
                                                         </span>
@@ -223,7 +223,7 @@
                                                                     <span class="curr">{$CS}</span>
                                                                 </span>
                                                             </span> 
-                                                            {if $NextCSId}    
+                                                            {if $NextCSIdCond}    
                                                                 <span class="price-add">
                                                                     <span>
                                                                         <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity($NextCSId)}</span>
@@ -263,7 +263,7 @@
                                                                             <span class="curr">{$CS}</span>
                                                                         </span>
                                                                     </span>
-                                                                    {if $NextCSId}
+                                                                    {if $NextCSIdCond}
                                                                         <span class="price-add">
                                                                             <span>
                                                                                 <span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
@@ -306,11 +306,11 @@
                                                                                 <span class="curr">{$CS}</span>
                                                                             </span>
                                                                         </span>
-                                                                        {if $NextCSId}    
-                                                                            <span class="price-new">
+                                                                        {if $NextCSIdCond}    
+                                                                            <span class="price-add">
                                                                                 <span>
                                                                                     <span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
-                                                                                    <span class="curr">{$CS}</span>
+                                                                                    <span class="curr">{$NextCS}</span>
                                                                                 </span>
                                                                             </span>
                                                                         {/if}
@@ -340,7 +340,7 @@
                                                                 <span class="curr">{$CS}</span>
                                                             </span>
                                                         </span>
-                                                        {if $NextCSId}     
+                                                        {if $NextCSIdCond}     
                                                         <span class="price-add">
                                                             <span>
                                                                 <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
@@ -368,7 +368,7 @@
                                 <span class="s-t">Стоимость доставки:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert(($model->getDeliveryPrice())}</span>
+                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}</span>
                                         <span class="curr">{$CS}</span>
                                     </span>
                                 </span>
@@ -415,7 +415,7 @@
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>
-                                    {if $NextCSId}     
+                                    {if $NextCSIdCond}     
                                     <span class="price-add">
                                         <span>
                                             (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>

@@ -1,3 +1,20 @@
+var framechecks = ".frame-group-checks";
+function filtertype(el, totalProducts, otherClass) {
+    var $this = el.closest(framechecks),
+            $thisRel = $this.data('rel');
+    if ($thisRel != undefined) {
+        var arr = $thisRel.split(' ');
+        $.map(arr, function(n, i) {
+            switch (n) {
+                case 'dropDown':
+                    $this.find('.title').next().show();
+                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+                case 'scroll':
+                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            }
+        });
+    }
+}
 (function($) {
     var methods = {
         init: function(options) {
@@ -105,7 +122,9 @@
 (function($) {
     var methods = {
         init: function(options) {
-            $.extend(cleaverFilterObj, {mainWraper: $(this), cleaverFilterFunc: function(elPos, countTov, clas) {
+            $.extend(cleaverFilterObj, {
+                mainWraper: $(this),
+                cleaverFilterFunc: function(elPos, countTov, clas) {
                     cleaverFilterObj.mainWraper.hide();
 
                     $(cleaverFilterObj.elCount).text(countTov);
@@ -119,7 +138,7 @@
                     }
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
-                        'top': elPos.offset().top
+                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll
                     }).removeClass().addClass('apply').addClass(clas).addClass(cleaverFilterObj.addingClass);
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
@@ -142,12 +161,15 @@
 
                 }).live('keydown', function(e) {
                     var key, keyChar;
-                    if (!e)
+                    if (!e) {
                         var e = window.event;
-                    if (e.keyCode)
+                    }
+                    if (e.keyCode) {
                         key = e.keyCode;
-                    else if (e.which)
+                    }
+                    else if (e.which) {
                         key = e.which;
+                    }
                     if (key == 27) {
                         methods.triggerBtnClick();
                     }
@@ -178,7 +200,7 @@ function afterAjaxInitializeFilter() {
         var $this = $(this);
         $this.sliderInit(eval($this.data('rel')));
     });
-    $(".frame-group-checks").nStCheck({
+    $(framechecks).nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
         evCond: true,
@@ -187,11 +209,28 @@ function afterAjaxInitializeFilter() {
         before: function(a, b, c) {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false, true);
+            var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
+            if ($thisframechecks.data('rel') != undefined) {
+                if ($thisframechecks.data('rel').match('scroll')) {
+                    var scrollabel = $thisframechecks.find('.jspScrollable'),
+                            scrollabelH = scrollabel.height(),
+                            posY = scrollabel.data('jsp').getContentPositionY(),
+                            addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
+                    cleaverFilterObj.currentPosScroll = scrollabel.data('jsp').getContentPositionY() + addH;
+                }
+                else {
+                    cleaverFilterObj.currentPosScroll = 0;
+                }
+            }
+            else {
+                cleaverFilterObj.currentPosScroll = 0;
+            }
         }
     });
-    $(".frame-group-checks").each(function() {
+    $(framechecks).each(function() {
         var $this = $(this),
-                $thisRel = $this.data('rel');
+                $thisRel = $this.data('rel'),
+                filtersContent = $this.find('.filters-content');
         if ($thisRel != undefined) {
             var arr = $thisRel.split(' '),
                     arrL = arr.length;
@@ -199,21 +238,39 @@ function afterAjaxInitializeFilter() {
                 switch (n) {
                     case 'dropDown':
                         $this.find('.title .text-el').addClass('d_l');
-                        $this.find('.title > .c_p').click(function() {
-                            var $this = $(this);
-                            $this.parent().next().slideToggle(function() {
-                                $this.toggleClass('valuePD');
+
+                        $this.find('.title > span').bind('click.filter', function(e) {
+                            var $thisi = $(this);
+                            $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
+                                if ($(this).is(':visible')) {
+                                    cleaverFilterObj.dropDownArr.push($this.attr('id'));
+                                }
+                                else {
+                                    cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
+                                }
+                                $thisi.toggleClass('valuePD');
                             });
                         });
+                        cleaverFilterObj.dropDownArr
                     case 'scroll':
-                        $this.find('ul').addClass('scroll');
+                        $this.show();
+                        var el = filtersContent.show().jScrollPane(scrollPane);
+                        el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                        //$this.find('.filters-content').addClass('scroll');
                 }
-                if (arrL - 1 == i)
-                    setTimeout(function() {
-                        $this.fadeIn();
-                        $this.next(preloader).hide()
-                    }, 1000);
+                switch (n) {
+                    case 'dropDown':
+                        filtersContent.hide();
+                }
+                if (arrL - 1 == i) {
+                    $this.fadeIn();
+                    $this.next(preloader).hide()
+                }
             });
+            if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
+                filtersContent.show();
+                $this.find('.title').children().addClass('valuePD');
+            }
         }
     });
     apply.cleaverFilterMethod();
@@ -240,8 +297,9 @@ function afterAjaxInitializeFilter() {
 function ajaxRecount(el, slChk, submit) {
 
 //    var catalogForm = $('#catalog_form');
-//    if (submit)
+//    if (submit){
 //        catalogForm.submit();
+//}
 
     var catalogForm = $('#catalog_form'),
             $this = el,
@@ -260,12 +318,17 @@ function ajaxRecount(el, slChk, submit) {
             catalogForm.find('.popup_container').html(msg);
             afterAjaxInitializeFilter();
             $.fancybox.hideActivity();
-            if (slChk)
+            if (slChk) {
                 otherClass = slChk;
-            cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
+            }
+            if ($($this).closest(framechecks).data('rel') == undefined) {
+                cleaverFilterObj.currentPosScroll = 0;
+                cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
+            }
+            else {
+                filtertype($($this), totalProducts, otherClass);
+            }
         }
-    }).fail(function() {
-        alert(1)
     });
     return false;
 }

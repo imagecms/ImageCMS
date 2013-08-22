@@ -4,34 +4,13 @@
 //},
 //        selectDeliv = true;
 //if radio
+var productPhotoCZoom = productPhotoCZoom != undefined;
+var productPhotoFancybox = productPhotoFancybox != undefined;
+var hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 var methodDeliv = function() {
     return $('[name = "deliveryMethodId"]')
 },
         selectDeliv = false;
-if (!$.isFunction($.fancybox)) {
-    var loadingTimer, loadingFrame = 1;
-    $('body').append(loading = $('<div id="fancybox-loading"><div></div></div>'));
-    _animate_loading = function() {
-        if (!loading.is(':visible')) {
-            clearInterval(loadingTimer);
-            return;
-        }
-
-        $('div', loading).css('top', (loadingFrame * -40) + 'px');
-        loadingFrame = (loadingFrame + 1) % 12;
-    };
-    $.fancybox = function() {
-    };
-    $.fancybox.showActivity = function() {
-        clearInterval(loadingTimer);
-        loading.show();
-        loadingTimer = setInterval(_animate_loading, 66);
-    };
-    $.fancybox.hideActivity = function() {
-        loading.hide();
-    };
-}
-
 var cW = '980',
         selIcons = '[class*=icon_]',
         widhtItemScroll = 256,
@@ -41,7 +20,10 @@ var optionsMenu = {
     item: $('.menu-main').find('td'),
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
-    countColumn: 5, //if not drop-side
+    //direction: 'left',//when menu place left and drop go to right
+    //countColumn: 5, //if not drop-side
+    sub2Frame: '.frame-l2', //if drop-side
+    dropWidth: 475, //if not define than will be actual width needs when drop-side
 
 //if need column partition level 2
     columnPart: true,
@@ -53,15 +35,15 @@ var optionsMenu = {
     effectOff: 'slideUp',
     durationOn: 200,
     durationOff: 100,
-    //sub2Frame: '.frame-l2', //if drop-side
     sub3Frame: '.frame-l2',
-    //dropWidth: 475, //if not define than will be actual width needs when drop-side
     evLF: 'hover',
     evLS: 'hover',
-    frAClass: 'hoverM',//active class
+    frAClass: 'hoverM', //active class
+
     menuCache: true,
     activeFl: '.frame-item-menu > .frame-title > a', //
-    parentTl: '.frame-l2'//prev a level 2
+    parentTl: '.frame-l2', //prev a level 2
+    otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 };
 var scrollPane = {
     animateScroll: true,
@@ -76,7 +58,6 @@ var carousel = {
     groupButtons: '.group-button-carousel',
     vCarousel: '.vertical-carousel',
     hCarousel: '.horizontal-carousel'
-
 };
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
@@ -96,7 +77,7 @@ var optionCompare = {
 //        if carousel in compare
         if ($.existsN(el.find('.carousel_js:not(.iscarousel)')))
             el.find('.carousel_js:not(.iscarousel)').myCarousel(carousel);
-        wnd.scroll();
+        wnd.scroll();//for lazy
     },
     compareChangeCategory: function() {
         $(optionCompare.frameCompare).equalHorizCell(optionCompare);
@@ -118,9 +99,10 @@ var optionsDrop = {
     effon: 'fadeIn',
     effoff: 'fadeOut',
     duration: 500,
-    notificationPlace: '.notification',
+    modalPlace: '.notification',
     dropContent: '.drop-content',
-    animate: false
+    animate: false,
+    moreoneNC: true// show more then one drop not place = "center"
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -144,7 +126,7 @@ imageCmsApiDefaults = {
     },
     captchaBlock: '#captcha_block',
     cMsg: function(name, text, classN, form) {
-        form.find('[for="' + name + '"]').remove()
+        form.find('[for="' + name + '"]').remove();
         return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
     }
 // callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
@@ -158,7 +140,11 @@ cleaverFilterObj = {
     duration: '300',
     location: 'right', //if vertical has be left
     //addingClass: 'left',//if vertical has be left
-    elPos: '.frame-group-checks .frame-label'
+    elPos: '.frame-group-checks .frame-label',
+    dropDownEff: 'slideToggle',
+    dropDownEffDur: '400',
+    currentPosScroll: 0,
+    dropDownArr: []
 }
 icons = {
     icon_enter: "M18.386,16.009l0.009-0.006l-0.58-0.912c1.654-2.226,1.876-5.319,0.3-7.8c-2.043-3.213-6.303-4.161-9.516-2.118c-3.212,2.042-4.163,6.302-2.12,9.517c1.528,2.402,4.3,3.537,6.944,3.102l0.424,0.669l0.206,0.045l0.779-0.447l-0.305,1.377l2.483,0.552l-0.296,1.325l1.903,0.424l-0.68,3.06l1.406,0.313l-0.424,1.906l4.135,0.918l0.758-3.392L18.386,16.009z M10.996,8.944c-0.685,0.436-1.593,0.233-2.029-0.452C8.532,7.807,8.733,6.898,9.418,6.463s1.594-0.233,2.028,0.452C11.883,7.6,11.68,8.509,10.996,8.944z",
@@ -191,15 +177,14 @@ icons = {
     icon_payment: "M16,1.466C7.973,1.466,1.466,7.973,1.466,16c0,8.027,6.507,14.534,14.534,14.534c8.027,0,14.534-6.507,14.534-14.534C30.534,7.973,24.027,1.466,16,1.466z M17.255,23.88v2.047h-1.958v-2.024c-3.213-0.44-4.621-3.08-4.621-3.08l2.002-1.673c0,0,1.276,2.223,3.586,2.223c1.276,0,2.244-0.683,2.244-1.849c0-2.729-7.349-2.398-7.349-7.459c0-2.2,1.738-3.785,4.137-4.159V5.859h1.958v2.046c1.672,0.22,3.652,1.1,3.652,2.993v1.452h-2.596v-0.704c0-0.726-0.925-1.21-1.959-1.21c-1.32,0-2.288,0.66-2.288,1.584c0,2.794,7.349,2.112,7.349,7.415C21.413,21.614,19.785,23.506,17.255,23.88z",
     icon_comment: "M16,5.333c-7.732,0-14,4.701-14,10.5c0,1.982,0.741,3.833,2.016,5.414L2,25.667l5.613-1.441c2.339,1.317,5.237,2.107,8.387,2.107c7.732,0,14-4.701,14-10.5C30,10.034,23.732,5.333,16,5.333z",
     icon_success: "M2.379,14.729 5.208,11.899 12.958,19.648 25.877,6.733 28.707,9.561 12.958,25.308z",
-    icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z"
+    icon_error: "M26.711,14.086L16.914,4.29c-0.778-0.778-2.051-0.778-2.829,0L4.29,14.086c-0.778,0.778-0.778,2.05,0,2.829l9.796,9.796c0.778,0.777,2.051,0.777,2.829,0l9.797-9.797C27.488,16.136,27.488,14.864,26.711,14.086zM14.702,8.981c0.22-0.238,0.501-0.357,0.844-0.357s0.624,0.118,0.844,0.353c0.221,0.235,0.33,0.531,0.33,0.885c0,0.306-0.101,1.333-0.303,3.082c-0.201,1.749-0.379,3.439-0.531,5.072H15.17c-0.135-1.633-0.301-3.323-0.5-5.072c-0.198-1.749-0.298-2.776-0.298-3.082C14.372,9.513,14.482,9.22,14.702,8.981zM16.431,21.799c-0.247,0.241-0.542,0.362-0.885,0.362s-0.638-0.121-0.885-0.362c-0.248-0.241-0.372-0.533-0.372-0.876s0.124-0.638,0.372-0.885c0.247-0.248,0.542-0.372,0.885-0.372s0.638,0.124,0.885,0.372c0.248,0.247,0.372,0.542,0.372,0.885S16.679,21.558,16.431,21.799z",
+    icon_edit: "M25.31,2.872l-3.384-2.127c-0.854-0.536-1.979-0.278-2.517,0.576l-1.334,2.123l6.474,4.066l1.335-2.122C26.42,4.533,26.164,3.407,25.31,2.872zM6.555,21.786l6.474,4.066L23.581,9.054l-6.477-4.067L6.555,21.786zM5.566,26.952l-0.143,3.819l3.379-1.787l3.14-1.658l-6.246-3.925L5.566,26.952z",
+    icon_remove: "M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z"
 };
 var genObj = {
-    textEl: '.text-el', //селектор
     popupCart: '#popupCart',
     pageCart: '.page-cart',
-    pM: function() {
-        return $('.paymentMethod');
-    },
+    pM: $('.paymentMethod'),
     trCartKit: 'tr.row-kits',
     frameCount: '.frame-count', //селектор
     countOrCompl: '.countOrCompl', //селектор
@@ -236,7 +221,6 @@ var genObj = {
     btnBuy: '.btnBuy', //назва класу кнопка купити
     btnBuyCss: 'btn-buy', //назва класу
     btnCartCss: 'btn-cart', //назва класу
-    descr: '.description',
     frameNumber: '.frame-variant-code',
     frameVName: '.frame-variant-name',
     code: '.code',
@@ -248,33 +232,44 @@ var genObj = {
     priceOrigVariant: '.priceOrigVariant',
     priceAddPrice: '.addCurrPrice',
     photoProduct: '.photoProduct',
-    userToolbar: $('.items-user-toolbar'),
-//    popupCartTotal: '#popupCartTotal',
-//    popupCartTotaladdprice: '#popupCartTotaladdprice',
     orderDetails: '#orderDetails',
     plusMinus: '[data-rel="plusminus"]',
     frameBasks: '.frame-bask', //order and popup
     frameChangeCount: '.frame-change-count',
     numberC: '.number', //количество на складе
-    msgF: '.msg',
-    err: 'error', //клас
-    scs: 'success', //клас
-    frameDiscount: function() {
-        return $('#discount');
-    },
+    frameDiscount: $('#discount'),
     gift: '#gift',
     genDiscount: '.genDiscount',
     genSumDiscount: '.genSumDiscount',
-    frameCurDiscount: '.frame-discount'
+    frameCurDiscount: '.frame-discount',
+    shipping: 'span#shipping',
+    finalAmountAdd: 'span#finalAmountAdd',
+    finalAmount: 'span#finalAmount',
+    totalPrice: 'span#totalPrice',
+    showCart: '#showCart',
+    certPrice: '#giftCertPrice',
+    certFrame: '#giftCertSpan',
+    orderDetailsTemplate: '#orderDetailsTemplate',
+    textEl: '.text-el', //селектор
+    msgF: '.msg',
+    err: 'error', //клас
+    scs: 'success', //клас
+    info: 'info' //клас
 };
 message = {
     success: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
     error: function(text) {
-        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><p class="text-el">' + text + '</p></div></div>'
+        return '<div class = "msg"><div class = "' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+    },
+    info: function(text) {
+        return '<div class = "msg"><div class = "' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
+lazyload = {
+    effect: "fadeIn"
+}
 //declaration shop functions
 var orderDetails = $.exists(genObj.orderDetails);
 function recountWishListTotalPrise(deletedItemPrice, id, vid) {
@@ -292,6 +287,14 @@ function deleteWishListItem(el, id, vid) {
         $('.page-wish-list').find(genObj.blockEmpty).show()
     }
     el.closest(genObj.parentBtnBuy).remove();
+}
+function pasteItemsTovars(el) {
+    el.find("img.lazy").lazyload(lazyload);
+    wnd.scroll();//for lazyload
+    drawIcons(el.find(selIcons));
+    btnbuyInitialize(el);
+    processPage(el);
+    el.find('[data-drop]').drop($.extend($.extend({}, optionsDrop), callbackDrop));
 }
 function processWishComp() {
 //wishlist checking
@@ -341,21 +344,22 @@ function getDiscount(k) {
     }
 }
 function hideInfoDiscount() {
-    var frameDiscountO = genObj.frameDiscount();
+    var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.empty();
-    frameDiscountO.next().show();
+    frameDiscountO.next(preloader).show();//preloader
 }
 function displayInfoDiscount(tpl) {
-    var frameDiscountO = genObj.frameDiscount();
+    var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.html(tpl);
-    frameDiscountO.next().hide();
+    frameDiscountO.next(preloader).hide();//preloader
     $.fancybox.hideActivity();
 }
 function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
     kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
     Shop.Cart.kitDiscount = kitDiscount;
-    if (obj != 0 || kitDiscount != 0) {
+    var discC = (Shop.Cart.discount.sum_discount_product != 0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount != 0;
+    if (discC) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
             $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + kitDiscount).toFixed(pricePrecision));
@@ -365,7 +369,7 @@ function displayDiscount(obj) {
     else {
         $(genObj.frameCurDiscount).hide();
     }
-    if ((Shop.Cart.discount.sum_discount_product != 0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount != 0)
+    if (discC)
         $(genObj.genSumDiscount).each(function() {
             $(this).html(Shop.Cart.totalPriceOrigin.toFixed(pricePrecision));
         });
@@ -403,8 +407,8 @@ function giftError(msg) {
     }
 }
 function renderGiftSucces(tpl, gift) {
-    $('#giftCertPrice').html(gift.value)
-    $('#giftCertSpan').show()
+    $(genObj.certPrice).html(gift.value)
+    $(genObj.certFrame).show()
     $(genObj.gift).children(genObj.msgF).remove();
     $(genObj.gift).html(tpl);
 }
@@ -426,9 +430,20 @@ function cartChanged() {
     $.fancybox.hideActivity();
     $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
 }
-function processPage() {
+function btnbuyInitialize(el) {
+    el.find(genObj.btnBuy).bind('click', function(e) {
+        $.fancybox.showActivity();
+        $(this).attr('disabled', 'disabled');
+        var cartItem = Shop.composeCartItem($(this));
+        Shop.Cart.add(cartItem, this);
+        decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
+        return true;
+    });
+}
+function processPage(el) {
 //update page content
 //update products count
+    el = el == undefined ? body : el;
     if (!orderDetails) {
         Shop.Cart.totalRecount();
         var keys = [];
@@ -436,8 +451,7 @@ function processPage() {
             keys.push(item.id + '_' + item.vId);
         });
         //update all product buttons
-
-        $(genObj.btnBuy).each(function() {
+        el.find(':not(.' + genObj.btnCartCss + ') ' + genObj.btnBuy).each(function() {
             var $this = $(this),
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) != -1) {
@@ -449,7 +463,7 @@ function processPage() {
                 }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
             }
         });
-        $('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
+        el.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).each(function() {
             var $this = $(this),
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) == -1) {
@@ -462,7 +476,7 @@ function processPage() {
             }
         });
     }
-    $('[data-rel="frameplusminus"]').each(function() {
+    el.find('[data-rel="frameplusminus"]').each(function() {
         var $this = $(this),
                 key = $this.data('prodid') + '_' + $this.data('varid');
         if (keys.indexOf(key) != -1) {
@@ -483,7 +497,8 @@ function processPage() {
 function initShopPage(showWindow, target, orderDetails) {
     Shop.Cart.totalRecount();
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
-    dropBaskResize();
+    if ($(genObj.popupCart).is(':visible'))
+        dropBaskResize();
     if (showWindow || $(genObj.popupCart).is(':visible'))
         $(document).trigger({
             type: 'render_popup_cart',
@@ -537,7 +552,7 @@ function initShopPage(showWindow, target, orderDetails) {
             pdTr.find(genObj.countOrCompl).html(word);
         })
     }
-    $(genObj.frameCount + ' input').bind('keyup', function(e) {
+    $(genObj.frameBasks + ' input').bind('keyup', function(e) {
         var $this = $(this);
         if ($this.maxValue(e, function() {
             $this.closest(genObj.numberC).tooltip()
@@ -570,12 +585,12 @@ function rmFromPopupCart(context, isKit) {
 }
 function togglePopupCart(t) {
     $.fancybox.showActivity();
-    $('#showCart').trigger({type: 'click', starget: t});
+    $(genObj.showCart).trigger({type: 'click', starget: t});
     return false;
 }
 
 function renderOrderDetails() {
-    $(genObj.orderDetails).html(_.template($('#orderDetailsTemplate').html(), {
+    $(genObj.orderDetails).html(_.template($(genObj.orderDetailsTemplate).html(), {
         cart: Shop.Cart
     }));
     $(document).trigger({'type': 'renderorder.after', 'el': $(genObj.orderDetails)})
@@ -583,7 +598,7 @@ function renderOrderDetails() {
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
-    genObj.pM().next().show();
+    genObj.pM.next().show();
     $.get('/shop/cart_api/getPaymentsMethods/' + id, function(dataStr) {
         data = JSON.parse(dataStr);
         var replaceStr = '';
@@ -596,14 +611,14 @@ function changeDeliveryMethod(id, selectDeliv) {
                 data: data
             });
         }
-        genObj.pM().html(replaceStr);
-        genObj.pM().next().hide();
+        genObj.pM.html(replaceStr);
+        genObj.pM.next().hide();
         if (selectDeliv)
             cuSel({
                 changedEl: '#paymentMethod'
             });
         else
-            genObj.pM().nStRadio({
+            genObj.pM.nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
                         //classRemove: 'b_n',//if not standart
@@ -618,7 +633,7 @@ function countSumBask() {
     }
     else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
         $(genObj.tinyBask).addClass(genObj.isAvail);
-        $(genObj.tinyBask + '.' + genObj.isAvail).live('click', function() {
+        $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
             initShopPage(true, '', orderDetails);
         })
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
@@ -667,10 +682,10 @@ function recountCartPage(selectDeliv, methodDeliv) {
         finalAmount = finalAmount - parseFloat(Shop.Cart.gift.value);
     if (finalAmount - Shop.Cart.shipping < 0)
         finalAmount = Shop.Cart.shipping;
-    $('span#totalPrice').html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
-    $('span#finalAmount').html(parseFloat(finalAmount).toFixed(pricePrecision));
-    $('span#finalAmountAdd').html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
-    $('span#shipping').html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
+    $(genObj.totalPrice).html(parseFloat(Shop.Cart.getTotalPriceOrigin()).toFixed(pricePrecision));
+    $(genObj.finalAmount).html(parseFloat(finalAmount).toFixed(pricePrecision));
+    $(genObj.finalAmountAdd).html((Shop.Cart.koefCurr * finalAmount).toFixed(pricePrecision));
+    $(genObj.shipping).html(parseFloat(Shop.Cart.shipping).toFixed(pricePrecision));
 }
 function checkSyncs() {
     if (inServerCompare != NaN)
@@ -681,7 +696,6 @@ function checkSyncs() {
 
     if (inServerWish != NaN)
     {
-
         if (Shop.WishList.all().length != inServerWish) {
             Shop.WishList.sync();
         }
@@ -746,23 +760,59 @@ function condProduct(vStock, liBlock, btnBuy) {
 }
 
 //declaration front functions
+if (!$.isFunction($.fancybox)) {
+    var loadingTimer, loadingFrame = 1;
+    body.append(loading = $('<div id="fancybox-loading"><div></div></div>'));
+    _animate_loading = function() {
+        if (!loading.is(':visible')) {
+            clearInterval(loadingTimer);
+            return;
+        }
+
+        $('div', loading).css('top', (loadingFrame * -40) + 'px');
+        loadingFrame = (loadingFrame + 1) % 12;
+    };
+    $.fancybox = function() {
+    };
+    $.fancybox.showActivity = function() {
+        clearInterval(loadingTimer);
+        loading.show();
+        loadingTimer = setInterval(_animate_loading, 66);
+    };
+    $.fancybox.hideActivity = function() {
+        loading.hide();
+    };
+}
+function banerResize(el) {
+    $(el).each(function() {
+        var h = 0,
+                $this = $(this).css('height', ''),
+                img = $this.find('img');
+        img.each(function() {
+            var $thisH = $(this).height()
+            h = $thisH > h ? $thisH : h;
+        });
+        $this.css('height', h + $this.children().outerHeight() - $this.children().height())
+    })
+}
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
-    setTimeout(function() {
-        drop.drop('triggerBtnClick', function() {
-            drop.find(genObj.msgF).hide(function() {
-                $(this).remove();
-                form.show();
-            })
-        });
+    var closedrop = setTimeout(function() {
+        drop.drop('triggerBtnClick', drop);
     }, durationHideForm - 500/*time fadeout drop see on site*/)
+    setTimeout(function() {
+        drop.find(genObj.msgF).hide().remove();
+        form.show();
+        $(document).trigger({type: 'drop.contentHeight', el: drop.find(drop.data('dropContent')).first(), drop: drop});
+    }, durationHideForm)
+
 //    if close "esc" or click on body
     $(document).unbind('drop.beforeClose').bind('drop.beforeClose', function(e) {
-        if (e.el.is(drop))
-            e.el.find(genObj.msgF).hide(function() {
-                $(this).remove();
-                form.show();
-            })
+        clearTimeout(closedrop);
+        if (e.el.is(drop)) {
+            e.el.find(genObj.msgF).hide().remove();
+            form.show();
+        }
     })
 }
 function showHidePart(el) {
@@ -804,7 +854,8 @@ function showHidePart(el) {
     });
 }
 function dropBaskResize() {
-    $(document).trigger({type: 'drop.contentHeight', el: $(genObj.popupCart).find('.drop-content'), drop: $(genObj.popupCart)});
+    var popupCart = $(genObj.popupCart);
+    $(document).trigger({type: 'drop.contentHeight', el: popupCart.find(popupCart.data('dropContent')).first(), drop: popupCart});
 }
 function decorElemntItemProduct(el) {
     if (!el)
@@ -905,7 +956,7 @@ function itemUserToolbar() {
 }
 if (productPhotoCZoom) {
     function margZoomLens() {
-        $('#photoGroup').find('img').each(function() {
+        $(genObj.photoProduct).find('img').each(function() {
             var $this = $(this)
             mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
             mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
@@ -913,7 +964,28 @@ if (productPhotoCZoom) {
         })
     }
 }
-
+function reinitializeScrollPane(el) {
+    if ($.exists(selScrollPane)) {
+        el.find(selScrollPane).each(function() {
+            $(this).jScrollPane(scrollPane);
+            var api = $(this).data('jsp');
+            var throttleTimeout;
+            $(window).bind('resize', function() {
+                if ($.browser.msie) {
+                    if (!throttleTimeout) {
+                        throttleTimeout = setTimeout(function() {
+                            api.reinitialise();
+                            throttleTimeout = null;
+                        }, 50);
+                    }
+                }
+                else {
+                    api.reinitialise();
+                }
+            });
+        })
+    }
+}
 function ieInput(els) {
     if (els == undefined || els == null)
         els = $(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])');
@@ -930,9 +1002,12 @@ function ieInput(els) {
     });
 }
 jQuery(document).ready(function() {
+    $(document).bind('lazy.after', function(e) {
+        e.el.addClass('load');
+    })
     if (isTouch)
         body.addClass('isTouch');
-//call front plugins
+//call front plugins and functions
     $.onlyNumber('.number input');
     if (ltie7) {
         ieInput();
@@ -950,36 +1025,26 @@ jQuery(document).ready(function() {
             ieInput($('.cuselText'));
     }
     var catalogForm = $('#catalog_form')
-    $('#sort').live('change', function() {
+    $('#sort').bind('change', function() {
         $('input[name=order]').val($(this).val())
         catalogForm.submit();
     });
-    $('#sort2').live('change', function() {
+    $('#sort2').bind('change', function() {
         $('input[name=user_per_page]').val($(this).val())
         catalogForm.submit();
     });
     /*call plugin menuImageCms (jquery.imagecms.js)*/
-//    l2 = $('.frame-l2');
-//    l2.each(function() {
-//        var l2l = $(this).find('ul > li').length;
-//        $(this).find('ul > li:lt(' + Math.ceil(l2l / 3) + ')').addClass('column2_0')
-//        $(this).find('ul > li:gt(' + (Math.ceil(l2l * 2 / 3) - 1) + ')').addClass('column2_2')
-//        $(this).find('ul > li:not(.column2_2):not(.column2_0)').addClass('column2_1')
-//    })
 
-    $('.menu-main').menuImageCms(optionsMenu);
-    $('.drop').drop(
-            $.extend(optionsDrop, {
+    callbackDrop = {
         before: function(el, dropEl, isajax) {
             var dropEl = $(dropEl);
             if (dropEl.hasClass('drop-report')) {
                 dropEl.find('li').children().remove();
                 dropEl.find('[data-clone="data-report"]').remove();
                 var parentEl = el.closest(genObj.parentBtnBuy)
-                if ($.existsN(el.closest('.items-catalog')))
+                if (!$.existsN(el.closest('.item-product')))
                     var elWrap = parentEl.clone(true).removeAttr('style').children();
                 else {
-
                     var elWrap = parentEl.find('.frame-photo-title > .photo-block').clone(true);
                     elWrap.after('<div class="description"><span class="title">' + $('h1').text() + '</span>' + parentEl.find('.frame-prices').clone().html() + '</div>')
                 }
@@ -1001,9 +1066,6 @@ jQuery(document).ready(function() {
             dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
         },
         after: function(el, dropEl, isajax) {
-            if (dropEl.is(genObj.popupCart)) {
-                //dropBaskResize();
-            }
             if (isajax)
                 drawIcons(dropEl.find(selIcons));
             if (dropEl.is(genObj.popupCart)) {
@@ -1013,6 +1075,7 @@ jQuery(document).ready(function() {
             var carouselInDrop = dropEl.find('.carousel_js');
             if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited')) {
                 carouselInDrop.addClass('visited')
+                console.log(carousel)
                 carouselInDrop.myCarousel(carousel);
             }
             if (dropEl.hasClass('drop-wishlist')) {
@@ -1024,55 +1087,87 @@ jQuery(document).ready(function() {
             dropEl.find('form input[type="text"]:first').focus();
         },
         close: function(el, dropEl) {
+
         },
         closed: function(el, dropEl) {
+            var dC = $(dropEl.find(dropEl.data('dropContent'))).data('jsp');
+            if (dC != undefined)
+                dC.destroy();
+
             if ($(dropEl).hasClass('frame-already-show'))
                 $('.frame-user-toolbar').css({'width': body.width(), 'z-index': 100})
+            if ($('#fancybox-wrap').is(':visible'))
+                $.drop('scrollEmulate')();
         }
-    }));
+    }
+    $('.menu-main').menuImageCms(optionsMenu);
+    $('[data-drop]').drop($.extend($.extend({}, optionsDrop), callbackDrop));
     $(document).bind('drop.successJson', function(e) {
         if (e.el.is('#notification')) {
             if (e.datas.answer == "success")
-                e.el.find(optionsDrop.notificationPlace).empty().append(message.success(e.datas.data))
+                e.el.find(optionsDrop.modalPlace).empty().append(message.success(e.datas.data))
             else
-                e.el.find(optionsDrop.notificationPlace).empty().append(message.error(e.datas.data))
+                e.el.find(optionsDrop.modalPlace).empty().append(message.error(e.datas.data))
         }
     })
     $(document).bind('drop.contentHeight', function(e) {
         var wndH = wnd.height(),
                 el = e.el,
                 elDrop = e.drop;
+        if ($.existsN(el)) {
+            el.jScrollPane(scrollPane);
 
-        el.jScrollPane(scrollPane);
-        el.find('.jspContainer').css({'height': '100%'});
-        el.unbind('touchstart touchmove touchend');
+            var elC = el.find('.jspPane'),
+                    elCH = elC.outerHeight(),
+                    api = el.data('jsp');
+            var footerHeader = elDrop.find('.drop-header').outerHeight(true) + elDrop.find('.drop-footer').outerHeight(true);
 
-        var elC = el.find('.jspPane'),
-                elCH = elC.outerHeight(),
-                api = el.data('jsp');
+            if (elDrop.data('place') != 'center' && elDrop.data('place') != 'inherit') {
+                if (elDrop.data('placement').search(/top/) == 0) {
+                    var mayHeight = $(document).height() - elDrop.offset().top - footerHeader;
+                    if (mayHeight > elCH)
+                        el.css('height', elCH)
+                    else
+                        el.css('height', mayHeight - 20)
+                    if (el.outerHeight() == elCH)
+                        api.destroy();
+                }
+                if (elDrop.data('placement').search(/bottom/) == 0) {
+                    el.css('height', '');
+                    var refer = $('[data-drop="' + elDrop.data('elrun') + '"]'),
+                            mayHeight = refer.offset().top - wnd.scrollTop() - footerHeader - 40,
+                            minh = parseInt(el.css('height'));
 
-        el.css('height', 'auto');
-        elC.css('position', 'static')
-        var elDropH = elDrop.height();
-        if (elDropH > wndH) {
-            el.css({'height': elCH - elDropH + wndH, 'max-height': 'none'});
-            elC.css('position', 'absolute');
+                    if (mayHeight > elCH)
+                        el.css('height', elCH)
+                    else
+                        el.css('height', mayHeight < minh ? minh : mayHeight)
+                    if (el.outerHeight() == elCH)
+                        api.destroy();
+                    $.drop('positionDrop')(refer);
+                }
+            }
+            else {
+                if (elCH + footerHeader > wndH)
+                    el.css('height', wndH - footerHeader - 40);
+                else
+                    el.css('height', elCH);
+            }
             api.reinitialise();
-            el.bind('touchstart touchmove touchend', function(e) {
-                return false;
-            });
+            $.drop('dropCenter')(elDrop);
         }
-        else {
-            el.css('max-height', wndH);
-            api.reinitialise();
-        }
-        $.drop('dropCenter')(elDrop)
     });
+    var dropContentTimeout = "";
     wnd.bind('resize', function() {
-        $('[data-elrun]:visible').each(function() {
-            var $this = $(this);
-            $(document).trigger({type: 'drop.contentHeight', el: $this.find($this.data('dropContent')), drop: $this})
-        })
+        clearTimeout(dropContentTimeout);
+        setTimeout(function() {
+            $('[data-elrun]:visible').each(function() {
+                var $this = $(this),
+                        dropContent = $this.find($this.data('dropContent'));
+                if ($.existsN(dropContent))
+                    $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
+            })
+        }, 300)
     })
 
     $('.tabs').tabs({
@@ -1084,8 +1179,8 @@ jQuery(document).ready(function() {
                 decorElemntItemProduct();
             }
             if (el.hasClass('tabs-product')) {
-                showHidePart($('.product-charac'));
-                showHidePart($('.product-descr'));
+                showHidePart($('.patch-product-view'));
+                showHidePart($('.frame-list-comment__icsi-css.sub-2'));
             }
         }
     });
@@ -1093,8 +1188,8 @@ jQuery(document).ready(function() {
         e.els.filter('.active').append('<div class="' + preloader.replace('.', '') + '"></div>')
     })
     $(document).bind('tabs.afterload', function(e) {
-        e.els.children(preloader).remove();
-        $('.drop').drop($.extend(optionsDrop, {dataSource: e.el.find('[data-drop]')}));
+        pasteItemsTovars(e.el);
+        e.els.find(preloader).remove();
     })
 //    if carousel in compare
 //    $('#compare').change(function() {
@@ -1134,7 +1229,7 @@ jQuery(document).ready(function() {
                 'type': 'iframe',
                 'titlePosition': 'inside',
                 'onComplete': function() {
-                    body.addClass('isScroll');
+                    $.drop('scrollEmulate')();
                     var fancyC = $('#fancybox-content');
                     fancyC.prepend('<div class="wOverlay"></div>');
                     fancyC.append('<div class="fancy-footer"></div>');
@@ -1157,24 +1252,11 @@ jQuery(document).ready(function() {
                         itemThumbs.unwrap();
                     fancyTitle.prependTo(fancyC);
                     var itemGal = carGal.find('.items-thumbs > li'),
-                            itemGalL = itemGal.length,
-                            pActEl = arguments[1] - itemGalL;
-                    var adding = {};
-                    if (pActEl == 0) {
-                        pActEl = itemGalL - 1;
-                    }
-                    else if (pActEl < 0) {
-                        if (pActEl + itemGalL == 0)
-                            pActEl = 0;
-                        else
-                            pActEl = pActEl + itemGalL - 1;
-                    }
-                    else {
-                        pActEl = pActEl - 1;
-                    }
-                    adding = {start: pActEl}
+                            itemGalL = itemGal.length;
+                    var pActEl = arguments[1] < itemGalL ? arguments[1] : arguments[1] - itemGalL;
+                    var adding = {start: pActEl}
                     itemGal.eq(pActEl).addClass('active');
-                    carGal.parent().myCarousel($.extend(carousel, {
+                    carGal.parent().myCarousel($.extend($.extend({}, carousel), {
                         adding: adding
                     }));
                     var fancyFrame = $('#fancybox-frame');
@@ -1189,7 +1271,7 @@ jQuery(document).ready(function() {
                     $("#fancybox-wrap").unbind('mousewheel.fb');
                 },
                 onClosed: function() {
-                    body.removeClass('isScroll');
+                    $.drop('scrollEmulateRemove')();
                 }
             })
 
@@ -1207,7 +1289,7 @@ jQuery(document).ready(function() {
         $('.item-product .items-thumbs > li > a').bind('click', function(e) {
             e.preventDefault();
             var $this = $(this);
-            $('.photoProduct').find('img').attr('src', $this.attr('href')).end().click(function(e) {
+            $(genObj.photoProduct).find('img').attr('src', $this.attr('href')).end().click(function(e) {
                 e.preventDefault()
             });
         });
@@ -1216,20 +1298,24 @@ jQuery(document).ready(function() {
         $('a.fancybox').fancybox();
     } catch (e) {
     }
+    if ($.isFunction(window.initComments))
+        initComments();
 
 //sample of events front
     $(document).live('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comment__icsi-css.sub-2'));
+        showHidePart(e.el.find('.product-comment'));
         e.el.find(preloader).remove();
     })
-    $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastescsmsg showCleaverFilter tabs.afterload', function(e) {
+    $(document).bind('render_popup_cart autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload', function(e) {
         if (e.el.is(':visible'))
             drawIcons(e.el.find(selIcons))
     })
-    $(document).bind('render_popup_cart', function(e) {
-        if (e.el.is(':visible')) {
-            //dropBaskResize();
-        }
+    $(document).bind('imageapi.pastemsg imageapi.hidemsg', function(e) {
+        var $this = e.el.closest('[data-elrun]'),
+                dropContent = $this.find($this.data('dropContent'));
+        console.log($this.data())
+        $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
     })
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
         $.fancybox.showActivity();
@@ -1242,12 +1328,20 @@ jQuery(document).ready(function() {
         if (ltie7)
             ieInput(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     })
+    $(document).bind('comments.showformreply', function(e) {
+        var patchCom = e.el.closest('.patch-product-view');
+        patchCom.css('height', patchCom.height() + e.el.height())
+    })
+    $(document).bind('comments.hideformreply', function(e) {
+        var patchCom = e.el.closest('.patch-product-view');
+        patchCom.css('height', patchCom.height() - e.el.height())
+    })
     $(document).bind('menu.showDrop', function(e) {
         if (ltie7)
             ieInput($('.frame-drop-menu .frame-l2 > ul > li'));
     });
 
-    $('[data-trigger]').live('click', function(e) {
+    $('[data-trigger]').live('click.trigger', function(e) {
         var $thisT = $(this);
         $($thisT.data('trigger')).trigger({
             type: "click",
@@ -1257,8 +1351,8 @@ jQuery(document).ready(function() {
     });
     //some front funcions
     showHidePart($('.sub-category'));
-    showHidePart($('.product-charac'));
-    showHidePart($('.product-descr'));
+    showHidePart($('.patch-product-view'));
+    showHidePart($('.frame-list-comment__icsi-css.sub-2'));
     drawIcons($(selIcons));
     var userTool = new itemUserToolbar(),
             btnToUp = $('.btn-to-up');
@@ -1276,20 +1370,17 @@ jQuery(document).ready(function() {
             'z-index': frLabL - index
         })
     });
+    $(document).bind('widget_ajax', function(e) {
+        pasteItemsTovars(e.el);
+    });
+    /*/call front plugins and functions*/
     //    call shop functions
     processPage();
     checkSyncs();
     processWishComp();
     wishListCount();
     compareListCount();
-    $(genObj.btnBuy).bind('click', function(e) {
-        $.fancybox.showActivity();
-        $(this).attr('disabled', 'disabled');
-        var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem, this);
-        decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
-        return true;
-    });
+    btnbuyInitialize(body);//where find
 //if !selectDeliv
     $(".check-variant-delivery").nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
@@ -1307,7 +1398,7 @@ jQuery(document).ready(function() {
             }
         }
     });
-    genObj.pM().nStRadio({
+    genObj.pM.nStRadio({
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio'
 //classRemove: 'b_n',//if not standart
@@ -1330,6 +1421,10 @@ jQuery(document).ready(function() {
     //if (!orderDetails)
     $(document).bind('render_popup_cart', function() {
         getDiscount(false);
+    })
+
+    $(document).bind('sync_сart', function() {
+        countSumBask();
     })
 
     //sample of events shop
@@ -1363,22 +1458,23 @@ jQuery(document).ready(function() {
         if (orderDetails)
             recountCartPage(selectDeliv, methodDeliv())
     });
-    $('.' + genObj.toCompare).live('click', function() {
+    $('.' + genObj.toCompare).live('click.toCompare', function() {
         $.fancybox.showActivity();
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
     });
-    $('.' + genObj.toWishlist).live('click', function() {
+
+    $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).live('click.toWish', function() {
         $.fancybox.showActivity();
         var id = $(this).data('prodid'),
                 vid = $(this).data('varid'),
                 price = $(this).data('price');
         Shop.WishList.add(id, vid, price, $(this));
     });
-    $('.' + genObj.inWishlist).live('click', function() {
+    $('.' + genObj.inWishlist).live('click.inWish', function() {
         document.location.href = '/shop/wish_list';
     });
-    $('.' + genObj.inCompare).live('click', function() {
+    $('.' + genObj.inCompare).live('click.inCompare', function() {
         document.location.href = '/shop/compare';
     }); /*      Wish-list event listeners       */
 
@@ -1452,7 +1548,7 @@ jQuery(document).ready(function() {
             optionCompare.allParams.click();
     })
     //variants
-    $('#variantSwitcher').live('change', function() {
+    $('#variantSwitcher').bind('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
@@ -1474,7 +1570,7 @@ jQuery(document).ready(function() {
         liBlock.find(genObj.prefV + vId).show();
     });
     /**Variants in Category*/
-    $('[id ^= сVariantSwitcher_]').live('change', function() {
+    $('[id ^= сVariantSwitcher_]').bind('change', function() {
         var productId = parseInt($(this).attr('value')),
                 liBlock = $(this).closest(genObj.parentBtnBuy);
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
@@ -1496,7 +1592,7 @@ jQuery(document).ready(function() {
         existsVnames(vName, liBlock);
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
     });
-    $('.frame-count-buy ' + genObj.minus + ',.frame-count-buy ' + genObj.plus).live('click', function() {
+    $('.frame-count-buy ' + genObj.minus + ',.frame-count-buy ' + genObj.plus).live('click.changeCount', function() {
         var $this = $(this);
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.closest(genObj.frameChangeCount).next().val())
     })
@@ -1518,103 +1614,130 @@ jQuery(document).ready(function() {
             recountCartPage(selectDeliv, methodDeliv());
         }
     })
+    /*/call shop functions*/
 });
+var genTimeout = "";
 wnd.load(function() {
     function removePreloaderBaner(el) {
-        el.find('img[data-src]').each(function() {
+        var el = el.find('img[data-original]'),
+                elL = el.length,
+                i = 0;
+        el.each(function() {
             var $this = $(this);
-            $this.attr('src', $this.attr('data-src')).load(function() {
+            $this.attr('src', $this.attr('data-original')).load(function() {
                 $(this).fadeIn();
                 $('.baner').find(preloader).remove();
+                i++;
+                if (i == elL)
+                    banerResize('.baner:has(.cycle)');
             })
         })
     }
-    $('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    var adding = {vertical: true};
-    $('.vertical-carousel .carousel_js:visible').myCarousel($.extend(carousel, {
-        adding: adding
-    }));
-    if ($.exists(selScrollPane)) {
-        $(selScrollPane).each(function() {
-            var $this = $(this),
-                    api = $this.jScrollPane(scrollPane),
-                    api = api.data('jsp');
-            $this.bind('mousewheel', function(e, b, c, delta) {
-                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
-                {
+    function initCarouselJscrollPaneCycle(el) {
+        el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
+        el.find('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
+        if ($.exists(selScrollPane)) {
+            el.find(selScrollPane).each(function() {
+                var $this = $(this),
+                        api = $this.jScrollPane(scrollPane),
+                        api = api.data('jsp');
+                $this.bind('mousewheel', function(e, b, c, delta) {
+                    if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
+                    {
 //            ширина блоку товару разом з мергінами
-                    api.scrollByX(widhtItemScroll);
-                    return false;
-                }
-                if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-widhtItemScroll);
-                    return false;
-                }
+                        api.scrollByX(widhtItemScroll);
+                        return false;
+                    }
+                    if (delta == 1 && api.getContentPositionX() != 0) {
+                        api.scrollByX(-widhtItemScroll);
+                        return false;
+                    }
 
+                })
             })
-        })
-    }
+        }
 
-    var cycle = $('.cycle'),
-            next = '.baner .next',
-            prev = '.baner .prev';
-    if (cycle.find('li').length > 1) {
-        cycle.cycle({
-            speed: 600,
-            timeout: 5000, fx: 'fade',
-            pauseOnPagerHover: true,
-            next: next,
-            prev: prev,
-            pager: '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            cycle.cycle('pause');
-        }, function() {
-            cycle.cycle('resume');
-        });
-        $(next + ',' + prev).show();
+        var cycle = el.find('.cycle'),
+                next = '.baner .next',
+                prev = '.baner .prev';
+        if (cycle.find('li').length > 1) {
+            cycle.cycle({
+                speed: 600,
+                timeout: 5000, fx: 'fade',
+                pauseOnPagerHover: true,
+                next: next,
+                prev: prev,
+                pager: '.pager',
+                pagerAnchorBuilder: function(idx, slide) {
+                    return '<a href="#"></a>';
+                }
+            }).hover(function() {
+                cycle.cycle('pause');
+            }, function() {
+                cycle.cycle('resume');
+            });
+            $(next + ',' + prev).show();
+        }
+        removePreloaderBaner(cycle); //cycle - parent for images
     }
-    $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-    removePreloaderBaner(cycle); //parent for images
-
-    $("img.lazy").lazyload({
-        effect: "fadeIn"
+    initCarouselJscrollPaneCycle(body);
+    $(document).bind('widget_ajax', function(e) {
+        initCarouselJscrollPaneCycle(e.el);
     });
+
+    $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
+    reinitializeScrollPane(body);
+
+    $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     if (productPhotoCZoom) {
         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
         body.append('<style id="forCloudZomm"></style>')
         margZoomLens();
-        $('.photoProduct').find('img').load(function() {
+        $(genObj.photoProduct).find('img').load(function() {
             margZoomLens();
         })
     }
+
+    $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
+        var $this = $(this);
+        file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        $('#wishlistphoto').html($(img));
+        $('[data-wishlist="do_upload"]').removeAttr('disabled');
+    });
+    $('[data-wishlist="do_upload"]').click(function(){
+        
+    })
+    $('[data-wishlist="delete_img"]').click(function(){
+        
+    })
+    
 }).resize(function() {
-    var userTool = new itemUserToolbar();
-    userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
-    $('.menu-main').menuImageCms('refresh');
-    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-    //dropBaskResize();
+    clearTimeout(genTimeout);
+    genTimeout = setTimeout(function() {
+        var userTool = new itemUserToolbar();
+        userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
+        $('.menu-main').menuImageCms('refresh');
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
+        banerResize('.baner:has(.cycle)');
+    }, 300)
 });
-if ($.exists(selScrollPane)) {
-    $(selScrollPane).each(function() {
-        $(this).jScrollPane(scrollPane);
-        var api = $(this).data('jsp');
-        var throttleTimeout;
-        $(window).bind('resize', function() {
-            if ($.browser.msie) {
-                if (!throttleTimeout) {
-                    throttleTimeout = setTimeout(function() {
-                        api.reinitialise();
-                        throttleTimeout = null;
-                    }, 50);
-                }
-            }
-            else {
-                api.reinitialise();
-            }
-        });
+
+function deleteImage(el) {
+    el.parent().remove();
+    var img = $('#wishlistphoto img');
+    img.attr('src', img.data('src'));
+}
+function changeDataWishlist(el){
+    $('[data-wishlist-name]').each(function(){
+        var $this = $(this);
+        console.log(el.closest('form').find('[name='+$this.data('wishlistName')+']'))
+        $this.html(el.closest('form').find('[name='+$this.data('wishlistName')+']').val())
     })
 }

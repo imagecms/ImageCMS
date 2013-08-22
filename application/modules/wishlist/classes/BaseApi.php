@@ -153,9 +153,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         if (!(strtotime($this->input->post('user_birthday')) + 50000))
             return false;
-         
+
         $userName = $this->input->post('user_name');
-        
+
         if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
             $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
 
@@ -219,9 +219,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
      * @return mixed
      */
     public function updateWL() {
-         $id = $this->input->post('WLID');
+        $id = $this->input->post('WLID');
         $wlDescription = $this->input->post('description');
-        
+
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
             $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
@@ -254,7 +254,13 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
      */
     public function deleteImage() {
         $image = $this->input->post('image');
-        if (parent::deleteImage($image)) {
+        $user_id = $this->input->post('user_id');
+
+        if (!$user_id) {
+            $user_id = $this->dx_auth->get_user_id();
+        }
+
+        if (parent::deleteImage($image, $user_id)) {
             return $this->dataModel[] = lang('deleted');
         } else {
             return $this->errors[] = lang('error');

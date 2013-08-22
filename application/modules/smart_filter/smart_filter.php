@@ -9,7 +9,9 @@
 class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
-        parent::__construct();
+        if($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter'){
+            parent::__construct();    
+        }
     }
 
     public function index() {
@@ -28,7 +30,7 @@ class Smart_filter extends \Category\BaseCategory {
 
         return \CMSFactory\assetManager::create()
                         ->registerScript('jquery.ui-slider', TRUE)
-                        ->registerScript('filter', TRUE)
+                        ->registerScript('filter', FALSE)
                         ->render('main', true);
     }
 
@@ -64,7 +66,7 @@ class Smart_filter extends \Category\BaseCategory {
     public function autoload() {
         
     }
-
+    
     public function _install() {
         /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
         /**

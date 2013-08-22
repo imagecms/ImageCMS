@@ -625,7 +625,8 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function deleteImage($image) {
+    public function deleteImage($image, $user_id) {
+        $this->db->where('id', $user_id)->update('mod_wish_list_users', array('user_image'=>''));
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
