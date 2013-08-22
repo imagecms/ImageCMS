@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="menu_expand_level">{lang('amt_open_menu_folder')}:</label>
-                                            <div class="controls">
+                                            <div class="controls number">
                                                 <input type="text" class="textbox" name="menu_expand_level" id="menu_expand_level" value="{$expand_level}" />   
                                             </div>
                                         </div>

@@ -80,7 +80,7 @@
                                         <li>
                                             <div class="o_h">
                                                 {//link to unckeck current filter}
-                                                <a class="del_filter_item" data-id="prop_{echo $prop->property_id}" href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
+                                                <a class="del_filter_item" data-id="prop_{echo $prop->property_id}/{$key.value}" href="{echo str_replace(array('&p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value), '?p[' . $prop->property_id . '][]=' . htmlspecialchars_decode($key.value)),'',$aurl)}" style="text-decoration: none;"><span class="times">&times;</span>{echo ShopCore::encode($prop->name).": ".$key.value}</a>
                                             </div>
                                         </li>
                                     {/if}
@@ -145,7 +145,7 @@
                     </div>
 
                     {//inputs for displaying price range in numeric format}
-                    <div class="formCost t-a_j">
+                    <div class="formCost t-a_j number">
                         <label>
 
                             {//left price value}

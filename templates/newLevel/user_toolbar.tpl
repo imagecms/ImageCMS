@@ -44,8 +44,8 @@
     <div class="drop frame-already-show">
         <div class="content-already-show">
             <div class="horizontal-carousel p_r" id="ViewedProducts">
-{/*                {widget_ajax('ViewedProducts', '#ViewedProducts')}*/}
-                    {widget('ViewedProducts')}
+                {/*{widget_ajax('ViewedProducts', '#ViewedProducts')}*/}
+                {widget('ViewedProducts')}
             </div>
         </div>
     </div>
