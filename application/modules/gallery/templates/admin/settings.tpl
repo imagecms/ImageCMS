@@ -330,7 +330,7 @@
                             </tr>
                         </tbody>
                     </table>
-                {form_csrf()}
+                    {form_csrf()}
                 </form>
             </div>
         </div>
@@ -338,14 +338,14 @@
 </section>
 {literal}
     <script type="text/javascript">
-                                    function show_watermark_block()
-                                    {
-                                        $('#text_settings, #image_settings').toggle();
-                                    }
+                                                        function show_watermark_block()
+                                                        {
+                                                            $('#text_settings, #image_settings').toggle();
+                                                        }
 
     </script>
 {/literal}
-                    
-                    
-                    
+
+
+
 

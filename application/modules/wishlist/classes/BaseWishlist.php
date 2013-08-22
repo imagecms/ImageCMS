@@ -155,12 +155,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         if (!(strtotime($this->input->post('user_birthday')) + 50000))
             return false;
-        
+
         $userName = $this->input->post('user_name');
-        
+
         if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
             $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
-       
+
         $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
             return $this->dataModel = lang('updated');
@@ -176,7 +176,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
         $id = $this->input->post('WLID');
         $wlDescription = $this->input->post('description');
-        
+
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
             $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
@@ -237,7 +237,13 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      */
     public function deleteImage() {
         $image = $this->input->post('image');
-        if (parent::deleteImage($image)) {
+        $user_id = $this->input->post('user_id');
+
+        if (!$user_id) {
+            $user_id = $this->dx_auth->get_user_id();
+        }
+
+        if (parent::deleteImage($image, $user_id)) {
             return $this->dataModel[] = lang('deleted');
         } else {
             return $this->errors[] = lang('error_cant_delete');
@@ -262,8 +268,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      */
     public function do_upload() {
         if (parent::do_upload($this->input->post('userID'))) {
-            if (!$this->upload->do_upload()) {
+            if (!$this->upload->do_upload('file')) {
+                
                 $this->errors[] = $this->upload->display_errors();
+                $f = fopen('/var/www/image.loc/baaaad.txt', "w+");
+                fwrite($f, print_r($this->errors, TRUE));
+                fclose($f);
                 return FALSE;
             } else {
                 $this->dataModel = array('upload_data' => $this->upload->data());

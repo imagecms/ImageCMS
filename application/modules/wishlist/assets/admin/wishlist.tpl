@@ -71,6 +71,7 @@
                                                 <div class="controls">
                                                     <form method="POST" action="/admin/components/cp/wishlist/deleteImage">
                                                         <input type="hidden" value="{echo $user[user_image]}" name="image"/>
+                                                        <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                                         <input type="submit" value="Удалить картинку" class="btn btn-danger btn-small"/>
                                                         {form_csrf()}
                                                     </form>

@@ -26,13 +26,13 @@
                         <div class="inside_padd span9">
                             <div class="control-group m-t_10">
                                 <label class="control-label" for="max_comment_length">{lang('amt_max_comment_length')}:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type="text" value="{$settings.max_comment_length}" name="max_comment_length" id="max_comment_length"/> 
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="period">{lang('amt_restrictions')}:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type="text" value="{$settings.period}" name="period" id="period"/>
                                     <span class="help-block">{lang('amt_restrictions_frequency')}</span>
                                 </div>

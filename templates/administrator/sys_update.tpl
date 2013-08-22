@@ -16,11 +16,19 @@
                         <i class="icon-refresh"></i>
                         Обновить
                     </button>
-                    <button onclick="$.post('/admin/sys_update/backup'); location.reload();"
-                       class="btn btn-small btn-primary">
+                    <button onclick="$.post('/admin/sys_update/backup');
+                            location.reload();"
+                            class="btn btn-small btn-primary">
                         <span class="icon-hdd"></span>
                         Создать BackUp
                     </button>
+                    {if SHOP_INSTALLED}
+                        <a href="/admin/sys_update/properties"
+                           class="btn btn-small">
+                            <span class="icon-wrench"></span>
+                            <span>Настройки</span>
+                        </a>
+                    {/if}
                 </div>
             </div>
         </div>
