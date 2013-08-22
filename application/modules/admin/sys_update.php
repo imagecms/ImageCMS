@@ -43,17 +43,20 @@ class Sys_update extends BaseAdminController {
 //        $this->update->restoreFromZIP();
 //        $this->update->checkForVersion();
 //        $this->update->sendData();
+        $data = array(
+            'filesCount' => count($diff),
+            'sort_by' => $sort_by,
+            'order' => $order,
+            'diff_files_dates' => $this->update->get_files_dates(),
+            'diff_files' => $diff,
+            'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+        );
 
-        $this->template->assign('sort_by', $sort_by);
-        $this->template->assign('order', $order);
-        $this->template->assign('diff_files_dates', $this->update->get_files_dates());
-        $this->template->assign('diff_files', $diff);
-        $this->template->assign('restore_files', $this->sort($this->update->restore_files_list(), $sort_by, $order));
-        $this->template->show('sys_update', FALSE);
+        $this->template->show('sys_update', FALSE, $data);
     }
 
-    public function restore($file_name) {
-        echo $this->update->restoreFromZIP($file_name);
+    public function restore() {
+        echo $this->update->restoreFromZIP($_POST['file_name']);
     }
 
     public function renderFile() {
