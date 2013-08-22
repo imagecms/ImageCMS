@@ -130,7 +130,7 @@
                                             <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
                                         {/if}
                                     <th class="span2">Восстановление</th>
-                                    <th class="span1">Удаление</th>
+                                    <th class="span2">Удаление</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,14 +146,18 @@
                                             {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
                                         </td>
                                         <td class="span2">
-                                            <button class="btn my_btn_s btn-small btn-success" type="button" onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
+                                            <button class="btn btn-small btn-success"
+                                                    type="button"
+                                                    onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
                                                 <i class="icon-refresh"></i>
+                                                Востановить
                                             </button>
                                         </td>
-                                        <td class="span1">
+                                        <td class="span2">
                                             {if $file_inf['name'] != 'backup.zip'}
-                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
+                                                <button class="btn btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
                                                     <i class="icon-trash"></i>
+                                                    Удалить
                                                 </button>
                                             {/if}
                                         </td>

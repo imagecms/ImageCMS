@@ -12,6 +12,12 @@ class Update {
     private $restore_files = array();
 
     /**
+     * path to update server
+     * @var string
+     */
+    private $pathUS = "http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl";
+
+    /**
      * шлях до сканування папок
      * @var string
      */
@@ -182,14 +188,25 @@ class Update {
         }
     }
 
+    /**
+     * check for new version
+     * @return array return info about new relise or 0 if version is actual
+     */
     public function checkVersion() {
+        $client = new SoapClient($this->pathUS);
+
+        $domen = $_SERVER['SERVER_NAME'];
+
+        $result = $client->getStatus($domen, BUILD_ID);
+
         if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
 
-            ShopCore::app()->SSettings->set("newVersion", $ver);
-            ShopCore::app()->SSettings->set("checkTime", time());
+//            ShopCore::app()->SSettings->set("newVersion", $ver);
+//            ShopCore::app()->SSettings->set("checkTime", time());
         } else {
             ShopCore::app()->SSettings->__get("newVersion");
         }
+        return unserialize($result);
     }
 
     /**
