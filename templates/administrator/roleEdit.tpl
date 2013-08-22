@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="Importance">{lang('a_imp_rbak')}:</label>
-                                    <div class="controls">
+                                    <div class="controls number">
                                         <input type="text" name="Importance" id="Importance" value="{echo $model->importance}"/>
                                     </div>
                                 </div>
