@@ -63,7 +63,8 @@ class Discount_order extends classes\BaseDiscount {
                     $pricetotal_gift_disc = 0;
                 $data['order']->setdiscount($discount['result_sum_discount']);
                 $data['order']->settotalprice($pricetotal_gift_disc);
-                $data['order']->setdiscountinfo(json_encode($discount['max_discount']));
+                if ($discount['sum_discount_no_product'] > $discount['sum_discount_product'])
+                    $data['order']->setdiscountinfo(json_encode($discount['max_discount']));
                 $data['order']->setoriginprice($data['price']);
                 $data['order']->save();
                 $this->updatediskapply($discount['max_discount']['key']); // TODO

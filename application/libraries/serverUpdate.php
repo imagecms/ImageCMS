@@ -13,19 +13,29 @@ class serverUpdate {
     public function getUpdateStatus($domen, $buildId) {
 
         $current_build_update = 4451235; // select from bd last build
+        $data = array(
+            'build' => 4451235,
+            'date' => time(),
+            'size' => 13
+            );
+
 
         if ($buildId < $current_build_update)
-            return 1;
+            return serialize($data);
         else
             return 0;
     }
 
     public function check_rule($domen, $careKey) {
 
-        $sql = "select * from update_user where `key` = '$careKey' and domen = '$domen'";
-        if ($this->ci->db->query($sql)->num_rows() > 0)
-            return true;
-        else
+        $sql = "select * from update_user where domen = '$domen'";
+        $res = $this->ci->db->query($sql)->result_array();
+        if (count($res) > 0){
+            if ($res[0]['key'] == md5($careKey))
+                return true;
+            else
+                return false;
+        }else
             return false;
 
         return true;
@@ -54,9 +64,9 @@ class serverUpdate {
 
     public function generateHref($version, $domen) {
         
-        
+        $time = time() + 36000;
         $href = $this->generateSymbol();
-        $sql = "update update_user set href = '$href', active = 1, version = '$version' where domen = '$domen'";
+        $sql = "update update_user set href = '$href', active = 1, version = '$version', `time` = '$time' where domen = '$domen'";
         $this->ci->db->query($sql);
         return $href;
     }
@@ -72,8 +82,9 @@ class serverUpdate {
     }
 
     public function put_file($href, $domen) {
-
-        $sql = "select * from update_user where href = '$href' and domen = '$domen' and active = 1";
+        
+        $time = time();
+        $sql = "select * from update_user where href = '$href' and domen = '$domen' and active = 1 and `time` >= '$time'";
        
         if ($this->ci->db->query($sql)->num_rows() > 0) {
             $res = $this->ci->db->query($sql)->row();

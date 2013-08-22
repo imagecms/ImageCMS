@@ -1,5 +1,5 @@
 <li>
-    <span title="{$title}" {if $wrapper != FALSE} class="title-category-l1 frame-photo-title">
+    <span title="{$title}" {if $wrapper != FALSE} class="title-category-l1 frame-photo-title"{/if}>
         <span class="text-el">{$title}</span>
         {if $image}
             <span class="photo-block">
