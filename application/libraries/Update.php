@@ -52,6 +52,7 @@ class Update {
         'cart.php',
         'md5.txt',
         '.htaccess',
+        'config.php'
     );
 
     /**
@@ -502,7 +503,6 @@ class Update {
     /**
      * database restore
      * @param string $file
-     * @todo доробити видалення і непоказувати лишні файли
      */
     public function db_restore($file) {
         if (empty($file))
@@ -517,7 +517,7 @@ class Update {
     }
 
     /**
-     * restore files list
+     * Create restore files list
      */
     public function restore_files_list() {
         if (is_readable('./application/backups/')) {
@@ -529,15 +529,13 @@ class Update {
                     if ($file_type[0] == '.zip') {
                         $zip = new ZipArchive();
                         $zip->open('./application/backups/' . $filename);
-                        $zip->extractTo('./application/backups/zip');
-                        if (file_exists('./application/backups/zip/backup.sql')) {
+                        if ($zip->statName('backup.sql')) {
                             $this->restore_files[] = array(
                                 'name' => $filename,
                                 'size' => filesize('./application/backups/' . $filename),
                                 'create_date' => filemtime('./application/backups/' . $filename)
                             );
                         }
-                        $this->removeDirRec('./application/backups/zip');
                         $zip->close();
                     }
                 }

@@ -42,7 +42,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="update">
-                    <h4>Файлы которые будут изменены</h4>
+                    <h4>Файлы которые будут изменены ({echo $filesCount})</h4>
                     {if $diff_files}
                         <form  action="{$ADMIN_URL}" method="post"  id="update_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
@@ -77,7 +77,9 @@
                                                 </span>
                                             </td>
                                             <td >
-                                                <a onclick="Update.renderFile('{echo $file_path}', $(this))"><span>{echo $file_path}</span></a>
+                                                <a onclick="Update.renderFile('{echo $file_path}', $(this))">
+                                                    <span>{echo $file_path}</span>
+                                                </a>
                                             </td>
                                             <td >
                                                 <span>{echo $md5}</span>
