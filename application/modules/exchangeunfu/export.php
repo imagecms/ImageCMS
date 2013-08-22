@@ -107,6 +107,7 @@ class export {
             $this->users_export .=
                     "<СписокКонтрагентов>\n" .
                     "<ID>" . $user['external_id'] . "</ID>\n" .
+                    "<IDWeb>" . 'ddddd' . "</IDWeb>\n" .
                     "<Код></Код>\n" .
                     "<Наименование>" . $user['username'] . "</Наименование>\n" .
                     "<Логин></Логин>\n" .
