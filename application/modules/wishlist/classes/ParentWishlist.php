@@ -559,7 +559,7 @@ class ParentWishlist extends \MY_Controller {
         if ($this->errors)
             return FALSE;
 
-        $config['upload_path'] = './uploads/mod_wishlist';
+        $config['upload_path'] = './uploads/mod_wishlist/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = $this->settings['maxImageSize'];
         $config['max_width'] = $this->settings['maxImageWidth'];
@@ -625,8 +625,8 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function deleteImage($image) {
-        $this->db->where('id', $this->dx_auth->get_user_id())->update('mod_wish_list_users', array('user_image'=>''));
+    public function deleteImage($image, $user_id) {
+        $this->db->where('id', $user_id)->update('mod_wish_list_users', array('user_image'=>''));
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
