@@ -549,7 +549,7 @@ class Update {
                         if ($zip->statName('backup.sql')) {
                             $this->restore_files[] = array(
                                 'name' => $filename,
-                                'size' => filesize('./application/backups/' . $filename),
+                                'size' => round(filesize('./application/backups/' . $filename)/1024/1024, 2),
                                 'create_date' => filemtime('./application/backups/' . $filename)
                             );
                         }
