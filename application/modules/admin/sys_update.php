@@ -45,22 +45,30 @@ class Sys_update extends BaseAdminController {
         $this->template->show('sys_update_info', FALSE, $data);
     }
 
+    public function do_update() {
+        $this->update->getUpdate();
+    }
+
     public function update($sort_by = "create_date", $order = 'asc') {
-
         // Show upgrade window;
-        $old = $this->update->getHashSum();
+        $result = $this->update->getHashSum();
         $array = $this->update->parse_md5();
-        $diff = array_diff($array, $old);
+        $diff = array_diff($array, $result);
 
-        $data = array(
-            'filesCount' => count($diff),
-            'sort_by' => $sort_by,
-            'order' => $order,
-            'diff_files_dates' => $this->update->get_files_dates(),
-            'diff_files' => $diff,
-            'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
-        );
-
+        if (!$result['error'])
+            $data = array(
+                'filesCount' => count($diff),
+                'sort_by' => $sort_by,
+                'order' => $order,
+                'diff_files_dates' => $this->update->get_files_dates(),
+                'diff_files' => $diff,
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+            );
+        else
+            $data = array(
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                'error' => $result['error']
+            );
         $this->template->show('sys_update', FALSE, $data);
     }
 
