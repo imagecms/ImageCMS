@@ -227,6 +227,23 @@ class Admin extends BaseAdminController {
                 ->setData('entity', $entity)
                 ->render($this->input->post('tpl'), TRUE);
     }
+    
+    /**
+     * Save banners positions
+     * @access public
+     * @author koloda90 <koloda90@gmail.com>
+     */
+    public function save_positions() {
+        if (!is_array($this->input->post('positions')))
+            return;
+
+        foreach ($this->input->post('positions') as $key => $value) {
+            $this->db->where('id = '.$value)
+                ->update('mod_banner', array('position' => $key));
+        }
+
+        showMessage('Positions saved');
+    }
 
 }
 
