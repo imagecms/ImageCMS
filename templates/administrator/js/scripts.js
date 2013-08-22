@@ -1103,6 +1103,11 @@ function initAdminArea() {
         return false;
     });
 
+    $('#mainContent button.pjax').unbind('click').die('click').on('click', function(event) {
+        $('#loading').fadeIn(100);
+        return false;
+    });
+
     $(document).on('pjax:start', function() {
         $('#loading').fadeIn(100);
 
@@ -1793,7 +1798,7 @@ var Update = {
             url: '/admin/sys_update/renderFile',
             success: function(res) {
                 if (res) {
-                    $('<tr class="update_file_review"><td colspan="4"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
+                    $('<tr class="update_file_review"><td colspan="3"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
                 }
             }
         });
