@@ -102,7 +102,7 @@ var optionsDrop = {
     modalPlace: '.notification',
     dropContent: '.drop-content',
     animate: false,
-    moreoneNC: true// show more then one drop not place = "center"
+    moreoneNC: true// show more then one drop
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -1700,7 +1700,6 @@ wnd.load(function() {
     }
 
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
-        var $this = $(this);
         file = this.files[0],
                 img = document.createElement("img"),
                 reader = new FileReader();
@@ -1711,13 +1710,13 @@ wnd.load(function() {
         $('#wishlistphoto').html($(img));
         $('[data-wishlist="do_upload"]').removeAttr('disabled');
     });
-    $('[data-wishlist="do_upload"]').click(function(){
-        
+    $('[data-wishlist="do_upload"]').click(function() {
+
     })
-    $('[data-wishlist="delete_img"]').click(function(){
-        
+    $('[data-wishlist="delete_img"]').click(function() {
+
     })
-    
+
 }).resize(function() {
     clearTimeout(genTimeout);
     genTimeout = setTimeout(function() {
@@ -1734,10 +1733,14 @@ function deleteImage(el) {
     var img = $('#wishlistphoto img');
     img.attr('src', img.data('src'));
 }
-function changeDataWishlist(el){
-    $('[data-wishlist-name]').each(function(){
+function changeDataWishlist(el) {
+    $('[data-wishlist-name]').each(function() {
         var $this = $(this);
-        console.log(el.closest('form').find('[name='+$this.data('wishlistName')+']'))
-        $this.html(el.closest('form').find('[name='+$this.data('wishlistName')+']').val())
+        console.log(el.closest('form').find('[name=' + $this.data('wishlistName') + ']'))
+        $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val())
     })
+}
+function createWishList(el, data) {
+    if (data.answer == 'success')
+        location.reload();
 }
