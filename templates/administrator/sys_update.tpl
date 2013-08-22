@@ -42,7 +42,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="update">
-                    <h4>Файлы которые будут изменены</h4>
+                    <h4>Файлы которые будут изменены ({echo $filesCount})</h4>
                     {if $diff_files}
                         <form  action="{$ADMIN_URL}" method="post"  id="update_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
@@ -77,7 +77,9 @@
                                                 </span>
                                             </td>
                                             <td >
-                                                <a onclick="Update.renderFile('{echo $file_path}', $(this))"><span>{echo $file_path}</span></a>
+                                                <a onclick="Update.renderFile('{echo $file_path}', $(this))">
+                                                    <span>{echo $file_path}</span>
+                                                </a>
                                             </td>
                                             <td >
                                                 <span>{echo $md5}</span>
@@ -105,14 +107,14 @@
                                     <th >
                                         {if $sort_by == 'size'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/index/size/desc#restore">Размер(байт)</a>
+                                                <a class="pjax" href="/admin/sys_update/index/size/desc#restore">Размер(MB)</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                                <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(MB)</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                            <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(MB)</a>
                                         {/if}
                                     </th>
                                     <th >
@@ -128,7 +130,7 @@
                                             <a class="pjax" href="/admin/sys_update/index/create_date/asc#restore">Дата создания</a>
                                         {/if}
                                     <th class="span2">Восстановление</th>
-                                    <th class="span1">Удаление</th>
+                                    <th class="span2">Удаление</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,14 +146,18 @@
                                             {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
                                         </td>
                                         <td class="span2">
-                                            <button class="btn my_btn_s btn-small btn-success" type="button" onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
+                                            <button class="btn btn-small btn-success"
+                                                    type="button"
+                                                    onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
                                                 <i class="icon-refresh"></i>
+                                                Востановить
                                             </button>
                                         </td>
-                                        <td class="span1">
+                                        <td class="span2">
                                             {if $file_inf['name'] != 'backup.zip'}
-                                                <button class="btn my_btn_s btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
+                                                <button class="btn btn-small btn-danger" type="button" onclick="Update.delete_backup('{echo $file_inf['name']}', $(this))">
                                                     <i class="icon-trash"></i>
+                                                    Удалить
                                                 </button>
                                             {/if}
                                         </td>
