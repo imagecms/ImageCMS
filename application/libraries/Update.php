@@ -1,12 +1,15 @@
 <?php
 
 /**
- * @todo ДОРОБИТИ розархівування файлів, апі настройок, тестування, продумати права на папки
- * @property CI $ci
+ * ImageCMS System Update Class
+ * @copyright ImageCMS(c) 2013
+ * @version 0.1 big start
  */
 class Update {
 
     private $arr_files;
+    private $files_dates = array();
+    private $restore_files = array();
 
     /**
      * шлях до сканування папок
@@ -24,7 +27,32 @@ class Update {
      * папки, які не враховувати при обновлені
      * @var array
      */
-    private $distinct = array('.', '..', '.git');
+    private $distinctDirs = array(
+        '.',
+        '..',
+        '.git',
+        'uploads',
+        'cache',
+        'templates',
+        'tests',
+        'captcha',
+        'nbproject',
+        'uploads_site',
+        'backups',
+    );
+
+    /**
+     * файли, які не враховувати при обновлені
+     * @var array
+     */
+    private $distinctFiles = array(
+        'product.php',
+        'category.php',
+        'brand.php',
+        'cart.php',
+        'md5.txt',
+        '.htaccess',
+    );
 
     /**
      * назва архіву і папки з скачаним старим текущим релізом в оригіналі
@@ -54,7 +82,7 @@ class Update {
      * шлях до архіву старого релізу
      * @var string
      */
-    public $path_old_relith = '';
+    public $path_old_reliz = '';
 
     /**
      * instance of ci
@@ -67,6 +95,45 @@ class Update {
     }
 
     /**
+     * check for new version exist
+     */
+    public function checkForVersion($modulName = 'reliz') {
+
+        $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
+
+        $url = 'http://pftest.imagecms.net/shop/test';
+
+        $headers = array(
+            "Content-type: text/xml;charset=\"utf-8\"",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
+            "Authorization: Basic " . base64_encode($credentials)
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
+
+        // Apply the XML to our curl call
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        if (curl_errno($ch)) {
+            print "Error: " . curl_error($ch);
+        } else {
+            // Show me the result
+            var_dump($data);
+        }
+    }
+
+    /**
      * send php auth data to server
      */
     public function sendData() {
@@ -76,14 +143,14 @@ class Update {
 //        $request_file = "./SampleRequest.xml";
 //        $fh = fopen($request_file, 'r');
 //        $xml_data = fread($fh, filesize($request_file));
-        $xml_data = 'grant_type=authorization_code';
+        $xml_data = 'asdasdasgrant_type=authorization_code';
 //        fclose($fh);
 
         $url = 'http://pftest.imagecms.net/shop/test';
         $page = "/services/calculation";
         $headers = array(
             "POST " . $page . " HTTP/1.0",
-            "Content-type: text/xml;charset=\"utf-8\"",
+            "Content-type: text/xml/file;charset=\"utf-8\"",
             "Accept: text/xml",
             "Cache-Control: no-cache",
             "Pragma: no-cache",
@@ -110,7 +177,17 @@ class Update {
             print "Error: " . curl_error($ch);
         } else {
             // Show me the result
-            var_dump(json_decode($data));
+            var_dump($data);
+        }
+    }
+
+    public function checkVersion() {
+        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+
+            ShopCore::app()->SSettings->set("newVersion", $ver);
+            ShopCore::app()->SSettings->set("checkTime", time());
+        } else {
+            ShopCore::app()->SSettings->__get("newVersion");
         }
     }
 
@@ -126,7 +203,83 @@ class Update {
             $array[$key] = end($find);
         }
 
-        var_dump($array);
+        $array['core'] = IMAGECMS_NUMBER;
+        header('content-type: text/xml');
+        $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
+                "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
+        foreach ($array as $key => $arr) {
+            $xml.='<modul>';
+            $xml.="<name>$key</name>";
+            $xml.="<version>$arr</version>";
+            $xml.='</modul>';
+        }
+        $xml .= "</КонтейнерСписков>\n";
+        echo $xml;
+        exit;
+    }
+
+    public function getOldMD5File() {
+        return (array) json_decode(read_file('md5.txt'));
+    }
+
+    /**
+     * zipping files
+     * @param array $files
+     */
+    public function add_to_ZIP($files = array()) {
+        if (empty($files))
+            return FALSE;
+
+        $zip = new ZipArchive();
+        $time = time();
+        $filename = "./application/backups/backup.zip";
+        rename($filename, "./application/backups/$time.zip");
+
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
+            exit("cannot open <$filename>\n");
+
+        foreach ($files as $key => $value)
+            $zip->addFile('.' . $key, $key);
+
+
+//        echo "numfiles: " . $zip->numFiles . "\n";
+//        echo "status:" . $zip->status . "\n";
+
+        $zip->close();
+    }
+
+    public function createBackUp() {
+        $old = $this->getOldMD5File();
+        $array = $this->parse_md5();
+        $diff = array_diff($array, $old);
+        $this->add_to_ZIP($diff);
+
+        $filename = "./application/backups/backup.zip";
+        $zip = new ZipArchive();
+        $zip->open($filename);
+        $db = $this->db_backup();
+        $zip->addFile('./application/backups/' . $db, $db);
+        $zip->close();
+
+        chmod('./application/backups/' . $db, 0777);
+        unlink('./application/backups/' . $db);
+    }
+
+    /**
+     * restore files from zip
+     * @param string $file path to zip file
+     * @param type $destination path to destination folder
+     */
+    public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
+        $zip = new ZipArchive();
+        $zip->open($file);
+        $rez = $zip->extractTo($destination);
+        $zip->close();
+
+        if ($rez)
+            $this->db_restore($destination . '/backup.sql');
+
+        return $rez;
     }
 
     /**
@@ -162,7 +315,7 @@ class Update {
      */
     public function set_distinct($array) {
 
-        $this->distinct = array_merge($this->distinct, $array);
+        $this->distinctDirs = array_merge($this->distinctDirs, $array);
         return $this;
     }
 
@@ -185,23 +338,25 @@ class Update {
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
+     * @return Array
      */
     public function parse_md5($directory = null) {
 
-        $dir = null === $directory ? $this->path_parse : $directory;
+        $dir = null === $directory ? realpath('') : $directory;
 
-        if ($handle = opendir($dir))
+        $handle = opendir($dir);
+        if ($handle)
             while (FALSE !== ($file = readdir($handle)))
-                if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file))
-                        $this->arr_files[$dir . DIRECTORY_SEPARATOR . $file] = md5($dir . DIRECTORY_SEPARATOR . $file);
+                if (!in_array($file, $this->distinctDirs)) {
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file) && !in_array($file, $this->distinctFiles)) {
+                        $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
+                        $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
+                    }
                     if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
                 }
 
-        strstr($this->path_parse, $this->update_directory) ? file_put_contents($this->file_mass_old, serialize($this->arr_files)) : file_put_contents($this->file_mass_curr, serialize($this->arr_files));
-
-        //return $this->arr_files;
+        return $this->arr_files;
     }
 
     /**
@@ -326,6 +481,125 @@ class Update {
 
     public function set_settings() {
 
+    }
+
+    /**
+     * database backup
+     */
+    public function db_backup() {
+        if (is_really_writable('./application/backups')) {
+            $this->ci->load->dbutil();
+            $backup = & $this->ci->dbutil->backup(array('format' => 'sql'));
+            $name = "backup.sql";
+            write_file('./application/backups/' . $name, $backup);
+        } else {
+            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+        }
+
+        return $name;
+    }
+
+    /**
+     * database restore
+     * @param string $file
+     * @todo доробити видалення і непоказувати лишні файли
+     */
+    public function db_restore($file) {
+        if (empty($file))
+            return FALSE;
+
+        if (is_readable($file)) {
+            $restore = file_get_contents($file);
+            return $this->query_from_file($restore);
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * restore files list
+     */
+    public function restore_files_list() {
+        if (is_readable('./application/backups/')) {
+            $dh = opendir('./application/backups/');
+            while ($filename = readdir($dh)) {
+                if (filetype($filename) != 'dir') {
+                    $file_type = '';
+                    preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
+                    if ($file_type[0] == '.zip') {
+                        $zip = new ZipArchive();
+                        $zip->open('./application/backups/' . $filename);
+                        $zip->extractTo('./application/backups/zip');
+                        if (file_exists('./application/backups/zip/backup.sql')) {
+                            $this->restore_files[] = array(
+                                'name' => $filename,
+                                'size' => filesize('./application/backups/' . $filename),
+                                'create_date' => filemtime('./application/backups/' . $filename)
+                            );
+                        }
+                        $this->removeDirRec('./application/backups/zip');
+                        $zip->close();
+                    }
+                }
+            }
+            return $this->restore_files;
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * remove dir recursive
+     * @param string $dir - path to directory
+     */
+    public function removeDirRec($dir) {
+        if ($objs = glob($dir . "/*"))
+            foreach ($objs as $obj)
+                is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
+        if (is_dir($dir))
+            rmdir($dir);
+    }
+
+    /**
+     * db update
+     * @param string $file_name
+     */
+    public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
+        if (is_readable('./application/backups/' . $file_name)) {
+            $restore = file_get_contents('./application/backups/' . $file_name);
+            $this->query_from_file($restore);
+        } else {
+            return FALSE;
+        }
+    }
+
+    /**
+     * ganerate sql query from file
+     * @param string $file
+     */
+    public function query_from_file($file) {
+        $string_query = rtrim($file, "\n;");
+        $array_query = explode(";\n", $string_query);
+
+        foreach ($array_query as $query) {
+            if ($query) {
+                if (!$this->ci->db->query($query)) {
+                    echo 'Невозможно виполнить запрос: <br>';
+                    var_dumps($query);
+                    return FALSE;
+                } else {
+                    return TRUE;
+                }
+            }
+        }
+    }
+
+    public function get_files_dates() {
+        if (!empty($this->files_dates)) {
+            return $this->files_dates;
+        } else {
+            return FALSE;
+        }
     }
 
 }

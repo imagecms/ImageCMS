@@ -8,7 +8,7 @@
                />
     </form>*/}
     <div class="variant_{echo $varId} variant btn-wish">
-        <button class="toWishlist" type="button" data-rel="tooltip" data-drop=".drop-wishlist" data-source="{site_url('/wishlist/renderPopup/'. $varId)}" data-data='{literal}{"ignoreWrap":true}{/literal}' data-always="true">
+        <button class="toWishlist" type="button" data-rel="tooltip" data-drop=".drop-wishlist" data-source="{site_url('/wishlist/renderPopup/'. $varId)}">
             <span class="icon_wish"></span>
             <span class="text-el d_l">Добавить в Список Желания</span>
         </button>

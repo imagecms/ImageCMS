@@ -10,7 +10,7 @@
 *
 */}
 {$Comments = $CI->load->module('comments')->init($model)}
-{$NextCSIdCond = $NextCSId != null}
+{$NextCSIdCond = $NextCS != null}
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
@@ -42,9 +42,7 @@
                 </span>
             </div>
             <div class="right-product">
-                {/* if cloudzoom*/}
                 <div id="xBlock"></div>
-                {/*/ if cloudzoom*/}
                 <div class="right-product-left">
                     <div class="f-s_0 buy-block">
                         <!--Select variant -->
@@ -153,7 +151,7 @@
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             data-origPrice="{if $model->hasDiscounts()}{echo $productVariant->toCurrency('OrigPrice')}{/if}"
-                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',1)}{/if}"
+                                                            data-addPrice="{if $NextCSIdCond}{echo $productVariant->toCurrency('Price',$NextCSId)}{/if}"
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
@@ -192,8 +190,8 @@
                                 </div>
                             </div>
                             <!-- end. frame-prices-buy -->
-                            <div class="frame-wish-compare-list">
-                                <!-- Wish List buttons --------------------->
+                            <div class="frame-wish-compare-list f-s_0">
+                                <!-- Wish List buttons -->
                                 {foreach $variants as $key => $productVariant}
                                     <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $productVariant->getId()} variant">
                                         <button class="toWishlist"
@@ -210,8 +208,8 @@
                                         </button>
                                     </div>
                                 {/foreach}
-                                <!-- end of Wish List buttons -------------->
-                                <!-- compare buttons ----------------------->
+                                <!-- end of Wish List buttons -->
+                                <!-- compare buttons -->
                                 <div class="btn-compare" data-prodid="{echo $model->getId()}">
                                     <button class="toCompare"
                                             data-prodid="{echo $model->getId()}"
@@ -224,7 +222,7 @@
                                         <span class="text-el d_l">{lang('s_add_to_compare')}</span>
                                     </button>
                                 </div>
-                                <!-- end of compare buttons ---------------->
+                                <!-- end of compare buttons -->
                             </div>
                             <!-- End button for main & variants prod -->
                         </div>
@@ -258,8 +256,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a {if $sizeAddImg == 0}rel="group"{/if} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
-                    {/*rel="position: 'xBlock'" */}
+                <a {if $sizeAddImg == 0}rel="group"{/if} {/*rel="position: 'xBlock'"*/} href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
@@ -296,11 +293,10 @@
                 {if $sizeAddImg > 0}
                     <ul data-rel="mainThumbPhoto">
                         <li class="d_n">
-                            <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
-                                {/*rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'"*/}
+                            <a rel="group" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}">
                                 <span class="photo-block">
                                     <span class="helper"></span>
-                                    <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                    <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}"/>
                                 </span>
                             </a>
                         </li>
@@ -308,13 +304,23 @@
                     <div class="horizontal-carousel">
                         <div class="frame-thumbs carousel_js">
                             {/*carousel_js*/}
-                            {/*if mask-carousel*/}
                             <div class="content-carousel">
                                 <ul class="items-thumbs items">
+                                    <!--if cloudzoom-->
+                                    {/*}
+                                    <li class="active">
+                                        <a rel="useZoom: 'photoGroup', smallImage: '{echo $model->firstVariant->getMainPhoto()}'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
+                                            <span class="photo-block">
+                                                <span class="helper"></span>
+                                                <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}"/>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    { */}
+                                    <!--if cloudzoom -->
                                     {foreach $productImages as $key => $image}
                                         <li>
-                                            <a rel="group" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
-                                                {/*rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'"*/}
+                                            <a rel="group" {/*rel="useZoom: 'photoGroup', smallImage: '{productImageUrl('products/additional/'.$image->getImageName())}'"*/} href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                 <span class="photo-block">
                                                     <span class="helper"></span>
                                                     <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
@@ -502,7 +508,7 @@
                                 {/foreach}
                             </ul>
                         </div>
-                        <!--                        Start. Buttons for next/prev kit-->
+                        <!-- Start. Buttons for next/prev kit-->
                         <div class="group-button-carousel">
                             <button type="button" class="prev arrow">
                                 <span class="icon_arrow_p"></span>
@@ -511,7 +517,7 @@
                                 <span class="icon_arrow_n"></span>
                             </button>
                         </div>
-                        <!--                        Start. Buttons for next/prev kit-->
+                        <!-- Start. Buttons for next/prev kit-->
                     </div>
                 </section>
             </div>
@@ -531,7 +537,7 @@
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">Полное описание</button></li>
                 {/if}
                 {if $accessories}
-                <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd">Аксессуары</button></li>
+                <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .items">Аксессуары</button></li>
                 {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
@@ -556,9 +562,9 @@
                 <!--             Start. Characteristic-->
                 {if $dl_properties}
                     <div class="inside-padd">
-                        <h3>Характеристики</h3>
-                        <div class="characteristic patch-product-view">
-                            <div class="product-charac">
+                        <h2>Характеристики</h2>
+                        <div class="characteristic">
+                            <div class="product-charac patch-product-view">
                                 {echo $dl_properties}
                             </div>
                             <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#first']" data-scroll="true">
@@ -573,7 +579,8 @@
                         <!--                        Start. Description block-->
                         <div class="product-descr patch-product-view">
                             <div class="text">
-                                <h3>{echo  ShopCore::encode($model->getName())}</h3>
+                                <div class="title-h2">Описание</div>
+                                <h2>{echo  ShopCore::encode($model->getName())}</h2>
                                 {echo $fullDescription}
                             </div>
                         </div>
@@ -589,36 +596,37 @@
                     <!--Start. Comments block-->
                     <div class="frame-form-comment">
                         {$c=$CI->load->module('comments/commentsapi')->renderAsArray($CI->uri->uri_string())}
-                        <div name="for_comments" id="for_comments_view">
+                        <div class="for_comments">
                             {echo $c['comments']}
                         </div>
                         <!--End. Comments block-->
                     </div>
-                    {if $accessories}
-                        <div class="accessories">
-                            <div class="title-default">
-                                <div class="title">
-                                    <h3 class="d_i">Аксессуары к {echo $model->getName()}</h3>
-                                    {if count($accessories) > 4}
-                                        <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
-                                            <span class="icon_arrow"></span>
-                                            <span class="text-el">Смотреть все аксессуры</span>
-                                        </button>
-                                    {/if}
-                                </div>
-                            </div>
-                            <div class="inside-padd">
-                                <ul class="items items-default">
-                                    {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
-                                </ul>
+                </div>
+                {if $accessories}
+                    <div class="accessories">
+                        <div class="title-default">
+                            <div class="title">
+                                <h2 class="d_i">Аксессуары к {echo $model->getName()}</h2>
+                                {if count($accessories) > 4}
+                                    <button class="t-d_n f-s_0 s-all-d ref s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
+                                        <span class="icon_arrow"></span>
+                                        <span class="text-el">Смотреть все аксессуры</span>
+                                    </button>
+                                {/if}
                             </div>
                         </div>
-                    {/if}
-                </div>
+                        <div class="inside-padd">
+                            <ul class="items items-default">
+                                {$CI->load->module('new_level')->OPI($accessories, array('defaultItem'=>true, 'limit'=>4))}
+                            </ul>
+                        </div>
+                    </div>
+                {/if}
             </div>
             <!--             Start. Characteristic-->
             <div id="first">
                 <div class="inside-padd">
+                    <div class="title-h2">Характеристики</div>
                     <div class="characteristic">
                         <div class="preloader"></div>
                     </div>
@@ -627,13 +635,14 @@
             <!--                    End. Characteristic-->
             <div id="second">
                 <div class="inside-padd">
+                    <div class="title-h2">Описание</div>
                     <div class="text">
                         <div class="preloader"></div>
                     </div>
                 </div>
             </div>
             <div id="comment">
-                <div class="inside-padd" name="for_comments">
+                <div class="inside-padd for_comments">
                     <div class="preloader"></div>
                 </div>
             </div>
@@ -641,7 +650,10 @@
             {if $accessories}
                 <div id="fourth" class="accessories">
                     <div class="inside-padd">
-                        <div class="preloader"></div>
+                        <div class="title-h2">Аксессуары к {echo $model->getName()}</div>
+                        <ul class="items items-default">
+                            <div class="preloader"></div>
+                        </ul>
                     </div>
                 </div>
             {/if}
@@ -654,7 +666,17 @@
     {widget('similar')}
 </div>
 {widget('latest_news')}
-
+<script type="text/javascript">
+                        var hrefCategoryProduct = "{$category_url}";
+</script>
+{literal}
+    <script type="text/javascript">
+        var
+                productPhotoFancybox = true,
+                //productPhotoCZoom
+                forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
+    </script>
+{/literal}
 <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-{/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script> */}
+<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

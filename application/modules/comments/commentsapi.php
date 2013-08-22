@@ -90,7 +90,7 @@ class Commentsapi extends Comments {
                     ->registerStyle('comments')
                     ->fetchTemplate($this->tpl_name);
         else {
-            $comment = '';
+            $comments = '';
         }
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;

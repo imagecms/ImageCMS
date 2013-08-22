@@ -8,23 +8,30 @@
  */
 class Exchangeunfu extends MY_Controller {
 
+    /** Import/export objects */
+    private $import;
+    private $export;
+    
     public function __construct() {
         parent::__construct();
+        $this->export = new \exchangeunfu\exportXML();
+        $this->import = new \exchangeunfu\importXML();
         include 'application/modules/exchangeunfu/helpers/ex_helper.php';
-       
+
     }
 
     public function index() {
-        $e = new \exchangeunfu\export();
-        $e->export('4643d461-aa49-4b70-9486-a59f80ee6af8');
-        $i = new \exchangeunfu\import();
-//        $i->import();
+        
+    }
+    
+    public function make_import(){
+        $this->import->import();
     }
 
-//    public function autoload() {
-//
-//    }
-
+    public function make_export($partner_id = null){
+        $this->export->export($partner_id);
+    }
+    
     public static function adminAutoload() {
         \CMSFactory\Events::create()
                 ->onShopProductPreUpdate()
@@ -33,13 +40,18 @@ class Exchangeunfu extends MY_Controller {
 
     public static function _extendPageAdmin($data) {
         $ci = &get_instance();
+
         $array = $ci->db
                 ->where('product_id', $data['model']->getid())
-                ->get('mod_exchangeunfu')
-                ->result_array();
+                ->get('mod_exchangeunfu');
+        if($array){
+            $array = $array->result_array();
+        }else{
+            $array = array();
+        }
 
         $view = \CMSFactory\assetManager::create()
-                ->setData('data', $array)
+                ->setData('data1', $array)
                 ->fetchTemplate('main');
 
         \CMSFactory\assetManager::create()
@@ -53,6 +65,24 @@ class Exchangeunfu extends MY_Controller {
         $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_orders_products` ADD `external_id` VARCHAR( 255 ) NOT NULL');
         $this->db->query('ALTER TABLE `shop_orders` ADD `partner_external_id` VARCHAR( 255 ) NOT NULL');
+
+        $this->db->query('ALTER TABLE `users` ADD `external_id` VARCHAR( 250 ) NOT NULL');
+        $this->db->query('ALTER TABLE `users` ADD `code` VARCHAR( 250 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders_products` ADD `external_id` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `partner_external_id` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `delivery_date` INT( 11 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `code` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_external_id` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_code` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_orders` ADD `invoice_date` INT( 11 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_category` ADD `code` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_products` ADD `code` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_products` ADD `measure` VARCHAR( 255 ) NOT NULL');
+        $this->db->query('ALTER TABLE `shop_products` ADD `barcode` VARCHAR( 255 ) NOT NULL');
+
+
+
+
 
         $fields = array(
             'id' => array(
@@ -79,13 +109,10 @@ class Exchangeunfu extends MY_Controller {
                 'constraint' => 100,
             ),
         );
-       
-        
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu', TRUE);
 
-        
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -107,13 +134,17 @@ class Exchangeunfu extends MY_Controller {
             'partner_external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
+            ),
+            'external_id' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255
             )
         );
-        
+
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_prices', TRUE);
-        
+
          $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -131,17 +162,21 @@ class Exchangeunfu extends MY_Controller {
             'code' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
+            ),            
+            'region' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255
             ),
             'external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
             )
         );
-         
+
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_partners', TRUE);
-         
+
         $fields = array(
             'id' => array(
                 'type' => 'INT',
@@ -183,15 +218,23 @@ class Exchangeunfu extends MY_Controller {
 
     public function _deinstall() {
         $this->db->query('ALTER TABLE `users` DROP `external_id`');
+        $this->db->query('ALTER TABLE `users` DROP `code`');
         $this->db->query('ALTER TABLE `shop_orders_products` DROP `external_id`');
         $this->db->query('ALTER TABLE `shop_orders` DROP `partner_external_id`');
-        
+        $this->db->query('ALTER TABLE `shop_orders` DROP `delivery_date`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `code`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_external_id`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_code`');
+        $this->db->query('ALTER TABLE `shop_orders` DROP `invoice_date`');
+        $this->db->query('ALTER TABLE `shop_category` DROP `code`');
+        $this->db->query('ALTER TABLE `shop_products` DROP `code`');
+        $this->db->query('ALTER TABLE `shop_products` DROP `measure`');
+        $this->db->query('ALTER TABLE `shop_products` DROP `barcode`');
+
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_exchangeunfu');
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
-        
-        
     }
 
     /**

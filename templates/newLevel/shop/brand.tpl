@@ -88,21 +88,20 @@
                         </div>
                     </div>
                     <div class="inside-padd">
-                        <nav>
+                        <nav class="nav-category">
                             {foreach $categories as $key => $category}
-                                <ul  data-pid="{echo $key}">
-                                    <div class="title">
-                                        {echo trim(key($category))}
-                                    </div>
+                                <ul class="nav nav-vertical" data-pid="{echo $key}">
+                                    <li class="title">
+                                        <span>{echo trim(key($category))}</span>
+                                    </li>
                                     {foreach $category[key($category)] as $subItem}
                                         {if $_GET['category'] && $_GET['category'] == $subItem['id']}
-                                        <li class="active">
-                                            {echo $subItem['name']}
-                                        {else:}
-                                        <li>
-                                            <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"> {echo $subItem['name']}</a>
-                                        {/if}
-                                        <span class="count">({echo $subItem['count']})</span>
+                                            <li class="active">
+                                                <span>{echo $subItem['name']}</span>
+                                            {else:}
+                                            <li>
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('brand/'. strtolower($model->getName()).'/'.$subItem['id'])}"><span class="text-el">{echo $subItem['name']}</span> <span class="count">({echo $subItem['count']})</span></a>
+                                            {/if}
                                         </li>
                                     {/foreach}
                                 </ul>
