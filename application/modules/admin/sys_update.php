@@ -3,11 +3,18 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-//error_reporting(0);
-
+/**
+ * @property CI_Input $input
+ * @property CI_DB_active_record $db
+ */
 class Sys_update extends BaseAdminController {
 
     private $upgrade_server = 'http://imagecms.net/upgrades/';
+
+    /**
+     * instance of Update library
+     * @var Update
+     */
     private $update;
 
     public function __construct() {
@@ -19,6 +26,8 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index($sort_by = "create_date", $order = 'asc') {
+        $this->update->checkVersion();
+
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
         $array = $this->update->parse_md5();
@@ -53,6 +62,17 @@ class Sys_update extends BaseAdminController {
             echo htmlspecialchars(file_get_contents('.' . $file_path));
         else
             echo '';
+    }
+
+    public function properties() {
+        if ($this->input->post("careKey")) {
+            ShopCore::app()->SSettings->set("careKey", $this->input->post("careKey"));
+        } else {
+            $data = array(
+                'careKey' => ShopCore::app()->SSettings->__get("careKey")
+            );
+            $this->template->show('sys_update_properties', FALSE, $data);
+        }
     }
 
     public function get_license() {
