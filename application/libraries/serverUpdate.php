@@ -2,118 +2,104 @@
 
 class serverUpdate {
 
+    public $path_to_corp = 'update/Corporate/';
+    public $path_to_pro = 'update/Pro/';
+    public $path_to_prem = 'update/Premium/';
+
     public function __construct() {
         $this->ci = & get_instance();
     }
 
-    public function get_host() {
+    public function getUpdateStatus($domen, $buildId) {
 
-        $url = parse_url($_SERVER['HTTP_REFERER']);
-        $this->host = str_replace('www.', '', $url['host']);
-        $this->host_www = 'www.' . $this->host;
+        $current_build_update = 4451235; // select from bd last build
+
+        if ($buildId < $current_build_update)
+            return 1;
+        else
+            return 0;
     }
 
-    public function change_shop() {
-        
-        $ch = curl_init($this->host_www . '/shop/cart');
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $res = curl_exec($ch);
-        if (strstr($res, 'HTTP/1.1 200 OK'))
-            $this->shop = true;
-        curl_close($ch);
+    public function check_rule($domen, $careKey) {
 
-    }
-
-    public function select_lic() {
-
-        $sql = "select * from licenses where domain = '$host' or domain = '$host_www'";
-        $this->query = $this->ci->db->query($sql);
-        if ($this->query->num_rows() == 1) {
-
-            $this->row = $this->query->row();
+        $sql = "select * from update_user where `key` = '$careKey' and domen = '$domen'";
+        if ($this->ci->db->query($sql)->num_rows() > 0)
             return true;
+        else
+            return false;
+
+        return true;
+    }
+
+    public function getHash($domen, $imagecmsNumber, $buildId, $careKey) {
+
+        if (strstr($imagecmsNumber, 'Premium')) {
+            if ($this->check_rule($domen, $careKey))
+                return file_get_contents($this->path_to_prem . 'md5_pre.txt');
+            else
+                return json_encode(array(
+                    'error' => 'Не верный ключ'
+                ));
+        }elseif (strstr($imagecmsNumber, 'Pro')) {
+            if ($this->check_rule($domen, $careKey))
+                return file_get_contents($this->path_to_pro . 'md5_pro.txt');
+            else
+                return json_encode(array(
+                    'error' => 'Не верный ключ'
+                ));
+        }else {
+            return file_get_contents($this->path_to_corp . 'md5_corp.txt');
+        }
+    }
+
+    public function generateHref($version, $domen) {
+        
+        
+        $href = $this->generateSymbol();
+        $sql = "update update_user set href = '$href', active = 1, version = '$version' where domen = '$domen'";
+        $this->ci->db->query($sql);
+        return $href;
+    }
+
+    public function generateSymbol($length = 25) {
+        $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+        $numChars = strlen($chars);
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= substr($chars, rand(1, $numChars) - 1, 1);
+        }
+        return $string;
+    }
+
+    public function put_file($href, $domen) {
+
+        $sql = "select * from update_user where href = '$href' and domen = '$domen' and active = 1";
+       
+        if ($this->ci->db->query($sql)->num_rows() > 0) {
+            $res = $this->ci->db->query($sql)->row();
+            $this->ci->db->query("update update_user set active = 0 where domen = '$domen'");
+            return $res->version;
         }
         else
             return false;
     }
 
-    public function check_paid() {
-        if ($this->row->paid)
-            return true;
-        else
-            return false;
+    public function getUpdateFile($domen, $imagecmsNumber, $buildId, $careKey) {
+
+
+        if (strstr($imagecmsNumber, 'Premium')) {
+            if ($this->check_rule($domen, $careKey))
+                return $this->generateHref('Premium', $domen);
+            else
+                return false;
+        }elseif (strstr($imagecmsNumber, 'Pro')) {
+            if ($this->check_rule($domen, $careKey))
+                return $this->generateHref('Pro', $domen);
+            else
+                return false;
+        }else {
+            return $this->generateHref('Corporate', $domen);
+        }
     }
 
-    public function check_key() {
-        if ($this->ci->input->post('key') && $this->ci->input->post('key') == $this->row->key)
-            return true;
-        else
-            return false;
-    }
-
-    //ajax 
-    public function get_update($license, $upd_key) {
-        
-        return $license . $upd_key;
-
-//        $this->get_host();
-//        $this->change_shop();
-//        
-//        if (!$this->shop) {
-//            $this->upload_corporate();
-//            return true;
-//        } else {
-//            if ($this->select_lic() && $this->check_paid() && $this->check_key()) {
-//                $this->upload_shop();
-//                return true;
-//            } else {
-//                $sql = "insert into pirate(domen) values('" . $this->host . "')";
-//                $this->ci->db->query($sql);
-//                return 'Ваша лицензия не зарегистрирована!';
-//                
-//            }
-//        }
-    }
-
-
-    public function post_file($data) {
-        $url = $this->host . "/admin/shop/sys_update";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        $response = curl_exec($ch);
-        return $response;
-    }
-
-    /*
-     */
-    public function upload_corporate() {
-
-        $this->post_file(array(
-            'Filedata1' => '@index.php',
-            'Filedata2' => '@history.txt',
-            'Filedata3' => '@',
-        ));
-
-    }
-
-    public function upload_shop() {
-        
-        $this->post_file(array(
-            'Filedata1' => '@history.txt',
-            'Filedata2' => '@index.php',
-            'Filedata3' => '@',
-        ));
-
-
-    }
-
-    //ajax 
-    public function check_new_version() {
-        
-    }
 }

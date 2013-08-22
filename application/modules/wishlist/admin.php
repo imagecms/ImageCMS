@@ -146,7 +146,6 @@ class Admin extends BaseAdminController {
     public function do_upload() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->do_upload();
-
         redirect($_SERVER['HTTP_REFERER']);
     }
 
