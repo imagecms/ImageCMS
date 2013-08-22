@@ -27,7 +27,7 @@ class Update {
      * папки, які не враховувати при обновлені
      * @var array
      */
-    private $distinct = array(
+    private $distinctDirs = array(
         '.',
         '..',
         '.git',
@@ -39,6 +39,19 @@ class Update {
         'nbproject',
         'uploads_site',
         'backups',
+    );
+
+    /**
+     * файли, які не враховувати при обновлені
+     * @var array
+     */
+    private $distinctFiles = array(
+        'product.php',
+        'category.php',
+        'brand.php',
+        'cart.php',
+        'md5.txt',
+        '.htaccess',
     );
 
     /**
@@ -168,6 +181,16 @@ class Update {
         }
     }
 
+    public function checkVersion() {
+        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+
+            ShopCore::app()->SSettings->set("newVersion", $ver);
+            ShopCore::app()->SSettings->set("checkTime", time());
+        } else {
+            ShopCore::app()->SSettings->__get("newVersion");
+        }
+    }
+
     /**
      * form XML doc
      */
@@ -228,11 +251,8 @@ class Update {
     public function createBackUp() {
         $old = $this->getOldMD5File();
         $array = $this->parse_md5();
-
         $diff = array_diff($array, $old);
-
         $this->add_to_ZIP($diff);
-
 
         $filename = "./application/backups/backup.zip";
         $zip = new ZipArchive();
@@ -295,7 +315,7 @@ class Update {
      */
     public function set_distinct($array) {
 
-        $this->distinct = array_merge($this->distinct, $array);
+        $this->distinctDirs = array_merge($this->distinctDirs, $array);
         return $this;
     }
 
@@ -327,8 +347,8 @@ class Update {
         $handle = opendir($dir);
         if ($handle)
             while (FALSE !== ($file = readdir($handle)))
-                if (!in_array($file, $this->distinct)) {
-                    if (is_file($dir . DIRECTORY_SEPARATOR . $file)) {
+                if (!in_array($file, $this->distinctDirs)) {
+                    if (is_file($dir . DIRECTORY_SEPARATOR . $file) && !in_array($file, $this->distinctFiles)) {
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                         $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
                     }
