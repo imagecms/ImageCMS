@@ -772,6 +772,8 @@ $(document).ready(function() {
         $(window).scrollTop($(window).scrollTop() + 59)
     });
 
+    /*------------------------- IMAGES -------------------------*/
+
     $('.delete_image').live('click', function() {
         var container = $(this).closest('td');
         //container.find('[name="variants[MainImageForDel][]"]');
@@ -805,6 +807,232 @@ $(document).ready(function() {
             }
         });
     });
+
+
+    // on change of top input starting search
+    $("#search_images").live('click', function(e) {
+        // .live() don't have 'change' event
+        var value = $("#url_image").val();
+        var keyCode = e.which;
+        var ignoredKeys = [16, 17, 18, 35, 36, 20];
+        for (var i = 0; i < ignoredKeys.length; i++) {
+            if (ignoredKeys[i] == keyCode) {
+                if (!value.length > 2)
+                    clearImageResults();
+                return;
+            }
+        }
+        // checking if value is URL
+        if (value.length > 2) {
+            var urlPattern = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+            if (value.match(urlPattern)) { // download by URL
+                //getImages(value, "url");
+                $.post("/admin/components/run/shop/products/get_images/url", {
+                    q: value
+                }, addUrlImage, 'json');
+            } else { // search with google
+                curPosition = 1;
+                searchImages();
+                modalBodyMsg("Загрузка...");
+            }
+        } else {
+            clearImageResults();
+        }
+    });
+
+    // start search 
+    function searchImages(clear) {
+        if (clear !== false) {
+            $("#image_search_result").empty();
+        }
+        var value = $("#url_image").val();
+        modalBodyMsg("Загрузка...");
+        $.post("/admin/components/run/shop/products/get_images/search", {
+            q: value,
+            pos: curPosition
+        }, addSearchedImages, 'json');
+    }
+
+    // removing thumbnails from preview images
+    function clearImageResults() {
+        $("#image_search_result")
+                .empty()
+                .html("<p class=\"images_empty_res\">Нет элементов для отображения</p>");
+    }
+
+
+    function addSearchedImages(images) {
+        modalBodyMsg();
+        var i = 0;
+        for (var k in images) {
+            var img = "<span class='img_span'><img id='" + k + "' class='searched_images' src='" + images[k] + "' /></span>";
+            $("#image_search_result").append(img);
+            i++;
+        }
+        if (i > 0) {
+            imgMessageBottom('');
+            if ((curPosition + 8) < 40) {
+                modalBodyMsg('<a id="loadMoreImages">Еще</a>');
+            }
+        } else {
+            imgMessageBottom('Нет результатов по вашему запросу');
+        }
+    }
+
+    // preview image by url
+    function addUrlImage(data) {
+        $("#image_search_result").empty();
+        var url = data.url;
+        var img = "<span class='selected_image'><img class='image_by_url' src='" + url + "'></span>";
+        $("#image_search_result").append(img);
+    }
+
+    function modalBodyMsg(msg) {
+        $(".more_button_paragraph").remove();
+        if (typeof(msg) == 'string') {
+            $("#image_search_result").append('<p class="more_button_paragraph">' + msg + '</p>');
+            return;
+        }
+    }
+
+    // selecting image by click
+    $(".searched_images").live('click', function(e) {
+        if (e.shiftKey) {
+            if ($(this).parents("span.img_span").hasClass('selected_image')) {
+                $(this).parents("span.img_span").removeClass('selected_image');
+            } else {
+                $(this).parents("span.img_span").addClass('selected_image');
+            }
+            var countOfSelected = $("span.img_span.selected_image").size();
+            if (countOfSelected > 1) {
+                imgMessageBottom('Изображения будут сохранены как дополнительные');
+            } else {
+                imgMessageBottom('');
+            }
+        } else {
+            imgMessageBottom('');
+            $("span.img_span").removeClass('selected_image');
+            $(this).parents("span.img_span").addClass('selected_image');
+        }
+    });
+
+    // image hover
+    $(".searched_images").live('mouseover', function() {
+        if (!$(this).parents("span.img_span").hasClass('hoveredImage')) {
+            $(this).parents("span.img_span").addClass('hoveredImage')
+        }
+    });
+    $(".searched_images").live('mouseout', function() {
+        $(this).parents("span.img_span").removeClass('hoveredImage')
+    });
+
+    // adding event to open modal window
+    $(".images_modal").live('click', function() {
+        // for saving the position of images page 
+        curPosition = 1;
+        trId = $(this).parents("tr").attr("id");
+        var productName = $("input#Name").val();
+        $("#url_image").val(productName);
+        imgMessageBottom('');
+        searchImages();
+        modalBodyMsg('Загрузка...');
+        $('#images_modal').modal();
+    });
+
+    $("#loadMoreImages").live('click', function() {
+        if ((curPosition + 8) < 40) {
+            curPosition += 8;
+            searchImages(false);
+        }
+    });
+
+
+    /*
+     * Message to show bottom
+     * @param string msg
+     * @returns {@exp;@call;$@call;text}
+     */
+    function imgMessageBottom(msg) {
+        if (typeof(msg) == 'undefined')
+            return $("#msg_about_additional").text();
+        $("#msg_about_additional").text(msg);
+    }
+
+    // closes modal, adding url of image to cpecified product
+    $("#save_image").live('click', function() {
+        var selectedImages = $("span.selected_image");
+        if ($(selectedImages).size() > 1) { // if are selected more than one image
+            var urlArray = [];
+            $(selectedImages).each(function() {
+                urlArray.push($(this).find("img").attr("src"));
+            });
+            var res = addAdditionalImages(urlArray);
+            if (res === true) {
+                $('#images_modal').modal("hide");
+                $("a[href='#additionalPics']").trigger('click');
+            } else {
+                imgMessageBottom(res);
+            }
+            return true;
+        }
+        // go furter if one image is selected 
+        var selectedImageUrl = $("span.selected_image img").attr("src");
+        $("#" + trId + " input.changeImage").val(selectedImageUrl);
+        // adding thumbnail 
+        var img = document.createElement("img");
+        img.src = selectedImageUrl;
+        $(img).addClass('img-polaroid').css({
+            width: '100px'
+        });
+        $("#" + trId).find('.control-group .controls').html(img);
+        // hiding and clearing modal
+        $('#images_modal').modal("hide");
+        $("#url_image").val("");
+        clearImageResults();
+    });
+
+
+    $('#url_image').live('mouseover', function() {
+        $(this).tooltip();
+    });
+
+    // adding images as additional
+    function addAdditionalImages(urlArray) {
+        var freeUrlInputs = [];
+        // getting free inputs (inf url and file inputs are empty)
+        $(".additional_image_file").each(function() {
+            var url = $(this).siblings("input.additional_image_url").val();
+            var file = $(this).val();
+            if (
+                    file == "" && // new local file
+                    url == "" && // or url
+                    // image can be already set
+                    !$(this).parents("div.control-group.span6").find(".controls .rmAddPic").size() > 0
+                    ) {
+                freeUrlInputs.push($(this).siblings("input.additional_image_url").attr('id'))
+            }
+        });
+
+        if (urlArray.length > freeUrlInputs.length) {
+            return "Недостаточно мест для изображений";
+        }
+
+        for (var i = 0; i < urlArray.length; i++) {
+            var img = document.createElement("img");
+            img.src = urlArray[i];
+            $(img).addClass('img-polaroid').css({
+                width: '100px'
+            });
+            $("#" + freeUrlInputs[i]).val(urlArray[i]);
+            $("#" + freeUrlInputs[i]).parents("div.control-group.span6").find(".controls").html(img);
+        }
+        return true;
+    }
+
+
+
+
+    /*------------------------- IMAGES -------------------------*/
 
     $('[data-del="wares"]').live('click', function() {
         //event.preventDefault();
