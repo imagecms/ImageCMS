@@ -45,6 +45,7 @@ class Update {
         'nbproject',
         'uploads_site',
         'backups',
+        'cmlTemp',
     );
 
     /**
@@ -224,7 +225,16 @@ class Update {
         $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
         $result = (array) json_decode($result);
         return $result;
-        var_dump($result);
+//        var_dump($result);
+    }
+
+    public function getUpdate() {
+        ini_set("soap.wsdl_cache_enabled", "0");
+        $domen = $_SERVER['SERVER_NAME'];
+        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, ShopCore::app()->SSettings->__get("careKey"));
+        $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
+//        echo $all_href;
+        file_put_contents('updates', file_get_contents($all_href));
     }
 
     /**

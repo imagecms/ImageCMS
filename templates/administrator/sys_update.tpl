@@ -7,27 +7,21 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/"
+                    <a href="{$BASE_URL}admin/sys_update"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('a_back')}</span>
                     </a>
-                    <button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#update_form" data-submit>
+                    <a href="/admin/sys_update/do_update"
+                       class="btn btn-small pjax btn-success">
                         <i class="icon-refresh"></i>
                         Обновить
-                    </button>
+                    </a>
                     <a href="/admin/sys_update/backup"
-                            class="btn btn-small btn-primary pjax">
+                       class="btn btn-small btn-primary pjax">
                         <span class="icon-hdd"></span>
                         Создать BackUp
                     </a>
-                    {if SHOP_INSTALLED}
-                        <a href="/admin/sys_update/properties"
-                           class="btn btn-small">
-                            <span class="icon-wrench"></span>
-                            <span>Настройки</span>
-                        </a>
-                    {/if}
                 </div>
             </div>
         </div>
@@ -41,9 +35,9 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="update">
+                    {if $diff_files and !$error}
                     <h4>Файлы которые будут изменены ({echo $filesCount})</h4>
-                    {if $diff_files}
-                        <form  action="{$ADMIN_URL}" method="post"  id="update_form">
+                        <form  action="{$ADMIN_URL}" method="post" id="update_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
@@ -78,9 +72,15 @@
                             </table>
                         </form>
                     {else:}
-                        <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                            Список файлов пуст.
-                        </div>
+                        {if $error}
+                            <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
+                                {echo $error}
+                            </div>
+                        {else:}
+                            <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
+                                Список файлов пуст.
+                            </div>
+                        {/if}
                     {/if}
                 </div>
                 <div class="tab-pane" id="restore">
@@ -125,7 +125,7 @@
                                             {echo $file_inf['name']}
                                         </td>
                                         <td >
-                                            {echo $file_inf['size']}
+                                            {echo $file_inf['size']} mb.
                                         </td>
                                         <td>
                                             {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
