@@ -1182,8 +1182,8 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 (46, 'fotoprintery', 44, 16, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
 (45, 'tsifrovye_kamery', 44, 15, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
 (44, 'foto_i_kamery', 0, 14, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
-(43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
-(41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
+(43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/94_vM105.jpg', '', 1, NULL),
+(41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/28cbf811f4fe849a05ac81f85a22932d.jpg', '', 1, NULL),
 (40, 'domashnee_audio', 0, 4, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
 (36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
 (37, 'tv_hdtv', 36, 1, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/188_vS216.jpg', '', 0, NULL),
@@ -10697,8 +10697,8 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
-(1, 26, 0, 'a:1:{i:0;s:6:"scroll";}'),
-(4, 23, 0, 'a:1:{i:0;s:6:"scroll";}');
+(1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
+(4, 28, 0, 'a:1:{i:0;s:6:"scroll";}');
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

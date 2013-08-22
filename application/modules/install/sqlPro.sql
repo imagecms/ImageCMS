@@ -9789,8 +9789,8 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
-(1, 26, 0, 'a:1:{i:0;s:6:"scroll";}'),
-(4, 23, 0, 'a:1:{i:0;s:6:"scroll";}');
+(1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
+(4, 28, 0, 'a:1:{i:0;s:6:"scroll";}');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
