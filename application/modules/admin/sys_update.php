@@ -26,7 +26,9 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
-        $array = $this->update->checkVersion();
+        ini_set("soap.wsdl_cache_enabled", "0");
+
+        $array = $this->update->getStatus();
         if ($array) {
             $data = array(
                 'build' => $array['build'],
@@ -39,26 +41,17 @@ class Sys_update extends BaseAdminController {
                 'newRelise' => 0,
             );
         }
+
         $this->template->show('sys_update_info', FALSE, $data);
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
 
         // Show upgrade window;
-        $old = $this->update->getOldMD5File();
+        $old = $this->update->getHashSum();
         $array = $this->update->parse_md5();
-//        var_dumps($array);
-//        var_dumps($old);
         $diff = array_diff($array, $old);
-//        var_dumps($diff);
-//        $this->update->add_to_ZIP($diff);
-//        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
-//        echo json_encode( $this->update->parse_md5());
-//        $this->update->formXml();
-//        $this->update->sendData();
-//        $this->update->restoreFromZIP();
-//        $this->update->checkForVersion();
-//        $this->update->sendData();
+
         $data = array(
             'filesCount' => count($diff),
             'sort_by' => $sort_by,
@@ -130,6 +123,7 @@ class Sys_update extends BaseAdminController {
 
     public function backup() {
         $this->update->createBackUp();
+        redirect('/admin/sys_update/update');
     }
 
     public function sort($array, $sort_by, $order) {

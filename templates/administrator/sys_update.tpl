@@ -16,12 +16,11 @@
                         <i class="icon-refresh"></i>
                         Обновить
                     </button>
-                    <button onclick="$.post('/admin/sys_update/backup');
-                            location.reload();"
-                            class="btn btn-small btn-primary">
+                    <a href="/admin/sys_update/backup"
+                            class="btn btn-small btn-primary pjax">
                         <span class="icon-hdd"></span>
                         Создать BackUp
-                    </button>
+                    </a>
                     {if SHOP_INSTALLED}
                         <a href="/admin/sys_update/properties"
                            class="btn btn-small">
@@ -48,13 +47,6 @@
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
-                                        <th class="span1">
-                                            <span class="frame_label">
-                                                <span class="niceCheck" style="background-position: -46px 0px;">
-                                                    <input type="checkbox">
-                                                </span>
-                                            </span>
-                                        </th>
                                         <th>
                                             Путь к файлу
                                         </th>
@@ -69,13 +61,6 @@
                                 <tbody>
                                     {foreach $diff_files as $file_path => $md5}
                                         <tr>
-                                            <td class="span1">
-                                                <span class="frame_label">
-                                                    <span class="niceCheck" style="background-position: -46px 0px;">
-                                                        <input type="checkbox" name="files_md5" value="{echo $md5}">
-                                                    </span>
-                                                </span>
-                                            </td>
                                             <td >
                                                 <a onclick="Update.renderFile('{echo $file_path}', $(this))">
                                                     <span>{echo $file_path}</span>
