@@ -25,8 +25,24 @@ class Sys_update extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    public function index($sort_by = "create_date", $order = 'asc') {
-        $this->update->checkVersion();
+    public function index() {
+        $array = $this->update->checkVersion();
+        if ($array) {
+            $data = array(
+                'build' => $array['build'],
+                'date' => date("Y-m-d", $array['date']),
+                'size' => $array['size'],
+                'newRelise' => 1,
+            );
+        } else {
+            $data = array(
+                'newRelise' => 0,
+            );
+        }
+        $this->template->show('sys_update_info', FALSE, $data);
+    }
+
+    public function update($sort_by = "create_date", $order = 'asc') {
 
         // Show upgrade window;
         $old = $this->update->getOldMD5File();
