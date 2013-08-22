@@ -533,7 +533,7 @@ class Update {
                         if (file_exists('./application/backups/zip/backup.sql')) {
                             $this->restore_files[] = array(
                                 'name' => $filename,
-                                'size' => filesize('./application/backups/' . $filename),
+                                'size' => filesize('./application/backups/' . $filename)/2048,
                                 'create_date' => filemtime('./application/backups/' . $filename)
                             );
                         }
