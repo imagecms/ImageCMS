@@ -1744,18 +1744,17 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 var Update = {
     restore: function(file_name) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             data: {
                 file_name: file_name
             },
-            url: '/admin/sys_update/restore/' + file_name,
+            url: '/admin/sys_update/restore',
             success: function(res) {
-                if (res == 'true') {
+                if (res) {
                     showMessage('Сообщение', 'Успешно воставлено');
                 } else {
                     showMessage('Ошибка', 'Ошибка востановления', 'r');
                 }
-
             }
         });
     },
@@ -1778,11 +1777,11 @@ var Update = {
     },
     renderFile: function(file_path, curElement) {
         var tr = $(curElement).closest('tr');
-        if($(tr).next('.update_file_review').length){
+        if ($(tr).next('.update_file_review').length) {
             $(tr).next('.update_file_review').remove();
             return false;
         }
-        if($('.update_file_review').length){
+        if ($('.update_file_review').length) {
             $('.update_file_review').remove();
         }
 

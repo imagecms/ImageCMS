@@ -1182,19 +1182,19 @@ INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, 
 (46, 'fotoprintery', 44, 16, 'foto_i_kamery/fotoprintery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
 (45, 'tsifrovye_kamery', 44, 15, 'foto_i_kamery/tsifrovye_kamery', 'a:1:{i:0;i:44;}', 1, NULL, NULL, '', 1, NULL),
 (44, 'foto_i_kamery', 0, 14, 'foto_i_kamery', 'a:0:{}', 1, NULL, NULL, '', 1, NULL),
-(43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
-(41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, NULL, '', 1, NULL),
-(40, 'domashnee_audio', 0, 4, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, NULL, NULL, NULL),
-(36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, NULL, NULL, NULL, NULL),
-(37, 'tv_hdtv', 36, 1, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, '', '', 0, NULL),
-(38, 'dvd_dvr_pleery', 36, 2, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, '', '', 0, NULL),
-(39, 'blu-ray', 36, 3, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, NULL, NULL, NULL, NULL),
+(43, 'saund_bary', 40, 6, 'domashnee_audio/saund_bary', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/94_vM105.jpg', '', 1, NULL),
+(41, 'domashnie_teatry', 40, 5, 'domashnee_audio/domashnie_teatry', 'a:1:{i:0;i:40;}', 1, NULL, '/uploads/shop/products/origin/28cbf811f4fe849a05ac81f85a22932d.jpg', '', 1, NULL),
+(40, 'domashnee_audio', 0, 4, 'domashnee_audio', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
+(36, 'video', 0, 0, 'video', 'a:0:{}', 1, NULL, NULL, 'categorysubfirst', NULL, NULL),
+(37, 'tv_hdtv', 36, 1, 'video/tv_hdtv', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/188_vS216.jpg', '', 0, NULL),
+(38, 'dvd_dvr_pleery', 36, 2, 'video/dvd_dvr_pleery', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/84_vM95.jpg', '', 0, NULL),
+(39, 'blu-ray', 36, 3, 'video/blu-ray', 'a:1:{i:0;i:36;}', 1, NULL, '/uploads/shop/products/origin/85_vS96.jpg', NULL, NULL, NULL),
 (53, 'subwoofer', 52, 8, 'avto_muzyka_i_video/subwoofer', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
 (54, 'cd_chendzhery', 52, 9, 'avto_muzyka_i_video/cd_chendzhery', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
 (55, 'gps', 52, 10, 'avto_muzyka_i_video/gps', 'a:1:{i:0;i:52;}', 1, NULL, NULL, '', 1, NULL),
 (74, 'tv', 37, 17, 'video/tv_hdtv/tv', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '', '', 0, NULL),
 (75, 'hd-tv', 37, 18, 'video/tv_hdtv/hd-tv', 'a:2:{i:0;i:36;i:1;i:37;}', 1, NULL, '', '', 0, NULL),
-(76, 'dvd', 36, NULL, 'video/dvd', 'a:1:{i:0;s:2:"36";}', 1, NULL, NULL, NULL, NULL, NULL),
+(76, 'dvd', 36, NULL, 'video/dvd', 'a:1:{i:0;s:2:"36";}', 1, NULL, '/uploads/shop/products/origin/69d5045a28b88ae8c53ae414b0a581f3.jpg', NULL, NULL, NULL),
 (77, 'dvr-pleery', 76, NULL, 'video/dvd/dvr-pleery', 'a:2:{i:0;s:2:"36";i:1;i:76;}', 1, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -10367,7 +10367,11 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (13, 'brands', 'module', 'shop', 'brands', 'a:3:{s:10:"withImages";b:1;s:11:"brandsCount";s:2:"15";s:7:"subpath";s:7:"widgets";}', 'brands', '', 1363606422),
 (14, 'view_product', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:54:"Недавно просмотренные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'view_product', '', 1363606497),
 (15, 'similar', 'module', 'shop', 'similar_products', 'a:3:{s:5:"title";s:27:"Похожие товары";s:13:"productsCount";s:1:"5";s:7:"subpath";s:7:"widgets";}', 'similar', '', 1363606582),
-(28, 'popular_products_category', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:17:"date,hit,category";s:5:"title";s:16:"Popular products";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'popular_products_category', '', 1374575193);
+(28, 'popular_products_category', 'module', 'shop', 'products', 'a:4:{s:12:"productsType";s:17:"date,hit,category";s:5:"title";s:16:"Popular products";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'popular_products_category', '', 1374575193),
+(27, 'ViewedProducts', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:14:"ViewedProducts";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'ViewedProducts', '', 1374575092),
+(16, 'benefits', 'html', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>', '', '', 'benefits', '', 1371214822),
+(17, 'payments_delivery_methods_info', 'html', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>', '', '', 'payments_delivery_methods_info', '', 1371821417);
+
 --
 -- Структура таблиці `mod_email_paterns`
 --
@@ -10692,6 +10696,9 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
+INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
+(1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
+(4, 28, 0, 'a:1:{i:0;s:6:"scroll";}');
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -99,7 +99,6 @@
             </button>
         </div>
     {/if}
-
     {if $can_comment == 0 OR $is_logged_in}
         <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
             <div class="frame-comments__icsi-css layout-highlight">
