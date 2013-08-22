@@ -203,7 +203,7 @@ class ExportXML {
             $this->productivity_export .=
                     "<СписокПродуктивность>\n" .
                     "<IDWeb>" . $productivity['id'] . "</IDWeb>\n" .
-                    "<Дата>" . date('Y-m-dTh:m:s', $productivity['date']) . "</Дата>\n" .
+                    "<Дата>" . date('Y-m-d\Th:m:s', $productivity['date']) . "</Дата>\n" .
                     "<Час>" . $productivity['hour'] . "</Час>\n" .
                     "<Количество>" . $productivity['count'] . "</Количество>\n" .
                     "<IDОрганизация>" . $productivity['partner_external_id'] . "</IDОрганизация>\n" .
@@ -284,7 +284,7 @@ class ExportXML {
                         "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
                         "<ID>" . $order['invoice_external_id'] . "</ID>\n" .
                         "<Номер>" . $order['invoice_code'] . "</Номер>\n" .
-                        "<Дата>" . date('Y-m-dTh:m:s', $order['invoice_date']) . "</Дата>\n" .
+                        "<Дата>" . date('Y-m-d\Th:m:s', $order['invoice_date']) . "</Дата>\n" .
                         "<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\n" .
                         "<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\n" .
                         "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n";
@@ -302,9 +302,9 @@ class ExportXML {
                     "<СписокЗаказыПокупателя>\n" .
                     "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
                     "<ID>" . $order['external_id'] . "</ID>\n" .
-                    "<Дата>" . date('Y-m-dTh:m:s', $order['date_created']) . "</Дата>\n" .
+                    "<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\n" .
                     "<Номер>" . $order['code'] . "</Номер>\n" .
-                    "<СрокДоставки>" . date('Y-m-dTh:m:s', $order['delivery_date']) . "</СрокДоставки>\n" .
+                    "<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\n" .
                     "<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\n" .
                     "<Адрес>" . $order['user_deliver_to'] . "</Адрес>\n" .
                     "<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\n" .

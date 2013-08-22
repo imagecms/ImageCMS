@@ -105,14 +105,14 @@
                                     <th >
                                         {if $sort_by == 'size'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/index/size/desc#restore">Размер(байт)</a>
+                                                <a class="pjax" href="/admin/sys_update/index/size/desc#restore">Размер(MB)</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                                <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(MB)</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(байт)</a>
+                                            <a class="pjax" href="/admin/sys_update/index/size/asc#restore">Размер(MB)</a>
                                         {/if}
                                     </th>
                                     <th >
