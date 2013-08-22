@@ -24,11 +24,11 @@ class Exchangeunfu extends MY_Controller {
         
     }
     
-    public function import(){
+    public function make_import(){
         $this->import->import();
     }
 
-    public function export($partner_id = null){
+    public function make_export($partner_id = null){
         $this->export->export($partner_id);
     }
     

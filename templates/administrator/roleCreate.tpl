@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="Description">{lang('a_imp_rbak')}:</label>
-                                    <div class="controls">
+                                    <div class="controls number">
                                         <input type="text" name="Importance" id="Description" value=""/>
                                     </div>
                                 </div>

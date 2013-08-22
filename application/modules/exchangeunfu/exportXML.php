@@ -152,6 +152,7 @@ class ExportXML {
             $this->users_export .=
                     "<СписокКонтрагентов>\n" .
                     "<ID>" . $user['external_id'] . "</ID>\n" .
+                    "<IDWeb>" . $user['id'] . "</IDWeb>\n" .
                     "<Код>" . $user['code'] . "</Код>\n" .
                     "<Наименование>" . htmlspecialchars($user['username']) . "</Наименование>\n" .
                     "<Логин></Логин>\n" .
@@ -176,6 +177,7 @@ class ExportXML {
         foreach ($this->partners as $partner) {
             $this->partners_export .=
                     "<СписокОрганизаций>" .
+                    "<IDWeb>" . $partner['id'] . "</IDWeb>\n" .
                     "<Наименование>" . htmlspecialchars($partner['name']) . "</Наименование>\n" .
                     "<Префикс>" . $partner['prefix'] . "</Префикс>\n" .
                     "<Код>" . $partner['code'] . "</Код>\n" .
@@ -200,6 +202,7 @@ class ExportXML {
         foreach ($this->productivity as $productivity) {
             $this->productivity_export .=
                     "<СписокПродуктивность>\n" .
+                    "<IDWeb>" . $productivity['id'] . "</IDWeb>\n" .
                     "<Дата>" . date('Y-m-dTh:m:s', $productivity['date']) . "</Дата>\n" .
                     "<Час>" . $productivity['hour'] . "</Час>\n" .
                     "<Количество>" . $productivity['count'] . "</Количество>\n" .
@@ -228,6 +231,7 @@ class ExportXML {
 
             $this->price_export .=
                     "<СписокЦен>\n" .
+                    "<IDWeb>" . $price['id'] . "</IDWeb>\n" .
                     "<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\n" .
                     "<Цена>" . $price['price'] . "</Цена>\n" .
                     "<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\n" .
@@ -277,6 +281,7 @@ class ExportXML {
             if ($order['status'] == 2) {
                 $this->invoice_export .=
                         "<СписокРасходныеНакладные>\n" .
+                        "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
                         "<ID>" . $order['invoice_external_id'] . "</ID>\n" .
                         "<Номер>" . $order['invoice_code'] . "</Номер>\n" .
                         "<Дата>" . date('Y-m-dTh:m:s', $order['invoice_date']) . "</Дата>\n" .
@@ -295,6 +300,7 @@ class ExportXML {
             /** order export data */
             $this->order_export .=
                     "<СписокЗаказыПокупателя>\n" .
+                     "<IDWeb>" . $order['id'] . "</IDWeb>\n" .
                     "<ID>" . $order['external_id'] . "</ID>\n" .
                     "<Дата>" . date('Y-m-dTh:m:s', $order['date_created']) . "</Дата>\n" .
                     "<Номер>" . $order['code'] . "</Номер>\n" .
@@ -315,6 +321,7 @@ class ExportXML {
                 }
                 $products .=
                         "<Строки>\n" .
+                         "<IDWeb>" . $order_product['id'] . "</IDWeb>\n" .
                         "<IDДокумента>" . $order_product['external_id'] . "</IDДокумента>\n" .
                         "<IDНоменклатура>" . $order_product['product_id'] . "</IDНоменклатура>\n" .
                         "<Количество>" . $order_product['quantity'] . "</Количество>\n" .
@@ -352,6 +359,7 @@ class ExportXML {
         foreach ($this->categories as $category) {
             $this->categories_export .=
                     "<СписокГруппНоменклатуры>\n" .
+                    "<IDWeb>" . $category['id'] . "</IDWeb>\n" .
                     "<ID>" . $category['external_id'] . "</ID>\n" .
                     "<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\n" .
                     "<Код>" . $category['code'] . "</Код>\n" .
@@ -382,6 +390,7 @@ class ExportXML {
             }
             $this->product_export .=
                     "<СписокНоменклатуры>\n" .
+                     "<IDWeb>" . $product['id'] . "</IDWeb>\n" .
                     "<ID>" . $product['external_id'] . "</ID>\n" .
                     "<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\n" .
                     "<Код>" . $product['code'] . "</Код>\n" .
