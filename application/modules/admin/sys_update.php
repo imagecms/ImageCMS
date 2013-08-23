@@ -25,35 +25,55 @@ class Sys_update extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    public function index($sort_by = "create_date", $order = 'asc') {
-        $this->update->checkVersion();
+    public function index() {
+        ini_set("soap.wsdl_cache_enabled", "0");
 
-        // Show upgrade window;
-        $old = $this->update->getOldMD5File();
-        $array = $this->update->parse_md5();
-//        var_dumps($array);
-//        var_dumps($old);
-        $diff = array_diff($array, $old);
-//        var_dumps($diff);
-//        $this->update->add_to_ZIP($diff);
-//        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
-//        echo json_encode( $this->update->parse_md5());
-//        $this->update->formXml();
-//        $this->update->sendData();
-//        $this->update->restoreFromZIP();
-//        $this->update->checkForVersion();
-//        $this->update->sendData();
+        $array = $this->update->getStatus();
+        if ($array) {
+            $data = array(
+                'build' => $array['build'],
+                'date' => date("Y-m-d", $array['date']),
+                'size' => $array['size'],
+                'newRelise' => 1,
+            );
+        } else {
+            $data = array(
+                'newRelise' => 0,
+            );
+        }
 
-        $this->template->assign('sort_by', $sort_by);
-        $this->template->assign('order', $order);
-        $this->template->assign('diff_files_dates', $this->update->get_files_dates());
-        $this->template->assign('diff_files', $diff);
-        $this->template->assign('restore_files', $this->sort($this->update->restore_files_list(), $sort_by, $order));
-        $this->template->show('sys_update', FALSE);
+        $this->template->show('sys_update_info', FALSE, $data);
     }
 
-    public function restore($file_name) {
-        echo $this->update->restoreFromZIP($file_name);
+    public function do_update() {
+        $this->update->getUpdate();
+    }
+
+    public function update($sort_by = "create_date", $order = 'asc') {
+        // Show upgrade window;
+        $result = $this->update->getHashSum();
+        $array = $this->update->parse_md5();
+        $diff = array_diff($array, $result);
+
+        if (!$result['error'])
+            $data = array(
+                'filesCount' => count($diff),
+                'sort_by' => $sort_by,
+                'order' => $order,
+                'diff_files_dates' => $this->update->get_files_dates(),
+                'diff_files' => $diff,
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+            );
+        else
+            $data = array(
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                'error' => $result['error']
+            );
+        $this->template->show('sys_update', FALSE, $data);
+    }
+
+    public function restore() {
+        echo $this->update->restoreFromZIP($_POST['file_name']);
     }
 
     public function renderFile() {
@@ -86,7 +106,7 @@ class Sys_update extends BaseAdminController {
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
 
-            $client = new SoapClient("http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl");
+            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
 
             $domen = $_SERVER['SERVER_NAME'];
 
@@ -101,8 +121,9 @@ class Sys_update extends BaseAdminController {
             else {
                 var_dump($result);
                 $href = $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-                $all_href = 'http://pftest.imagecms.net/admin/server_update/takeUpdate/' . $href . '/' . $domen;
-                file_put_contents('updates', file_get_contents($all_href));
+                $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
+                echo $all_href;
+                //file_put_contents('updates', file_get_contents($all_href));
             }
         } catch (SoapFault $exception) {
             echo $exception->getMessage();
@@ -111,6 +132,7 @@ class Sys_update extends BaseAdminController {
 
     public function backup() {
         $this->update->createBackUp();
+        redirect('/admin/sys_update/update');
     }
 
     public function sort($array, $sort_by, $order) {

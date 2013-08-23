@@ -1103,6 +1103,11 @@ function initAdminArea() {
         return false;
     });
 
+    $('#mainContent button.pjax').unbind('click').die('click').on('click', function(event) {
+        $('#loading').fadeIn(100);
+        return false;
+    });
+
     $(document).on('pjax:start', function() {
         $('#loading').fadeIn(100);
 
@@ -1139,6 +1144,7 @@ function initAdminArea() {
         $(this).closest('label').find('input[type=hidden]').val($(this).data('i'));
         $(this).closest('label').find('span').find('input[type=file]').val('');
         $(this).closest('div.control-group').find('img').attr('src', '/templates/administrator/images/select-picture.png');
+        $(this).remove();
         return false;
     });
 
@@ -1744,18 +1750,17 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 var Update = {
     restore: function(file_name) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             data: {
                 file_name: file_name
             },
-            url: '/admin/sys_update/restore/' + file_name,
+            url: '/admin/sys_update/restore',
             success: function(res) {
-                if (res == 'true') {
+                if (res) {
                     showMessage('Сообщение', 'Успешно воставлено');
                 } else {
                     showMessage('Ошибка', 'Ошибка востановления', 'r');
                 }
-
             }
         });
     },
@@ -1778,11 +1783,11 @@ var Update = {
     },
     renderFile: function(file_path, curElement) {
         var tr = $(curElement).closest('tr');
-        if($(tr).next('.update_file_review').length){
+        if ($(tr).next('.update_file_review').length) {
             $(tr).next('.update_file_review').remove();
             return false;
         }
-        if($('.update_file_review').length){
+        if ($('.update_file_review').length) {
             $('.update_file_review').remove();
         }
 
@@ -1794,7 +1799,7 @@ var Update = {
             url: '/admin/sys_update/renderFile',
             success: function(res) {
                 if (res) {
-                    $('<tr class="update_file_review"><td colspan="4"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
+                    $('<tr class="update_file_review"><td colspan="3"><textarea rows="20" readonly>' + res + '</textarea></td></tr>').insertAfter($(tr));
                 }
             }
         });
