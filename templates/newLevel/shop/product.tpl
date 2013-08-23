@@ -243,7 +243,14 @@
                     <!--  End. Description -->
                     <!--Start .Share-->
                     <dl class="social-product">
-
+                        <dt class="s-t text-social-like">Понравился товар?</dt>
+                        <dd class="social-like">
+                            {echo $CI->load->module('share')->_make_like_buttons()}
+                        </dd>
+                        <dt class="s-t text-social-tell">Рассказать друзьям:</dt>
+                        <dd class="social-tell">
+                            {echo $CI->load->module('share')->_make_share_form()}
+                        </dd>
                     </dl>
                     <!-- End. Share -->
                 </div>
@@ -344,6 +351,9 @@
                 <!--End block-->
             </div>
         </div>
+    </div>
+    <div class="frame-benefits frame-benefits-product">
+        {widget('benefits')}
     </div>
     <!--Kit start-->
     {if $model->getShopKits()}

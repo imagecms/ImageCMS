@@ -1033,7 +1033,7 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 #notification.drop > .drop-content{min-height: 0;}
 .drop-content{background-color: #faf8f6;}
 .drop-header{background-color: #fff;}
-.drop-header:after{content: "";position: absolute;top: 100%;width: 100%;left: 0;border-width: 1px 0;border-style: solid;border-top-color: #f0edea;border-bottom-color: #f6f4f2;}
+.drop-header:before{content: "";position: absolute;top: 100%;width: 100%;left: 0;border-width: 1px 0;border-style: solid;border-top-color: #f0edea;border-bottom-color: #f6f4f2;}
 
 .items-user-toolbar{
     border:1px solid #0b93c7;
