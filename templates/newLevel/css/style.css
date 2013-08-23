@@ -411,15 +411,6 @@ input.input-search{height: 33px;}
 .fancy-gallery .content-carousel{margin: 0 35px;}
 .fancy-gallery .items-thumbs{margin: auto;}
 
-.items-wish-data > li > .frame-photo-title{width: 170px;float: left;position: relative;}
-.items-wish-data > li > .description{margin-left: 205px;}
-.items-wish-data .photo-block{width: 170px;height: 170px;position: relative;}
-.items-wish-data .photo-block > span{max-width: 100%;}
-.items-wish-data .frame-photo-title .group-buttons{position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin: auto;z-index: 1;width: 78px;height: 31px;display: none;}
-.items-wish-data > li > .frame-photo-title .overlay{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
-.items-wish-data > li > .frame-photo-title:hover .overlay{background-color: rgba(0,0,0, 0.3);}
-.items-wish-data > li > .frame-photo-title:hover .group-buttons{display: block;}
-
 /*if carousel*/
 .iscarousel.frame-thumbs{padding: 0 32px;}
 .iscarousel .items-thumbs{width: 20000px;margin: auto;text-align: left !important;}
@@ -950,6 +941,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 
 td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}
 .frame-cur-sum-price .frame-prices{padding-bottom: 0;}
+.frame-cur-sum-price .price-new{margin-bottom: 5px;}
 
 /*drop-bask*/
 .drop-bask{max-width: 854px;width: 90%;}
@@ -1156,25 +1148,3 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .isSafari .photo-block{letter-spacing: -10px !important;}
 .isSafari .photo-block > *{letter-spacing: normal;}
 /*/safari inline-block fix*/
-
-.hidden input[type="file"]{width: 100%;height: 100%;position: absolute;left: 0;top: 0;opacity: 0;-moz-opacity: 0;-khtml-opacity: 0;padding: 0;}
-.btn-remove-photo-wishlist > button, .btn-edit-photo-wishlist > button{width: 36px;height: 31px;text-align: center;}
-.btn-remove-photo-wishlist, .btn-edit-photo-wishlist{
-    border: 1px solid rgba(12, 154, 203, 0.4);
-    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);-width-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);
-    background: #fdfdfd; /* Old browsers */
-    background: -moz-linear-gradient(top,  #fdfdfd 0%, #e7e7e7 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#e7e7e7)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #fdfdfd 0%,#e7e7e7 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e7e7e7',GradientType=0 ); /* IE6-9 */
-}
-
-.btn-edit-photo-wishlist{
-    -moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 0 2px;border-radius: 2px 0 0 2px;margin-right: 2px;
-}
-.btn-remove-photo-wishlist{
-    -moz-border-radius: 0 2px 2px 0;-webkit-border-radius: 0 2px 2px 0;border-radius: 0 2px 2px 0;
-}

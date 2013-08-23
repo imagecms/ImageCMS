@@ -247,7 +247,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     //->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $this->dataModel)
-                    ->render('wishlistEdit');
+                    ->render('wishlistEdit', TRUE);
         else
             redirect('/wishlist');
     }
