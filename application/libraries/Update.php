@@ -45,6 +45,7 @@ class Update {
         'nbproject',
         'uploads_site',
         'backups',
+        'cmlTemp',
     );
 
     /**
@@ -97,8 +98,15 @@ class Update {
      */
     public $ci;
 
+    /**
+     * SoapClient
+     * @var SoapClient
+     */
+    public $client;
+
     public function __construct() {
         $this->ci = &get_instance();
+        $this->client = new SoapClient($this->pathUS);
     }
 
     /**
@@ -192,13 +200,11 @@ class Update {
      * check for new version
      * @return array return info about new relise or 0 if version is actual
      */
-    public function checkVersion() {
-        $client = new SoapClient($this->pathUS);
-
+    public function getStatus() {
         $domen = $_SERVER['SERVER_NAME'];
 
-        $result = $client->getStatus($domen, BUILD_ID);
-
+        $result = $this->client->getStatus($domen, BUILD_ID);
+        $this->getHashSum();
         if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
 
 //            ShopCore::app()->SSettings->set("newVersion", $ver);
@@ -207,6 +213,28 @@ class Update {
             ShopCore::app()->SSettings->__get("newVersion");
         }
         return unserialize($result);
+    }
+
+    /**
+     * getting hash from server
+     * @return array Array of hashsum files new version
+     */
+    public function getHashSum() {
+        $domen = $_SERVER['SERVER_NAME'];
+        $key = ShopCore::app()->SSettings->__get("careKey");
+        $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+        $result = (array) json_decode($result);
+        return $result;
+//        var_dump($result);
+    }
+
+    public function getUpdate() {
+        ini_set("soap.wsdl_cache_enabled", "0");
+        $domen = $_SERVER['SERVER_NAME'];
+        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, ShopCore::app()->SSettings->__get("careKey"));
+        $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
+//        echo $all_href;
+        file_put_contents('updates', file_get_contents($all_href));
     }
 
     /**
@@ -298,34 +326,6 @@ class Update {
             $this->db_restore($destination . '/backup.sql');
 
         return $rez;
-    }
-
-    /**
-     * Оприділення шляхів відносно настройок
-     */
-    public function paths() {
-        // шлях до корня сайту /var/www
-        $this->dir_curr = realpath('') . DIRECTORY_SEPARATOR;
-        // шлях до папки з обновленням з "/" вкінці
-        $this->dir_old_upd = realpath('') . DIRECTORY_SEPARATOR . $this->update_directory . DIRECTORY_SEPARATOR . $this->old_reliz . DIRECTORY_SEPARATOR;
-        // шлях до папки з старим редізом з "/" вкінці
-        $this->dir_upd = realpath('') . DIRECTORY_SEPARATOR . $this->update_directory . DIRECTORY_SEPARATOR . $this->update_file . DIRECTORY_SEPARATOR;
-        // шлях до папки з обэднаними файлами з "/" вкінці
-        $this->dir_marge = realpath('') . DIRECTORY_SEPARATOR . $this->update_directory . DIRECTORY_SEPARATOR . $this->marge_file . DIRECTORY_SEPARATOR;
-
-        // шлях до файлу з масивом про дані текущих файлів
-        $this->file_mass_curr = $this->update_directory . DIRECTORY_SEPARATOR . 'current_mas.txt';
-        // шлях до файлу з масивом про дані старого релізу файлів
-        $this->file_mass_old = $this->update_directory . DIRECTORY_SEPARATOR . $this->old_reliz . '_mas.txt';
-        // шлях до файлу з масивом про дані файлів які різняться
-        $this->file_mass_diff = $this->update_directory . DIRECTORY_SEPARATOR . 'diff_mas.txt';
-        // шлях до файлу з масивом про дані файлів які не обєднюються
-        $this->file_dont_marge = $this->update_directory . DIRECTORY_SEPARATOR . 'dont_marge_mas.txt';
-
-        // шлях до файлу з архівом старого релізу
-        $this->file_zip_old = $this->update_directory . DIRECTORY_SEPARATOR . $this->old_reliz . '.zip';
-        // шлях до файлу з архівом обновлення
-        $this->file_zip_upd = $this->update_directory . DIRECTORY_SEPARATOR . $this->update_file . '.zip';
     }
 
     /**
@@ -549,7 +549,7 @@ class Update {
                         if ($zip->statName('backup.sql')) {
                             $this->restore_files[] = array(
                                 'name' => $filename,
-                                'size' => round(filesize('./application/backups/' . $filename)/1024/1024, 2),
+                                'size' => round(filesize('./application/backups/' . $filename) / 1024 / 1024, 2),
                                 'create_date' => filemtime('./application/backups/' . $filename)
                             );
                         }

@@ -29,4 +29,3 @@
         </div>
     </div>
 {/if}
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>
