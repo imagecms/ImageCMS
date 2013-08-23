@@ -1,61 +1,50 @@
 <div class="drop drop-style drop-edit-wishlist">
-    <label>
-        <span class="frame_form_field__icsi-css">
-            <div class="frameLabel__icsi-css error_text" name="error_text"></div>
-        </span>
-    </label>
+    <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {foreach $wishlists as $key => $wishlist}
-        <form method="POST" action="/wishlist/updateWL">
-            <div class="drop-content">
-                <table class="table">
-                    <input type="hidden" name="WLID" value="{echo $wishlist['0']['wish_list_id']}">
-                    <thead>
-                        <tr>
-                            <td colspan="3">
+        <div class="drop-header">
+            <div class="title">Редактировать: {echo $wishlist[0]['title']}</div>
+        </div>
+        <div class="drop-content">
+            <div class="inside-padd">
+                <div class="horizontal-form big-title">
+                    <form method="POST" action="{site_url('/wishlist/updateWL')}">
+                        <input type="hidden" name="WLID" value="{echo $wishlist['0']['wish_list_id']}">
+                        <div class="frame-label">
+                            <span class="title">Доступность:</span>
+                            <div class="frame-form-field check-public-drop">
+                                <div class="lineForm">
+                                    <select name="access" id="access">
+                                        <option {if $wishlist['0']['access'] == 'shared'}selected="selected"{/if} value="shared">shared</option>
+                                        <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">private</option>
+                                        <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">public</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <label>
+                            <span class="title">Название списка:</span>
+                            <span class="frame-form-field">
                                 <input type="text" value="{$wishlist['0']['title']}" name="title"/>
-                                <select name="access">
-                                    <option {if $wishlist['0']['access'] == 'shared'}selected="selected"{/if} value="shared">shared</option>
-                                    <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">private</option>
-                                    <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">public</option>
-                                </select>
+                            </span>
+                        </label>
+                        <label>
+                            <span class="title">Описание:</span>
+                            <span class="frame-form-field">
                                 <textarea name="description">{$wishlist['0']['description']}</textarea>
-                                <a href="/wishlist/deleteWL/{$wishlist['0']['wish_list_id']}"class="btn">удалить</a>
-                            </td>
-                        </tr>
-                        {if $wishlist[0][id] != null}
-                            <tr>
-                                <th>№</th>
-                                <th>Отписатся</th>
-                                <th>Товар</th>
-                                <th>Коментарий</th>
-                            </tr>
-                        {/if}
-                    </thead>
-                    <tbody>
-                        {if $wishlist[0][id] != null}
-                            {foreach $wishlist as $key => $w}
-                                <tr>
-                                    <td>{echo $key+1}</td>
-                                    <td>
-                                        <a href="/wishlist/deleteItem/{echo $w['variant_id']}/{echo $w['wish_list_id']}"class="btn">удалить</a>
-                                    </td>
-                                    <td>
-                                        <a href="{shop_url('product/'.$w[url])}"
-                                           title="{$w[name]}">
-                                            {$w[name]}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <textarea name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                        {/if}
-                    </tbody>
-                </table>
+                            </span>
+                        </label>
+                        <div class="frame-label">
+                            <div class="title">&nbsp;</div>
+                            <div class="frame-form-field">
+                                <div class="btn-def">
+                                    <input type="submit" value="Сохранить"/>
+                                </div>
+                            </div>
+                        </div>
+                        {form_csrf()}
+                    </form>
+                </div>
             </div>
-            {form_csrf()}
-            <input type="submit" class="btn"/>
-        </form>
+        </div>
     {/foreach}
 </div>

@@ -12,7 +12,7 @@
         <div class="box-2">
             <div class="inside-padd">
                 <div class="main-title">Продукция</div>
-                {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
+                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('footer_category_menu')}
             </div>
         </div>
         <!--End. Load menu in footer-->
@@ -23,20 +23,20 @@
                 <div class="main-title">Пользователь</div>
                 <ul>
                     {if $is_logged_in}
-                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'">Выход</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'">Личный кабинет</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'">Список желаний</button></li>
+                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'" title="Выйти с магазина">Выход</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'" title="Перейти в личний кабинет">Личный кабинет</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'" title="Перейти в список желаний">Список желаний</button></li>
                         {else:}
-                        <li><button type="button" data-trigger="#loginButton">Вход</button></li>
-                        <li><button onclick="location = '{site_url('auth/register')}'">Регистрация</button></li>
+                        <li><button type="button" data-trigger="#loginButton" title="Ввойти в магазин">Вход</button></li>
+                        <li><button onclick="location = '{site_url('auth/register')}'" title="Перейти на страницу регистрации">Регистрация</button></li>
                         {/if}
                         {if $compare = $CI->session->userdata('shopForCompare')}
                             {$count = count($compare);}
                             {if $count > 0}
-                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'">Список сравнений</button></li>
+                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="Перейти в список сравнений">Список сравнений</button></li>
                             {/if}
                         {/if}
-                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']">Обратный звонок</button></li>
+                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']" title="Заказать обратный звонок">Обратный звонок</button></li>
                 </ul>
             </div>
         </div>
