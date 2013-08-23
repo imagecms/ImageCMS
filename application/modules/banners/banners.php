@@ -103,6 +103,7 @@ class Banners extends MY_Controller {
           `active` tinyint(4) NOT NULL,
           `active_to` int(11) DEFAULT NULL,
           `where_show` text CHARACTER SET utf8,
+          `position` int(11) DEFAULT NULL,
           PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
 

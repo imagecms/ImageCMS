@@ -112,11 +112,17 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($hash, $access = array('shared')) {
+    public function show($hash, $access = array('shared','private', 'public')) {
         if (!$hash)
             return FALSE;
 
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
+       
+        if($wishlist[0]['access'] == 'private' ){
+            if($wishlist[0]['user_id'] != $this->dx_auth->get_user_id()){
+                $this->core->error_404();
+            }
+        }
 
         if ($wishlist) {
             self::addReview($hash);
