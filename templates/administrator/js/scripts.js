@@ -1144,6 +1144,7 @@ function initAdminArea() {
         $(this).closest('label').find('input[type=hidden]').val($(this).data('i'));
         $(this).closest('label').find('span').find('input[type=file]').val('');
         $(this).closest('div.control-group').find('img').attr('src', '/templates/administrator/images/select-picture.png');
+        $(this).remove();
         return false;
     });
 

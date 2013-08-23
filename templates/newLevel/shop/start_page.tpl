@@ -4,10 +4,13 @@
 </div>
 <div class="frame-start-page-category-menu">
     <div class="container">
-        {\Category\RenderMenu::create()->load('start_page_category_menu')}
+        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('start_page_category_menu')}
     </div>
 </div>
 <div class="horizontal-carousel">
+    <div id="popular_products">
+        {widget('popular_products')}
+    </div>
     <div id="action_products">
         <div class="preloader"></div>
         {widget_ajax('action_products', '#action_products')}
@@ -15,9 +18,6 @@
     <div id="new_products">
         <div class="preloader"></div>
         {widget_ajax('new_products', '#new_products')}
-    </div>
-    <div id="popular_products">
-        {widget('popular_products')}
     </div>
     {widget('brands')}
 </div>
@@ -31,4 +31,3 @@
     </div>
 </div>
 {widget('latest_news')}
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>

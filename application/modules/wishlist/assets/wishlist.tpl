@@ -104,9 +104,9 @@
                                 <td>
                                     {$w[comment]}
                                 </td>
-                            {if $w['access'] == 'shared'}
-                                {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$w['hash']))}
-                            {/if}
+                                {if $w['access'] == 'shared'}
+                                    {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$w['hash']))}
+                                {/if}
                             </tr>
                         {/foreach}
                     {else:}
