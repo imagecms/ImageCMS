@@ -27,8 +27,11 @@ class Sys_update extends BaseAdminController {
 
     public function index() {
         ini_set("soap.wsdl_cache_enabled", "0");
-
-        $array = $this->update->getStatus();
+        
+        if(extension_loaded('soap')){
+            $array = $this->update->getStatus();
+        }
+        
         if ($array) {
             $data = array(
                 'build' => $array['build'],
