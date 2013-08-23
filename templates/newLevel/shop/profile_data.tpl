@@ -71,7 +71,9 @@
                         {/if}
                         {if $discount['group_user']}
                             <div>
+
                                 Ваша текущая скидка группы пользователя:
+
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>

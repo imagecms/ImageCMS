@@ -13,9 +13,16 @@
                 </a>
                 {if $newRelise}
                     <a href="{$BASE_URL}admin/sys_update/update"
-                       class="btn btn-small btn-primary">
+                       class="btn btn-small btn-primary pjax">
                         <span class="icon-play"></span>
                         <span class="">Перейти к обновлению</span>
+                    </a>
+                {/if}
+                {if SHOP_INSTALLED}
+                    <a href="/admin/sys_update/properties"
+                       class="btn btn-small">
+                        <span class="icon-wrench"></span>
+                        <span>Настройки</span>
                     </a>
                 {/if}
             </div>

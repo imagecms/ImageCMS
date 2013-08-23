@@ -58,9 +58,7 @@ class discount extends classes\BaseDiscount {
             
             $this->get_amout_user();
             
-            $discount_user = $this->get_user_discount();
-            
-            $discount_category = $this->discount_type['category'][0];
+            $discount_user = $this->get_user_discount();            
 
             $discount_group_user = $this->get_user_group_discount();
 
@@ -72,7 +70,6 @@ class discount extends classes\BaseDiscount {
    
         $this->result_discount = array(
                                 'all_order'=>$discount_all_order, 
-                                'category' => $discount_category,
                                 'comulative' => $discount_comulativ, 
                                 'user' => $discount_user, 
                                 'user_group' => $discount_group_user);

@@ -34,6 +34,7 @@ class Server_update {
 
         $obj = new serverUpdate();
         if ($ver = $obj->put_file($href,$domen)){
+            //echo 'update/' . $ver . '/' .$ver . '.zip';
             $this->send_file('update/' . $ver . '/' .$ver . '.zip');
         }
     }

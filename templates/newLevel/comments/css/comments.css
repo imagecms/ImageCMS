@@ -1,0 +1,57 @@
+/*comments*/
+.comment__icsi-css{margin-bottom: 35px !important;}
+.comment__icsi-css .main-form-comments .title__icsi-css{float: none;width: auto;font-weight: bold;}
+.comment__icsi-css .title__icsi-css{font-weight: bold;}
+.comment__icsi-css .main-form-comments .frame_form_field__icsi-css{margin-left: 0;}
+.comment__icsi-css .author-comment__icsi-css{color: #000;font-size:12px;}
+.comment__icsi-css .date-comment__icsi-css{color: #999;font-weight: bold;}
+.frame-list-comment__icsi-css > .sub-1{margin-bottom: 30px;}
+.frame-list-comment__icsi-css > .sub-1 > li > .frame-comment__icsi-css{padding: 10px 15px 1px;background-color: #f4eee9;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
+.frame-comment__icsi-css p{margin-bottom: 9px;}
+.comment__icsi-css .frame-list-comment__icsi-css.sub-2{float: none;width: auto;padding-left: 33px;max-height: 98px;overflow: hidden;}
+
+.comment__icsi-css .btn__icsi-css > *, .comment__icsi-css input.btn__icsi-css{padding: 0 !important;}
+.comment__icsi-css .frame-list-comment__icsi-css .btn__icsi-css{background-image: none !important;border: none !important;}
+.comment__icsi-css .frame-list-comment__icsi-css .btn__icsi-css.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
+.comment__icsi-css .icon-comment__icsi-css{background-image: none;width: 0;height: 0;margin-right: 0!important;}
+.comment__icsi-css .frame-list-comment__icsi-css li{border-top: 0;padding: 0;}
+.comment__icsi-css .frame-list-comment__icsi-css > .sub-1 > li{margin-top: 29px;}
+.frame-list-comment__icsi-css.sub-2 + .s-all-comments{margin-left: 33px;}
+.comment__icsi-css .frame-list-comment__icsi-css.sub-2 > li{border-bottom: 1px solid #eae5e1;}
+.comment__icsi-css .funcs-buttons-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 1px;}
+.comment__icsi-css .like__icsi-css > button span span, .comment__icsi-css .dis-like__icsi-css > button span span{font-weight: normal;}
+.comment__icsi-css .author-data-comment__icsi-css{margin-bottom: 3px;}
+.s-all-comments{margin-top: 7px;}
+
+.comment__icsi-css .frame-comments__icsi-css{border-bottom: 1px solid #d8d2cb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
+.comment__icsi-css .btn-form input{padding: 0 33px !important;}
+.comment__icsi-css .frame-drop-comment__icsi-css{padding-bottom: 0;display: none;width: 98%;margin: auto;}
+.page-text .comment__icsi-css .main-form-comments__icsi-css{width: 60%;}
+
+.frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
+.frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+.comment__icsi-css .title_h2__icsi-css{margin-bottom: 15px;font-size: 18px;font-weight: normal;margin-bottom: 4px;}
+.f_l__icsi-css{float: left;}
+.f_r__icsi-css{float: right;}
+.comment__icsi-css .productRate{position: relative;}
+.comment__icsi-css .productRate div {background-position: left bottom;width: 0;height: 100%;position: absolute;top: 0;left: 0;z-index: 1;cursor: pointer;}
+.comment__icsi-css .productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
+.comment__icsi-css .productRate.disabled, .productRate.disabled div{cursor: default;}
+.frame-comments__icsi-css .inside-padd{padding: 14px 20px 15px;}
+.comment__icsi-css label{display: block;}
+.form__icsi-css label, .form__icsi-css .frameLabel__icsi-css{margin-bottom: 12px;}
+.comment__icsi-css .star-big {width: 145px;height: 31px;}
+.form__icsi-css .title__icsi-css{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}
+.frame_form_field__icsi-css{position: relative;display: block;}
+.comment__icsi-css textarea{height: 134px; padding-top: 5px}
+.comment__icsi-css .btn__icsi-css{display: inline-block;cursor: pointer;color: #555;text-decoration: none;position: relative;}
+.comment__icsi-css .btn__icsi-css > *, .comment__icsi-css input.btn__icsi-css{padding: 5px 15px 5px;}
+.comment__icsi-css .btn__icsi-css.active{cursor: default;}
+.comment__icsi-css .btn__icsi-css.active{color: #979797;}
+.func-button-comment__icsi-css{padding-top: 10px;}
+.comment__icsi-css .like__icsi-css > button, .comment__icsi-css .dis-like__icsi-css > button{font-weight: bold;border-bottom: 0;}
+.comment__icsi-css .like__icsi-css > button{color: #059a17;margin: 0 8px;}
+.dis-like__icsi-css > button{color: #f03f3f;}
+.form__icsi-css .frame_form_field__icsi-css{margin-left: 138px;}
+.func-button-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}
+/*/comments*/
