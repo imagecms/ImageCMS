@@ -9593,6 +9593,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
   `active` tinyint(4) NOT NULL,
   `active_to` int(11) DEFAULT NULL,
   `where_show` text,
+`position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
@@ -9600,10 +9601,10 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
 -- Дамп даних таблиці `mod_banner`
 --
 
-INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`) VALUES
-(1, 0, 1512158400, 'a:1:{i:0;s:6:"main_0";}'),
-(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}'),
-(3, 1, 1564776000, 'a:1:{i:0;s:6:"main_0";}');
+INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `position`) VALUES
+(1, 0, 1512158400, 'a:1:{i:0;s:6:"main_0";}', 0),
+(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}', 1),
+(3, 1, 1564776000, 'a:1:{i:0;s:6:"main_0";}', 2);
 
 --
 -- Структура таблиці `mod_banner_i18n`
