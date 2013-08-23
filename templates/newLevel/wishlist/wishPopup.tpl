@@ -46,8 +46,6 @@
                             data-modal="true"
                             data-overlayopacity= "0"
                         {if $wish_list_id}data-callback="reload"{/if}
-                        data-place= 'noinherit'
-                        data-placement= 'top left'
                         >
                         <span class="text-el">{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}</span> 
                     </button>

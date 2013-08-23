@@ -189,7 +189,7 @@
         </div>
         {if count($wishlists)>0}
             {foreach $wishlists as $key => $wishlist}
-                <div class="drop-style-2 drop-wishlist-items">
+                <div class="drop-style-2 drop-wishlist-items" data-rel="list-item">
                     <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                     <div class="drop-header clearfix">
                         <div class="f_l">

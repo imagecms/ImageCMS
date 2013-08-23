@@ -1,6 +1,6 @@
 /*fancybox*/
 #fancybox-loading{position:fixed;top:50%;left:50%;width:40px;height:40px;margin-top:-20px;margin-left:-20px;cursor:pointer;overflow:hidden;z-index:1104;display:none}
-#fancybox-loading div{position:absolute;top:0;left:0;width:40px;height:480px;background-image:url("images/fancybox.png")}
+#fancybox-loading div{position:absolute;top:0;left:0;width:40px;height:480px;background-image:url("../images/fancybox.png")}
 #fancybox-overlay{position:absolute;top:0;left:0;width:100%;z-index:1100;display:none}
 #fancybox-tmp{border:0;overflow:auto;display:none;margin:0;padding:0}
 #fancybox-wrap{position:absolute;top:0;left:0;z-index:1101;outline:none;display:none;margin:20px;}

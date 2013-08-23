@@ -1139,6 +1139,11 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .tooltip:after{content: "";position:absolute;width:0;height:0;bottom:-5px;left:50%;margin-left:-5px;}
 /*/tooltip*/
 
+/*fancybox loading*/
+#fancybox-loading{position:fixed;top:50%;left:50%;width:40px;height:40px;margin-top:-20px;margin-left:-20px;cursor:pointer;overflow:hidden;z-index:1104;display:none}
+#fancybox-loading div{position:absolute;top:0;left:0;width:40px;height:480px;background-image:url("../images/fancybox.png")}
+/*/fancybox loading*/
+
 /*safari inline-block fix*/
 .isSafari .nav-enter-reg, .isSafari .items, .isSafari .f-s_0, .isSafari .row-kits li, .isSafari .items-complect > li, .isSafari .pager, .isSafari .title-category-l1, .isSafari .menu-row-category .frame-drop-menu > ul > li, .isSafari .lineForm, .isSafari .compare-characteristic > li, .isSafari .nav, .isSafari .funcs-buttons{letter-spacing: -5px;}
 .isSafari .items-complect .complect-gen-sum, .isSafari .items-complect .items-bask{letter-spacing: -5px;}

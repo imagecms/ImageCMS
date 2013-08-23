@@ -100,6 +100,7 @@ var optionsDrop = {
     effoff: 'fadeOut',
     duration: 500,
     modalPlace: '.notification',
+    modalDelay: 500,
     dropContent: '.drop-content',
     animate: false,
     moreoneNC: false// show more then one drop
@@ -797,7 +798,7 @@ function banerResize(el) {
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
     var closedrop = setTimeout(function() {
-        drop.drop('triggerBtnClick', drop);
+        drop.drop('closeDrop', drop);
     }, durationHideForm - 500/*time fadeout drop see on site*/)
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
