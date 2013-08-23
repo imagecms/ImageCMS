@@ -47,6 +47,8 @@ class Sys_update extends BaseAdminController {
 
     public function do_update() {
         $this->update->getUpdate();
+        $this->update->restoreFromZIP('update.zip');
+        pjax('/admin');
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
