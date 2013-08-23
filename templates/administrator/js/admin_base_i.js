@@ -809,19 +809,18 @@ $(document).ready(function() {
     });
 
 
-    // on change of top input starting search
-    $("#search_images").live('click', function(e) {
-        // .live() don't have 'change' event
-        var value = $("#url_image").val();
-        var keyCode = e.which;
-        var ignoredKeys = [16, 17, 18, 35, 36, 20];
-        for (var i = 0; i < ignoredKeys.length; i++) {
-            if (ignoredKeys[i] == keyCode) {
-                if (!value.length > 2)
-                    clearImageResults();
-                return;
-            }
+    // on search button lick
+    $("#search_images").live('click', search_images);
+    // on enter
+    $("#url_image").live('keypress', function(e){
+        if (e.which == 13) {
+            search_images();
         }
+    });
+
+
+    function search_images() {
+        var value = $("#url_image").val();
         // checking if value is URL
         if (value.length > 2) {
             var urlPattern = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
@@ -838,8 +837,7 @@ $(document).ready(function() {
         } else {
             clearImageResults();
         }
-    });
-
+    }
     // start search 
     function searchImages(clear) {
         if (clear !== false) {
@@ -870,12 +868,17 @@ $(document).ready(function() {
             i++;
         }
         if (i > 0) {
-            imgMessageBottom('');
+            //imgMessageBottom('');
             if ((curPosition + 8) < 40) {
                 modalBodyMsg('<a id="loadMoreImages">Еще</a>');
             }
         } else {
-            imgMessageBottom('Нет результатов по вашему запросу');
+            if (curPosition > 1) {
+                //searchImages();
+                //modalBodyMsg("Загрузка...");
+            } else {
+                modalBodyMsg("Нет результатов по вашему запросу");
+            }
         }
     }
 
@@ -903,16 +906,18 @@ $(document).ready(function() {
             } else {
                 $(this).parents("span.img_span").addClass('selected_image');
             }
-            var countOfSelected = $("span.img_span.selected_image").size();
-            if (countOfSelected > 1) {
-                imgMessageBottom('Изображения будут сохранены как дополнительные');
-            } else {
-                imgMessageBottom('');
-            }
         } else {
-            imgMessageBottom('');
             $("span.img_span").removeClass('selected_image');
             $(this).parents("span.img_span").addClass('selected_image');
+        }
+
+        var countOfSelected = $("span.img_span.selected_image").size();
+        if (countOfSelected > 1) {
+            $("#as_additional")
+                    .attr("checked", "checked")
+                    .attr("disabled", "disabled");
+        } else {
+            $("#as_additional").removeAttr("disabled");
         }
     });
 
@@ -933,9 +938,10 @@ $(document).ready(function() {
         trId = $(this).parents("tr").attr("id");
         var productName = $("input#Name").val();
         $("#url_image").val(productName);
-        imgMessageBottom('');
+        //imgMessageBottom('');
         searchImages();
         modalBodyMsg('Загрузка...');
+        $("#as_additional").removeAttr("checked").removeAttr("disabled");
         $('#images_modal').modal();
     });
 
@@ -952,16 +958,27 @@ $(document).ready(function() {
      * @param string msg
      * @returns {@exp;@call;$@call;text}
      */
-    function imgMessageBottom(msg) {
-        if (typeof(msg) == 'undefined')
-            return $("#msg_about_additional").text();
-        $("#msg_about_additional").text(msg);
+    function errorOnSave(msg) {
+        if (typeof(msg) != 'string') {
+            return;
+        }
+        $('#save_image').popover({
+            placement: 'top',
+            title: 'Ошибка',
+            content: msg
+        });
+        $('#save_image').popover('show');
+        setTimeout("$('#save_image').popover('hide').popover('destroy');", 3000);
     }
 
     // closes modal, adding url of image to cpecified product
     $("#save_image").live('click', function() {
         var selectedImages = $("span.selected_image");
-        if ($(selectedImages).size() > 1) { // if are selected more than one image
+        if (!$(selectedImages).size() > 0) {
+            errorOnSave('Не выбрано ни одного изображения');
+            return;
+        }
+        if ($('#as_additional').attr('checked')) {
             var urlArray = [];
             $(selectedImages).each(function() {
                 urlArray.push($(this).find("img").attr("src"));
@@ -971,7 +988,7 @@ $(document).ready(function() {
                 $('#images_modal').modal("hide");
                 $("a[href='#additionalPics']").trigger('click');
             } else {
-                imgMessageBottom(res);
+                errorOnSave(res);
             }
             return true;
         }
@@ -993,6 +1010,10 @@ $(document).ready(function() {
 
 
     $('#url_image').live('mouseover', function() {
+        $(this).tooltip();
+    });
+
+    $('#as_additional_container').live('mouseover', function() {
         $(this).tooltip();
     });
 
