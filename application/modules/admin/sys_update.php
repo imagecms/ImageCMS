@@ -26,6 +26,10 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
+        if(!extension_loaded('soap')){
+            exit;
+        }
+
         ini_set("soap.wsdl_cache_enabled", "0");
 
         $array = $this->update->getStatus();
@@ -47,7 +51,7 @@ class Sys_update extends BaseAdminController {
 
     public function do_update() {
         $this->update->getUpdate();
-        $this->update->restoreFromZIP('update.zip');
+        $this->update->restoreFromZIP('./application/backups/updates.zip');
         pjax('/admin');
     }
 
