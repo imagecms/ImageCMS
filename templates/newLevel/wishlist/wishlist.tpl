@@ -1,5 +1,11 @@
+{$pricePrecision = ShopCore::app()->SSettings->pricePrecision}
 <div class="frame-inside page-wishlist">
     <div class="container">
+        <div class="f-s_0 title-cart without-crumbs">
+            <div class="frame-title">
+                <h1 class="d_i">Список желаний</h1>
+            </div>
+        </div>
         {if $errors}
             {foreach $errors as $error}
                 <div class="msg">
@@ -10,9 +16,9 @@
         <ul class="items items-row items-wish-data">
             <li class="clearfix">
                 <div class="frame-photo-title">
-                    <form action="/wishlist/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <form action="{site_url('/wishlist/do_upload')}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                         <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                        <div class="photo-block">
+                        <div class="photo-block m-b_5">
                             <span class="helper"></span>
                             <span id="wishlistphoto">
                                 {if $user['user_image']!=''}
@@ -32,7 +38,7 @@
                                     <div class="btn-remove-photo-wishlist">
                                         <button 
                                             type="button"
-                                            data-source="/wishlist/wishlistApi/deleteImage"
+                                            data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
                                             data-type="json"
                                             data-modal="true"
                                             data-overlayopacity= "0"
@@ -48,10 +54,10 @@
                             </div>
                             <div class="overlay"></div>
                         </div>
-                        <span class="help-block f-s_11">Максимальный размер {echo $settings[maxImageWidth]}&times;{echo $settings[maxImageHeight]} пикселей</span>
                         <div class="btn-def">
                             <input type="submit" value="загрузить катринку" data-wishlist="do_upload" disabled="disabled"/>
                         </div>
+                        <span class="help-block f-s_11">Максимальный размер {echo $settings[maxImageWidth]}&times;{echo $settings[maxImageHeight]} пикселей</span>
                         {form_csrf()}
                     </form>
                 </div>
@@ -67,7 +73,7 @@
                         <p data-wishlist-name="description">{echo $user[description]}</p>
                     </div>
                     <button type="button" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0" class="d_l_1">Редактировать</button>
-                    <div class="form-data drop horizontal-form">
+                    <div class="form-data drop horizontal-form big-title">
                         <form>
                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                             <label>
@@ -94,7 +100,7 @@
                                     <div class="btn-def">
                                         <button
                                             type="button"
-                                            data-source="/wishlist/wishlistApi/userUpdate"
+                                            data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                             data-type="json"
                                             data-modal="true"
                                             data-overlayopacity= "0"
@@ -127,21 +133,21 @@
             </div>
             <div class="drop-content2">
                 <div class="inside-padd">
-                    <div class="horizontal-form">
-                        <form method="POST" action="/wishlist/wishlistApi/createWishList">
+                    <div class="horizontal-form big-title">
+                        <form method="POST" action="{site_url('/wishlist/wishlistApi/createWishList')}">
                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
-                            <label>
+                            <div class="frame-label">
                                 <span class="title">Доступность:</span>
-                                <span class="frame-form-field check-public">
-                                    <span class="lineForm">
-                                        <select name="wlTypes">
+                                <div class="frame-form-field check-public">
+                                    <div class="lineForm">
+                                        <select name="wlTypes" id="wlTypes">
                                             <option value="shared">Shared</option>
                                             <option value="public">Public</option>
                                             <option value="private">Private</option>
                                         </select>
-                                    </span>
-                                </span>
-                            </label>
+                                    </div>
+                                </div>
+                            </div>
                             <label>
                                 <span class="title">Название списка:</span>
                                 <span class="frame-form-field">
@@ -161,10 +167,11 @@
                                         <button
                                             class="btn"
                                             type="button"
-                                            data-source="/wishlist/wishlistApi/createWishList"
+                                            data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                             data-type="json"
                                             data-modal="true"
                                             data-overlayopacity= "0"
+                                            data-always="true"
                                             onclick="serializeForm(this)"
                                             data-drop="#notification"
                                             data-callback="createWishList"
@@ -180,67 +187,118 @@
                 </div>
             </div>
         </div>
-
         {if count($wishlists)>0}
             {foreach $wishlists as $key => $wishlist}
-                <form method="post" action="/wishlist/deleteItemsByIds" >
-                    <div class="drop-style-2 drop-wishlist-items">
-                        <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
-                        <div class="drop-header clearfix">
-                            <div class="f_l">
-                                <b>Доступность:</b>
-                                <span class="s_t">{echo $wishlist[0][access]}</span>
-                            </div>
-                            <div class="f_r">
-                                {if $wishlist[0]['access'] == 'shared'}
-                                    {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
-                                {/if}
-                            </div>
+                <div class="drop-style-2 drop-wishlist-items">
+                    <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
+                    <div class="drop-header clearfix">
+                        <div class="f_l">
+                            <b>Доступность:</b>
+                            <span class="s_t">{echo $wishlist[0][access]}</span>
                         </div>
-                        <div class="drop-content2">
-                            <div class="inside-padd">
+                        <div class="f_r">
+                            {if $wishlist[0]['access'] == 'shared'}
+                                {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
+                            {/if}
+                            {if $wishlist[0]['access'] == 'public'}
+                                <a href="{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}">Поделится с другом</a>
+                            {/if}
+                            {if $wishlist[0]['access'] == 'private'}
+                                <b>Сылка на вишлист:</b> <a target="_blank" href="{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}">{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}</a>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="drop-content2">
+                        <div class="inside-padd">
+                            {if $wishlist[0][title]}
                                 <h2>{$wishlist[0][title]}</h2>
+                            {/if}
+                            {if $wishlist[0][description]}
                                 <div class="text">
                                     {$wishlist[0][description]}
                                 </div>
-                                <button
-                                    class="d_l_1"
-                                    type="button"
-                                    data-source="/wishlist/editWL/{$wishlist[0][wish_list_id]}"
-                                    data-drop=".drop-edit-wishlist"
-                                    data-always="true"
-                                    >редактировать</button>
-
-                                {if $wishlist[0][variant_id]}
-                                    <tr>
-                                        <th>Check</th>
-                                        <th>№</th>
-                                        <th>Отписатся</th>
-                                        <th>Товар</th>
-                                        <th>Коментарий</th>
-                                    </tr>
-                                {/if}
-                                {if $wishlist[0][variant_id]}
-                                    <ul class="items items-catalog">
-                                        {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true), 'array_product_item')}
-                                    </ul>
-                                {else:}
-                                    <div class="msg layout-highlight layout-highlight-msg">
-                                        <div class="info">
-                                            <span class="icon_info"></span>
-                                            <span class="text-el">Список пуст</span>
-                                        </div>
+                            {/if}
+                            {if $wishlist[0][variant_id]}
+                                <ul class="items items-catalog items-wish-list">
+                                    {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true), 'array_product_item')}
+                                </ul>
+                            {else:}
+                                <div class="msg layout-highlight layout-highlight-msg">
+                                    <div class="info">
+                                        <span class="icon_info"></span>
+                                        <span class="text-el">Список пуст</span>
                                     </div>
-                                {/if}
-                                <a href="/wishlist/deleteWL/{$wishlist[0][wish_list_id]}"class="btn">удалить</a>
+                                </div>
+                            {/if}
+                        </div>
+                    </div>
+                    {if $wishlist[0][variant_id]}
+                        <div class="drop-footer2">
+                            <div class="inside-padd clearfix">
+                                <div class="funcs-buttons-wishlist f_l">
+                                    <div class="btn-edit-WL">
+                                        <button
+                                            type="button"
+                                            data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
+                                            data-drop=".drop-edit-wishlist"
+                                            data-always="true"
+                                            >
+                                            <span class="icon_edit"></span><span class="d_l_1 text-el">Редактировать список</span>
+                                        </button>
+                                    </div>
+                                    <div class="btn-remove-WL">
+                                        <button
+                                            type="button"
+                                            >
+                                            <span class="icon_remove"></span>
+                                            <button 
+                                                type="button"
+                                                class="d_l_1 text-el"
+                                                data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
+                                                data-type="json"
+                                                data-modal="true"
+                                                data-overlayopacity= "0"
+                                                data-drop="#notification"
+                                                data-callback="reload"
+                                                data-confirm="true"
+                                                ><span class="text-el">Удалить список</span></a>
+                                            </button>
+                                    </div>
+                                </div>
+                                <div class="f_r">
+                                    {$price = 0}
+                                    {$i = 0}
+                                    {foreach $wishlist as $key => $p}
+                                        {$price += $p.price;}
+                                        {$i++}
+                                    {/foreach}
+                                    <div class="title-h3">Всего <b>{echo $i}</b> товара на сумму 
+                                        <span class="frame-prices f-s_0">
+                                            <span class="current-prices">
+                                                <span class="price-new">
+                                                    <span>
+                                                        <span class="price">{round($price, $pricePrecision)}</span>
+                                                        <span class="curr">{$CS}</span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="btn-buy">
+                                        <button
+                                            type="button"
+                                            class="btnBuyWishList"
+                                            >
+                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                            <span class="text-el">Купить все доступные товары</span>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        {form_csrf()}
-                        {if $wishlist[0][variant_id]}
-                            <input type="submit" class="btn btn-small" value="Удалить">
-                        {/if}
-                    </div>
-                </form>
+                    {/if}
+                    {form_csrf()}
+                </div>
             {/foreach}
         {else:}
             Список Желания пуст

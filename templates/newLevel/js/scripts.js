@@ -102,7 +102,7 @@ var optionsDrop = {
     modalPlace: '.notification',
     dropContent: '.drop-content',
     animate: false,
-    moreoneNC: true// show more then one drop
+    moreoneNC: false// show more then one drop
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -255,6 +255,11 @@ var genObj = {
     err: 'error', //клас
     scs: 'success', //клас
     info: 'info' //клас
+};
+var cuselOptions = {
+    changedEl: ".lineForm:visible select",
+    visRows: 100,
+    scrollArrows: false
 };
 message = {
     success: function(text) {
@@ -424,18 +429,12 @@ function getKitDiscount() {
     })
     return _kit_disc;
 }
-function cartChanged() {
-    processPopupCart();
-    processPage();
-    $.fancybox.hideActivity();
-    $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
-}
 function btnbuyInitialize(el) {
-    el.find(genObj.btnBuy).bind('click', function(e) {
+    el.find(genObj.btnBuy).bind('click.buy', function(e) {
         $.fancybox.showActivity();
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem, this);
+        Shop.Cart.add(cartItem, this, e.button == undefined ? false : true);
         decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
         return true;
     });
@@ -456,7 +455,7 @@ function processPage(el) {
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) != -1) {
                 $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
-                $this.unbind('click').bind('click', function(e) {
+                $this.unbind('click.buy').bind('click.buy', function(e) {
                     $.fancybox.showActivity();
                     togglePopupCart(this);
                     decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
@@ -468,10 +467,10 @@ function processPage(el) {
                     key = $this.data('prodid') + '_' + $this.data('varid');
             if (keys.indexOf(key) == -1) {
                 $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
-                $this.unbind('click').bind('click', function(e) {
+                $this.unbind('click.buy').bind('click.buy', function(e) {
                     $.fancybox.showActivity();
                     var cartItem = Shop.composeCartItem($(this));
-                    Shop.Cart.add(cartItem, this);
+                    Shop.Cart.add(cartItem, this, e.button == undefined ? false : true);
                 }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
             }
         });
@@ -1015,12 +1014,7 @@ jQuery(document).ready(function() {
     }
 
     if ($.exists('.lineForm')) {
-        var params = {
-            changedEl: ".lineForm select",
-            visRows: 100,
-            scrollArrows: false
-        }
-        cuSel(params);
+        cuSel(cuselOptions);
         if (ltie7)
             ieInput($('.cuselText'));
     }
@@ -1066,8 +1060,9 @@ jQuery(document).ready(function() {
             dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
         },
         after: function(el, dropEl, isajax) {
-            if (isajax)
+            if (isajax) {
                 drawIcons(dropEl.find(selIcons));
+            }
             if (dropEl.is(genObj.popupCart)) {
                 drawIcons($(genObj.popupCart).find(selIcons));
             }
@@ -1075,7 +1070,6 @@ jQuery(document).ready(function() {
             var carouselInDrop = dropEl.find('.carousel_js');
             if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited')) {
                 carouselInDrop.addClass('visited')
-                console.log(carousel)
                 carouselInDrop.myCarousel(carousel);
             }
             if (dropEl.hasClass('drop-wishlist')) {
@@ -1084,7 +1078,14 @@ jQuery(document).ready(function() {
                     elCheckWrap: '.niceRadio'
                 });
             }
-            dropEl.find('form input[type="text"]:first').focus();
+            if ($.existsN(dropEl.find('[onsubmit*="ImageCMSApi"]')))
+                dropEl.find('form input[type="text"]:first').focus();
+
+            if ($.existsN(dropEl.find('.lineForm:visible'))) {
+                cuSel($.extend({}, cuselOptions, {changedEl: '.drop:visible .lineForm select'}));
+                if (ltie7)
+                    ieInput(dropEl.find('.cuselText'));
+            }
         },
         close: function(el, dropEl) {
 
@@ -1101,6 +1102,8 @@ jQuery(document).ready(function() {
         }
     }
     $('.menu-main').menuImageCms(optionsMenu);
+    $('.footer-category-menu').find('[href="' + $('.frame-item-menu > .frame-title > .title.active').attr('href') + '"]').parent().addClass('active');
+
     $('[data-drop]').drop($.extend($.extend({}, optionsDrop), callbackDrop));
     $(document).bind('drop.successJson', function(e) {
         if (e.el.is('#notification')) {
@@ -1314,7 +1317,6 @@ jQuery(document).ready(function() {
     $(document).bind('imageapi.pastemsg imageapi.hidemsg', function(e) {
         var $this = e.el.closest('[data-elrun]'),
                 dropContent = $this.find($this.data('dropContent'));
-        console.log($this.data())
         $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
     })
     $(document).bind('autocomplete.before drop.click showActivity', function(e) {
@@ -1430,7 +1432,10 @@ jQuery(document).ready(function() {
     //sample of events shop
     //cart content changed
     $(document).live('cart_changed', function() {
-        cartChanged();
+        processPopupCart();
+        processPage();
+        $.fancybox.hideActivity();
+        $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
     $(document).live('count_changed', function() {
         if (!orderDetails)
@@ -1440,7 +1445,7 @@ jQuery(document).ready(function() {
         countSumBask();
     });
     $(document).live('after_add_to_cart', function(e) {
-        initShopPage(true, e.starget, orderDetails);
+        initShopPage(e.sbutton, e.starget, orderDetails);
         getDiscount(false);
         countSumBask();
         $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
@@ -1464,13 +1469,6 @@ jQuery(document).ready(function() {
         Shop.CompareList.add(id);
     });
 
-    $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).live('click.toWish', function() {
-        $.fancybox.showActivity();
-        var id = $(this).data('prodid'),
-                vid = $(this).data('varid'),
-                price = $(this).data('price');
-        Shop.WishList.add(id, vid, price, $(this));
-    });
     $('.' + genObj.inWishlist).live('click.inWish', function() {
         document.location.href = '/shop/wish_list';
     });
@@ -1698,25 +1696,6 @@ wnd.load(function() {
             margZoomLens();
         })
     }
-
-    $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
-        file = this.files[0],
-                img = document.createElement("img"),
-                reader = new FileReader();
-        reader.onloadend = function() {
-            img.src = reader.result;
-        };
-        reader.readAsDataURL(file);
-        $('#wishlistphoto').html($(img));
-        $('[data-wishlist="do_upload"]').removeAttr('disabled');
-    });
-    $('[data-wishlist="do_upload"]').click(function() {
-
-    })
-    $('[data-wishlist="delete_img"]').click(function() {
-
-    })
-
 }).resize(function() {
     clearTimeout(genTimeout);
     genTimeout = setTimeout(function() {
@@ -1727,20 +1706,3 @@ wnd.load(function() {
         banerResize('.baner:has(.cycle)');
     }, 300)
 });
-
-function deleteImage(el) {
-    el.parent().remove();
-    var img = $('#wishlistphoto img');
-    img.attr('src', img.data('src'));
-}
-function changeDataWishlist(el) {
-    $('[data-wishlist-name]').each(function() {
-        var $this = $(this);
-        console.log(el.closest('form').find('[name=' + $this.data('wishlistName') + ']'))
-        $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val())
-    })
-}
-function createWishList(el, data) {
-    if (data.answer == 'success')
-        location.reload();
-}

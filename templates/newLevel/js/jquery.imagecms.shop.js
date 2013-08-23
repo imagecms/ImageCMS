@@ -30,7 +30,7 @@ function pluralStr(i, str) {
 }
 function serializeForm(el) {
     var $this = $(el);
-    return $this.attr('data-data', $this.closest('form').serialize());
+    return $this.data('data', $this.closest('form').serialize());
 }
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
@@ -1561,6 +1561,7 @@ var ie = jQuery.browser.msie,
                 dropContent: null,
                 placement: 'noinherit',
                 modal: false,
+                confirm: false,
                 always: false,
                 animate: false,
                 moreoneNC: true,
@@ -1581,6 +1582,7 @@ var ie = jQuery.browser.msie,
                     close = settings.close,
                     closed = settings.closed,
                     modal = settings.modal,
+                    confirm = settings.confirm,
                     always = settings.always,
                     animate = settings.animate,
                     dropContent = settings.dropContent,
@@ -1589,7 +1591,6 @@ var ie = jQuery.browser.msie,
 
             $(this).add($('[data-drop]')).not('[disabled]').unbind('click.drop').bind('click.drop', function(e) {
                 var $this = $(this);
-                console.log($this)
                 $(document).trigger({'type': 'drop.click', 'el': $this})
                 e.stopPropagation();
                 e.preventDefault();
@@ -1602,16 +1603,23 @@ var ie = jQuery.browser.msie,
                             $thisA = elSet.animate != undefined ? elSet.animate : animate,
                             $thisEOn = elSet.effectOn || effon,
                             overlayColor = elSet.overlaycolor || settings.overlayColor,
+                            modal = elSet.modal || modal,
+                            confirm = elSet.confirm || confirm,
                             overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
 
                     var $thisSource = elSet.drop;
-                    $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'placement': placement, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA, 'close': close, 'closed': closed, 'overlayOpacity': overlayOpacity, 'modal': elSet.modal || modal}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
-                        var dropA = $('[data-elrun].' + activeClass)//hide other drop if place == 'center'
-                        methods.triggerBtnClick(dropA.not($(this)));
-
-                        if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
-                            e.stopImmediatePropagation();
-                    });
+                    $($thisSource).data({
+                        'effect-off': $thisEOff,
+                        'place': place,
+                        'placement': placement,
+                        'duration': $thisD,
+                        'dropContent': dropContent,
+                        'animate': $thisA,
+                        'close': close,
+                        'closed': closed,
+                        'overlayOpacity': overlayOpacity,
+                        'modal': modal,
+                    }).attr('data-elrun', $thisSource);
                     var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
                     if (condOverlay) {
                         if (!$.exists('.overlayDrop')) {
@@ -1631,28 +1639,7 @@ var ie = jQuery.browser.msie,
                     else {
                         settings.before($this, elSetSource, isajax);
 
-                        // if drop reference in drop and center
-                        var $thisDrop = $this.closest('[data-elrun]');
-                        if ($.existsN($thisDrop) && $thisDrop.data('place') == 'center')
-                            methods.triggerBtnClick($thisDrop);
-
-//                        // if visble drop which show with refer in new showing drop
-//                        if ($(elSetSource.find('[data-drop]').data('drop')).is(':visible'))
-//                            methods.triggerBtnClick($(elSetSource.find('[data-drop]').data('drop')));
-//
-//                        // starget trigger click in drop on show drop element (js_template.tpl showCart)
-//                        $thisDrop = $(e.starget).closest('[data-elrun]');
-//                        if ($.existsN($thisDrop))
-//                            $thisDrop = $(e.starget).closest('[data-elrun]');
-//
-//                        // if visible no center drop and show center drop
-//                        $thisDrop = $('[data-elrun]:visible');
-//                        if ($thisDrop.data('place') != 'center' && elSetSource.data('place') != 'center' && !moreoneNC)
-//                            methods.triggerBtnClick($thisDrop);
-//                        if (elSetSource.data('place') == 'center')
-//                            methods.triggerBtnClick($thisDrop);
-
-                        if (!moreoneNC) {
+                        if (!moreoneNC || elSet.moreoneNC) {
                             methods.triggerBtnClick($('[data-elrun]:visible'));
                         }
 
@@ -1689,9 +1676,11 @@ var ie = jQuery.browser.msie,
                         $(document).trigger({'type': 'drop.show', el: elSetSource})
                     }
                     body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
-                        if ((e.which || e.button == 0) && e.relatedTarget == null) {
+                        if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {
                             methods.triggerBtnClick(false);
                         }
+                        else
+                            return true;
                     }).bind('keydown.bodydrop', function(e) {
                         if (!e)
                             var e = window.event;
@@ -1704,14 +1693,15 @@ var ie = jQuery.browser.msie,
 
                 $this.parent().addClass(activeClass);
                 var elSetSource = $(elSet.drop),
-                        newModal = elSet.modal || modal;
-                newAlways = elSet.always || always;
+                        newModal = elSet.modal || modal,
+                        newConfirm = elSet.newConfirm || newConfirm,
+                        newAlways = elSet.always || always;
                 if ($.existsN(elSetSource) && !newModal && !newAlways) {
                     if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                         body.append(elSetSource)
                     showDrop(elSetSource, false, e);
                 }
-                else if (elSet.source || newAlways) {
+                else if ((elSet.source || newAlways) && !newConfirm) {
                     if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
                         arrDrop.push(elSet.source);
                         if (!newModal)
@@ -2219,7 +2209,7 @@ var Shop = {
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
-        add: function(cartItem, el) {
+        add: function(cartItem, el, btn) {
             //trigger before_add_to_cart
             $(document).trigger({
                 type: 'before_add_to_cart',
@@ -2241,19 +2231,19 @@ var Shop = {
             }
 
             Shop.currentItem = cartItem;
+            Shop.Cart._add(Shop.currentItem, el, btn);
             $.post(url, data,
-                    function(data) {
+                    function() {
                         try {
                             responseObj = JSON.parse(data);
                             //save item to storage
-                            Shop.Cart._add(Shop.currentItem, el);
                         } catch (e) {
                             return;
                         }
                     });
             return;
         },
-        _add: function(cartItem, el) {
+        _add: function(cartItem, el, btn) {
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
@@ -2264,7 +2254,8 @@ var Shop = {
             $(document).trigger({
                 type: 'after_add_to_cart',
                 cartItem: _.clone(cartItem),
-                starget: el
+                starget: el,
+                sbutton: btn
             });
             $(document).trigger({
                 type: 'cart_changed'
@@ -2349,11 +2340,6 @@ var Shop = {
             if (!cartItem.storageId().match(/undefined/)) {
                 localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
                 this.totalRecount();
-                ////trigger cart_changed
-                $(document).trigger({
-                    type: 'cart_changed'
-                });
-                //
             }
             return this;
         },

@@ -4,7 +4,7 @@
 </div>
 <div class="frame-start-page-category-menu">
     <div class="container">
-        {\Category\RenderMenu::create()->load('start_page_category_menu')}
+        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('start_page_category_menu')}
     </div>
 </div>
 <div class="horizontal-carousel">
@@ -31,4 +31,3 @@
     </div>
 </div>
 {widget('latest_news')}
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.min.js"></script>

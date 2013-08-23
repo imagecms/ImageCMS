@@ -1,3 +1,3 @@
-<li class="active">
-    <span class="title">{$title}</span>
+<li>
+    <a href="{$link}" title="{$title}" class="title">{$title}</a>
 </li>
