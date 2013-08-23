@@ -115,7 +115,7 @@
                     data-overlayopacity= "0"
                     data-drop="#notification"
                     data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                    data-callback="reload"
+                    data-callback="removeItem"
                     ><span class="icon_remove"></span><span class="text-el d_l_1">Удалить</span></button>
             </div>
             <div class="btn-move-item-wl">

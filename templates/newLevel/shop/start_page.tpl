@@ -8,6 +8,9 @@
     </div>
 </div>
 <div class="horizontal-carousel">
+    <div id="popular_products">
+        {widget('popular_products')}
+    </div>
     <div id="action_products">
         <div class="preloader"></div>
         {widget_ajax('action_products', '#action_products')}
@@ -15,9 +18,6 @@
     <div id="new_products">
         <div class="preloader"></div>
         {widget_ajax('new_products', '#new_products')}
-    </div>
-    <div id="popular_products">
-        {widget('popular_products')}
     </div>
     {widget('brands')}
 </div>

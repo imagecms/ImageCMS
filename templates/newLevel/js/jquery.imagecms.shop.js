@@ -1426,7 +1426,6 @@ var ie = jQuery.browser.msie,
                     allParams.unbind('click' + nS).bind('click' + nS, function() {
                         methods.allParamsM(left, right, elEven);
                     });
-
                     onlyDif.parent('.' + activeClass).children().trigger('click' + nS);
                     allParams.parent('.' + activeClass).children().trigger('click' + nS);
                     after($this);
@@ -1576,120 +1575,16 @@ var ie = jQuery.browser.msie,
             }, options);
             var settings = optionsDrop,
                     exit = $(settings.exit),
-                    effon = settings.effon,
-                    effoff = settings.effoff,
-                    duration = settings.duration,
-                    close = settings.close,
-                    closed = settings.closed,
                     modal = settings.modal,
                     confirm = settings.confirm,
                     always = settings.always,
-                    animate = settings.animate,
-                    dropContent = settings.dropContent,
-                    moreoneNC = settings.moreoneNC,
                     arrDrop = [];
-
             $(this).add($('[data-drop]')).not('[disabled]').unbind('click.drop').bind('click.drop', function(e) {
                 var $this = $(this);
                 $(document).trigger({'type': 'drop.click', 'el': $this})
                 e.stopPropagation();
                 e.preventDefault();
                 var elSet = $this.data();
-                function showDrop(elSetSource, isajax, e) {
-                    var place = elSet.place || settings.place,
-                            placement = elSet.placement || settings.placement,
-                            $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
-                            $thisA = elSet.animate != undefined ? elSet.animate : animate,
-                            $thisEOn = elSet.effectOn || effon,
-                            overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            modal = elSet.modal || modal,
-                            confirm = elSet.confirm || confirm,
-                            overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
-
-                    var $thisSource = elSet.drop;
-                    $($thisSource).data({
-                        'effect-off': $thisEOff,
-                        'place': place,
-                        'placement': placement,
-                        'duration': $thisD,
-                        'dropContent': dropContent,
-                        'animate': $thisA,
-                        'close': close,
-                        'closed': closed,
-                        'overlayOpacity': overlayOpacity,
-                        'modal': modal,
-                    }).attr('data-elrun', $thisSource);
-                    var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
-                    if (condOverlay) {
-                        if (!$.exists('.overlayDrop')) {
-                            body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
-                        }
-                        optionsDrop.dropOver = $('.overlayDrop').css({
-                            'background-color': overlayColor,
-                            'opacity': overlayOpacity
-                        });
-                    }
-                    else {
-                        optionsDrop.dropOver == undefined;
-                    }
-                    if (elSetSource.is('.' + activeClass)) {
-                        methods.triggerBtnClick(elSetSource);
-                    }
-                    else {
-                        settings.before($this, elSetSource, isajax);
-
-                        if (!moreoneNC || elSet.moreoneNC) {
-                            methods.triggerBtnClick($('[data-elrun]:visible'));
-                        }
-
-                        if (e.button == undefined && place != "center")
-                            wnd.scrollTop($this.offset().top);
-                        var wndW = wnd.width();
-                        if (elSetSource.actual('width') > wndW)
-                            elSetSource.css('width', wndW - 40);
-                        else
-                            elSetSource.removeAttr('style');
-                        if (place == 'noinherit')
-                            methods.positionDrop($this, placement, place);
-                        var dC = elSetSource.find(elSetSource.data('dropContent')).first();
-                        if (place == 'center')
-                            methods.dropCenter(elSetSource);
-                        if (condOverlay) {
-                            optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
-                                e.stopPropagation();
-                                methods.triggerBtnClick(false);
-                            })
-                        }
-                        elSetSource.addClass(place);
-                        elSetSource[$thisEOn]($thisD, function() {
-                            $(document).trigger({type: 'drop.contentHeight', el: dC, drop: elSetSource});
-                            elSetSource.addClass(activeClass);
-                            if (place == 'center' && !(elSet.modal || modal)) {
-                                if ($(document).height() - wnd.height() > 0) {
-                                    optionsDrop.wST = wnd.scrollTop();
-                                    methods.scrollEmulate();
-                                }
-                            }
-                            settings.after($this, elSetSource, isajax);
-                        });
-                        $(document).trigger({'type': 'drop.show', el: elSetSource})
-                    }
-                    body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
-                        if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {
-                            methods.triggerBtnClick(false);
-                        }
-                        else
-                            return true;
-                    }).bind('keydown.bodydrop', function(e) {
-                        if (!e)
-                            var e = window.event;
-                        key = e.keyCode;
-                        if (key == 27) {
-                            methods.triggerBtnClick(false);
-                        }
-                    });
-                }
 
                 $this.parent().addClass(activeClass);
                 var elSetSource = $(elSet.drop),
@@ -1699,7 +1594,7 @@ var ie = jQuery.browser.msie,
                 if ($.existsN(elSetSource) && !newModal && !newAlways) {
                     if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                         body.append(elSetSource)
-                    showDrop(elSetSource, false, e);
+                    methods.showDrop($this, optionsDrop, false, e);
                 }
                 else if ((elSet.source || newAlways) && !newConfirm) {
                     if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
@@ -1723,17 +1618,114 @@ var ie = jQuery.browser.msie,
                                 }
                                 elSetSource = $(elSet.drop);
                                 methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
-                                showDrop(elSetSource, true, e);
+                                methods.showDrop($this, optionsDrop, true, e);
                             }})
                     }
                 }
                 return false;
             })
             exit.live('click', function() {
-                methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                methods.closeDrop($(this).closest('[data-elrun]'));
             })
         },
-        triggerBtnClick: function(sel) {
+        showDrop: function($this, settings, isajax, e) {
+            var elSet = $this.data();
+            var place = elSet.place || settings.place,
+                    placement = elSet.placement || settings.placement,
+                    $thisEOff = elSet.effectOff || settings.effoff,
+                    $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
+                    $thisA = elSet.animate != undefined ? elSet.animate : settings.animate,
+                    $thisEOn = elSet.effectOn || settings.effon,
+                    overlayColor = elSet.overlaycolor || settings.overlayColor,
+                    modal = elSet.modal || settings.modal,
+                    confirm = elSet.confirm || settings.confirm,
+                    moreoneNC = elSet.moreoneNC || settings.moreoneNC,
+                    dropContent = settings.dropContent,
+                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity,
+                    elSetSource = $(elSet.drop);
+            var $thisSource = elSet.drop;
+            $($thisSource).data({
+                'effect-off': $thisEOff,
+                'place': place,
+                'placement': placement,
+                'duration': $thisD,
+                'dropContent': dropContent,
+                'animate': $thisA,
+                'close': close,
+                'closed': closed,
+                'overlayOpacity': overlayOpacity,
+                'modal': modal,
+            }).attr('data-elrun', $thisSource);
+            var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+            if (condOverlay) {
+                if (!$.exists('.overlayDrop')) {
+                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+                }
+                optionsDrop.dropOver = $('.overlayDrop').css({
+                    'background-color': overlayColor,
+                    'opacity': overlayOpacity
+                });
+            }
+            else {
+                optionsDrop.dropOver == undefined;
+            }
+            if (elSetSource.is('.' + activeClass)) {
+                methods.closeDrop(elSetSource);
+            }
+            else {
+                settings.before($this, elSetSource, isajax);
+                if (!moreoneNC || elSet.moreoneNC) {
+                    methods.closeDrop($('[data-elrun]:visible'));
+                }
+
+                if (e.button == undefined && place != "center")
+                    wnd.scrollTop($this.offset().top);
+                var wndW = wnd.width();
+                if (elSetSource.actual('width') > wndW)
+                    elSetSource.css('width', wndW - 40);
+                else
+                    elSetSource.removeAttr('style');
+                if (place == 'noinherit')
+                    methods.positionDrop($this, placement, place);
+                var dC = elSetSource.find(elSetSource.data('dropContent')).first();
+                if (place == 'center')
+                    methods.dropCenter(elSetSource);
+                if (condOverlay) {
+                    optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
+                        e.stopPropagation();
+                        methods.closeDrop(false);
+                    })
+                }
+                elSetSource.addClass(place);
+                elSetSource[$thisEOn]($thisD, function() {
+                    $(document).trigger({type: 'drop.contentHeight', el: dC, drop: elSetSource});
+                    elSetSource.addClass(activeClass);
+                    if (place == 'center' && !(elSet.modal || modal)) {
+                        if ($(document).height() - wnd.height() > 0) {
+                            optionsDrop.wST = wnd.scrollTop();
+                            methods.scrollEmulate();
+                        }
+                    }
+                    settings.after($this, elSetSource, isajax);
+                });
+                $(document).trigger({'type': 'drop.show', el: elSetSource})
+            }
+            body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
+                if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {
+                    methods.closeDrop(false);
+                }
+                else
+                    return true;
+            }).bind('keydown.bodydrop', function(e) {
+                if (!e)
+                    var e = window.event;
+                key = e.keyCode;
+                if (key == 27) {
+                    methods.closeDrop(false);
+                }
+            });
+        },
+        closeDrop: function(sel) {
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 drop.each(function() {
@@ -1762,7 +1754,6 @@ var ie = jQuery.browser.msie,
                             optionsDrop.dropOver = $('.overlayDrop');
                             if (!$.existsN($('[data-elrun].' + activeClass)) && optionsDrop.dropOver.is(':visible'))
                                 methods.scrollEmulateRemove();
-
                             $this[$thisEOff]($thisD, function() {
                                 $(this).removeAttr('style');
                                 if ($this.data('closed') != undefined)
@@ -2231,11 +2222,10 @@ var Shop = {
             }
 
             Shop.currentItem = cartItem;
-            Shop.Cart._add(Shop.currentItem, el, btn);
             $.post(url, data,
                     function() {
                         try {
-                            responseObj = JSON.parse(data);
+                            Shop.Cart._add(cartItem, el, btn);
                             //save item to storage
                         } catch (e) {
                             return;
