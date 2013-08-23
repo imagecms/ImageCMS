@@ -688,5 +688,6 @@
     </script>
 {/literal}
 <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
-<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.2.min.js"></script>*/}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}css/fancybox.css" media="all" />

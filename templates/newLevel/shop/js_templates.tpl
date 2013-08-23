@@ -359,7 +359,7 @@
         <div class="drop-content">
         <div class="inside-padd">
         <div class="msg f-s_0">
-        <div class="success"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
+        <div class="info"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
         </div>
         <div class="btn-form">
         <button type="button" onclick="togglePopupCart()">
@@ -718,7 +718,7 @@
         <div class="drop-content">
         <div class="inside-padd">
         <div class="msg f-s_0">
-        <div class="success"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
+        <div class="info"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
         </div>
         </div>
         </div>
