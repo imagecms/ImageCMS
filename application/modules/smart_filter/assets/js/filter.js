@@ -1,4 +1,5 @@
-var framechecks = ".frame-group-checks";
+var framechecks = ".frame-group-checks",
+        frameFilter = '.frame-filter';
 function filtertype(el, totalProducts, otherClass) {
     var $this = el.closest(framechecks),
             $thisRel = $this.data('rel');
@@ -190,7 +191,7 @@ function filtertype(el, totalProducts, otherClass) {
         }
     };
 })(jQuery);
-function afterAjaxInitializeFilter() {
+function afterAjaxInitializeFilter(ready) {
     var apply = $('.apply'),
             $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
@@ -254,22 +255,47 @@ function afterAjaxInitializeFilter() {
                         cleaverFilterObj.dropDownArr
                     case 'scroll':
                         $this.show();
-                        var el = filtersContent.show().jScrollPane(scrollPane);
-                        el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
-                        //$this.find('.filters-content').addClass('scroll');
+                        if (ready)
+                            $(document).live('scriptDefer', function() {
+                                var el = filtersContent.show().jScrollPane(scrollPane);
+                                el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                            })
+                        else {
+                            var el = filtersContent.show().jScrollPane(scrollPane);
+                            el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                        }
                 }
                 switch (n) {
                     case 'dropDown':
-                        filtersContent.hide();
+                        if (ready)
+                            $(document).live('scriptDefer', function() {
+                                filtersContent.hide();
+                            })
+                        else
+                            filtersContent.hide();
                 }
                 if (arrL - 1 == i) {
-                    $this.fadeIn();
-                    $this.next(preloader).hide()
+                    if (ready)
+                        $(document).live('scriptDefer', function() {
+                            $this.fadeIn();
+                            $this.next(preloader).hide()
+                        })
+                    else {
+                        $this.fadeIn();
+                        $this.next(preloader).hide()
+                    }
                 }
             });
             if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
-                filtersContent.show();
-                $this.find('.title').children().addClass('valuePD');
+                if (ready)
+                    $(document).live('scriptDefer', function() {
+                        filtersContent.show();
+                        $this.find('.title').children().addClass('valuePD');
+                    })
+                else {
+                    filtersContent.show();
+                    $this.find('.title').children().addClass('valuePD');
+                }
             }
         }
     });
@@ -295,7 +321,7 @@ function afterAjaxInitializeFilter() {
     });
 }
 function ajaxRecount(el, slChk, submit) {
-
+    $(frameFilter).children(preloader).show();
 //    var catalogForm = $('#catalog_form');
 //    if (submit){
 //        catalogForm.submit();
@@ -315,8 +341,8 @@ function ajaxRecount(el, slChk, submit) {
         },
         success: function(msg) {
             var otherClass = '';
-            catalogForm.find('.popup_container').html(msg);
-            afterAjaxInitializeFilter();
+            $(frameFilter).html(msg).children(preloader).hide();
+            afterAjaxInitializeFilter(false);
             $.fancybox.hideActivity();
             if (slChk) {
                 otherClass = slChk;
@@ -334,5 +360,6 @@ function ajaxRecount(el, slChk, submit) {
 }
 
 $(document).ready(function() {
-    afterAjaxInitializeFilter();
+    $(frameFilter).children(preloader).hide();
+    afterAjaxInitializeFilter(true);
 });

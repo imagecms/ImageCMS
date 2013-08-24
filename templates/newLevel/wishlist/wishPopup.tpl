@@ -45,15 +45,19 @@
                             data-type="json"
                             data-modal="true"
                             data-overlayopacity= "0"
-                        {if $wish_list_id}data-callback="reload"{/if}
-                        >
-                        <span class="text-el">{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}</span> 
-                    </button>
-                </div>
-                {form_csrf()}
-            </form>
+                            {if $wish_list_id}
+                                data-callback="reload"
+                            {else:}
+                                data-callback="addToWL"
+                            {/if}
+                            >
+                            <span class="text-el">{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}</span> 
+                        </button>
+                    </div>
+                    {form_csrf()}
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<div class="drop-footer"></div>
+    <div class="drop-footer"></div>
 </div>

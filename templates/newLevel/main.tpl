@@ -47,25 +47,18 @@
             <div class="h-footer"></div>
         </div>
         <footer>
-            <!--Load star rating-->
-                    {//$CI->load->module('star_rating')->show_star_rating()}
             {include_tpl('footer')}
-            
         </footer>
-        
+
+
         {include_tpl('user_toolbar')}
 
         {include_tpl('config.js')}
 
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js?{echo rand()}"></script>
 
-        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
-
+        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
         {include_shop_tpl('js_templates')}
     </body>

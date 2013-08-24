@@ -801,10 +801,11 @@
         <button type="button" class="icon_times_drop icon_times_apply"></button>
     </div>
     <div class="drop drop-style" id="notification">
-        <div class="drop-content">
+        <div class="drop-content-notification">
             <div class="inside-padd notification">
 
             </div>
         </div>
         <div class="drop-footer"></div>
     </div>
+    <button style="display: none;" type="button" data-drop="#notification" data-overlayopacity= "0" data-modal="true"></button>

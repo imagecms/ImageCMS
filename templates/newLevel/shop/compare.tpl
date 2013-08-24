@@ -172,4 +172,5 @@
         {/if}
     </div>
 </div>
-<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+<script type="text/javascript" src="{$THEME}js/jquery.equalhorizcell.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>*/}

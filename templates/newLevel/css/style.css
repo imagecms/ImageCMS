@@ -114,7 +114,7 @@ a{cursor: pointer;}
 .baner a:active, .baner a:focus, .items > li > a:focus, .items > li > a:active, input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus{outline: none}
 
 .preloader{min-height: 35px;width: 100%;}
-.baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;}
+.baner .preloader, .p_r .preloader, .frame-tabs-ref .preloader{position: absolute;left: 0;top: 0;height: 100%;z-index: 100;}
 /*/base settings*/
 
 /*base images*/
@@ -135,6 +135,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .f_r{float: right!important;}
 .c_b{clear: both!important;}
 .o_h{overflow: hidden!important;}
+.t-o-e{overflow: hidden;width: 100%;display: block;text-overflow: ellipsis;white-space: nowrap;}
 .t-a_c{text-align: center !important;}
 .t-a_r{text-align: right !important;}
 .t-a_l{text-align: left !important;}
@@ -813,6 +814,7 @@ input + .msg{margin-top: 5px;}
 .frame-crumbs{margin-bottom: 24px;}
 .crumbs{position: relative;padding: 10px 0;}
 .without-crumbs{margin-top: 20px;margin-bottom: 20px;}
+.without-crumbs-side{margin-bottom: 20px;margin-top: 0;}
 /*/crumbs*/
 
 /*tabs*/
@@ -1099,7 +1101,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
 .drop-content .inside-padd{padding: 24px 43px 24px 24px;}
-.drop-content .inside-padd.notification{padding: 12px 24px 1px 24px;}
+.drop-content-notification .inside-padd.notification{padding: 12px 24px 1px 24px;}
 
 .drop-enter, .drop-forgot, .drop-order-call, .drop-comulativ-discounts{width: 403px;}
 .drop-comulativ-discounts .inside-padd{padding: 15px 10px;}

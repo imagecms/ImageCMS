@@ -1,3 +1,4 @@
+<div class="preloader wo-i"></div>
 {include_tpl('filter_opt')}
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
