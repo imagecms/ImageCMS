@@ -109,10 +109,14 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if (parent::show($hash)) {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', $this->dataModel)
+                    ->registerStyle('style')
+                    ->registerScript('wishlist')
                     ->render('other_list');
         } else {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', 'empty')
+                    ->registerStyle('style')
+                    ->registerScript('wishlist')
                     ->render('other_list');
         }
     }

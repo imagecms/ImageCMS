@@ -33,6 +33,19 @@
                                 <textarea name="description">{$wishlist['0']['description']}</textarea>
                             </span>
                         </label>
+                        {foreach $wishlist as $key => $w}
+                            <div class="frame-label">
+                                <div class="title">
+                                    <div>Коментарий к:</div>
+                                    <a class="f-w_n t-o-e" href="{shop_url('product/'.$w[url])}" title="{$w[name]}">
+                                        {$w[name]}
+                                    </a>
+                                </div>
+                                <div class="frame-form-field">
+                                    <textarea style="height: 45px;" name="comment[{echo $w[variant_id]}]">{$w[comment]}</textarea>
+                                </div>
+                            </div>
+                        {/foreach}
                         <div class="frame-label">
                             <div class="title">&nbsp;</div>
                             <div class="frame-form-field">

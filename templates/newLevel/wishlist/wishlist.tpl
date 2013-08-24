@@ -62,7 +62,7 @@
                     </form>
                 </div>
                 <div class="description">
-                    <h2 data-wishlist-name="user_name">{echo $user[user_name]}</h2>
+                    <h2 class="title" data-wishlist-name="user_name">{echo $user[user_name]}</h2>
                     <div class="date f-s_0">
                         <span data-wishlist-name="user_birthday">{echo date('Y-m-d', $user[user_birthday])}</span>
                         {/*<span class="day">{echo date("d", $user[user_birthday])} </span>
@@ -232,39 +232,39 @@
                             {/if}
                         </div>
                     </div>
-                    {if $wishlist[0][variant_id]}
-                        <div class="drop-footer2">
-                            <div class="inside-padd clearfix">
-                                <div class="funcs-buttons-wishlist f_l">
-                                    <div class="btn-edit-WL">
-                                        <button
-                                            type="button"
-                                            data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
-                                            data-drop=".drop-edit-wishlist"
-                                            data-always="true"
-                                            >
-                                            <span class="icon_edit"></span><span class="d_l_1 text-el">Редактировать список</span>
-                                        </button>
-                                    </div>
-                                    <div class="btn-remove-WL">
-                                        <button
-                                            type="button"
-                                            >
-                                            <span class="icon_remove"></span>
-                                            <button 
-                                                type="button"
-                                                class="d_l_1 text-el"
-                                                data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                                data-type="json"
-                                                data-modal="true"
-                                                data-overlayopacity= "0"
-                                                data-drop="#notification"
-                                                data-callback="reload"
-                                                data-confirm="true"
-                                                ><span class="text-el">Удалить список</span></a>
-                                            </button>
-                                    </div>
+                    <div class="drop-footer2">
+                        <div class="inside-padd clearfix">
+                            <div class="funcs-buttons-wishlist f_l">
+                                <div class="btn-edit-WL">
+                                    <button
+                                        type="button"
+                                        data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
+                                        data-drop=".drop-edit-wishlist"
+                                        data-always="true"
+                                        >
+                                        <span class="icon_edit"></span><span class="d_l_1 text-el">Редактировать список</span>
+                                    </button>
                                 </div>
+                                <div class="btn-remove-WL">
+                                    <button
+                                        type="button"
+                                        >
+                                        <span class="icon_remove"></span>
+                                        <button 
+                                            type="button"
+                                            class="d_l_1 text-el"
+                                            data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
+                                            data-type="json"
+                                            data-modal="true"
+                                            data-overlayopacity= "0"
+                                            data-drop="#notification"
+                                            data-callback="removeWL"
+                                            data-confirm="true"
+                                            ><span class="text-el">Удалить список</span></a>
+                                        </button>
+                                </div>
+                            </div>
+                            {if $wishlist[0][variant_id]}
                                 <div class="f_r">
                                     {$price = 0}
                                     {$i = 0}
@@ -272,12 +272,12 @@
                                         {$price += $p.price;}
                                         {$i++}
                                     {/foreach}
-                                    <div class="title-h3">Всего <b>{echo $i}</b> товара на сумму 
+                                    <div class="title-h3">Всего <b class="countProdsWL">{echo $i}</b> товара на сумму 
                                         <span class="frame-prices f-s_0">
                                             <span class="current-prices">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price">{round($price, $pricePrecision)}</span>
+                                                        <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
@@ -290,18 +290,23 @@
                                             class="btnBuyWishList"
                                             >
                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                            <span class="text-el">Купить все доступные товары</span>
+                                            <span class="text-el" data-cart="Просмотреть купленные товары" data-buy="Купить все доступные товары">Купить все доступные товары</span>
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            {/if}
                         </div>
-                    {/if}
+                    </div>
                     {form_csrf()}
                 </div>
             {/foreach}
         {else:}
-            Список Желания пуст
+            <div class="msg layout-highlight layout-highlight-msg">
+                <div class="info">
+                    <span class="icon_info"></span>
+                    <span class="text-el">Список Желания пуст</span>
+                </div>
+            </div>
         {/if}
     </div>
 </div>
