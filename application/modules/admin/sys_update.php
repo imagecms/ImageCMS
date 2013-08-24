@@ -26,9 +26,16 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
-        ini_set("soap.wsdl_cache_enabled", "0");
+        if(!extension_loaded('soap')){
+            exit;
+        }
 
-        $array = $this->update->getStatus();
+        ini_set("soap.wsdl_cache_enabled", "0");
+        
+        if(extension_loaded('soap')){
+            $array = $this->update->getStatus();
+        }
+        
         if ($array) {
             $data = array(
                 'build' => $array['build'],
@@ -47,6 +54,8 @@ class Sys_update extends BaseAdminController {
 
     public function do_update() {
         $this->update->getUpdate();
+        $this->update->restoreFromZIP('./application/backups/updates.zip');
+        pjax('/admin');
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
