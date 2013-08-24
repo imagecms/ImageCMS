@@ -232,9 +232,9 @@ class Update {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, ShopCore::app()->SSettings->__get("careKey"));
-        $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
+        $all_href = 'http://pftest.imagecms.net/admin/server_update/takeUpdate/' . $href . '/' . $domen;
 //        echo $all_href;
-        file_put_contents('updates', file_get_contents($all_href));
+        file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
     /**
@@ -317,6 +317,9 @@ class Update {
      * @param type $destination path to destination folder
      */
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
+        if (!file_exists($file))
+            return FALSE;
+        
         $zip = new ZipArchive();
         $zip->open($file);
         $rez = $zip->extractTo($destination);
