@@ -43,7 +43,7 @@
                         <a href="#metatag" class="btn btn-small">{lang("Meta tags","admin")}</a>
                         <a href="#dodPol" class="btn btn-small">{lang("Additional fields","admin")}</a>
                         {if $moduleAdditions}
-                            <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+                            <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
                         {/if}
                     </div>                    
                 </div>
@@ -114,7 +114,7 @@
 
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="field_group">{lang("page field group","admin")}:</label>
+                                            <label class="control-label" for="field_group">{lang("Pages fields group","admin")}:</label>
                                             <div class="controls">
                                                 {$f_groups = $this->CI->load->module('cfcm/cfcm_forms')->prepare_groups_select()}
                                                 <select name="field_group" id="field_group">
@@ -172,7 +172,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('Page display', 'admin')}
+                                {lang('View page', 'admin')}
                             </th>
                         </tr>
                     </thead>
@@ -201,7 +201,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="per_page">{lang('Posts on the page or Records on the page', 'admin')}:</label>
+                                            <label class="control-label" for="per_page">{lang('Posts on page', 'admin')}:</label>
                                             <div class="controls">
 
                                                 <input type="text" name="per_page" value="{$per_page}" id="per_page" />

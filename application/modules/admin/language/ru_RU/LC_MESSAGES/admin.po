@@ -69,7 +69,6 @@ msgid "Manage site"
 msgstr "Администрировать сайт"
 
 #: /var/www/image.loc/_temp2.php:36
-#, fuzzy
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -147,7 +146,6 @@ msgid "Create new page"
 msgstr "Создать новую страницу"
 
 #: /var/www/image.loc/_temp2.php:33
-#, fuzzy
 msgid "Modules additions"
 msgstr "Модули дополнений"
 
@@ -343,9 +341,7 @@ msgstr "Создать роль"
 msgid "Delete"
 msgstr "Удалить"
 
-# неточно англ
 #: /var/www/image.loc/_temp2.php:93
-#, fuzzy
 msgid "Remove a Role"
 msgstr "Удалить роль"
 
@@ -363,7 +359,6 @@ msgstr "Создать группу роли"
 
 #: /var/www/image.loc/_temp2.php:98 /var/www/image.loc/_temp2.php:211
 #: /var/www/image.loc/_temp2.php:229
-#, fuzzy
 msgid "Have been saved"
 msgstr "Изменения сохранены"
 
@@ -520,21 +515,18 @@ msgid "Page Template"
 msgstr "Шаблон страницы"
 
 #: /var/www/image.loc/_temp2.php:151
-#, fuzzy
 msgid "Comment permission"
-msgstr "Комментарий разрешения"
+msgstr "Разрешить комментирование:"
 
 #: /var/www/image.loc/_temp2.php:153
 msgid "Publication status"
 msgstr "Статус публикации"
 
 #: /var/www/image.loc/_temp2.php:154
-#, fuzzy
 msgid "Published or Has been published"
 msgstr "Опубликованные или была опубликована"
 
 #: /var/www/image.loc/_temp2.php:155
-#, fuzzy
 msgid "Pending approval or Awaiting approval "
 msgstr "В ожидании подтверждения или ожидающие утверждения"
 
@@ -591,7 +583,6 @@ msgid "Apply for subcategories"
 msgstr "Применить для подкатегории"
 
 #: /var/www/image.loc/_temp2.php:180
-#, fuzzy
 msgid "page field group"
 msgstr "группа полей страницы"
 
@@ -616,7 +607,6 @@ msgid "Position"
 msgstr "Позиция"
 
 #: /var/www/image.loc/_temp2.php:188
-#, fuzzy
 msgid "Page display"
 msgstr "Просмотр страницы"
 
@@ -645,7 +635,6 @@ msgid "In ascending order"
 msgstr "В порядке возрастания"
 
 #: /var/www/image.loc/_temp2.php:195
-#, fuzzy
 msgid "Posts on the page or Records on the page"
 msgstr "Сообщения на странице или в записи на странице"
 
@@ -721,7 +710,6 @@ msgid "Size"
 msgstr "Размер"
 
 #: /var/www/image.loc/_temp2.php:227
-#, fuzzy
 msgid "Write rights or permission"
 msgstr "Права записи или разрешения"
 
@@ -849,14 +837,12 @@ msgid "Error"
 msgstr "Ошибка"
 
 #: /var/www/image.loc/_temp2.php:38
-#, fuzzy
 msgid "No recently added pages"
 msgstr "Нет недавно добавленных страниц"
 
 #: /var/www/image.loc/_temp2.php:40
-#, fuzzy
 msgid "No recently updated pages"
-msgstr "Нет обновляемых страниц"
+msgstr "Нет недавно обновленых страниц"
 
 #: /var/www/image.loc/_temp2.php:43
 msgid "Select the module type to the table below"
@@ -1016,16 +1002,13 @@ msgid "Conversion error"
 msgstr "Ошибка преобразования"
 
 #: /var/www/image.loc/_temp2.php:84
-#, fuzzy
 msgid "User already notified via E-mail upon availability! Notify again"
 msgstr ""
-"Пользователь уже уведомлен по электронной почте про наличие свободных мест! "
-"Сообщите снова"
+"Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
 
 #: /var/www/image.loc/_temp2.php:85
-#, fuzzy
 msgid "Notify the user via E-mail upon availability"
-msgstr "Сообщите пользователю с помощью электронной почты на наличие"
+msgstr "Сообщить пользователю с помощью электронной почты про наличие"
 
 #: /var/www/image.loc/_temp2.php:86
 msgid "Error removing options"
@@ -1036,14 +1019,12 @@ msgid "Delete canceled orders"
 msgstr "Удалить отмененные заказы"
 
 #: /var/www/image.loc/_temp2.php:88
-#, fuzzy
 msgid "Delete canceled messages"
-msgstr "Удалить отмененіе сообщения"
+msgstr "Удалить отмененные сообщения"
 
 #: /var/www/image.loc/_temp2.php:89
-#, fuzzy
 msgid "Delete order ID"
-msgstr "Удалить ID заказа"
+msgstr "ID удаленого заказа"
 
 #: /var/www/image.loc/_temp2.php:90
 msgid "Product changes"
@@ -1054,9 +1035,8 @@ msgid "Success"
 msgstr "Успешно"
 
 #: /var/www/image.loc/_temp2.php:92
-#, fuzzy
 msgid "File is loaded. Slot"
-msgstr "Файл будет загружен. Слот"
+msgstr "Файл загружается. Слот"
 
 #: /var/www/image.loc/_temp2.php:93
 msgid "Script error. Notify administrator."
@@ -1099,7 +1079,6 @@ msgid "Additional images resize"
 msgstr "Ресайз дополнительных изображений"
 
 #: /var/www/image.loc/_temp2.php:103
-#, fuzzy
 msgid "Found products with additional images"
 msgstr "Найденые товары с дополнительными изображениями"
 
@@ -1145,7 +1124,6 @@ msgid "Price"
 msgstr "Цена"
 
 #: /var/www/image.loc/_temp2.php:114
-#, fuzzy
 msgid "Balance"
 msgstr "Остаток"
 
@@ -1186,7 +1164,6 @@ msgid "Sort method updated"
 msgstr "Метод сортировки обновлен"
 
 #: /var/www/image.loc/_temp2.php:126
-#, fuzzy
 msgid "Conversion error, "
 msgstr "Ошибка преобразования,"
 
@@ -1374,9 +1351,8 @@ msgid "There are no results. Modify your search or click the "
 msgstr "Нет результатов. Измените критерии поиска или нажмите"
 
 #: /var/www/image.loc/_temp2.php:235
-#, fuzzy
 msgid "At the products page"
-msgstr "На товары"
+msgstr "На странице товаров"
 
 #: /var/www/image.loc/_temp2.php:236
 msgid "Search"
@@ -1391,7 +1367,6 @@ msgid "Options"
 msgstr "Опции"
 
 #: /var/www/image.loc/_temp2.php:241
-#, fuzzy
 msgid "Specify"
 msgstr "Укажыте"
 
@@ -1490,14 +1465,12 @@ msgid "System"
 msgstr "Система"
 
 #: /var/www/image.loc/_temp2.php:304
-#, fuzzy
 msgid "Version updates available"
 msgstr "Доступны обновления версии"
 
 #: /var/www/image.loc/_temp2.php:305
-#, fuzzy
 msgid "Version updates are not available."
-msgstr "Обновления версии не  доступны."
+msgstr "Обновлений нет"
 
 #: /var/www/image.loc/_temp2.php:306
 msgid "Information"
@@ -1553,7 +1526,6 @@ msgstr "Вернуться"
 
 # англ
 #: /var/www/image.loc/_temp2.php:358
-#, fuzzy
 msgid "Short widget discription"
 msgstr "Краткое описание виджета"
 
@@ -1587,7 +1559,6 @@ msgid " Save and edit"
 msgstr "Сохранить и изменить"
 
 #: /var/www/image.loc/_temp2.php:31
-#, fuzzy
 msgid "View"
 msgstr "Просмотр"
 

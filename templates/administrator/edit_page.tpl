@@ -48,7 +48,7 @@
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields","admin")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings","admin")}</a>
             {if $moduleAdditions}
-                <a href="#modules_additions" class="btn btn-small">Modules additions</a>
+                <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
             {/if}
         </div>
     </div>
@@ -267,9 +267,9 @@
                                         </label>
                                         <div class="controls">
                                             <select name="post_status" id="post_status">
-                                                <option value="publish" {if $post_status == "publish"} selected="selected" {/if} >{lang("Published or Has been published","admin")}</option>
-                                                <option value="pending" {if $post_status == "pending"} selected="selected" {/if} >{lang("Pending approval or Awaiting approval ","admin")}</option>
-                                                <option value="draft" {if $post_status == "draft"} selected="selected" {/if} >{lang("Has not been published","admin")}</option>
+                                                <option value="publish" {if $post_status == "publish"} selected="selected" {/if} >{lang("Published","admin")}</option>
+                                                <option value="pending" {if $post_status == "pending"} selected="selected" {/if} >{lang("Waiting approval ","admin")}</option>
+                                                <option value="draft" {if $post_status == "draft"} selected="selected" {/if} >{lang("Unpublished","admin")}</option>
                                             </select>
                                         </div>
                                     </div>

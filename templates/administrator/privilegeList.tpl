@@ -56,7 +56,7 @@
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang("Remove a Role","admin")}</h3>
+        <h3>{lang("Role remove","admin")}</h3>
     </div>
     <div class="modal-body">
         <p>{lang("Remove selected roles?","admin")}</p>
