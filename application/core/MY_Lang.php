@@ -15,6 +15,15 @@
 
 // ------------------------------------------------------------------------
 
+/**
+ * MY_Lang
+ * 
+ * @package imaeloc
+ * @author Mark0
+ * @copyright 2013
+ * @version $Id$
+ * @access public
+ */
 class MY_Lang extends MX_Lang {
 	private $ci;
 	public $gettext_language;
@@ -113,9 +122,15 @@ class MY_Lang extends MX_Lang {
             
             if (strstr($url,'admin')){
                 $lang = $language[1];
+                if(!$module){
+                    $module = 'admin';    
+                }
+                
             }else{
                 $lang = $languageFront[1];
             }
+         
+//            var_dumps($module);
            
            if ($module == 'main'){
                $template_name = \CI_Controller::get_instance()->config->item('template');

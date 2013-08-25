@@ -28,7 +28,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group m-t_10">
-                                            <label class="control-label" for="inputLocal">{lang("Clear old or Delete outdated posts or information","admin")}</label>
+                                            <label class="control-label" for="inputLocal">{lang("Clear outdated","admin")}</label>
                                             <div class="controls">                                                        
                                                 <button type="button" data-target="/admin/delete_cache" data-param="expried" id="inputLocal" class="btn btn-small clearCashe btn-danger" ><i class="icon-trash icon-white" ></i> {lang('Clean','admin')}</button>
                                             </div>
