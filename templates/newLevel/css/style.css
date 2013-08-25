@@ -859,6 +859,7 @@ input + .msg{margin-top: 5px;}
 .frame-group-checks[data-rel*="scroll"] .filters-content{max-height: 196px;overflow: auto;}
 .frame-group-checks[data-rel*="dropDown"] .filters-content{display: none;}
 .frame-group-checks[data-rel*="dropDown"] .title > .f-s_0{cursor: pointer;}
+.frame-group-checks[data-rel="cusel"] .inside-padd{padding-right: 20px;}
 .frame-group-checks .inside-padd{padding: 10px 0 10px 18px;}
 .frame-group-checks .frame-label{cursor: pointer;}
 /*.filter*/
@@ -1095,13 +1096,15 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*drop*/
 .drop{display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
 .drop.inherit{position: static;}
-.drop.form-data{float: left;width: 100%;}
+.drop.form-data{float: left;width: 100%;margin-top: 20px;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;}
 .drop-header > .title{text-transform: lowercase;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
 .drop-content .inside-padd{padding: 24px 43px 24px 24px;}
 .drop-content-notification .inside-padd.notification{padding: 12px 24px 1px 24px;}
+.drop-content-confirm .inside-padd{padding: 15px 35px;}
+.drop-content-confirm [class*="btn-"]:first-child{margin-right: 10px;}
 
 .drop-enter, .drop-forgot, .drop-order-call, .drop-comulativ-discounts{width: 403px;}
 .drop-comulativ-discounts .inside-padd{padding: 15px 10px;}

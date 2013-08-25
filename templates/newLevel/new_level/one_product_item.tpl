@@ -156,6 +156,7 @@
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $pv->getId()}"
                                         data-price="{echo $pv->toCurrency()}"
+                                        data-count="1"
                                         data-name="{echo ShopCore::encode($p->getName())}"
                                         data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                         data-maxcount="{echo $pv->getstock()}"

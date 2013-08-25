@@ -32,10 +32,43 @@
                 <div class="text">
                     <p>{$wishlist[0][description]}</p>
                 </div>
-                {if $wishlist[0][variant_id]}
-                    <ul class="items items-catalog items-wish-list">
-                        {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true, 'otherlist'=>true), 'array_product_item')}
-                    </ul>
+                <div data-rel="list-item">
+                    {if $wishlist[0][variant_id]}
+                        <ul class="items items-catalog items-wish-list">
+                            {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true, 'otherlist'=>true), 'array_product_item')}
+                        </ul>
+                        {if $wishlist[0][variant_id]}
+                            <div class="clearfix frame-gen-sum-buy">
+                                {$price = 0}
+                                {$i = 0}
+                                {foreach $wishlist as $key => $p}
+                                    {$price += $p.price;}
+                                    {$i++}
+                                {/foreach}
+                                <div class="title-h3 f_l">Всего <b class="countProdsWL">{echo $i}</b> товара на сумму 
+                                    <span class="frame-prices f-s_0">
+                                        <span class="current-prices">
+                                            <span class="price-new">
+                                                <span>
+                                                    <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
+                                                    <span class="curr">{$CS}</span>
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="btn-buy f_r">
+                                    <button
+                                        type="button"
+                                        class="btnBuyWishList"
+                                        >
+                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="text-el" data-cart="Просмотреть купленные товары" data-buy="Купить все доступные товары">Купить все доступные товары</span>
+                                    </button>
+                                </div>
+                            </div>
+                        {/if}
+                    </div>
                 {else:}
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">

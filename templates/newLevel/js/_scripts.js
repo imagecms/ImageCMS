@@ -59,8 +59,10 @@ var carousel = {
     vCarousel: '.vertical-carousel',
     hCarousel: '.horizontal-carousel'
 };
-var wishList = {
-    count: inServerWishList
+if (typeof wishList != 'object') {
+    var wishList = {
+        count: inServerWishList
+    }
 }
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
@@ -361,12 +363,12 @@ function processPage(el) {
         if (keys.indexOf(key) != -1) {
             var input = $this.find('input');
             $this.find('button').attr('disabled', 'disabled');
-            input.attr('value', JSON.parse(localStorage.getItem('cartItem_' + key)).count).attr('readonly', 'readonly').attr('disabled', 'disabled');
+            input.val(JSON.parse(localStorage.getItem('cartItem_' + key)).count).attr('readonly', 'readonly').attr('disabled', 'disabled');
         }
         else {
             var input = $this.find('input');
             $this.find('button').removeAttr('disabled');
-            input.removeAttr('readonly disabled').attr('value', '1');
+            input.removeAttr('readonly disabled').val('1');
             $this.closest(genObj.frameCount).next().children().attr('data-count', '1')
         }
     })
@@ -535,13 +537,11 @@ function initShopPage(showWindow, target, orderDetails) {
             $this.minValue(e);
             chCountInCart($this.prev('div'));
         }
-        if ($.testNumber(e)) {
-            if (!e)
-                var e = window.event;
-            var key = e.keyCode;
-            if (key == 0 || key == 8 || key == 46)
-                chCountInCart($this.prev('div'));
-        }
+        if (!e)
+            var e = window.event;
+        var key = e.keyCode;
+        if (key == 0 || key == 8 || key == 46)
+            chCountInCart($this.prev('div'));
     });
     if (showWindow) {
         togglePopupCart(target);
@@ -748,6 +748,68 @@ function banerResize(el) {
         });
         $this.css('height', h + $this.children().outerHeight() - $this.children().height())
     })
+}
+function removePreloaderBaner(el) {
+    var el = el.find('img[data-original]'),
+            elL = el.length,
+            i = 0;
+    el.each(function() {
+        var $this = $(this);
+        $this.attr('src', $this.attr('data-original')).load(function() {
+            $(this).fadeIn();
+            $('.baner').find(preloader).remove();
+            i++;
+            if (i == elL)
+                banerResize('.baner:has(.cycle)');
+        })
+    })
+}
+function initCarouselJscrollPaneCycle(el) {
+    el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
+    el.find('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
+    if ($.exists(selScrollPane)) {
+        el.find(selScrollPane).each(function() {
+            var $this = $(this),
+                    api = $this.jScrollPane(scrollPane),
+                    api = api.data('jsp');
+            $this.on('mousewheel', function(e, b, c, delta) {
+                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
+                {
+//            ширина блоку товару разом з мергінами
+                    api.scrollByX(widhtItemScroll);
+                    return false;
+                }
+                if (delta == 1 && api.getContentPositionX() != 0) {
+                    api.scrollByX(-widhtItemScroll);
+                    return false;
+                }
+
+            })
+        })
+    }
+
+    var cycle = el.find('.cycle'),
+            next = '.baner .next',
+            prev = '.baner .prev';
+    if (cycle.find('li').length > 1) {
+        cycle.cycle({
+            speed: 600,
+            timeout: 5000, fx: 'fade',
+            pauseOnPagerHover: true,
+            next: next,
+            prev: prev,
+            pager: '.pager',
+            pagerAnchorBuilder: function(idx, slide) {
+                return '<a href="#"></a>';
+            }
+        }).hover(function() {
+            cycle.cycle('pause');
+        }, function() {
+            cycle.cycle('resume');
+        });
+        $(next + ',' + prev).show();
+    }
+    removePreloaderBaner(cycle); //cycle - parent for images
 }
 function hideDrop(drop, form, durationHideForm) {
     var drop = $(drop);
@@ -963,7 +1025,7 @@ $(document).on('drop.successJson', function(e) {
             e.el.find(optionsDrop.modalPlace).empty().append(message.error(e.datas.data))
     }
 })
-jQuery(document).ready(function() {
+function init() {
     $(document).on('lazy.after', function(e) {
         e.el.addClass('load');
     })
@@ -976,7 +1038,7 @@ jQuery(document).ready(function() {
         ieInput($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
 
-    if ($.exists('.lineForm')) {
+    if ($.exists('.lineForm:visible')) {
         cuSel(cuselOptions);
         if (ltie7)
             ieInput($('.cuselText'));
@@ -1157,7 +1219,7 @@ jQuery(document).ready(function() {
         prev: 'prev.children(:eq(1)).children',
         next: 'prev.children(:eq(0)).children',
         after: function(e, el, input) {
-            if (checkProdStock && input.attr('value') == input.data('max'))
+            if (checkProdStock && input.val() == input.data('max'))
                 el.closest(genObj.numberC).tooltip();
         }
     });
@@ -1197,7 +1259,7 @@ jQuery(document).ready(function() {
                         prev: 'prev.children(:eq(1)).children',
                         next: 'prev.children(:eq(0)).children',
                         after: function(e, el, input) {
-                            if (checkProdStock && input.attr('value') == input.data('max'))
+                            if (checkProdStock && input.val() == input.data('max'))
                                 el.closest(genObj.numberC).tooltip();
                         }
                     });
@@ -1493,8 +1555,15 @@ jQuery(document).ready(function() {
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId + ' ' + genObj.infoBut));
     });
     $('.frame-count-buy ' + genObj.minus + ',.frame-count-buy ' + genObj.plus).live('click.changeCount', function() {
+        var $this = $(this),
+                input = $this.closest(genObj.frameChangeCount).next();
+        $this.closest(genObj.frameCount).next().children().attr('data-count', input.val())
+        $(document).trigger({'type': 'change_count_product', 'el': input});
+    })
+    $('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
         var $this = $(this);
-        $this.closest(genObj.frameCount).next().children().attr('data-count', $this.closest(genObj.frameChangeCount).next().val())
+        $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
+        $(document).trigger({'type': 'change_count_product', 'el': $this});
     })
 
     wnd.focus(function() {
@@ -1514,70 +1583,26 @@ jQuery(document).ready(function() {
         }
     })
     /*/call shop functions*/
-});
+
+    initCarouselJscrollPaneCycle(body);
+    $(document).live('widget_ajax', function(e) {
+        initCarouselJscrollPaneCycle(e.el);
+    });
+    if ($.exists(optionCompare.frameCompare))
+        $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
+    reinitializeScrollPane(body);
+    $("img.lazy").lazyload(lazyload);
+    wnd.scroll(); //for lazy load start initialize
+    if (productPhotoCZoom) {
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+        body.append('<style id="forCloudZomm"></style>')
+        margZoomLens();
+        $(genObj.photoProduct).find('img').load(function() {
+            margZoomLens();
+        })
+    }
+}
 var genTimeout = "";
-function removePreloaderBaner(el) {
-    var el = el.find('img[data-original]'),
-            elL = el.length,
-            i = 0;
-    el.each(function() {
-        var $this = $(this);
-        $this.attr('src', $this.attr('data-original')).load(function() {
-            $(this).fadeIn();
-            $('.baner').find(preloader).remove();
-            i++;
-            if (i == elL)
-                banerResize('.baner:has(.cycle)');
-        })
-    })
-}
-function initCarouselJscrollPaneCycle(el) {
-    el.find('.horizontal-carousel .carousel_js:not(.baner):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    el.find('.vertical-carousel .carousel_js:visible').myCarousel($.extend({}, carousel));
-    if ($.exists(selScrollPane)) {
-        el.find(selScrollPane).each(function() {
-            var $this = $(this),
-                    api = $this.jScrollPane(scrollPane),
-                    api = api.data('jsp');
-            $this.on('mousewheel', function(e, b, c, delta) {
-                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
-                {
-//            ширина блоку товару разом з мергінами
-                    api.scrollByX(widhtItemScroll);
-                    return false;
-                }
-                if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-widhtItemScroll);
-                    return false;
-                }
-
-            })
-        })
-    }
-
-    var cycle = el.find('.cycle'),
-            next = '.baner .next',
-            prev = '.baner .prev';
-    if (cycle.find('li').length > 1) {
-        cycle.cycle({
-            speed: 600,
-            timeout: 5000, fx: 'fade',
-            pauseOnPagerHover: true,
-            next: next,
-            prev: prev,
-            pager: '.pager',
-            pagerAnchorBuilder: function(idx, slide) {
-                return '<a href="#"></a>';
-            }
-        }).hover(function() {
-            cycle.cycle('pause');
-        }, function() {
-            cycle.cycle('resume');
-        });
-        $(next + ',' + prev).show();
-    }
-    removePreloaderBaner(cycle); //cycle - parent for images
-}
 wnd.resize(function() {
     clearTimeout(genTimeout);
     genTimeout = setTimeout(function() {
@@ -1589,38 +1614,3 @@ wnd.resize(function() {
         banerResize('.baner:has(.cycle)');
     }, 300)
 });
-function downloadJSAtOnload() {
-    $.map(['sp_ll_jc_mw'], function(i, n) {
-        var element = document.createElement("script");
-        element.src = theme + 'js/' + i + '.js';
-        document.body.appendChild(element);
-        $(element).load(function() {
-            $(document).trigger({'type':'scriptDefer'});
-            initCarouselJscrollPaneCycle(body);
-            $(document).live('widget_ajax', function(e) {
-                initCarouselJscrollPaneCycle(e.el);
-            });
-            if ($.exists(optionCompare.frameCompare))
-                $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
-            reinitializeScrollPane(body);
-            $("img.lazy").lazyload(lazyload);
-            wnd.scroll(); //for lazy load start initialize
-            if (productPhotoCZoom) {
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-                body.append('<style id="forCloudZomm"></style>')
-                margZoomLens();
-                $(genObj.photoProduct).find('img').load(function() {
-                    margZoomLens();
-                })
-            }
-        })
-    })
-}
-
-// Check for browser support of event handling capability
-if (window.addEventListener)
-    window.addEventListener("load", downloadJSAtOnload, false);
-else if (window.attachEvent)
-    window.attachEvent("onload", downloadJSAtOnload);
-else
-    window.onload = downloadJSAtOnload;

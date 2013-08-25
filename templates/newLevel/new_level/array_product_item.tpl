@@ -64,17 +64,19 @@
                             <button
                                 class="btnBuy infoBut"
                                 type="button"
-                                data-id="{echo $p.variant_id}"
+                                data-id="{echo $p.id}"
                                 data-prodid="{echo $p.id}"
                                 data-varid="{echo $p.variant_id}"
                                 data-price="{echo $p.price}"
+                                data-count="1"
                                 data-name="{echo ShopCore::encode($p.name)}"
                                 data-maxcount="{echo $p.stock}"
                                 data-number="{echo trim($p.number)}"
                                 data-mediumImage="{echo $photo}"
                                 data-img="{echo $photo}"
                                 data-url="{echo shop_url('product/'.$p.url)}"
-                                data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'>
+                                data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'
+                                >                                
                                 <span class="icon_cleaner icon_cleaner_buy"></span>
                                 <span class="text-el">{lang('s_buy')}</span>
                             </button>
@@ -88,7 +90,7 @@
                             data-drop=".drop-report"
                             data-source="/shop/ajax/getNotifyingRequest"
 
-                            data-id="{echo $p.variant_id}"
+                            data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
                             data-price="{echo $p.price}"
@@ -127,7 +129,6 @@
                         type="button"
                         data-drop="#wishListPopup"
                         data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                        data-callback=""
                         ><span class="icon_move"></span><span class="text-el d_l_1">Переместить</span>
                     </button>
                 </div>

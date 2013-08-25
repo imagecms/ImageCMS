@@ -272,7 +272,7 @@
         return methods[m];
     };
 })(jQuery);
-$(document).ready(function() {
+$(document).live('scriptDefer', function() {
     $(document).on('delete_compare', function(e) {
         var $this = e.el,
                 $thisI = $this.parents(genObj.parentBtnBuy),

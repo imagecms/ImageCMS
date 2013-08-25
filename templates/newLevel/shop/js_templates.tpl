@@ -809,3 +809,25 @@
         <div class="drop-footer"></div>
     </div>
     <button style="display: none;" type="button" data-drop="#notification" data-overlayopacity= "0" data-modal="true"></button>
+
+    <div class="drop drop-style" id="confirm">
+        <div class="drop-header">
+            <div class="title">Подтвердите</div>
+        </div>
+        <div class="drop-content-confirm">
+            <div class="inside-padd cofirm w-s_n-w">
+                <div class="btn-def">
+                    <button type="button" data-button-confirm>
+                        <spna class="text-el">Подтвердить</spna>
+                    </button>
+                </div>
+                <div class="btn-cancel">
+                    <button type="button">
+                        <spna class="text-el d_l_1" data-closed="closed-js">Отменить</spna>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="drop-footer"></div>
+    </div>
+    <button style="display: none;" type="button" data-drop="#confirm" data-overlayopacity= "0" data-modal="true"></button>

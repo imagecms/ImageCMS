@@ -7,17 +7,40 @@ wishList = {
     frameWL: '[data-rel="list-item"]',
     curCount: 0,
     cAddPrWL: 0,
-    count: inServerWishList
-}
+    count: inServerWishList,
+    items: [],
+    all: function() {
+        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
+    },
+    add: function(id, varid) {
+        wishList.items = wishList.all();
+        var key = id + '_' + varid;
+        if (wishList.items.indexOf(key) === -1) {
+            wishList.items.push(key);
+            localStorage.setItem('wishList', JSON.stringify(wishList.items));
+        }
+    },
+    rm: function(id, varid) {
+        wishList.items = wishList.all();
+        var key = id + '_' + varid;
+        if (wishList.items.indexOf(key) != -1) {
+            wishList.items = _.without(wishList.items, key);
+            localStorage.setItem('wishList', JSON.stringify(wishList.items));
+        }
+    }
+
+};
 function wishListCount() {
     var count = wishList.count;
-    if (count > 0)
-        $(genObj.tinyWishList).show()
-    else
-        $(genObj.tinyWishList).hide()
+    if (count > 0) {
+        $(genObj.tinyWishList).show();
+    }
+    else {
+        $(genObj.tinyWishList).hide();
+    }
     $(genObj.countTinyWishList).each(function() {
         $(this).html(count);
-    })
+    });
     wishList.count = count;
     $(document).trigger({'type': 'change_count_wl'});
 }
@@ -29,37 +52,44 @@ function deleteImage(el) {
 function changeDataWishlist(el) {
     $('[data-wishlist-name]').each(function() {
         var $this = $(this);
-        $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val())
-    })
+        $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val());
+    });
 }
 function createWishList(el, data) {
-    if (data.answer == 'success')
+    if (data.answer == 'success') {
         location.reload();
+    }
 }
 function reload(el, data) {
-    if (data.answer == 'success')
+    if (data.answer == 'success') {
         location.reload();
+    }
 }
 function addToWL(el, data) {
     if (data.answer == 'success') {
         var btnWish = wishList.curEl.closest(genObj.btnWish),
                 id = btnWish.data('id'),
                 varid = btnWish.data('varid');
+        wishList.add(id, varid);
         $(genObj.btnWish + '[data-id="' + id + '"][data-varid="' + varid + '"]').each(function() {
-            $(this).closest(genObj.btnWish).find('.' + genObj.toWishlist).hide().end().find('.' + genObj.inWishlist).show()
+            $(this).closest(genObj.btnWish).find('.' + genObj.toWishlist).hide().end().find('.' + genObj.inWishlist).show();
             wishList.curEl = '';
             wishList.count = wishList.count + 1;
             wishListCount();
-        })
+        });
     }
 }
 function removeItem(el, data) {
     if (data.answer == 'success') {
-        el.closest(genObj.parentBtnBuy).hide();
-        $(this).remove();
-        processWish($(this).find(genObj.btnBuy).data('price'));
+        var li = el.closest(genObj.parentBtnBuy),
+                infoBut = li.find(genObj.infoBut),
+                id = infoBut.data('id'),
+                varid = infoBut.data('varid');
+        li.hide().remove();
+        processWishPage();
         wishList.count = wishList.count - 1;
         wishListCount();
+        wishList.rm(id, varid);
     }
 }
 function removeWL(el, data) {
@@ -67,9 +97,14 @@ function removeWL(el, data) {
         var frame = el.closest(wishList.frameWL),
                 WlsItems = frame.find(wishList.itemWL),
                 cWlsItems = WlsItems.length;
-
-        frame.hide();
-        $(this).remove();
+        var li = frame.find(genObj.parentBtnBuy);
+        li.each(function() {
+            var infoBut = $(this).find(genObj.infoBut),
+                    id = infoBut.data('id'),
+                    varid = infoBut.data('varid');
+            wishList.rm(id, varid);
+        });
+        frame.hide().remove();
         wishList.count = wishList.count - cWlsItems;
         wishListCount();
     }
@@ -85,17 +120,32 @@ function changeBtnBuyWL(btnBuy, cond) {
         textEL.text(textEL.data('buy'));
     }
 }
-function processWish(price) {
+function processWish() {
+
+}
+function processWishPage() {
     $(wishList.frameWL).each(function() {
         var $this = $(this),
-                btnBuyL = $this.find(genObj.btnBuy).length,
+                btnBuyLC = 0,
+                tempC = 0,
+                tempP = 0,
+                genSum = 0,
+                btnBuyI = $this.find(genObj.btnBuy);
+        btnBuyI.each(function() {
+            tempC = parseInt($(this).closest(genObj.parentBtnBuy).find(genObj.plusMinus).val());
+            if (isNaN(tempC))
+                return false;
+            btnBuyLC += tempC;
+            tempP = parseInt($(this).data('price'));
+            genSum += tempP * tempC;
+        });
+        var btnBuyL = btnBuyI.length,
                 btnCartL = $this.find('.' + genObj.btnCartCss + ' ' + genObj.btnBuy).length,
                 btnBuy = $this.find(wishList.btnBuy),
                 genPrice = $this.find(wishList.genPriceProdsWL);
+        $this.find(wishList.countProdsWL).text(btnBuyLC);
 
-        $this.find(wishList.countProdsWL).text(btnBuyL);
-        if (price)
-            genPrice.text(genPrice.text() - price);
+        genPrice.text(genSum);
 
         if (btnBuyL == btnCartL) {
             changeBtnBuyWL(btnBuy, true);
@@ -103,9 +153,9 @@ function processWish(price) {
         else {
             changeBtnBuyWL(btnBuy, false);
         }
-    })
+    });
 }
-$(document).ready(function() {
+$(document).live('scriptDefer', function() {
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
                 img = document.createElement("img"),
@@ -117,7 +167,7 @@ $(document).ready(function() {
         $('#wishlistphoto').html($(img));
         $('[data-wishlist="do_upload"]').removeAttr('disabled');
     });
-    processWish();
+    processWishPage();
     $(wishList.btnBuy).click(function() {
         var $this = $(this),
                 btns = $this.closest(wishList.frameWL).find('.' + genObj.btnBuyCss + ' ' + genObj.btnBuy);
@@ -127,33 +177,37 @@ $(document).ready(function() {
             wishList.curElBuy = $this;
             btns.each(function() {
                 Shop.Cart.add(Shop.composeCartItem($(this)), this, false);
-            })
+            });
         }
         else {
-            togglePopupCart($this)
+            togglePopupCart($this);
         }
-    })
+    });
     $(document).on('after_add_to_cart', function(e) {
         wishList.cAddPrWL++;
         if (wishList.cAddPrWL == wishList.curCount) {
             wishList.cAddPrWL = 0;
             wishList.curCount = 0;
-            changeBtnBuyWL(wishList.curElBuy, true)
+            changeBtnBuyWL(wishList.curElBuy, true);
         }
-    })
-    $(document).on('processPageEnd', function(e) {
-        processWish();
-    })
+    });
+    $(document).on('processPageEnd change_count_product', function(e) {
+        processWishPage();
+    });
     $('.' + genObj.inWishlist).live('click.inWish', function() {
         document.location.href = '/wishlist';
     });
-    if (!isLogin)
+    if (!isLogin) {
         $('.' + genObj.toWishlist).unbind('click.drop').data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
             $.drop('showDrop')($('[data-drop="#notification"]'), e, '', true);
-            $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}})
-        })
-    else
+            $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}});
+        });
+    }
+    else {
         $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
             wishList.curEl = $(this);
-        })
-})
+        });
+    }
+    if ($.exists("#datepicker"))
+        $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+});
