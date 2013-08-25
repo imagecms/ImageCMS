@@ -995,7 +995,7 @@ var ie = jQuery.browser.msie,
                     else
                         e.stopPropagation();
                 });
-                menuItem.find('a').unbind('click.menuref').on('click.menuref', function(e) {
+                menuItem.find('a:first').unbind('click.menuref').on('click.menuref', function(e) {
                     if (!$.existsN($(this).closest(menuItem).find(drop)))
                         e.stopPropagation();
                 });
@@ -1311,6 +1311,7 @@ var ie = jQuery.browser.msie,
                 always: false,
                 animate: false,
                 moreoneNC: true,
+                timeclosemodal: false,
                 before: function() {
                 },
                 after: function() {
@@ -1364,7 +1365,7 @@ var ie = jQuery.browser.msie,
 
                     var elSetSource = $(elSet.drop),
                             newModal = elSet.modal || modal,
-                            newConfirm = elSet.confirm || newConfirm,
+                            newConfirm = elSet.confirm || confirm,
                             newAlways = elSet.always || always;
                     if ($.existsN(elSetSource) && !newModal && !newAlways) {
                         if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
@@ -1376,7 +1377,7 @@ var ie = jQuery.browser.msie,
                             confirmF();
                         else {
                             methods.showDrop($('[data-drop="#confirm"]'), e, settings, false);
-                            $('[data-button-confirm]').on('click.drop', function() {
+                            $('[data-button-confirm]').focus().on('click.drop', function() {
                                 confirmF();
                             })
                         }
@@ -1401,6 +1402,7 @@ var ie = jQuery.browser.msie,
                     $thisEOn = elSet.effectOn || settings.effon,
                     overlayColor = elSet.overlaycolor || settings.overlayColor,
                     modal = elSet.modal || settings.modal,
+                    timeclosemodal = elSet.timeclosemodal || settings.timeclosemodal,
                     confirm = elSet.confirm || settings.confirm,
                     moreoneNC = elSet.moreoneNC || settings.moreoneNC,
                     dropContent = elSet.dropContent || settings.dropContent,
@@ -1423,6 +1425,8 @@ var ie = jQuery.browser.msie,
                 'closed': closed,
                 'overlayOpacity': overlayOpacity,
                 'modal': modal,
+                'confirm': confirm,
+                'timeclosemodal': timeclosemodal
             }).attr('data-elrun', $thisSource);
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
             if (condOverlay) {
@@ -1442,7 +1446,7 @@ var ie = jQuery.browser.msie,
             }
             else {
                 before($this, elSetSource, isajax);
-                if (!moreoneNC || elSet.moreoneNC) {
+                if ((!moreoneNC || elSet.moreoneNC) && elSetSource.data('place') != 'inherit') {
                     methods.closeDrop($('[data-elrun]:visible'));
                 }
 
@@ -1466,8 +1470,13 @@ var ie = jQuery.browser.msie,
                 }
                 elSetSource.addClass(place);
                 elSetSource[$thisEOn]($thisD, function() {
-                    $(document).trigger({type: 'drop.contentHeight', el: dC, drop: elSetSource});
-                    elSetSource.addClass(activeClass);
+                    var $this = $(this);
+                    $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
+                    $this.addClass(activeClass);
+                    if (!confirm && modal && timeclosemodal)
+                        setTimeout(function() {
+                            methods.closeDrop($this)
+                        }, timeclosemodal)
                     if (place == 'center' && !(elSet.modal || modal)) {
                         if ($(document).height() - wnd.height() > 0) {
                             optionsDrop.wST = wnd.scrollTop();
@@ -1521,7 +1530,7 @@ var ie = jQuery.browser.msie,
                                 }
                             }
                             optionsDrop.dropOver = $('.overlayDrop');
-                            if (!$.existsN($('[data-elrun].' + activeClass)) && optionsDrop.dropOver.is(':visible'))
+                            if (optionsDrop.dropOver.is(':visible'))
                                 methods.scrollEmulateRemove();
                             $this[$thisEOff]($thisD, function() {
                                 $(this).removeAttr('style');

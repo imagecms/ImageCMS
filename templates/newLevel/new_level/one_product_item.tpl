@@ -222,7 +222,7 @@
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="variant_{echo $pv->getId()} variant btn-wish" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="variant_{echo $pv->getId()} variant d_i-b" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                            {/foreach}

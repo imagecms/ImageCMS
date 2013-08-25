@@ -72,7 +72,11 @@
                     <div class="text">
                         <p data-wishlist-name="description">{echo $user[description]}</p>
                     </div>
-                    <button type="button" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0" class="d_l_1">Редактировать</button>
+                    <div class="btn-edit-WL">
+                        <button type="button" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0" class="d_l_1">
+                            <span class="text-el">Редактировать</span>
+                        </button>
+                    </div>
                     <div class="form-data drop horizontal-form big-title">
                         <form>
                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
@@ -99,7 +103,7 @@
                                 <div class="frame-form-field">
                                     <div class="btn-def">
                                         <button
-                                            type="button"
+                                            type="submit"
                                             data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                             data-type="json"
                                             data-modal="true"
@@ -166,7 +170,7 @@
                                     <div class="btn-def">
                                         <button
                                             class="btn"
-                                            type="button"
+                                            type="submit"
                                             data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                             data-type="json"
                                             data-modal="true"
@@ -246,22 +250,19 @@
                                     </button>
                                 </div>
                                 <div class="btn-remove-WL">
-                                    <button
+                                    <button 
                                         type="button"
+                                        data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
+                                        data-type="json"
+                                        data-modal="true"
+                                        data-overlayopacity= "0"
+                                        data-drop="#notification"
+                                        data-callback="removeWL"
+                                        data-confirm="true"
                                         >
                                         <span class="icon_remove"></span>
-                                        <button 
-                                            type="button"
-                                            class="d_l_1 text-el"
-                                            data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                            data-type="json"
-                                            data-modal="true"
-                                            data-overlayopacity= "0"
-                                            data-drop="#notification"
-                                            data-callback="removeWL"
-                                            data-confirm="true"
-                                            ><span class="text-el">Удалить список</span></a>
-                                        </button>
+                                        <span class="text-el d_l_1">Удалить список</span>
+                                    </button>
                                 </div>
                             </div>
                             {if $wishlist[0][variant_id]}
@@ -272,7 +273,7 @@
                                         {$price += $p.price;}
                                         {$i++}
                                     {/foreach}
-                                    <div class="title-h3">Всего <b class="countProdsWL">{echo $i}</b> товара на сумму 
+                                    <div class="title-h3">Всего <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array('товар','товара','товаров'))}</span> на сумму 
                                         <span class="frame-prices f-s_0">
                                             <span class="current-prices">
                                                 <span class="price-new">
