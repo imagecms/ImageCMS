@@ -26,18 +26,33 @@ class Language_switch_Widgets extends MY_Controller {
             $settings = $widget['settings'];
         }
 	
-	$current_address = '';
-	$current_address .= $this->uri->uri_string();
-	if ($this->input->server('QUERY_STRING'))
-	    $current_address .= '?'.$this->input->server('QUERY_STRING');
-	
-	if ($this->uri->segment(1))
-	    if(array_key_exists($this->uri->segment(1),$this->core->langs))
-	        $current_address = str_replace($this->uri->segment(1), '', $current_address);
-	    else
-	    $current_address = '/'.$current_address;
-	    
-        $languages = $this->db->get('languages')->result_array();
+        $current_address = '';
+        $current_address .= $this->uri->uri_string();
+        if ($this->input->server('QUERY_STRING'))
+            $current_address .= '?'.$this->input->server('QUERY_STRING');
+
+        $current_lang = '';
+        if ($this->uri->segment(1))
+        {
+            if(array_key_exists($this->uri->segment(1),$this->core->langs))
+            {
+                $current_address = str_replace($this->uri->segment(1), '', $current_address);
+                $current_lang = $this->uri->segment(1);
+            }
+        }
+        else
+        {
+            $current_address = '/'.$current_address;
+        }
+
+        foreach ($this->db->get('languages')->result_array() as $lang)
+        {
+            if (empty($current_lang) and $lang['default'] == true)
+                continue;
+
+            if ($lang['identif'] != $current_lang)
+                $languages[] = $lang;
+        }
         return $this->template->fetch('widgets/'.$widget['name'],  array('languages' => $languages, 'current_address' => $current_address) );
     }
 
