@@ -40,7 +40,7 @@
                         </tr>
                     {/if}
                     <tr>
-                        <td class="span2">{lang("Write rights or permission","admin")}</td>
+                        <td class="span2">{lang("Write permission","admin")}</td>
                         <td>
                             {foreach $folders as $k => $v}
                                 {if $v == TRUE}

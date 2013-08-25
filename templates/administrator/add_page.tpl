@@ -219,9 +219,9 @@
                                         </label>
                                         <div class="controls">
                                             <select name="post_status" id="post_status">
-                                                <option selected="selected" value="publish">{lang("Published or Has been published","admin")}</option>
-                                                <option value="pending">{lang("Pending approval or Awaiting approval ","admin")}</option>
-                                                <option value="draft">{lang("Has not been published","admin")}</option>
+                                                <option selected="selected" value="publish">{lang("Published","admin")}</option>
+                                                <option value="pending">{lang("Waiting approval ","admin")}</option>
+                                                <option value="draft">{lang("Unpublished","admin")}</option>
                                             </select>
                                         </div>
                                     </div>
