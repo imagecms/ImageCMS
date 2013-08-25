@@ -425,7 +425,7 @@ input.input-search{height: 33px;}
 .fancy-footer{text-align: center;padding: 12px 20px 24px;}
 .fancy-footer .frame-prices-buy .price-discount{display: block;}
 .fancy-footer .frame-prices{display: inline-block;vertical-align: middle;padding-bottom: 0;margin-right: 20px;text-align: left;}
-.item-product .frame-wish-compare-list .btn-compare, .item-product .frame-wish-compare-list .btn-wish{width: 50%;margin-bottom: 0;padding: 8px 0;text-align: center;}
+.item-product .frame-wish-compare-list > .frame-btn-wish, .item-product .frame-wish-compare-list > .frame-btn-compare{width: 50%;margin-bottom: 0;padding: 8px 0;text-align: center;}
 .item-product .frame-prices-buy-wish-compare{margin-bottom: 15px;}
 
 .items-complect > li{float: left;margin-right: 20px;text-align: center;}

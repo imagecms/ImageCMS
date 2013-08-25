@@ -830,4 +830,4 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#confirm" data-overlayopacity= "0" data-modal="true"></button>
+    <button style="display: none;" type="button" data-drop="#confirm" data-overlayopacity= "0" data-modal="true" data-confirm="true"></button>

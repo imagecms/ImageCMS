@@ -16,8 +16,8 @@ function filtertype(el, totalProducts, otherClass) {
         });
     }
 }
-function changeSelectFilter(el){
-    ajaxRecount('#cuselFrame-'+$(el).attr('id'), false);
+function changeSelectFilter(el) {
+    ajaxRecount('#cuselFrame-' + $(el).attr('id'), false);
 }
 (function($) {
     var methods = {
@@ -260,10 +260,12 @@ function afterAjaxInitializeFilter(ready) {
                         });
                     });
                 }
-                if (n == 'dropDown') {
+                if (n == 'scroll') {
                     $this.show();
                     var el = filtersContent.show().jScrollPane(scrollPane);
                     el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                }
+                if (n == 'dropDown') {
                     filtersContent.hide();
                 }
                 if (arrL - 1 == i) {

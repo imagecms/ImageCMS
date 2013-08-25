@@ -7,10 +7,12 @@ wishList = {
     frameWL: '[data-rel="list-item"]',
     curCount: 0,
     cAddPrWL: 0,
-    count: inServerWishList,
     items: [],
     all: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
+        return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')) : [];
+    },
+    count: function() {
+        return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')).length : inServerWishList;
     },
     add: function(id, varid) {
         wishList.items = wishList.all();
@@ -30,20 +32,6 @@ wishList = {
     }
 
 };
-function wishListCount() {
-    var count = wishList.count;
-    if (count > 0) {
-        $(genObj.tinyWishList).show();
-    }
-    else {
-        $(genObj.tinyWishList).hide();
-    }
-    $(genObj.countTinyWishList).each(function() {
-        $(this).html(count);
-    });
-    wishList.count = count;
-    $(document).trigger({'type': 'change_count_wl'});
-}
 function deleteImage(el) {
     el.parent().remove();
     var img = $('#wishlistphoto img');
@@ -68,15 +56,12 @@ function reload(el, data) {
 function addToWL(el, data) {
     if (data.answer == 'success') {
         var btnWish = wishList.curEl.closest(genObj.btnWish),
-                id = btnWish.data('id'),
-                varid = btnWish.data('varid');
+                id = btnWish.parent().data('id'),
+                varid = btnWish.parent().data('varid');
         wishList.add(id, varid);
-        $(genObj.btnWish + '[data-id="' + id + '"][data-varid="' + varid + '"]').each(function() {
-            $(this).closest(genObj.btnWish).find('.' + genObj.toWishlist).hide().end().find('.' + genObj.inWishlist).show();
-            wishList.curEl = '';
-            wishList.count = wishList.count + 1;
-            wishListCount();
-        });
+        wishList.curEl = '';
+        processWish();
+        wishListCount();
     }
 }
 function removeItem(el, data) {
@@ -87,9 +72,9 @@ function removeItem(el, data) {
                 varid = infoBut.data('varid');
         li.hide().remove();
         processWishPage();
-        wishList.count = wishList.count - 1;
-        wishListCount();
         wishList.rm(id, varid);
+        processWish();
+        wishListCount();
     }
 }
 function removeWL(el, data) {
@@ -105,7 +90,7 @@ function removeWL(el, data) {
             wishList.rm(id, varid);
         });
         frame.hide().remove();
-        wishList.count = wishList.count - cWlsItems;
+        processWish();
         wishListCount();
     }
 }
@@ -119,9 +104,6 @@ function changeBtnBuyWL(btnBuy, cond) {
         btnBuy.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss);
         textEL.text(textEL.data('buy'));
     }
-}
-function processWish() {
-
 }
 function processWishPage() {
     $(wishList.frameWL).each(function() {
@@ -144,9 +126,8 @@ function processWishPage() {
                 btnBuy = $this.find(wishList.btnBuy),
                 genPrice = $this.find(wishList.genPriceProdsWL);
         $this.find(wishList.countProdsWL).text(btnBuyLC);
-
+        $this.find(genObj.plurProd).text(pluralStr(btnBuyLC, plurProd));
         genPrice.text(genSum);
-
         if (btnBuyL == btnCartL) {
             changeBtnBuyWL(btnBuy, true);
         }
