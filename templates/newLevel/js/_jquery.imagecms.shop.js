@@ -1,14 +1,15 @@
+/*
+ *imagecms frontend plugins
+ ** @author Domovoj
+ * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
+ */
+
 var isTouch = 'ontouchstart' in document.documentElement,
         activeClass = 'active',
         clonedC = 'cloned';
 wnd = $(window),
         body = $('body'),
         checkProdStock = checkProdStock == "" ? false : true;
-/*
- *imagecms frontend plugins
- ** @author Domovoj
- * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
- **/
 function pluralStr(i, str) {
     function plural(a) {
         if (a % 10 == 1 && a % 100 != 11)
@@ -67,7 +68,7 @@ $.testNumber = function(e) {
     var key = e.keyCode;
     if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
         return true;
-    keyChar = String.fromCharCode(key);
+    var keyChar = String.fromCharCode(key);
     if (!/\d/.test(keyChar)) {
         return false;
     }
@@ -508,6 +509,12 @@ var ie = jQuery.browser.msie,
                     selectorPosition = -1,
                     inputString = settings.inputString,
                     minValue = settings.minValue;
+            var submit = inputString.closest('form').find('[type="submit"]');
+            submit.on('click.autocomplete', function(e) {
+                e.preventDefault();
+                inputString.focus();
+                $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+            })
             inputString.keyup(function(event) {
                 var $this = $(this);
                 var inputValL = $this.val().length;
@@ -523,6 +530,18 @@ var ie = jQuery.browser.msie,
                 }
                 else
                     $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
+
+                var iL = inputString.val().length;
+                if (iL <= minValue)
+                    submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
+                        e.preventDefault();
+                        inputString.focus();
+                        $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+                    })
+                else {
+                    submit.unbind('click.autocomplete');
+                    console.log(1)
+                }
             }).blur(function() {
                 closeFrame();
             });
@@ -530,7 +549,7 @@ var ie = jQuery.browser.msie,
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
-                if (code == 13 && inputString.val().length <= minValue)
+                if (code == 13 && iL <= minValue)
                     return false;
             })
         }
@@ -984,7 +1003,7 @@ var ie = jQuery.browser.msie,
             return menu;
         },
         refresh: function() {
-            methods.init.call($(this), $.extend(optionsMenu, {refresh: true}));
+            methods.init.call($(this), $.extend({}, optionsMenu, {refresh: true}));
             return $(this);
         }
     };
@@ -1308,6 +1327,34 @@ var ie = jQuery.browser.msie,
                     always = settings.always,
                     arrDrop = [];
             $(this).add($('[data-drop]')).unbind('click.drop').on('click.drop', function(e) {
+                function confirmF() {
+                    if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
+                        arrDrop.push(elSet.source);
+                        if (!newModal)
+                            elSetSource.remove();
+                        $.ajax({
+                            type: "post",
+                            data: elSet.data,
+                            url: elSet.source,
+                            dataType: elSet.type ? elSet.type : 'html',
+                            success: function(data) {
+                                if (elSet.type != 'html' && elSet.type != undefined && newModal) {
+                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
+                                    if (elSet.callback != undefined)
+                                        eval(elSet.callback)($this, data, elSetSource);
+                                }
+                                else {
+                                    $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
+                                    if (elSet.callback != undefined)
+                                        eval(elSet.callback)($this, data, elSetSource);
+                                    body.append(data);
+                                }
+                                elSetSource = $(elSet.drop);
+                                methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
+                                methods.showDrop($this, e, optionsDrop, true);
+                            }})
+                    }
+                }
                 var $this = $(this);
                 if (!$this.is('[disabled]')) {
                     $(document).trigger({'type': 'drop.click', 'el': $this})
@@ -1317,38 +1364,23 @@ var ie = jQuery.browser.msie,
 
                     var elSetSource = $(elSet.drop),
                             newModal = elSet.modal || modal,
-                            newConfirm = elSet.newConfirm || newConfirm,
+                            newConfirm = elSet.confirm || newConfirm,
                             newAlways = elSet.always || always;
                     if ($.existsN(elSetSource) && !newModal && !newAlways) {
                         if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
                             body.append(elSetSource)
                         methods.showDrop($this, e, optionsDrop, false);
                     }
-                    else if ((elSet.source || newAlways) && !newConfirm) {
-                        if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
-                            arrDrop.push(elSet.source);
-                            if (!newModal)
-                                elSetSource.remove();
-                            $.ajax({
-                                type: "post",
-                                data: elSet.data,
-                                url: elSet.source,
-                                dataType: elSet.type ? elSet.type : 'html',
-                                success: function(data) {
-                                    if (elSet.type != 'html' && elSet.type != undefined && newModal) {
-                                        $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
-                                        if (elSet.callback != undefined)
-                                            eval(elSet.callback)($this, data);
-                                    }
-                                    else {
-                                        $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
-                                        body.append(data);
-                                    }
-                                    elSetSource = $(elSet.drop);
-                                    methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
-                                    methods.showDrop($this, e, optionsDrop, true);
-                                }})
+                    else if ((elSet.source || newAlways)) {
+                        if (!newConfirm)
+                            confirmF();
+                        else {
+                            methods.showDrop($('[data-drop="#confirm"]'), e, settings, false);
+                            $('[data-button-confirm]').on('click.drop', function() {
+                                confirmF();
+                            })
                         }
+
                     }
                     return false;
                 }
@@ -1462,11 +1494,12 @@ var ie = jQuery.browser.msie,
             });
         },
         closeDrop: function(sel) {
+            $('[data-button-confirm]').unbind('click.drop');
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this);
-                    if (drop.data('overlayOpacity') != 0 || sel || drop.data('modal')) {
+                    if (drop.data('place') != 'inherit' || sel || drop.data('modal')) {
                         $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
@@ -1709,11 +1742,12 @@ var ie = jQuery.browser.msie,
         init: function(e) {
             var $this = $(this),
                     $min = $(this).attr('data-min'),
-                    $thisVal = parseInt($this.val());
+                    $thisVal = $this.val();
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
-            if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0')) {
+
+            if ((key == 48 || key == 96) && ($thisVal.length == 0 || parseInt($thisVal) == 0)) {
                 $this.val($min);
             }
         }
@@ -1730,6 +1764,19 @@ var ie = jQuery.browser.msie,
     $.minValue = function(m) {
         return methods[m];
     };
+    $('[data-min]').die('keyup').live('keyup', function(e) {
+        $(this).minValue(e);
+    })
+    $('[data-min]').die('keypress').live('keypress', function(e) {
+        var key = e.keyCode,
+                keyChar = parseInt(String.fromCharCode(key));
+        var $this = $(this),
+                $min = $this.attr('data-min');
+        if ($this.val() == "" && keyChar == 0) {
+            $this.val($min);
+            return false;
+        }
+    })
 })(jQuery);
 (function($) {
     var methods = {
@@ -1738,8 +1785,8 @@ var ie = jQuery.browser.msie,
                     $max = parseInt($this.attr('data-max'));
             if (!e)
                 var e = window.event;
-            var key = e.keyCode;
-            keyChar = parseInt(String.fromCharCode(key));
+            var key = e.keyCode,
+                    keyChar = parseInt(String.fromCharCode(key));
             if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
@@ -1762,7 +1809,7 @@ var ie = jQuery.browser.msie,
     $.maxValue = function(m) {
         return methods[m];
     };
-    $('[data-max]').live('keydown keyup', function(e) {
+    $('[data-max]').die('keydown keyup').live('keydown keyup', function(e) {
         $(this).maxValue(e);
     })
 })(jQuery);
@@ -2344,6 +2391,7 @@ var ImageCMSApi = {
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         //send api request to api controller
+        $(document).trigger({'type': 'showActivity'});
         $.ajax({
             type: "post",
             data: dataSend,
@@ -2353,6 +2401,7 @@ var ImageCMSApi = {
                 ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
+                $(document).trigger({'type': 'hideActivity'});
                 if (obj !== null) {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);

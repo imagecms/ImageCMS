@@ -40,10 +40,9 @@
                             {$check = ''}
                         {/if}
                         {if $brand->countProducts == 0}
-                            {//$class = "disabled"}
                             {$dis = 'disabled="disabled"'}
                         {else:}
-                            {$class = $dis = ""}
+                            {$dis = ""}
                         {/if}
                         <li>
                             <div class="frame-label" id="brand_{echo $brand->id}">
@@ -78,34 +77,53 @@
                             </span>
                         </span>
                     </div>
-                    <div class="filters-content">
-                        <ul>
-                            {foreach $prop->possibleValues as $item}
-                                {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
-                                    {$check = 'checked="checked"'}
-                                {else:}
-                                    {$check = ''}
-                                {/if}
-                                {if $item.count == 0}
-                                    {//$class = "disabled"}
-                                    {$dis = 'disabled="disabled"'}
-                                {else:}
-                                    {$class = $dis = ""}
-                                {/if}
-                                <li>
-                                    <div class="frame-label {$class}" id="p_{echo $prop->property_id}_{echo $item.id}">
-                                        <span class="niceCheck b_n">
-                                            <input {$dis} name="p[{echo $prop->property_id}][]" value='{echo $item.value}' type="checkbox" {$check} />
-                                        </span>
-                                        <div class="name-count">
-                                            <span class="text-el">{echo $item.value}</span>
-                                            <span class="count">({echo $item.count})</span>
+                    {if !in_array('cusel', $typeProperty) || !$typeProperty}
+                        <div class="filters-content">
+                            <ul>
+                                {foreach $prop->possibleValues as $item}
+                                    {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
+                                        {$check = 'checked="checked"'}
+                                    {else:}
+                                        {$check = ''}
+                                    {/if}
+                                    {if $item.count == 0}
+                                        {$dis = 'disabled="disabled"'}
+                                    {else:}
+                                        {$dis = ""}
+                                    {/if}
+                                    <li>
+                                        <div class="frame-label" id="p_{echo $prop->property_id}_{echo $item.id}">
+                                            <span class="niceCheck b_n">
+                                                <input {$dis} name="p[{echo $prop->property_id}][]" value='{echo $item.value}' type="checkbox" {$check} />
+                                            </span>
+                                            <div class="name-count">
+                                                <span class="text-el">{echo $item.value}</span>
+                                                <span class="count">({echo $item.count})</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            {/foreach}
-                        </ul>
-                    </div>
+                                    </li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    {else:}
+                        <div class="lineForm">
+                            <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="changeSelectFilter(this)">
+                                {foreach $prop->possibleValues as $item}
+                                    {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
+                                        {$check = 'selected="selected"'}
+                                    {else:}
+                                        {$check = ''}
+                                    {/if}
+                                    {if $item.count == 0}
+                                        {$dis = 'disabled="disabled"'}
+                                    {else:}
+                                        {$dis = ""}
+                                    {/if}
+                                    <option {$dis} id="p_{echo $prop->property_id}_{echo $item.id}"  value='{echo $item.value}' {$check}>{echo $item.value} ({echo $item.count})</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                    {/if}
                 </div>
             </div>
         {if $condTypeProperty}<div class="preloader"></div>{/if}

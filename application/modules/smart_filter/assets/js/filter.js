@@ -6,15 +6,18 @@ function filtertype(el, totalProducts, otherClass) {
     if ($thisRel != undefined) {
         var arr = $thisRel.split(' ');
         $.map(arr, function(n, i) {
-            switch (n) {
-                case 'dropDown':
-                    $this.find('.title').next().show();
-                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
-                case 'scroll':
-                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            if (n == 'dropDown') {
+                $this.find('.title').next().show();
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            }
+            if (n == 'scroll') {
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
             }
         });
     }
+}
+function changeSelectFilter(el){
+    ajaxRecount('#cuselFrame-'+$(el).attr('id'), false);
 }
 (function($) {
     var methods = {
@@ -69,7 +72,7 @@ function filtertype(el, totalProducts, otherClass) {
                     maxCost.val(ui.values[1]);
                 },
                 stop: function() {
-                    ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                    ajaxRecount('#' + slider.attr('id'), 'apply-slider');
                 }
             });
             minCost.change(function() {
@@ -106,7 +109,7 @@ function filtertype(el, totalProducts, otherClass) {
                 slider.slider("values", 1, value2);
             });
             minCost.add(maxCost).change(function() {
-                ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                ajaxRecount('#' + slider.attr('id'), 'apply-slider');
             });
         }
     };
@@ -201,6 +204,11 @@ function afterAjaxInitializeFilter(ready) {
         var $this = $(this);
         $this.sliderInit(eval($this.data('rel')));
     });
+    if ($.exists('.lineForm:visible')) {
+        cuSel($.extend({}, cuselOptions, {changedEl: '#catalog_form .lineForm select'}));
+        if (ltie7)
+            ieInput($('.cuselText'));
+    }
     $(framechecks).nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
@@ -209,7 +217,7 @@ function afterAjaxInitializeFilter(ready) {
         //if evCond: true
         before: function(a, b, c) {
             c.nStCheck('changeCheck');
-            ajaxRecount('#' + b.attr('id'), false, true);
+            ajaxRecount('#' + b.attr('id'), false);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
             if ($thisframechecks.data('rel') != undefined) {
                 if ($thisframechecks.data('rel').match('scroll')) {
@@ -236,66 +244,36 @@ function afterAjaxInitializeFilter(ready) {
             var arr = $thisRel.split(' '),
                     arrL = arr.length;
             $.map(arr, function(n, i) {
-                switch (n) {
-                    case 'dropDown':
-                        $this.find('.title .text-el').addClass('d_l');
+                if (n == 'dropDown') {
+                    $this.find('.title .text-el').addClass('d_l');
 
-                        $this.find('.title > span').bind('click.filter', function(e) {
-                            var $thisi = $(this);
-                            $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
-                                if ($(this).is(':visible')) {
-                                    cleaverFilterObj.dropDownArr.push($this.attr('id'));
-                                }
-                                else {
-                                    cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
-                                }
-                                $thisi.toggleClass('valuePD');
-                            });
+                    $this.find('.title > span').bind('click.filter', function(e) {
+                        var $thisi = $(this);
+                        $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
+                            if ($(this).is(':visible')) {
+                                cleaverFilterObj.dropDownArr.push($this.attr('id'));
+                            }
+                            else {
+                                cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
+                            }
+                            $thisi.toggleClass('valuePD');
                         });
-                        cleaverFilterObj.dropDownArr
-                    case 'scroll':
-                        $this.show();
-                        if (ready)
-                            $(document).live('scriptDefer', function() {
-                                var el = filtersContent.show().jScrollPane(scrollPane);
-                                el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
-                            })
-                        else {
-                            var el = filtersContent.show().jScrollPane(scrollPane);
-                            el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
-                        }
+                    });
                 }
-                switch (n) {
-                    case 'dropDown':
-                        if (ready)
-                            $(document).live('scriptDefer', function() {
-                                filtersContent.hide();
-                            })
-                        else
-                            filtersContent.hide();
+                if (n == 'dropDown') {
+                    $this.show();
+                    var el = filtersContent.show().jScrollPane(scrollPane);
+                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                    filtersContent.hide();
                 }
                 if (arrL - 1 == i) {
-                    if (ready)
-                        $(document).live('scriptDefer', function() {
-                            $this.fadeIn();
-                            $this.next(preloader).hide()
-                        })
-                    else {
-                        $this.fadeIn();
-                        $this.next(preloader).hide()
-                    }
+                    $this.fadeIn();
+                    $this.next(preloader).hide()
                 }
             });
             if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
-                if (ready)
-                    $(document).live('scriptDefer', function() {
-                        filtersContent.show();
-                        $this.find('.title').children().addClass('valuePD');
-                    })
-                else {
-                    filtersContent.show();
-                    $this.find('.title').children().addClass('valuePD');
-                }
+                filtersContent.show();
+                $this.find('.title').children().addClass('valuePD');
             }
         }
     });
@@ -320,7 +298,7 @@ function afterAjaxInitializeFilter(ready) {
         return false;
     });
 }
-function ajaxRecount(el, slChk, submit) {
+function ajaxRecount(el, slChk) {
     $(frameFilter).children(preloader).show();
 //    var catalogForm = $('#catalog_form');
 //    if (submit){
@@ -347,7 +325,7 @@ function ajaxRecount(el, slChk, submit) {
             if (slChk) {
                 otherClass = slChk;
             }
-            if ($($this).closest(framechecks).data('rel') == undefined) {
+            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
                 cleaverFilterObj.currentPosScroll = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
@@ -359,7 +337,7 @@ function ajaxRecount(el, slChk, submit) {
     return false;
 }
 
-$(document).ready(function() {
+$(document).live('scriptDefer', function() {
     $(frameFilter).children(preloader).hide();
     afterAjaxInitializeFilter(true);
 });
