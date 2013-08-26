@@ -56,7 +56,7 @@
                                             <span class="niceRadio b_n">
                                                 <input type="radio" name="save_type" value="email" />
                                             </span>
-                                            {lang("Send to your email","admin")}
+                                            {lang("Send email","admin")}
                                         </span>
                                         <input type="text" name="email" class="input-large" value="{$user.email}" />
                                     </div>

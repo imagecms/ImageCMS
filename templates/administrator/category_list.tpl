@@ -15,7 +15,7 @@
     </div>
 
 
-    <div id="delete_dialog" title="{lang("Delete a category","admin")}" style="display: none">
+    <div id="delete_dialog" title="{lang("Delete category","admin")}" style="display: none">
         {lang("Delete category","admin")}?
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->

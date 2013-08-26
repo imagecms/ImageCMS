@@ -8,7 +8,7 @@
 	<div class="form_overflow"></div>
 
 	<div class="form_text"></div>
-	<div class="form_input"><label><input name="in_menu" value="1" {if $in_menu == 1} checked="checked" {/if}  type="checkbox" /> {lang("Add to the menu","admin")}</label></div>
+	<div class="form_input"><label><input name="in_menu" value="1" {if $in_menu == 1} checked="checked" {/if}  type="checkbox" /> {lang("Add to menu","admin")}</label></div>
 	<div class="form_overflow"></div>
 
 	<div class="form_text"></div>

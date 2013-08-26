@@ -125,7 +125,7 @@
                                                             {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                         {/if}
 
-                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Control or Operation","admin")}</a></li>
+                                                        <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Management","admin")}</a></li>
                                                         <li class="divider"></li>
                                                             {foreach $menus as $menu}
                                                             <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>

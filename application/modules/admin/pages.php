@@ -142,10 +142,10 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents","admin"), 'trim|required');
         $this->form_validation->set_rules('page_description', lang("Description ","admin"), 'trim');
         $this->form_validation->set_rules('full_tpl', lang("Page template","admin"), 'trim|max_length[150]|min_length[2]');
-        $this->form_validation->set_rules('create_date', lang("Date of creation or creation date","admin"), 'required|valid_date');
-        $this->form_validation->set_rules('create_time', lang("Time of creation or creation time","admin"), 'required|valid_time');
-        $this->form_validation->set_rules('publish_date', lang("Publication date or date of publication","admin"), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang("Publication time or time of publication","admin"), 'required|valid_time');
+        $this->form_validation->set_rules('create_date', lang("Creation date","admin"), 'required|valid_date');
+        $this->form_validation->set_rules('create_time', lang("Creation time","admin"), 'required|valid_time');
+        $this->form_validation->set_rules('publish_date', lang("Publication date","admin"), 'required|valid_date');
+        $this->form_validation->set_rules('publish_time', lang("Publication time","admin"), 'required|valid_time');
 
         $this->form_validation->set_rules('main_tpl', lang("Main page template","admin"), 'trim|max_length[50]|min_length[2]');
 
@@ -475,10 +475,10 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('page_description', lang("Description ","admin"), 'trim');
         $this->form_validation->set_rules('full_tpl', lang("Page template","admin"), 'trim|max_length[50]|min_length[2]');
         $this->form_validation->set_rules('main_tpl', lang("Main page template ","admin"), 'trim|max_length[50]|min_length[2]');
-        $this->form_validation->set_rules('create_date', lang("Date of creation or creation date","admin"), 'required|valid_date');
-        $this->form_validation->set_rules('create_time', lang("Time of creation or creation time","admin"), 'required|valid_time');
-        $this->form_validation->set_rules('publish_date', lang("Publication date or date of publication","admin"), 'required|valid_date');
-        $this->form_validation->set_rules('publish_time', lang("Publication time or time of publication","admin"), 'required|valid_time');
+        $this->form_validation->set_rules('create_date', lang("Creation date","admin"), 'required|valid_date');
+        $this->form_validation->set_rules('create_time', lang("Creation time","admin"), 'required|valid_time');
+        $this->form_validation->set_rules('publish_date', lang("Publication date","admin"), 'required|valid_date');
+        $this->form_validation->set_rules('publish_time', lang("Publication time","admin"), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
 
@@ -780,7 +780,7 @@ class Pages extends BaseAdminController {
             if ($action == 'copy')
                 showMessage('Successful copying');
             else if ($action == 'move')
-                showMessage(lang("Successful moving","admin"));
+                showMessage(lang("Successfull moving","admin"));
             pjax($_SERVER["HTTP_REFERER"]);
         }
         else
