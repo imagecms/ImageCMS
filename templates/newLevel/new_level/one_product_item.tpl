@@ -17,7 +17,7 @@
                      class="vimg lazy"/>
                 {$discount = 0}
                 {if $p->hasDiscounts()}
-                    {$discount = $p->firstVariant->getvirtual('numDiscount')/$p->firstVariant->toCurrency()*100}
+                    {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
                 {/if}
                 {promoLabel($p->getAction(), $p->getHot(), $p->getHit(), $discount)}
             </span>
