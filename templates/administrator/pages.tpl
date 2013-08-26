@@ -35,14 +35,14 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Cont List','admin')}</span>
+                <span class="title">{lang('Content list','admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();
-                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('move or displace','admin')}</button>
+                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
                 pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Create page','admin')}</button>
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>-->
@@ -55,7 +55,7 @@
                 <div class="span3">
                     <ul class="nav nav-tabs nav-stacked m-t_10">
                         <li {if '0'==$cat_id} class="active" {/if} ><a href="/admin/pages/GetPagesByCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
-                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All catagories','admin')}</a></li>
+                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All categories','admin')}</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-stacked">
                         {foreach $tree as $cat}

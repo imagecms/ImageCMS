@@ -118,7 +118,7 @@
 
 	<li><a class="returnFalse" href="">{lang("Menu","admin")}</a>
 		<ul>
-			<li><a href="#" id="menu_manager_link" onclick="com_admin('menu'); return false;">{lang("Control or Operation","admin")}</a></li>
+			<li><a href="#" id="menu_manager_link" onclick="com_admin('menu'); return false;">{lang("Management","admin")}</a></li>
 			<li class="divider returnFalse"><a href="#"></a></li>
             {foreach $menus as $menu}
 			<li><a href="#" onclick="ajax_div('page',base_url + 'admin/components/cp/menu/menu_item/{$menu.name}'); return false;">{$menu.main_title}</a></li>

@@ -81,7 +81,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang("Menu","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a href="/admin/components/cp/menu">{lang("Control or Operation","admin")}</a></li>
+                                    <li><a href="/admin/components/cp/menu">{lang("Management","admin")}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
                                         <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}">{$menu.main_title}</a></li>
@@ -128,7 +128,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" href="#">{lang('Administer the site','admin')} <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info" href="#">{lang('Administrate site','admin')} <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
             </div>

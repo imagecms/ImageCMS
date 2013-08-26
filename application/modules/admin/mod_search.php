@@ -245,7 +245,7 @@ class Mod_search extends BaseAdminController {
             
                 if (!$this->components->install($name))
                 {
-                    showMessage(lang("Module installation module","admin"),false,'r');
+                    showMessage(lang("Module installation error","admin"),false,'r');
                 }
 
                 // Delete temp dir
