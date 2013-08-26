@@ -1,14 +1,15 @@
+/*
+ *imagecms frontend plugins
+ ** @author Domovoj
+ * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
+ */
+
 var isTouch = 'ontouchstart' in document.documentElement,
         activeClass = 'active',
         clonedC = 'cloned';
 wnd = $(window),
         body = $('body'),
         checkProdStock = checkProdStock == "" ? false : true;
-/*
- *imagecms frontend plugins
- ** @author Domovoj
- * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
- **/
 function pluralStr(i, str) {
     function plural(a) {
         if (a % 10 == 1 && a % 100 != 11)
@@ -30,7 +31,7 @@ function pluralStr(i, str) {
 }
 function serializeForm(el) {
     var $this = $(el);
-    return $this.attr('data-data', $this.closest('form').serialize());
+    return $this.data('data', $this.closest('form').serialize());
 }
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
@@ -67,7 +68,7 @@ $.testNumber = function(e) {
     var key = e.keyCode;
     if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
         return true;
-    keyChar = String.fromCharCode(key);
+    var keyChar = String.fromCharCode(key);
     if (!/\d/.test(keyChar)) {
         return false;
     }
@@ -89,7 +90,7 @@ $.fn.pricetext = function(e, rank) {
     return $this;
 }
 
-$(document).bind('textanimatechange', function(e) {
+$(document).on('textanimatechange', function(e) {
     var $this = e.el,
             nv = e.nvalue,
             ov = e.ovalue,
@@ -176,7 +177,7 @@ var ie = jQuery.browser.msie,
                                 methods.CheckallDisabled($this, $thisInput);
                             }
                         })
-                    }).find(wrapper).unbind('click.nstcheck').bind('click.nstcheck', function(e) {
+                    }).find(wrapper).unbind('click.nstcheck').on('click.nstcheck', function(e) {
                         var $this = $(this),
                                 $thisD = $this.is('.disabled'),
                                 nstcheck = $this.find(elCheckWrap);
@@ -192,12 +193,12 @@ var ie = jQuery.browser.msie,
                         }
                     });
                 });
-                wrapper.find('input').unbind('click.nstCheck').bind('click.nstCheck', function(e) {
+                wrapper.find('input').unbind('click.nstCheck').on('click.nstCheck', function(e) {
                     e.preventDefault();
                     $(this).closest(wrapper).trigger('click.nstcheck');
                 }).keyup(function(e) {
                     if (e.keyCode == 32)
-                        $(this).closest(wrapper).click();
+                        $(this).closest(wrapper).trigger('click.nstcheck');
                 })
             }
         },
@@ -337,13 +338,13 @@ var ie = jQuery.browser.msie,
                                 methods.radioCheck(input.parent(), input, after, false);
                         })
                     })
-                    $this.find(wrapper).unbind('click.radio').bind('click.radio', function(e) {
+                    $this.find(wrapper).unbind('click.radio').on('click.radio', function(e) {
                         if (!$(this).find('input').is(':disabled')) {
                             before($(this));
                             methods.changeRadio($(this).find(elCheckWrap), after, false);
                         }
                     });
-                    input.bind('mousedown change', function(e) {
+                    input.on('mousedown change', function(e) {
                         return false;
                     })
                 })
@@ -420,12 +421,12 @@ var ie = jQuery.browser.msie,
                     $thisS.html(html);
                     $thisS.fadeIn(durationA, function() {
                         $(document).trigger({'type': 'autocomplete.after', 'el': $thisS, 'input': inputString});
-                        $thisS.unbind('click.autocomplete').bind('click.autocomplete', function(e) {
+                        $thisS.unbind('click.autocomplete').on('click.autocomplete', function(e) {
                             e.stopImmediatePropagation();
                         })
-                        body.unbind('click.autocomplete').bind('click.autocomplete', function(event) {
+                        body.unbind('click.autocomplete').on('click.autocomplete', function(event) {
                             closeFrame();
-                        }).unbind('keydown.autocomplete').bind('keydown.autocomplete', function(e) {
+                        }).unbind('keydown.autocomplete').on('keydown.autocomplete', function(e) {
                             if (!e)
                                 var e = window.event;
                             if (e.keyCode == 27) {
@@ -508,6 +509,12 @@ var ie = jQuery.browser.msie,
                     selectorPosition = -1,
                     inputString = settings.inputString,
                     minValue = settings.minValue;
+            var submit = inputString.closest('form').find('[type="submit"]');
+            submit.on('click.autocomplete', function(e) {
+                e.preventDefault();
+                inputString.focus();
+                $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+            })
             inputString.keyup(function(event) {
                 var $this = $(this);
                 var inputValL = $this.val().length;
@@ -523,6 +530,18 @@ var ie = jQuery.browser.msie,
                 }
                 else
                     $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
+
+                var iL = inputString.val().length;
+                if (iL <= minValue)
+                    submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
+                        e.preventDefault();
+                        inputString.focus();
+                        $(document).trigger({type: 'autocomplete.fewLength', el: inputString, value: minValue});
+                    })
+                else {
+                    submit.unbind('click.autocomplete');
+                    console.log(1)
+                }
             }).blur(function() {
                 closeFrame();
             });
@@ -530,7 +549,7 @@ var ie = jQuery.browser.msie,
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
-                if (code == 13 && inputString.val().length <= minValue)
+                if (code == 13 && iL <= minValue)
                     return false;
             })
         }
@@ -586,10 +605,10 @@ var ie = jQuery.browser.msie,
                     $(document).trigger({'type': 'tooltip.show', 'el': $(this)});
                 });
             }
-            $this.unbind('mouseout.tooltip').bind('mouseout.tooltip', function() {
+            $this.unbind('mouseout.tooltip').on('mouseout.tooltip', function() {
                 $(this).tooltip('remove');
             })
-            $this.filter(':input').unbind('blur.tooltip').bind('blur.tooltip', function() {
+            $this.filter(':input').unbind('blur.tooltip').on('blur.tooltip', function() {
                 $(this).tooltip('remove');
             })
 
@@ -955,16 +974,16 @@ var ie = jQuery.browser.msie,
                             closeMenu(menu, e);
                             return timeDurM = duration;
                         });
-                body.unbind('click.menu').bind('click.menu', function(e) {
+                body.unbind('click.menu').on('click.menu', function(e) {
                     closeMenu(menu, e);
-                }).unbind('keydown.menu').bind('keydown.menu', function(e) {
+                }).unbind('keydown.menu').on('keydown.menu', function(e) {
                     if (!e)
                         var e = window.event;
                     if (e.keyCode == 27) {
                         closeMenu(menu, e);
                     }
                 });
-                dropOJ.find('a').unbind('click.menuref').bind('click.menuref', function(e) {
+                dropOJ.find('a').unbind('click.menuref').on('click.menuref', function(e) {
                     if (evLS == 'toggle') {
                         if ($.existsN($(this).next()) && sub2Frame) {
                             e.preventDefault();
@@ -976,7 +995,7 @@ var ie = jQuery.browser.msie,
                     else
                         e.stopPropagation();
                 });
-                menuItem.find('a').unbind('click.menuref').bind('click.menuref', function(e) {
+                menuItem.find('a:first').unbind('click.menuref').on('click.menuref', function(e) {
                     if (!$.existsN($(this).closest(menuItem).find(drop)))
                         e.stopPropagation();
                 });
@@ -984,7 +1003,7 @@ var ie = jQuery.browser.msie,
             return menu;
         },
         refresh: function() {
-            methods.init.call($(this), $.extend(optionsMenu, {refresh: true}));
+            methods.init.call($(this), $.extend({}, optionsMenu, {refresh: true}));
             return $(this);
         }
     };
@@ -1002,6 +1021,7 @@ var ie = jQuery.browser.msie,
     };
 })(jQuery);
 /*plugin menuImageCms end*/
+/*plugin tabs*/
 (function($) {
     var methods = {
         init: function(options) {
@@ -1046,7 +1066,7 @@ var ie = jQuery.browser.msie,
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
-                    refs[index].unbind('click.tabs').bind('click.tabs', function(e) {
+                    refs[index].unbind('click.tabs').on('click.tabs', function(e) {
                         wST = wnd.scrollTop();
                         var $this = $(this);
                         if ($this.is('a'))
@@ -1153,7 +1173,7 @@ var ie = jQuery.browser.msie,
                     if (thisL - 1 == index)
                         methods.location(regRefs[index], refs);
                 });
-                wnd.bind('hashchange', function(e) {
+                wnd.on('hashchange', function(e) {
                     function scrollTop(wST) {
                         if (e.scroll || e.scroll == undefined)
                             wnd.scrollTop(wST);
@@ -1256,281 +1276,7 @@ var ie = jQuery.browser.msie,
         return methods[m];
     };
 })(jQuery);
-(function($) {
-    var methods = {
-        init: function(options) {
-            var $this = $(this),
-                    settings = $.extend({
-                refresh: false,
-                after: function() {
-                }
-            }, options),
-                    mouseWhell = settings.mouseWhell,
-                    elEven = settings.elEven,
-                    onlyDif = settings.onlyDif,
-                    allParams = settings.allParams,
-                    hoverParent = settings.hoverParent,
-                    jScrollPane = settings.jScrollPane || false,
-                    after = settings.after,
-                    scrollPane = settings.scrollPane,
-                    nS = '.equal';
-            $this.each(function(index) {
-                var $this = $(this),
-                        visThis = $this.is(':visible');
-                if (visThis) {
-                    var left = $this.find(settings.left),
-                            right = $this.find(settings.right),
-                            liLength = left.length;
-                    if (!$this.is('[data-equalHorizCell]')) {
-                        var h = 0,
-                                liH = [],
-                                frameScroll = $this.find(settings.frameScroll),
-                                frameScrollC = frameScroll.children(),
-                                frameScrollCL = frameScrollC.length,
-                                scrollNSP = settings.scrollNSP && $.exists(frameScroll),
-                                scrollNSPT = settings.scrollNSPT;
-                        for (var j = 0; j < liLength; j++) {
-                            nab = $([]);
-                            right.each(function() {
-                                nab = nab.add($(this).find(elEven).eq(j))
-                            })
-                            var tempNabir = left.eq(j).add(nab);
-                            tempNabir.each(function(index) {
-                                var thisCh = $(this);
-                                liH[index] = thisCh.outerHeight();
-                                liH[index] > h ? h = liH[index] : h = h;
-                            });
-                            tempNabir.add(tempNabir.find('.helper')).css('height', h).attr('data-equalHorizCell', '');
-                            liH = [];
-                            h = 0;
-                        }
-                        var w = 0;
-                        frameScroll.children().each(function() {
-                            w += $(this).outerWidth(true);
-                        })
-                        frameScroll.css('width', w);
-                        var frameScrollP = frameScroll.parent(),
-                                frameScrollPW = frameScrollP.width(),
-                                scrollW = w - frameScrollPW;
-                        if (scrollNSP && frameScrollCL != 0) {
-                            scrollNSPT = $this.find(scrollNSPT);
-                            topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
-                            $this.children('.scrollNSP').remove();
-                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
-                        }
-                        var firstScrl = frameScrollP.css('overflow', 'hidden'),
-                                secScrl = $([]);
-                        if (scrollNSP) {
-                            secScrl = $this.children('.scrollNSP');
-                            if (jScrollPane)
-                                secScrl.addClass('jScrollPane')
-                            secScrl.css({
-                                'width': frameScrollPW,
-                                'top': topScrollNSP
-                            })
-                        }
-                        var api = '';
-                        function initNSS() {
-                            api = $(secScrl).jScrollPane(scrollPane);
-                            api = api.data('jsp');
-                            return api;
-                        }
-                        if (jScrollPane)
-                            api = initNSS();
-                        function scrollNst(deltaY) {
-                            if (jScrollPane)
-                                $thisSL = api.getContentPositionX();
-                            else
-                                $thisSL = $(this).scrollLeft();
-                            if ($thisSL != scrollW && deltaY < 0) {
-                                if (jScrollPane)
-                                    api.scrollToX($thisSL + w / frameScrollCL)
-                                else
-                                    firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
-                                return false;
-                            }
-                            if ($thisSL > 0 && deltaY > 0) {
-                                if (jScrollPane)
-                                    api.scrollToX($thisSL - w / frameScrollCL)
-                                else
-                                    firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
-                                return false;
-                            }
-                        }
-                        if ((mouseWhell || isTouch) && scrollW > 0) {
-                            firstScrl.add(secScrl).unbind('mousewheel').bind('mousewheel', function(event, delta, deltaX, deltaY) {
-                                scrollNst(deltaY);
-                            });
-                            if (isTouch) {
-                                firstScrl.unbind('touchstart' + nS + ' touchmove' + nS + ' touchend' + nS + '');
-                                firstScrl.bind('touchstart' + nS, function(e) {
-                                    sP = e.originalEvent.touches[0];
-                                    sP = sP.pageX;
-                                });
-                                firstScrl.bind('touchmove' + nS, function(e) {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    eP = e.originalEvent.touches[0];
-                                    eP = eP.pageX;
-                                });
-                                firstScrl.bind('touchend' + nS, function(e) {
-                                    e.stopPropagation();
-                                    if (Math.abs(eP - sP) > 200) {
-                                        if (eP - sP > 0) {
-                                            scrollNst(1);
-                                        }
-                                        else {
-                                            scrollNst(-1);
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                        if (jScrollPane)
-                            api.scrollToX(0)
-                        else
-                            firstScrl.add(secScrl).scrollLeft('0');
-                        if (scrollW > 0)
-                            secScrl.unbind('scroll' + nS).bind('scroll' + nS, function() {
-                                if (jScrollPane)
-                                    $thisSL = api.getContentPositionX();
-                                else
-                                    $thisSL = $(this).scrollLeft();
-                                firstScrl.add(secScrl).scrollLeft($thisSL);
-                            });
-                        $this.attr('data-equalHorizCell', '');
-                    }
-                    var right = right.find(hoverParent),
-                            left = left.parent(hoverParent).children();
-                    left.each(function(ind) {
-                        if (ind % 2 == 0)
-                            $(this).removeClass('evenC').addClass('oddC');
-                        else
-                            $(this).removeClass('oddC').addClass('evenC')
-                    });
-                    right.each(function() {
-                        $(this).find(elEven).each(function(ind) {
-                            var $this = $(this),
-                                    $thisCL = $this.children(':last');
-                            $thisCL.text($thisCL.text().trimMiddle().pasteSAcomm());
-                            if (ind % 2 == 0)
-                                $this.removeClass('evenC').addClass('oddC');
-                            else
-                                $this.removeClass('oddC').addClass('evenC')
-                        });
-                    });
-                    methods.hoverComprasion(left, right, elEven);
-                    onlyDif.unbind('click' + nS).bind('click' + nS, function() {
-                        methods.onlyDifM(left, right, liLength, elEven);
-                    });
-                    allParams.unbind('click' + nS).bind('click' + nS, function() {
-                        methods.allParamsM(left, right, elEven);
-                    });
-
-                    onlyDif.parent('.' + activeClass).children().trigger('click' + nS);
-                    allParams.parent('.' + activeClass).children().trigger('click' + nS);
-                    after($this);
-                }
-            })
-            return $this;
-        },
-        refresh: function(optionCompare) {
-            var $this = $(this);
-            $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
-            $this.equalHorizCell($.extend($.extend({}, optionCompare), {refresh: true}))
-            return $this;
-        },
-        hoverComprasion: function(left, right, elEven) {
-            left.add(right.find(elEven)).hover(function() {
-                var $this = $(this),
-                        index = $this.index(),
-                        nab = $([]);
-                right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(index))
-                })
-                $([]).add(left.eq(index)).add(nab).addClass('hover')
-            },
-                    function() {
-                        var $this = $(this),
-                                index = $this.index(),
-                                nab = $([]);
-                        right.each(function() {
-                            nab = nab.add($(this).find(elEven).eq(index))
-                        })
-                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
-                    });
-        },
-        onlyDifM: function(left, right, liLength, elEven) {
-            var liH = [],
-                    genObjC = $([]),
-                    tempText = '',
-                    k = 0;
-            for (var j = 0; j < liLength; j++) {
-                var nab = $([]);
-                right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(j))
-                })
-                var tempNabir = nab,
-                        tempText = '';
-                tempNabir.each(function(index) {
-                    var thisCh = $(this);
-                    liH[index] = thisCh.text();
-                    if (tempText == liH[index])
-                        k++;
-                    tempText = liH[index];
-                });
-                if (k == tempNabir.length - 1 && k != 0)
-                    genObjC = genObjC.add(left.eq(j)).add(tempNabir);
-                liH = [];
-                k = 0;
-                tempText = '';
-            }
-            right.each(function() {
-                $(this).find(elEven).not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                    if (ind % 2 == 0)
-                        $(this).addClass('oddC');
-                    else
-                        $(this).addClass('evenC')
-                });
-            });
-            left.not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                if (ind % 2 == 0)
-                    $(this).addClass('oddC');
-                else
-                    $(this).addClass('evenC')
-            });
-            genObjC.hide();
-        },
-        allParamsM: function(left, right, elEven) {
-            left.removeClass('evenC').removeClass('oddC').each(function(ind) {
-                if (ind % 2 == 0)
-                    $(this).addClass('oddC');
-                else
-                    $(this).addClass('evenC')
-            }).show();
-            right.each(function() {
-                $(this).find(elEven).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                    if (ind % 2 == 0)
-                        $(this).addClass('oddC');
-                    else
-                        $(this).addClass('evenC')
-                }).show();
-            })
-        }
-    };
-    $.fn.equalHorizCell = function(method) {
-        if (methods[method]) {
-            return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error('Method ' + method + ' does not exist on jQuery.equalHorizCell');
-        }
-    };
-    $.equalHorizCell = function(m) {
-        return methods[m];
-    };
-})(jQuery);
+/*/plugin tabs end*/
 (function($) {
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] == 'string') {
@@ -1561,9 +1307,11 @@ var ie = jQuery.browser.msie,
                 dropContent: null,
                 placement: 'noinherit',
                 modal: false,
+                confirm: false,
                 always: false,
                 animate: false,
                 moreoneNC: true,
+                timeclosemodal: false,
                 before: function() {
                 },
                 after: function() {
@@ -1575,143 +1323,12 @@ var ie = jQuery.browser.msie,
             }, options);
             var settings = optionsDrop,
                     exit = $(settings.exit),
-                    effon = settings.effon,
-                    effoff = settings.effoff,
-                    duration = settings.duration,
-                    close = settings.close,
-                    closed = settings.closed,
                     modal = settings.modal,
+                    confirm = settings.confirm,
                     always = settings.always,
-                    animate = settings.animate,
-                    dropContent = settings.dropContent,
-                    moreoneNC = settings.moreoneNC,
                     arrDrop = [];
-
-            $(this).add($('[data-drop]')).not('[disabled]').unbind('click.drop').bind('click.drop', function(e) {
-                var $this = $(this);
-                console.log($this)
-                $(document).trigger({'type': 'drop.click', 'el': $this})
-                e.stopPropagation();
-                e.preventDefault();
-                var elSet = $this.data();
-                function showDrop(elSetSource, isajax, e) {
-                    var place = elSet.place || settings.place,
-                            placement = elSet.placement || settings.placement,
-                            $thisEOff = elSet.effectOff || effoff,
-                            $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
-                            $thisA = elSet.animate != undefined ? elSet.animate : animate,
-                            $thisEOn = elSet.effectOn || effon,
-                            overlayColor = elSet.overlaycolor || settings.overlayColor,
-                            overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity;
-
-                    var $thisSource = elSet.drop;
-                    $($thisSource).data({'effect-off': $thisEOff, 'place': place, 'placement': placement, 'duration': $thisD, 'dropContent': dropContent, 'animate': $thisA, 'close': close, 'closed': closed, 'overlayOpacity': overlayOpacity, 'modal': elSet.modal || modal}).attr('data-elrun', $thisSource).unbind('click.drop').bind('click.drop', function(e) {
-                        var dropA = $('[data-elrun].' + activeClass)//hide other drop if place == 'center'
-                        methods.triggerBtnClick(dropA.not($(this)));
-
-                        if (!($(e.target).is(settings.exit) || $(e.target).closest(settings.exit).length != 0))
-                            e.stopImmediatePropagation();
-                    });
-                    var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
-                    if (condOverlay) {
-                        if (!$.exists('.overlayDrop')) {
-                            body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
-                        }
-                        optionsDrop.dropOver = $('.overlayDrop').css({
-                            'background-color': overlayColor,
-                            'opacity': overlayOpacity
-                        });
-                    }
-                    else {
-                        optionsDrop.dropOver == undefined;
-                    }
-                    if (elSetSource.is('.' + activeClass)) {
-                        methods.triggerBtnClick(elSetSource);
-                    }
-                    else {
-                        settings.before($this, elSetSource, isajax);
-
-                        // if drop reference in drop and center
-                        var $thisDrop = $this.closest('[data-elrun]');
-                        if ($.existsN($thisDrop) && $thisDrop.data('place') == 'center')
-                            methods.triggerBtnClick($thisDrop);
-
-//                        // if visble drop which show with refer in new showing drop
-//                        if ($(elSetSource.find('[data-drop]').data('drop')).is(':visible'))
-//                            methods.triggerBtnClick($(elSetSource.find('[data-drop]').data('drop')));
-//
-//                        // starget trigger click in drop on show drop element (js_template.tpl showCart)
-//                        $thisDrop = $(e.starget).closest('[data-elrun]');
-//                        if ($.existsN($thisDrop))
-//                            $thisDrop = $(e.starget).closest('[data-elrun]');
-//
-//                        // if visible no center drop and show center drop
-//                        $thisDrop = $('[data-elrun]:visible');
-//                        if ($thisDrop.data('place') != 'center' && elSetSource.data('place') != 'center' && !moreoneNC)
-//                            methods.triggerBtnClick($thisDrop);
-//                        if (elSetSource.data('place') == 'center')
-//                            methods.triggerBtnClick($thisDrop);
-
-                        if (!moreoneNC) {
-                            methods.triggerBtnClick($('[data-elrun]:visible'));
-                        }
-
-                        if (e.button == undefined && place != "center")
-                            wnd.scrollTop($this.offset().top);
-                        var wndW = wnd.width();
-                        if (elSetSource.actual('width') > wndW)
-                            elSetSource.css('width', wndW - 40);
-                        else
-                            elSetSource.removeAttr('style');
-                        if (place == 'noinherit')
-                            methods.positionDrop($this, placement, place);
-                        var dC = elSetSource.find(elSetSource.data('dropContent')).first();
-                        if (place == 'center')
-                            methods.dropCenter(elSetSource);
-                        if (condOverlay) {
-                            optionsDrop.dropOver.show().unbind('click').bind('click', function(e) {
-                                e.stopPropagation();
-                                methods.triggerBtnClick(false);
-                            })
-                        }
-                        elSetSource.addClass(place);
-                        elSetSource[$thisEOn]($thisD, function() {
-                            $(document).trigger({type: 'drop.contentHeight', el: dC, drop: elSetSource});
-                            elSetSource.addClass(activeClass);
-                            if (place == 'center' && !(elSet.modal || modal)) {
-                                if ($(document).height() - wnd.height() > 0) {
-                                    optionsDrop.wST = wnd.scrollTop();
-                                    methods.scrollEmulate();
-                                }
-                            }
-                            settings.after($this, elSetSource, isajax);
-                        });
-                        $(document).trigger({'type': 'drop.show', el: elSetSource})
-                    }
-                    body.add($('iframe').contents().find('body')).unbind('click.bodydrop').unbind('keydown.bodydrop').bind('click.bodydrop', function(e) {
-                        if ((e.which || e.button == 0) && e.relatedTarget == null) {
-                            methods.triggerBtnClick(false);
-                        }
-                    }).bind('keydown.bodydrop', function(e) {
-                        if (!e)
-                            var e = window.event;
-                        key = e.keyCode;
-                        if (key == 27) {
-                            methods.triggerBtnClick(false);
-                        }
-                    });
-                }
-
-                $this.parent().addClass(activeClass);
-                var elSetSource = $(elSet.drop),
-                        newModal = elSet.modal || modal;
-                newAlways = elSet.always || always;
-                if ($.existsN(elSetSource) && !newModal && !newAlways) {
-                    if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
-                        body.append(elSetSource)
-                    showDrop(elSetSource, false, e);
-                }
-                else if (elSet.source || newAlways) {
+            $(this).add($('[data-drop]')).unbind('click.drop').on('click.drop', function(e) {
+                function confirmF() {
                     if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
                         arrDrop.push(elSet.source);
                         if (!newModal)
@@ -1725,30 +1342,173 @@ var ie = jQuery.browser.msie,
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
                                     $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
                                     if (elSet.callback != undefined)
-                                        eval(elSet.callback)($this, data);
+                                        eval(elSet.callback)($this, data, elSetSource);
                                 }
                                 else {
                                     $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
+                                    if (elSet.callback != undefined)
+                                        eval(elSet.callback)($this, data, elSetSource);
                                     body.append(data);
                                 }
                                 elSetSource = $(elSet.drop);
                                 methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
-                                showDrop(elSetSource, true, e);
+                                methods.showDrop($this, e, optionsDrop, true);
                             }})
                     }
                 }
-                return false;
+                var $this = $(this);
+                if (!$this.is('[disabled]')) {
+                    $(document).trigger({'type': 'drop.click', 'el': $this})
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var elSet = $this.data();
+
+                    var elSetSource = $(elSet.drop),
+                            newModal = elSet.modal || modal,
+                            newConfirm = elSet.confirm || confirm,
+                            newAlways = elSet.always || always;
+                    if ($.existsN(elSetSource) && !newModal && !newAlways) {
+                        if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
+                            body.append(elSetSource)
+                        methods.showDrop($this, e, optionsDrop, false);
+                    }
+                    else if ((elSet.source || newAlways)) {
+                        if (!newConfirm)
+                            confirmF();
+                        else {
+                            methods.showDrop($('[data-drop="#confirm"]'), e, settings, false);
+                            $('[data-button-confirm]').focus().on('click.drop', function() {
+                                confirmF();
+                            })
+                        }
+
+                    }
+                    return false;
+                }
             })
             exit.live('click', function() {
-                methods.triggerBtnClick($(this).closest('[data-elrun]'));
+                methods.closeDrop($(this).closest('[data-elrun]'));
             })
         },
-        triggerBtnClick: function(sel) {
+        showDrop: function($this, e, settings, isajax) {
+            var settings = !settings ? optionsDrop : settings,
+                    isajax = !isajax ? false : true,
+                    elSet = $this.data(),
+                    place = elSet.place || settings.place,
+                    placement = elSet.placement || settings.placement,
+                    $thisEOff = elSet.effectOff || settings.effoff,
+                    $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
+                    $thisA = elSet.animate != undefined ? elSet.animate : settings.animate,
+                    $thisEOn = elSet.effectOn || settings.effon,
+                    overlayColor = elSet.overlaycolor || settings.overlayColor,
+                    modal = elSet.modal || settings.modal,
+                    timeclosemodal = elSet.timeclosemodal || settings.timeclosemodal,
+                    confirm = elSet.confirm || settings.confirm,
+                    moreoneNC = elSet.moreoneNC || settings.moreoneNC,
+                    dropContent = elSet.dropContent || settings.dropContent,
+                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity,
+                    before = elSet.before || settings.before,
+                    after = elSet.after || settings.after,
+                    close = elSet.close || settings.close,
+                    closed = elSet.closed || settings.closed,
+                    elSetSource = $(elSet.drop),
+                    $thisSource = elSet.drop;
+            $this.parent().addClass(activeClass);
+            $($thisSource).data({
+                'effect-off': $thisEOff,
+                'place': place,
+                'placement': placement,
+                'duration': $thisD,
+                'dropContent': dropContent,
+                'animate': $thisA,
+                'close': close,
+                'closed': closed,
+                'overlayOpacity': overlayOpacity,
+                'modal': modal,
+                'confirm': confirm,
+                'timeclosemodal': timeclosemodal
+            }).attr('data-elrun', $thisSource);
+            var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+            if (condOverlay) {
+                if (!$.exists('.overlayDrop')) {
+                    body.append('<div class="overlayDrop" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;z-index: 1101;"></div>')
+                }
+                optionsDrop.dropOver = $('.overlayDrop').css({
+                    'background-color': overlayColor,
+                    'opacity': overlayOpacity
+                });
+            }
+            else {
+                optionsDrop.dropOver == undefined;
+            }
+            if (elSetSource.is('.' + activeClass)) {
+                methods.closeDrop(elSetSource);
+            }
+            else {
+                before($this, elSetSource, isajax);
+                if ((!moreoneNC || elSet.moreoneNC) && elSetSource.data('place') != 'inherit') {
+                    methods.closeDrop($('[data-elrun]:visible'));
+                }
+
+                if (e.button == undefined && place != "center")
+                    wnd.scrollTop($this.offset().top);
+                var wndW = wnd.width();
+                if (elSetSource.actual('width') > wndW)
+                    elSetSource.css('width', wndW - 40);
+                else
+                    elSetSource.removeAttr('style');
+                if (place == 'noinherit')
+                    methods.positionDrop($this, placement, place);
+                var dC = elSetSource.find(elSetSource.data('dropContent')).first();
+                if (place == 'center')
+                    methods.dropCenter(elSetSource);
+                if (condOverlay) {
+                    optionsDrop.dropOver.show().unbind('click.drop').on('click.drop', function(e) {
+                        e.stopPropagation();
+                        methods.closeDrop(false);
+                    })
+                }
+                elSetSource.addClass(place);
+                elSetSource[$thisEOn]($thisD, function() {
+                    var $this = $(this);
+                    $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
+                    $this.addClass(activeClass);
+                    if (!confirm && modal && timeclosemodal)
+                        setTimeout(function() {
+                            methods.closeDrop($this)
+                        }, timeclosemodal)
+                    if (place == 'center' && !(elSet.modal || modal)) {
+                        if ($(document).height() - wnd.height() > 0) {
+                            optionsDrop.wST = wnd.scrollTop();
+                            methods.scrollEmulate();
+                        }
+                    }
+                    after($this, elSetSource, isajax);
+                });
+                $(document).trigger({'type': 'drop.show', el: elSetSource})
+            }
+            body.add($('iframe').contents().find('body')).unbind('click.drop').unbind('keydown.drop').on('click.drop', function(e) {
+                if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {
+                    methods.closeDrop(false);
+                }
+                else
+                    return true;
+            }).on('keydown.drop', function(e) {
+                if (!e)
+                    var e = window.event;
+                key = e.keyCode;
+                if (key == 27) {
+                    methods.closeDrop(false);
+                }
+            });
+        },
+        closeDrop: function(sel) {
+            $('[data-button-confirm]').unbind('click.drop');
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 drop.each(function() {
                     var drop = $(this);
-                    if (drop.data('overlayOpacity') != 0 || sel || drop.data('modal')) {
+                    if (drop.data('place') != 'inherit' || sel || drop.data('modal')) {
                         $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
@@ -1770,9 +1530,8 @@ var ie = jQuery.browser.msie,
                                 }
                             }
                             optionsDrop.dropOver = $('.overlayDrop');
-                            if (!$.existsN($('[data-elrun].' + activeClass)) && optionsDrop.dropOver.is(':visible'))
+                            if (optionsDrop.dropOver.is(':visible'))
                                 methods.scrollEmulateRemove();
-
                             $this[$thisEOff]($thisD, function() {
                                 $(this).removeAttr('style');
                                 if ($this.data('closed') != undefined)
@@ -1837,7 +1596,7 @@ var ie = jQuery.browser.msie,
                     });
             }
             var dropTimeout = '';
-            wnd.bind('resize.drop', function() {
+            wnd.on('resize.drop', function() {
                 clearTimeout(dropTimeout);
                 dropTimeout = setTimeout(function() {
                     methods.dropCenter(elSetSource)
@@ -1849,7 +1608,7 @@ var ie = jQuery.browser.msie,
             body.addClass('isScroll');
             body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
             if (isTouch && conDropOver)
-                optionsDrop.dropOver.bind('touchmove.drop', function(e) {
+                optionsDrop.dropOver.on('touchmove.drop', function(e) {
                     return false;
                 });
         },
@@ -1917,7 +1676,7 @@ var ie = jQuery.browser.msie,
                             regM = v;
                         $thisNext = $thisNext[regM](regS);
                     })
-                    $thisNext.unbind('click.pM').bind('click.pM', function(e) {
+                    $thisNext.unbind('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
@@ -1945,7 +1704,7 @@ var ie = jQuery.browser.msie,
                             }
                         }
                     })
-                    $thisPrev.unbind('click.pM').bind('click.pM', function(e) {
+                    $thisPrev.unbind('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisNext.removeAttr('disabled', 'disabled')
                         if (!el.is(':disabled')) {
@@ -1992,11 +1751,12 @@ var ie = jQuery.browser.msie,
         init: function(e) {
             var $this = $(this),
                     $min = $(this).attr('data-min'),
-                    $thisVal = parseInt($this.val());
+                    $thisVal = $this.val();
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
-            if ((key == 48 || key == 96) && ($thisVal.length == 0 || $thisVal == '0')) {
+
+            if ((key == 48 || key == 96) && ($thisVal.length == 0 || parseInt($thisVal) == 0)) {
                 $this.val($min);
             }
         }
@@ -2013,6 +1773,19 @@ var ie = jQuery.browser.msie,
     $.minValue = function(m) {
         return methods[m];
     };
+    $('[data-min]').die('keyup').live('keyup', function(e) {
+        $(this).minValue(e);
+    })
+    $('[data-min]').die('keypress').live('keypress', function(e) {
+        var key = e.keyCode,
+                keyChar = parseInt(String.fromCharCode(key));
+        var $this = $(this),
+                $min = $this.attr('data-min');
+        if ($this.val() == "" && keyChar == 0) {
+            $this.val($min);
+            return false;
+        }
+    })
 })(jQuery);
 (function($) {
     var methods = {
@@ -2021,8 +1794,8 @@ var ie = jQuery.browser.msie,
                     $max = parseInt($this.attr('data-max'));
             if (!e)
                 var e = window.event;
-            var key = e.keyCode;
-            keyChar = parseInt(String.fromCharCode(key));
+            var key = e.keyCode,
+                    keyChar = parseInt(String.fromCharCode(key));
             if ((keyChar > $max || $thisVal > $max) && checkProdStock) {
                 $this.val($max);
                 if (typeof f == 'function')
@@ -2045,7 +1818,7 @@ var ie = jQuery.browser.msie,
     $.maxValue = function(m) {
         return methods[m];
     };
-    $('[data-max]').live('keydown keyup', function(e) {
+    $('[data-max]').die('keydown keyup').live('keydown keyup', function(e) {
         $(this).maxValue(e);
     })
 })(jQuery);
@@ -2116,17 +1889,17 @@ var ie = jQuery.browser.msie,
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
                         if (isTouch && isHorz) {
-                            $this.unbind('touchstart' + nS).bind('touchstart' + nS, function(e) {
+                            $this.unbind('touchstart' + nS).on('touchstart' + nS, function(e) {
                                 sP = e.originalEvent.touches[0];
                                 sP = sP.pageX;
                             });
-                            $this.unbind('touchmove' + nS).bind('touchmove' + nS, function(e) {
+                            $this.unbind('touchmove' + nS).on('touchmove' + nS, function(e) {
                                 e.stopPropagation();
                                 e.preventDefault();
                                 eP = e.originalEvent.touches[0];
                                 eP = eP.pageX;
                             });
-                            $this.unbind('touchend' + nS).bind('touchend' + nS, function(e) {
+                            $this.unbind('touchend' + nS).on('touchend' + nS, function(e) {
                                 e.stopPropagation();
                                 if (Math.abs(eP - sP) > 200) {
                                     if (eP - sP > 0)
@@ -2137,17 +1910,17 @@ var ie = jQuery.browser.msie,
                             });
                         }
                         if (isTouch && isVert) {
-                            $this.unbind('touchstart' + nS).bind('touchstart' + nS, function(e) {
+                            $this.unbind('touchstart' + nS).on('touchstart' + nS, function(e) {
                                 sP = e.originalEvent.touches[0];
                                 sP = sP.pageY;
                             });
-                            $this.unbind('touchmove' + nS).bind('touchmove' + nS, function(e) {
+                            $this.unbind('touchmove' + nS).on('touchmove' + nS, function(e) {
                                 e.stopPropagation();
                                 e.preventDefault();
                                 eP = e.originalEvent.touches[0];
                                 eP = eP.pageY;
                             });
-                            $this.unbind('touchend' + nS).bind('touchend' + nS, function(e) {
+                            $this.unbind('touchend' + nS).on('touchend' + nS, function(e) {
                                 e.stopPropagation();
                                 if (Math.abs(eP - sP) > 200) {
                                     if (eP - sP > 0)
@@ -2168,7 +1941,7 @@ var ie = jQuery.browser.msie,
                         $thisNext.add($thisPrev).hide();
                     }
                     if (body.lazyload() == body) {
-                        $thisNext.add($thisPrev).bind('click', function(e) {
+                        $thisNext.add($thisPrev).on('click', function(e) {
                             if (!$(this).is('[disabled="disabled"]'))
                                 wnd.scroll(); // for lazyload
                         })
@@ -2219,7 +1992,7 @@ var Shop = {
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
-        add: function(cartItem, el) {
+        add: function(cartItem, el, btn) {
             //trigger before_add_to_cart
             $(document).trigger({
                 type: 'before_add_to_cart',
@@ -2242,18 +2015,17 @@ var Shop = {
 
             Shop.currentItem = cartItem;
             $.post(url, data,
-                    function(data) {
+                    function() {
                         try {
-                            responseObj = JSON.parse(data);
+                            Shop.Cart._add(cartItem, el, btn);
                             //save item to storage
-                            Shop.Cart._add(Shop.currentItem, el);
                         } catch (e) {
                             return;
                         }
                     });
             return;
         },
-        _add: function(cartItem, el) {
+        _add: function(cartItem, el, btn) {
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
@@ -2264,7 +2036,8 @@ var Shop = {
             $(document).trigger({
                 type: 'after_add_to_cart',
                 cartItem: _.clone(cartItem),
-                starget: el
+                starget: el,
+                sbutton: btn
             });
             $(document).trigger({
                 type: 'cart_changed'
@@ -2349,11 +2122,6 @@ var Shop = {
             if (!cartItem.storageId().match(/undefined/)) {
                 localStorage.setItem(cartItem.storageId(), JSON.stringify(cartItem));
                 this.totalRecount();
-                ////trigger cart_changed
-                $(document).trigger({
-                    type: 'cart_changed'
-                });
-                //
             }
             return this;
         },
@@ -2378,18 +2146,6 @@ var Shop = {
                     length++;
             return length;
         },
-//        totalRecount: function() {
-//            var items = this.getAllItems();
-//            this.totalPrice = 0;
-//            this.totalCount = 0;
-//            for (var i = 0; i < items.length; i++) {
-//                this.totalPrice += items[i].price * items[i].count;
-//                this.totalCount += parseInt(items[i].count);
-//            }
-//
-//            return this;
-//        },
-
         totalRecount: function() {
             var items = this.getAllItems();
             this.totalPrice = 0;
@@ -2425,12 +2181,6 @@ var Shop = {
             else
                 return this.totalPriceOrigin;
         },
-//        getFinalAmount: function() {
-//            if (this.shipFreeFrom > 0)
-//                if (this.shipFreeFrom <= this.getTotalPrice())
-//                    this.shipping = 0.0;
-//            return (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.getTotalPrice() + this.shipping - parseFloat(this.giftCertPrice)) : 0;
-//        },
         getFinalAmount: function() {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
@@ -2536,85 +2286,6 @@ var Shop = {
         cartItem.prodstatus = $context.data('prodstatus');
         return cartItem;
     },
-    WishList: {
-        items: [],
-        all: function() {
-            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
-        },
-        add: function(key, vid, price, curentEl) {
-            Shop.WishList.items = this.all();
-            localStorage.setItem('wishList_' + key + '_' + vid, JSON.stringify({
-                id: key,
-                vid: vid,
-                price: price
-            }));
-            if (this.items.indexOf(key) == -1) {
-                $.post('/shop/wish_list_api/add', {
-                    productId_: key,
-                    variantId_: vid
-                }, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data);
-                        dataObj.id = key;
-                        if (dataObj.success == true) {
-                            Shop.WishList.items.push(key);
-                            //localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
-                            var arr = JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
-                            arr.push(key + '_' + vid)
-                            localStorage.setItem('wishList', JSON.stringify(arr));
-                            if (Shop.WishList.items.length != dataObj.count) {
-                                Shop.WishList.sync();
-                                return;
-                            }
-                            $(document).trigger({
-                                type: 'wish_list_add',
-                                dataObj: dataObj
-                            });
-                        }
-                        else {
-                            if (dataObj.errors.match('not_logged_in')) {
-                                $(loginButton).click();
-                            }
-                        }
-                    } catch (e) {
-                    }
-                });
-            }
-        },
-        rm: function(key, el, vid, price) {
-            this.items = this.all();
-            $.get('/shop/wish_list_api/delete/' + key + '_' + vid, function(data) {
-                try {
-                    dataObj = JSON.parse(data);
-                    dataObj.id = key;
-                    if (dataObj.success == true) {
-                        Shop.WishList.items = _.without(Shop.WishList.items, key + '_' + vid);
-                        localStorage.setItem('wishList', JSON.stringify(Shop.WishList.items));
-                        $(document).trigger({
-                            type: 'wish_list_rm',
-                            dataObj: dataObj
-                        });
-                    }
-                } catch (e) {
-                }
-            });
-            deleteWishListItem($(el), key, vid, price);
-        },
-        sync: function() {
-            $.getJSON('/shop/wish_list_api/sync', function(data) {
-                if (typeof(data) == 'Array' || typeof(data) == 'object') {
-                    localStorage.setItem('wishList', JSON.stringify(data));
-                }
-                if (data === false) {
-                    localStorage.setItem('wishList', []);
-                }
-
-                $(document).trigger({
-                    type: 'wish_list_sync'
-                });
-            });
-        }
-    },
     CompareList: {
         items: [],
         all: function() {
@@ -2662,9 +2333,6 @@ var Shop = {
                     }
                 });
             }
-
-
-
             $(document).trigger({
                 type: 'delete_compare',
                 el: $(el)
@@ -2732,6 +2400,7 @@ var ImageCMSApi = {
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         //send api request to api controller
+        $(document).trigger({'type': 'showActivity'});
         $.ajax({
             type: "post",
             data: dataSend,
@@ -2741,6 +2410,7 @@ var ImageCMSApi = {
                 ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
+                $(document).trigger({'type': 'hideActivity'});
                 if (obj !== null) {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
@@ -2776,7 +2446,7 @@ var ImageCMSApi = {
                     if (obj.validations != 'undefined' && obj.validations != null) {
                         ImageCMSApi.sendValidations(obj.validations, selector, DS);
                     }
-                    $(form).find(':input').unbind('input').bind('input', function() {
+                    $(form).find(':input').unbind('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
                                 form = $this.closest('form'),
                                 $thisТ = $this.attr('name'),

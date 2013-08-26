@@ -106,6 +106,7 @@ class Admin extends BaseAdminController {
 
                 $data = $form->getData();
                 $groups = $data['groups'];
+                
                 $data['data']=  serialize($data);
                  unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
@@ -229,7 +230,12 @@ class Admin extends BaseAdminController {
 
             if ($_POST) {
                 $data = $form->getData();
-
+            
+                $matches = array();
+                if(preg_match_all('/<p>([\W\S]+)<\/p>/',  $data['initial'], $matches)){
+                    $data['initial'] = $matches[1];
+                }
+                
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
                 unset($data['validation_required']);
@@ -256,11 +262,11 @@ class Admin extends BaseAdminController {
                             $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
                     }
                 showMessage(lang('amt_field_updated'));
-                if ($this->input->post('action') == 'close')
-                    pjax( $this->get_url('index'));
-                else
-                    pjax( $_SERVER['HTTP_REFERER']);
-                exit;
+//                if ($this->input->post('action') == 'close')
+//                    pjax( $this->get_url('index'));
+//                else
+//                    pjax( $_SERVER['HTTP_REFERER']);
+//                exit;
             }
 
             $this->template->add_array(array(

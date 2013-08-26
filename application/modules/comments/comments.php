@@ -91,7 +91,7 @@ class Comments extends MY_Controller {
 
     public function init($model) {
         \CMSFactory\assetManager::create()
-                ->registerScript('comments');
+                ->registerScript('comments', TRUE);
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());

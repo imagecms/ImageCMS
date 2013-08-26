@@ -120,7 +120,7 @@
                             <td>
                                 <p>
                                     {lang('a_version')}: {$cms_number} <br />
-                                    <a href="/admin/sys_update">
+                                    <a class="pjax" href="/admin/sys_update">
                                             Проверить обновления
                                     </a>
                                     <br/>

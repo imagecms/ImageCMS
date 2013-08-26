@@ -47,26 +47,42 @@
             <div class="h-footer"></div>
         </div>
         <footer>
-            <!--Load star rating-->
-                    {//$CI->load->module('star_rating')->show_star_rating()}
             {include_tpl('footer')}
-            
         </footer>
-        
         {include_tpl('user_toolbar')}
 
+        <!-- scripts -->
         {include_tpl('config.js')}
+        <script src="{$THEME}js/_jquery.imagecms.shop.js?{echo rand()}"></script>
+        <script src="{$THEME}js/_scripts.js?{echo rand()}"></script>
+        {literal}
+            <script>
+                function downloadJSAtOnload() {
+                    var cL = 0;
+                    $.map(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], function(i, n) {
+                        var element = document.createElement("script");
+                        element.src = theme + 'js/' + i + '.js';
+                        document.body.appendChild(element);
+                        $(element).load(function() {
+                            cL++;
+                            if (cL == 2) {
+                                $(document).trigger({'type': 'scriptDefer'});
+                                init();
+                            }
+                        })
+                    })
+                }
 
-        <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js?{echo rand()}"></script>
-
-        <script type="text/javascript" src="{$THEME}js/jquery.jcarousel.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.lazyload.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.jscrollpane.min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/jquery.mousewheel.js"></script>
-
-        <script type="text/javascript" src="{$THEME}js/scripts.js?{echo rand()}"></script>
+                // Check for browser support of event handling capability
+                if (window.addEventListener)
+                    window.addEventListener("load", downloadJSAtOnload, false);
+                else if (window.attachEvent)
+                    window.attachEvent("onload", downloadJSAtOnload);
+                else
+                    window.onload = downloadJSAtOnload;
+            </script>
+        {/literal}
         {include_shop_tpl('js_templates')}
+        <!-- scripts end -->
     </body>
 </html>

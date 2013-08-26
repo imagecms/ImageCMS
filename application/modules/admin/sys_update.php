@@ -26,7 +26,16 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
-        $array = $this->update->checkVersion();
+        if(!extension_loaded('soap')){
+            exit;
+        }
+
+        ini_set("soap.wsdl_cache_enabled", "0");
+        
+        if(extension_loaded('soap')){
+            $array = $this->update->getStatus();
+        }
+        
         if ($array) {
             $data = array(
                 'build' => $array['build'],
@@ -39,35 +48,36 @@ class Sys_update extends BaseAdminController {
                 'newRelise' => 0,
             );
         }
+
         $this->template->show('sys_update_info', FALSE, $data);
     }
 
+    public function do_update() {
+        $this->update->getUpdate();
+        $this->update->restoreFromZIP('./application/backups/updates.zip');
+        pjax('/admin');
+    }
+
     public function update($sort_by = "create_date", $order = 'asc') {
-
         // Show upgrade window;
-        $old = $this->update->getOldMD5File();
+        $result = $this->update->getHashSum();
         $array = $this->update->parse_md5();
-//        var_dumps($array);
-//        var_dumps($old);
-        $diff = array_diff($array, $old);
-//        var_dumps($diff);
-//        $this->update->add_to_ZIP($diff);
-//        var_dump(write_file('md5.txt', json_encode( $this->update->parse_md5())));
-//        echo json_encode( $this->update->parse_md5());
-//        $this->update->formXml();
-//        $this->update->sendData();
-//        $this->update->restoreFromZIP();
-//        $this->update->checkForVersion();
-//        $this->update->sendData();
-        $data = array(
-            'filesCount' => count($diff),
-            'sort_by' => $sort_by,
-            'order' => $order,
-            'diff_files_dates' => $this->update->get_files_dates(),
-            'diff_files' => $diff,
-            'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
-        );
+        $diff = array_diff($array, $result);
 
+        if (!$result['error'])
+            $data = array(
+                'filesCount' => count($diff),
+                'sort_by' => $sort_by,
+                'order' => $order,
+                'diff_files_dates' => $this->update->get_files_dates(),
+                'diff_files' => $diff,
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+            );
+        else
+            $data = array(
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                'error' => $result['error']
+            );
         $this->template->show('sys_update', FALSE, $data);
     }
 
@@ -131,6 +141,7 @@ class Sys_update extends BaseAdminController {
 
     public function backup() {
         $this->update->createBackUp();
+        redirect('/admin/sys_update/update');
     }
 
     public function sort($array, $sort_by, $order) {

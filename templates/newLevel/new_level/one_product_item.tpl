@@ -156,6 +156,7 @@
                                         data-prodid="{echo $p->getId()}"
                                         data-varid="{echo $pv->getId()}"
                                         data-price="{echo $pv->toCurrency()}"
+                                        data-count="1"
                                         data-name="{echo ShopCore::encode($p->getName())}"
                                         data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                         data-maxcount="{echo $pv->getstock()}"
@@ -221,23 +222,10 @@
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
-                                {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                <!-- to wish list button -->
-                                <div class="variant_{echo $pv->getId()} variant btn-wish" {if $key != 0}style="display:none"{/if}>
-                                    <button class="toWishlist"
-                                            data-price="{echo $pv->toCurrency()}"
-                                            data-prodid="{echo $p->getId()}"
-                                            data-varid="{echo $pv->getId()}"
-                                            type="button"
-                                            data-title="{lang('s_add_to_wish_list')}"
-                                            data-firtitle="{lang('s_add_to_wish_list')}"
-                                            data-sectitle="{lang('s_in_wish_list')}"
-                                            data-rel="tooltip">
-                                        <span class="icon_wish"></span>
-                                        <span class="text-el d_l">{lang('s_add_to_wish_list')}</span>
-                                    </button>
+                                <div class="variant_{echo $pv->getId()} variant d_i-b" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
-                            {/foreach}
+                           {/foreach}
                             <!-- end of Wish List buttons -->
                         {/if}
                     </div>
@@ -265,9 +253,6 @@
         <!--        Start. Remove buttons if compare or wishlist-->
         {if $compare}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
-        {/if}
-        {if $wishlist && ShopCore::$ci->dx_auth->is_logged_in() === true}
-            <button data-drop_bak=".drop-enter" onclick="Shop.WishList.rm({echo $p->getId()}, this, {echo $p->getId()})" class="icon_times"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->
 
