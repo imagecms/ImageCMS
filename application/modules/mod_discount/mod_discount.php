@@ -72,7 +72,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
     }
 
     public function register_script() {
-        \CMSFactory\assetManager::create()->registerScript('main');
+        \CMSFactory\assetManager::create()->registerScript('main', TRUE);
     }
 
     /**
