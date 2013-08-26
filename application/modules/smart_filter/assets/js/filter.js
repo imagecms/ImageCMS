@@ -1,19 +1,23 @@
-var framechecks = ".frame-group-checks";
+var framechecks = ".frame-group-checks",
+        frameFilter = '.frame-filter';
 function filtertype(el, totalProducts, otherClass) {
     var $this = el.closest(framechecks),
             $thisRel = $this.data('rel');
     if ($thisRel != undefined) {
         var arr = $thisRel.split(' ');
         $.map(arr, function(n, i) {
-            switch (n) {
-                case 'dropDown':
-                    $this.find('.title').next().show();
-                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
-                case 'scroll':
-                    cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            if (n == 'dropDown') {
+                $this.find('.title').next().show();
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            }
+            if (n == 'scroll') {
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
             }
         });
     }
+}
+function changeSelectFilter(el) {
+    ajaxRecount('#cuselFrame-' + $(el).attr('id'), false);
 }
 (function($) {
     var methods = {
@@ -68,7 +72,7 @@ function filtertype(el, totalProducts, otherClass) {
                     maxCost.val(ui.values[1]);
                 },
                 stop: function() {
-                    ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                    ajaxRecount('#' + slider.attr('id'), 'apply-slider');
                 }
             });
             minCost.change(function() {
@@ -105,7 +109,7 @@ function filtertype(el, totalProducts, otherClass) {
                 slider.slider("values", 1, value2);
             });
             minCost.add(maxCost).change(function() {
-                ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                ajaxRecount('#' + slider.attr('id'), 'apply-slider');
             });
         }
     };
@@ -190,7 +194,7 @@ function filtertype(el, totalProducts, otherClass) {
         }
     };
 })(jQuery);
-function afterAjaxInitializeFilter() {
+function afterAjaxInitializeFilter(ready) {
     var apply = $('.apply'),
             $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
@@ -200,6 +204,11 @@ function afterAjaxInitializeFilter() {
         var $this = $(this);
         $this.sliderInit(eval($this.data('rel')));
     });
+    if ($.exists('.lineForm:visible')) {
+        cuSel($.extend({}, cuselOptions, {changedEl: '#catalog_form .lineForm select'}));
+        if (ltie7)
+            ieInput($('.cuselText'));
+    }
     $(framechecks).nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
@@ -208,7 +217,7 @@ function afterAjaxInitializeFilter() {
         //if evCond: true
         before: function(a, b, c) {
             c.nStCheck('changeCheck');
-            ajaxRecount('#' + b.attr('id'), false, true);
+            ajaxRecount('#' + b.attr('id'), false);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
             if ($thisframechecks.data('rel') != undefined) {
                 if ($thisframechecks.data('rel').match('scroll')) {
@@ -235,32 +244,29 @@ function afterAjaxInitializeFilter() {
             var arr = $thisRel.split(' '),
                     arrL = arr.length;
             $.map(arr, function(n, i) {
-                switch (n) {
-                    case 'dropDown':
-                        $this.find('.title .text-el').addClass('d_l');
+                if (n == 'dropDown') {
+                    $this.find('.title .text-el').addClass('d_l');
 
-                        $this.find('.title > span').bind('click.filter', function(e) {
-                            var $thisi = $(this);
-                            $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
-                                if ($(this).is(':visible')) {
-                                    cleaverFilterObj.dropDownArr.push($this.attr('id'));
-                                }
-                                else {
-                                    cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
-                                }
-                                $thisi.toggleClass('valuePD');
-                            });
+                    $this.find('.title > span').bind('click.filter', function(e) {
+                        var $thisi = $(this);
+                        $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
+                            if ($(this).is(':visible')) {
+                                cleaverFilterObj.dropDownArr.push($this.attr('id'));
+                            }
+                            else {
+                                cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
+                            }
+                            $thisi.toggleClass('valuePD');
                         });
-                        cleaverFilterObj.dropDownArr
-                    case 'scroll':
-                        $this.show();
-                        var el = filtersContent.show().jScrollPane(scrollPane);
-                        el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
-                        //$this.find('.filters-content').addClass('scroll');
+                    });
                 }
-                switch (n) {
-                    case 'dropDown':
-                        filtersContent.hide();
+                if (n == 'scroll') {
+                    $this.show();
+                    var el = filtersContent.show().jScrollPane(scrollPane);
+                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                }
+                if (n == 'dropDown') {
+                    filtersContent.hide();
                 }
                 if (arrL - 1 == i) {
                     $this.fadeIn();
@@ -294,8 +300,8 @@ function afterAjaxInitializeFilter() {
         return false;
     });
 }
-function ajaxRecount(el, slChk, submit) {
-
+function ajaxRecount(el, slChk) {
+    $(frameFilter).children(preloader).show();
 //    var catalogForm = $('#catalog_form');
 //    if (submit){
 //        catalogForm.submit();
@@ -315,13 +321,13 @@ function ajaxRecount(el, slChk, submit) {
         },
         success: function(msg) {
             var otherClass = '';
-            catalogForm.find('.popup_container').html(msg);
-            afterAjaxInitializeFilter();
+            $(frameFilter).html(msg).children(preloader).hide();
+            afterAjaxInitializeFilter(false);
             $.fancybox.hideActivity();
             if (slChk) {
                 otherClass = slChk;
             }
-            if ($($this).closest(framechecks).data('rel') == undefined) {
+            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
                 cleaverFilterObj.currentPosScroll = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
@@ -333,6 +339,7 @@ function ajaxRecount(el, slChk, submit) {
     return false;
 }
 
-$(document).ready(function() {
-    afterAjaxInitializeFilter();
+$(document).live('scriptDefer', function() {
+    $(frameFilter).children(preloader).hide();
+    afterAjaxInitializeFilter(true);
 });

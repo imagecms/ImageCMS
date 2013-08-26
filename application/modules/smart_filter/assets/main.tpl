@@ -61,7 +61,7 @@
     <input type="hidden" name="order" value="{echo $order_method}" />
     <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
     {if $totalProducts > 0}
-        <div class="popup_container">
+        <div class="frame-filter p_r">
             {include_tpl('filter')}
         </div>
     {/if}

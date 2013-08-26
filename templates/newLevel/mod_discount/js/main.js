@@ -15,7 +15,6 @@ function get_discount(discTpl) {
             else {
                 displayInfoDiscount('');
             }
-            console.log(1)
             displayDiscount(_discount);
             Shop.Cart.discount = _discount;
         }
