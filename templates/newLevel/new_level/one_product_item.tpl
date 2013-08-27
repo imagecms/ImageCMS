@@ -222,7 +222,7 @@
                         {if $CI->uri->segment(2) != "wish_list"}
                             <!-- Wish List buttons -->
                             {foreach $variants as $key => $pv}
-                                <div class="variant_{echo $pv->getId()} variant d_i-b" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                     {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                 </div>
                            {/foreach}
@@ -251,7 +251,7 @@
             {/if}
         </div>
         <!--        Start. Remove buttons if compare or wishlist-->
-        {if $compare}
+        {if $compare && !$widget}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!--        End. Remove buttons if compare or wishlist-->
