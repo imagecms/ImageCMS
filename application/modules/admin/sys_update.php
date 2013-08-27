@@ -52,8 +52,12 @@ class Sys_update extends BaseAdminController {
         $this->template->show('sys_update_info', FALSE, $data);
     }
 
+    /**
+     * initiate update process
+     */
     public function do_update() {
         set_time_limit(99999999999999);
+        $this->update->createBackUp();
         $this->update->getUpdate();
         $this->update->restoreFromZIP('./application/backups/updates.zip');
         showMessage('Обновление успешно');
@@ -63,16 +67,17 @@ class Sys_update extends BaseAdminController {
     public function update($sort_by = "create_date", $order = 'asc') {
         // Show upgrade window;
         $result = $this->update->getHashSum();
-        $array = $this->update->parse_md5();
-        $diff = array_diff($array, $result);
+        write_file('./application/backups/md5.txt', json_encode($result));
+//        $array = $this->update->parse_md5();
+//        $diff = array_diff($array, $result);
 
         if (!$result['error'])
             $data = array(
-                'filesCount' => count($diff),
+                'filesCount' => count($result),
                 'sort_by' => $sort_by,
                 'order' => $order,
                 'diff_files_dates' => $this->update->get_files_dates(),
-                'diff_files' => $diff,
+                'diff_files' => $result,
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
             );
         else
@@ -113,34 +118,6 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-    public function get_update() { // method controller's server's update
-        ini_set("soap.wsdl_cache_enabled", "0");
-        try {
-
-            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
-
-            $domen = $_SERVER['SERVER_NAME'];
-
-            $result = $client->getStatus($domen, BUILD_ID);
-            var_dump($result);
-
-            $key = 123456;
-            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-            $result = json_decode($result);
-            if ($er = $result->error)
-                echo $er;
-            else {
-                var_dump($result);
-                $href = $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-                $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
-                echo $all_href;
-                //file_put_contents('updates', file_get_contents($all_href));
-            }
-        } catch (SoapFault $exception) {
-            echo $exception->getMessage();
-        }
-    }
-
     public function backup() {
         $this->update->createBackUp();
         redirect('/admin/sys_update/update');
@@ -171,16 +148,6 @@ class Sys_update extends BaseAdminController {
         echo unlink('./application/backups/' . $file_name);
     }
 
-    public function test() { // method controller's server's update
-        $obj = new serverUpdate();
-        $mess = $obj->get_update();
-        if ($mess !== TRUE)
-            echo json_encode(array(
-                'error' => 1,
-                'mess' => $mess,
-            ));
-    }
-
     public function getQuerys($file = 'backup.sql') {
         $restore = file_get_contents($file);
 
@@ -190,20 +157,21 @@ class Sys_update extends BaseAdminController {
 
         echo json_encode($array_query);
     }
+
     public function Querys() {
         foreach ($_POST['data'] as $query) {
             if ($query) {
-//                if (!$this->db->query($query)) {
-//                    echo 'Невозможно виполнить запрос: <br>';
-//                    var_dumps($query);
-//                    return FALSE;
-//                } else {
-//                    echo 'ok';
-////                    return TRUE;
-//                }
+                if (!$this->db->query($query)) {
+                    echo 'Невозможно виполнить запрос: <br>';
+                    var_dumps($query);
+                    return FALSE;
+                } else {
+                    echo 'ok';
+//                    return TRUE;
+                }
             }
         }
-                showMessage('asdasd');
+//                showMessage('asdasd');
     }
 
 }

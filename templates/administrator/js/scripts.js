@@ -1746,11 +1746,39 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
         }
     });
 });
+function restoreDBprocess(i, j, portion, obj) {
+    var array = [];
+    o = 0;
+    for (j; j < ((i + 1) * portion); j++) {
+        array[o] = obj[j];
+        o++;
+    }
 
+    $.ajax({
+        type: "POST",
+        data: {
+            data: array
+        },
+        url: '/admin/sys_update/Querys',
+        complete: function() {
+            console.log(i)
+            console.log(j)
+
+            array = [];
+            if (i < 100) {
+                $('#progres').css('width', i + 1 + '%');
+                $('#progres').text(i + 1 + '%');
+                restoreDBprocess(i + 1, j, portion, obj);
+            }
+        }
+    });
+
+}
 var Update = {
     processDB: function(file_name) {
         $.ajax({
             type: "POST",
+            asunc: false,
             data: {
                 file_name: file_name
             },
@@ -1760,31 +1788,31 @@ var Update = {
                 var portion = (parseInt(obj.length / 100) + 1);
                 var array = [];
                 var j = 0;
-
-                for (var i = 0; i < 100; i++) {
-
-                    o = 0;
-                    for (j; j < ((i + 1) * portion); j++) {
-                        array[o] = obj[j];
-                        o++;
-                    }
-                    $.ajax({
-                        type: "POST",
-                        async: false,
-                        data: {
-                            data: array
-                        },
-                        url: '/admin/sys_update/Querys',
-                        complete: function() {
-                            console.log(i)
-
-                            array = [];
-                            $('#progres').css('width', i + 1 + '%');
-                            $('#progres').text(i + 1 + '%');
-                        }
-                    });
-
-                }
+                restoreDBprocess(0, 0, portion, obj);
+//                for (var i = 0; i < 30; i++) {
+//
+//                    o = 0;
+//                    for (j; j < ((i + 1) * portion); j++) {
+//                        array[o] = obj[j];
+//                        o++;
+//                    }
+//                    $.ajax({
+//                        type: "POST",
+//                        async: false,
+//                        data: {
+//                            data: array
+//                        },
+//                        url: '/admin/sys_update/Querys',
+//                        complete: function() {
+//                            console.log(i)
+//
+//                            array = [];
+//                            $('#progres').css('width', i + 1 + '%');
+//                            $('#progres').text(i + 1 + '%');
+//                        }
+//                    });
+//
+//                }
                 if (res) {
                     showMessage('Сообщение', 'Успешно воставлено');
                 } else {
