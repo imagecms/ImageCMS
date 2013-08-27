@@ -874,9 +874,10 @@ function hideDrop(drop, form, durationHideForm) {
 function showHidePart(el) {
     el.each(function() {
         var $this = $(this),
-                $thisH = parseInt($this.css('max-height')),
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
                 $item = $this.children(),
                 sumHeight = 0;
+        $this.data('maxHeight', $thisH);
         $item.each(function() {
             sumHeight += $(this).outerHeight();
         })
@@ -1395,16 +1396,13 @@ function init() {
     })
     $(document).on('comments.beforeshowformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
-        console.log(patchCom.css('max-height'))
         patchCom.css({'max-height': 'none', 'height': 'auto'});
-        var sumH = patchCom.data('max-height') + e.el.outerHeight();
+        var sumH = (patchCom.outerHeight() > patchCom.data('maxHeight') ? patchCom.data('maxHeight') : patchCom.outerHeight()) + e.el.outerHeight();
         patchCom.css({'height': sumH, 'max-height': sumH})
     })
     $(document).on('comments.beforehideformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
-        console.log(patchCom.outerHeight())
-        console.log(e.el.outerHeight())
-        patchCom.css('max-height', patchCom.outerHeight() - e.el.outerHeight()+50)
+        patchCom.css('max-height', patchCom.data('maxHeight'))
     })
     $(document).on('menu.showDrop', function(e) {
         if (ltie7)
