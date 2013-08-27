@@ -264,8 +264,8 @@ class Update {
         exit;
     }
 
-    public function getOldMD5File() {
-        return (array) json_decode(read_file('md5.txt'));
+    public function getOldMD5File($file = 'md5.txt') {
+        return (array) json_decode(read_file($file));
     }
 
     /**
@@ -295,7 +295,7 @@ class Update {
     }
 
     public function createBackUp() {
-        $old = $this->getOldMD5File();
+        $old = $this->getOldMD5File('./application/backups/md5.txt');
         $array = $this->parse_md5();
         $diff = array_diff($array, $old);
         $this->add_to_ZIP($diff);
