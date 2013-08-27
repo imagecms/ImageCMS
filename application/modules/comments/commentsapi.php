@@ -87,7 +87,7 @@ class Commentsapi extends Comments {
         if ($this->enable_comments)
             $comments = \CMSFactory\assetManager::create()
                     ->setData($data)
-                    ->registerStyle('comments')
+                    ->registerStyle('comments', TRUE)
                     ->fetchTemplate($this->tpl_name);
         else {
             $comments = '';
@@ -158,7 +158,7 @@ class Commentsapi extends Comments {
         if ($this->enable_comments)
             $comments = \CMSFactory\assetManager::create()
                     ->setData($data)
-                    ->registerStyle('comments')
+                    ->registerStyle('comments', TRUE)
                     ->fetchTemplate($this->tpl_name);
         else {
             $comment = '';

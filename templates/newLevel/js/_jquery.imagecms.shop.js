@@ -1310,7 +1310,6 @@ var ie = jQuery.browser.msie,
                 confirm: false,
                 always: false,
                 animate: false,
-                moreoneNC: true,
                 timeclosemodal: false,
                 before: function() {
                 },
@@ -1401,12 +1400,11 @@ var ie = jQuery.browser.msie,
                     $thisA = elSet.animate != undefined ? elSet.animate : settings.animate,
                     $thisEOn = elSet.effectOn || settings.effon,
                     overlayColor = elSet.overlaycolor || settings.overlayColor,
+                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity,
                     modal = elSet.modal || settings.modal,
                     timeclosemodal = elSet.timeclosemodal || settings.timeclosemodal,
                     confirm = elSet.confirm || settings.confirm,
-                    moreoneNC = elSet.moreoneNC || settings.moreoneNC,
                     dropContent = elSet.dropContent || settings.dropContent,
-                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity,
                     before = elSet.before || settings.before,
                     after = elSet.after || settings.after,
                     close = elSet.close || settings.close,
@@ -1424,6 +1422,7 @@ var ie = jQuery.browser.msie,
                 'close': close,
                 'closed': closed,
                 'overlayOpacity': overlayOpacity,
+                'overlayColor': overlayColor,
                 'modal': modal,
                 'confirm': confirm,
                 'timeclosemodal': timeclosemodal
@@ -1441,14 +1440,11 @@ var ie = jQuery.browser.msie,
             else {
                 optionsDrop.dropOver == undefined;
             }
-            if (elSetSource.is('.' + activeClass)) {
+            if (elSetSource.is('.' + activeClass) && elSetSource.attr('data-elrun') == $this.data('drop')) {
                 methods.closeDrop(elSetSource);
             }
             else {
                 before($this, elSetSource, isajax);
-                if ((!moreoneNC || elSet.moreoneNC) && elSetSource.data('place') != 'inherit') {
-                    methods.closeDrop($('[data-elrun]:visible'));
-                }
 
                 if (e.button == undefined && place != "center")
                     wnd.scrollTop($this.offset().top);
@@ -1507,8 +1503,11 @@ var ie = jQuery.browser.msie,
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
                 drop.each(function() {
-                    var drop = $(this);
-                    if (drop.data('place') != 'inherit' || sel || drop.data('modal')) {
+                    var drop = $(this),
+                            overlayColor = drop.data('overlayColor'),
+                            overlayOpacity = drop.data('overlayOpacity') != undefined ? drop.data('overlayOpacity').toString() : drop.data('overlayOpacity'),
+                            condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
+                    if (drop.data('place') != 'inherit' || condOverlay || sel || drop.data('modal')) {
                         $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
