@@ -113,34 +113,6 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-    public function get_update() { // method controller's server's update
-        ini_set("soap.wsdl_cache_enabled", "0");
-        try {
-
-            $client = new SoapClient("http://imagecms.loc/application/modules/shop/admin/UpdateService.wsdl");
-
-            $domen = $_SERVER['SERVER_NAME'];
-
-            $result = $client->getStatus($domen, BUILD_ID);
-            var_dump($result);
-
-            $key = 123456;
-            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-            $result = json_decode($result);
-            if ($er = $result->error)
-                echo $er;
-            else {
-                var_dump($result);
-                $href = $client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-                $all_href = 'http://imagecms.loc/admin/server_update/takeUpdate/' . $href . '/' . $domen;
-                echo $all_href;
-                //file_put_contents('updates', file_get_contents($all_href));
-            }
-        } catch (SoapFault $exception) {
-            echo $exception->getMessage();
-        }
-    }
-
     public function backup() {
         $this->update->createBackUp();
         redirect('/admin/sys_update/update');
@@ -171,16 +143,6 @@ class Sys_update extends BaseAdminController {
         echo unlink('./application/backups/' . $file_name);
     }
 
-    public function test() { // method controller's server's update
-        $obj = new serverUpdate();
-        $mess = $obj->get_update();
-        if ($mess !== TRUE)
-            echo json_encode(array(
-                'error' => 1,
-                'mess' => $mess,
-            ));
-    }
-
     public function getQuerys($file = 'backup.sql') {
         $restore = file_get_contents($file);
 
@@ -203,7 +165,7 @@ class Sys_update extends BaseAdminController {
 //                }
             }
         }
-                showMessage('asdasd');
+//                showMessage('asdasd');
     }
 
 }
