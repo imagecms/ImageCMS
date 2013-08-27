@@ -73,7 +73,7 @@ class Banners extends MY_Controller {
                 ob_start();
                 \CMSFactory\assetManager::create()
                         ->registerStyle('style')
-                        ->registerScript('jquery.cycle.all.min')
+                        ->registerScript('jquery.cycle.all.min', TRUE)
                         ->registerScript('main')
                         ->setData(array('banners' => $ban))
                         ->render($tpl, TRUE);

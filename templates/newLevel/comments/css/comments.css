@@ -5,7 +5,7 @@
 .comment__icsi-css .main-form-comments .frame_form_field__icsi-css{margin-left: 0;}
 .comment__icsi-css .author-comment__icsi-css{color: #000;font-size:12px;}
 .comment__icsi-css .date-comment__icsi-css{color: #999;font-weight: bold;}
-.frame-list-comment__icsi-css > .sub-1{margin-bottom: 30px;}
+.frame-list-comment__icsi-css > .sub-1{margin-bottom: 30px;margin: 0;}
 .frame-list-comment__icsi-css > .sub-1 > li > .frame-comment__icsi-css{padding: 10px 15px 1px;background-color: #f4eee9;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
 .frame-comment__icsi-css p{margin-bottom: 9px;}
 .comment__icsi-css .frame-list-comment__icsi-css.sub-2{float: none;width: auto;padding-left: 33px;max-height: 98px;overflow: hidden;}
@@ -26,7 +26,6 @@
 .comment__icsi-css .frame-comments__icsi-css{border-bottom: 1px solid #d8d2cb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
 .comment__icsi-css .btn-form input{padding: 0 33px !important;}
 .comment__icsi-css .frame-drop-comment__icsi-css{padding-bottom: 0;display: none;width: 98%;margin: auto;}
-.page-text .comment__icsi-css .main-form-comments__icsi-css{width: 60%;}
 
 .frame-list-comment__icsi-css .frame-drop-comment__icsi-css{padding: 25px 0;}
 .frame-drop-comment__icsi-css + .frame-list-comment__icsi-css{padding-top: 25px;}

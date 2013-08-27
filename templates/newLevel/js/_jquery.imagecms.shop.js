@@ -1123,6 +1123,7 @@ var ie = jQuery.browser.msie,
                                     }
                                     else {
                                         setcookie('listtable', $this.parent().index(), 0, '/');
+                                        settings.after($thiss);
                                     }
                                 }
                             }
@@ -1310,6 +1311,7 @@ var ie = jQuery.browser.msie,
                 confirm: false,
                 always: false,
                 animate: false,
+                moreoneNC: true,
                 timeclosemodal: false,
                 before: function() {
                 },
@@ -1390,6 +1392,8 @@ var ie = jQuery.browser.msie,
             })
         },
         showDrop: function($this, e, settings, isajax) {
+            if (!e)
+                var e = window.event;
             var settings = !settings ? optionsDrop : settings,
                     isajax = !isajax ? false : true,
                     elSet = $this.data(),
@@ -1404,6 +1408,7 @@ var ie = jQuery.browser.msie,
                     modal = elSet.modal || settings.modal,
                     timeclosemodal = elSet.timeclosemodal || settings.timeclosemodal,
                     confirm = elSet.confirm || settings.confirm,
+                    moreoneNC = elSet.moreoneNC || settings.moreoneNC,
                     dropContent = elSet.dropContent || settings.dropContent,
                     before = elSet.before || settings.before,
                     after = elSet.after || settings.after,
@@ -1425,7 +1430,8 @@ var ie = jQuery.browser.msie,
                 'overlayColor': overlayColor,
                 'modal': modal,
                 'confirm': confirm,
-                'timeclosemodal': timeclosemodal
+                'timeclosemodal': timeclosemodal,
+                'moreoneNC': moreoneNC
             }).attr('data-elrun', $thisSource);
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
             if (condOverlay) {
@@ -1440,11 +1446,14 @@ var ie = jQuery.browser.msie,
             else {
                 optionsDrop.dropOver == undefined;
             }
-            if (elSetSource.is('.' + activeClass) && elSetSource.attr('data-elrun') == $this.data('drop')) {
+            if (elSetSource.is('.' + activeClass) && e.button != undefined) {
                 methods.closeDrop(elSetSource);
             }
             else {
                 before($this, elSetSource, isajax);
+                if (!moreoneNC) {
+                    methods.closeDrop($('[data-elrun]:visible'));
+                }
 
                 if (e.button == undefined && place != "center")
                     wnd.scrollTop($this.offset().top);
@@ -1465,7 +1474,7 @@ var ie = jQuery.browser.msie,
                     })
                 }
                 elSetSource.addClass(place);
-                elSetSource[$thisEOn]($thisD, function() {
+                elSetSource[$thisEOn]($thisD, function(e) {
                     var $this = $(this);
                     $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
                     $this.addClass(activeClass);
@@ -1507,7 +1516,7 @@ var ie = jQuery.browser.msie,
                             overlayColor = drop.data('overlayColor'),
                             overlayOpacity = drop.data('overlayOpacity') != undefined ? drop.data('overlayOpacity').toString() : drop.data('overlayOpacity'),
                             condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
-                    if (drop.data('place') != 'inherit' || condOverlay || sel || drop.data('modal')) {
+                    if (((condOverlay || drop.data('modal'))) || (sel && drop.data('moreoneNC'))) {
                         $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
@@ -2414,11 +2423,11 @@ var ImageCMSApi = {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
-                    if (obj.refresh == true && obj.redirect == false)
+                    if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
                         location.reload();
-                    if (obj.refresh == false && obj.redirect != true && obj.redirect != false)
+                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true ||  obj.redirect != ''))
                         location.href = obj.redirect;
-                    if (obj.refresh == false && obj.redirect == false) {
+                    if ((obj.refresh == false || obj.refresh == 'false') && (obj.redirect == false || obj.redirect == 'false')) {
                         if (typeof DS.callback == 'function')
                             DS.callback(obj.msg, obj.status, form, DS);
                         else

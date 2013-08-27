@@ -7,7 +7,7 @@
         <% var discC = (Shop.Cart.discount.sum_discount_product !=0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount!=0 %>
         <% var nextCsCond = nextCs == '' ? false : true %>
         <div class="frame-bask">
-        <button type="button" class="icon_times_drop" data-closed="closed-js" onclick="togglePopupCart()"></button>
+        <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="no-empty">
         <div class="drop-header">
         <div class="title bask"><span>В вашей корзине</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, plurProd) %></span> <span>на сумму</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
@@ -335,7 +335,7 @@
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
-        <button type="button" onclick="togglePopupCart()">
+        <button type="button" data-closed="closed-js">
 
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
@@ -362,7 +362,7 @@
         <div class="info"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
         </div>
         <div class="btn-form">
-        <button type="button" onclick="togglePopupCart()">
+        <button type="button" data-closed="closed-js">
 
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>
@@ -694,7 +694,7 @@
         <div class="content-frame-foot">
         <div class="clearfix inside-padd">
         <div class="btn-form f_l">
-        <button type="button" onclick="togglePopupCart()">
+        <button type="button" data-closed="closed-js">
 
         <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
         </button>

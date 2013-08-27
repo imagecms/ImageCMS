@@ -1,5 +1,6 @@
 <div class="frame-inside page-wishlist-one-WL">
     <div class="container">
+        {var_dump($user)}
         {if $wishlist != 'empty'}
             <div class="left-wishlist">
                 <div class="photo-block m-b_5">
