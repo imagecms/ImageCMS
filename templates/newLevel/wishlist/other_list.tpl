@@ -1,6 +1,5 @@
 <div class="frame-inside page-wishlist-one-WL">
     <div class="container">
-        {var_dump($user)}
         {if $wishlist != 'empty'}
             <div class="left-wishlist">
                 <div class="photo-block m-b_5">
@@ -14,10 +13,9 @@
                 <div class="description">
                     <h2 data-wishlist-name="user_name">{echo $user[user_name]}</h2>
                     <div class="date f-s_0">
-                        <span data-wishlist-name="user_birthday">{echo date('Y-m-d', $user['user_birthday'])}</span>
-                        {/*<span class="day">{echo date("d", $user[user_birthday])} </span>
-                            <span class="month">{echo date("F", $user[user_birthday])} </span>
-                            <span class="year">{echo date("Y ", $user[user_birthday])}</span>*/}
+                        <span class="day">{echo date("d", $user[user_birthday])} </span>
+                        <span class="month">{echo $month[date('n',$user.user_birthday)]}</span>
+                        <span class="year">{echo date("Y ", $user[user_birthday])}</span>
                     </div>
                     <div class="text">
                         <p data-wishlist-name="description">{echo $user[description]}</p>
