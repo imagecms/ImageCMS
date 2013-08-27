@@ -26,16 +26,16 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
-        if(!extension_loaded('soap')){
+        if (!extension_loaded('soap')) {
             exit;
         }
 
         ini_set("soap.wsdl_cache_enabled", "0");
-        
-        if(extension_loaded('soap')){
+
+        if (extension_loaded('soap')) {
             $array = $this->update->getStatus();
         }
-        
+
         if ($array) {
             $data = array(
                 'build' => $array['build'],
@@ -53,8 +53,10 @@ class Sys_update extends BaseAdminController {
     }
 
     public function do_update() {
+        set_time_limit(99999999999999);
         $this->update->getUpdate();
         $this->update->restoreFromZIP('./application/backups/updates.zip');
+        showMessage('Обновление успешно');
         pjax('/admin');
     }
 
@@ -177,6 +179,31 @@ class Sys_update extends BaseAdminController {
                 'error' => 1,
                 'mess' => $mess,
             ));
+    }
+
+    public function getQuerys($file = 'backup.sql') {
+        $restore = file_get_contents($file);
+
+        $string_query = rtrim($restore, "\n;");
+        $array_query = explode(";\n", $string_query);
+//        var_dump($array_query);
+
+        echo json_encode($array_query);
+    }
+    public function Querys() {
+        foreach ($_POST['data'] as $query) {
+            if ($query) {
+//                if (!$this->db->query($query)) {
+//                    echo 'Невозможно виполнить запрос: <br>';
+//                    var_dumps($query);
+//                    return FALSE;
+//                } else {
+//                    echo 'ok';
+////                    return TRUE;
+//                }
+            }
+        }
+                showMessage('asdasd');
     }
 
 }

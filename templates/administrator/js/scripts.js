@@ -1748,6 +1748,51 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
+    processDB: function(file_name) {
+        $.ajax({
+            type: "POST",
+            data: {
+                file_name: file_name
+            },
+            url: '/admin/sys_update/getQuerys',
+            success: function(res) {
+                var obj = JSON.parse(res);
+                var portion = (parseInt(obj.length / 100) + 1);
+                var array = [];
+                var j = 0;
+
+                for (var i = 0; i < 100; i++) {
+
+                    o = 0;
+                    for (j; j < ((i + 1) * portion); j++) {
+                        array[o] = obj[j];
+                        o++;
+                    }
+                    $.ajax({
+                        type: "POST",
+                        async: false,
+                        data: {
+                            data: array
+                        },
+                        url: '/admin/sys_update/Querys',
+                        complete: function() {
+                            console.log(i)
+
+                            array = [];
+                            $('#progres').css('width', i + 1 + '%');
+                            $('#progres').text(i + 1 + '%');
+                        }
+                    });
+
+                }
+                if (res) {
+                    showMessage('Сообщение', 'Успешно воставлено');
+                } else {
+                    showMessage('Ошибка', 'Ошибка востановления', 'r');
+                }
+            }
+        });
+    },
     restore: function(file_name) {
         $.ajax({
             type: "POST",
