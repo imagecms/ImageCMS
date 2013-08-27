@@ -1761,7 +1761,7 @@ var Update = {
                 var array = [];
                 var j = 0;
 
-                for (var i = 0; i < 100; i++) {
+                for (var i = 0; i < 30; i++) {
 
                     o = 0;
                     for (j; j < ((i + 1) * portion); j++) {
