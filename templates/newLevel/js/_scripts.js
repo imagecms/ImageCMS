@@ -4,13 +4,15 @@
 //},
 //        selectDeliv = true;
 //if radio
-var productPhotoCZoom = productPhotoCZoom != undefined;
-var productPhotoFancybox = productPhotoFancybox != undefined;
-var hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 var methodDeliv = function() {
     return $('[name = "deliveryMethodId"]')
 },
         selectDeliv = false;
+
+var productPhotoCZoom = productPhotoCZoom != undefined,
+        productPhotoFancybox = productPhotoFancybox != undefined,
+        hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
+
 var cW = '980',
         selIcons = '[class*=icon_]',
         widhtItemScroll = 256,
@@ -115,7 +117,7 @@ var optionsDrop = {
     modalDelay: 500,
     dropContent: '.drop-content',
     animate: false,
-    moreoneNC: false,// show more then one drop
+    moreoneNC: false, // show more then one drop
     timeclosemodal: 1000
 };
 var productStatus = {
@@ -297,7 +299,7 @@ function pasteItemsTovars(el) {
     wnd.scroll();//for lazyload
     drawIcons(el.find(selIcons));
     btnbuyInitialize(el);
-    processPage(el);
+    processCart(el);
     el.find('[data-drop]').drop($.extend({}, optionsDrop));
 }
 function processComp() {
@@ -320,14 +322,14 @@ function processWish() {
     var wishlist = wishList.all();
     $(genObj.btnWish).each(function() {
         var $this = $(this),
-        $thisP = $this.parent();
+                $thisP = $this.parent();
         console.log(wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')))
         if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
             $this.addClass(genObj.wishIn);
             $this.find('.' + genObj.toWishlist).hide();
             $this.find('.' + genObj.inWishlist).show();
         }
-        else{
+        else {
             $this.removeClass(genObj.wishIn);
             $this.find('.' + genObj.toWishlist).show();
             $this.find('.' + genObj.inWishlist).hide();
@@ -346,7 +348,7 @@ function processPopupCart() {
         }
     }
 }
-function processPage(el) {
+function processCart(el) {
 //update page content
 //update products count
     el = el == undefined ? body : el;
@@ -1428,7 +1430,7 @@ function init() {
     /*/ end some front funcions*/
     /*/call front plugins and functions*/
     //    call shop functions
-    processPage();
+    processCart();
     checkSyncs();
     processWish();
     processComp();
@@ -1485,7 +1487,7 @@ function init() {
     //cart content changed
     $(document).live('cart_changed', function() {
         processPopupCart();
-        processPage();
+        processCart();
         $.fancybox.hideActivity();
         if ($.exists(optionCompare.frameCompare))
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
@@ -1608,7 +1610,7 @@ function init() {
 
     wnd.focus(function() {
 //        $.fancybox.showActivity();
-        processPage();
+        processCart();
         checkSyncs();
         processComp();
         processWish();
@@ -1629,6 +1631,7 @@ function init() {
     initCarouselJscrollPaneCycle(body);
     $(document).live('widget_ajax', function(e) {
         initCarouselJscrollPaneCycle(e.el);
+        pasteItemsTovars(e.el);
     });
     if ($.exists(optionCompare.frameCompare))
         $(optionCompare.frameCompare).equalHorizCell(optionCompare); //because rather call and call carousel twice
