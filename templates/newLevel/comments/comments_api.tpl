@@ -103,7 +103,7 @@
         <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
             <div class="frame-comments__icsi-css layout-highlight">
                 <div class="title_h2__icsi-css title-default">
-                    <div class="title">Оставте свой отзыв</div>
+                    <div class="title">Оставьте свой отзыв</div>
                 </div>
                 <!-- Start of new comment fild -->
                 <div class="form-comment__icsi-css form__icsi-css main-form-comments">

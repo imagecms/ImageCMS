@@ -117,7 +117,7 @@ var optionsDrop = {
     modalDelay: 500,
     dropContent: '.drop-content',
     animate: false,
-    moreoneNC: false, // show more then one drop
+    moreoneNC: true, // show more then one drop
     timeclosemodal: 1000
 };
 var productStatus = {
@@ -323,7 +323,6 @@ function processWish() {
     $(genObj.btnWish).each(function() {
         var $this = $(this),
                 $thisP = $this.parent();
-        console.log(wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')))
         if (wishlist.indexOf($thisP.data('id') + '_' + $thisP.data('varid')) !== -1) {
             $this.addClass(genObj.wishIn);
             $this.find('.' + genObj.toWishlist).hide();
@@ -627,36 +626,7 @@ function changeDeliveryMethod(id, selectDeliv) {
             });
     });
 }
-function countSumBask() {
-    if (!Shop.Cart.totalCount) {
-        $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
-        $(genObj.tinyBask + ' ' + genObj.blockEmpty).show();
-        $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).hide();
-    }
-    else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
-        $(genObj.tinyBask).addClass(genObj.isAvail);
-        $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
-            initShopPage(true, '', orderDetails);
-        })
-        $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
-        $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
-    }
-    $(genObj.countBask).each(function() {
-        $(this).html(Shop.Cart.totalCount);
-    });
-    var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
-            addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
-    Shop.Cart.koefCurr = addSumBask / sumBask;
-    $(genObj.sumBask).each(function() {
-        $(this).html(sumBask);
-    });
-    $(genObj.addSumBask).each(function() {
-        $(this).html(addSumBask);
-    })
-    $(genObj.bask + ' ' + genObj.plurProd).each(function() {
-        $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
-    });
-}
+
 function recountCartPage(selectDeliv, methodDeliv) {
     var ca = "";
     if (selectDeliv)
@@ -701,6 +671,36 @@ function checkSyncs() {
         if (Shop.Cart.getAllItems().length != inServerCart)
             Shop.Cart.sync();
     }
+}
+function countSumBask() {
+    if (!Shop.Cart.totalCount) {
+        $(genObj.tinyBask + '.' + genObj.isAvail).removeClass(genObj.isAvail);
+        $(genObj.tinyBask + ' ' + genObj.blockEmpty).show();
+        $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).hide();
+    }
+    else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
+        $(genObj.tinyBask).addClass(genObj.isAvail);
+        $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
+            initShopPage(true, '', orderDetails);
+        })
+        $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
+        $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
+    }
+    $(genObj.countBask).each(function() {
+        $(this).html(Shop.Cart.totalCount);
+    });
+    var sumBask = parseFloat(Shop.Cart.totalRecount().totalPrice).toFixed(pricePrecision),
+            addSumBask = parseFloat(Shop.Cart.totalRecount().totalAddPrice).toFixed(pricePrecision);
+    Shop.Cart.koefCurr = addSumBask / sumBask;
+    $(genObj.sumBask).each(function() {
+        $(this).html(sumBask);
+    });
+    $(genObj.addSumBask).each(function() {
+        $(this).html(addSumBask);
+    })
+    $(genObj.bask + ' ' + genObj.plurProd).each(function() {
+        $(this).html(pluralStr(Shop.Cart.totalCount, plurProd));
+    });
 }
 function compareListCount() {
     var count = Shop.CompareList.all().length;
@@ -874,9 +874,10 @@ function hideDrop(drop, form, durationHideForm) {
 function showHidePart(el) {
     el.each(function() {
         var $this = $(this),
-                $thisH = parseInt($this.css('max-height')),
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
                 $item = $this.children(),
                 sumHeight = 0;
+        $this.data('maxHeight', $thisH);
         $item.each(function() {
             sumHeight += $(this).outerHeight();
         })
@@ -893,6 +894,7 @@ function showHidePart(el) {
                     $this.prev().stop().animate({
                         'height': sumHeight
                     }, 300, function() {
+                        $(this).removeClass('cut-height').addClass('full-height');
                         textEl.hide().html(textEl.data('hide')).fadeIn(200)
                     });
                 },
@@ -902,6 +904,7 @@ function showHidePart(el) {
                             $this.prev().stop().animate({
                                 'height': $thisH
                             }, 300, function() {
+                                $(this).removeClass('full-height').addClass('cut-height');
                                 textEl.hide().html(textEl.data('show')).fadeIn(200)
                             });
                         });
@@ -920,17 +923,24 @@ function decorElemntItemProduct(el) {
         el.each(function() {
             var $thisLi = $(this),
                     sumH = 0,
+                    sumW = 0,
                     decEl = $thisLi.find('.decor-element').css('height', '100%'),
-                    decElH = decEl.height();
-            $thisLi.find('.no-vis-table').each(function() {
+                    decElH = decEl.height(),
+                    noVisT = $thisLi.find('.no-vis-table');
+            $thisS = noVisT.css('left') != 'auto' || noVisT.css('right') != 'auto';
+            noVisT.each(function() {
                 var $this = $(this);
-                $this.css('width', $thisLi.find('.description').width());
-                var $thisH = $this.actual('outerHeight');
-                $this.css('width', '');
+                $this.css({'width': $thisLi.find('.description').width()});
+                var $thisH = $this.actual('outerHeight'),
+                        $thisW = $thisS ? $this.actual('outerWidth') : 0;
+                $this.css({'width': '', 'height': ''});
                 $this.parent().css('top', sumH);
                 sumH = sumH + $thisH;
+                sumW = sumW + $thisW;
             })
-            decEl.css('height', sumH + decElH);
+            decEl.css({'height': sumH + decElH});
+            if ($thisS)
+                decEl.css({'width': sumW});
         });
         $('[data-elchange="#items-catalog-main"]').addClass('visited');
         wnd.scroll(); //if lazyload
@@ -1384,13 +1394,15 @@ function init() {
         if (ltie7)
             ieInput(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     })
-    $(document).on('comments.showformreply', function(e) {
+    $(document).on('comments.beforeshowformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
-        patchCom.css('height', patchCom.height() + e.el.height())
+        patchCom.css({'max-height': 'none', 'height': 'auto'});
+        var sumH = (patchCom.outerHeight() > patchCom.data('maxHeight') ? patchCom.data('maxHeight') : patchCom.outerHeight()) + e.el.outerHeight();
+        patchCom.css({'height': sumH, 'max-height': sumH})
     })
-    $(document).on('comments.hideformreply', function(e) {
+    $(document).on('comments.beforehideformreply', function(e) {
         var patchCom = e.el.closest('.patch-product-view');
-        patchCom.css('height', patchCom.height() - e.el.height())
+        patchCom.css('max-height', patchCom.data('maxHeight'))
     })
     $(document).on('menu.showDrop', function(e) {
         if (ltie7)
