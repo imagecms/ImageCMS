@@ -150,17 +150,17 @@ class ExportXML {
     public function exportUsers() {
         foreach ($this->users as $user) {
             $this->users_export .=
-                    "<СписокКонтрагентов>\r\n" .
-                    "\t<ID>" . $user['external_id'] . "</ID>\r\n" .
-                    "\t<IDWeb>" . $user['id'] . "</IDWeb>\r\n" .
-                    "\t<Код>" . $user['code'] . "</Код>\r\n" .
-                    "\t<Наименование>" . htmlspecialchars($user['username']) . "</Наименование>\r\n" .
-                    "\t<Логин></Логин>\r\n" .
-                    "\t<Пароль></Пароль>\r\n" .
-                    "\t<Емейл>" . $user['email'] . "</Емейл>\r\n" .
-                    "\t<Телефон>" . $user['phone'] . "</Телефон>\r\n" .
-                    "\t<Адрес>" . $user['address'] . "</Адрес>\r\n" .
-                    "</СписокКонтрагентов>\r\n";
+                    "\t<СписокКонтрагентов>\r\n" .
+                    "\t\t<ID>" . $user['external_id'] . "</ID>\r\n" .
+                    "\t\t<IDWeb>" . $user['id'] . "</IDWeb>\r\n" .
+                    "\t\t<Код>" . $user['code'] . "</Код>\r\n" .
+                    "\t\t<Наименование>" . htmlspecialchars($user['username']) . "</Наименование>\r\n" .
+                    "\t\t<Логин></Логин>\r\n" .
+                    "\t\t<Пароль></Пароль>\r\n" .
+                    "\t\t<Емейл>" . $user['email'] . "</Емейл>\r\n" .
+                    "\t\t<Телефон>" . $user['phone'] . "</Телефон>\r\n" .
+                    "\t\t<Адрес>" . $user['address'] . "</Адрес>\r\n" .
+                    "\t</СписокКонтрагентов>\r\n";
         }
     }
 
@@ -176,14 +176,14 @@ class ExportXML {
     public function exportPartners() {
         foreach ($this->partners as $partner) {
             $this->partners_export .=
-                    "<СписокОрганизаций>\r\n" .
-                    "\t<IDWeb>" . $partner['id'] . "</IDWeb>\r\n" .
-                    "\t<Наименование>" . htmlspecialchars($partner['name']) . "</Наименование>\r\n" .
-                    "\t<Префикс>" . $partner['prefix'] . "</Префикс>\r\n" .
-                    "\t<Код>" . $partner['code'] . "</Код>\r\n" .
-                    "\t<ID>" . $partner['external_id'] . "</ID>\r\n" .
-                    "\t<Регион>" . $partner['region'] . "</Регион>\r\n" .
-                    "</СписокОрганизаций>\r\n";
+                    "\t<СписокОрганизаций>\r\n" .
+                    "\t\t<IDWeb>" . $partner['id'] . "</IDWeb>\r\n" .
+                    "\t\t<Наименование>" . htmlspecialchars($partner['name']) . "</Наименование>\r\n" .
+                    "\t\t<Префикс>" . $partner['prefix'] . "</Префикс>\r\n" .
+                    "\t\t<Код>" . $partner['code'] . "</Код>\r\n" .
+                    "\t\t<ID>" . $partner['external_id'] . "</ID>\r\n" .
+                    "\t\t<Регион>" . $partner['region'] . "</Регион>\r\n" .
+                    "\t</СписокОрганизаций>\r\n";
         }
     }
 
@@ -206,15 +206,15 @@ class ExportXML {
 
         foreach ($this->productivity as $productivity) {
             $this->productivity_export .=
-                    "<СписокПродуктивность>\r\n" .
-//                    "\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
-                    "\t<Дата>" . date('Y-m-d\Th:m:s', $productivity['date']) . "</Дата>\r\n" .
-                    "\t<Час>" . $productivity['hour'] . "</Час>\r\n" .
-                    "\t<Количество>" . $productivity['count'] . "</Количество>\r\n" .
-                    "\t<IDОрганизация>" . $productivity['partner_external_id'] . "</IDОрганизация>\r\n" .
-                    "\t<IDWebОрганизация>" . $partners[$productivity['partner_external_id']] . "</IDWebОрганизация>\r\n" .
-                    "\t<ID>" . $productivity['external_id'] . "</ID>\r\n" .
-                    "</СписокПродуктивность>\r\n";
+                    "\t<СписокПродуктивность>\r\n" .
+//                    "\t\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
+                    "\t\t<Дата>" . date('Y-m-d\Th:m:s', $productivity['date']) . "</Дата>\r\n" .
+                    "\t\t<Час>" . $productivity['hour'] . "</Час>\r\n" .
+                    "\t\t<Количество>" . $productivity['count'] . "</Количество>\r\n" .
+                    "\t\t<IDОрганизация>" . $productivity['partner_external_id'] . "</IDОрганизация>\r\n" .
+                    "\t\t<IDWebОрганизация>" . $partners[$productivity['partner_external_id']] . "</IDWebОрганизация>\r\n" .
+                    "\t\t<ID>" . $productivity['external_id'] . "</ID>\r\n" .
+                    "\t</СписокПродуктивность>\r\n";
         }
     }
 
@@ -246,16 +246,16 @@ class ExportXML {
             }
 
             $this->price_export .=
-                    "<СписокЦен>\r\n" .
-                    "\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
-                    "\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
-                    "\t<Цена>" . $price['price'] . "</Цена>\r\n" .
-                    "\t<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\r\n" .
-                    "\t<IDWebНоменклатура>" . $products[$price['product_external_id']] . "</IDWebНоменклатура>\r\n" .
-                    "\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
-                    "\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .
-                    "\t<ID>" . $price['external_id'] . "</ID>\r\n" .
-                    "</СписокЦен>\r\n";
+                    "\t<СписокЦен>\r\n" .
+                    "\t\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
+                    "\t\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
+                    "\t\t<Цена>" . $price['price'] . "</Цена>\r\n" .
+                    "\t\t<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\r\n" .
+                    "\t\t<IDWebНоменклатура>" . $products[$price['product_external_id']] . "</IDWebНоменклатура>\r\n" .
+                    "\t\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
+                    "\t\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .
+                    "\t\t<ID>" . $price['external_id'] . "</ID>\r\n" .
+                    "\t</СписокЦен>\r\n";
             $this->products_ids[] = $price['product_external_id'];
         }
     }
@@ -308,17 +308,17 @@ class ExportXML {
 
             if ($order['status'] == 2) {
                 $this->invoice_export .=
-                        "<СписокРасходныеНакладные>\r\n" .
-                        "\t<IDWeb>" . $order['id'] . "</IDWeb>\r\n" .
-                        "\t<ID>" . $order['invoice_external_id'] . "</ID>\r\n" .
-                        "\t<Номер>" . $order['invoice_code'] . "</Номер>\r\n" .
-                        "\t<Дата>" . date('Y-m-d\Th:m:s', $order['invoice_date']) . "</Дата>\r\n" .
-                        "\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
-                        "\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n" .
-                        "\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
-                        "\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
-                        "\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
-                        "<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n";
+                        "\t<СписокРасходныеНакладные>\r\n" .
+                        "\t\t<IDWeb>" . $order['id'] . "</IDWeb>\r\n" .
+                        "\t\t<ID>" . $order['invoice_external_id'] . "</ID>\r\n" .
+                        "\t\t<Номер>" . $order['invoice_code'] . "</Номер>\r\n" .
+                        "\t\t<Дата>" . date('Y-m-d\Th:m:s', $order['invoice_date']) . "</Дата>\r\n" .
+                        "\t\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
+                        "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n" .
+                        "\t\t<IDЗаказПокупателя>" . $order['external_id'] . "</IDЗаказПокупателя>\r\n" .
+                        "\t\t<IDWebЗаказПокупателя>" . $order['id'] . "</IDWebЗаказПокупателя>\r\n" .
+                        "\t\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
+                        "\t\t<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n";
             }
 
             /** convert paid value */
@@ -332,19 +332,19 @@ class ExportXML {
 //            var_dumps($users);
             /** order export data */
             $this->order_export .=
-                    "<СписокЗаказыПокупателя>\r\n" .
-                    "\t<IDWeb>" . $order['id'] . "</IDWeb>\r\n" .
-                    "\t<ID>" . $order['external_id'] . "</ID>\r\n" .
-                    "\t<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\r\n" .
-                    "\t<Номер>" . $order['code'] . "</Номер>\r\n" .
-                    "\t<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\r\n" .
-                    "\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
-                    "\t<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n" .
-                    "\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
-                    "\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .
-                    "\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
-                    "\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
-                    "\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n";
+                    "\t<СписокЗаказыПокупателя>\r\n" .
+                    "\t\t<IDWeb>" . $order['id'] . "</IDWeb>\r\n" .
+                    "\t\t<ID>" . $order['external_id'] . "</ID>\r\n" .
+                    "\t\t<Дата>" . date('Y-m-d\Th:m:s', $order['date_created']) . "</Дата>\r\n" .
+                    "\t\t<Номер>" . $order['code'] . "</Номер>\r\n" .
+                    "\t\t<СрокДоставки>" . date('Y-m-d\Th:m:s', $order['delivery_date']) . "</СрокДоставки>\r\n" .
+                    "\t\t<IDКонтрагент>" . $order['user_id'] . "</IDКонтрагент>\r\n" .
+                    "\t\t<IDWebКонтрагент>" . $users[$order['user_id']] . "</IDWebКонтрагент>\r\n" .
+                    "\t\t<Адрес>" . $order['user_deliver_to'] . "</Адрес>\r\n" .
+                    "\t\t<КонтактныйТелефон>" . $order['user_phone'] . "</КонтактныйТелефон>\r\n" .
+                    "\t\t<ПризнакПередоплаты>" . $order['paid'] . "</ПризнакПередоплаты>\r\n" .
+                    "\t\t<IDОрганизация>" . $order['partner_external_id'] . "</IDОрганизация>\r\n" .
+                    "\t\t<IDWebОрганизация>" . $partners[$order['partner_external_id']] . "</IDWebОрганизация>\r\n";
 
             /** order products export data */
             foreach ($order['order_products'] as $order_product) {
@@ -355,15 +355,15 @@ class ExportXML {
                     }
                 }
                 $products .=
-                        "\t\t<Строки>\r\n" .
-                        "\t\t\t<IDДокумента>" . $order_product['external_id'] . "</IDДокумента>\r\n" .
-                        "\t\t\t<IDWebДокумента>" . $order_product['id'] . "</IDWebДокумента>\r\n" .
-                        "\t\t\t<IDНоменклатура>" . $order_product['product_external_id'] . "</IDНоменклатура>\r\n" .
-                        "\t\t\t<IDWebНоменклатура>" . $order_product['product_id'] . "</IDWebНоменклатура>\r\n" .
-                        "\t\t\t<Количество>" . $order_product['quantity'] . "</Количество>\r\n" .
-                        "\t\t\t<Цена>" . $order_product['price'] . "</Цена>\r\n" .
-                        "\t\t\t<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\r\n" .
-                        "\t\t</Строки>\r\n";
+                        "\t\t\t<Строки>\r\n" .
+                        "\t\t\t\t<IDДокумента>" . $order_product['external_id'] . "</IDДокумента>\r\n" .
+                        "\t\t\t\t<IDWebДокумента>" . $order_product['id'] . "</IDWebДокумента>\r\n" .
+                        "\t\t\t\t<IDНоменклатура>" . $order_product['product_external_id'] . "</IDНоменклатура>\r\n" .
+                        "\t\t\t\t<IDWebНоменклатура>" . $order_product['product_id'] . "</IDWebНоменклатура>\r\n" .
+                        "\t\t\t\t<Количество>" . $order_product['quantity'] . "</Количество>\r\n" .
+                        "\t\t\t\t<Цена>" . $order_product['price'] . "</Цена>\r\n" .
+                        "\t\t\t\t<Сумма>" . $order_product['quantity'] * $order_product['price'] . "</Сумма>\r\n" .
+                        "\t\t\t</Строки>\r\n";
 
                 $this->order_export .= $products;
 
@@ -372,10 +372,10 @@ class ExportXML {
                 }
             }
             if ($order['status'] == 2) {
-                $this->invoice_export .= "\t</СписокРасходныеНакладные>\r\n";
+                $this->invoice_export .= "\t\t</СписокРасходныеНакладные>\r\n";
             }
 
-            $this->order_export .= "\t</СписокЗаказыПокупателя>\r\n";
+            $this->order_export .= "\t\t</СписокЗаказыПокупателя>\r\n";
         }
     }
 
@@ -394,14 +394,14 @@ class ExportXML {
         }
         foreach ($this->categories as $category) {
             $this->categories_export .=
-                    "<СписокГруппНоменклатуры>\r\n" .
-                    "\t<IDWeb>" . $category['id'] . "</IDWeb>\r\n" .
-                    "\t<ID>" . $category['external_id'] . "</ID>\r\n" .
-                    "\t<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\r\n" .
-                    "\t<Код>" . $category['code'] . "</Код>\r\n" .
-                    "\t<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\r\n" .
-                    "\t<IDWebРодитель>" . $category['parent_id'] . "</IDWebРодитель>\r\n" .
-                    "</СписокГруппНоменклатуры>\r\n";
+                    "\t<СписокГруппНоменклатуры>\r\n" .
+                    "\t\t<IDWeb>" . $category['id'] . "</IDWeb>\r\n" .
+                    "\t\t<ID>" . $category['external_id'] . "</ID>\r\n" .
+                    "\t\t<Наименование>" . htmlspecialchars($category['name']) . "</Наименование>\r\n" .
+                    "\t\t<Код>" . $category['code'] . "</Код>\r\n" .
+                    "\t\t<IDРодитель>" . $parents[$category['parent_id']] . "</IDРодитель>\r\n" .
+                    "\t\t<IDWebРодитель>" . $category['parent_id'] . "</IDWebРодитель>\r\n" .
+                    "\t</СписокГруппНоменклатуры>\r\n";
         }
     }
 
@@ -426,16 +426,16 @@ class ExportXML {
                 }
             }
             $this->product_export .=
-                    "<СписокНоменклатуры>\r\n" .
-                    "\t<IDWeb>" . $product['id'] . "</IDWeb>\r\n" .
-                    "\t<ID>" . $product['external_id'] . "</ID>\r\n" .
-                    "\t<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\r\n" .
-                    "\t<Код>" . $product['code'] . "</Код>\r\n" .
-                    "\t<IDРодитель>" . $product['category_external_id'] . "</IDРодитель>\r\n" .
-                    "\t<IDWebРодитель>" . $product['category_id'] . "</IDWebРодитель>\r\n" .
-                    "\t<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\r\n" .
-                    "\t<ШтрихКод>" . $product['barcode'] . "</ШтрихКод>\r\n" .
-                    "</СписокНоменклатуры>\r\n";
+                    "\t<СписокНоменклатуры>\r\n" .
+                    "\t\t<IDWeb>" . $product['id'] . "</IDWeb>\r\n" .
+                    "\t\t<ID>" . $product['external_id'] . "</ID>\r\n" .
+                    "\t\t<Наименование>" . htmlspecialchars($product['name']) . "</Наименование>\r\n" .
+                    "\t\t<Код>" . $product['code'] . "</Код>\r\n" .
+                    "\t\t<IDРодитель>" . $product['category_external_id'] . "</IDРодитель>\r\n" .
+                    "\t\t<IDWebРодитель>" . $product['category_id'] . "</IDWebРодитель>\r\n" .
+                    "\t\t<ЕдиницаИзмерения>" . $product['measure'] . "</ЕдиницаИзмерения>\r\n" .
+                    "\t\t<ШтрихКод>" . $product['barcode'] . "</ШтрихКод>\r\n" .
+                    "\t</СписокНоменклатуры>\r\n";
         }
     }
 
