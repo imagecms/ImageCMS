@@ -24,7 +24,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             parent::getUserWL($this->dx_auth->get_user_id());
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery_ui')
-                    ->registerScript('cusel_min')
+                    ->registerScript('cusel_min', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->registerStyle('style', TRUE)
                     ->registerStyle('jquery_ui_1.9.2.custom.min', TRUE)
@@ -107,7 +107,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function show($hash) {
         if (parent::show($hash)) {
             \CMSFactory\assetManager::create()
-                    ->setData('wishlist', $this->dataModel)
+                    ->setData('wishlist', $this->dataModel['wish_list'])
+                    ->setData('user', $this->dataModel['user'])
                     ->registerStyle('style', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->render('other_list');

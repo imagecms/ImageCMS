@@ -70,6 +70,7 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function registerScript($name, $useCompress = FALSE) {
+//        var_dumps($name);
         /** Start. Load JS file into template */
         if ($useCompress)
             \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', 'after');

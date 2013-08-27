@@ -142,7 +142,7 @@ class Wishlist_model extends CI_Model {
     public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
 
-        $query = $this->db
+        $query = $this->db->select('*, mod_wish_list.user_id as wl_user_id')
                 ->where_in('access', $access)
                 ->where('mod_wish_list.hash', $hash)
                 ->where('shop_products_i18n.locale', $locale)
@@ -154,7 +154,8 @@ class Wishlist_model extends CI_Model {
                 ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
                 ->get('mod_wish_list')
                 ->result_array();
-        if (!$query)
+        
+        if (!$query){
             return $this->db
                             ->select('*, mod_wish_list.id AS `wish_list_id`')
                             ->where_in('mod_wish_list.access', $access)
@@ -163,6 +164,8 @@ class Wishlist_model extends CI_Model {
                             ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                             ->get('mod_wish_list')
                             ->result_array();
+        }
+            
         return $query;
     }
 
