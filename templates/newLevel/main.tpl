@@ -61,7 +61,7 @@
                     var cL = 0;
                     $.map(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], function(i, n) {
                         var element = document.createElement("script");
-                        element.src = theme + 'js/' + i + '.js';
+                        element.src = theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}';
                         document.body.appendChild(element);
                         $(element).load(function() {
                             cL++;
