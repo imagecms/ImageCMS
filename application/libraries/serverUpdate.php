@@ -31,7 +31,7 @@ class serverUpdate {
         $sql = "select * from update_user where domen = '$domen'";
         $res = $this->ci->db->query($sql)->result_array();
         if (count($res) > 0){
-            if ($res[0]['key'] == md5($careKey))
+            if (md5($res[0]['key']) == md5($careKey))
                 return true;
             else
                 return false;

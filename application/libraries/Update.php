@@ -319,7 +319,7 @@ class Update {
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
         if (!file_exists($file))
             return FALSE;
-        
+
         $zip = new ZipArchive();
         $zip->open($file);
         $rez = $zip->extractTo($destination);
@@ -606,7 +606,7 @@ class Update {
                     var_dumps($query);
                     return FALSE;
                 } else {
-                    return TRUE;
+//                    return TRUE;
                 }
             }
         }

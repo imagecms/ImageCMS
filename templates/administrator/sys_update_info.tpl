@@ -70,7 +70,7 @@
                                         <strong>Размер:</strong>
                                     </label>
                                     <div class="controls">
-                                        <label name="{$size}">{echo $size} мб.</label>
+                                        <label name="{$size}">{echo $size} mb.</label>
                                     </div>
                                 </td>
                             </tr>
