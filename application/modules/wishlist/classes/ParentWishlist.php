@@ -117,7 +117,7 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
 
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
-       
+        $user_data = $this->wishlist_model->getUserByID($wishlist[0]['user_id']);
         if($wishlist[0]['access'] == 'private' ){
             if($wishlist[0]['user_id'] != $this->dx_auth->get_user_id()){
                 $this->core->error_404();
@@ -126,7 +126,8 @@ class ParentWishlist extends \MY_Controller {
 
         if ($wishlist) {
             self::addReview($hash);
-            $this->dataModel = $wishlist;
+            $this->dataModel['wish_list'] = $wishlist;
+            $this->dataModel['user'] = $user_data;
 
             return TRUE;
         } else {

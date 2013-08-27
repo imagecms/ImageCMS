@@ -107,7 +107,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function show($hash) {
         if (parent::show($hash)) {
             \CMSFactory\assetManager::create()
-                    ->setData('wishlist', $this->dataModel)
+                    ->setData('wishlist', $this->dataModel['wish_list'])
+                    ->setData('user', $this->dataModel['user'])
                     ->registerStyle('style', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->render('other_list');

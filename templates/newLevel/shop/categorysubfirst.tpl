@@ -1,4 +1,3 @@
-{//var_dumps($products)}
 <div class="frame-crumbs">
     {widget('path')}
 </div>
