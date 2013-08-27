@@ -1099,7 +1099,7 @@ $(document).ready(function() {
                             complete: function() {
                                 done += array.length;
                                 $('.bar').css('width', ((done / countAll) * 100) + '%');
-                                $('.bar').text((done / countAll) * 100 + '%');
+                                $('.bar').text(parseInt((done / countAll) * 100) + '%');
 
                                 $('#progressLabel').html('<b>Ресайз изображений для товаров</b> <br/>Всего найдено товаров: ' + countAll + '  (Обработано : ' + done + ' )');
 //                                console.log((done / countAll) * 100);
