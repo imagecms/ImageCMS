@@ -190,5 +190,8 @@ $(document).live('scriptDefer', function() {
         });
     }
     if ($.exists("#datepicker"))
-        $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+        try {
+            $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+        } catch (err) {
+        }
 });
