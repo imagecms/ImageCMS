@@ -23,7 +23,7 @@
                         Создать BackUp
                     </a>
                     <button onclick="Update.processDB()"
-                            class="btn">
+                            class="btn pjax">
                         <span class="icon-hdd"></span>
                         getQuerys
                     </button>

@@ -52,8 +52,12 @@ class Sys_update extends BaseAdminController {
         $this->template->show('sys_update_info', FALSE, $data);
     }
 
+    /**
+     * initiate update process
+     */
     public function do_update() {
         set_time_limit(99999999999999);
+        $this->update->createBackUp();
         $this->update->getUpdate();
         $this->update->restoreFromZIP('./application/backups/updates.zip');
         showMessage('Обновление успешно');
@@ -63,16 +67,17 @@ class Sys_update extends BaseAdminController {
     public function update($sort_by = "create_date", $order = 'asc') {
         // Show upgrade window;
         $result = $this->update->getHashSum();
-        $array = $this->update->parse_md5();
-        $diff = array_diff($array, $result);
+        write_file('./application/backups/md5.txt', json_encode($result));
+//        $array = $this->update->parse_md5();
+//        $diff = array_diff($array, $result);
 
         if (!$result['error'])
             $data = array(
-                'filesCount' => count($diff),
+                'filesCount' => count($result),
                 'sort_by' => $sort_by,
                 'order' => $order,
                 'diff_files_dates' => $this->update->get_files_dates(),
-                'diff_files' => $diff,
+                'diff_files' => $result,
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
             );
         else
@@ -152,17 +157,18 @@ class Sys_update extends BaseAdminController {
 
         echo json_encode($array_query);
     }
+
     public function Querys() {
         foreach ($_POST['data'] as $query) {
             if ($query) {
-//                if (!$this->db->query($query)) {
-//                    echo 'Невозможно виполнить запрос: <br>';
-//                    var_dumps($query);
-//                    return FALSE;
-//                } else {
-//                    echo 'ok';
-////                    return TRUE;
-//                }
+                if (!$this->db->query($query)) {
+                    echo 'Невозможно виполнить запрос: <br>';
+                    var_dumps($query);
+                    return FALSE;
+                } else {
+                    echo 'ok';
+//                    return TRUE;
+                }
             }
         }
 //                showMessage('asdasd');
