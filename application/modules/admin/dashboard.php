@@ -13,6 +13,10 @@ class Dashboard extends BaseAdminController {
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+
+       // $this->lang->load_gettext('ru','utf-8', 'default', 'application/language/admiin');
+        //$this->lang->load_gettext('en','utf-8', 'messages', 'application/language');
+        //$this->lang->load_gettext('en','utf-8', 'newdomen', 'application/language');
     }
 
     public function index() {

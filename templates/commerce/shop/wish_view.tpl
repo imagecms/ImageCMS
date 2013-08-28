@@ -6,10 +6,10 @@
 {$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 <div class="content">
     <div class="center">
-        <h1>{lang('s_WL')}</h1>
+        <h1>{lang("Wish List","admin")}</h1>
         {if !$items}
             <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
             </div>
         {else:}
             <table class="cleaner_table forCartProducts" cellspacing="0">                
@@ -76,7 +76,7 @@
                         <td colspan="6">
                             <div class="foot_cleaner">
                                 <div class="f_l"> 
-                                    <div class="f_r sum">{lang('s_summ')}:</div>
+                                    <div class="f_r sum">{lang("Total","admin")}:</div>
                                 </div>
                                 <div class="f_r">                                  
                                     <div class="price f-s_26 f_l" style="width: 170px;">{$total} <sub>{$CS}</sub>

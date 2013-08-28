@@ -2,11 +2,11 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <td width="100%" valign="top">
-                    {lang('amt_select_category')}
+                    {lang("Choose a category")}
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">
-                        <h3>{lang('amt_params')}:</h3>
+                        <h3>{lang("Options")}:</h3>
                 </div>
                 </td>
             </tr>
@@ -20,30 +20,30 @@
                    <input type="hidden" id="owner_id" value="{$insert_id}" />
 
 
-                    <div class="field_text">{lang('amt_type')}</div>
+                    <div class="field_text">{lang("Type")}</div>
                     <div class="field_input" id="cat_type">
-                        {lang('amt_category')}
+                        {lang("Categories")}
                     </div>
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">{lang('amt_id')}</div>
+                    <div class="field_text">{lang("ID")}</div>
                     <div class="field_input" id="cat_id">
                         0
                     </div>
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">{lang('amt_title')}</div>
+                    <div class="field_text">{lang("Title")}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_title"  id="cat_title" />
                     </div>
 
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">{lang('amt_parent')}</div>
+                    <div class="field_text">{lang("Parent")}</div>
                     <div class="field_input">
                        	<select name="cat_parent_id" id="cat_parent_id">
-                        <option value="0">{lang('amt_no')}</option>
+                        <option value="0">{lang("No")}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
@@ -53,28 +53,28 @@
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">{lang('amt_position_after')}</div>
+                    <div class="field_text">{lang("Position after")}</div>
                     <div class="field_input">
                        	<select name="cat_position_after" id="cat_position_after">
-                        <option value="0">{lang('amt_no')}</option>
-                        <option value="first">{lang('amt_first')}</option>
+                        <option value="0">{lang("No")}</option>
+                        <option value="first">{lang("First")}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
                         </select>
                     </div>
                     <div class="form_overflow"></div>
-
-                    <div class="field_text">{lang('amt_image')}</div>
+                    <div class="field_text">{lang("Image")}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_image"  id="cat_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang('amt_select_image')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang("Select an image")}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+
                     </div>
 
-                    <div class="field_text">{lang('amt_access_level')}</div>
+                    <div class="field_text">{lang("Access level")}</div>
                     <div class="field_input">
                         <select id="cat_roles" name="cat_roles[]" multiple="multiple">
-                        <option value="0">{lang('amt_all')}</option>
+                        <option value="0">{lang("All")}</option>
                         {foreach $roles as $role}
                           <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -84,21 +84,21 @@
                     <div class="form_overflow"></div>
 
                    <div class="field_text">
-                        {lang('amt_hide')}
+                        {lang("Hide")}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="cathidden_v" id="cat_hidden" onclick="cat_hidden = 1;"  /> {lang('amt_yes')}
-                       <input type="radio" name="cathidden_v" id="cat_nohidden"  onclick="cat_hidden = 0;"  checked="checked" /> {lang('amt_no')}
+                       <input type="radio" name="cathidden_v" id="cat_hidden" onclick="cat_hidden = 1;"  /> {lang("Yes")}
+                       <input type="radio" name="cathidden_v" id="cat_nohidden"  onclick="cat_hidden = 0;"  checked="checked" /> {lang("No")}
                     </div>
 
                     <div class="form_overflow"></div>
 
 		    	            <div class="field_text">
-                        {lang('amt_open_in_new_window')}
+                        {lang("Open in the new window")}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="catnew_page" id="cat_newpage"  onclick="cat_newpage = 1;" /> {lang('amt_yes')}
-                       <input type="radio" name="catnew_page" id="cat_nonewpage" onclick="cat_newpage = 0;"  checked="checked" /> {lang('amt_no')}
+                       <input type="radio" name="catnew_page" id="cat_newpage"  onclick="cat_newpage = 1;" /> {lang("Yes")}
+                       <input type="radio" name="catnew_page" id="cat_nonewpage" onclick="cat_newpage = 0;"  checked="checked" /> {lang("No")}
                     </div>
 
                     <div class="form_overflow"></div>

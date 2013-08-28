@@ -40,7 +40,7 @@
                         <li class="btn-order-call">
                             <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
                                 <span class="icon_order_call"></span>
-                                <span class="text-el d_l">Заказать звонок</span>
+                                <span class="text-el d_l">{lang('Request a call','newLevel')}</span>
                             </a>
                         </li>
                     </ul>
@@ -69,7 +69,7 @@
                                 <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('search_find')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}" placeholder="{lang('s_se_thi_sit')}" {if strpos($CI->uri->uri_string, 'search') !== false}autofocus{/if}/>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('s_se_thi_sit', 'newLevel')}" {if strpos($CI->uri->uri_string, 'search') !== false}autofocus{/if}/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>

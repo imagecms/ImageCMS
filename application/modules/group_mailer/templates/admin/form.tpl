@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_send_ema_modu_group')}</span>
+            <span class="title">{lang("Sending emails")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang('a_mailer_send_mail')}</button>                   
+                <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang("Send a letter")}</button>                   
             </div>
         </div>                            
     </div>               
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('a_param')}
+                            {lang("Properties")}
                         </th>
                     </tr>
                 </thead>
@@ -30,30 +30,30 @@
                                     <form id="send" method="post" action="{$BASE_URL}admin/components/cp/group_mailer/send_email">
                                         <div class="span9">
                                             <div class="control-group">
-                                                <label class="control-label" for="subject">{lang('amt_theme')}</label>
+                                                <label class="control-label" for="subject">{lang("Theme")}</label>
                                                 <div class="controls">
                                                     <input type="text" name="subject" id="subject" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="name">{lang('amt_your_name')}</label>
+                                                <label class="control-label" for="name">{lang("Your name")}</label>
                                                 <div class="controls">
                                                     <input type="text" name="name" id="name" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="email">{lang('amt_your_email')}</label>
+                                                <label class="control-label" for="email">{lang("Your e-mail")}</label>
                                                 <div class="controls">
                                                     <input type="text" id="email" name="email" value="{$admin_mail}" class="required email"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="message">{lang('amt_message')}</label>
+                                            <label class="control-label" for="message">{lang("Message")}</label>
                                             <div class="controls">
-                                                <textarea name="message" id="message" class="elRTE">{lang('amt_hello')}, %username%.
+                                                <textarea name="message" id="message" class="elRTE">{lang("Hello")}, %username%.
 --------------------------------
-                                                    {lang('amt_best_regards')} {$site_settings.site_title}
+                                                    {lang("best regards, administration")} {$site_settings.site_title}
 
                                                     {site_url()}
 
@@ -63,7 +63,7 @@
 
                                         <div class="span9">
                                             <div class="control-group">
-                                                <div class="control-label">{lang('amt_send_to_group')}</div>
+                                                <div class="control-label">{lang("Send to groups")}</div>
                                                 <div class="controls">
                                                     {foreach $roles as $role}
                                                         <div class="frame_label m-b_15 d_b no_connection">
@@ -78,11 +78,11 @@
 
 
                                             <div class="control-group">
-                                                <label class="control-label" for="mailtype">{lang('amt_format')}</label>
+                                                <label class="control-label" for="mailtype">{lang("Formatting")}</label>
                                                 <div class="controls">
                                                     <select name="mailtype" id="mailtype">
-                                                        <option value="html" selected="selected">{lang('amt_html')}</option>
-                                                        <option value="text">{lang('amt_plain_text')}</option>
+                                                        <option value="html" selected="selected">{lang("HTML")}</option>
+                                                        <option value="text">{lang("Plain Text")}</option>
                                                     </select>
                                                 </div>
                                             </div>

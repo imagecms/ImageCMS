@@ -15,19 +15,19 @@
     <div data-body="body">
         {if count($products) > 0}
         <!--Start. Show compare list if count products >0 -->
-        <h1 class="f_l">{lang('s_compare_tovars')}</h1>
+        <h1 class="f_l">{lang("Compare Products","admin")}</h1>
         <!-- Start. Buttons for change to show different or all properties -->
         <div class="f_l">
             <ul class="tabs tabs-dif-all_par groupButton">
-                <li class="active btn"><button type="button" data-href="#all-params">{lang('s_all_par')}</button></li>
-                <li class="btn"><button type="button" data-href="#only-dif">{lang('s_only_diff')}</button></li>
+                <li class="active btn"><button type="button" data-href="#all-params">{lang("All the parameters","admin")}</button></li>
+                <li class="btn"><button type="button" data-href="#only-dif">{lang("Only Differences","admin")}</button></li>
             </ul>
         </div>
         <!-- End. Buttons for change to show different or all properties -->
         <div class="p_r c_b">
             <!--Start. Show categories of products which are in list -->
             <div class="comprasion_head">
-                <div class="title_h2">{lang('s_category')}:</div>
+                <div class="title_h2">{lang("Category","admin")}:</div>
                 <ul class="tabs">
                     {foreach $categories as $category}
                     <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
@@ -168,6 +168,7 @@
                                     {/if}
                                     {/foreach}
                                 </ul>
+
                                 <!--End. Product characteristics -->
                             </li>
                             {/if}
@@ -183,10 +184,10 @@
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+                <h1 class="d_i">{lang("Compare Products","admin")}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+                <div class="title_h2 t-a_c">{lang("Comparison list is empty","admin")}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
@@ -195,10 +196,10 @@
     <div data-body="message">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+            <h1 class="d_i">{lang("Compare Products","admin")}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+            <div class="title_h2 t-a_c">{lang("Compare list is empty","admin")}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>
