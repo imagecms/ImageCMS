@@ -11,13 +11,11 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Go back','admin')}</span>
                 </a>
-                {if $newRelise}
-                    <a href="{$BASE_URL}admin/sys_update/update"
-                       class="btn btn-small btn-primary pjax">
-                        <span class="icon-play"></span>
-                        <span class="">{lang('Go to Updates','admin')}</span>
-                    </a>
-                {/if}
+                <a href="{$BASE_URL}admin/sys_update/update"
+                   class="btn btn-small btn-primary pjax">
+                    <span class="icon-play"></span>
+                    <span class="">{lang('BackUp and Update','admin')}</span>
+                </a>
                 {if SHOP_INSTALLED}
                     <a href="/admin/sys_update/properties"
                        class="btn btn-small">
@@ -28,8 +26,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        {if $newRelise}
+    {if $newRelise}
+        <div class="row">
             <div class="span4">
                 <form method="post" action="{$BASE_URL}admin/sys_update/update" class="form-horizontal" id="sys_form">
                     <table class="table table-striped table-bordered table-hover table-condensed">
@@ -78,10 +76,10 @@
                     </table>
                 </form>
             </div>
-        {else:}
-            <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-                Нет файлов восстановления.
-            </div>
-        {/if}
-    </div>
+        </div>
+    {else:}
+        <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
+            Ваша версия системы актуальна.
+        </div>
+    {/if}
 </section>

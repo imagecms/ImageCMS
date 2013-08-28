@@ -3,10 +3,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/**
- * @property CI_Input $input
- * @property CI_DB_active_record $db
- */
 class Sys_update extends BaseAdminController {
 
     private $upgrade_server = 'http://imagecms.net/upgrades/';
@@ -40,7 +36,7 @@ class Sys_update extends BaseAdminController {
             $data = array(
                 'build' => $array['build_id'],
                 'date' => date("Y-m-d", $array['time']),
-                'size' => $array['size'] / 1024 / 1024,
+                'size' => number_format($array['size'] / 1024 / 1024, 3),
                 'newRelise' => 1,
             );
         } else {
@@ -59,13 +55,15 @@ class Sys_update extends BaseAdminController {
         set_time_limit(99999999999999);
         $this->update->createBackUp();
         $this->update->getUpdate();
+        $this->cache->delete_all();
 //        $this->update->restoreFromZIP('./application/backups/updates.zip');
-        showMessage('Обновление успешно');
-        pjax('/admin');
+//        showMessage('Обновление успешно');
+//        pjax('/admin');
     }
 
-    public function update($sort_by = "create_date", $order = 'asc') {
+    public function update($sort_by = "create_date", $order = 'asc', $newRelise = false) {
         // Show upgrade window;
+        $status = $this->update->getStatus();
         $result = $this->update->getHashSum();
 
 //        $array = $this->update->parse_md5();
@@ -78,7 +76,8 @@ class Sys_update extends BaseAdminController {
                 'order' => $order,
                 'diff_files_dates' => $this->update->get_files_dates(),
                 'diff_files' => $result,
-                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                'new_version' => $status ? 1 : 0
             );
         else
             $data = array(
