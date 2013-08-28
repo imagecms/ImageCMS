@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/sys_update"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('back')}</span>
                     </a>
                     <a href="/admin/sys_update/do_update"
                        class="btn btn-small pjax btn-success">
