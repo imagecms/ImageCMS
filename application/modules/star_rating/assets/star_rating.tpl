@@ -1,3 +1,4 @@
+
 {if $CI->core->core_data['data_type'] != null}
     {if $CI->core->core_data['data_type'] == 'product'}
         <div class="star">    

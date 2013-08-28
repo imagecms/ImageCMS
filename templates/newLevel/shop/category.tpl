@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="d_i title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array('товар','товара','товаров'))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('product','newLevel')}","{lang('product','newLevel')}","{lang('products','newLevel')}"))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -35,7 +35,7 @@
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">По вашему запросу товаров не найдено</span>
+                        <span class="text-el">{lang('No items found','newLevel')}</span>
                     </div>
                 </div>
                 <!-- End. Empty category-->

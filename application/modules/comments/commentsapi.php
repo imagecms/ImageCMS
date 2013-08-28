@@ -106,7 +106,6 @@ class Commentsapi extends Comments {
     public function renderPosts() {
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
-
         $this->load->model('base');
         $this->init_settings();
 
@@ -168,8 +167,8 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : lang('Leave a comment'),
             'commentsCount' => $commentsCount[$item_id],
-            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
             'validation_errors' => $this->validation_errors
         ));
     }
@@ -271,7 +270,7 @@ class Commentsapi extends Comments {
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => "Время для оставления нового коментария еще не пришло"
+                            'validation_errors' => lang('Time for new  comment has not yet come')
                         )
                 );
                 return;
@@ -290,9 +289,9 @@ class Commentsapi extends Comments {
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE) {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
             if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
             else
-                $this->form_validation->set_rules('captcha', lang('lang_captcha'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
         }
 
         if ($this->max_comment_length != 0)
@@ -539,11 +538,11 @@ class Commentsapi extends Comments {
         $result = array();
 
         foreach ($query as $q)
-            $result[$q['item_id']] = $q['count'] . ' ' . $this->Pluralize((int) $q['count'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+            $result[$q['item_id']] = $q['count'] . ' ' . $this->Pluralize((int) $q['count'], array(lang("review"), lang("reviews"), lang("review")));
 
         foreach ((array) $ids as $id)
             if (!$result[$id])
-                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')));
+                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang("review"), lang("reviews"), lang("review")));
 
         return $result;
     }

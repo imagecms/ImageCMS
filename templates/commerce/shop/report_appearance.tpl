@@ -1,26 +1,26 @@
 <div class="fancy order_call">
     {if !$message}
         <form method="post" action="" id="notifMe" class="clearfix">
-            <h1>{lang('s_message_not_found')}</h1>
+            <h1>{lang("Announce a","admin")}</h1>
             <h2>{echo ShopCore::encode($model->getName())} {echo $model->firstVariant->getName()}</h2>
         {if validation_errors()}<div class="validate_error_ml" style="margin: 5px 2px 2px;">{validation_errors()}</div>{/if}
         <div class="f_l w_191">
             <label>
-                {lang('s_c_uoy_name_u')}<span>*</span>
+                {lang("You name","admin")}<span>*</span>
                 <input type="text" name="UserName" value="{echo ShopCore::encode($_POST.UserName)}" />
             </label>
             <label>
-                {lang('s_c_uoy_user_el')}<span>*</span>
+                {lang("E-mail Address")}<span>*</span>
                 <input type="text" name="UserEmail" value="{echo ShopCore::encode($_POST.UserEmail)}" />
             </label>
             <label>
-                {lang('s_phone')}<span>*</span>
+                {lang("Phone","admin")}<span>*</span>
                 <input type="text" name="UserPhone" value="{echo ShopCore::encode($_POST.UserPhone)}" />
             </label>
         </div>
         <div class="f_r w_191">
             <label>
-                {lang('s_to_additional_information')}
+                {lang("Additional information","admin")}
                 <textarea class="w_191" name="UserComment">{echo ShopCore::encode($_POST.UserComment)}</textarea>
             </label>
             <label>
@@ -30,7 +30,7 @@
         </div>
         <div class="p-t_19 c_b clearfix">
             <div class="buttons button_middle_blue f_r">
-                <input type="submit" value="{lang('s_to_call_me')}">
+                <input type="submit" value="{lang("Call me","admin")}">
             </div>
         </div>
         {form_csrf()}

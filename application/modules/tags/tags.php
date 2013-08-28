@@ -139,8 +139,8 @@ class Tags extends MY_Controller {
                     $config['total_rows'] = count($pages_id);
                     $config['per_page'] = $this->search->row_count;
                     $config['uri_segment'] = $this->uri->total_segments();
-                    $config['first_link'] = lang('first_link');
-                    $config['last_link'] = lang('last_link');
+                    $config['first_link']  = lang("The first");
+                    $config['last_link']   = lang("Last");
 
                     $config['cur_tag_open'] = '<span class="active">';
                     $config['cur_tag_close'] = '</span>';

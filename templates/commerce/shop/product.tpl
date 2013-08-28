@@ -134,11 +134,11 @@
                     <span data-prodid="{echo $model->id}" class="m-r_20 compare
                           {if $forCompareProducts && in_array($model->getId(), $forCompareProducts)}
                               is_avail">
-                              <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                              <a href="{shop_url('compare')}" class="red">{lang("Compare","admin")}</a>
                           {else:}
                               toCompare blue">
-                              <span class="js blue">{lang('s_compare_add')}</span>
-                              <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                              <span class="js blue">{lang("Add to compare","admin")}</span>
+                              <a href="{shop_url('compare')}" class="red" style="display: none;">{lang("Compare","admin")}</a>
                           {/if}
                     </span>
 
@@ -149,11 +149,11 @@
                                   data-prodid="{echo $model->getId()}" 
                                   class="addToWList">
                                 <span class="icon-wish"></span>
-                                <span class="js blue">{lang('s_slw')}</span>
+                                <span class="js blue">{lang("Save to Wish List","admin")}</span>
                             </span>
-                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                            <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                         {else:}
-                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                            <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                         {/if}
                     </span>
             </div>
@@ -167,7 +167,7 @@
                 <li>
                     <img src="{$SHOP_THEME}images/order_phone.png" class="phone_product"/>
                     <div>
-                        <div class="title">{lang('s_zaka_phone')}:</div>
+                        <div class="title">{lang("Order by phone","admin")}:</div>
                         <span>(093)<span class="d_n">&minus;</span> 000-20-00,  (093)<span class="d_n">&minus;</span> 000-08-00,   (093)<span class="d_n">&minus;</span> 000-40-00</span>
                     </div>
                 </li>
@@ -176,7 +176,7 @@
                 <li>
                     <img src="{$SHOP_THEME}images/buy.png">
                     <div>
-                        <div class="title">{lang('s_pay')} <span><a href="/oplata">{lang('s_all_infor_b')}</a></span></div>
+                        <div class="title">{lang("Payment","admin")} <span><a href="/oplata">{lang("(learn more)")}</a></span></div>
                         {if is_array($paymentMethod = getPaymentMethodsList())}
                             {foreach $paymentMethod as $methods}
                             {if $methods.active ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
@@ -187,7 +187,7 @@
             <li>
                 <img src="{$SHOP_THEME}images/deliver.png">
                 <div>
-                    <div class="title">{lang('s_delivery1')} <span><a href="/dostavka">{lang('s_all_infor_b')}</a></span></div>
+                    <div class="title">{lang("Delivery","admin")} <span><a href="/dostavka">{lang("(learn more)")}</a></span></div>
                     {if is_array($deliveryMethod = getDeliveryMethodsList())}
                         {foreach $deliveryMethod as $methods}
                         {if $methods.enabled ==1}<span class="small_marker">{echo $methods.name}</span>{/if}
@@ -199,17 +199,17 @@
     <div class="tabs info_tovar">
         <ul class="nav_tabs">
             {if $model->getFullDescription()}
-                <li><a href="#first">{lang('s_information')}</a></li>
+                <li><a href="#first">{lang("Information","admin")}</a></li>
             {/if}
             {if ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
-                <li><a href="#second">{lang('s_properties')}</a></li>
+                <li><a href="#second">{lang("Description","admin")}</a></li>
             {/if}
             {if $model->getRelatedProductsModels()}
-                <li><a href="#third">{lang('s_accessories')}</a></li>
+                <li><a href="#third">{lang("Accessories","admin")}</a></li>
             {/if}
             <li>
                 <a href="#four">
-            {//echo SStringHelper::Pluralize($data['total_comments'], array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
+            {//echo SStringHelper::Pluralize($data['total_comments'], array(lang("review","admin"), lang("reviews","admin"), lang("review","admin")))}{if $data['comments_arr']}{echo $data['total_comments']}{else:}Нет комментариев{/if}
         </a>
     </li>
 </ul> 
@@ -264,7 +264,7 @@
 </div>
 </div>
 {if $model->getShopKits()->count() > 0}
-    <div class="f-s_18 c_6 center">{lang('s_spec_promotion')}</div>
+    <div class="f-s_18 c_6 center">{lang("Special promotion","admin")}</div>
     <div class="promotion carusel_frame carousel_js">
         <div class="carusel">
             <ul class="">
@@ -344,7 +344,7 @@
                                 <div class="buttons {if $prod_in_cart}button_middle_blue{else:}button_gs{/if}">
                                     <div class="buy"> 
                                         {if !$prod_in_cart}                                       
-                                            <span data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang('s_buy')}</span>
+                                            <span data-id="{echo $kid->getId()}" class="add_cart_kid" id="kitBuy">{lang("Buy","admin")}</span>
                                         {else:}
                                             <span class="goToCart">Оформить</br> заказ</span>
                                         {/if}
@@ -363,7 +363,7 @@
 
 {if count($simprod = getSimilarProduct($model)) > 1}
     <div class="featured carusel_frame carousel_js">
-        <div class="f-s_18 c_6 center">{lang('s_similar_product')}</div>
+        <div class="f-s_18 c_6 center">{lang("Similar products","admin")}</div>
         <div class="carusel">
             <ul>
                 {foreach $simprod as $sp}
@@ -406,7 +406,7 @@
 {/if} 
 <div class="m-t_29 featured">
     {if count(getPromoBlock('hot', 3))>0}
-        <div class="box_title"><span class="f-s_24">{lang('s_new')}</span></div>
+        <div class="box_title"><span class="f-s_24">{lang("New","admin")}</span></div>
         <div class="featured carusel_frame carousel_js">
             <div class="carusel">
                 <ul>

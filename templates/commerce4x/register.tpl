@@ -9,7 +9,7 @@
         <div class="row d_i-b t-a_l">
             <div class="span6">
                 <div class="frameGroupsForm">
-                    <div class="header_title">{lang('lang_register')}</div>
+                    <div class="header_title">{lang("Registration","admin")}</div>
                     <div class="standart_form horizontal_form">
                         <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
                                                 return false;">
@@ -32,7 +32,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('lang_password')}</span>
+                                    <span class="title">{lang("Password","admin")}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-password"></span>
                                         <input type="password" name="password" id="password" value="{set_value('password')}" />
@@ -41,7 +41,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('lang_confirm_password')}</span>
+                                    <span class="title">{lang("Repeat Password","admin")}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-replay"></span>
                                         <input type="password" class="text" name="confirm_password" id="confirm_password" />
@@ -63,7 +63,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
+                                        <input type="submit" class="btn btn_cart" value="{lang("Send","admin")}" />
                                     </span>
                                 </div>
                             </div>

@@ -10,7 +10,7 @@
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="no-empty">
         <div class="drop-header">
-        <div class="title bask"><span>В вашей корзине</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, plurProd) %></span> <span>на сумму</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
+        <div class="title bask"><span>{/literal}{lang('In your cart','newLevel')}{literal}</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, plurProd) %></span> <span>{/literal}{lang('amount','newLevel')}{literal}</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
         </div>
         </div>
         <div class="drop-content">
@@ -70,7 +70,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-pcs%></span>
-        <div class="number" data-title="количество на складе <%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Quantity in the warehouse','newLevel')} {literal}<%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -83,11 +83,11 @@
         </button>
         </div>
         </div>
-        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="{/literal}{lang('Digits only','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">Сумма: </span>
+        <span class="title">{/literal}{lang('Total','newLevel')}{literal}: </span>
         <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <%if (item.origprice) { %>
@@ -237,7 +237,7 @@
         </td>
         <td class="frame-count">
         <span class="countOrCompl"><%-kits%></span>
-        <div class="number" data-title="количество на складе <%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Quantity in the warehouse','newLevel')}{literal} <%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
@@ -250,11 +250,11 @@
         </button>
         </div>
         </div>
-        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="{/literal}{lang('Digits only','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">Сумма: </span>
+        <span class="title">{/literal}{lang('Total','newLevel')}{literal}: </span>
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -300,10 +300,12 @@
         <div class="header-frame-foot">
         <div class="inside-padd">
         <span class="frame-discount">
-        <span class="s-t">Ваша текущая скидка:</span>
+
+        <span class="s-t">{/literal}{lang('Your current discount is','newLevel')}{literal}:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(Shop.Cart.discount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
+
         </span>
-        <span class="s-t">Всего:</span>
+        <span class="s-t">{/literal}{lang('Total','newLevel')}{literal}:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
@@ -337,13 +339,13 @@
         <div class="btn-form f_l">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Back to shopping','newLevel')}{literal}</span>
         </button>
         </div>
         <div class="btn-cart btn-cart-p f_r">
         <a href="/shop/cart">
         <span class="icon_cart_p"></span>
-        <span class="text-el">Оформить заказ</span>
+        <span class="text-el">{/literal}{lang('Check out','newLevel')}{literal}</span>
         </a>
         </div>
         </div>
@@ -354,17 +356,17 @@
         </div>
         <div class="empty">
         <div class="drop-header">
-        <div class="title">В вашей корзине <span class="add-info">пусто</span></div>
+        <div class="title">{/literal}{lang('Your cart is','newLevel')}{literal} <span class="add-info">{/literal}{lang('Empty','newLevel')}{literal}</span></div>
         </div>
         <div class="drop-content">
         <div class="inside-padd">
         <div class="msg f-s_0">
-        <div class="info"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
+        <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('You have removed all items from the basket','newLevel')}{literal}</span></div>
         </div>
         <div class="btn-form">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Back to shopping','newLevel')}{literal}</span>
         </button>
         </div>
         </div>
@@ -433,7 +435,7 @@
         </div>
         <div class="frame-frame-count">
         <div class="frame-count">
-        <div class="number d_i-b" data-title="количество на складе <%-item.maxcount%>">
+        <div class="number d_i-b" data-title="{/literal}{lang('Quantity in the warehouse','newLevel')}{literal} <%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
         <div class="btn-plus">
         <button type="button">
@@ -446,7 +448,7 @@
         </button>
         </div>
         </div>
-        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="{/literal}{lang('Digits only','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
         <span class="countOrCompl"><%-pluralStr(item.count, plurProd)%></span>
         </div>
@@ -597,7 +599,7 @@
         </div>
         <div class="frame-frame-count">
         <div class="frame-count">
-        <div class="number" data-title="количество на складе <%-item.maxcount%>">
+        <div class="number" data-title="{/literal}{lang('Quantity in the warehouse','newLevel')}{literal} <%-item.maxcount%>">
         <div class="frame-change-count" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
         <div class="btn-plus">
         <button type="button">
@@ -610,7 +612,7 @@
         </button>
         </div>
         </div>
-        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="только цифры" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+        <input type="text" value="<%- item.count %>" data-rel="plusminus" data-title="{/literal}{lang('Digits only','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
         </div>
         <span class="countOrCompl"><%-pluralStr(item.count, plurKits)%></span>
         </div>
@@ -658,11 +660,13 @@
         <div class="inside-padd">
 
         <span class="frame-discount">
-        <span class="s-t">Ваша текущая скидка:</span>
+
+        <span class="s-t">{/literal}{lang('Your current discount is','newLevel')}{literal}:</span>
         <span class="text-discount current-discount"><span class="genDiscount"><%if(discC){%><%- parseFloat(Shop.Cart.discount.sum_discount_product).toFixed(pricePrecision)%><%}%></span> <span class="curr"><%-curr%></span></span>
+
         </span>
 
-        <span class="s-t">Всего:</span>
+        <span class="s-t">{/literal}{lang('Total','newLevel')}{literal}:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
         <span class="price-discount">
@@ -696,13 +700,13 @@
         <div class="btn-form f_l">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> Вернуться к покупкам</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Back to shopping','newLevel')}{literal}</span>
         </button>
         </div>
         <div class="btn-cart btn-cart-p f_r">
         <a href="/shop/cart">
         <span class="icon_cart_p"></span>
-        <span class="text-el">Оформить заказ</span>
+        <span class="text-el">{/literal}{lang('Check out','newLevel')}{literal}</span>
         </a>
         </div>
         </div>
@@ -713,12 +717,12 @@
         </div>
         <div class="empty">
         <div class="drop-header">
-        <div class="title">В вашей корзине <span class="add-info">пусто</span></div>
+        <div class="title">{/literal}{lang('Your cart is','newLevel')}{literal} <span class="add-info">{/literal}{lang('Empty','newLevel')}{literal}</span></div>
         </div>
         <div class="drop-content">
         <div class="inside-padd">
         <div class="msg f-s_0">
-        <div class="info"><span class="icon_info"></span><span class="text-el">Вы удалили все товары с корзины</span></div>
+        <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('You have removed all items from the basket','newLevel')}{literal}</span></div>
         </div>
         </div>
         </div>
@@ -795,8 +799,8 @@
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">Фильтровать</a>
-            <div class="description">Найдено <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
+            <a href="#">{lang('Filter','newLevel')}</a>
+            <div class="description">{lang('Found','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
     </div>

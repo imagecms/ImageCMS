@@ -44,6 +44,8 @@ class Menu extends MY_Controller {
         $this->load->module('core');
         $this->cache_key = 'menu_data_';
         $this->cache_key = $this->cache_key . $this->dx_auth->get_role_id();
+        $lang = new MY_Lang();
+        $lang->load('menu');
 
 
         $this->load->helper('string');

@@ -107,7 +107,7 @@
 		</div>
 		<div class="clear"></div>
 
-		<div class="fieldName">{lang('lang_captcha')}</div>
+		<div class="fieldName">{lang("Code protection","admin")}</div>
 		<div class="field">
 			<input type="text" name="captcha" id="captcha" />  <span style="color:red;">*</span>
 		</div>
