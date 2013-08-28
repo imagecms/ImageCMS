@@ -1,0 +1,445 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-29 09:15+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../../\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: /var/www/image.loc/_temp.php:19
+#: /var/www/image.loc/_temp.php:21
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:32
+#: /var/www/image.loc/_temp.php:35
+msgid "a_back"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:20
+msgid "a_save"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+#: /var/www/image.loc/_temp.php:34
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+#: /var/www/image.loc/_temp.php:27
+msgid "a_delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "a_footer_cancel"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+#, fuzzy
+msgid "a_users_list"
+msgstr "Список замовлень"
+
+#: /var/www/image.loc/_temp.php:28
+msgid "a_ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "a_user"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+msgid "lists_count"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+msgid "items_count"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:33
+msgid "Type"
+msgstr ""
+
+#: wishlist.php:189
+#: wishlistApi.php:190
+msgid "btn_add_2_WL"
+msgstr ""
+
+#: wishlist.php:200
+#: wishlistApi.php:195
+msgid "btn_already_in_WL"
+msgstr ""
+
+#: classes/ParentWishlist.php:85
+msgid "error_no_user"
+msgstr ""
+
+#: classes/ParentWishlist.php:100
+msgid "error_no_lists"
+msgstr ""
+
+#: classes/ParentWishlist.php:127
+#: classes/ParentWishlist.php:200
+#: classes/ParentWishlist.php:588
+msgid "error_wrong_query"
+msgstr ""
+
+#: classes/ParentWishlist.php:180
+msgid "error_no_views"
+msgstr ""
+
+#: classes/ParentWishlist.php:248
+#: classes/BaseApi.php:164
+#: classes/BaseWishlist.php:166
+msgid "updated"
+msgstr ""
+
+#: classes/ParentWishlist.php:250
+#: classes/BaseApi.php:166
+#: classes/BaseWishlist.php:168
+msgid "error_cant_update"
+msgstr ""
+
+#: classes/ParentWishlist.php:270
+#: classes/ParentWishlist.php:397
+msgid "error_list_limit_exhausted"
+msgstr ""
+
+#: classes/ParentWishlist.php:270
+#: classes/ParentWishlist.php:397
+msgid "list_max_count"
+msgstr ""
+
+#: classes/ParentWishlist.php:276
+#: classes/BaseApi.php:227
+#: classes/BaseWishlist.php:182
+msgid "error_list_description_limit_exhausted"
+msgstr ""
+
+#: classes/ParentWishlist.php:276
+#: classes/BaseApi.php:227
+#: classes/BaseWishlist.php:182
+msgid "list_description_max_count"
+msgstr ""
+
+#: classes/ParentWishlist.php:282
+#: classes/ParentWishlist.php:388
+msgid "error_listname_limit_exhausted"
+msgstr ""
+
+#: classes/ParentWishlist.php:282
+#: classes/ParentWishlist.php:388
+msgid "listname_max_count"
+msgstr ""
+
+#: classes/ParentWishlist.php:286
+msgid "error_listname_empty"
+msgstr ""
+
+#: classes/ParentWishlist.php:292
+#: classes/BaseApi.php:196
+#: classes/BaseWishlist.php:139
+#, fuzzy
+msgid "created"
+msgstr "Создать категорию"
+
+#: classes/ParentWishlist.php:315
+#: classes/ParentWishlist.php:344
+msgid "error_WL_delete"
+msgstr ""
+
+#: classes/ParentWishlist.php:320
+#: classes/ParentWishlist.php:349
+#: classes/BaseApi.php:258
+#: classes/BaseWishlist.php:227
+#: classes/BaseWishlist.php:241
+msgid "deleted"
+msgstr ""
+
+#: classes/ParentWishlist.php:340
+#: classes/ParentWishlist.php:450
+msgid "error_items_delete"
+msgstr ""
+
+#: classes/ParentWishlist.php:377
+msgid "error_items_limit_exhausted"
+msgstr ""
+
+#: classes/ParentWishlist.php:382
+msgid "error_user_not_autorized"
+msgstr ""
+
+#: classes/ParentWishlist.php:402
+msgid "error_cant_add"
+msgstr ""
+
+#: classes/ParentWishlist.php:407
+msgid "added"
+msgstr ""
+
+#: classes/ParentWishlist.php:452
+#: classes/BaseApi.php:63
+#: classes/BaseApi.php:93
+#: classes/BaseWishlist.php:69
+msgid "success"
+msgstr ""
+
+#: classes/ParentWishlist.php:492
+msgid "error_no_user_data"
+msgstr ""
+
+#: classes/ParentWishlist.php:552
+msgid "error_max_image_size_exceeded"
+msgstr ""
+
+#: classes/ParentWishlist.php:554
+msgid "error_max_image_width_exceeded"
+msgstr ""
+
+#: classes/ParentWishlist.php:556
+msgid "error_max_image_height_exceeded"
+msgstr ""
+
+#: classes/ParentWishlist.php:558
+msgid "error_invalid_file_format"
+msgstr ""
+
+#: classes/BaseApi.php:65
+#: classes/BaseWishlist.php:65
+#: classes/BaseWishlist.php:71
+msgid "error_cant_move"
+msgstr ""
+
+#: classes/BaseApi.php:95
+#: classes/BaseWishlist.php:229
+#: classes/BaseWishlist.php:243
+msgid "error_cant_delete"
+msgstr ""
+
+#: classes/BaseApi.php:260
+msgid "error"
+msgstr ""
+
+#: classes/BaseApi.php:274
+msgid "error_download"
+msgstr ""
+
+#: classes/BaseApi.php:278
+#: classes/BaseApi.php:280
+#: classes/BaseWishlist.php:273
+msgid "picture_uploaded"
+msgstr ""
+
+#: classes/BaseApi.php:282
+#: classes/BaseWishlist.php:275
+msgid "error_upload_photo"
+msgstr ""
+
+#: classes/BaseApi.php:285
+msgid "error_user_id"
+msgstr ""
+
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Widget settings"
+#~ msgstr "Виджети"
+
+#, fuzzy
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
+
+#~ msgid "New pages"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить Віш ліст"
+
+#, fuzzy
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create new template"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Basic information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "General information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
+
+#, fuzzy
+#~ msgid "Date of order"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
+
+#, fuzzy
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Product creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
+
+#, fuzzy
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Create user"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Additional information"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
+
+#, fuzzy
+#~ msgid "Category created"
+#~ msgstr "Настр"
+
+#, fuzzy
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

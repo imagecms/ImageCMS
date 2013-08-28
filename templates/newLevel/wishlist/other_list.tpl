@@ -2,25 +2,29 @@
     <div class="container">
         {if $wishlist != 'empty'}
             <div class="left-wishlist">
-                <div class="photo-block m-b_5">
-                    <span class="helper"></span>
-                    {if $user['user_image']!=''}
-                        <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
-                    {else:}
-                        <img src="{site_url('uploads/shop/nophoto/nophoto.jpg')}"/>
-                    {/if}
-                </div>
-                <div class="description">
-                    <h2 data-wishlist-name="user_name">{echo $user[user_name]}</h2>
-                    <div class="date f-s_0">
-                        <span class="day">{echo date("d", $user[user_birthday])} </span>
-                        <span class="month">{echo $month[date('n',$user.user_birthday)]}</span>
-                        <span class="year">{echo date("Y ", $user[user_birthday])}</span>
-                    </div>
-                    <div class="text">
-                        <p data-wishlist-name="description">{echo $user[description]}</p>
-                    </div>
-                </div>
+                <ul class="items items-wish-data">
+                    <li>
+                        <div class="photo-block m-b_5">
+                            <span class="helper"></span>
+                            {if $user['user_image']!=''}
+                                <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
+                            {else:}
+                                <img src="{site_url('uploads/shop/nophoto/nophoto.jpg')}"/>
+                            {/if}
+                        </div>
+                        <div class="description">
+                            <h2 data-wishlist-name="user_name" class="title">{echo $user[user_name]}</h2>
+                            <div class="date f-s_0">
+                                <span class="day">{echo date("d", $user[user_birthday])}&nbsp;</span>
+                                <span class="month">{echo month(date('n',$user.user_birthday))}&nbsp;</span>
+                                <span class="year">{echo date("Y ", $user[user_birthday])}</span>
+                            </div>
+                            <div class="text">
+                                <p data-wishlist-name="description">{echo $user[description]}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="right-wishlist">
                 <div class="f-s_0 title-cart without-crumbs-side">

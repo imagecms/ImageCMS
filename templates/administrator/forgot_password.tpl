@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>{lang('a_controll_panel')} - Image CMS</title>
-        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
+        <title>{lang("Operation panel","admin")} - Image CMS</title>
+        <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
@@ -15,18 +15,18 @@
         <?php
         $ci = get_instance();
         if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');
+        die('<span style="font-size:18px;"><br/><br/>'.lang("Delete the file to continue","admin").'/application/modules/install/install.php</div>');
             ?>
             <div class="main_body">
                 <div class="form_login t-a_c" style="min-height: 250px;">
                     <a href="/admin/dashboard" class="d-i_b">
                         <img src="{$THEME}img/logo.png"/>
                     </a><br/>
-                    <div id="titleExt">{widget('path')}<span class="ext">{lang('lang_forgot_password')}</span></div>
+                    <div id="titleExt">{widget('path')}<span class="ext">{lang("Forgot your password?","admin")}</span></div>
 
                     <form action="" class="t-a_l" method="post">
                         <label>
-                            {lang('lang_username_or_mail')}
+                            {lang("Username or Email","admin")}
                             <input type="text" name="login" id="login" style="padding-left: 5px;" placeholder="E-mail"/>
                             {if validation_errors() OR $info_message}
                                 {validation_errors()}
@@ -35,8 +35,8 @@
                         </label>
                             
 
-                        <input type="submit" id="submit" class="btn btn-info pull-left" value="{lang('a_send_f')}" />
-                        <a href="{site_url('/admin/login')}" class="pull-right m-t_10">{lang('s_log_out')}</a>
+                        <input type="submit" id="submit" class="btn btn-info pull-left" value="{lang("Send","admin")}" />
+                        <a href="{site_url('/admin/login')}" class="pull-right m-t_10">{lang("Log in","admin")}</a>
                         {form_csrf()}
                     </form>
                 </div>

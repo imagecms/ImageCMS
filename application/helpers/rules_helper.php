@@ -42,7 +42,7 @@ if (!function_exists('cp_check_perm')) {
                 $perms = get_permissions_array();
 
                 if (isset($perms[$perm])) {
-                    $err_text = lang('a_acc_per_40') . ': <b>' . $perms[$perm] . '</b>.';
+                    $err_text = lang("No rights for") . ': <b>' . $perms[$perm] . '</b>.';
 
                     echo '<script type="text/javascript">
 							$(\'page\').set(\'html\',\'<div id="notice" style="width: 500px;">' . $err_text . '</div>\');
@@ -54,7 +54,7 @@ if (!function_exists('cp_check_perm')) {
                 die();
             }
         } else {
-            die(lang('a_acc_per_41'));
+            die(lang("Error checking permissions"));
         }
     }
 
@@ -84,19 +84,19 @@ if (!function_exists('get_perms_groups')) {
 
     function get_perms_groups() {
         $group_names = array(
-            'cp' => lang('a_controll_panel'),
-            'lang' => lang('a_languages'),
-            'cache' => lang('a_cache'),
-            'page' => lang('a_pages'),
-            'category' => lang('a_categories'),
-            'module' => lang('a_modules'),
-            'widget' => lang('a_widgets'),
-            'menu' => lang('a_menu'),
-            'user' => lang('a_acc_per_2'),
-            'roles' => lang('a_acc_per_3'),
-            'logs' => lang('a_acc_per_4'),
-            'backup' => lang('a_backup_copy'),
-            'tinybrowser' => lang('a_acc_per_5'),
+            'cp' => lang("Operation panel"),
+            'lang' => lang("Languages"),
+            'cache' => lang("Cache"),
+            'page' => lang("Pages"),
+            'category' => lang("Categories"),
+            'module' => lang("Modules"),
+            'widget' => lang("Widgets"),
+            'menu' => lang("Menu"),
+            'user' => lang("Members"),
+            'roles' => lang("Group"),
+            'logs' => lang("Logs"),
+            'backup' => lang("Backup copying"),
+            'tinybrowser' => lang("File Editor"),
         );
 
         ($hook = get_hook('on_get_perms_groups')) ? eval($hook) : NULL;
@@ -110,43 +110,43 @@ if (!function_exists('get_permissions_array')) {
 
     function get_permissions_array() {
         $all_perms = array(
-            'cp_access' => lang('a_acc_per_1'),
-            'cp_autoupdate' => lang('a_sys_update'),
-            'cp_page_search' => lang('a_acc_per_6'),
-            'lang_create' => lang('a_acc_per_7'),
-            'lang_edit' => lang('a_acc_per_8'),
-            'lang_delete' => lang('a_acc_per_9'),
-            'cp_site_settings' => lang('a_acc_per_10'),
-            'cache_clear' => lang('a_acc_per_11'),
-            'page_create' => lang('a_acc_per_12'),
-            'page_edit' => lang('a_acc_per_13'),
-            'page_delete' => lang('a_acc_per_14'),
-            'category_create' => lang('a_acc_per_15'),
-            'category_edit' => lang('a_acc_per_16'),
-            'category_delete' => lang('a_acc_per_17'),
-            'module_install' => lang('a_acc_per_18'),
-            'module_deinstall' => lang('a_acc_per_19'),
-            'module_admin' => lang('a_acc_per_20'),
-            'widget_create' => lang('a_acc_per_21'),
-            'widget_delete' => lang('a_acc_per_22'),
-            'widget_access_settings' => lang('a_acc_per_23'),
-            'menu_create' => lang('a_acc_per_24'),
-            'menu_edit' => lang('a_acc_per_25'),
-            'menu_delete' => lang('a_menu_delete'),
-            'user_create' => lang('a_acc_per_26'),
-            'user_create_all_roles' => lang('a_acc_per_27'),
-            'user_edit' => lang('a_acc_per_28'),
-            'user_delete' => lang('a_acc_per_29'),
-            'user_view_data' => lang('a_acc_per_30'),
-            'roles_create' => lang('a_acc_per_31'),
-            'roles_edit' => lang('a_acc_per_32'),
-            'roles_delete' => lang('a_acc_per_33'),
-            'logs_view' => lang('a_acc_per_34'),
-            'backup_create' => lang('a_acc_per_35'),
-            'tinybrowser_all' => lang('a_acc_per_36'),
-            'tinybrowser_upload' => lang('a_acc_per_37'),
-            'tinybrowser_edit' => lang('a_acc_per_38'),
-            'tinybrowser_folders' => lang('a_acc_per_39'),
+            'cp_access' => lang("Access Control Panel"),
+            'cp_autoupdate' => lang("System update"),
+            'cp_page_search' => lang("Find pages in the control panel"),
+            'lang_create' => lang("Creating a language"),
+            'lang_edit' => lang("Changing the language"),
+            'lang_delete' => lang("Remove languages"),
+            'cp_site_settings' => lang("Changing site settings"),
+            'cache_clear' => lang("Clearing the cache"),
+            'page_create' => lang("Creating pages"),
+            'page_edit' => lang("Editing pages"),
+            'page_delete' => lang("Delete pages"),
+            'category_create' => lang("Creating categories"),
+            'category_edit' => lang("Edit Categories"),
+            'category_delete' => lang("Category delete"),
+            'module_install' => lang("Install Modules"),
+            'module_deinstall' => lang("Removing Modules"),
+            'module_admin' => lang("Administration module"),
+            'widget_create' => lang("Creating widgets"),
+            'widget_delete' => lang("Removing widgets"),
+            'widget_access_settings' => lang("Access to the widget settings"),
+            'menu_create' => lang("Create a menu"),
+            'menu_edit' => lang("Edit menu"),
+            'menu_delete' => lang("Menu deleting"),
+            'user_create' => lang("Create users of their group"),
+            'user_create_all_roles' => lang("Create users of all groups"),
+            'user_edit' => lang("Edit Users"),
+            'user_delete' => lang("Remove Users"),
+            'user_view_data' => lang("Viewing member"),
+            'roles_create' => lang("Creating Groups"),
+            'roles_edit' => lang("Editing Groups"),
+            'roles_delete' => lang("Deleting Groups"),
+            'logs_view' => lang("View Log"),
+            'backup_create' => lang("Backing up"),
+            'tinybrowser_all' => lang("Access to the file editor"),
+            'tinybrowser_upload' => lang("Download files"),
+            'tinybrowser_edit' => lang("Editing Files"),
+            'tinybrowser_folders' => lang("Edit Folders"),
         );
 
         ($hook = get_hook('get_permissions_array')) ? eval($hook) : NULL;

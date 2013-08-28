@@ -187,7 +187,7 @@ class ParentEmail extends \MY_Controller {
 
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
-
+            
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('error_user_message_doesnt_send');
             } else {

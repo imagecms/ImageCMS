@@ -2,12 +2,12 @@
          <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_manu_item_translate')}</span>
+            <span class="title">{lang("Menu item translate")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/menu/menu_item/{$menu_name}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#item_t_save_form"><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
+                <a href="/admin/components/cp/menu/menu_item/{$menu_name}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#item_t_save_form"><i class="icon-list-alt icon-white"></i>{lang("Have been saved")}</button>
             </div>
         </div>                            
     </div>
@@ -16,7 +16,7 @@
             <form action="{$BASE_URL}admin/components/cp/menu/translate_item/{$id}" method="post" id="item_t_save_form" class="form-horizontal">
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
-                    <th>{lang('a_sett')}</th>
+                    <th>{lang("Settings")}</th>
                     </thead>
                     <tbody>
                         <tr>

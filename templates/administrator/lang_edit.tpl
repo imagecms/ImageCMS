@@ -3,13 +3,13 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_lang_edit')}</span>
+                <span class="title">{lang("Language edit","admin")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">                        
-                    <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang('a_save')}</button>
-                    <button type="submit"   class="btn btn-small formSubmit" data-form="#editLang" data-action="close"><i class="icon-ok"></i>{lang('a_save_and_exit')}</button>
+                    <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
+                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="submit"   class="btn btn-small formSubmit" data-form="#editLang" data-action="close"><i class="icon-ok"></i>{lang("Save and go back","admin")}</button>
                 </div>
             </div>                            
         </div>
@@ -20,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    {lang('a_sett')}
+                                    {lang("Settings","admin")}
                                 </th>
                             </tr>
                         </thead>
@@ -32,32 +32,31 @@
                                             <form action="{$BASE_URL}admin/languages/update/{$id}" method="post" id="editLang">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
-                                                        <label class="control-label" for="inputName">{lang('a_name')}:</label>
+                                                        <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                                         <div class="controls">
                                                             <input type="text" name="lang_name" id="" value="{$lang_name}" />
                                                         </div>
                                                     </div>    
                                                     <div class="control-group">
-                                                        <label class="control-label" for="inputName">{lang('a_identif')}:</label>
+                                                        <label class="control-label" for="inputName">{lang("Identifier","admin")}:</label>
                                                         <div class="controls">
                                                             <input type="text" name="identif" id="" value="{$identif}"  />
                                                         </div>
                                                     </div> 
                                                     <div class="row-fluid">
                                                         <!--<div class="control-group">
-                                                            <label class="control-label" for="inputName">{lang('a_image_url')}:</label>
+                                                            <label class="control-label" for="inputName">{lang("Image URL","admin")}:</label>
                                                             <div class="controls">
                                                                 <input type="text" name="image" id="" value="{$image}"/>
                                                             </div>
                                                         </div>-->
                                                         <div class="control-group">
                                                             <label class="control-label" for="Img">
-                                                                {lang('a_image_url')}:
+                                                                {lang("Image URL","admin")}:
                                                             </label>
                                                             <div class="controls">
                                                                 <div class="group_icon pull-right">            
-                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                                        return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
                                                                 </div>
                                                                 <div class="o_h">		            
                                                                     <input type="text" name="image" id="Img" value="{$image}">					
@@ -65,7 +64,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="inputParent">{lang('a_folder')}:</label>
+                                                            <label class="control-label" for="inputParent">{lang("Folder","admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="folder">
                                                                     {foreach $lang_folders as $folder}
@@ -75,7 +74,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="inputParent">{lang('a_tpl')}:</label>
+                                                            <label class="control-label" for="inputParent">{lang("Template","admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="template">
                                                                     {foreach $templates as $template}

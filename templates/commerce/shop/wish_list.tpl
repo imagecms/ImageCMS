@@ -6,21 +6,21 @@
 {$this->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW")}
 <div class="content">
     <div class="center">
-        <h1>{lang('s_WL')}</h1>
+        <h1>{lang("Wish List","admin")}</h1>
         {if $items}
             <h2 class="notificationWish"></h2>
             {if ShopCore::$ci->dx_auth->is_logged_in()===true}
-                <a href="#" class="f_l w-s_n-w" id="button_email">{lang('s_s_wish_list')}</a>
+                <a href="#" class="f_l w-s_n-w" id="button_email">{lang("Send to a friend WishList","admin")}</a>
                 <div class="fancy c_b f_l" style="border: none; display: none;" id="send_email">
                     <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
                         <div id="change_info_edit" class="f_r">
-                            <label class="f_r">{lang('s_form_input_wl')}:
+                            <label class="f_r">{lang("Friends email","admin")}:
                                 <input type="text" name="friendsMail"/>
                             </label>
                             <div id="buttons">
                                 <div class="p-t_19 c_b clearfix"  style="width: 191px;">
                                     <div class="buttons button_middle_blue f_l">
-                                        <input type="submit" name="sendwish" value="{lang('s_send')}"/>
+                                        <input type="submit" name="sendwish" value="{lang("Send","admin")}"/>
                                     </div>
                                 </div>
                             </div>                                    
@@ -29,12 +29,12 @@
                     </form>
                 </div>
             {else:}
-                {lang('s_to_sen_wish_auth')}
+                {lang("To send a friend WishList, You must login")}
             {/if}
         {/if}
         {if !$items}
             <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
             </div>
         {else:}
             <table class="cleaner_table forCartProducts" cellspacing="0">
@@ -103,7 +103,7 @@
                         <td colspan="6">
                             <div class="foot_cleaner">
                                 <div class="price f-s_26 f_r">{$total_price} <sub>{$CS}</sub></div>
-                                <div class="f_r sum">{lang('s_summ')}:</div>
+                                <div class="f_r sum">{lang("Total","admin")}:</div>
                             </div>
                         </td>
                     </tr>

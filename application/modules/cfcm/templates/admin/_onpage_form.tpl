@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th colspan="6">
-		{lang('a_additional_fields')}
+		{lang("Additional fields")}
             </th>
         </tr>
     </thead>
@@ -22,13 +22,13 @@
                 		    
 				    {if $f.info.enable_image_browser == 1}
 				    <div class="group_icon pull-right">            
-					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}');return false;"><i class="icon-picture"></i>  {lang('amt_select_image')}</button>
+					<button class="btn btn-small" onclick="elFinderPopup('image', '{$f.name}');return false;"><i class="icon-picture"></i>  {lang("Select an image")}</button>
 					</div>
 				   	{/if}
 
 		            {if $f.info.enable_file_browser == 1}
 		            	<div class="group_icon pull-right">
-		                <button class="btn btn-small" onclick="elFinderPopup('file', '{$f.name}');return false;"> <i class="icon-folder-open"></i> {lang('amt_select_file')}</button>
+		                <button class="btn btn-small" onclick="elFinderPopup('file', '{$f.name}');return false;"> <i class="icon-folder-open"></i> {lang("Select a file")}</button>
 		                </div>
 		            {/if}
 					

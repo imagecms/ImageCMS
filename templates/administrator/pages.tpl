@@ -1,32 +1,32 @@
 <div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="mvMv">{lang('a_copy_move_title')}</h3>
+        <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
     </div>
     <div class="modal-body">
-        {lang('a_category')}:
+        {lang("Categories","admin")}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-            <option value="0">{lang('a_without_cat')}</option>
-            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree']));}
+            <option value="0">{lang("Without a category","admin")}</option>
+            { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
         </select>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
-        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('a_submit')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
+        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Confirm','admin')}</a>
     </div>
 </div>
 
 <div class="modal hide fade" id="pages_delete_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_delete_pages_title')}</h3>
+        <h3>{lang("Delete pages",'admin')}</h3>
     </div>
     <div class="modal-body">
-        {lang('a_delete_pages_promt')}
+        {lang("Delete selected pages",'admin')}
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >{lang('a_delete')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel",'admin')}</a>
+        <a href="#" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/delete_pages/')" >{lang("Delete","admin")}</a>
     </div>
 </div>
 
@@ -35,18 +35,18 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_cont_list')}</span>
+                <span class="title">{lang('Content list','admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('a_filtrate')}</button>
-                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('a_copy_product')}</button>
+                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
+                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();
-                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('a_repalce')}</button>
+                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
-                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
-                    <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</button>-->
-                    <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('a_create_page')}</a>
+                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Create page','admin')}</button>
+                    <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>-->
+                    <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</a>
                 </div>
             </div>
         </div>
@@ -54,8 +54,8 @@
             {if $show_cat_list == 'yes'}
                 <div class="span3">
                     <ul class="nav nav-tabs nav-stacked m-t_10">
-                        <li {if '0'==$cat_id} class="active" {/if} ><a href="/admin/pages/GetPagesByCategory/0" class="pjax">{lang('a_without_cat')}</a></li>
-                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">Все категории</a></li>
+                        <li {if '0'==$cat_id} class="active" {/if} ><a href="/admin/pages/GetPagesByCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
+                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All categories','admin')}</a></li>
                     </ul>
                     <ul class="nav nav-tabs nav-stacked">
                         {foreach $tree as $cat}
@@ -113,19 +113,19 @@
                             </span>
                         </th>
                         <th class="span1">ID</th>
-                        <th class="span4">{lang('a_title')}</th>
-                        <th class="span3">{lang('a_url')}</th>
+                        <th class="span4">{lang('Title','admin')}</th>
+                        <th class="span3">{lang('Url','admin')}</th>
                             {if $show_cat_list != 'yes'}
-                            <th class="span2">{lang('a_category')}</th>
+                            <th class="span2">{lang('Category','admin')}</th>
                             {/if}
-                        <th class="span2">{lang('a_date_create')}</th>
-                        <th class="span1">{lang('a_status')}</th>
+                        <th class="span2">{lang('Creation date','admin')}</th>
+                        <th class="span1">{lang('Status','admin')}</th>
                     </tr>
                     <tr class="head_body">
                         <td>
                         </td>
                         <td class="number">
-                            <input type="text" name="id" data-original-title="{lang('a_numbers_only')}" value="{$_POST['id']}"/>
+                            <input type="text" name="id" data-original-title="{lang('Digits only','admin')}" value="{$_POST['id']}"/>
                         </td>
                         <td>
                             <input type="text" name="title" value="{$_POST['title']}"/>
@@ -136,8 +136,8 @@
                         {if $show_cat_list != 'yes'}
                             <td>
                                 <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                    <option value="">Все категории</option>
-                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>Без категории</option>
+                                    <option value="">{lang('All categories','admin')}</option>
+                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>{lang('Without category','admin')}</option>
                                     {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
                                 </select>
                             </td>
@@ -161,8 +161,8 @@
                                 </td>
                                 <td><span>{$page.id}</span></td>
                                 <td class="share_alt">
-                                    <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_goto_site')}"><i class="icon-share-alt"></i></a>
-                                    <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang('a_edit')}">{$page.title}</a>
+                                    <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("goto site","admin")}"><i class="icon-share-alt"></i></a>
+                                    <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
                                 </td>
                                 <td><span>{truncate($page.url, 40, '...')}</span></td>
                                 {if $show_cat_list != 'yes'}
@@ -170,7 +170,7 @@
                                         <span>{if $category}{$category.name}{else:}
 
                                             {if 0 == $page.category}
-                                                {lang('a_without_cat')}
+                                                {lang("Without a category","admin")}
                                             {else:}
 
                                                 {foreach $cats  as $c}
@@ -186,7 +186,7 @@
                                     {date('d-m-Y, H:i', $page.publish_date)}
                                 </td>
                                 <td>
-                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang('don\'t show')}{/if}" onclick="change_page_status('{$page.id}');">
                                         <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
                                     </div>
                                 </td>
@@ -199,7 +199,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="alert alert-info" style="margin: 18px;">По Вашему запросу ничего не найдено</div>
+                                                <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found','admin')}</div>
                                             </td>
                                         </tr>
                                     </tbody>

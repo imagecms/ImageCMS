@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_roles_list')}</span>
+            <span class="title">{lang("Privileges list","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a class="btn btn-small btn-success pjax" href="/admin/rbac/privilegeCreate" ><i class="icon-plus-sign icon-white"></i>{lang('a_create_group')}</a>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                <a class="btn btn-small btn-success pjax" href="/admin/rbac/privilegeCreate" ><i class="icon-plus-sign icon-white"></i>{lang("Create privilege","admin")}</a>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
             </div>
         </div>  
     </div>
@@ -56,19 +56,19 @@
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_rbak_delete_role')}</h3>
+        <h3>{lang("Role remove","admin")}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang('a_rbak_del_role_gro')}</p>
+        <p>{lang("Remove selected roles?","admin")}</p>
     </div>
     <div class="modal-footer">
-        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}privilegeDelete')" >{lang('a_delete')}</a>
-        <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+        <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}privilegeDelete')" >{lang("Delete","admin")}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
     </div>
 </div>
 
 
 <div id="delete_dialog" style="display: none">
-    {lang('a_rb_del_roles')}
+    {lang("Remove roles?","admin")}
 </div>
 <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->

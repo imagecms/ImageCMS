@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/cp/wishlist"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back', 'wishlist')}</span>
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>

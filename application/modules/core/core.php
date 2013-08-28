@@ -338,7 +338,7 @@ class Core extends MY_Controller {
                 if ($query->num_rows() > 0) {
                     $page = $query->row_array();
                 } else {
-                    $this->error(lang('main_page_error'));
+                    $this->error(lang("Home page not found."));
                 }
 
                 // Set page template file
@@ -385,7 +385,7 @@ class Core extends MY_Controller {
                 if (is_object($module) && method_exists($module, 'index')) {
                     $module->index();
                 } else {
-                    $this->error(lang('amt_load_module_error') . $modName);
+                    $this->error(lang("Module uploading or loading  error") . $modName);
                 }
 
                 break;
@@ -522,8 +522,8 @@ class Core extends MY_Controller {
             $config['total_rows'] = $category['total_pages'];
             $config['per_page'] = $category['per_page'];
             $config['uri_segment'] = $segment;
-            $config['first_link'] = lang('first_link');
-            $config['last_link'] = lang('last_link');
+            $config['first_link'] = lang("The first");
+            $config['last_link'] = lang("Last");
 
             $config['cur_tag_open'] = '<span class="active">';
             $config['cur_tag_close'] = '</span>';
@@ -552,7 +552,7 @@ class Core extends MY_Controller {
             // Locate category tpl file
             if (!file_exists($this->template->template_dir . $cat_tpl . '.tpl')) {
                 ($hook = get_hook('core_dispcat_tpl_error')) ? eval($hook) : NULL;
-                show_error(lang('amt_cant_locate_tmp_file'));
+                show_error(lang("Can't locate category template file."));
             }
 
             ($hook = get_hook('core_dispcat_read_ptpl')) ? eval($hook) : NULL;
@@ -560,7 +560,7 @@ class Core extends MY_Controller {
             $content = $this->template->read($cat_tpl, array('pages' => $pages));
         } else {
             ($hook = get_hook('core_dispcat_no_pages')) ? eval($hook) : NULL;
-            $content = $this->template->read($cat_tpl, array('no_pages' => lang('no_pages_in_cat')));
+            $content = $this->template->read($cat_tpl, array('no_pages' => lang("In the category has no pages.")));
         }
 
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
@@ -689,9 +689,9 @@ class Core extends MY_Controller {
         header('HTTP/1.1 404 Not Found');
         ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
 
-        $this->set_meta_tags(lang('error_page_h'));
+        $this->set_meta_tags(lang("Page not found"));
 
-        $this->template->assign('error_text', lang('error_page_404'));
+        $this->template->assign('error_text', lang("Page not found."));
         $this->template->show('404');
         //$this->template->show();
         exit;

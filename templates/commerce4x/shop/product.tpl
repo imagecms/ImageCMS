@@ -144,14 +144,13 @@
                                                                   data-origprice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                                   data-stock="{echo $pv->getStock()}"
                                                                   >
-                                                {lang('s_buy')}
+                                               {lang("Buy","admin")}
                                             </button>
                                         {else:}
                                             <button  {if $key != 0}style="display:none"{/if}
                                                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant"
                                                                    type="button"
                                                                    data-drop=".drop-report"
-
                                                                    data-id="{echo $pv->getId()}"
                                                                    data-prodid="{echo $model->getId()}"
                                                                    data-varid="{echo $pv->getId()}"
@@ -198,12 +197,12 @@
                                                 data-prodid="{echo $model->getId()}"
                                                 data-varid="{echo $pv->getId()}"
                                                 type="button"
-                                                data-title="{lang('s_add_to_wish_list')}"
-                                                data-firtitle="{lang('s_add_to_wish_list')}"
-                                                data-sectitle="{lang('s_in_wish_list')}"
+                                                data-title="{lang('Add to wish list')}"
+                                                data-firtitle="{lang('Add to wish list')}"
+                                                data-sectitle="{lang('In wish list')}"
                                                 data-rel="tooltip">
                                             <span class="icon-wish_2"></span>
-                                            <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                            <span class="text-el">{lang('Add to wish list')}</span>
                                         </button>
                                     </div>
                                 {/foreach}
@@ -235,7 +234,7 @@
                         <li>
                             <button type="button" data-href="#characteristic">
                                 <span class="icon-charack"></span>
-                                <span class="text-el">{lang('s_properties')}</span>
+                                <span class="text-el">{lang('Properties')}</span>
                             </button>
                         </li>
                     {/if}
@@ -246,7 +245,7 @@
                         <li>
                             <button type="button" data-href="#accessories">
                                 <span class="icon-accss"></span>
-                                <span class="text-el">{lang('s_accessories')}</span>
+                                <span class="text-el">{lang('Accessories')}</span>
                             </button>
                         </li>
                     {/if}
@@ -342,15 +341,15 @@
                                                     data-origprice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                     data-stock="{echo $p->firstVariant->getStock()}"
                                                     >
-                                                {lang('s_buy')}
+                                                {lang('Buy')}
                                             </button>
                                             <div class="d_i-b">
                                                 <!-- to compare button -->
                                                 <button class="btn btn_small_p toCompare"
                                                         data-prodid="{echo $p->getId()}"
                                                         type="button"
-                                                        data-title="{lang('s_add_to_compare')}"
-                                                        data-sectitle="{lang('s_in_compare')}"
+                                                        data-title="{lang('Add to compare')}"
+                                                        data-sectitle="{lang('In compare')}"
                                                         data-rel="tooltip">
                                                     <span class="icon-comprasion_2"></span>
                                                 </button>
@@ -361,8 +360,8 @@
                                                         data-prodid="{echo $p->getId()}"
                                                         data-varid="{echo $p->firstVariant->getId()}"
                                                         type="button"
-                                                        data-title="{lang('s_add_to_wish_list')}"
-                                                        data-sectitle="{lang('s_in_wish_list')}"
+                                                        data-title="{lang('Add to wish list')}"
+                                                        data-sectitle="{lang('In wish list')}"
                                                         data-rel="tooltip">
                                                     <span class="icon-wish_2"></span>
                                                 </button>
@@ -500,9 +499,8 @@
                                             data-img='{echo json_encode($kitProducts->getImgs())}'
                                             data-maxcount='{echo $kitProducts->getSProducts()->firstVariant->getStock()}'
                                             >
-                                        {lang('s_buy')}
+                                        {lang('Buy')}
                                     </button>
-
                                 </li>
                             </ul>
                         </li>

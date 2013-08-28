@@ -26,7 +26,7 @@
 <div class="content">
     <div class="center">
         <div class="filter">
-            <div class="title padding_filter">{lang('s_sea_found_in_categories')}:</div>
+            <div class="title padding_filter">{lang("Found in categories","admin")}:</div>
             <div class="padding_filter check_frame">
                 <div class="left" id="subcategorys">
                     <form method="get" action="" id="seacrh_p_form">
@@ -67,10 +67,10 @@
                 <div class="box_title clearfix">
                     <div class="f-s_24 f_l">
                         {if !empty(ShopCore::$_GET['text'])}
-                            {lang('s_sea_search_for')}: "<span class="highlight">{encode($_GET['text'])}</span>"
+                            {lang("You searched for","admin")}: "<span class="highlight">{encode($_GET['text'])}</span>"
                         {/if}
                         <span class="count_search">
-                            ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                            ({$totalProducts}) {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}
                         </span>
                     </div>
                 </div>
@@ -90,11 +90,11 @@
                                         <span data-prodid="{echo $p->getId()}" class="compare
                                               {if $forCompareProducts && in_array($p->getId(), $forCompareProducts)}
                                                   is_avail">
-                                                  <a href="{shop_url('compare')}" class="red">{lang('s_compare')}</a>
+                                                  <a href="{shop_url('compare')}" class="red">{lang("Compare","admin")}</a>
                                               {else:}
                                                   toCompare blue">
-                                                  <span class="js blue">{lang('s_compare_add')}</span>
-                                                  <a href="{shop_url('compare')}" class="red" style="display: none;">{lang('s_compare')}</a>
+                                                  <span class="js blue">{lang("Add to compare","admin")}</span>
+                                                  <a href="{shop_url('compare')}" class="red" style="display: none;">{lang("Compare","admin")}</a>
                                               {/if}
                                         </span>
                                     </span>
@@ -103,12 +103,12 @@
                                     <a href="{shop_url('product/'.$p->getUrl())}" class="title">{echo ShopCore::encode($p->getName())}</a>
                                     <div class="f-s_0">
                                         {if $p->firstVariant->getNumber()}
-                                            <span id="code{echo $p->getId()}" class="code">{lang('s_kod')} {echo ShopCore::encode($p->firstVariant->getNumber())}</span>
+                                            <span id="code{echo $p->getId()}" class="code">{lang("ID","admin")} {echo ShopCore::encode($p->firstVariant->getNumber())}</span>
                                         {/if}
                                         <div class="star_rating">
                                             {$CI->load->module('star_rating')->show_star_rating($p)}
                                         </div>
-                                        <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre')))}</a>
+                                        <a href="#" class="response">{echo $p->totalComments()} {echo SStringHelper::Pluralize($p->totalComments(), array(lang("review","admin"), lang("reviews","admin"), lang("review","admin")))}</a>
                                     </div>
                                     {if count($p->getProductVariants())>1}
                                         <select class="m-l_10" name="selectVar">
@@ -166,18 +166,18 @@
                                                       data-prodid="{echo $p->getId()}"
                                                       class="addToWList">
                                                     <span class="icon-wish"></span>
-                                                    <span class="js blue">{lang('s_slw')}</span>
+                                                    <span class="js blue">{lang("Save to Wish List","admin")}</span>
                                                 </span>
-                                                <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                                                <a href="/shop/wish_list" class="red" style="display:none;"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                                             {else:}
-                                                <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang('s_ilw')}</a>
+                                                <a href="/shop/wish_list" class="red"><span class="icon-wish"></span>{lang("Already wishlist","admin")}</a>
                                             {/if}
                                         </span> 
                                     </div>
                                     {if $p->getShortDescription()!=""}
                                         <p class="c_b">
                                             {echo $p->getShortDescription()}
-                                            <a href="{shop_url('product/'.$p->getUrl())}" class="t-d_n"><span class="t-d_u">{lang('s_more')}</span> →</a>
+                                            <a href="{shop_url('product/'.$p->getUrl())}" class="t-d_n"><span class="t-d_u">{lang("More","admin")}</span> →</a>
                                         </p>
                                     {/if}
                                 </div>
@@ -189,7 +189,7 @@
                     {/if}
                 {else:}
                     <p>
-                        {echo ShopCore::t(lang('s_not_found'))}.
+                        {echo ShopCore::t(lang("Your search did not match","admin"))}.
                     </p>
                 {/if}
             </div>
