@@ -3,7 +3,7 @@
     {if $key >= $limit && isset($limit)}
         {break}
     {/if}
-    <li>
+    <li class="item-WL">
         <a href="{shop_url('product/' . $p.url)}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -24,7 +24,7 @@
                 {if $oldoprice}
                     <span class="price-discount">
                         <span>
-                            <span class="price priceOrigVariant">{echo $p.old_price}</span>
+                            <span class="price priceOrigVariant">{echo round($p.old_price, $pricePrecision)}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
@@ -64,17 +64,19 @@
                             <button
                                 class="btnBuy infoBut"
                                 type="button"
-                                data-id="{echo $p.variant_id}"
+                                data-id="{echo $p.id}"
                                 data-prodid="{echo $p.id}"
                                 data-varid="{echo $p.variant_id}"
                                 data-price="{echo $p.price}"
+                                data-count="1"
                                 data-name="{echo ShopCore::encode($p.name)}"
                                 data-maxcount="{echo $p.stock}"
                                 data-number="{echo trim($p.number)}"
                                 data-mediumImage="{echo $photo}"
                                 data-img="{echo $photo}"
                                 data-url="{echo shop_url('product/'.$p.url)}"
-                                data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'>
+                                data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'
+                                >                                
                                 <span class="icon_cleaner icon_cleaner_buy"></span>
                                 <span class="text-el">{lang('s_buy')}</span>
                             </button>
@@ -88,7 +90,7 @@
                             data-drop=".drop-report"
                             data-source="/shop/ajax/getNotifyingRequest"
 
-                            data-id="{echo $p.variant_id}"
+                            data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
                             data-price="{echo $p.price}"
@@ -106,28 +108,31 @@
                 {/if}
             </div>
         </div>
-        <div class="funcs-buttons-WL-item">
-            <div class="btn-remove-item-wl">
-                <button 
-                    type="button"
-                    data-type="json"
-                    data-modal="true"
-                    data-overlayopacity= "0"
-                    data-drop="#notification"
-                    data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                    data-callback="removeItem"
-                    ><span class="icon_remove"></span><span class="text-el d_l_1">Удалить</span></button>
+        <p>
+            {$p[comment]}
+        </p>
+        {if $p.access == 'private' || !$otherlist}
+            <div class="funcs-buttons-WL-item">
+                <div class="btn-remove-item-wl">
+                    <button 
+                        type="button"
+                        data-type="json"
+                        data-modal="true"
+                        data-overlayopacity= "0"
+                        data-drop="#notification"
+                        data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
+                        data-callback="removeItem"
+                        ><span class="icon_remove"></span><span class="text-el d_l_1">Удалить</span></button>
+                </div>
+                <div class="btn-move-item-wl">
+                    <button 
+                        type="button"
+                        data-drop="#wishListPopup"
+                        data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
+                        ><span class="icon_move"></span><span class="text-el d_l_1">Переместить</span>
+                    </button>
+                </div>
             </div>
-            <div class="btn-move-item-wl">
-                <button 
-                    type="button"
-                    data-drop="#wishListPopup"
-                    data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
-                    data-callback=""
-                    ><span class="icon_move"></span><span class="text-el d_l_1">Переместить</span>
-                </button>
-            </div>
-        </div>
-        {$w[comment]}
+        {/if}
     </li>
 {/foreach}

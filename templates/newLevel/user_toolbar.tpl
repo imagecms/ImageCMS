@@ -1,6 +1,14 @@
 <div class="frame-user-toolbar">
     <div class="container inside-padd">
-        <div class="content-user-toolbar">
+        {if $compare = $CI->session->userdata('shopForCompare')}
+            {$countCo = count($compare);}
+        {else:}
+            {$countCo = 0;}
+        {/if}
+        {$wish_list = $CI->load->module('wishlist')}
+        {$countWL = $wish_list->getUserWishListItemsCount($CI->dx_auth->get_user_id())}
+        {$countSh = getProductViewsCount()}
+        <div class="content-user-toolbar" {if !($countCo!=0 || $countWL!=0 || $countSh!=0)}style="display:none;"{/if}>
             <ul class="items items-user-toolbar">
                 <li class="box-1">
                     {include_shop_tpl('wish_list_data')}
@@ -8,14 +16,14 @@
                 <li class="box-2">
                     {include_shop_tpl('compare_data')}
                 </li>
-                {if getProductViewsCount()}
+                {if $countSh}
                     <li class="box-3">
                         <div class="btn-already-show">
                             <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
                                 <span class="icon_already_show"></span>
                                 <span class="text-view-list">
                                     <span class="text-el d_l_1">Вы уже смотрели</span>
-                                    <span class="text-el">&nbsp;({echo getProductViewsCount()})</span>
+                                    <span class="text-el">&nbsp;({echo $countSh})</span>
                                 </span>
                             </button>
                         </div>

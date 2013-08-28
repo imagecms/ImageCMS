@@ -812,7 +812,7 @@ $(document).ready(function() {
     // on search button lick
     $("#search_images").live('click', search_images);
     // on enter
-    $("#url_image").live('keypress', function(e){
+    $("#url_image").live('keypress', function(e) {
         if (e.which == 13) {
             search_images();
         }
@@ -838,7 +838,7 @@ $(document).ready(function() {
             clearImageResults();
         }
     }
-    // start search 
+    // start search
     function searchImages(clear) {
         if (clear !== false) {
             $("#image_search_result").empty();
@@ -933,7 +933,7 @@ $(document).ready(function() {
 
     // adding event to open modal window
     $(".images_modal").live('click', function() {
-        // for saving the position of images page 
+        // for saving the position of images page
         curPosition = 1;
         trId = $(this).parents("tr").attr("id");
         var productName = $("input#Name").val();
@@ -992,10 +992,10 @@ $(document).ready(function() {
             }
             return true;
         }
-        // go furter if one image is selected 
+        // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
         $("#" + trId + " input.changeImage").val(selectedImageUrl);
-        // adding thumbnail 
+        // adding thumbnail
         var img = document.createElement("img");
         img.src = selectedImageUrl;
         $(img).addClass('img-polaroid').css({
@@ -1099,6 +1099,8 @@ $(document).ready(function() {
                             complete: function() {
                                 done += array.length;
                                 $('.bar').css('width', ((done / countAll) * 100) + '%');
+                                $('.bar').text(parseInt((done / countAll) * 100) + '%');
+
                                 $('#progressLabel').html('<b>Ресайз изображений для товаров</b> <br/>Всего найдено товаров: ' + countAll + '  (Обработано : ' + done + ' )');
 //                                console.log((done / countAll) * 100);
                                 if (done == countAll) {

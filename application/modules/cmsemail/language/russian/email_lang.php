@@ -36,7 +36,7 @@ $lang['Settings_saved'] = 'Настройки сохранены';
 
 /**
  ******************************** Tempalets
- * 
+ *
  * Create and Edit template
  */
 
@@ -50,7 +50,7 @@ $lang['Yes'] = 'Да';
 $lang['No'] = 'Нет';
 $lang['Template_description'] = 'Описание шаблона';
 $lang['Email_template_editing'] = 'Редактирование шаблона письма';
-$lang['Template_variables'] = 'Переменние шаблона';
+$lang['Template_variables'] = 'Переменные шаблона';
 $lang['Template_settings'] = 'Настройки шаблона';
 
 /**
@@ -79,7 +79,7 @@ $lang['Template_list_empty'] = 'Список шаблонов пустой';
 $lang['Use_wraper'] = 'Использовать обгортку';
 
 /**
- *Settings 
+ *Settings
  */
 $lang['Server_path_to_sendmail'] = 'Серверный путь к Sendmail';
 $lang['Port'] = 'Порт';

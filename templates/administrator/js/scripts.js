@@ -1748,6 +1748,50 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
+    processDB: function(file_name) {
+        $.ajax({
+            type: "POST",
+            asunc: false,
+            data: {
+                file_name: file_name
+            },
+            url: '/admin/sys_update/getQuerys',
+            success: function(res) {
+                var obj = JSON.parse(res);
+                var portion = (parseInt(obj.length / 100) + 1);
+                $('#progres').css('width', '0%');
+                $('.progressDB').fadeIn(600);
+                Update.restoreDBprocess(0, 0, portion, obj);
+            }
+        });
+    },
+    restoreDBprocess: function(i, j, portion, obj) {
+        var array = [];
+        o = 0;
+        for (j; j < ((i + 1) * portion); j++) {
+            array[o] = obj[j];
+            o++;
+        }
+
+        $.ajax({
+            type: "POST",
+            data: {
+                data: array
+            },
+            url: '/admin/sys_update/Querys',
+            complete: function(res) {
+                array = [];
+                if (i < 10) {
+                    $('#progres').css('width', i + 1 + '%');
+                    $('#progres').text(i + 1 + '%');
+                    Update.restoreDBprocess(i + 1, j, portion, obj);
+                } else {
+                    $('#progres').css('width', '0%');
+                    $('.progressDB').fadeOut(600);
+                }
+            }
+        });
+    },
     restore: function(file_name) {
         $.ajax({
             type: "POST",
