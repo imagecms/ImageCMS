@@ -38,9 +38,9 @@ class Sys_update extends BaseAdminController {
 
         if ($array) {
             $data = array(
-                'build' => $array['build'],
-                'date' => date("Y-m-d", $array['date']),
-                'size' => $array['size'],
+                'build' => $array['build_id'],
+                'date' => date("Y-m-d", $array['time']),
+                'size' => $array['size'] / 1024 / 1024,
                 'newRelise' => 1,
             );
         } else {
@@ -59,7 +59,7 @@ class Sys_update extends BaseAdminController {
         set_time_limit(99999999999999);
         $this->update->createBackUp();
         $this->update->getUpdate();
-        $this->update->restoreFromZIP('./application/backups/updates.zip');
+//        $this->update->restoreFromZIP('./application/backups/updates.zip');
         showMessage('Обновление успешно');
         pjax('/admin');
     }
@@ -102,7 +102,7 @@ class Sys_update extends BaseAdminController {
 
     public function properties() {
         if ($this->input->post("careKey")) {
-            ShopCore::app()->SSettings->set("careKey", $this->input->post("careKey"));
+            ShopCore::app()->SSettings->set("careKey", trim($this->input->post("careKey")));
         } else {
             $data = array(
                 'careKey' => ShopCore::app()->SSettings->__get("careKey")

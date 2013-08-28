@@ -9,13 +9,13 @@
                 <a href="{$BASE_URL}admin"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('a_back')}</span>
+                    <span class="t-d_u">{lang('Go back','admin')}</span>
                 </a>
                 {if $newRelise}
                     <a href="{$BASE_URL}admin/sys_update/update"
                        class="btn btn-small btn-primary pjax">
                         <span class="icon-play"></span>
-                        <span class="">Перейти к обновлению</span>
+                        <span class="">{lang('Go to Updates','admin')}</span>
                     </a>
                 {/if}
                 {if SHOP_INSTALLED}

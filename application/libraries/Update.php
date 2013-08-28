@@ -15,7 +15,7 @@ class Update {
      * path to update server
      * @var string
      */
-    private $pathUS = "http://pftest.imagecms.net/application/modules/shop/admin/UpdateService.wsdl";
+    private $pathUS = "http://pftest.imagecms.net/application/modules/update/UpdateService.wsdl";
 
     /**
      * шлях до сканування папок
@@ -203,7 +203,7 @@ class Update {
     public function getStatus() {
         if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
             $domen = $_SERVER['SERVER_NAME'];
-            $result = $this->client->getStatus($domen, BUILD_ID);
+            $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
             ShopCore::app()->SSettings->set("newVersion", $result);
             ShopCore::app()->SSettings->set("checkTime", time());
@@ -236,8 +236,8 @@ class Update {
     public function getUpdate() {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
-        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, ShopCore::app()->SSettings->__get("careKey"));
-        $all_href = 'http://pftest.imagecms.net/admin/server_update/takeUpdate/' . $href . '/' . $domen;
+        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, ShopCore::app()->SSettings->__get("careKey"));
+        $all_href = 'http://pftest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
