@@ -22,7 +22,18 @@
                         <span class="icon-hdd"></span>
                         Создать BackUp
                     </a>
+                    <button onclick="Update.processDB()"
+                            class="btn pjax">
+                        <span class="icon-hdd"></span>
+                        getQuerys
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <div class="progressDB" style="display: none;">
+            <div class="progress progress-info progress-striped active">
+                <div id='progres' class="bar"></div>
             </div>
         </div>
 
@@ -36,7 +47,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="update">
                     {if $diff_files and !$error}
-                    <h4>Файлы которые будут изменены ({echo $filesCount})</h4>
+                        <h4>Файлы которые будут изменены ({echo $filesCount})</h4>
                         <form  action="{$ADMIN_URL}" method="post" id="update_form">
                             <table class="table table-striped table-bordered table-hover table-condensed">
                                 <thead>

@@ -36,7 +36,7 @@
                 pasteAfter2 = $this;
                 $.each(pasteAfter, function(i, v) {
                     pasteAfter2 = pasteAfter2[v]();
-                })
+                });
 
                 var insertedEl = pasteAfter2.next(),
                         pasteAfterEL = pasteAfter2;
@@ -45,20 +45,25 @@
 
                 if (!pasteAfterEL.hasClass('already')) {
                     pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
+                    $(document).trigger({'type': 'comments.beforeshowformreply', 'el': pasteAfterEL.next()});
                     pasteAfterEL.next()[effectIn](duration, function() {
-                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)})
-                    })
+                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)});
+                    });
                     after($this, pasteAfterEL.next());
                 }
-                else if (insertedEl.is(':visible'))
+                else if (insertedEl.is(':visible')) {
+                    $(document).trigger({'type': 'comments.beforehideformreply', 'el': insertedEl});
                     insertedEl[effectOff](duration, function() {
-                        $(document).trigger({'type': 'comments.hideformreply', 'el': $(this)})
+                        $(document).trigger({'type': 'comments.hideformreply', 'el': $(this)});
                     });
-                else if (!insertedEl.is(':visible'))
+                }
+                else if (!insertedEl.is(':visible')) {
+                    $(document).trigger({'type': 'comments.beforeshowformreply', 'el': insertedEl});
                     insertedEl[effectIn](duration, function() {
-                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)})
+                        $(document).trigger({'type': 'comments.showformreply', 'el': $(this)});
                     });
-            })
+                }
+            });
         }
     };
     $.fn.cloneAddPaste = function(method) {
@@ -97,13 +102,13 @@
 
                     $this.mousemove(
                             function(e) {
-                                if (!e)
+                                if (!e) {
                                     e = window.event;
+                                }
                                 if (e.pageX) {
                                     x = e.pageX;
                                 } else if (e.clientX) {
                                     x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
-
                                 }
                                 var posLeft = 0;
                                 var obj = this;
@@ -116,11 +121,10 @@
                                         modOffsetX = 5 * offsetX % this.offsetWidth;
                                 rating = parseInt(5 * offsetX / this.offsetWidth);
 
-                                if (modOffsetX > 0)
+                                if (modOffsetX > 0) {
                                     rating += 1;
-
+                                }
                                 jQuery(this).find("span").eq(0).css("width", rating * width + "px");
-
                             });
 
                     $this.click(function() {
@@ -181,10 +185,11 @@ function initComments() {
             dataType: "json",
             url: '/comments/commentsapi/setyes',
             success: function(obj) {
-                if (obj !== null)
-                    $('.yesholder' + comid).each(function(){
+                if (obj !== null) {
+                    $('.yesholder' + comid).each(function() {
                         $(this).html("(" + obj.y_count + ")");
-                    })
+                    });
+                }
             }
         });
     });
@@ -197,20 +202,22 @@ function initComments() {
             dataType: "json",
             url: '/comments/commentsapi/setno',
             success: function(obj) {
-                if (obj !== null)
-                    $('.noholder' + comid).each(function(){
+                if (obj !== null) {
+                    $('.noholder' + comid).each(function() {
                         $(this).html("(" + obj.n_count + ")");
-                    })
+                    });
+                }
             }
         });
     });
-}
+};
 renderPosts = function(el, data) {
     var dataSend = "";
-    if (data != undefined)
-        dataSend = data
+    if (data != undefined) {
+        dataSend = data;
+    }
     if (el.data() != undefined) {
-        dataSend = el.data()
+        dataSend = el.data();
     }
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
@@ -220,18 +227,17 @@ renderPosts = function(el, data) {
         success: function(obj) {
             el.each(function() {
                 $(this).empty();
-            })
-
+            });
             if (obj !== null) {
                 var tpl = obj.comments;
 
                 var elL = el.length;
                 el.each(function(i, n) {
                     $(this).append(tpl);
-                    if (i + 1 == elL)
+                    if (i + 1 == elL) {
                         initComments();
-                })
-
+                    }
+                });
                 if (obj.commentsCount !== 0) {
                     $('#cc').html('');
                     $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));
@@ -240,8 +246,7 @@ renderPosts = function(el, data) {
             }
         }
     });
-}
-
+};
 function post(el) {
     $.ajax({
         url: "/comments/commentsapi/newPost",
@@ -253,15 +258,15 @@ function post(el) {
             if (obj.answer === 'sucesfull') {
                 $('.comment_text').each(function() {
                     $(this).val('');
-                })
+                });
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
                 renderPosts($(el).closest('.for_comments'));
             }
             else {
                 var form = $(el).closest('form');
-                form.find('.error_text').remove()
-                form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>')
+                form.find('.error_text').remove();
+                form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                 drawIcons(form.find('.error_text').find(selIcons));
             }
         }

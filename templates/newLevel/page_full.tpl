@@ -18,12 +18,12 @@
                 <script type="text/javascript">
                     {literal}
                         $(function() {
-                            renderPosts($('[name=for_comments]'));
+                            renderPosts($('.for_comments'));
                         })
                     {/literal}
                 </script>
                 <div id="comment">
-                    <div id="for_comments" name="for_comments"></div>
+                    <div class="for_comments"></div>
                 </div>
             </div>
         </div>

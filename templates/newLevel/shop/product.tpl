@@ -143,10 +143,12 @@
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
                                                             data-price="{echo $productVariant->toCurrency()}"
+                                                            data-count="1"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
+                                                            data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                             data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
@@ -192,35 +194,26 @@
                             <!-- end. frame-prices-buy -->
                             <div class="frame-wish-compare-list f-s_0">
                                 <!-- Wish List buttons -->
-                                {foreach $variants as $key => $productVariant}
-                                    <div {if $key != 0}style="display:none"{/if} class="btn-wish variant_{echo $productVariant->getId()} variant">
-                                        <button class="toWishlist"
-                                                data-price="{echo $productVariant->toCurrency()}"
-                                                data-prodid="{echo $model->getId()}"
-                                                data-varid="{echo $productVariant->getId()}"
-                                                type="button"
-                                                data-title="{lang('s_add_to_wish_list')}"
-                                                data-firtitle="{lang('s_add_to_wish_list')}"
-                                                data-sectitle="{lang('s_in_wish_list')}"
-                                                data-rel="tooltip">
-                                            <span class="icon_wish"></span>
-                                            <span class="text-el d_l">{lang('s_add_to_wish_list')}</span>
-                                        </button>
+                                {foreach $variants as $key => $pv}
+                                    <div class="frame-btn-wish variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if} data-id="{echo $model->getId()}" data-varid="{echo $pv->getId()}">
+                                        {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                     </div>
                                 {/foreach}
                                 <!-- end of Wish List buttons -->
                                 <!-- compare buttons -->
-                                <div class="btn-compare" data-prodid="{echo $model->getId()}">
-                                    <button class="toCompare"
-                                            data-prodid="{echo $model->getId()}"
-                                            type="button"
-                                            data-title="{lang('s_add_to_compare')}"
-                                            data-firtitle="{lang('s_add_to_compare')}"
-                                            data-sectitle="{lang('s_in_compare')}"
-                                            data-rel="tooltip">
-                                        <span class="icon_compare"></span>
-                                        <span class="text-el d_l">{lang('s_add_to_compare')}</span>
-                                    </button>
+                                <div class="frame-btn-compare">
+                                    <div class="btn-compare" data-prodid="{echo $model->getId()}">
+                                        <button class="toCompare"
+                                                data-prodid="{echo $model->getId()}"
+                                                type="button"
+                                                data-title="{lang('s_add_to_compare')}"
+                                                data-firtitle="{lang('s_add_to_compare')}"
+                                                data-sectitle="{lang('s_in_compare')}"
+                                                data-rel="tooltip">
+                                            <span class="icon_compare"></span>
+                                            <span class="text-el d_l">{lang('s_add_to_compare')}</span>
+                                        </button>
+                                    </div>
                                 </div>
                                 <!-- end of compare buttons -->
                             </div>
@@ -270,7 +263,7 @@
 
                         {$discount = 0}
                         {if $hasDiscounts}
-                            {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency()*100}
+                            {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
                         {/if}
                         {promoLabel($model->getAction(), $model->getHot(), $model->getHit(), $discount)}
                     </span>
