@@ -31,7 +31,7 @@
                         <div class="date f-s_0">
                             <span class="icon_time"></span><span class="text-el"></span>
                             <span class="day">{echo date("d", $item.publish_date)} </span>
-                            <span class="month">{echo date("F", $item.publish_date)} </span>
+                            <span class="month">{echo month(date("n", $item.publish_date))} </span>
                             <span class="year">{echo date("Y ", $item.publish_date)}</span>
                         </div>
                     </li>

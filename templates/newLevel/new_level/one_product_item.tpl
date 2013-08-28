@@ -3,7 +3,7 @@
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
-    <li>
+    <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if}>
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -192,8 +192,6 @@
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                    data-img="{echo $pv->getSmallPhoto()}"
-                                    data-url="{echo shop_url('product/'.$p->getUrl())}">
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>

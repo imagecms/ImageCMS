@@ -205,10 +205,7 @@
                                 {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
                             {/if}
                             {if $wishlist[0]['access'] == 'public'}
-                                <a href="{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}">Поделится с другом</a>
-                            {/if}
-                            {if $wishlist[0]['access'] == 'private'}
-                                <b>Сылка на вишлист:</b> <a target="_blank" href="{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}">{echo site_url('wishlist/show/'.$wishlist[0]['hash'])}</a>
+                                <a href="mailto:?body={echo site_url('wishlist/show/'.$wishlist[0]['hash'])}&subject=" title="Отправить письмом">Поделится с другом</a>
                             {/if}
                         </div>
                     </div>
