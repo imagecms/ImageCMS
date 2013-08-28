@@ -7,9 +7,11 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang('amt_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>Сохранить и выйти</button>
+
+                    <a href="/admin/components/run/shop/dashboard#last_comments" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang("Save")}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Create and exit')}</button>
+
                 </div>
             </div>
         </div>
@@ -18,7 +20,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('param')}
+                            {lang("Settings")}
                         </th>
                     </tr>
                 </thead>
@@ -31,31 +33,31 @@
                                         <form id="update" method="post" action="/admin/components/cp/comments/update">
 
                                             <div class="control-group">
-                                                <label class="control-label" for="username">{lang('amt_author')}:</label>
+                                                <label class="control-label" for="username">{lang("Author")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="user_name" value="{$comment.user_name}" />
                                                     <input type="hidden" name="id" value="{$comment.id}" />
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="email">{lang('amt_email')}:</label>
+                                                <label class="control-label" for="email">{lang("E-Mail")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="user_mail" value="{$comment.user_mail}"/>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="role_id">{lang('amt_status')}:</label>
+                                                <label class="control-label" for="role_id">{lang("Status")}:</label>
                                                 <div class="controls">
                                                     <select id="comment_status" name="status">
-                                                        <option value="0" {if $comment.status == 0} selected="selected" {/if}>{lang('amt_app')}</option>
-                                                        <option value="1" {if $comment.status == 1} selected="selected" {/if}>{lang('amt_waiting_for_app')}</option>
-                                                        <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang('amt_spam')}</option>
+                                                        <option value="0" {if $comment.status == 0} selected="selected" {/if}>{lang("Approved")}</option>
+                                                        <option value="1" {if $comment.status == 1} selected="selected" {/if}>{lang("Pending approval")}</option>
+                                                        <option value="2" {if $comment.status == 2} selected="selected" {/if}>{lang("Spam")}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="email">{lang('amt_content')}:</label>
+                                                <label class="control-label" for="email">{lang("Contents")}:</label>
                                                 <div class="controls">
                                                     <textarea id="comment_text" name="text" style="width:300px;height:180px;">{$comment.text}</textarea>
                                                 </div>

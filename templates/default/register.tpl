@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('lang_register')}</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang("Registration","admin")}</span></h5></div>
 
 {if validation_errors() OR $info_message}
     <div class="errors"> 
@@ -11,27 +11,27 @@
 	<div class="comment_form_info">
 	
 	<div class="textbox">
-        <label for="email" class="left">{lang('lang_email')}</label>
+        <label for="email" class="left">{lang("Email","admin")}</label>
         <input type="text" size="30" name="email" id="email" value="{set_value('email')}" />
     </div>
 	
 	<div class="textbox_spacer"></div>
 	
     <div class="textbox">
-        <label for="username" class="left">{lang('s_fio')}</label>
+        <label for="username" class="left">{lang("Name","admin")}</label>
         <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
         
     </div>
 
     <div class="textbox">
-        <label for="password" class="left">{lang('lang_password')}</label>
+        <label for="password" class="left">{lang("Password","admin")}</label>
         <input type="password" size="30" name="password" id="password" value="{set_value('password')}" />
     </div>
 	
 	<div class="textbox_spacer"></div>
 
     <div class="textbox"
-        <label for="confirm_password" class="left">{lang('lang_confirm_password')}</label>
+        <label for="confirm_password" class="left">{lang("Repeat Password","admin")}</label>
         <input type="password" class="text" size="30" name="confirm_password" id="confirm_password" />
     </div>
 	</div>
@@ -47,12 +47,12 @@
  
     <p class="clear">
         <label for="submit" class="left">&nbsp;</label> 
-        <input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
+        <input type="submit" id="submit" class="submit" value="{lang("Send","admin")}" />
     </p>
 
 	
     <label class="left">&nbsp;</label> 
-    <a href="{site_url($modules.auth . '/forgot_password')}">{lang('lang_forgot_password')}</a>
+    <a href="{site_url($modules.auth . '/forgot_password')}">{lang("Forgot your password?","admin")}</a>
     &nbsp;
     <a href="{site_url('auth/login')}">Вход</a>
 

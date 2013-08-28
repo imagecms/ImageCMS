@@ -1,13 +1,13 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
-            <span class="title">{lang('a_widget_edit')}<b>{$widget.name}</b></span>
+            <span class="title">{lang("Widget editing","admin")}<b>{$widget.name}</b></span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>Сохранить</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>Сохранить и выйти</button>
+                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit','admin')}</button>
             </div>
         </div>                            
     </div>
@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    {lang('a_param')}
+                                    {lang("Properties","admin")}
                                 </th>
                             </tr>
                         </thead>
@@ -29,20 +29,20 @@
                                     <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputName">{lang('a_n')}:</label>
+                                                <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="name" id="inputName" value="{$widget.name}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="inputDesc">{lang('a_desc')}:</label>
+                                                <label class="control-label" for="inputDesc">{lang("Description","admin")}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="desc" id="inputDesc" value="{$widget.description}">
-                                                    <p class="help-block">{lang('a_short_widget_desc')}</p>
+                                                    <p class="help-block">{lang("Short widget discription","admin")}</p>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="inputType">HTML код:</label>
+                                                <label class="control-label" for="inputType">{lang('HTML code','admin')}:</label>
                                                 <div class="controls">
                                                     <textarea class="elRTE" name="html_code" rows="15">{htmlspecialchars($widget.data)}</textarea>
                                                 </div>

@@ -54,7 +54,7 @@ class Admin extends BaseAdminController {
         $config['radiogroup_delimiter'] = '';
         $config['default_attr'] = array(
             'captcha' => array(
-                'label' => lang('amt_protection_code'),
+                'label' => lang("Protection code"),
             ),
         );
 
@@ -85,20 +85,20 @@ class Admin extends BaseAdminController {
     public function create_field() {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('create_field');
-        $form->title = lang('amt_field_creating');
+        $form->title = lang("Create a field");
 
         if ($_POST) {
 
             if (empty($_POST['field_name'])) {
-                showMessage(lang('amt_type_field_name'), false, 'r');
+                showMessage(lang("Specify the field name"), false, 'r');
                 exit;
             }
             if (empty($_POST['label'])) {
-                showMessage(lang('amt_type_field_label'), false, 'r');
+                showMessage(lang("Specify <b>Label</b> field"), false, 'r');
                 exit;
             }
             if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
-                showMessage(lang('amt_just_latin'), false, 'r');
+                showMessage(lang("Only Latin characters"), false, 'r');
                 exit;
             }
 
@@ -111,7 +111,7 @@ class Admin extends BaseAdminController {
                  unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
-                    showMessage(lang('amt_select_another_name'), false, 'r');
+                    showMessage(lang("Select another  name"), false, 'r');
                 } else {
                     // Set field weight.
                     $this->db->select_max('weight');
@@ -132,8 +132,9 @@ class Admin extends BaseAdminController {
                         if (count($toInsert))
                             $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
                     }
+                    
+                    showMessage(lang("Field created"));
 
-                    showMessage(lang('amt_field_created'));
                     pjax( $this->get_url('edit_field/' . $data['field_name']));
                     exit;
                 }
@@ -154,7 +155,7 @@ class Admin extends BaseAdminController {
     public function edit_field_data_type($field_name) {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('edit_field_data_type/' . $field_name);
-        $form->title = lang('amt_field_edit');
+        $form->title = lang("Field editing");
 
         $field = $this->db->get_where('content_fields', array('field_name' => $field_name))->row_array();
 
@@ -172,7 +173,7 @@ class Admin extends BaseAdminController {
                 $this->db->where('field_name', $field_name);
                 $this->db->update('content_fields', $data);
 
-                showMessage(lang('amt_field_updated'));
+                showMessage(lang("Field has been updated"));
                 pjax($this->get_url('index'));
                 exit;
             }
@@ -221,7 +222,7 @@ class Admin extends BaseAdminController {
 
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = lang('amt_field_editing') . $field->label;
+            $form->title = lang("Field editing") . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);
@@ -261,7 +262,7 @@ class Admin extends BaseAdminController {
                             $this->db->delete('content_fields_groups_relations', array('field_name' =>$data['field_name'] ));
                             $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
                     }
-                showMessage(lang('amt_field_updated'));
+                 showMessage(lang("Field has been updated"));
 //                if ($this->input->post('action') == 'close')
 //                    pjax( $this->get_url('index'));
 //                else
@@ -277,24 +278,24 @@ class Admin extends BaseAdminController {
             $this->render('_form');
         }
         else
-            echo lang('amt_field_not_found');
+            echo lang("Field has not been found");
     }
 
     public function create_group()
     {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
-        $form->title = lang('a_create_group_m');
+        $form->title = lang("Creating a group");
         $form->type = "group";
         if ($_POST) {
             if (empty($_POST['name'])) {
-                showMessage(lang('amt_type_group_name'), false, 'r');
+                showMessage(lang("Specify the group name"), false, 'r');
                 exit;
             }
 
             if ($form->isValid()) {
                 $this->db->insert('content_field_groups', $form->getData());
-                showMessage(lang('amt_group_created'));
+                showMessage(lang("Group has been created"));
 
                 pjax('/admin/components/cp/cfcm#fields_groups');
             } else {
@@ -319,13 +320,13 @@ class Admin extends BaseAdminController {
         if ($group->num_rows() == 1) {
             $group = $group->row_array();
         } else {
-            showMessage(lang('amt_group_not_found'), false, 'r');
+            showMessage(lang("Group has not been found"), false, 'r');
             exit;
         }
 
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('edit_group/' . $id);
-        $form->title = lang('amt_group_editing_id') . $group['id'];
+        $form->title = lang("ID group editing") . $group['id'];
         $form->type = "group";
         if ($_POST)
             if ($form->isValid()) {
@@ -334,7 +335,7 @@ class Admin extends BaseAdminController {
                 $this->db->limit(1);
                 $this->db->where('id', $id);
                 $this->db->update('content_field_groups', $data);
-                showMessage(lang('amt_group_updated'));
+                showMessage(lang("Group has been updated"));
 
                 pjax( $this->get_url('index#fields_groups'));
                 exit;
@@ -451,12 +452,12 @@ class Admin extends BaseAdminController {
 
             } else {
                 echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                    .lang('amt_no_field_in_group').
+                    .lang("Group without any fields").
                     '</div>';
             }
         } else {
             echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                .lang('amt_for_category') . $category->name . lang('amt_field_group_not_selected').
+                .lang("For category") . $category->name . lang("Field group has not been selected").
                 '</div>';
         }
     }

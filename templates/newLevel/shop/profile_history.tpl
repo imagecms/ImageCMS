@@ -3,24 +3,24 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">У вас нет оформленых заказов</span>
+                <span class="text-el">{lang('You do not have any registered orders','newLevel')}</span>
             </div>
         </div>
     {else:}
         <table class="table-profile">
             <thead>
                 <tr>
-                    <th>№ Заказа</th>
-                    <th>Время покупки</th>
-                    <th>Сумма покупки</th>
-                    <th>Статус заказа</th>
-                    <th>Статус оплаты</th>
+                    <th>{lang('Order #','newLevel')}</th>
+                    <th>{lang('Pime of purchase','newLevel')}</th>
+                    <th>{lang('Amount of purchase','newLevel')}</th>
+                    <th>{lang('Order status','newLevel')}</th>
+                    <th>{lang('Payment status','newLevel')}</th>
                 </tr>
             </thead>
             <tbody>
                 {foreach $orders as $order}
                     <tr>
-                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">Заказ №{echo $order->getId()}</a></td>
+                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Order #','newLevel')}{echo $order->getId()}</a></td>
                         <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                         <td>
                             <div class="frame-prices">
@@ -36,7 +36,7 @@
                         </td>
                         </span>
                         <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                        <td>{if $order->getPaid()} Оплачен {else:} Не оплачен{/if}</td>
+                        <td>{if $order->getPaid()} {lang('Paid','newLevel')} {else:} {lang('Not paid','newLevel')}{/if}</td>
                     </tr>
                 {/foreach}
             </tbody>

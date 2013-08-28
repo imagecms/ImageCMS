@@ -1,0 +1,789 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 12:34+0300\n"
+"PO-Revision-Date: 2013-07-29 12:29+0300\n"
+"Last-Translator: mark <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../..//_out.php:5
+#: ../../..//_out.php:754
+#: ../../..//_out.php:2128
+#: ../../..//_out.php:3106
+#: ../../..//templates/url_selector.tpl:5
+#: ../../..//templates/create_item.tpl:534
+msgid "Specify or select a link to the page"
+msgstr ""
+
+#: ../../..//_out.php:9
+#: ../../..//_out.php:1123
+#: ../../..//_out.php:1342
+#: ../../..//templates/url_selector.tpl:9
+#: ../../..//templates/module_selector.tpl:9
+#: ../../..//templates/category_selector.tpl:9
+msgid "Options"
+msgstr ""
+
+#: ../../..//_out.php:16
+#: ../../..//_out.php:744
+#: ../../..//_out.php:2118
+#: ../../..//_out.php:3096
+#: ../../..//templates/url_selector.tpl:16
+#: ../../..//templates/create_item.tpl:524
+msgid "URL"
+msgstr ""
+
+#: ../../..//_out.php:24
+#: ../../..//_out.php:334
+#: ../../..//_out.php:488
+#: ../../..//_out.php:628
+#: ../../..//_out.php:780
+#: ../../..//_out.php:1151
+#: ../../..//_out.php:1369
+#: ../../..//_out.php:1720
+#: ../../..//_out.php:1862
+#: ../../..//_out.php:2002
+#: ../../..//_out.php:2154
+#: ../../..//_out.php:2442
+#: ../../..//_out.php:2686
+#: ../../..//_out.php:2840
+#: ../../..//_out.php:2980
+#: ../../..//_out.php:3132
+#: ../../..//templates/url_selector.tpl:24
+#: ../../..//templates/create_item.tpl:114
+#: ../../..//templates/create_item.tpl:268
+#: ../../..//templates/create_item.tpl:408
+#: ../../..//templates/create_item.tpl:560
+#: ../../..//templates/module_selector.tpl:37
+#: ../../..//templates/category_selector.tpl:36
+msgid "Title"
+msgstr ""
+
+#: ../../..//_out.php:31
+#: ../../..//_out.php:340
+#: ../../..//_out.php:494
+#: ../../..//_out.php:641
+#: ../../..//_out.php:786
+#: ../../..//_out.php:1165
+#: ../../..//_out.php:1376
+#: ../../..//_out.php:1726
+#: ../../..//_out.php:1868
+#: ../../..//_out.php:2015
+#: ../../..//_out.php:2160
+#: ../../..//_out.php:2448
+#: ../../..//_out.php:2692
+#: ../../..//_out.php:2846
+#: ../../..//_out.php:2993
+#: ../../..//_out.php:3138
+#: ../../..//templates/url_selector.tpl:31
+#: ../../..//templates/create_item.tpl:120
+#: ../../..//templates/create_item.tpl:274
+#: ../../..//templates/create_item.tpl:421
+#: ../../..//templates/create_item.tpl:566
+#: ../../..//templates/module_selector.tpl:51
+#: ../../..//templates/category_selector.tpl:43
+msgid "Parent"
+msgstr ""
+
+#: ../../..//_out.php:34
+#: ../../..//_out.php:47
+#: ../../..//_out.php:81
+#: ../../..//_out.php:91
+#: ../../..//_out.php:343
+#: ../../..//_out.php:354
+#: ../../..//_out.php:402
+#: ../../..//_out.php:417
+#: ../../..//_out.php:497
+#: ../../..//_out.php:508
+#: ../../..//_out.php:553
+#: ../../..//_out.php:572
+#: ../../..//_out.php:644
+#: ../../..//_out.php:655
+#: ../../..//_out.php:702
+#: ../../..//_out.php:721
+#: ../../..//_out.php:789
+#: ../../..//_out.php:800
+#: ../../..//_out.php:847
+#: ../../..//_out.php:866
+#: ../../..//_out.php:1168
+#: ../../..//_out.php:1181
+#: ../../..//_out.php:1215
+#: ../../..//_out.php:1225
+#: ../../..//_out.php:1379
+#: ../../..//_out.php:1392
+#: ../../..//_out.php:1424
+#: ../../..//_out.php:1434
+#: ../../..//_out.php:1729
+#: ../../..//_out.php:1740
+#: ../../..//_out.php:1784
+#: ../../..//_out.php:1792
+#: ../../..//_out.php:1871
+#: ../../..//_out.php:1882
+#: ../../..//_out.php:1927
+#: ../../..//_out.php:1946
+#: ../../..//_out.php:2018
+#: ../../..//_out.php:2029
+#: ../../..//_out.php:2076
+#: ../../..//_out.php:2095
+#: ../../..//_out.php:2163
+#: ../../..//_out.php:2174
+#: ../../..//_out.php:2221
+#: ../../..//_out.php:2240
+#: ../../..//_out.php:2451
+#: ../../..//_out.php:2462
+#: ../../..//_out.php:2491
+#: ../../..//_out.php:2498
+#: ../../..//_out.php:2695
+#: ../../..//_out.php:2706
+#: ../../..//_out.php:2754
+#: ../../..//_out.php:2769
+#: ../../..//_out.php:2849
+#: ../../..//_out.php:2860
+#: ../../..//_out.php:2905
+#: ../../..//_out.php:2924
+#: ../../..//_out.php:2996
+#: ../../..//_out.php:3007
+#: ../../..//_out.php:3054
+#: ../../..//_out.php:3073
+#: ../../..//_out.php:3141
+#: ../../..//_out.php:3152
+#: ../../..//_out.php:3199
+#: ../../..//_out.php:3218
+#: ../../..//templates/url_selector.tpl:34
+#: ../../..//templates/url_selector.tpl:47
+#: ../../..//templates/url_selector.tpl:81
+#: ../../..//templates/url_selector.tpl:91
+#: ../../..//templates/create_item.tpl:123
+#: ../../..//templates/create_item.tpl:134
+#: ../../..//templates/create_item.tpl:182
+#: ../../..//templates/create_item.tpl:197
+#: ../../..//templates/create_item.tpl:277
+#: ../../..//templates/create_item.tpl:288
+#: ../../..//templates/create_item.tpl:333
+#: ../../..//templates/create_item.tpl:352
+#: ../../..//templates/create_item.tpl:424
+#: ../../..//templates/create_item.tpl:435
+#: ../../..//templates/create_item.tpl:482
+#: ../../..//templates/create_item.tpl:501
+#: ../../..//templates/create_item.tpl:569
+#: ../../..//templates/create_item.tpl:580
+#: ../../..//templates/create_item.tpl:627
+#: ../../..//templates/create_item.tpl:646
+#: ../../..//templates/module_selector.tpl:54
+#: ../../..//templates/module_selector.tpl:67
+#: ../../..//templates/module_selector.tpl:101
+#: ../../..//templates/module_selector.tpl:111
+#: ../../..//templates/category_selector.tpl:46
+#: ../../..//templates/category_selector.tpl:59
+#: ../../..//templates/category_selector.tpl:91
+#: ../../..//templates/category_selector.tpl:101
+msgid "No"
+msgstr ""
+
+#: ../../..//_out.php:44
+#: ../../..//_out.php:351
+#: ../../..//_out.php:505
+#: ../../..//_out.php:652
+#: ../../..//_out.php:797
+#: ../../..//_out.php:1178
+#: ../../..//_out.php:1389
+#: ../../..//_out.php:1737
+#: ../../..//_out.php:1879
+#: ../../..//_out.php:2026
+#: ../../..//_out.php:2171
+#: ../../..//_out.php:2459
+#: ../../..//_out.php:2703
+#: ../../..//_out.php:2857
+#: ../../..//_out.php:3004
+#: ../../..//_out.php:3149
+#: ../../..//templates/url_selector.tpl:44
+#: ../../..//templates/create_item.tpl:131
+#: ../../..//templates/create_item.tpl:285
+#: ../../..//templates/create_item.tpl:432
+#: ../../..//templates/create_item.tpl:577
+#: ../../..//templates/module_selector.tpl:64
+#: ../../..//templates/category_selector.tpl:56
+#, fuzzy
+msgid "Position after"
+msgstr "Позиція змінена"
+
+#: ../../..//_out.php:48
+#: ../../..//_out.php:355
+#: ../../..//_out.php:509
+#: ../../..//_out.php:656
+#: ../../..//_out.php:801
+#: ../../..//_out.php:1182
+#: ../../..//_out.php:1393
+#: ../../..//_out.php:1741
+#: ../../..//_out.php:1883
+#: ../../..//_out.php:2030
+#: ../../..//_out.php:2175
+#: ../../..//_out.php:2463
+#: ../../..//_out.php:2707
+#: ../../..//_out.php:2861
+#: ../../..//_out.php:3008
+#: ../../..//_out.php:3153
+#: ../../..//templates/url_selector.tpl:48
+#: ../../..//templates/create_item.tpl:135
+#: ../../..//templates/create_item.tpl:289
+#: ../../..//templates/create_item.tpl:436
+#: ../../..//templates/create_item.tpl:581
+#: ../../..//templates/module_selector.tpl:68
+#: ../../..//templates/category_selector.tpl:60
+msgid "First"
+msgstr ""
+
+#: ../../..//_out.php:57
+#: ../../..//_out.php:364
+#: ../../..//_out.php:518
+#: ../../..//_out.php:665
+#: ../../..//_out.php:810
+#: ../../..//_out.php:1191
+#: ../../..//_out.php:1401
+#: ../../..//_out.php:1750
+#: ../../..//_out.php:1892
+#: ../../..//_out.php:2039
+#: ../../..//_out.php:2184
+#: ../../..//_out.php:2471
+#: ../../..//_out.php:2716
+#: ../../..//_out.php:2870
+#: ../../..//_out.php:3017
+#: ../../..//_out.php:3162
+#: ../../..//templates/url_selector.tpl:57
+#: ../../..//templates/create_item.tpl:144
+#: ../../..//templates/create_item.tpl:298
+#: ../../..//templates/create_item.tpl:445
+#: ../../..//templates/create_item.tpl:590
+#: ../../..//templates/module_selector.tpl:77
+#: ../../..//templates/category_selector.tpl:68
+msgid "Image"
+msgstr ""
+
+#: ../../..//_out.php:60
+#: ../../..//_out.php:1194
+#: ../../..//_out.php:1404
+msgid "Select an image"
+msgstr ""
+
+#: ../../..//_out.php:64
+#: ../../..//_out.php:376
+#: ../../..//_out.php:530
+#: ../../..//_out.php:677
+#: ../../..//_out.php:822
+#: ../../..//_out.php:1198
+#: ../../..//_out.php:1407
+#: ../../..//_out.php:1762
+#: ../../..//_out.php:1904
+#: ../../..//_out.php:2051
+#: ../../..//_out.php:2196
+#: ../../..//_out.php:2477
+#: ../../..//_out.php:2728
+#: ../../..//_out.php:2882
+#: ../../..//_out.php:3029
+#: ../../..//_out.php:3174
+#: ../../..//templates/url_selector.tpl:64
+#: ../../..//templates/create_item.tpl:156
+#: ../../..//templates/create_item.tpl:310
+#: ../../..//templates/create_item.tpl:457
+#: ../../..//templates/create_item.tpl:602
+#: ../../..//templates/module_selector.tpl:84
+#: ../../..//templates/category_selector.tpl:74
+msgid "Access level"
+msgstr ""
+
+#: ../../..//_out.php:67
+#: ../../..//_out.php:383
+#: ../../..//_out.php:533
+#: ../../..//_out.php:680
+#: ../../..//_out.php:825
+#: ../../..//_out.php:1201
+#: ../../..//_out.php:1410
+#: ../../..//_out.php:1769
+#: ../../..//_out.php:1907
+#: ../../..//_out.php:2054
+#: ../../..//_out.php:2199
+#: ../../..//_out.php:2480
+#: ../../..//_out.php:2735
+#: ../../..//_out.php:2885
+#: ../../..//_out.php:3032
+#: ../../..//_out.php:3177
+#: ../../..//templates/url_selector.tpl:67
+#: ../../..//templates/create_item.tpl:163
+#: ../../..//templates/create_item.tpl:313
+#: ../../..//templates/create_item.tpl:460
+#: ../../..//templates/create_item.tpl:605
+#: ../../..//templates/module_selector.tpl:87
+#: ../../..//templates/category_selector.tpl:77
+msgid "All"
+msgstr ""
+
+#: ../../..//_out.php:77
+#: ../../..//_out.php:391
+#: ../../..//_out.php:541
+#: ../../..//_out.php:688
+#: ../../..//_out.php:833
+#: ../../..//_out.php:1211
+#: ../../..//_out.php:1420
+#: ../../..//_out.php:1777
+#: ../../..//_out.php:1915
+#: ../../..//_out.php:2062
+#: ../../..//_out.php:2207
+#: ../../..//_out.php:2488
+#: ../../..//_out.php:2743
+#: ../../..//_out.php:2893
+#: ../../..//_out.php:3040
+#: ../../..//_out.php:3185
+#: ../../..//templates/url_selector.tpl:77
+#: ../../..//templates/create_item.tpl:171
+#: ../../..//templates/create_item.tpl:321
+#: ../../..//templates/create_item.tpl:468
+#: ../../..//templates/create_item.tpl:613
+#: ../../..//templates/module_selector.tpl:97
+#: ../../..//templates/category_selector.tpl:87
+msgid "Hide"
+msgstr ""
+
+#: ../../..//_out.php:80
+#: ../../..//_out.php:90
+#: ../../..//_out.php:396
+#: ../../..//_out.php:412
+#: ../../..//_out.php:547
+#: ../../..//_out.php:565
+#: ../../..//_out.php:696
+#: ../../..//_out.php:714
+#: ../../..//_out.php:840
+#: ../../..//_out.php:859
+#: ../../..//_out.php:1214
+#: ../../..//_out.php:1224
+#: ../../..//_out.php:1423
+#: ../../..//_out.php:1433
+#: ../../..//_out.php:1780
+#: ../../..//_out.php:1791
+#: ../../..//_out.php:1921
+#: ../../..//_out.php:1939
+#: ../../..//_out.php:2070
+#: ../../..//_out.php:2088
+#: ../../..//_out.php:2214
+#: ../../..//_out.php:2233
+#: ../../..//_out.php:2490
+#: ../../..//_out.php:2497
+#: ../../..//_out.php:2748
+#: ../../..//_out.php:2764
+#: ../../..//_out.php:2899
+#: ../../..//_out.php:2917
+#: ../../..//_out.php:3048
+#: ../../..//_out.php:3066
+#: ../../..//_out.php:3192
+#: ../../..//_out.php:3211
+#: ../../..//templates/url_selector.tpl:80
+#: ../../..//templates/url_selector.tpl:90
+#: ../../..//templates/create_item.tpl:176
+#: ../../..//templates/create_item.tpl:192
+#: ../../..//templates/create_item.tpl:327
+#: ../../..//templates/create_item.tpl:345
+#: ../../..//templates/create_item.tpl:476
+#: ../../..//templates/create_item.tpl:494
+#: ../../..//templates/create_item.tpl:620
+#: ../../..//templates/create_item.tpl:639
+#: ../../..//templates/module_selector.tpl:100
+#: ../../..//templates/module_selector.tpl:110
+#: ../../..//templates/category_selector.tpl:90
+#: ../../..//templates/category_selector.tpl:100
+msgid "Yes"
+msgstr ""
+
+#: ../../..//_out.php:87
+#: ../../..//_out.php:407
+#: ../../..//_out.php:558
+#: ../../..//_out.php:707
+#: ../../..//_out.php:852
+#: ../../..//_out.php:1221
+#: ../../..//_out.php:1430
+#: ../../..//_out.php:1789
+#: ../../..//_out.php:1932
+#: ../../..//_out.php:2081
+#: ../../..//_out.php:2226
+#: ../../..//_out.php:2495
+#: ../../..//_out.php:2759
+#: ../../..//_out.php:2910
+#: ../../..//_out.php:3059
+#: ../../..//_out.php:3204
+#: ../../..//templates/url_selector.tpl:87
+#: ../../..//templates/create_item.tpl:187
+#: ../../..//templates/create_item.tpl:338
+#: ../../..//templates/create_item.tpl:487
+#: ../../..//templates/create_item.tpl:632
+#: ../../..//templates/module_selector.tpl:107
+#: ../../..//templates/category_selector.tpl:97
+msgid "Open in the new window"
+msgstr ""
+
+#: ../../..//_out.php:98
+#: ../../..//_out.php:1232
+#: ../../..//_out.php:1548
+msgid "Create"
+msgstr ""
+
+#: ../../..//_out.php:99
+#: ../../..//_out.php:1233
+#: ../../..//_out.php:2267
+#: ../../..//_out.php:2525
+msgid "Cancel"
+msgstr ""
+
+#: ../../..//_out.php:225
+#: ../../..//_out.php:1612
+#: ../../..//_out.php:2576
+#: ../../..//templates/create_item.tpl:5
+msgid "Edit menu item"
+msgstr ""
+
+#: ../../..//_out.php:229
+#: ../../..//_out.php:999
+#: ../../..//_out.php:1071
+#: ../../..//_out.php:1547
+#: ../../..//_out.php:1616
+#: ../../..//_out.php:2540
+#: ../../..//_out.php:2580
+#: ../../..//templates/create_item.tpl:9
+#: ../../..//templates/edit_menu.tpl:11
+#: ../../..//templates/translate_item.tpl:9
+msgid "Go back"
+msgstr ""
+
+#: ../../..//_out.php:230
+#: ../../..//_out.php:1001
+#: ../../..//_out.php:1072
+#: ../../..//_out.php:1617
+#: ../../..//_out.php:2345
+#: ../../..//_out.php:2581
+#: ../../..//templates/create_item.tpl:10
+#: ../../..//templates/edit_menu.tpl:13
+#: ../../..//templates/translate_item.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: ../../..//_out.php:231
+#: ../../..//_out.php:1549
+#: ../../..//_out.php:1618
+#: ../../..//_out.php:2582
+#: ../../..//templates/create_item.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//_out.php:239
+#: ../../..//_out.php:324
+#: ../../..//_out.php:1625
+#: ../../..//_out.php:1710
+#: ../../..//_out.php:2432
+#: ../../..//_out.php:2589
+#: ../../..//_out.php:2676
+#: ../../..//templates/create_item.tpl:19
+#: ../../..//templates/create_item.tpl:104
+msgid "Page"
+msgstr ""
+
+#: ../../..//_out.php:240
+#: ../../..//_out.php:267
+#: ../../..//_out.php:478
+#: ../../..//_out.php:1358
+#: ../../..//_out.php:1626
+#: ../../..//_out.php:1653
+#: ../../..//_out.php:1852
+#: ../../..//_out.php:2374
+#: ../../..//_out.php:2590
+#: ../../..//_out.php:2617
+#: ../../..//_out.php:2830
+#: ../../..//templates/create_item.tpl:20
+#: ../../..//templates/create_item.tpl:47
+#: ../../..//templates/create_item.tpl:258
+#: ../../..//templates/category_selector.tpl:25
+msgid "Categories"
+msgstr ""
+
+#: ../../..//_out.php:241
+#: ../../..//_out.php:617
+#: ../../..//_out.php:1142
+#: ../../..//_out.php:1627
+#: ../../..//_out.php:1991
+#: ../../..//_out.php:2591
+#: ../../..//_out.php:2969
+#: ../../..//templates/create_item.tpl:21
+#: ../../..//templates/create_item.tpl:397
+#: ../../..//templates/module_selector.tpl:28
+msgid "Module"
+msgstr ""
+
+#: ../../..//_out.php:242
+#: ../../..//_out.php:1628
+#: ../../..//_out.php:2559
+#: ../../..//_out.php:2592
+#: ../../..//templates/create_item.tpl:22
+msgid "Link"
+msgstr ""
+
+#: ../../..//_out.php:257
+#: ../../..//_out.php:439
+#: ../../..//_out.php:1643
+#: ../../..//_out.php:1813
+#: ../../..//_out.php:2364
+#: ../../..//_out.php:2607
+#: ../../..//_out.php:2791
+#: ../../..//templates/create_item.tpl:37
+#: ../../..//templates/create_item.tpl:219
+msgid "Pages"
+msgstr ""
+
+#: ../../..//_out.php:270
+#: ../../..//_out.php:1656
+#: ../../..//_out.php:2377
+#: ../../..//_out.php:2620
+#: ../../..//templates/create_item.tpl:50
+msgid "Root"
+msgstr ""
+
+#: ../../..//_out.php:322
+#: ../../..//_out.php:476
+#: ../../..//_out.php:614
+#: ../../..//_out.php:1140
+#: ../../..//_out.php:1356
+#: ../../..//_out.php:1708
+#: ../../..//_out.php:1850
+#: ../../..//_out.php:1988
+#: ../../..//_out.php:2430
+#: ../../..//_out.php:2560
+#: ../../..//_out.php:2674
+#: ../../..//_out.php:2828
+#: ../../..//_out.php:2966
+#: ../../..//templates/create_item.tpl:102
+#: ../../..//templates/create_item.tpl:256
+#: ../../..//templates/create_item.tpl:394
+#: ../../..//templates/module_selector.tpl:26
+#: ../../..//templates/category_selector.tpl:23
+msgid "Type"
+msgstr ""
+
+#: ../../..//_out.php:328
+#: ../../..//_out.php:482
+#: ../../..//_out.php:1362
+#: ../../..//_out.php:1714
+#: ../../..//_out.php:1856
+#: ../../..//_out.php:2299
+#: ../../..//_out.php:2436
+#: ../../..//_out.php:2557
+#: ../../..//_out.php:2680
+#: ../../..//_out.php:2834
+#: ../../..//templates/create_item.tpl:108
+#: ../../..//templates/create_item.tpl:262
+#: ../../..//templates/category_selector.tpl:29
+msgid "ID"
+msgstr ""
+
+#: ../../..//_out.php:368
+#: ../../..//_out.php:522
+#: ../../..//_out.php:669
+#: ../../..//_out.php:814
+#: ../../..//_out.php:1754
+#: ../../..//_out.php:1896
+#: ../../..//_out.php:2043
+#: ../../..//_out.php:2188
+#: ../../..//_out.php:2720
+#: ../../..//_out.php:2874
+#: ../../..//_out.php:3021
+#: ../../..//_out.php:3166
+#: ../../..//templates/create_item.tpl:148
+#: ../../..//templates/create_item.tpl:302
+#: ../../..//templates/create_item.tpl:449
+#: ../../..//templates/create_item.tpl:594
+msgid "Choose an image "
+msgstr ""
+
+#: ../../..//_out.php:449
+#: ../../..//_out.php:1338
+#: ../../..//_out.php:1823
+#: ../../..//_out.php:2801
+#: ../../..//templates/create_item.tpl:229
+#: ../../..//templates/category_selector.tpl:5
+msgid "Choose a category"
+msgstr ""
+
+#: ../../..//_out.php:586
+#: ../../..//_out.php:1119
+#: ../../..//_out.php:1960
+#: ../../..//_out.php:2938
+#: ../../..//templates/create_item.tpl:366
+#: ../../..//templates/module_selector.tpl:5
+msgid "Select or choose a module"
+msgstr ""
+
+#: ../../..//_out.php:622
+#: ../../..//_out.php:1024
+#: ../../..//_out.php:1030
+#: ../../..//_out.php:1146
+#: ../../..//_out.php:1569
+#: ../../..//_out.php:1575
+#: ../../..//_out.php:1996
+#: ../../..//_out.php:2300
+#: ../../..//_out.php:2301
+#: ../../..//_out.php:2558
+#: ../../..//_out.php:2974
+#: ../../..//admin.php:810
+#: ../../..//admin.php:811
+#: ../../..//admin.php:860
+#: ../../..//admin.php:861
+#: ../../..//templates/create_item.tpl:402
+#: ../../..//templates/edit_menu.tpl:36
+#: ../../..//templates/edit_menu.tpl:42
+#: ../../..//templates/module_selector.tpl:32
+msgid "Name"
+msgstr ""
+
+#: ../../..//_out.php:769
+#: ../../..//_out.php:1081
+#: ../../..//_out.php:1559
+#: ../../..//_out.php:2143
+#: ../../..//_out.php:3121
+#: ../../..//templates/create_item.tpl:549
+#: ../../..//templates/translate_item.tpl:19
+msgid "Settings"
+msgstr ""
+
+#: ../../..//_out.php:1014
+#: ../../..//templates/edit_menu.tpl:26
+msgid "Edit a menu"
+msgstr ""
+
+#: ../../..//_out.php:1036
+#: ../../..//_out.php:1581
+#: ../../..//_out.php:2302
+#: ../../..//admin.php:812
+#: ../../..//admin.php:862
+#: ../../..//templates/edit_menu.tpl:48
+msgid "Description"
+msgstr ""
+
+#: ../../..//_out.php:1042
+#: ../../..//_out.php:1587
+#: ../../..//templates/edit_menu.tpl:54
+msgid "Template folder"
+msgstr ""
+
+#: ../../..//_out.php:1048
+#: ../../..//_out.php:1593
+#: ../../..//templates/edit_menu.tpl:60
+msgid "Open a menu, level"
+msgstr ""
+
+#: ../../..//_out.php:1067
+#: ../../..//templates/translate_item.tpl:5
+msgid "Menu item translate"
+msgstr ""
+
+#: ../../..//_out.php:1157
+#: ../../..//templates/module_selector.tpl:43
+msgid "Function"
+msgstr ""
+
+#: ../../..//_out.php:1543
+#: ../../..//_out.php:2282
+msgid "Create a menu"
+msgstr ""
+
+#: ../../..//_out.php:2260
+#: ../../..//_out.php:2518
+msgid "Menu deleting"
+msgstr ""
+
+#: ../../..//_out.php:2263
+#: ../../..//_out.php:2521
+msgid "Delete selected menu?"
+msgstr ""
+
+#: ../../..//_out.php:2266
+#: ../../..//_out.php:2283
+#: ../../..//_out.php:2524
+#: ../../..//_out.php:2542
+msgid "Delete"
+msgstr ""
+
+#: ../../..//_out.php:2278
+msgid "Menu list"
+msgstr ""
+
+#: ../../..//_out.php:2303
+msgid "Created or Has been created"
+msgstr ""
+
+#: ../../..//_out.php:2304
+#: ../../..//_out.php:2326
+msgid "Editing"
+msgstr ""
+
+#: ../../..//_out.php:2536
+msgid "Menu"
+msgstr ""
+
+#: ../../..//_out.php:2541
+msgid "Create link"
+msgstr ""
+
+#: ../../..//admin.php:792
+#, fuzzy
+msgid "Positions updated"
+msgstr "Позиція змінена"
+
+#: ../../..//admin.php:803
+msgid "Name field sieve"
+msgstr ""
+
+#: ../../..//admin.php:813
+#: ../../..//admin.php:863
+msgid "Template"
+msgstr ""
+
+#: ../../..//admin.php:814
+#: ../../..//admin.php:864
+msgid "Nesting level"
+msgstr ""
+
+#: ../../..//admin.php:830
+msgid "Create menu"
+msgstr ""
+
+#: ../../..//admin.php:935
+#: ../../..//admin.php:952
+msgid "Menu removed"
+msgstr ""
+
+#: ../../..//admin.php:1151
+msgid "Changes saved"
+msgstr ""
+
+#, fuzzy
+#~ msgid "ac_val_name"
+#~ msgstr "Name"
+
+#, fuzzy
+#~ msgid "ac_page_cont_updated"
+#~ msgstr "Позиція змінена"
+
+#, fuzzy
+#~ msgid "ac_val_position"
+#~ msgstr "Позиція"
+
+#~ msgid "Settings saved success"
+#~ msgstr "Settings saved success"
+
+#~ msgid "amt_name"
+#~ msgstr "User name"

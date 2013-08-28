@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">{lang('a_field_constructor')}</span>
+            <span class="title w-s_n">{lang("Field constructor")}</span>
         </div>
     </div>
     <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
-        <a href="#additional_fields" class="btn btn-small active" onclick="$('#allM').html('{lang('a_all_modules')}')">{lang('a_additional_fields')}</a>
-        <a href="#fields_groups" class="btn btn-small" onclick="$('#allM').html('{lang('a_install_modules')}')">{lang('a_field_groups')}</a>
+        <a href="#additional_fields" class="btn btn-small active" onclick="$('#allM').html('{lang("All modules")}')">{lang("Additional fields")}</a>
+        <a href="#fields_groups" class="btn btn-small" onclick="$('#allM').html('{lang("Install modules")}')">{lang('a_field_groups')}</a>
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="additional_fields">
@@ -19,23 +19,23 @@
                             <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('a_add_field')}</a>
                         </div>
                     </div>                            
-                    <h4>{lang('a_additional_fields')}</h4>
+                    <h4>{lang("Additional fields")}</h4>
                     {if !empty($fields)}
                         <table class="table table-striped table-bordered table-hover table-condensed pages-table">
                             <thead>
                                 <tr>
-                                    <th class="span2">{lang('a_label')}</th>
-                                    <th class="span2">{lang('a_name')}</th>
-                                    <th class="span1">{lang('a_type')}</th>
-                                    <th class="span3">{lang('a_category')}</th>
-                                    <th class="span1">{lang('a_delete')}</th>
+                                    <th class="span2">{lang("Label")}</th>
+                                    <th class="span2">{lang("Name")}</th>
+                                    <th class="span1">{lang("Type")}</th>
+                                    <th class="span3">{lang("Categories")}</th>
+                                    <th class="span1">{lang("Delete")}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach $fields as $f}
                                     <tr>
                                         <td>
-                                            <a href="/admin/components/cp/cfcm/edit_field/{$f.field_name}" class="pjax" data-rel="tooltip" data-title="{lang('a_edit')}">{$f.label}</a>
+                                            <a href="/admin/components/cp/cfcm/edit_field/{$f.field_name}" class="pjax" data-rel="tooltip" data-title="{lang("Editing")}">{$f.label}</a>
                                         </td>
                                         <td>{$f.field_name}</td>
                                         <td>{$f.type}</td>
@@ -44,7 +44,7 @@
                                             {$arr = array()}
                                             {foreach $groupRels as $gr}
                                                 {if $gr['field_name'] == $f.field_name}
-                                                    {if $gr.group_id == -1}{$arr[] = 'Без категории'}{/if}
+                                                    {if $gr.group_id == -1}{$arr[] = lang('Without catagory')}{/if}
                                                     {if $arr[] = $gr['name']}
                                                         {$i++}
                                                     {/if}
@@ -58,7 +58,7 @@
                                         </td>
                                         <td class="t-a_c">
                                             <button onclick="CFAdmin.deleteOne('{$f.field_name}');
-                    return false;" class="btn btn-small btn-danger my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
+                    return false;" class="btn btn-small btn-danger my_btn_s" data-rel="tooltip" data-title="{lang("Delete")}"> <i class="icon-trash icon-white"></i></button>
                                         </td>
                                     </tr>        
                                 {/foreach}
@@ -66,7 +66,7 @@
                         </table>
                     {else:}        
                         <div class="alert alert-info">
-                            Список дополнительных полей пуст
+                            {lang('List of additional fields is empty')}
                         </div>
                     {/if}
                 </div>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <h4>{lang('a_field_groups')}</h4>
-                    {if $groups[0] == 'Без группы'}
+                    {if $groups[0] == lang('Without group')}
                         <div class="alert alert-info">
                             {echo $groups[0]}
                         </div>
@@ -91,10 +91,10 @@
                             <thead>
                                 <tr>
                                     <th class="span1">ID</th>
-                                    <th class="span1">{lang('a_name')}</th>
-                                    <th class="span2">{lang('a_description')}</th>
+                                    <th class="span1">{lang("Name")}</th>
+                                    <th class="span2">{lang("Description")}</th>
                                     <th class="span1">{lang('a_fields')}</th>
-                                    <th class="span1">{lang('a_delete')}</th>
+                                    <th class="span1">{lang("Delete")}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,7 +110,7 @@
                                             </td>
                                             <td class="t-a_c">
                                                 <button onclick="CFAdmin.deleteOneGroup({$g.id});
-                        return false;" class="btn btn-danger btn-small my_btn_s" data-rel="tooltip" data-title="{lang('a_delete')}"> <i class="icon-trash icon-white"></i></button>
+                        return false;" class="btn btn-danger btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete")}"> <i class="icon-trash icon-white"></i></button>
                                             </td>
                                         </tr>        
                                     {/foreach}

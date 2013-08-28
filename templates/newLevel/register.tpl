@@ -2,7 +2,7 @@
     <div class="container">
         <div class="f-s_0 title-register without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">Регистрация нового пользователя</h1>
+                <h1 class="d_i">{lang('Register a new account','newLevel')}</h1>
             </div>
         </div>
         <div class="frame-register">
@@ -10,7 +10,7 @@
                     return false;">
                 <div class="horizontal-form">
                     <div class="frame-label">
-                        <label class="title" for="reg_name">Ваше имя:</label>
+                        <label class="title" for="reg_name">{lang('Your name:','newLevel')}</label>
                         <div class="frame-form-field">
                             <input type="text" class="required" maxlength="30" name="username" value="{set_value('username')}" />
                         </div>
@@ -23,14 +23,14 @@
                         </div>
                     </div>
                     <div class="frame-label">
-                        <label class="title" for="reg_pswd">Пароль:</label>
+                        <label class="title" for="reg_pswd">{lang('Password:','newLevel')}</label>
                         <div class="frame-form-field">
                             <input type="password" name="password" id="password" value="{set_value('password')}" />
                             <span class="must">*</span>
                         </div>
                     </div>
                     <div class="frame-label">
-                        <label class="title" for="reg_rptpswd">Повторите:</label>
+                        <label class="title" for="reg_rptpswd">{lang('Repeat password:','newLevel')}</label>
                         <div class="frame-form-field">
                             <input type="password" class="required" name="confirm_password" id="confirm_password" />
                             <span class="must">*</span>
@@ -51,19 +51,19 @@
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
                             <div class="btn-form m-b_15">
-                                <input type="submit" value="Зарегистрироваться"/>
+                                <input type="submit" value="{lang('Sign up','newLevel')}"/>
                             </div>
-                            <p class="help-block">Я уже зарегистрирован или покупал здесь</p>
+                            <p class="help-block">{lang('I am already registered or bought here','newLevel')}</p>
                             <ul class="items items-register-add-ref">
                                 <li>
                                     <button type="button" data-trigger="#loginButton">
-                                        <span class="text-el d_l_1">Я помню пароль</span>
+                                        <span class="text-el d_l_1">{lang('I remember the password','newLevel')}</span>
                                     </button>
                                 </li>
                                 <li>
                                     <span class="divider">|</span>
                                     <button type="button" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">
-                                        <span class="text-el d_l_1">Напомнить пароль</span>
+                                        <span class="text-el d_l_1">{lang('Remind the password','newLevel')}</span>
                                     </button>
                                 </li>
                         </div>

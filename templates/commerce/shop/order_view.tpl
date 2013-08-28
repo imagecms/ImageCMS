@@ -5,21 +5,21 @@
 #}
 <div class="content">
     <div class="center">
-        <h1>{lang('s_private_office')}</h1>
-    {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">{lang('s_thank_order')}</div>{/if}
+        <h1>{lang("Private office","admin")}</h1>
+    {if $CI->session->flashdata('makeOrder') === true}<div style="padding:10px;border: 1px #f5f5dc solid;">{lang("Thank you for your order.","admin")}</div>{/if}
     <div class="foot_cleaner">
         <ul class="info_curr_buy">
             <li>
-                <span>{lang('s_paid')}:</span>
-                <b>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</b>
+                <span>{lang("Paid","admin")}:</span>
+                <b>{if $model->getPaid() == true} {lang("Yes","admin")}{else:}{lang("No","admin")}{/if}</b>
             </li>
             <li>
-                <span>{lang('s_status')}:</span>
+                <span>{lang("Status","admin")}:</span>
                 <b>{echo SOrders::getStatusName('Id',$model->getStatus())} {if $model->getDeliveryMethod() > 0}</b>
             </li>                                   
             {if $model->getGiftCertKey() != null}
                 <li>
-                    <span>{lang('s_do_you_cer_tif')}: </span>
+                    <span>{lang("Certificate","admin")}: </span>
                     <b>-{echo $model->getgiftCertPrice()} {$CS}</b>
                 </li>
             {/if}                                    
@@ -31,11 +31,11 @@
                 </li>
             {/if}
             <li>
-                <span>{lang('s_dostavka')}:</span>
+                <span>{lang("Delivery","admin")}:</span>
                 <b>{echo $model->getSDeliveryMethods()->getName()}{/if}</b>
             </li>
             {if $paymentMethods[0] != null && !$model->getPaid()}
-                <li><span>{lang('s_pay')}:</span>
+                <li><span>{lang("Payment","admin")}:</span>
                     <b>
                         <div class="sp"></div>
                         <ul>
@@ -55,7 +55,7 @@
     </div>
     <div class="order-cleaner">
         <table class="cleaner_table" cellspacing="0">
-            <caption>{lang('s_order')} №{echo $model->getId()}</caption>
+            <caption>{lang("Order","admin")} №{echo $model->getId()}</caption>
             <colgroup>
                 <col span="1" width="120">
                 <col span="1" width="412">
@@ -88,7 +88,7 @@
                                 </td>
                                 <td>{echo $item->toCurrency()} {$CS}</td>
                                 <td rowspan="{echo $kits[$item->getKitId()]['total']}">
-                                    {echo $item->getQuantity()} {lang('s_pcs1')}.
+                                    {echo $item->getQuantity()} {lang("Pcs","admin")}.
                                 </td>
                                 <td rowspan="{echo $kits[$item->getKitId()]['total']}">
                                     {echo $item->getQuantity() * $item->toCurrency()} {$CS}  
@@ -128,7 +128,7 @@
                             </td>
                             <td>
                                 <div class="count">
-                                    {echo $item->getQuantity()} {lang('s_pcs1')}.
+                                    {echo $item->getQuantity()} {lang("Pcs","admin")}.
                                 </div>
                             </td>
                             <td> {//echo $summary = ShopCore::app()->SCurrencyHelper->convert($item.totalAmount)}
@@ -172,7 +172,7 @@
                                         {echo $model->getComulativ()} %</div>
                                 {/if}</div>
                             <div class="sum f_r">
-                                {lang('s_summ')}: 
+                                {lang("Total","admin")}: 
                             </div>
                         </div>
                     </td>

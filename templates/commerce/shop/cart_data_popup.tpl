@@ -2,7 +2,7 @@
 {if $inCart}
     <div class="fancy wish_list">
         <form method="post" action="{shop_url('cart')}" >
-            <h1 class="m-l_19">{lang('s_cart')}</h1>
+            <h1 class="m-l_19">{lang("Basket","admin")}</h1>
             <table class="cleaner_table"  cellspacing="0">
                 <colgroup>
                     <col span="1" width="140">
@@ -142,7 +142,7 @@
                                     {/if}
                                 </div>
                                 <div class="f_r buttons button_big_blue">
-                                    <a href="{shop_url('cart')}">{lang('s_c_of_z_')}</a>
+                                    <a href="{shop_url('cart')}">{lang("Formulation order","admin")}</a>
                                 </div>
                                 <div class="f_r">
                                     {if $NextCS == $CS}
@@ -170,7 +170,7 @@
                                         {/if}
                                     </div>
                                     <div class="sum f_r">
-                                        {lang('s_summ')}:
+                                        {lang("Total","admin")}:
                                     </div>
                                 </div>
                         </td>
@@ -182,5 +182,5 @@
     </div>
 {else:}
     {literal}
-        {"close":"true","msg": "<div class='fancy wish_list'><h1 class='m-l_19'>{/literal}{lang('s_cart')}</h1><div class='comparison_slider'><div class='f-s_18  t-a_c' style='padding:53px 0;'>{lang('s_cart_empty')}{literal}</div></div></div>"}{/literal}
+        {"close":"true","msg": "<div class='fancy wish_list'><h1 class='m-l_19'>{/literal}{lang("Basket","admin")}</h1><div class='comparison_slider'><div class='f-s_18  t-a_c' style='padding:53px 0;'>{lang("Basket empty","admin")}{literal}</div></div></div>"}{/literal}
         {/if}
