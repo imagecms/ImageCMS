@@ -283,14 +283,15 @@ class Update {
         $zip = new ZipArchive();
         $time = time();
         $filename = "./application/backups/backup.zip";
-        rename($filename, "./application/backups/$time.zip");
+
+        if (file_exists($filename))
+            rename($filename, "./application/backups/$time.zip");
 
         if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
 
         foreach ($files as $key => $value)
             $zip->addFile('.' . $key, $key);
-
 
 //        echo "numfiles: " . $zip->numFiles . "\n";
 //        echo "status:" . $zip->status . "\n";
