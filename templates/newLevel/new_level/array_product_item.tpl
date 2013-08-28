@@ -3,7 +3,7 @@
     {if $key >= $limit && isset($limit)}
         {break}
     {/if}
-    <li class="item-WL">
+    <li class="item-WL {if $p.stock == 0}not-avail{/if}">
         <a href="{shop_url('product/' . $p.url)}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -89,7 +89,7 @@
                             type="button"
                             data-drop=".drop-report"
                             data-source="/shop/ajax/getNotifyingRequest"
-
+                            
                             data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
@@ -98,9 +98,6 @@
                             data-maxcount="{echo $p.stock}"
                             data-number="{echo trim($p.number)}"
                             data-mediumImage="{echo $photo}"
-                            data-img="{echo $photo}"
-                            data-url="{echo shop_url('product/'.$p.url)}"
-                            data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'>                                
                             <span class="icon-but"></span>
                             <span class="text-el">{lang('s_message_o_report')}</span>
                         </button>

@@ -193,7 +193,9 @@
                                                 </a>
                                                 <div class="description">
                                                     <span class="frame-variant-name-code">
+                                                        {var_dump($orderProduct)}
                                                     {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name">{lang(s_variant)}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-code">{lang(s_code)}: <span class="code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
                                                 </span>
                                                 <span class="frame-prices">
                                                     <span class="current-prices f-s_0">
@@ -226,7 +228,7 @@
                                                             {if $NextCSIdCond}    
                                                                 <span class="price-add">
                                                                     <span>
-                                                                        <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity($NextCSId)}</span>
+                                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
                                                                         <span class="curr-add">{$NextCS}</span>
                                                                     </span>
                                                                 </span>
@@ -341,12 +343,12 @@
                                                             </span>
                                                         </span>
                                                         {if $NextCSIdCond}     
-                                                        <span class="price-add">
-                                                            <span>
-                                                                <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>
+                                                            <span class="price-add">
+                                                                <span>
+                                                                    <span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)}</span>
+                                                                    <span class="curr-add">{$NextCS}</span>
+                                                                </span>
                                                             </span>
-                                                        </span>
                                                         {/if}
                                                     </span>
                                                 </span>
@@ -375,14 +377,14 @@
                             </li>
                             {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
                             {if $discount}
-                            <li>
-                                <span class="s-t">Ваша текущая скидка:</span>
-                                <span class="price-item">
-                                    <span>
-                                        <span class="text-discount current-discount">{echo $discount}{$CS}</span>
+                                <li>
+                                    <span class="s-t">Ваша текущая скидка:</span>
+                                    <span class="price-item">
+                                        <span>
+                                            <span class="text-discount current-discount">{echo $discount}{$CS}</span>
+                                        </span>
                                     </span>
-                                </span>
-                            </li>
+                                </li>
                             {/if}
                             {if $model->getGiftCertPrice() > 0}
                                 <li>
@@ -416,12 +418,12 @@
                                         </span>
                                     </span>
                                     {if $NextCSIdCond}     
-                                    <span class="price-add">
-                                        <span>
-                                            (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>
-                                            <span class="curr-add">{$NextCS}</span>)
+                                        <span class="price-add">
+                                            <span>
+                                                (<span class="price" id="totalPriceAdd">{echo $model->gettotalprice($NextCSId)}</span>
+                                                <span class="curr-add">{$NextCS}</span>)
+                                            </span>
                                         </span>
-                                    </span>
                                     {/if}
                                 </span>
                             </span>
