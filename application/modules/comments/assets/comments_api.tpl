@@ -43,9 +43,10 @@
                                 <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                     <span class="icon-comment__icsi-css">
                                     </span>
-                                    {lang('s_comment_answer')}
+                                   {lang('s_comment_answer', 'comments')}
                                 </button>
                             </div>
+
                         {/if}
 
                         <div class="f_r__icsi-css">
@@ -88,13 +89,12 @@
             {/foreach}
         </ul>
     {/if}
-
     {if $can_comment == 0 OR $is_logged_in}
 
         <div class="main-form-comments__icsi-css">
             <div class="frame-comments__icsi-css">
                 <div class="inside-padd">
-                    <div class="title_h2__icsi-css">{lang('s_leave_your_comment')}</div>
+                    <div class="title_h2__icsi-css">{lang('Write your comment')}</div>
                     <!-- Start of new comment fild -->
                     <div class="form-comment__icsi-css form__icsi-css horizontal-form">
                         <div class="inside-padd">
@@ -173,7 +173,7 @@
                                 -->
                                 {if $use_captcha}
                                     <label>
-                                        <span class="title__icsi-css">{lang('lang_captcha')}</span>
+                                        <span class="title__icsi-css">{lang('Code protection')}</span>
                                         {$cap_image}
                                         <span class="frame_form_field__icsi-css">
                                             <input type="text" name="captcha" id="captcha"/>

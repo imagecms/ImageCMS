@@ -7,10 +7,10 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang('a_save_and_exit')}</button>
-                        {echo create_language_select($languages, $locale, "/admin/components/modules_table")}
+                    <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang("Have been saved")}</button>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back")}</button>
+                        {echo create_language_select($languages, $locale, "/admin/components/modules_table')}
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('a_param')}
+                            {lang("Properties")}
                         </th>
                     </tr>
                 </thead>

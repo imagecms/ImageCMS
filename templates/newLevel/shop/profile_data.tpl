@@ -26,7 +26,7 @@
                 </label>
                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
                 <label>
-                    <span class="title">Адрес:</span>
+                    <span class="title">{lang('Address','newLevel')}:</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                     </span>
@@ -35,7 +35,7 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="Сохранить данные"/>
+                            <input type="submit" value="{lang('Save data','newLevel')}"/>
                         </span>
                     </span>
                 </div>
@@ -47,13 +47,13 @@
     {if ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}
         <div class="layout-highlight info-discount">
             <div class="title-default">
-                <div class="title">Скидки пользователя</div>
+                <div class="title">{lang('User discounts','newLevel')}</div>
             </div>
             <div class="content">
                 <ul class="items items-info-discount">
                     <li class="inside-padd">
                         <div>
-                            Куплено товаров на сумму:
+                            {lang('Bought products sum','newLevel')}:
                             <span class="price-item">
                                 <span class="text-discount">
                                     <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
@@ -63,7 +63,7 @@
                         </div>
                         {if $discount['user']}
                             <div>
-                                Ваша текущая скидка пользователя:
+                                {lang('Your current user discount','newLevel')}:
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['user'][0]['value']}{if $discount['user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>
@@ -72,7 +72,7 @@
                         {if $discount['group_user']}
                             <div>
 
-                                Ваша текущая скидка группы пользователя:
+                                {lang('Your current user group discount','newLevel')}:
 
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
@@ -89,7 +89,7 @@
                         {/if}
                         {if $discount_comul_curr}
                             <div>
-                                Ваша текущая скидка накопительная:
+                                {lang('Your current acumulative discount','newLevel')}:
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount_comul_curr['value']}{if  $discount_comul_curr['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>
@@ -100,13 +100,13 @@
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>Для следующей <b>скидки {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> осталось</div>
-                            <div>совершить покупок на сумму: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('For the following <br> discount','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('left','newLevel')}</div>
+                            <div>{lang('make shopping on price','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
-                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">Просмотр таблицы скидок</button>
+                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlayopacity= "0">{lang('View the table of discounts','newLevel')}</button>
                         </li>
                     {/if}
                 </ul>
@@ -118,16 +118,16 @@
     <div class="drop-style drop drop-comulativ-discounts">
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title">Накопительные скидки</div>
+            <div class="title">{lang('Accumulative discounts','newLevel')}</div>
         </div>
         <div class="drop-content">
             <div class="inside-padd characteristic">
                 <table class="">
                     <thead>
                         <tr>
-                            <th>Процент скидки</th>
-                            <th>Сумма покупок от</th>
-                            <th>Сумма покупок до</th>
+                            <th>{lang('Discount percent','newLevel')}</th>
+                            <th>{lang('Amount of purchases from','newLevel')}</th>
+                            <th>{lang('Amount of purchases to','newLevel')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,11 +135,12 @@
                             <tr>
                                 <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
                                 <td>{echo $disc['begin_value']} {$CS}</td>
-                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}бесконечно{/if}</td>
+                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('infinitely','newLevel')}{/if}</td>
                             </tr>
                         {/foreach}
                     </tbody>
                 </table>
+
             </div>
         </div>
         <div class="drop-footer"></div>

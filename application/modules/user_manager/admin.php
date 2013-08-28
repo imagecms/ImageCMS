@@ -1,3 +1,4 @@
+
 <?php
 
 if (!defined('BASEPATH'))
@@ -166,10 +167,10 @@ class Admin extends BaseAdminController {
             $this->load->model('dx_auth/users', 'user2');
             $val = $this->form_validation;
 
-            $val->set_rules('username', lang('amt_user_login'), 'trim|required|xss_clean');
-            $val->set_rules('password', lang('amt_password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
-            $val->set_rules('password_conf', lang('amt_new_pass_confirm'), 'matches[password]|required');
-            $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
+            $val->set_rules('username', lang('Login'), 'trim|required|xss_clean');
+            $val->set_rules('password', lang('Password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
+            $val->set_rules('password_conf', lang('Confirm the password'), 'matches[password]|required');
+            $val->set_rules('email', lang('E-Mail'), 'trim|required|xss_clean|valid_email');
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -179,7 +180,7 @@ class Admin extends BaseAdminController {
 
             // check user mail
             if ($this->user2->check_email($email)->num_rows() > 0) {
-                showMessage(lang('amt_email_exists'), '', 'r');
+                showMessage(lang('User with the same e-mail has been registered'), '', 'r');
                 exit;
             }
 
@@ -199,11 +200,11 @@ class Admin extends BaseAdminController {
                 $this->user2->set_role($user_info['id'], $role);
 
                 $this->lib_admin->log(
-                        lang('amt_create_user') .
+                        lang('Create a user or the username has been created') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
                 );
 
-                showMessage(lang('amt_user_created'));
+                showMessage(lang('Username has been created or user has been created'));
 
                 $action = $_POST['action'];
 
@@ -242,7 +243,7 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
                 $this->users->ban_user($value);
                 $this->lib_admin->log(
-                        lang('amt_banned_user') .
+                        lang('Ban the user  or the user has been banned') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             } else {
@@ -251,7 +252,7 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
                 $this->users->unban_user($value);
                 $this->lib_admin->log(
-                        lang('amt_unbanned_user') .
+                        lang('The user has been unbanned ') .
                         '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             }
@@ -288,7 +289,7 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('users');
 
             if ($query->num_rows() == 0) {
-                showMessage(lang('amt_users_not_found'), '', 'r');
+                showMessage(lang('User has not been found '), '', 'r');
                 pjax('/admin/components/init_window/user_manager');
                 exit();
             } else {
@@ -305,7 +306,7 @@ class Admin extends BaseAdminController {
 
                 // recount users
                 if (count($users) == 0) {
-                    showMessage(lang('amt_users_not_found'), '', 'r');
+                    showMessage(lang('User has not been found '), '', 'r');
                     pjax('/admin/components/init_window/user_manager');
                     exit();
                 }
@@ -317,7 +318,7 @@ class Admin extends BaseAdminController {
                 echo $rezult_table;
             }
         } else {
-            showMessage(lang('a_bas_filt_pass_not_post'), '', 'r');
+            showMessage(lang('You do not pass search'), '', 'r');
             pjax('/admin/components/init_window/user_manager');
             exit();
         }
@@ -335,7 +336,7 @@ class Admin extends BaseAdminController {
         $user = $this->users->get_user_by_id($user_id);
 
         if ($user->num_rows() == 0) {
-            showMessage(lang('amt_users_not_found'), '', 'r');
+            showMessage(lang('User has not been found '), '', 'r');
             exit;
         } else {
             $this->template->add_array($user->row_array());
@@ -358,22 +359,22 @@ class Admin extends BaseAdminController {
 
         $val = $this->form_validation;
 
-        $val->set_rules('username', lang('amt_user_login'), 'trim|xss_clean');
-        $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
-        $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
+        $val->set_rules('username', lang('Login'), 'trim|xss_clean');
+        $val->set_rules('new_pass', lang('Password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
+        $val->set_rules('new_pass_conf', lang('Confirm the password'), 'matches[new_pass]');
 
-        $val->set_rules('email', lang('amt_email'), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', lang('E-Mail'), 'trim|required|xss_clean|valid_email');
 
         $user_data = $this->user2->get_user_field($user_id, array('username', 'email'))->row_array();
 
         if (strlen($this->input->post('new_pass')) !== 0) {
-            $val->set_rules('new_pass', lang('amt_password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
-            $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]|required');
+            $val->set_rules('new_pass', lang('Password'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
+            $val->set_rules('new_pass_conf', lang('Confirm the password'), 'matches[new_pass]|required');
         }
 
         if ($user_data['email'] != $this->input->post('email')) {
             if ($this->user2->check_email($this->input->post('email'))->num_rows() > 0) {
-                showMessage(lang('amt_email_exists'), false, 'r');
+                showMessage(lang('User with the same e-mail has been registered'), false, 'r');
                 exit;
             }
         }
@@ -401,12 +402,12 @@ class Admin extends BaseAdminController {
 
 
             $this->lib_admin->log(
-                    lang('amt_updated_user') .
+                    lang('Updated a user') .
                     '<a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
             );
 
 
-            showMessage(lang('amt_changes_saved'));
+            showMessage(lang('Changes have been saved'));
 
             $action = $_POST['action'];
 
@@ -439,9 +440,9 @@ class Admin extends BaseAdminController {
 
         if ($_POST) {
 
-            $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
-            $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
-            $this->form_validation->set_rules('desc', lang('amt_description'), 'trim|max_length[300]|min_length[2]');
+            $this->form_validation->set_rules('name', lang('Identifier'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
+            $this->form_validation->set_rules('alt_name', lang('Name'), 'required|trim|max_length[150]|min_length[2]');
+            $this->form_validation->set_rules('desc', lang('Description'), 'trim|max_length[300]|min_length[2]');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -456,8 +457,8 @@ class Admin extends BaseAdminController {
 
                 $this->db->insert('roles', $data);
 
-                $this->lib_admin->log(lang('amt_created_group') . $data['name']);
-                showMessage(lang('amt_group_created'));
+                $this->lib_admin->log(lang('Created a group') . $data['name']);
+                showMessage(lang('Group has been created'));
 
                 $action = $_POST['action'];
 
@@ -475,7 +476,7 @@ class Admin extends BaseAdminController {
 
     public function deleteAll() {
         if (empty($_POST['ids'])) {
-            showMessage(lang('a_del_user_notif'), '', 'r');
+            showMessage(lang('No data transmitted'), '', 'r');
             exit;
         }
         if ($_POST['ids'])
@@ -485,7 +486,7 @@ class Admin extends BaseAdminController {
             //cp_check_perm('user_delete');
             ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
             $this->users->delete_user($id);
-            $this->lib_admin->log(lang('amt_deleted_user') . $id);
+            $this->lib_admin->log(lang('Deleted a user') . $id);
         }
     }
 
@@ -511,7 +512,7 @@ class Admin extends BaseAdminController {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang('Changes have been saved'));
     }
 
     function show_edit_prems_tpl($id) {

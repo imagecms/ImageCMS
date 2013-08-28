@@ -13,9 +13,13 @@ class Admin extends BaseAdminController {
         parent::__construct();
         $this->load->library('DX_Auth');
         $this->load->model('rating_model');
+        $obj = new MY_Lang();
+        $obj->load('star_rating');
+        
     }
 
     public function index() {
+        
         $get_settings = $this->rating_model->get_settings();
         $settings = json_decode($get_settings['settings']);
         $this->template->add_array(array(
@@ -31,8 +35,8 @@ class Admin extends BaseAdminController {
         $this->rating_model->update_settings($settings);
         
         if ($this->input->post('action') == 'tomain')
-            pjax('/admin/components/modules_table'); 
-        showMessage("Настройки успешно сохранены");
+            pjax('/admin/components/modules_table');
+        showMessage(lang("Settings saved success"));
     }
 
     public function render($viewName, array $data = array(), $return = false) {

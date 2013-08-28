@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>{lang('a_controll_panel')} - Image CMS</title>
-        <meta name="description" content="{lang('a_controll_panel')} - Image CMS" />
+        <title>{lang("Operation panel","admin")} - Image CMS</title>
+        <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
@@ -18,16 +18,16 @@
         <?php
         $ci = get_instance();
         if($ci->config->item('is_installed') === TRUE AND file_exists(APPPATH.'modules/install/install.php'))
-        die('<span style="font-size:18px;"><br/><br/>'.lang('a_delete_install').'/application/modules/install/install.php</div>');        
+        die('<span style="font-size:18px;"><br/><br/>'.lang("Delete the file to continue","admin").'/application/modules/install/install.php</div>');        
         ?>
         <div class="main_body">
             <div class="form_login t-a_c">
                 <a href="/admin/dashboard" class="d-i_b">
                     <img src="{$THEME}img/logo.png"/>
                 </a><br/>
-                Извините но у вас устаревший браузер.<br />
+                {lang('Sorry but you have an old browser','admin')}.<br />
 
-                Обновить или скачать новые браузеры можно здесь:
+                {lang('Update or download new browsers here','admin')}:
                 <div>
                     <a href="http://www.mozilla.org/ru/firefox/new/" target="_blank"><img title="FireFox" src="{$THEME}img/firefox.png"/></a>
                     <a href="http://ru.opera.com/" target="_blank"><img title="Opera" src="{$THEME}img/opera.png"/></a>

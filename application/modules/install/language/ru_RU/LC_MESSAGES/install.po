@@ -1,0 +1,6618 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-07-08 12:53+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_temp.php:20
+msgid "a_show_page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+#: /var/www/image.loc/_temp.php:22
+msgid "Autocomplite"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+msgid "Autocomplite words"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+#: /var/www/image.loc/_temp.php:25
+msgid "choose date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:52
+#: /var/www/image.loc/_temp.php:117
+#: /var/www/image.loc/_temp.php:141
+#: /var/www/image.loc/_temp.php:190
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:120
+#: /var/www/image.loc/_temp.php:169
+#: /var/www/image.loc/_temp.php:178
+msgid "Create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:28
+msgid "Preview"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+#: /var/www/image.loc/_temp.php:31
+msgid "Orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:32
+msgid "Manage shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:33
+msgid "Manage site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:34
+msgid "Interface"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+msgid "Help us get better"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:37
+msgid "report an error"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+msgid "Documentation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+msgid "don\\'t show"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+msgid "Return"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+msgid "Full description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:42
+#: /var/www/image.loc/_temp.php:102
+msgid "Parent"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:48
+msgid "Create role group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+#: /var/www/image.loc/_temp.php:49
+msgid "a_privilegy"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:47
+msgid "Users with such Email not found"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+msgid "Delete selected groups"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "Delete group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+#: /var/www/image.loc/_temp.php:54
+msgid "Clean"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "Widget editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+#: /var/www/image.loc/_temp.php:66
+#: /var/www/image.loc/_temp.php:122
+#: /var/www/image.loc/_temp.php:134
+#: /var/www/image.loc/_temp.php:158
+msgid "Have been saved"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:159
+msgid "Save and go back"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:69
+#: /var/www/image.loc/_temp.php:79
+#: /var/www/image.loc/_temp.php:124
+#: /var/www/image.loc/_temp.php:170
+#: /var/www/image.loc/_temp.php:179
+msgid "Properties"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+#: /var/www/image.loc/_temp.php:101
+#: /var/www/image.loc/_temp.php:125
+#: /var/www/image.loc/_temp.php:129
+#: /var/www/image.loc/_temp.php:161
+#: /var/www/image.loc/_temp.php:180
+#: /var/www/image.loc/_temp.php:195
+#: /var/www/image.loc/_temp.php:207
+msgid "Name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:81
+msgid "Only Latin characters"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:62
+#: /var/www/image.loc/_temp.php:126
+#: /var/www/image.loc/_temp.php:197
+#: /var/www/image.loc/_temp.php:208
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:63
+msgid "Short widget discription"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:64
+msgid "Edit page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:65
+msgid "Back"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:68
+#: /var/www/image.loc/_temp.php:72
+msgid "Content"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:70
+msgid "Additional fields"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:71
+#: /var/www/image.loc/_temp.php:91
+#: /var/www/image.loc/_temp.php:160
+#: /var/www/image.loc/_temp.php:198
+#: /var/www/image.loc/_temp.php:202
+msgid "Settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:73
+msgid "Categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:74
+#: /var/www/image.loc/_temp.php:100
+msgid "Create a category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:75
+#: /var/www/image.loc/_temp.php:103
+#: /var/www/image.loc/_temp.php:130
+msgid "No"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:76
+msgid "Title"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "Preliminary contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Full contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:80
+msgid "URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+msgid "Tags"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:83
+msgid "Meta Title"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:84
+msgid "Meta Description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:85
+msgid "Meta Keywords"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:86
+msgid "Main template"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+#: /var/www/image.loc/_temp.php:89
+msgid "by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:88
+msgid "Page Template"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:90
+msgid "Comment permission"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:92
+msgid "Publication status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:93
+msgid "Published or Has been published"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:94
+msgid "Pending approval or Awaiting approval "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:95
+msgid "Has not been published"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:96
+msgid "Time and date of creation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:97
+msgid "Time and date of publication"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:98
+msgid "Access"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:99
+msgid "All"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:104
+#: /var/www/image.loc/_temp.php:105
+#: /var/www/image.loc/_temp.php:143
+#: /var/www/image.loc/_temp.php:144
+msgid "Operation panel"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:106
+msgid "Hello"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:107
+msgid "Guest"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:108
+msgid "Products without icons"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:109
+#: /var/www/image.loc/_temp.php:110
+msgid "Latest/recent  comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:111
+msgid "Control or Operation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:112
+msgid "English"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:113
+msgid "Russian"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Version"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:115
+msgid "Your remark"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:116
+msgid "Send"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:118
+msgid "numbers only"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:119
+msgid "show"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:121
+msgid "Privileges"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:123
+msgid "Save and exit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:127
+#: /var/www/image.loc/_temp.php:138
+#: /var/www/image.loc/_temp.php:210
+msgid "Group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:128
+msgid "No relevant data has been found"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:131
+msgid "URL access on"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:132
+msgid "Auto loading "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:133
+msgid "Add to the menu"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:135
+#: /var/www/image.loc/_temp.php:204
+msgid "Roles groups list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:136
+#: /var/www/image.loc/_temp.php:142
+#: /var/www/image.loc/_temp.php:189
+#: /var/www/image.loc/_temp.php:192
+#: /var/www/image.loc/_temp.php:205
+#: /var/www/image.loc/_temp.php:212
+msgid "Delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:137
+#: /var/www/image.loc/_temp.php:209
+msgid "List"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:139
+#: /var/www/image.loc/_temp.php:211
+msgid "Empty."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:140
+msgid "Remove group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:145
+msgid "Delete the file to continue"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+msgid "E-mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:147
+msgid "Password"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:148
+msgid "Update the code"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:149
+msgid "Remember"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:150
+msgid "Forgot your password"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:151
+msgid "Log in"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:152
+msgid "Event journal"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:153
+msgid "User"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:154
+msgid "Date/time"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:155
+msgid "Action"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:156
+msgid "Language edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:157
+#: /var/www/image.loc/_temp.php:177
+msgid "Go back"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:162
+#: /var/www/image.loc/_temp.php:181
+msgid "Identifier"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+#: /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:182
+#: /var/www/image.loc/_temp.php:183
+msgid "Image URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:165
+msgid "Choose an image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:166
+#: /var/www/image.loc/_temp.php:185
+msgid "Folder"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:167
+#: /var/www/image.loc/_temp.php:186
+msgid "Template"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:168
+msgid "Backup copying"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:171
+msgid "Copy to the local computer"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:172
+msgid "Save on the server"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid "File will be saved in the directory"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:174
+msgid "Send to your email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:175
+msgid "File format"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:176
+msgid "The creation of a new language"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:184
+msgid "Choose an image "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:187
+msgid "Widget delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+msgid "Delete selected widget(s)?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:191
+msgid "Widgets list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:193
+msgid "Create a widget"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:194
+#: /var/www/image.loc/_temp.php:206
+msgid "ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:196
+msgid "Type"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:199
+msgid "Editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:200
+msgid "Module"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:201
+msgid "HTML"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:203
+msgid "No widgets created"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:213
+msgid "Remove roles?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:214
+msgid "Cache"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:215
+msgid "Delete cache"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:216
+msgid "Total file caching"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:217
+msgid "Clear old or Delete outdated posts or information"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:218
+msgid "Clear all"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+msgid "roll up category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+msgid "expand category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+msgid "edit category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "go to site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:42
+msgid "Save and create a new group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:43
+msgid "Save and edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "Create new page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+msgid "Parent category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+msgid "Not enough rights to access"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:63
+msgid "Users"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+msgid "Main"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:47
+msgid "All orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+msgid "Order status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "a_callbacks"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+msgid "Callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "Callback statuses"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+msgid "Callback themes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "Reports of the appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "Statuses of the appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "Others"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+msgid "Comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+msgid "Products catalog"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+msgid "Products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+msgid "Products properties"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+msgid "Products sets"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:62
+msgid "Products without images"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:64
+msgid "Users list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:65
+msgid "Management of access rights"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:66
+msgid "Components"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+msgid "Brands"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:68
+msgid "Warehouse"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:69
+msgid "Banners"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:70
+msgid "Progressive discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:71
+msgid "Gift Certificates"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:74
+msgid "Global settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:75
+msgid "Currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:76
+msgid "Delivery method"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "Payd method"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Automation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:79
+msgid "Administer site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:80
+msgid "a_search_results"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:81
+msgid "Category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:83
+msgid "Privileges list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:84
+msgid "Create privilege"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:86
+msgid "Remove a Role"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+msgid "Remove selected roles?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:90
+msgid "Roles group create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:95
+#: /var/www/image.loc/_temp.php:96
+#: /var/www/image.loc/_temp.php:102
+#: /var/www/image.loc/_temp.php:103
+msgid "Add a subcategory"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:97
+#: /var/www/image.loc/_temp.php:98
+#: /var/www/image.loc/_temp.php:104
+#: /var/www/image.loc/_temp.php:105
+msgid "Add an article"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:99
+msgid "Double click to show all categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:100
+#: /var/www/image.loc/_temp.php:101
+msgid "Change category data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:107
+msgid "Author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:109
+#: /var/www/image.loc/_temp.php:110
+#: /var/www/image.loc/_temp.php:258
+#: /var/www/image.loc/_temp.php:259
+msgid "Install"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:111
+msgid "Download"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:112
+msgid "FTP connection settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:113
+msgid "Hostname"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Port"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:115
+msgid "login"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:117
+msgid "Path to the root directory"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:118
+msgid "For example"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:119
+msgid "Next"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:161
+msgid "Create and exit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+#: /var/www/image.loc/_temp.php:197
+msgid "Meta tags"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:167
+msgid "AutoFit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:169
+msgid "Field group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:171
+msgid "Select  a field group  for a category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:172
+#: /var/www/image.loc/_temp.php:176
+msgid "Apply for subcategories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid "page field group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:175
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:177
+msgid "Image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:179
+msgid "Position"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:181
+msgid "Page display"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:182
+msgid "Sort by"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:183
+msgid "by date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:184
+msgid "By alphabet or  in the alphabetic order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:185
+msgid "By position"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:186
+msgid "In descending order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:187
+msgid "In ascending order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+msgid "Posts on the page or Records on the page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:189
+msgid "Comment pages by default "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:190
+msgid "Display pages of other categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:192
+#: /var/www/image.loc/_temp.php:194
+msgid "Main category template by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:193
+msgid "Category template"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:195
+msgid "Page template"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:196
+msgid "Page view template by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:212
+#, fuzzy
+msgid "System information"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:213
+msgid "Level of server utilisation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:214
+msgid "Server"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:215
+msgid "Operating system"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:216
+msgid "Data base"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:218
+msgid "Period"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:219
+msgid "Size"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:220
+msgid "Write rights or permission"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:221
+msgid "Roles group edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:230
+#: /var/www/image.loc/_temp.php:234
+msgid "Module deinstalling"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:231
+msgid "Delete selected module(s)?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:235
+msgid "Delete modules?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:236
+#: /var/www/image.loc/_temp.php:238
+msgid "All modules"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:239
+msgid "Modules"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp.php:240
+#: /var/www/image.loc/_temp.php:241
+msgid "Install modules"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:246
+msgid "URL access"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:247
+msgid "Show in menu"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:248
+#: /var/www/image.loc/_temp.php:250
+#: /var/www/image.loc/_temp.php:252
+msgid "switch on"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:249
+#: /var/www/image.loc/_temp.php:251
+#: /var/www/image.loc/_temp.php:253
+msgid "switch off"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:254
+msgid "Modules has not been installed"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:260
+msgid "There isn't any module for install!"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:262
+msgid "Arrival notification"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:263
+msgid "Regular discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:265
+msgid "Group list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:277
+msgid "Pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:281
+msgid "Status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:282
+msgid "goto site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:289
+msgid "Banned"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:290
+msgid "Last IP"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+msgid "View"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+msgid "All content by categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+msgid "Administer the site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+#: /var/www/image.loc/_temp.php:37
+#: /var/www/image.loc/_temp.php:147
+#: /var/www/image.loc/_temp.php:276
+msgid "Search"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+msgid "HTML code"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:42
+msgid "Confirm"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:43
+msgid "a_cont_list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:45
+msgid "All catagories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+msgid "Without category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+msgid "Your search did not found"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "Management of Meta Tags"
+msgstr "Управление мета тегами"
+
+#: /var/www/image.loc/_temp.php:50
+msgid "Display category tree in the content"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+#: /var/www/image.loc/_temp.php:247
+#: /var/www/image.loc/_temp.php:250
+msgid "Yes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "Text editor"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "Options"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "Ya.Webmaster"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+msgid "Whether to display the site name in the title page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+msgid "Whether to display the category name in the title page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+msgid "Forward"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+msgid "Update"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:226
+#: /var/www/image.loc/_temp.php:240
+msgid "Main page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+#: /var/www/image.loc/_temp.php:128
+msgid "Information"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:120
+msgid "Select a category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:124
+msgid "Category translation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:138
+#: /var/www/image.loc/_temp.php:199
+#: /var/www/image.loc/_temp.php:211
+#: /var/www/image.loc/_temp.php:220
+#: /var/www/image.loc/_temp.php:267
+msgid "Without a category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:139
+#: /var/www/image.loc/_temp.php:268
+msgid "Field constructor"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:143
+#: /var/www/image.loc/_temp.php:272
+msgid "Menu"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:148
+#: /var/www/image.loc/_temp.php:277
+msgid "Widgets"
+msgstr "Виджети"
+
+#: /var/www/image.loc/_temp.php:151
+#: /var/www/image.loc/_temp.php:278
+msgid "System"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:152
+#: /var/www/image.loc/_temp.php:279
+msgid "Site settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:153
+#: /var/www/image.loc/_temp.php:280
+msgid "Languages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:164
+msgid "Delete category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+msgid "Remove selected categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+msgid "Delete a category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:167
+msgid "Create category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:172
+msgid "message"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid "Module search is being developed"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:174
+msgid "set write rights  on the directory for  simple module installation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:178
+msgid "Actions"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:180
+msgid "No  modules have been found at your request"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:181
+msgid "Module search"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:182
+msgid "Here you can search for modules and set them to automatic mode"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:184
+msgid "Role create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:191
+msgid "Importance"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:197
+msgid "Copy/Move pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:201
+msgid "Delete pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:202
+msgid "Delete selected pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:205
+msgid "Filter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:206
+msgid "Create copy"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:207
+msgid "move or displace"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:209
+#: /var/www/image.loc/_temp.php:210
+msgid "Create a page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:215
+#, fuzzy
+msgid "Date of creation"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:222
+msgid "Site configuration"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:228
+#: /var/www/image.loc/_temp.php:246
+msgid "Site name or site title"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:229
+msgid "Site shutdown"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:230
+msgid "The site will be available only to the Administrator"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:231
+msgid "Select admin language"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:233
+msgid "Short site name or site title"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:235
+msgid "Keywords"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:236
+msgid "ID Google Analytics"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:237
+msgid "The code should be in the format ua-54545845"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:238
+msgid "G.Webmaster"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:239
+msgid "ID for yandex metric"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:242
+msgid "Page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:243
+msgid "Page ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:249
+msgid "Category name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:252
+msgid "Separator"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:254
+#: /var/www/image.loc/_temp.php:258
+msgid "Auto formation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:255
+#: /var/www/image.loc/_temp.php:259
+msgid "Leave empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:256
+#: /var/www/image.loc/_temp.php:260
+msgid "If not given or specified"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:263
+msgid "To use your personal account, activate JavaScript, please."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:265
+msgid "Contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:286
+msgid "View a site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:287
+msgid "Exit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:291
+msgid "Forgot your password?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:292
+msgid "Username or Email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+msgid "Sorry but you have an old browser"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+msgid "Update or download new browsers here"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "Shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+msgid "Basic"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+msgid "removing"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:28
+msgid "a_tools_panel"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "Uncategorized"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+#: /var/www/image.loc/_temp.php:32
+#: /var/www/image.loc/_temp.php:39
+msgid "Error"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+msgid "No recently added pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:33
+msgid "No recently updated pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+msgid "Select the module type to the table below"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:37
+msgid "Module installed"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+msgid "Module successfully installed"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+msgid "Something went wrong. Startup status is not changed."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+msgid "Something went wrong. URL access is not changed."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:42
+msgid "Turn on"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:43
+msgid "Turn off"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+msgid "Have not modules to install"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:212
+msgid "Widget creating"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+msgid "Widget successfully created"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+msgid "Enter template name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "No pages in category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+msgid "Category successfully added"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+msgid "Discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "You need to enter a string"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "This field is required."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "Please"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+msgid "enter the correct value"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+msgid "enter a valid email address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+msgid "enter the correct URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+msgid "enter correct date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+msgid "enter correct date in format ISO"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+msgid "enter number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:62
+msgid "enter only numbers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:63
+msgid "enter a valid credit card number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:64
+msgid "enter the same value again"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:65
+msgid "Select the file with the correct extension"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:66
+msgid "Enter no more"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+msgid "characters"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:68
+msgid "enter at least"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:69
+msgid "enter value from"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:70
+msgid "to"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:71
+msgid "enter number from"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:72
+msgid "enter a number less than or equal to"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:73
+msgid "enter a number more than or equal to"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:74
+msgid "Administer shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:75
+msgid "Back to the system"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:76
+msgid "Conversion error"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "User already notified via E-mail upon availability! Notify again"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Notify the user via E-mail upon availability"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:79
+msgid "Error removing options"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:80
+msgid "Delete canceled orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:81
+msgid "Delete canceled messages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+msgid "Delete order ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:83
+msgid "Product changes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:84
+msgid "Success"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:85
+msgid "File is loaded. Slot"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:86
+msgid "Script error. Notify administrator."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+#: /var/www/image.loc/_temp.php:102
+#, fuzzy
+msgid "Widget settings"
+msgstr "Виджети"
+
+#: /var/www/image.loc/_temp.php:92
+msgid "Order by"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:93
+msgid "Popular"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:94
+msgid "Date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:95
+msgid "Novelty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:97
+msgid "Hit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:98
+msgid "Old price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:99
+#, fuzzy
+msgid "Сonsider the category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:100
+#: /var/www/image.loc/_temp.php:107
+#, fuzzy
+msgid "Widget title"
+msgstr "Виджети"
+
+#: /var/www/image.loc/_temp.php:101
+#: /var/www/image.loc/_temp.php:108
+msgid "Number of items to display"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:109
+msgid "The recommended amount of 4. The maximum value of 20"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Roles list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:116
+msgid "New Role"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:121
+msgid "Role"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:123
+msgid "System update"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:124
+msgid "Attention"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:125
+msgid "Make a database backup copy before updating "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:132
+msgid "For example:  /domains/mysite/public_html/"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:137
+#: /var/www/image.loc/_temp.php:187
+msgid "Role edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:151
+msgid "New pages"
+msgstr "Нові сторінки"
+
+#: /var/www/image.loc/_temp.php:157
+msgid "Updated pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:165
+msgid "Version updates available"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:166
+msgid "Version updates are not available."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:168
+msgid "Statistics"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid "ImageCMS news"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:197
+msgid "Delete language"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:198
+msgid "Delete selected languages?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:199
+msgid "Attention! All pages in this language will be deleted!"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:204
+msgid "Create language"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:223
+msgid "Module name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:227
+#: /var/www/image.loc/_temp.php:229
+msgid "Buy"
+msgstr "Купить"
+
+#: /var/www/image.loc/_temp.php:228
+msgid "Report the appearance of"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+msgid "Number of brands to display:"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+#: /var/www/image.loc/_temp.php:37
+#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:65
+#: /var/www/image.loc/_temp.php:66
+msgid "hit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+#: /var/www/image.loc/_temp.php:39
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:46
+#: /var/www/image.loc/_temp.php:60
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:68
+msgid "novelty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+#: /var/www/image.loc/_temp.php:41
+#: /var/www/image.loc/_temp.php:47
+#: /var/www/image.loc/_temp.php:48
+#: /var/www/image.loc/_temp.php:62
+msgid "action"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+#: /var/www/image.loc/_temp.php:71
+msgid "Variants"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+#: /var/www/image.loc/_temp.php:72
+msgid "a_drag_variant_product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "Moving products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+msgid "Move"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "Reset filter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "From"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+msgid "To"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:73
+msgid "There are no results. Modify your search or click the "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:75
+msgid "a_cpecify"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:76
+msgid "Brand"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Colback deleting"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:79
+msgid "Really delete callback(s)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+msgid "Callbacks list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:91
+#: /var/www/image.loc/_temp.php:125
+msgid "Reference"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:92
+#: /var/www/image.loc/_temp.php:126
+#: /var/www/image.loc/_temp.php:152
+msgid "Active"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:94
+#: /var/www/image.loc/_temp.php:128
+msgid "Price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:95
+#: /var/www/image.loc/_temp.php:96
+#: /var/www/image.loc/_temp.php:97
+#: /var/www/image.loc/_temp.php:137
+#: /var/www/image.loc/_temp.php:139
+#: /var/www/image.loc/_temp.php:141
+msgid "go to the website"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:102
+#: /var/www/image.loc/_temp.php:181
+#: /var/www/image.loc/_temp.php:196
+#: /var/www/image.loc/_temp.php:259
+msgid "Phone number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:105
+msgid "Delete products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:106
+msgid "Really delete selected products?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:111
+msgid "Items list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:113
+msgid "Cancel filter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Mark"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:116
+#: /var/www/image.loc/_temp.php:135
+#: /var/www/image.loc/_temp.php:157
+#: /var/www/image.loc/_temp.php:159
+msgid "New"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:117
+#: /var/www/image.loc/_temp.php:136
+msgid "Promotion"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:119
+#, fuzzy
+msgid "Move to category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:144
+msgid "Request showed no result"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+msgid "Change"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:150
+msgid "or"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:151
+msgid "Item"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:153
+msgid "inactive"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+#: /var/www/image.loc/_temp.php:162
+msgid "Special offers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+msgid "Search start"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:172
+msgid "Save and create a new record"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid " Save and edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:174
+msgid "Colback view"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:176
+#: /var/www/image.loc/_temp.php:191
+msgid "Sort by  number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:178
+#: /var/www/image.loc/_temp.php:193
+msgid "Sort by name ."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:179
+#: /var/www/image.loc/_temp.php:258
+msgid "User name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:180
+#: /var/www/image.loc/_temp.php:195
+msgid "Sort by  phone number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:182
+#: /var/www/image.loc/_temp.php:197
+msgid "Sort by theme"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:183
+#: /var/www/image.loc/_temp.php:198
+msgid "Theme"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:184
+#: /var/www/image.loc/_temp.php:199
+msgid "Sort by status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:186
+#: /var/www/image.loc/_temp.php:201
+msgid "Sort by  date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+#: /var/www/image.loc/_temp.php:203
+msgid "Last comment left by the manager"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:189
+#: /var/www/image.loc/_temp.php:204
+msgid "Manager"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:190
+#: /var/www/image.loc/_temp.php:205
+msgid "Edit callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:207
+msgid "Found results"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:208
+msgid "Empty callback list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:209
+msgid "Empty status list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:210
+msgid "Browse topics collback'ov"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:211
+#, fuzzy
+msgid "Create status"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:214
+#: /var/www/image.loc/_temp.php:217
+#: /var/www/image.loc/_temp.php:224
+#: /var/www/image.loc/_temp.php:238
+msgid "By default"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:216
+msgid "Edit topic callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:218
+msgid "Creating a status callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:225
+#: /var/www/image.loc/_temp.php:239
+msgid "Status set  for all new  requests. "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:226
+msgid "Editing by collback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:232
+msgid "Editing Tools colback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:240
+msgid "Language"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:241
+msgid "This icon denotes a field that can translate well another language."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:242
+msgid "Creation of the request subject"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:248
+msgid "Browse topics collback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:249
+msgid "Add a new topic"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:250
+msgid "Text"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:252
+msgid "Request subject editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:253
+msgid "Callback editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:260
+msgid "Comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:262
+msgid "Product property creating"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:267
+msgid "The field must contain only Latin characters ."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:20
+msgid "Deleting property"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+msgid "Delete selected properties"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+#, fuzzy
+msgid "Create property"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:25
+#: /var/www/image.loc/_temp.php:70
+#: /var/www/image.loc/_temp.php:184
+msgid "Products import"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:71
+#: /var/www/image.loc/_temp.php:85
+#: /var/www/image.loc/_temp.php:185
+#: /var/www/image.loc/_temp.php:199
+#: /var/www/image.loc/_temp.php:251
+msgid "File"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+msgid "Import type"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "Catalog"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:72
+#: /var/www/image.loc/_temp.php:86
+#: /var/www/image.loc/_temp.php:99
+#: /var/www/image.loc/_temp.php:145
+#: /var/www/image.loc/_temp.php:186
+#: /var/www/image.loc/_temp.php:200
+#: /var/www/image.loc/_temp.php:213
+#: /var/www/image.loc/_temp.php:267
+msgid "Columns"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:32
+#: /var/www/image.loc/_temp.php:73
+#: /var/www/image.loc/_temp.php:87
+#: /var/www/image.loc/_temp.php:187
+#: /var/www/image.loc/_temp.php:201
+msgid "Fields delimiter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:33
+#: /var/www/image.loc/_temp.php:74
+#: /var/www/image.loc/_temp.php:88
+#: /var/www/image.loc/_temp.php:147
+#: /var/www/image.loc/_temp.php:188
+#: /var/www/image.loc/_temp.php:202
+#: /var/www/image.loc/_temp.php:254
+msgid "Semicolon"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:34
+#: /var/www/image.loc/_temp.php:75
+#: /var/www/image.loc/_temp.php:89
+#: /var/www/image.loc/_temp.php:148
+#: /var/www/image.loc/_temp.php:189
+#: /var/www/image.loc/_temp.php:203
+#: /var/www/image.loc/_temp.php:255
+msgid "Colon"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:35
+#: /var/www/image.loc/_temp.php:76
+#: /var/www/image.loc/_temp.php:90
+#: /var/www/image.loc/_temp.php:149
+#: /var/www/image.loc/_temp.php:190
+#: /var/www/image.loc/_temp.php:204
+#: /var/www/image.loc/_temp.php:256
+msgid "Comma"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+#: /var/www/image.loc/_temp.php:77
+#: /var/www/image.loc/_temp.php:91
+#: /var/www/image.loc/_temp.php:150
+#: /var/www/image.loc/_temp.php:191
+#: /var/www/image.loc/_temp.php:205
+#: /var/www/image.loc/_temp.php:257
+msgid "Tab"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:37
+#: /var/www/image.loc/_temp.php:78
+#: /var/www/image.loc/_temp.php:92
+#: /var/www/image.loc/_temp.php:151
+#: /var/www/image.loc/_temp.php:192
+#: /var/www/image.loc/_temp.php:206
+#: /var/www/image.loc/_temp.php:258
+msgid "Sharp"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+#: /var/www/image.loc/_temp.php:79
+#: /var/www/image.loc/_temp.php:93
+#: /var/www/image.loc/_temp.php:152
+#: /var/www/image.loc/_temp.php:193
+#: /var/www/image.loc/_temp.php:207
+#: /var/www/image.loc/_temp.php:259
+msgid "Text delimiter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+#: /var/www/image.loc/_temp.php:80
+#: /var/www/image.loc/_temp.php:94
+#: /var/www/image.loc/_temp.php:153
+#: /var/www/image.loc/_temp.php:194
+#: /var/www/image.loc/_temp.php:208
+#: /var/www/image.loc/_temp.php:260
+msgid "Quotes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+#: /var/www/image.loc/_temp.php:81
+#: /var/www/image.loc/_temp.php:95
+#: /var/www/image.loc/_temp.php:195
+#: /var/www/image.loc/_temp.php:209
+msgid "Simple quotes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+#: /var/www/image.loc/_temp.php:82
+#: /var/www/image.loc/_temp.php:96
+#: /var/www/image.loc/_temp.php:156
+#: /var/www/image.loc/_temp.php:196
+#: /var/www/image.loc/_temp.php:210
+#: /var/www/image.loc/_temp.php:262
+msgid "Encoding"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:84
+#: /var/www/image.loc/_temp.php:98
+#: /var/www/image.loc/_temp.php:130
+#: /var/www/image.loc/_temp.php:132
+#: /var/www/image.loc/_temp.php:198
+#: /var/www/image.loc/_temp.php:212
+#: /var/www/image.loc/_temp.php:241
+#: /var/www/image.loc/_temp.php:266
+msgid "Import"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+#: /var/www/image.loc/_temp.php:100
+#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:214
+#: /var/www/image.loc/_temp.php:268
+msgid "Product name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+#: /var/www/image.loc/_temp.php:103
+#: /var/www/image.loc/_temp.php:163
+#: /var/www/image.loc/_temp.php:217
+#: /var/www/image.loc/_temp.php:272
+msgid "Count"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+#: /var/www/image.loc/_temp.php:104
+#: /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:218
+#: /var/www/image.loc/_temp.php:273
+msgid "Article"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+#: /var/www/image.loc/_temp.php:105
+#: /var/www/image.loc/_temp.php:165
+#: /var/www/image.loc/_temp.php:219
+#: /var/www/image.loc/_temp.php:274
+msgid "Variant name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+#: /var/www/image.loc/_temp.php:109
+#: /var/www/image.loc/_temp.php:169
+#: /var/www/image.loc/_temp.php:223
+#: /var/www/image.loc/_temp.php:278
+#, fuzzy
+msgid "Catagory"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:110
+#: /var/www/image.loc/_temp.php:170
+#: /var/www/image.loc/_temp.php:224
+#: /var/www/image.loc/_temp.php:279
+msgid "Related Products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+#: /var/www/image.loc/_temp.php:111
+#: /var/www/image.loc/_temp.php:171
+#: /var/www/image.loc/_temp.php:225
+#: /var/www/image.loc/_temp.php:280
+msgid "Main image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:112
+#: /var/www/image.loc/_temp.php:172
+#: /var/www/image.loc/_temp.php:226
+#: /var/www/image.loc/_temp.php:281
+msgid "Main additional image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:113
+#: /var/www/image.loc/_temp.php:173
+#: /var/www/image.loc/_temp.php:227
+#: /var/www/image.loc/_temp.php:282
+msgid "Small image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+#: /var/www/image.loc/_temp.php:114
+#: /var/www/image.loc/_temp.php:174
+#: /var/www/image.loc/_temp.php:228
+#: /var/www/image.loc/_temp.php:283
+msgid "Small additional image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:115
+#: /var/www/image.loc/_temp.php:175
+#: /var/www/image.loc/_temp.php:229
+#: /var/www/image.loc/_temp.php:284
+msgid "Additional image"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:62
+#: /var/www/image.loc/_temp.php:116
+#: /var/www/image.loc/_temp.php:176
+#: /var/www/image.loc/_temp.php:230
+#: /var/www/image.loc/_temp.php:285
+msgid "Short description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:63
+#: /var/www/image.loc/_temp.php:117
+#: /var/www/image.loc/_temp.php:231
+#: /var/www/image.loc/_temp.php:286
+msgid "Fulll description"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:121
+#: /var/www/image.loc/_temp.php:127
+#: /var/www/image.loc/_temp.php:128
+#: /var/www/image.loc/_temp.php:235
+#: /var/www/image.loc/_temp.php:290
+msgid "Scip column"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:68
+#: /var/www/image.loc/_temp.php:122
+#: /var/www/image.loc/_temp.php:182
+#: /var/www/image.loc/_temp.php:236
+#: /var/www/image.loc/_temp.php:291
+msgid "Product properties"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:69
+#: /var/www/image.loc/_temp.php:123
+#: /var/www/image.loc/_temp.php:237
+#: /var/www/image.loc/_temp.php:292
+msgid "Import complete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:124
+#: /var/www/image.loc/_temp.php:126
+msgid "Attributes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:125
+msgid "The list of attributes that will be imported"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:129
+#: /var/www/image.loc/_temp.php:238
+msgid "Automatization"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:131
+#: /var/www/image.loc/_temp.php:157
+#: /var/www/image.loc/_temp.php:293
+msgid "Export"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:133
+msgid "Select file on disc"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:134
+msgid "Select the file in a convenient format"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:135
+#: /var/www/image.loc/_temp.php:248
+msgid "Files"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:136
+msgid "The data of your database will be stored in the folder / application / backups"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:137
+msgid "Take a snapshot of the database before"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:138
+msgid "For imported images will be produced and created resize options"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:139
+msgid "It may take more time"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:140
+msgid "Start the resize images after import"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:141
+msgid "Will be recalculated prices of goods in accordance to the default currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:142
+msgid "Refresh after import prices"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:143
+#: /var/www/image.loc/_temp.php:249
+msgid "Start import"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:144
+msgid "Product export"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+#: /var/www/image.loc/_temp.php:253
+msgid "Field delimiter"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:154
+#: /var/www/image.loc/_temp.php:261
+msgid "Single quotes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:158
+#: /var/www/image.loc/_temp.php:252
+msgid "Column"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:181
+msgid "Skip column"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:183
+msgid "Export complete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:239
+msgid "Import СSV"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:240
+msgid "Export СSV"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:242
+msgid "СSV file format"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:244
+msgid "Export CSV gives"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:245
+msgid "to download the file"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:246
+msgid "with a list of all"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:250
+msgid "Product import"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:263
+msgid "UTF-8"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:264
+msgid "Windows 1251"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:294
+msgid "File type"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:295
+msgid "Start export"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:296
+#, fuzzy
+msgid "turn category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:298
+msgid "display"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:300
+#, fuzzy
+msgid "Create a new template"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:301
+#: /var/www/image.loc/_temp.php:323
+msgid "The basic template category. Default category.tpl"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:302
+#: /var/www/image.loc/_temp.php:324
+msgid "Autocomplete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:303
+msgid "transliteration title."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:305
+#: /var/www/image.loc/_temp.php:327
+msgid "By hit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:306
+#: /var/www/image.loc/_temp.php:328
+msgid "By creation date (from earlier)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:307
+#: /var/www/image.loc/_temp.php:329
+msgid "By creation date (with later)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:308
+#: /var/www/image.loc/_temp.php:330
+msgid "The number of views (descending)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:309
+#: /var/www/image.loc/_temp.php:331
+msgid "The number of views (ascending)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:310
+#: /var/www/image.loc/_temp.php:332
+msgid "By newest"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:311
+#: /var/www/image.loc/_temp.php:333
+msgid "By share"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:312
+#: /var/www/image.loc/_temp.php:334
+msgid "Do not display the sub-category products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:313
+#: /var/www/image.loc/_temp.php:335
+msgid "Do not show short name of the site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:314
+#: /var/www/image.loc/_temp.php:336
+msgid "Meta data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:318
+msgid "Activ"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:319
+msgid "The site is not created any categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:320
+msgid "Editing category ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:322
+#, fuzzy
+msgid "Create new template"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:325
+msgid "Transliteration of the title."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:337
+msgid "Properties list review"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:348
+msgid "Empty property list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:356
+msgid "&lt;b&gt;Resize&lt;/b&gt;"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:357
+msgid "&lt;b&gt;Price control&lt;/b&gt;"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:361
+msgid "Category list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:371
+msgid "Translation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:376
+#, fuzzy
+msgid "Drug category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:378
+#, fuzzy
+msgid "Edit the category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:391
+msgid "Category delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:393
+msgid "Attention! will also remove all the products from this category"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:20
+msgid "Creating a warehouse"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+msgid "Delete selected warehouse"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+#: /var/www/image.loc/_temp.php:26
+msgid "Deleting a warehouse"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+msgid "Warehouse list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "Empty list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+#: /var/www/image.loc/_temp.php:178
+#: /var/www/image.loc/_temp.php:268
+msgid "Delivery Address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+msgid "Phone"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:32
+#, fuzzy
+msgid "Basic information"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:33
+msgid "Page review"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:34
+#: /var/www/image.loc/_temp.php:41
+msgid "a_show_on_map"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+msgid "things"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:37
+#: /var/www/image.loc/_temp.php:38
+msgid "Orders on page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+msgid "Orders sum"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:42
+msgid "Cart items"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:43
+msgid "only numbers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+#: /var/www/image.loc/_temp.php:45
+#: /var/www/image.loc/_temp.php:46
+msgid "Only numbers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:47
+msgid "Add new item to order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+#: /var/www/image.loc/_temp.php:302
+msgid "Delivery"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "In all"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "a_info_buyer_ch_stat"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:63
+msgid "Changes date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:66
+#: /var/www/image.loc/_temp.php:173
+#: /var/www/image.loc/_temp.php:197
+#: /var/www/image.loc/_temp.php:207
+#: /var/www/image.loc/_temp.php:254
+#: /var/www/image.loc/_temp.php:261
+#: /var/www/image.loc/_temp.php:283
+msgid "Paid"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+msgid "Status history"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+msgid "a_me"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:72
+#: /var/www/image.loc/_temp.php:79
+#: /var/www/image.loc/_temp.php:86
+msgid "Address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:75
+#, fuzzy
+msgid "Create a warehouse"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:81
+msgid "Empty warehouse list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:89
+msgid "Creation of Status pending"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:92
+#, fuzzy
+msgid "General information"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:94
+#: /var/www/image.loc/_temp.php:98
+msgid "Removing status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:95
+msgid "Remove your status?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:99
+msgid "Remove status?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:100
+msgid "View the status of the appearance of"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:107
+msgid "Editing status of the appearance of"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:111
+msgid "These status callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:113
+msgid "Delivery method create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:117
+msgid "Data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:120
+#: /var/www/image.loc/_temp.php:151
+msgid "Description delivery price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:121
+msgid "Delivery price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:122
+#: /var/www/image.loc/_temp.php:139
+#: /var/www/image.loc/_temp.php:153
+msgid "Free"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:123
+#: /var/www/image.loc/_temp.php:140
+#: /var/www/image.loc/_temp.php:154
+#: /var/www/image.loc/_temp.php:209
+#: /var/www/image.loc/_temp.php:213
+msgid "from"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:125
+#: /var/www/image.loc/_temp.php:156
+#: /var/www/image.loc/_temp.php:186
+#: /var/www/image.loc/_temp.php:257
+#: /var/www/image.loc/_temp.php:273
+msgid "Payment method"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:126
+msgid "List is empty."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:127
+#: /var/www/image.loc/_temp.php:131
+msgid "Removing the shipping methods"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:128
+msgid "Delete Selected methods of delivery?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:132
+msgid "Delete method of delivery?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:133
+msgid "Delivery methods list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:134
+#, fuzzy
+msgid "Create a way to deliver"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:143
+msgid "Delivery methods list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:144
+#: /var/www/image.loc/_temp.php:184
+msgid "Delivery and payment"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:148
+msgid "Delivery method edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:157
+#: /var/www/image.loc/_temp.php:226
+#: /var/www/image.loc/_temp.php:238
+#: /var/www/image.loc/_temp.php:299
+msgid "Product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:158
+msgid "receipt"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+msgid "measurement unit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:161
+msgid "Quantity"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+#: /var/www/image.loc/_temp.php:206
+#: /var/www/image.loc/_temp.php:278
+msgid "Total price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:295
+msgid "Pieces."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:166
+msgid "Order create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:172
+msgid "Notify a buyer about the status change"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:174
+#: /var/www/image.loc/_temp.php:262
+#: /var/www/image.loc/_temp.php:264
+msgid "Complete"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:180
+#: /var/www/image.loc/_temp.php:270
+msgid "on"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:181
+#: /var/www/image.loc/_temp.php:271
+msgid "map"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:183
+#: /var/www/image.loc/_temp.php:281
+msgid "Additional data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:185
+#: /var/www/image.loc/_temp.php:259
+#: /var/www/image.loc/_temp.php:272
+msgid "Delivery Method"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:187
+msgid "Order removal"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+msgid " Delete selected orders?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:191
+msgid "Orders list"
+msgstr "Список замовлень"
+
+#: /var/www/image.loc/_temp.php:194
+msgid "Change status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:196
+msgid "Payment status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:198
+msgid "Not paid"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:200
+msgid "Create order"
+msgstr "Создатьзаказ"
+
+#: /var/www/image.loc/_temp.php:204
+msgid "Customer"
+msgstr "Замовник"
+
+#: /var/www/image.loc/_temp.php:210
+#: /var/www/image.loc/_temp.php:212
+msgid "choose a date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:219
+msgid "Edit order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:220
+msgid "Editing by"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:221
+msgid "Purchased Product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:224
+msgid " This product has been deleted  from the shop! You can only change the quantity or replace by another product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:227
+#: /var/www/image.loc/_temp.php:239
+msgid "Variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:228
+msgid "Product price has been changed. Old product price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:229
+msgid "Save the old price ?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:232
+#: /var/www/image.loc/_temp.php:240
+#: /var/www/image.loc/_temp.php:277
+msgid "Total"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:242
+msgid "Order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:243
+msgid "Has been created"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:245
+msgid "Print"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:246
+msgid "check"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:249
+msgid "Basic data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:250
+msgid "Products and order history"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:252
+#, fuzzy
+msgid "Date of order"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:258
+#: /var/www/image.loc/_temp.php:260
+msgid "Not specified"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:280
+msgid "Gift Certificate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:282
+#, fuzzy
+msgid "Ordering information"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:284
+msgid "Commentary to change the status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:289
+msgid "Product addition"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:291
+#: /var/www/image.loc/_temp.php:297
+msgid "Add"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:293
+msgid "in"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:294
+msgid "Cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:303
+msgid "Option"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:304
+msgid "Payments"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:305
+msgid "Result"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:20
+msgid "a_s"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+msgid "Do you really want to delete status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+msgid "New orders"
+msgstr "Новие закази"
+
+#: /var/www/image.loc/_temp.php:23
+msgid "Bestsellers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "New users"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+msgid "Time"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+msgid "Sum"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+msgid "Oredr sum"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:33
+msgid "yes"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:34
+msgid "no"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+msgid "Cart additions number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:40
+msgid "Registration date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:44
+msgid "Last comment"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+#, fuzzy
+msgid "Created Date"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:50
+msgid "Approved"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "Waiting for approval"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+msgid "Spam"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "Read full article"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "a_possible_values"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "a2_acces_right"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:58
+msgid "a_one_user"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+#: /var/www/image.loc/_temp.php:59
+msgid "Related entity"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+#: /var/www/image.loc/_temp.php:74
+msgid "Orders status creating"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "Edit status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Order status deleting"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:79
+msgid "Delete order status(es)?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+msgid "exists"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:84
+msgid "so"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:86
+msgid "Set another status for these orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+msgid "Delete all orders with this status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:88
+msgid "Order status edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:99
+msgid "News of ImageCMS"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:100
+msgid "Payment method create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:109
+#: /var/www/image.loc/_temp.php:113
+msgid "Removal of payment methods"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:110
+msgid "Delete the selected payment methods?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Delete method of payment?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:115
+msgid "Payment methods list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:116
+#, fuzzy
+msgid "Create a payment method"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:126
+msgid "Payment methods list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:127
+msgid "Payment method edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:139
+msgid "Additional field create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:144
+msgid "Entity"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+msgid "Orders "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:148
+#: /var/www/image.loc/_temp.php:195
+msgid "The field should only contain letters without numbers"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:149
+#: /var/www/image.loc/_temp.php:196
+msgid "Label"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:151
+#: /var/www/image.loc/_temp.php:154
+#: /var/www/image.loc/_temp.php:178
+#: /var/www/image.loc/_temp.php:180
+#: /var/www/image.loc/_temp.php:198
+#: /var/www/image.loc/_temp.php:200
+#: /var/www/image.loc/_temp.php:202
+msgid "Field"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:152
+#: /var/www/image.loc/_temp.php:179
+#: /var/www/image.loc/_temp.php:184
+#: /var/www/image.loc/_temp.php:199
+msgid "Required"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:155
+#: /var/www/image.loc/_temp.php:181
+#: /var/www/image.loc/_temp.php:185
+#: /var/www/image.loc/_temp.php:203
+msgid "Private"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:156
+msgid "Field type"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:157
+#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:204
+#: /var/www/image.loc/_temp.php:206
+msgid "Validators"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:158
+#: /var/www/image.loc/_temp.php:205
+msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+#: /var/www/image.loc/_temp.php:162
+msgid "Access rights"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:161
+msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:163
+msgid "Close"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:164
+#: /var/www/image.loc/_temp.php:168
+msgid "Remove fields"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:165
+msgid "Remove the selected field?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:169
+msgid "Remove the field?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:170
+msgid "Additional fields list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:171
+msgid "Create Field"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+msgid "Editing a custom field"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:193
+msgid "These additional field"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+#, fuzzy
+msgid "Pages and categories"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:24
+#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:30
+msgid "a_nitified_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+#: /var/www/image.loc/_temp.php:26
+#: /var/www/image.loc/_temp.php:28
+#: /var/www/image.loc/_temp.php:29
+msgid "Notified"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:38
+msgid "Basic photo"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+#, fuzzy
+msgid "Picture for category"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:40
+#: /var/www/image.loc/_temp.php:41
+#: /var/www/image.loc/_temp.php:42
+#: /var/www/image.loc/_temp.php:43
+#: /var/www/image.loc/_temp.php:86
+#: /var/www/image.loc/_temp.php:88
+#: /var/www/image.loc/_temp.php:93
+#: /var/www/image.loc/_temp.php:94
+msgid "Edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+msgid "Create product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+#: /var/www/image.loc/_temp.php:64
+#: /var/www/image.loc/_temp.php:65
+msgid "Previous"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:62
+#: /var/www/image.loc/_temp.php:63
+msgid "Chose file"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+#: /var/www/image.loc/_temp.php:90
+msgid "Delete set"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:61
+#: /var/www/image.loc/_temp.php:92
+#: /var/www/image.loc/_temp.php:96
+msgid "a_kits_del_body"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:84
+msgid "Main photo"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:85
+msgid "Catagory photo"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:97
+msgid "Sds sd"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:141
+#: /var/www/image.loc/_temp.php:248
+msgid "Delete "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:142
+msgid "Notification "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:143
+#: /var/www/image.loc/_temp.php:250
+msgid "ID : "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:144
+msgid "User has already been notified by e-mail  about  product arrival! Notify again? "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:145
+msgid "Notify a user by e-mail about product arrival?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+msgid " Change the status of marked notifications?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:147
+msgid "Removal requests"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:148
+msgid "Delete the selected queries?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:151
+msgid "Delete the query?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+#: /var/www/image.loc/_temp.php:170
+#, fuzzy
+msgid "Time of addition"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:161
+#: /var/www/image.loc/_temp.php:171
+msgid "Valid until"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:165
+#: /var/www/image.loc/_temp.php:175
+msgid "Notifications"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:167
+#: /var/www/image.loc/_temp.php:177
+msgid "Empty product arrival notification list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:178
+msgid "The request for notification"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:179
+msgid "by"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:187
+msgid "Status has been set"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:190
+msgid "E-mail notification"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:197
+msgid "Select"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:207
+#: /var/www/image.loc/_temp.php:358
+#, fuzzy
+msgid "Product creation"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:213
+#: /var/www/image.loc/_temp.php:293
+#: /var/www/image.loc/_temp.php:343
+#: /var/www/image.loc/_temp.php:364
+#: /var/www/image.loc/_temp.php:421
+#: /var/www/image.loc/_temp.php:453
+msgid "Images"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:214
+#: /var/www/image.loc/_temp.php:294
+#: /var/www/image.loc/_temp.php:346
+#: /var/www/image.loc/_temp.php:365
+#: /var/www/image.loc/_temp.php:422
+#: /var/www/image.loc/_temp.php:456
+msgid "Kits"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:217
+#: /var/www/image.loc/_temp.php:298
+#: /var/www/image.loc/_temp.php:368
+#: /var/www/image.loc/_temp.php:425
+msgid "Product variant name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:221
+#: /var/www/image.loc/_temp.php:306
+#: /var/www/image.loc/_temp.php:307
+#: /var/www/image.loc/_temp.php:376
+#: /var/www/image.loc/_temp.php:377
+#: /var/www/image.loc/_temp.php:430
+msgid "Add a variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:223
+#: /var/www/image.loc/_temp.php:312
+#: /var/www/image.loc/_temp.php:382
+#: /var/www/image.loc/_temp.php:432
+msgid "Brand name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:229
+#: /var/www/image.loc/_temp.php:328
+#: /var/www/image.loc/_temp.php:397
+#: /var/www/image.loc/_temp.php:438
+msgid "Warehouses"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:230
+#: /var/www/image.loc/_temp.php:329
+#: /var/www/image.loc/_temp.php:398
+#: /var/www/image.loc/_temp.php:439
+msgid "Allow comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:235
+#: /var/www/image.loc/_temp.php:334
+#: /var/www/image.loc/_temp.php:403
+#: /var/www/image.loc/_temp.php:444
+msgid "tie-in sales"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:238
+#: /var/www/image.loc/_temp.php:337
+#: /var/www/image.loc/_temp.php:406
+#: /var/www/image.loc/_temp.php:447
+msgid "Product main template. By default  product.tpl"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:247
+msgid "Product variations "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:249
+msgid "product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:251
+msgid "Selected "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:252
+#, fuzzy
+msgid " Create a product copy?"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:253
+msgid "Product displacement"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:262
+msgid "Sort by ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:264
+msgid "Sort by price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:276
+msgid "Copy"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:295
+#: /var/www/image.loc/_temp.php:423
+msgid "View page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:316
+#: /var/www/image.loc/_temp.php:322
+#: /var/www/image.loc/_temp.php:344
+#: /var/www/image.loc/_temp.php:386
+#: /var/www/image.loc/_temp.php:391
+#: /var/www/image.loc/_temp.php:454
+msgid "Select a file"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:318
+#: /var/www/image.loc/_temp.php:388
+#, fuzzy
+msgid "Create small image"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:321
+#: /var/www/image.loc/_temp.php:390
+msgid "Another main image variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:324
+#: /var/www/image.loc/_temp.php:393
+msgid "Another small image variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:345
+#: /var/www/image.loc/_temp.php:455
+#: /var/www/image.loc/_temp.php:472
+#, fuzzy
+msgid "Create a set"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:349
+#: /var/www/image.loc/_temp.php:459
+#: /var/www/image.loc/_temp.php:483
+msgid "Kit List products are empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:350
+#: /var/www/image.loc/_temp.php:460
+#: /var/www/image.loc/_temp.php:467
+msgid "Kit removal"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:470
+msgid "Product kits review"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:473
+#: /var/www/image.loc/_temp.php:490
+msgid "main product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:474
+#: /var/www/image.loc/_temp.php:489
+msgid "Main product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:480
+msgid "Attached products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:484
+msgid "Create product kit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:492
+msgid "Added products"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:20
+#: /var/www/image.loc/_temp.php:43
+msgid "Select file"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:21
+msgid "Absolute path to the page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "Display on the main"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:27
+#: /var/www/image.loc/_temp.php:38
+msgid "Display in the categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:28
+#: /var/www/image.loc/_temp.php:39
+msgid "Do not display"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+#: /var/www/image.loc/_temp.php:40
+msgid "Select all"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+msgid "On main"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+msgid "In categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:32
+msgid "Active till"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:35
+msgid "Display on main"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+msgid "Brand ID transfer"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:44
+msgid "The ratio of the size of the watermark to the size of photos"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:45
+msgid "Image path"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+msgid "The file must reside on the server. For example: / uploads / images / logo.png"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:47
+msgid "Transparent"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "Font file must be located on the server. For example:. / Uploads / images / logo.png"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+#: /var/www/image.loc/_temp.php:52
+msgid "Resize"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+msgid "Resize images to produce again"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:53
+msgid "Recalculate the goods after payment of order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:54
+msgid "Take into account the balance of goods in stock when you add to cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:55
+msgid "a_"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:59
+msgid "Full version domain"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:60
+msgid "Mobile version domain"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:63
+msgid "a_shop_sett_yandex_market_t"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:64
+#: /var/www/image.loc/_temp.php:65
+msgid "a_shop_sett_yandex_market_p"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:66
+msgid "Removing currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:67
+msgid "Delete the selected currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:70
+msgid "Recalculation"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:71
+msgid "The currency used in the products. Recalculate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:72
+msgid "Recalculate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:74
+msgid "Removing properties"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:75
+msgid "Remove currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:76
+msgid "List of currencies"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "Price control"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+#, fuzzy
+msgid "Create currency"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:79
+msgid "Make main"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:80
+msgid "Make the default currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+msgid "On the site is not created  currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:83
+msgid "Edit product kit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:102
+msgid "Message: "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:103
+msgid "Changes have been saved"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:104
+msgid "Error "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:105
+#, fuzzy
+msgid "Banner creation"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:112
+#: /var/www/image.loc/_temp.php:140
+msgid "Text banner"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:116
+#: /var/www/image.loc/_temp.php:144
+msgid "Active until"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:117
+#: /var/www/image.loc/_temp.php:121
+msgid "Removing banner"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:118
+msgid "Remove selected banners?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:122
+msgid "Remove banners?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:123
+msgid "Banner list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:124
+#, fuzzy
+msgid "Create a banner"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:131
+msgid "don't show"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:132
+msgid "Empty banner list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:133
+msgid "Editing banner"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:146
+msgid "Branding"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:163
+msgid "Removing brand"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:160
+msgid "Remove selected brands?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:164
+msgid "Remove brands?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:165
+msgid "List of brands"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:166
+#, fuzzy
+msgid "Create a brand"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:172
+msgid "The site is not created any brand"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:173
+msgid "Editing brand"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:187
+msgid "Brands statistics"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:188
+msgid "Orders statistics"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:190
+msgid "Total orders price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:192
+#: /var/www/image.loc/_temp.php:194
+msgid "Days"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:193
+msgid "The amount of orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:195
+msgid "Number of Orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:200
+#: /var/www/image.loc/_temp.php:213
+msgid "Appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:202
+#: /var/www/image.loc/_temp.php:258
+msgid "Wish List"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:203
+msgid "Notice of appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:205
+msgid "Registration after order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:206
+msgid "Top selling block"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:207
+#: /var/www/image.loc/_temp.php:383
+msgid "Password recovery"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:208
+msgid "Integration with social networks"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:209
+#: /var/www/image.loc/_temp.php:401
+msgid "Mobile version"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:211
+msgid "Yandex.Market"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:212
+#: /var/www/image.loc/_temp.php:434
+msgid "XML Site Map"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:214
+msgid "Products count shown on site"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:215
+msgid "Products count in control panel"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:217
+msgid "fractional digits"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:218
+msgid "Selection of the Internet store sorting system by default."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:220
+msgid "Creation date  (from the latest)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:221
+msgid "Creation date  (from the oldest)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:222
+msgid "number of views  (in descending order)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:223
+msgid "number of views (in ascending order)"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:224
+msgid "By new"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:225
+msgid "By action"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:235
+msgid "Additional"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:237
+msgid " thumbnails of  additional images"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:238
+msgid "Quality"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:239
+msgid "Watermark"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:241
+msgid " Horizontal alignment "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:242
+msgid "Left"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:243
+msgid "Center"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:244
+msgid "Right"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:245
+msgid "Vertical alignment"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:246
+msgid "Up"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:247
+msgid "In the middle"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:248
+msgid "At the bottom"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:254
+msgid "Font size"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:255
+msgid "Font colour"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:256
+msgid "Displacement"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:257
+msgid "Path to font "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:260
+#: /var/www/image.loc/_temp.php:263
+#: /var/www/image.loc/_temp.php:277
+#: /var/www/image.loc/_temp.php:280
+#: /var/www/image.loc/_temp.php:296
+#: /var/www/image.loc/_temp.php:299
+#: /var/www/image.loc/_temp.php:332
+#: /var/www/image.loc/_temp.php:335
+#: /var/www/image.loc/_temp.php:350
+#: /var/www/image.loc/_temp.php:353
+#: /var/www/image.loc/_temp.php:367
+#: /var/www/image.loc/_temp.php:370
+msgid "sender"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:264
+#: /var/www/image.loc/_temp.php:281
+#: /var/www/image.loc/_temp.php:300
+#: /var/www/image.loc/_temp.php:336
+#: /var/www/image.loc/_temp.php:354
+#: /var/www/image.loc/_temp.php:371
+msgid "Subject"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:265
+#: /var/www/image.loc/_temp.php:282
+#: /var/www/image.loc/_temp.php:301
+#: /var/www/image.loc/_temp.php:337
+#: /var/www/image.loc/_temp.php:348
+#: /var/www/image.loc/_temp.php:355
+#: /var/www/image.loc/_temp.php:372
+msgid "Message format"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:266
+#: /var/www/image.loc/_temp.php:283
+#: /var/www/image.loc/_temp.php:302
+#: /var/www/image.loc/_temp.php:338
+#: /var/www/image.loc/_temp.php:356
+#: /var/www/image.loc/_temp.php:373
+msgid "Message text"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:267
+#: /var/www/image.loc/_temp.php:284
+#: /var/www/image.loc/_temp.php:303
+#: /var/www/image.loc/_temp.php:339
+#: /var/www/image.loc/_temp.php:357
+#: /var/www/image.loc/_temp.php:374
+#: /var/www/image.loc/_temp.php:386
+msgid "You can use the following variable"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:268
+msgid "Name of the  WishList author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:269
+msgid " Telephone number of the wishlist author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:270
+msgid "Comments of the wishlist author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:271
+msgid "Key to view the wishlist"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:272
+msgid "Link to view the  WishList"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:273
+msgid "IP address of the  wishlist author"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:274
+msgid "Sending date of the wishlist"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:285
+msgid "Notification status about the arrival"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:286
+msgid " Name of the user who made a request "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:287
+msgid "User phone number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:288
+msgid "Product name "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:289
+msgid "Link to view the product"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:290
+msgid " User notification request date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:292
+msgid "Send notification about new callback to administrator"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:293
+msgid "Email for sending notifications about new Callbacks"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:308
+msgid "Username requested a  callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:309
+msgid "User telephone number requested a callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:310
+msgid " Callback request date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:311
+msgid "Comments by a callback user"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:312
+msgid "General settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:317
+msgid " Administrator notification about the order placement by e-mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:323
+msgid "Administrator"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:325
+msgid "Customer notification about the order placement"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:330
+msgid "Order placement e-mail to the user has been sent"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:340
+#: /var/www/image.loc/_temp.php:358
+msgid "Name of the customer"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:341
+msgid "Customer e-mail address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:342
+msgid "Customer phone number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:343
+msgid "Delivery address specified by the customer"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:344
+msgid "ID order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:345
+msgid " Key to view the order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:346
+#: /var/www/image.loc/_temp.php:360
+msgid " Link to the order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:347
+msgid " Customer notification about the order status change"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:359
+msgid "New order status"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:361
+msgid "Time of the order status change"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:362
+msgid "Registration"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:363
+msgid "after"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:364
+msgid "order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:365
+msgid "User registartion after making order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:375
+msgid " User login for site enrty"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:376
+msgid "Username of the customer"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:377
+msgid "Customer e-mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:378
+msgid "Customer password"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:379
+msgid "Site address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:380
+msgid "Top sales block "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:381
+msgid " Popularity formula coefficient "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:382
+msgid " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:387
+msgid "Site name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:388
+msgid "Link to confirm password  recovery"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:391
+msgid "Key"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:392
+msgid "Site webmaster email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:393
+msgid "Switch on integration with Facebook?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:394
+msgid "Secret key"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:395
+#: /var/www/image.loc/_temp.php:399
+msgid "Application number"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:396
+#: /var/www/image.loc/_temp.php:400
+msgid "Select template folder"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:397
+msgid "Switch on integration with VKontakte?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:398
+msgid "Protection key"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:408
+msgid "Caching"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:409
+msgid "Turned ON"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:410
+msgid "Memcached server address"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:411
+msgid "Memcached server port"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:412
+msgid "Memcached server namespace"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:413
+msgid "Cache lifetime, ms"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:415
+msgid "Message  about arrival"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:416
+msgid "Message about a callback"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:417
+msgid "Message from the order page"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:418
+#: /var/www/image.loc/_temp.php:420
+msgid "API Key for Mail Chimp"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:419
+msgid "The key to your account <br />on the mail Mailchimp"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:421
+#: /var/www/image.loc/_temp.php:423
+msgid "Key for Mail Chimp list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:422
+msgid "The key to your list of <br />news for MailChimp"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:424
+msgid "Settings Yandex.Market"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:425
+msgid "Displayed categories selection"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:426
+msgid "Priorities"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:429
+#: /var/www/image.loc/_temp.php:433
+msgid "Regular or usual pages"
+msgstr "Звичайні сторінки"
+
+#: /var/www/image.loc/_temp.php:430
+msgid "page change frequency"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:432
+msgid "Other pages"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:435
+msgid "Currency create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:441
+#: /var/www/image.loc/_temp.php:449
+#: /var/www/image.loc/_temp.php:459
+msgid "ISO"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:442
+#: /var/www/image.loc/_temp.php:450
+#: /var/www/image.loc/_temp.php:460
+msgid "Code"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:444
+#: /var/www/image.loc/_temp.php:451
+#: /var/www/image.loc/_temp.php:462
+msgid "Character"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:446
+#: /var/www/image.loc/_temp.php:464
+msgid "Rate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:453
+msgid "Currency edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:465
+msgid "Creating cumulative discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:469
+msgid "These discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:473
+msgid "Amount of which will be a discount."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:476
+msgid "The amount to which there will be a discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:479
+msgid "Not active"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:22
+msgid "Current price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:23
+msgid "Tracking the price settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:24
+msgid "Sender email"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:25
+msgid "Headline writing about committing subscription"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:26
+msgid "The text of the notification subscription"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:28
+#: /var/www/image.loc/_temp.php:34
+msgid "Product price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:29
+#: /var/www/image.loc/_temp.php:37
+msgid "The key for tracking"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:30
+#: /var/www/image.loc/_temp.php:38
+msgid "Link to unsubscribe from the tracking item"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:31
+msgid "Letters header to change the prices"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:32
+msgid "The text change notification rates"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:35
+msgid "New product price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:36
+msgid "Old product price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:39
+#: /var/www/image.loc/_temp.php:40
+msgid "chose date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:41
+#: /var/www/image.loc/_temp.php:142
+msgid "Editing by discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:46
+#: /var/www/image.loc/_temp.php:73
+#: /var/www/image.loc/_temp.php:95
+#: /var/www/image.loc/_temp.php:147
+#: /var/www/image.loc/_temp.php:169
+#: /var/www/image.loc/_temp.php:175
+#: /var/www/image.loc/_temp.php:256
+msgid "Full name"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+#: /var/www/image.loc/_temp.php:149
+msgid "Purchase price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:50
+#: /var/www/image.loc/_temp.php:151
+msgid "Off manually entered"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+#: /var/www/image.loc/_temp.php:55
+#: /var/www/image.loc/_temp.php:212
+#: /var/www/image.loc/_temp.php:216
+msgid "Removing discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+#: /var/www/image.loc/_temp.php:213
+msgid "Remove selected discount?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:56
+#: /var/www/image.loc/_temp.php:217
+msgid "Remove the discount?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:57
+msgid "List of cumulative discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+#: /var/www/image.loc/_temp.php:220
+#, fuzzy
+msgid "Create a discount"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:62
+msgid "Discount Amount of"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:63
+msgid "Discount Amount to"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:69
+#: /var/www/image.loc/_temp.php:229
+msgid "Empty discount list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:70
+#: /var/www/image.loc/_temp.php:219
+msgid "Deposit rates"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:77
+msgid "Empty user list."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+#: /var/www/image.loc/_temp.php:152
+#: /var/www/image.loc/_temp.php:230
+msgid "Editing discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:82
+#: /var/www/image.loc/_temp.php:156
+msgid "Discount options"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:83
+#: /var/www/image.loc/_temp.php:157
+msgid "Member Discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:85
+#: /var/www/image.loc/_temp.php:159
+#: /var/www/image.loc/_temp.php:194
+#: /var/www/image.loc/_temp.php:204
+#: /var/www/image.loc/_temp.php:235
+#: /var/www/image.loc/_temp.php:241
+msgid "Discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:87
+#: /var/www/image.loc/_temp.php:161
+msgid "Just like the number 10"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:100
+#: /var/www/image.loc/_temp.php:104
+msgid "Removing Gift Certificate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:101
+msgid "Remove selected gift certificates?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:105
+msgid "Remove a gift certificate?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:106
+msgid "Gift certificate list"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:107
+#, fuzzy
+msgid "Create gift certificate"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:111
+msgid "Unique key"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:114
+msgid "Valid to"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:118
+msgid "Gift certificate list is empty."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:119
+msgid "Gift certificate create"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:124
+#: /var/www/image.loc/_temp.php:139
+msgid "Gift certificate price"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:126
+msgid "Generate"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:128
+msgid "Gift certificate settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:133
+msgid "Use gift certificates?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:134
+msgid "Gift certificate edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:180
+msgid "This discount does not enjoy"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:181
+msgid "List of products in monitoring"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:182
+msgid "<b>"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:183
+msgid "User Id"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:185
+msgid "Remove item tracking ID: "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:202
+#: /var/www/image.loc/_temp.php:224
+#: /var/www/image.loc/_temp.php:239
+msgid "Starting date"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:203
+#: /var/www/image.loc/_temp.php:225
+#: /var/www/image.loc/_temp.php:240
+msgid "Finishing date "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:205
+#: /var/www/image.loc/_temp.php:242
+msgid " Number greater than zero. To use a percent discount  apply : "
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:208
+#: /var/www/image.loc/_temp.php:245
+msgid "Follow product ID by a comma."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:209
+#: /var/www/image.loc/_temp.php:246
+msgid "User group"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:210
+#: /var/www/image.loc/_temp.php:247
+msgid "There are no translations users"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:218
+msgid "List of permanent discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:248
+#, fuzzy
+msgid "Create user"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/_temp.php:7
+msgid "Basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:15
+msgid "Delete oder"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:17
+#: /var/www/image.loc/_temp.php:21
+#: /var/www/image.loc/_temp.php:22
+msgid "Deleting a user"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:18
+msgid "Remove selected users?"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:34
+#: /var/www/image.loc/_temp.php:60
+#, fuzzy
+msgid "Time of registration"
+msgstr "Настр"
+
+#: /var/www/image.loc/_temp.php:47
+msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:48
+msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:49
+msgid "Order history"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:51
+#: /var/www/image.loc/_temp.php:71
+msgid "Time of the order"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:52
+msgid "Payment type"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:58
+msgid "User data"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:69
+msgid "WishList"
+msgstr ""
+
+#: /var/www/image.loc/_temp.php:78
+msgid "Pcs"
+msgstr ""
+
+#: mod_search.php:96
+msgid "Error: Module information has not been found"
+msgstr ""
+
+#: mod_search.php:123
+#: sys_upgrade.php:32
+msgid "FTP_connect function is not available"
+msgstr ""
+
+#: mod_search.php:140
+#: sys_upgrade.php:62
+msgid "Server connection error:Check username and password"
+msgstr ""
+
+#: mod_search.php:167
+msgid "Wrong path to the root directory"
+msgstr ""
+
+#: mod_search.php:182
+msgid "File downloading error"
+msgstr ""
+
+#: mod_search.php:207
+#: mod_search.php:287
+msgid "Creation of temporary directory has been failed"
+msgstr ""
+
+#: mod_search.php:231
+msgid "Delete the directory to continue"
+msgstr ""
+
+#: mod_search.php:231
+msgid "Attention or Caution"
+msgstr ""
+
+#: mod_search.php:237
+#: mod_search.php:268
+#: sys_upgrade.php:129
+msgid "Exploding error"
+msgstr ""
+
+#: mod_search.php:248
+#: mod_search.php:296
+msgid "Module installation module"
+msgstr ""
+
+#: mod_search.php:258
+#: mod_search.php:306
+msgid "Modul has been installed"
+msgstr ""
+
+#: admin_search.php:91
+#: admin_search.php:220
+msgid "The first"
+msgstr ""
+
+#: admin_search.php:92
+#: admin_search.php:221
+msgid "Last"
+msgstr ""
+
+#: components.php:98
+msgid "Installed a module"
+msgstr ""
+
+#: components.php:133
+msgid "Deleted a module"
+msgstr ""
+
+#: components.php:134
+msgid "The module successfully uninstall"
+msgstr ""
+
+#: components.php:137
+msgid "Module deletion error"
+msgstr ""
+
+#: components.php:234
+msgid "Changed the module settings"
+msgstr ""
+
+#: components.php:324
+msgid "Version "
+msgstr ""
+
+#: components.php:328
+msgid "Can't load module info file"
+msgstr ""
+
+#: components.php:395
+msgid "Positions updated"
+msgstr ""
+
+#: components.php:397
+msgid "Fail"
+msgstr ""
+
+#: components.php:411
+msgid "Changes saved"
+msgstr ""
+
+#: admin.php:57
+msgid "Cleared the cache"
+msgstr ""
+
+#: admin.php:63
+msgid "Files deleted"
+msgstr ""
+
+#: admin.php:65
+#: admin.php:73
+msgid "Cache has been cleared"
+msgstr ""
+
+#: admin.php:71
+msgid "Outdated files  have been deleted"
+msgstr ""
+
+#: admin.php:76
+msgid "Clearing cache error"
+msgstr ""
+
+#: admin.php:155
+msgid "exited the control panel"
+msgstr ""
+
+#: admin.php:171
+msgid "page"
+msgstr ""
+
+#: admin.php:171
+msgid "ip-address"
+msgstr ""
+
+#: admin.php:171
+msgid "user name"
+msgstr ""
+
+#: admin.php:171
+msgid "Message"
+msgstr ""
+
+#: pages.php:108
+msgid "Deleted ID page"
+msgstr ""
+
+#: pages.php:139
+#: pages.php:468
+#: widgets_manager.php:96
+#: widgets_manager.php:160
+#: widgets_manager.php:239
+#: widgets_manager.php:270
+msgid "Description "
+msgstr ""
+
+#: pages.php:141
+#: pages.php:471
+msgid "Date of creation or creation date"
+msgstr ""
+
+#: pages.php:142
+#: pages.php:472
+msgid "Time of creation or creation time"
+msgstr ""
+
+#: pages.php:143
+#: pages.php:473
+msgid "Publication date or date of publication"
+msgstr ""
+
+#: pages.php:144
+#: pages.php:474
+msgid "Publication time or time of publication"
+msgstr ""
+
+#: pages.php:146
+msgid "Main page template"
+msgstr ""
+
+#: pages.php:173
+#: pages.php:503
+msgid "Reserved the same name module"
+msgstr ""
+
+#: pages.php:182
+#: pages.php:512
+msgid "Reserved of the same name category"
+msgstr ""
+
+#: pages.php:194
+msgid "Page with the same URL has been created yet. Specify or select another URL"
+msgstr ""
+
+#: pages.php:258
+msgid "Created a page"
+msgstr ""
+
+#: pages.php:268
+msgid "Page has been created"
+msgstr ""
+
+#: pages.php:318
+msgid "Not found"
+msgstr ""
+
+#: pages.php:442
+msgid "Language of the page"
+msgstr ""
+
+#: pages.php:442
+msgid "Created. ID"
+msgstr ""
+
+#: pages.php:470
+msgid "Main page template "
+msgstr ""
+
+#: pages.php:526
+msgid "Page with URL"
+msgstr ""
+
+#: pages.php:526
+msgid "in ID category"
+msgstr ""
+
+#: pages.php:526
+msgid " already exists. Specify or select another URL"
+msgstr ""
+
+#: pages.php:584
+msgid "Changed the page "
+msgstr ""
+
+#: pages.php:594
+msgid "Page contents have been updated"
+msgstr ""
+
+#: pages.php:613
+msgid "Error: Generic page can not be deleted."
+msgstr ""
+
+#: pages.php:631
+#: pages.php:648
+msgid "Page has been deleted."
+msgstr ""
+
+#: pages.php:693
+msgid "Successful delete"
+msgstr ""
+
+#: pages.php:776
+msgid "Successful moving"
+msgstr ""
+
+#: pages.php:780
+msgid "The operation error"
+msgstr ""
+
+#: pages.php:833
+msgid "Zero-length string"
+msgstr ""
+
+#: login.php:84
+msgid "Protection code"
+msgstr ""
+
+#: login.php:99
+msgid "Entered the IP control panel"
+msgstr ""
+
+#: login.php:103
+msgid "Username and password have not been found"
+msgstr ""
+
+#: login.php:123
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr ""
+
+#: login.php:145
+#: login.php:149
+msgid "Wrong protection code"
+msgstr ""
+
+#: widgets_manager.php:30
+#: widgets_manager.php:81
+#: widgets_manager.php:196
+msgid "Set the directory access rights to continue the work with widgets"
+msgstr ""
+
+#: widgets_manager.php:91
+msgid "Widget with the same name already exists. Choose or select another name."
+msgstr ""
+
+#: widgets_manager.php:99
+msgid "Method"
+msgstr ""
+
+#: widgets_manager.php:144
+#: widgets_manager.php:175
+msgid "Created a widget"
+msgstr ""
+
+#: widgets_manager.php:147
+#: widgets_manager.php:181
+msgid "Widget created"
+msgstr ""
+
+#: widgets_manager.php:225
+#: widgets_manager.php:298
+msgid "Error: widget not found!"
+msgstr ""
+
+#: widgets_manager.php:255
+#: widgets_manager.php:290
+msgid "Changed a widget"
+msgstr ""
+
+#: widgets_manager.php:257
+#: widgets_manager.php:293
+#: languages.php:132
+msgid "Changes has been saved"
+msgstr ""
+
+#: widgets_manager.php:327
+msgid "Deleted a widget"
+msgstr ""
+
+#: widgets_manager.php:329
+msgid "Widget successfully deleted"
+msgstr ""
+
+#: widgets_manager.php:442
+msgid "Core"
+msgstr ""
+
+#: sys_upgrade.php:48
+msgid "You are using the latest version"
+msgstr ""
+
+#: sys_upgrade.php:48
+msgid "Congratulations!"
+msgstr ""
+
+#: sys_upgrade.php:85
+msgid "Error: Wrong path to the root directory."
+msgstr ""
+
+#: sys_upgrade.php:96
+msgid "Error downloading update file"
+msgstr ""
+
+#: sys_upgrade.php:162
+msgid "Updating has been completed"
+msgstr ""
+
+#: languages.php:70
+msgid "Create a language"
+msgstr ""
+
+#: languages.php:74
+msgid "Language has been created"
+msgstr ""
+
+#: languages.php:128
+msgid "Changed a language"
+msgstr ""
+
+#: languages.php:155
+#: languages.php:171
+msgid "This language has been used by default and can not be deleted"
+msgstr ""
+
+#: languages.php:155
+#: languages.php:171
+msgid "Blocking"
+msgstr ""
+
+#: languages.php:163
+#: languages.php:183
+msgid "Deleted the ID language"
+msgstr ""
+
+#: languages.php:185
+msgid "the language has been deleted"
+msgstr ""
+
+#: languages.php:206
+msgid "Specified a language or selected a language"
+msgstr ""
+
+#: languages.php:208
+msgid "The language has been installed by default"
+msgstr ""
+
+#: settings.php:125
+msgid "Page has not been found"
+msgstr ""
+
+#: settings.php:169
+msgid "Changed wesite settings"
+msgstr ""
+
+#: settings.php:172
+msgid "Settings have been saved"
+msgstr ""
+
+#: backup.php:42
+msgid "Directory ./application/backups has no writing permission"
+msgstr ""
+
+#: backup.php:113
+msgid "Backup copying has been completed"
+msgstr ""
+
+#: categories.php:59
+msgid "The position has been successfully saved"
+msgstr ""
+
+#: categories.php:127
+msgid "URL categories"
+msgstr ""
+
+#: categories.php:138
+msgid "Per page"
+msgstr ""
+
+#: categories.php:205
+#: categories.php:346
+msgid "Category has been created or created a category"
+msgstr ""
+
+#: categories.php:213
+msgid "Created or has been created"
+msgstr ""
+
+#: categories.php:244
+msgid "Changed the category"
+msgstr ""
+
+#: categories.php:416
+msgid "Meta title"
+msgstr ""
+
+#: categories.php:439
+msgid "Translated the category"
+msgstr ""
+
+#: categories.php:448
+msgid "Changed the category translation"
+msgstr ""
+
+#: categories.php:460
+msgid "Category translation updated"
+msgstr ""
+
+#: categories.php:518
+msgid "Category deletion error"
+msgstr ""
+
+#: categories.php:529
+#: categories.php:561
+msgid "Deleted ID category or ID category has been deleted"
+msgstr ""
+
+#: categories.php:587
+msgid "Category has been deleted"
+msgstr ""
+
+#: /var/www/image.loc/templates/administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr ""
+
+#: /var/www/image.loc/templates/administrator/profiler_template.php:405
+msgid "profiler_no_profiles"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/ajax.php:92
+#: /var/www/image.loc/application/modules/shop/ajax.php:119
+#: /var/www/image.loc/application/modules/shop/profileapi.php:34
+#: /var/www/image.loc/application/modules/shop/profile.php:74
+msgid "Email"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/ajax.php:94
+#: /var/www/image.loc/application/modules/shop/ajax.php:121
+#, fuzzy
+msgid "Additional information"
+msgstr "Настр"
+
+#: /var/www/image.loc/application/modules/shop/product_spy.php:85
+msgid "You have successfully unsubscribed from tracking"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/product_spy.php:87
+msgid "This subscription is not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/product_spy.php:97
+msgid "The number of subscriptions to this product"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/shop.php:99
+msgid "Error is not enough data"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profileapi.php:33
+#: /var/www/image.loc/application/modules/shop/profile.php:73
+msgid "name"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profileapi.php:36
+#: /var/www/image.loc/application/modules/shop/profile.php:76
+msgid "Telephone number"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profileapi.php:61
+#: /var/www/image.loc/application/modules/shop/profile.php:91
+msgid "Data is saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profile.php:35
+msgid "Profile"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profile.php:97
+msgid "Old Password"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profile.php:99
+msgid "Confirm password"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profile.php:105
+msgid "wrong"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/profile.php:107
+msgid "Succesfully saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/compare.php:30
+msgid "List of comparisons"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:160
+#: /var/www/image.loc/application/modules/shop/_cart.php:158
+#: /var/www/image.loc/application/modules/shop/cart.php:159
+msgid "View orders"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:598
+#: /var/www/image.loc/application/modules/shop/wish_list.php:205
+#: /var/www/image.loc/application/modules/shop/_cart.php:499
+#: /var/www/image.loc/application/modules/shop/cart.php:500
+msgid "Name, surname"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:602
+#: /var/www/image.loc/application/modules/shop/wish_list.php:208
+#: /var/www/image.loc/application/modules/shop/cart.php:504
+msgid "Order comment"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:619
+#: /var/www/image.loc/application/modules/shop/cart.php:524
+msgid "This method of delivery does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:702
+#: /var/www/image.loc/application/modules/shop/_cart.php:603
+#: /var/www/image.loc/application/modules/shop/cart.php:607
+msgid "Was made an order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:704
+#: /var/www/image.loc/application/modules/shop/cart.php:609
+msgid "User email"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:706
+#: /var/www/image.loc/application/modules/shop/_cart.php:502
+#: /var/www/image.loc/application/modules/shop/_cart.php:607
+#: /var/www/image.loc/application/modules/shop/cart.php:611
+msgid "Delivery address"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:707
+#: /var/www/image.loc/application/modules/shop/_cart.php:608
+#: /var/www/image.loc/application/modules/shop/cart.php:612
+msgid "Link to view the order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:712
+#: /var/www/image.loc/application/modules/shop/cart.php:618
+msgid "ImageCMS store administration "
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:714
+#: /var/www/image.loc/application/modules/shop/_cart.php:615
+#: /var/www/image.loc/application/modules/shop/cart.php:620
+msgid "New order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:829
+#: /var/www/image.loc/application/modules/shop/cart.php:726
+msgid "Product ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:830
+#: /var/www/image.loc/application/modules/shop/cart.php:727
+msgid "Variant ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:834
+#: /var/www/image.loc/application/modules/shop/cart.php:731
+msgid "Actual to"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:858
+#: /var/www/image.loc/application/modules/shop/_cart.php:750
+#: /var/www/image.loc/application/modules/shop/cart.php:755
+msgid "This product does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:868
+#: /var/www/image.loc/application/modules/shop/_cart.php:760
+#: /var/www/image.loc/application/modules/shop/cart.php:765
+msgid "This product variant does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/cart_api.php:884
+#: /var/www/image.loc/application/modules/shop/cart.php:781
+msgid "Field Actual: must contain a valid date."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/wish_list.php:125
+msgid "View WishList"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/wish_list.php:209
+msgid "Code protection"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:503
+msgid "Comment to the order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:520
+msgid "This delivery method does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:605
+msgid "User mail"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:606
+msgid "User phone"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:613
+msgid "ImageCMS store administration"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:721
+msgid "product ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:722
+msgid "option ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:726
+msgid "Current date"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/_cart.php:776
+msgid "Actual field to should contain the correct date"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/widgets/shop_widgets.php:151
+#: /var/www/image.loc/application/modules/shop/widgets/shop_widgets.php:212
+#: /var/www/image.loc/application/modules/shop/widgets/shop_widgets.php:267
+#: /var/www/image.loc/application/modules/shop/widgets/shop_widgets.php:324
+msgid "Successfuly saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:26
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:45
+msgid "Price up on "
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:28
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:47
+msgid "Price has not changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:30
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopSpy.php:49
+msgid "Price decreased "
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SNotifications.php:24
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrders.php:51
+msgid "Mail"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SNotifications.php:27
+#, fuzzy
+msgid "Create date"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SNotifications.php:30
+msgid "Notify by Email"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SNotifications.php:32
+msgid "Set status"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrders.php:46
+msgid "Pay method"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrders.php:48
+msgid "Commentary to change the status of"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrders.php:55
+#, fuzzy
+msgid "Created date"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrders.php:56
+msgid "Updated date"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:20
+msgid "CSV column name"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:21
+msgid "Maltiple selection"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:25
+msgid "Show on the product page"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:26
+msgid "Main property"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:27
+msgid "Show in comparison goods"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:28
+msgid "Show in filter"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProperties.php:29
+msgid "Use in categories"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCurrencies.php:21
+msgid "Default"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCurrencies.php:22
+msgid "Iso Code"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCurrencies.php:23
+msgid "Symbol"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCurrencies.php:24
+msgid "Course"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrderStatusHistory.php:22
+msgid "Order ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrderStatusHistory.php:23
+msgid "Status ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SOrderStatusHistory.php:24
+msgid "Manager ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCallbacks.php:20
+msgid "Subject matter"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCategory.php:28
+msgid "Catagory template"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SCategory.php:29
+msgid "Sorting method by default"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProducts.php:30
+msgid "Additional categories"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProducts.php:38
+msgid "Related products"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SProducts.php:39
+msgid "Produts templates"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/ShopKit.php:28
+msgid "Attached products ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/SDeliveryMethods.php:22
+msgid "Free from"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:21
+msgid "Object"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:26
+msgid "Field is required"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:27
+msgid "Multiple choice"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:28
+msgid "Possible values"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:30
+msgid "Field is active"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:31
+msgid "The field of private"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/models/build/classes/Shop/CustomFields.php:32
+msgid "access Access rights"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/deliverymethods.php:73
+msgid "Delivery created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/deliverymethods.php:109
+msgid "Delivery method is not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/deliverymethods.php:172
+#: /var/www/image.loc/application/modules/shop/admin/users.php:468
+msgid "No data transmitted"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/deliverymethods.php:184
+msgid "Delivery method removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/search.php:189
+msgid "Items saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/users.php:288
+msgid "A user with this email is already registered."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/users.php:311
+msgid "Created by"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/users.php:313
+msgid "User created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/users.php:345
+msgid "User not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/users.php:480
+msgid "Members removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:43
+msgid "Certificate with this key already exists"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:49
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:106
+msgid "Cost of the certificate"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:62
+msgid "Certificate is created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:93
+msgid "Certificate (s) removed (s)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:139
+msgid "You have changed the status of the certificate"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/gifts.php:166
+msgid "The settings are saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/discounts.php:74
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:76
+msgid "Discount created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/discounts.php:184
+msgid "Discounts are removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:151
+msgid "Banner created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:183
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:356
+msgid "Banner could not be found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:255
+msgid "Banner updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:295
+msgid "Banner removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/banners.php:371
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:288
+#: /var/www/image.loc/application/modules/shop/admin/products.php:1000
+msgid "language"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:154
+msgid "Position created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:185
+msgid "Such status does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:229
+msgid "The default status changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:248
+msgid "Callback status changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:262
+msgid "Items saved successfully"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:280
+msgid "Callback theme changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:296
+msgid "Callback removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:301
+msgid "Callbacks removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:318
+msgid "You can not delete the default status"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:325
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:180
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:184
+#: /var/www/image.loc/application/modules/shop/admin/notificationstatuses.php:150
+msgid "Status removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:361
+msgid "Topic started"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:399
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:152
+#: /var/www/image.loc/application/modules/shop/admin/products.php:1038
+msgid "Changes are saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/callbacks.php:437
+msgid "Theme removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:79
+msgid "Order status created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:110
+msgid "Order status not find"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:128
+msgid "changes are saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:172
+msgid "Status and related orders removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:189
+msgid "This status does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:192
+msgid "Can not remove the basic status"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orderstatuses.php:226
+msgid "The positions have been successfully saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:57
+msgid "You did not ask for a set of main commodity"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:62
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:141
+msgid "You must attach the goods to create a set"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:68
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:147
+msgid "Kit with such goods already exists"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:89
+msgid "Kit created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:118
+msgid "The kit was not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:136
+msgid "You did not ask for a set of main commodity "
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/kits.php:225
+msgid "Set (s) has been successfully removed (s)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:85
+msgid "Property created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:115
+msgid "Property is not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:191
+msgid "The list of properties is empty"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:247
+msgid "Property(s are) is  removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/properties.php:261
+msgid "Change successfully saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/customfields.php:80
+msgid "An additional field is created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/customfields.php:104
+msgid "Field not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/customfields.php:178
+msgid "Field is removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:64
+msgid "The URL you busy"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:99
+msgid "Brand created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:123
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:274
+msgid "Brand not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/brands.php:138
+#: /var/www/image.loc/application/modules/shop/admin/products.php:242
+msgid "This product has been successfully created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:123
+msgid "Notification is not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:138
+msgid "Manager does not exist or is not set"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:156
+msgid "Notification updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:179
+msgid "Notification status changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:215
+msgid "User is notified by E-mail"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:270
+msgid "Uninstalling"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notifications.php:300
+msgid "Order status changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notificationstatuses.php:71
+msgid "Status pending created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/notificationstatuses.php:95
+msgid "Status pending no nayden"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:49
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:112
+msgid "The amount of"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:50
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:114
+msgid "Amount before"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:139
+msgid "Discount updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:223
+msgid "refreshed successfully"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/comulativ.php:258
+msgid "Cumulative discount removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/productspy.php:56
+msgid "Message header to change the prices"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/productspy.php:66
+msgid "Settings successfully saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/warehouses.php:48
+msgid "Warehouse created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/warehouses.php:66
+msgid "Warehouse is not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/warehouses.php:95
+msgid "No transferred data"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/warehouses.php:107
+msgid "Warehouse deleted"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/warehouses.php:107
+msgid "The operation was successful"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:40
+msgid "Category was not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:122
+msgid "Url engaged"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:133
+msgid "Url field is blank"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:280
+#: /var/www/image.loc/application/modules/shop/admin/products.php:986
+msgid "Product not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:320
+msgid "The URL engaged"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:439
+msgid "Editing product successfully"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:803
+msgid "Price updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:813
+msgid "copy"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:921
+msgid "A copy was successfully created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/products.php:1140
+msgid "Image does not exist"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/paymentmethods.php:63
+msgid "Payment method is created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/paymentmethods.php:95
+msgid "Payment method is not found."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/paymentmethods.php:168
+msgid "Method of payment is removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:79
+msgid "The main image (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:80
+msgid "The main image (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:81
+msgid "Another variant of the basic image size (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:82
+msgid "Another variant of the basic image size (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:83
+msgid "Small image (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:84
+msgid "Small image (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:85
+msgid "Another embodiment of a small image size (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:86
+msgid "Another embodiment of a small image size (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:87
+msgid "Additional images (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:88
+msgid "Additional images (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:89
+msgid "Thumbnails of additional images (width)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:90
+msgid "Thumbnails of additional images (height)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:92
+msgid "Number of products per page"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:93
+msgid "The number of items in the control panel"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:96
+msgid "Email address of the sender in the Notice for the buyer of making an order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:97
+msgid "Email address of the administrator in the Notice for the buyer of making an order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:98
+msgid "Email address of the sender in the Notice of change of status of the customer order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:99
+msgid "Email address of the sender WishList"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:100
+msgid "Email address of the sender of the alert appears"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:101
+msgid "Email, on which you can post messages on the new Callback"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:102
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:103
+msgid "Email address of the sender"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:111
+msgid "The storage time of the caches (in milliseconds)"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:114
+msgid "Namespace Memcached"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:115
+msgid "Included"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/settings.php:345
+msgid "Images updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:50
+msgid "Currency created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:74
+msgid "Currency not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:180
+msgid "You can not delete the main currency"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:198
+msgid "Error. Currency used by other objects. Check the payment methods."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:209
+msgid "Error. The currency used in the products. Check the currency options products."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:218
+msgid "Currency successfully removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:231
+msgid "Recalculation is made. Now the currency may be removed."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:237
+msgid "Prices updated"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/currencies.php:239
+msgid "There were no prices for renovation"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:209
+msgid "Orders can not be found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:504
+msgid "Orders are removed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:580
+msgid "Status of payment orders changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:580
+msgid "Saved"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:635
+msgid "You can not delete the last item from the order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:655
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:670
+msgid "The item is deleted from the order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:762
+msgid "This product changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:789
+msgid "Product changed"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:835
+msgid "Product added to the order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/orders.php:1017
+msgid "Order is created successfully"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:67
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:144
+msgid "This URL engaged"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:98
+#, fuzzy
+msgid "Category created"
+msgstr "Настр"
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:232
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:237
+msgid "Category successfully deleted"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:241
+msgid "Remove category error"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:413
+msgid "File successfully created"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/categories.php:416
+msgid "Could not create file"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/system.php:186
+msgid "is not writable"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/system.php:241
+msgid "You do not choose"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/system.php:283
+msgid "Export successfully"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/admin/system.php:286
+msgid "No configuration key or<br /> key account list on Mailchimp"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/SCurrencyHelper.php:178
+msgid "In "
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/DElShopImport.php:75
+msgid "File open error"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/DElShopImport.php:139
+msgid "Unknown attribute"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/DElShopImport.php:146
+msgid "Attribute Name of obligatory field"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/DElShopImport.php:149
+msgid "Category or Product - required fields"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ShopExport.php:32
+msgid "Specify columns for export"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ShopExport.php:53
+#: /var/www/image.loc/application/modules/shop/classes/ShopExport.php:154
+msgid "Unable to start exporting without these attributes"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/BasePaymentProcessor.php:86
+msgid "Pay"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ShopController.php:48
+msgid "Page not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/SProductSpy.php:16
+msgid "This item is no added to tracking"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ShopImport.php:31
+#: /var/www/image.loc/application/modules/shop/classes/ShopImport.php:42
+msgid "Error parsing request"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:280
+msgid "Recipient"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:287
+msgid "Identification code"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:290
+msgid "Integer. The maximum length of 9 characters."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:295
+msgid "Current account"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:298
+msgid "Integer. The maximum length of 14 characters."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:303
+msgid "MFI bank"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:306
+msgid "Integer. The maximum length of 6 characters."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:312
+msgid "Banknote"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/OschadBankInvoiceSystem.php:315
+msgid "For example: Rs."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ShopAdminController.php:57
+#: /var/www/image.loc/application/modules/shop/classes/ShopAdminController.php:58
+msgid "Translated field"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/SAdminSidebarRenderer.php:17
+#, fuzzy
+msgid "Create catagory"
+msgstr "Создать категорию"
+
+#: /var/www/image.loc/application/modules/shop/classes/SPropertiesRenderer.php:510
+msgid "The names of the properties with ID not found"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/Search/BaseSearch.php:230
+msgid "View all results"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseImport.php:181
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseExport.php:44
+msgid "Main variant image"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseImport.php:182
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseExport.php:45
+msgid "Small variant image"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseImport.php:188
+#: /var/www/image.loc/application/modules/shop/classes/ImportCSV/BaseExport.php:51
+msgid "Small description"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:115
+msgid "Beneficiary Account"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:148
+msgid "Settings merchant"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:152
+msgid "The method of sending data for all requests: GET"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:142
+msgid "Information about the transaction"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:156
+msgid "Trick seller"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:159
+msgid "Trick seller for which the buyer has to make the payment. Format - a letter and 12 digits."
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:113
+msgid "Account number"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:119
+msgid "Lifetime Account"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:127
+msgid "Merchant ID"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:133
+msgid "Signature"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:193
+msgid "Name of a consignee"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:200
+msgid "Payee's bank"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:207
+msgid "Tax Receiver"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:222
+msgid "BIC"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:230
+msgid "Correspondent account"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:244
+msgid "Kopek"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:71
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:112
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:125
+msgid "Home"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:334
+msgid "Formulation <br/> order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:335
+msgid "about appearance"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:353
+msgid "Formulation order"
+msgstr ""
+
+#: /var/www/image.loc/application/modules/shop/helpers/shop_helper.php:354
+msgid "Announce a"
+msgstr ""
+

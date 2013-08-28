@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_group_list')}</span>
+            <span class="title">{lang("Roles groups list","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
-                <a class="btn btn-small btn-success pjax" href="/admin/components/run/shop/rbac/group_create" ><i class="icon-plus-sign icon-white"></i>Создать групу ролей</a>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <a class="btn btn-small btn-success pjax" href="/admin/components/run/shop/rbac/group_create" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group','admin')}</a>
             </div>
         </div>  
     </div>
@@ -56,7 +56,7 @@
         {else:}
         </br>
         <div class="alert alert-info">
-            {lang('a_list')} {lang('a_group')} {lang('a_privilegy')} {lang('a_empty')}
+            {lang("List","admin")} {lang("Group","admin")} {lang('Privilegy','admin')} {lang("Empty.","admin")}
         </div>
         {/if}
     </div>
@@ -64,10 +64,10 @@
 <div class="modal hide fade">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_delete_group')}?</h3>
+        <h3>{lang("Remove group","admin")}?</h3>
     </div>
     <div class="modal-footer">
-        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
-        <a href="" class="btn btn-primary" onclick="shopCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang('a_delete')}</a>
+        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
+        <a href="" class="btn btn-primary" onclick="shopCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang("Delete","admin")}</a>
     </div>
 </div>

@@ -1,5 +1,5 @@
 {if count($items)}
-<!--    <caption>{lang('s_cart')}</caption>-->
+<!--    <caption>{lang("Basket","admin")}</caption>-->
     <colgroup>
         <col span="1" width="120">
         <col span="1" width="390">
@@ -155,7 +155,7 @@
                     $('#giftcertkey').val('');
                 </script>
             {/literal}
-            <div class="f_r sum"><span class="price">{lang('s_summ')}:</span><br/>
+            <div class="f_r sum"><span class="price">{lang("Total","admin")}:</span><br/>
                 {if isset($item.delivery_price)}
                     <div class="f_r price f-s_12 p-t_19">Доставка:<br/><br/>
                     {/if}
@@ -172,7 +172,7 @@
             {else:}
                 {echo $script}
                 <div class="comparison_slider">
-                    <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_cart_empty'))}</div>
+                    <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang("Basket empty","admin"))}</div>
                 </div>
             {/if}
 

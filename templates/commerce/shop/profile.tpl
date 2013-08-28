@@ -1,7 +1,7 @@
 <div class="main_body">
     <div class="content">
         <div class="center">
-            <h1>{lang('s_private_office')}</h1>
+            <h1>{lang("Private office","admin")}</h1>
             <div  class="msg_form_edit">
                 {if $errors}
                     <div class="msg_form_edit_prof">
@@ -9,43 +9,43 @@
                     </div>
                 {/if}</div>
             <div class="personal_info f_l">
-                <div class="block_title_18"><span class="title_18">{lang('s_profile_me')}</span></div>
+                <div class="block_title_18"><span class="title_18">{lang("My Account","admin")}</span></div>
                 <ul>
                     <li>
-                        <span>{lang('s_c_uoy_name_u')}:</span>
+                        <span>{lang("You name","admin")}:</span>
                         <b>{echo encode($profile->getName())}</b>
                     </li>
                     <li>
-                        <span>{lang('s_c_uoy_user_el')}:</span>
+                        <span>{lang("E-mail Address")}:</span>
                         <b>{echo encode($profile->getUserEmail())}</b>
                     </li>
                     <li>
-                        <span>{lang('s_phone')}:</span>
+                        <span>{lang("Phone","admin")}:</span>
                         <b>{echo encode($profile->getPhone())}</b>
                     </li>
                     <li>
-                        <span>{lang('s_profile_me_address')}:</span>
+                        <span>{lang("Address for service","admin")}:</span>
                         <b>{echo encode($profile->getAddress())}</b>
                     </li>
                 </ul>
                     
-                <a href="{shop_url('/cart')}" class="f_r w-s_n-w">{lang('s_profile_me_bascket')}</a>
-                <a href="{shop_url('wish_list')}"  style="margin-right:9px;" class="f_l w-s_n-w" >{lang('s_profile_me_change_view_wishlist')}</a><br />
-                <a href="#" class="f_r w-s_n-w" id="user_form">{lang('s_edit_personal_information')}</a>
-                <a href="#" class="f_l w-s_n-w" id="change_password">{lang('s_profile_me_change_password')}</a>
+                <a href="{shop_url('/cart')}" class="f_r w-s_n-w">{lang("Go to basket","admin")}</a>
+                <a href="{shop_url('wish_list')}"  style="margin-right:9px;" class="f_l w-s_n-w" >{lang("View Wishlist","admin")}</a><br />
+                <a href="#" class="f_r w-s_n-w" id="user_form">{lang("Edit personal information","admin")}</a>
+                <a href="#" class="f_l w-s_n-w" id="change_password">{lang("Change Password","admin")}</a>
 
 
                 <div class="fancy c_b" style="border: none; display: none;" id="change_password_fields">
                     <form action="{shop_url('profile')}" method="post" name="editFormpass" style="padding-left: 0;">
                         <div id="change_info_edit">
-                            <h3>{lang('s_profile_me_change_password')}</h3>
-                            <label>{lang('lang_old_password')}:
+                            <h3>{lang("Change Password","admin")}</h3>
+                            <label>{lang("Old Password","admin")}:
                                 <input type="password" class="required" name="old_password">
                             </label>
-                            <label> {lang('lang_new_password')}:
+                            <label> {lang("The new password","admin")}:
                                 <input type="password" class="required" name="password">
                             </label>
-                            <label>{lang('s_newpassword')}:
+                            <label>{lang("Confirm new password","admin")}:
                                 <input type="password" class="required" name="confirm_new_password">
                             </label>
 
@@ -53,7 +53,7 @@
                                 <div class="p-t_19 c_b clearfix" style="width: 191px;">
                                     <div class="buttons button_middle_blue f_r">
                                         <input type="hidden" value="1" name="cangePassword" />
-                                        <a href="#" id="checkout" onClick="document.editFormpass.submit();">{echo ShopCore::t(lang('s_save'))}</a>
+                                        <a href="#" id="checkout" onClick="document.editFormpass.submit();">{echo ShopCore::t(lang("Save","admin"))}</a>
                                     </div>
                                 </div>
                             </div>
@@ -66,17 +66,17 @@
                     <form action="{shop_url('profile')}" method="post" name="editForms" style="padding-left: 0;">
                         <div id="change_info_edit">
 
-                            <h3>{lang('s_edit_personal_information')}</h3>
-                            <label>{lang('s_name_and_surname')}:
+                            <h3>{lang("Edit personal information","admin")}</h3>
+                            <label>{lang("Name and surname","admin")}:
                                 <input type="text" class="required" value="{echo encode($profile->getName())}" name="name"/>
                             </label>
-                            <label>{lang('s_email')}:
+                            <label>{lang("Email","admin")}:
                                 <input type="text" class="required" value="{echo encode($profile->getUserEmail())}" name="email"/>
                             </label>                          
-                            <label>{lang('s_address')} {lang('s_delivery')}:
+                            <label>{lang("Address","admin")} {lang("Delivery","admin")}:
                                 <input type="text" class="required" value="{echo encode($profile->getAddress())}" name="address"/>
                             </label>
-                            <label> {lang('s_phone')}:
+                            <label> {lang("Phone","admin")}:
                                 <input type="text" class="required" value="{echo encode($profile->getPhone())}" name="phone"/>
                             </label>
 
@@ -84,7 +84,7 @@
                                 <div class="p-t_19 c_b clearfix"  style="width: 191px;">
                                     <div class="buttons button_middle_blue f_r">
                                         <input type="hidden" value="1" name="changeName"/>
-                                        <input type="submit" id="checkout"  value="{lang('s_save')}"/>
+                                        <input type="submit" id="checkout"  value="{lang("Save","admin")}"/>
                                     </div>
                                 </div>
                             </div>                                    
@@ -95,12 +95,12 @@
             </div> 
 
             <div class="history_order f_r">
-                <div class="block_title_18"><span class="title_18">{lang('s_order_history')}</span></div>
+                <div class="block_title_18"><span class="title_18">{lang("Order History","admin")}</span></div>
 
-                {lang('s_in_p')} {lang('s_cart_p')}:
+                {lang("In","admin")} {lang("Cart","admin")}:
                 <span style="font-weight: bold;">
                     {echo ShopCore::app()->SCart->totalItems()}
-                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}
                 </span>
                 <table cellspacing="0">
                     <colgroup>
@@ -114,18 +114,18 @@
                     <thead>
                         <tr>
                             <th>№</th>
-                            <th>{lang('s_pay')}</th>
-                            <th>{lang('s_status')}</th>
-                            <th>{lang('s_create')}</th>
-                            <th>{lang('s_refresh')}</th>
-                            <th>{lang('s_summ')}</th>
+                            <th>{lang("Payment","admin")}</th>
+                            <th>{lang("Status","admin")}</th>
+                            <th>{lang("Created","admin")}</th>
+                            <th>{lang("Updated","admin")}</th>
+                            <th>{lang("Total","admin")}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             {foreach $orders as $order}
                                 <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
-                                <td>{if $order->getPaid()}{lang('s_yes')} {else:} {lang('s_no')} {/if}</td>
+                                <td>{if $order->getPaid()}{lang("Yes","admin")} {else:} {lang("No","admin")} {/if}</td>
                                 <td>{echo SOrders::getStatusName('Id', $order->getStatus())}</td>
                                 <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                 <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
@@ -135,7 +135,6 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
         <div class="center">
         </div>

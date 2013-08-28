@@ -1,0 +1,1259 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-07 14:07+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../../../core\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ../errors\n"
+"X-Poedit-SearchPath-2: ../helpers\n"
+"X-Poedit-SearchPath-3: ../libraries\n"
+"X-Poedit-SearchPath-4: ../modules/shop\n"
+
+#: ../helpers/category_helper.php:86
+msgid "No category"
+msgstr ""
+
+#: ../helpers/rules_helper.php:45
+msgid "No rights for"
+msgstr ""
+
+#: ../helpers/rules_helper.php:57
+msgid "Error checking permissions"
+msgstr ""
+
+#: ../helpers/rules_helper.php:87
+msgid "Operation panel"
+msgstr ""
+
+#: ../helpers/rules_helper.php:88
+msgid "Languages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:89
+msgid "Cache"
+msgstr ""
+
+#: ../helpers/rules_helper.php:90
+msgid "Pages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:91
+msgid "Categories"
+msgstr ""
+
+#: ../helpers/rules_helper.php:92
+msgid "Modules"
+msgstr ""
+
+#: ../helpers/rules_helper.php:93
+msgid "Widgets"
+msgstr ""
+
+#: ../helpers/rules_helper.php:94
+msgid "Menu"
+msgstr ""
+
+#: ../helpers/rules_helper.php:95
+msgid "Members"
+msgstr ""
+
+#: ../helpers/rules_helper.php:96
+msgid "Group"
+msgstr ""
+
+#: ../helpers/rules_helper.php:97
+msgid "Logs"
+msgstr ""
+
+#: ../helpers/rules_helper.php:98
+msgid "Backup copying"
+msgstr ""
+
+#: ../helpers/rules_helper.php:99
+msgid "File Editor"
+msgstr ""
+
+#: ../helpers/rules_helper.php:113
+msgid "Access Control Panel"
+msgstr ""
+
+#: ../helpers/rules_helper.php:114
+msgid "System update"
+msgstr ""
+
+#: ../helpers/rules_helper.php:115
+msgid "Find pages in the control panel"
+msgstr ""
+
+#: ../helpers/rules_helper.php:116
+msgid "Creating a language"
+msgstr ""
+
+#: ../helpers/rules_helper.php:117
+msgid "Changing the language"
+msgstr ""
+
+#: ../helpers/rules_helper.php:118
+msgid "Remove languages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:119
+msgid "Changing site settings"
+msgstr ""
+
+#: ../helpers/rules_helper.php:120
+msgid "Clearing the cache"
+msgstr ""
+
+#: ../helpers/rules_helper.php:121
+msgid "Creating pages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:122
+msgid "Editing pages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:123
+msgid "Delete pages"
+msgstr ""
+
+#: ../helpers/rules_helper.php:124
+msgid "Creating categories"
+msgstr ""
+
+#: ../helpers/rules_helper.php:125
+msgid "Edit Categories"
+msgstr ""
+
+#: ../helpers/rules_helper.php:126
+msgid "Category delete"
+msgstr ""
+
+#: ../helpers/rules_helper.php:127
+msgid "Install Modules"
+msgstr ""
+
+#: ../helpers/rules_helper.php:128
+msgid "Removing Modules"
+msgstr ""
+
+#: ../helpers/rules_helper.php:129
+msgid "Administration module"
+msgstr ""
+
+#: ../helpers/rules_helper.php:130
+msgid "Creating widgets"
+msgstr ""
+
+#: ../helpers/rules_helper.php:131
+msgid "Removing widgets"
+msgstr ""
+
+#: ../helpers/rules_helper.php:132
+msgid "Access to the widget settings"
+msgstr ""
+
+#: ../helpers/rules_helper.php:133
+msgid "Create a menu"
+msgstr ""
+
+#: ../helpers/rules_helper.php:134
+msgid "Edit menu"
+msgstr ""
+
+#: ../helpers/rules_helper.php:135
+msgid "Menu deleting"
+msgstr ""
+
+#: ../helpers/rules_helper.php:136
+msgid "Create users of their group"
+msgstr ""
+
+#: ../helpers/rules_helper.php:137
+msgid "Create users of all groups"
+msgstr ""
+
+#: ../helpers/rules_helper.php:138
+msgid "Edit Users"
+msgstr ""
+
+#: ../helpers/rules_helper.php:139
+msgid "Remove Users"
+msgstr ""
+
+#: ../helpers/rules_helper.php:140
+msgid "Viewing member"
+msgstr ""
+
+#: ../helpers/rules_helper.php:141
+msgid "Creating Groups"
+msgstr ""
+
+#: ../helpers/rules_helper.php:142
+msgid "Editing Groups"
+msgstr ""
+
+#: ../helpers/rules_helper.php:143
+msgid "Deleting Groups"
+msgstr ""
+
+#: ../helpers/rules_helper.php:144
+msgid "View Log"
+msgstr ""
+
+#: ../helpers/rules_helper.php:145
+msgid "Backing up"
+msgstr ""
+
+#: ../helpers/rules_helper.php:146
+msgid "Access to the file editor"
+msgstr ""
+
+#: ../helpers/rules_helper.php:147
+msgid "Download files"
+msgstr ""
+
+#: ../helpers/rules_helper.php:148
+msgid "Editing Files"
+msgstr ""
+
+#: ../helpers/rules_helper.php:149
+msgid "Edit Folders"
+msgstr ""
+
+#: ../libraries/DX_Auth.php:1218
+#: ../libraries/DX_Auth.php:1223
+#: ../libraries/DX_Auth.php:1226
+msgid "Improper protection code"
+msgstr ""
+
+#: ../libraries/Permitions.php:481
+#: ../libraries/Permitions.php:552
+#: ../libraries/Permitions.php:615
+#: ../libraries/Permitions.php:798
+msgid "Changes have been saved"
+msgstr ""
+
+#: ../libraries/Permitions.php:585
+msgid "Role not found"
+msgstr ""
+
+#: ../libraries/Permitions.php:749
+msgid "Privilege created"
+msgstr ""
+
+#: ../libraries/Permitions.php:787
+msgid "The privilege is not found"
+msgstr ""
+
+#: ../modules/shop/cart.php:45
+msgid "s_cart"
+msgstr ""
+
+#: ../modules/shop/cart.php:149
+msgid "s_order_view"
+msgstr ""
+
+#: ../modules/shop/wish_list.php:214
+msgid "lang_captcha"
+msgstr ""
+
+#: ../modules/shop/profileapi.php:33
+msgid "s_name"
+msgstr ""
+
+#: ../modules/shop/profileapi.php:34
+msgid "s_email"
+msgstr ""
+
+#: ../modules/shop/profileapi.php:35
+msgid "s_address"
+msgstr ""
+
+#: ../modules/shop/profileapi.php:36
+msgid "s_nomer_telephona"
+msgstr ""
+
+#: ../modules/shop/profileapi.php:63
+msgid "s_user_profile_succes"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:280
+msgid "a_payment_recip"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:287
+msgid "a_payment_identif_code"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:290
+msgid "a_payment_help_1"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:295
+msgid "a_payment_curen"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:298
+msgid "a_payment_help_2"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:303
+msgid "a_payment_bank_mfi"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:306
+msgid "a_payment_help_3"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:312
+msgid "a_payment_banknote"
+msgstr ""
+
+#: ../modules/shop/classes/OschadBankInvoiceSystem.php:315
+msgid "a_payment_for_expamle"
+msgstr ""
+
+#: ../modules/shop/classes/ShopAdminController.php:55
+#: ../modules/shop/classes/ShopAdminController.php:56
+msgid "a_field_translate"
+msgstr ""
+
+#: ../modules/shop/classes/Profile/BaseProfile.php:43
+msgid "s_profile"
+msgstr ""
+
+#: ../modules/shop/classes/Profile/BaseProfile.php:105
+msgid "lang_old_password"
+msgstr ""
+
+#: ../modules/shop/classes/Profile/BaseProfile.php:106
+#: ../modules/shop/classes/Profile/BaseProfile.php:113
+#: ../modules/shop/classes/Profile/BaseProfile.php:115
+msgid "lang_password"
+msgstr ""
+
+#: ../modules/shop/classes/Profile/BaseProfile.php:107
+msgid "s_profile_confirm_pass"
+msgstr ""
+
+#: ../modules/shop/classes/Compare/BaseCompare.php:35
+msgid "s_list_comp"
+msgstr ""
+
+#: ../modules/shop/classes/Search/BaseSearch.php:229
+msgid "s_all_result"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:136
+msgid "a_email"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:142
+msgid "a_pay_pal_life"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:148
+#: ../modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:139
+#: ../modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
+#: ../modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:149
+#: ../modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:125
+msgid "a_liq_psett"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:152
+#: ../modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:143
+#: ../modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
+#: ../modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:154
+#: ../modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:129
+msgid "a_liq_help_1"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:156
+msgid "a_web_m_sall"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:159
+#: ../modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:153
+#: ../modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:160
+#: ../modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:167
+msgid "a_web_m_help_1"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:127
+msgid "a_liq_merch_id"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:133
+msgid "a_liq_signature"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:115
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:214
+msgid "a_sber_b_account"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:127
+msgid "a_login"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:134
+#: ../modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:141
+msgid "a_password"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:193
+msgid "a_sber_b_consigne"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:200
+msgid "a_sber_b_payer_bank"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:207
+msgid "a_sber_b_nn_bank"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:222
+msgid "a_sber_b_bic"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:230
+msgid "a_sber_b_corresp_acc"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:244
+msgid "a_sber_b_kopek"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:113
+msgid "a_acc_number_qiwi"
+msgstr ""
+
+#: ../modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:119
+msgid "a_life_acc_qiwi"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopBaners.php:21
+#: ../modules/shop/models/build/classes/Shop/SPaymentMethods.php:19
+msgid "a_name"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopBaners.php:22
+msgid "a_s_banner_text_create_b"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopBaners.php:23
+msgid "a_url"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopBaners.php:24
+msgid "a_image"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopBaners.php:25
+#: ../modules/shop/models/build/classes/Shop/SPaymentMethods.php:22
+msgid "a_position"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SPaymentMethods.php:20
+msgid "a_description"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SPaymentMethods.php:21
+msgid "a_active"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:24
+msgid "a_group"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:25
+msgid "a_fio"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:26
+msgid "a_phone"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:27
+msgid "a_address"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:28
+msgid "a_time_register"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:29
+msgid "a_summ_purchases"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/SUserProfile.php:30
+msgid "a_role"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
+msgid "a_date_start"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:27
+msgid "a_date_finish"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:28
+msgid "a_discount"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:29
+msgid "a_category"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:30
+msgid "a_product_n"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/ShopDiscounts.php:31
+msgid "a_group_users"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:21
+msgid "a_custom_f_object"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:24
+msgid "a_field_type"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:26
+msgid "a_custom_f_req_field_ne"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:27
+msgid "a_custom_f_multi_p"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:28
+msgid "a_custom_f_posibb_list"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:29
+msgid "a_validations"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:30
+msgid "a_custom_f_fiel_active"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:31
+msgid "a_custom_f_private_field"
+msgstr ""
+
+#: ../modules/shop/models/build/classes/Shop/CustomFields.php:32
+msgid "a_custom_f_right"
+msgstr ""
+
+#: ../modules/shop/admin/deliverymethods.php:73
+msgid "Delivery created"
+msgstr ""
+
+#: ../modules/shop/admin/deliverymethods.php:109
+msgid "Delivery method is not found"
+msgstr ""
+
+#: ../modules/shop/admin/deliverymethods.php:173
+#: ../modules/shop/admin/notifications.php:243
+msgid "No data transmitted"
+msgstr ""
+
+#: ../modules/shop/admin/deliverymethods.php:185
+msgid "Delivery method removed"
+msgstr ""
+
+#: ../modules/shop/admin/deliverymethods.php:216
+msgid "Positions saved"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:123
+msgid "Notification is not found"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:138
+msgid "Manager does not exist or is not set"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:156
+msgid "Notification updated"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:179
+msgid "Notification status updated"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:203
+msgid "User is notified by E-mail"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:256
+msgid "Uninstalling"
+msgstr ""
+
+#: ../modules/shop/admin/notifications.php:286
+msgid "Order status changed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:86
+#: ../modules/shop/admin/callbacks.php:318
+#: ../modules/shop/admin/callbacks.php:386
+#: ../modules/shop/admin/orders.php:1080
+#: ../modules/shop/admin/orders.php:1082
+#: ../modules/shop/admin/orders.php:1084
+msgid "Error"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:154
+msgid "Position created"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:185
+#: ../modules/shop/admin/orderstatuses.php:189
+msgid "Such status does not exist"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:229
+msgid "Default status was changed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:248
+msgid "Callback's status was changed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:262
+#: ../modules/shop/admin/orderstatuses.php:226
+msgid "Items saved successfully"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:280
+msgid "Callback is changed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:296
+msgid "Callback was removed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:301
+msgid "Callbacks was removed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:318
+msgid "Unable to remove default status"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:325
+msgid "Status was removed"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:361
+msgid "Topic started"
+msgstr ""
+
+#: ../modules/shop/admin/callbacks.php:437
+msgid "Topic deleted"
+msgstr ""
+
+#: ../modules/shop/admin/customfields.php:68
+msgid "An additional field is created"
+msgstr ""
+
+#: ../modules/shop/admin/customfields.php:127
+msgid "Field not found"
+msgstr ""
+
+#: ../modules/shop/admin/customfields.php:217
+msgid "Field is removed"
+msgstr ""
+
+#: ../modules/shop/admin/users.php:290
+msgid "A user with this email is already registered."
+msgstr ""
+
+#: ../modules/shop/admin/users.php:315
+msgid "Created by"
+msgstr ""
+
+#: ../modules/shop/admin/users.php:317
+msgid "User created"
+msgstr ""
+
+#: ../modules/shop/admin/users.php:349
+msgid "User not found"
+msgstr ""
+
+#: ../modules/shop/admin/users.php:363
+msgid "Shop"
+msgstr ""
+
+#: ../modules/shop/admin/users.php:484
+msgid "Members removed"
+msgstr ""
+
+#: ../modules/shop/admin/orderstatuses.php:79
+msgid "Order status created"
+msgstr ""
+
+#: ../modules/shop/admin/orderstatuses.php:110
+msgid "Order Status not found"
+msgstr ""
+
+#: ../modules/shop/admin/orderstatuses.php:172
+msgid "Status and related orders removed"
+msgstr ""
+
+#: ../modules/shop/admin/orderstatuses.php:180
+#: ../modules/shop/admin/orderstatuses.php:184
+#: ../modules/shop/admin/notificationstatuses.php:150
+msgid "Status removed"
+msgstr ""
+
+#: ../modules/shop/admin/orderstatuses.php:192
+msgid "Unable to remove the base status"
+msgstr ""
+
+#: ../modules/shop/admin/paymentmethods.php:63
+msgid "Payment method is created"
+msgstr ""
+
+#: ../modules/shop/admin/paymentmethods.php:95
+msgid "Payment method is not found."
+msgstr ""
+
+#: ../modules/shop/admin/paymentmethods.php:168
+msgid "Method of payment is removed"
+msgstr ""
+
+#: ../modules/shop/admin/paymentmethods.php:185
+#: ../modules/shop/admin/settings.php:379
+#: ../modules/shop/admin/notificationstatuses.php:169
+msgid "Items saved"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:121
+#: ../modules/shop/admin/products.php:46
+msgid "Category not found"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:194
+#: ../modules/shop/admin/productsOBF.php:359
+#: ../modules/shop/admin/products.php:119
+#: ../modules/shop/admin/products.php:282
+msgid "Date Created"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:207
+#: ../modules/shop/admin/products.php:132
+msgid "Url is buisy!"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:218
+#: ../modules/shop/admin/products.php:143
+msgid "Field Url is empty!"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:311
+#: ../modules/shop/admin/products.php:236
+msgid "The product was successfully created"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:350
+#: ../modules/shop/admin/productsOBF.php:1077
+#: ../modules/shop/admin/products.php:273
+#: ../modules/shop/admin/products.php:999
+msgid "Product not found"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:390
+msgid "Specified URL is busy"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:502
+#: ../modules/shop/admin/products.php:425
+msgid "The product was successfully edited"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:832
+#: ../modules/shop/admin/products.php:754
+msgid "Price updated"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:843
+#: ../modules/shop/admin/products.php:765
+msgid "(copy)"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:960
+#: ../modules/shop/admin/products.php:882
+msgid "A copy was successfully created"
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:1091
+#: ../modules/shop/admin/products.php:1013
+#: ../modules/shop/admin/banners.php:371
+msgid " language "
+msgstr ""
+
+#: ../modules/shop/admin/productsOBF.php:1129
+#: ../modules/shop/admin/products.php:1051
+#: ../modules/shop/admin/orders.php:317
+#: ../modules/shop/admin/warehouses.php:77
+msgid "Changes saved"
+msgstr ""
+
+#: ../modules/shop/admin/products.php:312
+msgid "The specified URL is busy"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:80
+msgid "Number of products on site"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:81
+msgid "Array of values for the number of products on site"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:82
+msgid "The number of items in the control panel"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:85
+msgid "Email address of the sender in the Notice for the buyer of making an order"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:86
+msgid "Email address of the administrator in the Notice for the buyer of making an order"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:87
+msgid "Email address of the sender in the Notice of change of status of the customer order"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:88
+msgid "Email address of the WishList sender"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:89
+msgid "Email address of the sender requested notify"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:90
+msgid "Email, which send messages to the new Callback"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:91
+#: ../modules/shop/admin/settings.php:92
+msgid "Email address of the sender"
+msgstr ""
+
+#: ../modules/shop/admin/settings.php:339
+#: ../modules/shop/admin/settings.php:358
+msgid "Pictures Updated"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:146
+msgid "Forward&nbsp;"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:147
+msgid "&nbsp;Back"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:207
+msgid "Order not found"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:412
+#: ../modules/shop/admin/orders.php:516
+msgid "Order Status changed"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:477
+msgid "Orders are removed"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:477
+#: ../modules/shop/admin/orders.php:516
+#: ../modules/shop/admin/warehouses.php:107
+msgid "The operation was successful"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:553
+msgid "Payment status of orders changed"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:553
+msgid "Saved"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:608
+msgid "You can not delete the last item from the order"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:628
+#: ../modules/shop/admin/orders.php:643
+msgid "Product is removed from the Order"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:785
+#: ../modules/shop/admin/orders.php:812
+msgid "Product updated"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:858
+msgid "Item has been added to the order"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:862
+msgid "This product does not exist"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:965
+msgid "Delivery"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:1067
+msgid "Order was successfully created"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:1080
+msgid "User is not selected"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:1082
+msgid "Delivery method is not selected"
+msgstr ""
+
+#: ../modules/shop/admin/orders.php:1084
+msgid "Payment method is not selected"
+msgstr ""
+
+#: ../modules/shop/admin/warehouses.php:48
+msgid "Warehouse created"
+msgstr ""
+
+#: ../modules/shop/admin/warehouses.php:66
+msgid "Warehouse not found"
+msgstr ""
+
+#: ../modules/shop/admin/warehouses.php:95
+msgid "No data transferred"
+msgstr ""
+
+#: ../modules/shop/admin/warehouses.php:107
+msgid "Warehouse deleted"
+msgstr ""
+
+#: ../modules/shop/admin/banners.php:151
+msgid "Banner created"
+msgstr ""
+
+#: ../modules/shop/admin/banners.php:183
+#: ../modules/shop/admin/banners.php:356
+msgid "Banner could not be found"
+msgstr ""
+
+#: ../modules/shop/admin/banners.php:255
+msgid "Banner updated"
+msgstr ""
+
+#: ../modules/shop/admin/banners.php:295
+msgid "Banner removed"
+msgstr ""
+
+#: ../modules/shop/admin/notificationstatuses.php:71
+msgid "Status pending created"
+msgstr ""
+
+#: ../modules/shop/admin/notificationstatuses.php:95
+msgid "Status pending no nayden"
+msgstr ""
+
+#: ../modules/shop/admin/system.php:117
+msgid "Could not find any properties"
+msgstr ""
+
+#: ../modules/shop/admin/system.php:308
+msgid "You do not choose"
+msgstr ""
+
+#: ../modules/shop/admin/system.php:350
+msgid "Export successfully"
+msgstr ""
+
+#: ../modules/shop/admin/system.php:353
+msgid "No configuration key or<br /> key account list on Mailchimp"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:50
+msgid "Currency created"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:74
+#: ../modules/shop/admin/currencies.php:110
+msgid "Currency not found"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:193
+msgid "Unable to remove the main currency"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:211
+msgid "Error. Currency used by other objects. Check the payment methods"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:222
+msgid "Error. The currency used in the products. Check the currency options products"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:231
+msgid "Currency successfully removed"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:244
+msgid "Conversion completed. Now the currency may be removed"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:249
+msgid "Prices updated"
+msgstr ""
+
+#: ../modules/shop/admin/currencies.php:251
+msgid "There was no price for the upgrade"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:48
+#: ../modules/shop/admin/comulativ.php:111
+#: ../modules/shop/admin/comulativ.php:206
+msgid "Discount"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:49
+#: ../modules/shop/admin/comulativ.php:112
+msgid "The amount of"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:50
+#: ../modules/shop/admin/comulativ.php:114
+msgid "Amount before"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:51
+#: ../modules/shop/admin/comulativ.php:113
+msgid "Description"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:76
+#: ../modules/shop/admin/discounts.php:93
+msgid "Discount created"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:139
+msgid "Discount updated"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:223
+msgid "Deposit rates"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:223
+msgid "refreshed successfully"
+msgstr ""
+
+#: ../modules/shop/admin/comulativ.php:258
+msgid "Cumulative discount removed"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:121
+msgid "Specified URL busy"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:152
+msgid "Category created"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:292
+msgid "Category deleted successfully"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:298
+msgid "Categories deleted successfully"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:302
+msgid "Failed to delete the category"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:426
+msgid "Category was not found"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:492
+msgid "The file has been successfully created"
+msgstr ""
+
+#: ../modules/shop/admin/categories.php:495
+msgid "Could not create file"
+msgstr ""
+
+#: ../modules/shop/admin/discounts.php:203
+msgid "Discounts are removed"
+msgstr ""
+
+#: ../modules/shop/admin/brands.php:109
+#: ../modules/shop/admin/brands.php:184
+msgid "The URL you busy"
+msgstr ""
+
+#: ../modules/shop/admin/brands.php:144
+msgid "Brand created"
+msgstr ""
+
+#: ../modules/shop/admin/brands.php:169
+#: ../modules/shop/admin/brands.php:320
+msgid "Brand not found"
+msgstr ""
+
+#: ../modules/shop/admin/brands.php:184
+msgid "Fail"
+msgstr ""
+
+#: ../modules/shop/admin/brands.php:257
+msgid "Removing brand"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:150
+msgid "Property created"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:180
+msgid "The property is not found"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:257
+msgid "The list of properties is empty"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:258
+msgid "Create"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:313
+msgid "Success"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:313
+msgid "The property(ies) deleted"
+msgstr ""
+
+#: ../modules/shop/admin/properties.php:327
+msgid "Change saved successfully"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:43
+msgid "Certificate with this key already exists"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:48
+msgid "Code"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:49
+#: ../modules/shop/admin/gifts.php:106
+msgid "Cost of the certificate"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:50
+#: ../modules/shop/admin/gifts.php:107
+msgid "Date of creation"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:62
+msgid "Certificate is created"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:93
+msgid "Certificate (s) removed (s)"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:139
+msgid "You have changed the status of the certificate"
+msgstr ""
+
+#: ../modules/shop/admin/gifts.php:166
+msgid "The settings are saved"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:57
+msgid "You did not ask for a set of main commodity"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:62
+#: ../modules/shop/admin/kits.php:141
+msgid "You must attach the goods to create a set"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:68
+#: ../modules/shop/admin/kits.php:147
+msgid "Kit with such goods already exists"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:89
+msgid "Kit created"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:118
+msgid "The kit was not found"
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:136
+msgid "You did not ask for a set of main commodity "
+msgstr ""
+
+#: ../modules/shop/admin/kits.php:225
+msgid "Set (s) has been successfully removed (s)"
+msgstr ""
+
+#: ../modules/shop/helpers/shop_helper.php:71
+#: ../modules/shop/helpers/shop_helper.php:112
+#: ../modules/shop/helpers/shop_helper.php:125
+msgid "s_home"
+msgstr ""
+
+#: ../modules/shop/helpers/shop_helper.php:275
+#: ../modules/shop/helpers/shop_helper.php:294
+msgid "s_buy"
+msgstr ""
+
+#: ../modules/shop/helpers/shop_helper.php:276
+msgid "s_MO"
+msgstr ""
+
+#: ../modules/shop/helpers/shop_helper.php:295
+msgid "s_c_of_z_"
+msgstr ""
+
+#: ../modules/shop/helpers/shop_helper.php:296
+msgid "s_message_not_found"
+msgstr ""
+
+#~ msgid "STAAAAAr"
+#~ msgstr "Зірка"

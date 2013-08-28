@@ -3,13 +3,13 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('a_cat_translate')}</span>
+                <span class="title">{lang("Category translation","admin")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/categories/edit/{$orig_cat.id}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="button" class="btn btn-small btn-success  action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                    <a href="/admin/categories/edit/{$orig_cat.id}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
+                    <button type="button" class="btn btn-small btn-success  action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
 
 					
                                 <div class="dropdown d-i_b">
@@ -46,7 +46,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        {lang('a_info')}
+                                        {lang("Information","admin")}
                                     </th>
                                 </tr>
                             </thead>
@@ -57,7 +57,7 @@
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
-                                                        <label class="control-label" for="name">{lang('a_name')}:</label>
+                                                        <label class="control-label" for="name">{lang("Name","admin")}:</label>
                                                         <div class="controls">
                                                             <input type="text" name="name" id="name" value="{$cat.name}"/>
                                                         </div>
@@ -65,11 +65,11 @@
 
                                                     <div class="control-group">
 							                            <label class="control-label" for="Img">
-							                            {lang('a_image')}:                            
+							                            {lang("Image","admin")}:                            
 							                            </label>
 							                        	<div class="controls">
 											    		<div class="group_icon pull-right">
-														<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+														<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
                                                             </div>
                                                             <div class="o_h">
 									                		    <input type="text" name="image" id="Img" value="{$cat.image}">				    
@@ -78,23 +78,23 @@
 							                        </div>
                                                     
                                                     <div class="control-group">
-                                                        <label class="control-label" for="short_desc">{lang('a_desc')}:</label>
+                                                        <label class="control-label" for="short_desc">{lang("Description","admin")}:</label>
                                                         <div class="controls">
                                                             <textarea class="elRTE" name="short_desc" id="short_desc" >{htmlspecialchars($cat.short_desc)}</textarea>
                                                         </div>
                                                     </div>
 
-                                                    <div class="control-group"><label class="control-label" for="title">{lang('a_meta_title')}:</label>
+                                                    <div class="control-group"><label class="control-label" for="title">{lang("Meta Title","admin")}:</label>
                                                         <div class="controls">
                                                             <input type="text" name="title" value="{$cat.title}" id="title" />
                                                         </div>
                                                     </div>
-                                                    <div class="control-group"><label class="control-label" for="description">{lang('a_meta_description')}:</label>
+                                                    <div class="control-group"><label class="control-label" for="description">{lang("Meta Description","admin")}:</label>
                                                         <div class="controls">
                                                             <textarea id="description"  name="description"  rows="10" cols="180" >{$cat.description}</textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="control-group"><label class="control-label" for="keywords">{lang('a_meta_keywords')}:</label>
+                                                    <div class="control-group"><label class="control-label" for="keywords">{lang("Meta Keywords","admin")}:</label>
                                                         <div class="controls">
                                                             <textarea id="keywords" name="keywords" rows="10" cols="180" >{$cat.keywords}</textarea>
                                                         </div>
