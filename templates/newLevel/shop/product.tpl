@@ -17,7 +17,7 @@
 </div>
 <div class="frame-inside page-product">
     <div class="container">
-        <div class="clearfix item-product">
+        <div class="clearfix item-product {if $model->firstVariant->getStock() == 0}not-avail{/if}">
             <div class="f-s_0 title-product">
                 <div class="frame-title">
                     <h1 class="d_i">{echo  ShopCore::encode($model->getName())}</h1>
@@ -170,6 +170,7 @@
                                                             type="button"
                                                             data-drop=".drop-report"
                                                             data-source="/shop/ajax/getNotifyingRequest"
+                                                            
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"
                                                             data-varid="{echo $productVariant->getId()}"
@@ -177,7 +178,6 @@
                                                             data-vname="{echo trim(ShopCore::encode($productVariant->getName()))}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             data-number="{echo trim($productVariant->getNumber())}"
-                                                            data-img="{echo $productVariant->getSmallPhoto()}"
                                                             data-mainImage="{echo $productVariant->getMainPhoto()}"
                                                             data-largeImage="{echo $productVariant->getlargePhoto()}"
                                                             class="infoBut">
