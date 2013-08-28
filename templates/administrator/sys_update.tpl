@@ -31,8 +31,10 @@
             </div>
         </div>
 
-        <div class="progress progress-info progress-striped active">
-            <div id='progres' class="bar" style="width: 20%"></div>
+        <div class="progressDB" style="display: none;">
+            <div class="progress progress-info progress-striped active">
+                <div id='progres' class="bar"></div>
+            </div>
         </div>
 
         <div class="row-fluid">

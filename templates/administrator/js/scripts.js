@@ -1746,34 +1746,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
         }
     });
 });
-function restoreDBprocess(i, j, portion, obj) {
-    var array = [];
-    o = 0;
-    for (j; j < ((i + 1) * portion); j++) {
-        array[o] = obj[j];
-        o++;
-    }
 
-    $.ajax({
-        type: "POST",
-        data: {
-            data: array
-        },
-        url: '/admin/sys_update/Querys',
-        complete: function() {
-            console.log(i)
-            console.log(j)
-
-            array = [];
-            if (i < 100) {
-                $('#progres').css('width', i + 1 + '%');
-                $('#progres').text(i + 1 + '%');
-                restoreDBprocess(i + 1, j, portion, obj);
-            }
-        }
-    });
-
-}
 var Update = {
     processDB: function(file_name) {
         $.ajax({
@@ -1786,37 +1759,35 @@ var Update = {
             success: function(res) {
                 var obj = JSON.parse(res);
                 var portion = (parseInt(obj.length / 100) + 1);
-                var array = [];
-                var j = 0;
-                restoreDBprocess(0, 0, portion, obj);
-//                for (var i = 0; i < 30; i++) {
-//
-//                    o = 0;
-//                    for (j; j < ((i + 1) * portion); j++) {
-//                        array[o] = obj[j];
-//                        o++;
-//                    }
-//                    $.ajax({
-//                        type: "POST",
-//                        async: false,
-//                        data: {
-//                            data: array
-//                        },
-//                        url: '/admin/sys_update/Querys',
-//                        complete: function() {
-//                            console.log(i)
-//
-//                            array = [];
-//                            $('#progres').css('width', i + 1 + '%');
-//                            $('#progres').text(i + 1 + '%');
-//                        }
-//                    });
-//
-//                }
-                if (res) {
-                    showMessage('Сообщение', 'Успешно воставлено');
+                $('#progres').css('width', '0%');
+                $('.progressDB').fadeIn(600);
+                Update.restoreDBprocess(0, 0, portion, obj);
+            }
+        });
+    },
+    restoreDBprocess: function(i, j, portion, obj) {
+        var array = [];
+        o = 0;
+        for (j; j < ((i + 1) * portion); j++) {
+            array[o] = obj[j];
+            o++;
+        }
+
+        $.ajax({
+            type: "POST",
+            data: {
+                data: array
+            },
+            url: '/admin/sys_update/Querys',
+            complete: function(res) {
+                array = [];
+                if (i < 10) {
+                    $('#progres').css('width', i + 1 + '%');
+                    $('#progres').text(i + 1 + '%');
+                    Update.restoreDBprocess(i + 1, j, portion, obj);
                 } else {
-                    showMessage('Ошибка', 'Ошибка востановления', 'r');
+                    $('#progres').css('width', '0%');
+                    $('.progressDB').fadeOut(600);
                 }
             }
         });

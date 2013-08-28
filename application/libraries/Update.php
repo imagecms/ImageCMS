@@ -201,16 +201,14 @@ class Update {
      * @return array return info about new relise or 0 if version is actual
      */
     public function getStatus() {
-        $domen = $_SERVER['SERVER_NAME'];
-
-        $result = $this->client->getStatus($domen, BUILD_ID);
-        $this->getHashSum();
         if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+            $domen = $_SERVER['SERVER_NAME'];
+            $result = $this->client->getStatus($domen, BUILD_ID);
 
-//            ShopCore::app()->SSettings->set("newVersion", $ver);
-//            ShopCore::app()->SSettings->set("checkTime", time());
+            ShopCore::app()->SSettings->set("newVersion", $result);
+            ShopCore::app()->SSettings->set("checkTime", time());
         } else {
-            ShopCore::app()->SSettings->__get("newVersion");
+            $result = ShopCore::app()->SSettings->__get("newVersion");
         }
         return unserialize($result);
     }
@@ -220,12 +218,19 @@ class Update {
      * @return array Array of hashsum files new version
      */
     public function getHashSum() {
-        $domen = $_SERVER['SERVER_NAME'];
-        $key = ShopCore::app()->SSettings->__get("careKey");
-        $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-        $result = (array) json_decode($result);
+        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+            $domen = $_SERVER['SERVER_NAME'];
+            $key = ShopCore::app()->SSettings->__get("careKey");
+            $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            write_file('./application/backups/md5.txt', $result);
+            $result = (array) json_decode($result);
+
+            ShopCore::app()->SSettings->set("checkTime", time());
+        } else {
+            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
+        }
+
         return $result;
-//        var_dump($result);
     }
 
     public function getUpdate() {
@@ -233,7 +238,6 @@ class Update {
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, BUILD_ID, ShopCore::app()->SSettings->__get("careKey"));
         $all_href = 'http://pftest.imagecms.net/admin/server_update/takeUpdate/' . $href . '/' . $domen;
-//        echo $all_href;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
@@ -314,7 +318,7 @@ class Update {
     /**
      * restore files from zip
      * @param string $file path to zip file
-     * @param type $destination path to destination folder
+     * @param string $destination path to destination folder
      */
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
         if (!file_exists($file))

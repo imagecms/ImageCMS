@@ -67,7 +67,7 @@ class Sys_update extends BaseAdminController {
     public function update($sort_by = "create_date", $order = 'asc') {
         // Show upgrade window;
         $result = $this->update->getHashSum();
-        write_file('./application/backups/md5.txt', json_encode($result));
+
 //        $array = $this->update->parse_md5();
 //        $diff = array_diff($array, $result);
 
@@ -159,19 +159,19 @@ class Sys_update extends BaseAdminController {
     }
 
     public function Querys() {
-        foreach ($_POST['data'] as $query) {
-            if ($query) {
-                if (!$this->db->query($query)) {
-                    echo 'Невозможно виполнить запрос: <br>';
-                    var_dumps($query);
-                    return FALSE;
-                } else {
-                    echo 'ok';
-//                    return TRUE;
-                }
-            }
-        }
-//                showMessage('asdasd');
+//        foreach ($_POST['data'] as $query) {
+//            if ($query) {
+//                if (!$this->db->query($query)) {
+//                    echo 'Невозможно виполнить запрос: <br>';
+//                    var_dumps($query);
+//                    return FALSE;
+//                } else {
+////                    echo 'ok';
+////                    return TRUE;
+//                }
+//            }
+//        }
+//        echo $this->db->total_queries();
     }
 
 }
