@@ -297,7 +297,7 @@ class assetManager {
     private function buildStylePath($tpl) {
         if (!$this->template)
             $this->template = \CI_Controller::get_instance()->config->item('template');
-        
+
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/css/' . $tpl . '.css'))
             return sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
         else
@@ -311,11 +311,11 @@ class assetManager {
      */
     private function compressJs($js) {
         /* remove comments */
-//        $js = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $js);
-//        /* remove tabs, spaces, newlines, etc. */
-//        $js = str_replace(array("\r\n", "\r", "\t", "\n", '  ', '    ', '     '), '', $js);
-//        /* remove other spaces before/after ) */
-//        $js = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $js);
+        $js = preg_replace("/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/", "", $js);
+        /* remove tabs, spaces, newlines, etc. */
+        $js = str_replace(array("\r\n", "\r", "\t", "\n", '  ', '    ', '     '), '', $js);
+        /* remove other spaces before/after ) */
+        $js = preg_replace(array('(( )+\))', '(\)( )+)'), ')', $js);
 
         return $js;
     }
