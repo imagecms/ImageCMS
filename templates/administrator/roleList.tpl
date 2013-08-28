@@ -4,20 +4,20 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang('a_rbak_delete_role')}</h3>
+            <h3>{lang("Role remove","admin")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang('a_rbak_del_role_gro')}</p>
+            <p>{lang("Remove selected roles?","admin")}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}roleDelete')" >{lang('a_delete')}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">Отмена</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$ADMIN_URL}roleDelete')" >{lang("Delete","admin")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
         </div>
     </div>
 
 
     <div id="delete_dialog" style="display: none">
-        {lang('a_rb_del_roles')}
+        {lang("Remove roles?","admin")}
     </div>
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <form method="post" action="#">
@@ -25,12 +25,12 @@
             <div class="frame_title clearfix">
                 <div class="pull-left">
                     <span class="help-inline"></span>
-                    <span class="title">{lang('a_role_list')}</span>
+                    <span class="title">{lang("Roles list","admin")}</span>
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
-                        <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang('a_rbak_new_role')}</a>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                        <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang("New Role","admin")}</a>
                     </div>
                 </div>  
             </div>
@@ -47,9 +47,9 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th class="span1">{lang('a_id')}</th>
-                                    <th>{lang('a_name')}</th>
-                                    <th>{lang('a_desc')}</th>                                   
+                                    <th class="span1">{lang("ID","admin")}</th>
+                                    <th>{lang("Name","admin")}</th>
+                                    <th>{lang("Description","admin")}</th>                                   
                                 </tr>    
                             </thead>
                             <tbody>
@@ -78,7 +78,7 @@
                 {else:}
                     </br>
                     <div class="alert alert-info">
-                        {lang('a_list')} {lang('a_role')} {lang('a_empty')}
+                        {lang("List","admin")} {lang("Role","admin")} {lang("Empty.","admin")}
                     </div>
                 {/if}
             </div>

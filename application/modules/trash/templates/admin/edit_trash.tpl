@@ -6,9 +6,9 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#edit" data-action="save" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#edit" data-action="exit"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>                    
+                <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#edit" data-action="save" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#edit" data-action="exit"><i class="icon-check"></i>{lang("Save and exit")}</button>                    
             </div>
         </div>                            
     </div>

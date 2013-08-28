@@ -46,10 +46,10 @@ class Admin extends BaseAdminController {
         // Load form validation class
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('subject', lang('amt_theme'), 'required|trim');
-        $this->form_validation->set_rules('name', lang('amt_your_name'), 'required|trim');
-        $this->form_validation->set_rules('email', lang('amt_your_email'), 'required|trim|valid_email');
-        $this->form_validation->set_rules('message', lang('amt_message'), 'required|trim');
+        $this->form_validation->set_rules('subject', lang("Theme"), 'required|trim');
+        $this->form_validation->set_rules('name', lang("Your name"), 'required|trim');
+        $this->form_validation->set_rules('email', lang("Your e-mail"), 'required|trim|valid_email');
+        $this->form_validation->set_rules('message', lang("Message"), 'required|trim');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -89,7 +89,7 @@ class Admin extends BaseAdminController {
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log(lang('amt_send') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("amt_users_email_topic") . ')' . $_POST['subject']);
+                $this->lib_admin->log(lang("Send") . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("users e-mail with a subject") . ')' . $_POST['subject']);
                 $class = '';
                 if ($counter['true'] == $counter['all']) {
                     $class = '';
@@ -97,9 +97,9 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang('amt_message_send') . ': ' . $counter['true'] . lang('amt_count_from') . $counter['all'] . 'шт.' . $class);
+                    showMessage(lang("message has been sent") . ': ' . $counter['true'] . lang("Number of e-mails sent") . $counter['all'] . 'шт.' . $class);
                 } else {
-                    showMessage(lang('amt_not_any_message_from') . $counter['all'] . lang('amt_count_not_send'), $class);
+                    showMessage(lang("none of the messages") . $counter['all'] . lang("Number not"), $class);
                 }
             }
         }
@@ -114,9 +114,9 @@ class Admin extends BaseAdminController {
                 $this->db->delete('mail', array('id' => $id));
             }
 
-            showMessage(lang('a_base_mailer_del_1'));
+            showMessage(lang("Subscribers removal"));
         } else {
-            showMessage(lang('a_base_mailer_del_2', '', 'r'));
+            showMessage(lang('ID is not', '', 'r'));
         }
     }
 

@@ -3,13 +3,14 @@
 * @file Template for compare products
 * @updated 26 February 2013;
 * Variables
-* $products:(оbject) instance of SProducts. Products in compare
+* $products:(object) instance of SProducts. Products in compare
 * $categories: (array). Categories of products which are in compare
 * Methods
 * ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray(int $category_id): method gives product properties names by category id
 * ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray(Sproducts $product): method gives product properties values
 */
 #}
+{lang('ddddddddd1', 'newLevel')}
 <div class="frame-inside page-compare">
     <div class="container">
         <!--Start. Show compare list if count products >0 -->
@@ -18,7 +19,7 @@
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">Сравнение товаров</h1>
+                        <h1 class="d_i title">{lang('Compare Products','newLevel')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio">
                         <li class="btn-def active">
@@ -123,7 +124,7 @@
                         {/foreach}
                     </div>
                     <div class="comprasion-head">
-                        <div class="title-h3">Товары из категорий:</div>
+                        <div class="title-h3">{lang('Category products','newLevel')}:</div>
                         <ul class="tabs tabs-compare-category">
                             {foreach $categories as $category}
                                 <li>
@@ -146,13 +147,13 @@
             <div class="empty">
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">Сравнение товаров</h1>
+                        <h1 class="d_i title">{lang('Compare Products','newLevel')}</h1>
                     </div>
                 </div>
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">Вы удалили все товары з сравнения</span>
+                        <span class="text-el">{lang('You have removed all items from the comparison','newLevel')}</span>
                     </div>
                 </div>
             </div>
@@ -160,13 +161,13 @@
         {else:}
             <div class="f-s_0 title-compare without-crumbs clearfix">
                 <div class="frame-title">
-                    <h1 class="d_i title">Сравнение товаров</h1>
+                    <h1 class="d_i title">{lang('Comparing Products','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">Список сравнений пуст</span>
+                    <span class="text-el">{lang('The list of comparisons is empty','newLevel')}</span>
                 </div>
             </div>
         {/if}

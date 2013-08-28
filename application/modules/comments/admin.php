@@ -18,6 +18,9 @@ class Admin extends BaseAdminController {
         //cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
+        
+        $obj = new MY_Lang();
+        $obj->load('comments'); 
     }
 
     // Display comments list
@@ -198,7 +201,8 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        showMessage('Успех', 'Измениния сохранены');
+
+        showMessage(lang('Success'), lang('Change saved'));
 
         if ($this->input->post('action')=='exit')
             pjax('/admin/components/run/shop/dashboard#last_comments');
@@ -219,7 +223,7 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
         */
-        showMessage("Успех", "Статус обновлен");
+        showMessage(lang('Success'), lang('Status updated'));
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -242,7 +246,8 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        showMessage('Комментарий(и) успешно удален(ы)');
+        showMessage(lang('Comment(s) deleted'));
+
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -300,7 +305,7 @@ class Admin extends BaseAdminController {
 
         $this->comments->save_settings($data);
 
-        showMessage('Изменения сохранены');
+        showMessage(lang('Changes saved'));
         pjax('/admin/components/cp/comments');
     }
 

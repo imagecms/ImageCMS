@@ -1,12 +1,12 @@
 <div id="groups-tabs-block"  style="float:left;width:100%">
-	<h4 title="{lang('a_prev_cont')}">{lang('a_group_list')}</h4>
+	<h4 title="{lang("Preliminary contents","admin")}">{lang("Group list","admin")}</h4>
 		<div>
 			<table cellpadding="2" cellpadding="2" width="100%">
 						<tr style="background-color:#EDEDED">
-							<td><b>{lang('a_id')}</b></td>
-							<td><b>{lang('a_name')}</b></td>
-							<td><b>{lang('a_identif')}</b></td>
-							<td><b>{lang('a_desc')}</b></td>
+							<td><b>{lang("ID","admin")}</b></td>
+							<td><b>{lang("Name","admin")}</b></td>
+							<td><b>{lang("Identifier","admin")}</b></td>
+							<td><b>{lang("Description","admin")}</b></td>
 							<td></td>
 						</tr>
 						<tbody>
@@ -27,25 +27,25 @@
 			</table>
 		</div>
 
-	<h4 title="{lang('a_param')}">{lang('a_create')}</h4>
+	<h4 title="{lang("Properties","admin")}">{lang("Create","admin")}</h4>
 		<div>
 		<form action="{$BASE_URL}admin/groups/create" method="post" id="groups_create_form" style="width:100%;">
-			<div class="form_text">{lang('a_name')}:</div>
+			<div class="form_text">{lang("Name","admin")}:</div>
 			<div class="form_input"><input type="text" name="alt_name" id="alt_name" class="textbox_short"></div>
 			<div class="form_overflow"></div>
 
-			<div class="form_text">{lang('a_identif')}:</div>
-			<div class="form_input"><input type="text" name="name" id="name" class="textbox_short"> ({lang('a_just_lat')})</div>
+			<div class="form_text">{lang("Identifier","admin")}:</div>
+			<div class="form_input"><input type="text" name="name" id="name" class="textbox_short"> ({lang("Only Latin characters","admin")})</div>
 			<div class="form_overflow"></div>
 
-			<div class="form_text">{lang('a_desc')}:</div>
+			<div class="form_text">{lang("Description","admin")}:</div>
 			<div class="form_input">
 			<textarea id="desc" name="desc" ></textarea>
 			</div>
 			<div class="form_overflow"></div>
 
 			<div class="form_text"></div>
-			<div class="form_input"><input type="submit" name="button" class="button"  value="{lang('a_create')}" onclick="ajax_me('groups_create_form');" ></div>
+			<div class="form_input"><input type="submit" name="button" class="button"  value="{lang("Create","admin")}" onclick="ajax_me('groups_create_form');" ></div>
 			<div class="form_overflow"></div>
 		{form_csrf()}
         </form>

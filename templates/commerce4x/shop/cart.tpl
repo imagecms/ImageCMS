@@ -26,7 +26,7 @@
                                 {/if}
                                 <div class="groups_form">
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_name_u')}</span>
+                                        <span class="title">{lang("You name","admin")}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[fullName]']}
                                                 <span class="must">*</span>

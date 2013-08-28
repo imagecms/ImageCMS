@@ -591,11 +591,11 @@ function autocomplete() {
                         '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
-                        '<span class="help-inline d_b">Имя</span>' +
+                        '<span class="help-inline d_b">' + lang.name + '</span>' +
                         '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">Скидка %</span>' +
+                        '<span class="help-inline d_b">' + lang.discount + ' %</span>' +
                         '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
@@ -1368,7 +1368,8 @@ $(document).ready(
                 var column = btn.parent().find('input').val();
 
                 if (!parseInt(column) && parseInt(column) != 0)
-                    showMessage('Сообщение', 'Введите номер колонки', 'r');
+                    showMessage(lang.message, lang.enterColumnNum, 'r');
+
 
                 $.ajax({
                     type: 'POST',
@@ -1376,10 +1377,12 @@ $(document).ready(
                     url: base_url + 'admin/components/run/shop/categories/ajaxUpdateCategoryColumn/',
                     success: function(data) {
                         if (data == true) {
-                            showMessage('Сообщение', 'Номер колонки обновлен', 'success');
+
+                            showMessage(lang.message, lang.columnNumUpdated, 'success');
                             btn.hide();
                         } else {
-                            showMessage('Сообщение', 'Не удалось обновить номер колонки', 'errror');
+                            showMessage(lang.message, lang.failColumnNumUodate, 'errror');
+
                         }
                     }
                 });
@@ -1482,13 +1485,14 @@ $('#variantsForOrders').live('change', function() {
     var stock = $('#variantsForOrders option:selected').data('stock');
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
 
-    $('#productText').html('<b>Товар: ' + productName + '</b>');
+    $('#productText').html('<b>' + lang.product + ': ' + productName + '</b>');
     if (variantName != '')
-        $('#productText').append('<br/>Вариант: ' + variantName + '');
+        $('#productText').append('<br/>' + lang.variant + ': ' + variantName);
 
-    $('#productText').append('<br/>Цена: ' + parseFloat(variantPrice).toFixed(pricePrecision) + '' + currency);
+    $('#productText').append('<br/>' + lang.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
+
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
-    $('#productStock').html('<br/>Остаток: ' + stock);
+    $('#productStock').html('<br/>' + lang.balance + ': ' + stock);
 
     //Show info product block
     if (variantId != undefined)
@@ -1496,13 +1500,13 @@ $('#variantsForOrders').live('change', function() {
 
     //Disable button if stock =0
     if (checkProdStock == 1 && stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html('Нет в наличии');
+        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(lang.outOfStock);
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html('В корзину');
+        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(lang.addToCart);
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
     }
 
     dataForButton = $('#variantsForOrders option:selected').data();
@@ -1513,7 +1517,7 @@ $('#variantsForOrders').live('change', function() {
 $('#addVariantToCart').die().live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').addClass('btn-primary').html('В корзине');
+        $(this).removeClass('btn-success').addClass('btn-primary').html(lang.inTheCart);
     }
 
 });
@@ -1537,7 +1541,7 @@ $('#createUserButton').live('click', function() {
             data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
             success: function(response) {
                 if (response == 'email') {
-                    showMessage("Сообщение", "Пользователь с такой почтой уже существует", "error");
+                    showMessage(lang.message, lang.thisEmailUserExists, "error");
                 } else if (response != 'false') {
                     $('#collapsed').click();
                     $('#createUserName').val('');
@@ -1556,14 +1560,14 @@ $('#createUserButton').live('click', function() {
                         $('#userPhoneforOrder').html(data.phone);
                         $('#userAddressforOrder').html(data.address);
                     }
-                    showMessage("Сообщение", "Создан новый пользователь", "success");
+                    showMessage(lang.message, lang.newUserCreated, "success");
                 } else {
-                    showMessage("Ошибка", "Не удалось создать пользователя,", "error");
+                    showMessage(lang.error, lang.failToCreateUser, "error");
                 }
             }
         });
     } else {
-        showMessage("Ошибка", "Проверьте правильность ввода данных и заполните все обязательные поля", "error");
+        showMessage(lang.error, lang.checkAndFillAll, "error");
     }
 });
 
@@ -1651,7 +1655,7 @@ $('#checkOrderGiftCert').live('click', function() {
             totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
             $('#shopOrdersTotalPrice').val(totalProductPrice);
             $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
-            $('#giftPrice').html('Текущий сертификат (сумма):' + data.price);
+            $('#giftPrice').html(lang.curCertificate + data.price);
             $('#currentGiftCertInfo').show();
         }
     });
