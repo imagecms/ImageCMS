@@ -11,6 +11,8 @@ class Cfcm extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+                $obj = new MY_Lang();
+                $obj->load('cfcm');
 	}
 
     public function save_item_data($item_id, $type = 'page')

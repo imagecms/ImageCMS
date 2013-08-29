@@ -24,9 +24,9 @@ class Cfcm_forms extends MY_Controller {
         $fields = array(
             'field_name' => array(
                 'type'       => 'text',
-                'label'      => lang('Name'),
+                'label'      => lang('Name', 'cfcm'),
                 'validation' => 'alpha_dash|max_length[255]',
-                'help_text'  => lang('To name will be prefixed with') . 'field_',
+                'help_text'  => lang('To name will be prefixed with', 'cfcm') . 'field_',
                 'class'      => 'required alphanumeric'
             ),
             'label' => array(
@@ -37,17 +37,17 @@ class Cfcm_forms extends MY_Controller {
             ),
             'in_search' => array(
                 'type'       => 'checkbox',
-                'label'      => lang('Participate in search'),
+                'label'      => lang('Participate in search', 'cfcm'),
                 'initial'    => '1',
             ),
             'type' => array(
                 'type'       => 'select',
-                'label'      => lang('Type'),
+                'label'      => lang('Type', 'cfcm'),
                 'initial'    => $this->field_types,
             ),
             'groups' => array(
                 'type'       => 'select',
-                'label'      => lang('Group'),
+                'label'      => lang('Group', 'cfcm'),
                 'initial'    => self::prepare_groups_select(),
                 'multiple'   => true,
                 'class'      => 'required'
@@ -74,26 +74,26 @@ class Cfcm_forms extends MY_Controller {
          );
         $f['initial'] = array(
             'type'    => 'textarea',
-            'label'   => lang('The initial value'),
+            'label'   => lang('The initial value', 'cfcm'),
         );
         $f['help_text'] = array(
             'type'      => 'text',
-            'label'     => lang('Hint'),
-            'help_text' => lang('Field description ') . '.',
+            'label'     => lang('Hint', 'cfcm'),
+            'help_text' => lang('Field description ', 'cfcm') . '.',
         );
         $f['required'] = array(
             'type'    => 'checkbox',
-            'label'   => lang('Required field'),
+            'label'   => lang('Required field', 'cfcm'),
             'initial' => '1',
         );
         $f['type'] = array(
                 'type'       => 'select',
-                'label'      => lang('Type'),
+                'label'      => lang('Type', 'cfcm'),
                 'initial'    => $this->field_types,
         );
         
         if (in_array($type, array('select', 'checkgroup', 'radiogroup')))
-            $f['initial']['help_text'] = lang('Specify the possible values in the new row') . '.';
+            $f['initial']['help_text'] = lang('Specify the possible values in the new row', 'cfcm') . '.';
 
         if ($type == 'select')
             $f['multiple'] = array(
@@ -115,14 +115,14 @@ class Cfcm_forms extends MY_Controller {
         {
             $f['enable_image_browser'] = array(
                 'type'    => 'checkbox',
-                'label'   => lang('Enable images viewing'),
+                'label'   => lang('Enable images viewing', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
 
             $f['enable_file_browser'] = array(
                 'type'    => 'checkbox',
-                'label'   => lang('Enable file viewing'),
+                'label'   => lang('Enable file viewing', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
@@ -133,7 +133,7 @@ class Cfcm_forms extends MY_Controller {
 //        {
 //                $f['enable_tinymce_editor'] = array(
 //                'type'  => 'checkbox',
-//                'label' => lang('Enable Tinymce editor'),
+//                'label' => lang('Enable Tinymce editor', 'cfcm'),
 //                'initial'=> '1',
 //                'checked'=> FALSE,
 //            );
@@ -141,12 +141,12 @@ class Cfcm_forms extends MY_Controller {
 
         $f['validation'] = array(
             'type'      => 'text',
-            'label'     => lang('Check conditions'),
-            'help_text' => lang('For example') . ': valid_email|max_length[255]',
+            'label'     => lang('Check conditions', 'cfcm'),
+            'help_text' => lang('For example', 'cfcm') . ': valid_email|max_length[255]',
         );
         $f['groups'] = array(
                 'type'       => 'select',
-                'label'      => lang('Group'),
+                'label'      => lang('Group', 'cfcm'),
                 'initial'    => self::prepare_groups_select(),
                 'multiple'   => true,
                 'class'     => 'required'
@@ -160,13 +160,13 @@ class Cfcm_forms extends MY_Controller {
         return $this->forms->add_fields(array(
             'name' => array(
                 'type'  => 'text',
-                'label' => lang('Name'),
+                'label' => lang('Name', 'cfcm'),
                 'validation' => 'max_length[255]',
                 'class'     => 'required'
             ),
             'description' => array(
                 'type'  => 'textarea',
-                'label' => lang('Description'),
+                'label' => lang('Description', 'cfcm'),
             ),
         ));
     }
@@ -177,7 +177,7 @@ class Cfcm_forms extends MY_Controller {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');
 
-        $list = array('-1' => lang('Without group'));
+        $list = array('-1' => lang('Without group', 'cfcm'));
         if ($groups->num_rows() > 0)
         { 
             foreach ($groups->result_array() as $group)
