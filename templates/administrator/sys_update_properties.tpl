@@ -34,7 +34,7 @@
                     <td colspan="6">
                         <div class="inside_padd">
                             <div class="control-group">
-                                <label class="control-label" for="zip">Ваш ключ для обновлений:</label>
+                                <label class="control-label">Ваш ключ для обновлений:</label>
                                 <div class="controls">
                                     <textarea name="careKey" rows="10">{echo $careKey}</textarea>
                                 </div>
