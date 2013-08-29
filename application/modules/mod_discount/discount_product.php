@@ -40,15 +40,16 @@ class Discount_product extends classes\BaseDiscount {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_product_discount_event($product) {
+    public function get_product_discount_event($product, $price = null) {
 
 
         $discount_array = $this->get_discount_one_product($this->discount_model_front->get_product($product['id']));
 
         if (count($discount_array) > 0) {
-            $price = $this->discount_model_front->get_price($product['vid']);
+            if (null === $price)
+                $price = $this->discount_model_front->get_price($product['vid']);
             $discount_max = $this->get_max_discount($discount_array, $price);
-            $discount_value = $this->get_discount_value($discount_max, $this->discount_model_front->get_price($product['vid']));
+            $discount_value = $this->get_discount_value($discount_max, $price);
         } else {
             \CMSFactory\assetManager::create()->discount = false;
             return false;

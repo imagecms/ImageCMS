@@ -66,10 +66,10 @@ class discount_api extends \mod_discount\discount {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_product_api($product, $tpl = null) {
+    public function get_discount_product_api($product, $tpl = null, $price = null) {
         if ($this->check_module_install()) {
             $DiscProdObj = new \mod_discount\Discount_product;
-            if ($DiscProdObj->get_product_discount_event($product)) {
+            if ($DiscProdObj->get_product_discount_event($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
@@ -83,6 +83,8 @@ class discount_api extends \mod_discount\discount {
         }
         return false;
     }
+    
+    
 
     /**
      * get all discount information

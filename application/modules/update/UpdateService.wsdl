@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<definitions name="UpdateService" 
+             targetNamespace="http://imagecms.loc/application/modules/update/UpdateService.wsdl" 
+             xmlns:tns="http://imagecms.loc/application/modules/update/UpdateService.wsdl" 
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<message name="getStatusRequest">
+		<part name="buildId" type="xsd:string"/>
+		<part name="domen" type="xsd:string"/>
+		<part name="number" type="xsd:string"/>
+	</message>
+	<message name="getStatusResponse">
+		<part name="Result" type="xsd:string"/>
+	</message>
+	<message name="getHashSumRequest">
+                <part name="domen" type="xsd:string"/>
+		<part name="imagecmsNumber" type="xsd:string"/>
+		<part name="buildId" type="xsd:string"/>
+		<part name="careKey" type="xsd:string"/>
+	</message>
+	<message name="getHashSumResponse">
+		<part name="Result" type="xsd:string"/>
+	</message>
+	<message name="getUpdateRequest">
+                <part name="domen" type="xsd:string"/>
+		<part name="imagecmsNumber" type="xsd:string"/>
+		<part name="buildId" type="xsd:string"/>
+		<part name="careKey" type="xsd:string"/>
+	</message>
+	<message name="getUpdateResponse">
+		<part name="Result" type="xsd:string"/>
+	</message>
+	<portType name="UpdatePortType">
+		<operation name="getStatus">
+			<input message="tns:getStatusRequest" />
+			<output message="tns:getStatusResponse" />
+		</operation>
+		<operation name="getHashSum">
+			<input message="tns:getHashSumRequest" />
+			<output message="tns:getHashSumResponse" />
+		</operation>
+		<operation name="getUpdate">
+			<input message="tns:getUpdateRequest" />
+			<output message="tns:getUpdateResponse" />
+		</operation>
+	</portType>
+	<binding name="UpdateBinding" type="tns:UpdatePortType">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getStatus">
+			<soap:operation soapAction=""/>
+			<input >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="getHashSum">
+			<soap:operation soapAction=""/>
+			<input >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="getUpdate">
+			<soap:operation soapAction=""/>
+			<input >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output >
+				<soap:body use="encoded" namespace="urn:xmethods-Update" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="UpdateService">
+		<documentation>Returns update</documentation>
+		<port name="UpdatePort" binding="tns:UpdateBinding">
+			<soap:address location="http://imagecms.loc/update/updater"/>
+		</port>
+	</service>
+</definitions>
