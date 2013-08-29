@@ -3,16 +3,16 @@
     {if !$succes}
     <form method="post" action="{site_url('auth/register')}" id="reg">
         {if validation_errors() OR $info_message}<div class="errors">{validation_errors()}{$info_message}</div>{/if}
-        <label>{lang('lang_email')}
+        <label>{lang("Email","admin")}
             <input type="text" name="email" id="email" value="{set_value('email')}" />
         </label>
         <label>ФИО
             <input type="text" name="userInfo[fullName]" value="{set_value('userInfo[fullName]')}" />
         </label>
-        <label>{lang('lang_password')}
+        <label>{lang("Password","admin")}
             <input type="password" name="password" id="passwordreg" />
         </label>
-        <label>{lang('lang_confirm_password')}
+        <label>{lang("Repeat Password","admin")}
             <input type="password" name="confirm_password" id="confirm_password" />
         </label>
         {if $cap_image}

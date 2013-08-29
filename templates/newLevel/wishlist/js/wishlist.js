@@ -1,5 +1,4 @@
-var wishList = {};
-wishList = {
+var wishList = $.extend({
     itemWL: '.item-WL',
     btnBuy: '.btnBuyWishList',
     countProdsWL: '.countProdsWL',
@@ -8,12 +7,6 @@ wishList = {
     curCount: 0,
     cAddPrWL: 0,
     items: [],
-    all: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')) : [];
-    },
-    count: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')).length : inServerWishList;
-    },
     add: function(id, varid) {
         wishList.items = wishList.all();
         var key = id + '_' + varid;
@@ -30,8 +23,7 @@ wishList = {
             localStorage.setItem('wishList', JSON.stringify(wishList.items));
         }
     }
-
-};
+}, wishList);
 function deleteImage(el) {
     el.parent().remove();
     var img = $('#wishlistphoto img');
@@ -70,7 +62,7 @@ function removeItem(el, data) {
                 infoBut = li.find(genObj.infoBut),
                 id = infoBut.data('id'),
                 varid = infoBut.data('varid');
-        li.hide().remove();
+        li.remove();
         processWishPage();
         wishList.rm(id, varid);
         processWish();
@@ -80,16 +72,14 @@ function removeItem(el, data) {
 function removeWL(el, data) {
     if (data.answer == 'success') {
         var frame = el.closest(wishList.frameWL),
-                WlsItems = frame.find(wishList.itemWL),
-                cWlsItems = WlsItems.length;
-        var li = frame.find(genObj.parentBtnBuy);
+                li = frame.find(genObj.parentBtnBuy);
         li.each(function() {
             var infoBut = $(this).find(genObj.infoBut),
                     id = infoBut.data('id'),
                     varid = infoBut.data('varid');
             wishList.rm(id, varid);
         });
-        frame.hide().remove();
+        frame.remove();
         processWish();
         wishListCount();
     }
@@ -157,7 +147,7 @@ $(document).live('scriptDefer', function() {
             wishList.curCount = btns.length;
             wishList.curElBuy = $this;
             btns.each(function() {
-                Shop.Cart.add(Shop.composeCartItem($(this)), this, false);
+                Shop.Cart.add(Shop.composeCartItem($(this)), true);
             });
         }
         else {
@@ -190,5 +180,8 @@ $(document).live('scriptDefer', function() {
         });
     }
     if ($.exists("#datepicker"))
-        $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+        try {
+            $("#datepicker").datepicker({"dateFormat": "yy-mm-dd"});
+        } catch (err) {
+        }
 });

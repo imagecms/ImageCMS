@@ -7,9 +7,9 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Have been saved')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit')}</button>
 
             </div>
         </div>                            
@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('param')}
+                        {lang('Options')}
                     </th>
                 </tr>
             </thead>
@@ -30,7 +30,7 @@
                             <div class="form-horizontal">
                                 <div class="span9">
                                     <div class="control-group">
-                                        <label class="control-label" for="Name">{lang('a_name')} {$translatable}:</label>
+                                        <label class="control-label" for="Name">{lang('Name')} {$translatable}:</label>
                                         <div class="controls">
                                             <input type="text" name="name" id="Name" value="" />
                                         </div>
@@ -39,20 +39,20 @@
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" name="active" value="1" >
                                                 </span>
-                                                {lang('a_active')}
+                                                {lang('Active')}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="Text">{lang('a_s_banner_text_create_b')} {$translatable}:</label>
+                                    <label class="control-label" for="Text">{lang('Text banner')} {$translatable}:</label>
                                     <div class="controls">
                                         <textarea name="description" id="Text" class="elRTE" ></textarea> 
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Url"> {lang('a_url')} {$translatable}:</label>
+                                    <label class="control-label" for="Url"> {lang('URL')} {$translatable}:</label>
                                     <div class="controls">
                                         <input type="text" name="url" id="Url" value=""/>
                                     </div>
@@ -98,7 +98,7 @@
 
 
                                 <div class="control-group">
-                                    <label class="control-label">{lang('a_active_to')}:</label>
+                                    <label class="control-label">{lang('Active until')}:</label>
                                     <div class="controls">
                                         <input class="datepicker" type="text" value="" name="active_to" />
                                     </div>
@@ -106,12 +106,12 @@
 
                                 <div class="control-group">
                                     <label class="control-label" for="Img">
-                                        {lang('a_image')}:
+                                        {lang('Image')}:
                                     </label>
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
                                             <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                return false;"><i class="icon-picture"></i>  {lang('a_select_image')}</button>
+                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ')}</button>
                                         </div>
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="">					

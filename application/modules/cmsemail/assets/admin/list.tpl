@@ -27,7 +27,7 @@
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back')}</span>
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/cmsemail/settings">
                         <i class="icon-wrench"></i>
@@ -37,7 +37,7 @@
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
-                        <i class="icon-trash icon-white"></i>{lang('a_delete')}
+                        <i class="icon-trash icon-white"></i>{lang('Delete')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/cmsemail/create" >
                         <i class="icon-list-alt icon-white"></i>{lang('Create_template')}
@@ -59,7 +59,7 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th>{lang('a_name')}</th>
+                                    <th>{lang('Name')}</th>
                                     <th>{lang('Description')}</th>
                                     <th>{lang('Theme')}</th>
                                     <th>{lang("From")}</th>

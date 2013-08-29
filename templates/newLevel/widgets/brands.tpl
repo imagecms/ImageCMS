@@ -16,7 +16,7 @@
                                     <a href="{shop_url($brand.full_url)}" class="frame-photo-title">
                                         <span class="photo-block">
                                             <span class="helper"></span>
-                                            <img src="{media_url($brand.img_fullpath)}" title="{$brand.name}" alt="{$brand.name}"/>
+                                            <img data-original="{media_url($brand.img_fullpath)}" src="{$THEME}images/blank.gif" title="{$brand.name}" alt="{$brand.name}" class="lazy"/>
                                         </span>
                                     </a>
                                 </li>
@@ -37,7 +37,7 @@
                 <span class="show-all-brands s-all-d">
                     <a href="{shop_url('brand/')}" class="t-d_n f-s_0">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть все</span>
+                        <span class="text-el">{lang('Show all','newLevel')}</span>
                     </a>
                 </span>
             </div>

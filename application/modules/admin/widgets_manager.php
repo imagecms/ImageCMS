@@ -27,7 +27,7 @@ class Widgets_manager extends BaseAdminController {
     public function index() {
 
         if (!$this->_is_wratible()) {
-            $this->template->assign('error', lang('ac_to_contin_work_set_perm') . '<b>' . $this->widgets_path . '</b>');
+            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
         }
@@ -77,7 +77,7 @@ class Widgets_manager extends BaseAdminController {
 
     public function create() {
         if (!$this->_is_wratible()) {
-            showMessage(lang('ac_to_contin_work_set_perm') . '<b>' . $this->widgets_path . '</b>', '', 'r');
+            showMessage(lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>', '', 'r');
             exit;
         }
         //cp_check_perm('widget_create');
@@ -87,15 +87,15 @@ class Widgets_manager extends BaseAdminController {
         $type = $this->input->post('type');
 
         if ($this->db->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0) {
-            showMessage(lang('ac_widget_w_n_cr'), false, 'r');
+            showMessage(lang("Widget with the same name already exists. Choose or select another name."), false, 'r');
             return FALSE;
         }
 
         if ($type == 'module') {
-            $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('module', lang('ac_val_module'), 'trim|required');
-            $this->form_validation->set_rules('method', lang('ac_val_method'), 'trim|required');
+            $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('module', lang("Module","admin"), 'trim|required');
+            $this->form_validation->set_rules('method', lang("Method","admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -145,10 +145,10 @@ class Widgets_manager extends BaseAdminController {
                     $this->$module->$m('install_defaults', $data);
                 }
 
-                $this->lib_admin->log(lang('ac_created_widget') . $data['name']);
+                $this->lib_admin->log(lang("Created a widget","admin") . $data['name']);
 
                 $conf_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '_form.tpl';
-                showMessage('Виджет создан.');
+                showMessage(lang("Widget created","admin") . '.');
 
                 if (file_exists($conf_file))
                     pjax('/admin/widgets_manager/edit/' . $data['id']);
@@ -161,9 +161,9 @@ class Widgets_manager extends BaseAdminController {
             }
         }elseif ($type == 'html') {
 
-            $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('html_code', lang('ac_val_html'), 'trim|required');
+            $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('html_code', lang("HTML","admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -176,13 +176,13 @@ class Widgets_manager extends BaseAdminController {
                     'created' => time()
                 );
 
-                $this->lib_admin->log(lang('ac_created_widget') . $data['name']);
+                $this->lib_admin->log(lang("Created a widget","admin") . $data['name']);
 
                 $this->db->insert('widgets', $data);
 
                 $findId = $this->db->insert_id();
 
-                showMessage('Виджет создан.');
+                showMessage(lang("Widget created","admin") . '.');
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 //pjax('/admin/widgets_manager/edit_html_widget/'.$findId);
@@ -197,7 +197,7 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_create');
 
         if (!$this->_is_wratible()) {
-            $this->template->assign('error', lang('ac_to_contin_work_set_perm') . '<b>' . $this->widgets_path . '</b>');
+            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
         }
@@ -226,7 +226,7 @@ class Widgets_manager extends BaseAdminController {
 
             }
         } else {
-            show_error(lang('ac_err_wid_not_found'));
+            show_error(lang("Error: widget not found!"));
         }
     }
 
@@ -240,8 +240,8 @@ class Widgets_manager extends BaseAdminController {
             $widget = $widget->row_array();
 
             if ($update_info == 'info') {
-                $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
+                $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
+                $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -256,9 +256,9 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log(lang('ac_ch_widget') . $data['name']);
+                $this->lib_admin->log(lang("Changed a widget","admin") . $data['name']);
 
-                showMessage(lang('ac_changes_saved'));
+                showMessage(lang("Changes has been saved","admin"));
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 return TRUE;
@@ -271,9 +271,9 @@ class Widgets_manager extends BaseAdminController {
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('update_settings', $widget));
             } elseif ($widget['type'] == 'html') {
 
-                $this->form_validation->set_rules('desc', lang('ac_val_desc'), 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', lang('ac_val_name'), 'trim|required|alpha_dash');
-                $this->form_validation->set_rules('html_code', lang('ac_val_html'), 'trim|required');
+                $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
+                $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
+                $this->form_validation->set_rules('html_code', lang("HTML","admin"), 'trim|required');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -291,15 +291,15 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->where('id', $id);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log(lang('ac_ch_widget') . $data['name']);
+                $this->lib_admin->log(lang("Changed a widget","admin") . $data['name']);
 
                 //updateDiv('page', site_url('admin/widgets_manager'));
-                showMessage(lang('ac_changes_saved'));
+                showMessage(lang("Changes has been saved","admin"));
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
             }
         }else {
-            show_error(lang('ac_err_wid_not_found'));
+            show_error(lang("Error: widget not found!"));
         }
     }
 
@@ -328,9 +328,9 @@ class Widgets_manager extends BaseAdminController {
             if (file_exists(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl')) {
                 @unlink(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl');
             }
-            $this->lib_admin->log(lang('ac_wid_del') . $n);
+            $this->lib_admin->log(lang("Deleted a widget","admin") . $n);
         }
-        showMessage(lang('a_widget_success_delete'));
+        showMessage(lang("Widget successfully deleted","admin"));
         pjax('/admin/widgets_manager/index');
     }
 
@@ -451,7 +451,7 @@ class Widgets_manager extends BaseAdminController {
 
     private function get_module_name($dir) {
         if ($dir == 'core') {
-            return lang('ac_core');
+            return lang("Core","admin");
         }
 
         $info = $this->load->module('admin/components')->get_module_info($dir);

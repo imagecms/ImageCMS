@@ -27,7 +27,7 @@
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
             <span class="c_97">
-                {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                {lang("Found","admin")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}
             </span>
             {if count($products) > 0}
                 <div class="clearfix t-a_c frame_func_catalog">
@@ -197,7 +197,7 @@
                                         data-sectitle="{lang('s_in_compare')}"
                                         data-rel="tooltip">
                                     <span class="icon-comprasion_2"></span>
-                                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                                    <span class="text-el">{lang("add to compare","admin")}</span>
                                 </button>
                                 <!-- to wish list button -->
 
@@ -207,11 +207,11 @@
                                         data-varid="{echo $product->firstVariant->getId()}"
                                         type="button"
 
-                                        data-title="{lang('s_add_to_wish_list')}"
+                                        data-title="{lang('add to wish list')}"
                                         data-sectitle="{lang('s_in_wish_list')}"
                                         data-rel="tooltip">
                                     <span class="icon-wish_2"></span>
-                                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                    <span class="text-el">{lang("add to wish list","admin")}</span>
                                 </button>
                             </div>
 

@@ -11,12 +11,12 @@ var currencySymbolJS = '{echo $CS}';
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#editDiscountForm" data-submit>
-                    <i class="icon-ok icon-white"></i>{lang('a_save')}
+                    <i class="icon-ok icon-white"></i>{lang('Have been saved')}
                 </button>
                 <button onclick="" type="button" class="btn btn-small action_on formSubmit submitButton" data-form="#editDiscountForm" data-action="tomain">
-                    <i class="icon-check"></i>{lang('a_footer_save_exit')}
+                    <i class="icon-check"></i>{lang('Save and exit')}
                 </button>
             </div>
         </div>

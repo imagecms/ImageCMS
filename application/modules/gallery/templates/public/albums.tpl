@@ -1,4 +1,4 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">Галерея</span></h5></div>
+<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('Gallery')}</span></h5></div>
 
 {if is_array($albums)}
 <ul class="products">
@@ -15,5 +15,5 @@
 </ul>
 
 {else:}
-    Альбомов не найдено.
+    {lang('Albums not found')}.
 {/if}
