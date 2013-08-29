@@ -117,7 +117,7 @@ class Sys_update extends BaseAdminController {
             echo 0;
     }
 
-<<<<<<< HEAD
+
     public function get_update() { // method controller's server's update
         
         ini_set("soap.wsdl_cache_enabled", "0");
@@ -148,8 +148,6 @@ class Sys_update extends BaseAdminController {
         }
     }
 
-=======
->>>>>>> 5c258211c4f990633c7b07cadddb723ccd2d1aff
     public function backup() {
         $this->update->createBackUp();
         redirect('/admin/sys_update/update');
