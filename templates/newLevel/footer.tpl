@@ -48,7 +48,7 @@
                 <div class="main-title">{lang('Contacts','newLevel')}</div>
                 <ul>
                     <li><div class="c_9">{lang('The main office','newLevel')}:</div></li>
-                    <li><div class="c_w">Киев, ул. Шевченка 22, офис: 39</div></li>
+                    <li><div class="c_w">{lang('Shevchenko St., Apt. 22, office: 39, Kiev', 'newLevel')}</div></li>
                     <li><div class="c_w f-s_0">
                             <span class="icon_phone_header"></span>
                             <span class="f-s_16"><span>(097)</span> <span class="f-w_b">567-43-21</span></span>

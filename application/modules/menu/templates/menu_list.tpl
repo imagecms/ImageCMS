@@ -4,14 +4,14 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang("Menu deleting")}</h3>
+            <h3>{lang("Menu deleting", "menu")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang("Delete selected menu?")}</p>
+            <p>{lang("Delete selected menu?", 'menu')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_menu')" >{lang("Delete")}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_menu')" >{lang("Delete", "menu")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel", "menu")}</a>
         </div>
     </div>
 
@@ -22,12 +22,12 @@
             <div class="frame_title clearfix">
                 <div class="pull-left">
                     <span class="help-inline"></span>
-                    <span class="title">{lang("Menu list")}</span>
+                    <span class="title">{lang("Menu list", "menu")}</span>
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-plus-sign icon-white"></i>{lang("Create a menu")}</button>
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-plus-sign icon-white"></i>{lang("Create a menu", "menu")}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete", "menu")}</button>
                     </div>
                 </div>                            
             </div>
@@ -43,12 +43,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID")}</th>
-                                <th class="span3">{lang("Name")}</th>
-                                <th class="span3">{lang("Name")}</th>
-                                <th class="span4">{lang("Description")}</th>
-                                <th class="span2">{lang("Created or Has been created")}</th>
-                                <th class="span2">{lang("Editing")}</th>
+                                <th class="span1">{lang("ID", "menu")}</th>
+                                <th class="span3">{lang("Name", "menu")}</th>
+                                <th class="span3">{lang("Name", "menu")}</th>
+                                <th class="span4">{lang("Description", "menu")}</th>
+                                <th class="span2">{lang("Created or Has been created", "menu")}</th>
+                                <th class="span2">{lang("Editing", "menu")}</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -70,7 +70,7 @@
                                         <td>{$item.description}
                                         </td>
                                         <td>{$item.created}</td>
-                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" class="pjax">{lang("Editing")}</a></td>
+                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" class="pjax">{lang("Editing", "menu")}</a></td>
                                     </tr>
                                 {/foreach}
                             {/if}

@@ -21,6 +21,9 @@ class Admin extends BaseAdminController {
         $this->load->module('forms');
         $this->load->library('form_validation');
         $this->_set_forms_config();
+
+        $obj = new MY_Lang();
+        $obj->load('cfcm');
     }
 
     public function _set_forms_config() {
@@ -54,7 +57,7 @@ class Admin extends BaseAdminController {
         $config['radiogroup_delimiter'] = '';
         $config['default_attr'] = array(
             'captcha' => array(
-                'label' => lang("Protection code"),
+                'label' => lang("Protection code", 'cfcm'),
             ),
         );
 
@@ -66,10 +69,10 @@ class Admin extends BaseAdminController {
             'fields' => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
             'groups' => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
             'groupRels' => $this->db
-                ->select('*')
-                ->join('content_field_groups', 'content_field_groups.id = content_fields_groups_relations.group_id OR content_fields_groups_relations.group_id = -1')
-                ->get('content_fields_groups_relations')
-                ->result_array()
+                    ->select('*')
+                    ->join('content_field_groups', 'content_field_groups.id = content_fields_groups_relations.group_id OR content_fields_groups_relations.group_id = -1')
+                    ->get('content_fields_groups_relations')
+                    ->result_array()
         ));
 
         $groups = $this->db->get('content_field_groups');
@@ -85,20 +88,20 @@ class Admin extends BaseAdminController {
     public function create_field() {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('create_field');
-        $form->title = lang("Create a field");
+        $form->title = lang("Create a field", 'cfcm');
 
         if ($_POST) {
 
             if (empty($_POST['field_name'])) {
-                showMessage(lang("Specify the field name"), false, 'r');
+                showMessage(lang("Specify the field name", 'cfcm'), false, 'r');
                 exit;
             }
             if (empty($_POST['label'])) {
-                showMessage(lang("Specify <b>Label</b> field"), false, 'r');
+                showMessage(lang("Specify <b>Label</b> field", 'cfcm'), false, 'r');
                 exit;
             }
             if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
-                showMessage(lang("Only Latin characters"), false, 'r');
+                showMessage(lang("Only Latin characters", 'cfcm'), false, 'r');
                 exit;
             }
 
@@ -106,12 +109,12 @@ class Admin extends BaseAdminController {
 
                 $data = $form->getData();
                 $groups = $data['groups'];
-                
-                $data['data']=  serialize($data);
-                 unset($data['groups']);
+
+                $data['data'] = serialize($data);
+                unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
                 if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
-                    showMessage(lang("Select another  name"), false, 'r');
+                    showMessage(lang("Select another  name", 'cfcm'), false, 'r');
                 } else {
                     // Set field weight.
                     $this->db->select_max('weight');
@@ -122,20 +125,19 @@ class Admin extends BaseAdminController {
 
                     //write relations
                     $toInsert = array();
-                    if (count($groups))
-                    {
-                        foreach($groups as $group)
+                    if (count($groups)) {
+                        foreach ($groups as $group)
                             $toInsert[] = array('field_name' => $data['field_name'],
-                                    'group_id' => $group
-                                );
+                                'group_id' => $group
+                            );
 
                         if (count($toInsert))
-                            $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
+                            $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                     }
-                    
-                    showMessage(lang("Field created"));
 
-                    pjax( $this->get_url('edit_field/' . $data['field_name']));
+                    showMessage(lang("Field created", 'cfcm'));
+
+                    pjax($this->get_url('edit_field/' . $data['field_name']));
                     exit;
                 }
             } else {
@@ -155,7 +157,7 @@ class Admin extends BaseAdminController {
     public function edit_field_data_type($field_name) {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('edit_field_data_type/' . $field_name);
-        $form->title = lang("Field editing");
+        $form->title = lang("Field editing", 'cfcm');
 
         $field = $this->db->get_where('content_fields', array('field_name' => $field_name))->row_array();
 
@@ -173,7 +175,7 @@ class Admin extends BaseAdminController {
                 $this->db->where('field_name', $field_name);
                 $this->db->update('content_fields', $data);
 
-                showMessage(lang("Field has been updated"));
+                showMessage(lang("Field has been updated", 'cfcm'));
                 pjax($this->get_url('index'));
                 exit;
             }
@@ -207,7 +209,7 @@ class Admin extends BaseAdminController {
         $this->db->where('field_name', $field_name)
                 ->delete('content_fields_groups_relations');
 
-        showMessage(lang('a_field_deleted_success'));
+        showMessage(lang('Field deleted successfuly', 'cfcm'));
         pjax($this->get_url('index'));
     }
 
@@ -222,7 +224,7 @@ class Admin extends BaseAdminController {
 
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = lang("Field editing") . $field->label;
+            $form->title = lang("Field editing ", 'cfcm') . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);
@@ -231,38 +233,37 @@ class Admin extends BaseAdminController {
 
             if ($_POST) {
                 $data = $form->getData();
-            
+
                 $matches = array();
-                if(preg_match_all('/<p>([\W\S]+)<\/p>/',  $data['initial'], $matches)){
+                if (preg_match_all('/<p>([\W\S]+)<\/p>/', $data['initial'], $matches)) {
                     $data['initial'] = $matches[1];
                 }
-                
+
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
                 unset($data['validation_required']);
 
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update('content_fields', array('data' => serialize($data),
-                                                          'type' => $data['type'],
-                                                          'label' => $data['label'],
-
-                    ));
+                    'type' => $data['type'],
+                    'label' => $data['label'],
+                ));
 
 
                 $groups = $data['groups'];
-                $data['field_name'] = end($this->uri->segment_array());;
-                if (count($groups))
-                    {
-                        foreach($groups as $group)
-                            $toInsert[] = array('field_name' => $data['field_name'],
-                                    'group_id' => $group
-                                );
+                $data['field_name'] = end($this->uri->segment_array());
+                ;
+                if (count($groups)) {
+                    foreach ($groups as $group)
+                        $toInsert[] = array('field_name' => $data['field_name'],
+                            'group_id' => $group
+                        );
 
-                        if (count($toInsert))
-                            $this->db->delete('content_fields_groups_relations', array('field_name' =>$data['field_name'] ));
-                            $this->db->insert_batch ('content_fields_groups_relations', $toInsert);
-                    }
-                 showMessage(lang("Field has been updated"));
+                    if (count($toInsert))
+                        $this->db->delete('content_fields_groups_relations', array('field_name' => $data['field_name']));
+                    $this->db->insert_batch('content_fields_groups_relations', $toInsert);
+                }
+                showMessage(lang("Field has been updated", 'cfcm'));
 //                if ($this->input->post('action') == 'close')
 //                    pjax( $this->get_url('index'));
 //                else
@@ -278,24 +279,23 @@ class Admin extends BaseAdminController {
             $this->render('_form');
         }
         else
-            echo lang("Field has not been found");
+            echo lang("Field has not been found", 'cfcm');
     }
 
-    public function create_group()
-    {
+    public function create_group() {
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('create_group');
-        $form->title = lang("Creating a group");
+        $form->title = lang("Creating a group", 'cfcm');
         $form->type = "group";
         if ($_POST) {
             if (empty($_POST['name'])) {
-                showMessage(lang("Specify the group name"), false, 'r');
+                showMessage(lang("Specify the group name", 'cfcm'), false, 'r');
                 exit;
             }
 
             if ($form->isValid()) {
                 $this->db->insert('content_field_groups', $form->getData());
-                showMessage(lang("Group has been created"));
+                showMessage(lang("Group has been created", 'cfcm'));
 
                 pjax('/admin/components/cp/cfcm#fields_groups');
             } else {
@@ -320,13 +320,13 @@ class Admin extends BaseAdminController {
         if ($group->num_rows() == 1) {
             $group = $group->row_array();
         } else {
-            showMessage(lang("Group has not been found"), false, 'r');
+            showMessage(lang("Group has not been found", 'cfcm'), false, 'r');
             exit;
         }
 
         $form = $this->get_form('create_group_form');
         $form->action = $this->get_url('edit_group/' . $id);
-        $form->title = lang("ID group editing") . $group['id'];
+        $form->title = lang("ID group editing", 'cfcm') . $group['id'];
         $form->type = "group";
         if ($_POST)
             if ($form->isValid()) {
@@ -335,9 +335,9 @@ class Admin extends BaseAdminController {
                 $this->db->limit(1);
                 $this->db->where('id', $id);
                 $this->db->update('content_field_groups', $data);
-                showMessage(lang("Group has been updated"));
+                showMessage(lang("Group has been updated", 'cfcm'));
 
-                pjax( $this->get_url('index#fields_groups'));
+                pjax($this->get_url('index#fields_groups'));
                 exit;
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
@@ -369,15 +369,14 @@ class Admin extends BaseAdminController {
         $this->db->where('category_field_group', $id)
                 ->update('category', array('category_field_group' => '-1'));
 
-        showMessage(lang('a_group_deleted_success'));
-            pjax('/admin/components/cp/cfcm#fields_groups');
+        showMessage(lang('Group deleted successfuly', 'cfcm'));
+        pjax('/admin/components/cp/cfcm#fields_groups');
     }
 
     // Create form from category field group
     // on add/edit page tpl.
-    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE)
-    {
-        if ('page' === $category_id ) {
+    public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE) {
+        if ('page' === $category_id) {
             $item_type = 'page';
             $item_id = 0;
             $category_id = 0;
@@ -404,11 +403,11 @@ class Admin extends BaseAdminController {
             // Get all fields in group
             $fg = (int) $category->field_group;
             $query = $this->db->select('*')
-                ->from('content_fields')
-                ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
-                ->where("content_fields_groups_relations.group_id = $category->field_group")
-                ->order_by('weight', 'ASC')
-                ->get();
+                    ->from('content_fields')
+                    ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
+                    ->where("content_fields_groups_relations.group_id = $category->field_group")
+                    ->order_by('weight', 'ASC')
+                    ->get();
 
             if ($query->num_rows() > 0) {
                 $form_fields = array();
@@ -440,25 +439,24 @@ class Admin extends BaseAdminController {
                 }
                 $form->title = $group->name;
 
-                $gid = isset($group->id)?$group->id:-1;
+                $gid = isset($group->id) ? $group->id : -1;
 
                 $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
                 $this->template->add_array(array(
-                    'form'  => $form,
-                    'hf'    => $hiddenField
+                    'form' => $form,
+                    'hf' => $hiddenField
                 ));
 
                 $this->display_tpl('_onpage_form');
-
             } else {
                 echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                    .lang("Group without any fields").
-                    '</div>';
+                . lang("Group without any fields", 'cfcm') .
+                '</div>';
             }
         } else {
             echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                .lang("For category") . $category->name . lang("Field group has not been selected").
-                '</div>';
+            . lang("For category", 'cfcm') . $category->name . lang("Field group has not been selected", 'cfcm') .
+            '</div>';
         }
     }
 
@@ -499,16 +497,16 @@ class Admin extends BaseAdminController {
 
 //     render template
     public function render($viewName, $data = array(), $return = false) {
-    	if (!empty($data))
-    		$this->template->add_array($data);
+        if (!empty($data))
+            $this->template->add_array($data);
 
 
-		if ($this->ajaxRequest)
-    		echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
-		else
-			$this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+        if ($this->ajaxRequest)
+            echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+        else
+            $this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
 //     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
-    	exit;
+        exit;
     }
 
     /**

@@ -2,41 +2,41 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Comments')}</span>
+            <span class="title">{lang('Comments', 'comments')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <div class="dropdown d-i_b">
                     <button type="button" class="btn btn-small dropdown-toggle disabled action_on" data-toggle="dropdown">
                         <i class="icon-tag"></i>
-                        {lang("Mark")}
+                        {lang("Designate", 'comments')}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#" class="to_pspam">{lang('Into spam')}</a></li>
-                        <li><a href="#" class="to_wait">{lang('In the waiting')}</a></li>
-                        <li><a href="#" class="to_approved">{lang('In approve')}</a></li>
+                        <li><a href="#" class="to_pspam">{lang('Into spam', 'comments')}</a></li>
+                        <li><a href="#" class="to_wait">{lang('In the waiting', 'comments')}</a></li>
+                        <li><a href="#" class="to_approved">{lang('In approve', 'comments')}</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
-                <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>{lang('Settings')}</a>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang("Delete", 'comments')}</button>
+                <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>{lang('Settings', 'comments')}</a>
             </div>
         </div>    
     </div>
     <div class="btn-group myTab m-t_20">
-        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments")}
+        <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments", 'comments')}
             {if $all_comm_show}
                 <span style="top:-13px;" class="badge badge-important">
                     {$all_comm_show}
                 </span>
             {/if}
         </a>
-        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang("Pending moderation  or waiting for moderation")}
+        <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang("Waiting for moderation", 'comments')}
             {if $total_waiting>0}
                 <span style="top:-13px;" class="badge badge-important">{$total_waiting}</span>
             {/if}
         </a>
-        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang("Approval")}
+        <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang("Approval", 'comments')}
             {if $total_app>0}
                 <span style="top:-13px;" class="badge badge-important">
                     {$total_app}
@@ -44,7 +44,7 @@
             {/if}
         </a>
         <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">
-            {lang("Spam")}
+            {lang("Spam", 'comments')}
             {if $total_spam>0}
                 <span style="top:-13px;" class="badge badge-important">
                     {$total_spam}
@@ -66,12 +66,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID")}</th>
-                                <th class="span5">{lang("Text")}</th>
-                                <th class="span2">{lang('Mark')}</th>
-                                <th class="span2">{lang("User")}</th>
-                                <th class="span2">{lang('User Email')}</th>
-                                <th class="span2">{lang("Page")}</th>
+                                <th class="span1">{lang("ID", 'comments')}</th>
+                                <th class="span5">{lang("Text", 'comments')}</th>
+                                <th class="span2">{lang('Mark', 'comments')}</th>
+                                <th class="span2">{lang("User", 'comments')}</th>
+                                <th class="span2">{lang('User Email', 'comments')}</th>
+                                <th class="span2">{lang("Page", 'comments')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,18 +92,18 @@
                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
                                                
-                                                <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('Save')}</span>
+                                                <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">{lang('Save', 'comments')}</span>
                                                 &nbsp;&nbsp;
-                                                <span class="js ref comment_update_cancel" data-cid="{$item.id}">{lang('Cancel')}</span>
+                                                <span class="js ref comment_update_cancel" data-cid="{$item.id}">{lang('Cancel', 'comments')}</span>
                                                 {if $item.status == 1}
-                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve')}</a>
+                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve', 'comments')}</a>
                                                 {/if}
                                                 {if $item.status != 2}
-                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam')}</a>
+                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam', 'comments')}</a>
                                                 {else:}
-                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Waiting moderation')}</a>
+                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Waiting moderation', 'comments')}</a>
                                                 {/if}
-                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete')}</a>
+                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete', 'comments')}</a>
                                             </span>
                                         </td>
                                         <td>
@@ -188,20 +188,20 @@
                                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
                                                                 <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>                                                                
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
-                                                                    {lang('Save')}
+                                                                    {lang('Save', 'comments')}
                                                                 </span>
                                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">
-                                                                   {lang('Cancel')}
+                                                                   {lang('Cancel', 'comments')}
                                                                 </span>
                                                                 {if $item.status == 1}
-                                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve')}</a>
+                                                                    <a href="#" class="to_approved" data-id="{$item.id}">{lang('In approve', 'comments')}</a>
                                                                 {/if}
                                                                 {if $item.status != 2}
-                                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam')}</a>
+                                                                    <a href="#" class="to_spam" data-id="{$item.id}">{lang('Into spam', 'comments')}</a>
                                                                 {else:}
-                                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Wait moderation')}</a>
+                                                                    <a href="#" class="to_waiting" data-id="{$item.id}">{lang('Wait moderation', 'comments')}</a>
                                                                 {/if}
-                                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete')}</a>
+                                                                <a href="#" class="ref_remove com_del" data-id="{$item.id}">{lang('Delete', 'comments')}</a>
                                                                 </div>
                                                                 </div>
                                                         </td>
@@ -284,15 +284,15 @@
                                                                                     <span class="text_comment" id="comment_text_holder{$ic.id}">{truncate(htmlspecialchars($ic.text), 80, '...')}</span>
                                                                                     <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
                                                                                         <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
-                                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">{lang('Save')}</span>
-                                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">{lang('Cancel')}</span>
-                                                                                    {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">{lang('In approve')}</a>{/if}
+                                                                                        <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">{lang('Save', 'comments')}</span>
+                                                                                        <span class="js ref comment_update_cancel" data-cid="{$ic.id}">{lang('Cancel', 'comments')}</span>
+                                                                                    {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">{lang('In approve', 'comments')}</a>{/if}
                                                                                     {if $ic.status != 2}
-                                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">{lang('Into spam')}</a>
+                                                                                        <a href="#" class="to_spam" data-id="{$ic.id}">{lang('Into spam', 'comments')}</a>
                                                                                     {else:}
-                                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">{lang('Wait moderation')}</a>
+                                                                                        <a href="#" class="to_waiting" data-id="{$ic.id}">{lang('Wait moderation', 'comments')}</a>
                                                                                     {/if}
-                                                                                    <a href="#" class="ref_remove com_del" data-id="{$ic.id}">{lang('Delete')}</a>
+                                                                                    <a href="#" class="ref_remove com_del" data-id="{$ic.id}">{lang('Delete', 'comments')}</a>
                                                                                 </span>
                                                                             </div>
                                                                         </td>
@@ -358,7 +358,7 @@
     {else:}
         </br>
         <div class="alert alert-info">
-            {lang("No data has been found or Nothing has been found")}
+            {lang("No data has been found", 'comments')}
         </div>
     {/if}
 </div>

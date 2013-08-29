@@ -2,417 +2,444 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-29 10:03+0300\n"
-"PO-Revision-Date: 2013-07-29 10:03+0300\n"
-"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2013-08-29 10:07+0300\n"
+"PO-Revision-Date: 2013-08-29 10:08+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: ru_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: UKRAINE\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp.php:12
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:12
 msgid "Recent reviews"
-msgstr "Смотреть"
+msgstr "Последние отзывы"
 
-#: /var/www/image.loc/_temp.php:13
+#: /var/www/image.loc/_temp2.php:13
 msgid "Comments"
-msgstr "Коментарі"
+msgstr "Комментарии"
 
-#: /var/www/image.loc/_temp.php:14
-#: /var/www/image.loc/_temp.php:23
-#: /var/www/image.loc/_temp.php:29
-#: /var/www/image.loc/_temp.php:35
+#: /var/www/image.loc/_temp2.php:14
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:35
 msgid "Into spam"
-msgstr ""
+msgstr "В спам"
 
-#: /var/www/image.loc/_temp.php:15
+#: /var/www/image.loc/_temp2.php:15
 msgid "In the waiting"
-msgstr ""
+msgstr "В ожидании"
 
-#: /var/www/image.loc/_temp.php:16
-#: /var/www/image.loc/_temp.php:22
-#: /var/www/image.loc/_temp.php:28
-#: /var/www/image.loc/_temp.php:34
+#: /var/www/image.loc/_temp2.php:16
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:34
 msgid "In approve"
-msgstr ""
+msgstr "В утверждении"
 
-#: /var/www/image.loc/_temp.php:17
-#: /var/www/image.loc/_temp.php:65
-#: /var/www/image.loc/_temp.php:90
-#: /var/www/image.loc/_temp.php:102
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:105
 msgid "Settings"
-msgstr "Позиція"
+msgstr "Настройки"
 
-#: /var/www/image.loc/_temp.php:18
-#: /var/www/image.loc/_temp.php:78
+#: /var/www/image.loc/_temp2.php:18
 msgid "Mark"
-msgstr ""
+msgstr "Оценка"
 
-#: /var/www/image.loc/_temp.php:19
+#: /var/www/image.loc/_temp2.php:19
 msgid "User Email"
-msgstr ""
+msgstr "E-mail пользователя"
 
-#: /var/www/image.loc/_temp.php:20
-#: /var/www/image.loc/_temp.php:26
-#: /var/www/image.loc/_temp.php:32
-#: /var/www/image.loc/_temp.php:89
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:92
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
-#: /var/www/image.loc/_temp.php:21
-#: /var/www/image.loc/_temp.php:27
-#: /var/www/image.loc/_temp.php:33
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:33
 msgid "Cancel"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Отмена"
 
-#: /var/www/image.loc/_temp.php:24
+#: /var/www/image.loc/_temp2.php:24
 msgid "Waiting moderation"
-msgstr ""
+msgstr "Ожидание модерации"
 
-#: /var/www/image.loc/_temp.php:25
-#: /var/www/image.loc/_temp.php:31
-#: /var/www/image.loc/_temp.php:37
-#: /var/www/image.loc/_temp.php:79
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:82
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
-#: /var/www/image.loc/_temp.php:30
-#: /var/www/image.loc/_temp.php:36
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:36
 msgid "Wait moderation"
-msgstr ""
+msgstr "Подождите модерацию"
 
-#: /var/www/image.loc/_temp.php:38
-#, fuzzy
-msgid "a_comm_edit"
-msgstr "Нааааааааамеееееееееее"
+#: /var/www/image.loc/_temp2.php:38
+msgid "Comment editing"
+msgstr "Редактирование комментария"
 
-#: /var/www/image.loc/_temp.php:39
+#: /var/www/image.loc/_temp2.php:39
 msgid "Return"
-msgstr ""
+msgstr "Назад"
 
-#: /var/www/image.loc/_temp.php:40
-#, fuzzy
+#: /var/www/image.loc/_temp2.php:40
 msgid "Create and exit"
-msgstr "Позиція"
+msgstr "Создать и выйти"
 
-#: /var/www/image.loc/_temp.php:41
-msgid "login_for_comments"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:41
+msgid "Only authorized users can leave comments."
+msgstr "Только авторизованные пользователи могут оставлять комментарии"
 
-#: /var/www/image.loc/_temp.php:42
-msgid "s_clients_comment"
-msgstr "Коментарий"
+#: /var/www/image.loc/_temp2.php:42
+msgid "Customer comments"
+msgstr "Отзывы пользователя"
 
-#: /var/www/image.loc/_temp.php:43
-#: /var/www/image.loc/_temp.php:54
-msgid "s_plus"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:55
+msgid "Pluses"
+msgstr "Плюсы"
 
-#: /var/www/image.loc/_temp.php:44
-#: /var/www/image.loc/_temp.php:55
-msgid "s_cons"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:56
+msgid "Minuses"
+msgstr "Минусы"
 
-#: /var/www/image.loc/_temp.php:45
-msgid "s_comment_answer"
-msgstr "Ответ"
+#: /var/www/image.loc/_temp2.php:45
+msgid "Answer"
+msgstr "Ответ "
 
-#: /var/www/image.loc/_temp.php:46
-msgid "s_like"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:46
+msgid "Like review"
+msgstr "Понравился отзыв"
 
-#: /var/www/image.loc/_temp.php:47
-msgid "s_dislike"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:47
+msgid "Do not like it"
+msgstr "Не понравился"
 
-#: /var/www/image.loc/_temp.php:48
+#: /var/www/image.loc/_temp2.php:48
 msgid "Write your comment"
-msgstr "Оставте ваш коментарий"
+msgstr "Написать комментарий"
 
-#: /var/www/image.loc/_temp.php:49
-msgid "s_you_raiting"
+#: /var/www/image.loc/_temp2.php:49
+msgid "Your rating"
 msgstr "Ваш рейтинг"
 
-#: /var/www/image.loc/_temp.php:50
-#: /var/www/image.loc/_temp.php:58
-msgid "lang_comment_author"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:61
+msgid "The comment will be sent for moderation"
+msgstr "Комментарий будет отправлен на модерацию"
 
-#: /var/www/image.loc/_temp.php:51
-#: /var/www/image.loc/_temp.php:59
-msgid "lang_comment_email"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:59
+msgid "Your name"
+msgstr "Ваше имя"
 
-#: /var/www/image.loc/_temp.php:52
-msgid "lang_comment_site"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:60
+msgid "Email"
+msgstr "Email"
 
-#: /var/www/image.loc/_temp.php:53
-msgid "s_text_comment_one"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:53
+msgid "Site"
+msgstr "Сайт"
 
-#: /var/www/image.loc/_temp.php:56
-msgid "lang_captcha"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:62
+msgid "Comment"
+msgstr "Комментарий "
 
-#: /var/www/image.loc/_temp.php:57
-#: /var/www/image.loc/_temp.php:60
-msgid "s_leave_comment"
+#: /var/www/image.loc/_temp2.php:57
+msgid "Code protection"
+msgstr "Защитный код"
+
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:63
+msgid "Leave comment"
+msgstr "Оставить комментарий"
+
+#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:101
+msgid "Widget settings"
+msgstr "Настройки виджета"
+
+#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:102
+msgid "Go back"
+msgstr "Назад"
+
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:103
+msgid "Have been saved"
+msgstr "Сохранены"
+
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:104
+msgid "Save and go back"
+msgstr "Сохранить и вернуться"
+
+#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_temp2.php:106
+msgid "Number of comments for display"
+msgstr "Количество комментариев для отображения"
+
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:107
+msgid "Maximum number of characters"
+msgstr "Максимальное количество символов"
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Comment settings"
+msgstr "Настройки комментариев"
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "Back"
+msgstr "Вернуться"
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Properties"
+msgstr "Параметры"
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "Maximum comment length"
+msgstr "Максимальная длина комментария"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "Comment restrictions"
+msgstr "Ограничение комментирования"
+
+# а
+#: /var/www/image.loc/_temp2.php:77
+msgid "Comment frequency restriction  per minute . O - check off"
+msgstr "Ограничение частоты  комментирования в минутах. 0 - Отключить проверку"
+
+#: /var/www/image.loc/_temp2.php:78
+msgid "Forbid comments for unregistered users"
+msgstr "Запретить комментирование для незарегистрированных пользователей"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Enable administrator comments approval"
+msgstr "Включить одобрение комментариев администратором. "
+
+#: /var/www/image.loc/_temp2.php:80
+msgid "Use the protection code"
+msgstr "Использовать защитный код"
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "Designate"
+msgstr "Обозначить"
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "All comments"
+msgstr "Все комментарии"
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "Waiting for moderation"
+msgstr "Ожидают модерации "
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "Approval"
+msgstr "Одобренные"
+
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:99
+msgid "Spam"
+msgstr "Спам"
+
+#: /var/www/image.loc/_temp2.php:87
+msgid "ID"
+msgstr "ID"
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "Text"
+msgstr "Текст"
+
+#: /var/www/image.loc/_temp2.php:89
+msgid "User"
+msgstr "Пользователь"
+
+#: /var/www/image.loc/_temp2.php:90
+msgid "Page"
+msgstr "Страница"
+
+# а
+#: /var/www/image.loc/_temp2.php:91
+msgid "No data has been found"
+msgstr "Ничего не найдено"
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "Author"
+msgstr "Автор"
+
+#: /var/www/image.loc/_temp2.php:95
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Status"
+msgstr "Статус "
+
+#: /var/www/image.loc/_temp2.php:97
+msgid "Approved"
+msgstr "Одобрено"
+
+#: /var/www/image.loc/_temp2.php:98
+msgid "Pending approval"
+msgstr "В ожидании одобрения"
+
+#: /var/www/image.loc/_temp2.php:100
+msgid "Contents"
+msgstr "Содержание"
+
+#: /var/www/image.loc/_temp2.php:108
+msgid "log in"
+msgstr "войдите"
+
+#: /var/www/image.loc/_temp2.php:109
+msgid "please"
+msgstr "пожалуйста"
+
+#: ../../../commentsapi.php:74
+#: ../../../commentsapi.php:144
+#: ../../../comments.php:204
+msgid "Total comments: "
+msgstr "Всего комментариев: "
+
+#: ../../../commentsapi.php:101
+msgid "comment"
+msgstr "комментарий"
+
+#: ../../../commentsapi.php:101
+msgid "comments"
+msgstr "комментарии"
+
+#: ../../../commentsapi.php:170
+#: ../../../commentsapi.php:541
+#: ../../../commentsapi.php:545
+msgid "review"
+msgstr "просмотр"
+
+#: ../../../commentsapi.php:170
+#: ../../../commentsapi.php:541
+#: ../../../commentsapi.php:545
+msgid "reviews"
+msgstr "простмотры"
+
+#: ../../../commentsapi.php:170
+msgid "Leave a comment"
 msgstr "Оставить коментарий"
 
-#: /var/www/image.loc/_temp.php:61
-#: /var/www/image.loc/_temp.php:98
-#, fuzzy
-msgid "Widget settings"
-msgstr "Позиція"
-
-#: /var/www/image.loc/_temp.php:62
-#: /var/www/image.loc/_temp.php:99
-msgid "Go back"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:63
-#: /var/www/image.loc/_temp.php:70
-#: /var/www/image.loc/_temp.php:100
-msgid "Have been saved"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:64
-#: /var/www/image.loc/_temp.php:101
-msgid "Save and go back"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:66
-#: /var/www/image.loc/_temp.php:103
-msgid "Number of comments for display"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:67
-#: /var/www/image.loc/_temp.php:104
-msgid "Maximum number of characters"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:68
-msgid "Comment settings"
-msgstr "Настройки коментарів"
-
-#: /var/www/image.loc/_temp.php:69
-msgid "Back"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:71
-msgid "Properties"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:72
-msgid "Maximum comment length"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:73
-msgid "Comment restrictions"
-msgstr "Частота коментарів"
-
-#: /var/www/image.loc/_temp.php:74
-msgid "Comment frequency restriction  per minute . O - check off"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:75
-msgid "Forbid comments for unregistered users"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:76
-msgid "Administrator approval on"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:77
-msgid "Use the protection code"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:80
-msgid "All comments"
-msgstr "Все коментарии"
-
-#: /var/www/image.loc/_temp.php:81
-msgid "Pending moderation  or waiting for moderation"
-msgstr "Ожидающие модерации или ждет модерации"
-
-#: /var/www/image.loc/_temp.php:82
-msgid "Approval"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:83
-#: /var/www/image.loc/_temp.php:96
-msgid "Spam"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:84
-msgid "ID"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:85
-msgid "Text"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:86
-msgid "User"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:87
-msgid "Page"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:88
-msgid "No data has been found or Nothing has been found"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:91
-msgid "Author"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:92
-msgid "E-Mail"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:93
-msgid "Status"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:94
-msgid "Approved"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:95
-msgid "Pending approval"
-msgstr ""
-
-#: /var/www/image.loc/_temp.php:97
-msgid "Contents"
-msgstr ""
-
-#: ../../../commentsapi.php:79
-#: ../../../commentsapi.php:153
-#: ../../../comments.php:202
-msgid "lang_total_comments"
-msgstr ""
-
-#: ../../../commentsapi.php:104
-#, fuzzy
-msgid "s_review_on"
-msgstr "Смотреть"
-
-#: ../../../commentsapi.php:104
-#, fuzzy
-msgid "s_review_tw"
-msgstr "Смотреть"
-
-#: ../../../commentsapi.php:104
-#, fuzzy
-msgid "s_review_tre"
-msgstr "Смотреть"
-
-#: ../../../commentsapi.php:177
-#: ../../../commentsapi.php:551
-#: ../../../commentsapi.php:555
-#, fuzzy
-msgid "review"
-msgstr "Смотреть"
-
-#: ../../../commentsapi.php:177
-#: ../../../commentsapi.php:551
-#: ../../../commentsapi.php:555
-#, fuzzy
-msgid "reviews"
-msgstr "Смотреть"
-
-#: ../../../commentsapi.php:177
-msgid "Leave a comment"
-msgstr ""
-
-#: ../../../commentsapi.php:283
+#: ../../../commentsapi.php:273
 msgid "Time for new  comment has not yet come"
-msgstr ""
+msgstr "Время для новых комментариев еще не пришло"
 
-#: ../../../commentsapi.php:302
-#: ../../../commentsapi.php:304
-#: ../../../comments.php:275
-#: ../../../comments.php:277
-msgid "Code protection"
-msgstr ""
-
-#: ../../../admin.php:207
-#: ../../../admin.php:227
+#: ../../../admin.php:205
+#: ../../../admin.php:226
 msgid "Success"
-msgstr ""
+msgstr "Успех"
 
-#: ../../../admin.php:207
-#, fuzzy
+#: ../../../admin.php:205
 msgid "Change saved"
-msgstr "Позиція змінена"
+msgstr "Изменить сохранены"
 
-#: ../../../admin.php:227
-#, fuzzy
+#: ../../../admin.php:226
 msgid "Status updated"
-msgstr "Позиція змінена"
+msgstr "Статус обновлен"
 
-#: ../../../admin.php:250
-msgid "Comment (s) has been successfully deleted"
-msgstr ""
+#: ../../../admin.php:249
+msgid "Comment(s) deleted"
+msgstr "Комментарий(ии) удален"
 
 #: ../../../admin.php:308
 msgid "Changes saved"
-msgstr "Сохранено"
+msgstr "Изменения сохранены"
 
-#: ../../../comments.php:248
-msgid "error_comments_diabled"
-msgstr ""
+# а
+#: ../../../comments.php:241
+#, fuzzy, php-format
+msgid "Only authorized users can leave comments. <a href=\"%s\" class=\"loginAjax\"> log in </ a>, please."
+msgstr "Только авторизованные пользователи могут оставлять комментарии. <A HREF ="
 
-#: ../../../comments.php:259
-msgid "error_comments_period"
-msgstr ""
+#: ../../../comments.php:250
+msgid "Commenting on recording is prohibited."
+msgstr "Комментирования  запрещено."
 
-#: ../../../comments.php:368
-msgid "error_comments_text"
-msgstr ""
+#: ../../../comments.php:261
+#, php-format
+msgid "Allowed to comment once in %s minutes."
+msgstr "Оставлять комментарии раз в %s минут."
+
+#: ../../../comments.php:370
+msgid "Fill text in comment."
+msgstr "Заполните текст комментария."
 
 #: ../../../module_info.php:5
 msgid "Comments module"
-msgstr "Модуль кометарів"
+msgstr "Модуля коментариив"
 
 #: ../../../comments_widgets.php:88
 msgid "Number of comments"
-msgstr ""
+msgstr "Количество комментариев"
 
 #: ../../../comments_widgets.php:89
 #: ../../../comments_widgets.php:168
 msgid "Number of characters"
-msgstr ""
+msgstr "Количество символов"
 
+# а
 #: ../../../comments_widgets.php:102
 #: ../../../comments_widgets.php:181
-#, fuzzy
 msgid "Settings have been saved or settings were saved"
-msgstr "Сохранение настроек прошло успешно"
+msgstr "Настройки сохранены или настройки были сохранены"
 
 #: ../../../comments_widgets.php:167
 msgid "Number of responses"
-msgstr ""
+msgstr "Количество ответов"
+
+# а
+#, fuzzy
+#~ msgid "Only authorized users can leave comments. <a href="
+#~ msgstr ""
+#~ "Только авторизованные пользователи могут оставлять комментарии. <A HREF ="
+
+# а
+#, fuzzy
+#~ msgid "a_comm_edit"
+#~ msgstr "a_comm_edit"
+
+# а
+#~ msgid "Pending moderation  or waiting for moderation"
+#~ msgstr "Ожидающие модерации или Ждет модерации"
+#~ msgid "s_clients_comment"
+#~ msgstr "Коментарий"
+#~ msgid "s_comment_answer"
+#~ msgstr "Ответ"
+#, fuzzy
+#~ msgid "s_review_on"
+#~ msgstr "Смотреть"
+
+#, fuzzy
+#~ msgid "s_review_tw"
+#~ msgstr "Смотреть"
+
+#, fuzzy
+#~ msgid "s_review_tre"
+#~ msgstr "Смотреть"
 
 #~ msgid "s_leave_your_comment"
 #~ msgstr "Оставить комент"
-
-#, fuzzy
-#~ msgid "Your answer"
-#~ msgstr "Вааааааааааааше замечание"
 
 #, fuzzy
 #~ msgid "Description "

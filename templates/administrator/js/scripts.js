@@ -1211,7 +1211,6 @@ $(document).ready(
 
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
-            console.log(txt_val);
 
 
             $('.main_body').append('<div class="overlay"></div>');
