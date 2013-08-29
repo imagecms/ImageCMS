@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => lang('Comments'),
-	'description' => lang('Comments module'),
+	'menu_name' => lang('Comments', 'comments'),
+	'description' => lang('Comments module', 'comments'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr', // xhr/iframe - если используем xhr, тогда каждой ссылке нужно добавить класс "ajax"
 	'w' => 600,

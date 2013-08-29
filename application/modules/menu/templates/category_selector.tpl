@@ -2,11 +2,11 @@
         <table width="100%" border="0" cellpadding="2" cellspacing="2">
             <tr>
                 <td width="100%" valign="top">
-                    {lang("Choose a category")}
+                    {lang("Choose a category", 'menu')}
                 </td>
                 <td valign="top">
                 <div style="width:350px;" id="item_params">
-                        <h3>{lang("Options")}:</h3>
+                        <h3>{lang("Options", 'menu')}:</h3>
                 </div>
                 </td>
             </tr>
@@ -20,30 +20,30 @@
                    <input type="hidden" id="owner_id" value="{$insert_id}" />
 
 
-                    <div class="field_text">{lang("Type")}</div>
+                    <div class="field_text">{lang("Type", 'menu')}</div>
                     <div class="field_input" id="cat_type">
-                        {lang("Categories")}
+                        {lang("Categories", 'menu')}
                     </div>
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">{lang("ID")}</div>
+                    <div class="field_text">{lang("ID", 'menu')}</div>
                     <div class="field_input" id="cat_id">
                         0
                     </div>
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">{lang("Title")}</div>
+                    <div class="field_text">{lang("Title", 'menu')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_title"  id="cat_title" />
                     </div>
 
                     <div class="form_overflow"></div>
 
-                    <div class="field_text">{lang("Parent")}</div>
+                    <div class="field_text">{lang("Parent", 'menu')}</div>
                     <div class="field_input">
                        	<select name="cat_parent_id" id="cat_parent_id">
-                        <option value="0">{lang("No")}</option>
+                        <option value="0">{lang("No", 'menu')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
@@ -53,28 +53,28 @@
                     <div class="form_overflow"></div>
 
 
-                    <div class="field_text">{lang("Position after")}</div>
+                    <div class="field_text">{lang("Position after", 'menu')}</div>
                     <div class="field_input">
                        	<select name="cat_position_after" id="cat_position_after">
-                        <option value="0">{lang("No")}</option>
-                        <option value="first">{lang("First")}</option>
+                        <option value="0">{lang("No", 'menu')}</option>
+                        <option value="first">{lang("First", 'menu')}</option>
                         {foreach $menu_result as $item}
                         <option  value="{$item.id}">{for $i=0; $i < $item['padding']; $i++}-{/for} {$item.title}</option>
                         {/foreach}
                         </select>
                     </div>
                     <div class="form_overflow"></div>
-                    <div class="field_text">{lang("Image")}</div>
+                    <div class="field_text">{lang("Image", 'menu')}</div>
                     <div class="field_input">
                         <input type="text" class="textbox" value="" name="cat_image"  id="cat_image" />
-                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang("Select an image")}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
+                        <img width="16" height="16" align="absmiddle" src="{$THEME}images/images.png" title="{lang("Select an image", 'menu')}" style="cursor: pointer;" onclick="tinyBrowserPopUp('image', 'cat_image');" />
 
                     </div>
 
-                    <div class="field_text">{lang("Access level")}</div>
+                    <div class="field_text">{lang("Access level", 'menu')}</div>
                     <div class="field_input">
                         <select id="cat_roles" name="cat_roles[]" multiple="multiple">
-                        <option value="0">{lang("All")}</option>
+                        <option value="0">{lang("All", 'menu')}</option>
                         {foreach $roles as $role}
                           <option value ="{$role.id}">{$role.alt_name}</option>
                         {/foreach}
@@ -84,29 +84,29 @@
                     <div class="form_overflow"></div>
 
                    <div class="field_text">
-                        {lang("Hide")}
+                        {lang('Hide', 'menu')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="cathidden_v" id="cat_hidden" onclick="cat_hidden = 1;"  /> {lang("Yes")}
-                       <input type="radio" name="cathidden_v" id="cat_nohidden"  onclick="cat_hidden = 0;"  checked="checked" /> {lang("No")}
+                       <input type="radio" name="cathidden_v" id="cat_hidden" onclick="cat_hidden = 1;"  /> {lang("Yes", 'menu')}
+                       <input type="radio" name="cathidden_v" id="cat_nohidden"  onclick="cat_hidden = 0;"  checked="checked" /> {lang("No", 'menu')}
                     </div>
 
                     <div class="form_overflow"></div>
 
 		    	            <div class="field_text">
-                        {lang("Open in the new window")}
+                        {lang("Open in the new window", 'menu')}
                     </div>
                     <div class="field_input">
-                       <input type="radio" name="catnew_page" id="cat_newpage"  onclick="cat_newpage = 1;" /> {lang("Yes")}
-                       <input type="radio" name="catnew_page" id="cat_nonewpage" onclick="cat_newpage = 0;"  checked="checked" /> {lang("No")}
+                       <input type="radio" name="catnew_page" id="cat_newpage"  onclick="cat_newpage = 1;" /> {lang("Yes", 'menu')}
+                       <input type="radio" name="catnew_page" id="cat_nonewpage" onclick="cat_newpage = 0;"  checked="checked" /> {lang("No", 'menu')}
                     </div>
 
                     <div class="form_overflow"></div>
 
                     <div class="field_text"></div>
                     <div class="field_input">
-                        <input type="button" value="Создать" id="cat_btn" class="button" onclick="insert_category(); return false;" />
-                        <input type="button" value="Отмена" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
+                        <input type="button" value="{lang('Create', 'menu')}" id="cat_btn" class="button" onclick="insert_category(); return false;" />
+                        <input type="button" value="{lang('Cancel', 'menu')}" class="button" onclick="MochaUI.closeWindow( $('createnewlink') ); return false;" />
                     </div>
 
                     <div class="form_overflow"></div>
@@ -145,7 +145,7 @@
 
         if (id == 0)
         {
-            showMessage('Ошибка','Выбирите категорию.');
+            showMessage(lang('Error', 'menu'), lang('Choose category.', 'menu'));
             return false;
         }
 
@@ -154,7 +154,7 @@
 
         if (title == '')
         {
-            showMessage('Ошибка','Введите заголовк.');
+            showMessage(lang('Error', 'menu'), lang('Enter title.', 'menu'));
             return false;
         }
 

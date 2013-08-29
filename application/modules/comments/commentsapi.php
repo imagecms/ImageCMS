@@ -71,7 +71,7 @@ class Commentsapi extends Comments {
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('lang_total_comments') . count($comments),
+            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'use_moderation' => $this->use_moderation,
@@ -98,7 +98,7 @@ class Commentsapi extends Comments {
         return array(
             'comments' => $comments,
             'commentsCount' => $commentsCount[$item_id],
-            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('s_review_on'), lang('s_review_tw'), lang('s_review_tre'))) : 'Оставить отзыв',
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang('comment', 'comments'), lang('comment', 'comments'), lang('comments', 'comments'))) : lang('Leave comment', 'comments'),
             'validation_errors' => $this->validation_errors
         );
     }
@@ -141,7 +141,7 @@ class Commentsapi extends Comments {
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('lang_total_comments') . count($comments),
+            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'use_moderation' => $this->use_moderation,
@@ -167,7 +167,7 @@ class Commentsapi extends Comments {
 
         echo json_encode(array(
             'comments' => $comments,
-            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review"), lang("reviews"), lang("review"))) : lang('Leave a comment'),
+            'total_comments' => $comments_count ? $comments_count . ' ' . $this->Pluralize($comments_count, array(lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments'))) : lang('Leave a comment', 'comments'),
             'commentsCount' => $commentsCount[$item_id],
             'validation_errors' => $this->validation_errors
         ));
@@ -270,7 +270,7 @@ class Commentsapi extends Comments {
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => lang('Time for new  comment has not yet come')
+                            'validation_errors' => lang('Time for new  comment has not yet come', 'comments')
                         )
                 );
                 return;
@@ -280,9 +280,9 @@ class Commentsapi extends Comments {
         if ($this->dx_auth->is_logged_in() == FALSE) {
             ($hook = get_hook('comments_set_val_rules')) ? eval($hook) : NULL;
 
-            $this->form_validation->set_rules('comment_email', 'lang:lang_comment_email', 'trim|required|xss_clean|valid_email');
-            $this->form_validation->set_rules('comment_author', 'lang:lang_comment_author', 'trim|required|xss_clean|max_length[50]');
-            $this->form_validation->set_rules('comment_site', 'lang:lang_comment_site', 'trim|xss_clean|max_length[250]');
+            $this->form_validation->set_rules('comment_email', lang('Email', 'comments'), 'trim|required|xss_clean|valid_email');
+            $this->form_validation->set_rules('comment_author', lang('Your name', 'comments'), 'trim|required|xss_clean|max_length[50]');
+            $this->form_validation->set_rules('comment_site', lang('Site', 'comments'), 'trim|xss_clean|max_length[250]');
         }
 
         // Check captcha code if captcha_check enabled and user in not admin.
@@ -295,9 +295,9 @@ class Commentsapi extends Comments {
         }
 
         if ($this->max_comment_length != 0)
-            $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
+            $this->form_validation->set_rules('comment_text', lang('Comment', 'comments'), 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
         else
-            $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('comment_text', lang('Comment', 'comments'), 'trim|required|xss_clean');
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
@@ -538,11 +538,11 @@ class Commentsapi extends Comments {
         $result = array();
 
         foreach ($query as $q)
-            $result[$q['item_id']] = $q['count'] . ' ' . $this->Pluralize((int) $q['count'], array(lang("review"), lang("reviews"), lang("review")));
+            $result[$q['item_id']] = $q['count'] . ' ' . $this->Pluralize((int) $q['count'], array(lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments')));
 
         foreach ((array) $ids as $id)
             if (!$result[$id])
-                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang("review"), lang("reviews"), lang("review")));
+                $result[$id] = 0 . ' ' . $this->Pluralize('0', array(lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments')));
 
         return $result;
     }
