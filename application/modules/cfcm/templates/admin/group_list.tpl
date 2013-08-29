@@ -2,23 +2,23 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">{lang('a_field_constructor')}</span>
+            <span class="title w-s_n">{lang("Field constructor", 'cfcm')}</span>
         </div>
 
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>Сохранить</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>Сохранить и выйти</button>
+                <a href="#" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'cfcm')}</span></a>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-ok"></i>{lang("Save", 'cfcm')}</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form"><i class="icon-check"></i>{lang("Save and exit", 'cfcm')}</button>
 
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        Русский
+                        {lang("Russian", 'cfcm')}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Английский</a></li>
+                        <li><a href="#">{lang("English", 'cfcm')}</a></li>
                     </ul>
                 </div>
 
@@ -51,10 +51,10 @@
 <div id="sortable" >
     <table id="cfcfm_fields_table">
         <thead>
-        <th style="width:15px;">{lang('amt_id')}</th>
-        <th>{lang('amt_name')}</th>
-        <th>{lang('amt_description')}</th>
-        <th>{lang('amt_fields')}</th>
+        <th style="width:15px;">{lang("ID", 'cfcm')}</th>
+        <th>{lang("Name", 'cfcm')}</th>
+        <th>{lang("Description", 'cfcm')}</th>
+        <th>{lang("Fields", 'cfcm')}</th>
         <th width="100px"></th>
         </thead>
         <tbody>
@@ -69,8 +69,8 @@
                     {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
                 </td>
                 <td align="right">
-                    <img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}images/edit_page.png" width="16" height="16" title="{lang('amt_edit')}" />
-                    <img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang('amt_delete')}" />
+                    <img onclick="ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');" style="cursor:pointer" src="{$THEME}/images/edit_page.png" width="16" height="16" title="{lang("Edit", 'cfcm')}" />
+                    <img onclick="confirm_delete_cfcfm_group('{$g.id}');" src="{$THEME}/images/delete.png"  style="cursor:pointer" width="16" height="16" title="{lang("Delete", 'cfcm')}" /> 
                 </td>
             </tr>
             {/foreach}
@@ -98,7 +98,7 @@
 
 {else:}
 <div id="notice">
-    {lang('amt_empty_group_list')}<a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_group');">{lang('amt_create_group')}</a>
+    {lang("Empty group list or group list is empty", 'cfcm')}<a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/create_group');">{lang("Create a group", 'cfcm')}</a>
 </div>
 {/if}
 
@@ -106,7 +106,7 @@
 <script type="text/javascript">
     function confirm_delete_cfcfm_group(id)
     {
-        alertBox.confirm('<h1> </h1><p>Удалить группу ID: '+ id + '? </p>', {onComplete:
+        alertBox.confirm('<h1> </h1><p>' + {/literal} {lang('Delete group', 'cfcm')} {literal} + 'ID: '+ id + '? </p>', {onComplete:
                 function(returnvalue) {
                 if(returnvalue)
                 {

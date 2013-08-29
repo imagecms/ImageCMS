@@ -12,7 +12,7 @@
                             <!-- login form -->
                             <form action="/socauth/vk" method="POST">
                                 <label>
-                                    <span class="title">{lang('lang_email')}</span>
+                                    <span class="title">{lang('Email')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <!-- input for email -->

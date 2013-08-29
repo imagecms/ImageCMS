@@ -44,7 +44,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
+                                        <input type="submit" class="btn btn_cart" value="{lang("Send","admin")}" />
                                     </span>
                                 </div>
                             </div>

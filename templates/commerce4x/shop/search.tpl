@@ -278,18 +278,18 @@
                         </div>
 
                         <!-- creating hot bubble for products image if product is hot -->
-                        {if $product->getHot()}
-                        <span class="top_tovar nowelty">{lang('s_shot')}</span>
+                        {if $p->getHot()}
+                            <span class="top_tovar nowelty">{lang("New","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is action -->
-                        {if $product->getAction()}
-                        <span class="top_tovar promotion">{lang('s_saction')}</span>
+                        {if $p->getAction()}
+                            <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is hit -->
                         {if $product->getHit()}
-                        <span class="top_tovar discount">{lang('s_shit')}</span>
+                        <span class="top_tovar discount">{lang('Hit')}</span>
                         {/if}
                     </li>
                     {/foreach}
@@ -310,11 +310,11 @@
     <article id="search" class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
-                <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
+                <div class="d_i title_h1">{lang("You searched for","admin")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match","admin"))}</div>
         </div>
     </article>
     <!-- End. Show message -->

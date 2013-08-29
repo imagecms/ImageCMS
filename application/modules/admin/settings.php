@@ -2,6 +2,7 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 /**
  * @property CI_Cache $cache
  */
@@ -19,7 +20,6 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
-
         $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
@@ -31,17 +31,16 @@ class Settings extends BaseAdminController {
 
         #Tiny MCE themes in lib_editor
 //        $themes_arr = array(
-//            'simple' => 'Простая',
-//            'advanced' => 'Расширеная',
-//            'full' => 'Полная'
+//            'simple' => lang('Simple','admin'),
+//            'advanced' => lang('Extended','admin'),
+//            'full' => lang('Full','admin')
 //        );
 //
 //        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
-
 //        $this->template->assign('editor_themes', $themes_arr);
 //        $this->template->assign('theme_selected', $settings['editor_theme']);
 
-        $this->template->assign('work_values', array('yes' => 'Да', 'no' => 'Нет'));
+        $this->template->assign('work_values', array('yes' => lang("Yes","admin"), 'no' => lang("No","admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
 
@@ -74,34 +73,33 @@ class Settings extends BaseAdminController {
         $this->template->show('settings', FALSE);
     }
 
+    //++++++++++++++
+    public function translate_meta() {
 
- //++++++++++++++
-        public function translate_meta() {
+        $this->load->library('form_validation');
 
-            $this->load->library('form_validation');
-
-            $this->form_validation->set_rules('name', 'Название', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('short_name', 'Краткое название', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('description', 'Описание', 'trim|xss_clean');
-            $this->form_validation->set_rules('keywords', 'Ключевие слова', 'trim|xss_clean');
-            if ($this->form_validation->run($this) == FALSE)
-                showMessage(validation_errors(), false, 'r');
-            else {
-                $name = $this->input->post('name');
-                $short_name = $this->input->post('short_name');
-                $desk = $this->input->post('description');
-                $key = $this->input->post('keywords');
-                $lang = $this->input->post('lang_ident');
-                if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array()))
-                    $this->db->query("UPDATE settings_i18n
+        $this->form_validation->set_rules('name', lang('Name', 'admin'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('short_name', lang('Short name', 'admin'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('description', lang('Description', 'admin'), 'trim|xss_clean');
+        $this->form_validation->set_rules('keywords', lang('Keywords', 'admin'), 'trim|xss_clean');
+        if ($this->form_validation->run($this) == FALSE)
+            showMessage(validation_errors(), false, 'r');
+        else {
+            $name = $this->input->post('name');
+            $short_name = $this->input->post('short_name');
+            $desk = $this->input->post('description');
+            $key = $this->input->post('keywords');
+            $lang = $this->input->post('lang_ident');
+            if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array()))
+                $this->db->query("UPDATE settings_i18n
                                                             SET
                                                                 name = '$name',
                                                                 short_name = '$short_name',
                                                                 description = '$desk',
                                                                 keywords = '$key'
                                                             WHERE lang_ident = '$lang'");
-                else
-                    $this->db->query("INSERT INTO settings_i18n(
+            else
+                $this->db->query("INSERT INTO settings_i18n(
                                                                 lang_ident,
                                                                 name,
                                                                 short_name,
@@ -114,9 +112,9 @@ class Settings extends BaseAdminController {
                                                                 '$short_name',
                                                                 '$desk',
                                                                 '$key')");
-            }
-
+        }
     }
+
 //+++++++++++++++++++++++++++++++++++++++++
     /**
      * Main Page settings
@@ -183,7 +181,7 @@ class Settings extends BaseAdminController {
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang('ac_page_not_found'), false, 'r');
+                    showMessage(lang("Page has not been found","admin"), false, 'r');
                     exit;
                 }
                 break;
@@ -225,27 +223,27 @@ class Settings extends BaseAdminController {
 
         $this->cache->delete_all();
 
-        $this->lib_admin->log(lang('ac_changed_site_sett'));
+        $this->lib_admin->log(lang("Changed wesite settings","admin"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
-         showMessage(lang('ac_sett_saved'));
+            showMessage(lang("Settings have been saved","admin"));
     }
 
-    public function switch_admin_lang($lang)
-    {
+    public function switch_admin_lang($lang) {
         $langs = Array(
             'english',
             'russian'
         );
 
-        if (in_array($lang, $langs) && $this->config->item('language') != $lang)
-        {
-            $this->db->set('lang_sel', $lang.'_lang')
-                ->update('settings');
-        }
+        if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
 
-        redirect($_SERVER['HTTP_REFERER']?$_SERVER['HTTP_REFERER']:'/admin/dashboard');
+            $this->db->set('lang_sel', $lang . '_lang')
+                    ->update('settings');
+
+            $this->session->set_userdata('language', $lang);
+        }
+        redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
     }
 
     /**
@@ -254,7 +252,7 @@ class Settings extends BaseAdminController {
      * @access public
      */
     function save_main() {
-
+        
     }
 
 }

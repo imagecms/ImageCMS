@@ -3,14 +3,14 @@
     <div class="container">
         <div class="f-s_0 title-profile without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{echo encode($profile->getName())}, добро пожаловать!</h1>
+                <h1 class="d_i">{echo encode($profile->getName())}, {lang('welcome!','newLevel')}</h1>
             </div>
         </div>
         <div class="left-personal f-s_0">
             <ul class="tabs tabs-data">
-                <li><button data-href="#my_data" data-source="{shop_url('profile/profile_data')}">Основные данные</button></li>
-                <li><button data-href="#change_pass" data-source="{shop_url('profile/profile_change_pass')}">Смена пароля</button></li>
-                <li><button data-href="#history_order" data-source="{shop_url('profile/profile_history')}">История заказов</button></li>
+                <li><button data-href="#my_data" data-source="{shop_url('profile/profile_data')}">{lang('Basic data','newLevel')}</button></li>
+                <li><button data-href="#change_pass" data-source="{shop_url('profile/profile_change_pass')}">{lang('Change Password','newLevel')}</button></li>
+                <li><button data-href="#history_order" data-source="{shop_url('profile/profile_history')}">{lang('Order history','newLevel')}</button></li>
             </ul>
             <div class="frame-tabs-ref frame-tabs-profile">
                 <div id="my_data">

@@ -171,7 +171,7 @@
                                                 <input type="text"
                                                        name="text"
                                                        value=""
-                                                       placeholder="{lang('s_se_thi_sit')}"
+                                                       placeholder="{lang("Search this site","admin")}" 
                                                        autocomplete="off"
                                                        class="place_hold"
                                                        id="inputString"/>
@@ -196,7 +196,7 @@
                                                         data-drop=".drop-order-call">
                                                     <span class="icon-order-call"></span>
                                                     <span class="d_l_b">
-                                                        {lang('s_coll_order')}
+                                                        {lang("Request Call","admin")}
                                                     </span>
                                                 </button>
                                             </li>
@@ -246,17 +246,17 @@
                             <ul class="contacts_info">
                                 <li>
                                     <span class="icon-foot-phone"></span>
-                                    <span class="f-w_b">{lang('s_tel')}:</span>
+                                    <span class="f-w_b">{lang('Phone')}:</span>
                                     +8 (090) <span class="d_n">&minus;</span> 500-50-50,
                                     +8 (100)<span class="d_n">&minus;</span> 500-50-50
                                 </li>
                                 <li>
                                     <span class="icon-foot-email"></span>
-                                    <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                    <span class="f-w_b">{lang('Email')}:</span> Info@imagecms.net
                                 </li>
                                 <li>
                                     <span class="icon-foot-skype"></span>
-                                    <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                    <span class="f-w_b">{lang('Skype')}:</span> ImageCMS
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}
@@ -282,7 +282,6 @@
                             {lang('s_footer_seo')}
                         </div>
                         <!--End-->
-
                     </div>
                 </div>
             </div>
@@ -291,13 +290,13 @@
 
         <!-- php vars to js -->
         <script type="text/javascript">
-                                                        var curr = '{$CS}';
-                                                        var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
-                                                        var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-                                                        var inCart = '{lang('already_in_basket')}';
-                                                        var toCart = '{lang('s_buy')}';
-                                                        var pcs = 'шт.';
-                                                        var kits = 'компл.';
+            var curr = '{$CS}';
+            var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
+            var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
+            var inCart = '{lang('Already in basket')}';
+            var toCart = '{lang('Buy')}';
+            var pcs = 'шт.';
+            var kits = 'компл.';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->

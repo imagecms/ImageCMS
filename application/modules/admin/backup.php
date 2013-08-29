@@ -39,7 +39,7 @@ class Backup extends BaseAdminController {
         }
         
         if (!is_really_writable('./application/backups')) {
-            showMessage(lang('ac_msg_dir'), false, 'r');
+            showMessage(lang("Directory ./application/backups has no writing permission"), false, 'r');
             exit;
         }
 
@@ -79,7 +79,7 @@ class Backup extends BaseAdminController {
 
             $this->email->to($_POST['email']);
             $this->email->from($user['email']);
-            $this->email->subject(lang('ac_backup_copy') . date('d-m-Y H:i:s'));
+            $this->email->subject(lang("Backup copying","admin") . date('d-m-Y H:i:s'));
             $this->email->message(' ');
             $this->email->attach($tmp_file);
             $this->email->send();
@@ -110,7 +110,7 @@ class Backup extends BaseAdminController {
     }
 
     private function done() {
-        showMessage(lang('ac_backup_complete'));
+        showMessage(lang("Backup copying has been completed","admin"));
     }
 
     private function generate_file_name($file_type) {

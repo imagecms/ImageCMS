@@ -45,17 +45,20 @@
 
                 if (!pasteAfterEL.hasClass('already')) {
                     pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
+                    $(document).trigger({'type': 'comments.beforeshowformreply', 'el': pasteAfterEL.next()});
                     pasteAfterEL.next()[effectIn](duration, function() {
                         $(document).trigger({'type': 'comments.showformreply', 'el': $(this)});
                     });
                     after($this, pasteAfterEL.next());
                 }
                 else if (insertedEl.is(':visible')) {
+                    $(document).trigger({'type': 'comments.beforehideformreply', 'el': insertedEl});
                     insertedEl[effectOff](duration, function() {
                         $(document).trigger({'type': 'comments.hideformreply', 'el': $(this)});
                     });
                 }
                 else if (!insertedEl.is(':visible')) {
+                    $(document).trigger({'type': 'comments.beforeshowformreply', 'el': insertedEl});
                     insertedEl[effectIn](duration, function() {
                         $(document).trigger({'type': 'comments.showformreply', 'el': $(this)});
                     });

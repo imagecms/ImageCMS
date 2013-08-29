@@ -12,6 +12,7 @@ class assetManager {
     protected $callMapp = null;
     protected $useCompress = false;
     protected $template;
+    protected $ci;
 
     private function __construct() {
 
@@ -156,6 +157,9 @@ class assetManager {
     public function renderAdmin($tpl) {
         try {
             /** Start. If file doesn't exists thorow exception */
+//            $obj = new \MY_Lang();
+//            $obj->load($this->getTrace());
+            
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
@@ -182,6 +186,10 @@ class assetManager {
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
+//                $obj = new \MY_Lang();
+//                $obj->load($this->getTrace());
+//                echo $this->getTrace();
+            
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
@@ -200,7 +208,10 @@ class assetManager {
         try {
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
-
+//            
+//            $obj = new \MY_Lang();
+//            $obj->load($this->getTrace());
+            
             /** Start. Return template file */
             return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($tpl));
         } catch (\Exception $exc) {
@@ -297,7 +308,7 @@ class assetManager {
     private function buildStylePath($tpl) {
         if (!$this->template)
             $this->template = \CI_Controller::get_instance()->config->item('template');
-        
+
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/css/' . $tpl . '.css'))
             return sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
         else

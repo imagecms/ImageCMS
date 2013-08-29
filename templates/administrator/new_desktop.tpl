@@ -23,8 +23,8 @@
                     </a>
                     <div class="pull-right span3">
                         <div class="clearfix">
-                            <div class="pull-left m-r_10">Здравствуйте, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
-                            <div class="pull-right m-l_10">Просмотр <a href="{$BASE_URL}" target="_blank">сайта <span class="f-s_14">→</span></a></div>
+                            <div class="pull-left m-r_10">{lang('Hello','admin')}, <a href="#">Admin<i class="my_icon exit_ico"></i></a></div>
+                            <div class="pull-right m-l_10">{lang('View','admin')} <a href="{$BASE_URL}" target="_blank">{lang('site','admin')} <span class="f-s_14">→</span></a></div>
                         </div>
                         <form method="post" action="#">
                             <div class="input-append search">
@@ -58,30 +58,30 @@
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">
-                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>Главная</span></a></li>
+                            <li ><a href="/admin/pages"><i class="icon-home"></i><span>{lang('Main','admin')}</span></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang('a_content')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-align-justify"></i>{lang("Content","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/pages">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">Все содержимое по категориях</a></li>
-                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('a_without_cat')}</a></li>
+                                    <li><a href="/admin/pages">{lang("Create","admin")}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang('All content by categories','admin')}</a></li>
+                                    <li><a href="/admin/pages/GetPagesByCategory/0">{lang("Without a category","admin")}</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/components/cp/cfcm">{lang('a_field_constructor')}</a></li>
+                                    <li><a href="/admin/components/cp/cfcm">{lang("Field constructor","admin")}</a></li>
 
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang('a_categories')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>{lang("Categories","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/categories/create_form">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/categories/cat_list">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/categories/create_form">{lang("Create","admin")}</a></li>
+                                    <li><a href="/admin/categories/cat_list">{lang("Editing","admin")}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang('a_menu')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list-alt"></i>{lang("Menu","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
 
-                                    <li><a href="/admin/components/cp/menu">{lang('a_control')}</a></li>
+                                    <li><a href="/admin/components/cp/menu">{lang("Management","admin")}</a></li>
                                     <li class="divider"></li>
                                     {foreach $menus as $menu}
                                         <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}">{$menu.main_title}</a></li>
@@ -90,10 +90,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang('a_modules')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-arrow-down"></i>{lang("Modules","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/components/modules_table/">{lang('a_all_modules')}</a></li>
-                                    <li><a href="/admin/mod_search/">{lang('a_search')}</a></li>
+                                    <li><a href="/admin/components/modules_table/">{lang("All modules","admin")}</a></li>
+                                    <li><a href="/admin/mod_search/">{lang("Search","admin")}</a></li>
                                     <li class="divider returnFalse"></a></li>
                                     {if $components}
                                         {foreach $components as $component}
@@ -105,30 +105,30 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang('a_widgets')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i>{lang("Widgets","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/widgets_manager/create_tpl">{lang('a_create')}</a></li>
-                                    <li><a href="/admin/widgets_manager">{lang('a_edit')}</a></li>
+                                    <li><a href="/admin/widgets_manager/create_tpl">{lang("Create","admin")}</a></li>
+                                    <li><a href="/admin/widgets_manager">{lang("Editing","admin")}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang('a_system')}<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-hdd"></i>{lang("System","admin")}<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/admin/settings">{lang('a_site_settings')}</a></li>
-                                    <li><a href="/admin/languages">{lang('a_languages')}</a></li>
-                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang('a_cache')}</a>
+                                    <li><a href="/admin/settings">{lang("Site settings","admin")}</a></li>
+                                    <li><a href="/admin/languages">{lang("Languages","admin")}</a></li>
+                                    <li class="dropdown"><a class="returnFalse arrow-right" href="">{lang("Cache","admin")}</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="javascript:delete_cache('all')">{lang('a_clean_all')}</a></li>
-                                            <li><a href="javascript:delete_cache('expried')">{lang('a_clean_old')}</a></li>
+                                            <li><a href="javascript:delete_cache('all')">{lang("Clear all","admin")}</a></li>
+                                            <li><a href="javascript:delete_cache('expried')">{lang("Clear old or Delete outdated posts or information","admin")}</a></li>
                                         </ul>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a href="/admin/admin_logs">{lang('a_event_journal')}</a></li>
-                                    <li><a href="/admin/backup">{lang('a_backup_copy')}</a></li>
+                                    <li><a href="/admin/admin_logs">{lang("Event journal","admin")}</a></li>
+                                    <li><a href="/admin/backup">{lang("Backup copying","admin")}</a></li>
                                 </ul>
                             </li>
                         </ul>
-                        <a class="btn btn-small pull-right btn-info" href="#">Администрировать сайт <span class="f-s_14">→</span></a>
+                        <a class="btn btn-small pull-right btn-info" href="#">{lang('Administrate site','admin')} <span class="f-s_14">→</span></a>
                     </nav>
                 </div>
             </div>
@@ -141,25 +141,25 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span4">
-                        Интерфейс:
+                        {lang('Interface','admin')}:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                Русский
+                                {lang('Russian','admin')}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Английский</a></li>
-                                <li><a href="#">Русский</a></li>
+                                <li><a href="#">{lang('English','admin')}</a></li>
+                                <li><a href="#">{lang('Russian','admin')}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="span4 t-a_c">
-                        Версия: <b>3.01.26</b>
-                        <div class="muted">Помогите нам стать еще лучше - <a href="#">сообщите об ошибке</a></div>
+                        {lang('Version','admin')}: <b>3.01.26</b>
+                        <div class="muted">{lang('Help us get better','admin')} - <a href="#">{lang('report an error','admin')}</a></div>
                     </div>
                     <div class="span4 t-a_r">
                         <div class="muted">Copyright © imageCMS 2013</div>
-                        <a href="http://wiki.imagecms.net" target="blank">Документация</a>
+                        <a href="http://wiki.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
                     </div>
                 </div>
             </div>

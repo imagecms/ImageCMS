@@ -26,8 +26,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('jquery_ui')
                     ->registerScript('cusel_min')
                     ->registerScript('wishlist', TRUE)
-                    ->registerStyle('style')
-                    ->registerStyle('jquery_ui_1.9.2.custom.min')
+                    ->registerStyle('style', TRUE)
+                    ->registerStyle('jquery_ui_1.9.2.custom.min', TRUE)
                     ->setData('wishlists', $this->dataModel['wishlists'])
                     ->setData('user', $this->dataModel['user'])
                     ->setData('settings', $this->settings)
@@ -42,7 +42,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         parent::getUserWL($this->dx_auth->get_user_id());
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist', TRUE)
-                ->registerStyle('style')
+                ->registerStyle('style', TRUE)
                 ->setData('wishlists', $this->dataModel['wishlists'])
                 ->setData('user', $this->dataModel['user'])
                 ->setData('settings', $this->settings)
@@ -107,14 +107,15 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function show($hash) {
         if (parent::show($hash)) {
             \CMSFactory\assetManager::create()
-                    ->setData('wishlist', $this->dataModel)
-                    ->registerStyle('style')
+                    ->setData('wishlist', $this->dataModel['wish_list'])
+                    ->setData('user', $this->dataModel['user'])
+                    ->registerStyle('style', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->render('other_list');
         } else {
             \CMSFactory\assetManager::create()
                     ->setData('wishlist', 'empty')
-                    ->registerStyle('style')
+                    ->registerStyle('style', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->render('other_list');
         }
@@ -230,7 +231,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         $data = array('wish_lists' => $wish_lists);
 
         return $popup = \CMSFactory\assetManager::create()
-                ->registerStyle('style')
+                ->registerStyle('style', TRUE)
                 ->setData('class', 'btn')
                 ->setData('wish_list_id', $wish_list_id)
                 ->setData('varId', $varId)
@@ -248,7 +249,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         if (parent::renderUserWLEdit($wish_list_id))
             \CMSFactory\assetManager::create()
                     ->registerScript('wishlist', TRUE)
-                    ->registerStyle('style')
+                    ->registerStyle('style', TRUE)
                     ->setData('wishlists', $this->dataModel)
                     ->render('wishlistEdit', TRUE);
         else

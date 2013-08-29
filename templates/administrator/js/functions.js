@@ -1209,13 +1209,13 @@ function clone_object() {
         var add_variants = {
             cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
             frameSetClone: data.find('tbody'),
-            frameСlone: function() {
+            frameClone: function() {
                 var variant_row = this.frameSetClone.find('tr:first').clone();
                 return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
             },
             addNewVariant: function() {
                 btn_temp = btn_temp.clone().show();
-                return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
+                return this.frameClone().find('td:last').append(btn_temp).parents('tr');
             }
         }
         add_variants.cloneObjectVariant.on('click', function() {

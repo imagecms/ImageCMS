@@ -40,7 +40,7 @@
                                 <span class="btn-form f_l">
                                     <button type="submit">
                                         <span class="icon_enter_drop"></span>
-                                        <span class="text-el">Войти</span>
+                                        <span class="text-el">{lang('Sign in','newLevel')}</span>
                                     </button>
                                 </span>
                                 <div class="f_r neigh-buttonform">
@@ -53,8 +53,8 @@
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
-                            <div class="help-block">Я еще не зарегистрирован</div>
-                            <a href="/auth/register">Перейти к регистрации</a>
+                            <div class="help-block">{lang('I am not registered yet','newLevel')}</div>
+                            <a href="/auth/register">{lang('Go to the registration','newLevel')}</a>
                         </div>
                     </div>
                     {form_csrf()}

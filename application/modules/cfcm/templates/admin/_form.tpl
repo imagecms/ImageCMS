@@ -8,8 +8,8 @@
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="/admin/components/cp/cfcm/index{if $form->type == "group"}#fields_groups{else:}#additional_fields{/if}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit btn-success" data-action="close" data-form="#{echo $f_id = uniqid()}"><i class="icon-plus-sign icon-white"></i>{lang('a_save')}</button>
+                <a href="/admin/components/cp/cfcm/index{if $form->type == "group"}#fields_groups{else:}#additional_fields{/if}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'cfcm')}</span></a>
+                <button type="button" class="btn btn-small action_on formSubmit btn-success" data-action="close" data-form="#{echo $f_id = uniqid()}"><i class="icon-plus-sign icon-white"></i>{lang("Save", 'cfcm')}</button>
             </div>
         </div>                            
     </div>             
@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('a_info')}
+                        {lang("Information", 'cfcm')}
                     </th>
                 </tr>
             </thead>

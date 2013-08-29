@@ -4,20 +4,20 @@
         <div class="empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">Корзина</h1>
+                    <h1 class="d_i">{lang('Cart','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">Ваша корзина пуста</span>
+                    <span class="text-el">{lang('Cart is empty','newLevel')}</span>
                 </div>
             </div>
         </div>
         <div class="no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">Оформление заказа</h1>
+                    <h1 class="d_i">{lang('Checkout','newLevel')}</h1>
                 </div>
             </div>
             <div class="left-cart">
@@ -26,12 +26,12 @@
                         <ul class="nav nav-order-user">
                             <li class="new-buyer">
                                 <span>
-                                    <span class="text-el">Я новый покупатель</span>
+                                    <span class="text-el">{lang('I am a new customer','newLevel')}</span>
                                 </span>
                             </li>
                             <li class="old-buyer">
                                 <button type="button" data-trigger="#loginButton">
-                                    <span class="d_l text-el">Я уже здесь покупал</span>
+                                    <span class="d_l text-el">{lang('I have already bought here','newLevel')}</span>
                                 </button>
                             </li>
                         </ul>
@@ -52,7 +52,7 @@
                             {/if}
                             <div class="groups-form">
                                 <label>
-                                    <span class="title">Имя:</span>
+                                    <span class="title">{lang('Name: ','newLevel')}</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[fullName]']}
                                             <span class="must">*</span>
@@ -144,7 +144,7 @@
                                                     {if $deliveryMethod->getDescription()}
                                                         {echo $deliveryMethod->getDescription()}
                                                     {/if}
-                                                    <div>Цена: {echo $price} <span class="curr">{$CS}</span></div>
+                                                    <div>{lang('Price: ','newLevel')} {echo $price} <span class="curr">{$CS}</span></div>
                                                 </div>
                                             </div>
                                         {/foreach}
@@ -154,7 +154,7 @@
 
                             {if count($paymentMethods)}
                                 <div class="frame-label">
-                                    <span class="title">Способ оплаты</span>
+                                    <span class="title">{lang('Payment method','newLevel')}</span>
                                     <div class="frame-form-field check-variant-payment p_r">
                                         <div class="paymentMethod">
                                             {/*<div class="lineForm">
@@ -213,7 +213,7 @@
                                 <div class="frame-form-field">
                                     <ul class="items items-order-gen-info">
                                         <li>
-                                            <span class="s-t">Стоимость доставки:</span>
+                                            <span class="s-t">{lang('Delivery price: ','newLevel')}</span>
                                             <span class="price-item">
                                                 <span>
                                                     <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
@@ -230,7 +230,7 @@
                                     </div>
                                     <ul class="items items-order-gen-info">
                                         <li id="giftCertSpan" style="display: none;">
-                                            <span class="s-t">Промо код:</span>
+                                            <span class="s-t">{lang('Promo code: ','newLevel')}</span>
                                             <span class="price-item">
                                                 <span class="text-discount">
                                                     <span class="text-el">-</span><span id="giftCertPrice"></span>
@@ -240,7 +240,7 @@
                                         </li>
                                     </ul>
                                     <div class="gen-sum-order">
-                                        <span class="title">Итого к оплате:</span>
+                                        <span class="title">{lang('Total to pay:','newLevel')}</span>
                                         <span class="frame-prices f-s_0">
                                             <span class="price-discount">
                                                 <span class="frame-discount">
@@ -272,7 +272,7 @@
                                 <span class="title">&nbsp;</span>
                                 <span class="frame-form-field">
                                     <div class="btn-cart btn-cart-p">
-                                        <input type="submit" class="btn btn_cart" value="Оформить"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('Check out','newLevel')}"/>
                                     </div>
                                 </span>
                             </div>

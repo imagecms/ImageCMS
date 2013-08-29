@@ -9,13 +9,13 @@
         <div class="row d_i-b t-a_l">
             <div class="span6">
                 <div class="frameGroupsForm">
-                    <div class="header_title">{lang('lang_forgot_password')}</div>
+                    <div class="header_title">{lang("Forgot your password?","admin")}</div>
                     <div class="standart_form horizontal_form">
                         <form method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', 'forgot_password_form');
                                             return false;">
                             <div class="groups_form">
                                 <label>
-                                    <span class="title">{lang('s_email')}</span>
+                                    <span class="title">{lang("Email","admin")}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <input type="text" name="email" id="login" />
@@ -26,7 +26,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
+                                        <input type="submit" class="btn btn_cart" value="{lang("Send","admin")}" />
                                     </span>
                                 </div>
                             </div>

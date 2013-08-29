@@ -24,9 +24,9 @@ class Cfcm_forms extends MY_Controller {
         $fields = array(
             'field_name' => array(
                 'type'       => 'text',
-                'label'      => 'Имя',
+                'label'      => lang('Name', 'cfcm'),
                 'validation' => 'alpha_dash|max_length[255]',
-                'help_text'  => 'К имени будет добавлен префикс field_',
+                'help_text'  => lang('To name will be prefixed with', 'cfcm') . 'field_',
                 'class'      => 'required alphanumeric'
             ),
             'label' => array(
@@ -37,25 +37,25 @@ class Cfcm_forms extends MY_Controller {
             ),
             'in_search' => array(
                 'type'       => 'checkbox',
-                'label'      => 'Участвует в поиске',
+                'label'      => lang('Participate in search', 'cfcm'),
                 'initial'    => '1',
             ),
             'type' => array(
                 'type'       => 'select',
-                'label'      => 'Тип',
+                'label'      => lang('Type', 'cfcm'),
                 'initial'    => $this->field_types,
             ),
             'groups' => array(
                 'type'       => 'select',
-                'label'      => 'Группа',
+                'label'      => lang('Group', 'cfcm'),
                 'initial'    => self::prepare_groups_select(),
                 'multiple'   => true,
-                'class'     => 'required'
+                'class'      => 'required'
             ), 
-			'data' => array(
-                'type'       => 'hidden',
-                'validation' => 'alpha_dash',
-                'initial'    => '',
+		'data'       => array(
+                    'type'       => 'hidden',
+                    'validation' => 'alpha_dash',
+                    'initial'    => '',
             ),
         );
 
@@ -74,26 +74,26 @@ class Cfcm_forms extends MY_Controller {
          );
         $f['initial'] = array(
             'type'    => 'textarea',
-            'label'   => 'Начальное значение',
+            'label'   => lang('The initial value', 'cfcm'),
         );
         $f['help_text'] = array(
             'type'      => 'text',
-            'label'     => 'Подсказка',
-            'help_text' => 'Описание поля.',
+            'label'     => lang('Hint', 'cfcm'),
+            'help_text' => lang('Field description ', 'cfcm') . '.',
         );
         $f['required'] = array(
             'type'    => 'checkbox',
-            'label'   => 'Обязательное поле',
+            'label'   => lang('Required field', 'cfcm'),
             'initial' => '1',
         );
         $f['type'] = array(
                 'type'       => 'select',
-                'label'      => 'Тип',
+                'label'      => lang('Type', 'cfcm'),
                 'initial'    => $this->field_types,
         );
         
         if (in_array($type, array('select', 'checkgroup', 'radiogroup')))
-            $f['initial']['help_text'] = 'Укажите возможные значения в новой строке.';
+            $f['initial']['help_text'] = lang('Specify the possible values in the new row', 'cfcm') . '.';
 
         if ($type == 'select')
             $f['multiple'] = array(
@@ -115,14 +115,14 @@ class Cfcm_forms extends MY_Controller {
         {
             $f['enable_image_browser'] = array(
                 'type'    => 'checkbox',
-                'label'   => 'Включить просмотр изображений',
+                'label'   => lang('Enable images viewing', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
 
             $f['enable_file_browser'] = array(
                 'type'    => 'checkbox',
-                'label'   => 'Включить просмотр файлов',
+                'label'   => lang('Enable file viewing', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
@@ -133,7 +133,7 @@ class Cfcm_forms extends MY_Controller {
 //        {
 //                $f['enable_tinymce_editor'] = array(
 //                'type'  => 'checkbox',
-//                'label' => 'Включить редактор Tinymce',
+//                'label' => lang('Enable Tinymce editor', 'cfcm'),
 //                'initial'=> '1',
 //                'checked'=> FALSE,
 //            );
@@ -141,12 +141,12 @@ class Cfcm_forms extends MY_Controller {
 
         $f['validation'] = array(
             'type'      => 'text',
-            'label'     => 'Условия проверки',
-            'help_text' => 'Например: valid_email|max_length[255]',
+            'label'     => lang('Check conditions', 'cfcm'),
+            'help_text' => lang('For example', 'cfcm') . ': valid_email|max_length[255]',
         );
         $f['groups'] = array(
                 'type'       => 'select',
-                'label'      => 'Группа',
+                'label'      => lang('Group', 'cfcm'),
                 'initial'    => self::prepare_groups_select(),
                 'multiple'   => true,
                 'class'     => 'required'
@@ -160,13 +160,13 @@ class Cfcm_forms extends MY_Controller {
         return $this->forms->add_fields(array(
             'name' => array(
                 'type'  => 'text',
-                'label' => 'Имя',
+                'label' => lang('Name', 'cfcm'),
                 'validation' => 'max_length[255]',
                 'class'     => 'required'
             ),
             'description' => array(
                 'type'  => 'textarea',
-                'label' => 'Описание',
+                'label' => lang('Description', 'cfcm'),
             ),
         ));
     }
@@ -177,7 +177,7 @@ class Cfcm_forms extends MY_Controller {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');
 
-        $list = array('-1' => 'Без группы');
+        $list = array('-1' => lang('Without group', 'cfcm'));
         if ($groups->num_rows() > 0)
         { 
             foreach ($groups->result_array() as $group)
