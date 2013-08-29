@@ -24,7 +24,7 @@
                                 <span class="text-view-list">
                                     <span class="text-el d_l_1">{lang("You've watched already",'newLevel')}</span>
                                     <span class="text-el">&nbsp;({echo $countSh})</span>
-                                </span>
+                                    </span>
                             </button>
                         </div>
                     </li>

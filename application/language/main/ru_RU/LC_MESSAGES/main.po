@@ -57,7 +57,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp.php:27
 msgid "Buy"
-msgstr "Купить фронт"
+msgstr "Купить"
 
 #: /var/www/image.loc/_temp.php:28
 msgid "Search this site"
@@ -158,7 +158,7 @@ msgstr ""
 #: /var/www/image.loc/_temp.php:20
 #: /var/www/image.loc/_temp.php:49
 msgid "s_buy"
-msgstr "купить майн"
+msgstr "купить"
 
 #: /var/www/image.loc/_temp.php:21
 #: /var/www/image.loc/_temp.php:50

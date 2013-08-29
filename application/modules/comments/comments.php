@@ -201,7 +201,7 @@ class Comments extends MY_Controller {
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('lang_total_comments') . count($comments),
+            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'item_id' => $item_id
@@ -238,7 +238,7 @@ class Comments extends MY_Controller {
         // Check access only for registered users
         if ($this->can_comment === 1 AND $this->dx_auth->is_logged_in() == FALSE) {
             ($hook = get_hook('comments_login_for_comments')) ? eval($hook) : NULL;
-            $this->core->error(lang('login_for_comments'));
+            $this->core->error(lang('Only authorized users can leave comments. <a href="%s" class="loginAjax"> log in </ a>, please.', 'comments'));
         }
 
         $item_id = $this->input->post('comment_item_id');
@@ -247,7 +247,7 @@ class Comments extends MY_Controller {
         if ($this->module == 'core') {
             if ($this->base->get_item_comments_status($item_id) == FALSE) {
                 ($hook = get_hook('comments_page_comments_disabled')) ? eval($hook) : NULL;
-                $this->core->error(lang('error_comments_diabled'));
+                $this->core->error(lang('Commenting on recording is prohibited.', 'comments'));
             }
         }
 
@@ -258,16 +258,16 @@ class Comments extends MY_Controller {
         if ($this->period > 0)
             if ($this->check_comment_period() == FALSE) {
                 ($hook = get_hook('comments_period_error')) ? eval($hook) : NULL;
-                $this->core->error(sprintf(lang('error_comments_period'), $this->period));
+                $this->core->error(sprintf(lang('Allowed to comment once in %s minutes.', 'comments'), $this->period));
             }
 
         // Validate email and nickname from unregistered users.
         if ($this->dx_auth->is_logged_in() == FALSE) {
             ($hook = get_hook('comments_set_val_rules')) ? eval($hook) : NULL;
 
-            $this->form_validation->set_rules('comment_email', 'lang:lang_comment_email', 'trim|required|xss_clean|valid_email');
-            $this->form_validation->set_rules('comment_author', 'lang:lang_comment_author', 'trim|required|xss_clean|max_length[50]');
-            $this->form_validation->set_rules('comment_site', 'lang:lang_comment_site', 'trim|xss_clean|max_length[250]');
+            $this->form_validation->set_rules('comment_email', lang('Email', 'comments'), 'trim|required|xss_clean|valid_email');
+            $this->form_validation->set_rules('comment_author', lang('Your name', 'comments'), 'trim|required|xss_clean|max_length[50]');
+            $this->form_validation->set_rules('comment_site', lang('Site', 'comments'), 'trim|xss_clean|max_length[250]');
         }
 
         // Check captcha code if captcha_check enabled and user in not admin.
@@ -279,7 +279,7 @@ class Comments extends MY_Controller {
                 $this->form_validation->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
         }
 
-        $this->form_validation->set_rules('comment_text', 'lang:lang_comment_text', 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
+        $this->form_validation->set_rules('comment_text', lang('Comment', 'comments'), 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
@@ -367,7 +367,7 @@ class Comments extends MY_Controller {
             }
             else {
                 ($hook = get_hook('comments_empty_text')) ? eval($hook) : NULL;
-                $this->core->error(lang('error_comments_text'));
+                $this->core->error(lang('Fill text in comment.', 'comments'));
             }
         }
     }
