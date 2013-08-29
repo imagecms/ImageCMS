@@ -455,7 +455,7 @@ class ExportXML {
         if ($export_body) {
             header('content-type: text/xml');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\r\n" .
-                    "<КонтейнерСписков ВерсияСхемы='0.1' xmlns='urn:abkt.com.ua:ozzimarket' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' ДатаФормирования='" . date('Y-m-d h:m:s') . "'>\r\n" .
+                    "<КонтейнерСписков xmlns='urn:abkt.com.ua:ozzimarket' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>\r\n" .
                     $export_body .
                     "</КонтейнерСписков>\r\n";
 
