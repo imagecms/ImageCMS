@@ -25,7 +25,7 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="Сменить пароль"/>
+                            <input type="submit" value="{lang('Change Password','newLevel')}"/>
                         </span>
                     </span>
                 </div>

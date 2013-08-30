@@ -3,7 +3,7 @@
         {break}
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
-    <li>
+    <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if}>
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
             <span class="photo-block">
                 <span class="helper"></span>
@@ -27,7 +27,7 @@
             {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>Артикул:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Mark: ','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -35,7 +35,7 @@
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>Вариант:
+                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Variant: ','newLevel')}:
                         <span class="code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
@@ -49,8 +49,10 @@
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
+
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array('отзыв','отзыва','отзывов'))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array('{lang("comment","newLevel")}','{lang("comment","newLevel")}','{lang("comments","newLevel")}'))}
+
                         </a>
                     </div>
                 {/if}
@@ -127,7 +129,7 @@
                             <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 {if !widget && !$defaultItem}
                                     <div class="frame-count">
-                                        <div class="number" data-title="количество на складе {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
+                                        <div class="number" data-title="{lang('Quantity in the warehouse','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                             <div class="frame-change-count">
                                                 <div class="btn-plus">
                                                     <button type="button">
@@ -140,7 +142,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" value="1" data-rel="plusminus" data-title="только цифры" data-min="1" data-max="{echo $pv->getstock()}">
+                                            <input type="text" value="1" data-rel="plusminus" data-title="{lang('Digits only','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                         </div>
                                     </div>
                                 {/if}
@@ -168,10 +170,11 @@
                                         data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('s_buy')}</span>
+                                        <span class="text-el">{lang('s_buy', 'newLevel')}</span>
                                     </button>
                                 </div>
                             </div>
+                                    {var_dumps(lang('s_buy', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
@@ -189,8 +192,6 @@
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
-                                    data-img="{echo $pv->getSmallPhoto()}"
-                                    data-url="{echo shop_url('product/'.$p->getUrl())}">
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>

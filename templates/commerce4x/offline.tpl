@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>        
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         {literal}
             <style type="text/css">
                 html {
@@ -179,13 +179,13 @@
         <div class="main_body">
 
             <div class="order_partner_ship frame_standart_form fonds" id="with_out_article">
-                <h1 class="reRegistration">{lang('s_site_under')}</h1>                    
-                <h2 class="reRegistrationH3">{lang('s_control_site')}</h2>   
+                <h1 class="reRegistration">{lang("Site under construction","admin")}</h1>
+                <h2 class="reRegistrationH3">{lang("Control of the site","admin")}</h2>
                 <div style="text-align: center; margin:70px;">
                     {$CI->config->load('auth')}
-                    <a href="mailto:{echo $CI->config->item('DX_webmaster_email')}" class="reRegistrationA">{lang('s_send_mail_admin')}</a>
+                    <a href="mailto:{echo $CI->config->item('DX_webmaster_email')}" class="reRegistrationA">{lang("Send mail","admin")}</a>
                     <div class="clear" ></div>
-                </div>               
+                </div>
             </div>
         </div>
         <div class="hfooter"></div>
@@ -193,9 +193,9 @@
     <footer class="b_c_n">
         <div class="container w_260">
             <div class="d_t_c l_h_17">
-                <span class="l_h_27">© {lang('s_site_ltd')}</span>
-                {lang('s_IMGCMS')}
-            </div>            
+                <span class="l_h_27">© {lang("Ltd.", "Site Image")}</span>
+                {lang("ImageCMS actively developed in the creation of quality online stores","admin")}
+            </div>
         </div>
     </footer>
 </body>

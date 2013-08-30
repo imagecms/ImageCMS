@@ -101,18 +101,18 @@ class Admin extends BaseAdminController {
         } else {
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
             $this->form_validation->set_rules('item_type', 'Item Type', 'required');
-            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            $this->form_validation->set_rules('title', lang('Title', 'menu'), 'required');
             if ($_POST['item_type'] == 'page') {
                 //$this->form_validation->set_rules('title', 'Заголовок', 'required');
-                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+                $this->form_validation->set_rules('item_id', lang('Page ID', 'menu'), 'required');
             }
             if ($_POST['item_type'] == 'category') {
-                $this->form_validation->set_rules('item_id', 'ID категории', 'required');
+                $this->form_validation->set_rules('item_id', lang('category ID', 'menu'), 'required');
             }
             if ($_POST['item_type'] == 'module') {
-                $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
+                $this->form_validation->set_rules('mod_name', lang('Module name', 'menu'), 'required');
                 //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
-                $this->form_validation->set_rules('item_id', 'ID модуля', 'required');
+                $this->form_validation->set_rules('item_id', lang('Module ID', 'menu'), 'required');
             }
             if ($_POST['item_type'] == 'url') {
                 $this->form_validation->set_rules('item_url', 'URL', 'required');
@@ -213,12 +213,12 @@ class Admin extends BaseAdminController {
                 }
 
                 if ($error == TRUE) {
-                    showMessage('Ошибка');
+                    showMessage(lang('Error', 'menu'));
                     //return FALSE;
                 } else {
                     $this->db->insert('menus_data', $item_data);
                     $lastId = $this->db->insert_id();
-                    showMessage('Пункт меню успешно создан');
+                    showMessage(lang('The menu item was successfully created'));
                     $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
                     if ($_POST['action'] == 'tomain') {
                         pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
@@ -437,21 +437,21 @@ class Admin extends BaseAdminController {
 
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
 //            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
-            $this->form_validation->set_rules('title', 'Заголовок', 'required');
+            $this->form_validation->set_rules('title', lang('Title', 'menu'), 'required');
             if ($item_type == 'page') {
                 $this->form_validation->set_rules('page_item_type', 'Item Type', 'required');
-                $this->form_validation->set_rules('title', 'Заголовок', 'required');
-                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+                $this->form_validation->set_rules('title', lang('Title', 'menu'), 'required');
+                $this->form_validation->set_rules('item_id', lang('Page ID', 'menu'), 'required');
             }
             if ($item_type == 'category') {
                 $this->form_validation->set_rules('cat_item_type', 'Item Type', 'required');
-                $this->form_validation->set_rules('item_id', 'ID категории', 'required');
+                $this->form_validation->set_rules('item_id', lang('Category ID', 'menu'), 'required');
             }
             if ($item_type == 'module') {
                 $this->form_validation->set_rules('module_item_type', 'Item Type', 'required');
-                $this->form_validation->set_rules('mod_name', 'Название модуля', 'required');
+                $this->form_validation->set_rules('mod_name', lang('Module name', 'menu'), 'required');
                 //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
-                $this->form_validation->set_rules('item_id', 'ID страницы', 'required');
+                $this->form_validation->set_rules('item_id', lang('Page ID', 'menu'), 'required');
             }
             if ($item_type == 'url') {
                 $this->form_validation->set_rules('url_item_type', 'Item Type', 'required');
@@ -602,15 +602,15 @@ class Admin extends BaseAdminController {
 
                 if ($error == TRUE) {
                     if ($errorMessage == 1)
-                        showMessage('Неверний идентификатор родителя', '', 'r');
+                        showMessage(lang('Invalid parent identifier', 'menu'), '', 'r');
                     if ($errorMessage == 2)
-                        showMessage('Не может быть корневое меню в подпункте', '', 'r');
+                        showMessage(lang('Can not be root menu in subparagraph', 'menu'), '', 'r');
                     exit();
                 } else {
 
                     $this->db->where('id', $item_id);
                     $this->db->update('menus_data', $item_data);
-                    showMessage('Изменения успешно сохранены');
+                    showMessage(lang('Changes successfully saved', 'menu'));
                     $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
                     if ($_POST['action'] == 'tomain') {
                         pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
@@ -796,7 +796,7 @@ class Admin extends BaseAdminController {
             $k = $k + 1;
             $this->menu_model->set_item_position((int) $v, (int) $k);
         }
-        showMessage(lang('a_positions_updated'));
+        showMessage(lang("Positions updated", 'menu'));
     }
 
     /**
@@ -807,18 +807,18 @@ class Admin extends BaseAdminController {
     function create_menu() {
         //cp_check_perm('menu_create');
         if ($_POST['menu_name'] == NULL) {
-            showMessage(lang('a_menu_field_emp'), '', 'r');
+            showMessage(lang("Name field sieve", 'menu'), '', 'r');
 
             exit;
         }
         $this->check_menu_data();
 
         $val = $this->form_validation;
-        $val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
-        $val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
-        $val->set_rules('menu_desc', lang('amt_description'), 'max_length[500]');
-        $val->set_rules('menu_tpl', lang('amt_template'), 'max_length[500]');
-        $val->set_rules('menu_expand_level', lang('amt_open_level'), 'numeric|max_length[2]');
+        $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
+        $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
+        $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
+        $val->set_rules('menu_tpl', lang("Template", 'menu'), 'max_length[500]');
+        $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -834,7 +834,7 @@ class Admin extends BaseAdminController {
 
             $this->menu_model->insert_menu($data);
 
-            showMessage(lang('a_menu_create'));
+            showMessage(lang("Create menu", 'menu'));
             if ($this->input->post('action') == 'tomain')
                 pjax('/admin/components/cp/menu');
             else
@@ -852,8 +852,8 @@ class Admin extends BaseAdminController {
     function update_menu($id) {
         //cp_check_perm('menu_edit');
 //        if ($_POST['menu_name'] == NULL) {
-//            $title = lang('a_fail');
-//            $message = lang('a_menu_field_emp');
+//            $title = lang("Fail");
+//            $message = lang("Name field sieve");
 //            $result = false;
 //            echo json_encode(array(
 //                'title' => $title,
@@ -864,16 +864,16 @@ class Admin extends BaseAdminController {
 //        }
 
         $val = $this->form_validation;
-        $val->set_rules('menu_name', lang('amt_name'), 'required|min_length[2]|max_length[25]|alpha_dash');
-        $val->set_rules('main_title', lang('amt_tname'), 'required|max_length[100]');
-        $val->set_rules('menu_desc', lang('amt_description'), 'max_length[500]');
-        $val->set_rules('menu_tpl', lang('amt_template'), 'max_length[500]');
-        $val->set_rules('menu_expand_level', lang('amt_open_level'), 'numeric|max_length[2]');
+        $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
+        $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
+        $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
+        $val->set_rules('menu_tpl', lang("Template", 'menu'), 'max_length[500]');
+        $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
 
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
-//            $title = lang('a_fail');
+//            $title = lang("Fail");
 //            $message = validation_errors();
 //            $result = false;
         } else {
@@ -891,10 +891,10 @@ class Admin extends BaseAdminController {
 
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
-//            $title = lang('a_message');
-//            $message = lang('a_menu_chech');
+//            $title = lang("message", 'menu');
+//            $message = lang("Menu Update");
 //            $result = true;
-            showMessage('Изменения сохранены');
+            showMessage(lang('Changes saved'));
             if ($_POST['action'] == 'tomain')
                 pjax('/admin/components/cp/menu');
         }
@@ -909,12 +909,12 @@ class Admin extends BaseAdminController {
 
     function check_menu_data() {
         if ($_POST['menu_name'] == NULL) {
-            //showMessage(lang('amt_name_required'),false,'r');
+            //showMessage(lang("The field is required to be filled in"),false,'r');
             exit;
         }
 
         if ($this->db->get_where('menus', array('name' => $_POST['menu_name']))->num_rows() > 0) {
-            //showMessage(lang('amt_user_exists'),false,'r');
+            //showMessage(lang("The menu with the same name has been created yet"),false,'r');
             exit;
         }
     }
@@ -939,7 +939,7 @@ class Admin extends BaseAdminController {
                 //delete main menu
                 $this->menu_model->delete_menu($n);
             }
-            showMessage(lang('a_menu_deleted'));
+            showMessage(lang("Menu removed", 'menu'));
             pjax('/admin/components/cp/menu');
         } else {
             $this->menu->prepare_menu_array($name);
@@ -956,7 +956,7 @@ class Admin extends BaseAdminController {
             }
             //delete main menu
             $this->menu_model->delete_menu($name);
-            showMessage(lang('a_menu_deleted'));
+            showMessage(lang("Menu removed", 'menu'));
             pjax('/admin/components/cp/menu');
         }
     }
@@ -1049,7 +1049,7 @@ class Admin extends BaseAdminController {
                 }
 
                 if ($pages[$i]['category'] == 0) {
-                    $pages[$i]['cat_name'] = 'Без категории &rarr; ';
+                    $pages[$i]['cat_name'] = lang('Without category', 'menu') . ' &rarr; ';
                 } else {
                     $pages[$i]['cat_name'] = $name;
                 }
@@ -1155,7 +1155,7 @@ class Admin extends BaseAdminController {
                 }
             }
         }
-        showMessage(lang('a_changes_saved'));
+        showMessage(lang("Changes saved", 'menu'));
         //closeWindow('translate_m_Window');
     }
 
@@ -1198,8 +1198,8 @@ class Admin extends BaseAdminController {
 
     function get_children_items($parent_id, $menu_id) {
         $result = $this->db->select('id, title')->where('parent_id', $parent_id)->where('menu_id', $menu_id)->get('menus_data')->result_array();
-        $html .= "<option value='0'> Нет </option>";
-        $html .= "<option value='first'> Первый </option>";
+        $html .= "<option value='0'> " . lang('No', 'menu') . " </option>";
+        $html .= "<option value='first'> " . lang('First', 'menu') . " </option>";
         if (count($result) > 0) {
             foreach ($result as $item) {
                 $html .= "<option value='" . $item['id'] . "'> - " . $item['title'] . "</option>";

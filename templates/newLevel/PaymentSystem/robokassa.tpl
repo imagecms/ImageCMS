@@ -9,5 +9,5 @@
     <input type='hidden' name='Shp_pmId' value='{$shp_payment_id}'>
     <input type='hidden' name='IncCurrLabel' value='{$in_curr}'>
     <input type='hidden' name='Culture' value='{$culture}'>
-    <input type='submit' value='Оплатить'>
+    <input type='submit' value='{lang('Pay','newLevel')}'>
 </form>

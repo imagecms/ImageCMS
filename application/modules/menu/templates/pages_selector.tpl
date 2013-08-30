@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Редактировать ссылку</span>
+            <span class="title">{lang('Edit link', 'menu')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="#" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">Вернуться</span></a>
-                <button type="button" class="btn btn-small page_item_save"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <a href="#" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang('Go back', "menu")}</span></a>
+                <button type="button" class="btn btn-small page_item_save"><i class="icon-ok"></i>{lang("Save", "menu")}</button>
             </div>
         </div>                            
     </div>
@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        {lang('a_pages')}
+                                        {lang("Pages", "menu")}
                                     </th>
                                 </tr>
                             </thead>
@@ -36,10 +36,10 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_categories')}:</label>
+                                                    <label class="control-label">{lang("Categories", "menu")}:</label>
                                                     <div class="controls">
                                                         <select id="category_sel">
-                                                            <option value="0">{lang('amt_root')}</option>
+                                                            <option value="0">{lang("Root", "menu")}</option>
                                                             {$cats}
                                                         </select>
                                                     </div>
@@ -92,28 +92,28 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_type')}:</label>
+                                                    <label class="control-label">{lang("Type", "menu")}:</label>
                                                     <div class="controls">
-                                                        {lang('amt_page')}
+                                                        {lang("Page", "menu")}
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_id')}:</label>
+                                                    <label class="control-label">{lang("ID", "menu")}:</label>
                                                     <div class="controls">
                                                         <span id="page_id_holder">{$id}</span>
                                                     </div>
                                                 </div>    
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_title')}:</label>
+                                                    <label class="control-label">{lang("Title", "menu")}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="{$title}" name="item_title"  id="item_title" />
                                                     </div>
                                                 </div>        
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_parent')}:</label>
+                                                    <label class="control-label">{lang("Parent", "menu")}:</label>
                                                     <div class="controls">
                                                         <select name="item_parent_id" id="item_parent_id">
-                                                            <option value="0">{lang('amt_no')}</option>
+                                                            <option value="0">{lang("No", "menu")}</option>
                                                             {foreach $parents as $p}
                                                                 <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
                                                             {/foreach}
@@ -121,11 +121,11 @@
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_position_after')}:</label>
+                                                    <label class="control-label">{lang("Position after", "menu")}:</label>
                                                     <div class="controls">
                                                         <select name="position_after" id="position_after">
-                                                            <option value="0">{lang('amt_no')}</option>
-                                                            <option value="first">{lang('amt_first')}</option>
+                                                            <option value="0">{lang("No", "menu")}</option>
+                                                            <option value="first">{lang("First", "menu")}</option>
                                                             {foreach $parents as $p}
                                                                 <option value="{$p.id}" {if $parent != 0 AND $parent == $p.parent}selected="selected"{/if}> - {$p.title}</option>
                                                             {/foreach}
@@ -133,16 +133,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_image')}:</label>
+                                                    <label class="control-label">{lang("Image", "menu")}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="" name="page_image"  id="page_image" />
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_access_level')}:</label>
+                                                    <label class="control-label">{lang("Access level", "menu")}:</label>
                                                     <div class="controls">
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
-                                                            <option value="0">{lang('amt_all')}</option>
+                                                            <option value="0">{lang("All", "menu")}</option>
                                                             {foreach $roles as $role}
                                                                 <option value ="{$role.id}">{$role.alt_name}</option>
                                                             {/foreach}
@@ -150,17 +150,17 @@
                                                     </div>
                                                 </div>    
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_hide')}:</label>
+                                                    <label class="control-label">{lang("Hide", "menu")}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="hidden_v" id="page_hidden"/> {lang('amt_yes')}
-                                                        <input type="radio" name="hidden_v" id="page_nohidden" checked="checked" /> {lang('amt_no')}
+                                                        <input type="radio" name="hidden_v" id="page_hidden"/> {lang("Yes", "menu")}
+                                                        <input type="radio" name="hidden_v" id="page_nohidden" checked="checked" /> {lang("No", "menu")}
                                                     </div>
                                                 </div>            
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang('amt_open_in_new_window')}:</label>
+                                                    <label class="control-label">{lang("Open in the new window", "menu")}:</label>
                                                     <div class="controls">
-                                                        <input type="radio" name="new_page" id="page_newpage"  onclick="page_newpage = 1;" /> {lang('amt_yes')}
-                                                        <input type="radio" name="new_page" id="page_nonewpage" onclick="page_newpage = 0;"  checked="checked" /> {lang('amt_no')}
+                                                        <input type="radio" name="new_page" id="page_newpage"  onclick="page_newpage = 1;" /> {lang("Yes", "menu")}
+                                                        <input type="radio" name="new_page" id="page_nonewpage" onclick="page_newpage = 0;"  checked="checked" /> {lang("No", "menu")}
                                                     </div>
                                                 </div>    
                                             </div>

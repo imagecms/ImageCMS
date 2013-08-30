@@ -30,9 +30,10 @@
     inServerWishList = parseInt("{$countWL}"),
     countViewProd = parseInt("{$countSh}"),
     theme = "{$THEME}";
-    plurProd = ['товар', 'товара', 'товаров'];
-    plurKits = ['Комплект', 'Комплекта', 'Комплектов'];
-    plurComments = ['отзыв', 'отзыва', 'отзывов'];
+    plurProd = ['{lang("product","newLevel")}', '{lang("product","newLevel")}', '{lang("products","newLevel")}'];
+    plurKits = ['{lang("set","newLevel")}', '{lang("set","newLevel")}', '{lang("sets","newLevel")}'];
+    plurComments = ['{lang("comment","newLevel")}', '{lang("comment","newLevel")}', '{lang("comments","newLevel")}'];
+
     {literal}
         text = {
         search: function(text) {

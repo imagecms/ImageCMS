@@ -61,16 +61,6 @@ var carousel = {
     vCarousel: '.vertical-carousel',
     hCarousel: '.horizontal-carousel'
 };
-if (typeof wishList != 'object') {
-    var wishList = {
-        all: function() {
-            return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')) : []
-        },
-        count: function() {
-            return JSON.parse(localStorage.getItem('wishList')) ? JSON.parse(localStorage.getItem('wishList')).length : inServerWishList
-        }
-    }
-}
 var optionCompare = {
     frameCompare: '.frame-tabs-compare > div',
     left: '.left-compare li',
@@ -117,7 +107,7 @@ var optionsDrop = {
     modalDelay: 500,
     dropContent: '.drop-content',
     animate: false,
-    moreoneNC: true, // show more then one drop
+    moreoneNC: false, // show more then one drop
     timeclosemodal: 1000
 };
 var productStatus = {
@@ -211,7 +201,7 @@ var genObj = {
     plus: '.btn-plus > button',
     parentBtnBuy: 'li, .item-product', //селектор
     compareIn: 'btn-comp-in', //назва класу
-    wishIn: 'btn-comp-in', //назва класу
+    wishIn: 'btn-wish-in', //назва класу
     btnWish: '.btn-wish',
     toWishlist: 'toWishlist', //назва класу
     inWishlist: 'inWishlist', //назва класу
@@ -278,7 +268,7 @@ var cuselOptions = {
     visRows: 100,
     scrollArrows: false
 };
-message = {
+var message = {
     success: function(text) {
         return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
@@ -289,7 +279,7 @@ message = {
         return '<div class = "msg"><div class = "' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
-lazyload = {
+var lazyload = {
     effect: "fadeIn"
 }
 //declaration shop functions
@@ -365,7 +355,7 @@ function processCart(el) {
                 $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
                 $this.unbind('click.buy').on('click.buy', function(e) {
                     $.fancybox.showActivity();
-                    togglePopupCart(this);
+                    togglePopupCart();
                     decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
                 }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
             }
@@ -378,7 +368,7 @@ function processCart(el) {
                 $this.unbind('click.buy').on('click.buy', function(e) {
                     $.fancybox.showActivity();
                     var cartItem = Shop.composeCartItem($(this));
-                    Shop.Cart.add(cartItem, this, e.button == undefined ? false : true);
+                    Shop.Cart.add(cartItem, e.button == undefined ? false : true);
                 }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
             }
         });
@@ -491,13 +481,13 @@ function btnbuyInitialize(el) {
         $.fancybox.showActivity();
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
-        Shop.Cart.add(cartItem, this, e.button == undefined ? false : true);
+        Shop.Cart.add(cartItem, e.button == undefined ? false : true);
         decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
         return true;
     });
 }
 
-function initShopPage(showWindow, target, orderDetails) {
+function initShopPage(showWindow) {
     Shop.Cart.totalRecount();
     $(genObj.popupCart).html(Shop.Cart.renderPopupCart());
     if ($(genObj.popupCart).is(':visible'))
@@ -570,7 +560,7 @@ function initShopPage(showWindow, target, orderDetails) {
             chCountInCart($this.prev('div'));
     });
     if (showWindow) {
-        togglePopupCart(target);
+        togglePopupCart();
     }
 }
 function rmFromPopupCart(context, isKit) {
@@ -584,9 +574,9 @@ function rmFromPopupCart(context, isKit) {
     cartItem.vId = tr.data('varid');
     Shop.Cart.rm(cartItem).totalRecount();
 }
-function togglePopupCart(t) {
+function togglePopupCart() {
     $.fancybox.showActivity();
-    $(genObj.showCart).trigger({type: 'click', starget: t});
+    $(genObj.showCart).trigger({type: 'click'});
     return false;
 }
 
@@ -595,7 +585,7 @@ function renderOrderDetails() {
         cart: Shop.Cart
     }));
     $(document).trigger({'type': 'renderorder.after', 'el': $(genObj.orderDetails)})
-    initShopPage(false, '', orderDetails);
+    initShopPage(false);
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
@@ -671,6 +661,11 @@ function checkSyncs() {
         if (Shop.Cart.getAllItems().length != inServerCart)
             Shop.Cart.sync();
     }
+    if (inServerWishList != NaN)
+    {
+        if (wishList.all().length != inServerWishList)
+            wishList.sync();
+    }
 }
 function countSumBask() {
     if (!Shop.Cart.totalCount) {
@@ -681,7 +676,7 @@ function countSumBask() {
     else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
         $(genObj.tinyBask).addClass(genObj.isAvail);
         $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
-            initShopPage(true, '', orderDetails);
+            initShopPage(true);
         })
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
         $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
@@ -715,7 +710,7 @@ function compareListCount() {
     $(document).trigger({'type': 'change_count_cl'});
 }
 function wishListCount() {
-    var count = wishList.count();
+    var count = wishList.all().length;
     if (count > 0) {
         $(genObj.tinyWishList).show();
     }
@@ -725,6 +720,7 @@ function wishListCount() {
     $(genObj.countTinyWishList).each(function() {
         $(this).html(count);
     });
+    wishList.count = count;
     $(document).trigger({'type': 'change_count_wl'});
 }
 function existsVnumber(vNumber, liBlock) {
@@ -1067,7 +1063,7 @@ function ieInput(els) {
         }).addClass('visited');
     });
 }
-$(document).on('drop.successJson', function(e) {
+$(document).live('drop.successJson', function(e) {
     if (e.el.is('#notification')) {
         if (e.datas.answer == "success")
             e.el.find(optionsDrop.modalPlace).empty().append(message.success(e.datas.data))
@@ -1477,7 +1473,7 @@ function init() {
             changeDeliveryMethod(activeVal, selectDeliv);
             recountCartPage(selectDeliv, methodDeliv());
         });
-    initShopPage(false, '', orderDetails);
+    initShopPage(false);
     countSumBask();
     //shipping changing, re-render cart page
     if (orderDetails) {
@@ -1512,7 +1508,7 @@ function init() {
         countSumBask();
     });
     $(document).live('after_add_to_cart', function(e) {
-        initShopPage(e.sbutton, e.starget, orderDetails);
+        initShopPage(e.show);
         getDiscount(false);
         countSumBask();
         if ($.exists(optionCompare.frameCompare))
@@ -1557,8 +1553,11 @@ function init() {
     $(document).on('compare_list_sync', function() {
         processComp();
     });
+    $(document).on('wish_list_sync', function() {
+        processWish();
+    });
     $(document).on('change_count_cl change_count_wl', function(e) {
-        if (wishList.count() + Shop.CompareList.count + countViewProd > 0)
+        if (wishList.count + Shop.CompareList.count + countViewProd > 0)
             $('.content-user-toolbar').fadeIn()
         else
             $('.content-user-toolbar').fadeOut()
@@ -1570,8 +1569,10 @@ function init() {
         var btnInfo = liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut);
         var vId = btnInfo.attr('data-id'),
                 vName = btnInfo.attr('data-vname'),
+                vNumber = btnInfo.attr('data-number'),
                 vPrice = btnInfo.attr('data-price'),
-                vOrigPrice = btnInfo.attr('data-origPrice'), vNumber = btnInfo.attr('data-number'),
+                vAddPrice = btnInfo.attr('data-addPrice'),
+                vOrigPrice = btnInfo.attr('data-origPrice'),
                 vLargeImage = btnInfo.attr('data-largeImage'),
                 vMainImage = btnInfo.attr('data-mainImage'),
                 vStock = btnInfo.attr('data-maxcount');
@@ -1579,6 +1580,7 @@ function init() {
         $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
         liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
         liBlock.find(genObj.priceVariant).html(vPrice);
+        liBlock.find(genObj.priceAddPrice).html(vAddPrice);
         existsVnumber(vNumber, liBlock);
         existsVnames(vName, liBlock);
         condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + ' ' + genObj.infoBut));
@@ -1595,8 +1597,8 @@ function init() {
                 vName = btnInfo.attr('data-vname'),
                 vPrice = btnInfo.attr('data-price'),
                 vOrigPrice = btnInfo.attr('data-origPrice'),
-                vAddPrice = btnInfo.attr('data-addPrice');
-        vNumber = btnInfo.attr('data-number'),
+                vAddPrice = btnInfo.attr('data-addPrice'),
+                vNumber = btnInfo.attr('data-number'),
                 vStock = btnInfo.attr('data-maxcount');
         liBlock.find(genObj.selVariant).hide();
         liBlock.find(genObj.prefV + vId).show();
@@ -1616,6 +1618,7 @@ function init() {
     })
     $('.frame-count-buy ' + genObj.plusMinus).keyup(function(e) {
         var $this = $(this);
+        $this.maxValue();
         $this.closest(genObj.frameCount).next().children().attr('data-count', $this.val())
         $(document).trigger({'type': 'change_count_product', 'el': $this});
     })
@@ -1628,7 +1631,7 @@ function init() {
         processWish();
         compareListCount();
         wishListCount();
-        initShopPage(false, '', orderDetails);
+        initShopPage(false);
         processPopupCart();
         countSumBask();
         //shipping changing, re-render cart page

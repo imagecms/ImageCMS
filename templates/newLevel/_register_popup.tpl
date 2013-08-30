@@ -9,7 +9,7 @@
         </div>
     {/if}
     <label class="control-group" for="reg_name">
-        <span class="control-label">Имя</span>
+        <span class="control-label">{lang('Name','newLevel')}</span>
         <span class="controls">
             <span class="icon_input-person"></span>
             <input id="reg_name" type="text" class="required" maxlength="30" name="username" value="{$_POST['username']}" />
@@ -23,14 +23,14 @@
         </span>
     </label>
     <label class="control-group" for="reg_pswd">
-        <span class="control-label">Пароль</span>
+        <span class="control-label">{lang('Password','newLevel')}</span>
         <span class="controls">
             <span class="icon_input-pswd"></span>
             <input id="reg_pswd" type="password" class="required" maxlength="30" name="password" />
         </span>
     </label>
     <label class="control-group" for="reg_rptpswd">
-        <span class="control-label">Повторите</span>
+        <span class="control-label">{lang('Repeat','newLevel')}</span>
         <span class="controls">
             <span class="icon_input-rpt-pswd"></span>
             <input id="reg_rptpswd" type="password" class="required" size="30" name="confirm_password" />
@@ -40,7 +40,7 @@
         <span class="control-label">&nbsp;</span>
         <span class="controls c_n">
             <span class="btn-drop">
-                <input type="submit" value="Зарегистрироваться"/>
+                <input type="submit" value="{lang('Sign up','newLevel')}"/>
             </span>
         </span>
     </div>
@@ -48,7 +48,7 @@
     <div class="control-group">
         <div class="msg">
             <div class="notice">
-                <h3>Регистрация прошла успешно!</h3>
+                <h3>{lang('Registration was successful!','newLevel')}</h3>
             </div>
         </div>
     </div>

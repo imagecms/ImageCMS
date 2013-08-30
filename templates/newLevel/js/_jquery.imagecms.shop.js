@@ -192,6 +192,10 @@ var ie = jQuery.browser.msie,
                                 settings.before(frameChecks, $this, nstcheck);
                         }
                     });
+                    var form = frameChecks.closest('form');
+                    form.find('input[type="reset"]').unbind('click.nstcheck').on('click.nstcheck', function() {
+                        methods.changeCheckallreset(form.find(elCheckWrap));
+                    });
                 });
                 wrapper.find('input').unbind('click.nstCheck').on('click.nstCheck', function(e) {
                     e.preventDefault();
@@ -530,7 +534,6 @@ var ie = jQuery.browser.msie,
                 }
                 else
                     $(document).trigger({type: 'autocomplete.fewLength', el: $this, value: minValue});
-
                 var iL = inputString.val().length;
                 if (iL <= minValue)
                     submit.unbind('click.autocomplete').on('click.autocomplete', function(e) {
@@ -1329,6 +1332,7 @@ var ie = jQuery.browser.msie,
                     always = settings.always,
                     arrDrop = [];
             $(this).add($('[data-drop]')).unbind('click.drop').on('click.drop', function(e) {
+                methods.closeModal();
                 function confirmF() {
                     if ($.inArray(elSet.source, arrDrop) != 0 || newModal || newAlways) {
                         arrDrop.push(elSet.source);
@@ -1341,9 +1345,9 @@ var ie = jQuery.browser.msie,
                             dataType: elSet.type ? elSet.type : 'html',
                             success: function(data) {
                                 if (elSet.type != 'html' && elSet.type != undefined && newModal) {
-                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
                                     if (elSet.callback != undefined)
                                         eval(elSet.callback)($this, data, elSetSource);
+                                    $(document).trigger({type: 'drop.successJson', el: elSetSource, datas: data})
                                 }
                                 else {
                                     $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
@@ -1363,7 +1367,6 @@ var ie = jQuery.browser.msie,
                     e.stopPropagation();
                     e.preventDefault();
                     var elSet = $this.data();
-
                     var elSetSource = $(elSet.drop),
                             newModal = elSet.modal || modal,
                             newConfirm = elSet.confirm || confirm,
@@ -1377,8 +1380,9 @@ var ie = jQuery.browser.msie,
                         if (!newConfirm)
                             confirmF();
                         else {
-                            methods.showDrop($('[data-drop="#confirm"]'), e, settings, false);
+                            methods.showDrop($('[data-drop="#confirm"]').data('callback', elSet.callback), e, settings, false);
                             $('[data-button-confirm]').focus().on('click.drop', function() {
+                                methods.closeDrop($('#confirm'));
                                 confirmF();
                             })
                         }
@@ -1389,6 +1393,12 @@ var ie = jQuery.browser.msie,
             })
             exit.live('click', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
+            })
+        },
+        closeModal: function() {
+            $('[data-elrun]:visible').each(function() {
+                if ($(this).data('modal'))
+                    methods.closeDrop($(this))
             })
         },
         showDrop: function($this, e, settings, isajax) {
@@ -1419,6 +1429,7 @@ var ie = jQuery.browser.msie,
             $this.parent().addClass(activeClass);
             $($thisSource).data({
                 'effect-off': $thisEOff,
+                'elrun': $thisSource,
                 'place': place,
                 'placement': placement,
                 'duration': $thisD,
@@ -1451,8 +1462,13 @@ var ie = jQuery.browser.msie,
             }
             else {
                 before($this, elSetSource, isajax);
-                if (!moreoneNC) {
-                    methods.closeDrop($('[data-elrun]:visible'));
+                if (!moreoneNC || elSetSource.data('modal')) {
+                    var objJ = $([]);
+                    $('[data-elrun]:visible').each(function() {
+                        if (($(this).data('overlayOpacity') != '0' && $(this).data('moreoneNC') != 'true'))
+                            objJ = objJ.add($(this));
+                    })
+                    methods.closeDrop(objJ);
                 }
 
                 if (e.button == undefined && place != "center")
@@ -1516,7 +1532,7 @@ var ie = jQuery.browser.msie,
                             overlayColor = drop.data('overlayColor'),
                             overlayOpacity = drop.data('overlayOpacity') != undefined ? drop.data('overlayOpacity').toString() : drop.data('overlayOpacity'),
                             condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
-                    if (((condOverlay || drop.data('modal'))) || (sel && drop.data('moreoneNC'))) {
+                    if (drop.data('modal') || sel || condOverlay) {
                         $(document).trigger({'type': 'drop.beforeClose', 'el': drop})
                         drop.removeClass(activeClass + ' ' + drop.data('place')).each(function() {
                             var $this = $(this),
@@ -1763,7 +1779,6 @@ var ie = jQuery.browser.msie,
             if (!e)
                 var e = window.event;
             var key = e.keyCode;
-
             if ((key == 48 || key == 96) && ($thisVal.length == 0 || parseInt($thisVal) == 0)) {
                 $this.val($min);
             }
@@ -2000,7 +2015,7 @@ var Shop = {
         shipping: 0,
         shipFreeFrom: 0,
         giftCertPrice: 0,
-        add: function(cartItem, el, btn) {
+        add: function(cartItem, show) {
             //trigger before_add_to_cart
             $(document).trigger({
                 type: 'before_add_to_cart',
@@ -2021,11 +2036,10 @@ var Shop = {
                 url += '/ShopKit';
             }
 
-            Shop.currentItem = cartItem;
             $.post(url, data,
                     function() {
                         try {
-                            Shop.Cart._add(cartItem, el, btn);
+                            Shop.Cart._add(cartItem, show);
                             //save item to storage
                         } catch (e) {
                             return;
@@ -2033,7 +2047,7 @@ var Shop = {
                     });
             return;
         },
-        _add: function(cartItem, el, btn) {
+        _add: function(cartItem, show) {
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
@@ -2044,8 +2058,7 @@ var Shop = {
             $(document).trigger({
                 type: 'after_add_to_cart',
                 cartItem: _.clone(cartItem),
-                starget: el,
-                sbutton: btn
+                show: show
             });
             $(document).trigger({
                 type: 'cart_changed'
@@ -2365,6 +2378,16 @@ var Shop = {
         }
     }
 };
+wishList = {
+    all: function() {
+        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+    },
+    sync: function() {
+        $.post('/wishlist/wishlistApi/sync', function(data) {
+            localStorage.setItem('wishList', data);
+        })
+    }
+}
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -2425,7 +2448,7 @@ var ImageCMSApi = {
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
                     if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
                         location.reload();
-                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true ||  obj.redirect != ''))
+                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
                         location.href = obj.redirect;
                     if ((obj.refresh == false || obj.refresh == 'false') && (obj.redirect == false || obj.redirect == 'false')) {
                         if (typeof DS.callback == 'function')
