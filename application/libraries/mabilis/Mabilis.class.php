@@ -12,6 +12,7 @@ class Mabilis {
 
     private $compiler = NULL;
     private $config = NULL;
+    private $arr = NULL;
 
     public function __construct(&$config = array()) {
         $this->load_config($config);
@@ -55,14 +56,16 @@ class Mabilis {
         ob_start();
 
         if (file_exists($compiled_file)) {
-//            if (!in_array($compiled_file, get_included_files())) {
+            if (!in_array($compiled_file, $this->arr)) {
                 include($compiled_file);
-//                var_dump(include($compiled_file));
-//                var_dump(count(get_included_files()));
-//            }
+                $this->arr[$compiled_file] = $compiled_file;
+            }
+            else
+                include $this->arr[$compiled_file];
         } else {
             print '<p class="error">Error: ' . $compiled_file . ' does not exists!</p>';
         }
+
         // Time to live expried
         if ($mabilis_ttl <= time()) {
             @unlink($compiled_file);
