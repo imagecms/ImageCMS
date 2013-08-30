@@ -268,7 +268,7 @@ var cuselOptions = {
     visRows: 100,
     scrollArrows: false
 };
-message = {
+var message = {
     success: function(text) {
         return '<div class = "msg"><div class = "' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     },
@@ -279,7 +279,7 @@ message = {
         return '<div class = "msg"><div class = "' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
     }
 };
-lazyload = {
+var lazyload = {
     effect: "fadeIn"
 }
 //declaration shop functions
