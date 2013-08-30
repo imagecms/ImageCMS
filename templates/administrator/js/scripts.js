@@ -1211,7 +1211,6 @@ $(document).ready(
 
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
-            console.log(txt_val);
 
 
             $('.main_body').append('<div class="overlay"></div>');
@@ -1752,20 +1751,23 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
-    processDB: function(file_name) {
+    processUpdate: function() {
         $.ajax({
             type: "POST",
-            asunc: false,
-            data: {
-                file_name: file_name
-            },
-            url: '/admin/sys_update/getQuerys',
-            success: function(res) {
-                var obj = JSON.parse(res);
-                var portion = (parseInt(obj.length / 100) + 1);
-                $('#progres').css('width', '0%');
-                $('.progressDB').fadeIn(600);
-                Update.restoreDBprocess(0, 0, portion, obj);
+            url: '/admin/sys_update/do_update',
+            complete: function(res) {
+                $.ajax({
+                    type: "POST",
+                    asunc: false,
+                    url: '/admin/sys_update/getQuerys',
+                    success: function(res) {
+                        var obj = JSON.parse(res);
+                        var portion = (parseInt(obj.length / 100) + 1);
+                        $('#progres').css('width', '0%');
+                        $('.progressDB').fadeIn(600);
+                        Update.restoreDBprocess(0, 0, portion, obj);
+                    }
+                });
             }
         });
     },
@@ -1785,7 +1787,7 @@ var Update = {
             url: '/admin/sys_update/Querys',
             complete: function(res) {
                 array = [];
-                if (i < 10) {
+                if (i < 100) {
                     $('#progres').css('width', i + 1 + '%');
                     $('#progres').text(i + 1 + '%');
                     Update.restoreDBprocess(i + 1, j, portion, obj);

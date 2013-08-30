@@ -202,7 +202,7 @@ class Admin extends BaseAdminController {
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
 
-        showMessage(lang('Success'), lang('Change saved'));
+        showMessage(lang('Success', 'comments'), lang('Change saved', 'comments'));
 
         if ($this->input->post('action')=='exit')
             pjax('/admin/components/run/shop/dashboard#last_comments');
@@ -223,7 +223,7 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
         */
-        showMessage(lang('Success'), lang('Status updated'));
+        showMessage(lang('Success', 'comments'), lang('Status updated', 'comments'));
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
         pjax($url);
@@ -246,7 +246,7 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-        showMessage(lang('Comment(s) deleted'));
+        showMessage(lang('Comment(s) deleted', 'comments'));
 
         $this->load->helper('url');
         $url = '/'.str_replace(base_url(), '',$_SERVER['HTTP_REFERER']);
@@ -305,7 +305,7 @@ class Admin extends BaseAdminController {
 
         $this->comments->save_settings($data);
 
-        showMessage(lang('Changes saved'));
+        showMessage(lang('Changes saved', 'comments'));
         pjax('/admin/components/cp/comments');
     }
 

@@ -129,7 +129,7 @@ class MY_Lang extends MX_Lang {
             }else{
                 $lang = $languageFront[1];
             }
-         
+            
 //            var_dumps($module);
            
            if ($module == 'main'){
