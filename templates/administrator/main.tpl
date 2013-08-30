@@ -235,7 +235,6 @@
             </div>
         </footer>
         <div id="elfinder"></div>
-        {var_dump($CI->lang->gettext_domain)}
         <div class="standart_form frame_rep_bug">
             <form method="post" action="">
                 <label>
