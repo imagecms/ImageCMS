@@ -20,6 +20,7 @@
                     <li><a href="#homePage">{lang('a_main_page')}</a></li>
                     <li><a href="#metatag">Управление Мета-тегами</a></li>
                     <li><a href="#metatag_edit">Ввести метатеги</a></li>
+                    <li><a href="#site_info_tab">Информация о сайте</a></li>
                 </ul>
             </div>
             <div class="span9 content_big_td">
@@ -40,8 +41,6 @@
                                             <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
-
-
                                                         <div class="control-group">
                                                             <label class="control-label" for="site_offline">{lang('a_site_shutdown')}:</label>
                                                             <div class="controls">
@@ -55,7 +54,6 @@
                                                                 </span>
                                                             </div>
                                                         </div>
-
                                                         <div class="control-group">
                                                             <label class="control-label" for="lang_sel">{lang('a_lang_select')}:</label>
                                                             <div class="controls">
@@ -381,7 +379,149 @@
                                 </tbody>
                             </table>
                             {form_csrf()}
-                            </form>
+
                         </div>
-                        </section>
+                        <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
+                            {$tooltipText = "Воспользуйтесь функцией siteinfo() с параметром"}
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">
+                                            {lang('a_sett')}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="inside_padd">
+                                                <div class="form-horizontal">
+                                                    <div class="row-fluid">
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_compatytype">Тип предприятия <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_compatytype'"></i></label>
+                                                            <div class="controls">
+                                                                <textarea rows="1" id="siteinfo_compatytype" name="siteinfo_compatytype">{$siteinfo_compatytype}</textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_address">Адрес <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_address'"></i></label>
+                                                            <div class="controls">
+                                                                <textarea rows="1" id="siteinfo_address" name="siteinfo_address">{$siteinfo_address}</textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_mainphone">Основной телефон <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_mainphone'"></i></label>
+                                                            <div class="controls">
+                                                                <textarea rows="1" id="siteinfo_mainphone" name="siteinfo_mainphone">{$siteinfo_mainphone}</textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_adminemail">Email администратора <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_adminemail'"></i></label>
+                                                            <div class="controls">
+                                                                <textarea rows="1" id="siteinfo_adminemail" name="siteinfo_adminemail">{$siteinfo_adminemail}</textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <hr />
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="">Контакты <i class="icon-info-sign" data-original-title="{$tooltipText} который вы ввели в качестве типа контакта"></i></label>  
+                                                            <div class="controls">
+                                                                <table id="siteinfo_contacts_table">
+                                                                    {if count($contacts) > 0}
+                                                                        {foreach $contacts as $contact_name => $contact_value}
+                                                                            <tr class="siteinfo_contact_row">
+                                                                                <td>
+                                                                                    <input type='text' placeholder="Тип конатакта" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="{$contact_name}">
+                                                                                </td>
+                                                                                <td>
+                                                                                    <textarea rows="1" placeholder="Значение" class="siteinfo_contactvalue" name="siteinfo_contactvalue[]">{$contact_value}</textarea>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
+                                                                                        <i class="icon-trash icon-white"></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr> 
+                                                                        {/foreach}
+                                                                    {else:}
+                                                                        <tr class="siteinfo_contact_row" data-original-title="{$tooltipText} который вы ввели в качестве типа контакта">
+                                                                            <td>
+                                                                                 <input type='text' placeholder="Тип конатакта" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="">
+                                                                            </td>
+                                                                            <td>
+                                                                                <textarea rows="1" placeholder="Значение" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
+                                                                                    <i class="icon-trash icon-white"></i>
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr> 
+                                                                    {/if}
+
+                                                                </table>
+                                                            </div>
+                                                            <p id="siteinfo_contacts_controls" style='text-align:right; padding-top:7px;'>
+                                                                <a class="btn btn-small btn-success" id="siteinfo_addcontact">
+                                                                    <span class="icon-plus-sign icon-white"></span>
+                                                                    Добавить контакт
+                                                                </a>
+                                                            </p>
+                                                        </div>
+
+                                                        <hr />
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_logo">Лого <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
+                                                            <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
+                                                            <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
+
+                                                            <div class="controls siteinfo_logoimage">
+                                                                <div class='siteinfo_image_container'>
+                                                                    {if isset($siteinfo_logo) & !empty($siteinfo_logo)}
+                                                                        <button type="button" class="btn btn-small remove_btn">
+                                                                            <i class="icon-trash"></i>
+                                                                        </button>
+                                                                        <img class="img-polaroid" src="{$siteinfo_logo}" alt="Кликните для выбора изображения" />
+                                                                    {else:}
+                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="Кликните для выбора изображения" />
+                                                                    {/if}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="siteinfo_favicon">Favicon <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_favicon'"></i></label>
+                                                            <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
+                                                            <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
+
+                                                            <div class="controls siteinfo_faviconimage">
+                                                                <div class='siteinfo_image_container'>
+                                                                    {if isset($siteinfo_favicon) & !empty($siteinfo_favicon)}
+                                                                        <button type="button" class="btn btn-small remove_btn">
+                                                                            <i class="icon-trash"></i>
+                                                                        </button>
+                                                                        <img class="img-polaroid" src="{$siteinfo_favicon}" alt="Кликните для выбора изображения" />
+                                                                    {else:}
+                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="Кликните для выбора изображения" />
+                                                                    {/if}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div> <!-- Інформація про сайт - Завершення -->
                     </div>
+                </form> 
+            </div>
+        </div>
+    </section>
+</div>
