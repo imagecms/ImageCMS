@@ -10,13 +10,13 @@
                     <a href="{$BASE_URL}admin/components/init_window/cmsemail"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back')}</span>
                     </a>
                     <button type="button"
                             class="btn btn-small btn-primary action_on formSubmit"
                             data-form="#wishlist_settings_form"
                             data-action="tomain">
-                        <i class="icon-ok"></i>{lang('a_save')}
+                        <i class="icon-ok"></i>{lang('Have been saved')}
                     </button>
                 </div>
             </div>

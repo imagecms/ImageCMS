@@ -37,7 +37,7 @@
         <input type="hidden" name="redirect" value="{uri_string()}" />
 
         {if $is_logged_in} 
-            <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang('lang_logout')}</a></p>         
+            <p>{lang('lang_logged_in_as')} {$username}. <a href="{site_url('auth/logout')}">{lang("Exit","admin")}</a></p>         
             {else:}
 
             <div class="comment_form_info">

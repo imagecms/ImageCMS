@@ -26,11 +26,14 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
+<<<<<<< HEAD
 
   //      echo siteinfo('Skype');
      //   echo siteinfo('siteinfo_address');
         //exit;
 
+=======
+>>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
         $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
@@ -48,16 +51,16 @@ class Settings extends BaseAdminController {
 
         #Tiny MCE themes in lib_editor
 //        $themes_arr = array(
-//            'simple' => 'Простая',
-//            'advanced' => 'Расширеная',
-//            'full' => 'Полная'
+//            'simple' => lang('Simple','admin'),
+//            'advanced' => lang('Extended','admin'),
+//            'full' => lang('Full','admin')
 //        );
 //
 //        ($hook = get_hook('admin_set_editor_theme')) ? eval($hook) : NULL;
 //        $this->template->assign('editor_themes', $themes_arr);
 //        $this->template->assign('theme_selected', $settings['editor_theme']);
 
-        $this->template->assign('work_values', array('yes' => 'Да', 'no' => 'Нет'));
+        $this->template->assign('work_values', array('yes' => lang("Yes","admin"), 'no' => lang("No","admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
 
@@ -95,10 +98,17 @@ class Settings extends BaseAdminController {
 
         $this->load->library('form_validation');
 
+<<<<<<< HEAD
         $this->form_validation->set_rules('name', 'Название', 'trim|required|xss_clean');
         $this->form_validation->set_rules('short_name', 'Краткое название', 'trim|required|xss_clean');
         $this->form_validation->set_rules('description', 'Описание', 'trim|xss_clean');
         $this->form_validation->set_rules('keywords', 'Ключевие слова', 'trim|xss_clean');
+=======
+        $this->form_validation->set_rules('name', lang('Name', 'admin'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('short_name', lang('Short name', 'admin'), 'trim|required|xss_clean');
+        $this->form_validation->set_rules('description', lang('Description', 'admin'), 'trim|xss_clean');
+        $this->form_validation->set_rules('keywords', lang('Keywords', 'admin'), 'trim|xss_clean');
+>>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
         if ($this->form_validation->run($this) == FALSE)
             showMessage(validation_errors(), false, 'r');
         else {
@@ -198,7 +208,7 @@ class Settings extends BaseAdminController {
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang('ac_page_not_found'), false, 'r');
+                    showMessage(lang("Page has not been found","admin"), false, 'r');
                     exit;
                 }
                 break;
@@ -243,10 +253,11 @@ class Settings extends BaseAdminController {
 
         $this->cache->delete_all();
 
-        $this->lib_admin->log(lang('ac_changed_site_sett'));
+        $this->lib_admin->log(lang("Changed wesite settings","admin"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
+<<<<<<< HEAD
             showMessage(lang('ac_sett_saved'));
     }
 
@@ -341,6 +352,11 @@ class Settings extends BaseAdminController {
         return $siteinfo;
     }
 
+=======
+            showMessage(lang("Settings have been saved","admin"));
+    }
+
+>>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
     public function switch_admin_lang($lang) {
         $langs = Array(
             'english',
@@ -348,10 +364,19 @@ class Settings extends BaseAdminController {
         );
 
         if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
+<<<<<<< HEAD
             $this->db->set('lang_sel', $lang . '_lang')
                     ->update('settings');
         }
 
+=======
+
+            $this->db->set('lang_sel', $lang . '_lang')
+                    ->update('settings');
+
+            $this->session->set_userdata('language', $lang);
+        }
+>>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
         redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
     }
 

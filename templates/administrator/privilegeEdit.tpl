@@ -2,20 +2,20 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_edit')} {lang('a_privilege')}</span>
+            <span class="title">{lang("Editing","admin")} {lang("Privileges","admin")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/privilegeList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_go_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#priv_ed_form" data-action="close" data-submit><i class="icon-ok"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#priv_ed_form" data-action="exit"><i class="icon-check"></i>{lang('a_save_and_exit')}</button>    
+                <a href="{$BASE_URL}admin/rbac/privilegeList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#priv_ed_form" data-action="close" data-submit><i class="icon-ok"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#priv_ed_form" data-action="exit"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>    
 
                 <div class="dropdown d-i_b">   
                     {$arr = get_lang_admin_folders()}                   
                     {foreach $arr as $a}
                         {if $lang_sel == $a}
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        {if $a == 'english_lang'}{lang('a_english')}{else:}{lang('a_russian')}{/if}
+                        {if $a == 'english_lang'}{lang("English","admin")}{else:}{lang("Russian","admin")}{/if}
                         <span class="caret"></span>
                     </a>
                 {/if}   
@@ -25,7 +25,7 @@
                     <li>
                         <a href="{$BASE_URL}admin/rbac/translatePrivilege/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
 
-                    {if $a == 'english_lang'}{lang('a_russian')} {else:} {lang('a_english')} (beta){/if}
+                    {if $a == 'english_lang'}{lang("Russian","admin")} {else:} {lang("English","admin")} (beta){/if}
                 </a>
             </li>                          
         {/foreach}
@@ -43,7 +43,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang('a_param')}
+                            {lang("Properties","admin")}
                         </th>
                     </tr>
                 </thead>
@@ -52,25 +52,25 @@
                         <td colspan="6">
                             <div class="inside_padd span9">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
+                                    <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Name" id="Name" value="{echo $model->name}" required/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Title">{lang('a_desc')}:</label>
+                                    <label class="control-label" for="Title">{lang("Description","admin")}:</label>
                                     <div class="controls">
                                         <input type="text" name="Title" id="Title" value="{echo $model->title}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">Полное описание:</label>
+                                    <label class="control-label" for="Description">{lang('Full description','admin')}:</label>
                                     <div class="controls">
                                         <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="GroupId">{lang('a_group')}</label>
+                                    <label class="control-label" for="GroupId">{lang("Group","admin")}</label>
                                     <div class="controls">
                                         <select name="GroupId" id="GroupId">
                                             {foreach $groups as $group}

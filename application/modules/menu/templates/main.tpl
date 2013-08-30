@@ -4,14 +4,14 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang('a_menu_delete')}</h3>
+            <h3>{lang("Menu deleting")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang('a_delete_selected_menu')}</p>
+            <p>{lang("Delete selected menu?", 'menu')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_item')" >{lang('a_delete')}</a>
-            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('a_cancel')}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_item')" >{lang("Delete", "menu")}</a>
+            <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel", "menu")}</a>
         </div>
     </div>
 
@@ -22,13 +22,13 @@
             <div class="frame_title clearfix">
                 <div class="pull-left">
                     <span class="help-inline"></span>
-                    <span class="title">{lang('a_menu')}: {echo $menu_title}</span>
+                    <span class="title">{lang("Menu", "menu")}: {echo $menu_title}</span>
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <a href="/admin/components/cp/menu" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                        <a type="button" class="btn btn-small btn-success createLink pjax" href="/admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-plus-sign icon-white"></i>{lang('a_create_link')}</a>
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
+                        <a href="/admin/components/cp/menu" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", "menu")}</span></a>
+                        <a type="button" class="btn btn-small btn-success createLink pjax" href="/admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-plus-sign icon-white"></i>{lang("Create link", "menu")}</a>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete", "menu")}</button>
                     </div>
                 </div>                            
             </div>
@@ -43,11 +43,11 @@
                                     </span>
                                 </span>
                             </div>
-                            <div>{lang('amt_id')}</div>
-                            <div>{lang('amt_tname')}</div>
-                            <div>{lang('amt_link')}</div>
-                            {/*}<div>{lang('amt_type')}</div>{*/}
-                            <div>Показывать</div>
+                            <div>{lang("ID", "menu")}</div>
+                            <div>{lang("Name", "menu")}</div>
+                            <div>{lang("Link", "menu")}</div>
+                            { /* }<div>{lang('Type', "menu")}</div>{ */ }
+                            <div>{lang('Show', 'menu')}</div>
                         </div>
                         <div class=" body_category frame_level">
                             <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">

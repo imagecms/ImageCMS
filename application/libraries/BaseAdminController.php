@@ -9,6 +9,8 @@ class BaseAdminController extends MY_Controller {
         $this->load->library('Permitions');
         Permitions::checkPermitions();
         $this->autoloadModules();
+
+        $this->lang->load('admin');
     }
 
     /**

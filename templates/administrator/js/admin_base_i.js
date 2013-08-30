@@ -13,7 +13,7 @@ $(document).ready(function() {
             url: '/admin/components/change_autoload',
             success: function(obj) {
                 if (obj.result === false) {
-                    showMessage('Ошибка', 'Что-то пошло не так. Статус автозагрузки не изменен.');
+                    showMessage(lang.error, lang.errorSomethingWereWrong);
                 }
             }
         });
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 url: '/admin/components/change_url_access',
                 success: function(obj) {
                     if (obj.result === false) {
-                        showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
+                        showMessage(lang.error, lang.errorUrlAccess);
                     } else {
                         if (obj.result.enabled === 1)
                         {
@@ -63,16 +63,16 @@ $(document).ready(function() {
                     trin.children('td.fdel').remove();
                     trin.children('td.fdel2').remove();
                     trin.append('<td><p> - <p></td>');
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="включить"  data-off="выключить"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="выключить"  data-off="выключить"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOff + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
                     $('#mtbl').append(trin);
                     $this.parents('tr:first').remove();
                     if ($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
-                        $('#nimc').html('</br><div class="alert alert-info">Нету модулей для установки</div>');
+                        $('#nimc').html('</br><div class="alert alert-info">' + lang.haveNotModulesToInstall + '</div>');
                     }
-                    showMessage('Установка модуля', 'Модуль успешно установлен');
+                    showMessage(lang.moduleInstall, lang.moduleSuccessInstall);
                     location.reload();
                 }
             }
@@ -151,10 +151,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                    showMessage(lang.creatingWidget, lang.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager';
-                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -168,10 +168,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                    showMessage(lang.creatingWidget, lang.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager/create_tpl';
-                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -267,7 +267,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm('Удалить группу?'))
+//            if (confirm(lang.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/group_delete', {
@@ -285,7 +285,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm('Удалить группу?'))
+//            if (confirm(lang.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/privilege_delete', {
@@ -490,7 +490,7 @@ $(document).ready(function() {
     });
 
     $('#create_tpl').live('click', function() {
-        var name = prompt('Введите название шаблона', '');
+        var name = prompt(lang.enterTemplateName, '');
         if (name != null && name != "") {
             $.ajax({
                 type: "post",
@@ -649,7 +649,7 @@ $(document).ready(function() {
                     });
                     $('#pages_list_holder').html('<ul class="nav myTab nav-tabs nav-stacked">' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html('В категории нет страниц');
+                    $('#pages_list_holder').html(lang.categoryHaveNotPage);
                 }
             }
         });
@@ -1073,7 +1073,7 @@ $(document).ready(function() {
     $('#resizeAll').live('click', function() {
 
         window.onbeforeunload = (function() {
-            return 'Дождитесь завершения ресайза!';
+            return lang.waitForResizeEnding + '!';
         });
         /* */
         $.ajax({
@@ -1101,13 +1101,13 @@ $(document).ready(function() {
                                 $('.bar').css('width', ((done / countAll) * 100) + '%');
                                 $('.bar').text(parseInt((done / countAll) * 100) + '%');
 
-                                $('#progressLabel').html('<b>Ресайз изображений для товаров</b> <br/>Всего найдено товаров: ' + countAll + '  (Обработано : ' + done + ' )');
+                                $('#progressLabel').html('<b>' + lang.resizeImagesForProducts + '</b> <br/>' + lang.allFindingProducts + ': ' + countAll + '  (' + lang.processed + ' : ' + done + ' )');
 //                                console.log((done / countAll) * 100);
                                 if (done == countAll) {
                                     $('#fixPage').fadeOut(100);
                                     if ($('#useAdditionalImages').attr('checked') != 'checked') {
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage("Картинки обновлены", "Завершено");
+                                        showMessage(lang.imagesUpdated, lang.completed);
                                     }
                                     window.onbeforeunload = null;
                                 }
@@ -1116,7 +1116,7 @@ $(document).ready(function() {
                     }
                     ;
 
-                    $('#progressLabel').html('<b>Ресайз изображений для товаров</b><br/>Всего найдено товаров: ' + countAll + '  (Обработано : 0 )');
+                    $('#progressLabel').html('<b>' + lang.resizeProductsImages + '</b><br/>' + lang.productsFound + ': ' + countAll);
                     $('#progressBlock').fadeIn(100);
 
                     //Prepare portion of images
@@ -1164,12 +1164,12 @@ $(document).ready(function() {
                                 complete: function() {
                                     doneAdditional += array.length;
                                     $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
-                                    $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : ' + doneAdditional + ' )');
+                                    $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': ' + doneAdditional + ' )');
                                     //                                    console.log((doneAdditional / countAllAdditional) * 100);
                                     if (doneAdditional == countAllAdditional) {
                                         $('#fixPage').fadeOut(100);
                                         $('#progressBlock').fadeOut(1000);
-                                        showMessage("Картинки обновлены", "Завершено");
+                                        showMessage(lang.imagesUpdated, lang.completed);
                                         window.onbeforeunload = null;
                                     }
                                 }
@@ -1177,7 +1177,7 @@ $(document).ready(function() {
                         }
                         ;
 
-                        $('#progressLabel').html('<b>Ресайз дополнительних изображений</b><br/>Всего найдено товаров с дополнительними изображениями: ' + countAllAdditional + '  (Обработано : 0 )');
+                        $('#progressLabel').html('<b>' + lang.additionalImagesResize + '</b><br/>' + lang.foundProdWithAdditionalImgs + ': ' + countAllAdditional + '  (' + lang.processed + ': 0 )');
                         $('#progressBlock').fadeIn(100);
                         $('.bar').css('width', ((doneAdditional / countAllAdditional) * 100) + '%');
 
@@ -1197,7 +1197,7 @@ $(document).ready(function() {
                         }
                     } else {
                         $('#progressBlock').fadeOut(100);
-                        showMessage("Картинки обновлены", "Завершено");
+                        showMessage(lang.imagesUpdated, lang.completed);
                     }
                 }
             });

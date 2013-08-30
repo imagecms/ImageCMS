@@ -37,7 +37,7 @@
                 <span class="show-all-brands s-all-d">
                     <a href="{shop_url('brand/')}" class="t-d_n f-s_0">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">Смотреть все</span>
+                        <span class="text-el">{lang('See all','newLevel')}</span>
                     </a>
                 </span>
             </div>

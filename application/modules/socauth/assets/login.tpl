@@ -30,7 +30,7 @@
                             <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
                                     return false;">
                                 <label>
-                                    <span class="title">{lang('lang_email')}</span>
+                                    <span class="title">{lang('Email')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <!-- input for email -->
@@ -42,13 +42,13 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('lang_password')}</span>
+                                    <span class="title">{lang('Password')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-password"></span>
                                         <!-- input for password -->
-                                        <input type="password" name="password" value="{lang('lang_password')}" onfocus="if (this.value == '{lang('lang_password')}')
+                                        <input type="password" name="password" value="{lang('Password')}" onfocus="if (this.value == '{lang('Password')}')
                                         this.value = '';" onblur="if (this.value == '')
-                                        this.value = '{lang('lang_password')}';"/>
+                                        this.value = '{lang('Password')}';"/>
                                         <!-- validation error container -->
                                         <label id="for_password" class="for_validations"></label>
                                     </span>
@@ -56,12 +56,12 @@
                                 <!-- captcha block -->
                                 <lable id="captcha_block">
                                     {if $cap_image}
-                                        <span class="title">{lang('lang_captcha')}</span>
+                                        <span class="title">{lang('Code protection')}</span>
                                         <span class="frame_form_field">
                                             {if $captcha_type == 'captcha'}
-                                                <input type="text" name="captcha" value="{lang('lang_captcha')}" onfocus="if (this.value == '{lang('lang_captcha')}')
+                                                <input type="text" name="captcha" value="{lang('Code protection')}" onfocus="if (this.value == '{lang('Code protection')}')
                                         this.value = '';" onblur="if (this.value == '')
-                                        this.value = '{lang('lang_captcha')}';"/>
+                                        this.value = '{lang('Code protection')}';"/>
                                                 <span class="help_inline">{$cap_image}</span>
                                                 <label id="for_captcha" class="for_validations"></label>
                                             {/if}
@@ -81,7 +81,7 @@
                                         <!--forgot password link-->
                                         <a href="/auth/forgot_password" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_forgot_password')}</a>
                                         <!--registration link-->
-                                        <a href="{site_url($modules.auth . '/register')}" class="d_i v-a_m neigh_btn m-r_45">{lang('lang_register')}</a>
+                                        <a href="{site_url($modules.auth . '/register')}" class="d_i v-a_m neigh_btn m-r_45">{lang('Registration')}</a>
                                         <!--submit button-->
                                         <input type="submit" value="Войти" class="btn btn_cart f_r" />
                                 

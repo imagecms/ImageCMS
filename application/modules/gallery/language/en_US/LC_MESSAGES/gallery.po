@@ -1,0 +1,589 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-28 12:31+0300\n"
+"PO-Revision-Date: 2013-03-28 12:31+0300\n"
+"Last-Translator: koloda <koloda90@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: ../../..//gallery_widgets.php:50
+msgid "Image limit"
+msgstr ""
+
+#: ../../..//gallery_widgets.php:64
+#: ../../..//admin.php:253
+msgid "Settings have been saved or settings were saved"
+msgstr ""
+
+#: ../../..//_out.php:5
+#: ../../..//templates/latest_fotos_form.tpl:5
+msgid "Widget settings"
+msgstr ""
+
+#: ../../..//_out.php:9
+#: ../../..//templates/latest_fotos_form.tpl:9
+msgid "Go back"
+msgstr ""
+
+#: ../../..//_out.php:10
+#: ../../..//_out.php:876
+#: ../../..//templates/latest_fotos_form.tpl:10
+msgid "Have been saved"
+msgstr ""
+
+#: ../../..//_out.php:11
+#: ../../..//_out.php:1003
+#: ../../..//templates/latest_fotos_form.tpl:11
+msgid "Save and go back"
+msgstr ""
+
+#: ../../..//_out.php:20
+#: ../../..//_out.php:282
+#: ../../..//_out.php:932
+#: ../../..//templates/latest_fotos_form.tpl:20
+msgid "Settings"
+msgstr ""
+
+#: ../../..//_out.php:28
+#: ../../..//templates/latest_fotos_form.tpl:28
+msgid "Images limit"
+msgstr ""
+
+#: ../../..//_out.php:34
+#: ../../..//templates/latest_fotos_form.tpl:34
+msgid "Algorithm"
+msgstr ""
+
+#: ../../..//_out.php:37
+#: ../../..//templates/latest_fotos_form.tpl:37
+msgid "Last images"
+msgstr ""
+
+#: ../../..//_out.php:38
+#: ../../..//templates/latest_fotos_form.tpl:38
+msgid "Random images"
+msgstr ""
+
+#: ../../..//_out.php:286
+#: ../../..//_out.php:637
+#: ../../..//_out.php:725
+#: ../../..//_out.php:821
+#: ../../..//_out.php:875
+#: ../../..//_out.php:1001
+#: ../../..//_out.php:1076
+msgid "Back"
+msgstr ""
+
+#: ../../..//_out.php:287
+#: ../../..//_out.php:729
+#: ../../..//_out.php:1002
+#: ../../..//_out.php:1198
+#: ../../..//_out.php:1206
+msgid "Save"
+msgstr ""
+
+#: ../../..//_out.php:299
+msgid "Categories and albums"
+msgstr ""
+
+#: ../../..//_out.php:309
+msgid "Sort"
+msgstr ""
+
+#: ../../..//_out.php:312
+msgid "By date"
+msgstr ""
+
+#: ../../..//_out.php:313
+msgid "in alphabetic order"
+msgstr ""
+
+#: ../../..//_out.php:314
+#, fuzzy
+msgid "By position"
+msgstr "Позиція"
+
+#: ../../..//_out.php:317
+msgid "in descending order"
+msgstr ""
+
+#: ../../..//_out.php:318
+msgid "in  ascending order"
+msgstr ""
+
+#: ../../..//_out.php:332
+msgid "Images"
+msgstr ""
+
+#: ../../..//_out.php:342
+msgid "maximum file size"
+msgstr ""
+
+#: ../../..//_out.php:344
+msgid "In megabites"
+msgstr ""
+
+#: ../../..//_out.php:351
+#: ../../..//admin.php:192
+msgid "Maximum width"
+msgstr ""
+
+#: ../../..//_out.php:360
+#: ../../..//admin.php:193
+msgid "Maximum height"
+msgstr ""
+
+#: ../../..//_out.php:368
+#: ../../..//admin.php:194
+msgid "Quality"
+msgstr ""
+
+#: ../../..//_out.php:377
+#: ../../..//_out.php:428
+#: ../../..//_out.php:479
+msgid "Save ratio"
+msgstr ""
+
+#: ../../..//_out.php:379
+#: ../../..//_out.php:386
+#: ../../..//_out.php:430
+#: ../../..//_out.php:437
+#: ../../..//_out.php:481
+#: ../../..//_out.php:488
+msgid "Yes"
+msgstr ""
+
+#: ../../..//_out.php:380
+#: ../../..//_out.php:387
+#: ../../..//_out.php:431
+#: ../../..//_out.php:438
+#: ../../..//_out.php:482
+#: ../../..//_out.php:489
+msgid "No"
+msgstr ""
+
+#: ../../..//_out.php:384
+#: ../../..//_out.php:435
+#: ../../..//_out.php:486
+msgid "Cut the borders"
+msgstr ""
+
+#: ../../..//_out.php:400
+msgid "Image preview"
+msgstr ""
+
+#: ../../..//_out.php:410
+#: ../../..//_out.php:461
+msgid "height"
+msgstr ""
+
+#: ../../..//_out.php:412
+#: ../../..//_out.php:421
+#: ../../..//_out.php:463
+#: ../../..//_out.php:472
+#: ../../..//_out.php:562
+#: ../../..//_out.php:591
+msgid "px"
+msgstr ""
+
+#: ../../..//_out.php:419
+#: ../../..//_out.php:470
+msgid "amt_height"
+msgstr ""
+
+#: ../../..//_out.php:451
+msgid "Image icons"
+msgstr ""
+
+#: ../../..//_out.php:502
+msgid "Watermark"
+msgstr ""
+
+#: ../../..//_out.php:512
+msgid "horizontal alignment"
+msgstr ""
+
+#: ../../..//_out.php:515
+msgid "left or on the left"
+msgstr ""
+
+#: ../../..//_out.php:516
+msgid "in the center"
+msgstr ""
+
+#: ../../..//_out.php:517
+msgid "on the right"
+msgstr ""
+
+#: ../../..//_out.php:522
+msgid "vertical alignment"
+msgstr ""
+
+#: ../../..//_out.php:525
+msgid "at the top"
+msgstr ""
+
+#: ../../..//_out.php:526
+msgid "in the middle"
+msgstr ""
+
+#: ../../..//_out.php:527
+msgid "at the bottom"
+msgstr ""
+
+#: ../../..//_out.php:532
+msgid "Type"
+msgstr ""
+
+#: ../../..//_out.php:535
+#: ../../..//_out.php:571
+msgid "Text"
+msgstr ""
+
+#: ../../..//_out.php:536
+msgid "Image"
+msgstr ""
+
+#: ../../..//_out.php:543
+msgid "Path to the image"
+msgstr ""
+
+#: ../../..//_out.php:546
+msgid "File has to be located on the server. For example"
+msgstr ""
+
+#: ../../..//_out.php:550
+#: ../../..//admin.php:201
+msgid "Transparency"
+msgstr ""
+
+#: ../../..//_out.php:555
+msgid "Select a digit from 1 to 100"
+msgstr ""
+
+#: ../../..//_out.php:560
+#: ../../..//_out.php:589
+msgid "Offset"
+msgstr ""
+
+#: ../../..//_out.php:577
+#: ../../..//admin.php:200
+msgid "Font size"
+msgstr ""
+
+#: ../../..//_out.php:583
+msgid "Font colour"
+msgstr ""
+
+#: ../../..//_out.php:598
+msgid "Path to font"
+msgstr ""
+
+#: ../../..//_out.php:633
+#: ../../..//_out.php:948
+msgid "Albums"
+msgstr ""
+
+#: ../../..//_out.php:638
+#: ../../..//_out.php:822
+msgid "Create"
+msgstr ""
+
+#: ../../..//_out.php:659
+msgid "View images"
+msgstr ""
+
+#: ../../..//_out.php:667
+#: ../../..//_out.php:774
+#: ../../..//_out.php:832
+#: ../../..//_out.php:886
+#: ../../..//_out.php:947
+#: ../../..//_out.php:1023
+#: ../../..//_out.php:1097
+#: ../../..//_out.php:1175
+#: ../../..//admin.php:267
+#: ../../..//admin.php:297
+#: ../../..//admin.php:429
+#: ../../..//admin.php:598
+#: ../../..//admin.php:639
+msgid "Name"
+msgstr ""
+
+#: ../../..//_out.php:671
+msgid "Created"
+msgstr ""
+
+#: ../../..//_out.php:675
+msgid "Has been updated or updated"
+msgstr ""
+
+#: ../../..//_out.php:679
+#: ../../..//_out.php:1179
+msgid "Views"
+msgstr ""
+
+#: ../../..//_out.php:683
+#: ../../..//_out.php:838
+#: ../../..//_out.php:892
+#: ../../..//_out.php:949
+#: ../../..//_out.php:1029
+#: ../../..//_out.php:1103
+#: ../../..//_out.php:1194
+#: ../../..//admin.php:268
+#: ../../..//admin.php:599
+#: ../../..//admin.php:640
+msgid "Description"
+msgstr ""
+
+#: ../../..//_out.php:689
+#: ../../..//_out.php:769
+msgid "a_to_edit"
+msgstr ""
+
+#: ../../..//_out.php:690
+#: ../../..//_out.php:715
+#: ../../..//_out.php:730
+#: ../../..//_out.php:768
+#: ../../..//_out.php:808
+#: ../../..//_out.php:865
+#: ../../..//_out.php:919
+#: ../../..//_out.php:929
+#: ../../..//_out.php:991
+#: ../../..//_out.php:1004
+#: ../../..//_out.php:1065
+msgid "Delete"
+msgstr ""
+
+#: ../../..//_out.php:704
+msgid "No albums found"
+msgstr ""
+
+#: ../../..//_out.php:711
+msgid "Delete album?"
+msgstr ""
+
+#: ../../..//_out.php:714
+#: ../../..//_out.php:807
+#: ../../..//_out.php:864
+#: ../../..//_out.php:918
+#: ../../..//_out.php:990
+#: ../../..//_out.php:1064
+#: ../../..//_out.php:1199
+msgid "Cancel"
+msgstr ""
+
+#: ../../..//_out.php:721
+#: ../../..//_out.php:997
+#: ../../..//_out.php:1158
+msgid "Album"
+msgstr ""
+
+#: ../../..//_out.php:727
+msgid "a_add_pictures"
+msgstr ""
+
+#: ../../..//_out.php:749
+msgid "Chose all photos"
+msgstr ""
+
+#: ../../..//_out.php:775
+msgid "Size"
+msgstr ""
+
+#: ../../..//_out.php:790
+msgid "Album is empty"
+msgstr ""
+
+#: ../../..//_out.php:804
+msgid "Deleting photos"
+msgstr ""
+
+#: ../../..//_out.php:817
+#: ../../..//_out.php:930
+msgid "Create a category"
+msgstr ""
+
+#: ../../..//_out.php:823
+#: ../../..//_out.php:877
+msgid "Save and exit"
+msgstr ""
+
+#: ../../..//_out.php:844
+#: ../../..//_out.php:898
+#: ../../..//_out.php:1035
+#: ../../..//_out.php:1191
+#: ../../..//admin.php:600
+#: ../../..//admin.php:641
+#, fuzzy
+msgid "Position"
+msgstr "Позиція"
+
+#: ../../..//_out.php:871
+#: ../../..//_out.php:964
+msgid "Edit the category"
+msgstr ""
+
+#: ../../..//_out.php:925
+#: ../../..//_out.php:1013
+#: ../../..//_out.php:1086
+#: ../../..//admin.php:269
+msgid "Categories"
+msgstr ""
+
+#: ../../..//_out.php:931
+#: ../../..//_out.php:1072
+#: ../../..//_out.php:1077
+msgid "Create an album"
+msgstr ""
+
+#: ../../..//_out.php:946
+msgid "ID"
+msgstr ""
+
+#: ../../..//_out.php:950
+msgid "Created or Has been created"
+msgstr ""
+
+#: ../../..//_out.php:968
+msgid "View albums"
+msgstr ""
+
+#: ../../..//_out.php:980
+msgid "Category list is empty"
+msgstr ""
+
+#: ../../..//_out.php:987
+msgid "Delete category?"
+msgstr ""
+
+#: ../../..//_out.php:1041
+#: ../../..//_out.php:1109
+msgid "Template file"
+msgstr ""
+
+#: ../../..//_out.php:1046
+#: ../../..//_out.php:1114
+msgid "by default"
+msgstr ""
+
+#: ../../..//_out.php:1061
+msgid "Album deletion"
+msgstr ""
+
+#: ../../..//_out.php:1131
+msgid "Select a file"
+msgstr ""
+
+#: ../../..//_out.php:1135
+msgid "Upload a file"
+msgstr ""
+
+#: ../../..//_out.php:1146
+msgid "Gallery"
+msgstr ""
+
+#: ../../..//_out.php:1177
+msgid "Has been downloaded or downloaded"
+msgstr ""
+
+#: ../../..//_out.php:1181
+#: ../../..//admin.php:191
+msgid "File size"
+msgstr ""
+
+#: ../../..//_out.php:1183
+msgid "Image size"
+msgstr ""
+
+#: ../../..//_out.php:1188
+msgid "Preview or skin or cover"
+msgstr ""
+
+#: ../../..//_out.php:1205
+msgid "New name"
+msgstr ""
+
+#: ../../..//_out.php:1212
+msgid "My last photo"
+msgstr ""
+
+#: ../../..//admin.php:84
+msgid "Create a directory to continue your work with the gallery"
+msgstr ""
+
+#: ../../..//admin.php:84
+msgid "Set the write access"
+msgstr ""
+
+#: ../../..//admin.php:195
+msgid "Pre-image width"
+msgstr ""
+
+#: ../../..//admin.php:196
+msgid "pre-image height"
+msgstr ""
+
+#: ../../..//admin.php:197
+msgid "Icon width"
+msgstr ""
+
+#: ../../..//admin.php:198
+msgid "Icon height"
+msgstr ""
+
+#: ../../..//admin.php:199
+msgid "Watermark text"
+msgstr ""
+
+#: ../../..//admin.php:210
+msgid "Specify the correct path to watermark image"
+msgstr ""
+
+#: ../../..//admin.php:216
+msgid "Specify the correct path to font"
+msgstr ""
+
+#: ../../..//admin.php:302
+#: ../../..//admin.php:455
+#: ../../..//admin.php:654
+msgid "Changes have been saved"
+msgstr ""
+
+#: ../../..//admin.php:336
+#: ../../..//admin.php:365
+msgid "Can't load album information"
+msgstr ""
+
+#: ../../..//admin.php:416
+#: ../../..//admin.php:458
+#: ../../..//admin.php:518
+msgid "Can't load image information"
+msgstr ""
+
+#: ../../..//admin.php:490
+msgid "Photos removed"
+msgstr ""
+
+#: ../../..//admin.php:527
+#: ../../..//admin.php:535
+#: ../../..//admin.php:543
+#, fuzzy
+msgid "Positions updated"
+msgstr "Позиція змінена"
+
+#~ msgid "amt_name"
+#~ msgstr "User name"
+
+#~ msgid "a_name"
+#~ msgstr "Name"
