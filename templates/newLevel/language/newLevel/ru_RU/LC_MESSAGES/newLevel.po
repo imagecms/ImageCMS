@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-08 09:47+0300\n"
+"POT-Creation-Date: 2013-08-28 14:45+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,329 +12,3554 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../../shop\n"
+"X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
 #: /var/www/image.loc/_temp2.php:20
-msgid "s_c_uoy_name_u"
+msgid "Page not found"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:21
-msgid "s_email_4_sumbls"
+msgid "This page does not exist or has been removed."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:27
-msgid "s_phone"
+msgid "To continue, you can check your address of the page, go to the home page, use the search or visit the proposed site sections"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:23
-msgid "s_email_is_login"
+msgid "Go to the home page"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:24
-msgid "lang_old_password"
+msgid "Minimize"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:25
-msgid "lang_new_password"
+msgid "Expand"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:26
-msgid "s_newpassword"
+msgid "Top"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:28
-msgid "s_email"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:29
-msgid "s_address"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:30
-#, fuzzy
-msgid "s_comment"
-msgstr "Cписок замовлень"
-
-#: /var/www/image.loc/_temp2.php:31
-msgid "s_dostavka"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:32
-msgid "s_all_result"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:33
-msgid "s_not_found"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:20
-#: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:32
-msgid "s_buy"
-msgstr "купить"
-
-#: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:23
-msgid "s_message_o_report"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:24
-#: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:27
-#, fuzzy
-msgid "s_add_to_wish_list"
-msgstr "Додать в список желаний"
-
-#: /var/www/image.loc/_temp2.php:26
-msgid "s_in_wish_list"
+msgid "Website"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:28
+msgid "Production"
+msgstr ""
+
 #: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:31
-msgid "s_add_to_compare"
+msgid "User"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:30
-msgid "s_in_compare"
+msgid "Logout"
 msgstr ""
 
+#: /var/www/image.loc/_temp2.php:31
+msgid "Account"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+#, fuzzy
+msgid "Wishlist"
+msgstr "Список желаний"
+
 #: /var/www/image.loc/_temp2.php:33
-msgid "ddddddddd1"
+msgid "Enter in shop"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:34
-msgid "s_all_par"
+msgid "To register page"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:35
-msgid "s_only_diff"
+msgid "List of comparisons"
+msgstr "Список порівнянь"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Callback"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:21
-msgid "s_saction"
+#: /var/www/image.loc/_temp2.php:37
+msgid "Contacts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:22
-msgid "s_shot"
+#: /var/www/image.loc/_temp2.php:38
+msgid "The main office"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:23
-msgid "s_shit"
+#: /var/www/image.loc/_temp2.php:39
+msgid "Online Store"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:40
+msgid "All rights reserved"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Mobile version"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "s_buy"
+msgstr "купить"
+
+#: /var/www/image.loc/_temp2.php:43
 msgid "s_site_under"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:44
 msgid "s_control_site"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:45
 msgid "s_send_mail_admin"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:46
 msgid "s_site_ltd"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:47
 msgid "s_IMGCMS"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:48
 msgid "login_for_comments"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:40
-#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:70
 #, fuzzy
 msgid "s_leave_comment"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:50
 msgid "s_lang_logged"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:51
 msgid "lang_comment_author"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:68
 msgid "lang_comment_email"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:53
 #, fuzzy
 msgid "lang_comment_site"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:54
 msgid "s_you_raiting"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:36
-#: /var/www/image.loc/_temp2.php:48
-#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:69
 #, fuzzy
 msgid "s_text_comment_one"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:37
-#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:61
 msgid "s_plus"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:38
-#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:62
 #, fuzzy
 msgid "s_cons"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:58
 msgid "lang_captcha"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:41
-#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:71
 #, fuzzy
 msgid "s_on_comment"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:63
 #, fuzzy
 msgid "s_comment_answer"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:64
 #, fuzzy
 msgid "s_review_comment"
 msgstr "Cписок замовлень"
 
-#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:65
 msgid "s_yes"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:66
 msgid "s_no"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:72
 msgid "lang_login_page"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:73
 msgid "lang_email"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:74
 msgid "lang_password"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:56
-#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:75
+msgid "Sign in"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:79
 msgid "lang_forgot_password"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:82
+msgid "I am not registered yet"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:78
+#: /var/www/image.loc/_temp2.php:83
+msgid "Go to the registration"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:80
+msgid "Password will be sent on your Email "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "Send"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "Name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "Password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:86
+msgid "Repeat"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:93
+msgid "Sign up"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "Registration was successful!"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:89
+msgid "Register a new account"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:90
+msgid "Your name:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "Password:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:92
+msgid "Repeat password:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "I am already registered or bought here"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:95
+msgid "I remember the password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Remind the password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:97
+msgid "Request a call"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:98
 msgid "search_find"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:99
 msgid "s_se_thi_sit"
-msgstr "гамно"
+msgstr "Ведите фразу для поиску"
+
+#: /var/www/image.loc/_temp2.php:100
+msgid "Attention"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:101
+msgid "Not found the required template file for the menu"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:102
+msgid "Check the file existing or change the menu settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:103
+#, fuzzy
+msgid "Reinstall the menu module"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:104
+msgid "You've watched already"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:106
+#, fuzzy
+msgid "product"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:107
+#, fuzzy
+msgid "products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:108
+#: /var/www/image.loc/_temp2.php:109
+msgid "set"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:110
+msgid "sets"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:112
+#, fuzzy
+msgid "comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:113
+#, fuzzy
+msgid "comments"
+msgstr "Cписок замовлень"
 
 #: /var/www/image.loc/_temp2.php:20
+msgid "Hide"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "All categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:34
+msgid "Promo code"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "Amount:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:30
+msgid "Discount type: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "grocery"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Discount amount:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "digital"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Discount name: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Discount key: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Discount calculation type: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Discount amount: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Discount total: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
 msgid "s_apply_sertif"
 msgstr ""
 
+#: /var/www/image.loc/_temp2.php:36
+msgid "Online store of household equipment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#, fuzzy
+msgid "Store brands"
+msgstr "Список порівнянь"
+
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:96
+msgid "Name: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "Phone: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+#, fuzzy
+msgid "Comment: "
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "s_c_uoy_name_u"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_email_4_sumbls"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:97
+msgid "s_phone"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "s_email_is_login"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:67
+msgid "Address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+#, fuzzy
+msgid "Save data"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:31
+#, fuzzy
+msgid "User discounts"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:32
+#, fuzzy
+msgid "Bought products sum"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Your current user discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Your current user group discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+#, fuzzy
+msgid "Your current acumulative discount"
+msgstr "Список порівнянь"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "For the following <br> discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "left"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "make shopping on price"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "View the table of discounts"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+#, fuzzy
+msgid "Accumulative discounts"
+msgstr "Список порівнянь"
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Discount percent"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Amount of purchases from"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:43
+msgid "Amount of purchases to"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "infinitely"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:92
+msgid "Cart is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:152
+msgid "No items found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+msgid "Thank you, your order is accepted."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+#, fuzzy
+msgid "Order # is"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:54
+#, fuzzy
+msgid "Order params"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:55
+#, fuzzy
+msgid "Order date"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "For payment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:103
+msgid "Payment method"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:143
+#, fuzzy
+msgid "Order status"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:146
+msgid "Paid"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:147
+msgid "Not paid"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:62
+msgid "Delivery method"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:63
+#, fuzzy
+msgid "Customer data"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:65
+msgid "Phone"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:66
+msgid "City"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:68
+#, fuzzy
+msgid "Comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "Quantity"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:109
+msgid "amount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Sets"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Delivery price"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Your current discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "Gift Certificate"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "Total to pay"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "or"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "My Account"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "lang_old_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "lang_new_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "s_newpassword"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:89
+msgid "Change Password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:87
+msgid "welcome!"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+#, fuzzy
+msgid "Basic data"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:90
+#, fuzzy
+msgid "Order history"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "Cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:93
+msgid "Checkout"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "I am a new customer"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:95
+msgid "I have already bought here"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:98
+msgid "s_email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:99
+msgid "s_address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:100
+#, fuzzy
+msgid "s_comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:101
+msgid "s_dostavka"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:102
+#, fuzzy
+msgid "Price: "
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:104
+msgid "Delivery price: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:105
+msgid "Promo code: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:106
+msgid "Total to pay:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:107
+#: /var/www/image.loc/_temp2.php:119
+#: /var/www/image.loc/_temp2.php:131
+msgid "Check out"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:108
+msgid "In your cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:113
+#: /var/www/image.loc/_temp2.php:124
+#: /var/www/image.loc/_temp2.php:126
+msgid "Quantity in the warehouse"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:114
+#: /var/www/image.loc/_temp2.php:125
+#: /var/www/image.loc/_temp2.php:127
+msgid "Digits only"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:115
+#: /var/www/image.loc/_temp2.php:117
+#: /var/www/image.loc/_temp2.php:129
+msgid "Total"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:116
+#: /var/www/image.loc/_temp2.php:128
+msgid "Your current discount is"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:118
+#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:130
+msgid "Back to shopping"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:120
+#: /var/www/image.loc/_temp2.php:132
+msgid "Your cart is"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:121
+#: /var/www/image.loc/_temp2.php:133
+msgid "Empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:122
+#: /var/www/image.loc/_temp2.php:134
+msgid "You have removed all items from the basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:135
+msgid "s_all_result"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:136
+msgid "s_not_found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:137
+msgid "Filter"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:138
+msgid "Found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:139
+msgid "You do not have any registered orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:140
+#: /var/www/image.loc/_temp2.php:145
+#, fuzzy
+msgid "Order #"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:141
+msgid "Pime of purchase"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:142
+msgid "Amount of purchase"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:144
+#, fuzzy
+msgid "Payment status"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:148
+msgid "Search results"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:153
+msgid "Found in categories"
+msgstr ""
+
 #: /var/www/image.loc/_temp2.php:20
+msgid "Show"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "View"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:23
+#, fuzzy
+msgid "List"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:25
+msgid "Table"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "At the page"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Mark"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:41
+msgid "Variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:47
+msgid "s_message_o_report"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Recipient e-mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Send to a friend"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Withlist is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Notify me when will be available"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Your name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "You will receive an email when the product will be available"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Product code"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Select a variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "Product is not yet available"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:51
+msgid "s_add_to_compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "s_in_compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+msgid "Buyers left"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:60
+#, fuzzy
+msgid "Leave comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "Special offer! Buy now set and get a discount on the accessories!"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "Overview"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:66
+#, fuzzy
+msgid "Properties"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "Full description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "Accesories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:62
+msgid "See all specifications"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "See full description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:67
+msgid "Accessories for"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+msgid "See all accessories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "ddddddddd1"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:74
+msgid "Compare Products"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "s_all_par"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "s_only_diff"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:73
+#, fuzzy
+msgid "Category products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "You have removed all items from the comparison"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+#, fuzzy
+msgid "Comparing Products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:77
+#, fuzzy
+msgid "The list of comparisons is empty"
+msgstr "Список порівнянь"
+
+#: /var/www/image.loc/_temp2.php:80
+msgid "Found in categories:"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:82
+msgid "The required template file for the menu not found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "Check the file existence or change the menu settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "Reinstall the menu module "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "All Categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:22
+msgid "Show all"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "News"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+#, fuzzy
+msgid "No viewed products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:24
 msgid "s_home"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:6
+#: /var/www/image.loc/_temp2.php:25
+msgid "See all"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Tequired template file for the menu not found "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "All categoties"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:21
+msgid "Pay"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "Mobile phone"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "rub."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "cents"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "PayPal - the safer, easier way to pay online!"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Mark: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Variant: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
 #, fuzzy
 msgid "s_clients_comment"
 msgstr "Cписок замовлень"
 
-#: helper.php:35
-#: ../shop/helper.php:35
-msgid "ddddddddd"
+#: /var/www/image.loc/_temp2.php:40
+msgid "Average customer rating:"
 msgstr ""
 
-#~ msgid "s_footer_create"
-#~ msgstr "Создание сайта"
+#: /var/www/image.loc/_temp2.php:44
+msgid "Comment was helpful?"
+msgstr ""
 
-#~ msgid "s_footer_seo"
-#~ msgstr "Футер сео"
+#: /var/www/image.loc/_temp2.php:45
+msgid "Yes"
+msgstr ""
 
-#~ msgid "Buy"
-#~ msgstr "Купить фронт"
+#: /var/www/image.loc/_temp2.php:46
+msgid "No"
+msgstr ""
 
+#: /var/www/image.loc/_temp2.php:47
+msgid "Comment from"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "See all comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "See all customer comments"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:62
+msgid "The comment will be sent for moderation"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Who are you?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
 #, fuzzy
-#~ msgid "Site under construction"
-#~ msgstr "Настройки сайта"
+msgid "Your comment"
+msgstr "Cписок замовлень"
 
-#~ msgid "Wish List"
-#~ msgstr "Список желаний"
-
+#: /var/www/image.loc/_temp2.php:63
 #, fuzzy
-#~ msgid "Order data"
-#~ msgstr "Cписок замовлень"
+msgid "Additional note"
+msgstr "Додать в список желаний"
 
-#~ msgid "List of comparisons"
-#~ msgstr "Список порівнянь"
-
+#: /var/www/image.loc/_temp2.php:65
 #, fuzzy
-#~ msgid "Order History"
-#~ msgstr "Cписок замовлень"
+msgid "s_сomments_contact"
+msgstr "Cписок замовлень"
 
-#, fuzzy
-#~ msgid "Order date"
-#~ msgstr "Cписок замовлень"
+#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:71
+msgid "Search this site"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Moving products"
-#~ msgstr "Модулі"
+#: /var/www/image.loc/_temp2.php:72
+msgid "Search"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Items list"
-#~ msgstr "Cписок замовлень"
+#: /var/www/image.loc/_temp2.php:73
+msgid "Request Call"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Meta data"
-#~ msgstr "Cписок замовлень"
+#: /var/www/image.loc/_temp2.php:74
+msgid "Phone."
+msgstr ""
 
-#, fuzzy
-#~ msgid "Warehouse list"
-#~ msgstr "Cписок замовлень"
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:80
+msgid "Email"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Removing status"
-#~ msgstr "Модулі"
+#: /var/www/image.loc/_temp2.php:76
+msgid "Skype"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Order status"
-#~ msgstr "Cписок замовлень"
+#: /var/www/image.loc/_temp2.php:77
+msgid "Section"
+msgstr ""
 
+#: /var/www/image.loc/_temp2.php:78
+msgid "Read more → "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Authorization"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:87
+msgid "Code protection"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "Remember me"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:90
+msgid "Forgot your password?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "Registration"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
 #, fuzzy
-#~ msgid "Orders on page"
-#~ msgstr "Cписок замовлень"
+msgid "Site under construction"
+msgstr "Настройки сайта"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Control of the site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Send mail"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Ltd. "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "ImageCMS actively developed in the creation of quality online stores"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:54
+#, fuzzy
+msgid "leave a comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:55
+msgid "You are logged in as"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:56
+msgid "You rating"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:50
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:69
+#, fuzzy
+msgid "Text comments"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:62
+msgid "Plus"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:63
+msgid "Cons"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:129
+msgid "On"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:64
+msgid "Answer"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:65
+msgid "Review was helpful?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:83
+msgid "Log in"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:78
+#: /var/www/image.loc/_temp2.php:91
+msgid "Enter"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:96
+msgid "Repeat Password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:103
+msgid "You have successfully registered. Sign In"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:109
+msgid "Currency"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:113
+#, fuzzy
+msgid "Create Online Store"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:114
+msgid "SEO optimization"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:116
+msgid "Your"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:117
+msgid "name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:119
+#: /var/www/image.loc/_temp2.php:151
+msgid "More"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:120
+msgid "Information"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:121
+msgid "Call"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:122
+msgid "I"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:124
+msgid "Basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:125
+#: /var/www/image.loc/_temp2.php:134
+#: /var/www/image.loc/_temp2.php:138
+msgid "New"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:126
+#: /var/www/image.loc/_temp2.php:135
+msgid "Action"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:127
+#, fuzzy
+msgid "Order by"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:130
+msgid "Rating"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:131
+msgid "From cheap to expensive"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:132
+msgid "From expensive to cheap"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:133
+msgid "Popular"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:136
+msgid "Products per page"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:137
+msgid "Description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:139
+msgid "Promotion"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:140
+msgid "Hit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:141
+#: /var/www/image.loc/_temp2.php:143
+msgid "Compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:142
+msgid "Add to compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:144
+msgid "ID"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:145
+#: /var/www/image.loc/_temp2.php:147
+msgid "review"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:146
+msgid "reviews"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:148
+#, fuzzy
+msgid "Save to Wish List"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:149
+#: /var/www/image.loc/_temp2.php:150
+msgid "Already wishlist"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_product"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "s_we_acc"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "s_oper_time"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "s_shop_work_time"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "s_do_you_syrp_pr"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "s_do_you_have"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_sdm"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "s_spm"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:33
+msgid "s_addresrec"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "s_c_uoy_user_el"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "s_c_of_z_"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:37
+msgid "Product"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:107
+msgid "Wish List"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:58
+msgid "Private office"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Thank you for your order."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:87
+msgid "Status"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "Certificate"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:129
+msgid "Delivery"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:86
+msgid "Payment"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:48
+#, fuzzy
+msgid "Order"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:50
+msgid "Pcs"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "Exit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Login Here"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "All Brands Shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "Brands Alphabetical"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:100
+msgid "You name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:101
+msgid "E-mail Address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Address for service"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "Go to basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+#, fuzzy
+msgid "View Wishlist"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:73
+msgid "Edit personal information"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "Old Password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:70
+msgid "The new password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Confirm new password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:79
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Name and surname"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:80
+#, fuzzy
+msgid "Order History"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "In"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+#, fuzzy
+msgid "Created"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:89
+#, fuzzy
+msgid "Updated"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:127
+#, fuzzy
+msgid "Ordering"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:95
+msgid "Do you have a gift certificate?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Apply"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:97
+msgid "Select a delivery method"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:98
+msgid "Select a payment method"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:103
+msgid "Address of the recipient"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:111
+#, fuzzy
+msgid "Formulation order"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:106
+#: /var/www/image.loc/_temp2.php:114
+#: /var/www/image.loc/_temp2.php:130
+msgid "Basket empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:108
+msgid "Your Wish List is empty "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:118
+msgid "with filters"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:119
+#: /var/www/image.loc/_temp2.php:123
+msgid "of"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:120
+#: /var/www/image.loc/_temp2.php:124
+msgid "to"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:121
+msgid "Reset all filters"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:122
+msgid "Price"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:125
+msgid "Brands in category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_actual_to"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "You searched for"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Your search did not match"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "Send to a friend WishList"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Friends email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "To send a friend WishList, You must login"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "Announce a"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Additional information"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "Call me"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:51
+#, fuzzy
+msgid "My orders"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:60
+#, fuzzy
+msgid "Order by phone"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:64
+msgid "(learn more)"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:67
+msgid "Accessories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Special promotion"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "Buy"
+msgstr "Купить фронт"
+
+#: /var/www/image.loc/_temp2.php:73
+#, fuzzy
+msgid "Similar products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "No products in category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:83
+msgid "All the parameters"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:84
+msgid "Only Differences"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "Category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:86
+msgid "Comparison list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "Reset"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "Recently Reviewed"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "lang_logged_in_as"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:28
+#, fuzzy
+msgid "lang_comment_text"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:45
+msgid "s_variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:46
+msgid "s_article"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+#, fuzzy
+msgid "s_order"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "s_paid"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+#, fuzzy
+msgid "s_status"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "s_do_you_cer_tif"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+#, fuzzy
+msgid "s_properties"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:21
+msgid "Show page"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "Modules additions"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:25
+msgid "Autocomplite"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Autocomplite words"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
+#, fuzzy
+msgid "choose date"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+#, fuzzy
+msgid "Create"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Preview"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:34
+#, fuzzy
+msgid "Orders"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Manage shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Manage site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "Interface"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "a_"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "Help us get better"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "report an error"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Documentation"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Your Name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:43
+msgid "Your Email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+msgid ""
+"don\");\n"
+"_("
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "a_back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "a_save"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+#, fuzzy
+msgid "Create role group"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:23
+#, fuzzy
+msgid "Privilegy"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Delete selected groups"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Delete group"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
+msgid "Clean"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "roll up category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "expand category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "edit category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "go to site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:39
+msgid "Return"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Save and create a new group"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Save and edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:88
+msgid "Group"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#, fuzzy
+msgid "Create new page"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Parent category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:51
+msgid "Check mail sending"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+msgid "Check"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Not enough rights to access"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "The creation of a new language"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Go back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "Identifier"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:61
+msgid "Image URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:192
+msgid "Choose an image "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Folder"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "Template"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+msgid "Widget delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:66
+msgid "Delete selected widget(s)?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:102
+msgid "Delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:69
+#, fuzzy
+msgid "Widgets list"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:71
+#, fuzzy
+msgid "Create a widget"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Type"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:80
+#: /var/www/image.loc/_temp2.php:139
+#: /var/www/image.loc/_temp2.php:159
+#: /var/www/image.loc/_temp2.php:176
+#: /var/www/image.loc/_temp2.php:178
+msgid "Settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:215
+msgid "Editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:78
+#, fuzzy
+msgid "Module"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "HTML"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+#, fuzzy
+msgid "No widgets created"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:82
+#, fuzzy
+msgid "Roles groups list"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:89
+msgid "Empty."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:103
+#, fuzzy
+msgid "Remove roles?"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:92
+msgid "Cache"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:93
+msgid "Delete cache"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "Total file caching"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:95
+#, fuzzy
+msgid "Clear outdated"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Clear all"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:97
+#, fuzzy
+msgid "Privileges list"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:98
+#, fuzzy
+msgid "Create privilege"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:100
+#, fuzzy
+msgid "Role remove"
+msgstr "Создание сайта"
+
+#: /var/www/image.loc/_temp2.php:101
+#, fuzzy
+msgid "Remove selected roles?"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:104
+#, fuzzy
+msgid "Roles group create"
+msgstr "Создание сайта"
+
+#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:218
+msgid "Have been saved"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:116
+#: /var/www/image.loc/_temp2.php:117
+msgid "Add a subcategory"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:118
+#: /var/www/image.loc/_temp2.php:119
+msgid "Add an article"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:113
+msgid "Double click to show all categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:114
+#: /var/www/image.loc/_temp2.php:115
+msgid "Change category data"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:121
+msgid "Author"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:122
+#: /var/www/image.loc/_temp2.php:231
+msgid "Version"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:124
+#, fuzzy
+msgid "Install"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:125
+msgid "Download"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:126
+msgid "FTP connection settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:127
+msgid "Hostname"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:128
+msgid "Port"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:129
+msgid "login"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:131
+msgid "Path to the root directory"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:132
+msgid "For example"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:133
+msgid "Next"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:135
+#: /var/www/image.loc/_temp2.php:219
+msgid "Save and go back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:140
+msgid "Content"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:138
+#, fuzzy
+msgid "Additional fields"
+msgstr "Додать в список желаний"
+
+#: /var/www/image.loc/_temp2.php:141
+msgid "Categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:142
+#: /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:172
+#: /var/www/image.loc/_temp2.php:174
+#, fuzzy
+msgid "Create a category"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:144
+msgid "Title"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:145
+msgid "Preliminary contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:146
+msgid "Full contents"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:180
+msgid "URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:149
+msgid "Only Latin characters"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:150
+msgid "Tags"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:151
+#: /var/www/image.loc/_temp2.php:212
+#, fuzzy
+msgid "Meta Title"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:213
+msgid "Meta Description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:153
+#: /var/www/image.loc/_temp2.php:214
+msgid "Meta Keywords"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:154
+#: /var/www/image.loc/_temp2.php:205
+msgid "Main template"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:155
+#: /var/www/image.loc/_temp2.php:157
+msgid "by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:156
+msgid "Page Template"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:158
+msgid "Comment permission"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:160
+msgid "Publication status"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:161
+msgid "Published"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:162
+msgid "Waiting approval "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:163
+msgid "Unpublished"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:164
+msgid "Time and date of creation"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:165
+msgid "Time and date of publication"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:166
+msgid "Access"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:167
+msgid "All"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:170
+msgid "Parent"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:217
+msgid "Back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:175
+#, fuzzy
+msgid "Create and exit"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:177
+#: /var/www/image.loc/_temp2.php:211
+#, fuzzy
+msgid "Meta tags"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:181
+msgid "AutoFit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:183
+msgid "Field group"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:185
+msgid "Select  a field group  for a category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:190
+msgid "Apply for subcategories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:187
+msgid "Pages fields group"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:189
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:191
+msgid "Image"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:193
+msgid "Position"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:195
+#, fuzzy
+msgid "View page"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:196
+msgid "Sort by"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:197
+msgid "by date"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:198
+msgid "By alphabet or  in the alphabetic order"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:199
+msgid "By position"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:200
+msgid "In descending order"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:201
+msgid "In ascending order"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:202
+#, fuzzy
+msgid "Posts on page"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:203
+msgid "Comment pages by default "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:204
+msgid "Display pages of other categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:206
+#: /var/www/image.loc/_temp2.php:208
+msgid "Main category template by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:207
+msgid "Category template"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:209
+msgid "Page template"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:210
+msgid "Page view template by default"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:216
+#, fuzzy
+msgid "Privileges"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:220
+#: /var/www/image.loc/_temp2.php:223
+msgid "English"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:221
+#: /var/www/image.loc/_temp2.php:222
+msgid "Russian"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:226
+msgid "System information"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:227
+msgid "Level of server utilisation"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:228
+msgid "Server"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:229
+msgid "Operating system"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:230
+msgid "Data base"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:232
+msgid "Period"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:233
+msgid "Size"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:234
+msgid "Write permission"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:42
+msgid "Users"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Main"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+#, fuzzy
+msgid "All orders"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Callbacks"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "Callback statuses"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Callback themes"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Reports of the appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Statuses of the appearance"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Others"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+#, fuzzy
+msgid "Comments"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Products catalog"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+#, fuzzy
+msgid "Products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:39
+#, fuzzy
+msgid "Products properties"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "Products sets"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "Products without images"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:43
+#, fuzzy
+msgid "Users list"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "Management of access rights"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "Components"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "Brands"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:47
+#, fuzzy
+msgid "Warehouse"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:48
+#, fuzzy
+msgid "Banners"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:49
+#, fuzzy
+msgid "Progressive discounts"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "Gift Certificates"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Global settings"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "Payd method"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "Automation"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "Administer site"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "Confirm"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:21
+#, fuzzy
+msgid "Content list"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:23
+#, fuzzy
+msgid "Create copy"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Move"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:27
+#, fuzzy
+msgid "Create page"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "Url"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+#, fuzzy
+msgid "Creation date"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "Without category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+#, fuzzy
+msgid "Module installed"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:21
+msgid "Module successfully installed"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "Error"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "Something went wrong. Startup status is not changed."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:24
+msgid "Something went wrong. URL access is not changed."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Turn on"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "Turn off"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Have not modules to install"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "Widget creating"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Widget successfully created"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Enter template name"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "No pages in category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Category successfully added"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "Discount"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "You need to enter a string"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "This field is required."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Please"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "enter the correct value"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "enter a valid email address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+msgid "enter the correct URL"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+#, fuzzy
+msgid "enter correct date"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:43
+msgid "enter correct date in format ISO"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "enter number"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:45
+msgid "enter only numbers"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:46
+msgid "enter a valid credit card number"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:47
+msgid "enter the same value again"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:48
+msgid "Select the file with the correct extension"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Enter no more"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "characters"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:51
+msgid "enter at least"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+msgid "enter value from"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "enter number from"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "enter a number less than or equal to"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "enter a number more than or equal to"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "Administer shop"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:101
+msgid "Back to the system"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "Conversion error"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "User already notified via E-mail upon availability! Notify again"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:61
+msgid "Notify the user via E-mail upon availability"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:62
+#, fuzzy
+msgid "Error removing options"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Delete canceled orders"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "Delete canceled messages"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+#, fuzzy
+msgid "Delete order ID"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:66
+msgid "Product changes"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:67
+msgid "Success"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:68
+msgid "File is loaded. Slot"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "Script error. Notify administrator."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:70
+msgid "Wait for resize ending"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Resize images for products"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:72
+#, fuzzy
+msgid "All finding products"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Processed"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:74
+#: /var/www/image.loc/_temp2.php:80
+#, fuzzy
+msgid "Images updated"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "Completed"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "Resize products images"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "Products found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:78
+#, fuzzy
+msgid "Additional images resize"
+msgstr "Додать в список желаний"
+
+#: /var/www/image.loc/_temp2.php:79
+msgid "Found products with additional images"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "Access denied"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:82
+msgid "This is a demo version ImageCMS. Part of the actions are limited. For a complete functional download and install the distribution."
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "Message"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "Please enter the column number"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "Column number updated"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:86
+msgid "Failed to update the column number"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:90
+msgid "Balance"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "Out of stock"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:92
+msgid "Add to Cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:93
+msgid "In the cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "A user with this email already exists"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:95
+#, fuzzy
+msgid "New user created"
+msgstr "Создание сайта"
+
+#: /var/www/image.loc/_temp2.php:96
+msgid "Failed to create user"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:97
+msgid "Check the input data and fill in all mandatory fields"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:98
+msgid "Current certificate (amount):"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:99
+#, fuzzy
+msgid "Sort method updated"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:102
+msgid "Conversion error, "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:103
+msgid "Failure to remove variant"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:104
+#, fuzzy
+msgid "Remove selected orders?"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:105
+msgid "Remove selected notifications?"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:106
+msgid "Remove order with ID: "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:107
+#, fuzzy
+msgid "Change product"
+msgstr "Модулі"
+
+#: /var/www/image.loc/_temp2.php:108
+msgid "The file is loaded. Slot "
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:109
+msgid "Error in the script. Please notify the administrator"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:110
+msgid "full_article"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:112
+msgid "lang_logout"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:113
+#, fuzzy
+msgid "post_comment"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:116
+#, fuzzy
+msgid "lang_comment_button"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:117
+msgid "←  Back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:120
+#: /var/www/image.loc/_temp2.php:121
+#: /var/www/image.loc/_temp2.php:122
+msgid "Enter email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:131
+msgid "Nothing was found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:22
+msgid "s_coll_order"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+msgid "s_tel"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "s_skype"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_footer_create"
+msgstr "Создание сайта"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_footer_seo"
+msgstr "Футер сео"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "already_in_basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:56
+msgid "lang_submit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:42
+#, fuzzy
+msgid "lang_remember_me"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:44
+#, fuzzy
+msgid "lang_register"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:28
+msgid "lang_confirm_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+msgid "s_fio"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "s_sign_up"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:35
+msgid "s_y_h_s_r"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "s_found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "s_product_o"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "s_product_t"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:40
+msgid "s_product_tr"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:41
+#, fuzzy
+msgid "s_order_by"
+msgstr "Нові замовлення"
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "s_products_per_page"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:43
+msgid "s_in_images"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:44
+msgid "s_in_list"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:54
+#, fuzzy
+msgid "s_add_to_wish_list"
+msgstr "Додать в список желаний"
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "s_in_wish_list"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "s_shot"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "s_saction"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:57
+msgid "s_shit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "s_WL_P"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "s_WL_PV"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:103
+msgid "s_WL"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "s_thank_order"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "s_go_profile"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+#, fuzzy
+msgid "s_order_data"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:74
+#, fuzzy
+msgid "s_list_comp"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "s_private_office"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "s_profile_me"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "s_profile_me_change_password"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:78
+#, fuzzy
+msgid "s_order_history"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "s_profile_me_address"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+msgid "s_edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:89
+msgid "s_save"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:90
+#, fuzzy
+msgid "s_order_date"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:91
+msgid "s_refresh"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:92
+msgid "s_summ"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+msgid "s_pay"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:100
+msgid "s_cert_code"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:104
+msgid "s_list_wish_empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "s_close"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:26
+#, fuzzy
+msgid "s_filter_s_foa"
+msgstr "Футер сео"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "s_from"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "s_do"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:29
+#, fuzzy
+msgid "s_filter_all_reset"
+msgstr "Создание сайта"
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "s_price"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "s_brands_in_cat"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "s_sea_found_in_categories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:53
+msgid "s_sea_search_for"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:65
+msgid "s_cart"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "s_accessories"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:83
+msgid "s_spec_promotion"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:95
+msgid "s_compare_tovars"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "s_category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:96
+msgid "s_compare_list_em"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:28
+#, fuzzy
+msgid "s_last_comments"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "Already in basket"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:64
+msgid "Image view"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+#, fuzzy
+msgid "List view"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Go to profile"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:74
+#, fuzzy
+msgid "Order data"
+msgstr "Cписок замовлень"
+
+#: /var/www/image.loc/_temp2.php:88
+msgid "At least 4 characters long"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:90
+msgid "E-mail is login"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:93
+msgid "Edit"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:61
+#, fuzzy
+msgid "Add to wish list"
+msgstr "Додать в список желаний"
+
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:62
+#, fuzzy
+msgid "In wish list"
+msgstr "Список желаний"
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "In compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:123
+#, fuzzy
+msgid "add to wish list"
+msgstr "Додать в список желаний"
+
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:103
+msgid "Report the appearance of"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:84
+msgid "View all results"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:117
+msgid "Compare list is empty"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:122
+msgid "add to compare"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:32
+msgid "Username or Email"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "history_back"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:20
+msgid "no_pages_found"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "lang_email_form"
+msgstr ""
+
+#: ../administrator/profiler_template.php:356
+msgid "profiler_"
+msgstr ""
+
+#: ../administrator/profiler_template.php:405
+msgid "No profiles"
+msgstr ""
+
+#: ../administrator/inc/menus.php:12
+msgid "Dashboard"
+msgstr ""
+
+#: ../administrator/inc/menus.php:27
+#, fuzzy
+msgid "Articles list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:34
+msgid "Custom fields constructor"
+msgstr ""
+
+#: ../administrator/inc/menus.php:38
+#, fuzzy
+msgid "Fields list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:42
+#, fuzzy
+msgid "Group's list "
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:53
+#, fuzzy
+msgid "Create new"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:57
+#, fuzzy
+msgid "Categories list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:63
+msgid "Menu"
+msgstr ""
+
+#: ../administrator/inc/menus.php:73
+msgid "Modules"
+msgstr "Модулі"
+
+#: ../administrator/inc/menus.php:78
+#, fuzzy
+msgid "All modules"
+msgstr "Модулі"
+
+#: ../administrator/inc/menus.php:90
+msgid "Widgets"
+msgstr ""
+
+#: ../administrator/inc/menus.php:95
+#, fuzzy
+msgid "Create widget"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:105
+msgid "System"
+msgstr ""
+
+#: ../administrator/inc/menus.php:114
+msgid "Template editor"
+msgstr ""
+
+#: ../administrator/inc/menus.php:118
+#, fuzzy
+msgid "Languages"
+msgstr "Модулі"
+
+#: ../administrator/inc/menus.php:129
+msgid "Events journal"
+msgstr ""
+
+#: ../administrator/inc/menus.php:133
+msgid "Backup"
+msgstr ""
+
+#: ../administrator/inc/menus.php:137
+#, fuzzy
+msgid "Roles list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:146
+msgid "Shop dashboard"
+msgstr ""
+
+#: ../administrator/inc/menus.php:161
+msgid "Orders list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:165
+#, fuzzy
+msgid "Order statuses"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:173
+msgid "Callbacks list"
+msgstr ""
+
+#: ../administrator/inc/menus.php:185
+msgid "Notifications"
+msgstr ""
+
+#: ../administrator/inc/menus.php:189
+msgid "Notifications list"
+msgstr ""
+
+#: ../administrator/inc/menus.php:193
+msgid "Notification statuses"
+msgstr ""
+
+#: ../administrator/inc/menus.php:197
+msgid "Other"
+msgstr ""
+
+#: ../administrator/inc/menus.php:207
+msgid "Products catalogue"
+msgstr ""
+
+#: ../administrator/inc/menus.php:212
+msgid "Product categories"
+msgstr ""
+
+#: ../administrator/inc/menus.php:216
+#, fuzzy
+msgid "Products list"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:224
+msgid "Produkts kits"
+msgstr ""
+
+#: ../administrator/inc/menus.php:234
+msgid "Users management"
+msgstr ""
+
+#: ../administrator/inc/menus.php:239
+#, fuzzy
+msgid "List of users"
+msgstr "Список порівнянь"
+
+#: ../administrator/inc/menus.php:243
+msgid "RBAC control"
+msgstr ""
+
+#: ../administrator/inc/menus.php:258
+msgid "Stocks"
+msgstr ""
+
+#: ../administrator/inc/menus.php:278
+msgid "Custom fields"
+msgstr ""
+
+#: ../administrator/inc/menus.php:284
+#, fuzzy
+msgid "Statistics"
+msgstr "Cписок замовлень"
+
+#: ../administrator/inc/menus.php:299
+msgid "Shop settings"
+msgstr ""
+
+#: ../administrator/inc/menus.php:308
+#, fuzzy
+msgid "Currencies"
+msgstr "Список порівнянь"
+
+#: ../administrator/inc/menus.php:312
+msgid "Delivery methods (shipping)"
+msgstr ""
+
+#: ../administrator/inc/menus.php:316
+msgid "Payment methods"
+msgstr ""
 
 #, fuzzy
 #~ msgid "a_footer_save_exit"
 #~ msgstr "Футер сео"
-
-#~ msgid "New orders"
-#~ msgstr "Нові замовлення"
 
 #, fuzzy
 #~ msgid "New users"
@@ -345,19 +3570,8 @@ msgstr ""
 #~ msgstr "Cписок замовлень"
 
 #, fuzzy
-#~ msgid "Order create"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
 #~ msgid "Order removal"
 #~ msgstr "Cписок замовлень"
-
-#~ msgid "Orders list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Create order"
-#~ msgstr "Нові замовлення"
 
 #, fuzzy
 #~ msgid "Edit order"
@@ -368,40 +3582,12 @@ msgstr ""
 #~ msgstr "Нові замовлення"
 
 #, fuzzy
-#~ msgid "Orders"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
 #~ msgid "Order status edit"
 #~ msgstr "Cписок замовлень"
 
 #, fuzzy
-#~ msgid "Additional fields list"
-#~ msgstr "Додать в список желаний"
-
-#, fuzzy
-#~ msgid "Role create"
-#~ msgstr "Создание сайта"
-
-#, fuzzy
-#~ msgid "Privileges list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "List"
-#~ msgstr "Список желаний"
-
-#, fuzzy
 #~ msgid "Remove a Role"
 #~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Remove roles?"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Roles list"
-#~ msgstr "Cписок замовлень"
 
 #, fuzzy
 #~ msgid "New Role"
@@ -416,32 +3602,12 @@ msgstr ""
 #~ msgstr "Модулі"
 
 #, fuzzy
-#~ msgid "Banner list"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
 #~ msgid "Removing currency"
 #~ msgstr "Модулі"
 
 #, fuzzy
-#~ msgid "Removing properties"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of currencies"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
 #~ msgid "Removing brand"
 #~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of brands"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "Orders statistics"
-#~ msgstr "Cписок замовлень"
 
 #, fuzzy
 #~ msgid "Number of Orders"
@@ -460,33 +3626,6 @@ msgstr ""
 #~ msgstr "Нові замовлення"
 
 #, fuzzy
-#~ msgid "order"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
-#~ msgid "Removing discounts"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "List of cumulative discounts"
-#~ msgstr "Список порівнянь"
-
-#, fuzzy
-#~ msgid "chose date"
-#~ msgstr "Cписок замовлень"
-
-#~ msgid "Modules"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Remove languages"
-#~ msgstr "Модулі"
-
-#, fuzzy
-#~ msgid "Install Modules"
-#~ msgstr "Модулі"
-
-#, fuzzy
 #~ msgid "Removing Modules"
 #~ msgstr "Модулі"
 
@@ -495,27 +3634,11 @@ msgstr ""
 #~ msgstr "Модулі"
 
 #, fuzzy
-#~ msgid "View WishList"
-#~ msgstr "Список желаний"
-
-#, fuzzy
-#~ msgid "View orders"
-#~ msgstr "Нові замовлення"
-
-#, fuzzy
 #~ msgid "New order"
 #~ msgstr "Нові замовлення"
 
 #, fuzzy
-#~ msgid "Create date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
 #~ msgid "Created date"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Updated date"
 #~ msgstr "Cписок замовлень"
 
 #, fuzzy
@@ -523,23 +3646,7 @@ msgstr ""
 #~ msgstr "Список порівнянь"
 
 #, fuzzy
-#~ msgid "Order ID"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "User created"
-#~ msgstr "Создание сайта"
-
-#, fuzzy
-#~ msgid "Order status created"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
 #~ msgid "Order status changed"
-#~ msgstr "Cписок замовлень"
-
-#, fuzzy
-#~ msgid "Price updated"
 #~ msgstr "Cписок замовлень"
 
 #~ msgid "STAAAAAr"

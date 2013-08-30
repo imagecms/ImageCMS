@@ -3,10 +3,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/**
- * @property CI_Input $input
- * @property CI_DB_active_record $db
- */
 class Sys_update extends BaseAdminController {
 
     private $upgrade_server = 'http://imagecms.net/upgrades/';
@@ -19,7 +15,7 @@ class Sys_update extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        $this->update = new Update();
+        //$this->update = new Update();
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
@@ -38,9 +34,9 @@ class Sys_update extends BaseAdminController {
 
         if ($array) {
             $data = array(
-                'build' => $array['build'],
-                'date' => date("Y-m-d", $array['date']),
-                'size' => $array['size'],
+                'build' => $array['build_id'],
+                'date' => date("Y-m-d", $array['time']),
+                'size' => number_format($array['size'] / 1024 / 1024, 3),
                 'newRelise' => 1,
             );
         } else {
@@ -59,13 +55,15 @@ class Sys_update extends BaseAdminController {
         set_time_limit(99999999999999);
         $this->update->createBackUp();
         $this->update->getUpdate();
-        $this->update->restoreFromZIP('./application/backups/updates.zip');
-        showMessage('Обновление успешно');
-        pjax('/admin');
+        $this->cache->delete_all();
+//        $this->update->restoreFromZIP('./application/backups/updates.zip');
+//        showMessage('Обновление успешно');
+//        pjax('/admin');
     }
 
-    public function update($sort_by = "create_date", $order = 'asc') {
+    public function update($sort_by = "create_date", $order = 'asc', $newRelise = false) {
         // Show upgrade window;
+        $status = $this->update->getStatus();
         $result = $this->update->getHashSum();
 
 //        $array = $this->update->parse_md5();
@@ -78,7 +76,8 @@ class Sys_update extends BaseAdminController {
                 'order' => $order,
                 'diff_files_dates' => $this->update->get_files_dates(),
                 'diff_files' => $result,
-                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order)
+                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                'new_version' => $status ? 1 : 0
             );
         else
             $data = array(
@@ -102,7 +101,7 @@ class Sys_update extends BaseAdminController {
 
     public function properties() {
         if ($this->input->post("careKey")) {
-            ShopCore::app()->SSettings->set("careKey", $this->input->post("careKey"));
+            ShopCore::app()->SSettings->set("careKey", trim($this->input->post("careKey")));
         } else {
             $data = array(
                 'careKey' => ShopCore::app()->SSettings->__get("careKey")
@@ -116,6 +115,37 @@ class Sys_update extends BaseAdminController {
             echo file_get_contents('application/modules/shop/license.key');
         else
             echo 0;
+    }
+
+
+    public function get_update() { // method controller's server's update
+        
+        ini_set("soap.wsdl_cache_enabled", "0");
+        try {
+
+            $client = new SoapClient("http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl");
+
+            $domen = $_SERVER['SERVER_NAME'];
+            
+
+            $result = $client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
+            var_dump($result);
+
+            $key = 'TA7ksAEFAkQK69yd3R8HDZtr7kEQA8TfyRtQdZfE9Zb6ZA9Kb7fFTBZQQrsbk9hGRDhTnsinbnh2QfzSbFiZ67AHkRKART6yhdbA';
+            $result = $client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+            $result = json_decode($result);
+            if ($er = $result->error)
+                echo $er;
+            else {
+                var_dump($result);
+                $href = $client->getUpdate($domen, IMAGECMS_NUMBER, $key);
+                $all_href = 'http://ninjatest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
+                //echo $all_href;
+                file_put_contents('123456', file_get_contents($all_href));
+            }
+        } catch (SoapFault $exception) {
+            echo $exception->getMessage();
+        }
     }
 
     public function backup() {

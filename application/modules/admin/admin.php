@@ -54,26 +54,26 @@ class Admin extends MY_Controller {
 
         $param = $this->input->post('param');
 
-        $this->lib_admin->log(lang("Cleared the cache","admin"));
+        $this->lib_admin->log(lang("Cleared the cache", "admin"));
 
         switch ($param) {
             case 'all':
                 $files = $this->cache->delete_all();
                 if ($files)
-                    $message = lang("Files deleted","admin") . ':' . $files;
+                    $message = lang("Files deleted", "admin") . ':' . $files;
                 else
-                    $message = lang("Cache has been cleared","admin");
+                    $message = lang("Cache has been cleared", "admin");
                 break;
 
             case 'expried':
                 $files = $this->cache->Clean();
                 if ($files)
-                    $message = lang("Outdated files  have been deleted","admin") . $files;
+                    $message = lang("Outdated files  have been deleted", "admin") . $files;
                 else
-                    $message = lang("Cache has been cleared","admin");
+                    $message = lang("Cache has been cleared", "admin");
                 break;
             default: {
-                    $message = lang("Clearing cache error","admin");
+                    $message = lang("Clearing cache error", "admin");
                     $result = false;
                 }
         }
@@ -154,7 +154,7 @@ class Admin extends MY_Controller {
      * @access public
      */
     public function logout() {
-        $this->lib_admin->log(lang("exited the control panel","admin"));
+        $this->lib_admin->log(lang("exited the control panel", "admin"));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
     }
@@ -169,7 +169,7 @@ class Admin extends MY_Controller {
         $this->email->initialize($config);
 
         /* pack message */
-        $message .= lang("Site address","admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page","admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name","admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message","admin") . ': ' . trim(strip_tags($_GET['text']));
+        $message .= lang("Site address", "admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page", "admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name", "admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message", "admin") . ': ' . trim(strip_tags($_GET['text']));
         $text = trim($_GET['text']);
         if (!empty($text)) {
             /* send message */
