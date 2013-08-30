@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 11:05+0300\n"
+"POT-Creation-Date: 2013-08-29 15:37+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -900,6 +900,11 @@ msgstr "Магазин"
 #: /var/www/image.loc/_temp2.php:37
 msgid "Base"
 msgstr "Базовой"
+
+#: /var/www/image.loc/_temp2.php:39
+#, fuzzy
+msgid "back"
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:40
 msgid "Tools panel"

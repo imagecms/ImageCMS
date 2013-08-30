@@ -440,7 +440,7 @@ function applyGift(el) {
             Shop.Cart.gift = gift;
             recountCartPage(selectDeliv, methodDeliv());
         }
-    })
+    });
 
     return false;
 }
