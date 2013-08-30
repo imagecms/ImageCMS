@@ -61,7 +61,7 @@ class Sys_update extends BaseAdminController {
 //        pjax('/admin');
     }
 
-    public function update($sort_by = "create_date", $order = 'asc', $newRelise = false) {
+    public function update($sort_by = "create_date", $order = 'asc') {
         // Show upgrade window;
         $status = $this->update->getStatus();
         $result = $this->update->getHashSum();
