@@ -1,3 +1,0 @@
-2013-08-31T19:36:06+04:00 GET - type: catalog
-2013-08-31T19:36:06+04:00 GET - mode: import
-2013-08-31T19:36:06+04:00 GET - filename: w.xml
