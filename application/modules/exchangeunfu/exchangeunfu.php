@@ -13,6 +13,7 @@ class Exchangeunfu extends MY_Controller {
     /** Import/export objects */
     private $import;
     private $export;
+    private static $return = 0;
 
     /** array which contains 1c settings  */
     private $config = array();
@@ -242,11 +243,16 @@ class Exchangeunfu extends MY_Controller {
         }
 
         $view = \CMSFactory\assetManager::create()
-                ->setData('data1', $array)
-                ->fetchTemplate('main');
-
-        \CMSFactory\assetManager::create()
-                ->appendData('moduleAdditions', $view);
+                ->setData('info', $array)
+                ->fetchAdminTemplate('main');
+        /**
+         * return fix block
+         */
+        if (self::$return == 0) {
+            \CMSFactory\assetManager::create()
+                    ->appendData('moduleAdditions', $view);
+            self::$return++;
+        }
     }
 
     public function _install() {
@@ -521,6 +527,7 @@ class Exchangeunfu extends MY_Controller {
 //        }
         exit();
     }
+
 }
 
 /* End of file exchangeunfu.php */
