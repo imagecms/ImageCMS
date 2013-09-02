@@ -22,24 +22,6 @@
  */
 
 include_once('Gettext.php');
-
-
-function _bindd($domain, $path){
-    global $text_domains;
-    // ensure $path ends with a slash ('/' should work for both, but lets still play nice)
-    if (substr(php_uname(), 0, 7) == "Windows") {
-      if ($path[strlen($path)-1] != '\\' and $path[strlen($path)-1] != '/')
-        $path .= '\\';
-    } else {
-      if ($path[strlen($path)-1] != '/')
-        $path .= '/';
-    }
-    if (!array_key_exists($domain, $text_domains)) {
-      // Initialize an empty domain object.
-      $text_domains[$domain] = new domain();
-    }
-    $text_domains[$domain]->path = $path;
-}
 /**
  * Gettext implementation in PHP
  *
