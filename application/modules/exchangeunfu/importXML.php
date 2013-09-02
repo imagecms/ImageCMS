@@ -67,7 +67,7 @@ class ImportXML {
     }
 
     public function index() {
-        
+
     }
 
     public function getXML($file) {
@@ -80,7 +80,7 @@ class ImportXML {
      * start import process
      * @return string "success" if success
      */
-    public function import() {
+    public function import($file = 'export.xml') {
         $this->getXML($this->pass . 'export.xml');
 //        $start = microtime(true);
 
