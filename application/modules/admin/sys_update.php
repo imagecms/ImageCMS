@@ -15,7 +15,7 @@ class Sys_update extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
-        //$this->update = new Update();
+        $this->update = new Update();
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
@@ -61,7 +61,7 @@ class Sys_update extends BaseAdminController {
 //        pjax('/admin');
     }
 
-    public function update($sort_by = "create_date", $order = 'asc', $newRelise = false) {
+    public function update($sort_by = "create_date", $order = 'asc') {
         // Show upgrade window;
         $status = $this->update->getStatus();
         $result = $this->update->getHashSum();
@@ -119,14 +119,14 @@ class Sys_update extends BaseAdminController {
 
 
     public function get_update() { // method controller's server's update
-        
+
         ini_set("soap.wsdl_cache_enabled", "0");
         try {
 
             $client = new SoapClient("http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl");
 
             $domen = $_SERVER['SERVER_NAME'];
-            
+
 
             $result = $client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
             var_dump($result);

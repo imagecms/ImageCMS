@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+image/jpeg
+=======
 image/png
+>>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
