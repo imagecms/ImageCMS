@@ -56,12 +56,12 @@ class Mabilis {
         ob_start();
 
         if (file_exists($compiled_file)) {
-            if (!in_array($compiled_file, $this->arr)) {
+//            if (!in_array($compiled_file, $this->arr)) {
                 include($compiled_file);
-                $this->arr[$compiled_file] = $compiled_file;
-            }
-            else
-                include $this->arr[$compiled_file];
+//                $this->arr[$compiled_file] = $compiled_file;
+//            }
+//            else
+//                include $this->arr[$compiled_file];
         } else {
             print '<p class="error">Error: ' . $compiled_file . ' does not exists!</p>';
         }
