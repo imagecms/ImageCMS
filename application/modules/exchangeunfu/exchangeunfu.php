@@ -50,7 +50,7 @@ class Exchangeunfu extends MY_Controller {
             $array = array();
         }
 
-        $view = \CMSFactory\assetManager::create()
+        $view = \CMSFactor\assetManager::create()
                 ->setData('data1', $array)
                 ->fetchTemplate('main');
 
