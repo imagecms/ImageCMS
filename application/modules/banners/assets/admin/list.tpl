@@ -52,7 +52,7 @@
                                             </span>
                                         </span>
                                     </td>
-                                    <td><p>{echo $b['id']}</p></td>
+                                    <td><a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing')}">{echo $b['id']}</a></td>
                                     <td>
                                         <a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Editing')}">{echo $b['name']}</a>
                                     </td>

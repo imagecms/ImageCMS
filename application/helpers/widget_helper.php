@@ -39,7 +39,11 @@ if (!function_exists('widget')) {
                     break;
 
                 case 'html':
-                    $result = $widget['data'];
+                    $locale = MY_Controller::getCurrentLocale();
+                    $id = $widget['id'];
+                    $sql = "select * from widget_i18n where locale = '$locale' and id = '$id'";
+                    $w_i18 = $ci->db->query($sql)->row_array();      
+                    $result = $w_i18['data'];
                     break;
             }
 

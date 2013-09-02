@@ -95,8 +95,8 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-        if (self::$currentLocale)
-            return self::$currentLocale;
+//        if (self::$currentLocale)
+//            return self::$currentLocale;
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
@@ -116,6 +116,11 @@ class MY_Controller extends MX_Controller {
             self::$currentLocale = $defaultLanguage['identif'];
         }
         return self::$currentLocale;
+    }
+    
+    public static function defaultLocale(){
+        $lang = self::getDefaultLanguage();
+        return $lang['identif'];
     }
 
     /**

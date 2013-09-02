@@ -32,14 +32,14 @@
 
             pasteAfter = pasteAfter.split('.'),
                     $this.on(evPaste, function() {
-                methods.evClick($(this))
-            })
+                methods.evClick($(this));
+            });
         },
         evClick: function($this) {
             var pasteAfter2 = $this;
             $.each(pasteAfter, function(i, v) {
                 pasteAfter2 = pasteAfter2[v]();
-            })
+            });
 
             var insertedEl = pasteAfter2.next(),
                     pasteAfterEL = pasteAfter2;
@@ -51,7 +51,7 @@
                 pasteAfterEL.next()[effectIn](duration, function() {
                     if (ltie7)
                         ieInput();
-                })
+                });
                 after($this, pasteAfterEL.next());
             }
             else if (insertedEl.is(':visible'))
@@ -139,7 +139,7 @@
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.starRating');
         }
-    }
+    };
 })(jQuery);
 function initComments() {
     $(".star-big").starRating({
@@ -204,9 +204,9 @@ function initComments() {
 renderPosts = function(el, data) {
     var dataSend = "";
     if (data != undefined)
-        dataSend = data
+        dataSend = data;
     if (el.data() != undefined) {
-        dataSend = el.data()
+        dataSend = el.data();
     }
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
@@ -216,7 +216,7 @@ renderPosts = function(el, data) {
         success: function(obj) {
             el.each(function() {
                 $(this).empty();
-            })
+            });
 
             if (obj !== null) {
                 var tpl = obj.comments;
@@ -226,7 +226,7 @@ renderPosts = function(el, data) {
                     $(this).append(tpl);
                     if (i + 1 == elL)
                         initComments();
-                })
+                });
 
                 if (obj.commentsCount !== 0) {
                     $('#cc').html('');
@@ -236,7 +236,7 @@ renderPosts = function(el, data) {
             }
         }
     });
-}
+};
 
 function post(el) {
     $.ajax({
@@ -249,13 +249,13 @@ function post(el) {
             if (obj.answer === 'sucesfull') {
                 $('.comment_text').each(function() {
                     $(this).val('');
-                })
+                });
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
                 renderPosts($(el).closest('[name="for_comments"]'));
             }
             else {
-                var errText = $(el).closest('form').find('.error_text')
+                var errText = $(el).closest('form').find('.error_text');
                 errText.html('');
                 errText.append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
             }
