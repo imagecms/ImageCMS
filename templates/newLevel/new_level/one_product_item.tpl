@@ -51,7 +51,7 @@
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
 
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array({lang("comment","newLevel")},{lang("comment","newLevel")},{lang("comments","newLevel")}))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("comment","newLevel"),lang("comment","newLevel"),lang("comments","newLevel")))}
 
                         </a>
                     </div>
