@@ -15,7 +15,7 @@ class Update {
      * path to update server
      * @var string
      */
-    private $pathUS = "http://pftest.imagecms.net/application/modules/update/UpdateService.wsdl";
+    private $pathUS = "http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl";
 
     /**
      * шлях до сканування папок
@@ -110,106 +110,19 @@ class Update {
     }
 
     /**
-     * check for new version exist
-     */
-    public function checkForVersion($modulName = 'reliz') {
-
-        $xml_data = json_encode(array('somevar' => 'data', 'anothervar' => 'data'));
-
-        $url = 'http://pftest.imagecms.net/shop/test';
-
-        $headers = array(
-            "Content-type: text/xml;charset=\"utf-8\"",
-            "Accept: text/xml",
-            "Cache-Control: no-cache",
-            "Pragma: no-cache",
-            "Authorization: Basic " . base64_encode($credentials)
-        );
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
-
-        // Apply the XML to our curl call
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
-
-        $data = curl_exec($ch);
-        curl_close($ch);
-
-        if (curl_errno($ch)) {
-            print "Error: " . curl_error($ch);
-        } else {
-            // Show me the result
-            var_dump($data);
-        }
-    }
-
-    /**
-     * send php auth data to server
-     */
-    public function sendData() {
-        $credentials = "username1:password1";
-
-        // Read the XML to send to the Web Service
-//        $request_file = "./SampleRequest.xml";
-//        $fh = fopen($request_file, 'r');
-//        $xml_data = fread($fh, filesize($request_file));
-        $xml_data = 'asdasdasgrant_type=authorization_code';
-//        fclose($fh);
-
-        $url = 'http://pftest.imagecms.net/shop/test';
-        $page = "/services/calculation";
-        $headers = array(
-            "POST " . $page . " HTTP/1.0",
-            "Content-type: text/xml/file;charset=\"utf-8\"",
-            "Accept: text/xml",
-            "Cache-Control: no-cache",
-            "Pragma: no-cache",
-//            "SOAPAction: \"run\"",
-//            "Content-length: " . strlen($xml_data),
-            "Authorization: Basic " . base64_encode($credentials)
-        );
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_USERAGENT, $defined_vars['HTTP_USER_AGENT']);
-
-        // Apply the XML to our curl call
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_data);
-
-        $data = curl_exec($ch);
-        curl_close($ch);
-
-        if (curl_errno($ch)) {
-            print "Error: " . curl_error($ch);
-        } else {
-            // Show me the result
-            var_dump($data);
-        }
-    }
-
-    /**
      * check for new version
      * @return array return info about new relise or 0 if version is actual
      */
     public function getStatus() {
-        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
-            $domen = $_SERVER['SERVER_NAME'];
-            $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
+//        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+        $domen = $_SERVER['SERVER_NAME'];
+        $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
-            ShopCore::app()->SSettings->set("newVersion", $result);
-            ShopCore::app()->SSettings->set("checkTime", time());
-        } else {
-            $result = ShopCore::app()->SSettings->__get("newVersion");
-        }
+        ShopCore::app()->SSettings->set("newVersion", $result);
+        ShopCore::app()->SSettings->set("checkTime", time());
+//        } else {
+//            $result = ShopCore::app()->SSettings->__get("newVersion");
+//        }
         return unserialize($result);
     }
 
@@ -218,17 +131,17 @@ class Update {
      * @return array Array of hashsum files new version
      */
     public function getHashSum() {
-        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
-            $domen = $_SERVER['SERVER_NAME'];
-            $key = ShopCore::app()->SSettings->__get("careKey");
-            $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-            write_file('./application/backups/md5.txt', $result);
-            $result = (array) json_decode($result);
+//        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
+        $domen = $_SERVER['SERVER_NAME'];
+        $key = ShopCore::app()->SSettings->__get("careKey");
+        $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+        write_file('./application/backups/md5.txt', $result);
+        $result = (array) json_decode($result);
 
-            ShopCore::app()->SSettings->set("checkTime", time());
-        } else {
-            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
-        }
+        ShopCore::app()->SSettings->set("checkTime", time());
+//        } else {
+//            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
+//        }
 
         return $result;
     }
@@ -237,7 +150,7 @@ class Update {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, ShopCore::app()->SSettings->__get("careKey"));
-        $all_href = 'http://pftest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
+        $all_href = 'http://ninjatest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
@@ -623,6 +536,18 @@ class Update {
         } else {
             return FALSE;
         }
+    }
+
+    private function getSettings() {
+        $settings = $this->ci->db->select('update')
+                ->get('settings')
+                ->row_array();
+        $settings = unserialize($settings['settings']);
+        return $settings;
+    }
+
+    private function setSettings($settings) {
+        return $this->ci->db->update('settings', array('update' => serialize($settings)));
     }
 
 }

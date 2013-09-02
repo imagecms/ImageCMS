@@ -1330,7 +1330,7 @@ $(document).ready(function() {
 
     // module Categories - Settings
     $("#watermark_padding2").live('keypress', function(eventData) {
-        var ignoreCodes = [8, 109, 37, 38, 39, 40, 36, 35, 144, 17, 18, 9, 13, 16, 36, 17, 16]; // for example backspase, shift, minus, arrows...
+        var ignoreCodes = [8, 109, 37, 38, 39, 40, 36, 35, 144, 17, 18, 9, 13, 16, 36, 17, 16]; // backspase, shift, minus, arrows...
         for (var i = 0; i < ignoreCodes.length; i++)
             if (ignoreCodes[i] == eventData.keyCode)
                 return true;
@@ -1344,7 +1344,93 @@ $(document).ready(function() {
 
 
 
+    /* ----------------------- Siteinfo ---------------------------*/
 
+    // for adding contacts rows in Admin panel - system - site config - site info
+    $("#site_info_tab").delegate('#siteinfo_addcontact', "click", function() {
+        var trs = $("#siteinfo_contacts_table tr").clone();
+        var firstTr = trs[0];
+        $(firstTr)
+                .removeClass("siteinfo_first_contact_row")
+                .find("textarea").empty();
+        $(firstTr).find("input").val("");
+        $("#siteinfo_contacts_table").append(firstTr);
+        $(firstTr).tooltip({
+            trigger: 'hover',
+            placement: 'top'
+        });
+    });
+
+    // for deleting contact rows
+    $("#site_info_tab").delegate("#siteinfo_contacts_table .si_remove_contact_row", "click", function() {
+        var countOfRows = $("#site_info_tab #siteinfo_contacts_table tr").size();
+        if (countOfRows > 1) {
+            $(this).parents(".siteinfo_contact_row").remove();
+        } else {
+            $(this).parents(".siteinfo_contact_row").find("textarea").val("");
+        }
+    });
+
+    // prewiew local image
+    $('#site_info_tab input[type="file"]').die('change').live('change', function(e) {
+        // checking if file is image
+        var allowedFileExtentions = ['jpg', 'jpeg', 'png'];
+        var ext = $(this).val().split('.').pop();
+        var extentionIsAllowed = false;
+        for (var i = 0; i < allowedFileExtentions.length; i++) {
+            if (allowedFileExtentions[i] == ext) {
+                extentionIsAllowed = true;
+                break;
+            }
+        }
+        if (extentionIsAllowed == false) {
+            $(this).removeAttr("value");
+            showMessage("Ошибка", "Можно загружать только изображения", "error");
+            return;
+        }
+
+        // creating image preview
+        var file = this.files[0];
+        var img = document.createElement("img");
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+        $(img).addClass('img-polaroid');
+        $(this).siblings('.controls').html(img);
+        
+    });
+
+    // delete image buttons
+    $("#site_info_tab").delegate('.remove_btn', "click", function() {
+        // setting hidden input value to 1 delete for delete image on saving
+        $(this).parents(".control-group").find("input.si_delete_image").val("1");
+        // display some message about deleting
+        $(this).parents(".siteinfo_image_container")
+                .empty()
+                .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
+
+    });
+    // the delete button appears only on image hover
+    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
+        $(this).find(".remove_btn").show();
+    });
+    $("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
+        $(this).find(".remove_btn").hide();
+    });
+
+
+    // tooltips
+    $('#site_info_tab .icon-info-sign').tooltip({
+        trigger: 'hover',
+        placement: 'top'
+    });
+
+
+
+    /* --------------------- end of Siteinfo -------------------------*/
 });
 
 

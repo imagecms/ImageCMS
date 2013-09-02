@@ -279,7 +279,7 @@
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
 
                                 {intval($Comments[$model->getId()])}
-                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array('lang("comment","newLevel")','lang("comment","newLevel")','lang("comments","newLevel")'))}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("comment","newLevel"),lang("comment","newLevel"),lang("comments","newLevel")))}
 
                             </button>
 
