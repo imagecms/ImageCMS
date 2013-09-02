@@ -171,7 +171,7 @@
                                                 <input type="text"
                                                        name="text"
                                                        value=""
-                                                       placeholder="{lang("Search this site","admin")}" 
+                                                       placeholder="{lang("Search this site","admin")}"
                                                        autocomplete="off"
                                                        class="place_hold"
                                                        id="inputString"/>

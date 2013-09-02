@@ -26,7 +26,6 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
-
         $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
@@ -53,7 +52,7 @@ class Settings extends BaseAdminController {
 //        $this->template->assign('editor_themes', $themes_arr);
 //        $this->template->assign('theme_selected', $settings['editor_theme']);
 
-        $this->template->assign('work_values', array('yes' => lang("Yes","admin"), 'no' => lang("No","admin")));
+        $this->template->assign('work_values', array('yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
 
@@ -90,7 +89,6 @@ class Settings extends BaseAdminController {
     public function translate_meta() {
 
         $this->load->library('form_validation');
-
 
         $this->form_validation->set_rules('name', lang('Name', 'admin'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('short_name', lang('Short name', 'admin'), 'trim|required|xss_clean');
@@ -196,7 +194,7 @@ class Settings extends BaseAdminController {
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang("Page has not been found","admin"), false, 'r');
+                    showMessage(lang("Page has not been found", "admin"), false, 'r');
                     exit;
                 }
                 break;
@@ -241,11 +239,13 @@ class Settings extends BaseAdminController {
 
         $this->cache->delete_all();
 
-        $this->lib_admin->log(lang("Changed wesite settings","admin"));
+        $this->lib_admin->log(lang("Changed wesite settings", "admin"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
+
             showMessage(lang("Settings have been saved","admin"));
+
     }
 
     /**

@@ -773,7 +773,7 @@ abstract class elFinderVolumeDriver {
 				}
 			}
 		}
-z
+
 		$this->configure();
 		// echo $this->uploadMaxSize;
 		// echo $this->options['uploadMaxSize'];

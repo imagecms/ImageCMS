@@ -17,16 +17,10 @@
                 <ul class="nav myTab nav-tabs nav-stacked">
                     <li class="active"><a href="#setings">{lang("Settings","admin")}</a></li>
                     <li><a href="#seo">SEO</a></li>
-<<<<<<< HEAD
-                    <li><a href="#homePage">{lang('a_main_page')}</a></li>
-                    <li><a href="#metatag">Управление Мета-тегами</a></li>
-                    <li><a href="#metatag_edit">Ввести метатеги</a></li>
-                    <li><a href="#site_info_tab">Информация о сайте</a></li>
-=======
                     <li><a href="#homePage">{lang("Main page","admin")}</a></li>
                     <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>  
                     <li><a href="#metatag_edit">{lang('Enter Meta Tags','admin')}</a></li>
->>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
+                    <li><a href="#site_info_tab">{lang('Site information','admin')}</a></li>
                 </ul>
             </div>
             <div class="span9 content_big_td">
@@ -384,7 +378,6 @@
                             {form_csrf()}
 
                         </div>
-<<<<<<< HEAD
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = "Воспользуйтесь функцией siteinfo() с параметром"}
                             <table class="table table-striped table-bordered table-hover table-condensed">
@@ -529,7 +522,3 @@
         </div>
     </section>
 </div>
-=======
-                        </section>
-                    </div>
->>>>>>> 8ea407d048c08588a3fbd348d1e79e1c21b0e640
