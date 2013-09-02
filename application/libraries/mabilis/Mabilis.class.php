@@ -1,18 +1,18 @@
 <?php
 
-/** *************************************************
+/** * ************************************************
  * Image CMS Template Engine (Mabilis TPL)
  *
  * Simple template engine for Image CMS based on regular expressions search and replace.
  *
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
- ************************************************* */
-
+ * ************************************************ */
 class Mabilis {
 
     private $compiler = NULL;
     private $config = NULL;
+    private $arr = NULL;
 
     public function __construct(&$config = array()) {
         $this->load_config($config);
@@ -56,7 +56,12 @@ class Mabilis {
         ob_start();
 
         if (file_exists($compiled_file)) {
-            include ($compiled_file);
+//            if (!in_array($compiled_file, $this->arr)) {
+                include($compiled_file);
+//                $this->arr[$compiled_file] = $compiled_file;
+//            }
+//            else
+//                include $this->arr[$compiled_file];
         } else {
             print '<p class="error">Error: ' . $compiled_file . ' does not exists!</p>';
         }

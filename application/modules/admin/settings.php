@@ -8,6 +8,12 @@ if (!defined('BASEPATH'))
  */
 class Settings extends BaseAdminController {
 
+    /**
+     * Upload path for images (logo and favicon)
+     * @var string
+     */
+    protected $uploadPath = 'uploads/images/';
+
     function __construct() {
         parent::__construct();
 
@@ -25,6 +31,12 @@ class Settings extends BaseAdminController {
 
         $settings = $this->cms_admin->get_settings();
 
+        $siteinfo = unserialize($settings['siteinfo']);
+        unset($settings['siteinfo']);
+        if (is_array($siteinfo)) {
+            $this->template->add_array($siteinfo);
+        }
+
         $this->template->add_array($settings);
         $this->template->assign('templates', $this->_get_templates());
         $this->template->assign('template_selected', $settings['site_template']);
@@ -40,7 +52,7 @@ class Settings extends BaseAdminController {
 //        $this->template->assign('editor_themes', $themes_arr);
 //        $this->template->assign('theme_selected', $settings['editor_theme']);
 
-        $this->template->assign('work_values', array('yes' => lang("Yes","admin"), 'no' => lang("No","admin")));
+        $this->template->assign('work_values', array('yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
 
@@ -82,6 +94,7 @@ class Settings extends BaseAdminController {
         $this->form_validation->set_rules('short_name', lang('Short name', 'admin'), 'trim|required|xss_clean');
         $this->form_validation->set_rules('description', lang('Description', 'admin'), 'trim|xss_clean');
         $this->form_validation->set_rules('keywords', lang('Keywords', 'admin'), 'trim|xss_clean');
+
         if ($this->form_validation->run($this) == FALSE)
             showMessage(validation_errors(), false, 'r');
         else {
@@ -181,7 +194,7 @@ class Settings extends BaseAdminController {
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang("Page has not been found","admin"), false, 'r');
+                    showMessage(lang("Page has not been found", "admin"), false, 'r');
                     exit;
                 }
                 break;
@@ -194,6 +207,8 @@ class Settings extends BaseAdminController {
                 $this->cms_admin->save_settings($data);
                 break;
         }
+
+        $siteinfo = $this->processSiteInfo();
 
         $data_m = array(
             'create_keywords' => $this->input->post('create_keywords'),
@@ -213,6 +228,7 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
+            'siteinfo' => serialize($siteinfo)
         );
 
         $this->translate_meta();
@@ -223,11 +239,102 @@ class Settings extends BaseAdminController {
 
         $this->cache->delete_all();
 
-        $this->lib_admin->log(lang("Changed wesite settings","admin"));
+        $this->lib_admin->log(lang("Changed wesite settings", "admin"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
-            showMessage(lang("Settings have been saved","admin"));
+            showMessage(lang("Settings have been saved", "admin"));
+    }
+
+    /**
+     * Getting values of "siteinfo" from POST
+     * Uploads logo and favicon (if present)
+     * @return array siteinfo data
+     */
+    protected function processSiteInfo() {
+
+        // getting all parameters with keys
+        $siteinfo = array();
+        foreach ($_POST as $key => $value) {
+            if (FALSE !== strpos($key, "siteinfo")) {
+                $siteinfo[$key] = $value;
+                unset($_POST[$key]);
+            }
+        }
+
+        // remap contacts
+        $contacts = array();
+        $countKeys = count($siteinfo['siteinfo_contactkey']);
+        $countValues = count($siteinfo['siteinfo_contactvalue']);
+
+        if ($countKeys == $countValues & $countValues > 0) {
+            for ($i = 0; $i < $countKeys; $i++) {
+                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i]))
+                    $contacts[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+            }
+        }
+
+        unset($siteinfo['siteinfo_contactkey']);
+        unset($siteinfo['siteinfo_contactvalue']);
+        $siteinfo['contacts'] = $contacts;
+
+        $config['upload_path'] = $this->uploadPath;
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $this->load->library('upload', $config);
+
+        // upload logo if present
+        if (isset($_FILES['siteinfo_logo'])) {
+            if (!$this->upload->do_upload('siteinfo_logo')) {
+                $siteinfo['siteinfo_logo'] = $this->upload->display_errors('', '');
+            } else {
+                $uploadData1 = $this->upload->data();
+                $siteinfo['siteinfo_logo'] = site_url() . $this->uploadPath . $uploadData1['file_name'];
+                $siteinfo['siteinfo_logo_path'] = $this->uploadPath . $uploadData1['file_name'];
+            }
+        } else {
+            //$imageToRemove1 = siteinfo('siteinfo_logo_path');
+            //unlink($imageToRemove1);
+            // if user want to delete image
+            if ($_POST['si_delete_logo'] == 1) {
+                $siteinfo['siteinfo_logo'] = "";
+            } else { // in other case assign image
+                $siteinfo['siteinfo_logo'] = siteinfo('siteinfo_logo');
+            }
+        }
+
+        // upload favicon if present
+        if (isset($_FILES['siteinfo_favicon'])) {
+            if (!$this->upload->do_upload('siteinfo_favicon')) {
+                $siteinfo['siteinfo_favicon'] = $this->upload->display_errors('', '');
+            } else {
+                $uploadData2 = $this->upload->data();
+                $siteinfo['siteinfo_favicon'] = site_url() . $this->uploadPath . $uploadData2['file_name'];
+                $siteinfo['siteinfo_favicon_path'] = $this->uploadPath . $uploadData2['file_name'];
+            }
+        } else {
+            //$imageToRemove2 = siteinfo('siteinfo_favicon_path');
+            //unlink($imageToRemove2);
+            // if user want to delete image
+            if ($_POST['si_delete_favicon'] == 1) {
+                $siteinfo['siteinfo_favicon'] = "";
+            } else { // in other case assign image
+                $siteinfo['siteinfo_favicon'] = siteinfo('siteinfo_favicon');
+            }
+        }
+
+        // saving admin's email in application/config/auth.php 
+        $authFullPath = "./application/config/auth.php";
+        $authContents = file_get_contents($authFullPath);
+        $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"A-Za-z\@\.\-]+/i';
+        $replacement = '$1\'' . $siteinfo['siteinfo_adminemail'] . '\'';
+        $newAuthContents = preg_replace($pattern, $replacement, $authContents);
+        if (is_writable($authFullPath)) {
+            $this->load->helper('file');
+            write_file($authFullPath, $newAuthContents);
+        }
+
+        // returning beautiful array =)
+        return $siteinfo;
     }
 
     public function switch_admin_lang($lang) {
@@ -237,7 +344,6 @@ class Settings extends BaseAdminController {
         );
 
         if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
-
             $this->db->set('lang_sel', $lang . '_lang')
                     ->update('settings');
 
