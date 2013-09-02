@@ -395,24 +395,33 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- Структура таблиці `custom_fields`
 --
 
-DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
   `field_name` varchar(64) NOT NULL,
-  `field_label` varchar(64) NOT NULL,
-  `field_description` text,
   `is_required` tinyint(1) NOT NULL DEFAULT '1',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `is_private` tinyint(1) NOT NULL DEFAULT '0',
-  `possible_values` text,
   `validators` varchar(255) DEFAULT NULL,
-  `classes` text,
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
+  `classes` text,
   `position` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
+
+--
+-- Структура таблиці `custom_fields_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(4) NOT NULL,
+  `field_label` varchar(255) DEFAULT NULL,
+  `field_description` text,
+  `possible_values` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -420,23 +429,24 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- Структура таблиці `custom_fields_data`
 --
 
-DROP TABLE IF EXISTS `custom_fields_data`;
-CREATE TABLE IF NOT EXISTS `custom_fields_data` (
+CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `field_id` int(11) NOT NULL,
-  `entity_id` int(11) NOT NULL,
-  `field_data` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `item_id` int(11) NOT NULL,
+  `item_type` varchar(15) NOT NULL,
+  `field_name` varchar(255) NOT NULL,
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `item_id` (`item_id`),
+  KEY `item_type` (`item_type`),
+  KEY `field_name` (`field_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
 
 --
 -- Дамп даних таблиці `custom_fields_data`
 --
 
-INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`) VALUES
-(1, 2, 1, ''),
-(2, 2, 2, ''),
-(3, 2, 3, '');
+
 
 -- --------------------------------------------------------
 
@@ -9390,6 +9400,20 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (13, 'brands', 'module', 'shop', 'brands', 'a:3:{s:10:"withImages";b:1;s:11:"brandsCount";s:2:"15";s:7:"subpath";s:7:"widgets";}', 'brands', '', 1363606422),
 (14, 'view_product', 'module', 'shop', 'view_product', 'a:4:{s:12:"productsType";b:0;s:5:"title";s:54:"Недавно просмотренные товары";s:13:"productsCount";s:2:"10";s:7:"subpath";s:7:"widgets";}', 'view_product', '', 1363606497),
 (15, 'similar', 'module', 'shop', 'similar_products', 'a:3:{s:5:"title";s:27:"Похожие товары";s:13:"productsCount";s:1:"5";s:7:"subpath";s:7:"widgets";}', 'similar', '', 1363606582);
+
+
+--
+-- Структура таблиці `widget_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `widget_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`,`locale`),
+  KEY `locale` (`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
