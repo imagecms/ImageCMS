@@ -431,6 +431,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(4) NOT NULL, 
   `item_id` int(11) NOT NULL,
   `item_type` varchar(15) NOT NULL,
   `field_name` varchar(255) NOT NULL,
