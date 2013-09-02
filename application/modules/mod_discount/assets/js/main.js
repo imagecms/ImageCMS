@@ -13,8 +13,11 @@ function get_discount() {
                 })
             }
         }
-    })
-    Shop.Cart.discount = _discount;
+    });
+
+    if (Shop.Cart.discount != undefined)
+        Shop.Cart.discount = _discount;
+
 }
 
 function load_certificat() {
@@ -29,9 +32,11 @@ function load_certificat() {
         } else {
             $.post('/mod_discount/gift/render_gift_succes', {json: JSON.stringify(gift)}, function(tpl) {
                 $('#gift').html(tpl)
-            })
-            $('#giftCertPrice').html(gift.value)
-            $('#giftCertSpan').show()
+            });
+            $('#giftCertPrice').html(gift.value);
+
+            $('#giftCertSpan').show();
+
         }
     }
 
@@ -52,9 +57,11 @@ function applyGift(el) {
                 gift = JSON.parse(data);
 
         }
-    })
+    });
 
-    Shop.Cart.gift = gift;
+    if (Shop.Cart.discount != undefined)
+        Shop.Cart.gift = gift;
+
     recountCartPage();
     return false;
 }

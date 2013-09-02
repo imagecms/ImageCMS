@@ -147,7 +147,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .niceCheck input, .niceRadio input{display: none !important;}
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
-.main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
 select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;}
 table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{height: 27px !important;margin-bottom: 0;}
@@ -764,3 +764,57 @@ span.check_gg {
 }
 
 /* ------ end of GOOGLE API IMAGES SEARCH ------- */
+
+#site_info_tab .siteinfo_del_cont {
+    text-align: right;
+}
+
+#site_info_tab input[type='file'] {
+    display: none;
+}
+
+
+#site_info_tab .siteinfo_logoimage img {
+    max-height: 100px; 
+    max-width: 100px; 
+}
+
+#site_info_tab .siteinfo_faviconimage img {
+    max-height: 50px; 
+    max-width: 50px; 
+}
+
+#site_info_tab .siteinfo_logoimage div {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+#site_info_tab .siteinfo_faviconimage div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#site_info_tab .siteinfo_logoimage div .remove_btn, #site_info_tab .siteinfo_faviconimage div .remove_btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: none;
+
+
+}
+
+#siteinfo_contacts_table tr td{
+    border: none !important;
+}
+
+#siteinfo_contacts_table tr td:nth-child(1) {
+    width: 25%;
+}
+#siteinfo_contacts_table tr td:nth-child(2) {
+    width: 65%;
+}
+#siteinfo_contacts_table tr td:nth-child(3) {
+    width: 35px;
+}

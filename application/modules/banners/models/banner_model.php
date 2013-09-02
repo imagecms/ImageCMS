@@ -63,7 +63,7 @@ class Banner_model extends CI_Model {
 
     public function get_all_banner($locale){
 
-        $query = $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '". $locale ."'");
+        $query = $this->db->query("select *, mod_banner.id as id from mod_banner left join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id and locale = '". $locale ."'");
         if($query){
             $query = $query->result_array();
         }

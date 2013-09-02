@@ -1794,6 +1794,7 @@ var Update = {
                 } else {
                     $('#progres').css('width', '0%');
                     $('.progressDB').fadeOut(600);
+                    showMessage('Обновление', 'Обновление успешно');
                 }
             }
         });

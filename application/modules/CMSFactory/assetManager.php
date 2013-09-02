@@ -15,11 +15,11 @@ class assetManager {
     protected $ci;
 
     private function __construct() {
-
+        
     }
 
     private function __clone() {
-
+        
     }
 
     /**
@@ -159,7 +159,7 @@ class assetManager {
             /** Start. If file doesn't exists thorow exception */
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
-            
+
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
@@ -170,7 +170,8 @@ class assetManager {
         }
     }
 
-    /** Render public view
+    /** 
+     * Render public view
      * @param string $tpl Template file name
      * @return void
      * @access public
@@ -189,7 +190,7 @@ class assetManager {
 //                $obj = new \MY_Lang();
 //                $obj->load($this->getTrace());
 //                echo $this->getTrace();
-            
+
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
@@ -197,7 +198,8 @@ class assetManager {
         }
     }
 
-    /** Render public view
+    /** 
+     * fetch public view
      * @param string $tpl Template file name
      * @return void
      * @access public
@@ -211,9 +213,33 @@ class assetManager {
 //            
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
-            
+
             /** Start. Return template file */
             return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildTemplatePath($tpl));
+        } catch (\Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+    }
+
+    /** 
+     * fetch admin view
+     * @param string $tpl Template file name
+     * @return void
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function fetchAdminTemplate($tpl) {
+        try {
+            /** Start. If file doesn't exists thorow exception */
+            file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+//            
+//            $obj = new \MY_Lang();
+//            $obj->load($this->getTrace());
+
+            /** Start. Return template file */
+            return \CI_Controller::get_instance()->template->fetch('file:' . $this->buildAdminTemplatePath($tpl));
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');

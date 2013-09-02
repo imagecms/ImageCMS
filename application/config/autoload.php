@@ -16,7 +16,9 @@ $autoload['libraries'] = array('lib_init', 'lib_category', 'lib_csrf');
   | -------------------------------------------------------------------
  */
 
-$autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security');
+
+$autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper');
+
 
 
 /*
