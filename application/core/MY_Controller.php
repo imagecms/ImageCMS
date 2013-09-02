@@ -117,6 +117,11 @@ class MY_Controller extends MX_Controller {
         }
         return self::$currentLocale;
     }
+    
+    public static function defaultLocale(){
+        $lang = self::getDefaultLanguage();
+        return $lang['identif'];
+    }
 
     /**
      * Get default language
