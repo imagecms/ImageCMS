@@ -1,8 +1,8 @@
 
-drop table `widget_i18n`
-drop table `custom_fields`
-drop table `custom_fields_i18n`
-drop table `custom_fields_data`
+
+drop table `custom_fields`;
+
+drop table `custom_fields_data`;
 
 --
 -- Структура таблиці `widget_i18n`
