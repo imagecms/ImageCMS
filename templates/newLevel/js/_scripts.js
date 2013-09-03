@@ -10,6 +10,7 @@ var methodDeliv = function() {
         selectDeliv = false;
 
 var productPhotoCZoom = productPhotoCZoom != undefined,
+        productPhotoDrop = productPhotoDrop != undefined,
         productPhotoFancybox = productPhotoFancybox != undefined,
         hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
@@ -108,7 +109,15 @@ var optionsDrop = {
     dropContent: '.drop-content',
     animate: false,
     moreoneNC: false, // show more then one drop
-    timeclosemodal: 1000
+    timeclosemodal: 1000,
+    hrefOptions: {
+        next: '#photo .next', //only in scripts
+        prev: '#photo .prev', //only in scripts
+        placeHref: '#photo .drop-content-photo .inside-padd',
+        callback: 'onComplete',
+        beforeShowHref: 'beforeShowHref',
+        cycle: true
+    }
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -1023,6 +1032,7 @@ if (productPhotoCZoom) {
             mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
             mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
             $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
+
         })
     }
 }
@@ -1168,6 +1178,10 @@ function init() {
             $('.frame-user-toolbar').css({'width': body.width(), 'z-index': 100})
         if ($('#fancybox-wrap').is(':visible'))
             $.drop('scrollEmulate')();
+
+        if ($(dropEl).is('#photo')) {
+            $(dropEl).find('.drop-header .title').empty().end().find('.frame-fancy-gallery').remove().end().find('.frame-prices-buy').remove().end().find('.drop-content-photo .inside-padd').empty();
+        }
     }
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu > .frame-title > .title.active').attr('href') + '"]').parent().addClass('active');
@@ -1273,7 +1287,7 @@ function init() {
     $(document).on('autocomplete.fewLength', function(e) {
         e.el.tooltip({'title': text.search(e.value)})
     })
-    if (productPhotoFancybox) {
+    if (productPhotoFancybox && !productPhotoCZoom && !productPhotoDrop) {
         try {
             var frameAddImgThumb = $('[data-rel="mainThumbPhoto"]').children();
             if (!$(genObj.photoProduct).is('[rel="group"]'))
@@ -1341,21 +1355,31 @@ function init() {
         } catch (e) {
         }
     }
-    if (productPhotoCZoom) {
-        $('.item-product .items-thumbs > li > a').on('click', function(e) {
+    if (productPhotoCZoom || productPhotoDrop) {
+        $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
             e.preventDefault();
             var $this = $(this);
             $this.parent().siblings().removeClass('active').end().addClass('active');
         })
     }
-    if (!productPhotoFancybox && !productPhotoCZoom) {
-        $('.item-product .items-thumbs > li > a').on('click', function(e) {
+    if ((!productPhotoDrop && !productPhotoCZoom && !productPhotoDrop) || productPhotoDrop) {
+        $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
             e.preventDefault();
             var $this = $(this);
             $(genObj.photoProduct).find('img').attr('src', $this.attr('href')).end().click(function(e) {
                 e.preventDefault()
             });
         });
+    }
+    if (productPhotoDrop){
+        $(genObj.photoProduct).data({'drop': '#photo', 'href': $(genObj.photoProduct).attr('href'), title: $(genObj.photoProduct).attr('title')}).drop(optionsDrop);
+    }
+    if (productPhotoDrop && productPhotoCZoom) {
+        $('.mousetrap').live('click', function() {
+            var $this = $(this),
+                    prev = $this.prev();
+            $this.data({'drop': '#photo', 'href': prev.attr('href'), title: prev.attr('title')}).drop(optionsDrop).trigger('click.drop');
+        })
     }
     try {
         $('a.fancybox').fancybox();
@@ -1674,3 +1698,126 @@ wnd.resize(function() {
         banerResize('.baner:has(.cycle)');
     }, 300)
 });
+
+
+function onComplete(elSet, elS, el) {
+    var next = $(optionsDrop.hrefOptions.next),
+            prev = $(optionsDrop.hrefOptions.prev),
+            cycle = optionsDrop.hrefOptions.cycle;
+    function resizePhoto() {
+        fancyFrame.css({'height': elS.height() - itemGal.closest('.frame-fancy-gallery').height() - fancyTitle.outerHeight() - fancyFooter.outerHeight() - 20, 'padding': '10px 0'})
+    }
+    function condBtn(acA) {
+        if (!cycle) {
+            if (acA == 0)
+                prev.attr('disabled', 'disabled');
+            if (acA == itemGalL - 1)
+                next.attr('disabled', 'disabled');
+        }
+    }
+    function btnSClick(btn) {
+        thumbsAP.removeClass('active');
+        if (btn.is(prev))
+            next.removeAttr('disabled');
+        else
+            prev.removeAttr('disabled');
+        var curHref = mainImg.attr('src');
+        acA = ($.inArray(curHref, optionsDrop.hrefOptions.thumbs));
+        if (btn.is(prev)) {
+            if (cycle) {
+                if (acA != 0)
+                    acA = acA - 1;
+                else
+                    acA = itemGalL - 1;
+            }
+            else {
+                if (acA != 0)
+                    acA = acA - 1;
+                if (acA == 0)
+                    prev.attr('disabled', 'disabled');
+            }
+        }
+        else {
+            if (cycle) {
+                if (acA != itemGalL - 1)
+                    acA = acA + 1;
+                else
+                    acA = 0;
+            }
+            else {
+                if (acA != itemGalL - 1)
+                    acA = acA + 1;
+                if (acA == itemGalL - 1)
+                    next.attr('disabled', 'disabled');
+            }
+        }
+        thumbsA.eq(acA).parent().addClass('active');
+        mainImg.attr('src', optionsDrop.hrefOptions.thumbs[acA]);
+    }
+    var fancyC = elS,
+            fancyFooter = fancyC.find('.drop-footer').append($('.frame-prices-buy').clone(true)),
+            frameThumbs = $('.frame-thumbs'),
+            frameButton = frameThumbs.children('.group-button-carousel'),
+            fancyTitle = elS.find('.drop-header'),
+            carGal = frameThumbs.children('.content-carousel').clone(true).insertAfter(fancyTitle).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone());
+
+    fancyTitle.find('.title').text(elSet.title);
+
+    fancyC.find(genObj.plusMinus).plusminus({
+        prev: 'prev.children(:eq(1)).children',
+        next: 'prev.children(:eq(0)).children',
+        after: function(e, el, input) {
+            if (checkProdStock && input.val() == input.data('max'))
+                el.closest(genObj.numberC).tooltip();
+        }
+    });
+    var itemThumbs = carGal.find('.items-thumbs');
+    itemThumbs.removeAttr('style').children().removeAttr('style');
+    if ($.existsN(itemThumbs.parent('.jcarousel-clip')))
+        itemThumbs.unwrap();
+
+    var itemGal = carGal.find('.items-thumbs > li'),
+            thumbsA = $(itemGal).find('a'),
+            thumbsAP = thumbsA.parent();
+    optionsDrop.hrefOptions.thumbs = new Array();
+    thumbsA.each(function() {
+        optionsDrop.hrefOptions.thumbs.push($(this).attr('href'))
+    })
+
+    var mainImg = fancyC.find('.drop-content-photo img'),
+            acA = ($.inArray(mainImg.attr('src'), optionsDrop.hrefOptions.thumbs)),
+            itemGalL = itemGal.length,
+            pActEl = acA < itemGalL ? acA : acA - itemGalL,
+            adding = {start: pActEl};
+
+    itemGal.eq(pActEl).addClass('active');
+    carGal.parent().myCarousel($.extend($.extend({}, carousel), {
+        adding: adding
+    }));
+    var fancyFrame = elS.find('.drop-content-photo');
+
+    var btns = prev.add(next).removeAttr('disabled');
+    thumbsA.unbind('click').on('click', function(e) {
+        btns.removeAttr('disabled');
+        thumbsAP.removeClass('active');
+        $(this).parent().addClass('active')
+        var href = $(this).attr('href'),
+                acA = ($.inArray(href, optionsDrop.hrefOptions.thumbs));
+
+        e.preventDefault();
+        mainImg.attr('src', href);
+        condBtn(acA);
+    })
+
+    condBtn(acA);
+    resizePhoto();
+    next.add(prev).unbind('click').on('click', function(e) {
+        btnSClick($(this))
+    });
+    wnd.unbind('resize.photo').bind('resize.photo', function() {
+        resizePhoto();
+    })
+}
+function beforeShowHref(el, elS) {
+    elS.find('.drop-content-photo .inside-padd').prepend('<span class="helper"></span>')
+}

@@ -62,3 +62,5 @@
 .funcs-buttons-WL-item{margin-bottom: 5px;}
 .funcs-buttons-wishlist > [class*="btn-"]{margin-right: 10px;min-height: 18px;vertical-align: baseline;}
 .funcs-buttons-WL-item > [class*="btn-"]{margin-right: 10px;}
+
+.drop-wishlist{width: 300px;}
