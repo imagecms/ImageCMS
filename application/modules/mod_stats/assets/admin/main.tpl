@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/create" enctype="multipart/form-data" id="createDiscountForm">
-
-    </form>
+    <div id="chartLineWithFocus" class='with-3d-shadow with-transitions'>
+        <svg style="height: 500px;"></svg>
+    </div>
 </section>
