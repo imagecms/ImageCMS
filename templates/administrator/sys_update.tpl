@@ -12,22 +12,29 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('back')}</span>
                     </a>
+                    <button onclick="Update.processBackup();"
+                            class="btn btn-small btn-primary pjax">
+                        <span class="icon-hdd"></span>
+                        Создать BackUp
+                    </button>
                     {if $new_version}
-                        <button onclick="Update.processUpdate()"
+                        <button onclick="Update.processUpdate();"
                                 class="btn btn-small pjax btn-success">
                             <span class="icon-refresh"></span>
                             Обновить
                         </button>
                     {/if}
-                    <a href="/admin/sys_update/backup"
-                       class="btn btn-small btn-primary pjax">
-                        <span class="icon-hdd"></span>
-                        Создать BackUp
-                    </a>
                 </div>
             </div>
         </div>
-
+        {if $error}
+            <div class="span3 pull-right">
+                <div class="alert alert-error">
+                    <h4>Ошибка!</h4>
+                    {echo $error}
+                </div>
+            </div>
+        {/if}
         <div class="progressDB" style="display: none;">
             <div class="progress progress-info progress-striped active">
                 <div id='progres' class="bar"></div>
@@ -142,7 +149,7 @@
                                             {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
                                         </td>
                                         <td class="span2">
-                                            <button class="btn btn-small btn-success"
+                                            <button class="btn btn-small btn-success pjax"
                                                     type="button"
                                                     onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
                                                 <i class="icon-refresh"></i>

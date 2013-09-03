@@ -114,15 +114,15 @@ class Update {
      * @return array return info about new relise or 0 if version is actual
      */
     public function getStatus() {
-//        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
-        $domen = $_SERVER['SERVER_NAME'];
-        $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
+        if (time() >= $this->getSettings('checkTime') + 60 * 60 * 10) {
+            $domen = $_SERVER['SERVER_NAME'];
+            $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
-        ShopCore::app()->SSettings->set("newVersion", $result);
-        ShopCore::app()->SSettings->set("checkTime", time());
-//        } else {
-//            $result = ShopCore::app()->SSettings->__get("newVersion");
-//        }
+            $this->setSettings(array("newVersion" => $result));
+            $this->setSettings(array("checkTime" => time()));
+        } else {
+            $result = $this->getSettings('newVersion');
+        }
         return unserialize($result);
     }
 
@@ -131,17 +131,18 @@ class Update {
      * @return array Array of hashsum files new version
      */
     public function getHashSum() {
-//        if (time() >= ShopCore::app()->SSettings->__get("checkTime") + 60 * 60 * 10) {
-        $domen = $_SERVER['SERVER_NAME'];
-        $key = ShopCore::app()->SSettings->__get("careKey");
-        $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
-        write_file('./application/backups/md5.txt', $result);
-        $result = (array) json_decode($result);
+        if (time() >= $this->getSettings('checkTime') + 6) {
+            $domen = $_SERVER['SERVER_NAME'];
+            $key = $this->getSettings('careKey');
+            $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
 
-        ShopCore::app()->SSettings->set("checkTime", time());
-//        } else {
-//            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
-//        }
+            write_file('./application/backups/md5.txt', $result);
+            $result = (array) json_decode($result);
+
+            $this->setSettings(array("checkTime" => time()));
+        } else {
+            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
+        }
 
         return $result;
     }
@@ -149,7 +150,7 @@ class Update {
     public function getUpdate() {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
-        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, ShopCore::app()->SSettings->__get("careKey"));
+        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, $this->getSettings('careKey'));
         $all_href = 'http://ninjatest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
@@ -235,7 +236,7 @@ class Update {
      * @param string $destination path to destination folder
      */
     public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
-        if (!file_exists($file))
+        if (!file_exists($file) || substr(decoct(fileperms($destination)), 2) != '777')
             return FALSE;
 
         $zip = new ZipArchive();
@@ -414,14 +415,6 @@ class Update {
         }
     }
 
-    public function get_settings() {
-
-    }
-
-    public function set_settings() {
-
-    }
-
     /**
      * database backup
      */
@@ -521,7 +514,6 @@ class Update {
             if ($query) {
                 if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
-                    var_dumps($query);
                     return FALSE;
                 } else {
 //                    return TRUE;
@@ -538,16 +530,35 @@ class Update {
         }
     }
 
-    private function getSettings() {
-        $settings = $this->ci->db->select('update')
+    public function getSettings($param = false) {
+        $settings = $this->ci->db
                 ->get('settings')
                 ->row_array();
-        $settings = unserialize($settings['settings']);
-        return $settings;
+        $settings = unserialize($settings['update']);
+
+        if (!$param)
+            return $settings;
+        else
+            return $settings[$param];
     }
 
-    private function setSettings($settings) {
-        return $this->ci->db->update('settings', array('update' => serialize($settings)));
+    /**
+     *
+     * @param array $settings
+     * @return bool
+     */
+    public function setSettings($settings) {
+        if (!is_array($settings))
+            return FALSE;
+        $s = (array) $this->getSettings();
+
+        foreach ($settings as $key => $value) {
+            $s[$key] = $value;
+        }
+
+        return $this->ci->db
+                        ->set('update', serialize($s))
+                        ->update('settings');
     }
 
 }
