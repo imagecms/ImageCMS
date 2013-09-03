@@ -9,6 +9,70 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
+        $partners = $this->db->get('mod_exchangeunfu_partners');
+        if ($partners) {
+            $partners = $partners->result_array();
+        } else {
+            $partners = array();
+        }
+
+        \CMSFactory\assetManager::create()
+                ->registerScript('admin')
+                ->setData('partners', $partners)
+                ->renderAdmin('partners');
+    }
+
+    public function updatePartner() {
+        $name = $this->input->post('name');
+        $code = $this->input->post('code');
+        $prefix = $this->input->post('prefix');
+        $region = $this->input->post('region');
+        $partner_id = $this->input->post('partner_id');
+
+        $this->db->where('id', $partner_id)
+                ->update('mod_exchangeunfu_partners', array(
+                    'name' => $name,
+                    'prefix' => $prefix,
+                    'region' => $region,
+                    'code' => $code,
+                    'external_id' => md5($name . $region)
+        ));
+    }
+
+    public function addPartner() {
+        $name = $this->input->post('name');
+        $code = $this->input->post('code');
+        $prefix = $this->input->post('prefix');
+        $region = $this->input->post('region');
+
+        $this->db->insert('mod_exchangeunfu_partners', array(
+            'name' => $name,
+            'prefix' => $prefix,
+            'region' => $region,
+            'code' => $code,
+            'external_id' => md5($name . $region))
+        );
+        
+        $id = $this->db->insert_id();
+        $partners = array(
+            'name' => $name,
+            'prefix' => $prefix,
+            'region' => $region,
+            'code' => $code,
+            'id' => $id
+        );
+
+        \CMSFactory\assetManager::create()
+                ->setData('partner', $partners)
+                ->render('onePartnerRow', true);
+    }
+
+    public function deletePartner() {
+        $partner_id = $this->input->post('partner_id');
+        $this->db->where('id', $partner_id)->delete('mod_exchangeunfu_partners');
+    }
+
+    public function settings() {
         $settings = $this->get1CSettings();
         \CMSFactory\assetManager::create()->setData(array('settings' => $settings, 'statuses' => $this->get_orders_statuses()))
                 ->renderAdmin('settings');
