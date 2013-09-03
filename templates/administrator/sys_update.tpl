@@ -17,6 +17,7 @@
                         <span class="icon-hdd"></span>
                         Создать BackUp
                     </button>
+
                     {if $new_version}
                         <button onclick="Update.processUpdate();"
                                 class="btn btn-small pjax btn-success">
@@ -27,14 +28,17 @@
                 </div>
             </div>
         </div>
-        {if $error}
-            <div class="span3 pull-right">
-                <div class="alert alert-error">
-                    <h4>Ошибка!</h4>
-                    {echo $error}
-                </div>
+
+    {if $error}
+        <div class="span3 pull-right"style="padding-top: 20px;">
+            <div class="alert alert-error alert-block">
+                <button type="button" class="close" data-dismiss="alert">X</button>
+                <h4>Ошибка!</h4>
+                {echo $error}
             </div>
-        {/if}
+        </div>
+    {/if}
+
         <div class="progressDB" style="display: none;">
             <div class="progress progress-info progress-striped active">
                 <div id='progres' class="bar"></div>
