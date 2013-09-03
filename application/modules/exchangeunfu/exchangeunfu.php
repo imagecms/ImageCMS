@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-        $this->core->error_404();
+
     }
 
     /**
@@ -125,6 +125,18 @@ class Exchangeunfu extends MY_Controller {
      * to initialize import start
      */
     private function command_catalog_checkauth() {
+        if ($this->config['usepassword'] == 'on') {
+            $this->check_password();
+        } else {
+            $this->checkauth();
+        }
+        exit();
+    }
+
+    /**
+     * checkauth for orders import
+     */
+    private function command_sale_checkauth() {
         if ($this->config['usepassword'] == 'on') {
             $this->check_password();
         } else {

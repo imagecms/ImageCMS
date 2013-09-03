@@ -434,18 +434,14 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 -- Структура таблиці `custom_fields_data`
 --
 
-CREATE TABLE IF NOT EXISTS `content_fields_data` (
+CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `locale` varchar(4) NOT NULL, 
-  `item_id` int(11) NOT NULL,
-  `item_type` varchar(15) NOT NULL,
-  `field_name` varchar(255) NOT NULL,
-  `data` text NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `item_id` (`item_id`),
-  KEY `item_type` (`item_type`),
-  KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+  `field_id` int(11) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `field_data` text,
+  `locale` varchar(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
 
 --
@@ -877,6 +873,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
   `siteinfo` text NOT NULL,
+  `update` text,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;

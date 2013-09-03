@@ -18,10 +18,11 @@ var currencySymbolJS = '{echo $CS}';
                 <button onclick="" type="button" class="btn btn-small action_on formSubmit submitButton" data-form="#editDiscountForm" data-action="tomain">
                     <i class="icon-check"></i>{lang('Save and exit')}
                 </button>
+                {echo create_language_select($languages, $locale, "/admin/components/init_window/mod_discount/edit/" . $discount['id'])}
             </div>
         </div>
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" enctype="multipart/form-data" id="editDiscountForm">
+    <form method="post" action="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}/{echo $locale}" enctype="multipart/form-data" id="editDiscountForm">
         <table class="table table-striped table-bordered table-condensed content_big_td module-cheep">
             <thead>
                 <tr>

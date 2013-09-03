@@ -11,9 +11,11 @@ class Discount_model_front extends CI_Model {
 
     public function get_discount() {
 
+        $locale = \MY_Controller::getCurrentLocale();
         $time = time();
-        $sql = "select *, id as ids
+        $sql = "select *, mod_shop_discounts.id as ids, mod_shop_discounts.id as id
                 from mod_shop_discounts
+                left join mod_shop_discounts_i18n on mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '$locale'
                 where (max_apply > count_apply 
                         or max_apply is null 
                         or (max_apply is null and count_apply is null)
@@ -26,6 +28,7 @@ class Discount_model_front extends CI_Model {
                            or date_begin is null and date_end = '0')
                       and 
                        active = 1";
+        
         
         
 
@@ -85,6 +88,7 @@ class Discount_model_front extends CI_Model {
         return true;
         
     }
+    
     
    
 
