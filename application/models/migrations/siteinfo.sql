@@ -1,7 +1,7 @@
 -- 30.08.2013
 
 -- update for siteinfo 
-ALTER TABLE  `settings` ADD  `siteinfo` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+ALTER TABLE  `settings` ADD  `siteinfo` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 UPDATE `settings` SET  `siteinfo` = 'a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}' WHERE  `settings`.`id` = 2;
 
 -- update for admin's email about order (addind variables $products$, $deliveryPrice$ and $checkLink$
