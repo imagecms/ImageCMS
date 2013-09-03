@@ -39,7 +39,10 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                <!--    vertical-menu || horizontal-menu-->
+                <div class="frame-menu-main horizontal-menu">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                </div>
             </div>
             <div class="content">
                 {$content}
@@ -53,8 +56,6 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
                 function downloadJSAtOnload() {
