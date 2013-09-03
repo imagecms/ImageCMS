@@ -899,6 +899,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
   `siteinfo` text NOT NULL,
+  `update` text,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
