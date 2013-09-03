@@ -67,7 +67,7 @@ class ImportXML {
     }
 
     public function index() {
-
+        
     }
 
     public function getXML($file) {
@@ -83,7 +83,6 @@ class ImportXML {
     public function import($file = 'export.xml') {
         $this->getXML($this->pass . 'export.xml');
 //        $start = microtime(true);
-
         //load db data
         $this->prod = load_product();
         $this->cat = load_cat();
@@ -153,22 +152,24 @@ class ImportXML {
         foreach ($this->xml->СписокНоменклатуры as $product) {
             $searchedProduct = is_prod($product->ID, $this->prod);
 
-            if (!$searchedProduct) {
+            if (!$searchedProduct && isset($product->IDРодитель)) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
                 $data['external_id'] = $product->ID . "";
 
-                if (isset($product->IDРодитель)) {
-                    $categ = is_cat($product->IDРодитель, $this->cat);
-                    if ($categ)
-                        $categoryId = $categ['id'];
-                    else
-                        return false;
+
+                $categ = is_cat($product->IDРодитель, $this->cat);
+                if ($categ) {
+                    $categoryId = $categ['id'];
                     $data['category_id'] = $categoryId;
+                }else{
+                     $data['category_id'] = 0;
+                     $categoryId = 0;
                 }
+                    
 
-
+//                $data['category_id'] = 0;
                 $data['active'] = true;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
@@ -188,7 +189,7 @@ class ImportXML {
                     $data['url'] = translit_url($product->Наименование) . '-' . $product->Ид;
                 } else {
                     $data['url'] = translit_url($product->Наименование);
-                    $this->urls[] .= $data['url'];
+//                    $this->urls[] .= $data['url'];
                 }
 
                 //inserting prepared data to shop_products table
@@ -239,11 +240,12 @@ class ImportXML {
 
                 if (isset($product->IDРодитель)) {
                     $categ = is_cat($product->IDРодитель, $this->cat);
-                    if ($categ)
+                    if ($categ) {
                         $categoryId = $categ['id'];
+                        $data['category_id'] = $categoryId;
+                    }
                     else
-                        return false;
-                    $data['category_id'] = $categoryId;
+                        $data['category_id'] = 0;
                 }
                 $data['updated'] = time();
                 $data['id'] = $searchedProduct['id'];
@@ -280,13 +282,12 @@ class ImportXML {
         //update products_i18n
         $this->update = $update_products_i18n;
         $this->updateData($this->products_table . "_i18n", 'id');
-        //update products_variants
+//        //update products_variants
         $this->update = $update_product_variants;
         $this->updateData($this->product_variants_table, 'product_id');
-
-        //insert products
+//        //insert products
         $this->insertData($this->products_table);
-
+//
         $inserted_products = load_product();
 
         //prepare insert data
@@ -312,20 +313,21 @@ class ImportXML {
             }
         }
         //insert products_i18n
+//        var_dumps($insert_products_i18n);
         $this->insert = $insert_products_i18n;
         $this->insertData($this->products_table . '_i18n');
-
-        //insert products_categories
+//
+//        //insert products_categories
         $this->insert = $insert_categories;
         $this->insertData('shop_product_categories');
-
-        //insert producs variants
+//
+//        //insert producs variants
         $this->insert = $insert_product_variants;
         $this->insertData($this->product_variants_table);
 
         $inserted_product_variants = $this->ci->db->get('shop_product_variants')->result_array();
-
-        //prepare insert data
+//
+//        //prepare insert data
         foreach ($inserted_product_variants as $value) {
             foreach ($insert_product_variants_i18n as $key => $variant_i18n) {
                 if ($variant_i18n['external_id'] == $value['external_id']) {
@@ -335,7 +337,7 @@ class ImportXML {
             }
         }
 
-        //insert products_variants_i18n
+//        //insert products_variants_i18n
         $this->insert = $insert_product_variants_i18n;
         $this->insertData($this->product_variants_table . '_i18n');
     }
