@@ -22,6 +22,9 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
+        if (!file_exists('md5.txt'))
+            write_file('md5.txt', json_encode($this->update->parse_md5()));
+
         if (!extension_loaded('soap')) {
             exit;
         }
