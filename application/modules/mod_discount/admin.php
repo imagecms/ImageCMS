@@ -95,7 +95,7 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table 'mod_shop_discounts'
                 $data = array(
-                    'name' => $postArray['name'],
+                   // 'name' => $postArray['name'],
                     'key' => $postArray['key'],
                     'max_apply' => $postArray['max_apply'],
                     'type_value' => $postArray['type_value'],
@@ -111,6 +111,15 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
+                
+                $data_locale = array(
+                    'id' => $discountId,
+                    'locale' => \MY_Controller::getCurrentLocale(),
+                    'name' => $postArray['name']
+                );
+                
+                 $this->discount_model_admin->insertDataToDB('mod_shop_discounts_i18n', $data_locale);
+                
 
                 //If was error when inserted in the table 'mod_shop_discounts' then exit
                 if ($discountId != false) {
@@ -150,8 +159,10 @@ class Admin extends \ShopAdminController {
     /**
      * Edit discount   
      */
-    public function edit($id) {
+    public function edit($id, $locale = null) {
 
+        if (null === $locale)
+            $locale = \MY_Controller::getCurrentLocale ();
         if ($this->input->post()) {
             $this->form_validation->set_rules($this->discount_model_admin->rules());
             $postArray = $this->input->post();
@@ -223,7 +234,7 @@ class Admin extends \ShopAdminController {
                 $typeDiscountData = $postArray[$typeDiscount];
 
                 // Insert data
-                if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData)) {
+                if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData, $locale)) {
                     showMessage('Изменения сохранены!');
                 }
                 //Return to list of discounts, if user clicked 'save and exit'
@@ -238,7 +249,7 @@ class Admin extends \ShopAdminController {
 
             //Get list of user roles and info about current discount
             $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
-            $discountData = $this->discount_model_admin->getDiscountAllDataById($id);
+            $discountData = $this->discount_model_admin->getDiscountAllDataById($id, $locale);
 
             //if can't get info about discount from database then 404 error 
             if ($discountData == false)
@@ -259,6 +270,8 @@ class Admin extends \ShopAdminController {
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
                 'filterQuery' => $_SESSION['QueryDiscountList'],
                 'categories' => ShopCore::app()->SCategoryTree->getTree(),
+                'languages' => $this->db->get('languages')->result_array(),
+                'locale' => $locale
             );
 
             //Render template and set data
