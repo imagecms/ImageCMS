@@ -1353,7 +1353,14 @@ var ie = jQuery.browser.msie,
                                     $(document).trigger({type: 'drop.successHtml', el: elSetSource, datas: data})
                                     if (elSet.callback != undefined)
                                         eval(elSet.callback)($this, data, elSetSource);
-                                    body.append(data);
+                                    if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
+                                        if (!$.exists('.for-center')) {
+                                            body.append('<div class="for-center" style="position: absolute;left: 0;top: 0;z-index: 1103;width: 100%;height: 100%;dispaly:none;"></div>');
+                                        }
+                                        $('.for-center').append(data)
+                                    }
+                                    else
+                                        body.append(data)
                                 }
                                 elSetSource = $(elSet.drop);
                                 methods.init.call(elSetSource.find('[data-drop]'), $.extend({}, optionsDrop));
@@ -1372,8 +1379,17 @@ var ie = jQuery.browser.msie,
                             newConfirm = elSet.confirm || confirm,
                             newAlways = elSet.always || always;
                     if ($.existsN(elSetSource) && !newModal && !newAlways) {
-                        if (!$.existsN(elSetSource.parent('body')) && elSet.place != 'inherit')
-                            body.append(elSetSource)
+                        if (!$.existsN(elSetSource.parent('.for-center')) && elSet.place != 'inherit')
+                        {
+                            if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
+                                if (!$.exists('.for-center')) {
+                                    body.append('<div class="for-center" style="position: absolute;left: 0;top: 0;z-index: 1103;width: 100%;height: 100%;dispaly:none;"></div>');
+                                }
+                                $('.for-center').append(elSetSource)
+                            }
+                            else
+                                body.append(elSetSource)
+                        }
                         methods.showDrop($this, e, optionsDrop, false);
                     }
                     else if ((elSet.source || newAlways)) {
@@ -1394,6 +1410,7 @@ var ie = jQuery.browser.msie,
             exit.live('click', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
+            return $(this);
         },
         closeModal: function() {
             $('[data-elrun]:visible').each(function() {
@@ -1401,32 +1418,32 @@ var ie = jQuery.browser.msie,
                     methods.closeDrop($(this))
             })
         },
-        showDrop: function($this, e, settings, isajax) {
+        showDrop: function($this, e, set, isajax) {
             if (!e)
                 var e = window.event;
-            var settings = !settings ? optionsDrop : settings,
+            var set = !set ? optionsDrop : set,
                     isajax = !isajax ? false : true,
                     elSet = $this.data(),
-                    place = elSet.place || settings.place,
-                    placement = elSet.placement || settings.placement,
-                    $thisEOff = elSet.effectOff || settings.effoff,
-                    $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || settings.duration,
-                    $thisA = elSet.animate != undefined ? elSet.animate : settings.animate,
-                    $thisEOn = elSet.effectOn || settings.effon,
-                    overlayColor = elSet.overlaycolor || settings.overlayColor,
-                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || settings.overlayOpacity,
-                    modal = elSet.modal || settings.modal,
-                    timeclosemodal = elSet.timeclosemodal || settings.timeclosemodal,
-                    confirm = elSet.confirm || settings.confirm,
-                    moreoneNC = elSet.moreoneNC || settings.moreoneNC,
-                    dropContent = elSet.dropContent || settings.dropContent,
-                    before = elSet.before || settings.before,
-                    after = elSet.after || settings.after,
-                    close = elSet.close || settings.close,
-                    closed = elSet.closed || settings.closed,
+                    place = elSet.place || set.place,
+                    placement = elSet.placement || set.placement,
+                    $thisEOff = elSet.effectOff || set.effoff,
+                    $thisD = elSet.duration != undefined ? elSet.duration.toString() : elSet.duration || set.duration,
+                    $thisA = elSet.animate != undefined ? elSet.animate : set.animate,
+                    $thisEOn = elSet.effectOn || set.effon,
+                    overlayColor = elSet.overlaycolor || set.overlayColor,
+                    overlayOpacity = elSet.overlayopacity != undefined ? elSet.overlayopacity.toString() : elSet.overlayopacity || set.overlayOpacity,
+                    modal = elSet.modal || set.modal,
+                    timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
+                    confirm = elSet.confirm || set.confirm,
+                    moreoneNC = elSet.moreoneNC || set.moreoneNC,
+                    dropContent = elSet.dropContent || set.dropContent,
+                    before = elSet.before || set.before,
+                    after = elSet.after || set.after,
+                    close = elSet.close || set.close,
+                    closed = elSet.closed || set.closed,
                     elSetSource = $(elSet.drop),
                     $thisSource = elSet.drop;
-            $this.parent().addClass(activeClass);
+            $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
             $($thisSource).data({
                 'effect-off': $thisEOff,
                 'elrun': $thisSource,
@@ -1468,21 +1485,33 @@ var ie = jQuery.browser.msie,
                         if (($(this).data('overlayOpacity') != '0' && $(this).data('moreoneNC') != 'true'))
                             objJ = objJ.add($(this));
                     })
-                    methods.closeDrop(objJ);
+                    if ($.existsN(objJ))
+                        methods.closeDrop(objJ);
                 }
 
                 if (e.button == undefined && place != "center")
                     wnd.scrollTop($this.offset().top);
                 var wndW = wnd.width();
+
                 if (elSetSource.actual('width') > wndW)
                     elSetSource.css('width', wndW - 40);
                 else
                     elSetSource.removeAttr('style');
+
                 if (place == 'noinherit')
                     methods.positionDrop($this, placement, place);
                 var dC = elSetSource.find(elSetSource.data('dropContent')).first();
                 if (place == 'center')
                     methods.dropCenter(elSetSource);
+
+                var dropTimeout = '';
+                wnd.on('resize.drop', function() {
+                    clearTimeout(dropTimeout);
+                    dropTimeout = setTimeout(function() {
+                        methods.dropCenter(elSetSource)
+                    }, 300)
+                });
+
                 if (condOverlay) {
                     optionsDrop.dropOver.show().unbind('click.drop').on('click.drop', function(e) {
                         e.stopPropagation();
@@ -1490,23 +1519,43 @@ var ie = jQuery.browser.msie,
                     })
                 }
                 elSetSource.addClass(place);
-                elSetSource[$thisEOn]($thisD, function(e) {
-                    var $this = $(this);
-                    $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
-                    $this.addClass(activeClass);
-                    if (!confirm && modal && timeclosemodal)
-                        setTimeout(function() {
-                            methods.closeDrop($this)
-                        }, timeclosemodal)
-                    if (place == 'center' && !(elSet.modal || modal)) {
-                        if ($(document).height() - wnd.height() > 0) {
-                            optionsDrop.wST = wnd.scrollTop();
-                            methods.scrollEmulate();
-                        }
+                function show() {
+                    elSetSource[$thisEOn]($thisD, function(e) {
+                        var $this = $(this);
+                        $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
+                        $this.addClass(activeClass);
+                        if (!confirm && modal && timeclosemodal)
+                            setTimeout(function() {
+                                methods.closeDrop($this)
+                            }, timeclosemodal)
+                        after($this, elSetSource, isajax);
+                    });
+                    $(document).trigger({'type': 'drop.show', el: elSetSource})
+                }
+                if (place == 'center' && !(elSet.modal || modal)) {
+                    $('.for-center').stop().show();
+                    if ($(document).height() - wnd.height() > 0) {
+                        optionsDrop.wST = wnd.scrollTop();
+                        methods.scrollEmulate();
                     }
-                    after($this, elSetSource, isajax);
-                });
-                $(document).trigger({'type': 'drop.show', el: elSetSource})
+                }
+                if (elSet.href != undefined)
+                    $('<img src="' + elSet.href + '">').load(function() {
+                        var $this = $(this),
+                                place = elSet.placeHref || set.hrefOptions.placeHref,
+                                bS = elSet.beforeShowHref || set.hrefOptions.beforeShowHref,
+                                cB = elSet.callback || set.hrefOptions.callback;
+                        $(place).empty();
+                        $this.appendTo(place);
+                        eval(bS)($this, elSetSource);
+                        show();
+                        eval(cB)(elSet, elSetSource, $this);
+                        $this.unbind('load');
+                    });
+                else {
+                    show();
+                }
+
             }
             body.add($('iframe').contents().find('body')).unbind('click.drop').unbind('keydown.drop').on('click.drop', function(e) {
                 if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {
@@ -1554,8 +1603,10 @@ var ie = jQuery.browser.msie,
                                 }
                             }
                             optionsDrop.dropOver = $('.overlayDrop');
-                            if (optionsDrop.dropOver.is(':visible'))
-                                methods.scrollEmulateRemove();
+                            if (optionsDrop.dropOver.is(':visible') && condOverlay)
+                                methods.scrollEmulateRemove($thisD);
+
+                            $('.for-center').fadeOut($thisD);
                             $this[$thisEOff]($thisD, function() {
                                 $(this).removeAttr('style');
                                 if ($this.data('closed') != undefined)
@@ -1571,12 +1622,20 @@ var ie = jQuery.browser.msie,
         dropCenter: function(elSetSource) {
             if (elSetSource.data('place') == 'center') {
                 var method = elSetSource.data('animate') ? 'animate' : 'css';
-                elSetSource.css({'bottom': 'auto', 'right': 'auto'})[method]({
-                    'top': (body.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
-                    'left': (body.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
-                }, {
-                    queue: false
-                });
+                console.log(elSetSource.data());
+                if (!elSetSource.data('modal'))
+                    elSetSource[method]({
+                        'margin-top': (body.height() - elSetSource.actual('outerHeight')) / 2
+                    }, {
+                        queue: false
+                    });
+                else
+                    elSetSource.css({'bottom': 'auto', 'right': 'auto'})[method]({
+                        'top': (body.height() - elSetSource.actual('outerHeight')) / 2 + wnd.scrollTop(),
+                        'left': (body.width() - elSetSource.actual('outerWidth')) / 2 + wnd.scrollLeft()
+                    }, {
+                        queue: false
+                    });
             }
             return elSetSource;
         },
@@ -1619,15 +1678,13 @@ var ie = jQuery.browser.msie,
                         'bottom': body.height() - $thisT + dataSourceH + $thisH
                     });
             }
-            var dropTimeout = '';
-            wnd.on('resize.drop', function() {
-                clearTimeout(dropTimeout);
-                dropTimeout = setTimeout(function() {
-                    methods.dropCenter(elSetSource)
-                }, 300)
-            });
         },
         scrollEmulate: function() {
+            try {
+                clearInterval(scrollemulatetimeout);
+            } catch (err) {
+            }
+            $('.for-center').css('top', wnd.scrollTop());
             var conDropOver = optionsDrop.dropOver != undefined;
             body.addClass('isScroll');
             body.prepend('<div class="scrollEmulation" style="position: absolute;right: 0;top: ' + wnd.scrollTop() + 'px;height: 100%;width: 17px;overflow-y: scroll;z-index:10000;"></div>');
@@ -1636,15 +1693,18 @@ var ie = jQuery.browser.msie,
                     return false;
                 });
         },
-        scrollEmulateRemove: function() {
-            var conDropOver = optionsDrop.dropOver != undefined;
-            body.removeClass('isScroll');
-            wnd.scrollTop(optionsDrop.wST);
+        scrollEmulateRemove: function(dur) {
+            var dur = !dur ? 0 : dur,
+                    conDropOver = optionsDrop.dropOver != undefined;
             if (conDropOver)
                 optionsDrop.dropOver.hide();
-            $('.scrollEmulation').remove();
-            if (isTouch && conDropOver)
-                optionsDrop.dropOver.unbind('touchmove.drop');
+            scrollemulatetimeout = setTimeout(function() {
+                body.removeClass('isScroll');
+                wnd.scrollTop(optionsDrop.wST);
+                $('.scrollEmulation').remove();
+                if (isTouch && conDropOver)
+                    optionsDrop.dropOver.unbind('touchmove.drop');
+            }, dur)
         }
     };
     $.fn.drop = function(method) {
@@ -2378,7 +2438,7 @@ var Shop = {
         }
     }
 };
-wishList = {
+var wishList = {
     all: function() {
         return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
     },

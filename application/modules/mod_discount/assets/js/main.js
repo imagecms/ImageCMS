@@ -14,7 +14,10 @@ function get_discount() {
             }
         }
     });
-    Shop.Cart.discount = _discount;
+
+    if (Shop.Cart.discount != undefined)
+        Shop.Cart.discount = _discount;
+
 }
 
 function load_certificat() {
@@ -31,7 +34,9 @@ function load_certificat() {
                 $('#gift').html(tpl)
             });
             $('#giftCertPrice').html(gift.value);
+
             $('#giftCertSpan').show();
+
         }
     }
 
@@ -54,7 +59,9 @@ function applyGift(el) {
         }
     });
 
-    Shop.Cart.gift = gift;
+    if (Shop.Cart.discount != undefined)
+        Shop.Cart.gift = gift;
+
     recountCartPage();
     return false;
 }
