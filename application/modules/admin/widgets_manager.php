@@ -27,7 +27,7 @@ class Widgets_manager extends BaseAdminController {
     public function index() {
 
         if (!$this->_is_wratible()) {
-            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>');
+            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
         }
@@ -77,7 +77,7 @@ class Widgets_manager extends BaseAdminController {
 
     public function create() {
         if (!$this->_is_wratible()) {
-            showMessage(lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>', '', 'r');
+            showMessage(lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>', '', 'r');
             exit;
         }
         //cp_check_perm('widget_create');
@@ -92,10 +92,10 @@ class Widgets_manager extends BaseAdminController {
         }
 
         if ($type == 'module') {
-            $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('module', lang("Module","admin"), 'trim|required');
-            $this->form_validation->set_rules('method', lang("Method","admin"), 'trim|required');
+            $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('module', lang("Module", "admin"), 'trim|required');
+            $this->form_validation->set_rules('method', lang("Method", "admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -145,10 +145,10 @@ class Widgets_manager extends BaseAdminController {
                     $this->$module->$m('install_defaults', $data);
                 }
 
-                $this->lib_admin->log(lang("Created a widget","admin") . $data['name']);
+                $this->lib_admin->log(lang("Created a widget", "admin") . $data['name']);
 
                 $conf_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '_form.tpl';
-                showMessage(lang("Widget created","admin") . '.');
+                showMessage(lang("Widget created", "admin") . '.');
 
                 if (file_exists($conf_file))
                     pjax('/admin/widgets_manager/edit/' . $data['id']);
@@ -161,28 +161,42 @@ class Widgets_manager extends BaseAdminController {
             }
         }elseif ($type == 'html') {
 
-            $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
-            $this->form_validation->set_rules('html_code', lang("HTML","admin"), 'trim|required');
+
+            $locale_tab = $this->db->where('default', 1)->get('languages')->row();
+            $locale = $locale_tab->identif;
+
+            $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('html_code', lang("HTML", "admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = array(
                     'description' => $this->input->post('desc'),
-                    'data' => $this->input->post('html_code'),
+                    //'data' => $this->input->post('html_code'),
                     'name' => $this->input->post('name'),
                     'type' => $type,
-                    'created' => time()
+                    'created' => time(),
+                        //'locale' => $locale
                 );
 
-                $this->lib_admin->log(lang("Created a widget","admin") . $data['name']);
+                $this->lib_admin->log(lang("Created a widget", "admin") . $data['name']);
 
                 $this->db->insert('widgets', $data);
 
                 $findId = $this->db->insert_id();
 
-                showMessage(lang("Widget created","admin") . '.');
+                $data = array(
+                    'id' => $findId,
+                    'data' => $this->input->post('html_code'),
+                    'locale' => $locale
+                );
+
+                $this->db->insert('widget_i18n', $data);
+
+
+                showMessage(lang("Widget created", "admin") . '.');
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 //pjax('/admin/widgets_manager/edit_html_widget/'.$findId);
@@ -197,7 +211,7 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_create');
 
         if (!$this->_is_wratible()) {
-            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets","admin") . '<b>' . $this->widgets_path . '</b>');
+            $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
         }
@@ -223,10 +237,64 @@ class Widgets_manager extends BaseAdminController {
                 $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('show_settings', $widget));
             } elseif ($widget['type'] == 'html') {
-
+                
             }
         } else {
             show_error(lang("Error: widget not found!"));
+        }
+    }
+
+    public function update_html_widget($id, $locale) {
+
+        $widget = $this->get($id);
+        if ($widget->num_rows() == 1) {
+            $widget = $widget->row_array();
+            
+
+            $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
+            $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('html_code', lang("HTML", "admin"), 'trim|required');
+
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), false, 'r');
+                return FALSE;
+            }
+
+            $data = array(
+                'description' => $_POST['desc'],
+                //'data' => $this->input->post('html_code'),
+                'name' => $this->input->post('name'),
+                    //'type' => $type,
+                    //'created' => time()
+            );
+
+            $this->db->where('id', $id);
+            $this->db->update('widgets', $data);
+
+            $sql = "select * from widget_i18n where id = '$id' and locale = '$locale'";
+            if ($this->db->query($sql)->num_rows() > 0) {
+                $data = array(
+                    'data' => $this->input->post('html_code'),
+                );
+                $this->db->where('id', $id);
+                $this->db->update('widget_i18n', $data);
+            } else {
+                $data = array(
+                    'id' => $id,
+                    'data' => $this->input->post('html_code'),
+                    'locale' => $locale
+                );
+
+                $this->db->insert('widget_i18n', $data);
+            }
+
+
+            $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
+
+            //updateDiv('page', site_url('admin/widgets_manager'));
+            showMessage(lang("Changes has been saved", "admin"));
+            if ($_POST['action'] == 'tomain')
+                pjax('/admin/widgets_manager/index');
         }
     }
 
@@ -240,8 +308,8 @@ class Widgets_manager extends BaseAdminController {
             $widget = $widget->row_array();
 
             if ($update_info == 'info') {
-                $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
+                $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
+                $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -256,9 +324,9 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
-                $this->lib_admin->log(lang("Changed a widget","admin") . $data['name']);
+                $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
 
-                showMessage(lang("Changes has been saved","admin"));
+                showMessage(lang("Changes has been saved", "admin"));
                 if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 return TRUE;
@@ -271,34 +339,34 @@ class Widgets_manager extends BaseAdminController {
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('update_settings', $widget));
             } elseif ($widget['type'] == 'html') {
 
-                $this->form_validation->set_rules('desc', lang("Description ","admin"), 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', lang("Name","admin"), 'trim|required|alpha_dash');
-                $this->form_validation->set_rules('html_code', lang("HTML","admin"), 'trim|required');
-
-                if ($this->form_validation->run($this) == FALSE) {
-                    showMessage(validation_errors(), false, 'r');
-                    return FALSE;
-                }
-
-                $data = array(
-                    'description' => $_POST['desc'],
-                    'data' => $this->input->post('html_code'),
-                    'name' => $this->input->post('name'),
-                        //'type' => $type,
-                        //'created' => time()
-                );
-
-                $this->db->where('id', $id);
-                $this->db->update('widgets', $data);
-
-                $this->lib_admin->log(lang("Changed a widget","admin") . $data['name']);
-
-                //updateDiv('page', site_url('admin/widgets_manager'));
-                showMessage(lang("Changes has been saved","admin"));
-                if ($_POST['action'] == 'tomain')
-                    pjax('/admin/widgets_manager/index');
+//                $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
+//                $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+//                $this->form_validation->set_rules('html_code', lang("HTML", "admin"), 'trim|required');
+//
+//                if ($this->form_validation->run($this) == FALSE) {
+//                    showMessage(validation_errors(), false, 'r');
+//                    return FALSE;
+//                }
+//
+//                $data = array(
+//                    'description' => $_POST['desc'],
+//                    //'data' => $this->input->post('html_code'),
+//                    'name' => $this->input->post('name'),
+//                        //'type' => $type,
+//                        //'created' => time()
+//                );
+//
+//                $this->db->where('id', $id);
+//                $this->db->update('widgets', $data);
+//
+//                $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
+//
+//                //updateDiv('page', site_url('admin/widgets_manager'));
+//                showMessage(lang("Changes has been saved", "admin"));
+//                if ($_POST['action'] == 'tomain')
+//                    pjax('/admin/widgets_manager/index');
             }
-        }else {
+        } else {
             show_error(lang("Error: widget not found!"));
         }
     }
@@ -328,9 +396,9 @@ class Widgets_manager extends BaseAdminController {
             if (file_exists(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl')) {
                 @unlink(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $n . '.tpl');
             }
-            $this->lib_admin->log(lang("Deleted a widget","admin") . $n);
+            $this->lib_admin->log(lang("Deleted a widget", "admin") . $n);
         }
-        showMessage(lang("Widget successfully deleted","admin"));
+        showMessage(lang("Widget successfully deleted", "admin"));
         pjax('/admin/widgets_manager/index');
     }
 
@@ -338,17 +406,37 @@ class Widgets_manager extends BaseAdminController {
         return $this->db->get_where('widgets', array('id' => $id));
     }
 
-    public function edit_html_widget($id) {
+    public function edit_html_widget($id, $locale = null) {
+
+        if (null == $locale) {
+            $locale_tab = $this->db->where('default', 1)->get('languages')->row();
+            $locale = $locale_tab->identif;
+        }
+
+        $lang = $this->db->get('languages')->result_array();
         //cp_check_perm('widget_access_settings');
 
-        $widget = $this->get($id);
-
+        $widget = $this->get($id)->row_array();
+        
+        $sql = "select * from widget_i18n where id = '$id' and locale = '$locale'";
+        $w_i18 = $this->db->query($sql)->row_array();
+        
+        
+        
+        $widget['data'] = $w_i18['data'];
+        
+        
         /** Init Event. Pre Create Category */
         \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetHTML:preUpdate');
         \CMSFactory\Events::runFactory();
 
+
+
+
+        $this->template->assign('locale', $locale);
+        $this->template->assign('languages', $lang);
         $this->template->add_array(array(
-            'widget' => $widget->row_array()
+            'widget' => $widget
         ));
 
         $this->template->show('widget_edit_html', FALSE);
@@ -451,7 +539,7 @@ class Widgets_manager extends BaseAdminController {
 
     private function get_module_name($dir) {
         if ($dir == 'core') {
-            return lang("Core","admin");
+            return lang("Core", "admin");
         }
 
         $info = $this->load->module('admin/components')->get_module_info($dir);

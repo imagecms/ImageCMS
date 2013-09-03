@@ -1,4 +1,4 @@
-var wishList = $.extend({
+var wishList = {
     itemWL: '.item-WL',
     btnBuy: '.btnBuyWishList',
     countProdsWL: '.countProdsWL',
@@ -22,8 +22,16 @@ var wishList = $.extend({
             wishList.items = _.without(wishList.items, key);
             localStorage.setItem('wishList', JSON.stringify(wishList.items));
         }
+    },
+    all: function() {
+        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+    },
+    sync: function() {
+        $.post('/wishlist/wishlistApi/sync', function(data) {
+            localStorage.setItem('wishList', data);
+        })
     }
-}, wishList);
+};
 function deleteImage(el) {
     el.parent().remove();
     var img = $('#wishlistphoto img');
@@ -169,8 +177,7 @@ $(document).live('scriptDefer', function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
-        $('.' + genObj.toWishlist).unbind('click.drop').data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
-            $.drop('showDrop')($('[data-drop="#notification"]'), e, '', true);
+        $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
             $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}});
         });
     }

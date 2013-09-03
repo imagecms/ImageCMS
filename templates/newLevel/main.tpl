@@ -53,19 +53,22 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script src="{$THEME}js/_jquery.imagecms.shop.js?{echo rand()}"></script>
-        <script src="{$THEME}js/_scripts.js?{echo rand()}"></script>
+        <script type="text/javascript" src="{$THEME}js/_jquery.imagecms.shop.js"></script>
+        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         {literal}
             <script>
                 function downloadJSAtOnload() {
-                    var cL = 0;
-                    $.map(['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'], function(i, n) {
+                    var cL = 0,
+                            scripts = ['raphael-min', 'sp_ll_jc_mw_icms_us_scripts'],
+                            scriptsL = scripts.length;
+
+                    $.map(scripts, function(i, n) {
                         var element = document.createElement("script");
                         element.src = theme + 'js/' + i + '.js?{/literal}{echo rand()}{literal}';
                         document.body.appendChild(element);
                         $(element).load(function() {
                             cL++;
-                            if (cL == 2) {
+                            if (cL == scriptsL) {
                                 $(document).trigger({'type': 'scriptDefer'});
                                 init();
                             }

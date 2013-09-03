@@ -89,6 +89,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function make_import() {
+        
         $this->import->import();
     }
 
@@ -407,6 +408,10 @@ class Exchangeunfu extends MY_Controller {
                 'constraint' => 100
             ),
             'partner_external_id' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ),
+            'external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
             )
