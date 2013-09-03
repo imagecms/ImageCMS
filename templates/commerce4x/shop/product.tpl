@@ -11,6 +11,8 @@
 *
 */
 #}
+
+
 {$Comments = $CI->load->module('comments')->init($model)}
 <article class="container">
     <!-- Making bread crumbs -->
@@ -45,6 +47,8 @@
                     <!-- End. Show additional images -->
                 </ul>
             </div>
+                    
+                     
             <!--Photo block for main product end-->
             <div class="span7">
                 <div class="description" data-rel="frameP">
