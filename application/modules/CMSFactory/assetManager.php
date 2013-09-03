@@ -67,15 +67,16 @@ class assetManager {
      * @author Kaero
      * @param type $name
      * @param type $useCompress
+     * @param type $position
      * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function registerScript($name, $useCompress = FALSE) {
+    public function registerScript($name, $useCompress = FALSE, $position = 'after') {
         /** Start. Load JS file into template */
         if ($useCompress)
-            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', 'after');
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs(file_get_contents($this->buildScriptPath($name))) . '</script>', $position);
         else
-            \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), 'after');
+            \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), $position);
         return $this;
     }
 
@@ -95,15 +96,16 @@ class assetManager {
      * @author a.gula
      * @param type $script
      * @param type $useCompress
+     * @param type $position
      * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
-    public function registerJsScript($script, $useCompress = FALSE) {
+    public function registerJsScript($script, $useCompress = FALSE, $position = 'after') {
         /** Start. Load JS script into template */
         if ($useCompress)
-            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs($script) . '</script>', 'after');
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $this->compressJs($script) . '</script>', $position);
         else
-            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $script . '</script>', 'after');
+            \CI_Controller::get_instance()->template->registerJsScript('<script>' . $script . '</script>', $position);
 
         return $this;
     }
@@ -170,7 +172,7 @@ class assetManager {
         }
     }
 
-    /** 
+    /**
      * Render public view
      * @param string $tpl Template file name
      * @return void
@@ -198,7 +200,7 @@ class assetManager {
         }
     }
 
-    /** 
+    /**
      * fetch public view
      * @param string $tpl Template file name
      * @return void
@@ -222,7 +224,7 @@ class assetManager {
         }
     }
 
-    /** 
+    /**
      * fetch admin view
      * @param string $tpl Template file name
      * @return void
