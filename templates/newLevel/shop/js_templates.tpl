@@ -826,8 +826,8 @@
                     </button>
                 </div>
                 <div class="btn-cancel">
-                    <button type="button">
-                        <spna class="text-el d_l_1" data-closed="closed-js">Отменить</spna>
+                    <button type="button" data-closed="closed-js">
+                        <spna class="text-el d_l_1">Отменить</spna>
                     </button>
                 </div>
             </div>
