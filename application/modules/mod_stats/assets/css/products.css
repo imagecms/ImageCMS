@@ -1,0 +1,20 @@
+
+
+#stats_products_container {
+    margin: 15px;
+    
+}
+
+#diagram-container {
+    background: #719500;
+    min-height: 300px;
+}
+
+#options-container {
+    background: #0287bb;
+    min-height: 300px;
+}
+
+#stats_products_container {
+    min-height: 350px;
+}

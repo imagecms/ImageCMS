@@ -8,13 +8,14 @@
                 <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
                 <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit','admin')}</button>
+                {echo create_language_select($languages, $locale, "/admin/widgets_manager/edit_html_widget/".$widget.id)}
             </div>
         </div>                            
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
-                <form method="post" action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" class="form-horizontal" id="wid_ed_form">
+                <form method="post" action="{$BASE_URL}admin/widgets_manager/update_html_widget/{$widget.id}/{echo $locale}" class="form-horizontal" id="wid_ed_form">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
