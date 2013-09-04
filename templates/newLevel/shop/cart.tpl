@@ -4,20 +4,20 @@
         <div class="empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Cart','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('Cart is empty','newLevel')}</span>
+                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
                 </div>
             </div>
         </div>
         <div class="no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Checkout','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Контроль','newLevel')}</h1>
                 </div>
             </div>
             <div class="left-cart">
@@ -26,12 +26,12 @@
                         <ul class="nav nav-order-user">
                             <li class="new-buyer">
                                 <span>
-                                    <span class="text-el">{lang('I am a new customer','newLevel')}</span>
+                                    <span class="text-el">{lang('Я хочу зарегистрироваться!','newLevel')}</span>
                                 </span>
                             </li>
                             <li class="old-buyer">
                                 <button type="button" data-trigger="#loginButton">
-                                    <span class="d_l text-el">{lang('I have already bought here','newLevel')}</span>
+                                    <span class="d_l text-el">{lang('Я постоянный покупатель','newLevel')}</span>
                                 </button>
                             </li>
                         </ul>
@@ -52,7 +52,7 @@
                             {/if}
                             <div class="groups-form">
                                 <label>
-                                    <span class="title">{lang('Name: ','newLevel')}</span>
+                                    <span class="title">{lang('Имя: ','newLevel')}</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[fullName]']}
                                             <span class="must">*</span>
@@ -61,7 +61,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('s_phone')}:</span>
+                                    <span class="title">{lang('Телефон:','newLevel')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[phone]']}
                                             <span class="must">*</span>
@@ -70,7 +70,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('s_email')}:</span>
+                                    <span class="title">{lang('Email:','newLevel')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[email]']}
                                             <span class="must">*</span>
@@ -82,7 +82,7 @@
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('country','order',$profile.id,'user')->asHtml()}
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('Selo','order',$profile.id,'user')->asHtml()}
                                 <label>
-                                    <span class="title">{lang('s_address')}:</span>
+                                    <span class="title">{lang('Город','newLevel')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[deliverTo]']}
                                             <span class="must">*</span>
@@ -91,13 +91,13 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('s_comment')}</span>
+                                    <span class="title">{lang('Комментарий','newLevel')}</span>
                                     <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
                                 </label>
                             </div>
                             <div class="groups-form">
                                 <div class="frame-label">
-                                    <span class="title">{lang('s_dostavka')}</span>
+                                    <span class="title">{lang('Доставка','newLevel')}</span>
                                     <div class="frame-form-field check-variant-delivery">
                                         {/*<div class="lineForm">
                                                 <select id="method_deliv" name="deliveryMethodId">
@@ -144,7 +144,7 @@
                                                     {if $deliveryMethod->getDescription()}
                                                         {echo $deliveryMethod->getDescription()}
                                                     {/if}
-                                                    <div>{lang('Price: ','newLevel')} {echo $price} <span class="curr">{$CS}</span></div>
+                                                    <div>{lang('Цена: ','newLevel')} {echo $price} <span class="curr">{$CS}</span></div>
                                                 </div>
                                             </div>
                                         {/foreach}
@@ -154,7 +154,7 @@
 
                             {if count($paymentMethods)}
                                 <div class="frame-label">
-                                    <span class="title">{lang('Payment method','newLevel')}</span>
+                                    <span class="title">{lang('Варианты оплаты','newLevel')}</span>
                                     <div class="frame-form-field check-variant-payment p_r">
                                         <div class="paymentMethod">
                                             {/*<div class="lineForm">
@@ -213,7 +213,7 @@
                                 <div class="frame-form-field">
                                     <ul class="items items-order-gen-info">
                                         <li>
-                                            <span class="s-t">{lang('Delivery price: ','newLevel')}</span>
+                                            <span class="s-t">{lang('Варианты доставки: ','newLevel')}</span>
                                             <span class="price-item">
                                                 <span>
                                                     <span class="price"><span class="text-el">+</span><span id="shipping"></span></span>
@@ -230,7 +230,7 @@
                                     </div>
                                     <ul class="items items-order-gen-info">
                                         <li id="giftCertSpan" style="display: none;">
-                                            <span class="s-t">{lang('Promo code: ','newLevel')}</span>
+                                            <span class="s-t">{lang('Promo код: ','newLevel')}</span>
                                             <span class="price-item">
                                                 <span class="text-discount">
                                                     <span class="text-el">-</span><span id="giftCertPrice"></span>
@@ -240,7 +240,7 @@
                                         </li>
                                     </ul>
                                     <div class="gen-sum-order">
-                                        <span class="title">{lang('Total to pay:','newLevel')}</span>
+                                        <span class="title">{lang('Всего к оплате:','newLevel')}</span>
                                         <span class="frame-prices f-s_0">
                                             <span class="price-discount">
                                                 <span class="frame-discount">
@@ -272,7 +272,7 @@
                                 <span class="title">&nbsp;</span>
                                 <span class="frame-form-field">
                                     <div class="btn-cart btn-cart-p">
-                                        <input type="submit" class="btn btn_cart" value="{lang('Check out','newLevel')}"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevel')}"/>
                                     </div>
                                 </span>
                             </div>
