@@ -1,4 +1,4 @@
-<table class="table PartnersTable" {if !$datas}style="display: none"{/if}>
+<table class="table PartnersTable" {if !$info}style="display: none"{/if}>
     <thead>
         <tr>
             <th class="span1">#</th>
@@ -70,11 +70,9 @@
 </tr>
 </tbody>
 </table>
-{if !$datas}
-    <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
-        Список пуст       
-    </div>
-{/if}
+<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;{if $info}display: none;{/if}">
+    Список пуст       
+</div>
 <br>
 <a class="btn btn-small pjax pull-right btn-success"  href="{$BASE_URL}admin/components/init_window/exchangeunfu" >
     <i class="icon-plus"></i>Создать партнера
