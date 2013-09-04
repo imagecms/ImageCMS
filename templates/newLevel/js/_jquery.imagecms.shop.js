@@ -748,7 +748,7 @@ var ie = jQuery.browser.msie,
                                 numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
                             })
                             numbColumn = $.unique(numbColumn).sort();
-                            numbColumnL = numbColumn.length;
+                            var numbColumnL = numbColumn.length;
                             if (numbColumnL > 1) {
                                 $.map(numbColumn, function(n, i) {
                                     var currC = columnsObj.filter('.' + n),

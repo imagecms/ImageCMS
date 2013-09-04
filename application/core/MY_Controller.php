@@ -65,7 +65,7 @@ class MY_Controller extends MX_Controller {
         $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
         if (file_exists($path_helper))
             require_once $path_helper;
-        
+
 
 
 
@@ -104,7 +104,7 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-        if (self::$currentLocale)
+        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             return self::$currentLocale;
 
         $ci = get_instance();

@@ -69,8 +69,11 @@ $(document).ready(function() {
 
         dataOrdersAll['key'] = 'Все закази';
         dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 7},
-            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 15},
-            {x: new Date(2013, 3, 28), y: 8}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 11}];
+            {x: new Date(2013, 2, 10), y: 4}, 
+            {x: new Date(2013, 2, 25), y: 15},
+            {x: new Date(2013, 3, 28), y: 8}, 
+            {x: new Date(2013, 4, 28), y: 3}, 
+            {x: new Date(2013, 5, 28), y: 11}];
 
         dataOrdersPaid['key'] = 'Оплачение';
         dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
@@ -110,7 +113,7 @@ $(document).ready(function() {
     $('.firstLevelMenu').bind('click', function() {
         var submenuBlock = $(this).closest('li').next('.submenu');
 
-        $('.submenu').hide();
+        $('.submenu').slideUp();
         submenuBlock.slideDown();
     })
 
