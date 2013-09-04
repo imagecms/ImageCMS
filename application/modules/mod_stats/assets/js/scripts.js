@@ -2,6 +2,8 @@ $(document).ready(function() {
 
     /** Get params for prepare data **/
     function getParamsForPrepareData(link) {
+        if (link == undefined){return false;}
+        
         var params = [];
         var splitedArray = link.split('/');
 
@@ -17,12 +19,12 @@ $(document).ready(function() {
     }
 
     /***
-     * Data for 3 types of chart
+     * Data for 2 types of chart
      */
     /*...*/
 
     function prepareData(param1, param2) {
-        return testDataOrders();
+        
     }
 
     /******* *******/
@@ -85,32 +87,32 @@ $(document).ready(function() {
 
         return data;
     }
-    function testDataOrdersPrice() {
-        var data = [];
-        var dataOrdersAll = {};
-        var dataOrdersPaid = {};
-
-
-        dataOrdersAll['key'] = 'Все закази';
-        dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 180.0}, {x: new Date(2013, 1, 30), y: 700},
-            {x: new Date(2013, 2, 10), y: 401}, {x: new Date(2013, 2, 25), y: 158},
-            {x: new Date(2013, 3, 28), y: 80}, {x: new Date(2013, 4, 28), y: 300}, {x: new Date(2013, 5, 28), y: 1110}];
-
-        dataOrdersPaid['key'] = 'Оплачение';
-        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 20}, {x: new Date(2013, 1, 30), y: 60},
-            {x: new Date(2013, 2, 10), y: 40}, {x: new Date(2013, 2, 25), y: 18},
-            {x: new Date(2013, 3, 28), y: 70}, {x: new Date(2013, 4, 28), y: 30}, {x: new Date(2013, 5, 28), y: 50}];
-
-
-        data.push(dataOrdersAll, dataOrdersPaid);
-
-        return data;
-    }
+//    function testDataOrdersPrice() {
+//        var data = [];
+//        var dataOrdersAll = {};
+//        var dataOrdersPaid = {};
+//
+//
+//        dataOrdersAll['key'] = 'Все закази';
+//        dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 180.0}, {x: new Date(2013, 1, 30), y: 700},
+//            {x: new Date(2013, 2, 10), y: 401}, {x: new Date(2013, 2, 25), y: 158},
+//            {x: new Date(2013, 3, 28), y: 80}, {x: new Date(2013, 4, 28), y: 300}, {x: new Date(2013, 5, 28), y: 1110}];
+//
+//        dataOrdersPaid['key'] = 'Оплачение';
+//        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 20}, {x: new Date(2013, 1, 30), y: 60},
+//            {x: new Date(2013, 2, 10), y: 40}, {x: new Date(2013, 2, 25), y: 18},
+//            {x: new Date(2013, 3, 28), y: 70}, {x: new Date(2013, 4, 28), y: 30}, {x: new Date(2013, 5, 28), y: 50}];
+//
+//
+//        data.push(dataOrdersAll, dataOrdersPaid);
+//
+//        return data;
+//    }
 
     /**
      * Menu hide/show blocks
      */
-    $('.firstLevelMenu').bind('click', function() {
+    $('.firstLevelMenu').unbind('click').bind('click', function() {
         var submenuBlock = $(this).closest('li').next('.submenu');
 
         $('.submenu').slideUp();
