@@ -36,7 +36,7 @@
                             <div class="control-group">
                                 <label class="control-label">Ваш ключ для обновлений:</label>
                                 <div class="controls">
-                                    <textarea name="careKey" rows="10">{echo $careKey}</textarea>
+                                    <textarea name="careKey" rows="10" required>{echo $careKey}</textarea>
                                 </div>
                             </div>
                         </div>
