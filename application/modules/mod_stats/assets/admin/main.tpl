@@ -150,3 +150,8 @@
 
     </div>
 </section>
+{literal}
+    <script>
+        var menuItemFirsLevelGlobal = '';
+    </script>
+{/literal}
