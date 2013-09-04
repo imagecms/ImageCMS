@@ -19,17 +19,17 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a href="/admin/components/init_window/mod_stats/orders/data" class="pjax">&nbsp;&nbsp;&nbsp;
+                        <a href="/admin/components/init_window/mod_stats/orders/data" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Data', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a href="" class="pjax"> &nbsp;&nbsp;&nbsp;
+                        <a href="/admin/components/init_window/mod_stats/orders/price" class=""> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Price', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
+                        <a href="" class="">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands and categories', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -146,9 +146,7 @@
             </ul>
 
         </div>
-
-        <div id="chartLineWithFocus" class='with-3d-shadow with-transitions span9'>
-            <svg style="height: 500px;"></svg>
-        </div>
+        {echo $chartsContainer}
+        
     </div>
 </section>
