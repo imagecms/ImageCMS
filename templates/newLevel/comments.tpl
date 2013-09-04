@@ -3,17 +3,17 @@
     var currentProductId = '{echo $item_id}';
 </script>
 {if $can_comment == 1 AND !$is_logged_in}
-    <p class="m-l_10">{sprintf(lang('login_for_comments'), site_url($modules.auth))}</p>
+    <p class="m-l_10">{sprintf(lang('Только авторизованные пользователи могут оставлять комментарии.','newLevel'), site_url($modules.auth))}</p>
 {/if}
 
 {if $can_comment == 0 OR $is_logged_in}
 <div class="di_b">
     <span class="comment_ajax_refer b-r_4 visible">
 
-        <a href="#" class="t-d_n"><span class="js">{lang('s_leave_comment')}</span><span class="blue_arrow"></span></a>
+        <a href="#" class="t-d_n"><span class="js">{lang('Оставить отзыв','newLevel')}</span><span class="blue_arrow"></span></a>
 
         {if $is_logged_in}
-            {lang('s_lang_logged')} {$username}
+            {lang('Вы вошли как','newLevel')} {$username}
         {else:}
 <!--            <span>Для того, чтобы оставить комментарий, Вы должны <a href="{site_url('auth/login')}" class="js red">авторизироваться</a> на сайте</span>-->
         {/if}
@@ -31,16 +31,16 @@
 
     {if !$is_logged_in}
 
-        <label>{lang('lang_comment_author')} <span style="color:red;">*</span>
+        <label>{lang('Ваше имя','newLevel')} <span style="color:red;">*</span>
             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/></label>
-        <label>{lang('lang_comment_email')} <span style="color:red;">*</span>
+        <label>{lang('Почта','newLevel')} <span style="color:red;">*</span>
             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/></label>
-        <label>{lang('lang_comment_site')}
+        <label>{lang('Сайт','newLevel')}
             <input type="text" name="comment_site" id="comment_site" value="{get_cookie('comment_site')}"/></label>
 
     {/if}
     <label>
-        {lang('s_you_raiting')}
+        {lang('Вашa оценка','newLevel')}
         <div class="star_rating">
             <div id="comment_block" class="rating {echo $r} star_rait" data-id="{echo $item_id}">
                 <div id="1" class="rate one">
@@ -63,22 +63,22 @@
         <input id="ratec" name="ratec" type="hidden" value=""/>
     </label><br/>
 
-    <label>{lang('s_text_comment_one')}<span style="color:red;">*</span>
+    <label>{lang('Комментарий','newLevel')}<span style="color:red;">*</span>
         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
     </label>
 
-    <label>{lang('s_plus')}
+    <label>{lang('Плюсы','newLevel')}
         <textarea name="comment_text_plus" id="comment_plus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
 
-    <label>{lang('s_cons')}
+    <label>{lang('Минусы','newLevel')}
         <textarea name="comment_text_minus" id="comment_minus" rows="5" cols="50">{$_POST.comment_text}</textarea> 
     </label>
     {if $use_captcha}
         <div style="padding-bottom:4px;">
             <p class="clear">
                 {if $captcha_type == 'captcha'}
-                    <label for="captcha" style="width:140px;" class="left">{lang('lang_captcha')}<span style="color:red;">*</span></label>
+                    <label for="captcha" style="width:140px;" class="left">{lang('Код протекции','newLevel')}<span style="color:red;">*</span></label>
                     <input type="text" name="captcha" id="captcha" />
                 {/if}
                 <br/>
@@ -88,7 +88,7 @@
         </div>
     {/if}
     <label class="buttons button_middle_blue f_l">
-        <input type="submit" value="{lang('s_leave_comment')}"/>
+        <input type="submit" value="{lang('Оставить отзыв','newLevel')}"/>
     </label>
 
     {form_csrf()}
@@ -122,14 +122,14 @@
                     </div>
                 {/if}
                 <b>{$comment.user_name}</b>
-                <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $comment.date)}</div>
+                <div class="c_9 f-s_11">{lang('оставлен','newLevel')} {date('d-m-Y H:i', $comment.date)}</div>
                 <p>{$comment.text}</p>
                 {if $comment.text_plus != Null}
-                    <p><b>{lang('s_plus')}</b></br>
+                    <p><b>{lang('Плюсы','newLevel')}</b></br>
                         {$comment.text_plus}</p>
                     {/if}
                     {if $comment.text_minus != Null}
-                    <p><b>{lang('s_cons')}</b></br>
+                    <p><b>{lang('Минусы','newLevel')}</b></br>
                         {$comment.text_minus}</p>
                     {/if}
                 <div class="di_b">
@@ -137,17 +137,17 @@
 
                         {if $can_comment == 0 OR $is_logged_in}
                         <a href="#" class="t-d_n">
-                            <span class="js">{lang('s_comment_answer')}</span>
+                            <span class="js">{lang('Ответить','newLevel')}</span>
 
                             <span class="blue_arrow"></span></a>
 
                         {/if}
 
-                        {lang('s_review_comment')}
+                        {lang('Отзыв был полезен?','newLevel')}
                         <span></span>
 
-                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang('s_yes')}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
-                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang('s_no')}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
+                        <span class="usefullyes" data-comid="{echo $comment.id}"><span class="js">{lang('Да','newLevel')}</span></span><span id="yesholder{$comment.id}">({echo $comment.like})</span>/
+                        <span class="usefullno" data-comid="{echo $comment.id}"><span class="js">{lang('Нет','newLevel')}</span></span><span id="noholder{$comment.id}">({echo $comment.disslike})</span>
                     </span>
                 </div>
 
@@ -156,19 +156,19 @@
                     <input type="hidden" name="comment_item_id" value="{$item_id}"/>
                     <input type="hidden" name="redirect" value="{uri_string()}"/>
                     {if !$is_logged_in}
-                        <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
+                        <label>{lang('Комментарийe','newLevel')} <span style="color:red;">*</span>
                             <input type="text" name="comment_author" id="comment_author" value="{get_cookie('comment_author')}"/>
                         </label>
-                        <label>{lang('lang_comment_email')} <span style="color:red;">*</span>
+                        <label>{lang('Почта','newLevel')} <span style="color:red;">*</span>
                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                         </label>
                     {/if}
-                    <label>{lang('s_text_comment_one')} <span style="color:red;">*</span>
+                    <label>{lang('Комментарий','newLevel')} <span style="color:red;">*</span>
                         <textarea name="comment_text" id="comment_text" rows="10" cols="50">{$_POST.comment_text}</textarea> 
                     </label>
                     <input type="hidden" name="parent" value="{echo $comment.id}">
                     <label class="buttons button_middle_blue f_l">
-                        <input type="submit" value="{lang('s_leave_comment')}"/>
+                        <input type="submit" value="{lang('Оставить отзыв','newLevel')}"/>
                     </label>
 
                     {form_csrf()}
@@ -178,7 +178,7 @@
                     {if $com_ch.parent == $comment.id}
                     <li style="padding-left: 50px">
                         <b>{$com_ch.user_name}</b>
-                        <div class="c_9 f-s_11">{lang('s_on_comment')} {date('d-m-Y H:i', $com_ch.date)}</div>
+                        <div class="c_9 f-s_11">{lang('оставлен','newLevel')} {date('d-m-Y H:i', $com_ch.date)}</div>
                         <p>{$com_ch.text}</p>
                     </li>
                 {/if}
