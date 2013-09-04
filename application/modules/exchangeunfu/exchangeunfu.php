@@ -89,8 +89,11 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function make_import() {
-
         $this->import->import();
+    }
+    
+    public function make_export($partner_id = null) {
+        $this->export->export($partner_id);
     }
 
     /**
@@ -233,10 +236,6 @@ class Exchangeunfu extends MY_Controller {
         exit();
     }
 
-    public function make_export($partner_id = null) {
-        $this->export->export($partner_id);
-    }
-
     public static function adminAutoload() {
         \CMSFactory\Events::create()
                 ->onShopProductPreUpdate()
@@ -271,6 +270,10 @@ class Exchangeunfu extends MY_Controller {
                 ->setListener('_addOrderExternalId');
     }
 
+    /**
+     * render module additional region prices tab for products 
+     * @param array $data
+     */
     public static function _extendPageAdmin($data) {
         $ci = &get_instance();
         if ($ci->uri->segment(6) == 'edit') {
@@ -318,6 +321,10 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add product partner
+     * @param array $data
+     */
     public static function _addProductPartner($data) {
         $ci = &get_instance();
 
@@ -339,6 +346,10 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add product external id
+     * @param type $data
+     */
     public static function _addProductExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['productId']);
@@ -353,18 +364,30 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add user external id
+     * @param type $data
+     */
     public static function _addUserExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['user']->getId());
         $ci->db->where('id', $data['user']->getId())->update('users', array('external_id' => $external_id));
     }
 
+    /**
+     * add category external id
+     * @param type $data
+     */
     public static function _addCategoryExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['ShopCategoryId']);
         $ci->db->where('id', $data['ShopCategoryId'])->update('shop_category', array('external_id' => $external_id));
     }
 
+    /**
+     * add order and order products external id
+     * @param type $data
+     */
     public static function _addOrderExternalId($data) {
         $ci = &get_instance();
         foreach ($data['products'] as $producst_id) {
@@ -375,6 +398,9 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * update price for products region partners
+     */
     public function updatePrice() {
         $price = $this->input->post('price');
         $quantity = $this->input->post('quantity');
