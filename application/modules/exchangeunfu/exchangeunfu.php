@@ -636,34 +636,54 @@ class Exchangeunfu extends MY_Controller {
      * @param SProducts $model
      */
     public function getPriceForRegion($model) {
-//        var_dump(count($model));
-
+        // TEST SET COOKIE
+        set_cookie('site_region', 'asdfasdfsdsdfsdf', 10000);
+        $partner_external_id = get_cookie('site_region');
+        $external_ids = array();
+        
         if (count($model) == 1) {
             // product
-            $ids[] = $model->getId();
+            if ($model->getExternalId()) {
+                $ids[] = $model->getExternalId();
+                $external_ids[$model->getExternalId()] = $model->getId();
+            }
         } elseif (count($model) > 1) {
             // category/brand/search
             foreach ($model as $product) {
-                $ids[] = $product->getId();
-                var_dump($product->getId());
+                if ($product->getExternalId()) {
+                    $ids[] = $product->getExternalId();
+                    $external_ids[$product->getExternalId()] = $product->getId();
+                }
             }
         } else {
             // an empty model
             return false;
         }
+        
+        $products_by_region = $this->db
+                ->where('partner_external_id', $partner_external_id)
+                ->where_in('product_external_id', $ids)
+                ->get('mod_exchangeunfu_prices');
 
-        $array = $this->db
-                ->where_in('product_id', $ids)
-                ->get('mod_exchangeunfu');
-
-        if ($array) {
-//            return $array->result_array();
-            $result = array();
-            foreach ($array->result_array() as $ar) {
-                $result[$ar['variant_id']] = $ar['price'];
+        $region_prices = array();
+        foreach ($products_by_region->result_array() as $product) {
+            $product_id = $external_ids[$product['product_external_id']];
+            $price = $product['price'];
+            $discount = $this->load->module('mod_discount/discount_api')
+                    ->get_discount_product_api(array('id' => $product_id, 'vid'=> null), null, $price);
+            
+            if($discount){
+                $region_prices[$product_id] = $price - $discount['discount_value'];
+            }else{
+                $region_prices[$product_id] = $price;
             }
-
-            var_dump($result);
+            
+        }
+        
+        if($region_prices){
+            return $region_prices;
+        }else{
+            return 0;
         }
     }
 
