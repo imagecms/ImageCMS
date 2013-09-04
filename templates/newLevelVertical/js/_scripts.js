@@ -1696,6 +1696,7 @@ function init() {
     });
     $(document).on('wish_list_sync', function() {
         processWish();
+        wishListCount();
     });
     $(document).on('change_count_cl change_count_wl', function(e) {
         if (wishList.count + Shop.CompareList.count + countViewProd > 0)

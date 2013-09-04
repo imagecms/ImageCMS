@@ -1325,7 +1325,6 @@ var ie = jQuery.browser.msie,
                 }
             }, options);
             var settings = optionsDrop,
-                    exit = $(settings.exit),
                     modal = settings.modal,
                     confirm = settings.confirm,
                     always = settings.always,
@@ -1406,9 +1405,6 @@ var ie = jQuery.browser.msie,
                     return false;
                 }
             })
-            exit.die('click').live('click', function() {
-                methods.closeDrop($(this).closest('[data-elrun]'));
-            })
             return $(this);
         },
         closeModal: function() {
@@ -1463,6 +1459,9 @@ var ie = jQuery.browser.msie,
                 if (!$(e.target).is(set.exit))
                     e.stopPropagation();
             });
+            $(set.exit).unbind('click.drop').on('click.drop', function() {
+                methods.closeDrop($(this).closest('[data-elrun]'));
+            })
             var condOverlay = overlayColor != undefined && overlayOpacity != undefined && overlayOpacity != '0';
             if (condOverlay) {
                 if (!$.exists('.overlayDrop')) {
@@ -2442,11 +2441,16 @@ var Shop = {
 if (typeof(wishList) != 'object')
     var wishList = {
         all: function() {
-            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+            try {
+                return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+            } catch (err) {
+                return [];
+            }
         },
         sync: function() {
             $.post('/wishlist/wishlistApi/sync', function(data) {
                 localStorage.setItem('wishList', data);
+                $(document).trigger({'type': 'wish_list_sync'});
             })
         }
     }
