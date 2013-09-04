@@ -881,6 +881,7 @@ var orders = new Object({
         });
     },
     getProductsInCategory: function(categoryId) {
+console.log(categoryId)
         $('#variantInfoBlock').hide();
         $.ajax({
             url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
