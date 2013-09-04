@@ -546,6 +546,42 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 (87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 13),
 (74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
 
+--
+-- Структура таблиці `gallery_images_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+--
+-- Структура таблиці `gallery_category_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Структура таблиці `gallery_albums_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
@@ -2125,6 +2161,14 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (12, 'offers_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291649245),
 (13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084);
+
+CREATE TABLE IF NOT EXISTS `widget_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`,`locale`),
+  KEY `locale` (`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
