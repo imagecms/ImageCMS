@@ -22,7 +22,7 @@
                             <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
                                 <span class="icon_already_show"></span>
                                 <span class="text-view-list">
-                                    <span class="text-el d_l_1">{lang("You've watched already",'newLevel')}</span>
+                                    <span class="text-el d_l_1">{lang("Вы следили уже",'newLevel')}</span>
                                     <span class="text-el">&nbsp;({echo $countSh})</span>
                                     </span>
                             </button>
@@ -33,10 +33,10 @@
                     <div class="btn-toggle-toolbar">
                         <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
                             <span class="icon_times"></span>
-                            <span class="text-el">{lang('Minimize','newLevel')}</span>
+                            <span class="text-el">{lang('Минимизировать','newLevel')}</span>
                         </button>
                         <button type="button" data-rel="1" {if $_COOKIE['condUserToolbar'] == 1 ||  !isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
-                            <span class="text-el">{lang('Expand','newLevel')}</span>
+                            <span class="text-el">{lang('Расширять','newLevel')}</span>
                         </button>
                     </div>
                 </li>
@@ -45,7 +45,7 @@
         <div class="btn-to-up">
             <button type="button">
                 <span class="icon_arrow_p"></span>
-                <span class="text-el">{lang('Top','newLevel')}</span>
+                <span class="text-el">{lang('Верхний','newLevel')}</span>
             </button>
         </div>
     </div>
