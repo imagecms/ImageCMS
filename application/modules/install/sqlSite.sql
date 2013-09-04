@@ -558,6 +558,43 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 
 -- --------------------------------------------------------
 
+
+--
+-- Структура таблиці `gallery_images_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+--
+-- Структура таблиці `gallery_category_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Структура таблиці `gallery_albums_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 --
 -- Структура таблиці `languages`
 --

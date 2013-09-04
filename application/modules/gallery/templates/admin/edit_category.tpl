@@ -9,13 +9,14 @@
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back")}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_category_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang("Have been saved")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#create_category_form" data-action="close"><i class="icon-check"></i>{lang("Save and exit")}</button>
+                {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_category/" . $category.id)}
             </div>
         </div>
     </div>
     <div class="inside_padd">
         <div class="form-horizontal row-fluid">
             <div class="span9">
-                <form method="post" action="{site_url('admin/components/cp/gallery/update_category/' . $category.id)}" id="create_category_form">
+                <form method="post" action="{site_url('admin/components/cp/gallery/update_category/' . $category.id . '/' . $locale)}" id="create_category_form">
                     <div class="control-group">
                         <label class="control-label" for="name">{lang("Name")}:</label>
                         <div class="controls">
