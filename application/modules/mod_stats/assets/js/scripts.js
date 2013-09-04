@@ -15,7 +15,7 @@ $(document).ready(function() {
 
             return day + '/' + month + '/' + year;
         });
-        
+
         chart.x2Axis.tickFormat(function(d) {
             data = new Date(d);
             day = data.getDate();
@@ -30,7 +30,7 @@ $(document).ready(function() {
         chart.y2Axis
                 .tickFormat(d3.format(',.2f'));
 
-         chart.transitionDuration(500);
+        chart.transitionDuration(500);
 
 //        console.log(testDataOrders());
 
@@ -51,8 +51,11 @@ $(document).ready(function() {
 
         dataOrdersAll['key'] = 'Все закази';
         dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 7},
-            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 15},
-            {x: new Date(2013, 3, 28), y: 8}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 11}];
+            {x: new Date(2013, 2, 10), y: 4}, 
+            {x: new Date(2013, 2, 25), y: 15},
+            {x: new Date(2013, 3, 28), y: 8}, 
+            {x: new Date(2013, 4, 28), y: 3}, 
+            {x: new Date(2013, 5, 28), y: 11}];
 
         dataOrdersPaid['key'] = 'Оплачение';
         dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
@@ -60,7 +63,7 @@ $(document).ready(function() {
             {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
 
 
-        data.push(dataOrdersAll,dataOrdersPaid);
+        data.push(dataOrdersAll, dataOrdersPaid);
 
         return data;
     }
@@ -71,8 +74,29 @@ $(document).ready(function() {
     $('.firstLevelMenu').bind('click', function() {
         var submenuBlock = $(this).closest('li').next('.submenu');
 
-        $('.submenu').hide();
+        $('.submenu').slideUp();
         submenuBlock.slideDown();
+    })
+
+    /**
+     * 
+     */
+    $('.linkChart').unbind('click').bind('click', function() {
+        console.log($(this).data('href'));
+        var dataHref = $(this).data('href');
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=' + 'true',
+            url: base_url + dataHref,
+            success: function(response) {
+                if (response != null){
+                     $('#chartContainer').html(response); 
+                }
+                  
+            }
+        })
+
     })
 
 
