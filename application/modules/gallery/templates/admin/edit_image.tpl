@@ -38,6 +38,7 @@
         <div class="pull-right">                
             <div class="d-i_b">
                 <a  href="/admin/components/cp/gallery/edit_album/{$album.id}"  class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return')}</span></a>
+                {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_image/" . $image.id)}
             </div>
         </div>            
             
@@ -61,7 +62,7 @@
                 <dt>{lang("Image size")}</dt>
                 <dd>{$image.width}px / {$image.height}px</dd>
             </dl>
-            <form method="post" action="{site_url('admin/components/run/gallery/update_info/' . $image.id)}" id="change_img_desc" class="form-horizontal">
+            <form method="post" action="{site_url('admin/components/run/gallery/update_info/' . $image.id . '/' . $locale )}" id="change_img_desc" class="form-horizontal">
                 <label>
                     <input type="checkbox" name="cover" value="1" {if $image.id == $album['cover_id']} checked="checked" {/if}/>{lang("Preview or skin or cover")}
                 </label>
