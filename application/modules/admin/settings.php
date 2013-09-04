@@ -243,7 +243,7 @@ class Settings extends BaseAdminController {
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
-            showMessage(lang("Settings have been saved", "admin"));
+            showMessage(lang("Settings have been saved","admin"));
     }
 
     /**
