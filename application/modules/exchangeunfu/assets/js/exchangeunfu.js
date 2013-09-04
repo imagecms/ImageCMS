@@ -1,5 +1,8 @@
 $(document).ready(function() {
     $('.addPartnerBtn').die().live('click', function() {
+        $('.PartnersTable').css('display', 'table');
+        $('.alert-info').css('display', 'none');
+        
         var clonedTr = {};
         if($('.addPartnerPrice').length>1){
             clonedTr = $('.addPartnerPrice')[0].clone();
