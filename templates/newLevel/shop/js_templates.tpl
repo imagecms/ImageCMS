@@ -60,7 +60,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -109,7 +109,7 @@
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -179,7 +179,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -222,7 +222,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -273,7 +273,7 @@
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr"><%-currNext%></span>
+        <span class="curr"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -326,7 +326,7 @@
         <span class="price-add">
         <span>
         <span class="price topCartTotalAddPrice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -427,7 +427,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -474,7 +474,7 @@
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -535,7 +535,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -578,7 +578,7 @@
         <span class="price-add">
         <span>
         <span class="price"><%- parseFloat(addprices[i]).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -639,7 +639,7 @@
         <span class="price-add">
         <span>
         <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>
@@ -686,7 +686,7 @@
         <span class="price-add">
         <span>
         <span class="price topCartTotalAddPrice"><%- parseFloat(Shop.Cart.getTotalAddPrice()).toFixed(pricePrecision) %></span>
-        <span class="curr-add"><%-currNext%></span>
+        <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>
         <%}%>

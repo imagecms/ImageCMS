@@ -15,7 +15,6 @@
         {$cnt_comp = 0}
     {/if}
     var curr = '{$CS}',
-    currNext = '{$NextCS}',
     nextCs = '{echo $NextCS}',
     pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
     checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",//use in plugin plus minus
