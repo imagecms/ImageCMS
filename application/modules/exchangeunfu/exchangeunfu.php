@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     /**
@@ -243,26 +243,45 @@ class Exchangeunfu extends MY_Controller {
                 ->setListener('_extendPageAdmin');
 
         \CMSFactory\Events::create()
-                ->onShopProductUpdate()
-                ->setListener('_addProductPartner');
+                ->onShopProductPreCreate()
+                ->setListener('_extendPageAdmin');
 
         \CMSFactory\Events::create()
                 ->onShopProductCreate()
                 ->setListener('_addProductExternalId');
 
-//        \CMSFactory\Events::create()
-//                ->on()
-//                ->setListener('_addProductExternalId');
+        \CMSFactory\Events::create()
+                ->onShopProductCreate()
+                ->setListener('_addProductPartner');
+
+        \CMSFactory\Events::create()
+                ->onShopProductUpdate()
+                ->setListener('_addProductPartner');
+
+        \CMSFactory\Events::create()
+                ->onShopUserCreate()
+                ->setListener('_addUserExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopCategoryCreate()
+                ->setListener('_addCategoryExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopOrderCreate()
+                ->setListener('_addOrderExternalId');
     }
 
     public static function _extendPageAdmin($data) {
         $ci = &get_instance();
+        if ($ci->uri->segment(6) == 'edit') {
 
-
-        $array = $ci->db
-                ->where('product_external_id', $data['model']->getExternalId())
-                ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.external_id')
-                ->get('mod_exchangeunfu_prices');
+            $array = $ci->db
+                    ->where('product_external_id', $data['model']->getExternalId())
+                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.external_id')
+                    ->get('mod_exchangeunfu_prices');
+        } else {
+            $array = array();
+        }
         $partners = $ci->db->get('mod_exchangeunfu_partners');
 
         if ($partners) {
@@ -317,8 +336,6 @@ class Exchangeunfu extends MY_Controller {
                     'external_id' => md5($prices[$key] . $product['external_id'])
                 ));
             }
-//            if ($partner && $price) {
-//        }
         }
     }
 
@@ -333,6 +350,28 @@ class Exchangeunfu extends MY_Controller {
             $external_var_id = md5($variant['id'] + $variant_counter);
             $ci->db->where('id', $variant['id'])
                     ->update('shop_product_variants', array('external_id' => $external_var_id));
+        }
+    }
+
+    public static function _addUserExternalId($data) {
+        $ci = &get_instance();
+        $external_id = md5($data['user']->getId());
+        $ci->db->where('id', $data['user']->getId())->update('users', array('external_id' => $external_id));
+    }
+
+    public static function _addCategoryExternalId($data) {
+        $ci = &get_instance();
+        $external_id = md5($data['ShopCategoryId']);
+        $ci->db->where('id', $data['ShopCategoryId'])->update('shop_category', array('external_id' => $external_id));
+    }
+
+    public static function _addOrderExternalId($data) {
+        $ci = &get_instance();
+        foreach ($data['products'] as $producst_id) {
+            $external_id = md5($producst_id);
+            $ci->db->where('id', $producst_id)
+                    ->where('order_id', $data['order_id'])
+                    ->update('shop_orders_products', array('external_id' => $external_id));
         }
     }
 
@@ -589,6 +628,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->drop_table('mod_exchangeunfu');
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
+        $this->dbforge->drop_table('mod_exchangeunfu_prices');
     }
 
     /**

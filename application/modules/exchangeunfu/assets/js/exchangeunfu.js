@@ -1,16 +1,19 @@
 $(document).ready(function() {
     $('.addPartnerBtn').die().live('click', function() {
+        $('.PartnersTable').css('display', 'table');
+        $('.alert-info').css('display', 'none');
+
         var clonedTr = {};
-        if($('.addPartnerPrice').length>1){
+        if ($('.addPartnerPrice').length > 1) {
             clonedTr = $('.addPartnerPrice')[0].clone();
-             var counter = $('.addPartnerPrice')[0].find('.counterPartners').html();
-            $('.addPartnerPrice')[0].find('.counterPartners').html(parseInt(counter)+1);
-        }else{
+            var counter = $('.addPartnerPrice')[0].find('.counterPartners').html();
+            $('.addPartnerPrice')[0].find('.counterPartners').html(parseInt(counter) + 1);
+        } else {
             clonedTr = $('.addPartnerPrice').clone();
             var counter = $('.addPartnerPrice').find('.counterPartners').html();
-            $('.addPartnerPrice').find('.counterPartners').html(parseInt(counter)+1);
+            $('.addPartnerPrice').find('.counterPartners').html(parseInt(counter) + 1);
         }
-        
+
         clonedTr.removeClass('addPartnerPrice');
         clonedTr.find('.partnersSelect').addClass('partnersSelected');
         clonedTr.appendTo('.PartnersTable');
@@ -26,17 +29,17 @@ $(document).ready(function() {
             }
 
         });
-        
+
         current.removeClass('partnersSelected');
         $('.partnersSelected option:selected').each(function() {
-                if ($(this).text() && $(this).text() !='--Не выбрано--') {
-                    partners.push($(this).text());
-                }
+            if ($(this).text() && $(this).text() != '--Не выбрано--') {
+                partners.push($(this).text());
+            }
         });
         current.addClass('partnersSelected');
-        
+
         var inArr = $.inArray(current.find('option:selected').text(), partners);
-        if(inArr>=0){
+        if (inArr >= 0) {
             current.val('false')
             showMessage('Ошыбка', 'Не возможно создать цены дважды для партнера');
         }
@@ -55,6 +58,7 @@ $(document).ready(function() {
     $('.updatePartnerPrice').on('click', function() {
         console.log()
         if ($(this).closest('tr').find('input.pricePartner').css('display') == 'none') {
+            showMessage('Ошыбка', "Для редактирования кликните по Цене или Количестве.", 'r');
             return false;
         }
 
@@ -81,16 +85,20 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/updatePrice',
             success: function(data) {
-                showMessage('Сообщение',"Обновление успешное.");
+                showMessage('Сообщение', "Обновление успешное.");
             }
         });
 
     });
 
-    $('.deletePartnerPrice').on('click', function() {
+    $('.deletePartnerPrice').die().live('click', function() {
         var product_external_id = $(this).closest('tr').data('productid')
         var partner = $(this).closest('tr').data('partner');
         $(this).closest('tr').remove();
+        if(!$('.partnerData').length) {
+            $('.PartnersTable').css('display', 'none');
+            $('.alert-info').css('display', 'block');
+        }
 
         $.ajax({
             type: 'POST',
@@ -100,7 +108,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/deletePartner',
             success: function(data) {
-                showMessage('Сообщение',"Удаление успешное.");
+                showMessage('Сообщение', "Удаление успешное.");
             }
         });
 
@@ -123,7 +131,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHit',
             success: function(data) {
-                showMessage('Сообщение',"Значение изменено.");
+                showMessage('Сообщение', "Значение изменено.");
             }
         });
     });
@@ -145,7 +153,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHot',
             success: function(data) {
-                showMessage('Сообщение',"Значение изменено.");
+                showMessage('Сообщение', "Значение изменено.");
             }
         });
     });
@@ -167,7 +175,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setAction',
             success: function(data) {
-                showMessage('Сообщение',"Значение изменено.");
+                showMessage('Сообщение', "Значение изменено.");
             }
         });
     });
