@@ -74,6 +74,13 @@ $(document).ready(function() {
         $('.submenu').hide();
         submenuBlock.slideDown();
     })
+    
+    /**
+     * 
+     */
+    $('.linkChart').bind('click',function(){
+        
+    })
 
 
 })
