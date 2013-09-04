@@ -15,11 +15,11 @@ class assetManager {
     protected $ci;
 
     private function __construct() {
-        
+
     }
 
     private function __clone() {
-        
+
     }
 
     /**
@@ -156,16 +156,16 @@ class assetManager {
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function renderAdmin($tpl) {
+    public function renderAdmin($tpl, $ignoreWrap = FALSE) {
+        if (\CI_Controller::get_instance()->input->post('ignoreWrap'))
+            $ignoreWrap = TRUE;
+
         try {
             /** Start. If file doesn't exists thorow exception */
-//            $obj = new \MY_Lang();
-//            $obj->load($this->getTrace());
-
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
-            \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl));
+            \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl), !$ignoreWrap);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
             show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
@@ -189,10 +189,6 @@ class assetManager {
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
 
             /** Start. Load template file */
-//                $obj = new \MY_Lang();
-//                $obj->load($this->getTrace());
-//                echo $this->getTrace();
-
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
         } catch (\Exception $exc) {
             log_message('error', $exc->getMessage());
@@ -212,7 +208,7 @@ class assetManager {
         try {
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
-//            
+//
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
 
@@ -236,7 +232,7 @@ class assetManager {
         try {
             /** Start. If file doesn't exists thorow exception */
             file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
-//            
+//
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
 

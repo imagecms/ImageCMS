@@ -20,7 +20,7 @@
     pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
     checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",//use in plugin plus minus
     inCart = 'В корзине',
-    toCart = '{lang('s_buy')}',
+    toCart = '{lang('Купить','newLevel')}',
     pcs = 'Количество:',
     kits = 'Комплектов:',
     captchaText = 'Код протекции',
@@ -30,9 +30,9 @@
     inServerWishList = parseInt("{$countWL}"),
     countViewProd = parseInt("{$countSh}"),
     theme = "{$THEME}";
-    plurProd = ['{lang("product","newLevel")}', '{lang("product","newLevel")}', '{lang("products","newLevel")}'];
-    plurKits = ['{lang("set","newLevel")}', '{lang("set","newLevel")}', '{lang("sets","newLevel")}'];
-    plurComments = ['{lang("comment","newLevel")}', '{lang("comment","newLevel")}', '{lang("comments","newLevel")}'];
+    plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
+    plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
+    plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 
     {literal}
         text = {
