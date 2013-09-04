@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     /**
@@ -250,9 +250,17 @@ class Exchangeunfu extends MY_Controller {
                 ->onShopProductCreate()
                 ->setListener('_addProductExternalId');
 
-//        \CMSFactory\Events::create()
-//                ->on()
-//                ->setListener('_addProductExternalId');
+        \CMSFactory\Events::create()
+                ->onShopUserCreate()
+                ->setListener('_addUserExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopCategoryCreate()
+                ->setListener('_addCategoryExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopOrderCreate()
+                ->setListener('_addOrderExternalId');
     }
 
     public static function _extendPageAdmin($data) {
@@ -317,8 +325,6 @@ class Exchangeunfu extends MY_Controller {
                     'external_id' => md5($prices[$key] . $product['external_id'])
                 ));
             }
-//            if ($partner && $price) {
-//        }
         }
     }
 
@@ -335,6 +341,29 @@ class Exchangeunfu extends MY_Controller {
                     ->update('shop_product_variants', array('external_id' => $external_var_id));
         }
     }
+
+    public static function _addUserExternalId($data) {
+        $ci = &get_instance();
+        $external_id = md5($data['user']->getId());
+        $ci->db->where('id', $data['user']->getId())->update('users', array('external_id' => $external_id));
+    }
+
+    public static function _addCategoryExternalId($data) {
+        $ci = &get_instance();
+        $external_id = md5($data['ShopCategoryId']);
+        $ci->db->where('id', $data['ShopCategoryId'])->update('shop_category', array('external_id' => $external_id));
+    }
+    
+    public static function _addOrderExternalId($data) {
+        $ci = &get_instance();
+        foreach ($data['products'] as $producst_id){
+            $external_id = md5($producst_id);
+            $ci->db->where('id', $producst_id)
+                    ->where('order_id', $data['order_id'])
+                    ->update('shop_orders_products', array('external_id' => $external_id));
+        }
+    }
+    
 
     public function updatePrice() {
         $price = $this->input->post('price');
@@ -589,6 +618,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->drop_table('mod_exchangeunfu');
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
+        $this->dbforge->drop_table('mod_exchangeunfu_prices');
     }
 
     /**
