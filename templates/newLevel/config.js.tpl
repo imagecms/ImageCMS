@@ -39,7 +39,7 @@
         return 'Введите боллее ' + text + ' символов';
         },
         error:{
-        notLogin:"залогинтесь"
+        notLogin: "залогинтесь"
         }
         }
     {/literal}
