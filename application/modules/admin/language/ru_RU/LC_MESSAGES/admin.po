@@ -4,13 +4,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-29 15:37+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: a.gula <a.gula@imagecms.net>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-KeywordsList: lang\n"
@@ -101,7 +101,7 @@ msgstr "Ваш E-mail"
 msgid ""
 "don\");\n"
 "_("
-msgstr ""
+msgstr "1"
 
 #: /var/www/image.loc/_temp2.php:20
 msgid "a_back"
@@ -110,7 +110,7 @@ msgstr "Назад"
 # фак
 #: /var/www/image.loc/_temp2.php:21
 msgid "a_save"
-msgstr ""
+msgstr "a_save"
 
 #: /var/www/image.loc/_temp2.php:22
 msgid "Create role group"
@@ -1319,7 +1319,7 @@ msgstr "Отправить"
 
 #: /var/www/image.loc/_temp2.php:173
 msgid "Log in"
-msgstr ""
+msgstr "Войти"
 
 #: /var/www/image.loc/_temp2.php:178
 msgid "Roles list"
@@ -1524,7 +1524,7 @@ msgstr "Вы действительно хотите удалить выбран
 # НЛО
 #: /var/www/image.loc/_temp2.php:58
 msgid "a_products_del_body_warning"
-msgstr ""
+msgstr "a_products_del_body_warning"
 
 #: /var/www/image.loc/_temp2.php:61
 msgid "Move products"
@@ -2164,32 +2164,32 @@ msgstr "Изменить категорию"
 # фак
 #: /var/www/image.loc/_temp2.php:217
 msgid "a_category_creating"
-msgstr ""
+msgstr "a_category_creating"
 
 # фак
 #: /var/www/image.loc/_temp2.php:218
 msgid "a_return"
-msgstr ""
+msgstr "a_return"
 
 # фак
 #: /var/www/image.loc/_temp2.php:220
 msgid "a_save_and_exit"
-msgstr ""
+msgstr "a_save_and_exit"
 
 # фак
 #: /var/www/image.loc/_temp2.php:221
 msgid "a_info"
-msgstr ""
+msgstr "a_info"
 
 # фак
 #: /var/www/image.loc/_temp2.php:223
 msgid "a_select_image"
-msgstr ""
+msgstr "a_select_image"
 
 # фак
 #: /var/www/image.loc/_temp2.php:224
 msgid "a_sett"
-msgstr ""
+msgstr "a_sett"
 
 #: /var/www/image.loc/_temp2.php:225 /var/www/image.loc/_temp2.php:258
 msgid "Create a new template"
@@ -2691,7 +2691,7 @@ msgstr "Комментарий к изменению статуса"
 # а
 #: /var/www/image.loc/_temp2.php:300
 msgid "Info buyer ch stat"
-msgstr ""
+msgstr "Информация о покупателе CH стат"
 
 #: /var/www/image.loc/_temp2.php:302 /var/www/image.loc/_temp2.php:310
 #: /var/www/image.loc/_temp2.php:314
@@ -2757,7 +2757,7 @@ msgstr "существует"
 # а
 #: /var/www/image.loc/_temp2.php:31
 msgid "a_s"
-msgstr ""
+msgstr "a_s"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "In order to"
@@ -2939,7 +2939,7 @@ msgstr ""
 # а
 #: /var/www/image.loc/_temp2.php:145
 msgid "a2_acces_right"
-msgstr ""
+msgstr "a2_acces_right"
 
 #: /var/www/image.loc/_temp2.php:146
 msgid "Close"
@@ -3123,7 +3123,7 @@ msgstr "Редактировать"
 #: /var/www/image.loc/_temp2.php:153 /var/www/image.loc/_temp2.php:180
 #: /var/www/image.loc/_temp2.php:333
 msgid "Load from internet"
-msgstr ""
+msgstr "Загрузите из интернета"
 
 #: /var/www/image.loc/_temp2.php:154 /var/www/image.loc/_temp2.php:253
 #: /var/www/image.loc/_temp2.php:254 /var/www/image.loc/_temp2.php:335
@@ -3229,7 +3229,7 @@ msgstr "Удаление набора"
 # а
 #: /var/www/image.loc/_temp2.php:302 /var/www/image.loc/_temp2.php:443
 msgid "Kits del body"
-msgstr ""
+msgstr "Комплекты дель тела"
 
 #: /var/www/image.loc/_temp2.php:314
 msgid "status"
@@ -4753,7 +4753,7 @@ msgstr "Нет профилей"
 
 #: ../../../templates/administrator/inc/menus.php:12
 msgid "Dashboard"
-msgstr "Главаная"
+msgstr "Главная"
 
 #: ../../../templates/administrator/inc/menus.php:23
 msgid "Create page"

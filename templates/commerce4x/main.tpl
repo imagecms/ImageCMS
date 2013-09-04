@@ -23,6 +23,14 @@
         <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
+            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+        {else:}
+            {$lang = ''} 
+        {/if}
+        <script type="text/javascript">
+            var lang = "{echo $lang}";
+        </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <!--[if lte IE 8]>
             <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -305,10 +313,12 @@
         {else:}
             {$cnt_comp = 0}
         {/if}
+        
         <script>
             var inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}");
             var inServerWish = parseInt("{echo ShopCore::app()->SWishList->totalItems()}");
             var inServerCompare = parseInt("{$cnt_comp}");
+            
         </script>
 
         <script type="text/javascript" src="{$THEME}js/jquery.imagecms.shop.js"></script>
