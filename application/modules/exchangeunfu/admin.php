@@ -62,13 +62,12 @@ class Admin extends BaseAdminController {
                 'region' => $region,
                 'code' => $code,
                 'id' => $id,
-                'count' => (int)$count
+                'count' => (int) $count
             );
-
 
             \CMSFactory\assetManager::create()
                     ->setData('partner', $partners)
-                    ->render('onePartnerRow', true);
+                    ->renderAdmin('onePartnerRow', true);
         } else {
             return FALSE;
         }

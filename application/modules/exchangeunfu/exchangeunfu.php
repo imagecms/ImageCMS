@@ -628,6 +628,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->drop_table('mod_exchangeunfu');
         $this->dbforge->drop_table('mod_exchangeunfu_productivity');
         $this->dbforge->drop_table('mod_exchangeunfu_partners');
+        $this->dbforge->drop_table('mod_exchangeunfu_prices');
     }
 
     /**
