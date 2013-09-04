@@ -19,17 +19,17 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a href="/admin/components/init_window/mod_stats/orders/data" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a  data-href="admin/components/init_window/mod_stats/orders/data" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Data', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/components/init_window/mod_stats/orders/price" class=""> &nbsp;&nbsp;&nbsp;
+                        <a  data-href="admin/components/init_window/mod_stats/orders/price" class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Price', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a href="" class="">&nbsp;&nbsp;&nbsp;
+                        <a  data-href="admin/components/init_window/mod_stats/orders/brands_and_cat" class="linkChart" >&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands and categories', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -41,22 +41,22 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Online', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a href="" class="pjax"> &nbsp;&nbsp;&nbsp;
+                        <a class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Register', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Attendance', 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('User information', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -67,26 +67,26 @@
                     <a class="firstLevelMenu">{lang('Products', 'mod_stats')}</a> 
                 </li>
                 <div class="submenu" style="display: none;">
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Categories', 'mod_stats')}     
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax"> &nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Brands', 'mod_stats')}                                        
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
-                    </a>
-                </li>
+                    <li>
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Categories', 'mod_stats')}     
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkChart"> &nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Brands', 'mod_stats')}                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
+                        </a>
+                    </li>
                 </div>
                 <!-- End. Products -->
                 <!-- Start. Product's categories -->
@@ -94,21 +94,21 @@
                     <a class="firstLevelMenu">{lang("Product's categories", 'mod_stats')}</a> 
                 </li>
                 <div class="submenu" style="display: none;">
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Most visited', 'mod_stats')}     
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax"> &nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Products in categories', 'mod_stats')}                                        
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Brands in category', 'mod_stats')}                                      
-                    </a>
-                </li>
+                    <li>
+                        <a class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Most visited', 'mod_stats')}     
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkChart"> &nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Products in categories', 'mod_stats')}                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Brands in category', 'mod_stats')}                                      
+                        </a>
+                    </li>
                 </div>
                 <!-- End. Product's categories -->
                 <!-- Start. Search -->
@@ -116,37 +116,37 @@
                     <a class="firstLevelMenu">{lang("Search", 'mod_stats')}</a> 
                 </li>
                 <div class="submenu" style="display: none;">
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax"> &nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang('Brands in search results', 'mod_stats')}                                        
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang("Product's categories in search results", 'mod_stats')}                                      
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang("Products in search results", 'mod_stats')}                                      
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="pjax">&nbsp;&nbsp;&nbsp;
-                        <span class="simple_tree">↳</span>{lang("No results", 'mod_stats')}                                      
-                    </a>
-                </li>
+                    <li>
+                        <a  class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="linkChart"> &nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Brands in search results', 'mod_stats')}                                        
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("Product's categories in search results", 'mod_stats')}                                      
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("Products in search results", 'mod_stats')}                                      
+                        </a>
+                    </li>
+                    <li>
+                        <a  class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("No results", 'mod_stats')}                                      
+                        </a>
+                    </li>
                 </div>
                 <!-- End. Search -->
             </ul>
 
         </div>
-        {echo $chartsContainer}
-        
+        <div id="chartContainer"></div>
+
     </div>
 </section>
