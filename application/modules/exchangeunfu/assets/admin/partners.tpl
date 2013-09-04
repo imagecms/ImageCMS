@@ -67,7 +67,7 @@
                     </tr>
                 {/foreach}
                 <tr class="newPartner" style="display: none">
-                    <td>
+                    <td class="countPartners">
                         {echo $key+2}
                     </td>
                     <td>
