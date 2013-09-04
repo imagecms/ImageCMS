@@ -16,7 +16,6 @@ class Admin extends \BaseAdminController {
                 ->registerScript('scripts')
                 ->registerStyle('nvd3/nv.d3')
                 ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
-<<<<<<< HEAD
                 ->registerScript('nvd3/nv.d3', FALSE, 'before')
                 ->registerScript('nvd3/stream_layers', FALSE, 'before');
     }
@@ -30,22 +29,8 @@ class Admin extends \BaseAdminController {
           ->registerScript('products')
           ->renderAdmin('products'); */
 
-        $counts = \mod_stats\models\ProductsBase::getInstance()->getCategoryCount(50);
-        echo "<pre>";
-        print_r($counts);
-        echo "</pre>";
-=======
-                ->registerScript('nvd3/nv.d3', FALSE, 'before');
-    }
-
-    public function index() {
-
-        \mod_stats\classes\BaseStats::create()->test();
-
-        \CMSFactory\assetManager::create()
-                ->setData($data)
-                ->renderAdmin('main', true);
->>>>>>> 9bcb14328e0c1ab1cb5b0d5976490d9a04487ae8
+        $counts = \mod_stats\models\ProductsBase::getInstance()->getAllCategories();
+        
     }
 
     public function orders($action = 'data') {
