@@ -43,9 +43,12 @@ $(document).ready(function() {
             current.val('false')
             showMessage('Ошыбка', 'Не возможно создать цены дважды для партнера');
         }
+
+
+
     })
 
-    $('.partnerData .change').on('click', function() {
+    $('.partnerRefresh').on('click', function() {
         var TR = $(this).closest('tr');
         var price = TR.find('div.pricePartner').text();
         var quantity = TR.find('div.quantityPartner').text();
@@ -53,6 +56,8 @@ $(document).ready(function() {
         TR.find('input').css('display', 'block');
         TR.find('input.pricePartner').val(price);
         TR.find('input.quantityPartner').val(quantity);
+        $(this).next().css('display', 'block');
+        $(this).css('display', 'none');
     });
 
     $('.updatePartnerPrice').on('click', function() {
@@ -75,6 +80,9 @@ $(document).ready(function() {
         $(this).closest('tr').find('div.quantityPartner').css('display', 'block');
         $(this).closest('tr').find('div.pricePartner').css('display', 'block');
 
+        $(this).prev().css('display', 'block');
+        $(this).css('display', 'none');
+
         $.ajax({
             type: 'POST',
             data: {
@@ -95,7 +103,7 @@ $(document).ready(function() {
         var product_external_id = $(this).closest('tr').data('productid')
         var partner = $(this).closest('tr').data('partner');
         $(this).closest('tr').remove();
-        if(!$('.partnerData').length) {
+        if (!$('.partnerData').length) {
             $('.PartnersTable').css('display', 'none');
             $('.alert-info').css('display', 'block');
         }
