@@ -101,7 +101,10 @@ class Sys_update extends BaseAdminController {
 
     public function properties() {
         if ($this->input->post("careKey")) {
-            $this->update->setSettings(array("careKey" => trim($this->input->post("careKey"))));
+            if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey")))))
+                showMessage('Изминения сохранены');
+            else
+                showMessage('Изминения не сохранены', 'Ошибка', 'r');
         } else {
             $data = array(
                 'careKey' => $this->update->getSettings('careKey')
