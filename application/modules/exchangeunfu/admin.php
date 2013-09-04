@@ -44,32 +44,38 @@ class Admin extends BaseAdminController {
         $code = $this->input->post('code');
         $prefix = $this->input->post('prefix');
         $region = $this->input->post('region');
+        $count = $this->input->post('count');
 
-        $this->db->insert('mod_exchangeunfu_partners', array(
+        $result = $this->db->insert('mod_exchangeunfu_partners', array(
             'name' => $name,
             'prefix' => $prefix,
             'region' => $region,
             'code' => $code,
-            'external_id' => md5($name . $region))
-        );
+            'external_id' => md5($name . $region)
+        ));
 
-        $id = $this->db->insert_id();
-        $partners = array(
-            'name' => $name,
-            'prefix' => $prefix,
-            'region' => $region,
-            'code' => $code,
-            'id' => $id
-        );
+        if ($result) {
+            $id = $this->db->insert_id();
+            $partners = array(
+                'name' => $name,
+                'prefix' => $prefix,
+                'region' => $region,
+                'code' => $code,
+                'id' => $id,
+                'count' => (int) $count
+            );
 
-        \CMSFactory\assetManager::create()
-                ->setData('partner', $partners)
-                ->renderAdmin('onePartnerRow', true);
+            \CMSFactory\assetManager::create()
+                    ->setData('partner', $partners)
+                    ->renderAdmin('onePartnerRow', true);
+        } else {
+            return FALSE;
+        }
     }
 
     public function deletePartner() {
         $partner_id = $this->input->post('partner_id');
-        $this->db->where('id', $partner_id)->delete('mod_exchangeunfu_partners');
+        return $this->db->where('id', $partner_id)->delete('mod_exchangeunfu_partners');
     }
 
     public function settings() {
