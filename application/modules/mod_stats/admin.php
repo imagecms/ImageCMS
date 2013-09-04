@@ -8,41 +8,49 @@
  */
 class Admin extends \BaseAdminController {
 
-    private $template = 'orders/data';
-    private $TL;
-    
-    
+    private $template = '';
+    private $mainTpl = '';
     public function __construct() {
         parent::__construct();
-        /** Load model **/
+        /** Load model * */
         $this->load->model('stats_model');
+
         
-        /** Prepare template, load scripts and styles **/
-        $this->TL = \CMSFactory\assetManager::create()
-            ->registerStyle('style')
-            ->registerScript('scripts')
-            ->registerStyle('nvd3/nv.d3')
-            ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
-            ->registerScript('nvd3/nv.d3', FALSE, 'before')
-            ->renderAdmin('main', true);
+        /** **/
+        
+        /** Prepare template, load scripts and styles * */
+        $this->mainTpl = \CMSFactory\assetManager::create()
+                ->registerScript('scripts');
+                
+        
+        if ($this->input->get('notLoadMain') != 'true'){
+            $this->mainTpl
+                ->registerStyle('style')
+                ->registerStyle('nvd3/nv.d3')
+                ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
+                ->registerScript('nvd3/nv.d3.min', FALSE, 'before')->renderAdmin('main', true);
+        }
+        
     }
 
     public function index() {
 
         \mod_stats\classes\BaseStats::create()->test();
     }
-
-    public function orders($action = 'data') {
+    
+    /**
+     * Load stats template by action 
+     * @param string $action
+     */
+    public function orders($action = '') {
 
         switch ($action) {
             case 'data':
                 $this->template = 'orders/data';
-                var_dumps(11111111);
                 break;
 
             case 'price':
                 $this->template = 'orders/price';
-                var_dumps(22222222);
                 break;
 
             case 'brands_and_cat':
@@ -53,12 +61,17 @@ class Admin extends \BaseAdminController {
                 $this->template = 'orders/data';
                 break;
         }
-        
-//        $templateData = \CMSFactory\assetManager::create()->fetchAdminTemplate($this->template);
-//        var_dump($templateData);
-        \CMSFactory\assetManager::create()->renderAdmin($this->template);
-//                ->appendData('chartsContainer', $templateData);
-        
+
+        $templateData = \CMSFactory\assetManager::create()
+                ->setData(array('$data' => $data))
+                ->fetchAdminTemplate($this->template, TRUE);
+
+        echo $templateData;
+    }
+    
+    
+    
+    public function prepareOrdersData($param) {
         
     }
 
