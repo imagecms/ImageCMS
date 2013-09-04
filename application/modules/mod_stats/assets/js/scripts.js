@@ -2,15 +2,17 @@ $(document).ready(function() {
 
     /** Get params for prepare data **/
     function getParamsForPrepareData(link) {
-        if (link == undefined){return false;}
-        
-        var params = [];
+
+        if (link == undefined) {
+            return false;
+        }
         var splitedArray = link.split('/');
 
+        /** Create array with params which we need**/
+        var params = [];
         params[0] = splitedArray[splitedArray.length - 2];
         params[1] = splitedArray[splitedArray.length - 1];
 
-        console.log(params);
         if (params instanceof Array) {
             return params;
         } else {
@@ -24,42 +26,28 @@ $(document).ready(function() {
     /*...*/
 
     function prepareData(param1, param2) {
-        
+        if (param1 != false && param2 != false) {
+            $.ajax({
+                async: false,
+                type: 'get',
+                url: base_url + 'admin/components/init_window/mod_stats/getDiagramData/' + param1 + '/' + param2,
+                success: function(response) {
+                    if (response != null) {
+
+                    }
+
+                }
+            })
+        }
+
+        return testDataOrders();
     }
 
     /******* *******/
 
     function testPieData() {
-         var testdata = [
-            {
-                key: "One",
-                y: 5
-            },
-            {
-                key: "Two",
-                y: 2
-            },
-            {
-                key: "Three",
-                y: 9
-            },
-            {
-                key: "Four",
-                y: 7
-            },
-            {
-                key: "Five",
-                y: 4
-            },
-            {
-                key: "Six",
-                y: 3
-            },
-            {
-                key: "Seven",
-                y: .5
-            }
-        ];
+        var testdata = [{key: "One",y: 5},{key: "Two",y: 2},{key: "Three",y: 9},{key: "Four",y: 7},{key: "Five",y: 4},{key: "Six",y: 3},{key: "Seven",y: .5}];
+        
         return testdata;
     }
 
