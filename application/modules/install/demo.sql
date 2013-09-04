@@ -403,28 +403,37 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 (126, 78, 29);
 
 -- --------------------------------------------------------
-
 --
 -- Структура таблиці `custom_fields`
 --
 
-DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
   `field_name` varchar(64) NOT NULL,
-  `field_label` varchar(64) NOT NULL,
-  `field_description` text,
   `is_required` tinyint(1) NOT NULL DEFAULT '1',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `is_private` tinyint(1) NOT NULL DEFAULT '0',
-  `possible_values` text,
   `validators` varchar(255) DEFAULT NULL,
-  `field_access_rules` text,
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
+  `classes` text,
+  `position` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
+
+--
+-- Структура таблиці `custom_fields_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(4) NOT NULL,
+  `field_label` varchar(255) DEFAULT NULL,
+  `field_description` text,
+  `possible_values` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -432,14 +441,14 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- Структура таблиці `custom_fields_data`
 --
 
-DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
   `entity_id` int(11) NOT NULL,
   `field_data` text,
+  `locale` varchar(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
 -- --------------------------------------------------------
 
