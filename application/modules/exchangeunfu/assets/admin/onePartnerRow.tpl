@@ -1,5 +1,6 @@
 <tr data-partnerId="{echo $partner['id']}">
-    <td>{echo $partner['id']}
+    <td class="countPartners">
+        {echo $partner['count']}
     </td>
     <td>
         <div class="name">{echo $partner['name']}</div>

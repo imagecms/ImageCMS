@@ -38,7 +38,7 @@ $(document).ready(function() {
         var inArr = $.inArray(current.find('option:selected').text(), partners);
         if(inArr>=0){
             current.val('false')
-            showMessage('Ошыбка', 'Не возможно создать цени дважді для партнера');
+            showMessage('Ошыбка', 'Не возможно создать цены дважды для партнера');
         }
     })
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/updatePrice',
             success: function(data) {
-
+                showMessage('Сообщение',"Обновление успешное.");
             }
         });
 
@@ -100,7 +100,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/deletePartner',
             success: function(data) {
-
+                showMessage('Сообщение',"Удаление успешное.");
             }
         });
 
@@ -123,7 +123,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHit',
             success: function(data) {
-
+                showMessage('Сообщение',"Значение изменено.");
             }
         });
     });
@@ -145,7 +145,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setHot',
             success: function(data) {
-
+                showMessage('Сообщение',"Значение изменено.");
             }
         });
     });
@@ -167,7 +167,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/setAction',
             success: function(data) {
-
+                showMessage('Сообщение',"Значение изменено.");
             }
         });
     });

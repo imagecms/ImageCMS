@@ -44,7 +44,7 @@ $(document).ready(function() {
             },
             url: '/exchangeunfu/admin/updatePartner',
             success: function(data) {
-
+                showMessage("Сообщение", 'Партнер обновлен');
             }
         });
 
@@ -78,8 +78,12 @@ $(document).ready(function() {
                 partner_id: partner_id
             },
             url: '/exchangeunfu/admin/deletePartner',
-            success: function(data) {
-
+            success: function(result) {
+                if(result){
+                    showMessage("Сообщение", 'Партнер успешно удален');
+                }else{
+                    showMessage("Сообщение", 'Ошыбка удаления', 'r');
+                }
             }
         });
     });
@@ -90,7 +94,8 @@ $(document).ready(function() {
     
     $('.partnerAdd').on('click', function() {
         var TR = $(this).closest('tr');
-
+        
+        var count = TR.find('.countPartners').html();
         var name = TR.find('input.name').val();
         var prefix = TR.find('input.prefix').val();
         var code = TR.find('input.code').val();
@@ -102,7 +107,8 @@ $(document).ready(function() {
                 name: name,
                 prefix: prefix,
                 code: code,
-                region: region
+                region: region,
+                count: count
             },
             url: '/exchangeunfu/admin/addPartner',
             success: function(data) {
@@ -110,7 +116,7 @@ $(document).ready(function() {
                     showMessage('Сообщение', 'Партнер успешно додан');
                     $(data).insertBefore(TR);
                 }else{
-                    showMessage('Ошыбка', 'Партнер не додан');
+                    showMessage('Ошыбка', 'Партнер не додан', 'r');
                 }          
             }
         });
@@ -122,4 +128,4 @@ $(document).ready(function() {
         TR.find('input.region').val('');
 
     });
-})
+});
