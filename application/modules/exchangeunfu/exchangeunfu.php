@@ -89,8 +89,11 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function make_import() {
-
         $this->import->import();
+    }
+    
+    public function make_export($partner_id = null) {
+        $this->export->export($partner_id);
     }
 
     /**
@@ -233,10 +236,6 @@ class Exchangeunfu extends MY_Controller {
         exit();
     }
 
-    public function make_export($partner_id = null) {
-        $this->export->export($partner_id);
-    }
-
     public static function adminAutoload() {
         \CMSFactory\Events::create()
                 ->onShopProductPreUpdate()
@@ -271,6 +270,10 @@ class Exchangeunfu extends MY_Controller {
                 ->setListener('_addOrderExternalId');
     }
 
+    /**
+     * render module additional region prices tab for products 
+     * @param array $data
+     */
     public static function _extendPageAdmin($data) {
         $ci = &get_instance();
         if ($ci->uri->segment(6) == 'edit') {
@@ -318,6 +321,10 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add product partner
+     * @param array $data
+     */
     public static function _addProductPartner($data) {
         $ci = &get_instance();
 
@@ -339,6 +346,10 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add product external id
+     * @param type $data
+     */
     public static function _addProductExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['productId']);
@@ -353,18 +364,30 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * add user external id
+     * @param type $data
+     */
     public static function _addUserExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['user']->getId());
         $ci->db->where('id', $data['user']->getId())->update('users', array('external_id' => $external_id));
     }
 
+    /**
+     * add category external id
+     * @param type $data
+     */
     public static function _addCategoryExternalId($data) {
         $ci = &get_instance();
         $external_id = md5($data['ShopCategoryId']);
         $ci->db->where('id', $data['ShopCategoryId'])->update('shop_category', array('external_id' => $external_id));
     }
 
+    /**
+     * add order and order products external id
+     * @param type $data
+     */
     public static function _addOrderExternalId($data) {
         $ci = &get_instance();
         foreach ($data['products'] as $producst_id) {
@@ -375,6 +398,9 @@ class Exchangeunfu extends MY_Controller {
         }
     }
 
+    /**
+     * update price for products region partners
+     */
     public function updatePrice() {
         $price = $this->input->post('price');
         $quantity = $this->input->post('quantity');
@@ -636,34 +662,54 @@ class Exchangeunfu extends MY_Controller {
      * @param SProducts $model
      */
     public function getPriceForRegion($model) {
-//        var_dump(count($model));
-
+        // TEST SET COOKIE
+        set_cookie('site_region', 'asdfasdfsdsdfsdf', 10000);
+        $partner_external_id = get_cookie('site_region');
+        $external_ids = array();
+        
         if (count($model) == 1) {
             // product
-            $ids[] = $model->getId();
+            if ($model->getExternalId()) {
+                $ids[] = $model->getExternalId();
+                $external_ids[$model->getExternalId()] = $model->getId();
+            }
         } elseif (count($model) > 1) {
             // category/brand/search
             foreach ($model as $product) {
-                $ids[] = $product->getId();
-                var_dump($product->getId());
+                if ($product->getExternalId()) {
+                    $ids[] = $product->getExternalId();
+                    $external_ids[$product->getExternalId()] = $product->getId();
+                }
             }
         } else {
             // an empty model
             return false;
         }
+        
+        $products_by_region = $this->db
+                ->where('partner_external_id', $partner_external_id)
+                ->where_in('product_external_id', $ids)
+                ->get('mod_exchangeunfu_prices');
 
-        $array = $this->db
-                ->where_in('product_id', $ids)
-                ->get('mod_exchangeunfu');
-
-        if ($array) {
-//            return $array->result_array();
-            $result = array();
-            foreach ($array->result_array() as $ar) {
-                $result[$ar['variant_id']] = $ar['price'];
+        $region_prices = array();
+        foreach ($products_by_region->result_array() as $product) {
+            $product_id = $external_ids[$product['product_external_id']];
+            $price = $product['price'];
+            $discount = $this->load->module('mod_discount/discount_api')
+                    ->get_discount_product_api(array('id' => $product_id, 'vid'=> null), null, $price);
+            
+            if($discount){
+                $region_prices[$product_id] = $price - $discount['discount_value'];
+            }else{
+                $region_prices[$product_id] = $price;
             }
-
-            var_dump($result);
+            
+        }
+        
+        if($region_prices){
+            return $region_prices;
+        }else{
+            return 0;
         }
     }
 

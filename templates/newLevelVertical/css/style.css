@@ -509,7 +509,7 @@ input.input-search{height: 33px;}
 .vertical-carousel .frame-photo-title > .title{margin: 0 5px;white-space: nowrap;}
 .vertical-carousel .photo-block{margin-top: 22px;}
 .vertical-carousel .description{margin-left: 15px;margin-right: 15px;}
-.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{height: 738px;}/*has be 738px*/
+.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{max-height: 738px;}
 .vertical-carousel .iscarousel{padding: 40px 0 40px;}
 .carousel-category-popular .frame-title{position: relative;overflow: hidden;}
 
