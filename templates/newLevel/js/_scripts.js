@@ -1146,7 +1146,7 @@ function onComplete(elSet, elS, el) {
             frameButton = frameThumbs.children('.group-button-carousel'),
             fancyTitle = elS.find('.drop-header'),
             carGal = frameThumbs.children('.content-carousel').clone(true).insertAfter(fancyTitle).wrap('<div class="frame-fancy-gallery frame-thumbs horizontal-carousel"></div>').wrap('<div class="fancy-gallery carousel_js"></div>').after(frameButton.clone());
-        fancyTitle.find('.title').text(elSet.title);
+    fancyTitle.find('.title').text(elSet.title);
     fancyC.find(genObj.plusMinus).plusminus({
         prev: 'prev.children(:eq(1)).children',
         next: 'prev.children(:eq(0)).children',
@@ -1177,7 +1177,7 @@ function onComplete(elSet, elS, el) {
         adding: adding
     }));
     var fancyFrame = elS.find('.drop-content-photo'),
-    btns = prev.add(next).removeAttr('disabled');
+            btns = prev.add(next).removeAttr('disabled');
     thumbsA.unbind('click').on('click', function(e) {
         btns.removeAttr('disabled');
         thumbsAP.removeClass('active');
@@ -1268,12 +1268,7 @@ function init() {
         dropEl.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
     };
     optionsDrop.after = function(el, dropEl, isajax) {
-        if (isajax) {
-            drawIcons(dropEl.find(selIcons));
-        }
-        if (dropEl.is(genObj.popupCart)) {
-            drawIcons($(genObj.popupCart).find(selIcons));
-        }
+        drawIcons(dropEl.find(selIcons));
 
         var carouselInDrop = dropEl.find('.carousel_js');
         if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
