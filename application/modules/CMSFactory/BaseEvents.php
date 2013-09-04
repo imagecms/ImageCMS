@@ -369,6 +369,16 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopUserCreate() {
+        $this->key = 'ShopAdminUser:create';
+        return $this;
+    }
+
+    final public function onShopOrderCreate() {
+        $this->key = 'ShopAdminOrder:create';
+        return $this;
+    }
+
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
