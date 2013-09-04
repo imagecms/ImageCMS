@@ -24,11 +24,16 @@ var wishList = {
         }
     },
     all: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+        try {
+            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+        } catch (err) {
+            return [];
+        }
     },
     sync: function() {
         $.post('/wishlist/wishlistApi/sync', function(data) {
             localStorage.setItem('wishList', data);
+            $(document).trigger({'type': 'wish_list_sync'});
         })
     }
 };
@@ -177,7 +182,7 @@ $(document).live('scriptDefer', function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
-        $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
+        $('.' + genObj.toWishlist).on('click.toWish', function(e) {
             $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}});
         });
     }

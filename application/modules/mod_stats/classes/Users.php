@@ -7,7 +7,7 @@ namespace mod_stats\classes;
  *
  * @author kolia
  */
-class Products extends \MY_Controller {
+class Users extends \MY_Controller {
 
     protected static $instanse;
 
@@ -18,12 +18,6 @@ class Products extends \MY_Controller {
     public static function create() {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
-    }
-
-   
-
-    public function getAllBrands() {
-        return \mod_stats\models\ProductsBase::getInstance()->getAllBrands();
     }
 
 }
