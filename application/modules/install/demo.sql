@@ -579,6 +579,9 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+INSERT INTO `gallery_category_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('5', 'ru', 'Галерея', '');
+
 --
 -- Структура таблиці `gallery_albums_i18n`
 --
@@ -590,6 +593,12 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('2', 'ru', 'Космические роботы', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>'),
+('3', 'ru', 'Человеко роботы', ''),
+('4', 'ru', 'Боевые роботы', '');
 
 -- --------------------------------------------------------
 
