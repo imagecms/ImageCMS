@@ -38,8 +38,8 @@ class Products {
         
     }
 
-    public function getBrands() {
-        return \mod_stats\models\ProductsBase::getInstance()->getBrands();
+    public function getAllBrands() {
+        return \mod_stats\models\ProductsBase::getInstance()->getAllBrands();
     }
 
 }

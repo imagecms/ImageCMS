@@ -12,12 +12,19 @@
     </div>
 
     <div id="stats_products_container">
-        <div id="diagram-container" class="span6">
 
+        <div id="diagram-container" class="span7">
+            <svg style='height:550px'/>
         </div>
-        <div id="options-container" class="span5">
 
-        </div>
+        <!--div id="options-container" class="span4">
+            <select id="stat_brands_list" class="stats_select" multiple="multiple">
+                {foreach $brands as $brand}
+                    <option value="{$brand.id}">{$brand.name}</option>
+                {/foreach}
+            </select>
+        </div-->
+
     </div>
 
 </section>

@@ -1751,6 +1751,16 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
 });
 
 var Update = {
+    processBackup: function() {
+        $.ajax({
+            type: "POST",
+            url: '/admin/sys_update/backup',
+            complete: function(res) {
+                showMessage('Резервное копирование', 'Успешно');
+                window.location.reload();
+            }
+        });
+    },
     processUpdate: function() {
         $.ajax({
             type: "POST",
@@ -1810,7 +1820,7 @@ var Update = {
                 if (res) {
                     showMessage('Сообщение', 'Успешно воставлено');
                 } else {
-                    showMessage('Ошибка', 'Ошибка востановления', 'r');
+                    showMessage('Ошибка', 'Ошибка востановления. Целевая папка недоступна', 'r');
                 }
             }
         });

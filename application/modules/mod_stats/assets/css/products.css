@@ -6,15 +6,18 @@
 }
 
 #diagram-container {
-    background: #719500;
-    min-height: 300px;
+    min-height: 550px;
 }
 
 #options-container {
-    background: #0287bb;
     min-height: 300px;
 }
 
 #stats_products_container {
-    min-height: 350px;
+    min-height: 600px;
+}
+
+#stat_brands_list {
+    min-height: 300px;
+    width: 100%;
 }
