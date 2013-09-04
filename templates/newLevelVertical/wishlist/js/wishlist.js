@@ -24,11 +24,16 @@ var wishList = {
         }
     },
     all: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+        try {
+            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+        } catch (err) {
+            return [];
+        }
     },
     sync: function() {
         $.post('/wishlist/wishlistApi/sync', function(data) {
             localStorage.setItem('wishList', data);
+            $(document).trigger({'type': 'wish_list_sync'});
         })
     }
 };
