@@ -130,7 +130,8 @@ class ProductsBase {
 
         // creating categories tree of ids
         $categoryTree = array();
-        $level = 0;
+        $subCats = TRUE;
+
 
         foreach ($categories as $category) {
             foreach ($categories as $category_) {
@@ -139,11 +140,11 @@ class ProductsBase {
                 }
             }
         }
-        
-        
+
         echo "<pre>";
         print_r($categoryTree);
         echo "</pre>";
+        
         exit;
     }
 
