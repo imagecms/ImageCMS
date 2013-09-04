@@ -52,7 +52,7 @@ class Admin extends BaseAdminController {
             'code' => $code,
             'external_id' => md5($name . $region))
         );
-        
+
         $id = $this->db->insert_id();
         $partners = array(
             'name' => $name,
@@ -64,7 +64,7 @@ class Admin extends BaseAdminController {
 
         \CMSFactory\assetManager::create()
                 ->setData('partner', $partners)
-                ->render('onePartnerRow', true);
+                ->renderAdmin('onePartnerRow', true);
     }
 
     public function deletePartner() {
