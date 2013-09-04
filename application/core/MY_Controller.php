@@ -104,7 +104,7 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-        if (self::$currentLocale and $this->ajaxRequest)
+        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
             return self::$currentLocale;
 
         $ci = get_instance();
