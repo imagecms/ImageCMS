@@ -7,8 +7,6 @@
  * Sample Module Admin
  */
 class Admin extends \BaseAdminController {
-
-    private $template = '';
     private $mainTpl = '';
 
     public function __construct() {
@@ -47,8 +45,6 @@ class Admin extends \BaseAdminController {
         echo $templateData;
     }
 
-    public function prepareOrdersData($param) {
-        
-    }
+    
 
 }
