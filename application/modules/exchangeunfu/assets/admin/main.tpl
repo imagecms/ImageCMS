@@ -32,12 +32,14 @@
                         <i class="icon-star"></i> Реклама</button>
                 </td>
                 <td class="span1">
-                    <button type="button" class="btn btn-small btn-success updatePartnerPrice">
-                        <i class="icon-refresh"></i></button>
+                    <button type="button" class="btn btn-small btn-success partnerRefresh">
+                        <i class="icon-edit"></i>Редактировать</button>
+                    <button type="button" class="btn btn-small btn-success updatePartnerPrice" style="display: none">
+                        <i class="icon-refresh"></i>Обновить</button>
                 </td>
                 <td class="span1">
                     <button type="button" class="btn btn-small action_on btn-danger deletePartnerPrice">
-                        <i class="icon-trash"></i></button>
+                        <i class="icon-trash"></i>Удалить</button>
                 </td>
 
             </tr>
