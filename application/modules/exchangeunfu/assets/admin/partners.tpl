@@ -28,7 +28,7 @@
                     <th class="span2">Префикс</th>
                     <th>Код</th>
                     <th class="span4">Регион</th>
-                    <th class="span2">Обновить</th>
+                    <th class="span2">Редактировать</th>
                     <th class="span2">Удалить</th>
                 </tr>
             </thead>
@@ -55,9 +55,9 @@
                         </td>
                         <td class="span1">
                             <button type="button" class="btn btn-small btn-success partnerRefresh">
-                                <i class="icon-edit"></i></button>
+                                <i class="icon-edit"></i>Редактировать</button>
                             <button type="button" class="btn btn-small btn-success partnerUpdate" style="display: none">
-                                <i class="icon-refresh"></i></button>
+                                <i class="icon-refresh"></i>Обновить</button>
                         </td>
                         <td class="span1">
                             <button type="button" class="btn btn-small action_on btn-danger deletePartner">

@@ -39,15 +39,15 @@
                                 </span>
                             </span>
                         </td>
-                        <td>{$category.id}</td>
+                        <td><a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category")}">{$category.id}</a></td>
                         <td class="share_alt">
                             <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category")}">{$category.name}</a>
                         </td>
                         <td>
-                            {if $category.albums_count}
+                            {if $cnt = count_albums($category.id)}
                                 <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang("View albums")}" >({lang("View albums")})</a>
                             {/if}
-                            {$category.albums_count}
+                            {echo $cnt}
                         </td>
                         <td>{truncate(htmlspecialchars($category.description), 75)}</td>
                         <td>{date('Y-d-m H:i', $category.created)}</td>

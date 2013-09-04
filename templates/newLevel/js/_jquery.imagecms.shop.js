@@ -543,7 +543,6 @@ var ie = jQuery.browser.msie,
                     })
                 else {
                     submit.unbind('click.autocomplete');
-                    console.log(1)
                 }
             }).blur(function() {
                 closeFrame();
@@ -748,7 +747,7 @@ var ie = jQuery.browser.msie,
                                 numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
                             })
                             numbColumn = $.unique(numbColumn).sort();
-                            numbColumnL = numbColumn.length;
+                            var numbColumnL = numbColumn.length;
                             if (numbColumnL > 1) {
                                 $.map(numbColumn, function(n, i) {
                                     var currC = columnsObj.filter('.' + n),
@@ -1579,7 +1578,6 @@ var ie = jQuery.browser.msie,
             $('[data-button-confirm]').unbind('click.drop');
             var drop = sel == undefined || !sel ? $('[data-elrun].' + activeClass) : sel;
             if ($.existsN(drop)) {
-                console.log(drop)
                 drop.each(function() {
                     var drop = $(this),
                             overlayColor = drop.data('overlayColor'),
@@ -1626,7 +1624,6 @@ var ie = jQuery.browser.msie,
         dropCenter: function(elSetSource) {
             if (elSetSource.data('place') == 'center') {
                 var method = elSetSource.data('animate') ? 'animate' : 'css';
-                console.log(elSetSource.data());
                 if (!elSetSource.data('modal'))
                     elSetSource[method]({
                         'margin-top': (body.height() - elSetSource.actual('outerHeight')) / 2
@@ -2442,16 +2439,17 @@ var Shop = {
         }
     }
 };
-var wishList = {
-    all: function() {
-        return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
-    },
-    sync: function() {
-        $.post('/wishlist/wishlistApi/sync', function(data) {
-            localStorage.setItem('wishList', data);
-        })
+if (typeof(wishList) != 'object')
+    var wishList = {
+        all: function() {
+            return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+        },
+        sync: function() {
+            $.post('/wishlist/wishlistApi/sync', function(data) {
+                localStorage.setItem('wishList', data);
+            })
+        }
     }
-}
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
