@@ -453,7 +453,7 @@ class ExportXML {
 
 
         if ($export_body) {
-            header('content-type: text/xml');
+            header('content-type: text/xml; charset=utf-8');
             $this->export .= "<?xml version='1.0' encoding='UTF-8'?>" . "\r\n" .
                     "<КонтейнерСписков xmlns='urn:abkt.com.ua:ozzimarket' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>\r\n" .
                     $export_body .
