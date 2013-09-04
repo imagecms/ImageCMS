@@ -61,9 +61,11 @@ class ProductsBase {
     /**
      * Returns counts products in each brand
      * @param array $brands (optional) brandsIds
+     * @param boolean $uniqueProducts (optional, default FALSE) if TRUE, then method 
+     * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function getBrandsData($brandIds = NULL) {
+    public function getBrandsData($brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -83,30 +85,76 @@ class ProductsBase {
                     ->where('brand_id', $id)
                     ->get();
 
-            $count = 0;
+            $countUnique = 0;
+            $countAll = 0;
             foreach ($result->result_array() as $row) {
-                $count += $row['stock'];
+                $countAll += $row['stock'];
+                $countUnique++;
             }
 
             $brandsInfo[] = array(
                 'id' => $id,
                 'name' => $name,
-                'count' => $count,
+                'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
             );
         }
         return $brandsInfo;
     }
 
+    /**
+     * 
+     */
     public function getAllCategories() {
+        // getting categories info from db
+        $result = $this->db
+                ->select('id,parent_id')
+                ->from('shop_category')
+                //->join('shop_category_i18n', 'shop_category.id = shop_category_i18n.id')
+                //->where('locale', $this->locale)
+                ->get();
+
+        $categories = array();
+        foreach ($result->result_array() as $row) {
+            $path = array();
+            $path_ = unserialize($row['full_path_ids']);
+            if (is_array($path_)) {
+                $path = $path_;
+            }
+            $categories[] = array(
+                'id' => $row['id'],
+                'parent_id' => $row['parent_id'],
+                'name' => $row['name'],
+                'full_path_ids' => $path,
+            );
+        }
+
+        // creating categories tree of ids
+        $categoryTree = array();
+        $level = 0;
+
+        foreach ($categories as $category) {
+            foreach ($categories as $category_) {
+                if ($category['parent_id'] == $category_['id']) {
+                    $categoryTree[$category_['id']][$category['id']] = NULL;
+                }
+            }
+        }
         
+        
+        echo "<pre>";
+        print_r($categoryTree);
+        echo "</pre>";
+        exit;
     }
 
     /**
      * Returns count of products in category
      * @param int $categoryId
+     * @param boolean $uniqueProducts (optional, default FALSE) if TRUE, then method 
+     * will return count of unique products. FALSE will give all.
      * @return int 
      */
-    public function getCategoryCount($categoryId) {
+    public function getCategoryCount($categoryId, $uniqueProducts = FALSE) {
         $result = $this->db
                 ->select('stock')
                 ->from('shop_product_variants')
@@ -117,11 +165,13 @@ class ProductsBase {
         if ($result === FALSE)
             return 0;
 
+        $uniqueCount = 0;
         $categoryCount = 0;
         foreach ($result->result_array() as $row) {
             $categoryCount += $row['stock'];
+            $uniqueCount++;
         }
-        return $categoryCount;
+        return $uniqueProducts === FALSE ? $categoryCount : $uniqueCount;
     }
 
     /**
@@ -134,11 +184,8 @@ class ProductsBase {
         // і тоді по них проходитись - якщо вибрано якусь категорію шо 
         // має підкатегорії, то перевіряти чи is_array, якщо так то рекурсивно 
         // по них тоже пройтись
-        
-        // також треба зробити вибірки по унікальних продуктах ,
-        // тобто скільки є видів продуктів/варіантів
-        // (зараз є тільки скільки є всього)
     }
 
 }
+
 ?>
