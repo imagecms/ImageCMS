@@ -131,7 +131,7 @@ class Update {
      * @return array Array of hashsum files new version
      */
     public function getHashSum() {
-        if (time() >= $this->getSettings('checkTime') + 6) {
+        if (time() >= $this->getSettings('checkTime') + 60 * 60 * 10) {
             $domen = $_SERVER['SERVER_NAME'];
             $key = $this->getSettings('careKey');
             $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);

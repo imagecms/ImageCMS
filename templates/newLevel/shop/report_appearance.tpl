@@ -1,7 +1,7 @@
 <div class="drop drop-report drop-style">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
-        <div class="title">{lang('Notify me when will be available','newLevel')}</div>
+        <div class="title">{lang('Сообщить о появлении','newLevel')}</div>
     </div>
     <div class="drop-content">
         <div class="inside-padd" data-rel="pastehere">
@@ -19,7 +19,7 @@
             return false;">
         <div class="horizontal-form">
             <label>
-                <span class="title">{lang('Your name','newLevel')}</span>
+                <span class="title">{lang('Ваше имя:','newLevel')}</span>
                 <span class="frame-form-field">
                     <input type="text" id="" name="UserName"/>
                     <span class="must">*</span>
@@ -32,11 +32,11 @@
                     <input type="hidden" name="ProductId" value=""/>
                     <input type="hidden" name="notifme" value="true"/>
                     <span class="must">*</span>
-                    <span class="help-block">{lang('You will receive an email when the product will be available','newLevel')}</span>
+                    <span class="help-block">{lang('Вы получите письмо, когда товар будет доступен','newLevel')}</span>
                 </span>
             </label>
             <label>
-                <span class="title">{lang('Phone','newLevel')}</span>
+                <span class="title">{lang('Телефон:','newLevel')}</span>
                 <span class="frame-form-field">
                     <input type="text" id="" name="UserPhone"/>
                 </span>
@@ -46,7 +46,7 @@
                 <span class="frame-form-field">
                     <div class="btn-form">
                         <button type="submit">
-                            <span class="text-el">{lang('Send','newLevel')}</span>
+                            <span class="text-el">{lang('Отправить','newLevel')}</span>
                         </button>
                     </div>
                 </span>
