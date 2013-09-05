@@ -7,38 +7,14 @@ namespace mod_stats\models;
  *
  * @author kolia
  */
-class ProductsBase {
+class Stats_Model_Products extends CI_Model {
 
-    protected static $instanse;
+   
     protected $locale;
     protected $brands;
 
-    /**
-     * 
-     * @var ActiveRecord
-     */
-    protected $db;
+   
 
-    private function __construct() {
-        $ci = &get_instance();
-        $this->db = $ci->db;
-        $this->locale = \MY_Controller::getCurrentLocale();
-    }
-
-    private function __clone() {
-        
-    }
-
-    /**
-     * 
-     * @return ProductsBase
-     */
-    public static function getInstance() {
-        if (is_null(self::$instanse)) {
-            self::$instanse = new ProductsBase();
-        }
-        return self::$instanse;
-    }
 
     /**
      * Getting data for selecting brands
@@ -65,7 +41,7 @@ class ProductsBase {
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function getBrandsData($brandIds = NULL, $uniqueProducts = FALSE) {
+    public function getProductsInBrands($brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -131,7 +107,6 @@ class ProductsBase {
         // creating categories tree of ids
         $categoryTree = array();
         $subCats = TRUE;
-
     }
 
     /**

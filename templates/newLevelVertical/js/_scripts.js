@@ -156,7 +156,7 @@ cleaverFilterObj = {
     elPos: '.frame-group-checks .frame-label',
     dropDownEff: 'slideToggle',
     dropDownEffDur: '400',
-    currentPosScroll: 0,
+    currentPosScroll: [],
     dropDownArr: []
 }
 icons = {
