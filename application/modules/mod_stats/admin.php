@@ -13,10 +13,9 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         /** Load model * */
-        $this->load->model('stats_model');
+        /*$this->load->model('stats_model');
 
-        /**         * */
-        /** Prepare template, load scripts and styles * */
+      
         $this->mainTpl = \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
 
@@ -28,7 +27,11 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
                     ->registerScript('nvd3/nv.d3.min', FALSE, 'before')
                     ->renderAdmin('main', true);
-        }
+        }*/
+        
+        \mod_stats\classes\Products::create()->test();
+        
+        exit;
     }
 
     public function index() {
