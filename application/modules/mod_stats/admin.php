@@ -8,14 +8,12 @@
  */
 class Admin extends \BaseAdminController {
 
-    private $template = '';
     private $mainTpl = '';
 
     public function __construct() {
         parent::__construct();
         /** Load model * */
         $this->load->model('stats_model');
-
 
         /**         * */
         /** Prepare template, load scripts and styles * */
@@ -28,64 +26,97 @@ class Admin extends \BaseAdminController {
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
-                    ->registerScript('nvd3/nv.d3.min', FALSE, 'before')->renderAdmin('main', true);
-            /*
-              ->registerScript('nvd3/nv.d3', FALSE, 'before')
-              ->registerScript('nvd3/stream_layers', FALSE, 'before');
-              }
-
-              public function index() {
-              /* $data = array();
-              $data['brands'] = \mod_stats\classes\Products::getInstance()->getAllBrands();
-              \CMSFactory\assetManager::create()
-              ->setData($data)
-              ->registerStyle('products')
-              ->registerScript('products')
-              ->renderAdmin('products'); *
-
-              $counts = \mod_stats\models\ProductsBase::getInstance()->getAllCategories();
-
-             */
+                    ->registerScript('nvd3/nv.d3.min', FALSE, 'before')
+                    ->renderAdmin('main', true);
         }
     }
 
     public function index() {
-
         \mod_stats\classes\BaseStats::create()->test();
     }
 
     /**
-     * Load stats template by action 
-     * @param string $action
+     * Loads template
+     * @param string $statType first menu level (folder)
+     * @param string $statSubType sublevel (template file name)
      */
-    public function orders($action = '') {
-        switch ($action) {
-            case 'data':
-                $this->template = 'orders/data';
-                break;
-
-            case 'price':
-                $this->template = 'orders/price';
-                break;
-
-            case 'brands_and_cat':
-                $this->template = 'orders/brands_and_cat';
-                break;
-
-            default:
-                $this->template = 'orders/data';
-                break;
-        }
-
+    public function getStatsData($statType, $statSubType) {
+        $template = $statType . "/" . $statSubType;
         $templateData = \CMSFactory\assetManager::create()
                 ->setData(array('$data' => $data))
-                ->fetchAdminTemplate($this->template, TRUE);
+                ->fetchAdminTemplate($template, TRUE);
 
         echo $templateData;
     }
 
-    public function prepareOrdersData($param) {
-        
+    /**
+     * Returns data for specific diagram
+     * (strategy)
+     * @param string $statType class of diagram type
+     * @param string $statSubType method of diagram type
+     * @param array $params params for method
+     */
+    public function getDiagramData($statType, $statSubType) {
+        try {
+            switch ($statType) {
+                case "products":
+                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    break;
+                case "orders":
+                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    break;
+                case "products_categories":
+                    $result = \mod_stats\classes\ProductsCategories::create()->$statSubType();
+                    break;
+                case "search":
+                    $result = \mod_stats\classes\Search::create()->$statSubType();
+                    break;
+                case "users":
+                    $result = \mod_stats\classes\Users::create()->$statSubType();
+                    break;
+                default:
+                    throw new Exception;
+            }
+
+            echo $result;
+            // при потребі дані можуть бути оброблені ще через якусь ф-ю, 
+            // але при умові що ці дані є однотипні (тільки по діаграмах, або тільки по таблицях)
+            // інакше треба обробляти дані на вивід у самих ф-ях (або добавляти у дану ф-ю ще параметр)
+        } catch (Exception $e) { // class or method not found
+            // print some message
+        }
     }
+    
+    
+    
+//    public function dataPie() {
+//        $a['type'] = 'pie';
+//        $a['data'][0]['key'] = 'one';
+//        $a['data'][0]['y'] = '1';
+//        $a['data'][1]['key'] = 'two';
+//        $a['data'][1]['y'] = '2';
+//        $a['data'][2]['key'] = 'four';
+//        $a['data'][2]['y'] = '4';
+//        $a['data'][3]['key'] = 'five';
+//        $a['data'][3]['y'] = '5';
+//        
+//        echo json_encode($a);
+//    }
+//    
+//    public function dataLine() {
+//        $a['type'] = 'line';
+//        $a['data'][0]['key'] = 'Оплачение';
+//        $a['data'][0]['values'][0]['x'] = 1362100000000;
+//        $a['data'][0]['values'][0]['y'] = 15.00 ;
+//        $a['data'][0]['values'][1]['x'] = 1362200000000;
+//        $a['data'][0]['values'][1]['y'] = 18.00 ;
+//        $a['data'][1]['key'] = 'Неоплачение';
+//        $a['data'][1]['values'][0]['x'] = 1362100000000 ;
+//        $a['data'][1]['values'][0]['y'] = 12.00 ;
+//        $a['data'][1]['values'][1]['x'] = 1362200000000;
+//        $a['data'][1]['values'][1]['y'] = 15.00 ;
+//      
+//        echo json_encode($a);
+//    }
 
 }

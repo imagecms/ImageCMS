@@ -104,8 +104,10 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
+
 //        if (self::$currentLocale)
 //            return self::$currentLocale;
+
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');

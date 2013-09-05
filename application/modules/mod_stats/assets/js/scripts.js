@@ -2,15 +2,17 @@ $(document).ready(function() {
 
     /** Get params for prepare data **/
     function getParamsForPrepareData(link) {
-        if (link == undefined){return false;}
-        
-        var params = [];
+
+        if (link == undefined) {
+            return false;
+        }
         var splitedArray = link.split('/');
 
+        /** Create array with params which we need**/
+        var params = [];
         params[0] = splitedArray[splitedArray.length - 2];
         params[1] = splitedArray[splitedArray.length - 1];
 
-        console.log(params);
         if (params instanceof Array) {
             return params;
         } else {
@@ -22,101 +24,43 @@ $(document).ready(function() {
      * Data for 2 types of chart
      */
     /*...*/
-
     function prepareData(param1, param2) {
-        
+        var returnResult;
+
+        if (param1 != false && param2 != false) {
+            $.ajax({
+                async: false,
+                type: 'get',
+                data: 'notLoadMain=' + 'true',
+                url: base_url + 'admin/components/init_window/mod_stats/dataPie',
+//                url: base_url + 'admin/components/init_window/mod_stats/getDiagramData/' + param1 + '/' + param2,
+                success: function(response) {
+
+                    if (response) {
+                        try {
+                            returnResult = $.parseJSON(response);
+                        } catch (e) {
+                            return 'error parsing jsone'; 
+                        }
+                    }
+                }
+            })
+        }
+        return returnResult;
+
     }
 
     /******* *******/
-
-    function testPieData() {
-         var testdata = [
-            {
-                key: "One",
-                y: 5
-            },
-            {
-                key: "Two",
-                y: 2
-            },
-            {
-                key: "Three",
-                y: 9
-            },
-            {
-                key: "Four",
-                y: 7
-            },
-            {
-                key: "Five",
-                y: 4
-            },
-            {
-                key: "Six",
-                y: 3
-            },
-            {
-                key: "Seven",
-                y: .5
-            }
-        ];
-        return testdata;
-    }
-
-    function testDataOrders() {
-        var data = [];
-        var dataOrdersAll = {};
-        var dataOrdersPaid = {};
-
-
-        dataOrdersAll['key'] = 'Все закази';
-        dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 7},
-            {x: new Date(2013, 2, 10), y: 4}, 
-            {x: new Date(2013, 2, 25), y: 15},
-            {x: new Date(2013, 3, 28), y: 8}, 
-            {x: new Date(2013, 4, 28), y: 3}, 
-            {x: new Date(2013, 5, 28), y: 11}];
-
-        dataOrdersPaid['key'] = 'Оплачение';
-        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
-            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 11},
-            {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
-
-
-        data.push(dataOrdersAll, dataOrdersPaid);
-
-        return data;
-    }
-//    function testDataOrdersPrice() {
-//        var data = [];
-//        var dataOrdersAll = {};
-//        var dataOrdersPaid = {};
-//
-//
-//        dataOrdersAll['key'] = 'Все закази';
-//        dataOrdersAll['values'] = [{x: new Date(2013, 1, 28), y: 180.0}, {x: new Date(2013, 1, 30), y: 700},
-//            {x: new Date(2013, 2, 10), y: 401}, {x: new Date(2013, 2, 25), y: 158},
-//            {x: new Date(2013, 3, 28), y: 80}, {x: new Date(2013, 4, 28), y: 300}, {x: new Date(2013, 5, 28), y: 1110}];
-//
-//        dataOrdersPaid['key'] = 'Оплачение';
-//        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 20}, {x: new Date(2013, 1, 30), y: 60},
-//            {x: new Date(2013, 2, 10), y: 40}, {x: new Date(2013, 2, 25), y: 18},
-//            {x: new Date(2013, 3, 28), y: 70}, {x: new Date(2013, 4, 28), y: 30}, {x: new Date(2013, 5, 28), y: 50}];
-//
-//
-//        data.push(dataOrdersAll, dataOrdersPaid);
-//
-//        return data;
-//    }
 
     /**
      * Menu hide/show blocks
      */
     $('.firstLevelMenu').unbind('click').bind('click', function() {
         var submenuBlock = $(this).closest('li').next('.submenu');
-
-        $('.submenu').slideUp();
-        submenuBlock.slideDown();
+        if (!$(submenuBlock).is(":visible")) {
+            $('.submenu').slideUp();
+            submenuBlock.slideDown();
+        }
     })
 
     /**
@@ -132,10 +76,17 @@ $(document).ready(function() {
         var params = getParamsForPrepareData(dataHref);
 
         if (params != false) {
-            var chartData = prepareData(params[0], params[1]);
+//            var chartData = prepareData(params[0], params[1]);
+            var chartData = prepareData(true, true);
         }
+        
+        if (params != false) {
 
-
+            var chartData2 = prepareData(true, true);
+        }
+        
+        console.log(chartData2.data);
+//        console.log(testDataOrders());
         $.ajax({
             async: false,
             type: 'get',
@@ -144,11 +95,18 @@ $(document).ready(function() {
             success: function(response) {
                 if (response != null) {
                     $('#chartContainer').html(response);
+
                     $('.linkChart').removeClass('active');
                     thisEl.addClass('active');
-
-                    drawLineWithFocusChart(chartData);
-                    drawPieChart(testPieData());
+                    
+                    if (chartData2.type == 'line'){
+                        drawLineWithFocusChart(chartData2.data);
+                    }
+                    if (chartData2.type == 'pie'){
+                        drawPieChart(chartData.data);
+                    }
+//                    drawLineWithFocusChart(testDataOrders());
+                    
                 }
 
             }
@@ -248,4 +206,68 @@ $(document).ready(function() {
             return chart;
         });
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    function testPieData() {
+//        var testdata = [{key: "One", y: 5}, {key: "Two", y: 2}, {key: "Three", y: 9}, {key: "Four", y: 7}, {key: "Five", y: 4}, {key: "Six", y: 3}, {key: "Seven", y: .5}];
+//
+//        return testdata;
+//    }
+
+//    function testDataOrders() {
+//        var data = [];
+//        var dataOrdersAll = {};
+//        var dataOrdersPaid = {};
+//
+//
+//        dataOrdersAll['key'] = 'Все закази';
+//        dataOrdersAll['values'] = [{x: 1362040000000, y: 2}, {x: 1362100000000, y: 7}];
+////            {x: new Date(2013, 2, 10), y: 4},
+////            {x: new Date(2013, 2, 25), y: 15},
+////            {x: new Date(2013, 3, 28), y: 8},
+////            {x: new Date(2013, 4, 28), y: 3},
+////            {x: new Date(2013, 5, 28), y: 11}
+//
+////        dataOrdersPaid['key'] = 'Оплачение';
+////        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
+////            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 11},
+////            {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
+//
+//
+//        data.push(dataOrdersAll);
+//
+//        return data;
+//    }
+
+    
+    
+    
 })

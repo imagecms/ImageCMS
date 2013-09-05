@@ -7,39 +7,38 @@ namespace mod_stats\classes;
  *
  * @author kolia
  */
-class Products {
+class Products extends \MY_Controller {
 
     protected static $instanse;
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('stats_model_products');
+    }
+
     /**
      * 
-     * @return ProductsBase
+     * @return Products
      */
-    public static function getInstance() {
-        if (is_null(self::$instanse)) {
-            self::$instanse = new Products();
+    public static function create() {
+        (null !== self::$_instance) OR self::$_instance = new self();
+        return self::$_instance;
+    }
+
+    public function getProductsInBrands() {
+        $brands = $this->model->stats_model_products->getProductsInBrands();
+        // data for pie diagram
+        $pieData = array();
+        foreach ($brands as $brand) {
+            $pieData[] = array(
+                'key' => $brand['name'],
+                'y' => $brand['count']
+            );
         }
-        return self::$instanse;
-    }
-
-    /**
-     * Getting data from base
-     * @param array $data associative array with params
-     */
-    protected function getDataFromBase($data) {
-        
-    }
-
-    /**
-     * 
-     * @param array $params (brands)
-     */
-    public function getPieData($params) {
-        
-    }
-
-    public function getAllBrands() {
-        return \mod_stats\models\ProductsBase::getInstance()->getAllBrands();
+        return json_encode(array(
+            'type' => 'pie',
+            'data' => $pieData
+        ));
     }
 
 }
