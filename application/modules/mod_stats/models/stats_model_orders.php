@@ -22,7 +22,8 @@ class Stats_model_orders extends CI_Model {
             FROM shop_orders 
             join shop_orders_products 
             on shop_orders.id=shop_orders_products.order_id
-            group by shop_orders.date_created";
+            group by shop_orders.date_created
+            order by shop_orders.date_created";
 
         $res = $this->db->query($sql)->result_array();
         return $res;

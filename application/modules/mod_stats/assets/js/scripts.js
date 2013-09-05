@@ -119,25 +119,25 @@ $(document).ready(function() {
         var chartData = data;
         nv.addGraph(function() {
             var chart = nv.models.lineWithFocusChart();
-            var data = new Date();
+            var orderDate = new Date();
             var day;
             var month;
             var year;
 
             chart.xAxis.tickFormat(function(d) {
-                data = new Date(d);
-                day = data.getDate();
-                month = data.getMonth() + 1;
-                year = data.getFullYear();
+                orderDate = new Date(d * 1000);
+                day = orderDate.getDate();
+                month = orderDate.getMonth() + 1;
+                year = orderDate.getFullYear();
 
                 return day + '/' + month + '/' + year;
             });
 
             chart.x2Axis.tickFormat(function(d) {
-                data = new Date(d);
-                day = data.getDate();
-                month = data.getMonth() + 1;
-                year = data.getFullYear();
+                orderDate = new Date(d * 1000);
+                day = orderDate.getDate();
+                month = orderDate.getMonth() + 1;
+                year = orderDate.getFullYear();
 
                 return day + '/' + month + '/' + year;
             });
