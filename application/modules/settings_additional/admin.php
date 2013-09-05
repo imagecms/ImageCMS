@@ -18,7 +18,7 @@ class Admin extends BaseAdminController {
 
             $sql = "update components set settings = '" . serialize($_POST) . "' where name = 'settings_additional'";
             $this->db->query($sql);
-            showMessage('Даные сохранены');
+            showMessage(lang('Даные сохранены', 'settings_additional'));
         } else {
 
             $this->settings = $this->cms_base->get_settings();

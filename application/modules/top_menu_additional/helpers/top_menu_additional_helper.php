@@ -18,7 +18,7 @@ if (!function_exists('get_url')){
                 return $p['url'];
         }
         
-        return '--значение не определено--';
+        return lang('--значение не определено--', 'top_menu_additional');
     }
 }
 

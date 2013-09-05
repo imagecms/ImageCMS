@@ -41,6 +41,7 @@
         <script type="text/javascript" src="{$THEME}js/underscore-min.js"></script>
     </head>
     <body class="is{echo $agent[0]}">
+         {include_tpl('javascriptVars.tpl');}
         <div class="mainBody">
             <span class="d_b top_bg"></span>
             <div class="container clearfix" id="frame_additional_menu">{$CI->load->module('top_menu_additional')->render()}</div>
@@ -81,17 +82,17 @@
                             <ul class="contacts_info">
                                 <li>
                                     <span class="icon-foot-phone"></span>
-                                    <span class="f-w_b">{lang('s_tel')}:</span>
+                                    <span class="f-w_b">{lang('Тел.','webinger')}:</span>
                                     +8 (090) <span class="d_n">&minus;</span> 500-50-50,
                                     +8 (100)<span class="d_n">&minus;</span> 500-50-50
                                 </li>
                                 <li>
                                     <span class="icon-foot-email"></span>
-                                    <span class="f-w_b">{lang('s_email')}:</span> Info@imagecms.net
+                                    <span class="f-w_b">{lang('Email','webinger')}:</span> Info@imagecms.net
                                 </li>
                                 <li>
                                     <span class="icon-foot-skype"></span>
-                                    <span class="f-w_b">{lang('s_skype')}:</span> ImageCMS
+                                    <span class="f-w_b">{lang('Skype','webinger')}:</span> ImageCMS
                                 </li>
                                 <!--Load star rating-->
                                 {$CI->load->module('star_rating')->show_star_rating()}
@@ -113,8 +114,8 @@
                                     <a href="#" class="odnoklasniki"></a>
                                 </div>
                             </div>
-                            <a href="http://imagecms.net" target="_blank">{lang('s_footer_create')}</a><br/>
-                            {lang('s_footer_seo')}
+                            <a href="http://imagecms.net" target="_blank">{lang('Создание интернет магазина','webinger')}</a><br/>
+                            {lang('SEO оптимизация сайта','webinger')}
                         </div>
                         <!--End-->
 
@@ -129,10 +130,10 @@
             var curr = '{$CS}';
             var pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}');
             var checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}";
-            var inCart = '{lang('already_in_basket')}';
-            var toCart = '{lang('s_buy')}';
-            var pcs = 'шт.';
-            var kits = 'компл.';
+            var inCart = '{lang('Уже в корзине','webinger')}';
+            var toCart = '{lang('Купить','webinger')}';
+            var pcs = '{lang('шт.', 'webinger')}';
+            var kits = '{lang('компл.', 'webinger')}';
         </script>
 
         <!--        Syncronization data for cart, wishlist  and comparelist     -->

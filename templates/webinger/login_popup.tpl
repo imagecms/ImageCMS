@@ -7,14 +7,14 @@
     <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header_title">
-            {lang('lang_login_page')}
+            {lang('Авторизация','webinger')}
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
                 <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');
                                         return false;">
                     <label>
-                        <span class="title">{lang('lang_email')}</span>
+                        <span class="title">{lang('Почта','webinger')}</span>
                         <span class="frame_form_field">
                             <span class="icon-email"></span>
                             <input type="text" name="email"/>
@@ -22,7 +22,7 @@
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('lang_password')}</span>
+                        <span class="title">{lang('Пароль','webinger')}</span>
                         <span class="frame_form_field">
                             <span class="icon-password"></span>
                             <input type="password" name="password"/>
@@ -36,8 +36,8 @@
                     <div class="frameLabel">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
-                            <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('lang_forgot_password')}</a>
-                            <input type="submit" value="Войти" class="btn btn_cart f_r" />
+                            <a href="/auth/forgot_password" class="f_l neigh_btn">{lang('Забыли Пароль?','webinger')}</a>
+                            <input type="submit" value="{lang('Войти', 'webinger')}" class="btn btn_cart f_r" />
                         </span>
                     </div>
                 </form>

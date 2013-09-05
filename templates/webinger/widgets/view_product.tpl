@@ -44,7 +44,7 @@
                                 <!--To display the amount of discounts you can use $product->firstVariant->getNumDiscount()-->
                             </div>  
                             {if $product->firstvariant->getstock()!=0}
-                                <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                                <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('Подробнее','webinger')}</a>
                                 
                             <!--<button class="btn btn_buy btnBuy" 
                                     type="button" 
@@ -60,8 +60,8 @@
                                     data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                     data-stock="{echo $product->firstVariant->getStock()}"
                                     >
-                                {lang('s_more')}
-                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
+                                {lang('Подробнее','webinger')}
+                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}{lang('Заказать', 'webinger')}{/if} 
                             </button>-->
                             
                             {else:}
@@ -71,7 +71,7 @@
                                     type="button"
                                     class="btn btn_not_avail">
                                 <span class="icon-but"></span>
-                                {lang('s_message_o_report')}
+                                {lang('Сообщить о появлении','webinger')}
                             </button> 
                             {/if} 
                         </div>
