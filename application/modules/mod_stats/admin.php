@@ -15,8 +15,7 @@ class Admin extends \BaseAdminController {
         /** Load model * */
         $this->load->model('stats_model');
 
-        /**         * */
-        /** Prepare template, load scripts and styles * */
+
         $this->mainTpl = \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
 
@@ -29,10 +28,13 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3.min', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
+
+        //\mod_stats\classes\Orders::create()->getDate();
+        //exit;
     }
 
     public function index() {
-        \mod_stats\classes\BaseStats::create()->test();
+//        \mod_stats\classes\BaseStats::create()->test();
     }
 
     /**
@@ -57,22 +59,25 @@ class Admin extends \BaseAdminController {
      * @param array $params params for method
      */
     public function getDiagramData($statType, $statSubType) {
+        /** Prepare method name* */
+        $methodName = 'get' . ucfirst($statSubType);
+
         try {
             switch ($statType) {
                 case "products":
-                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    $result = \mod_stats\classes\Products::create()->$methodName();
                     break;
                 case "orders":
-                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    $result = \mod_stats\classes\Orders::create()->$methodName();
                     break;
                 case "products_categories":
-                    $result = \mod_stats\classes\ProductsCategories::create()->$statSubType();
+                    $result = \mod_stats\classes\ProductsCategories::create()->$methodName();
                     break;
                 case "search":
-                    $result = \mod_stats\classes\Search::create()->$statSubType();
+                    $result = \mod_stats\classes\Search::create()->$methodName();
                     break;
                 case "users":
-                    $result = \mod_stats\classes\Users::create()->$statSubType();
+                    $result = \mod_stats\classes\Users::create()->$methodName();
                     break;
                 default:
                     throw new Exception;
@@ -87,4 +92,33 @@ class Admin extends \BaseAdminController {
         }
     }
 
+//    public function dataPie() {
+//        $a['type'] = 'pie';
+//        $a['data'][0]['key'] = 'one';
+//        $a['data'][0]['y'] = '1';
+//        $a['data'][1]['key'] = 'two';
+//        $a['data'][1]['y'] = '2';
+//        $a['data'][2]['key'] = 'four';
+//        $a['data'][2]['y'] = '4';
+//        $a['data'][3]['key'] = 'five';
+//        $a['data'][3]['y'] = '5';
+//        
+//        echo json_encode($a);
+//    }
+//    
+//    public function dataLine() {
+//        $a['type'] = 'line';
+//        $a['data'][0]['key'] = 'Оплачение';
+//        $a['data'][0]['values'][0]['x'] = 1362100000000;
+//        $a['data'][0]['values'][0]['y'] = 15.00 ;
+//        $a['data'][0]['values'][1]['x'] = 1362200000000;
+//        $a['data'][0]['values'][1]['y'] = 18.00 ;
+//        $a['data'][1]['key'] = 'Неоплачение';
+//        $a['data'][1]['values'][0]['x'] = 1362100000000 ;
+//        $a['data'][1]['values'][0]['y'] = 12.00 ;
+//        $a['data'][1]['values'][1]['x'] = 1362200000000;
+//        $a['data'][1]['values'][1]['y'] = 15.00 ;
+//      
+//        echo json_encode($a);
+//    }
 }
