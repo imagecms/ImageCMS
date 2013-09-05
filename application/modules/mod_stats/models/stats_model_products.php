@@ -15,6 +15,7 @@ class Stats_model_products extends CI_Model {
         $this->locale = \MY_Controller::getCurrentLocale();
     }
 
+
     /**
      * Getting data for selecting brands
      * @return array each brand name and id
@@ -100,10 +101,11 @@ class Stats_model_products extends CI_Model {
                 'id' => $row['id'],
                 'parent_id' => $row['parent_id'],
                 'name' => $row['name'],
-                'full_path_ids' => $path,
             );
         }
+
         return $categories;
+
     }
 
     /**

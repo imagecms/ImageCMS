@@ -16,7 +16,7 @@ class Install extends MY_Controller {
 //        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
         $this->load->helper('string');
         $this->host = reduce_multiples($this->host);
-        $this->load->language('main', 'russian');
+//        $this->load->language('main', 'russian');
     }
 
     public function index() {
