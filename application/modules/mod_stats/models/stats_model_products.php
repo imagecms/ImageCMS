@@ -1,20 +1,19 @@
 <?php
 
-namespace mod_stats\models;
-
 /**
  * Description of ProductsBase
  *
  * @author kolia
  */
-class Stats_Model_Products extends CI_Model {
+class Stats_model_products extends CI_Model {
 
-   
     protected $locale;
     protected $brands;
 
-   
-
+    public function __construct() {
+        parent::__construct();
+        $this->locale = \MY_Controller::getCurrentLocale();
+    }
 
     /**
      * Getting data for selecting brands
@@ -41,7 +40,7 @@ class Stats_Model_Products extends CI_Model {
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function getProductsInBrands($brandIds = NULL, $uniqueProducts = FALSE) {
+    public function brands($brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -78,17 +77,18 @@ class Stats_Model_Products extends CI_Model {
     }
 
     /**
-     * 
+     * Returns id,parent_id,name and full_path_ids of categories
+     * @return array 
      */
     public function getAllCategories() {
         // getting categories info from db
         $result = $this->db
-                ->select('id,parent_id')
+                ->select('shop_category.id,parent_id,name,full_path_ids')
                 ->from('shop_category')
-                //->join('shop_category_i18n', 'shop_category.id = shop_category_i18n.id')
-                //->where('locale', $this->locale)
+                ->join('shop_category_i18n', 'shop_category.id = shop_category_i18n.id')
+                ->where('locale', $this->locale)
                 ->get();
-
+        $categoriesRelInfo = array();
         $categories = array();
         foreach ($result->result_array() as $row) {
             $path = array();
@@ -103,10 +103,7 @@ class Stats_Model_Products extends CI_Model {
                 'full_path_ids' => $path,
             );
         }
-
-        // creating categories tree of ids
-        $categoryTree = array();
-        $subCats = TRUE;
+        return $categories;
     }
 
     /**
@@ -141,11 +138,49 @@ class Stats_Model_Products extends CI_Model {
      * @param array $categoryIds 
      * @return array (categoryId, categoryName, productsCount)
      */
-    public function getCategoryData($categoryIds = NULL) {
-        // збудувати дерево категорій, 
-        // і тоді по них проходитись - якщо вибрано якусь категорію шо 
-        // має підкатегорії, то перевіряти чи is_array, якщо так то рекурсивно 
-        // по них тоже пройтись
+    public function categories($categoryIds = array()) {
+        if (!is_array($categoryIds)) {
+            return FALSE;
+        }
+
+        $categories = $this->getAllCategories();
+
+        // creating array of id and parent_id of category
+        $categoriresRelations = array();
+        foreach ($categories as $category) {
+            $categoriresRelations[$category['id']] = $category['parent_id'];
+        }
+
+        // getting all root categories if $categoryIds in not specified
+        if (count($categoryIds) == 0) { // count all categories
+            foreach ($categoriresRelations as $id => $pid) {
+                if ($pid == 0) {
+                    $categoryIds[] = $id;
+                }
+            }
+        }
+
+        // getting counts of category (including subcategories)
+        $categoriesCount = array();
+        foreach ($categoryIds as $id => $pid) {
+            $productsCount = 0;
+            $hasSubcategories = TRUE;
+            if (in_array($id, $categoryIds)) { // has childs
+              
+            } else { // last subcategory
+                
+            }
+            $categoriesCount[$id] = 0;
+
+            echo "<pre>";
+            print_r($categoriresRelations);
+            echo "</pre>";
+            exit;
+        }
+    }
+
+    protected function getProductsCount($categoryId, $currentCount) {
+        return ($this->getCategoryCount($categoryId) + $currentCount);
     }
 
 }

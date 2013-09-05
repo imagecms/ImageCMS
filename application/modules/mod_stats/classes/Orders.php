@@ -19,6 +19,16 @@ class Orders extends \MY_Controller {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
     }
+    
+    
+    /**
+     * Returns json data for line diagram about orders by date
+     * @param string $interval year|month|week|day
+     * @param string $begin date in format DD-MM-YYYY
+     */
+    public function date($interval = 'year') {
+        
+    }
 
    
 
