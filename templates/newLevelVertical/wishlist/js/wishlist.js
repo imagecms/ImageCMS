@@ -182,7 +182,7 @@ $(document).live('scriptDefer', function() {
         document.location.href = '/wishlist';
     });
     if (!isLogin) {
-        $('.' + genObj.toWishlist).data({'always': true, 'data': {"ignoreWrap": true}}).on('click.toWish', function(e) {
+        $('.' + genObj.toWishlist).on('click.toWish', function(e) {
             $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.notLogin}});
         });
     }
