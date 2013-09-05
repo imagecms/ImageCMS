@@ -61,7 +61,7 @@
                         </td>
                         <td class="span1">
                             <button type="button" class="btn btn-small action_on btn-danger deletePartner">
-                                <i class="icon-trash"></i></button>
+                                <i class="icon-trash"></i>Удалить</button>
                         </td>
 
                     </tr>
@@ -84,7 +84,7 @@
                     </td>
                     <td>
                         <button type="button" class="btn btn-small btn-success partnerAdd">
-                            <i class="icon-plus"></i></button>
+                            <i class="icon-plus"></i>Добавить</button>
                     </td>
                     <td>
                     </td>

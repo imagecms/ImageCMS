@@ -1,6 +1,5 @@
 <?php
 /*
-../PaymentSystem/PayPal.tpl
 ../top_menu/error.tpl
 ../top_menu/level_0/item_last.tpl
 ../top_menu/level_0/item_default.tpl
@@ -13,7 +12,6 @@
 ../new_level/array_product_item.tpl
 ../comments/comments_api.tpl*/
 
-_("PayPal - более безопасный и легкий способ оплаты через Интернет!");
 _("Внимание");
 _("Не обнаружен необходимый файл шаблона для меню");
 _("Проверьте наличие файла или измените настройки меню");
