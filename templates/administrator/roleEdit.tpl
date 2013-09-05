@@ -2,13 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('a_role_edit')}: {echo $model->alt_name}</span>
+            <span class="title">{lang("Role edit","admin")}: {echo $model->alt_name}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang('a_footer_save_exit')}</button>
+                <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
 
                 <div class="dropdown d-i_b">
                     {$arr = get_lang_admin_folders()}
@@ -16,9 +16,9 @@
                         {if $lang_sel->lang_sel == $a}
                             <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                                 {if $a == 'english_lang'}
-                                    {lang('a_english')}
+                                    {lang('English', 'admin')}
                                 {else:}
-                                    {lang('a_russian')}
+                                    {lang('Russian', 'admin')}
                                 {/if}
                                 <span class="caret"></span>
                             </a>
@@ -29,9 +29,9 @@
                             <li>
                                 <a href="{$BASE_URL}admin/rbac/translateRole/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
                                     {if $a == 'english_lang'}
-                                        {lang('a_russian')}
+                                        {lang('Russian', 'admin')}
                                     {else:}
-                                        {lang('a_english')} (beta)
+                                        {lang('English', 'admin')} (beta)
                                     {/if}
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('a_param')}
+                        {lang('Properties', 'admin')}
                     </th>
                 </tr>
             </thead>
@@ -56,25 +56,25 @@
                         <div class="inside_padd">
                             <div class="row-fluid">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang('a_name')}:</label>
+                                    <label class="control-label" for="Name">{lang('Name', 'admin')}:</label>
                                     <div class="controls">
                                         <input type="text" name="Name" id="Name" value="{echo $model->name}" />
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="alt_name">{lang('a_description')}:</label>
+                                    <label class="control-label" for="alt_name">{lang('Description', 'admin')}:</label>
                                     <div class="controls">
                                         <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Description">Полное описание:</label>
+                                    <label class="control-label" for="Description">{lang('Full description','admin')}:</label>
                                     <div class="controls">
                                         <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="Importance">{lang('a_imp_rbak')}:</label>
+                                    <label class="control-label" for="Importance">{lang('Importance', 'admin')}:</label>
                                     <div class="controls">
                                         <input type="text" name="Importance" id="Importance" value="{echo $model->importance}"/>
                                     </div>
@@ -87,10 +87,10 @@
         </table>
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
             {if strpos(getCmsNumber(), 'Premium')}
-                <a href="#shop" class="btn btn-small">Магазин</a>
+                <a href="#shop" class="btn btn-small">{lang('Shop','admin')}</a>
             {/if}
-            <a href="#base" class="btn btn-small active">Базовая</a>
-            <a href="#module" class="btn btn-small">Модули</a>
+            <a href="#base" class="btn btn-small active">{lang('Base','admin')}</a>
+            <a href="#module" class="btn btn-small">{lang('Module','admin')}</a>
         </div>
         <div class="tab-content">
             {foreach $types as $key => $type}

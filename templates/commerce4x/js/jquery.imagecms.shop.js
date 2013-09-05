@@ -1571,7 +1571,7 @@ var Shop = {
 
                 url += '/ShopKit';
             }
-
+            
             Shop.currentItem = cartItem;
             $.post(url, data,
                     function(data) {
@@ -1588,13 +1588,13 @@ var Shop = {
 
         },
         _add: function(cartItem) {
-
             var currentItem = this.load(cartItem.storageId());
             if (currentItem)
                 currentItem.count += cartItem.count;
             else
                 currentItem = cartItem;
-
+                                        
+            //console.log(currentItem)
             this.save(currentItem);
 
 
@@ -1724,7 +1724,7 @@ var Shop = {
 
             var items = [];
             for (var i = 0; i < localStorage.length; i++) {
-
+                
                 var key = localStorage.key(i);
                 try {
                     if (key.match(pattern))
@@ -1864,6 +1864,12 @@ var Shop = {
         cartItem.vname = $context.data('vname');
         cartItem.url = $context.data('url');
         cartItem.img = $context.data('img');
+<<<<<<< HEAD
+=======
+        cartItem.origprice = $context.data('origprice')
+        
+
+>>>>>>> 518e1f09d68e2c55a13c2095f46639a138a1b933
         return cartItem;
     },
     //settings manager
@@ -2019,7 +2025,7 @@ var Shop = {
         sync: function() {
             $.getJSON('/shop/compare_api/sync', function(data) {
                 if (typeof(data) == 'object' || typeof(data) == 'Array') {
-                    localStorage.setItem('compareList', JSON.parse(data));
+                    localStorage.setItem('wishList', JSON.stringify(data));
 
                     $(document).trigger({
                         type: 'compare_list_sync'

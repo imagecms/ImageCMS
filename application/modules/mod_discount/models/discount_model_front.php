@@ -11,12 +11,15 @@ class Discount_model_front extends CI_Model {
 
     public function get_discount() {
 
+        $locale = \MY_Controller::getCurrentLocale();
         $time = time();
-        $sql = "select *, id as ids
+        $sql = "select *, mod_shop_discounts.id as ids, mod_shop_discounts.id as id
                 from mod_shop_discounts
+                left join mod_shop_discounts_i18n on mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '$locale'
                 where (max_apply > count_apply 
                         or max_apply is null 
-                        or (max_apply is null and count_apply is null)) 
+                        or (max_apply is null and count_apply is null)
+                        or (count_apply is null and max_apply > 0))
                       and 
                       (date_begin < '$time' and date_end > '$time' 
                           or date_begin < '$time' and date_end is Null 
@@ -25,6 +28,7 @@ class Discount_model_front extends CI_Model {
                            or date_begin is null and date_end = '0')
                       and 
                        active = 1";
+        
         
         
 
@@ -69,13 +73,22 @@ class Discount_model_front extends CI_Model {
         return $result->amout;
     }
     
-    public function updateapply($key){
+    public function updateapply($key, $gift = null){
         
-        $sql = "update mod_shop_discounts set count_apply = count_apply + 1 where `key` = '$key' and max_apply IS NOT NULL";
-
+        $sql = "update mod_shop_discounts set count_apply = 0 where `key` = '$key' and max_apply IS NOT NULL and count_apply IS NULL";
         $this->db->query($sql);
         
+        $sql = "update mod_shop_discounts set count_apply = count_apply + 1 where `key` = '$key' and max_apply IS NOT NULL";
+        $this->db->query($sql);
+        
+        
+        if ($gift !== Null)
+            $this->db->query("update mod_shop_discounts set active = 0 where `key` = '$key'");
+        
+        return true;
+        
     }
+    
     
    
 

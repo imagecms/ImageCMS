@@ -12,6 +12,7 @@ class Navigation_Widgets extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->language('navigation');
     }
 
     function widget_navigation($widget = array()) {
@@ -22,7 +23,13 @@ class Navigation_Widgets extends MY_Controller {
         } else {
             $settings = $widget['settings'];
         }
-        switch ($this->core->core_data['data_type']) {
+        if($this->core->core_data['data_type'] == '404'){
+            $data_type = $this->uri->segment(2);
+        }else{
+            $data_type = $this->core->core_data['data_type'];
+        }
+
+        switch ($data_type) {
             case 'category':
                 $cur_category = $this->core->cat_content;
 
@@ -37,7 +44,6 @@ class Navigation_Widgets extends MY_Controller {
                 break;
 
             case 'page':
-                if ($this->core->cat_content['id'] > 0) {
                     $cur_category = $this->core->cat_content;
 
                     $path_categories = $this->lib_category->get_category(array_keys($cur_category['path']));
@@ -51,7 +57,49 @@ class Navigation_Widgets extends MY_Controller {
                     $tpl_data = array('navi_cats' => $path_categories);
 
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+            case 'brand':
+                if ($this->core->core_data['id'] != null) {
+                    $ci = &get_instance();
+                    $brand = $ci->db->select(array('url', 'name'))
+                            ->where(array('shop_brands.id' => $this->core->core_data['id'],
+                                'shop_brands_i18n.locale' => MY_Controller::getCurrentLocale()))
+                            ->join('shop_brands_i18n', 'shop_brands_i18n.id=shop_brands.id')
+                            ->limit(1)
+                            ->get('shop_brands')->row_array();
+                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
+                    $navi_cats[] = array('path_url' => $brand['url'], 'name' => $brand['name']);
+                    $tpl_data = array('navi_cats' => $navi_cats);
+                    return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                }else{
+                    if($data_type=='brand'){
+                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
+                        $tpl_data = array('navi_cats' => $navi_cats);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                    }
                 }
+
+
+                break;
+            case 'compare';
+                        $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare', 'navigation'));
+                        $tpl_data = array('navi_cats' => $navi_cats);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+            case 'wish_list':
+                        $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish List', 'navigation'));
+                        $tpl_data = array('navi_cats' => $navi_cats);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+            case 'profile':
+                        $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile', 'navigation'));
+                        $tpl_data = array('navi_cats' => $navi_cats);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+            case 'cart':
+                        $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart', 'navigation'));
+                        $tpl_data = array('navi_cats' => $navi_cats);
+                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'shop_category':
                 if ($this->core->core_data['id'] != null && $this->core->core_data > 0) {
@@ -69,9 +117,10 @@ class Navigation_Widgets extends MY_Controller {
                         $full_path_ids = unserialize($full_path_ids);
                         $result = array();
                         if (is_array($full_path_ids) && !empty($full_path_ids)) {
-                            $result = $ci->db->select(array('full_path', 'name'))
+                            $result = $ci->db->select('*')
                                     ->where('locale', MY_Controller::getCurrentLocale())
                                     ->where_in('shop_category.id', $full_path_ids)
+                                    ->order_by('full_path_ids')
                                     ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
                                     ->get('shop_category');
                             if ($result) {

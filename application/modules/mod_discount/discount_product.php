@@ -7,7 +7,7 @@ if (!defined('BASEPATH'))
 /**
  * Class Discount_product for Mod_Discount module
  * @uses \mod_discount\classes\BaseDiscount
- * @author DevImageCms 
+ * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  * @property discount_model $discount_model
@@ -16,7 +16,7 @@ if (!defined('BASEPATH'))
 class Discount_product extends classes\BaseDiscount {
 
     private $discount_for_product;
-    
+
      /**
      * __construct base object loaded
      * @access public
@@ -37,18 +37,19 @@ class Discount_product extends classes\BaseDiscount {
      * @access public
      * @author DevImageCms
      * @param array product [id,vid]
-     * @return array 
+     * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_product_discount_event($product) {
+    public function get_product_discount_event($product, $price = null) {
 
 
         $discount_array = $this->get_discount_one_product($this->discount_model_front->get_product($product['id']));
 
         if (count($discount_array) > 0) {
-            $price = $this->discount_model_front->get_price($product['vid']);
+            if (null === $price)
+                $price = $this->discount_model_front->get_price($product['vid']);
             $discount_max = $this->get_max_discount($discount_array, $price);
-            $discount_value = $this->get_discount_value($discount_max, $this->discount_model_front->get_price($product['vid']));
+            $discount_value = $this->get_discount_value($discount_max, $price);
         } else {
             \CMSFactory\assetManager::create()->discount = false;
             return false;
@@ -63,18 +64,18 @@ class Discount_product extends classes\BaseDiscount {
         ob_start();
         \CMSFactory\assetManager::create()->setData(array('discount_product' => \CMSFactory\assetManager::create()->discount))->render('discount_product', true);
         $tpl = ob_get_clean();
-        
+
         \CMSFactory\assetManager::create()->discount_tpl = $tpl;
 
         return true;
     }
-    
+
      /**
      * get product discount for one prouct
      * @access public
      * @author DevImageCms
      * @param array product [product_id,brand_id,category_id]
-     * @return array 
+     * @return array
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_one_product($product) {

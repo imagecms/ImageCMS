@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-//***************Scripts for modules table***************    
+//***************Scripts for modules table***************
 
     //*****changes autoload for any module*****
     $('.autoload_ch').live('click', function() {
@@ -13,7 +13,7 @@ $(document).ready(function() {
             url: '/admin/components/change_autoload',
             success: function(obj) {
                 if (obj.result === false) {
-                    showMessage('Ошибка', 'Что-то пошло не так. Статус автозагрузки не изменен.');
+                    showMessage(lang.error, lang.errorSomethingWereWrong);
                 }
             }
         });
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 url: '/admin/components/change_url_access',
                 success: function(obj) {
                     if (obj.result === false) {
-                        showMessage('Ошибка', 'Что-то пошло не так. Доступ по URL не изменен.');
+                        showMessage(lang.error, lang.errorUrlAccess);
                     } else {
                         if (obj.result.enabled === 1)
                         {
@@ -63,16 +63,16 @@ $(document).ready(function() {
                     trin.children('td.fdel').remove();
                     trin.children('td.fdel2').remove();
                     trin.append('<td><p> - <p></td>');
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="включить"  data-off="выключить"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
-                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="выключить"  data-off="выключить"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off autoload_ch" data-mid="{$module.id}"></span></div></td>')
+                    trin.append('<td><div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="' + lang.turnOn + '"  data-off="' + lang.turnOff + '"><span class="prod-on_off urlen_ch" data-mid="{$module.id}"></span></div></td>')
                     $('#mtbl').append(trin);
                     $this.parents('tr:first').remove();
                     if ($('tbody.nim').children('tr').contents().length === 0)
                     {
                         $('#nimt').remove();
-                        $('#nimc').html('</br><div class="alert alert-info">Нету модулей для установки</div>');
+                        $('#nimc').html('</br><div class="alert alert-info">' + lang.haveNotModulesToInstall + '</div>');
                     }
-                    showMessage('Установка модуля', 'Модуль успешно установлен');
+                    showMessage(lang.moduleInstall, lang.moduleSuccessInstall);
                     location.reload();
                 }
             }
@@ -94,7 +94,7 @@ $(document).ready(function() {
     });
     //*****change module visibility in menu*****
 
-//***************Scripts for modules table***************            
+//***************Scripts for modules table***************
 
 //***************Scripts for languages page***************
 
@@ -151,10 +151,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                    showMessage(lang.creatingWidget , lang.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager';
-                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -168,10 +168,10 @@ $(document).ready(function() {
             success: function(obj) {
                 if (obj.result === false)
                 {
-                    showMessage('Создание виджета', 'Ошибка' + obj.message);
+                    showMessage(lang.creatingWidget, lang.error + obj.message);
                 } else {
                     var url = '/admin/widgets_manager/create_tpl';
-                    showMessage('Создание виджета', 'Виджет успешно создан');
+                    showMessage(lang.creatingWidget, lang.createdSuccessfullyWidget);
                     redirect_url(url);
                 }
             }
@@ -267,7 +267,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm('Удалить группу?'))
+//            if (confirm(lang.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/group_delete', {
@@ -285,7 +285,7 @@ $(document).ready(function() {
 //        if ($(this).hasClass('disabled')) {
 //            return false;
 //        } else {
-//            if (confirm('Удалить группу?'))
+//            if (confirm(lang.deleteGroup))
 //            {
 //                var arr = getcheckedvalues();
 //                $.post('/admin/components/run/shop/rbac/privilege_delete', {
@@ -442,7 +442,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $('#translateProductUrl').live('click', function() {
         var str = $('#Name').attr('value');
         $.ajax({
@@ -468,7 +468,7 @@ $(document).ready(function() {
     });
 
     $('#create_tpl').live('click', function() {
-        var name = prompt('Введите название шаблона', '');
+        var name = prompt(lang.enterTemplateName , '');
         if (name != null && name != "") {
             $.ajax({
                 type: "post",
@@ -512,7 +512,7 @@ $(document).ready(function() {
         });
     }
 
-    //  sortstop blocks end    
+    //  sortstop blocks end
 
     $('.kit_change_active').live('click', function() {
         var id = $(this).attr('data-kid');
@@ -627,7 +627,7 @@ $(document).ready(function() {
                     });
                     $('#pages_list_holder').html('<ul>' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html('В категории нет страниц');
+                    $('#pages_list_holder').html(lang.categoryHaveNotPage);
                 }
             }
         });
@@ -1071,7 +1071,7 @@ var delete_currency_function = new Object({
                 alert('error');
             }
         });
-       
+
         return true;
     }
 
@@ -1088,7 +1088,7 @@ var pagesAdmin = new Object({
                     $('.modal').modal('hide');
                     if (responseObj.data)
                     {
-                        showMessage('', 'Категория добавлена успешно');
+                        showMessage('');
                         $('#category_selectbox').load('/admin/categories/update_fast_block/' + responseObj.data);
                     }
                     else
@@ -1352,5 +1352,5 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
-
+   
 });

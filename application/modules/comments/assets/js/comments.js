@@ -32,14 +32,14 @@
 
             pasteAfter = pasteAfter.split('.'),
                     $this.on(evPaste, function() {
-                methods.evClick($(this))
-            })
+                methods.evClick($(this));
+            });
         },
         evClick: function($this) {
             var pasteAfter2 = $this;
             $.each(pasteAfter, function(i, v) {
                 pasteAfter2 = pasteAfter2[v]();
-            })
+            });
 
             var insertedEl = pasteAfter2.next(),
                     pasteAfterEL = pasteAfter2;
@@ -51,7 +51,7 @@
                 pasteAfterEL.next()[effectIn](duration, function() {
                     if (ltie7)
                         ieInput();
-                })
+                });
                 after($this, pasteAfterEL.next());
             }
             else if (insertedEl.is(':visible'))
@@ -139,7 +139,7 @@
         } else {
             $.error('Method ' + method + ' does not exist on jQuery.starRating');
         }
-    }
+    };
 })(jQuery);
 function initComments() {
     $(".star-big").starRating({
@@ -201,15 +201,22 @@ function initComments() {
         });
     });
 }
-renderPosts = function(el) {
+renderPosts = function(el, data) {
+    var dataSend = "";
+    if (data != undefined)
+        dataSend = data;
+    if (el.data() != undefined) {
+        dataSend = el.data();
+    }
     $.ajax({
         url: "/comments/commentsapi/renderPosts",
         dataType: "json",
+        data: dataSend,
         type: "post",
         success: function(obj) {
             el.each(function() {
                 $(this).empty();
-            })
+            });
 
             if (obj !== null) {
                 var tpl = obj.comments;
@@ -219,22 +226,22 @@ renderPosts = function(el) {
                     $(this).append(tpl);
                     if (i + 1 == elL)
                         initComments();
-                })
+                });
 
-                if (obj.total_comments !== 0) {
+                if (obj.commentsCount !== 0) {
                     $('#cc').html('');
-                    $('#cc').append(obj.total_comments);
+                    $('#cc').append(obj.commentsCount);
                 }
-                drawIcons(el.find(selIcons));
+                $(document).trigger({'type': 'rendercomment.after', 'el': el});
             }
         }
     });
-}
+};
 
-function post($this) {
+function post(el) {
     $.ajax({
         url: "/comments/commentsapi/newPost",
-        data: $($this).closest('form').serialize() +
+        data: $(el).closest('form').serialize() +
                 '&action=newPost',
         dataType: "json",
         type: "post",
@@ -242,14 +249,15 @@ function post($this) {
             if (obj.answer === 'sucesfull') {
                 $('.comment_text').each(function() {
                     $(this).val('');
-                })
+                });
                 $('#comment_plus').val('');
                 $('#comment_minus').val('');
-                renderPosts($('[name="for_comments"]'));
+                renderPosts($(el).closest('[name="for_comments"]'));
             }
             else {
-                $($this).closest('form').find('.error_text').html('');
-                $($this).closest('form').find('.error_text').append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
+                var errText = $(el).closest('form').find('.error_text');
+                errText.html('');
+                errText.append('<div class="msg"><div class="error">' + obj.validation_errors + '</div></div>');
             }
         }
     });

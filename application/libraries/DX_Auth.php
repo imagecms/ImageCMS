@@ -35,7 +35,7 @@ class DX_Auth {
         $this->ci->load->config('auth');
 
         // Load DX Auth language
-        $this->ci->lang->load('dx_auth');
+//        $this->ci->lang->load('dx_auth');
 
         // Load DX Auth event
         $this->ci->load->library('DX_Auth_Event');
@@ -864,7 +864,6 @@ class DX_Auth {
 
             // Activation Link
             $new_user['activate_url'] = site_url($this->ci->config->item('DX_activate_uri') . "{$new_user['email']}/{$new_user['activation_key']}");
-
             // Trigger event and get email content
             $this->ci->dx_auth_event->sending_activation_email($new_user, $message);
 
@@ -913,8 +912,22 @@ class DX_Auth {
                     // Send email with account details
                     $this->_email($email, $from, $subject, $message);
                 }
+
+            $user_variables = array(
+                'user_name' => $username,
+                'user_password' => $password,
+                'user_address' => $address,
+                'user_email' => $email,
+                'user_phone' => $phone
+                );
+
+            \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
+
+
                 if($login_user){
                     if ($this->login($email, $password)) {
+                        if (class_exists('ShopCore'))
+                            ShopCore::app()->SCart->transferCartData();
                         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
                             redirect('', 'location');
     //                    if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
@@ -959,14 +972,25 @@ class DX_Auth {
                     $data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri') . "{$row->email}/{$data['key']}");
 
                     // Create email
-                    $from = $this->ci->config->item('DX_webmaster_email');
+                    $from = ShopCore::app()->SSettings->userInfoSenderEmail;
                     $subject = $this->ci->lang->line('auth_forgot_password_subject');
 
                     // Trigger event and get email content
-                    $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+                   // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
+
+                    $replaceData = array(
+                        'webSiteName' => $this->ci->config->item('DX_website_name'),
+                        'resetPasswordUri' => $data['reset_password_uri'],
+                        'password' => $data['password'],
+                        'key' => $data['key'],
+                        'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
+                    );
+
+                    \cmsemail\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
+
 
                     // Send instruction email
-                    $this->_email($row->email, $from, $subject, $message);
+                    //$this->_email($row->email, $from, $subject, $message);
 
                     $result = TRUE;
                 } else {
@@ -1057,12 +1081,12 @@ class DX_Auth {
         if ($query = $this->ci->users->get_user_by_id($this->ci->session->userdata('DX_user_id')) AND $query->num_rows() > 0) {
             // Get current logged in user
             $row = $query->row();
-
             $pass = $this->_encode($old_pass);
 
             // Check if old password correct
             if (crypt($pass, $row->password) === $row->password) {
                 // Crypt and encode new password
+                $new_pass_for_user = $new_pass;
                 $new_pass = crypt($this->_encode($new_pass));
 
                 // Replace old password with new password
@@ -1070,6 +1094,13 @@ class DX_Auth {
 
                 // Trigger event
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
+
+                $replaceData = array(
+                        'user_name' => $row->username,
+                        'password' => $new_pass_for_user
+                    );
+
+                \cmsemail\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
                 $result = TRUE;
             } else {
@@ -1184,15 +1215,15 @@ class DX_Auth {
         if ($this->use_recaptcha) {
             $result = $this->is_recaptcha_match();
             if (!$result) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
             }
         } else {
             if ($this->is_captcha_expired()) {
                 // Will replace this error msg with $lang
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             } elseif (!$this->is_captcha_match($code)) {
-                $CI->form_validation->set_message('captcha_check', lang('lang_captcha_error'));
+                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
                 $result = FALSE;
             }
         }
@@ -1260,7 +1291,7 @@ class DX_Auth {
     private function _get_recaptcha_data() {
         return $this->get_recaptcha_html();
     }
-    
+
     /* End of Recaptcha function */
 }
 

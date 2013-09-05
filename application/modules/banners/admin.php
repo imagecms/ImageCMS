@@ -37,9 +37,23 @@ class Admin extends BaseAdminController {
         /** Show Banners list */
         \CMSFactory\assetManager::create()
                 ->registerScript('main')
-                ->setData(array('banners' => $banners, 'locale' => $locale))
+                ->setData(array('banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()))
                 ->renderAdmin('list');
     }
+    
+     /**
+     * @access public
+     * @author L.Andriy <l.andriy@siteimage.com.ua>
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function settings(){
+        $st = (int)$_POST['status'];
+        
+        $arr = serialize(array ('show_tpl' => $st));
+        $sql = $this->db->query("update  components set settings = '$arr' where name = 'banners'");
+        
+    }
+
 
     /**
      * Switch Banners activity status
@@ -212,6 +226,23 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()
                 ->setData('entity', $entity)
                 ->render($this->input->post('tpl'), TRUE);
+    }
+    
+    /**
+     * Save banners positions
+     * @access public
+     * @author koloda90 <koloda90@gmail.com>
+     */
+    public function save_positions() {
+        if (!is_array($this->input->post('positions')))
+            return;
+
+        foreach ($this->input->post('positions') as $key => $value) {
+            $this->db->where('id = '.$value)
+                ->update('mod_banner', array('position' => $key));
+        }
+
+        showMessage('Positions saved');
     }
 
 }

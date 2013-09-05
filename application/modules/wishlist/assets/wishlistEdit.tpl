@@ -4,7 +4,6 @@
             <div class="frameLabel__icsi-css error_text" name="error_text"></div>
         </span>
     </label>
-
     {foreach $wishlists as $key => $wishlist}
         <form method="POST" action="/wishlist/updateWL">
             <table class="table">
@@ -18,9 +17,8 @@
                                 <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">private</option>
                                 <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">public</option>
                             </select>
-                            <div class="wishListDescription" >{$wishlist['0']['description']}</div>
+                            <textarea name="description">{$wishlist['0']['description']}</textarea>
                             <a href="/wishlist/deleteWL/{$wishlist['0']['wish_list_id']}"class="btn">удалить</a>
-
                         </td>
                     </tr>
                     {if $wishlist[0][id] != null}

@@ -11,6 +11,8 @@
 *
 */
 #}
+
+
 {$Comments = $CI->load->module('comments')->init($model)}
 <article class="container">
     <!-- Making bread crumbs -->
@@ -55,6 +57,8 @@
                     <!-- End. Show additional images -->
                 </ul>
             </div>
+                    
+                     
             <!--Photo block for main product end-->
             <div class="span8">
                 <div class="description" data-rel="frameP">
@@ -77,6 +81,7 @@
                             <!-- Start. Output of all the options -->
                             <div class="f-s_0 d_i-b v-a_b m-b_20">
                                 {$variants = $model->getProductVariants()}
+
                         {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                         {if count($variants) > 1 && $cnt > 1}
                             <div class=" d_i-b v-a_b m-r_30 variantProd">
@@ -105,13 +110,16 @@
                                 <!-- $model->hasDiscounts() - check for a discount. -->
                                 {if $model->hasDiscounts()}
                                     <span class="d_b old_price">
+
                                         <!--
                                         "$model->firstVariant->toCurrency('OrigPrice')" or $model->firstVariant->getOrigPrice()
                                         output price without discount
                                          To display the number of abatement "$model->firstVariant->getNumDiscount()"
                                         -->
 
+
                                         <span class="f-w_b priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+
 
                                         {$CS}
                                     </span>
@@ -122,6 +130,7 @@
                                 -->
                                 <span class="f-w_b priceVariant">{echo $model->firstVariant->toCurrency()}</span>{$CS}
                                 <!--To display the amount of discounts you can use $model->firstVariant->getNumDiscount()-->
+
                             </div>
                             <!--
                             Buy button applies the
@@ -131,6 +140,7 @@
                             data-name - name product
                             these are the main four options for the "buy" - button
                             -->
+
 
                             {foreach $variants as $key => $pv}
                                 {if $pv->getStock() > 0}
@@ -153,6 +163,7 @@
                                                           data-stock="{echo $pv->getStock()}"
                                                           >
                                 {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+
                             </button>
                             <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>Товар под заказ</span></span>{/if}</div>
                         {else:}
@@ -165,6 +176,7 @@
                                                    data-effect-off= "fadeOut"
                                                    data-effect-on="fadeIn"
                                                    data-drop=".drop-report"
+
 
                                                    data-id="{echo $pv->getId()}"
                                                    data-prodid="{echo $model->getId()}"
@@ -183,6 +195,7 @@
                                 <span class="icon-but"></span>
                                 <span class="text-el">{lang('s_message_o_report')}</span>
                             </button>
+
                         {/if}
                     {/foreach}
                 </div>
@@ -332,6 +345,7 @@
     <!--The unit features product End-->
     <!--Block Accessories Start-->
 
+
     {if $accessories}
 
         <div id="accessories">
@@ -461,6 +475,7 @@
                                                 <!-- "$kitProducts->getMainProductPrice()" price of the main product-->
                                                 <span class="f-w_b">{echo $kitProducts->getMainProductPrice()} </span>
                                                 {$CS}
+
                                             </div>
                                         </div>
                                         <div class="photo-block">
@@ -471,6 +486,7 @@
                                                 </figure>
                                             </a>
                                         </div>
+
                                     </div>
                                     <div class="d_i-b">+</div>
                                 </li>
@@ -547,8 +563,12 @@
     </div>
 </div>
 </div>
+
 {/if}
 <!--Kit end-->
+
+{//widget_ajax('similar' , 'article.container')}
+{//widget_ajax('view_product' , 'article.container')}
 
 {widget('view_product')}
 {widget('similar')}

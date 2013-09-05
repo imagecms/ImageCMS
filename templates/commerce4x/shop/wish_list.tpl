@@ -10,22 +10,23 @@
 #}
 
 <article class="container">
+    {widget('path')}
     <!--If empty list show message -->
     {if !$items}
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_WL')}</h1>
+                <h1 class="d_i">{lang("Wish List","admin")}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your Wish List is empty ","admin"))}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
     {else:}
 
         <div data-body="body">
-            <h1>{lang('s_WL')}</h1>
+            <h1>{lang("Wish List","admin")}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS items_wish_list">
@@ -92,6 +93,7 @@
                                             data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $variant->getStock()}"
                                             >
+
                                 {if in_array($variant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
                             </button>
                         {else:}
@@ -110,6 +112,7 @@
                             </button>
                         {/if}
                         <!-- End. Check is product available -->
+
                     </div>
                     <!-- Photo block-->
                     <div class="photo-block">
@@ -131,6 +134,7 @@
                 <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
             </div>
         </div>
+
         <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
             <div class="span6">
                 <div class="standart_form horizontal_form t-a_r">
@@ -152,6 +156,7 @@
     </div>
     <div class="alert alert-search-result">
         <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+
     </div>
     <!--End. Show message if compare list is empty -->
 </div>

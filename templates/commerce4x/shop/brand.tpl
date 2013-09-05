@@ -19,17 +19,18 @@
 *   $Comments: array which contains count of comments for each product
 */
 #}
-
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
+
     <div class="row-fluid">
         <aside class="span3">
             {include_tpl('filter')}
         </aside>
+
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
             <span class="c_97">
-                {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                {lang("Found","admin")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}
             </span>
             {if count($products) > 0}
                 <div class="clearfix t-a_c frame_func_catalog">
@@ -127,10 +128,12 @@
                                             {else:}
                                                 {$name = ShopCore::encode($product->getName())}
                                             {/if}
+
                                             <option value="{echo $pv->getId()}" title="{echo $name}">
                                                 {echo $name}
                                             </option>
                                         {/if}
+
 
                                     {/foreach}
                                 </select>
@@ -250,6 +253,7 @@
 </div>
 </article>
 
+{//widget_ajax('view_product', 'article.container')}
 {widget('view_product')}
 
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

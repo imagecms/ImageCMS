@@ -1,5 +1,6 @@
 <article class="container">
     <div>
+        {widget('path')}
         <div class="clearfix frame_brand main">
             <ul class="items">
                 {foreach $model as $m}

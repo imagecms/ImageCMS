@@ -142,7 +142,7 @@
                     </div>
 
                     {//inputs for displaying price range in numeric format}
-                    <div class="formCost t-a_j">
+                    <div class="formCost t-a_j number">
                         <label>
 
                             {//left price value}

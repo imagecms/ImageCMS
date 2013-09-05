@@ -864,7 +864,7 @@ var orders = new Object({
 
         $('.totalOrderPrice').html(totalPrice);
     },
-    updateOrderItem: function(id, btn)
+    updateOrderItem: function(id, btn, order)
     {
         var data = {};
         if ($(btn).data('update') == 'price')
@@ -873,11 +873,15 @@ var orders = new Object({
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
 
-        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
+//        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
+//            $('.notifications').append(data);
+//        });
+        $.post('/admin/components/run/shop/orders/ajaxEditOrderCartNew/' + id, data, function(data) {
             $('.notifications').append(data);
         });
     },
     getProductsInCategory: function(categoryId) {
+console.log(categoryId)
         $('#variantInfoBlock').hide();
         $.ajax({
             url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
@@ -914,6 +918,9 @@ var orders = new Object({
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
                             ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
+
+                    $($('#variantsForOrders').find('option')[0]).trigger('click');
+                    $('#variantsForOrders').trigger('change');
                 }
             }
         });
@@ -957,7 +964,7 @@ var orders = new Object({
         var row = $(element).closest('tr');
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
-        
+
         if (checkProdStock == 1 && quantity > stock){
             $(element).val(stock);
             quantity = stock;
@@ -1203,13 +1210,13 @@ function clone_object() {
         var add_variants = {
             cloneObjectVariant: data.find('[data-rel="add_new_clone"]'),
             frameSetClone: data.find('tbody'),
-            frameСlone: function() {
+            frameClone: function() {
                 var variant_row = this.frameSetClone.find('tr:first').clone();
                 return this.frameSetClone.find('tr:first').clone().find('input').val('').parents('tr')
             },
             addNewVariant: function() {
                 btn_temp = btn_temp.clone().show();
-                return this.frameСlone().find('td:last').append(btn_temp).parents('tr');
+                return this.frameClone().find('td:last').append(btn_temp).parents('tr');
             }
         }
         add_variants.cloneObjectVariant.on('click', function() {

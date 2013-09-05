@@ -17,8 +17,10 @@
 
 <!-- Start.Show search results block, if $totalProduct > 0 -->
 {if $totalProducts > 0}
+
     <div class="container">
         <div class="row-fluid">
+
             <aside class="span3">
                 <div class="filter">
                     <!-- Start. Categories tree with navigation -->
@@ -26,33 +28,26 @@
                         <div class="title">{lang('s_sea_found_in_categories')}:</div>
                         <nav>
                             <ul>
-                                {foreach $tree as $item}
-                                    <ul data-cid="{echo $item->getId()}" {if $item->getParentId() != 0} data-level="3" data-pid="{echo $item->getParentId()}"{/if}>
-                                        {$title=false}
-                                        {foreach $item->getSubtree() as $subItem}
-                                            {$count_item = $categories[$subItem->getId()];}
-                                            {if $count_item}
-                                                {if !$title}
-                                                    <div class="title">
-                                                        {echo trim($item->getName())}
-                                                        {$title=true}
-                                                    </div>
+                            {foreach $categories as $key => $category}
+                                <ul  data-pid="{echo $key}">
+                                    <div class="title">
+                                        {echo trim(key($category))}
+                                    </div>
+                                    {foreach $category[key($category)] as $subItem}
+                                        <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
+                                            <span>
+                                                {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                                    {echo $subItem['name']}
+                                                {else:}
+                                                    <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
                                                 {/if}
-                                                <li{if $_GET['category'] && $_GET['category'] == $subItem->getId()} class="active"{/if}>
-                                                    <span>
-                                                        {if $_GET['category'] && $_GET['category'] == $subItem->getId()}
-                                                            {echo $subItem->getName()}
-                                                        {else:}
-                                                            <a class="filter_by_cat" rel="nofollow" data-id="{echo $subItem->getId()}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem->getId())}">{echo $subItem->getName()}</a>
-                                                        {/if}
-                                                        <span class="count">({echo $count_item})</span>
-                                                    </span>
-                                                </li>
-                                            {/if}
-                                        {/foreach}
-                                    </ul>
-                                {/foreach}
-                            </ul>
+                                                <span class="count">({echo $subItem['count']})</span>
+                                            </span>
+                                        </li>
+
+                                    {/foreach}
+                                </ul>
+                            {/foreach}
                         </nav>
                     </div>
                     <!-- End. Categories tree with navigation -->
@@ -296,6 +291,7 @@
             </a>
         </div>
 
+
         <!-- creating hot bubble for products image if product is hot -->
         {if $product->getHot()}
             <span class="top_tovar nowelty">{lang('s_shot')}</span>
@@ -324,20 +320,22 @@
 </div>
 </div>
 </div>
+
 {else:}
     <!--Start. Show message not found-->
-    <article class="container">
+    <article id="search" class="container">
         <div class="bot_border_grey m-b_10">
             {if !empty(ShopCore::$_GET['text'])}
-                <div class="d_i title_h1">{lang('s_sea_search_for')} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
+                <div class="d_i title_h1">{lang("You searched for","admin")} <span class="alert-small">:"{encode($_GET['text'])}"</span></div>
             {/if}
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_not_found'))}</div>
+            <div class="title_h2 t-a_c">{echo ShopCore::t(lang("Your search did not match","admin"))}</div>
         </div>
     </article>
     <!-- End. Show message -->
 {/if}
 
+{//widget_ajax('view_product', '#search')}
 {widget('view_product')}
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>

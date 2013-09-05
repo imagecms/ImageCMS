@@ -103,13 +103,13 @@ $config['uri_protocol']	= "REQUEST_URI";
 | 'tpl_force_compile'	Compile template file each request
 | 'tpl_compiled_ttl'	        Time to live for compiled file
 | 'tpl_compress_output'   Use gzip to compress output
-| 'tpl_use_filemtime'			
+| 'tpl_use_filemtime'
 |
 */
 $config['tpl_compile_path']    = BASEPATH.'cache/templates_c/';
-$config['tpl_force_compile']   = TRUE;
+$config['tpl_force_compile']   = FALSE;
 $config['tpl_compiled_ttl']    = 84600;
-$config['tpl_compress_output'] = FALSE;
+$config['tpl_compress_output'] = TRUE;
 $config['tpl_use_filemtime']   = TRUE;
 
 /*
@@ -228,7 +228,7 @@ $config['directory_trigger'] 	= 'd'; // experimental not currently in use
 | Error Logging Threshold
 |--------------------------------------------------------------------------
 |
-| If you have enabled error logging, you can set an error threshold to 
+| If you have enabled error logging, you can set an error threshold to
 | determine what gets logged. Threshold options are:
 | You can enable error logging by setting a threshold over zero. The
 | threshold determines what gets logged. Threshold options are:
@@ -352,7 +352,7 @@ $config['global_xss_filtering'] = FALSE;
 | by the output class.  Do not "echo" any values with compression enabled.
 |
 */
-$config['compress_output'] = FALSE;
+$config['compress_output'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

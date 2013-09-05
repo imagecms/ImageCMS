@@ -107,7 +107,7 @@ abstract class BaseEvents {
     }
 
     /*
-     * 
+     *
      */
 
     final public function on($key) {
@@ -138,7 +138,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['id']</td><td>Page ID</td></tr>
      * <tr valign="top"><td>['title']</td><td>Page title</td></tr>
      * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
-     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>     
+     * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
      * </table>
      * @return BehaviorFactory
      * @author Kaero
@@ -155,7 +155,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['name']</td><td>Category name</td></tr>
      * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
-     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>     
+     * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>
      * </table>
      * @return BehaviorFactory
      * @author Kaero
@@ -366,6 +366,16 @@ abstract class BaseEvents {
 
     public function onProductPageLoad() {
         $this->key = 'product:load';
+        return $this;
+    }
+
+    final public function onShopUserCreate() {
+        $this->key = 'ShopAdminUser:create';
+        return $this;
+    }
+
+    final public function onShopOrderCreate() {
+        $this->key = 'ShopAdminOrder:create';
         return $this;
     }
 

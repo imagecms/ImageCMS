@@ -1,3 +1,24 @@
+var framechecks = ".frame-group-checks",
+        frameFilter = '.frame-filter';
+function filtertype(el, totalProducts, otherClass) {
+    var $this = el.closest(framechecks),
+            $thisRel = $this.data('rel');
+    if ($thisRel != undefined) {
+        var arr = $thisRel.split(' ');
+        $.map(arr, function(n, i) {
+            if (n == 'dropDown') {
+                $this.find('.title').next().show();
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            }
+            if (n == 'scroll') {
+                cleaverFilterObj.cleaverFilterFunc(el, totalProducts, otherClass);
+            }
+        });
+    }
+}
+function changeSelectFilter(el) {
+    ajaxRecount('#cuselFrame-' + $(el).attr('id'), false);
+}
 (function($) {
     var methods = {
         init: function(options) {
@@ -8,56 +29,56 @@
                 maxCost: null,
                 leftSlider: $this.find('.left-slider'),
                 rightSlider: $this.find('.right-slider'),
-                valuesObj: null
             }, options);
-
             var slider = settings.slider,
                     minCost = $(settings.minCost),
                     maxCost = $(settings.maxCost),
                     left = settings.leftSlider,
                     right = settings.rightSlider,
-                    valuesObj = settings.valuesObj,
-                    defMin = valuesObj.defMin,
-                    defMax = valuesObj.defMax,
-                    curMin = valuesObj.curMin,
-                    curMax = valuesObj.curMax;
-
-            if (!$.existsN(minCost))
-                minCost = $('<input type="text" class="minCost" value="' + curMin + '" name="lp" />').appendTo($this.closest('form')).hide();
-
-            if (!$.existsN(maxCost))
-                maxCost = $('<input type="text" class="maxCost" value="' + curMax + '" name="rp"/>').appendTo($this.closest('form')).hide();
-
+                    defMin = settings.defMin,
+                    defMax = settings.defMax,
+                    curMin = settings.curMin,
+                    curMax = settings.curMax,
+                    lS = settings.lS,
+                    rS = settings.rS;
+            if (!$.existsN(minCost)) {
+                minCost = $('<input type="text" class="minCost" data-mins="' + defMin + '" value="' + curMin + '" name="' + lS + '" />').appendTo($this.closest('form')).hide();
+            }
+            if (!$.existsN(maxCost)) {
+                maxCost = $('<input type="text" class="maxCost" data-maxs="' + defMax + '" value="' + curMax + '" name="' + rS + '"/>').appendTo($this.closest('form')).hide();
+            }
             slider.slider({
                 min: defMin,
                 max: defMax,
                 values: [curMin, curMax],
                 range: true,
                 slide: function(event, ui) {
-//                    if ($(ui.handle).is(left))
+//                    if ($(ui.handle).is(left)) {
 //                        $(ui.handle).tooltip({
 //                            'title': ui.values[0],
 //                            'effect': 'always',
 //                            'otherClass': 'tooltip-slider'
 //                        });
-//                    if ($(ui.handle).is(right))
+//                    }
+//                    if ($(ui.handle).is(right)) {
 //                        $(ui.handle).tooltip({
 //                            'title': ui.values[1],
 //                            'effect': 'always',
 //                            'otherClass': 'tooltip-slider'
 //                        })
+//                    }
+
                     minCost.val(ui.values[0]);
                     maxCost.val(ui.values[1]);
                 },
                 stop: function() {
-                    ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                    ajaxRecount('#' + slider.attr('id'), 'apply-slider');
                 }
             });
             minCost.change(function() {
                 var value1 = minCost.val(),
                         value2 = maxCost.val(),
                         minS = minCost.data('mins');
-
                 if (parseInt(value1) > parseInt(value2)) {
                     value1 = value2;
                     maxCost.val(value1);
@@ -72,7 +93,6 @@
                 var value1 = minCost.val(),
                         value2 = maxCost.val(),
                         maxS = maxCost.data('maxs');
-
                 if (value2 > defMax) {
                     value2 = defMax;
                     maxCost.val(defMax);
@@ -89,7 +109,7 @@
                 slider.slider("values", 1, value2);
             });
             minCost.add(maxCost).change(function() {
-                ajaxRecount('#' + slider.attr('id'), 'apply-slider', false);
+                ajaxRecount('#' + slider.attr('id'), 'apply-slider');
             });
         }
     };
@@ -106,40 +126,33 @@
 (function($) {
     var methods = {
         init: function(options) {
-            cleaverFilterObj = {
+            $.extend(cleaverFilterObj, {
                 mainWraper: $(this),
-                elClosed: $('.icon-times-apply'),
-                elCount: $('#apply-count'),
-                effectIn: 'fadeIn',
-                effectOff: 'fadeOut',
-                duration: '300',
-                location: 'right',
-                elPos: $('.frame-group-checks .frame-label'),
-                cleverFilterFunc: function(elPos, countTov, clas) {
+                cleaverFilterFunc: function(elPos, countTov, clas) {
                     cleaverFilterObj.mainWraper.hide();
-                    var left = 0;
 
+                    $(cleaverFilterObj.elCount).text(countTov);
+                    cleaverFilterObj.mainWraper.find(genObj.plurProd).html(pluralStr(countTov, plurProd));
+                    var left = 0;
                     if (cleaverFilterObj.location == 'right') {
                         left = elPos.width() + elPos.offset().left;
                     }
                     if (cleaverFilterObj.location == 'left') {
-                        left = elPos.offset().left - cleaverFilterObj.mainWraper.actual('width');
+                        left = elPos.offset().left - cleaverFilterObj.mainWraper.actual('outerWidth');
                     }
-
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
-                        'top': elPos.offset().top
-                    }).removeClass().addClass('apply').addClass(clas);
-                    cleaverFilterObj.elCount.text(countTov);
-
-                    cleaverFilterObj.mainWraper.find(genObj.plurProd).html(pluralStr(countTov, plurProd));
-
-                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration);
+                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll[elPos.closest(framechecks).index()]
+                    }).removeClass().addClass('apply '+clas+' '+cleaverFilterObj.addingClass);
+                    cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
+                        $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
+                    });
                     cleaverFilterObj.mainWraper.find('a').focus();
-                }
-            };
+
+                }}
+            );
             (function() {
-                cleaverFilterObj.elClosed.click(function() {
+                $(cleaverFilterObj.elClosed).click(function() {
                     methods.triggerBtnClick();
                 });
                 $('body').live('click', function(event) {
@@ -152,14 +165,15 @@
 
                 }).live('keydown', function(e) {
                     var key, keyChar;
-                    if (!e)
+                    if (!e) {
                         var e = window.event;
-
-                    if (e.keyCode)
+                    }
+                    if (e.keyCode) {
                         key = e.keyCode;
-                    else if (e.which)
+                    }
+                    else if (e.which) {
                         key = e.which;
-
+                    }
                     if (key == 27) {
                         methods.triggerBtnClick();
                     }
@@ -180,29 +194,89 @@
         }
     };
 })(jQuery);
-
-function afterAjaxInitializeFilter() {
+function afterAjaxInitializeFilter(ready) {
     var apply = $('.apply'),
-            $slider1 = $('#frame-slider1'),
+            $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
-
     //if ($.exists_nabir(frameSlider) == 0) frameSlider = $('<div class="frame-slider"></div>').append('.filter').hide();
 
-    var objPrice = {
-        minCost: '.minCost',
-        maxCost: '.maxCost',
-        valuesObj: slider1
-    };
-    $slider1.sliderInit(objPrice);
-
-    $(".frame-group-checks").nStCheck({
+    $sliders.each(function() {
+        var $this = $(this);
+        $this.sliderInit(eval($this.data('rel')));
+    });
+    if ($.exists('.lineForm:visible')) {
+        cuSel($.extend({}, cuselOptions, {changedEl: '#catalog_form .lineForm select'}));
+        if (ltie7)
+            ieInput($('.cuselText'));
+    }
+    $(framechecks).nStCheck({
         wrapper: $(".frame-label:has(.niceCheck)"),
         elCheckWrap: '.niceCheck',
         evCond: true,
         //classRemove: 'b_n',//if not standart
+        //if evCond: true
         before: function(a, b, c) {
             c.nStCheck('changeCheck');
-            ajaxRecount('#' + b.attr('id'), false, true);
+            ajaxRecount('#' + b.attr('id'), false);
+            var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
+            if ($thisframechecks.data('rel') != undefined) {
+                if ($thisframechecks.data('rel').match('scroll')) {
+                    var scrollabel = $thisframechecks.find('.jspScrollable'),
+                            scrollabelH = scrollabel.height(),
+                            posY = scrollabel.data('jsp').getContentPositionY(),
+                            addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
+                }
+                else {
+                    cleaverFilterObj.currentPosScroll = [];
+                }
+            }
+            else {
+                cleaverFilterObj.currentPosScroll = [];
+            }
+        }
+    });
+    $(framechecks).each(function() {
+        var $this = $(this),
+                $thisRel = $this.data('rel'),
+                filtersContent = $this.find('.filters-content');
+        if ($thisRel != undefined) {
+            var arr = $thisRel.split(' '),
+                    arrL = arr.length;
+            $.map(arr, function(n, i) {
+                if (n == 'dropDown') {
+                    $this.find('.title .text-el').addClass('d_l');
+
+                    $this.find('.title > span').bind('click.filter', function(e) {
+                        var $thisi = $(this);
+                        $thisi.parent().next()[e.eff != undefined ? e.eff : cleaverFilterObj.dropDownEff](e.dur != undefined ? e.dur : cleaverFilterObj.dropDownEffDur, function() {
+                            if ($(this).is(':visible')) {
+                                cleaverFilterObj.dropDownArr.push($this.attr('id'));
+                            }
+                            else {
+                                cleaverFilterObj.dropDownArr.splice(cleaverFilterObj.dropDownArr.indexOf($this.attr('id')), 1);
+                            }
+                            $thisi.toggleClass('valuePD');
+                        });
+                    });
+                }
+                if (n == 'scroll') {
+                    $this.show();
+                    var el = filtersContent.show().jScrollPane(scrollPane);
+                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
+                }
+                if (n == 'dropDown') {
+                    filtersContent.hide();
+                }
+                if (arrL - 1 == i) {
+                    $this.fadeIn();
+                    $this.next(preloader).hide()
+                }
+            });
+            if ($.inArray($this.attr('id'), cleaverFilterObj.dropDownArr) != -1) {
+                filtersContent.show();
+                $this.find('.title').children().addClass('valuePD');
+            }
         }
     });
     apply.cleaverFilterMethod();
@@ -211,35 +285,33 @@ function afterAjaxInitializeFilter() {
         return false;
     });
     $('.tooltip').tooltip('remove');
-
-    $('.cleare_filter').click(function() {
+    $('.clear-filter').click(function() {
         nm = $(this).data('name');
         $('#' + nm + ' input').attr('checked', false);
         catalogForm.submit();
         return false;
     });
-    $('.cleare_price').click(function() {
-        var defMin = objPrice.valuesObj.defMin,
-                defMax = objPrice.valuesObj.defMax;
-
-        $(objPrice.minCost).val(defMin);
-        $(objPrice.maxCost).val(defMax);
+    $('.clear-slider').click(function() {
+        var obj = eval($(this).data('rel'));
+        $(obj.minCost).val(obj.defMin);
+        $(obj.maxCost).val(obj.defMax);
         catalogForm.submit();
+
         return false;
     });
 }
-function ajaxRecount(el, slChk, submit) {
-
+function ajaxRecount(el, slChk) {
+    $(frameFilter).children(preloader).show();
 //    var catalogForm = $('#catalog_form');
-//    if (submit)
+//    if (submit){
 //        catalogForm.submit();
+//}
 
     var catalogForm = $('#catalog_form'),
             $this = el,
             data = catalogForm.serializeArray(),
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
-
     $.ajax({
         type: 'get',
         url: catUrl,
@@ -249,19 +321,25 @@ function ajaxRecount(el, slChk, submit) {
         },
         success: function(msg) {
             var otherClass = '';
-            catalogForm.find('.popup_container').html(msg);
-            afterAjaxInitializeFilter();
+            $(frameFilter).html(msg).children(preloader).hide();
+            afterAjaxInitializeFilter(false);
             $.fancybox.hideActivity();
-
-            if (slChk)
+            if (slChk) {
                 otherClass = slChk;
-
-            cleaverFilterObj.cleverFilterFunc($($this), totalProducts, otherClass);
+            }
+            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
+                cleaverFilterObj.currentPosScroll = [];
+                cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
+            }
+            else {
+                filtertype($($this), totalProducts, otherClass);
+            }
         }
     });
     return false;
 }
 
-$(document).ready(function() {
-    afterAjaxInitializeFilter();
+$(document).live('scriptDefer', function() {
+    $(frameFilter).children(preloader).hide();
+    afterAjaxInitializeFilter(true);
 });

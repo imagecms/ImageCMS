@@ -25,6 +25,17 @@ class Banner_model extends CI_Model {
         $this->db->query($sql);
 
     }
+    
+    
+    public function get_settings_tpl(){
+
+        $res = $this->db->query("select  settings from components where name = 'banners'")->row();
+        $show = unserialize($res->settings);
+        
+        
+        return $show['show_tpl'] ? true : false;
+        
+    }
 
     public function edit_banner($data){
 
@@ -52,7 +63,12 @@ class Banner_model extends CI_Model {
 
     public function get_all_banner($locale){
 
-       return $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '". $locale ."'")->result_array();
+        $query = $this->db->query("select *, mod_banner.id as id from mod_banner left join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id and locale = '". $locale ."'");
+        if($query){
+            $query = $query->result_array();
+        }
+        
+        return $query;
 
     }
 

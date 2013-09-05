@@ -1,5 +1,5 @@
 <div class="container">
-    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -25,11 +25,21 @@
             <div class="pull-right">
                 <span class="help-inline"></span>
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
-                    <button type="button" class="btn btn-small disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_property"><i class="icon-trash"></i>{lang('a_delete')}</button>
-                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" ><i class="icon-list-alt icon-white"></i>Создать шаблон</a>
+                    <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span>
+                        <span class="t-d_u">{lang('Back')}</span>
+                    </a>
+                    <button type="button"
+                            class="btn btn-small btn-danger disabled action_on"
+                            onclick="delete_function.deleteFunction()"
+                            id="del_sel_property">
+                        <i class="icon-trash icon-white"></i>{lang('Delete')}
+                    </button>
+                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
+                        <i class="icon-list-alt icon-white"></i>Создать шаблон
+                    </a>
                 </div>
-            </div>  
+            </div>
         </div>
         <div class="tab-content">
             {if count($models)>0}
@@ -45,11 +55,11 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th>{lang('a_name')}</th>
+                                    <th>{lang("Name")}</th>
                                     <th>Описание</th>
                                     <th>Тема</th>
                                     <th>От кого</th>
-                                </tr>    
+                                </tr>
                             </thead>
                             <tbody class="sortable">
                                 {foreach $models as $model}

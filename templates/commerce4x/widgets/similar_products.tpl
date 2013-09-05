@@ -2,8 +2,10 @@
 
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
+
             <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
             <div class="d_i-b groupButton v-a_m frame_carousel_button">
+
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
                     <span class="icon-info"></span>
@@ -24,7 +26,9 @@
                     -->
                     <li class="span3 {if $product->firstVariant->getStock() == 0}not-avail{/if}">
                         <!-- $product->getUrl() - the path to the product-->
+
                         <   div class="description">                            
+
                             <a href="{site_url('shop/product/'.$product->getUrl())}">{echo ShopCore::encode($product->getName())}</a>
                             <div class="price price_f-s_16">
                                 <!--
@@ -44,9 +48,11 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()} </span> 
                                 {$CS}
                             </div>
+
                             <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
                             
                             <!--<button class="btn btn_buy" 
+
                                     type="button" 
                                     data-prodid="{echo $product->getId()}" 
                                     data-varid="{echo $product->firstVariant->getId()}" 
@@ -54,6 +60,7 @@
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
+
                                 {lang('s_more')}
                                 {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
                             </button>
@@ -63,6 +70,7 @@
                             <a href="{site_url('shop/product/'.$product->getUrl())}" class="photo">
                                 <figure>
                                     <span class="helper"></span>
+
                                     <!--$product->getMainImage() - product image-->
                                     <img src="{productImageUrl($product->getMainImage())}" alt="{echo ShopCore::encode($product->getName())}"/>
                                 </figure>

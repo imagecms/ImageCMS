@@ -6,12 +6,12 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_back')}</span></a>
+                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
                 <button type="button" 
                         class="btn btn-small btn-primary action_on formSubmit" 
                         data-form="#settings_form" 
                         data-action="save">
-                    <i class="icon-ok"></i>{lang('a_save')}
+                    <i class="icon-ok"></i>{lang('Have been saved')}
                 </button>
             </div>
         </div>                            
@@ -42,7 +42,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Client ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "googleClientID" value = "{$settings['googleClientID']}"/>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Application ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "vkClientID" value = "{$settings['vkClientID']}"/>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">App ID:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "facebookClientID" value = "{$settings['facebookClientID']}"/>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="ClientID">Id приложения:</label>
-                                <div class="controls">
+                                <div class="controls number">
                                     <input type = "text" name = "yandexClientID" value = "{$settings['yandexClientID']}"/>
                                 </div>
                             </div>

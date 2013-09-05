@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `user_mail` varchar(50) NOT NULL,
   `user_site` varchar(250) NOT NULL,
   `item_id` bigint(11) NOT NULL,
-  `text` varchar(500) NOT NULL,
+  `text` text,
   `date` int(11) NOT NULL,
   `status` smallint(1) NOT NULL,
   `agent` varchar(250) NOT NULL,
@@ -172,7 +172,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (95, 'filter', 'filter', 1, 0, 0, NULL, NULL),
 (96, 'cfcm', 'cfcm', 0, 0, 0, NULL, NULL),
 (123, 'share', 'share', 0, 0, 0, NULL, NULL),
-(129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL);
+(129, 'star_rating', 'star_rating', 1, 0, 0, '{"main":"1","page":"1","category":"1","product":"1","shop_category":"1","brand":"1"}', NULL),
+(188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2);
 
 -- --------------------------------------------------------
 
@@ -403,23 +404,33 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 -- Структура таблиці `custom_fields`
 --
 
-DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
   `field_name` varchar(64) NOT NULL,
-  `field_label` varchar(64) NOT NULL,
-  `field_description` text,
   `is_required` tinyint(1) NOT NULL DEFAULT '1',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `is_private` tinyint(1) NOT NULL DEFAULT '0',
-  `possible_values` text,
   `validators` varchar(255) DEFAULT NULL,
-  `field_access_rules` text,
   `entity` varchar(32) DEFAULT NULL,
   `options` varchar(65) DEFAULT NULL,
+  `classes` text,
+  `position` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
+
+--
+-- Структура таблиці `custom_fields_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(4) NOT NULL,
+  `field_label` varchar(255) DEFAULT NULL,
+  `field_description` text,
+  `possible_values` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -427,15 +438,19 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- Структура таблиці `custom_fields_data`
 --
 
-DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
   `entity_id` int(11) NOT NULL,
   `field_data` text,
+  `locale` varchar(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
+
+--
+-- Дамп даних таблиці `custom_fields_data`
+--
 -- --------------------------------------------------------
 
 --
@@ -542,6 +557,50 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 (74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
 
 -- --------------------------------------------------------
+
+
+--
+-- Структура таблиці `gallery_images_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+--
+-- Структура таблиці `gallery_category_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `gallery_category_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('5', 'ru', 'Галерея', '');
+--
+-- Структура таблиці `gallery_albums_i18n`
+--
+
+CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL,
+  `description` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `name`, `description`) VALUES
+('2', 'ru', 'Космические роботы', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>'),
+('3', 'ru', 'Человеко роботы', ''),
+('4', 'ru', 'Боевые роботы', '');
 
 --
 -- Структура таблиці `languages`
@@ -879,6 +938,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `ss` varchar(255) NOT NULL,
   `cat_list` varchar(10) NOT NULL,
   `text_editor` varchar(30) NOT NULL,
+  `siteinfo` text NOT NULL,
+  `update` text,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -887,8 +948,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Дамп даних таблиці `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'default', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'tinymce');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', 'full', 'default', 'no', '', 'page', 69, '56', 'user_manager', '', '', 'russian_lang', '', '', NULL, '', 'yes', 'tinymce','a:7:{s:20:"siteinfo_compatytype";s:0:"";s:16:"siteinfo_address";s:0:"";s:18:"siteinfo_mainphone";s:18:"+8 (090) 500-50-50";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:13:"siteinfo_logo";s:0:"";s:16:"siteinfo_favicon";s:0:"";s:8:"contacts";a:3:{s:5:"Email";s:17:"Info@imagecms.net";s:5:"Skype";s:8:"ImageCMS";s:7:"Тел.";s:38:"+8 (090) 500-50-50, +8 (100) 500-50-50";}}');
 
 -- --------------------------------------------------------
 
@@ -2043,6 +2104,47 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (12, 'offers_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291649245),
 (13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084);
+
+--
+-- Структура таблиці `mod_email_paterns`
+--
+
+DROP TABLE IF EXISTS `mod_email_paterns`;
+CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `patern` text NOT NULL,
+  `from` varchar(256) NOT NULL,
+  `from_email` varchar(256) NOT NULL,
+  `admin_email` varchar(256) NOT NULL,
+  `theme` varchar(256) NOT NULL,
+  `type` enum('HTML','Text') NOT NULL DEFAULT 'HTML',
+  `user_message` text NOT NULL,
+  `user_message_active` tinyint(1) NOT NULL,
+  `admin_message` text NOT NULL,
+  `admin_message_active` tinyint(1) NOT NULL,
+  `description` text NOT NULL,
+  `variables` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Дамп даних таблиці `mod_email_paterns`
+--
+
+INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `theme`, `type`, `user_message`, `user_message_active`, `admin_message`, `admin_message_active`, `description`, `variables`) VALUES
+(4, 'Создание пользователя', '', 'Admin', 'no-replay@shop.com', '', 'Создание пользователя', 'HTML', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', 1, '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', 1, '<p>Шаблон письма на создание пользователя.</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";s:8:"$asdasd$";s:6:"sdfsdf";}'),
+(5, 'Востановление пароля', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Восстановление пароля', 'HTML', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', 1, '', 0, 'Шаблон письма на  востановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на востановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
+(6, 'Смена пароля', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Смена пароля', 'HTML', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', 1, '', 0, '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}');
+
+
+CREATE TABLE IF NOT EXISTS `widget_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `data` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`,`locale`),
+  KEY `locale` (`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -35,12 +35,11 @@ class Discount_order extends classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */        
     public function update_order_discount($data){
-
         if ($this->check_module_install()) {
             $discobj = new \mod_discount\discount;
             $discount = $discobj->init()->get_result_discount(1);
             
-            include 'gift.php';
+            require_once 'gift.php';
             $obkGift = new \Gift();
             
             $gift = json_decode($obkGift->get_gift_certificate($data['key']));
@@ -55,16 +54,17 @@ class Discount_order extends classes\BaseDiscount {
                 $data['order']->settotalprice($pricetotal_gift);
                 $data['order']->setoriginprice($data['price']);
                 $data['order']->save();
-                $obkGift->updatediskapply($data['key']); // TODO
+                $obkGift->updatediskapply($data['key'], 'gift'); // TODO
             }
             
             if ($discount['result_sum_discount']){
-                $pricetotal_gift_disc = (float)$data['price'] -(float)$pricetotal_gift - (float)$discount['result_sum_discount'];
+                $pricetotal_gift_disc = (float)$data['price'] - (float)$gift->val_orig - (float)$discount['result_sum_discount'];
                 if ($pricetotal_gift_disc < 0)
                     $pricetotal_gift_disc = 0;
                 $data['order']->setdiscount($discount['result_sum_discount']);
                 $data['order']->settotalprice($pricetotal_gift_disc);
-                $data['order']->setdiscountinfo(json_encode($discount['max_discount']));
+                if ($discount['sum_discount_no_product'] > $discount['sum_discount_product'])
+                    $data['order']->setdiscountinfo(json_encode($discount['max_discount']));
                 $data['order']->setoriginprice($data['price']);
                 $data['order']->save();
                 $this->updatediskapply($discount['max_discount']['key']); // TODO

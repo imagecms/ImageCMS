@@ -1,6 +1,8 @@
-$(document).ready(
-        function() {
-    
+$(document).ready(function() {
+    /**
+     * set begin discount date to now date
+     */
+    $(".discountDate").datepicker({minDate: new Date() });
     /**
      * Change is discount active or not
      */

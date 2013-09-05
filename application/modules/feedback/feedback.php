@@ -38,7 +38,7 @@ class Feedback extends MY_Controller {
     function recaptcha_check() {
         $result = $this->dx_auth->is_recaptcha_match();
         if (!$result) {
-            $this->form_validation->set_message('recaptcha_check', lang('lang_captcha_error'));
+            $this->form_validation->set_message('recaptcha_check', lang("Improper protection code"));
         }
 
         return $result;
@@ -46,7 +46,7 @@ class Feedback extends MY_Controller {
     
     // Index function
     public function index() {
-        $this->core->set_meta_tags('Обратная Связь');
+        $this->core->set_meta_tags(lang('Feedback'));
 
         $this->load->library('form_validation');
 
@@ -57,26 +57,27 @@ class Feedback extends MY_Controller {
         $this->template->add_array($tpl_data);
 
         if (count($_POST) > 0) {
-            $this->form_validation->set_rules('name', 'Имя', 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
-            $this->form_validation->set_rules('email', 'E-Mail', 'trim|required|valid_email|xss_clean');
-            $this->form_validation->set_rules('theme', 'Тема', 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
+            $this->form_validation->set_rules('name', lang('Name'), 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
+            $this->form_validation->set_rules('email', lang('E-Mail'), 'trim|required|valid_email|xss_clean');
+            $this->form_validation->set_rules('theme', lang('Theme'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
 
             
             if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang('lang_captcha') . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection") . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
             else
-                $this->form_validation->set_rules('captcha', lang('lang_captcha') . 'RECAPTCHA', 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang("Code protection") . 'RECAPTCHA', 'trim|required|xss_clean|callback_captcha_check');
 
-            $this->form_validation->set_rules('message', 'Сообщение', 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
+            $this->form_validation->set_rules('message', lang('Message'), 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->template->assign('form_errors', validation_errors('<div style="color:red">', '</div>'));
             } else {
-                $this->message = strip_tags(nl2br('
-Тема : ' . $this->input->post('theme') . '
-Имя : ' . $this->input->post('name') . '
-Email : ' . $this->input->post('email') . '
-Сообщение : ' . $this->input->post('message')));
+                $this->message = strip_tags(nl2br(
+                        lang('Theme') . ' : ' . $this->input->post('theme') . 
+                        lang('Name') .' : ' . $this->input->post('name') . 
+                        lang('E-mail') .' : ' . $this->input->post('email') . 
+                        lang('Message') . ' : ' . $this->input->post('message')
+                ));
                 $this->_send_message();
             }
         }

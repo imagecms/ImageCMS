@@ -1,4 +1,4 @@
-<div id="titleExt">{widget('path')}<span class="ext">{lang('lang_forgot_password')}</span></div>
+<div id="titleExt">{widget('path')}<span class="ext">{lang("Forgot your password?","admin")}</span></div>
 
 {if validation_errors() OR $info_message}
 	<div class="errors">
@@ -11,7 +11,7 @@
 
 	<div class="clear"></div>
 
-	<div class="fieldName">{lang('lang_username_or_mail')}</div>
+	<div class="fieldName">{lang("Username or Email","admin")}</div>
 	<div class="field">
 		<input type="text" size="30" name="login" id="login" />
 	</div>
@@ -19,7 +19,7 @@
 
 	<div class="fieldName"></div>
 	<div class="field">
-		<input type="submit" id="submit" class="submit" value="{lang('lang_submit')}" />
+		<input type="submit" id="submit" class="submit" value="{lang("Send","admin")}" />
 	</div>
 	<div class="clear"></div>
 

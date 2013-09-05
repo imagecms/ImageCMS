@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/cp/wishlist/userWL/{$user_id}#lists"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back', 'wishlist')}</span>
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>
@@ -28,6 +28,7 @@
             {foreach $wishlists as $key => $wishlist}
                 <form method="POST" action="/admin/components/cp/wishlist/updateWL">
                     <table class="table table-striped table-bordered table-hover table-condensed">
+                        <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang(list_)}</th>
@@ -54,6 +55,12 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="control-group">
+                                                <label class="control-label" for="banner_type">{lang('Description')}:</label>
+                                                <div class="controls">
+                                                    <textarea name="description">{$wishlist['0']['description']}</textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -62,7 +69,6 @@
                     </table>
                     {if $wishlist[0][id] != null}
                         <table class="table table-striped table-bordered table-hover table-condensed">
-                            <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                             <thead>
                                 <tr>
                                     <td colspan="3">
@@ -80,7 +86,7 @@
                                     <tr>
                                         <td>{echo $key+1}</td>
                                         <td>
-                                            <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
+                                            <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
                                         </td>
                                         <td>
                                             <a href="{shop_url('product/'.$w[url])}"

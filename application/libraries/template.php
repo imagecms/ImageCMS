@@ -2,6 +2,7 @@
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
+
 /**
  * Image CMS
  * Template Class
@@ -65,7 +66,6 @@ class Template extends Mabilis {
      * @return true
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
-
         $CI = &get_instance();
         if ($CI->uri->segment(1) == 'admin') {
             $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;
@@ -144,6 +144,8 @@ class Template extends Mabilis {
     }
 
     public function view($file, $data = array(), $return = FALSE) {
+        $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
+
         return $this->splitTplFiles(parent::view($file, $data, $return));
     }
 
@@ -168,6 +170,12 @@ class Template extends Mabilis {
     private static $arr = array();
     private static $result_before = '';
     private static $result_after = '';
+
+    /**
+     * is tpl trimed
+     * @var bool
+     */
+    public $trimed = false;
 
 //    public function registerCssCode($name, $code, $position = 'before') {
 //        $position = $this->_check_postion($position);
@@ -219,7 +227,7 @@ class Template extends Mabilis {
     }
 
     /**
-     * 
+     *
      * @param string $position
      * @return string
      */
@@ -238,6 +246,10 @@ class Template extends Mabilis {
 //        $result_js_after = '';
         // split css files
         //self::$arr++;
+        if (!$this->trimed) {
+            $tpl = trim($tpl);
+            $this->trimed = TRUE;
+        }
 
         if (sizeof($this->_css_files) > 0) {
             foreach ($this->_css_files as $url => $pos) {
@@ -369,7 +381,7 @@ class Template extends Mabilis {
                 $tpl .= self::$result_after;
             else
             if (!strstr($tpl, self::$result_after))
-                $tpl = preg_replace('/\<\/body\>/', self::$result_after . "</body>\n", $tpl, 1);
+                $tpl = preg_replace('/(\<\/body>(\s*|\n)<\/html>)(\s*|\n)$/', self::$result_after . "</body></html>", $tpl, 1);
 
 //
 //        if ($result_js_before) {

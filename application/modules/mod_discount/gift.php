@@ -51,10 +51,11 @@ class Gift extends \mod_discount\classes\BaseDiscount {
      * @return jsoon
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_gift_certificate($key = null) {
+    public function get_gift_certificate($key = null, $totalPrice = null) {
         
         $this->get_cart_data();
-        $totalPrice = $this->get_total_price();
+        if ($totalPrice === null)
+            $totalPrice = $this->get_total_price();
         if (null === $key)
             $key = strip_tags(trim($_POST['key']));
         foreach ($this->discount_type['all_order'] as $disc) 

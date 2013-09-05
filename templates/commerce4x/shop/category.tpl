@@ -22,27 +22,9 @@
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
-    <div class="mainFrameBaner">
-        <section class="container">
-            {$banners = ShopCore::app()->SBannerHelper->getBannersCat(300,$category->id)}
-            {if count($banners)}
-                <div class="frame_baner">
-                    <ul class="cycle">
-                        {foreach $banners as $banner}
-                            <li>
-                                <a href="{echo $banner['url']}">
-                                    <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
-                    <div class="pager"></div>
-                    <button class="next" type="button"></button>
-                    <button class="prev" type="button"></button>
-                </div>
-            {/if}
-        </section>
-    </div>
+
+    {$CI->load->module('banners')->render($category->getId())}
+
     <!-- Show banners in circle -->
 
     <!-- Block for bread crumbs with a call of shop_helper function to create it according to category model -->
@@ -63,13 +45,13 @@
         <div class="span9 right">
 
             <!-- category title and products count output -->
-            <h1 class="d_i">{echo ShopCore::encode($category->getName())}</h1>
+            <h1 class="d_i">{echo $title}</h1>
             {if count($products)>0}
-                <span class="c_97">{lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}</span>
+                <span class="c_97">{lang("Found","admin")} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang("product","admin"), lang("product","admin"), lang("product","admin")))}</span>
                 <div class="clearfix t-a_c frame_func_catalog">
                     <!-- sort block -->
                     <div class="f_l">
-                        <span class="v-a_m">{lang('s_order_by')}:</span>
+                        <span class="v-a_m">{lang("Order by","admin")}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -82,7 +64,7 @@
 
                     <!-- products on page count -->
                     <div class="f_r">
-                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                        <span class="v-a_m">{lang("Products per page","admin")}:</span>
                         <div class="lineForm w_70 sort">
                             {if ShopCore::$_GET['user_per_page'] == null}
                                 {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -100,8 +82,8 @@
 
                     <!-- selecting product list type -->
                     <div class="groupButton list_pic_btn">
-                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang("Image view","admin")}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang("List view","admin")}</span></button>
                     </div>
                 </div>
 
@@ -165,6 +147,7 @@
 
                                 <div class="f-s_0">
                                     {$variants = $product->getProductVariants()}
+
                             {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                             {if count($variants) > 1 && $cnt > 1}
 
@@ -248,6 +231,7 @@
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('s_message_o_report')}</span>
                                 </button>
+
                             {/if}
                         {/foreach}
                     </div>
@@ -345,8 +329,11 @@
 
 </article>
 
+{//widget_ajax('view_product' , 'article.container')}
 {widget('view_product')}
+
 <script type="text/javascript" src="{$THEME}js/jquery.ui-slider.js"></script>
+
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
 {if $productSliderEnabled  }
 <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>

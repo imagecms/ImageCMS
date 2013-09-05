@@ -96,7 +96,7 @@ class Search extends MY_Controller {
                 $config['per_page'] = $this->row_count;
                 $config['uri_segment'] = 4;
 
-                $config['page_query_string'] = true;
+                $config['page_query_string'] = FALSE;
 
                 $config['next_link'] = 'Вперед→';
                 $config['prev_link'] = '←В начало';
@@ -125,7 +125,7 @@ class Search extends MY_Controller {
 
         $data = $this->_highlight_text($data, $s_text);
 
-        $this->core->set_meta_tags(array(lang('search_title'), $this->search_title));
+        $this->core->set_meta_tags(array(lang("Search"), $this->search_title));
         $this->_display($data);
     }
 
@@ -172,12 +172,12 @@ class Search extends MY_Controller {
             }
         }
     }
-    
+
      public function save_positions() {
         $positions = $_POST['positions'];
         if (sizeof($positions) == 0)
             return false;
-        
+
         foreach ($positions as $key => $val) {
             $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
             $this->db->query($query);
@@ -218,7 +218,7 @@ class Search extends MY_Controller {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
-            $error = lang('amt_lang_select_table');
+            $error = lang("Error. Select or specify the table for search");
             return $error;
         }
 

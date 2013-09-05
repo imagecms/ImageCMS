@@ -1,7 +1,10 @@
+{$page = $CI->load->module('cfcm')->connect_fields($page, 'page')}
 <div class="container">
     <div class="row">
         <div class="span3">
-            {load_menu('left_menu')}
+            {if  $CI->uri->uri_string() != ''}
+                 {load_menu('left_menu')}
+            {/if}
         </div>
         <div class="span6">
             <article>
@@ -21,7 +24,7 @@
                     <script type="text/javascript">
                         {literal}
                             $(function() {
-                                renderPosts(this);
+                                renderPosts($('[name=for_comments]'));
                             })
                         {/literal}
                     </script>

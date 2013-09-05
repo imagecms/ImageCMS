@@ -8,7 +8,7 @@ if (!defined('BASEPATH'))
 /**
  * Class BaseDiscount for Mod_Discount module
  * @uses \MY_Controller
- * @author DevImageCms 
+ * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  * @property discount_model $discount_model
@@ -68,7 +68,7 @@ class BaseDiscount extends \MY_Controller {
         $this->user_id = $this->session->userdata('DX_user_id');
         return $this->user_id;
     }
-    
+
      /**
      * get user group for current user
      * @access public
@@ -82,7 +82,7 @@ class BaseDiscount extends \MY_Controller {
         $this->user_group_id = $this->session->userdata('DX_role_id');
         return $this->user_group_id;
     }
-    
+
      /**
      * get Cart items for current session
      * @access public
@@ -113,7 +113,7 @@ class BaseDiscount extends \MY_Controller {
         $this->amout_user = $this->discount_model_front->get_amout_user($id);
         return $this->amout_user;
     }
-    
+
      /**
      * get totall origin price for current session
      * @access public
@@ -129,7 +129,7 @@ class BaseDiscount extends \MY_Controller {
         $this->total_price = $this->discount_model_front->get_total_price($data);
         return $this->total_price;
     }
-    
+
      /**
      * get all active discount joined whith his type
      * @access public
@@ -159,7 +159,7 @@ class BaseDiscount extends \MY_Controller {
         return $discount;
     }
 
-    
+
      /**
      * partitioning discounts on their types
      * @access public
@@ -174,12 +174,12 @@ class BaseDiscount extends \MY_Controller {
             $discount = $this->discount;
         $arr = array();
         foreach ($discount as $disc)
-            $arr[$disc['type_discount']][] = $disc;        
+            $arr[$disc['type_discount']][] = $disc;
         $this->discount_type = $arr;
         $this->empty_to_array();
         return $this->discount_type;
     }
-    
+
      /**
      * set empty array for null ellement discount
      * @access private
@@ -187,31 +187,31 @@ class BaseDiscount extends \MY_Controller {
      * @param ---
      * @return ----
      * @copyright (c) 2013, ImageCMS
-     */    
+     */
     private function empty_to_array(){
         if (!$this->discount_type['product'])
             $this->discount_type['product'] = array();
-        
+
         if (!$this->discount_type['brand'])
             $this->discount_type['brand'] = array();
-        
+
         if (!$this->discount_type['category'])
             $this->discount_type['category'] = array();
-        
+
         if (!$this->discount_type['all_order'])
             $this->discount_type['all_order'] = array();
-        
+
         if (!$this->discount_type['comulativ'])
             $this->discount_type['comulativ'] = array();
-        
+
         if (!$this->discount_type['group_user'])
             $this->discount_type['group_user'] = array();
-        
+
         if (!$this->discount_type['user'])
             $this->discount_type['user'] = array();
-        
+
     }
-    
+
      /**
      * get max discount considering type value and price
      * @access public
@@ -221,12 +221,11 @@ class BaseDiscount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_max_discount($discount, $price) {
-
+//        var_dumps($discount);
         $discount = array_filter(
                 $discount, function($el) {
                     return !empty($el);
                 });
-
         $max_discount = 0;
         foreach ($discount as $key => $disc) {
             $discount_value = $this->get_discount_value($disc, $price);
@@ -237,7 +236,7 @@ class BaseDiscount extends \MY_Controller {
         }
         return $discount[$key_max];
     }
-    
+
      /**
      * get value discount considering type value and price
      * @access public
@@ -255,19 +254,19 @@ class BaseDiscount extends \MY_Controller {
 
         return $discount_value;
     }
-    
+
      /**
      * update discount apply
      * @access public
      * @author DevImageCms
-     * @param $key
+     * @param $key, $gift optional
      * @return -----
      * @copyright (c) 2013, ImageCMS
-     */    
-    public function updatediskapply($key){
-        
-        $this->discount_model_front->updateapply($key);        
+     */
+    public function updatediskapply($key, $gift = null){
+
+        return $this->discount_model_front->updateapply($key, $gift);
     }
-    
+
 
 }

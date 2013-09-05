@@ -18,6 +18,17 @@ function DeleteSliderBanner() {
     })
 }
 
+function chckTplParam(el) {
+    if ($(el).attr('checked') == 'checked')
+        var status = 1;
+    else
+        var status = 0;
+
+    
+    $.post('/admin/components/init_window/banners/settings', {status:status})
+
+}
+
 function selectEntity(obj) {
     var el = $(obj);
     var id = el.attr('data-id');
@@ -42,11 +53,9 @@ function delEntity(obj) {
     return false;
 
 }
-<<<<<<< HEAD
 
-=======
 //autosearch(this, '/admin/components/init_window/banners/autosearch', '#autodrop', 'autodrop')
->>>>>>> d888f7481798821a48812ef40868da9a7f0cb876
+
 function autosearch(el, path, div, tpl) {
     if ($(el).val() == 'default')
         return false;
@@ -62,7 +71,7 @@ function autosearch(el, path, div, tpl) {
         else
             $(div).fadeOut();
     });
-<<<<<<< HEAD
+
 }
 
 function selects() {
@@ -70,15 +79,7 @@ function selects() {
 
 }
 
-=======
-}
 
-function selects() {
-    $('#data option').attr('selected', 'selected');
-
-}
-
->>>>>>> d888f7481798821a48812ef40868da9a7f0cb876
 
 $(document).ready(function() {
     if ($('.slider').length) {

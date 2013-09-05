@@ -2,14 +2,14 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('amt_categories')}</span>
+            <span class="title">{lang("Categories")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash icon-white"></i>{lang('a_delete')}</button>
-                <a href="/admin/components/init_window/gallery/show_create_category" class="btn btn-small pjax btn-success"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_cat')}</a>
-                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('amt_create_album')}</a>
-                <a href="/admin/components/cp/gallery/settings" class="btn btn-small pjax">{lang('amt_settings')}</a>
+                <button class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash icon-white"></i>{lang("Delete")}</button>
+                <a href="/admin/components/init_window/gallery/show_create_category" class="btn btn-small pjax btn-success"><i class="icon-plus-sign icon-white"></i>{lang("Create a category")}</a>
+                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create an album")}</a>
+                <a href="/admin/components/cp/gallery/settings" class="btn btn-small pjax">{lang("Settings")}</a>
             </div>
         </div>
     </div>
@@ -23,11 +23,11 @@
                     </span>
                 </span>
             </th>
-            <th>{lang('amt_id')}</th>
-            <th>{lang('amt_name')}</th>
-            <th>{lang('amt_albums')}</th>
-            <th>{lang('amt_description')}</th>
-            <th>{lang('amt_crea')}</th>
+            <th>{lang("ID")}</th>
+            <th>{lang("Name")}</th>
+            <th>{lang("Albums")}</th>
+            <th>{lang("Description")}</th>
+            <th>{lang("Created or Has been created")}</th>
             </thead>
             <tbody class="sortable save_positions" data-url="/admin/components/cp/gallery/update_positions">
                 {foreach $categories as $category}
@@ -39,15 +39,15 @@
                                 </span>
                             </span>
                         </td>
-                        <td>{$category.id}</td>
+                        <td><a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category")}">{$category.id}</a></td>
                         <td class="share_alt">
-                            <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('amt_category_edit')}">{$category.name}</a>
+                            <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category")}">{$category.name}</a>
                         </td>
                         <td>
-                            {if $category.albums_count}
-                                <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('a_show_album')}" >(Просмотр альбомов)</a>
+                            {if $cnt = count_albums($category.id)}
+                                <a href="/admin/components/init_window/gallery/category/{$category.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang("View albums")}" >({lang("View albums")})</a>
                             {/if}
-                            {$category.albums_count}
+                            {echo $cnt}
                         </td>
                         <td>{truncate(htmlspecialchars($category.description), 75)}</td>
                         <td>{date('Y-d-m H:i', $category.created)}</td>
@@ -57,17 +57,17 @@
         </table>
     {else:}
         <div class="alert alert-info m-t_20">
-            {lang('a_empty_category_list')}
+            {lang("Category list is empty")}
         </div>
     {/if}
 </section>
 <div class="modal hide fade products_delete_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('a_category_delete')}</h3>
+        <h3>{lang("Delete category?")}</h3>
     </div>
     <div class="modal-footer">
-        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('a_footer_cancel')}</a>
-        <a href="" class="btn btn-primary" onclick="GalleryCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang('a_delete')}</a>
+        <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel")}</a>
+        <a href="" class="btn btn-primary" onclick="GalleryCategories.deleteCategoriesConfirm();$('.modal').modal('hide');">{lang("Delete")}</a>
     </div>
 </div>

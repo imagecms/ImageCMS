@@ -7,29 +7,29 @@
     })
     </script>
 {/literal}
-<div id="titleExt"><h5><a href="{site_url('gallery')}">Галерея</a> &gt;&gt; <span class="ext">{$album.name}</span></h5></div>
+<div id="titleExt"><h5><a href="{site_url('gallery')}">{lang('Gallery')}</a> &gt;&gt; <span class="ext">{$album.name}</span></h5></div>
 
 <div align="center">
 <table cellpadding="1" cellspacing="1" border="0">
     <tr>
         <td colspan="2">
-            <a href="{media_url($album_url . $prev_img.full_name)}" class="lightbox" title="{$prev_img.description}" >
+            <a href="{media_url($album_url . $prev_img.full_name)}" class="lightbox" title="{strip_tags($prev_img.description)}" >
                 <img src="{media_url($prev_img.url)}" style="border:5px solid #E8E8E8;" />
             </a>
         </td>
     </tr>
     <tr>
         <td>
-            <span class="g_small">Изображение {$current_pos} из {count($album.images)}</span>
+            <span class="g_small">{lang('Image')} {$current_pos} из {count($album.images)}</span>
         </td>
         <td align="right">
-            <span class="g_small"><a href="{site_url('gallery/thumbnails/' . $album.id)}">Все изображения</a></span>
+            <span class="g_small"><a href="{site_url('gallery/thumbnails/' . $album.id)}">{lang('All images')}</a></span>
         </td>
     </tr>
 </table>
 
-    {if $prev}<a id="gallery_nav" href="{site_url($album_link . 'image/'. $prev.id)}"#image>&lt;&lt;&nbsp;Предыдущая</a>&nbsp;&nbsp;{/if}
-    {if $next}&nbsp;&nbsp;<a id="gallery_nav" href="{site_url($album_link . 'image/'. $next.id)}"#image>Следующая&nbsp;&gt;&gt;</a>{/if}
+    {if $prev}<a id="gallery_nav" href="{site_url($album_link . 'image/'. $prev.id)}"#image>&lt;&lt;&nbsp;{lang('Previous')}</a>&nbsp;&nbsp;{/if}
+    {if $next}&nbsp;&nbsp;<a id="gallery_nav" href="{site_url($album_link . 'image/'. $next.id)}"#image>{lang('Next')}&nbsp;&gt;&gt;</a>{/if}
 </div>
 
 <br />

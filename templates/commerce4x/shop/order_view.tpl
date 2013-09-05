@@ -24,7 +24,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <!-- Show greeting message  -->
             <h1 class="d_i v-a_m m-r_45">
-                {lang('s_thank_order')}
+                {lang("Thank you for your order.","admin")}
             </h1>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
@@ -35,7 +35,7 @@
 
         <!-- Start. Render goto profile button -->
         <a href="{shop_url('profile')}" class="btn v-a_m">
-            {lang('s_go_profile')}
+            {lang("Go to profile","admin")}
         </a>
         <!-- End. Render goto profile button -->
 
@@ -43,33 +43,33 @@
 
             <!-- Start. Displays a information block about Order -->
             <div class="frameGroupsForm span5">
-                <div class="header_title">{lang('s_order_data')}</div>
+                <div class="header_title">{lang("Order data","admin")}</div>
                 <div class="inside_padd">
                     <table class="tableOrderData">
                         <!-- Start. Render Order number -->
                         <tr>
-                            <th>{lang('s_order')} #:</th>
+                            <th>{lang("Order","admin")} #:</th>
                             <td>{echo ShopCore::encode($model->getId())}</td>
                         </tr>
                         <!-- End. Render Order number -->
 
                         <!-- Start. Display Paid status -->
                         <tr>
-                            <th>{lang('s_paid')}:</th>
-                            <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
+                            <th>{lang("Paid","admin")}:</th>
+                            <td>{if $model->getPaid() == true} {lang("Yes","admin")}{else:}{lang("No","admin")}{/if}</td>
                         </tr>
                         <!-- End. Display Paid status -->
 
                         <!-- Start. Show Order status name -->
                         <tr>
-                            <th>{lang('s_status')}:</th>
+                            <th>{lang("Status","admin")}:</th>
                             <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
                         </tr>
                         <!-- End. Show Order status name -->
                         <!-- Start. Render certificate -->
                         {if $model->getGiftCertKey() != null}
                             <tr>
-                                <th>{lang('s_do_you_cer_tif')}: </th>
+                                <th>{lang('Certificate')}: </th>
                                 <td>-{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}</td>
                             </tr>
                         {/if}
@@ -88,7 +88,7 @@
                         <!-- Start. Delivery Method name -->
                         {if $model->getDeliveryMethod() > 0}
                             <tr>
-                                <th>{lang('s_dostavka')}:</th>
+                                <th>{lang("Delivery","admin")}:</th>
                                 <td>{echo $model->getSDeliveryMethods()->getName()}</td>
                             </tr>
                         {/if}
@@ -125,27 +125,28 @@
                     <tbody>
                         <!-- Start. Render Ordered Products -->
                         {foreach $model->getOrderProducts() as $orderProduct}
+                            {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
+                                {if $v->getid() == $orderProduct->variant_id}
+                                    {$Variant = $v}
+                                    {break;}
+                                {/if}
+                            {/foreach}
                             <tr>
                                 <td class="v-a_m">
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="photo">
-                                        <figure>
-                                            <img src="{echo $orderProduct->getSProducts()->firstVariant->getSmallPhoto()}"
+                                       {if $Variant} <figure>
+                                            <img src="{echo $Variant->getSmallPhoto()}"
                                                  alt="{echo ShopCore::encode($orderProduct->product_name)} {echo ShopCore::encode($orderProduct->variant_name)}"/>
-                                        </figure>
+                                        </figure>{/if}
                                     </a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}">{echo ShopCore::encode($orderProduct->product_name)}</a>
                                     <div class="m-b_10">
-                                        {foreach $orderProduct->getSProducts()->getProductVariants() as $v}
-                                            {if $v->getid() == $orderProduct->variant_id}
-                                                {$Variant = $v}
-                                                {break;}
-                                            {/if}
-                                        {/foreach}
+
                                         {if $Variant}
                                         {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}
-                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант:sssssssssss <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант: <span class="code">({echo $Variant->getname()})</span></span>{/if}
                                 {/if}
                             </div>
                             <div class="price price_f-s_16">
@@ -158,7 +159,7 @@
                         </td>
                         <td>
                             <div class="price price_f-s_16">
-                                <span class="first_cash"><span class="f-w_b">{echo $orderProduct->getProductTotalPrice()}</span> {$CS}</span>
+                                <span class="first_cash"><span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice()*$orderProduct->getQuantity())}</span> {$CS}</span>
                             </div>
                         </td>
                     </tr>
@@ -218,7 +219,7 @@
 
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
-                                                        {echo $kitProducts->getDiscountProductPrice()}
+                                                        {echo $kitProducts->getKitNewPrice()}
                                                     </span>{$CS}
                                                 </div>
                                             </div>
@@ -241,6 +242,8 @@
                             </ul>
                             <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
 
+
+
                             <!-- Start. Render kit summary -->
                             <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
                             <div class="price price_f-s_18"><span class="f-w_b">{echo $orderProduct->getKit()->getTotalPrice()}</span>&nbsp;{$CS}</div>
@@ -262,29 +265,31 @@
                 <div class="t-a_r inside_padd">
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
-                            (Сумма товаров: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
-                            {if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
-
-                            
-                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
-                        <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
-                    </div>
-                    
-                    {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
+                            (Сумма товаров: <span class="f-w_b">{if $model->getOriginPrice()}{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}{else:}{echo $model->gettotalprice()}{/if}</span> {$CS})
+                        {if $CI->load->module('mod_discount')->check_module_install()}{if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}{/if}
 
 
-                    <span class="f-s_18">Сумма:</span>&nbsp;
-                    <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
-                    <span class="f-s_24"> {$CS}</span>
-
+                    {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
+                    <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}{/if}</span> {$CS})
                 </div>
+
+                {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())}
+
+
+                <span class="f-s_18">Сумма:</span>&nbsp;
+                <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
+                <span class="f-s_24"> {$CS}</span>
+                {//var_dump(json_decode($model->getdiscountinfo()))}
+
             </div>
-        </td>
-    </tr>
-    <!-- End. Display Order summary -->
+        </div>
+    </td>
+</tr>
+<!-- End. Display Order summary -->
 
 </tfoot>
 </table>
+
 </div>
 </div>
 </div>

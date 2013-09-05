@@ -147,10 +147,10 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .niceCheck input, .niceRadio input{display: none !important;}
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
-.main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{width: 100% !important;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
 select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;}
-table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input{height: 27px !important;margin-bottom: 0;}
+table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{height: 27px !important;margin-bottom: 0;}
 label, input, button, select, textarea{font-size: 12px !important;}
 textarea{line-height: 1.5!important;}
 table label{margin-bottom: 5px;clear: both;}
@@ -663,8 +663,8 @@ span.check_gg {
 }
 
 .mceToolbar td {
-border-left: none !important;
-border-right: none !important;
+    border-left: none !important;
+    border-right: none !important;
 }
 
 @media (max-width: 979px) and (min-width: 768px){
@@ -674,15 +674,15 @@ border-right: none !important;
 .pull-left + input{margin-left: 5px;}
 .frame_zH_frame_title{position: fixed;z-index: 5;top: -81px;}
 .tab-pane{padding-top: 10px;}
- 
- .horiz.myTab > li > a:hover{background-color: transparent;border-color: transparent;}
- .horiz.myTab a{padding: 0;line-height: normal;background-color: transparent;border-color: transparent;text-decoration: none;color: #333333;}
- .horiz.myTab{border-bottom: 0;margin-bottom: 0;margin-left: 0;}
- .dl-horizontal.pull-left:first-child{margin-left: 60px;}
- .dl-horizontal dd{margin-left: 150px;}
- @media (max-width: 767px){
-     .dl-horizontal.pull-left:first-child{margin-left: 0;}
- }
+
+.horiz.myTab > li > a:hover{background-color: transparent;border-color: transparent;}
+.horiz.myTab a{padding: 0;line-height: normal;background-color: transparent;border-color: transparent;text-decoration: none;color: #333333;}
+.horiz.myTab{border-bottom: 0;margin-bottom: 0;margin-left: 0;}
+.dl-horizontal.pull-left:first-child{margin-left: 60px;}
+.dl-horizontal dd{margin-left: 150px;}
+@media (max-width: 767px){
+    .dl-horizontal.pull-left:first-child{margin-left: 0;}
+}
 .variantsProduct{margin: 0 -21px;}
 .variantsProduct > table, .variantsProduct > table > thead > tr > th:first-child, .variantsProduct > table > thead > tr > th:last-child{-moz-border-radius: 0 !important;-webkit-border-radius: 0 !important;border-radius: 0 !important;}
 .variantsProduct > table > thead > tr > th{background: none;background-color: #ededed !important;}
@@ -699,3 +699,122 @@ border-right: none !important;
 .save_button_field{color:blue;cursor:pointer;}
 .w_150 {width:150px !important;}
 .center { display:block; text-align:center; margin:0 auto}
+
+
+
+/* ------ GOOGLE API IMAGES SEARCH ------- */
+#images_modal {
+    font-size: 11pt;
+}
+.images_empty_res {
+    color: #888888;
+    margin: 30px; 
+    text-align: center;
+}
+#image_search_result {
+    height: 280px;
+    overflow-x: auto !important;
+    text-align: center;
+}
+.searched_images {
+    max-height: 70px;
+    max-width: 85px;
+    padding: 5px;
+}
+.selected_image {
+    background: #e1e1e1;
+}
+.img_span {
+    float: left;
+    width: 95px;
+    height: 78px;
+    margin-bottom: 10px;
+    border: 1px solid #e7e7e7;
+}
+.image_by_url {
+    max-width: 340px !important;
+    max-height: 260px !important;
+    padding: 10px;
+}
+.image_controls {
+    position: relative; 
+    top: 25px; 
+    margin-right: 20px;
+    text-align: right;
+}
+.hoveredImage {
+    background: #e9e9e9;
+}
+.images_modal_footer {
+    position: relative;
+}
+#msg_about_additional {
+    font-size: 9pt;
+    line-height: 2.1;
+}
+.more_button_paragraph {
+    display: block;
+    width: 100%;
+    text-align:center;
+    clear: both;
+    padding: 7px;
+}
+#search_images {
+    margin-left: 10px;
+}
+
+/* ------ end of GOOGLE API IMAGES SEARCH ------- */
+
+#site_info_tab .siteinfo_del_cont {
+    text-align: right;
+}
+
+#site_info_tab input[type='file'] {
+    display: none;
+}
+
+
+#site_info_tab .siteinfo_logoimage img {
+    max-height: 100px; 
+    max-width: 100px; 
+}
+
+#site_info_tab .siteinfo_faviconimage img {
+    max-height: 50px; 
+    max-width: 50px; 
+}
+
+#site_info_tab .siteinfo_logoimage div {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+#site_info_tab .siteinfo_faviconimage div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+#site_info_tab .siteinfo_logoimage div .remove_btn, #site_info_tab .siteinfo_faviconimage div .remove_btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    display: none;
+
+
+}
+
+#siteinfo_contacts_table tr td{
+    border: none !important;
+}
+
+#siteinfo_contacts_table tr td:nth-child(1) {
+    width: 25%;
+}
+#siteinfo_contacts_table tr td:nth-child(2) {
+    width: 65%;
+}
+#siteinfo_contacts_table tr td:nth-child(3) {
+    width: 35px;
+}

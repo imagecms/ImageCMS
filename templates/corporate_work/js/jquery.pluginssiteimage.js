@@ -734,7 +734,7 @@ function listtable(){
 
             return this.each(function(index){
                 var $thisUl = $(this),
-                condRadio = $thisUl.data('type') != 'itemsView';
+                condRadio = $thisUl.data('type') != 'radio';
                 nav_tabs_li[index] = $thisUl.children();
                 refs[index] = nav_tabs_li[index].children().filter('[href], [data-href]');
                 attrOrdata[index] = refs[index].attr('href') != undefined ? 'attr' : 'data';

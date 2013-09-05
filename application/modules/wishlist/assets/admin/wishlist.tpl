@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/cp/wishlist"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('a_back')}</span>
+                        <span class="t-d_u">{lang('Back', 'wishlist')}</span>
                     </a>
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/cp/wishlist/settings">
                         <i class="icon-wrench"></i>
@@ -58,19 +58,20 @@
                                             <div class="control-group">
                                                 <div class="controls">
                                                     {form_open_multipart('/admin/components/cp/wishlist/do_upload')}
-                                                    <input type="file" 
-                                                           name="userfile"
+                                                    <input type="file"
+                                                           name="file"
                                                            size="20"
                                                            accept="image/gif, image/jpeg, image/png, image/jpg"
                                                            style="position: relative!important; opacity: 2!important;"/>
                                                     <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                                                    <input type="submit" value="upload" class="btn" />
+                                                    <input type="submit" value="Загрузить" class="btn" />
                                                     {form_csrf()}
                                                     </form>
                                                 </div>
                                                 <div class="controls">
                                                     <form method="POST" action="/admin/components/cp/wishlist/deleteImage">
                                                         <input type="hidden" value="{echo $user[user_image]}" name="image"/>
+                                                        <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                                         <input type="submit" value="Удалить картинку" class="btn btn-danger btn-small"/>
                                                         {form_csrf()}
                                                     </form>
@@ -90,7 +91,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang(birthday)}:</label>
                                                     <div class="controls">
-                                                        <input type="date" value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
+                                                        <input type="text" id='datepicker' value="{echo date('Y-m-d', $user[user_birthday])}" name="user_birthday"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -121,19 +122,23 @@
                                     <h4 class="title">
                                         <b>{$wishlist[0][title]}</b>
                                     </h4>
-                                    <h5>{lang(list_type)}: 
+                                    <h5>{lang(list_type)}:
                                         <i>{echo $wishlist[0][access]}</i>
                                     </h5>
+                                    <h5 style="margin-right: 10px;">Описание:
+                                        <br>
+                                        <i>{echo $wishlist[0][description]}</i>
+                                    </h5>
                                 </div>
-                                    <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
-                                        <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
-                                            <i class="icon-trash icon-white"></i>
-                                            {lang(delete)}
-                                        </a>
-                                        <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">
-                                            <i class="icon-edit"></i>
-                                            {lang(edit)}
-                                        </a>
+                                <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
+                                    <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
+                                        <i class="icon-trash icon-white"></i>
+                                        {lang(delete)}
+                                    </a>
+                                    <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">
+                                        <i class="icon-edit"></i>
+                                        {lang(edit)}
+                                    </a>
                                 </div>
                             </div>
                             {if $wishlist[0][variant_id]}
@@ -154,7 +159,7 @@
                                                 <tr>
                                                     <td>{echo $key+1}</td>
                                                     <td>
-                                                        <a href="/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
+                                                        <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang(delete)}</a>
                                                         <a href="/admin/components/cp/wishlist/renderPopup/{echo $w[variant_id]}/{echo $w[wish_list_id]}/{echo $user[id]}">{lang(move)}</a>
                                                     </td>
                                                     <td>
@@ -201,10 +206,26 @@
                                         <form method="POST" action="/admin/components/cp/wishlist/createWishList">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
+                                                 <div class="control-group">
+                                                    <label class="control-label" for="banner_type">{lang('Type')}:</label>
+                                                    <div class="controls">
+                                                        <select name="wlTypes">
+                                                            <option value="shared">Shared</option>
+                                                            <option value="public">Public</option>
+                                                            <option value="private">Private</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang(list_name)}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="" name="wishListName"/>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="banner_type">{lang('Description')}:</label>
+                                                    <div class="controls">
+                                                        <textarea name="wlDescription"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

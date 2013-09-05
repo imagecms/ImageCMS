@@ -10,6 +10,7 @@
         
         {echo \Category\RenderMenu::create()->load('category_menu_vert')}
 
+
         <!-- Show Banners in circle -->
         <div class="span9">
             <div class="mainFrameBaner">
@@ -44,6 +45,7 @@
                 {widget('action_products')}
             </div>
     </section>
+
 </div>
 {widget('popular_products')}
 {widget('new_products')}

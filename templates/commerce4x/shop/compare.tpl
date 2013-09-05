@@ -14,6 +14,7 @@
     {$CI->load->helper('translit')}
     <div data-body="body">
         {if count($products) > 0}
+
             <!--Start. Show compare list if count products >0 -->
             <h1 class="f_l">{lang('s_compare_tovars')}</h1>
             <!-- Start. Buttons for change to show different or all properties -->
@@ -42,6 +43,7 @@
                             <div class="leftDescription">
                                 <ul>
                                     <li></li>
+
                                 </ul>
                                 <!--Start.Product properties names -->
                                 <ul class="characteristic">
@@ -53,6 +55,7 @@
                                         </li>
                                     {/foreach}
                                 </ul>
+
                                 <!--End. Product properties names -->
                             </div>
                             <div class="rightDescription">
@@ -175,10 +178,13 @@
                                     </ul>
                                     <!--End. Product characteristics -->
                                 </li>
+
                             {/if}
                         {/foreach}
                     </ul>
                 </div>
+
+
             </div>
         {/foreach}
     </div>
@@ -188,13 +194,14 @@
     <div data-body="message" class="d_b">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+            <h1 class="d_i">{lang("Compare Products","admin")}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+            <div class="title_h2 t-a_c">{lang("Compare list is empty","admin")}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>
+
 {/if}
 </div>
 <div data-body="message">
@@ -208,3 +215,4 @@
     <!--End. Show message if compare list is empty -->
 </div>
 </article>
+

@@ -73,9 +73,11 @@
                                 data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
+
                             {lang('s_more')}
                             
                             {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+
                         </button>
                         -->
                         {else:}
@@ -85,7 +87,7 @@
                                 type="button"
                                 class="btn btn_not_avail">
                             <span class="icon-but"></span>
-                            {lang('s_message_o_report')}
+                            {lang("Report the appearance of","admin")}
                         </button> 
                         {/if} 
 

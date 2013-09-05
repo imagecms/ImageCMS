@@ -28,8 +28,10 @@ class Star_rating extends MY_Controller {
         parent::__construct();
         $this->load->helper('path');
         $this->load->model('rating_model');
+        $obj = new MY_Lang();
+        $obj->load('star_rating'); 
     }
-
+    
     public static function adminAutoload() {
         parent::adminAutoload();
     }
@@ -42,15 +44,15 @@ class Star_rating extends MY_Controller {
      * Show star_rating
      * @param SProducts $item
      */
-    public function show_star_rating($item = null) {
-        $get_settings = $this->rating_model->get_settings();
 
+    
+    public function show_star_rating($item = null, $registerScript = true) {
+        $get_settings = $this->rating_model->get_settings();
         //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null) {
             $this->list_for_show = array();
         }
-
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
 
@@ -90,16 +92,18 @@ class Star_rating extends MY_Controller {
                 return false;
             }
         }
-
+  
         //Show template with prepared parametrs
         if ($template !== null)
             $renderTemplate= CMSFactory\assetManager::create();
                     $renderTemplate->setData($data)
                     ->registerStyle('style');
-                    if ($template != 'product_star_rating')
-                        $renderTemplate->registerScript('scripts');
+//                    if ($template != 'product_star_rating')$registerScript
+                      if ($registerScript){
+                          $renderTemplate->registerScript('scripts');
+                      }
                     $renderTemplate->render($template, true);
-
+        return $this;
     }
 
     /**
@@ -110,7 +114,7 @@ class Star_rating extends MY_Controller {
         $id = $_POST['cid'];
         $type = $_POST['type'];
         $rating = (int) $_POST['val'];
-        
+
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists

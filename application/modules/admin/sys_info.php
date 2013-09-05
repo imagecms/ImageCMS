@@ -6,9 +6,9 @@ if (!defined('BASEPATH'))
 /**
  * Image CMS
  * Admin Class
- * 
+ *
  * TODO:
- * check local ip; 
+ * check local ip;
  *
  */
 class Sys_info extends BaseAdminController {
@@ -91,9 +91,9 @@ class Sys_info extends BaseAdminController {
 
         $this->email->send();
 
-        echo $this->email->print_debugger();
-
-        exit;
+        $this->template->assign('content', $this->email->print_debugger());
+        $msg = $this->template->fetch('main');
+        die($msg);
     }
 
 }

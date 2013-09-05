@@ -26,7 +26,7 @@
                                 {/if}
                                 <div class="groups_form">
                                     <label>
-                                        <span class="title">{lang('s_c_uoy_name_u')}</span>
+                                        <span class="title">{lang("You name","admin")}</span>
                                         <span class="frame_form_field">
                                             {if $isRequired['userInfo[fullName]']}
                                                 <span class="must">*</span>
@@ -64,9 +64,7 @@
                                             <span class="icon-address"></span>
                                             <input type="text" name="userInfo[deliverTo]" value="{echo $profile.address}"></span>
                                     </label>
-
                                     {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getCustomFields('order',$profile.id,'user')->asHtml()}
-
                                     <div class="groups_form">
                                         <div class="frameLabel" style="position: relative; z-index: 6;">
                                             <span class="title">Способ доставки</span>
@@ -85,11 +83,9 @@
                                                                     {/if}
                                                                     name="met_del"
                                                                     class="met_del"
-                                                                    value="{echo $del_id}"
-                                                                    data-price="{echo ceil($deliveryMethod->getPrice())}"
-                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"/>
-                                                                {echo $deliveryMethod->getName()}
-                                                                </option>
+                                                                    data-price="{echo ShopCore::app()->SCurrencyHelper->convert(ceil($deliveryMethod->getPrice()))}"
+                                                                    data-freefrom="{echo ceil($deliveryMethod->getFreeFrom())}"
+                                                                    value="{echo $del_id}">{echo $deliveryMethod->getName()}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -112,8 +108,7 @@
                                                                                 {$counter = false}
                                                                                 {$pay_id = $paymentMethod->getId()}
                                                                             {/if}
-                                                                            value="{echo $pay_id}"
-                                                                            />
+                                                                            value="{echo $pay_id}">
                                                                         {echo $paymentMethod->getName()}
                                                                         </option>
                                                                     </label>

@@ -265,6 +265,32 @@ if (!function_exists('config_item')) {
 
 }
 
+
+
+if ( ! function_exists('get_mimes'))
+{
+	/**
+	 * Returns the MIME types array from config/mimes.php
+	 *
+	 * @return	array
+	 */
+	function &get_mimes()
+	{
+		static $_mimes = array();
+
+		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/mimes.php'))
+		{
+			$_mimes = include(APPPATH.'config/'.ENVIRONMENT.'/mimes.php');
+		}
+		elseif (file_exists(APPPATH.'config/mimes.php'))
+		{
+			$_mimes = include(APPPATH.'config/mimes.php');
+		}
+
+		return $_mimes;
+	}
+}
+
 // ------------------------------------------------------------------------
 
 /**

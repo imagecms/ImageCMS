@@ -1,6 +1,5 @@
 <?php
 
-
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -13,11 +12,11 @@ if (!defined('BASEPATH'))
  * @property discount_model $discount_model
  * @property discount_model_front $discount_model_front
  */
-class Mod_discount extends \mod_discount\classes\BaseDiscount{
+class Mod_discount extends \mod_discount\classes\BaseDiscount {
 
     public $no_install = true;
     protected $result_discount = array();
-    
+
     /**
      * __construct base object loaded
      * @access public
@@ -26,7 +25,7 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
      */
     public function __construct() {
 
-        parent::__construct();        
+        parent::__construct();
         $this->load->model('discount_model_admin');
     }
 
@@ -39,10 +38,12 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
-        \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
-        \CMSFactory\Events::create()->on('MakeOrder')->setListener('make_order_with_discount');
+        if ($this->check_module_install()) {
+            \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
+            \CMSFactory\Events::create()->on('MakeOrder')->setListener('make_order_with_discount');
+        }
     }
-    
+
     /**
      * get discount for product when get product variant
      * @access public
@@ -52,29 +53,28 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_for_product($product) {
-        
+
         $obj = new \mod_discount\discount_product;
         $obj->get_product_discount_event($product);
-
     }
-    
-     /**
+
+    /**
      * update order with discount and gift
      * @access public
      * @author DevImageCms
      * @param ---
      * @return ---
      * @copyright (c) 2013, ImageCMS
-     */   
-    public function make_order_with_discount($data){
+     */
+    public function make_order_with_discount($data) {
         $obj = new \mod_discount\discount_order;
         $obj->update_order_discount($data);
     }
-    
-    public function register_script(){
-        \CMSFactory\assetManager::create()->registerScript('main');
+
+    public function register_script() {
+        \CMSFactory\assetManager::create()->registerScript('main', TRUE);
     }
-      
+
     /**
      * install module and create table
      * @access public
@@ -85,7 +85,6 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
 
         if (SHOP_INSTALLED) {
             $this->discount_model_admin->moduleInstall();
-            
         }
     }
 
@@ -99,9 +98,8 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount{
 
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
-        
+
         $this->discount_model_admin->moduleDelete();
-        
     }
 
 }

@@ -296,7 +296,7 @@
 
                         <!-- creating hot bubble for products image if product is hit -->
                         {if $product->getHit()}
-                        <span class="top_tovar discount">{lang('s_s_hit')}</span>
+                        <span class="top_tovar discount">{lang('s_shit')}</span>
                         {/if}
                     </li>
                     {/foreach}

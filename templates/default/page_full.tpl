@@ -10,7 +10,7 @@
 <script type="text/javascript">
     {literal}
         $(function() {
-            renderPosts(this);
+            renderPosts($('#for_comments'));
         })
     {/literal}
 </script>

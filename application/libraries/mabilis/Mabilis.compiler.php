@@ -1,14 +1,13 @@
 <?php
 
-/* * *************************************************
+/** *************************************************
  * Image CMS Template Engine (Mabilis TPL)
  *
  * Simple template engine for Image CMS based on regular expressions search and replace.
  *
- * author: dev@imagecms.net
- * version: 1.3 Beta PHP5
- *
- * ************************************************* */
+ * @author <dev@imagecms.net>
+ * @version 0.3 PHP5
+ ************************************************* */
 
 class Mabilis_Compiler extends Mabilis {
 

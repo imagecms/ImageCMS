@@ -1,6 +1,6 @@
 <div class="container">
     <div class="content center">
-        <div id="titleExt"><h5>{widget('path')}<span class="ext">Контакты</span></h5></div>
+        <div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('Contacts')}</span></h5></div>
         <div id="contact">
             <div class="left">
 
@@ -12,14 +12,14 @@
 
                 {if $message_sent}
                     <div style="color: green;">
-                        Ваше сообщение отправлено.
+                          {lang('Your message has been sent.')}
                     </div>
                 {/if}
 
                 <form action="{site_url('feedback')}" method="post">
                     <div class="textbox" style="margin-top: 15px;">
                         <input type="text" id="name" name="name" class="text" value="{if $_POST.name}{$_POST.name}{/if}"
-                               placeholder="Ваше Имя"/>
+                               placeholder="{lang('Your name')}"/>
                     </div>
 
                     <div class="textbox" style="margin-top: 15px;">
@@ -40,14 +40,14 @@
                     <div class="comment_form_info">
                         {if $captcha_type =='captcha'}
                             <div class="textbox captcha" style="margin-top: 15px;">
-                                <input type="text" name="captcha" id="recaptcha_response_field" value="" placeholder="Код протекции"/>
+                                <input type="text" name="captcha" id="recaptcha_response_field" value="" placeholder="{lang('Protection code')}"/>
                             </div>
                         {/if}
                     </div>
 
 
                     <div style="margin-top: 15px;">
-                        <input type="submit" class="submit" value="{lang('lang_comment_button')}" />
+                        <input type="submit" class="submit" value="{lang('Comment')}" />
                     </div>
                     {form_csrf()}
                 </form>

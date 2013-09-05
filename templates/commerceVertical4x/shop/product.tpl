@@ -218,7 +218,7 @@
                         <li>
                             <button type="button" data-href="#info">
                                 <span class="icon-info"></span>
-                                <span class="text-el">Информацию</span>
+                                <span class="text-el">Информация</span>
                             </button>
                         </li>
                     {/if}

@@ -9,7 +9,9 @@
 class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
-        parent::__construct();
+        if($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter'){
+            parent::__construct();    
+        }
     }
 
     public function index() {
@@ -21,27 +23,10 @@ class Smart_filter extends \Category\BaseCategory {
 //        if ($this->input->is_ajax_request())
 //        else
     }
-    
-    public function set_price_slider(){
-        
-        $priceRange = \ShopCore::app()->SFilter->getPricerange();
-
-        if ($_GET['lp']) $curMin = (int) $_GET['lp']; else $curMin = (int) $priceRange['minCost'];
-        if ($_GET['rp']) $curMax = (int) $_GET['rp']; else $curMax = (int) $priceRange['maxCost'];
-        $data = array(
-            'minPrice' => (int) $priceRange['minCost'],
-            'maxPrice' => (int) $priceRange['maxCost'],
-            'curMin' => $curMin,
-            'curMax' => $curMax
-        );
-        
-        \CMSFactory\assetManager::create()->setData($data);
-        
-    }
 
     public function init() {
 
-        $this->set_price_slider();
+        $this->set_price();
 
         return \CMSFactory\assetManager::create()
                         ->registerScript('jquery.ui-slider', TRUE)
@@ -51,11 +36,29 @@ class Smart_filter extends \Category\BaseCategory {
 
     public function filter() {
         
-        $this->set_price_slider();
-        
+        $this->set_price();
+
+
+
         return \CMSFactory\assetManager::create()
                         ->setData($this->data)
                         ->render('filter', true);
+    }
+
+    public function set_price() {
+        $minPrice = (int) $this->data['priceRange']['minCost'];
+        $maxPrice = (int) $this->data['priceRange']['maxCost'];
+
+        $curMin = $_GET['lp'] ? (int) $_GET['lp'] : $minPrice;
+        $curMax = $_GET['rp'] ? (int) $_GET['rp'] : $maxPrice;
+
+
+        \CMSFactory\assetManager::create()->setData(array(
+            'minPrice' => (int) $this->data['priceRange']['minCost'],
+            'maxPrice' => (int) $this->data['priceRange']['maxCost'],
+            'curMax' => $curMax,
+            'curMin' => $curMin
+        ));
     }
 
 //    public function ()
@@ -63,7 +66,7 @@ class Smart_filter extends \Category\BaseCategory {
     public function autoload() {
         
     }
-
+    
     public function _install() {
         /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
         /**

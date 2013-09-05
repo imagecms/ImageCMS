@@ -66,21 +66,25 @@ class discount_api extends \mod_discount\discount {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_product_api($product, $tpl = null) {
+    public function get_discount_product_api($product, $tpl = null, $price = null) {
         if ($this->check_module_install()) {
             $DiscProdObj = new \mod_discount\Discount_product;
-            if ($DiscProdObj->get_product_discount_event($product)) {
+            if ($DiscProdObj->get_product_discount_event($product, $price)) {
                 $arr = \CMSFactory\assetManager::create()->discount;
                 if (null === $tpl)
                     return $arr;
-                else
+                elseif (1 === $tpl)
                     \CMSFactory\assetManager::create()->setData(array('discount_product' => $arr))->render('discount_product', true);
+                elseif ('json' === $tpl)
+                    echo json_encode($arr);
             }
             else
                 return false;
         }
         return false;
     }
+    
+    
 
     /**
      * get all discount information
@@ -111,13 +115,14 @@ class discount_api extends \mod_discount\discount {
     public function get_user_discount_api($tpl = null) {
         if ($this->check_module_install()) {
             $this->init();
+            $this->discount_type['comulativ'] = $this->get_comulativ_discount_api();
             if (null === $tpl)
-                return $this->result_discount;
+                return $this->discount_type;
             else
-                \CMSFactory\assetManager::create()->setData(array('discount' => $this->result_discount))->render('discount_info_user', true);
+                \CMSFactory\assetManager::create()->setData(array('discount' => $this->discount_type))->render('discount_info_user', true);
         }
     }
-    
+
     /**
      * is product discount
      * @access public
@@ -137,7 +142,24 @@ class discount_api extends \mod_discount\discount {
             else
                 return false;
         }
+    }
 
+    /**
+     * get comulativ discount sorting
+     * @access public
+     * @author DevImageCms
+     * @param --
+     * @return array
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function get_comulativ_discount_api() {
+
+        function cmp($a, $b) {
+            return strnatcmp($a["begin_value"], $b["begin_value"]);
+        }
+        if ($this->check_module_install())
+            usort($this->discount_type['comulativ'], 'cmp');
+        return $this->discount_type['comulativ'];
     }
 
 }

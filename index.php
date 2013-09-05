@@ -177,7 +177,7 @@ define('BASEPATH', str_replace("\\", "/", $system_path));
 define('FCPATH', str_replace(SELF, '', __FILE__));
 
 define('PUBPATH', FCPATH);
-define('TEMPLATES_PATH', PUBPATH . '/templates/');
+define('TEMPLATES_PATH', PUBPATH . 'templates/');
 
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
@@ -195,11 +195,13 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.4 Premium');
+define('IMAGECMS_NUMBER', '4.4.5 Premium');
 
-define('IMAGECMS_VERSION', '20130606');
+define('IMAGECMS_VERSION', '20130806');
 
 define('IMAGECMS_BUILD_ID', '');
+
+define('BUILD_ID', '445.1234');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*

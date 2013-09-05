@@ -40,15 +40,43 @@ if (!defined('BASEPATH'))
  */
 if (!function_exists('lang')) {
 
-    function lang($line, $id = '') {
+    function lang($line, $name = "main", $id = '') {
+        textdomain($name);
         $CI = & get_instance();
         $line = $CI->lang->line($line);
 
+
         if ($id != '') {
-            $line = '<label for="' . $id . '">' . $line . "</label>";
+//            $line = '<label for="' . $name . '">' . $line . "</label>";
         }
 
+        textdomain('main');
         return $line;
+    }
+
+}
+
+// select language identif from url address
+if (!function_exists('chose_language')) {
+
+    function chose_language() {
+
+        $ci = &get_instance();
+        $url = $ci->uri->uri_string();
+        $url_arr = explode('/', $url);
+
+        $languages = $ci->db->get('languages')->result_array();
+        foreach ($languages as $l)
+            if (in_array($l['identif'], $url_arr))
+                $lang = $l['identif'];
+
+
+        if (!$lang) {
+            $languages = $ci->db->where('default', 1)->get('languages')->row();
+            $lang = $languages->identif;
+        }
+
+        return $lang;
     }
 
 }
