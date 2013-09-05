@@ -686,7 +686,7 @@
         var
                 //productPhotoFancybox = true,
                 productPhotoDrop = true,
-                productPhotoCZoom = true,
+                //productPhotoCZoom = true,
                 forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>
 {/literal}
