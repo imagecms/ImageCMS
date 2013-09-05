@@ -1,7 +1,6 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+(defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /*
   | -------------------------------------------------------------------
@@ -21,7 +20,7 @@ if (!defined('BASEPATH'))
   |	['password'] The password used to connect to the database
   |	['database'] The name of the database you want to connect to
   |	['dbdriver'] The database type. ie: mysql.  Currently supported:
-  mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
+  |                  mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
   |	['dbprefix'] You can add an optional prefix, which will be added
   |				 to the table name when using the  Active Record class
   |	['pconnect'] TRUE/FALSE - Whether to use a persistent connection
@@ -46,9 +45,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
+$db['default']['username'] = '';
 $db['default']['password'] = '';
-$db['default']['database'] = 'reliz_temp_demoshop_negro2';
+$db['default']['database'] = '';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;
@@ -92,8 +91,8 @@ $config['static_base_url'] = $config['base_url'];
   |
  */
 $config['index_page'] = "";
-$config['is_installed'] = TRUE;
-$config['rebuild_hooks_tree'] = TRUE;
+$config['is_installed'] = FALSE;
+$config['rebuild_hooks_tree'] = FALSE;
 /*
   |--------------------------------------------------------------------------
   | URI PROTOCOL
@@ -127,7 +126,7 @@ $config['uri_protocol'] = "REQUEST_URI";
 $config['tpl_compile_path'] = BASEPATH . 'cache/templates_c/';
 $config['tpl_force_compile'] = FALSE;
 $config['tpl_compiled_ttl'] = 84600;
-$config['tpl_compress_output'] = FALSE;
+$config['tpl_compress_output'] = TRUE;
 $config['tpl_use_filemtime'] = TRUE;
 
 /*
@@ -305,7 +304,7 @@ $config['cache_path'] = '';
   | enabled you MUST set an encryption key.  See the user guide for info.
   |
  */
-$config['encryption_key'] = "111";
+$config['encryption_key'] = "9fbf22a810b176ca6fd14e4f8058b6b0";
 
 /*
   |--------------------------------------------------------------------------
@@ -384,7 +383,7 @@ $config['compress_output'] = FALSE;
   |
  */
 $config['time_reference'] = 'local';
-$config['default_time_zone'] = 'Europe/Moscow';
+$config['default_time_zone'] = 'Europe/Kyiv';
 
 /*
   |--------------------------------------------------------------------------
