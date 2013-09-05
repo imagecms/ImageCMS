@@ -1,19 +1,22 @@
 <?php
 
-namespace mod_stats\models;
+
 
 /**
  * Description of ProductsBase
  *
  * @author kolia
  */
-class Stats_Model_Products extends CI_Model {
+class Stats_model_products extends CI_Model {
 
    
     protected $locale;
     protected $brands;
-
-   
+    
+    public function __construct() {
+        parent::__construct();
+        $this->locale = \MY_Controller::getCurrentLocale();
+    }
 
 
     /**
@@ -100,13 +103,17 @@ class Stats_Model_Products extends CI_Model {
                 'id' => $row['id'],
                 'parent_id' => $row['parent_id'],
                 'name' => $row['name'],
-                'full_path_ids' => $path,
             );
         }
 
         // creating categories tree of ids
         $categoryTree = array();
-        $subCats = TRUE;
+        
+        echo "<pre>";
+        print_r($categories);
+        echo "</pre>";       
+        
+        exit();
     }
 
     /**
