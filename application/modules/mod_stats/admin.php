@@ -32,7 +32,7 @@ class Admin extends \BaseAdminController {
     }
 
     public function index() {
-        \mod_stats\classes\BaseStats::create()->test();
+//        \mod_stats\classes\BaseStats::create()->test();
     }
 
     /**
@@ -57,22 +57,25 @@ class Admin extends \BaseAdminController {
      * @param array $params params for method
      */
     public function getDiagramData($statType, $statSubType) {
+        /** Prepare method name**/
+        $methodName = 'get'.ucfirst($statSubType);
+        
         try {
             switch ($statType) {
                 case "products":
-                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    $result = \mod_stats\classes\Products::create()->$methodName();
                     break;
                 case "orders":
-                    $result = \mod_stats\classes\Products::create()->$statSubType();
+                    $result = \mod_stats\classes\Products::create()->$methodName();
                     break;
                 case "products_categories":
-                    $result = \mod_stats\classes\ProductsCategories::create()->$statSubType();
+                    $result = \mod_stats\classes\ProductsCategories::create()->$methodName();
                     break;
                 case "search":
-                    $result = \mod_stats\classes\Search::create()->$statSubType();
+                    $result = \mod_stats\classes\Search::create()->$methodName();
                     break;
                 case "users":
-                    $result = \mod_stats\classes\Users::create()->$statSubType();
+                    $result = \mod_stats\classes\Users::create()->$methodName();
                     break;
                 default:
                     throw new Exception;
