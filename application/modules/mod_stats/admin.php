@@ -66,7 +66,7 @@ class Admin extends \BaseAdminController {
                     $result = \mod_stats\classes\Products::create()->$methodName();
                     break;
                 case "orders":
-                    $result = \mod_stats\classes\Products::create()->$methodName();
+                    $result = \mod_stats\classes\Orders::create()->$methodName();
                     break;
                 case "products_categories":
                     $result = \mod_stats\classes\ProductsCategories::create()->$methodName();
