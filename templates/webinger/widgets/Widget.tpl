@@ -1,4 +1,4 @@
-<h3>Последние отзывы</h3>
+<h3>{lang('Последние отзывы', 'webinger')}</h3>
 <div class="news">
     {foreach $comments as $comment}
             <div class="newsitem">

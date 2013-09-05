@@ -2,9 +2,9 @@
 <div class="frame-news">
     <div class="container">
         <div class="frame-title">
-            <div class="title_h1 d_i">Новости</div>
+            <div class="title_h1 d_i">{lang('Новости', 'webinger')}</div>
             <span class="m-l_10">
-                <a href="{site_url('novosti/')}"><span class="text_el">Смотреть все</span></a>
+                <a href="{site_url('novosti/')}"><span class="text_el">{lang('Смотреть все', 'webinger')}</span></a>
             </span>
         </div>
         <ul class="items items_news row-fluid">

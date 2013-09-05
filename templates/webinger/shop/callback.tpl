@@ -2,14 +2,14 @@
     <button type="button" class="icon-times-enter" data-closed="closed-js"></button>
     <div class="drop-content">
         <div class="header_title">
-            Заказ звонка
+            {lang('Заказ звонка', 'webinger')}
         </div>
         <div class="inside_padd">
             <div class="horizontal_form standart_form">
                 <form method="post" id="data-callback" onsubmit="Notification.formAction('/shop/callbackApi', 'data-callback');
                         return false;">
                     <label>
-                        <span class="title">Ваше имя</span>
+                        <span class="title">{lang('Ваше имя', 'webinger')}</span>
                         <span class="frame_form_field">
                             <span class="icon-person"></span>
                             <input type="text" name="Name"/>
@@ -17,7 +17,7 @@
                         </span>
                     </label>
                     <label>
-                        <span class="title">Номер телефона</span>
+                        <span class="title">{lang('Номер телефона', 'webinger')}</span>
                         <span class="frame_form_field">
                             <span class="icon-phone"></span>
                             <input type="text" name="Phone"/>
@@ -25,7 +25,7 @@
                         </span>
                     </label>
                     <label>
-                        <span class="title">Комментарий</span>
+                        <span class="title">{lang('Комментарий', 'webinger')}</span>
                         <span class="frame_form_field">
                             <textarea name="Comment"></textarea>
                             <label id="for_Comment" class="for_validations"></label>
@@ -34,7 +34,7 @@
                     <div class="frameLabel">
                         <span class="title">&nbsp;</span>
                         <span class="frame_form_field c_n">
-                            <input type="submit" value="Позвоните мне" class="btn btn_cart f_r"/>
+                            <input type="submit" value="{lang('Позвоните мне', 'webinger')}" class="btn btn_cart f_r"/>
                         </span>
                     </div>
                 </form>

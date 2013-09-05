@@ -2,10 +2,10 @@
 <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
         <tr>
-            <th class="span1">Ид варианта</th>
-            <th class="span3">Назва варианта</th>
-            {if count($parametr) > 1}<th class="span2" style="width:80px;">Вкл/Выкл</th>{/if}
-            <th class="span1" style="width:60px;">В наличии</th>
+            <th class="span1">{lang('Ид варианта', 'settings_additional'}</th>
+            <th class="span3">{lang('Назва варианта', 'settings_additional')}</th>
+            {if count($parametr) > 1}<th class="span2" style="width:80px;">{lang('Вкл/Выкл', 'settings_additional')}</th>{/if}
+            <th class="span1" style="width:60px;">{lang('В наличии', 'settings_additional')}</th>
 
         </tr>
     </thead>
@@ -23,18 +23,18 @@
                 
                 <td>
                     {if $key != 0}
-                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $p['on'] OR $p['on'] === NULL}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" >                       
+                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $p['on'] OR $p['on'] === NULL}{lang('Показывать', 'settings_additional')}{else:}{lang('Не показывать', 'settings_additional')}{/if}" >                       
                         <span class="prod-on_off {if $p['on'] === '0'}disable_tovar{/if}" style="{if $p['on'] === '0'}left: -28px;{/if}" {if $p['on'] OR $p['on'] === NULL}rel="true"{else:}rel="false"{/if}
                               onclick="ChangeProductOn(this,{echo $p['id']}, {echo $p['pid']});"></span>                           
                     </div>
                     {else:}
-                            Первый вариант всегда включенный, для выключения первого варианта сделайте второй - первим и виключите его!
+                            {lang('Первый вариант всегда включенный, для выключения первого варианта сделайте второй - первим и виключите его!', 'settings_additional')}
                     {/if}           
                     
                 </td>
                 {/if}
                 <td>
-                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $p['in_stock'] OR $p['in_stock'] === NULL}{lang('a_show')}{else:}{lang('a_dont_show')}{/if}" >
+                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $p['in_stock'] OR $p['in_stock'] === NULL}{lang('Показывать', 'settings_additional')}{else:}{lang('Не показывать', 'settings_additional')}{/if}" >
                         <span class="prod-on_off {if $p['in_stock'] === '0'}disable_tovar{/if}" style="{if $p['in_stock'] === '0'}left: -28px;{/if}" {if $p['in_stock'] OR $p['in_stock'] === NULL}rel="true"{else:}rel="false"{/if}
                               onclick="ChangeProductInStock(this,{echo $p['id']}, {echo $p['pid']});"></span>
                     </div>

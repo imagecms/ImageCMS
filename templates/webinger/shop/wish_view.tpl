@@ -8,7 +8,7 @@
 */
 #}
 <article class="container">
-    <h1>{lang('s_WL')}</h1>
+    <h1>{lang('Список желаний','webinger')}</h1>
     <div class="row">
         <div class="text span8"><!-- Some text --></div>
     </div>
@@ -16,7 +16,7 @@
         <!--If empty list show message -->
         {if !$items}
             <div class="comparison_slider">
-                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="f-s_18 m-t_29 t-a_c">{echo ShopCore::t(lang('Список желаний пуст','webinger'))}</div>
             </div>
         {else:}
             <!--If not empty list show list of products -->
@@ -59,7 +59,7 @@
                                                 data-name="{echo $item.model->getName()}"
                                                 data-number="{echo $item.model->firstVariant->getnumber()}"
                                                 data-maxcount="{echo $item.model->firstVariant->getstock()}">
-                                            {lang('s_buy')}
+                                            {lang('Купить','webinger')}
                                         </button>
                                     {else:}
                                         <button
@@ -74,7 +74,7 @@
                                             type="button"
                                             class="btn btn_not_avail">
                                             <span class="icon-but"></span>
-                                            <span class="text-el">{lang('s_message_o_report')}</span>
+                                            <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                                         </button>
                                     {/if}
                                 {/if}

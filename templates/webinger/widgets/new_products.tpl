@@ -34,7 +34,7 @@
                             </a>
                             {/if}
                         </div>
-<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>
+<span class="is_available"><span class="icon-available"></span><span>{lang('Есть в наличии', 'webinger')}</span></span>
                         <!-- displaying product name -->
                         <a href="{shop_url('product/'.$hotProduct->getUrl())}">
                             {echo ShopCore::encode($hotProduct->getName())}
@@ -59,7 +59,7 @@
 
                         <!-- displaying notify button -->
                         {if $hotProduct->firstvariant->getstock()!=0}
-                            <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('s_more')}</a>
+                            <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('Подробнее','webinger')}</a>
                         <!--<button class="btn btn_buy btnBuy" 
                                 type="button" 
                                 data-prodid="{echo $hotProduct->getId()}"
@@ -73,7 +73,7 @@
                                 data-origprice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstVariant->toCurrency('OrigPrice')}{/if}"
                                 data-stock="{echo $hotProduct->firstVariant->getStock()}"
                                 >
-                            {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                            {if in_array($hotProduct->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}{lang('Заказать', 'webinger')}{/if}
                         </button>-->
                         {else:}
                         <button 
@@ -82,7 +82,7 @@
                                 type="button"
                                 class="btn btn_not_avail">
                             <span class="icon-but"></span>
-                            {lang('s_message_o_report')}
+                            {lang('Сообщить о появлении','webinger')}
                         </button> 
                         {/if} 
 
