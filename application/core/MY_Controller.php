@@ -61,10 +61,10 @@ class MY_Controller extends MX_Controller {
         parent::__construct();
 
 
-        $settings = $this->cms_base->get_settings();
-        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
-        if (file_exists($path_helper))
-            require_once $path_helper;
+//        $settings = $this->cms_base->get_settings();
+//        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
+//        if (file_exists($path_helper))
+//            require_once $path_helper;
 
 
 
