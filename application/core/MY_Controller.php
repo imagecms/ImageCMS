@@ -61,10 +61,10 @@ class MY_Controller extends MX_Controller {
         parent::__construct();
 
 
-        $settings = $this->cms_base->get_settings();
-        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
-        if (file_exists($path_helper))
-            require_once $path_helper;
+//        $settings = $this->cms_base->get_settings();
+//        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
+//        if (file_exists($path_helper))
+//            require_once $path_helper;
 
 
 
@@ -104,10 +104,10 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-//        if (self::$currentLocale and $this->ajaxRequest)
+
+//        if (self::$currentLocale)
 //            return self::$currentLocale;
-        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-            return self::$currentLocale;
+
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
