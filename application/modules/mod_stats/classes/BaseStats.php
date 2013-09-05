@@ -39,8 +39,6 @@ class BaseStats extends \MY_Controller {
     }
     
     
-    public function test() {
-        
-    }
+    
     
 }

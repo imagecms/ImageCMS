@@ -1402,6 +1402,9 @@ var ie = jQuery.browser.msie,
                         }
 
                     }
+                    else{
+                        methods.showDrop($this, e, optionsDrop, false);
+                    }
                     return false;
                 }
             })
@@ -1521,7 +1524,7 @@ var ie = jQuery.browser.msie,
                 }
                 elSetSource.addClass(place);
                 function show() {
-                    elSetSource[$thisEOn]($thisD, function(e) {
+                    elSetSource.stop()[$thisEOn]($thisD, function(e) {
                         var $this = $(this);
                         $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
                         $this.addClass(activeClass);

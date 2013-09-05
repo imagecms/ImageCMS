@@ -142,8 +142,8 @@ function changeSelectFilter(el) {
                     }
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
-                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll
-                    }).removeClass().addClass('apply').addClass(clas).addClass(cleaverFilterObj.addingClass);
+                        'top': elPos.offset().top - cleaverFilterObj.currentPosScroll[elPos.closest(framechecks).index()]
+                    }).removeClass().addClass('apply '+clas+' '+cleaverFilterObj.addingClass);
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
                     });
@@ -225,14 +225,14 @@ function afterAjaxInitializeFilter(ready) {
                             scrollabelH = scrollabel.height(),
                             posY = scrollabel.data('jsp').getContentPositionY(),
                             addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
-                    cleaverFilterObj.currentPosScroll = scrollabel.data('jsp').getContentPositionY() + addH;
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
                 }
                 else {
-                    cleaverFilterObj.currentPosScroll = 0;
+                    cleaverFilterObj.currentPosScroll = [];
                 }
             }
             else {
-                cleaverFilterObj.currentPosScroll = 0;
+                cleaverFilterObj.currentPosScroll = [];
             }
         }
     });
@@ -263,7 +263,7 @@ function afterAjaxInitializeFilter(ready) {
                 if (n == 'scroll') {
                     $this.show();
                     var el = filtersContent.show().jScrollPane(scrollPane);
-                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll);
+                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
                 }
                 if (n == 'dropDown') {
                     filtersContent.hide();
@@ -328,7 +328,7 @@ function ajaxRecount(el, slChk) {
                 otherClass = slChk;
             }
             if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
-                cleaverFilterObj.currentPosScroll = 0;
+                cleaverFilterObj.currentPosScroll = [];
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
             else {
