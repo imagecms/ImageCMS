@@ -1,0 +1,1 @@
+receipt_of_goods
