@@ -37,7 +37,8 @@ class Product_slider extends MY_Controller {
         $selectCriteria->add(\SProductsPeer::ID, $where_in, Criteria::NOT_IN);
         $product_all = \SProductsQuery::create(null, $selectCriteria)->filterByActive(1)->filterByCategory($data['category'])->select(array('Id'))->find()->toArray();
         $ci = & get_instance();
-         \CMSFactory\assetManager::create()->registerScript('script')
+         \CMSFactory\assetManager::create()
+                 ->registerScript('script')
                     ->registerScript('cloud-zoom.1.0.2.min')
                     ->registerStyle('style');
         $ci->template->assign('product_all', $product_all);

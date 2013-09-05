@@ -427,7 +427,7 @@
 </div>
 </div>
 <!--Kit start-->
-{if $model->getShopKits()->count() > 0}
+{if count($model->getShopKits()) > 0}
     <div id="kit" class="frame_carousel_product carousel_js c_b frameSet">
         <div class="m-b_20">
             <div class="title_h1 d_i-b v-a_m promotion_text">{lang('s_spec_promotion')}</div>
