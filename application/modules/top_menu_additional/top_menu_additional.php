@@ -52,7 +52,9 @@ class Top_menu_additional extends MY_Controller {
                 ->registerScript('scripts');
 
         $template = $menu_settings->menu_template;
-
+        
+        if ($menu_settings->statil)
+            $template = str_replace ('fixed', '', $template);
         if (strstr($template, '#menu_delivery') && $menu_settings->del->href) {
             $delivery = $this->get_content($menu_settings->del->href);
             $template = str_replace('#menu_delivery', $delivery, $template);
