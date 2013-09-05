@@ -15,18 +15,22 @@ class Products extends \MY_Controller {
         parent::__construct();
         $this->load->model('stats_model_products');
     }
+    
+    public function test() {
+        $this->stats_model_products->getAllCategories();
+    }
 
     /**
      * 
      * @return Products
      */
     public static function create() {
-        (null !== self::$_instance) OR self::$_instance = new self();
-        return self::$_instance;
+        (null !== self::$instanse) OR self::$instanse = new self();
+        return self::$instanse;
     }
 
-    public function getProductsInBrands() {
-        $brands = $this->model->stats_model_products->getProductsInBrands();
+    public function getBrands() {
+        $brands = $this->stats_model_products->getProductsInBrands();
         // data for pie diagram
         $pieData = array();
         foreach ($brands as $brand) {
