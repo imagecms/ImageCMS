@@ -23,11 +23,17 @@
 
                 <tr id="">
                     <td>
-                    <form method="post" class="form-horizontal" id="saveMenu">
-                        <div class="inside_padd">
-                            <div class="form-horizontal">
-                                <div class="row-fluid">
+                        <form method="post" class="form-horizontal" id="saveMenu">
+                            <div class="inside_padd">
+                                <div class="form-horizontal">
+                                    <div class="row-fluid">
+                                        <div class="control-group">
+                                            <label class="control-label" for="menu_del">Статическая панель:</label>
+                                            <div class="controls">                                           
+                                                <input type="checkbox" {if $menu->statil}checked="checked"{/if} name="statil"/> 
 
+                                            </div>
+                                        </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="menu_del">{lang('Доставка', 'top_menu_additional')}:</label>
@@ -39,6 +45,7 @@
                                                 {/foreach}
                                             </select> 
 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -51,6 +58,7 @@
                                                 {/foreach}
                                             </select> 
 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -63,13 +71,12 @@
                                                 {/foreach}
                                             </select> 
                                         </div>
-                                    </div>
 
                                     <div class="control-group">
                                         <label class="control-label" for="menu_cont">{lang('Редектор меню', 'top_menu_additional')}:</label>
                                         <div class="controls">
                                                 <textarea style="height: 200px; width: 50% !important" name="menu_template">
-{if !$menu->menu_template}
+                                                    {if !$menu->menu_template}
 &lt;div class="menu_additional"&gt;
         #menu_contacts
         #menu_delivery
@@ -82,8 +89,8 @@
         #compare_data
 &lt;/div&gt;
 &lt;div class="c_b"&gt;&lt;/div&gt;
-{else:}{echo $menu->menu_template}{/if}
-                                                </textarea>
+                                                {else:}{echo $menu->menu_template}{/if}
+                                            </textarea>
                                             <span class="help-block">
                                                 <strong> #menu_contacts - {lang('ссилка на контакты', 'top_menu_additional')}</strong>
                                             </span>
@@ -110,12 +117,12 @@
                                 </div>
                             </div>
                         </div>
-                    {form_csrf()}
+                        {form_csrf()}
                     </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    </section>
+</section>
 </div>

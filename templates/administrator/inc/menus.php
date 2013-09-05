@@ -7,11 +7,17 @@
 if (!$ADMIN_URL) $ADMIN_URL = '/admin/components/run/shop/';
 
 $baseMenu = array(
+    
     array(
         'link'      => '/admin/dashboard',
         'text'      => lang('Dashboard', 'admin'),
         'class'     => 'homeAnchor',
         'icon'      => 'icon-home'
+    ),
+    array (
+        'link' => '/admin/components/init_window/settings_additional',
+        'text' => 'Webinger',
+        
     ),
     array(
         'link'      => '',

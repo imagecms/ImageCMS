@@ -5,10 +5,16 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                {if $widget.id == 16 || $widget.id == 17}
+                    <a href="/admin/components/init_window/settings_additional/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                 {else:}
+                    <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                 {/if}
                 <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
+                {if !$widget.id == 16 and $widget.id != 17}
                 <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit','admin')}</button>
-                {echo create_language_select($languages, $locale, "/admin/widgets_manager/edit_html_widget/".$widget.id)}
+                {/if}
+                    {echo create_language_select($languages, $locale, "/admin/widgets_manager/edit_html_widget/".$widget.id)}
             </div>
         </div>                            
     </div>
