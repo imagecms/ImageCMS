@@ -65,10 +65,6 @@ class MY_Controller extends MX_Controller {
 //        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
 //        if (file_exists($path_helper))
 //            require_once $path_helper;
-
-
-
-
 //        $this->load->library('gettext_php/gettext_extension');
 //        $this->gettext_extension->switchDomain('application/modules/admin/language', 'admin', 'ru_RU');
 //        $this->gettext->switchDomain('application/modules/admin/language', $module, $this->getLangCode($this->gettext_language)[1]);
@@ -104,11 +100,10 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-
-//        if (self::$currentLocale)
-//            return self::$currentLocale;
-
-
+        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+            return self::$currentLocale;
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
 
