@@ -26,7 +26,7 @@ class Orders extends \MY_Controller {
      * @param string $interval year|month|week|day
      * @param string $begin date in format DD-MM-YYYY
      */
-    public function date($interval = 'year') {
+    public function getDate() {
         
     }
 

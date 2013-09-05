@@ -13,16 +13,23 @@ class Stats_model_orders extends CI_Model {
     
     
     
-    protected function getSome() {
+    protected function getOrdersAndCounts() {
         $query = "
             SELECT 
                 `shop_orders`.`date_created` as x,
                 COUNT(`shop_orders_products`.`order_id`) as y
+                `shop_orders`.`paid`
             FROM `shop_orders`
             LEFT JOIN `shop_orders_products` ON `shop_orders`.`id` = `shop_orders_products`.`order_id`
             GROUP BY x
             ORDER BY x ASC
         ";
+        $result = $this->db->query($query);
+        $paid = array();
+        
+        while($row = $result->result_array()) {
+            
+        }
     }
 
 }

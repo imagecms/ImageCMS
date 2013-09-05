@@ -17,7 +17,9 @@ class Products extends \MY_Controller {
     }
     
     public function test() {
+
         $this->stats_model_products->categories();
+
     }
 
     /**
@@ -29,7 +31,9 @@ class Products extends \MY_Controller {
         return self::$instanse;
     }
 
-    public function getProductsInBrands() {
+
+    public function getBrands() {
+
         $brands = $this->stats_model_products->getProductsInBrands();
         // data for pie diagram
         $pieData = array();
