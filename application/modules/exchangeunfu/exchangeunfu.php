@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-        
+
     }
 
     /**
@@ -91,7 +91,7 @@ class Exchangeunfu extends MY_Controller {
     public function make_import() {
         $this->import->import();
     }
-    
+
     public function make_export($partner_id = null) {
         $this->export->export($partner_id);
     }
@@ -271,7 +271,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     /**
-     * render module additional region prices tab for products 
+     * render module additional region prices tab for products
      * @param array $data
      */
     public static function _extendPageAdmin($data) {
@@ -666,7 +666,7 @@ class Exchangeunfu extends MY_Controller {
         set_cookie('site_region', 'asdfasdfsdsdfsdf', 10000);
         $partner_external_id = get_cookie('site_region');
         $external_ids = array();
-        
+
         if (count($model) == 1) {
             // product
             if ($model->getExternalId()) {
@@ -685,7 +685,7 @@ class Exchangeunfu extends MY_Controller {
             // an empty model
             return false;
         }
-        
+
         $products_by_region = $this->db
                 ->where('partner_external_id', $partner_external_id)
                 ->where_in('product_external_id', $ids)
@@ -697,15 +697,15 @@ class Exchangeunfu extends MY_Controller {
             $price = $product['price'];
             $discount = $this->load->module('mod_discount/discount_api')
                     ->get_discount_product_api(array('id' => $product_id, 'vid'=> null), null, $price);
-            
+
             if($discount){
                 $region_prices[$product_id] = $price - $discount['discount_value'];
             }else{
                 $region_prices[$product_id] = $price;
             }
-            
+
         }
-        
+
         if($region_prices){
             return $region_prices;
         }else{

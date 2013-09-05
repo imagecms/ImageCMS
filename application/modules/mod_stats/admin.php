@@ -8,7 +8,6 @@
  */
 class Admin extends \BaseAdminController {
 
-    private $template = '';
     private $mainTpl = '';
 
     public function __construct() {
