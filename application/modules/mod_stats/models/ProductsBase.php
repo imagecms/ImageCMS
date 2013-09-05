@@ -130,21 +130,8 @@ class ProductsBase {
 
         // creating categories tree of ids
         $categoryTree = array();
-        $level = 0;
+        $subCats = TRUE;
 
-        foreach ($categories as $category) {
-            foreach ($categories as $category_) {
-                if ($category['parent_id'] == $category_['id']) {
-                    $categoryTree[$category_['id']][$category['id']] = NULL;
-                }
-            }
-        }
-        
-        
-        echo "<pre>";
-        print_r($categoryTree);
-        echo "</pre>";
-        exit;
     }
 
     /**

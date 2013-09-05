@@ -9,7 +9,6 @@
 *   $model->firstVariant->toCurrency() : variable which contains price of product;
 *
 */}
-{$CI->load->module('exchangeunfu')->getPriceForRegion($model)}
 {$Comments = $CI->load->module('comments')->init($model)}
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-crumbs">
@@ -691,10 +690,12 @@
                 forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>
 {/literal}
+{/*
 <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{$THEME}css/fancybox.css" media="all" />
+*/}
 <script type="text/javascript" src="{$THEME}js/cloud-zoom.1.0.3.min.js"></script>
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
-<link rel="stylesheet" type="text/css" href="{$THEME}css/fancybox.css" media="all" />
 <div class="drop drop-style" id="photo">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
