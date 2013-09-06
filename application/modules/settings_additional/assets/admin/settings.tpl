@@ -26,7 +26,7 @@
                 <a href="/admin/components/init_window/top_menu_additional" class="btn btn-small">Top menu</a>
                 <a href="/admin/widgets_manager/edit_html_widget/16" class="btn btn-small">Infobox1</a>
                 <a href="/admin/widgets_manager/edit_html_widget/17" class="btn btn-small">Infobox2</a>
-                <a href="/admin/components/init_window/settings_additional/heder" class="btn btn-small">Настройка ZoomWindow</a>
+                <a href="#" class="btn btn-small" onclick="zoomOn()">Вкл/Выкл ZoomWindow</a>
 
 
 
@@ -50,7 +50,7 @@
                                             <label class="control-label" for="template">Template:</label>
                                             <div class="controls templ">  
                                                 {foreach $templ as $style}
-                                                    <img alt="{echo $style}" class="{if $style == $data['templ']}br{/if}" data-templ="{echo $style}" onclick="changelogo(this)" id="logo" style="max-width: 200px; padding: 5px" src="{echo '/templates/' . $style}/screenshot.png"/>
+                                                    <img  class="{if $style == $data['templ']}br{/if}" data-templ="{echo $style}" onclick="changelogo(this)" id="logo" style="max-width: 200px; padding: 5px" src="{echo '/templates/' . $style}/screenshot.png"/>
                                                 {/foreach}
                                                 <input type="hidden" name="templ" value="{echo $data['templ']}">
                                                 {/*}

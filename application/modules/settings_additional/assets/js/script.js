@@ -15,6 +15,17 @@ function ChangeProductInStock(el, id, pid) {
     })
 }
 
+function zoomOn(el){
+    
+    $.post('/admin/components/init_window/settings_additionalZoom', {data:el},   function(data) {
+        if (data == 1)
+            $('el').addClass('active');
+        else
+            $('el').removeClass('active');
+    })
+    
+}
+
 
 function changelogo(el) {
     $('[name="templ"]').val($(el).data('templ'));
