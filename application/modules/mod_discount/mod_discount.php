@@ -14,8 +14,8 @@ if (!defined('BASEPATH'))
  */
 class Mod_discount extends \mod_discount\classes\BaseDiscount {
 
-    public $no_install = true;
     public static $cnt = 0;
+    public $no_install = true;
     protected $result_discount = array();
 
     /**
@@ -54,11 +54,9 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_for_product($product) {
-        if (self::$cnt == 0) {
-            $obj = new \mod_discount\discount_product;
-            $obj->get_product_discount_event($product);
-            self::$cnt++;
-        }
+
+        $obj = new \mod_discount\discount_product;
+        $obj->get_product_discount_event($product);
     }
 
     /**
