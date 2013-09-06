@@ -15,6 +15,7 @@ if (!defined('BASEPATH'))
 class Mod_discount extends \mod_discount\classes\BaseDiscount {
 
     public $no_install = true;
+    public static $cnt = 0;
     protected $result_discount = array();
 
     /**
@@ -53,9 +54,11 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function get_discount_for_product($product) {
-
-        $obj = new \mod_discount\discount_product;
-        $obj->get_product_discount_event($product);
+        if (self::$cnt == 0) {
+            $obj = new \mod_discount\discount_product;
+            $obj->get_product_discount_event($product);
+            self::$cnt++;
+        }
     }
 
     /**
@@ -67,8 +70,11 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function make_order_with_discount($data) {
-        $obj = new \mod_discount\discount_order;
-        $obj->update_order_discount($data);
+        if (self::$cnt == 0) {
+            $obj = new \mod_discount\discount_order;
+            $obj->update_order_discount($data);
+            self::$cnt++;
+        }
     }
 
     public function register_script() {
