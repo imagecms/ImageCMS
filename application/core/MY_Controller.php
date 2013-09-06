@@ -120,8 +120,8 @@ class MY_Controller extends MX_Controller {
                 self::$currentLocale = $defaultLanguage['identif'];
             }
         } else {
-           // $defaultLanguage = self::getDefaultLanguage();
-           // self::$currentLocale = $defaultLanguage['identif'];
+            $defaultLanguage = self::getDefaultLanguage();
+            self::$currentLocale = $defaultLanguage['identif'];
         }
         return self::$currentLocale;
     }
