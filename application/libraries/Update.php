@@ -15,12 +15,13 @@ class Update {
      * update server
      * @var string
      */
-    private $US = "http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl";
+    private $US = "http://upd.imagecms.net/";
+
     /**
      * path to update server
      * @var string
      */
-    private $pathUS = "http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl";
+    private $pathUS;
 
     /**
      * шлях до сканування папок
@@ -111,6 +112,7 @@ class Update {
 
     public function __construct() {
         $this->ci = &get_instance();
+        $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
         $this->client = new SoapClient($this->pathUS);
     }
 
@@ -156,7 +158,7 @@ class Update {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, $this->getSettings('careKey'));
-        $all_href = 'http://ninjatest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
+        $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
