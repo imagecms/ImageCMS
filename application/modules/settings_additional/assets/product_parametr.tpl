@@ -2,7 +2,7 @@
 <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
         <tr>
-            <th class="span1">{lang('Ид варианта', 'settings_additional'}</th>
+            <th class="span1">{lang('Ид варианта', 'settings_additional')}</th>
             <th class="span3">{lang('Назва варианта', 'settings_additional')}</th>
             {if count($parametr) > 1}<th class="span2" style="width:80px;">{lang('Вкл/Выкл', 'settings_additional')}</th>{/if}
             <th class="span1" style="width:60px;">{lang('В наличии', 'settings_additional')}</th>

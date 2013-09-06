@@ -38,7 +38,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="template">Код шапки сайта</label>
                                             <div class="controls templ">  
-                                                <textarea class="elRTE" name="heder" style="height: 600px">{echo $text}</textarea>
+                                                <textarea  name="heder" style="height: 600px">{echo $text}</textarea>
 
 
 

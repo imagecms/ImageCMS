@@ -10,8 +10,10 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Назад', 'top_menu_additional')}</span></a>
+
+                    <a href="/admin/components/init_window/settings_additional" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Назад', 'top_menu_additional')}</span></a>
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('Сохранить', 'top_menu_additional')}</button>
+
                 </div>
             </div> 
         </div>
