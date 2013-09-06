@@ -107,6 +107,7 @@ class Core extends MY_Controller {
         } else {
             $this->use_def_language();
         }
+        var_dump($this->config->item('cur_lang'));
         // End language detect
 
         if ($this->settings['site_offline'] == 'yes') {
