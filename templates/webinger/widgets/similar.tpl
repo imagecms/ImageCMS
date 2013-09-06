@@ -44,7 +44,7 @@
                         {$CS}
                     </div>
                     {if $product->firstVariant->getStock() != 0}
-                        <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                        <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('Подробнее','webinger')}</a>
                         <!--
                     <button 
                         class="btn btn_buy btnBuy" 
@@ -61,8 +61,8 @@
                         data-origPrice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                         data-stock="{echo $product->firstVariant->getStock()}"
                         >
-                        {lang('s_more')}
-                       {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
+                        {lang('Подробнее','webinger')}
+                       {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}Заказать{/if} 
                     </button>
                    -->
                     {else:}
@@ -72,7 +72,7 @@
                         type="button"
                         class="btn btn_not_avail variant">
                         <span class="icon-but"></span>
-                        <span class="text-el">{lang('s_message_o_report')}</span>
+                        <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                     </button>
                     {/if}
                 </div>

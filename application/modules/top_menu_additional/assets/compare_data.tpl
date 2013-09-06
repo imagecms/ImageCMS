@@ -6,12 +6,12 @@
         <span class="{if !$cnt}d_n{/if} f-s_0" data-rel="ref">
             <a href="{shop_url('compare')}" rel="nofollow">
                 <span class="icon-comprasion"></span>
-                <span class="text-el">{lang('s_list_comp')}</span>
+                <span class="text-el">{lang('Список сравнения','top_menu_additional')}</span>
             </a> 
         </span>
         <span class="{if $cnt}d_n{/if} ref f-s_0" data-rel="notref">
             <span class="icon-comprasion"></span>
-            <span class="text-el">{lang('s_list_comp')} </span>
+            <span class="text-el">{lang('Список сравнения','top_menu_additional')} </span>
         </span>
         <span id="compareCountModule" class="ref">({echo $cnt})</span>
     </div>

@@ -29,13 +29,13 @@
         <div class="span9 right">
             <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
             <span class="c_97">
-                {lang('s_found')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))}
+                {lang('Найдено','webinger')} {echo $totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','webinger'), lang('товара','webinger'), lang('товаров','webinger')))}
             </span>
             {if count($products) > 0}
                 <div class="clearfix t-a_c frame_func_catalog">
 
                     <div class="f_l">
-                        <span class="v-a_m">{lang('s_order_by')}:</span>
+                        <span class="v-a_m">{lang('Сортировать по','webinger')}:</span>
                         <div class="lineForm w_170 sort">
                             <select class="sort" id="sort" name="order">
                                 {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -47,7 +47,7 @@
                     </div>
                     <div class="f_r">
 
-                        <span class="v-a_m">{lang('s_products_per_page')}:</span>
+                        <span class="v-a_m">{lang('Товаров на странице','webinger')}:</span>
                         <div class="lineForm w_70 sort">
                             {if ShopCore::$_GET['user_per_page'] == null}
                                 {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
@@ -63,8 +63,8 @@
                     </div>
 
                     <div class="groupButton list_pic_btn">
-                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('s_in_images')}</span></button>
-                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('s_in_list')}</span></button>
+                        <button type="button" class="btn showAsTable {if $_COOKIE['listtable'] != 1}active{/if}"><span class="icon-cat_pic"></span><span class="text-el">{lang('Таблицей','webinger')}</span></button>
+                        <button type="button" class="btn showAsList {if $_COOKIE['listtable'] == 1}active{/if}"><span class="icon-cat_list"></span><span class="text-el">{lang('Списком','webinger')}</span></button>
                     </div>
                 </div>
             {/if}
@@ -142,7 +142,7 @@
                         <!-- Start. Collect information about Variants, for future processing -->
                         {foreach $product->getProductVariants() as $key => $pv}
                             {if $pv->getStock() > 0}
-                                <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>Товар под заказ</span></span>{/if}</div>
+                                <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>{lang('Есть в наличии', 'webinger')}</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>{lang('Товар под заказ', 'webinger')}</span></span>{/if}</div>
                                 <button {if $key != 0}style="display:none"{/if}
                                                       class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
                                                       type="button"
@@ -163,7 +163,7 @@
                                                       data-origprice="{if $product->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                       data-stock="{echo $pv->getStock()}"
                                                       >
-                            {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                            {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}Заказать{/if}
                         </button>
                         
                     {else:}
@@ -194,7 +194,7 @@
                                               type="button"
                                               class="btn btn_not_avail variant_{echo $pv->getId()} variant">
                             <span class="icon-but"></span>
-                            <span class="text-el">{lang('s_message_o_report')}</span>
+                            <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                         </button>
                     {/if}
                 {/foreach}
@@ -208,11 +208,11 @@
                         data-prodid="{echo $product->getId()}"
                         type="button"
 
-                        data-title="{lang('s_add_to_compare')}"
-                        data-sectitle="{lang('s_in_compare')}"
+                        data-title="{lang('В список сравнений','webinger')}"
+                        data-sectitle="{lang('В списке сравнений','webinger')}"
                         data-rel="tooltip">
                     <span class="icon-comprasion_2"></span>
-                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                    <span class="text-el">{lang('В список сравнений','webinger')}</span>
                 </button>
                 <!-- to wish list button -->
 
@@ -222,11 +222,11 @@
                         data-varid="{echo $product->firstVariant->getId()}"
                         type="button"
 
-                        data-title="{lang('s_add_to_wish_list')}"
-                        data-sectitle="{lang('s_in_wish_list')}"
+                        data-title="{lang('В список желаний','webinger')}"
+                        data-sectitle="{lang('В списке желаний','webinger')}"
                         data-rel="tooltip">
                     <span class="icon-wish_2"></span>
-                    <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                    <span class="text-el">{lang('В список желаний','webinger')}</span>
                 </button>
             </div>
 

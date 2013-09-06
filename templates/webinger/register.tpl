@@ -9,7 +9,7 @@
         <div class="row d_i-b t-a_l">
             <div class="span6">
                 <div class="frameGroupsForm">
-                    <div class="header_title">{lang('lang_register')}</div>
+                    <div class="header_title">{lang('Регистрация','webinger')}</div>
                     <div class="standart_form horizontal_form">
                         <form method="post" id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', 'register-form');
                                                 return false;">
@@ -19,12 +19,12 @@
                                     <span class="frame_form_field">
                                         <span class="icon-email"></span>
                                         <input type="text" name="email" id="email" value="{set_value('email')}" />
-                                        <span class="help_inline">E-mail являеться логином</span>
+                                        <span class="help_inline">{lang('E-mail являеться логином', 'webinger')}</span>
                                         <label id="for_email" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">Ваше имя</span>
+                                    <span class="title">{lang('Ваше имя', 'webinger')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-person"></span>
                                         <input type="text" name="username" value="{set_value('userInfo[fullName]')}" />
@@ -32,16 +32,16 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('lang_password')}</span>
+                                    <span class="title">{lang('Пароль','webinger')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-password"></span>
                                         <input type="password" name="password" id="password" value="{set_value('password')}" />
-                                        <span class="help_inline">От 6 до 24 символов. Должен включать латинские буквы и цифры.</span>
+                                        <span class="help_inline">{lang('От 6 до 24 символов. Должен включать латинские буквы и цифры.', 'webinger')}</span>
                                         <label id="for_password" class="for_validations"></label>
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('lang_confirm_password')}</span>
+                                    <span class="title">{lang('Повторите Пароль','webinger')}</span>
                                     <span class="frame_form_field">
                                         <span class="icon-replay"></span>
                                         <input type="password" class="text" name="confirm_password" id="confirm_password" />
@@ -63,7 +63,7 @@
                                 <div class="frameLabel c_t">
                                     <span class="title">&nbsp;</span>
                                     <span class="frame_form_field">
-                                        <input type="submit" class="btn btn_cart" value="{lang('lang_submit')}" />
+                                        <input type="submit" class="btn btn_cart" value="{lang('Отправить','webinger')}" />
                                     </span>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@
     <span class="f-s_0">
         <span class="icon-bask v-a_m"></span>
         <span class="v-a_m text-el">
-            <span>Корзина</span>
+            <span>{lang('Корзина', 'top_menu_additional')}</span>
             <span id="topCartCount">&nbsp;(0)</span>
         </span>
     </span>

@@ -15,19 +15,19 @@
     <div data-body="body">
         {if count($products) > 0}
             <!--Start. Show compare list if count products >0 -->
-            <h1 class="f_l">{lang('s_compare_tovars')}</h1>
+            <h1 class="f_l">{lang('Сравнение товаров','webinger')}</h1>
             <!-- Start. Buttons for change to show different or all properties -->
             <div class="f_l">
                 <ul class="tabs tabs-dif-all_par groupButton">
-                    <li class="active btn"><button type="button" data-href="#all-params">{lang('s_all_par')}</button></li>
-                    <li class="btn"><button type="button" data-href="#only-dif">{lang('s_only_diff')}</button></li>
+                    <li class="active btn"><button type="button" data-href="#all-params">{lang('Все параметры','webinger')}</button></li>
+                    <li class="btn"><button type="button" data-href="#only-dif">{lang('Только Различия','webinger')}</button></li>
                 </ul>
             </div>
             <!-- End. Buttons for change to show different or all properties -->
             <div class="p_r c_b">
                 <!--Start. Show categories of products which are in list -->
                 <div class="comprasion_head">
-                    <div class="title_h2">{lang('s_category')}:</div>
+                    <div class="title_h2">{lang('Категория','webinger')}:</div>
                     <ul class="tabs">
                         {foreach $categories as $category}
                             <li><span data-href="#{$category.Url}"><span class="d_l_b">{echo $category.Name}</span></span></li>
@@ -100,7 +100,7 @@
                                                                         data-origprice="{if $product->hasDiscounts()}{echo $product->firstVariant->toCurrency('OrigPrice')}{/if}"
                                                                         data-stock="{echo $product->firstVariant->getStock()}"
                                                                         >
-                                                            {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                                                            {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}Заказать{/if}
                                                         </button>
                                                     {else:}
                                                         <button
@@ -114,7 +114,7 @@
                                                             type="button"
                                                             class="btn btn_not_avail">
                                                             <span class="icon-but"></span>
-                                                            <span class="text-el">{lang('s_message_o_report')}</span>
+                                                            <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                                                         </button>
                                                     {/if}
                                                     <!-- End. Check amount of goods -->
@@ -124,8 +124,8 @@
                                                             data-prodid="{echo $product->getId()}" 
                                                             data-varid="{echo $product->firstVariant->getId()}"  
                                                             type="button"
-                                                            data-title="{lang('s_add_to_wish_list')}"
-                                                            data-sectitle="{lang('s_in_wish_list')}"
+                                                            data-title="{lang('В список желаний','webinger')}"
+                                                            data-sectitle="{lang('В списке желаний','webinger')}"
                                                             data-rel="tooltip">
                                                         <span class="icon-wish_2"></span>
                                                     </button>
@@ -188,10 +188,10 @@
     <div data-body="message" class="d_b">
         <!--Start. Show message if compare list is empty -->
         <div class="bot_border_grey m-b_10">
-            <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+            <h1 class="d_i">{lang('Сравнение товаров','webinger')}</h1>
         </div>
         <div class="alert alert-search-result">
-            <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+            <div class="title_h2 t-a_c">{lang('Список сравнений пуст','webinger')}</div>
         </div>
         <!--End. Show message if compare list is empty -->
     </div>
@@ -200,10 +200,10 @@
 <div data-body="message">
     <!--Start. Show message if compare list is empty -->
     <div class="bot_border_grey m-b_10">
-        <h1 class="d_i">{lang('s_compare_tovars')}</h1>
+        <h1 class="d_i">{lang('Сравнение товаров','webinger')}</h1>
     </div>
     <div class="alert alert-search-result">
-        <div class="title_h2 t-a_c">{lang('s_compare_list_em')}</div>
+        <div class="title_h2 t-a_c">{lang('Список сравнений пуст','webinger')}</div>
     </div>
     <!--End. Show message if compare list is empty -->
 </div>

@@ -11,12 +11,12 @@
         <div class="frame_title clearfix" style="top: 179px; width: 1168px;">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Модуль дополнительных настроек</span>
+                <span class="title">{lang('Модуль дополнительных настроек', 'settings_additional')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
-                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('a_save')}</button>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Назад', 'settings_additional')}</span></a>
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('Сохранить', 'settings_additional')}</button>
                 </div>
             </div> 
         </div>
@@ -34,7 +34,7 @@
         </div>
         <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
             <thead>
-            <th class="span1">Настройки шаблонов и оформления</th>
+            <th class="span1">{lang('Настройки шаблонов и оформления', 'settings_additional')}</th>
             </thead>
             <tbody>
 
@@ -47,7 +47,7 @@
 
 
                                         <div class="control-group">
-                                            <label class="control-label" for="template">Template:</label>
+                                            <label class="control-label" for="template">{lang('Template', 'settings_additional')}:</label>
                                             <div class="controls templ">  
                                                 {foreach $templ as $style}
                                                     <img  class="{if $style == $data['templ']}br{/if}" data-templ="{echo $style}" onclick="changelogo(this)" id="logo" style="max-width: 200px; padding: 5px" src="{echo '/templates/' . $style}/screenshot.png"/>
@@ -76,24 +76,17 @@
 
                                                 {/*}
                                                 <select onchange="changesublogo(this)" style="width:25% !important" name="substyle" id="substyle">
-                                                    <option {if !$data['substyle']} selected="selected"{/if} value="0">--не определено--</option>
+                                                    <option {if !$data['substyle']} selected="selected"{/if} value="0">{lang('--не определено--', 'webinger')}</option>
                                                     {foreach $subStyle as $style}
                                                         <option value="{echo $style}" {if $data['substyle'] == $style} selected="selected" {/if} >{echo $style}</option>
                                                     {/foreach}
                                                 </select>
                                                 { */}
 
-                                                <span class="help-block">Для работы дополнительных стилей надо, чтоб они были установлен для каждого из шаблонов</span>
+                                                <span class="help-block">{lang('Для работы дополнительных стилей надо, чтоб они были установлен для каждого из шаблонов', 'webinger')}</span>
 
                                             </div>
                                         </div>
-
-
-
-
-
-
-
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +96,6 @@
                 </tr>
             </tbody>
         </table>
-
     </section>
 </div>
 

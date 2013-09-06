@@ -66,7 +66,7 @@
                         <div class="f_r">
                             <!-- displaying notify button -->
                             {if $hotProduct->firstvariant->getstock()!=0}
-                                <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('s_more')}</a>
+                                <a class="btn btn_buy" href="{shop_url('product/' . $hotProduct->getUrl())}">{lang('Подробнее','webinger')}</a>
                                
                               <!--  <button class="btn btn_buy btnBuy" 
                                         type="button" 
@@ -86,7 +86,7 @@
                                         data-origPrice="{if $hotProduct->hasDiscounts()}{echo $hotProduct->firstvariant->toCurrency('OrigPrice')}{/if}"
                                         data-stock="{echo $hotProduct->firstvariant->getStock()}"
                                         >
-                                    {lang('s_more')}
+                                    {lang('Подробнее','webinger')}
                                 </button> -->
                                
                             {else:}
@@ -112,7 +112,7 @@
                                     type="button"
                                     class="btn btn_not_avail">
                                 <span class="icon-but"></span>
-                                {lang('s_message_o_report')}
+                                {lang('Сообщить о появлении','webinger')}
                             </button> 
                             {/if}
                         </div>

@@ -2,12 +2,12 @@
     <span class="d_n" data-rel="ref">
         <a href="{shop_url('compare')}" rel="nofollow" class="f-s_0">
             <span class="icon-comprasion"></span>
-            <span class="text-el">{lang('s_list_comp')}</span>
+            <span class="text-el">{lang('Список сравнения','webinger')}</span>
         </a> 
     </span>
     <span class="c_97 f-s_0" data-rel="notref">
         <span class="icon-comprasion"></span>
-        <span class="text-el">{lang('s_list_comp')} </span>
+        <span class="text-el">{lang('Список сравнения','webinger')} </span>
     </span>
     {if $CI->session->userdata('shopForCompare')}
         &nbsp;<span id="compareCount" class="c_97">({count($CI->session->userdata('shopForCompare'))})</span>

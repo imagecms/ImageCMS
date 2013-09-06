@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
         if ($_POST){
             $this->db->query ('delete from top_menu_additional');
             $this->db->insert ('top_menu_additional',array('settings'=> json_encode($_POST)));
-            showMessage('Дание сохранены');
+            showMessage(lang('Дание сохранены', 'top_menu_additional'));
             exit();
         }
         

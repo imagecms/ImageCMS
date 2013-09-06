@@ -78,7 +78,7 @@
                         {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                         {if count($variants) > 1 && $cnt > 1}
                             <div class=" d_i-b v-a_b m-b_15 m-r_30 variantProd">
-                                <span class="title">Выбор варианта:</span>
+                                <span class="title">{lang('Выбор варианта', 'product_slider')}:</span>
                                 <div class="lineForm w_170">
                                     <select id="variantSwitcher" name="variant">
                                         {foreach $variants as $key => $pv}
@@ -150,7 +150,7 @@
                                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                           data-stock="{echo $pv->getStock()}"
                                                           >
-                                        {lang('s_buy')}
+                                        {lang('Купить','product_slider')}
                                     </button>
                                 {else:}
                                     <button  {if $key != 0}style="display:none"{/if}
@@ -178,26 +178,26 @@
                                                            data-stock="{echo $pv->getStock()}"
                                                            >
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('s_message_o_report')}</span>
+                                        <span class="text-el">{lang('Сообщить о появлении','product_slider')}</span>
                                     </button>
                                 {/if}
                             {/foreach}
                         </div>
                         <button class="btn btn-more d_i-b m-b_15 m-r_10">
-                            <a href="{shop_url('product/' . $model->geturl())}">Подробнее</a>
+                            <a href="{shop_url('product/' . $model->geturl())}">{lang('Подробнее', 'product_slider')}</a>
                         </button>
                         <div class="v-a_b d_i-b m-b_15 add_func_btn">
                             <!-- Start. Block "Add to Compare" -->
                             <button class="btn_small_p toCompare d_i-b v-a_m"
                                     data-prodid="{echo $model->getId()}"
                                     type="button"
-                                    data-title="{lang('s_add_to_compare')}"
-                                    data-firtitle="{lang('s_add_to_compare')}"
-                                    data-sectitle="{lang('s_in_compare')}"
+                                    data-title="{lang('В список сравнений','product_slider')}"
+                                    data-firtitle="{lang('В список сравнений','product_slider')}"
+                                    data-sectitle="{lang('В списке сравнений','product_slider')}"
                                     data-rel="tooltip"
                                     >
                                 <span class="icon-comprasion_2"></span>
-                                <span class="text-el">{lang('s_add_to_compare')}</span>
+                                <span class="text-el">{lang('В список сравнений','product_slider')}</span>
                             </button>
                             <!-- End. Block "Add to Compare" -->
 
@@ -211,12 +211,12 @@
                                                 data-prodid="{echo $model->getId()}"
                                                 data-varid="{echo $pv->getId()}"
                                                 type="button"
-                                                data-title="{lang('s_add_to_wish_list')}"
-                                                data-firtitle="{lang('s_add_to_wish_list')}"
-                                                data-sectitle="{lang('s_in_wish_list')}"
+                                                data-title="{lang('В список желаний','product_slider')}"
+                                                data-firtitle="{lang('В список желаний','product_slider')}"
+                                                data-sectitle="{lang('В списке желаний','product_slider')}"
                                                 data-rel="tooltip">
                                             <span class="icon-wish_2"></span>
-                                            <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                            <span class="text-el">{lang('В список желаний','product_slider')}</span>
                                         </button>
                                     </div>
                                 {/foreach}
@@ -272,7 +272,7 @@
             {/if}
         </div>
         <div class="t-a_r m-t_20">
-            <a href="{shop_url('product/' . $model->geturl())}">Подробнее о товаре</a>
+            <a href="{shop_url('product/' . $model->geturl())}">{lang('Подробнее о товаре', 'product_slider')}</a>
         </div>
     </li>
 </ul>

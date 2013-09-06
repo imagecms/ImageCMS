@@ -2,7 +2,7 @@
 
     <div class="frame_carousel_product carousel_js c_b">
         <div class="m-b_20">
-            <div class="title_h1 d_i-b v-a_m">{lang('s_similar_product')}</div>
+            <div class="title_h1 d_i-b v-a_m">{lang('Похожие товары','webinger')}</div>
             <div class="d_i-b groupButton v-a_m frame_carousel_button">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
@@ -44,7 +44,7 @@
                                 <span class="f-w_b">{echo $product->firstVariant->toCurrency()} </span> 
                                 {$CS}
                             </div>
-                            <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('s_more')}</a>
+                            <a class="btn btn_buy" href="{shop_url('product/' . $product->getUrl())}">{lang('Подробнее','webinger')}</a>
                             
                             <!--<button class="btn btn_buy" 
                                     type="button" 
@@ -54,8 +54,8 @@
                                     data-name="{echo ShopCore::encode($product->getName())}"
                                     data-number="{echo $product->firstVariant->getnumber()}"
                                     data-maxcount="{echo $product->firstVariant->getstock()}">
-                                {lang('s_more')}
-                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if} 
+                                {lang('Подробнее','webinger')}
+                                {if in_array($product->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}{lang('Заказать', 'webinger')}{/if} 
                             </button>
                             -->
                         </div>
