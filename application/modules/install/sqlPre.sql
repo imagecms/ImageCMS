@@ -10860,6 +10860,59 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_wish_list`
+--
+
+DROP TABLE IF EXISTS `mod_wish_list`;
+CREATE TABLE IF NOT EXISTS `mod_wish_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(254) NOT NULL,
+  `description` text,
+  `access` enum('public','private','shared') NOT NULL DEFAULT 'shared',
+  `user_id` int(11) NOT NULL,
+  `review_count` int(11) NOT NULL DEFAULT '0',
+  `hash` varchar(16) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_wish_list_products`
+--
+
+DROP TABLE IF EXISTS `mod_wish_list_products`;
+CREATE TABLE IF NOT EXISTS `mod_wish_list_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `wish_list_id` int(11) NOT NULL,
+  `variant_id` int(11) NOT NULL,
+  `comment` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_wish_list_users`
+--
+
+DROP TABLE IF EXISTS `mod_wish_list_users`;
+CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
+  `id` int(11) NOT NULL,
+  `user_name` varchar(254) DEFAULT NULL,
+  `user_image` text,
+  `user_birthday` int(11) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
