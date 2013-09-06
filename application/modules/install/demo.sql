@@ -406,7 +406,7 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 --
 -- Структура таблиці `custom_fields`
 --
-
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 --
 -- Структура таблиці `custom_fields_i18n`
 --
-
+DROP TABLE IF EXISTS `custom_fields_i18n`;
 CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(4) NOT NULL,
@@ -440,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 --
 -- Структура таблиці `custom_fields_data`
 --
-
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -558,7 +558,7 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 --
 -- Структура таблиці `gallery_images_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
@@ -570,7 +570,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
 --
 -- Структура таблиці `gallery_category_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_category_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -585,7 +585,7 @@ INSERT INTO `gallery_category_i18n` (`id`, `locale`, `name`, `description`) VALU
 --
 -- Структура таблиці `gallery_albums_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2180,6 +2180,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 (13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
 (14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084);
 
+DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
@@ -2188,6 +2189,8 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
   KEY `locale` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
+('10', 'ru','<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>');
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

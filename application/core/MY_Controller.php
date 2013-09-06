@@ -101,14 +101,14 @@ class MY_Controller extends MX_Controller {
      */
     public static function getCurrentLocale() {
 
-        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        if (self::$currentLocale)
             return self::$currentLocale;
+        
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
-
         if ($lang_id) {
             $query = $ci->db
                     ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
@@ -120,8 +120,8 @@ class MY_Controller extends MX_Controller {
                 self::$currentLocale = $defaultLanguage['identif'];
             }
         } else {
-            $defaultLanguage = self::getDefaultLanguage();
-            self::$currentLocale = $defaultLanguage['identif'];
+           // $defaultLanguage = self::getDefaultLanguage();
+           // self::$currentLocale = $defaultLanguage['identif'];
         }
         return self::$currentLocale;
     }
