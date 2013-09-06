@@ -207,7 +207,7 @@ class ExportXML {
         foreach ($this->productivity as $productivity) {
             $this->productivity_export .=
                     "\t<СписокПродуктивность>\r\n" .
-//                    "\t\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
+                    "\t\t<IDWeb>" . $productivity['id'] . "</IDWeb>\r\n" .
                     "\t\t<Дата>" . date('Y-m-d\Th:m:s', $productivity['date']) . "</Дата>\r\n" .
                     "\t\t<Час>" . $productivity['hour'] . "</Час>\r\n" .
                     "\t\t<Количество>" . $productivity['count'] . "</Количество>\r\n" .
@@ -242,7 +242,7 @@ class ExportXML {
 
             $products = array();
             foreach ($this->products as $product) {
-                $products[$product['external_id']] = $product['id'];
+                $products[$product['id']] = $product['external_id'];
             }
 
             $this->price_export .=
@@ -250,8 +250,8 @@ class ExportXML {
                     "\t\t<IDWeb>" . $price['id'] . "</IDWeb>\r\n" .
                     "\t\t<ЭтоАкционнаяЦена>" . $price_bool . "</ЭтоАкционнаяЦена>\r\n" .
                     "\t\t<Цена>" . $price['price'] . "</Цена>\r\n" .
-                    "\t\t<IDНоменклатура>" . $price['product_external_id'] . "</IDНоменклатура>\r\n" .
-                    "\t\t<IDWebНоменклатура>" . $products[$price['product_external_id']] . "</IDWebНоменклатура>\r\n" .
+                    "\t\t<IDНоменклатура>" . $products[$price['product_id']]  . "</IDНоменклатура>\r\n" .
+                    "\t\t<IDWebНоменклатура>" . $price['product_id'] . "</IDWebНоменклатура>\r\n" .
                     "\t\t<IDОрганизация>" . $price['partner_external_id'] . "</IDОрганизация>\r\n" .
                     "\t\t<IDWebОрганизация>" . $partners[$price['partner_external_id']] . "</IDWebОрганизация>\r\n" .
                     "\t\t<ID>" . $price['external_id'] . "</ID>\r\n" .
@@ -328,8 +328,6 @@ class ExportXML {
                 $order['paid'] = 'false';
             }
 
-
-//            var_dumps($users);
             /** order export data */
             $this->order_export .=
                     "\t<СписокЗаказыПокупателя>\r\n" .
