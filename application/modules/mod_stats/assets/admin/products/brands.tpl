@@ -1,3 +1,3 @@
-<div id="pieChart" class="span9">
+<div id="pieChart">
     <svg style="height: 500px;"></svg>
 </div>
