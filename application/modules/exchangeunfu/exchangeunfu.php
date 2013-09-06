@@ -75,6 +75,40 @@ class Exchangeunfu extends MY_Controller {
 
     }
 
+    public static function adminAutoload() {
+        \CMSFactory\Events::create()
+                ->onShopProductPreUpdate()
+                ->setListener('_extendPageAdmin');
+
+        \CMSFactory\Events::create()
+                ->onShopProductPreCreate()
+                ->setListener('_extendPageAdmin');
+
+        \CMSFactory\Events::create()
+                ->onShopProductCreate()
+                ->setListener('_addProductExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopProductCreate()
+                ->setListener('_addProductPartner');
+
+        \CMSFactory\Events::create()
+                ->onShopProductUpdate()
+                ->setListener('_addProductPartner');
+
+        \CMSFactory\Events::create()
+                ->onShopUserCreate()
+                ->setListener('_addUserExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopCategoryCreate()
+                ->setListener('_addCategoryExternalId');
+
+        \CMSFactory\Events::create()
+                ->onShopOrderCreate()
+                ->setListener('_addOrderExternalId');
+    }
+
     /**
      * returns exchange settings to 1c
      * @zip no
@@ -226,7 +260,7 @@ class Exchangeunfu extends MY_Controller {
             if ($this->config['backup'])
                 $this->makeDBBackup();
             //start import process
-//            $this->import->import($this->input->get('filename'));
+            $this->import->import($this->tempDir . $this->input->get('filename'));
             //rename import xml file after import finished
             if (!$this->config['debug'])
                 rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
@@ -234,40 +268,6 @@ class Exchangeunfu extends MY_Controller {
             echo "success";
         }
         exit();
-    }
-
-    public static function adminAutoload() {
-        \CMSFactory\Events::create()
-                ->onShopProductPreUpdate()
-                ->setListener('_extendPageAdmin');
-
-        \CMSFactory\Events::create()
-                ->onShopProductPreCreate()
-                ->setListener('_extendPageAdmin');
-
-        \CMSFactory\Events::create()
-                ->onShopProductCreate()
-                ->setListener('_addProductExternalId');
-
-        \CMSFactory\Events::create()
-                ->onShopProductCreate()
-                ->setListener('_addProductPartner');
-
-        \CMSFactory\Events::create()
-                ->onShopProductUpdate()
-                ->setListener('_addProductPartner');
-
-        \CMSFactory\Events::create()
-                ->onShopUserCreate()
-                ->setListener('_addUserExternalId');
-
-        \CMSFactory\Events::create()
-                ->onShopCategoryCreate()
-                ->setListener('_addCategoryExternalId');
-
-        \CMSFactory\Events::create()
-                ->onShopOrderCreate()
-                ->setListener('_addOrderExternalId');
     }
 
     /**
@@ -696,19 +696,18 @@ class Exchangeunfu extends MY_Controller {
             $product_id = $external_ids[$product['product_external_id']];
             $price = $product['price'];
             $discount = $this->load->module('mod_discount/discount_api')
-                    ->get_discount_product_api(array('id' => $product_id, 'vid'=> null), null, $price);
+                    ->get_discount_product_api(array('id' => $product_id, 'vid' => null), null, $price);
 
-            if($discount){
+            if ($discount) {
                 $region_prices[$product_id] = $price - $discount['discount_value'];
-            }else{
+            } else {
                 $region_prices[$product_id] = $price;
             }
-
         }
 
-        if($region_prices){
+        if ($region_prices) {
             return $region_prices;
-        }else{
+        } else {
             return 0;
         }
     }

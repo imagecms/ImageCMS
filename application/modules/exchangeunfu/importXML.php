@@ -67,7 +67,7 @@ class ImportXML {
     }
 
     public function index() {
-        
+
     }
 
     public function getXML($file) {
@@ -588,7 +588,6 @@ class ImportXML {
     private function importPrices() {
         $this->prod = load_product();
         $this->partners = load_partners();
-        var_dumps($this->prod);
         foreach ($this->xml->СписокЦен as $offer) {
             //prepare update data
             $data = array();
@@ -604,9 +603,9 @@ class ImportXML {
                         break;
                     }
                 }
-                
+
             }
-            
+
             $data['partner_external_id'] = $offer->IDОрганизация . '';
 
 //            if (!is_prod($data['product_id'], $this->prod)) {

@@ -328,8 +328,6 @@ class ExportXML {
                 $order['paid'] = 'false';
             }
 
-
-//            var_dumps($users);
             /** order export data */
             $this->order_export .=
                     "\t<СписокЗаказыПокупателя>\r\n" .
