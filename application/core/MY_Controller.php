@@ -103,12 +103,12 @@ class MY_Controller extends MX_Controller {
 
         if (self::$currentLocale)
             return self::$currentLocale;
+        
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
-
         if ($lang_id) {
             $query = $ci->db
                     ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")

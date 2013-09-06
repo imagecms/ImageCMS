@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 --
 -- Структура таблиці `custom_fields`
 --
-
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 --
 -- Структура таблиці `custom_fields_i18n`
 --
-
+DROP TABLE IF EXISTS `custom_fields_i18n`;
 CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(4) NOT NULL,
@@ -433,7 +433,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 --
 -- Структура таблиці `custom_fields_data`
 --
-
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -491,7 +491,7 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 
 -- Структура таблиці `gallery_albums`
 --
-
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -513,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 --
 -- Структура таблиці `gallery_albums_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -527,7 +527,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
 --
 -- Структура таблиці `gallery_category`
 --
-
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cover_id` int(11) NOT NULL DEFAULT '0',
@@ -543,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 --
 -- Структура таблиці `gallery_category_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_category_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -559,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
 --
 -- Структура таблиці `gallery_images`
 --
-
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) NOT NULL,
@@ -581,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 --
 -- Структура таблиці `gallery_images_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
@@ -1459,7 +1459,7 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 --
 -- Структура таблиці `mod_discount_all_order`
 --
-
+DROP TABLE IF EXISTS `mod_discount_all_order`;
 CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `for_autorized` tinyint(4) DEFAULT NULL,
@@ -1475,7 +1475,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
 --
 -- Структура таблиці `mod_discount_brand`
 --
-
+DROP TABLE IF EXISTS `mod_discount_brand`;
 CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `brand_id` int(11) DEFAULT NULL,
@@ -1490,7 +1490,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
 --
 -- Структура таблиці `mod_discount_category`
 --
-
+DROP TABLE IF EXISTS `mod_discount_category`;
 CREATE TABLE IF NOT EXISTS `mod_discount_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -1505,7 +1505,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_category` (
 --
 -- Структура таблиці `mod_discount_comulativ`
 --
-
+DROP TABLE IF EXISTS `mod_discount_comulativ`;
 CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
@@ -1520,7 +1520,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
 --
 -- Структура таблиці `mod_discount_group_user`
 --
-
+DROP TABLE IF EXISTS `mod_discount_group_user`;
 CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) DEFAULT NULL,
@@ -1535,7 +1535,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
 --
 -- Структура таблиці `mod_discount_product`
 --
-
+DROP TABLE IF EXISTS `mod_discount_product`;
 CREATE TABLE IF NOT EXISTS `mod_discount_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1550,7 +1550,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_product` (
 --
 -- Структура таблиці `mod_discount_user`
 --
-
+DROP TABLE IF EXISTS `mod_discount_user`;
 CREATE TABLE IF NOT EXISTS `mod_discount_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -1571,7 +1571,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_user` (
 --
 -- Структура таблиці `mod_shop_discounts`
 --
-
+DROP TABLE IF EXISTS `mod_shop_discounts`;
 CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(25) DEFAULT NULL,
@@ -1595,7 +1595,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
 --
 -- Структура таблиці `mod_shop_discounts_i18n`
 --
-
+DROP TABLE IF EXISTS `mod_shop_discounts_i18n`;
 CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -1606,6 +1606,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
 -- --------------------------------------------------------
 
 ------------ discount_old------------------
+DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -9943,6 +9944,7 @@ INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name
 (1, 29, 0, 'a:1:{i:0;s:6:"scroll";}'),
 (4, 28, 0, 'a:1:{i:0;s:6:"scroll";}');
 
+DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
@@ -9950,6 +9952,11 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
   PRIMARY KEY (`id`,`locale`),
   KEY `locale` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
+('16', 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
+('17', 'ru','<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>');
 
 
 -- --------------------------------------------------------
@@ -10002,6 +10009,7 @@ CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
   `description` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

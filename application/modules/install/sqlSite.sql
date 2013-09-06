@@ -403,7 +403,7 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 --
 -- Структура таблиці `custom_fields`
 --
-
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 --
 -- Структура таблиці `custom_fields_i18n`
 --
-
+DROP TABLE IF EXISTS `custom_fields_i18n`;
 CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(4) NOT NULL,
@@ -437,7 +437,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 --
 -- Структура таблиці `custom_fields_data`
 --
-
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -562,7 +562,7 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 --
 -- Структура таблиці `gallery_images_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
@@ -574,7 +574,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
 --
 -- Структура таблиці `gallery_category_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_category_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -588,7 +588,7 @@ INSERT INTO `gallery_category_i18n` (`id`, `locale`, `name`, `description`) VALU
 --
 -- Структура таблиці `gallery_albums_i18n`
 --
-
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -2137,7 +2137,7 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 (5, 'Востановление пароля', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Восстановление пароля', 'HTML', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', 1, '', 0, 'Шаблон письма на  востановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на востановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
 (6, 'Смена пароля', '', 'Администрация сайта', 'no-replay@shop.com', '', 'Смена пароля', 'HTML', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', 1, '', 0, '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новий пароль";}');
 
-
+DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(11) CHARACTER SET utf8 NOT NULL,
@@ -2146,6 +2146,9 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
   KEY `locale` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
+('10', 'ru','<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>');
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
