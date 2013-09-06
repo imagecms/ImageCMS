@@ -67,6 +67,8 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
@@ -130,7 +132,8 @@ class MY_Lang extends MX_Lang {
         }
 
 //            var_dumps($module);
-
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->gettext->switchDomain('application/language/main/', 'main', $lang);
@@ -213,6 +216,8 @@ class MY_Lang extends MX_Lang {
      * @return	string
      */
     public function line($line = '', $params = FALSE) {
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
         if (!$this->gettext)
             $this->_init();
 

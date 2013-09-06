@@ -12,6 +12,11 @@ class Update {
     private $restore_files = array();
 
     /**
+     * update server
+     * @var string
+     */
+    private $US = "http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl";
+    /**
      * path to update server
      * @var string
      */
