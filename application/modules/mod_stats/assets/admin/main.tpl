@@ -151,7 +151,6 @@
             </ul>
 
         </div>
-        <div id="chartContainer"></div>
-
+        <div id="chartContainer" class="span9"></div>
     </div>
 </section>
