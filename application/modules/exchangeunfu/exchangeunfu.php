@@ -245,9 +245,9 @@ class Exchangeunfu extends MY_Controller {
                 ->onShopProductPreCreate()
                 ->setListener('_extendPageAdmin');
 
-        \CMSFactory\Events::create()
-                ->onShopProductCreate()
-                ->setListener('_addProductExternalId');
+//        \CMSFactory\Events::create()
+//                ->onShopProductCreate()
+//                ->setListener('_addProductExternalId');
 
         \CMSFactory\Events::create()
                 ->onShopProductCreate()
