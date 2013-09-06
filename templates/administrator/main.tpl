@@ -220,6 +220,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/admin/settings/switch_admin_lang/english">{lang("English","admin")} (beta)</a></li>
                                 <li><a href="/admin/settings/switch_admin_lang/russian">{lang("Russian","admin")}</a></li>
+                                <li><a href="/admin/settings/switch_admin_lang/german">{lang("German","admin")}</a></li>
                             </ul>
                         </div>
                     </div>
