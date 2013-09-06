@@ -262,12 +262,13 @@
                 <div class="t-a_r inside_padd">
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
-                            ({lang('Сумма товаров', 'webinger')}: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
-                            {if $model->getdiscount()}<br/>({lang('Сумма скидки', 'webinger')}: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
+                            {if $model->getOriginPrice()}({lang('Сумма товаров', 'webinger')}: <span class="f-w_b">{if $model->getOriginPrice()}{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}{else:}{echo $model->gettotalprice()}{/if}</span> {$CS}){/if}
+                            {if $CI->load->module('mod_discount')->check_module_install()}{if $model->getdiscount()}<br/>({lang('Сумма скидки', 'webinger')}: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}{/if}
+                            
 
                             
                         {if $model->getGiftCertPrice() > 0}<br><span >({lang('Скидка подарочного сертификата', 'webinger')}: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
-                        <br/>(+{lang(' Доставка', 'webinger')}: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
+                        <br/>(+{lang(' Доставка', 'webinger')}: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = ShopCore::app()->SCurrencyHelper->convert($model->getDeliveryPrice())}{/if}</span> {$CS})
                     </div>
                     
                     {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
