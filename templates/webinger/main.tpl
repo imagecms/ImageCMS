@@ -28,6 +28,10 @@
         {/if}
 
         <link href='http://fonts.googleapis.com/css?family=PT+Sans&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <script type="text/javascript">
+            var zoom_off = {echo $__zoom_off}
+        </script>
+            
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
         <!--[if lte IE 8]>
