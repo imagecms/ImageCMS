@@ -15,17 +15,17 @@
         <div data-body="message" class="d_b">
             <!--Start. Show message if compare list is empty -->
             <div class="bot_border_grey m-b_10">
-                <h1 class="d_i">{lang('s_WL')}</h1>
+                <h1 class="d_i">{lang('Список желаний','webinger')}</h1>
             </div>
             <div class="alert alert-search-result">
-                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+                <div class="title_h2 t-a_c">{echo ShopCore::t(lang('Список желаний пуст','webinger'))}</div>
             </div>
             <!--End. Show message if compare list is empty -->
         </div>
     {else:}
 
         <div data-body="body">
-            <h1>{lang('s_WL')}</h1>
+            <h1>{lang('Список желаний','webinger')}</h1>
             <!--If not empty list show list of products -->
             <div class="bot_border_grey">
                 <ul class="items items_catalog itemsFrameNS items_wish_list">
@@ -54,11 +54,11 @@
                                 <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                                 <span class="d_b m-b_5">
                                     {$hasCode = $variant->getNumber() == '';}
-                                    <span class="frame_number" {if $hasCode}style="display:none;"{/if}>Артикул:
+                                    <span class="frame_number" {if $hasCode}style="display:none;"{/if}>{lang('Артикул', 'webinger')}:
                                         <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if}) </span>
                                     </span>
                                     {$hasVariant = $variant->getName() == '';}
-                                    <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
+                                    <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант', 'webinger')}: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
                                 </span>
                                 <!-- Start. Price -->
                                 <div class="price price_f-s_16">
@@ -92,7 +92,7 @@
                                             data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
                                             data-stock="{echo $variant->getStock()}"
                                             >
-                                {if in_array($variant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                                {if in_array($variant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}Заказать{/if}
                             </button>
                         {else:}
                             <button
@@ -106,7 +106,7 @@
                                 type="button"
                                 class="btn btn_not_avail">
                                 <span class="icon-but"></span>
-                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                             </button>
                         {/if}
                         <!-- End. Check is product available -->
@@ -126,7 +126,7 @@
     </div>
     <div class="row footer_wish-list">
         <div class="span6">
-            <div class="d_i-b title">{lang('s_summ')}:</div>
+            <div class="d_i-b title">{lang('Сумма','webinger')}:</div>
             <div class="price price_f-s_24 d_i-b">
                 <span class="first_cash"><span class="f-w_b" id="wishListTotal">{echo $total_price}</span> {$CS}</span>
             </div>
@@ -134,9 +134,9 @@
         <form action="" method="post" name="editForm" style="padding-left: 0; padding-right: 0px;">
             <div class="span6">
                 <div class="standart_form horizontal_form t-a_r">
-                    <input type="submit" value="{lang('lang_submit')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
+                    <input type="submit" value="{lang('Отправить','webinger')}" name="sendwish" class="btn btn_cart f_r m-l_10"/>
                     <div class="o_h">
-                        <input type="text" placeholder="E-mail получателя" name="friendsMail"/>
+                        <input type="text" placeholder="{lang('E-mail получателя', 'webinger')}" name="friendsMail"/>
                     </div>
                 </div>
             </div>
@@ -148,10 +148,10 @@
 <div data-body="message">
     <!--Start. Show message if compare list is empty -->
     <div class="bot_border_grey m-b_10">
-        <h1 class="d_i">{lang('s_WL')}</h1>
+        <h1 class="d_i">{lang('Список желаний','webinger')}</h1>
     </div>
     <div class="alert alert-search-result">
-        <div class="title_h2 t-a_c">{echo ShopCore::t(lang('s_list_wish_empty'))}</div>
+        <div class="title_h2 t-a_c">{echo ShopCore::t(lang('Список желаний пуст','webinger'))}</div>
     </div>
     <!--End. Show message if compare list is empty -->
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="span9 item_tovar">
-            <h1>{lang('s_private_office')}</h1>
+            <h1>{lang('Личный кабинет','webinger')}</h1>
             <!-- Start errors block -->
             <div  class="msg_form_edit">
                 {if $errors}
@@ -16,19 +16,19 @@
                 <li>
                     <button type="button" data-href="#my_data">
                         <span class="icon-mydata"></span>
-                        <span class="text-el">{lang('s_profile_me')}</span>
+                        <span class="text-el">{lang('Мои данные','webinger')}</span>
                     </button>
                 </li>
                 <li>
                     <button type="button" data-href="#change_pass">
                         <span class="icon-chgpass"></span>
-                        <span class="text-el">{lang('s_profile_me_change_password')}</span>
+                        <span class="text-el">{lang('Изменить пароль','webinger')}</span>
                     </button>
                 </li>
                 <li>
                     <button type="button" data-href="#history_order">
                         <span class="icon-historyorder"></span>
-                        <span class="text-el">{lang('s_order_history')}</span>
+                        <span class="text-el">{lang('История заказов','webinger')}</span>
                     </button>
                 </li>
             </ul>
@@ -40,33 +40,33 @@
                         <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('/shop/profileapi/changeInfo', 'form_change_info');
                                 return false;">
                             <label>
-                                <span class="title">{lang('s_c_uoy_name_u')}:</span>
+                                <span class="title">{lang('Ваше имя','webinger')}:</span>
                                 <span class="row">
                                     <span class="frame_form_field">
                                         <input type="text" value="{echo encode($profile->getName())}" name="name"/>
                                         <label id="for_name" class="for_validations"></label>
-                                        <span class="help_inline">{lang('s_email_4_sumbls')}</span>
+                                        <span class="help_inline">{lang('Не меньше 4-х символов','webinger')}</span>
                                     </span>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_c_uoy_user_el')}:</span>
+                                <span class="title">{lang('Электронный адрес','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
                                     <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
-                                    <span class="help_inline">{lang('s_email_is_login')}</span>
+                                    <span class="help_inline">{lang('E-mail является логином','webinger')}</span>
                                     <label id="for_email" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_phone')}:</span>
+                                <span class="title">{lang('Телефон','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
                                     <label id="for_phone" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_profile_me_address')}:</span>
+                                <span class="title">{lang('Адрес для доставки','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                                     <label id="for_address" class="for_validations"></label>
@@ -87,7 +87,7 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
-                                    <input type="submit" value="{lang('s_edit')}" class="btn"/>
+                                    <input type="submit" value="{lang('Редактировать','webinger')}" class="btn"/>
                                 </span>
                             </div>
                                 
@@ -102,21 +102,21 @@
                     <div class="standart_form horizontal_form">
                         <form method="post" id="form_change_pass">
                             <label>
-                                <span class="title">{lang('lang_old_password')}:</span>
+                                <span class="title">{lang('Старый пароль','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="old_password"/>
                                     <label id="for_old_password" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('lang_new_password')}:</span>
+                                <span class="title">{lang('Новый пароль','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="new_password"/>
                                     <label id="for_new_password" class="for_validations"></label>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('s_newpassword')}:</span>
+                                <span class="title">{lang('Повторите пароль','webinger')}:</span>
                                 <span class="frame_form_field">
                                     <input type="password" name="confirm_new_password"/>
                                     <label id="for_confirm_new_password" class="for_validations"></label>
@@ -125,7 +125,7 @@
                             <div class="frameLabel">
                                 <span class="title">&nbsp;</span>
                                 <span class="frame_form_field">
-                                    <input type="submit" value="{lang('s_save')}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
+                                    <input type="submit" value="{lang('Сохранить','webinger')}" class="btn" onclick="ImageCMSApi.formAction('/auth/authapi/change_password', 'form_change_pass');
                                 return false;"/>
                                 </span>
                             </div>
@@ -140,17 +140,17 @@
                         <thead>
                             <tr>
                                 <th>№</th>
-                                <th>{lang('s_order_date')}</th>
-                                <th>{lang('s_refresh')}</th>
-                                <th>{lang('s_summ')}</th>
-                                <th>{lang('s_status')}</th>
-                                <th>{lang('s_pay')}</th>
+                                <th>{lang('Дата заказа','webinger')}</th>
+                                <th>{lang('Обновлено','webinger')}</th>
+                                <th>{lang('Сумма','webinger')}</th>
+                                <th>{lang('Статус','webinger')}</th>
+                                <th>{lang('Оплата','webinger')}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 {foreach $orders as $order}
-                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('s_order')} №{echo $order->getId()}</a></td>
+                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ','webinger')} №{echo $order->getId()}</a></td>
                                     <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
                                     <td>{echo $order->getTotalPrice()} {$CS}</td>

@@ -24,7 +24,7 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <!-- Show greeting message  -->
             <h1 class="d_i v-a_m m-r_45">
-                {lang('s_thank_order')}
+                {lang('Спасибо за Ваш заказ.','webinger')}
             </h1>
             <!-- Clear Cart locale Storage -->
             <script>{literal}$(document).ready(function() {
@@ -35,7 +35,7 @@
 
         <!-- Start. Render goto profile button -->
         <a href="{shop_url('profile')}" class="btn v-a_m">
-            {lang('s_go_profile')}
+            {lang('Перейти в личный кабинет','webinger')}
         </a>
         <!-- End. Render goto profile button -->
 
@@ -43,33 +43,33 @@
 
             <!-- Start. Displays a information block about Order -->
             <div class="frameGroupsForm span5">
-                <div class="header_title">{lang('s_order_data')}</div>
+                <div class="header_title">{lang('Данные заказа','webinger')}</div>
                 <div class="inside_padd">
                     <table class="tableOrderData">
                         <!-- Start. Render Order number -->
                         <tr>
-                            <th>{lang('s_order')} #:</th>
+                            <th>{lang('Заказ','webinger')} #:</th>
                             <td>{echo ShopCore::encode($model->getId())}</td>
                         </tr>
                         <!-- End. Render Order number -->
 
                         <!-- Start. Display Paid status -->
                         <tr>
-                            <th>{lang('s_paid')}:</th>
-                            <td>{if $model->getPaid() == true} {lang('s_yes')}{else:}{lang('s_no')}{/if}</td>
+                            <th>{lang('Оплачен','webinger')}:</th>
+                            <td>{if $model->getPaid() == true} {lang('Да','webinger')}{else:}{lang('Нет','webinger')}{/if}</td>
                         </tr>
                         <!-- End. Display Paid status -->
 
                         <!-- Start. Show Order status name -->
                         <tr>
-                            <th>{lang('s_status')}:</th>
+                            <th>{lang('Статус','webinger')}:</th>
                             <td>{echo SOrders::getStatusName('Id', $model->getStatus())}</td>
                         </tr>
                         <!-- End. Show Order status name -->
                         <!-- Start. Render certificate -->
                         {if $model->getGiftCertKey() != null}
                             <tr>
-                                <th>{lang('s_do_you_cer_tif')}: </th>
+                                <th>{lang('Сертификат','webinger')}: </th>
                                 <td>-{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}</td>
                             </tr>
                         {/if}
@@ -88,7 +88,7 @@
                         <!-- Start. Delivery Method name -->
                         {if $model->getDeliveryMethod() > 0}
                             <tr>
-                                <th>{lang('s_dostavka')}:</th>
+                                <th>{lang('Доставка','webinger')}:</th>
                                 <td>{echo $model->getSDeliveryMethods()->getName()}</td>
                             </tr>
                         {/if}
@@ -112,7 +112,7 @@
             <!-- End. Displays a information block about Order -->
 
             <div class="frameGroupsForm span7">
-                <div class="header_title">Ваш заказ</div>
+                <div class="header_title">{lang('Ваш заказ', 'webinger')}</div>
                 <table class="table v-a_bas table_order">
                     <thead class="v_h">
                         <tr>
@@ -144,8 +144,8 @@
                                             {/if}
                                         {/foreach}
                                         {if $Variant}
-                                        {if $Variant->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}
-                                    {if $Variant->getname()}<span class="frame_variant_name">Вариант:sssssssssss <span class="code">({echo $Variant->getname()})</span></span>{/if}
+                                        {if $Variant->getnumber()}<span class="frame_number">{lang('Артикул', 'webinger')}: <span class="code">({echo $Variant->getnumber()})</span></span>{/if}
+                                    {if $Variant->getname()}<span class="frame_variant_name">{lang('Вариант', 'webinger')}: <span class="code">({echo $Variant->getname()})</span></span>{/if}
                                 {/if}
                             </div>
                             <div class="price price_f-s_16">
@@ -154,7 +154,7 @@
                         </td>
                         <td>
                             <span class="c_8a">х</span>&nbsp;
-                            <span class="f-w_b f-s_16">{echo $orderProduct->getQuantity()}</span> Шт.&nbsp;=
+                            <span class="f-w_b f-s_16">{echo $orderProduct->getQuantity()}</span> {lang('Шт.', 'webinger')}&nbsp;=
                         </td>
                         <td>
                             <div class="price price_f-s_16">
@@ -181,7 +181,7 @@
                                                         {echo ShopCore::encode($orderProduct->getKit()->getMainProduct()->getName())}
                                                     </a>
                                                     <div class="m-b_10">
-                                                    {if $num = $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $num})</span></span>{/if}
+                                                    {if $num = $orderProduct->getKit()->getMainProduct()->getFirstVariant()->getnumber()}<span class="frame_number">{lang('Артикул', 'webinger')}: <span class="code">({echo $num})</span></span>{/if}
                                                 </div>
                                                 <div class="price price_f-s_16">
                                                     <span class="f-w_b">
@@ -213,7 +213,7 @@
                                                     </a>
 
                                                     <div class="m-b_10">
-                                                    {if $num = $kitProducts->getSProducts()->getFirstVariant()->getnumber()}<span class="frame_number">Артикул: <span class="code">({echo $num})</span></span>{/if}
+                                                    {if $num = $kitProducts->getSProducts()->getFirstVariant()->getnumber()}<span class="frame_number">{lang('Артикул', 'webinger')}: <span class="code">({echo $num})</span></span>{/if}
                                                 </div>
 
                                                 <div class="price price_f-s_16">
@@ -242,7 +242,7 @@
                             <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
 
                             <!-- Start. Render kit summary -->
-                            <div class="c_97">(Количество комплектов - {echo $orderProduct->getQuantity()})</div>
+                            <div class="c_97">({lang('Количество комплектов ', 'webinger')}- {echo $orderProduct->getQuantity()})</div>
                             <div class="price price_f-s_18"><span class="f-w_b">{echo $orderProduct->getKit()->getTotalPrice()}</span>&nbsp;{$CS}</div>
                             <!-- End. Render kit summary -->
 
@@ -262,18 +262,18 @@
                 <div class="t-a_r inside_padd">
                     <div class="form_alert">
                         <div class="c_97" style="margin-bottom: 4px;">
-                            (Сумма товаров: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
-                            {if $model->getdiscount()}<br/>(Сумма скидки: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
+                            ({lang('Сумма товаров', 'webinger')}: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span> {$CS})
+                            {if $model->getdiscount()}<br/>({lang('Сумма скидки', 'webinger')}: <span class="f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}</span> {$CS}){/if}
 
                             
-                        {if $model->getGiftCertPrice() > 0}<br><span >(Скидка подарочного сертификата: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
-                        <br/>(+ Доставка: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
+                        {if $model->getGiftCertPrice() > 0}<br><span >({lang('Скидка подарочного сертификата', 'webinger')}: {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} {$CS}<span class="f-w_b"></span> )</span>{/if}
+                        <br/>(+{lang(' Доставка', 'webinger')}: <span class="f-w_b">{if $model->getTotalPrice() >= $freeFrom && $freeFrom != 0}{echo $delivery = 0}{else:}{echo $delivery = $model->getDeliveryPrice()}{/if}</span> {$CS})
                     </div>
                     
                     {//$CI->load->module('mod_discount/discount_api')->get_all_discount_information(1, $model->getOriginPrice())} 
 
 
-                    <span class="f-s_18">Сумма:</span>&nbsp;
+                    <span class="f-s_18">{lang('Сумма', 'webinger')}:</span>&nbsp;
                     <span class="f-s_24">{echo $model->getTotalPrice() + $delivery}</span>&nbsp;
                     <span class="f-s_24"> {$CS}</span>
 

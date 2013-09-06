@@ -116,9 +116,9 @@ var ImageCMSApi = {
      * @returns {undefined}
      */
     addCaptcha: function(captcha_image) {
-        var html = '<span class="title">Код протекции</span>\n\
+        var html = '<span class="title">' + lang.protectionCode + '</span>\n\
                         <span class="frame_form_field">\n\
-                            <input type="text" name="captcha" value="Код протекции"/> \n\
+                            <input type="text" name="captcha" value="' + lang.protectionCode + '"/> \n\
                             <span class="help_inline" id="for_captcha_image">' + captcha_image + '</span>\n\
                             <label id="for_captcha" class="for_validations"></label>\n\
                         </span>';

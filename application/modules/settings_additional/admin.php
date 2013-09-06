@@ -109,9 +109,11 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('heder');
         }
     }
+
     
     public function Zoom(){
 
     }
+
 
 }

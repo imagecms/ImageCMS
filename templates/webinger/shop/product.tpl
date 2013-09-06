@@ -61,9 +61,9 @@
                     <h1 class="d_i">{echo ShopCore::encode($model->getName())}</h1>
                     <span class="d_i-b m-b_10">
                         {$hasCode = $model->firstVariant->getNumber() == '';}
-                        <span class="frame_number" {if $hasCode}style="display:none;"{/if}>Артикул: <span class="code">({if !$hasCode}{echo trim($model->firstVariant->getNumber())}{/if})</span></span>
+                        <span class="frame_number" {if $hasCode}style="display:none;"{/if}>{lang('Артикул', 'webinger')}: <span class="code">({if !$hasCode}{echo trim($model->firstVariant->getNumber())}{/if})</span></span>
                         {$hasVariant = $model->firstVariant->getName() == '';}
-                        <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>Вариант: <span class="code">({if !$hasVariant}{echo $model->firstVariant->getName()}{/if})</span></span>
+                        <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант', 'webinger')}: <span class="code">({if !$hasVariant}{echo $model->firstVariant->getName()}{/if})</span></span>
                     </span>
                     <!-- Output rating for the old product Start -->
                     <div class="frame_response">
@@ -80,7 +80,7 @@
                         {$cnt = 0}{foreach $variants as $v}{if in_array($v->getId(),$__product_parametr['on'])}{$cnt++}{/if}{/foreach}
                         {if count($variants) > 1 && $cnt > 1}
                             <div class=" d_i-b v-a_b m-r_30 variantProd">
-                                <span class="title">Выбор варианта:</span>
+                                <span class="title">{lang('Выбор варианта', 'webinger')}:</span>
                                 <div class="lineForm w_170">
                                     <select id="variantSwitcher" name="variant">
                                         {foreach $variants as $key => $pv}
@@ -152,10 +152,10 @@
                                                           data-origPrice="{if $model->hasDiscounts()}{echo $pv->toCurrency('OrigPrice')}{/if}"
                                                           data-stock="{echo $pv->getStock()}"
                                                           >
-                                {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                                {if in_array($pv->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}{lang('Заказать', 'webinger')}{/if}
                             </button>
-                            <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>Есть в наличии</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>Товар под заказ</span></span>{/if}</div>
-                        {else:}
+                            <div {if $key != 0}style="display:none;"{/if} class="variant_{echo $pv->getId()} variant">{if in_array($pv->getId(),$__product_parametr['in_stock'])}<span class="is_available"><span class="icon-available"></span><span>{lang('Есть в наличии', 'webinger')}</span></span>{else:}<span class="under_order"><span class="icon-under_order"></span><span>{lang('Товар под заказ', 'webinger')}</span></span>{/if}</div>
+                                    {else:}
                             <button  {if $key != 0}style="display:none"{/if}
                                                    class="btn btn_not_avail variant_{echo $pv->getId()} variant info"
                                                    type="button"
@@ -181,7 +181,7 @@
                                                    data-stock="{echo $pv->getStock()}"
                                                    >
                                 <span class="icon-but"></span>
-                                <span class="text-el">{lang('s_message_o_report')}</span>
+                                <span class="text-el">{lang('Сообщить о появлении','webinger')}</span>
                             </button>
                         {/if}
                     {/foreach}
@@ -192,13 +192,13 @@
                 <button class="btn btn_small_p toCompare d_i-b"
                         data-prodid="{echo $model->getId()}"
                         type="button"
-                        data-title="{lang('s_add_to_compare')}"
-                        data-firtitle="{lang('s_add_to_compare')}"
-                        data-sectitle="{lang('s_in_compare')}"
+                        data-title="{lang('В список сравнений','webinger')}"
+                        data-firtitle="{lang('В список сравнений','webinger')}"
+                        data-sectitle="{lang('В списке сравнений','webinger')}"
                         data-rel="tooltip"
                         >
                     <span class="icon-comprasion_2"></span>
-                    <span class="text-el">{lang('s_add_to_compare')}</span>
+                    <span class="text-el">{lang('В список сравнений','webinger')}</span>
                 </button>
                 <!-- End. Block "Add to Compare" -->
 
@@ -212,12 +212,12 @@
                                     data-prodid="{echo $model->getId()}"
                                     data-varid="{echo $pv->getId()}"
                                     type="button"
-                                    data-title="{lang('s_add_to_wish_list')}"
-                                    data-firtitle="{lang('s_add_to_wish_list')}"
-                                    data-sectitle="{lang('s_in_wish_list')}"
+                                    data-title="{lang('В список желаний','webinger')}"
+                                    data-firtitle="{lang('В список желаний','webinger')}"
+                                    data-sectitle="{lang('В списке желаний','webinger')}"
                                     data-rel="tooltip">
                                 <span class="icon-wish_2"></span>
-                                <span class="text-el">{lang('s_add_to_wish_list')}</span>
+                                <span class="text-el">{lang('В список желаний','webinger')}</span>
                             </button>
                         </div>
                     {/foreach}
@@ -243,7 +243,7 @@
         <li>
             <button type="button" data-href="#info">
                 <span class="icon-info"></span>
-                <span class="text-el">Информацию</span>
+                <span class="text-el">{lang('Информацию', 'webinger')}</span>
             </button>
         </li>
     {/if}
@@ -255,7 +255,7 @@
         <li>
             <button type="button" data-href="#characteristic">
                 <span class="icon-charack"></span>
-                <span class="text-el">{lang('s_properties')}</span>
+                <span class="text-el">{lang('Характеристики','webinger')}</span>
             </button>
         </li>
     {/if}
@@ -266,7 +266,7 @@
         <li>
             <button type="button" data-href="#accessories">
                 <span class="icon-accss"></span>
-                <span class="text-el">{lang('s_accessories')}</span>
+                <span class="text-el">{lang('Аксессуары','webinger')}</span>
             </button>
         </li>
     {/if}
@@ -281,7 +281,7 @@
                         {if $Comments[$model->getId()][0] !== '0'}
                             {echo $Comments[$model->getId()]}
                         {else:}
-                            Оставить отзыв
+                            {lang('Оставить отзыв', 'webinger')}
                         {/if}
                     </span>
                 </span>
@@ -377,15 +377,15 @@
                                     data-origPrice="{if $p->hasDiscounts()}{echo $p->firstVariant->toCurrency('OrigPrice')}{/if}"
                                     data-stock="{echo $p->firstVariant->getStock()}"
                                     >
-                        {if in_array($p->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('s_buy')}{else:}Заказать{/if}
+                        {if in_array($p->firstVariant->getId(),$__product_parametr['in_stock'])}{lang('Купить','webinger')}{else:}{lang('Заказать', 'webinger')}{/if}
                     </button>
                     <div class="d_i-b">
                         <!-- to compare button -->
                         <button class="btn btn_small_p toCompare"
                                 data-prodid="{echo $p->getId()}"
                                 type="button"
-                                data-title="{lang('s_add_to_compare')}"
-                                data-sectitle="{lang('s_in_compare')}"
+                                data-title="{lang('В список сравнений','webinger')}"
+                                data-sectitle="{lang('В списке сравнений','webinger')}"
                                 data-rel="tooltip">
                             <span class="icon-comprasion_2"></span>
                         </button>
@@ -396,8 +396,8 @@
                                 data-prodid="{echo $p->getId()}"
                                 data-varid="{echo $p->firstVariant->getId()}"
                                 type="button"
-                                data-title="{lang('s_add_to_wish_list')}"
-                                data-sectitle="{lang('s_in_wish_list')}"
+                                data-title="{lang('В список желаний','webinger')}"
+                                data-sectitle="{lang('В списке желаний','webinger')}"
                                 data-rel="tooltip">
                             <span class="icon-wish_2"></span>
                         </button>
@@ -430,7 +430,7 @@
 {if count($model->getShopKits()) > 0}
     <div id="kit" class="frame_carousel_product carousel_js c_b frameSet">
         <div class="m-b_20">
-            <div class="title_h1 d_i-b v-a_m promotion_text">{lang('s_spec_promotion')}</div>
+            <div class="title_h1 d_i-b v-a_m promotion_text">{lang('Акционное предложение','webinger')}</div>
             <div class="d_i-b groupButton v-a_m">
                 <button type="button" class="btn btn_prev">
                     <span class="icon prev"></span>
@@ -537,7 +537,7 @@
                                     data-img='{echo json_encode($arrImg)}'
                                     data-maxcount='{echo $kitProduct->getSProducts()->firstVariant->getStock()}'
                                     >
-                                {lang('s_buy')}
+                                {lang('Купить','webinger')}
                             </button>
                         </li>
                     </ul>

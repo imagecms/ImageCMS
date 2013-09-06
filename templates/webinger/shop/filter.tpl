@@ -35,7 +35,7 @@
 
             {//displaying count of found products}
             <div class="title">
-                {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('s_product_o'), lang('s_product_t'), lang('s_product_tr')))} {lang('s_filter_s_foa')}:
+                {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','webinger'), lang('товара','webinger'), lang('товаров','webinger')))} {lang('с фильтрами','webinger')}:
             </div>
             <ul>
                 {//displaying checked brands filters}
@@ -102,11 +102,11 @@
 
                                     <span class="times">&times;</span>
                                     {if isset(ShopCore::$_GET['lp']) && ShopCore::$_GET['lp'] != (int)$priceRange.minCost}
-                                        {lang('s_from')} 
+                                        {lang('От','webinger')} 
                                         {echo ShopCore::$_GET['lp']} {$CS}
                                     {/if}
                                     {if isset(ShopCore::$_GET['rp']) && ShopCore::$_GET['rp'] != (int)$priceRange.maxCost} 
-                                        {lang('s_do')} 
+                                        {lang('До','webinger')} 
                                         {echo ShopCore::$_GET['rp']} {$CS}
                                     {/if}
                                 </a>
@@ -117,7 +117,7 @@
             </ul>
 
             {//link to remove all checked filters}
-            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang('s_filter_all_reset')}</a>
+            <a href="{site_url($CI->uri->uri_string())}"><span class="icon-return"></span>{lang('Сбросить все фильтры','webinger')}</a>
         </div>
     {/if}
 
@@ -131,7 +131,7 @@
             {if (int)$priceRange.minCost >= 0 && (int)$priceRange.maxCost != 0}
                 <div class="boxFilter">
                     {//meet slider}
-                    <div class="title">{lang('s_price')}</div>
+                    <div class="title">{lang('Цена','webinger')}</div>
                     <div class="sliderCont">
                         <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content">
                             <img src="{$THEME}images/slider.png" alt="slider"/>
@@ -146,17 +146,20 @@
                         <label>
 
                             {//left price value}
-                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}{else:}{echo (int)$priceRange.minCost}{/if}" data-title="только цифры" data-minS="{echo (int)$priceRange.minCost}"/> 
+                            <input type="text" name="lp" id="minCost" value="{if ShopCore::$_GET['lp'] && (int)ShopCore::$_GET['lp']>0 && (int)ShopCore::$_GET['lp']>(int)$priceRange.minCost}{echo ShopCore::$_GET['lp']}
+                        {else:}{echo (int)$priceRange.minCost}{/if}" 
+                        data-title="{lang('только цифры', 'webinger')}" data-minS="{echo (int)$priceRange.minCost}"/> 
                         </label>
                         <span class="f-s_12">&ndash;</span>
                         <label>
 
                             {//rigth price value}
-                            <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" data-title="только цифры" data-maxS="{echo (int)$priceRange.maxCost}"/>
+                            <input type="text" name="rp" id="maxCost" value="{if ShopCore::$_GET['rp'] && (int)ShopCore::$_GET['rp']>0}{echo ShopCore::$_GET['rp']}{else:}{echo (int)$priceRange.maxCost}{/if}" 
+                                   data-title="{lang('только цифры', 'webinger')}" data-maxS="{echo (int)$priceRange.maxCost}"/>
                         </label>
 
                         {//button for submiting filter}
-                        <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">Подобрать</span></button>
+                        <button type="submit" class="btn f-s_0 filterSubmit"><span class="icon-filter"></span><span class="text-el">{lang('Подобрать', 'webinger')}</span></button>
                     </div>
                 </div>
             {/if}
@@ -164,7 +167,7 @@
             {//displaying all possible brands in current category}        
             {if count($brands)>0}
                 <div class="boxFilter">
-                    <div class="title">{lang('s_brands_in_cat')}</div>
+                    <div class="title">{lang('Бренды в категории','webinger')}</div>
                     <div class="clearfix check_form">
                         {//loop for which outputs all brands}
                         {foreach $brands as $br}
@@ -235,7 +238,7 @@
     {//displaying all possible categories in current brand}        
     {if count($categoriesInBrand)>0}
         <div class="boxFilter">
-            <div class="title">Категории</div>
+            <div class="title">{lang('Категории', 'webinger')}</div>
             <div class="clearfix check_form">
                 {//loop which outputs all brands}
                 {foreach $categoriesInBrand as $category}

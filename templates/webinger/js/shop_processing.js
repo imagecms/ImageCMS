@@ -234,7 +234,7 @@ $('#variantSwitcher').live('change', function () {
     $('#priceOrigVariant').html(vOrigPrice);
     $('#priceVariant').html(vPrice);
     if ($.trim(vNumber) != '') {
-        $('#number').html('(Артикул ' + vNumber + ')');
+        $('#number').html('(' + lang.article + ' ' + vNumber + ')');
     } else {
         $('#number').html(' ');
     }
