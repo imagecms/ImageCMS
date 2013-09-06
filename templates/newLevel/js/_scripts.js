@@ -681,9 +681,6 @@ function countSumBask() {
     }
     else if (Shop.Cart.totalCount && !$(genObj.tinyBask).hasClass(genObj.isAvail)) {
         $(genObj.tinyBask).addClass(genObj.isAvail);
-        $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
-            initShopPage(true);
-        })
         $(genObj.tinyBask + ' ' + genObj.blockEmpty).hide();
         $(genObj.tinyBask + ' ' + genObj.blockNoEmpty).show();
     }
@@ -1304,7 +1301,7 @@ function init() {
         }
     }
     $('.menu-main').menuImageCms(optionsMenu);
-    $('.footer-category-menu').find('[href="' + $('.frame-item-menu > .frame-title > .title.active').attr('href') + '"]').parent().addClass('active');
+    $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $('[data-drop]').drop($.extend({}, optionsDrop));
     $(document).on('drop.contentHeight', function(e) {
         var wndH = wnd.height(),
@@ -1482,9 +1479,12 @@ function init() {
         $('.item-product .items-thumbs > li > a').on('click.thumb', function(e) {
             e.preventDefault();
             var $this = $(this);
-            $(genObj.photoProduct).find('img').attr('src', $this.attr('href')).end().click(function(e) {
+            $(genObj.photoProduct).attr('href', $this.attr('href')).find('img').attr('src', $this.attr('href')).end().click(function(e) {
                 e.preventDefault()
             });
+            if (productPhotoDrop) {
+                $(genObj.photoProduct).data({'drop': '#photo', 'href': $(genObj.photoProduct).attr('href'), title: $(genObj.photoProduct).attr('title')}).drop(optionsDrop);
+            }
         });
     }
     if (productPhotoDrop) {
@@ -1629,6 +1629,9 @@ function init() {
     })
 
     //sample of events shop
+    $(genObj.tinyBask + '.' + genObj.isAvail).live('click.toTiny', function() {
+        initShopPage(true);
+    })
     //cart content changed
     $(document).live('cart_changed', function() {
         processPopupCart();

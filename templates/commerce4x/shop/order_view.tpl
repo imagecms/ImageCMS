@@ -76,7 +76,7 @@
                         <!-- End. Render certificate -->
 
                         <!-- Start. Render custom filds -->
-                        {$customFilds = ShopCore::app()->CustomFieldsHelper->getCustomFields('order', $model->getId())->asArray()}
+                        {$customFilds = ShopCore::app()->CustomFieldsHelper->getCustomFields('order', $model->getId())->asArray();}
                         {foreach $customFilds as $customFild}
                             <tr>
                                 <th>{$customFild.field_label}: </th>
