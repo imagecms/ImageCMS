@@ -10,7 +10,6 @@ class Install extends MY_Controller {
     private $exts = FALSE;
 
     public function __construct() {
-        error_reporting(0);
         parent::__construct();
 
 //        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';

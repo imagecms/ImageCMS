@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     /** Get params for prepare data 
-     * @param string link
+     * @param {string} link description
      * @returns {array} params
      * **/
     function getParamsForPrepareData(link) {
@@ -25,8 +25,8 @@ $(document).ready(function() {
 
     /**
      * Prepare data for drawing chart. Return chart type and data 
-     * @param string className - php class name
-     * @param string method - php method name
+     * @param {string} className - php class name
+     * @param {string} method - php method name
      * @returns {object}
      */
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
     })
 
     /**
-     * 
+     * Click on menu item. Show the appropriate template with chart.
      */
     $('.linkChart').unbind('click').bind('click', function() {
         var thisEl = $(this);
@@ -78,7 +78,7 @@ $(document).ready(function() {
         var params = getParamsForPrepareData(dataHref);
 
         /** Prepare chart data **/
-        if (params != false) {
+        if (params !== 'false') {
             var chartData = prepareData(params[0], params[1]);
         }
 
@@ -100,7 +100,6 @@ $(document).ready(function() {
                         return false;
                     }
 
-
                     if (chartData.type === 'line') {
                         drawLineWithFocusChart(chartData.data);
                     }
@@ -109,8 +108,8 @@ $(document).ready(function() {
                     }
                 }
             }
-        })
-    })
+        });
+    });
 
     /**Draw lineWithFocusChart
      * @param {object} data
@@ -120,25 +119,25 @@ $(document).ready(function() {
         var chartData = data;
         nv.addGraph(function() {
             var chart = nv.models.lineWithFocusChart();
-            var data = new Date();
+            var orderDate = new Date();
             var day;
             var month;
             var year;
 
             chart.xAxis.tickFormat(function(d) {
-                data = new Date(d);
-                day = data.getDate();
-                month = data.getMonth() + 1;
-                year = data.getFullYear();
+                orderDate = new Date(d * 1000);
+                day = orderDate.getDate();
+                month = orderDate.getMonth() + 1;
+                year = orderDate.getFullYear();
 
                 return day + '/' + month + '/' + year;
             });
 
             chart.x2Axis.tickFormat(function(d) {
-                data = new Date(d);
-                day = data.getDate();
-                month = data.getMonth() + 1;
-                year = data.getFullYear();
+                orderDate = new Date(d * 1000);
+                day = orderDate.getDate();
+                month = orderDate.getMonth() + 1;
+                year = orderDate.getFullYear();
 
                 return day + '/' + month + '/' + year;
             });
@@ -173,10 +172,10 @@ $(document).ready(function() {
 
             var chart = nv.models.pieChart()
                     .x(function(d) {
-                return d.key
+                return d.key;
             })
                     .y(function(d) {
-                return d.y
+                return d.y;
             })
                     .color(d3.scale.category20().range())
                     .width(width)
@@ -196,4 +195,4 @@ $(document).ready(function() {
             return chart;
         });
     }
-})
+});
