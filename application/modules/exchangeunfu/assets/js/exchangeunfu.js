@@ -129,7 +129,8 @@ $(document).ready(function() {
         if (!$(this).hasClass('btn-primary')) {
             hit = 1;
             $(this).addClass('btn-primary');
-        }
+        } else
+            $(this).removeClass('btn-primary');
         $.ajax({
             type: 'POST',
             data: {
@@ -151,7 +152,8 @@ $(document).ready(function() {
         if (!$(this).hasClass('btn-primary')) {
             hot = 1;
             $(this).addClass('btn-primary');
-        }
+        } else
+            $(this).removeClass('btn-primary');
         $.ajax({
             type: 'POST',
             data: {
@@ -173,7 +175,8 @@ $(document).ready(function() {
         if (!$(this).hasClass('btn-primary')) {
             action = 1;
             $(this).addClass('btn-primary');
-        }
+        } else
+            $(this).removeClass('btn-primary');
         $.ajax({
             type: 'POST',
             data: {
