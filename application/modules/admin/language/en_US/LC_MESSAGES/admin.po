@@ -18,7 +18,8 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 
-#: /var/www/image.loc/_temp2.php:20 /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:21
 msgid "Show page"
 msgstr ""
 
@@ -30,7 +31,8 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:24 /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:25
 msgid "Autocomplite"
 msgstr ""
 
@@ -38,7 +40,8 @@ msgstr ""
 msgid "Autocomplite words"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27 /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
 msgid "choose date"
 msgstr ""
 
@@ -58,7 +61,8 @@ msgstr ""
 msgid "site"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:34
 msgid "Orders"
 msgstr ""
 
@@ -124,7 +128,8 @@ msgstr ""
 msgid "Delete group"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27 /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:28
 msgid "Clean"
 msgstr ""
 
@@ -144,20 +149,24 @@ msgstr ""
 msgid "go to site"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:34 /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:39
 #: /var/www/image.loc/_temp2.php:54
 msgid "Return"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:35 /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:55
 msgid "Save and create a new group"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:36 /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:56
 msgid "Save and edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:64
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:64
 msgid "Group"
 msgstr ""
 
@@ -193,9 +202,12 @@ msgstr ""
 msgid "Roles groups list"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:59 /var/www/image.loc/_temp2.php:66
-#: /var/www/image.loc/_temp2.php:75 /var/www/image.loc/_temp2.php:78
-#: /var/www/image.loc/_temp2.php:222 /var/www/image.loc/_temp2.php:227
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:78
+#: /var/www/image.loc/_temp2.php:222
+#: /var/www/image.loc/_temp2.php:227
 msgid "Delete"
 msgstr ""
 
@@ -203,16 +215,22 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:61 /var/www/image.loc/_temp2.php:83
-#: /var/www/image.loc/_temp2.php:145 /var/www/image.loc/_temp2.php:155
+#: /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:145
+#: /var/www/image.loc/_temp2.php:155
 #: /var/www/image.loc/_temp2.php:218
 msgid "Name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:62 /var/www/image.loc/_temp2.php:84
-#: /var/www/image.loc/_temp2.php:96 /var/www/image.loc/_temp2.php:170
-#: /var/www/image.loc/_temp2.php:201 /var/www/image.loc/_temp2.php:219
-#: /var/www/image.loc/_temp2.php:233 /var/www/image.loc/_temp2.php:246
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:96
+#: /var/www/image.loc/_temp2.php:170
+#: /var/www/image.loc/_temp2.php:201
+#: /var/www/image.loc/_temp2.php:219
+#: /var/www/image.loc/_temp2.php:233
+#: /var/www/image.loc/_temp2.php:246
 msgid "Description"
 msgstr ""
 
@@ -224,13 +242,14 @@ msgstr ""
 msgid "Empty."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:67 /var/www/image.loc/_temp2.php:79
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:79
 msgid "Remove roles?"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:68
 msgid "Cache"
-msgstr ""
+msgstr "sdsdsdsd"
 
 #: /var/www/image.loc/_temp2.php:69
 msgid "Delete cache"
@@ -268,24 +287,31 @@ msgstr ""
 msgid "Roles group create"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:81 /var/www/image.loc/_temp2.php:194
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:194
 #: /var/www/image.loc/_temp2.php:212
 msgid "Have been saved"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:82 /var/www/image.loc/_temp2.php:113
-#: /var/www/image.loc/_temp2.php:123 /var/www/image.loc/_temp2.php:200
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:113
+#: /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:200
 #: /var/www/image.loc/_temp2.php:217
 msgid "Properties"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:85 /var/www/image.loc/_temp2.php:86
-#: /var/www/image.loc/_temp2.php:92 /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:93
 msgid "Add a subcategory"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:87 /var/www/image.loc/_temp2.php:88
-#: /var/www/image.loc/_temp2.php:94 /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:95
 msgid "Add an article"
 msgstr ""
 
@@ -293,7 +319,8 @@ msgstr ""
 msgid "Double click to show all categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:90 /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:91
 msgid "Change category data"
 msgstr ""
 
@@ -301,13 +328,16 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:98 /var/www/image.loc/_temp2.php:207
+#: /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:207
 #: /var/www/image.loc/_temp2.php:247
 msgid "Version"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:99 /var/www/image.loc/_temp2.php:100
-#: /var/www/image.loc/_temp2.php:248 /var/www/image.loc/_temp2.php:249
+#: /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:248
+#: /var/www/image.loc/_temp2.php:249
 msgid "Install"
 msgstr ""
 
@@ -347,11 +377,13 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:111 /var/www/image.loc/_temp2.php:195
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:195
 msgid "Save and go back"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:112 /var/www/image.loc/_temp2.php:116
+#: /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:116
 msgid "Content"
 msgstr ""
 
@@ -359,8 +391,10 @@ msgstr ""
 msgid "Additional fields"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:115 /var/www/image.loc/_temp2.php:135
-#: /var/www/image.loc/_temp2.php:152 /var/www/image.loc/_temp2.php:154
+#: /var/www/image.loc/_temp2.php:115
+#: /var/www/image.loc/_temp2.php:135
+#: /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:154
 msgid "Settings"
 msgstr ""
 
@@ -368,8 +402,10 @@ msgstr ""
 msgid "Categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:118 /var/www/image.loc/_temp2.php:144
-#: /var/www/image.loc/_temp2.php:148 /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:118
+#: /var/www/image.loc/_temp2.php:144
+#: /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:150
 msgid "Create a category"
 msgstr ""
 
@@ -385,7 +421,8 @@ msgstr ""
 msgid "Full contents"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:124 /var/www/image.loc/_temp2.php:156
+#: /var/www/image.loc/_temp2.php:124
+#: /var/www/image.loc/_temp2.php:156
 #: /var/www/image.loc/_temp2.php:234
 msgid "URL"
 msgstr ""
@@ -398,23 +435,28 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:127 /var/www/image.loc/_temp2.php:188
+#: /var/www/image.loc/_temp2.php:127
+#: /var/www/image.loc/_temp2.php:188
 msgid "Meta Title"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:128 /var/www/image.loc/_temp2.php:189
+#: /var/www/image.loc/_temp2.php:128
+#: /var/www/image.loc/_temp2.php:189
 msgid "Meta Description"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:129 /var/www/image.loc/_temp2.php:190
+#: /var/www/image.loc/_temp2.php:129
+#: /var/www/image.loc/_temp2.php:190
 msgid "Meta Keywords"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:130 /var/www/image.loc/_temp2.php:181
+#: /var/www/image.loc/_temp2.php:130
+#: /var/www/image.loc/_temp2.php:181
 msgid "Main template"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:131 /var/www/image.loc/_temp2.php:133
+#: /var/www/image.loc/_temp2.php:131
+#: /var/www/image.loc/_temp2.php:133
 msgid "by default"
 msgstr ""
 
@@ -462,7 +504,8 @@ msgstr ""
 msgid "Parent"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:149 /var/www/image.loc/_temp2.php:193
+#: /var/www/image.loc/_temp2.php:149
+#: /var/www/image.loc/_temp2.php:193
 msgid "Back"
 msgstr ""
 
@@ -470,7 +513,8 @@ msgstr ""
 msgid "Create and exit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:153 /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:153
+#: /var/www/image.loc/_temp2.php:187
 msgid "Meta tags"
 msgstr ""
 
@@ -486,7 +530,8 @@ msgstr ""
 msgid "Select  a field group  for a category"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:162 /var/www/image.loc/_temp2.php:166
+#: /var/www/image.loc/_temp2.php:162
+#: /var/www/image.loc/_temp2.php:166
 msgid "Apply for subcategories"
 msgstr ""
 
@@ -495,9 +540,7 @@ msgid "Pages fields group"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:165
-msgid ""
-"Select a field group to be displayed/ viewed  in the created category of the "
-"group or group category"
+msgid "Select a field group to be displayed/ viewed  in the created category of the group or group category"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:167
@@ -552,7 +595,8 @@ msgstr ""
 msgid "Display pages of other categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:182 /var/www/image.loc/_temp2.php:184
+#: /var/www/image.loc/_temp2.php:182
+#: /var/www/image.loc/_temp2.php:184
 msgid "Main category template by default"
 msgstr ""
 
@@ -576,13 +620,17 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:196 /var/www/image.loc/_temp2.php:199
-#: /var/www/image.loc/_temp2.php:213 /var/www/image.loc/_temp2.php:216
+#: /var/www/image.loc/_temp2.php:196
+#: /var/www/image.loc/_temp2.php:199
+#: /var/www/image.loc/_temp2.php:213
+#: /var/www/image.loc/_temp2.php:216
 msgid "English"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:197 /var/www/image.loc/_temp2.php:198
-#: /var/www/image.loc/_temp2.php:214 /var/www/image.loc/_temp2.php:215
+#: /var/www/image.loc/_temp2.php:197
+#: /var/www/image.loc/_temp2.php:198
+#: /var/www/image.loc/_temp2.php:214
+#: /var/www/image.loc/_temp2.php:215
 msgid "Russian"
 msgstr ""
 
@@ -622,7 +670,8 @@ msgstr ""
 msgid "Roles group edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:220 /var/www/image.loc/_temp2.php:224
+#: /var/www/image.loc/_temp2.php:220
+#: /var/www/image.loc/_temp2.php:224
 msgid "Module deinstalling"
 msgstr ""
 
@@ -634,7 +683,8 @@ msgstr ""
 msgid "Delete modules?"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:226 /var/www/image.loc/_temp2.php:228
+#: /var/www/image.loc/_temp2.php:226
+#: /var/www/image.loc/_temp2.php:228
 msgid "All modules"
 msgstr ""
 
@@ -642,11 +692,13 @@ msgstr ""
 msgid "Modules"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:230 /var/www/image.loc/_temp2.php:231
+#: /var/www/image.loc/_temp2.php:230
+#: /var/www/image.loc/_temp2.php:231
 msgid "Install modules"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:232 /var/www/image.loc/_temp2.php:245
+#: /var/www/image.loc/_temp2.php:232
+#: /var/www/image.loc/_temp2.php:245
 msgid "Module"
 msgstr ""
 
@@ -662,12 +714,14 @@ msgstr ""
 msgid "Show in menu"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:238 /var/www/image.loc/_temp2.php:240
+#: /var/www/image.loc/_temp2.php:238
+#: /var/www/image.loc/_temp2.php:240
 #: /var/www/image.loc/_temp2.php:242
 msgid "switch on"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:239 /var/www/image.loc/_temp2.php:241
+#: /var/www/image.loc/_temp2.php:239
+#: /var/www/image.loc/_temp2.php:241
 #: /var/www/image.loc/_temp2.php:243
 msgid "switch off"
 msgstr ""
@@ -812,7 +866,8 @@ msgstr ""
 msgid "Forward"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:22 /var/www/image.loc/_temp2.php:197
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:197
 msgid "Update"
 msgstr ""
 
@@ -852,7 +907,8 @@ msgstr ""
 msgid "Uncategorized"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:42 /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:52
 msgid "Error"
 msgstr ""
@@ -901,7 +957,8 @@ msgstr ""
 msgid "Have not modules to install"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:58 /var/www/image.loc/_temp2.php:266
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:266
 msgid "Widget creating"
 msgstr ""
 
@@ -1013,7 +1070,8 @@ msgstr ""
 msgid "Administer shop"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:88 /var/www/image.loc/_temp2.php:131
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:131
 msgid "Back to the system"
 msgstr ""
 
@@ -1077,7 +1135,8 @@ msgstr ""
 msgid "Processed"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:104 /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:104
+#: /var/www/image.loc/_temp2.php:110
 msgid "Images updated"
 msgstr ""
 
@@ -1106,9 +1165,7 @@ msgid "Access denied"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:112
-msgid ""
-"This is a demo version ImageCMS. Part of the actions are limited. For a "
-"complete functional download and install the distribution."
+msgid "This is a demo version ImageCMS. Part of the actions are limited. For a complete functional download and install the distribution."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:113
@@ -1211,9 +1268,12 @@ msgstr ""
 msgid "Error in the script. Please notify the administrator"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:140 /var/www/image.loc/_temp2.php:141
-#: /var/www/image.loc/_temp2.php:167 /var/www/image.loc/_temp2.php:168
-#: /var/www/image.loc/_temp2.php:198 /var/www/image.loc/_temp2.php:199
+#: /var/www/image.loc/_temp2.php:140
+#: /var/www/image.loc/_temp2.php:141
+#: /var/www/image.loc/_temp2.php:167
+#: /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:198
+#: /var/www/image.loc/_temp2.php:199
 msgid "Operation panel"
 msgstr ""
 
@@ -1253,7 +1313,8 @@ msgstr ""
 msgid "Widgets"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:157 /var/www/image.loc/_temp2.php:219
+#: /var/www/image.loc/_temp2.php:157
+#: /var/www/image.loc/_temp2.php:219
 msgid "System"
 msgstr ""
 
@@ -1261,7 +1322,8 @@ msgstr ""
 msgid "Site settings"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:159 /var/www/image.loc/_temp2.php:256
+#: /var/www/image.loc/_temp2.php:159
+#: /var/www/image.loc/_temp2.php:256
 msgid "Languages"
 msgstr ""
 
@@ -1285,7 +1347,8 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:169 /var/www/image.loc/_temp2.php:200
+#: /var/www/image.loc/_temp2.php:169
+#: /var/www/image.loc/_temp2.php:200
 msgid "Delete the file to continue"
 msgstr ""
 
@@ -1333,11 +1396,13 @@ msgstr ""
 msgid "For example:  /domains/mysite/public_html/"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:201 /var/www/image.loc/_temp2.php:241
+#: /var/www/image.loc/_temp2.php:201
+#: /var/www/image.loc/_temp2.php:241
 msgid "Role edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:204 /var/www/image.loc/_temp2.php:244
+#: /var/www/image.loc/_temp2.php:204
+#: /var/www/image.loc/_temp2.php:244
 msgid "Save and exit"
 msgstr ""
 
@@ -1409,7 +1474,8 @@ msgstr ""
 msgid "Short widget discription"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:274 /var/www/image.loc/_temp2.php:280
+#: /var/www/image.loc/_temp2.php:274
+#: /var/www/image.loc/_temp2.php:280
 msgid "Type"
 msgstr ""
 
@@ -1421,66 +1487,91 @@ msgstr ""
 msgid "Module name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:22 /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:22
+#: /var/www/image.loc/_temp2.php:51
 msgid "User"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:26 /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:81
 msgid "Reference"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27 /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:82
 #: /var/www/image.loc/_temp2.php:131
 msgid "Active"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:83
-#: /var/www/image.loc/_temp2.php:167 /var/www/image.loc/_temp2.php:182
-#: /var/www/image.loc/_temp2.php:245 /var/www/image.loc/_temp2.php:269
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:167
+#: /var/www/image.loc/_temp2.php:182
+#: /var/www/image.loc/_temp2.php:245
+#: /var/www/image.loc/_temp2.php:269
 msgid "Status"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:30 /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:39 /var/www/image.loc/_temp2.php:95
-#: /var/www/image.loc/_temp2.php:97 /var/www/image.loc/_temp2.php:106
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:106
 #: /var/www/image.loc/_temp2.php:108
 msgid "go to the website"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:32 /var/www/image.loc/_temp2.php:40
-#: /var/www/image.loc/_temp2.php:99 /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:110
 msgid "show"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:34
-#: /var/www/image.loc/_temp2.php:41 /var/www/image.loc/_temp2.php:42
-#: /var/www/image.loc/_temp2.php:100 /var/www/image.loc/_temp2.php:101
-#: /var/www/image.loc/_temp2.php:111 /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:42
+#: /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:101
+#: /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:112
 msgid "hit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:35 /var/www/image.loc/_temp2.php:36
-#: /var/www/image.loc/_temp2.php:43 /var/www/image.loc/_temp2.php:44
-#: /var/www/image.loc/_temp2.php:102 /var/www/image.loc/_temp2.php:103
-#: /var/www/image.loc/_temp2.php:113 /var/www/image.loc/_temp2.php:114
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:102
+#: /var/www/image.loc/_temp2.php:103
+#: /var/www/image.loc/_temp2.php:113
+#: /var/www/image.loc/_temp2.php:114
 msgid "novelty"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:38
-#: /var/www/image.loc/_temp2.php:45 /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:104 /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:104
+#: /var/www/image.loc/_temp2.php:105
 msgid "promotion"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:47 /var/www/image.loc/_temp2.php:117
+#: /var/www/image.loc/_temp2.php:47
+#: /var/www/image.loc/_temp2.php:117
 msgid "Variants"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:48 /var/www/image.loc/_temp2.php:118
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:118
 msgid "Drag product variant"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:49 /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:54
 #: /var/www/image.loc/_temp2.php:55
 msgid "No relevant data has been found"
 msgstr ""
@@ -1489,8 +1580,10 @@ msgstr ""
 msgid "E-mail"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:53 /var/www/image.loc/_temp2.php:163
-#: /var/www/image.loc/_temp2.php:178 /var/www/image.loc/_temp2.php:247
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:163
+#: /var/www/image.loc/_temp2.php:178
+#: /var/www/image.loc/_temp2.php:247
 msgid "Telephone"
 msgstr ""
 
@@ -1518,7 +1611,8 @@ msgstr ""
 msgid "Items list"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:66 /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:67
 msgid "Filter"
 msgstr ""
 
@@ -1534,18 +1628,24 @@ msgstr ""
 msgid "Mark"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:71 /var/www/image.loc/_temp2.php:90
-#: /var/www/image.loc/_temp2.php:133 /var/www/image.loc/_temp2.php:135
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:133
+#: /var/www/image.loc/_temp2.php:135
 msgid "Hit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:72 /var/www/image.loc/_temp2.php:91
-#: /var/www/image.loc/_temp2.php:136 /var/www/image.loc/_temp2.php:138
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:138
 msgid "New"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:73 /var/www/image.loc/_temp2.php:92
-#: /var/www/image.loc/_temp2.php:115 /var/www/image.loc/_temp2.php:116
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:115
+#: /var/www/image.loc/_temp2.php:116
 msgid "Promotion"
 msgstr ""
 
@@ -1577,7 +1677,8 @@ msgstr ""
 msgid "There are no results. Modify your search or click the "
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:121 /var/www/image.loc/_temp2.php:274
+#: /var/www/image.loc/_temp2.php:121
+#: /var/www/image.loc/_temp2.php:274
 msgid "At the products page"
 msgstr ""
 
@@ -1605,7 +1706,8 @@ msgstr ""
 msgid "inactive"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:139 /var/www/image.loc/_temp2.php:141
+#: /var/www/image.loc/_temp2.php:139
+#: /var/www/image.loc/_temp2.php:141
 msgid "Special offers"
 msgstr ""
 
@@ -1637,51 +1739,63 @@ msgstr ""
 msgid " callbacks"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:158 /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:158
+#: /var/www/image.loc/_temp2.php:173
 msgid "Sort by  number"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:160 /var/www/image.loc/_temp2.php:175
+#: /var/www/image.loc/_temp2.php:160
+#: /var/www/image.loc/_temp2.php:175
 msgid "Sort by name ."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:161 /var/www/image.loc/_temp2.php:246
+#: /var/www/image.loc/_temp2.php:161
+#: /var/www/image.loc/_temp2.php:246
 msgid "User name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:162 /var/www/image.loc/_temp2.php:177
+#: /var/www/image.loc/_temp2.php:162
+#: /var/www/image.loc/_temp2.php:177
 msgid "Sort by  phone number"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:164 /var/www/image.loc/_temp2.php:179
+#: /var/www/image.loc/_temp2.php:164
+#: /var/www/image.loc/_temp2.php:179
 msgid "Sort by theme"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:165 /var/www/image.loc/_temp2.php:180
+#: /var/www/image.loc/_temp2.php:165
+#: /var/www/image.loc/_temp2.php:180
 msgid "Theme"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:166 /var/www/image.loc/_temp2.php:181
+#: /var/www/image.loc/_temp2.php:166
+#: /var/www/image.loc/_temp2.php:181
 msgid "Sort by status"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:168 /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:183
 msgid "Sort by  date"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:169 /var/www/image.loc/_temp2.php:184
+#: /var/www/image.loc/_temp2.php:169
+#: /var/www/image.loc/_temp2.php:184
 msgid "Date"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:170 /var/www/image.loc/_temp2.php:185
+#: /var/www/image.loc/_temp2.php:170
+#: /var/www/image.loc/_temp2.php:185
 msgid "Last comment left by the manager"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:171 /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:171
+#: /var/www/image.loc/_temp2.php:186
 msgid "Manager"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:172 /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:172
+#: /var/www/image.loc/_temp2.php:187
 msgid "Edit callback"
 msgstr ""
 
@@ -1721,8 +1835,10 @@ msgstr ""
 msgid "Create status"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:200 /var/www/image.loc/_temp2.php:203
-#: /var/www/image.loc/_temp2.php:210 /var/www/image.loc/_temp2.php:224
+#: /var/www/image.loc/_temp2.php:200
+#: /var/www/image.loc/_temp2.php:203
+#: /var/www/image.loc/_temp2.php:210
+#: /var/www/image.loc/_temp2.php:224
 msgid "By default"
 msgstr ""
 
@@ -1734,7 +1850,8 @@ msgstr ""
 msgid "Creating a status callback"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:211 /var/www/image.loc/_temp2.php:225
+#: /var/www/image.loc/_temp2.php:211
+#: /var/www/image.loc/_temp2.php:225
 msgid "Status set  for all new  requests. "
 msgstr ""
 
@@ -1794,11 +1911,13 @@ msgstr ""
 msgid "Product property creating"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:255 /var/www/image.loc/_temp2.php:281
+#: /var/www/image.loc/_temp2.php:255
+#: /var/www/image.loc/_temp2.php:281
 msgid "The field must contain only Latin characters ."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:256 /var/www/image.loc/_temp2.php:282
+#: /var/www/image.loc/_temp2.php:256
+#: /var/www/image.loc/_temp2.php:282
 msgid "Hint"
 msgstr ""
 
@@ -1822,11 +1941,13 @@ msgstr ""
 msgid "Empty property list"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:20 /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:65
 msgid "Products import"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:21 /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:21
+#: /var/www/image.loc/_temp2.php:66
 #: /var/www/image.loc/_temp2.php:80
 msgid "File"
 msgstr ""
@@ -1839,10 +1960,14 @@ msgstr ""
 msgid "Catalog"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:26 /var/www/image.loc/_temp2.php:40
-#: /var/www/image.loc/_temp2.php:67 /var/www/image.loc/_temp2.php:81
-#: /var/www/image.loc/_temp2.php:94 /var/www/image.loc/_temp2.php:143
-#: /var/www/image.loc/_temp2.php:156 /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:143
+#: /var/www/image.loc/_temp2.php:156
+#: /var/www/image.loc/_temp2.php:183
 msgid "Columns"
 msgstr ""
 
@@ -1850,33 +1975,45 @@ msgstr ""
 msgid "The field separator"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:69
-#: /var/www/image.loc/_temp2.php:83 /var/www/image.loc/_temp2.php:145
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:69
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:145
 msgid "Semicolon"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:29 /var/www/image.loc/_temp2.php:70
-#: /var/www/image.loc/_temp2.php:84 /var/www/image.loc/_temp2.php:146
+#: /var/www/image.loc/_temp2.php:29
+#: /var/www/image.loc/_temp2.php:70
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:146
 msgid "Colon"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:30 /var/www/image.loc/_temp2.php:71
-#: /var/www/image.loc/_temp2.php:85 /var/www/image.loc/_temp2.php:147
+#: /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:147
 msgid "Comma"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:31 /var/www/image.loc/_temp2.php:72
-#: /var/www/image.loc/_temp2.php:86 /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:148
 msgid "Tab"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:32 /var/www/image.loc/_temp2.php:73
-#: /var/www/image.loc/_temp2.php:87 /var/www/image.loc/_temp2.php:149
+#: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:149
 msgid "Sharp"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:33 /var/www/image.loc/_temp2.php:74
-#: /var/www/image.loc/_temp2.php:88 /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:33
+#: /var/www/image.loc/_temp2.php:74
+#: /var/www/image.loc/_temp2.php:88
+#: /var/www/image.loc/_temp2.php:150
 msgid "Text separator"
 msgstr ""
 
@@ -1884,76 +2021,95 @@ msgstr ""
 msgid "quotes"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:35 /var/www/image.loc/_temp2.php:76
-#: /var/www/image.loc/_temp2.php:90 /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:35
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:152
 msgid "Single quotes"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:36 /var/www/image.loc/_temp2.php:77
-#: /var/www/image.loc/_temp2.php:91 /var/www/image.loc/_temp2.php:154
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:154
 msgid "Encoding"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:39 /var/www/image.loc/_temp2.php:79
-#: /var/www/image.loc/_temp2.php:93 /var/www/image.loc/_temp2.php:125
+#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:79
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:125
 #: /var/www/image.loc/_temp2.php:127
 msgid "Import"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:41 /var/www/image.loc/_temp2.php:157
+#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:157
 msgid "Products name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:43 /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:97
 #: /var/www/image.loc/_temp2.php:159
 msgid "Old price"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:44 /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:98
 #: /var/www/image.loc/_temp2.php:160
 msgid "Quantity"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:46 /var/www/image.loc/_temp2.php:100
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:100
 #: /var/www/image.loc/_temp2.php:162
 msgid "Variant name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:51 /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:105
 #: /var/www/image.loc/_temp2.php:167
 msgid "Related products"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:52 /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:52
+#: /var/www/image.loc/_temp2.php:168
 msgid "The main image"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:53 /var/www/image.loc/_temp2.php:107
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:107
 #: /var/www/image.loc/_temp2.php:169
 msgid "Main picture an additional"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:54 /var/www/image.loc/_temp2.php:170
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:170
 msgid "Small image"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:55 /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:109
 #: /var/www/image.loc/_temp2.php:171
 msgid "Small image an additional"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:56 /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:56
+#: /var/www/image.loc/_temp2.php:110
 #: /var/www/image.loc/_temp2.php:172
 msgid "Additional images"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:57 /var/www/image.loc/_temp2.php:111
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:111
 #: /var/www/image.loc/_temp2.php:173
 msgid "Short description"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:62 /var/www/image.loc/_temp2.php:116
-#: /var/www/image.loc/_temp2.php:122 /var/www/image.loc/_temp2.php:123
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:116
+#: /var/www/image.loc/_temp2.php:122
+#: /var/www/image.loc/_temp2.php:123
 #: /var/www/image.loc/_temp2.php:178
 msgid "Skip column"
 msgstr ""
@@ -1966,12 +2122,14 @@ msgstr ""
 msgid "Fields separator"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:75 /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:75
+#: /var/www/image.loc/_temp2.php:89
 #: /var/www/image.loc/_temp2.php:151
 msgid "Quotes"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:82 /var/www/image.loc/_temp2.php:144
+#: /var/www/image.loc/_temp2.php:82
+#: /var/www/image.loc/_temp2.php:144
 msgid "Field separator"
 msgstr ""
 
@@ -2003,7 +2161,8 @@ msgstr ""
 msgid "Automatization"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:126 /var/www/image.loc/_temp2.php:155
+#: /var/www/image.loc/_temp2.php:126
+#: /var/www/image.loc/_temp2.php:155
 #: /var/www/image.loc/_temp2.php:182
 msgid "Export"
 msgstr ""
@@ -2049,8 +2208,7 @@ msgid "Price checking"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:138
-msgid ""
-"Will be recalculated prices of products in accordance to the default currency"
+msgid "Will be recalculated prices of products in accordance to the default currency"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:139
@@ -2157,15 +2315,18 @@ msgstr ""
 msgid "a_sett"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:225 /var/www/image.loc/_temp2.php:258
+#: /var/www/image.loc/_temp2.php:225
+#: /var/www/image.loc/_temp2.php:258
 msgid "Create a new template"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:226 /var/www/image.loc/_temp2.php:259
+#: /var/www/image.loc/_temp2.php:226
+#: /var/www/image.loc/_temp2.php:259
 msgid "The basic template category. Default category.tpl"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:227 /var/www/image.loc/_temp2.php:260
+#: /var/www/image.loc/_temp2.php:227
+#: /var/www/image.loc/_temp2.php:260
 msgid "Autoselection"
 msgstr ""
 
@@ -2173,35 +2334,43 @@ msgstr ""
 msgid "-Not selected-"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:229 /var/www/image.loc/_temp2.php:262
+#: /var/www/image.loc/_temp2.php:229
+#: /var/www/image.loc/_temp2.php:262
 msgid "By raiting"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:230 /var/www/image.loc/_temp2.php:263
+#: /var/www/image.loc/_temp2.php:230
+#: /var/www/image.loc/_temp2.php:263
 msgid "From cheap to expensive"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:231 /var/www/image.loc/_temp2.php:264
+#: /var/www/image.loc/_temp2.php:231
+#: /var/www/image.loc/_temp2.php:264
 msgid "From expensive to cheap"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:232 /var/www/image.loc/_temp2.php:265
+#: /var/www/image.loc/_temp2.php:232
+#: /var/www/image.loc/_temp2.php:265
 msgid "Popular"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:233 /var/www/image.loc/_temp2.php:266
+#: /var/www/image.loc/_temp2.php:233
+#: /var/www/image.loc/_temp2.php:266
 msgid "Novelty"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:234 /var/www/image.loc/_temp2.php:267
+#: /var/www/image.loc/_temp2.php:234
+#: /var/www/image.loc/_temp2.php:267
 msgid "Promotions"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:235 /var/www/image.loc/_temp2.php:268
+#: /var/www/image.loc/_temp2.php:235
+#: /var/www/image.loc/_temp2.php:268
 msgid "Do not show short name of the site"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:236 /var/www/image.loc/_temp2.php:269
+#: /var/www/image.loc/_temp2.php:236
+#: /var/www/image.loc/_temp2.php:269
 msgid "Meta data"
 msgstr ""
 
@@ -2225,7 +2394,8 @@ msgstr ""
 msgid "Edit category ID"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:255 /var/www/image.loc/_temp2.php:261
+#: /var/www/image.loc/_temp2.php:255
+#: /var/www/image.loc/_temp2.php:261
 msgid "Not selected"
 msgstr ""
 
@@ -2233,7 +2403,8 @@ msgstr ""
 msgid "Creating a warehouse"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:276 /var/www/image.loc/_temp2.php:290
+#: /var/www/image.loc/_temp2.php:276
+#: /var/www/image.loc/_temp2.php:290
 msgid "Address"
 msgstr ""
 
@@ -2245,7 +2416,8 @@ msgstr ""
 msgid "Relly remove selected warehouses?"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:283 /var/www/image.loc/_temp2.php:284
+#: /var/www/image.loc/_temp2.php:283
+#: /var/www/image.loc/_temp2.php:284
 msgid "Delete warehouses"
 msgstr ""
 
@@ -2273,7 +2445,8 @@ msgstr ""
 msgid "General information"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:34 /var/www/image.loc/_temp2.php:38
+#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:38
 msgid "Removing status"
 msgstr ""
 
@@ -2305,7 +2478,8 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:60 /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:91
 msgid "Description delivery price"
 msgstr ""
 
@@ -2313,20 +2487,26 @@ msgstr ""
 msgid "Delivery price"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:62 /var/www/image.loc/_temp2.php:79
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:79
 #: /var/www/image.loc/_temp2.php:93
 msgid "Free"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:63 /var/www/image.loc/_temp2.php:80
-#: /var/www/image.loc/_temp2.php:94 /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:80
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:186
 #: /var/www/image.loc/_temp2.php:190
 msgid "from"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:65 /var/www/image.loc/_temp2.php:96
-#: /var/www/image.loc/_temp2.php:155 /var/www/image.loc/_temp2.php:242
-#: /var/www/image.loc/_temp2.php:259 /var/www/image.loc/_temp2.php:279
+#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:96
+#: /var/www/image.loc/_temp2.php:155
+#: /var/www/image.loc/_temp2.php:242
+#: /var/www/image.loc/_temp2.php:259
+#: /var/www/image.loc/_temp2.php:279
 msgid "Payment method"
 msgstr ""
 
@@ -2334,7 +2514,8 @@ msgstr ""
 msgid "List is empty."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:67 /var/www/image.loc/_temp2.php:71
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:71
 msgid "Removing the shipping methods"
 msgstr ""
 
@@ -2358,7 +2539,8 @@ msgstr ""
 msgid "Delivery methods list is empty"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:84 /var/www/image.loc/_temp2.php:240
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:240
 msgid "Delivery and payment"
 msgstr ""
 
@@ -2370,7 +2552,8 @@ msgstr ""
 msgid "List is empty"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:99 /var/www/image.loc/_temp2.php:248
+#: /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:248
 msgid "receipt"
 msgstr ""
 
@@ -2382,26 +2565,32 @@ msgstr ""
 msgid "Measurement unit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:104 /var/www/image.loc/_temp2.php:126
-#: /var/www/image.loc/_temp2.php:182 /var/www/image.loc/_temp2.php:285
+#: /var/www/image.loc/_temp2.php:104
+#: /var/www/image.loc/_temp2.php:126
+#: /var/www/image.loc/_temp2.php:182
+#: /var/www/image.loc/_temp2.php:285
 msgid "Total price"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:105 /var/www/image.loc/_temp2.php:326
+#: /var/www/image.loc/_temp2.php:105
+#: /var/www/image.loc/_temp2.php:326
 msgid "Pieces."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:107 /var/www/image.loc/_temp2.php:233
+#: /var/www/image.loc/_temp2.php:107
+#: /var/www/image.loc/_temp2.php:233
 #: /var/www/image.loc/_temp2.php:273
 msgid "Delivery Address"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:108 /var/www/image.loc/_temp2.php:132
+#: /var/www/image.loc/_temp2.php:108
+#: /var/www/image.loc/_temp2.php:132
 #: /var/www/image.loc/_temp2.php:148
 msgid "Phone"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:109 /var/www/image.loc/_temp2.php:221
+#: /var/www/image.loc/_temp2.php:109
+#: /var/www/image.loc/_temp2.php:221
 msgid "Order create"
 msgstr ""
 
@@ -2417,9 +2606,12 @@ msgstr ""
 msgid "Article / Name / ID"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:125 /var/www/image.loc/_temp2.php:127
-#: /var/www/image.loc/_temp2.php:212 /var/www/image.loc/_temp2.php:220
-#: /var/www/image.loc/_temp2.php:284 /var/www/image.loc/_temp2.php:294
+#: /var/www/image.loc/_temp2.php:125
+#: /var/www/image.loc/_temp2.php:127
+#: /var/www/image.loc/_temp2.php:212
+#: /var/www/image.loc/_temp2.php:220
+#: /var/www/image.loc/_temp2.php:284
+#: /var/www/image.loc/_temp2.php:294
 msgid "Total"
 msgstr ""
 
@@ -2431,7 +2623,8 @@ msgstr ""
 msgid "Create new user"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:131 /var/www/image.loc/_temp2.php:146
+#: /var/www/image.loc/_temp2.php:131
+#: /var/www/image.loc/_temp2.php:146
 msgid "Full Name"
 msgstr ""
 
@@ -2443,11 +2636,13 @@ msgstr ""
 msgid "ID / Full Name / Email"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:143 /var/www/image.loc/_temp2.php:197
+#: /var/www/image.loc/_temp2.php:143
+#: /var/www/image.loc/_temp2.php:197
 msgid "Editing by"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:144 /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:144
+#: /var/www/image.loc/_temp2.php:152
 msgid "Order information"
 msgstr ""
 
@@ -2471,8 +2666,10 @@ msgstr ""
 msgid "Current discount"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:161 /var/www/image.loc/_temp2.php:287
-#: /var/www/image.loc/_temp2.php:288 /var/www/image.loc/_temp2.php:289
+#: /var/www/image.loc/_temp2.php:161
+#: /var/www/image.loc/_temp2.php:287
+#: /var/www/image.loc/_temp2.php:288
+#: /var/www/image.loc/_temp2.php:289
 #: /var/www/image.loc/_temp2.php:290
 msgid "Digits only"
 msgstr ""
@@ -2497,10 +2694,14 @@ msgstr ""
 msgid "Payment status"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:173 /var/www/image.loc/_temp2.php:184
-#: /var/www/image.loc/_temp2.php:228 /var/www/image.loc/_temp2.php:256
-#: /var/www/image.loc/_temp2.php:266 /var/www/image.loc/_temp2.php:298
-#: /var/www/image.loc/_temp2.php:305 /var/www/image.loc/_temp2.php:317
+#: /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:184
+#: /var/www/image.loc/_temp2.php:228
+#: /var/www/image.loc/_temp2.php:256
+#: /var/www/image.loc/_temp2.php:266
+#: /var/www/image.loc/_temp2.php:298
+#: /var/www/image.loc/_temp2.php:305
+#: /var/www/image.loc/_temp2.php:317
 msgid "Paid"
 msgstr ""
 
@@ -2520,12 +2721,14 @@ msgstr ""
 msgid "(no delivery)"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:185 /var/www/image.loc/_temp2.php:191
+#: /var/www/image.loc/_temp2.php:185
+#: /var/www/image.loc/_temp2.php:191
 #: /var/www/image.loc/_temp2.php:193
 msgid "numbers only"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:187 /var/www/image.loc/_temp2.php:189
+#: /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:189
 msgid "choose a date"
 msgstr ""
 
@@ -2541,14 +2744,13 @@ msgstr ""
 msgid "pcs"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:202 /var/www/image.loc/_temp2.php:203
+#: /var/www/image.loc/_temp2.php:202
+#: /var/www/image.loc/_temp2.php:203
 msgid "Orders on the page"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:204
-msgid ""
-" This product has been deleted  from the shop! You can only change the "
-"quantity or replace by another product"
+msgid " This product has been deleted  from the shop! You can only change the quantity or replace by another product"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:208
@@ -2563,28 +2765,34 @@ msgstr ""
 msgid "Notify a buyer about the status change"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:229 /var/www/image.loc/_temp2.php:267
+#: /var/www/image.loc/_temp2.php:229
+#: /var/www/image.loc/_temp2.php:267
 #: /var/www/image.loc/_temp2.php:269
 msgid "Complete"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:235 /var/www/image.loc/_temp2.php:275
+#: /var/www/image.loc/_temp2.php:235
+#: /var/www/image.loc/_temp2.php:275
 msgid "on"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:236 /var/www/image.loc/_temp2.php:276
+#: /var/www/image.loc/_temp2.php:236
+#: /var/www/image.loc/_temp2.php:276
 msgid "map"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:237 /var/www/image.loc/_temp2.php:277
+#: /var/www/image.loc/_temp2.php:237
+#: /var/www/image.loc/_temp2.php:277
 msgid "Show on map"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:239 /var/www/image.loc/_temp2.php:295
+#: /var/www/image.loc/_temp2.php:239
+#: /var/www/image.loc/_temp2.php:295
 msgid "Additional data"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:241 /var/www/image.loc/_temp2.php:261
+#: /var/www/image.loc/_temp2.php:241
+#: /var/www/image.loc/_temp2.php:261
 msgid "Delivery Method"
 msgstr ""
 
@@ -2612,7 +2820,8 @@ msgstr ""
 msgid "Date of order"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:260 /var/www/image.loc/_temp2.php:262
+#: /var/www/image.loc/_temp2.php:260
+#: /var/www/image.loc/_temp2.php:262
 msgid "Not specified"
 msgstr ""
 
@@ -2620,7 +2829,8 @@ msgstr ""
 msgid "Order amount"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:265 /var/www/image.loc/_temp2.php:293
+#: /var/www/image.loc/_temp2.php:265
+#: /var/www/image.loc/_temp2.php:293
 #: /var/www/image.loc/_temp2.php:334
 msgid "Delivery"
 msgstr ""
@@ -2649,7 +2859,8 @@ msgstr ""
 msgid "Info buyer ch stat"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:302 /var/www/image.loc/_temp2.php:310
+#: /var/www/image.loc/_temp2.php:302
+#: /var/www/image.loc/_temp2.php:310
 #: /var/www/image.loc/_temp2.php:314
 msgid "Date modified"
 msgstr ""
@@ -2662,7 +2873,8 @@ msgstr ""
 msgid "Product addition"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:322 /var/www/image.loc/_temp2.php:328
+#: /var/www/image.loc/_temp2.php:322
+#: /var/www/image.loc/_temp2.php:328
 msgid "Add"
 msgstr ""
 
@@ -2790,7 +3002,8 @@ msgstr ""
 msgid "Payment method create"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:87 /var/www/image.loc/_temp2.php:91
+#: /var/www/image.loc/_temp2.php:87
+#: /var/www/image.loc/_temp2.php:91
 msgid "Removal of payment methods"
 msgstr ""
 
@@ -2826,32 +3039,42 @@ msgstr ""
 msgid "Entity"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:124 /var/www/image.loc/_temp2.php:127
+#: /var/www/image.loc/_temp2.php:124
+#: /var/www/image.loc/_temp2.php:127
 msgid "Orders "
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:129 /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:129
+#: /var/www/image.loc/_temp2.php:183
 msgid "The field should only contain letters without numbers"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:130 /var/www/image.loc/_temp2.php:184
+#: /var/www/image.loc/_temp2.php:130
+#: /var/www/image.loc/_temp2.php:184
 msgid "Label"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:132 /var/www/image.loc/_temp2.php:135
-#: /var/www/image.loc/_temp2.php:164 /var/www/image.loc/_temp2.php:166
-#: /var/www/image.loc/_temp2.php:186 /var/www/image.loc/_temp2.php:188
+#: /var/www/image.loc/_temp2.php:132
+#: /var/www/image.loc/_temp2.php:135
+#: /var/www/image.loc/_temp2.php:164
+#: /var/www/image.loc/_temp2.php:166
+#: /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:188
 #: /var/www/image.loc/_temp2.php:190
 msgid "Field"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:133 /var/www/image.loc/_temp2.php:165
-#: /var/www/image.loc/_temp2.php:170 /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:133
+#: /var/www/image.loc/_temp2.php:165
+#: /var/www/image.loc/_temp2.php:170
+#: /var/www/image.loc/_temp2.php:187
 msgid "Required"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:136 /var/www/image.loc/_temp2.php:167
-#: /var/www/image.loc/_temp2.php:171 /var/www/image.loc/_temp2.php:191
+#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:167
+#: /var/www/image.loc/_temp2.php:171
+#: /var/www/image.loc/_temp2.php:191
 msgid "Private"
 msgstr ""
 
@@ -2863,26 +3086,25 @@ msgstr ""
 msgid "Possible values"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:139 /var/www/image.loc/_temp2.php:141
-#: /var/www/image.loc/_temp2.php:192 /var/www/image.loc/_temp2.php:194
+#: /var/www/image.loc/_temp2.php:139
+#: /var/www/image.loc/_temp2.php:141
+#: /var/www/image.loc/_temp2.php:192
+#: /var/www/image.loc/_temp2.php:194
 msgid "Validators"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:140 /var/www/image.loc/_temp2.php:193
-msgid ""
-"Snippet of a certain format,<br /> verifies syntactic correctness<br /> of "
-"the entered information - that is,<br /> to validate."
+#: /var/www/image.loc/_temp2.php:140
+#: /var/www/image.loc/_temp2.php:193
+msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:142 /var/www/image.loc/_temp2.php:144
+#: /var/www/image.loc/_temp2.php:142
+#: /var/www/image.loc/_temp2.php:144
 msgid "Access rights"
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:143
-msgid ""
-"Access rights define <br />a set of actions (eg, read,<br /> write, execute) "
-"permissions for<br /> the subjects (for example, users<br /> of the system) "
-"of <br />the data objects."
+msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:145
@@ -2893,7 +3115,8 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:147 /var/www/image.loc/_temp2.php:151
+#: /var/www/image.loc/_temp2.php:147
+#: /var/www/image.loc/_temp2.php:151
 msgid "Remove fields"
 msgstr ""
 
@@ -2913,11 +3136,13 @@ msgstr ""
 msgid "Create Field"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:156 /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:156
+#: /var/www/image.loc/_temp2.php:173
 msgid "One user"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:161 /var/www/image.loc/_temp2.php:181
+#: /var/www/image.loc/_temp2.php:161
+#: /var/www/image.loc/_temp2.php:181
 msgid "Related entity"
 msgstr ""
 
@@ -2945,7 +3170,8 @@ msgstr ""
 msgid "Products without icons"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:57 /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:183
 msgid "Delete "
 msgstr ""
 
@@ -2953,14 +3179,13 @@ msgstr ""
 msgid "Notification "
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:59 /var/www/image.loc/_temp2.php:185
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:185
 msgid "ID : "
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:60
-msgid ""
-"User has already been notified by e-mail  about  product arrival! Notify "
-"again? "
+msgid "User has already been notified by e-mail  about  product arrival! Notify again? "
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:61
@@ -2983,36 +3208,44 @@ msgstr ""
 msgid "Delete the query?"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:68 /var/www/image.loc/_temp2.php:110
+#: /var/www/image.loc/_temp2.php:68
+#: /var/www/image.loc/_temp2.php:110
 msgid "Arrival notification"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:76 /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:89
 msgid "Time of addition"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:77 /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:90
 msgid "Valid until"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:81 /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:81
+#: /var/www/image.loc/_temp2.php:94
 msgid "Notifications"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:83 /var/www/image.loc/_temp2.php:96
+#: /var/www/image.loc/_temp2.php:83
+#: /var/www/image.loc/_temp2.php:96
 #: /var/www/image.loc/_temp2.php:119
 msgid "Notified email"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:84 /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:97
 msgid "Notified"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:85 /var/www/image.loc/_temp2.php:98
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:98
 msgid "Notify"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:86 /var/www/image.loc/_temp2.php:99
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:99
 msgid "Empty product arrival notification list."
 msgstr ""
 
@@ -3036,64 +3269,88 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:130 /var/www/image.loc/_temp2.php:369
+#: /var/www/image.loc/_temp2.php:130
+#: /var/www/image.loc/_temp2.php:369
 msgid "Product creation"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:136 /var/www/image.loc/_temp2.php:240
-#: /var/www/image.loc/_temp2.php:292 /var/www/image.loc/_temp2.php:359
-#: /var/www/image.loc/_temp2.php:375 /var/www/image.loc/_temp2.php:433
+#: /var/www/image.loc/_temp2.php:136
+#: /var/www/image.loc/_temp2.php:240
+#: /var/www/image.loc/_temp2.php:292
+#: /var/www/image.loc/_temp2.php:359
+#: /var/www/image.loc/_temp2.php:375
+#: /var/www/image.loc/_temp2.php:433
 msgid "Images"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:137 /var/www/image.loc/_temp2.php:241
-#: /var/www/image.loc/_temp2.php:295 /var/www/image.loc/_temp2.php:363
-#: /var/www/image.loc/_temp2.php:376 /var/www/image.loc/_temp2.php:435
+#: /var/www/image.loc/_temp2.php:137
+#: /var/www/image.loc/_temp2.php:241
+#: /var/www/image.loc/_temp2.php:295
+#: /var/www/image.loc/_temp2.php:363
+#: /var/www/image.loc/_temp2.php:376
+#: /var/www/image.loc/_temp2.php:435
 msgid "Kits"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:148 /var/www/image.loc/_temp2.php:245
-#: /var/www/image.loc/_temp2.php:327 /var/www/image.loc/_temp2.php:379
+#: /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:245
+#: /var/www/image.loc/_temp2.php:327
+#: /var/www/image.loc/_temp2.php:379
 msgid "Product variant name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:150 /var/www/image.loc/_temp2.php:329
+#: /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:329
 msgid "Photo"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:152 /var/www/image.loc/_temp2.php:179
-#: /var/www/image.loc/_temp2.php:332 /var/www/image.loc/_temp2.php:448
+#: /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:179
+#: /var/www/image.loc/_temp2.php:332
+#: /var/www/image.loc/_temp2.php:448
 msgid "Edit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:153 /var/www/image.loc/_temp2.php:180
+#: /var/www/image.loc/_temp2.php:153
+#: /var/www/image.loc/_temp2.php:180
 #: /var/www/image.loc/_temp2.php:333
 msgid "Load from internet"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:154 /var/www/image.loc/_temp2.php:253
-#: /var/www/image.loc/_temp2.php:254 /var/www/image.loc/_temp2.php:335
-#: /var/www/image.loc/_temp2.php:387 /var/www/image.loc/_temp2.php:388
+#: /var/www/image.loc/_temp2.php:154
+#: /var/www/image.loc/_temp2.php:253
+#: /var/www/image.loc/_temp2.php:254
+#: /var/www/image.loc/_temp2.php:335
+#: /var/www/image.loc/_temp2.php:387
+#: /var/www/image.loc/_temp2.php:388
 msgid "Add a variant"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:156 /var/www/image.loc/_temp2.php:259
-#: /var/www/image.loc/_temp2.php:337 /var/www/image.loc/_temp2.php:393
+#: /var/www/image.loc/_temp2.php:156
+#: /var/www/image.loc/_temp2.php:259
+#: /var/www/image.loc/_temp2.php:337
+#: /var/www/image.loc/_temp2.php:393
 msgid "Brand name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:162 /var/www/image.loc/_temp2.php:277
-#: /var/www/image.loc/_temp2.php:343 /var/www/image.loc/_temp2.php:409
+#: /var/www/image.loc/_temp2.php:162
+#: /var/www/image.loc/_temp2.php:277
+#: /var/www/image.loc/_temp2.php:343
+#: /var/www/image.loc/_temp2.php:409
 msgid "Warehouses"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:168 /var/www/image.loc/_temp2.php:283
-#: /var/www/image.loc/_temp2.php:349 /var/www/image.loc/_temp2.php:415
+#: /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:283
+#: /var/www/image.loc/_temp2.php:349
+#: /var/www/image.loc/_temp2.php:415
 msgid "tie-in sales"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:171 /var/www/image.loc/_temp2.php:286
-#: /var/www/image.loc/_temp2.php:352 /var/www/image.loc/_temp2.php:418
+#: /var/www/image.loc/_temp2.php:171
+#: /var/www/image.loc/_temp2.php:286
+#: /var/www/image.loc/_temp2.php:352
+#: /var/www/image.loc/_temp2.php:418
 msgid "Product main template. By default  product.tpl"
 msgstr ""
 
@@ -3133,46 +3390,58 @@ msgstr ""
 msgid "Copy"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:236 /var/www/image.loc/_temp2.php:438
+#: /var/www/image.loc/_temp2.php:236
+#: /var/www/image.loc/_temp2.php:438
 #: /var/www/image.loc/_temp2.php:439
 msgid "Previous"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:263 /var/www/image.loc/_temp2.php:270
-#: /var/www/image.loc/_temp2.php:293 /var/www/image.loc/_temp2.php:360
-#: /var/www/image.loc/_temp2.php:397 /var/www/image.loc/_temp2.php:403
+#: /var/www/image.loc/_temp2.php:263
+#: /var/www/image.loc/_temp2.php:270
+#: /var/www/image.loc/_temp2.php:293
+#: /var/www/image.loc/_temp2.php:360
+#: /var/www/image.loc/_temp2.php:397
+#: /var/www/image.loc/_temp2.php:403
 msgid "Select a file"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:265 /var/www/image.loc/_temp2.php:399
+#: /var/www/image.loc/_temp2.php:265
+#: /var/www/image.loc/_temp2.php:399
 msgid "Create small image"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:269 /var/www/image.loc/_temp2.php:402
+#: /var/www/image.loc/_temp2.php:269
+#: /var/www/image.loc/_temp2.php:402
 msgid "Another main image variant"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:272 /var/www/image.loc/_temp2.php:405
+#: /var/www/image.loc/_temp2.php:272
+#: /var/www/image.loc/_temp2.php:405
 msgid "Another small image variant"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:294 /var/www/image.loc/_temp2.php:362
+#: /var/www/image.loc/_temp2.php:294
+#: /var/www/image.loc/_temp2.php:362
 msgid "Create a set"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:298 /var/www/image.loc/_temp2.php:366
+#: /var/www/image.loc/_temp2.php:298
+#: /var/www/image.loc/_temp2.php:366
 msgid "Delete set"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:300 /var/www/image.loc/_temp2.php:368
+#: /var/www/image.loc/_temp2.php:300
+#: /var/www/image.loc/_temp2.php:368
 msgid "Kit List products are empty"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:301 /var/www/image.loc/_temp2.php:442
+#: /var/www/image.loc/_temp2.php:301
+#: /var/www/image.loc/_temp2.php:442
 msgid "Kit removal"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:302 /var/www/image.loc/_temp2.php:443
+#: /var/www/image.loc/_temp2.php:302
+#: /var/www/image.loc/_temp2.php:443
 msgid "Kits del body"
 msgstr ""
 
@@ -3188,12 +3457,14 @@ msgstr ""
 msgid "Product kits review"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:27 /var/www/image.loc/_temp2.php:44
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:59
 msgid "main product"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:28 /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:28
+#: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:58
 msgid "Main product"
 msgstr ""
@@ -3206,7 +3477,8 @@ msgstr ""
 msgid "Create product kit"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:46 /var/www/image.loc/_temp2.php:61
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:61
 msgid "Added products"
 msgstr ""
 
@@ -3234,7 +3506,8 @@ msgstr ""
 msgid "Banner creation"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:86 /var/www/image.loc/_temp2.php:125
+#: /var/www/image.loc/_temp2.php:86
+#: /var/www/image.loc/_temp2.php:125
 msgid "Text banner"
 msgstr ""
 
@@ -3246,19 +3519,23 @@ msgstr ""
 msgid "Display in the categories"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:94 /var/www/image.loc/_temp2.php:133
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:133
 msgid "Do not display"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:95 /var/www/image.loc/_temp2.php:134
+#: /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:134
 msgid "Select all"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:96 /var/www/image.loc/_temp2.php:135
+#: /var/www/image.loc/_temp2.php:96
+#: /var/www/image.loc/_temp2.php:135
 msgid "Active until"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:97 /var/www/image.loc/_temp2.php:101
+#: /var/www/image.loc/_temp2.php:97
+#: /var/www/image.loc/_temp2.php:101
 msgid "Removing banner"
 msgstr ""
 
@@ -3314,7 +3591,8 @@ msgstr ""
 msgid "Create brand"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:153 /var/www/image.loc/_temp2.php:157
+#: /var/www/image.loc/_temp2.php:153
+#: /var/www/image.loc/_temp2.php:157
 msgid "Removing brand"
 msgstr ""
 
@@ -3354,7 +3632,8 @@ msgstr ""
 msgid "Total orders price"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:186 /var/www/image.loc/_temp2.php:188
+#: /var/www/image.loc/_temp2.php:186
+#: /var/www/image.loc/_temp2.php:188
 msgid "Days"
 msgstr ""
 
@@ -3366,11 +3645,13 @@ msgstr ""
 msgid "Number of Orders"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:194 /var/www/image.loc/_temp2.php:205
+#: /var/www/image.loc/_temp2.php:194
+#: /var/www/image.loc/_temp2.php:205
 msgid "Appearance"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:196 /var/www/image.loc/_temp2.php:275
+#: /var/www/image.loc/_temp2.php:196
+#: /var/www/image.loc/_temp2.php:275
 msgid "Wish List"
 msgstr ""
 
@@ -3386,7 +3667,8 @@ msgstr ""
 msgid "Top sales block"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:201 /var/www/image.loc/_temp2.php:404
+#: /var/www/image.loc/_temp2.php:201
+#: /var/www/image.loc/_temp2.php:404
 msgid "Password recovery"
 msgstr ""
 
@@ -3546,37 +3828,55 @@ msgstr ""
 msgid "Perform resize the selected product"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:277 /var/www/image.loc/_temp2.php:280
-#: /var/www/image.loc/_temp2.php:294 /var/www/image.loc/_temp2.php:297
-#: /var/www/image.loc/_temp2.php:313 /var/www/image.loc/_temp2.php:316
-#: /var/www/image.loc/_temp2.php:351 /var/www/image.loc/_temp2.php:354
-#: /var/www/image.loc/_temp2.php:371 /var/www/image.loc/_temp2.php:374
-#: /var/www/image.loc/_temp2.php:388 /var/www/image.loc/_temp2.php:391
+#: /var/www/image.loc/_temp2.php:277
+#: /var/www/image.loc/_temp2.php:280
+#: /var/www/image.loc/_temp2.php:294
+#: /var/www/image.loc/_temp2.php:297
+#: /var/www/image.loc/_temp2.php:313
+#: /var/www/image.loc/_temp2.php:316
+#: /var/www/image.loc/_temp2.php:351
+#: /var/www/image.loc/_temp2.php:354
+#: /var/www/image.loc/_temp2.php:371
+#: /var/www/image.loc/_temp2.php:374
+#: /var/www/image.loc/_temp2.php:388
+#: /var/www/image.loc/_temp2.php:391
 msgid "sender"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:281 /var/www/image.loc/_temp2.php:298
-#: /var/www/image.loc/_temp2.php:317 /var/www/image.loc/_temp2.php:355
-#: /var/www/image.loc/_temp2.php:375 /var/www/image.loc/_temp2.php:392
+#: /var/www/image.loc/_temp2.php:281
+#: /var/www/image.loc/_temp2.php:298
+#: /var/www/image.loc/_temp2.php:317
+#: /var/www/image.loc/_temp2.php:355
+#: /var/www/image.loc/_temp2.php:375
+#: /var/www/image.loc/_temp2.php:392
 msgid "Subject"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:282 /var/www/image.loc/_temp2.php:299
-#: /var/www/image.loc/_temp2.php:318 /var/www/image.loc/_temp2.php:356
-#: /var/www/image.loc/_temp2.php:367 /var/www/image.loc/_temp2.php:376
+#: /var/www/image.loc/_temp2.php:282
+#: /var/www/image.loc/_temp2.php:299
+#: /var/www/image.loc/_temp2.php:318
+#: /var/www/image.loc/_temp2.php:356
+#: /var/www/image.loc/_temp2.php:367
+#: /var/www/image.loc/_temp2.php:376
 #: /var/www/image.loc/_temp2.php:393
 msgid "Message format"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:283 /var/www/image.loc/_temp2.php:300
-#: /var/www/image.loc/_temp2.php:319 /var/www/image.loc/_temp2.php:357
-#: /var/www/image.loc/_temp2.php:377 /var/www/image.loc/_temp2.php:394
+#: /var/www/image.loc/_temp2.php:283
+#: /var/www/image.loc/_temp2.php:300
+#: /var/www/image.loc/_temp2.php:319
+#: /var/www/image.loc/_temp2.php:357
+#: /var/www/image.loc/_temp2.php:377
+#: /var/www/image.loc/_temp2.php:394
 msgid "Message text"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:284 /var/www/image.loc/_temp2.php:301
-#: /var/www/image.loc/_temp2.php:320 /var/www/image.loc/_temp2.php:358
-#: /var/www/image.loc/_temp2.php:378 /var/www/image.loc/_temp2.php:395
+#: /var/www/image.loc/_temp2.php:284
+#: /var/www/image.loc/_temp2.php:301
+#: /var/www/image.loc/_temp2.php:320
+#: /var/www/image.loc/_temp2.php:358
+#: /var/www/image.loc/_temp2.php:378
+#: /var/www/image.loc/_temp2.php:395
 #: /var/www/image.loc/_temp2.php:407
 msgid "You can use the following variable"
 msgstr ""
@@ -3685,7 +3985,8 @@ msgstr ""
 msgid "Order placement e-mail to the user has been sent"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:359 /var/www/image.loc/_temp2.php:379
+#: /var/www/image.loc/_temp2.php:359
+#: /var/www/image.loc/_temp2.php:379
 msgid "Name of the customer"
 msgstr ""
 
@@ -3709,7 +4010,8 @@ msgstr ""
 msgid " Key to view the order"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:365 /var/www/image.loc/_temp2.php:381
+#: /var/www/image.loc/_temp2.php:365
+#: /var/www/image.loc/_temp2.php:381
 msgid " Link to the order"
 msgstr ""
 
@@ -3770,9 +4072,7 @@ msgid " Popularity formula coefficient "
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:403
-msgid ""
-" Popularity formula: number of views+ products added to the cart "
-"*coefficient . For example: 1000."
+msgid " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:408
@@ -3799,11 +4099,13 @@ msgstr ""
 msgid "Secret key"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:416 /var/www/image.loc/_temp2.php:420
+#: /var/www/image.loc/_temp2.php:416
+#: /var/www/image.loc/_temp2.php:420
 msgid "Application number"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:417 /var/www/image.loc/_temp2.php:421
+#: /var/www/image.loc/_temp2.php:417
+#: /var/www/image.loc/_temp2.php:421
 msgid "Select template folder"
 msgstr ""
 
@@ -3827,7 +4129,8 @@ msgstr ""
 msgid "Message from the order page"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:426 /var/www/image.loc/_temp2.php:428
+#: /var/www/image.loc/_temp2.php:426
+#: /var/www/image.loc/_temp2.php:428
 msgid "API Key for Mail Chimp"
 msgstr ""
 
@@ -3835,7 +4138,8 @@ msgstr ""
 msgid "The key to your account <br />on the mail Mailchimp"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:429 /var/www/image.loc/_temp2.php:431
+#: /var/www/image.loc/_temp2.php:429
+#: /var/www/image.loc/_temp2.php:431
 msgid "Key for Mail Chimp list"
 msgstr ""
 
@@ -3863,15 +4167,18 @@ msgstr ""
 msgid "Currency create"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:442 /var/www/image.loc/_temp2.php:463
+#: /var/www/image.loc/_temp2.php:442
+#: /var/www/image.loc/_temp2.php:463
 msgid "ISO"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:443 /var/www/image.loc/_temp2.php:464
+#: /var/www/image.loc/_temp2.php:443
+#: /var/www/image.loc/_temp2.php:464
 msgid "Code"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:445 /var/www/image.loc/_temp2.php:465
+#: /var/www/image.loc/_temp2.php:445
+#: /var/www/image.loc/_temp2.php:465
 msgid "Character"
 msgstr ""
 
@@ -3935,7 +4242,8 @@ msgstr ""
 msgid "There are no currencies"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:476 /var/www/image.loc/_temp2.php:477
+#: /var/www/image.loc/_temp2.php:476
+#: /var/www/image.loc/_temp2.php:477
 msgid "don't show"
 msgstr ""
 
@@ -3963,34 +4271,44 @@ msgstr ""
 msgid "Not active"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:48 /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:150
 msgid "Editing by discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:53 /var/www/image.loc/_temp2.php:80
-#: /var/www/image.loc/_temp2.php:103 /var/www/image.loc/_temp2.php:155
-#: /var/www/image.loc/_temp2.php:177 /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:80
+#: /var/www/image.loc/_temp2.php:103
+#: /var/www/image.loc/_temp2.php:155
+#: /var/www/image.loc/_temp2.php:177
+#: /var/www/image.loc/_temp2.php:183
 msgid "Full name"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:55 /var/www/image.loc/_temp2.php:157
+#: /var/www/image.loc/_temp2.php:55
+#: /var/www/image.loc/_temp2.php:157
 msgid "Purchase price"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:57 /var/www/image.loc/_temp2.php:159
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:159
 msgid "Off manually entered"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:58 /var/www/image.loc/_temp2.php:62
-#: /var/www/image.loc/_temp2.php:213 /var/www/image.loc/_temp2.php:217
+#: /var/www/image.loc/_temp2.php:58
+#: /var/www/image.loc/_temp2.php:62
+#: /var/www/image.loc/_temp2.php:213
+#: /var/www/image.loc/_temp2.php:217
 msgid "Removing discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:59 /var/www/image.loc/_temp2.php:214
+#: /var/www/image.loc/_temp2.php:59
+#: /var/www/image.loc/_temp2.php:214
 msgid "Remove selected discount?"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:63 /var/www/image.loc/_temp2.php:218
+#: /var/www/image.loc/_temp2.php:63
+#: /var/www/image.loc/_temp2.php:218
 msgid "Remove the discount?"
 msgstr ""
 
@@ -3998,7 +4316,8 @@ msgstr ""
 msgid "List of cumulative discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:65 /var/www/image.loc/_temp2.php:221
+#: /var/www/image.loc/_temp2.php:65
+#: /var/www/image.loc/_temp2.php:221
 msgid "Create a discount"
 msgstr ""
 
@@ -4010,11 +4329,13 @@ msgstr ""
 msgid "Discount Amount to"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:76 /var/www/image.loc/_temp2.php:230
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:230
 msgid "Empty discount list"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:77 /var/www/image.loc/_temp2.php:220
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:220
 msgid "Deposit rates"
 msgstr ""
 
@@ -4022,30 +4343,38 @@ msgstr ""
 msgid "Empty user list."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:85 /var/www/image.loc/_temp2.php:160
+#: /var/www/image.loc/_temp2.php:85
+#: /var/www/image.loc/_temp2.php:160
 #: /var/www/image.loc/_temp2.php:231
 msgid "Editing discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:89 /var/www/image.loc/_temp2.php:164
+#: /var/www/image.loc/_temp2.php:89
+#: /var/www/image.loc/_temp2.php:164
 msgid "Discount options"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:90 /var/www/image.loc/_temp2.php:165
+#: /var/www/image.loc/_temp2.php:90
+#: /var/www/image.loc/_temp2.php:165
 msgid "Member Discount"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:92 /var/www/image.loc/_temp2.php:167
-#: /var/www/image.loc/_temp2.php:190 /var/www/image.loc/_temp2.php:202
-#: /var/www/image.loc/_temp2.php:236 /var/www/image.loc/_temp2.php:242
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:167
+#: /var/www/image.loc/_temp2.php:190
+#: /var/www/image.loc/_temp2.php:202
+#: /var/www/image.loc/_temp2.php:236
+#: /var/www/image.loc/_temp2.php:242
 msgid "Discounts"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:94 /var/www/image.loc/_temp2.php:169
+#: /var/www/image.loc/_temp2.php:94
+#: /var/www/image.loc/_temp2.php:169
 msgid "Just like the number 10"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:108 /var/www/image.loc/_temp2.php:112
+#: /var/www/image.loc/_temp2.php:108
+#: /var/www/image.loc/_temp2.php:112
 msgid "Removing Gift Certificate"
 msgstr ""
 
@@ -4081,7 +4410,8 @@ msgstr ""
 msgid "Gift certificate create"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:132 /var/www/image.loc/_temp2.php:147
+#: /var/www/image.loc/_temp2.php:132
+#: /var/www/image.loc/_temp2.php:147
 msgid "Gift certificate price"
 msgstr ""
 
@@ -4105,17 +4435,20 @@ msgstr ""
 msgid "This discount does not enjoy"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:198 /var/www/image.loc/_temp2.php:225
+#: /var/www/image.loc/_temp2.php:198
+#: /var/www/image.loc/_temp2.php:225
 #: /var/www/image.loc/_temp2.php:240
 msgid "Starting date"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:200 /var/www/image.loc/_temp2.php:226
+#: /var/www/image.loc/_temp2.php:200
+#: /var/www/image.loc/_temp2.php:226
 #: /var/www/image.loc/_temp2.php:241
 msgid "Finishing date "
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:203 /var/www/image.loc/_temp2.php:243
+#: /var/www/image.loc/_temp2.php:203
+#: /var/www/image.loc/_temp2.php:243
 msgid " Number greater than zero. To use a percent discount  apply : "
 msgstr ""
 
@@ -4123,27 +4456,33 @@ msgstr ""
 msgid "Enter a product for promotion"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:206 /var/www/image.loc/_temp2.php:246
+#: /var/www/image.loc/_temp2.php:206
+#: /var/www/image.loc/_temp2.php:246
 msgid "Enter the name or id"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:207 /var/www/image.loc/_temp2.php:247
+#: /var/www/image.loc/_temp2.php:207
+#: /var/www/image.loc/_temp2.php:247
 msgid "Selected products:"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:208 /var/www/image.loc/_temp2.php:248
+#: /var/www/image.loc/_temp2.php:208
+#: /var/www/image.loc/_temp2.php:248
 msgid "Follow product ID by a comma."
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:209 /var/www/image.loc/_temp2.php:249
+#: /var/www/image.loc/_temp2.php:209
+#: /var/www/image.loc/_temp2.php:249
 msgid "User group"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:210 /var/www/image.loc/_temp2.php:250
+#: /var/www/image.loc/_temp2.php:210
+#: /var/www/image.loc/_temp2.php:250
 msgid "There are no translations users"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:211 /var/www/image.loc/_temp2.php:251
+#: /var/www/image.loc/_temp2.php:211
+#: /var/www/image.loc/_temp2.php:251
 msgid "Unregistered users"
 msgstr ""
 
@@ -4155,11 +4494,13 @@ msgstr ""
 msgid "Enter a product for discount"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:8 /var/www/image.loc/_temp2.php:30
+#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_temp2.php:30
 msgid "Create user"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:20 /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:20
+#: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:25
 msgid "Deleting a user"
 msgstr ""
@@ -4168,7 +4509,8 @@ msgstr ""
 msgid "Remove selected users?"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:37 /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:72
 msgid "Time of registration"
 msgstr ""
 
@@ -4177,16 +4519,15 @@ msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:51
-msgid ""
-"Export Mailchimp sent <br />to all users on their<br /> email "
-"subscription<br /> form on your<br /> news rassilku."
+msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
 msgstr ""
 
 #: /var/www/image.loc/_temp2.php:52
 msgid "Orders history"
 msgstr ""
 
-#: /var/www/image.loc/_temp2.php:54 /var/www/image.loc/_temp2.php:84
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:84
 msgid "Time of the order"
 msgstr ""
 
@@ -4210,11 +4551,13 @@ msgstr ""
 msgid "Error: Module information has not been found"
 msgstr ""
 
-#: mod_search.php:123 sys_upgrade.php:32
+#: mod_search.php:123
+#: sys_upgrade.php:32
 msgid "FTP_connect function is not available"
 msgstr ""
 
-#: mod_search.php:140 sys_upgrade.php:62
+#: mod_search.php:140
+#: sys_upgrade.php:62
 msgid "Server connection error:Check username and password"
 msgstr ""
 
@@ -4226,7 +4569,8 @@ msgstr ""
 msgid "File downloading error"
 msgstr ""
 
-#: mod_search.php:207 mod_search.php:287
+#: mod_search.php:207
+#: mod_search.php:287
 msgid "Creation of temporary directory has been failed"
 msgstr ""
 
@@ -4238,7 +4582,9 @@ msgstr ""
 msgid "Attention or Caution"
 msgstr ""
 
-#: mod_search.php:237 mod_search.php:268 sys_upgrade.php:129
+#: mod_search.php:237
+#: mod_search.php:268
+#: sys_upgrade.php:129
 msgid "Exploding error"
 msgstr ""
 
@@ -4246,7 +4592,8 @@ msgstr ""
 msgid "Module installation error"
 msgstr ""
 
-#: mod_search.php:258 mod_search.php:306
+#: mod_search.php:258
+#: mod_search.php:306
 msgid "Modul has been installed"
 msgstr ""
 
@@ -4254,11 +4601,13 @@ msgstr ""
 msgid "Module installation module"
 msgstr ""
 
-#: admin_search.php:87 admin_search.php:208
+#: admin_search.php:87
+#: admin_search.php:208
 msgid "First link"
 msgstr ""
 
-#: admin_search.php:88 admin_search.php:209
+#: admin_search.php:88
+#: admin_search.php:209
 msgid "Last link"
 msgstr ""
 
@@ -4310,7 +4659,8 @@ msgstr ""
 msgid "Files deleted"
 msgstr ""
 
-#: admin.php:65 admin.php:73
+#: admin.php:65
+#: admin.php:73
 msgid "Cache has been cleared"
 msgstr ""
 
@@ -4354,24 +4704,32 @@ msgstr ""
 msgid "Deleted ID page"
 msgstr ""
 
-#: pages.php:143 pages.php:475 widgets_manager.php:95 widgets_manager.php:164
-#: widgets_manager.php:243 widgets_manager.php:274
+#: pages.php:143
+#: pages.php:475
+#: widgets_manager.php:95
+#: widgets_manager.php:164
+#: widgets_manager.php:243
+#: widgets_manager.php:274
 msgid "Description "
 msgstr ""
 
-#: pages.php:145 pages.php:478
+#: pages.php:145
+#: pages.php:478
 msgid "Creation date"
 msgstr ""
 
-#: pages.php:146 pages.php:479
+#: pages.php:146
+#: pages.php:479
 msgid "Creation time"
 msgstr ""
 
-#: pages.php:147 pages.php:480
+#: pages.php:147
+#: pages.php:480
 msgid "Publication date"
 msgstr ""
 
-#: pages.php:148 pages.php:481
+#: pages.php:148
+#: pages.php:481
 msgid "Publication time"
 msgstr ""
 
@@ -4379,17 +4737,18 @@ msgstr ""
 msgid "Main page template"
 msgstr ""
 
-#: pages.php:177 pages.php:510
+#: pages.php:177
+#: pages.php:510
 msgid "Reserved the same name module"
 msgstr ""
 
-#: pages.php:186 pages.php:519
+#: pages.php:186
+#: pages.php:519
 msgid "Reserved of the same name category"
 msgstr ""
 
 #: pages.php:198
-msgid ""
-"Page with the same URL has been created yet. Specify or select another URL"
+msgid "Page with the same URL has been created yet. Specify or select another URL"
 msgstr ""
 
 #: pages.php:264
@@ -4416,7 +4775,8 @@ msgstr ""
 msgid "Created. ID"
 msgstr ""
 
-#: pages.php:473 settings.php:84
+#: pages.php:473
+#: settings.php:84
 msgid "Keywords"
 msgstr ""
 
@@ -4448,7 +4808,8 @@ msgstr ""
 msgid "Error: Generic page can not be deleted."
 msgstr ""
 
-#: pages.php:638 pages.php:655
+#: pages.php:638
+#: pages.php:655
 msgid "Page has been deleted."
 msgstr ""
 
@@ -4481,44 +4842,51 @@ msgid "Username and password have not been found"
 msgstr ""
 
 #: login.php:98
-msgid ""
-"Please check your email for instructions on how to activate the new password."
+msgid "Please check your email for instructions on how to activate the new password."
 msgstr ""
 
-#: login.php:120 login.php:124
+#: login.php:120
+#: login.php:124
 msgid "Wrong protection code"
 msgstr ""
 
-#: widgets_manager.php:30 widgets_manager.php:80 widgets_manager.php:200
+#: widgets_manager.php:30
+#: widgets_manager.php:80
+#: widgets_manager.php:200
 msgid "Set the directory access rights to continue the work with widgets"
 msgstr ""
 
 #: widgets_manager.php:90
-msgid ""
-"Widget with the same name already exists. Choose or select another name."
+msgid "Widget with the same name already exists. Choose or select another name."
 msgstr ""
 
 #: widgets_manager.php:98
 msgid "Method"
 msgstr ""
 
-#: widgets_manager.php:148 widgets_manager.php:179
+#: widgets_manager.php:148
+#: widgets_manager.php:179
 msgid "Created a widget"
 msgstr ""
 
-#: widgets_manager.php:151 widgets_manager.php:185
+#: widgets_manager.php:151
+#: widgets_manager.php:185
 msgid "Widget created"
 msgstr ""
 
-#: widgets_manager.php:229 widgets_manager.php:302
+#: widgets_manager.php:229
+#: widgets_manager.php:302
 msgid "Error: widget not found!"
 msgstr ""
 
-#: widgets_manager.php:259 widgets_manager.php:294
+#: widgets_manager.php:259
+#: widgets_manager.php:294
 msgid "Changed a widget"
 msgstr ""
 
-#: widgets_manager.php:261 widgets_manager.php:297 languages.php:132
+#: widgets_manager.php:261
+#: widgets_manager.php:297
+#: languages.php:132
 msgid "Changes has been saved"
 msgstr ""
 
@@ -4566,15 +4934,18 @@ msgstr ""
 msgid "Changed a language"
 msgstr ""
 
-#: languages.php:155 languages.php:171
+#: languages.php:155
+#: languages.php:171
 msgid "This language has been used by default and can not be deleted"
 msgstr ""
 
-#: languages.php:155 languages.php:171
+#: languages.php:155
+#: languages.php:171
 msgid "Blocking"
 msgstr ""
 
-#: languages.php:163 languages.php:183
+#: languages.php:163
+#: languages.php:183
 msgid "Deleted the ID language"
 msgstr ""
 
@@ -4626,7 +4997,8 @@ msgstr ""
 msgid "Per page"
 msgstr ""
 
-#: categories.php:209 categories.php:351
+#: categories.php:209
+#: categories.php:351
 msgid "Category has been created or created a category"
 msgstr ""
 
@@ -4658,7 +5030,8 @@ msgstr ""
 msgid "Category deletion error"
 msgstr ""
 
-#: categories.php:540 categories.php:572
+#: categories.php:540
+#: categories.php:572
 msgid "Deleted ID category or ID category has been deleted"
 msgstr ""
 
@@ -4972,11 +5345,13 @@ msgstr ""
 msgid "You did not ask for a set of main commodity"
 msgstr ""
 
-#: ../../modules/shop/admin/kits.php:62 ../../modules/shop/admin/kits.php:141
+#: ../../modules/shop/admin/kits.php:62
+#: ../../modules/shop/admin/kits.php:141
 msgid "You must attach the goods to create a set"
 msgstr ""
 
-#: ../../modules/shop/admin/kits.php:68 ../../modules/shop/admin/kits.php:147
+#: ../../modules/shop/admin/kits.php:68
+#: ../../modules/shop/admin/kits.php:147
 msgid "Kit with such goods already exists"
 msgstr ""
 
@@ -5231,8 +5606,7 @@ msgid "Error. Currency used by other objects. Check the payment methods"
 msgstr ""
 
 #: ../../modules/shop/admin/currencies.php:222
-msgid ""
-"Error. The currency used in the products. Check the currency options products"
+msgid "Error. The currency used in the products. Check the currency options products"
 msgstr ""
 
 #: ../../modules/shop/admin/currencies.php:231
@@ -5365,3 +5739,4 @@ msgstr ""
 #: ../../modules/shop/admin/system.php:360
 msgid "No configuration key or<br /> key account list on Mailchimp"
 msgstr ""
+
