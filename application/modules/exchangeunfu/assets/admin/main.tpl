@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         {foreach $info as $k => $datas}
-            <tr class="partnerData" data-productid="{echo $datas['product_external_id']}" data-partner="{echo $datas['partner_external_id']}">
+            <tr class="partnerData" data-productid="{echo $datas['product_id']}" data-partner="{echo $datas['partner_external_id']}">
                 <td>{echo $k+1}</td>
                 <td class="regionName">{echo $datas['region']}</td>
                 <td class="change">
