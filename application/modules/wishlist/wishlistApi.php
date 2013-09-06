@@ -221,7 +221,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         }
         return json_encode($data);
     }
-    
+
     /**
      * render popup for adding to wishlist
      * @param type $varId
@@ -269,7 +269,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         parent::do_upload();
         return $this->return_json();
     }
-    
+
     /**
      * return sting format information about user wish list items
      */
