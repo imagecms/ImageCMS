@@ -5,8 +5,6 @@ if (!defined('BASEPATH'))
 
 class Sys_update extends BaseAdminController {
 
-    private $upgrade_server = 'http://imagecms.net/upgrades/';
-
     /**
      * instance of Update library
      * @var Update
@@ -14,22 +12,23 @@ class Sys_update extends BaseAdminController {
     private $update;
 
     public function __construct() {
+        if (!extension_loaded('soap')) {
+            showMessage('Расширение PHP SOAP неустановлено', '', 'r');
+            pjax('/admin');
+        }
+
         parent::__construct();
         $this->update = new Update();
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+        ini_set("soap.wsdl_cache_enabled", "0");
     }
 
     public function index() {
         if (!file_exists('md5.txt'))
             write_file('md5.txt', json_encode($this->update->parse_md5()));
 
-        if (!extension_loaded('soap')) {
-            exit;
-        }
-
-        ini_set("soap.wsdl_cache_enabled", "0");
 
         if (extension_loaded('soap')) {
             $array = $this->update->getStatus();
