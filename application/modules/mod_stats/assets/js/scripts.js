@@ -101,7 +101,7 @@ $(document).ready(function() {
         if (params !== 'false') {
             var chartData = prepareData(params[0], params[1]);
         }
-        console.log(chartData);
+        
         $.ajax({
             async: false,
             type: 'get',
@@ -218,23 +218,23 @@ $(document).ready(function() {
     
     
     
-    function testDataOrders() {
-        var data = [];
-        var dataOrdersAll = {};
-        var dataOrdersPaid = {};
-        dataOrdersAll['key'] = 'Все закази';
-        dataOrdersAll['values'] = [{x: "1296950400", y: 107.18}, {x: "1297036800", y: 68.80},
-            {x: "1299196800", y: 1178.99}, {x: "1299456000", y: 35.00}
-            ,
-//        {x: new Date(2013, 3, 28), y: 8},
-//        {x: new Date(2013, 4, 28), y: 3},
-//        {x: new Date(2013, 5, 28), y: 11}
-        ];
-        dataOrdersPaid['key'] = 'Оплачение';
-        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
-            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 11},
-            {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
-        data.push(dataOrdersAll);
-        return data;
-    }
+//    function testDataOrders() {
+//        var data = [];
+//        var dataOrdersAll = {};
+//        var dataOrdersPaid = {};
+//        dataOrdersAll['key'] = 'Все закази';
+//        dataOrdersAll['values'] = [{x: "1296950400", y: 107.18}, {x: "1297036800", y: 68.80},
+//            {x: "1299196800", y: 1178.99}, {x: "1299456000", y: 35.00}
+//            ,
+////        {x: new Date(2013, 3, 28), y: 8},
+////        {x: new Date(2013, 4, 28), y: 3},
+////        {x: new Date(2013, 5, 28), y: 11}
+//        ];
+//        dataOrdersPaid['key'] = 'Оплачение';
+//        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
+//            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 11},
+//            {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
+//        data.push(dataOrdersAll);
+//        return data;
+//    }
 });
