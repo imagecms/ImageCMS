@@ -101,7 +101,7 @@ class MY_Controller extends MX_Controller {
      */
     public static function getCurrentLocale() {
 
-        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        if (self::$currentLocale)
             return self::$currentLocale;
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;

@@ -19,7 +19,7 @@ class New_level extends MY_Controller {
 
     public function autoload() {
 
-        require_once './templates/commerce4x/shop/helper.php';
+        require_once './templates/newLevel/shop/helper.php';
         $settings = $this->new_level_model->getthema();
 
         if (!$settings)
