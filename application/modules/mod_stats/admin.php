@@ -15,8 +15,7 @@ class Admin extends \BaseAdminController {
         /** Load model * */
         $this->load->model('stats_model');
 
-        /**         * */
-        /** Prepare template, load scripts and styles * */
+
         $this->mainTpl = \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
 
@@ -29,6 +28,9 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3.min', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
+
+        //\mod_stats\classes\Orders::create()->getDate();
+        //exit;
     }
 
     public function index() {
@@ -57,9 +59,9 @@ class Admin extends \BaseAdminController {
      * @param array $params params for method
      */
     public function getDiagramData($statType, $statSubType) {
-        /** Prepare method name**/
-        $methodName = 'get'.ucfirst($statSubType);
-        
+        /** Prepare method name* */
+        $methodName = 'get' . ucfirst($statSubType);
+
         try {
             switch ($statType) {
                 case "products":
@@ -89,9 +91,7 @@ class Admin extends \BaseAdminController {
             // print some message
         }
     }
-    
-    
-    
+
 //    public function dataPie() {
 //        $a['type'] = 'pie';
 //        $a['data'][0]['key'] = 'one';
@@ -121,5 +121,4 @@ class Admin extends \BaseAdminController {
 //      
 //        echo json_encode($a);
 //    }
-
 }

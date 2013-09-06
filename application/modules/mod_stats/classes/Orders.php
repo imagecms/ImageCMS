@@ -11,7 +11,7 @@ class Orders extends \MY_Controller {
 
     protected static $_instance;
 
-     /**
+    /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
@@ -32,14 +32,59 @@ class Orders extends \MY_Controller {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
     }
-    
-    
+
+    /**
+     * Returns json data for line diagram about orders by date
+     * @param string $interval year|month|week|day
+     * @param string $begin date in format DD-MM-YYYY
+     */
+    public function getDate() {
+        $orders = $this->stats_model_orders->getOrdersAndCounts();
+
+        $paid = array();
+        $unpaid = array();
+
+        foreach ($orders as $orders) {
+            if ($orders['paid'] == 1) {
+                $paid[] = array(
+                    'x' => $orders['date_created'],
+                    'y' => $orders['products_count']
+                );
+            } else {
+                $unpaid[] = array(
+                    'x' => $orders['date_created'],
+                    'y' => $orders['products_count']
+                );
+            }
+        }
+        
+        $result = array(
+            'type' => 'line',
+            'data' => array(
+                0 => array(
+                    'key' => 'Оплачены',
+                    'values' => $paid
+                ),
+                1 => array(
+                    'key' => 'Неоплачены',
+                    'values' => $unpaid
+                )
+            )
+        );
+        
+        return json_encode($result);
+
+//        echo "<pre>";
+//        print_r($result);
+//        echo "</pre>";
+//        exit;
+    }
 
     public function getPrice() {
         $query = $this->stats_model_orders->getOrdersByPrice();
         $res['type'] = 'line';
         $res['data'][0]['key'] = 'Все закази';
-        $res['data'][0]['values']= $query;
+        $res['data'][0]['values'] = $query;
         echo json_encode($res);
     }
 
