@@ -241,6 +241,8 @@
                             </ul>
                             <img src="{$THEME}images/gen_sum.png" alt="gen_sum"/>
 
+
+
                             <!-- Start. Render kit summary -->
                             <div class="c_97">({lang('Количество комплектов ', 'webinger')}- {echo $orderProduct->getQuantity()})</div>
                             <div class="price price_f-s_18"><span class="f-w_b">{echo $orderProduct->getKit()->getTotalPrice()}</span>&nbsp;{$CS}</div>
