@@ -38,7 +38,7 @@ class Orders extends \MY_Controller {
      * @param string $interval year|month|week|day
      * @param string $begin date in format DD-MM-YYYY
      */
-    public function getDate() {
+    public function getCount() {
         $orders = $this->stats_model_orders->getOrdersAndCounts();
 
         $paid = array();
@@ -50,28 +50,27 @@ class Orders extends \MY_Controller {
                     'x' => $orders['date_created'],
                     'y' => $orders['products_count']
                 );
-            } else {
-                $unpaid[] = array(
-                    'x' => $orders['date_created'],
-                    'y' => $orders['products_count']
-                );
             }
+            $all[] = array(
+                'x' => $orders['date_created'],
+                'y' => $orders['products_count']
+            );
         }
-        
+
         $result = array(
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Оплачены',
-                    'values' => $paid
+                    'key' => 'Все',
+                    'values' => $all
                 ),
                 1 => array(
-                    'key' => 'Неоплачены',
-                    'values' => $unpaid
+                    'key' => 'Оплачены',
+                    'values' => $paid
                 )
             )
         );
-        
+
         return json_encode($result);
 
 //        echo "<pre>";

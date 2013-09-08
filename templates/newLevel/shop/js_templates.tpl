@@ -265,14 +265,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr"><%-nextCs%></span>
         </span>
         </span>
@@ -631,14 +631,14 @@
         <span class="current-prices f-s_0">
         <span class="price-new">
         <span>
-        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count*item.price).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceOrder"><%- parseFloat(item.count) * parseFloat(item.price).toFixed(pricePrecision) %></span>
         <span class="curr"><%-curr%></span>
         </span>
         </span>
         <%if (nextCsCond){%>
         <span class="price-add">
         <span>
-        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count*item.addprice).toFixed(pricePrecision) %></span>
+        <span class="price" data-rel="priceAddOrder"><%- parseFloat(item.count) * parseFloat(item.addprice).toFixed(pricePrecision) %></span>
         <span class="curr-add"><%-nextCs%></span>
         </span>
         </span>

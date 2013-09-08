@@ -123,7 +123,7 @@
                                                         <option value="{$k}" {if $k == $field_group} selected="selected" {/if}>{$v}</option>
                                                     {/foreach}
                                                 </select>
-                                                <p class="help-block">{lang("Select a field group to be displayed/ viewed  in the created category of the group or group category")}</p>
+                                                <p class="help-block">{lang('Select a field group to be displayed/ viewed  in the created category of the group or group category', 'admin')}</p>
                                                 <span class="frame_label no_connection m-t_20">
                                                     <span class="niceCheck b_n">
                                                         <input type="checkbox" value="1" name="apply_for_subcats"
