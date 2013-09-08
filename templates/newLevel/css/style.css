@@ -782,7 +782,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 
 .frame-form-field{display: block;position: relative;}
 .frame-label{display: inline-block;}
-.frame-label .frame-label, .frame-radio .frame-label{cursor: pointer;}
+.frame-label .frame-label, .frame-radio .frame-label, .frame-checks .frame-label{cursor: pointer;}
 .frame-radio{overflow: hidden;}
 .help-block{margin-top: 3px;line-height: 1.2;}
 .help-block p{margin-bottom: 0;}
