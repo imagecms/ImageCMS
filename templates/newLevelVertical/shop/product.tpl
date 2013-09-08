@@ -256,7 +256,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a rel="position: 'xBlock'" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
