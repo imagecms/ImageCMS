@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 17:09+0300\n"
+"POT-Creation-Date: 2013-09-09 17:24+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -4239,8 +4239,8 @@ msgid "Character"
 msgstr "Символ"
 
 #: /var/www/image.loc/_temp2.php:447
-msgid "Rate"
-msgstr "Рейтинг"
+msgid "Currency rate"
+msgstr "Курс валюты"
 
 #: /var/www/image.loc/_temp2.php:448
 msgid "Remove currency"
@@ -4306,6 +4306,10 @@ msgstr "не показывать"
 #: /var/www/image.loc/_temp2.php:20
 msgid "Currency edit"
 msgstr "Редактирование валют"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Rate"
+msgstr "Рейтинг"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Creating cumulative discount"
