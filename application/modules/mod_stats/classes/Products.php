@@ -15,12 +15,6 @@ class Products extends \MY_Controller {
         parent::__construct();
         $this->load->model('stats_model_products');
     }
-    
-    public function test() {
-
-        $this->stats_model_products->categories();
-
-    }
 
     /**
      * 
@@ -31,10 +25,9 @@ class Products extends \MY_Controller {
         return self::$instanse;
     }
 
-
     public function getBrands() {
+        $brands = $this->stats_model_products->getBrandsCountsData();
 
-        $brands = $this->stats_model_products->brands();
         // data for pie diagram
         $pieData = array();
         foreach ($brands as $brand) {
@@ -43,6 +36,7 @@ class Products extends \MY_Controller {
                 'y' => $brand['count']
             );
         }
+
         return json_encode(array(
             'type' => 'pie',
             'data' => $pieData
