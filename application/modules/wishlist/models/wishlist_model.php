@@ -142,7 +142,7 @@ class Wishlist_model extends CI_Model {
     public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
         $locale = \MY_Controller::getCurrentLocale();
 
-        $query = $this->db->select('*, mod_wish_list.user_id as wl_user_id')
+        $query = $this->db->select('*, mod_wish_list.user_id as wl_user_id, shop_product_variants.mainImage as image')
                 ->where_in('access', $access)
                 ->where('mod_wish_list.hash', $hash)
                 ->where('shop_products_i18n.locale', $locale)

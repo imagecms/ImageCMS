@@ -6,7 +6,6 @@
                     id="loginButton"
                     data-drop=".drop-enter"
                     data-source="{site_url('auth')}"
-                    data-animate="true"
                     >
                 <span class="icon_enter"></span>
                 <span class="text-el">{lang('Вход','newLevel')}</span>
