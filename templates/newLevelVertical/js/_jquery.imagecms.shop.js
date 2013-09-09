@@ -1402,7 +1402,7 @@ var ie = jQuery.browser.msie,
                         }
 
                     }
-                    else{
+                    else {
                         methods.showDrop($this, e, optionsDrop, false);
                     }
                     return false;
@@ -1458,10 +1458,7 @@ var ie = jQuery.browser.msie,
                 'confirm': confirm,
                 'timeclosemodal': timeclosemodal,
                 'moreoneNC': moreoneNC
-            }).attr('data-elrun', $thisSource).unbind('click.drop').on('click.drop', function(e) {
-                if (!$(e.target).is(set.exit))
-                    e.stopPropagation();
-            });
+            }).attr('data-elrun', $thisSource);
             $(set.exit).unbind('click.drop').on('click.drop', function() {
                 methods.closeDrop($(this).closest('[data-elrun]'));
             })
@@ -1518,8 +1515,10 @@ var ie = jQuery.browser.msie,
 
                 if (condOverlay) {
                     optionsDrop.dropOver.show().add($('.for-center')).unbind('click.drop').on('click.drop', function(e) {
-                        e.stopPropagation();
-                        methods.closeDrop(false);
+                        if (!$.existsN($(e.target).closest(elSetSource)) && !$.existsN($(e.target).is(elSetSource))) {
+                            e.stopPropagation();
+                            methods.closeDrop(false);
+                        }
                     })
                 }
                 elSetSource.addClass(place);

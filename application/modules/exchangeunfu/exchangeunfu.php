@@ -84,9 +84,9 @@ class Exchangeunfu extends MY_Controller {
                 ->onShopProductPreCreate()
                 ->setListener('_extendPageAdmin');
 
-        \CMSFactory\Events::create()
-                ->onShopProductCreate()
-                ->setListener('_addProductExternalId');
+//        \CMSFactory\Events::create()
+//                ->onShopProductCreate()
+//                ->setListener('_addProductExternalId');
 
         \CMSFactory\Events::create()
                 ->onShopProductCreate()
@@ -269,6 +269,40 @@ class Exchangeunfu extends MY_Controller {
         }
         exit();
     }
+
+//    public static function adminAutoload() {
+//        \CMSFactory\Events::create()
+//                ->onShopProductPreUpdate()
+//                ->setListener('_extendPageAdmin');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopProductPreCreate()
+//                ->setListener('_extendPageAdmin');
+//
+////        \CMSFactory\Events::create()
+////                ->onShopProductCreate()
+////                ->setListener('_addProductExternalId');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopProductCreate()
+//                ->setListener('_addProductPartner');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopProductUpdate()
+//                ->setListener('_addProductPartner');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopUserCreate()
+//                ->setListener('_addUserExternalId');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopCategoryCreate()
+//                ->setListener('_addCategoryExternalId');
+//
+//        \CMSFactory\Events::create()
+//                ->onShopOrderCreate()
+//                ->setListener('_addOrderExternalId');
+//    }
 
     /**
      * render module additional region prices tab for products

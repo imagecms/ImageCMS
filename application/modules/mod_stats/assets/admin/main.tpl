@@ -19,8 +19,8 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/date" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Date', 'mod_stats')}     
+                        <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/count" class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Count', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
@@ -29,13 +29,8 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/paid" class="linkChart"> &nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Paid', 'mod_stats')}                                        
-                        </a>
-                    </li>
-                    <li>
                         <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/brands_and_cat" data-href="admin/components/init_window/mod_stats/getStatsData/orders/brands_and_cat" class="linkChart" >&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Brands and categories', 'mod_stats')}                                      
+                            <span class="simple_tree">↳</span>{lang('Orders information', 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>
