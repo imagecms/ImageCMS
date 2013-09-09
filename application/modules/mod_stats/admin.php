@@ -25,7 +25,7 @@ class Admin extends \BaseAdminController {
                     ->registerStyle('style')
                     ->registerStyle('nvd3/nv.d3')
                     ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
-                    ->registerScript('nvd3/nv.d3.min', FALSE, 'before')
+                    ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
         //\mod_stats\classes\Orders::create()->test();

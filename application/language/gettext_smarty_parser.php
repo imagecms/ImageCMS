@@ -40,6 +40,6 @@ if ($mod) {
 
   _log($result);
   exec('xgettext --force-po -o "'.$p[1].'" '.$p[2].' '.$p[3].' '._DAT);
-//  unlink(_DAT);
+  unlink(_DAT);
 }
 ?>

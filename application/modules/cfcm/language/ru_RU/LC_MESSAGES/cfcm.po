@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-29 10:38+0300\n"
-"PO-Revision-Date: 2013-08-29 10:41+0300\n"
+"PO-Revision-Date: 2013-09-06 16:54+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -75,7 +75,7 @@ msgstr "Установите модули"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Label"
-msgstr "Label"
+msgstr "Метка"
 
 #: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:31
@@ -240,7 +240,7 @@ msgstr "Укажите имя поля"
 
 #: ../../..//admin.php:100
 msgid "Specify <b>Label</b> field"
-msgstr "Укажите <b> Label</ B> поле"
+msgstr "Укажите <b> Метка</ B> поле"
 
 #: ../../..//admin.php:104
 msgid "Only Latin characters"
