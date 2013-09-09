@@ -65,9 +65,6 @@
                     <h2 class="title" data-wishlist-name="user_name">{echo $user[user_name]}</h2>
                     <div class="date f-s_0">
                         <span data-wishlist-name="user_birthday">{echo date('Y-m-d', $user[user_birthday])}</span>
-                        {/*<span class="day">{echo date("d", $user[user_birthday])} </span>
-                            <span class="month">{echo date("F", $user[user_birthday])} </span>
-                            <span class="year">{echo date("Y ", $user[user_birthday])}</span>*/}
                     </div>
                     <div class="text">
                         <p data-wishlist-name="description">{echo $user[description]}</p>

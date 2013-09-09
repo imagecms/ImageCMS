@@ -48,7 +48,7 @@ class Banners extends MY_Controller {
 
         $hash = 'baners' . $type . $id;
         \CMSFactory\assetManager::create()
-                ->registerScript('jquery.cycle.all.min');
+                ->registerScript('jquery.cycle.all.min', TRUE);
 
         if ($cahe = Cache_html::get_html($hash)) {
             echo $cahe;

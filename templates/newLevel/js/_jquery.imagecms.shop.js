@@ -1314,7 +1314,7 @@ var ie = jQuery.browser.msie,
                 always: false,
                 animate: false,
                 moreoneNC: true,
-                timeclosemodal: false,
+                timeclosemodal: 2000,
                 before: function() {
                 },
                 after: function() {
@@ -1527,7 +1527,7 @@ var ie = jQuery.browser.msie,
                         var $this = $(this);
                         $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
                         $this.addClass(activeClass);
-                        if (!confirm && modal && timeclosemodal)
+                        if (!confirm && modal)
                             setTimeout(function() {
                                 methods.closeDrop($this)
                             }, timeclosemodal)
