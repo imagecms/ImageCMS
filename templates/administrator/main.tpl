@@ -214,7 +214,7 @@
                         {lang('Interface','admin')}:
                         <div class="dropup d-i_b">
                             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                                {lang($this->CI->config->item('language'))}
+                                {lang(ucwords($this->CI->config->item('language')), 'admin')}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
