@@ -76,7 +76,7 @@
                                 data-img="{echo $photo}"
                                 data-url="{echo shop_url('product/'.$p.url)}"
                                 data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'
-                                >                                
+                                >
                                 <span class="icon_cleaner icon_cleaner_buy"></span>
                                 <span class="text-el">{lang('Купить','newLevel')}</span>
                             </button>
@@ -89,7 +89,7 @@
                             type="button"
                             data-drop=".drop-report"
                             data-source="/shop/ajax/getNotifyingRequest"
-                            
+
                             data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
@@ -111,7 +111,7 @@
         {if $p.access == 'private' || !$otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
-                    <button 
+                    <button
                         type="button"
                         data-type="json"
                         data-modal="true"
@@ -122,7 +122,7 @@
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">
-                    <button 
+                    <button
                         type="button"
                         data-drop="#wishListPopup"
                         data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
