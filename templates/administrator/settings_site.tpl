@@ -3,21 +3,21 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Site configuration","admin")}</span>
+                <span class="title">{lang('Site configuration','admin')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/dashboard" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
-                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveSettings" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveSettings" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 </div>
             </div>
         </div>
         <div class="row-fluid">
             <div class="span3 m-t_10">
                 <ul class="nav myTab nav-tabs nav-stacked">
-                    <li class="active"><a href="#setings">{lang("Settings","admin")}</a></li>
+                    <li class="active"><a href="#setings">{lang('Settings',"admin")}</a></li>
                     <li><a href="#seo">SEO</a></li>
-                    <li><a href="#homePage">{lang("Main page","admin")}</a></li>
+                    <li><a href="#homePage">{lang('Main page','admin')}</a></li>
                     <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>  
                     <li><a href="#metatag_edit">{lang('Enter Meta Tags','admin')}</a></li>
                     <li><a href="#site_info_tab">{lang('Site information','admin')}</a></li>
@@ -31,7 +31,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang("Settings","admin")}
+                                            {lang('Settings',"admin")}
                                         </th>
                                     </tr>
                                 </thead>
@@ -42,7 +42,7 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
-                                                            <label class="control-label" for="site_offline">{lang("Site shutdown","admin")}:</label>
+                                                            <label class="control-label" for="site_offline">{lang('Site shutdown', 'admin')}:</label>
                                                             <div class="controls">
                                                                 <select name="site_offline" id="site_offline">
                                                                     {foreach $work_values as $k => $v}
@@ -50,12 +50,12 @@
                                                                     {/foreach}
                                                                 </select>
                                                                 <span class="help-block">
-                                                                    {lang("The site will be available only to the Administrator","admin")}
+                                                                    {lang('The site will be available only to the Administrator', 'admin')}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="lang_sel">{lang("Select admin language","admin")}:</label>
+                                                            <label class="control-label" for="lang_sel">{lang('Select admin language', "admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="lang_sel" id="lang_sel">
                                                                     {$arr = get_lang_admin_folders()}
@@ -67,7 +67,7 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="template">{lang("Template","admin")}:</label>
+                                                            <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
                                                                 <select name="template" id="template">
                                                                     {foreach $templates as $k => $v}
@@ -110,7 +110,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Options','admin')}
+                                            {lang('Options', 'admin')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -121,11 +121,11 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="google_analytics_id">{lang("ID Google Analytics","admin")}:</label>
+                                                            <label class="control-label" for="google_analytics_id">{lang('ID Google Analytics', "admin")}:</label>
                                                             <div class="controls">
                                                                 <input type="text" id="google_analytics_id" name="google_analytics_id" value="{$google_analytics_id}" />
                                                                 <span class="help-block">
-                                                                    {lang("The code should be in the format ua-54545845")}
+                                                                    {lang('The code should be in the format ua-54545845', 'admin')}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -144,7 +144,7 @@
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="yandex_metric">{lang("ID for yandex metric","admin")}:</label>
+                                                            <label class="control-label" for="yandex_metric">{lang('ID for yandex metric',"admin")}:</label>
                                                             <div class="controls">
                                                                 <input type="text" id="yandex_webmaster" name="yandex_metric" value="{$yandex_metric}" />
                                                             </div>
@@ -163,7 +163,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang("Main page","admin")}
+                                            {lang('Main page',"admin")}
                                         </th>
                                     </tr>
                                 </thead>
@@ -175,7 +175,7 @@
                                                     <div class="row-fluid">
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="main_typesq">{lang("Categories","admin")}:</label>
+                                                            <label class="control-label" for="main_typesq">{lang('Categories',"admin")}:</label>
                                                             <div class="controls">
 
                                                                 <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
@@ -187,7 +187,7 @@
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="main_types">{lang("Page","admin")}:</label>
+                                                            <label class="control-label" for="main_types">{lang('Page',"admin")}:</label>
                                                             <div class="controls">
                                                                 <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
 
@@ -196,7 +196,7 @@
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="main_type">{lang("Module","admin")}:</label>
+                                                            <label class="control-label" for="main_type">{lang('Module',"admin")}:</label>
                                                             <div class="controls">
 
                                                                 <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
@@ -224,7 +224,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang("Meta tags","admin")}
+                                            {lang('Meta tags',"admin")}
                                         </th>
                                     </tr>
                                 </thead>
@@ -236,11 +236,11 @@
                                                     <div class="row-fluid">
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="add_site_name">{lang("Site name or site title","admin")}:</label>
+                                                            <label class="control-label" for="add_site_name">{lang('Site name',"admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="add_site_name" id="add_site_name">
-                                                                    <option value="1" {if $add_site_name == "1"}selected="selected"{/if}>{lang("Yes","admin")}</option>
-                                                                    <option value="0" {if $add_site_name == "0"}selected="selected"{/if} >{lang("No","admin")}</option>
+                                                                    <option value="1" {if $add_site_name == "1"}selected="selected"{/if}>{lang('Yes',"admin")}</option>
+                                                                    <option value="0" {if $add_site_name == "0"}selected="selected"{/if} >{lang('No',"admin")}</option>
                                                                 </select>
                                                                 <span class="help-block">
                                                                     {lang('Whether to display the site name in the title page','admin')}
@@ -249,7 +249,7 @@
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="add_site_name_to_cat">{lang("Category name","admin")}:</label>
+                                                            <label class="control-label" for="add_site_name_to_cat">{lang('Category name',"admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="add_site_name_to_cat" id="add_site_name_to_cat">
                                                                     <option value="1" {if $add_site_name_to_cat == "1"}selected="selected"{/if}>{lang("Yes","admin")}</option>
@@ -262,33 +262,33 @@
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="delimiter">{lang("Separator","admin")}:</label>
+                                                            <label class="control-label" for="delimiter">{lang('Separator',"admin")}:</label>
                                                             <div class="controls">
                                                                 <input type="text" id="delimiter" value="{$delimiter}" name="delimiter" class="textbox_long" style="width:80px;" />
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="create_keywords">{lang("Meta Keywords","admin")}:</label>
+                                                            <label class="control-label" for="create_keywords">{lang('Meta Keywords',"admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="create_keywords" id="create_keywords">
-                                                                    <option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>{lang("Auto formation","admin")}</option>
-                                                                    <option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>{lang("Leave empty","admin")}</option>
+                                                                    <option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>{lang('Auto formation',"admin")}</option>
+                                                                    <option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>{lang('Leave empty',"admin")}</option>
                                                                 </select>
                                                                 <span class="help-block">
-                                                                    {lang("If not given or specified","admin")}
+                                                                    {lang('If not given or specified',"admin")}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="control-group m-t_10">
-                                                            <label class="control-label" for="create_description">{lang("Meta Description","admin")}:</label>
+                                                            <label class="control-label" for="create_description">{lang('Meta Description',"admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="create_description" id="create_description">
-                                                                    <option value="auto" {if $create_description == "auto"}selected="selected"{/if}>{lang("Auto formation","admin")}</option>
-                                                                    <option value="empty" {if $create_description == "empty"}selected="selected"{/if}>{lang("Leave empty","admin")}</option>
+                                                                    <option value="auto" {if $create_description == "auto"}selected="selected"{/if}>{lang('Auto formation',"admin")}</option>
+                                                                    <option value="empty" {if $create_description == "empty"}selected="selected"{/if}>{lang('Leave empty',"admin")}</option>
                                                                 </select>
                                                                 <span class="help-block">
-                                                                    {lang("If not given or specified","admin")}
+                                                                    {lang('If not specified',"admin")}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -335,14 +335,14 @@
                                                             <input  {if $i!= 1}disabled="disabled"{/if}type="hidden" name="lang_ident" value="{echo $lan}">
                                                             <div class="row-fluid">
                                                                 <div class="control-group m-t_10">
-                                                                    <label class="control-label" for="titleNa">{lang('Site name or site title', 'admin')}:</label>
+                                                                    <label class="control-label" for="titleNa">{lang('Site name', 'admin')}:</label>
                                                                     <div class="controls">
                                                                         <input {if $i!= 1}disabled="disabled"{/if} type="text" id="titleNa" name="name" value="{echo $meta.name}" />
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="control-group m-t_10">
-                                                                    <label class="control-label" for="short_titleS">{lang('Short site name or site title', 'admin')}:</label>
+                                                                    <label class="control-label" for="short_titleS">{lang('Short site name', 'admin')}:</label>
                                                                     <div class="controls">
                                                                         <input {if $i!= 1}disabled="disabled"{/if} type="text" id="short_titleS" name="short_name" value="{echo $meta.short_name}" />
                                                                     </div>
@@ -384,7 +384,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('a_sett')}
+                                            {lang('Settings', 'admin')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -396,28 +396,28 @@
                                                     <div class="row-fluid">
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_compatytype">Тип предприятия <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_compatytype'"></i></label>
+                                                            <label class="control-label" for="siteinfo_compatytype">{lang('Company type', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_compatytype'"></i></label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_compatytype" name="siteinfo_compatytype">{$siteinfo_compatytype}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_address">Адрес <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_address'"></i></label>
+                                                            <label class="control-label" for="siteinfo_address">{lang('Address', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_address'"></i></label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_address" name="siteinfo_address">{$siteinfo_address}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_mainphone">Основной телефон <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_mainphone'"></i></label>
+                                                            <label class="control-label" for="siteinfo_mainphone">{lang('Main phone', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_mainphone'"></i></label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_mainphone" name="siteinfo_mainphone">{$siteinfo_mainphone}</textarea>
                                                             </div>
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_adminemail">Email администратора <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_adminemail'"></i></label>
+                                                            <label class="control-label" for="siteinfo_adminemail">{lang('Admin email', 'admin')}<i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_adminemail'"></i></label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_adminemail" name="siteinfo_adminemail">{$siteinfo_adminemail}</textarea>
                                                             </div>
@@ -445,12 +445,12 @@
                                                                             </tr> 
                                                                         {/foreach}
                                                                     {else:}
-                                                                        <tr class="siteinfo_contact_row" data-original-title="{$tooltipText} который вы ввели в качестве типа контакта">
+                                                                        <tr class="siteinfo_contact_row" data-original-title="{$tooltipText} {lang('you entered as a contact type', 'admin')}">
                                                                             <td>
-                                                                                 <input type='text' placeholder="Тип конатакта" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="">
+                                                                                 <input type='text' placeholder="{lang('Contact type', 'admin')}" class="siteinfo_contactkey" name="siteinfo_contactkey[]" value="">
                                                                             </td>
                                                                             <td>
-                                                                                <textarea rows="1" placeholder="Значение" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
+                                                                                <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
                                                                             </td>
                                                                             <td>
                                                                                 <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
@@ -465,14 +465,14 @@
                                                             <p id="siteinfo_contacts_controls" style='text-align:right; padding-top:7px;'>
                                                                 <a class="btn btn-small btn-success" id="siteinfo_addcontact">
                                                                     <span class="icon-plus-sign icon-white"></span>
-                                                                    Добавить контакт
+                                                                    {lang('Add contact', 'admin')}
                                                                 </a>
                                                             </p>
                                                         </div>
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" for="siteinfo_logo">Лого <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
+                                                            <label class="control-label" for="siteinfo_logo">{lang('Logo', 'admin')} <i class="icon-info-sign" data-original-title="{$tooltipText} 'siteinfo_logo'"></i></label>
                                                             <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
                                                             <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
 
@@ -482,9 +482,9 @@
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="{$siteinfo_logo}" alt="Кликните для выбора изображения" />
+                                                                        <img class="img-polaroid" src="{$siteinfo_logo}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="Кликните для выбора изображения" />
+                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {/if}
                                                                 </div>
                                                             </div>
@@ -500,7 +500,7 @@
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
                                                                         </button>
-                                                                        <img class="img-polaroid" src="{$siteinfo_favicon}" alt="Кликните для выбора изображения" />
+                                                                        <img class="img-polaroid" src="{$siteinfo_favicon}" alt="{lang('Click to select the image', 'admin')}" />
                                                                     {else:}
                                                                         <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="Кликните для выбора изображения" />
                                                                     {/if}

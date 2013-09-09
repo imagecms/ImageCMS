@@ -8,7 +8,7 @@
 
                         <div class="pull-left">
                             <span class="title">
-                            Template editor
+                            {lang('Template editor', 'template_editor')}
                             </span>
                         </div>
                         <div class="pull-right">

@@ -14,6 +14,6 @@
 	<div class="form_overflow"></div>
 
 	<div class="form_text"></div>
-	<div class="form_input"><input type="submit" name="button" class="button"  value="{lang("Have been saved","admin")}" onclick="ajax_me('groups_edit_form');" ></div>
+	<div class="form_input"><input type="submit" name="button" class="button"  value="{lang("Save","admin")}" onclick="ajax_me('groups_edit_form');" ></div>
 	<div class="form_overflow"></div>
 {form_csrf()}</form>
