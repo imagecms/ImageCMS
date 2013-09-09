@@ -143,7 +143,7 @@ function changeSelectFilter(el) {
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
                         'top': elPos.offset().top - cleaverFilterObj.currentPosScroll[elPos.closest(framechecks).index()]
-                    }).removeClass().addClass('apply '+clas+' '+cleaverFilterObj.addingClass);
+                    }).removeClass().addClass('apply ' + clas + ' ' + cleaverFilterObj.addingClass);
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
                     });
@@ -228,11 +228,11 @@ function afterAjaxInitializeFilter(ready) {
                     cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
                 }
                 else {
-                    cleaverFilterObj.currentPosScroll = [];
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
                 }
             }
             else {
-                cleaverFilterObj.currentPosScroll = [];
+                cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
             }
         }
     });
@@ -327,8 +327,9 @@ function ajaxRecount(el, slChk) {
             if (slChk) {
                 otherClass = slChk;
             }
-            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
-                cleaverFilterObj.currentPosScroll = [];
+            var frameChecks = $($this).closest(framechecks);
+            if (frameChecks.data('rel') == undefined || frameChecks.data('rel').match('cusel')) {
+                cleaverFilterObj.currentPosScroll[frameChecks.index()] = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
             else {

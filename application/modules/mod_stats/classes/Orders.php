@@ -64,6 +64,7 @@ class Orders extends \MY_Controller {
      * @param string $begin date in format DD-MM-YYYY
      *
     public function getDate() {
+
         $orders = $this->stats_model_orders->getOrdersAndCounts();
 
         $paid = array();
@@ -75,24 +76,23 @@ class Orders extends \MY_Controller {
                     'x' => $orders['date_created'],
                     'y' => $orders['products_count']
                 );
-            } else {
-                $unpaid[] = array(
-                    'x' => $orders['date_created'],
-                    'y' => $orders['products_count']
-                );
             }
+            $all[] = array(
+                'x' => $orders['date_created'],
+                'y' => $orders['products_count']
+            );
         }
 
         $result = array(
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Оплачены',
-                    'values' => $paid
+                    'key' => 'Все',
+                    'values' => $all
                 ),
                 1 => array(
-                    'key' => 'Неоплачены',
-                    'values' => $unpaid
+                    'key' => 'Оплачены',
+                    'values' => $paid
                 )
             )
         );
@@ -116,7 +116,7 @@ class Orders extends \MY_Controller {
         echo json_encode($res);
     }
 
-    public function getDate() {
+    public function getCount() {
         $paid = $this->getOrders_(TRUE);
         $unpaid = $this->getOrders_(FALSE);
 

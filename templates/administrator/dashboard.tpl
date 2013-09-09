@@ -121,7 +121,7 @@
                                 <p>
                                     {lang("Version","admin")}: {$cms_number} <br />
                                     <a class="pjax" href="/admin/sys_update">
-                                            {lang('Check version update' , 'newLevel')}
+                                            {lang('Check version update' , 'admin')}
                                     </a>
                                     <br/>
                                     <a href="/admin/sys_info" class="pjax">{lang("Information","admin")}</a>

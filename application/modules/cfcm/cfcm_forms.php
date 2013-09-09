@@ -68,7 +68,7 @@ class Cfcm_forms extends MY_Controller {
 
          $f['label'] = array(
                 'type'       => 'text',
-                'label'      => 'Label',
+                'label'      => lang('Label', 'cfcm'),
                 'validation' => 'max_length[255]',
                 'class'      => 'required',
          );

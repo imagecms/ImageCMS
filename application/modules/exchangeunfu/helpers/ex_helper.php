@@ -127,9 +127,9 @@ if (!function_exists('is_productivity')) {
 
 if (!function_exists('is_product_i18n')) {
 
-    function is_product_i18n($product_ex_id, $products) {
+    function is_product_i18n($product_id, $products) {
         foreach ($products as $val) {
-            if ($val['external_id'] == $product_ex_id)
+            if ($val['id'] == $product_id)
                 return $val;
         }
         return false;
@@ -271,9 +271,9 @@ if (!function_exists('is_user')) {
 
 if (!function_exists('is_orders_product')) {
 
-    function is_orders_product($product_ex_id, $products) {
+    function is_orders_product($product_id, $products) {
         foreach ($products as $val) {
-            if ($val['external_id'] == $product_ex_id)
+            if ($val['id'] == $product_id)
                 return $val;
         }
         return false;

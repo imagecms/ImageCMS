@@ -27,6 +27,7 @@ class Products extends \MY_Controller {
 
     public function getBrands() {
         $brands = $this->stats_model_products->getBrandsCountsData();
+
         // data for pie diagram
         $pieData = array();
         foreach ($brands as $brand) {
