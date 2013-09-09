@@ -63,45 +63,37 @@ $(document).ready(function() {
      */
     function convertValuesForLineChart(data) {
         var forProcessing = data.data;
-
         $.each(forProcessing, function(indexF) {
             newForProcessing = forProcessing[indexF];
-
             $.each(newForProcessing.values, function(indexS) {
                 forProcessing[indexF].values[indexS].y = parseFloat(newForProcessing.values[indexS].y);
             });
         });
         data.data = forProcessing;
-
         return data;
     }
-    
+
     /**
      * Convert data for pie to bar chart
      * @param {object} data
      * @returns {String}
      */
-    function convertDataForPieToBarChart(data){
+    function convertDataForPieToBarChart(data) {
         var inputData = data;
         var chartDataForReturn = [];
         var tmpData = {};
-        
         tmpData.values = [];
-       
-        if (inputData === undefined){
+        if (inputData === undefined) {
             return 'false';
         }
-        
-        $.each(inputData, function(index, value){
+
+        $.each(inputData, function(index, value) {
             var stepObj = {};
-            
             stepObj.label = value.key;
             stepObj.value = value.y;
-            
             tmpData.values.push(stepObj);
         });
         tmpData.key = 'Bar data';
-             
         chartDataForReturn.push(tmpData);
         return chartDataForReturn;
     }
@@ -138,7 +130,7 @@ $(document).ready(function() {
             data: 'notLoadMain=' + 'true',
             url: base_url + dataHref,
             success: function(response) {
-                if (response != null) {
+                if (response != false) {
                     $('#chartContainer').html(response);
                     $('.linkChart').removeClass('active');
                     thisEl.addClass('active');
@@ -158,16 +150,40 @@ $(document).ready(function() {
             }
         });
     });
+    /**
+     * Choose chart type 
+     */
+    $('#selectChartType').bind('change', function() {
+        var selectElement = $(this);
+        var chartType = selectElement.find("option:selected").val();
+        $('.hideChart').hide();
+        $('#' + chartType).fadeIn();
 
+        barChartUpdate();
 
-
+    })
+    /**
+     * Update bar chart
+     * @returns 
+     */
+    function barChartUpdate() {
+        var chart = nv.models.discreteBarChart()
+                .x(function(d) {
+            return d.label;
+        })
+                .y(function(d) {
+            return d.value;
+        });
+        d3.select('#barChart svg')
+                .call(chart);
+        chart.update;
+    }
     /**Draw lineWithFocusChart
      * @param {object} data
      * @returns chart
      **/
     function drawLineWithFocusChart(data) {
         var chartData = data;
-
         nv.addGraph(function() {
             var chart = nv.models.lineWithFocusChart();
             var orderDate = new Date();
@@ -241,7 +257,6 @@ $(document).ready(function() {
     function drawBarChart(data) {
         var chartData = data;
         chartData = convertDataForPieToBarChart(chartData);
-
         nv.addGraph(function() {
             var chart = nv.models.discreteBarChart()
                     .x(function(d) {
@@ -251,18 +266,14 @@ $(document).ready(function() {
                 return d.value;
             })
                     .staggerLabels(true)
-                    //.staggerLabels(historicalBarChart[0].values.length > 8)
-                    .tooltips(false)
+                    .tooltips(true)
                     .showValues(true)
                     .transitionDuration(250)
                     ;
-
             d3.select('#barChart svg')
                     .datum(chartData)
                     .call(chart);
-
             nv.utils.windowResize(chart.update);
-
             return chart;
         });
     }
