@@ -82,7 +82,7 @@ class Settings extends BaseAdminController {
         // Load modules list
         $this->template->assign('modules', $this->db->get('components')->result_array());
 
-        $this->template->show('settings', FALSE);
+        $this->template->show('settings_site', FALSE);
     }
 
     //++++++++++++++
