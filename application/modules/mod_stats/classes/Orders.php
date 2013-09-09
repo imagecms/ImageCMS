@@ -38,7 +38,7 @@ class Orders extends \MY_Controller {
      * @param string $interval year|month|week|day
      * @param string $begin date in format DD-MM-YYYY
      */
-    public function getDate() {
+    public function getCount() {
         $orders = $this->stats_model_orders->getOrdersAndCounts();
 
         $paid = array();
