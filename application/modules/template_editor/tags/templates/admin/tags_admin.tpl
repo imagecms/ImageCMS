@@ -2,7 +2,7 @@
         <div style="float:left;">
             <ul>
             <li>
-                <p>{lang("all tags")} ({count($tags_cloud)})</p>
+                <p>{lang("all tags", 'template_editor')} ({count($tags_cloud)})</p>
             </li>
             </ul>
         </div>

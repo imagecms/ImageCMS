@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
-                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Have been saved')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Save')}</button>
                 <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/init_window/banners/edit/".$banner['id'])}
             </div>

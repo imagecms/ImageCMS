@@ -36,6 +36,14 @@
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
+                    {if $NextCS != null}
+                        <span class="price-add">
+                            <span>
+                                (<span class="price addCurrPrice">{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}</span>
+                                <span class="curr-add">{$NextCS}</span>)
+                            </span>
+                        </span>
+                    {/if}
                 </span>
             </div>
             <!--            End. Price-->
@@ -68,6 +76,7 @@
                                 data-prodid="{echo $p.id}"
                                 data-varid="{echo $p.variant_id}"
                                 data-price="{echo $p.price}"
+                                data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                                 data-count="1"
                                 data-name="{echo ShopCore::encode($p.name)}"
                                 data-maxcount="{echo $p.stock}"

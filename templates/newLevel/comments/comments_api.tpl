@@ -55,12 +55,12 @@
                                     <span class="s-t">{lang('Comment was helpful?','newLevel')}</span>
                                     <span class="btn__icsi-css like__icsi-css">
                                         <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                            <span class="text-el">{lang('Yes','newLevel')} <span id="yesholder{$comment.id}">({echo $comment.like})</span></span>
+                                            <span class="text-el">{lang('Yes','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
                                         </button>
                                     </span>
                                     <span class="btn__icsi-css dis-like__icsi-css">
                                         <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                            <span class="text-el">{lang('No','newLevel')} <span id="noholder{$comment.id}">({echo $comment.disslike})</span></span>
+                                            <span class="text-el">{lang('No','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
                                         </button>
                                     </span>
                                 </span>
