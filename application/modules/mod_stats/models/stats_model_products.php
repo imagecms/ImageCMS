@@ -9,18 +9,19 @@ class Stats_model_products extends CI_Model {
 
     protected $locale;
     protected $brands;
+    protected $countTemp = 0;
+    protected $catWithSubcats = array();
 
     public function __construct() {
         parent::__construct();
         $this->locale = \MY_Controller::getCurrentLocale();
     }
 
-
     /**
      * Getting data for selecting brands
      * @return array each brand name and id
      */
-    public function getAllBrands() {
+    protected function getAllBrands() {
         $result = $this->db
                 ->select('shop_brands.id,name')
                 ->from('shop_brands')
@@ -41,7 +42,7 @@ class Stats_model_products extends CI_Model {
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)
      */
-    public function brands($brandIds = NULL, $uniqueProducts = FALSE) {
+    public function getBrandsCountsData($brandIds = NULL, $uniqueProducts = FALSE) {
         // if brand ids specified, then leave only them
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
@@ -81,7 +82,7 @@ class Stats_model_products extends CI_Model {
      * Returns id,parent_id,name and full_path_ids of categories
      * @return array 
      */
-    public function getAllCategories() {
+    protected function getAllCategories() {
         // getting categories info from db
         $result = $this->db
                 ->select('shop_category.id,parent_id,name,full_path_ids')
@@ -105,23 +106,30 @@ class Stats_model_products extends CI_Model {
         }
 
         return $categories;
-
     }
 
     /**
      * Returns count of products in category
-     * @param int $categoryId
+     * @param int|array $categoryId
      * @param boolean $uniqueProducts (optional, default FALSE) if TRUE, then method 
      * will return count of unique products. FALSE will give all.
      * @return int 
      */
-    public function getCategoryCount($categoryId, $uniqueProducts = FALSE) {
-        $result = $this->db
+    protected function getCategoryProductsCount($categoryId, $uniqueProducts = FALSE) {
+        $this->db
                 ->select('stock')
                 ->from('shop_product_variants')
-                ->join('shop_products', 'shop_products.id = shop_product_variants.product_id')
-                ->where('category_id', $categoryId)
-                ->get();
+                ->join('shop_products', 'shop_products.id = shop_product_variants.product_id');
+
+        if (is_int($categoryId)) {
+            $this->db->where('category_id', $categoryId);
+        } elseif (is_array($categoryId)) {
+            $this->db->where_in('category_id', $categoryId);
+        } else {
+            return FALSE;
+        }
+
+        $result = $this->db->get();
 
         if ($result === FALSE)
             return 0;
@@ -132,29 +140,27 @@ class Stats_model_products extends CI_Model {
             $categoryCount += $row['stock'];
             $uniqueCount++;
         }
-        return $uniqueProducts === FALSE ? $categoryCount : $uniqueCount;
+
+        return $uniqueProducts != FALSE ? $uniqueCount : $categoryCount;
     }
 
     /**
      * Returns counts products in each category
-     * @param array $categoryIds 
+     * @param array $categoryIds (optional, default all root categories)
+     * @param boolean $unique (optional, default FALSE)
      * @return array (categoryId, categoryName, productsCount)
      */
-    public function categories($categoryIds = array()) {
-        if (!is_array($categoryIds)) {
-            return FALSE;
-        }
-
+    public function getCategoriesCountsData($categoryIds = array(), $unique = FALSE) {
         $categories = $this->getAllCategories();
 
-        // creating array of id and parent_id of category
+        // creating array of id and parent_id of each category
         $categoriresRelations = array();
         foreach ($categories as $category) {
             $categoriresRelations[$category['id']] = $category['parent_id'];
         }
 
         // getting all root categories if $categoryIds in not specified
-        if (count($categoryIds) == 0) { // count all categories
+        if (!is_array($categoryIds) || count($categoryIds) == 0) { // count all categories
             foreach ($categoriresRelations as $id => $pid) {
                 if ($pid == 0) {
                     $categoryIds[] = $id;
@@ -164,25 +170,29 @@ class Stats_model_products extends CI_Model {
 
         // getting counts of category (including subcategories)
         $categoriesCount = array();
-        foreach ($categoryIds as $id => $pid) {
-            $productsCount = 0;
-            $hasSubcategories = TRUE;
-            if (in_array($id, $categoryIds)) { // has childs
-              
-            } else { // last subcategory
-                
-            }
-            $categoriesCount[$id] = 0;
-
-            echo "<pre>";
-            print_r($categoriresRelations);
-            echo "</pre>";
-            exit;
+        //$categoriesSubCats = array();
+        foreach ($categoryIds as $id) {
+            $this->catWithSubcats = array();
+            $this->getCount($id, $categoriresRelations);
+            //$categoriesSubCats[$id] = $this->catWithSubcats;
+            $categoriesCount[$id] = $this->getCategoryProductsCount($this->catWithSubcats, $unique);
         }
+        
+        return $categoriesCount;
     }
 
-    protected function getProductsCount($categoryId, $currentCount) {
-        return ($this->getCategoryCount($categoryId) + $currentCount);
+    /**
+     * Recursive function for gegging count of subcategories
+     * @param int $id
+     * @param array $categories
+     */
+    protected function getCount($id, $categories) {
+        $this->catWithSubcats[] = $id;
+        while (in_array($id, $categories)) {
+            $key = array_search($id, $categories);
+            unset($categories[$key]);
+            $this->getCount($key, $categories);
+        }
     }
 
 }

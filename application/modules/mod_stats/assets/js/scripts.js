@@ -48,14 +48,14 @@ $(document).ready(function() {
                 }
             });
         }
-        
-        if (returnResult !== undefined &&  returnResult.type === 'line') {
+
+        if (returnResult !== undefined && returnResult.type === 'line') {
             returnResult = convertValuesForLineChart(returnResult);
         }
 
         return returnResult;
     }
-    
+
     /**
      * Convert values to Float
      * @param {object} data
@@ -74,6 +74,36 @@ $(document).ready(function() {
         data.data = forProcessing;
 
         return data;
+    }
+    
+    /**
+     * Convert data for pie to bar chart
+     * @param {object} data
+     * @returns {String}
+     */
+    function convertDataForPieToBarChart(data){
+        var inputData = data;
+        var chartDataForReturn = [];
+        var tmpData = {};
+        
+        tmpData.values = [];
+       
+        if (inputData === undefined){
+            return 'false';
+        }
+        
+        $.each(inputData, function(index, value){
+            var stepObj = {};
+            
+            stepObj.label = value.key;
+            stepObj.value = value.y;
+            
+            tmpData.values.push(stepObj);
+        });
+        tmpData.key = 'Bar data';
+             
+        chartDataForReturn.push(tmpData);
+        return chartDataForReturn;
     }
 
 
@@ -101,7 +131,7 @@ $(document).ready(function() {
         if (params !== 'false') {
             var chartData = prepareData(params[0], params[1]);
         }
-        
+
         $.ajax({
             async: false,
             type: 'get',
@@ -113,7 +143,7 @@ $(document).ready(function() {
                     $('.linkChart').removeClass('active');
                     thisEl.addClass('active');
                     if (chartData === undefined) {
-                        console.log('Error geting data !');
+                        console.log('Error getting data !');
                         return false;
                     }
 
@@ -122,13 +152,14 @@ $(document).ready(function() {
                     }
                     if (chartData.type === 'pie') {
                         drawPieChart(chartData.data);
+                        drawBarChart(chartData.data);
                     }
                 }
             }
         });
     });
-    
-    
+
+
 
     /**Draw lineWithFocusChart
      * @param {object} data
@@ -202,22 +233,51 @@ $(document).ready(function() {
             return chart;
         });
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    /**
+     * Draw Bar chart
+     * @param {object} data
+     * @returns chart
+     */
+    function drawBarChart(data) {
+        var chartData = data;
+        chartData = convertDataForPieToBarChart(chartData);
+
+        nv.addGraph(function() {
+            var chart = nv.models.discreteBarChart()
+                    .x(function(d) {
+                return d.label;
+            })
+                    .y(function(d) {
+                return d.value;
+            })
+                    .staggerLabels(true)
+                    //.staggerLabels(historicalBarChart[0].values.length > 8)
+                    .tooltips(false)
+                    .showValues(true)
+                    .transitionDuration(250)
+                    ;
+
+            d3.select('#barChart svg')
+                    .datum(chartData)
+                    .call(chart);
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 //    function testDataOrders() {
 //        var data = [];
 //        var dataOrdersAll = {};
