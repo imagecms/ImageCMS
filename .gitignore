@@ -24,3 +24,4 @@ Thumbs.db
 /templates/.tmb/
 /*.csv
 *.*~
+/templates/corporate1/nbproject/private/
