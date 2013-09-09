@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#role_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
             </div>
         </div>
@@ -53,9 +53,9 @@
         </table>
 
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-            {if strpos(getCmsNumber(), 'Premium')}<a href="#shop" class="btn btn-small">Shop</a>{/if}
-            <a href="#base" class="btn btn-small active">Base</a>
-            <a href="#module" class="btn btn-small">Modules</a>
+            {if strpos(getCmsNumber(), 'Premium')}<a href="#shop" class="btn btn-small">{lang('Shop', 'admin')}</a>{/if}
+            <a href="#base" class="btn btn-small active">{lang('Basic', 'admin')}</a>
+            <a href="#module" class="btn btn-small">{lang('Modules', 'admin')}</a>
         </div> 
 
         <div class="tab-content">

@@ -16,6 +16,8 @@ class Core_Widgets extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $obj = new MY_Lang();
+        $obj->load('core'); 
     }
 
     // Display recent or popular news

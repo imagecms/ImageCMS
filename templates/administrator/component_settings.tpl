@@ -13,7 +13,7 @@
 
 	<div class="form_text"></div>
 	<div class="form_input">
-	    <input type="submit" name="button" class="button" value="{lang("Have been saved","admin")}"
+	    <input type="submit" name="button" class="button" value="{lang("Save","admin")}"
 	    onclick="ajax_me('component_save_form'); MochaUI.closeWindow($('edit_component_window'));"/>
 	</div>
 {form_csrf()}</form>

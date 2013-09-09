@@ -11,7 +11,7 @@
                     <span class="t-d_u">{lang('Go back')}</span>
                 </a>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="save">
-                    <i class="icon-ok"></i>{lang('Have been saved')}
+                    <i class="icon-ok"></i>{lang('Save')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
                     <i class="icon-edit"></i>{lang('Save and go back')}

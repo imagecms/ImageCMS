@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 10:07+0300\n"
-"PO-Revision-Date: 2013-08-29 10:08+0300\n"
+"POT-Creation-Date: 2013-09-09 13:14+0300\n"
+"PO-Revision-Date: 2013-09-09 13:25+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -60,7 +60,9 @@ msgstr "E-mail пользователя"
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:26
 #: /var/www/image.loc/_temp2.php:32
+#: /var/www/image.loc/_temp2.php:66
 #: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:103
 msgid "Save"
 msgstr "Сохранить"
 
@@ -179,12 +181,6 @@ msgstr "Настройки виджета"
 msgid "Go back"
 msgstr "Назад"
 
-#: /var/www/image.loc/_temp2.php:66
-#: /var/www/image.loc/_temp2.php:73
-#: /var/www/image.loc/_temp2.php:103
-msgid "Have been saved"
-msgstr "Сохранены"
-
 #: /var/www/image.loc/_temp2.php:67
 #: /var/www/image.loc/_temp2.php:104
 msgid "Save and go back"
@@ -207,6 +203,10 @@ msgstr "Настройки комментариев"
 #: /var/www/image.loc/_temp2.php:72
 msgid "Back"
 msgstr "Вернуться"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Have been saved"
+msgstr "Сохранены"
 
 #: /var/www/image.loc/_temp2.php:74
 msgid "Properties"
