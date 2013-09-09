@@ -28,9 +28,7 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
-
-        //\mod_stats\classes\Orders::create()->getDate();
-        //exit;
+        //\mod_stats\classes\Orders::create()->test();
     }
 
     public function index() {
