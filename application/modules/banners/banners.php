@@ -47,10 +47,11 @@ class Banners extends MY_Controller {
         $painting = $type . '_' . (int) $id;
 
         $hash = 'baners' . $type . $id;
-        \CMSFactory\assetManager::create()
-                ->registerScript('jquery.cycle.all.min');
 
         if ($cahe = Cache_html::get_html($hash)) {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('jquery.cycle.all.min', TRUE);
+
             echo $cahe;
         } else {
 
@@ -66,9 +67,6 @@ class Banners extends MY_Controller {
             if (count($ban) > 0) {
 
                 $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
-
-
-
 
                 ob_start();
                 \CMSFactory\assetManager::create()
