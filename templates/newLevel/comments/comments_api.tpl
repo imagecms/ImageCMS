@@ -5,7 +5,7 @@
 {/if}
 <div class="comment__icsi-css" id="comment__icsi-css">
     {if $comments_arr}
-        <div class="title_h2__icsi-css">{lang('s_clients_comment')}</div>
+        <div class="title_h2__icsi-css">{lang('Отзывы покупателей', 'newLevel')}</div>
         <div class="frame-list-comment__icsi-css">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
@@ -45,7 +45,7 @@
                                 <div class="btn__icsi-css f_l__icsi-css">
                                     <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                         <span class="icon-comment__icsi-css"></span>
-                                        <span class="text-el d_l_1">{lang('s_comment_answer')}</span>
+                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
                                     </button>
                                 </div>
                             {/if}
@@ -95,7 +95,7 @@
             </ul>
             <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
                 <span class="icon_arrow"></span>
-                <span class="text-el">{lang('See all customer comments','newLevel')}</span>
+                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
             </button>
         </div>
     {/if}
@@ -103,7 +103,7 @@
         <div class="main-form-comments__icsi-css {if !$comments_arr}noComments{/if}">
             <div class="frame-comments__icsi-css layout-highlight">
                 <div class="title_h2__icsi-css title-default">
-                    <div class="title">{lang('Leave comment','newLevel')}</div>
+                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
                 </div>
                 <!-- Start of new comment fild -->
                 <div class="form-comment__icsi-css form__icsi-css main-form-comments">
@@ -115,20 +115,20 @@
                                         <span class="frame_form_field__icsi-css">
                                             <div class="msg">
                                                 <div class="success">
-                                                    {lang('The comment will be sent for moderation','newLevel')}
+                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
                                                 </div>
                                             </div>
                                         </span>
                                     </label>
                                 {/if}
                                 <label>
-                                    <span class="title__icsi-css">{lang('Who are you?','newLevel')}</span>
+                                    <span class="title__icsi-css">{lang('Ваше имя','newLevel')}</span>
                                     <span class="frame_form_field__icsi-css">
                                         <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title__icsi-css">{lang('lang_comment_email')}</span>
+                                    <span class="title__icsi-css">{lang('Ваш email:', 'newLevel')}</span>
                                     <span class="frame_form_field__icsi-css">
                                         <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                                     </span>
@@ -136,7 +136,7 @@
                             {/if}
                             <!-- Start star reiting -->
                             <div class="frameLabel__icsi-css">
-                                <span class="title__icsi-css f_l t-a_l">{lang('s_you_raiting')}</span>
+                                <span class="title__icsi-css f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
                                 <div class="frame_form_field__icsi-css">
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
@@ -148,7 +148,7 @@
                             </div>
                             <!-- End star reiting -->
                             <label>
-                                <span class="title__icsi-css">{lang('s_text_comment_one')}</span>
+                                <span class="title__icsi-css">{lang('Текст комментария:')}</span>
                                 <span class="frame_form_field__icsi-css">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>
@@ -166,7 +166,7 @@
                             <div class="frameLabel__icsi-css">
                                 <span class="frame_form_field__icsi-css">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('s_leave_comment')}" onclick="post(this)"/>
+                                        <input type="submit" value="{lang('Комментировать')}" onclick="post(this)"/>
                                     </div>
                                 </span>
                             </div>
@@ -181,7 +181,7 @@
     <div class="frame-drop-comment__icsi-css" data-rel="whoCloneAddPaste">
         <div class="form-comment__icsi-css form__icsi-css layout-highlight frame-comments__icsi-css">
             <div class="title_h2__icsi-css title-default">
-                <div class="title">{lang('Your comment','newLevel')}</div>
+                <div class="title">{lang('Ваш ответ','newLevel')}</div>
             </div>
             <div class="inside-padd">
                 <form>
@@ -193,13 +193,13 @@
 
                     {if !$is_logged_in}
                         <label>
-                            <span class="title__icsi-css">{lang('lang_comment_author')}</span>
+                            <span class="title__icsi-css">{lang('Ваше имя:', 'newLevel')}</span>
                             <span class="frame_form_field__icsi-css">
                                 <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
-                            <span class="title__icsi-css">{lang('lang_comment_email')} </span>
+                            <span class="title__icsi-css">{lang('Ваш email:', 'newLevel')} </span>
                             <span class="frame_form_field__icsi-css">
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
@@ -208,14 +208,14 @@
                             <span class="frame_form_field__icsi-css">
                                 <div class="msg">
                                     <div class="success">
-                                        {lang('The comment will be sent for moderation','newLevel')}
+                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
                                     </div>
                                 </div>
                             </span>
                         </label>
                     {/if}
                     <label>
-                        <span class="title__icsi-css">{lang('Additional note','newLevel')}</span>
+                        <span class="title__icsi-css">{lang('Текст ответа:','newLevel')}</span>
                         <span class="frame_form_field__icsi-css">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
@@ -224,7 +224,7 @@
                         <span class="frame_form_field__icsi-css">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('s_leave_comment')}" onclick="post(this)"/>
+                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="post(this)"/>
                             </span>
                         </span>
                     </div>

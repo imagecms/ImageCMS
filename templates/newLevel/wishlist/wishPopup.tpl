@@ -49,6 +49,7 @@
                                 data-callback="reload"
                             {else:}
                                 data-callback="addToWL"
+                                data-before="a"
                             {/if}
                             >
                             <span class="text-el">{if $wish_list_id}{lang('Переместить в список','newLevel')}{else:}{lang('Добавить в список','newLevel')}{/if}</span> 
