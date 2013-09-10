@@ -2,7 +2,7 @@
     <div class="header-category clearfix">
         <!-- Start. Order by block -->
         <div class="f_l frame-sort f-s_0">
-            <span class="title">{lang('Show','newLevel')}:</span>
+            <span class="title">{lang('Показивать:','newLevel')}:</span>
             <div class="lineForm">
                 <select class="sort" id="sort" name="order">
                     {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -15,16 +15,16 @@
         <!-- End. Order by block -->
         <!--        Start. Show products as list or table-->
         <nav class="f_r frame-catalog-view f-s_0">
-            <span class="title">{lang('View','newLevel')}:</span>
+            <span class="title">{lang('Смотреть','newLevel')}:</span>
             <ul class="tabs groups-buttons tabs-list-table" data-type="radio" data-elchange="#items-catalog-main">
                 <li class="btn-def {if $_COOKIE['listtable'] == 0}active{/if}">
-                    <button type="button" data-href="list" data-title="{lang('List','newLevel')}" data-rel="tooltip">
-                        <span class="icon_list_cat"></span><span class="text-el">{lang('List','newLevel')}</span>
+                    <button type="button" data-href="list" data-title="{lang('Список','newLevel')}" data-rel="tooltip">
+                        <span class="icon_list_cat"></span><span class="text-el">{lang('Список','newLevel')}</span>
                     </button>
                 </li>
                 <li class="btn-def {if $_COOKIE['listtable'] == 1}active{/if}">
-                    <button type="button" data-href="table" data-title="{lang('Table','newLevel')}" data-rel="tooltip">
-                        <span class="icon_table_cat"></span><span class="text-el">{lang('Table','newLevel')}</span>
+                    <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
+                        <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
                     </button>
                 </li>
             </ul>
@@ -33,7 +33,7 @@
         <!--         Start. Product per page  -->
         <div class="frame-count-onpage">
             <div class="f-s_0 d_i-b">
-                <span class="title">{lang('At the page','newLevel')}:</span>
+                <span class="title">{lang('На странице','newLevel')}:</span>
                 {if ShopCore::$_GET['user_per_page'] == null}
                     {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
                 {/if}

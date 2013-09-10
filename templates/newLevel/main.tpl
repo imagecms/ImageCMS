@@ -64,8 +64,6 @@
 
         <!-- scripts -->
         {include_tpl('config.js')}
-        <script src="{$THEME}/js/_jquery.imagecms.shop.js"></script>
-        <script src="{$THEME}/js/_scripts.js"></script>
         {literal}
             <script>
                 function downloadJSAtOnload() {

@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="right-wishlist">
-                <div class="f-s_0 title-cart without-crumbs-side">
+                <div class="f-s_0 without-crumbs-side">
                     <div class="frame-title">
                         <h1 class="d_i">{$wishlist[0][title]}</h1>
                     </div>
@@ -35,8 +35,8 @@
                 <div class="text">
                     <p>{$wishlist[0][description]}</p>
                 </div>
-                <div data-rel="list-item">
-                    {if $wishlist[0][variant_id]}
+                {if $wishlist[0][variant_id]}
+                    <div data-rel="list-item">
                         <ul class="items items-catalog items-wish-list">
                             {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true, 'otherlist'=>true), 'array_product_item')}
                         </ul>
@@ -48,7 +48,7 @@
                                     {$price += $p.price;}
                                     {$i++}
                                 {/foreach}
-                                <div class="title-h3 f_l">Всего <b class="countProdsWL">{echo $i}</b> товара на сумму 
+                                <div class="title-h3 f_l">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> {lang('товара на сумму','newLevel')} 
                                     <span class="frame-prices f-s_0">
                                         <span class="current-prices">
                                             <span class="price-new">
@@ -66,7 +66,7 @@
                                         class="btnBuyWishList"
                                         >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el" data-cart="Просмотреть купленные товары" data-buy="Купить все доступные товары">Купить все доступные товары</span>
+                                        <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -76,10 +76,22 @@
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">
                             <span class="icon_info"></span>
-                            <span class="text-el">Список пуст</span>
+                            <span class="text-el">{lang('Список пуст','newLevel')}</span>
                         </div>
                     </div>
                 {/if}
+            </div>
+        {else:}
+            <div class="f-s_0 without-crumbs-side">
+                <div class="frame-title">
+                    <h1 class="d_i">{$wishlist[0][title]}</h1>
+                </div>
+            </div>
+            <div class="msg layout-highlight layout-highlight-msg">
+                <div class="info">
+                    <span class="icon_info"></span>
+                    <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                </div>
             </div>
         {/if}
     </div>
