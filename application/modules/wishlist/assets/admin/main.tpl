@@ -18,7 +18,7 @@
                         class="btn btn-small btn-primary action_on formSubmit"
                         data-form="#wishlist_settings_form"
                         data-action="tomain">
-                    <i class="icon-ok"></i>{lang('Have been saved', 'wishlist')}
+                    <i class="icon-ok"></i>{lang('Save', 'wishlist')}
                 </button>
             </div>
         </div>

@@ -12,10 +12,9 @@ class Stats_model_orders extends CI_Model {
      * @var array
      */
     protected $dateRangeParams = array(
-        'range' => 'day', //  date interval (string: day|month|week|year)
-        'start_date' => NULL, // NULL or date in format (string: YYYY-MM-DD)
-        'end_date' => NULL, // NULL or date in format (string: YYYY-MM-DD)
-        'fill_empty' => TRUE, // fill empty date ranges by 0 (boolean)
+        'interval' => 'day', //  date interval (string: day|month|week|year)
+        'start_date' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
+        'end_date' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
         'paid' => NULL, // TRUE|FALSE|NULL (paid, unpaid, all)
     );
 
@@ -25,67 +24,53 @@ class Stats_model_orders extends CI_Model {
     }
 
     /**
-     * 
-     * @return array
-     */
-    public function getOrdersAndCounts() {
-        $query = "
-            SELECT 
-                `shop_orders`.`date_created` as date_created,
-                COUNT(`shop_orders_products`.`order_id`) as products_count,
-                IF (`shop_orders`.`paid` = 1, 1, 0) as paid
-            FROM 
-                `shop_orders`
-            LEFT JOIN 
-                `shop_orders_products` ON `shop_orders`.`id` = `shop_orders_products`.`order_id`
-            GROUP BY date_created
-            ORDER BY date_created ASC
-        ";
-        $result = $this->db->query($query);
-        $orders = array();
-        foreach ($result->result_array() as $row) {
-            $orders[] = $row;
-        }
-        return $orders;
-    }
-
-    /**
      * Orders dynamic for line diagram
      * @param array $params
      * @return array 
      */
     public function getOrdersByDateRange($params = array()) {
-        foreach ($this->dateRangeParams as $key => $value) {
-            if (key_exists($key, $params)) {
-                $this->dateRangeParams[$key] = $params[$key];
+        if (is_array($params))
+            foreach ($this->dateRangeParams as $key => $value) {
+                if (key_exists($key, $params)) {
+                    $this->dateRangeParams[$key] = $params[$key];
+                }
             }
-        }
-
-        $this->prepareDatePattern();
-        $this->getPaidStatus();
 
         $query = "
             SELECT
                 COUNT(`dtable`.`id`) as `orders_count`,
-                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->dateRangeParams['date_pattern_mysql'] . "') as `date`
+                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->prepareDatePattern() . "') as `date`,
+                SUM(`dtable`.`origin_price`) as `price_sum`,
+                SUM(`dtable`.`products_count`) as `products_count`,
+                SUM(`dtable`.`quantity`) as `quantity`
             FROM 
                 (SELECT 
-                    `id`,
-                    `date_created`,
-                    `paid`
+                    `shop_orders`.`id`,
+                    `shop_orders`.`date_created`,
+                    `shop_orders`.`paid`,
+                    IFNULL(`shop_orders`.`origin_price`, 0) as `origin_price`,
+                    COUNT(`shop_orders_products`.`order_id`) as `products_count`,
+                    SUM(`shop_orders_products`.`quantity`) as `quantity`
                  FROM 
                     `shop_orders`
+                 LEFT JOIN `shop_orders_products` ON `shop_orders_products`.`order_id` = `shop_orders`.`id`
                  WHERE 1
-                     AND FROM_UNIXTIME(`date_created`) <= NOW() + INTERVAL 1 DAY 
+                     AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY 
+                 GROUP BY 
+                    `shop_orders`.`id`
                  ORDER BY 
-                    FROM_UNIXTIME(`date_created`)
+                    FROM_UNIXTIME(`shop_orders`.`date_created`)
                 ) as dtable
             WHERE 1 
                  " . $this->prepareBetweenCondition() . " 
-                  " . $this->getPaidStatus() . " 
+                  " . $this->preparePaidCondition() . " 
             GROUP BY `date`
             ORDER BY FROM_UNIXTIME(`date_created`)
         ";
+
+//        echo "<pre>";
+//        print_r($query);
+//        echo "</pre>";
 
         $result = $this->db->query($query);
         if ($result === FALSE) {
@@ -93,13 +78,17 @@ class Stats_model_orders extends CI_Model {
         }
         $ordersData = array();
         foreach ($result->result_array() as $row) {
-            $ordersData[$row['date']] = $row['orders_count'];
+            $ordersData[] = $row;
         }
 
-        return $this->dateRangeParams['fill_empty'] !== TRUE ? $ordersData : $this->fillZero($ordersData);
+        return $ordersData;
     }
 
-    protected function getPaidStatus() {
+    /**
+     * Helper function for getOrdersByDateRange()
+     * @return string
+     */
+    protected function preparePaidCondition() {
         if ($this->dateRangeParams['paid'] === TRUE)
             return "AND `paid` = 1";
 
@@ -115,32 +104,13 @@ class Stats_model_orders extends CI_Model {
      */
     protected function prepareDatePattern() {
         // date pattern for mysql
-        switch ($this->dateRangeParams['range']) {
-            case 'day':
-                $this->dateRangeParams['date_pattern_mysql'] = '%Y-%m-%d';
-                $this->dateRangeParams['date_pattern_php'] = "Y-m-d";
-                $this->dateRangeParams['date_step'] = 60 * 60 * 24;
-                break;
-            /* case 'week': 
-              $this->dateRangeParams['mysql_pattern'] = '%Y-%v';
-              $this->dateRangeParams['date_pattern_php'] = "Y-m-d";
-              $this->dateRangeParams['date_step'] = 60 * 60 * 24;
-              break;
-              case 'month':// як бути з тим шо в місяці може бути 30/31 днів????
-              $this->dateRangeParams['mysql_pattern'] = '%Y-%m';
-              $this->dateRangeParams['date_pattern_php'] = "Y-m-d";
-              $this->dateRangeParams['date_step'] = 60 * 60 * 24;
-              break;
-              case 'year': // високосний...
-              $this->dateRangeParams['mysql_pattern'] = '%Y';
-              $this->dateRangeParams['date_pattern_php'] = "Y-m-d";
-              $this->dateRangeParams['date_step'] = 60 * 60 * 24;
-              break; */
+        switch ($this->dateRangeParams['interval']) {
+            case 'month':
+                return '%Y-%m';
+            case 'year':
+                return '%Y';
             default:
-                $this->dateRangeParams['mysql_pattern'] = '%Y-%m-%d'; // day
-                $this->dateRangeParams['date_pattern_php'] = "Y-m-d";
-                $this->dateRangeParams['date_step'] = 60 * 60 * 24;
-                break;
+                return '%Y-%m-%d'; // day
         }
     }
 
@@ -150,22 +120,12 @@ class Stats_model_orders extends CI_Model {
      */
     protected function prepareBetweenCondition() {
         // start date
-        if ($this->dateRangeParams['start_date'] != NULL) {
-            if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', trim($params['start_date']))) {
-                $start_date = $this->dateRangeParams['start_date'] . ' 00:00:00';
-            }
-        }
-
-        // end date
-        if ($this->dateRangeParams['end_date'] != NULL) {
-            if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', trim($params['end_date']))) {
-                $end_date = $this->dateRangeParams['end_date'] . ' 00:00:00';
-            }
-        }
+        $start_date = $this->getBetweenDate($this->dateRangeParams['start_date'], 'start');
+        $end_date = $this->getBetweenDate($this->dateRangeParams['end_date'], 'end');
 
         // where between... for query
         if (!is_null($start_date) || !is_null($end_date)) {
-            $start_date = is_null($start_date) == TRUE ? "'1970-01-01 00:00:00'" : "'{$start_date}'";
+            $start_date = is_null($start_date) == TRUE ? "'2000-01-01 00:00:00'" : "'{$start_date}'";
             $end_date = is_null($end_date) == TRUE ? 'NOW()' : "'{$end_date}'";
             return "AND FROM_UNIXTIME(`dtable`.`date_created`) BETWEEN {$start_date} AND {$end_date}";
         } else {
@@ -174,38 +134,64 @@ class Stats_model_orders extends CI_Model {
     }
 
     /**
-     * 
-     * @param array $ordersData
-     * @return array identical to $ordersData, but with zeros
+     * Helper function for prepareBetweenCondition()
+     * mysql needs date in format YYYY-MM-DD HH:MM:SS
+     * @param type $date
+     * @param type $startOrEnd
+     * @return boolean
      */
-    protected function fillZero($ordersData) {
-        reset($ordersData);
-        $start = strtotime(key($ordersData));
-        end($ordersData);
-        $end = strtotime(key($ordersData));
-        reset($ordersData);
+    protected function getBetweenDate($date, $startOrEnd) {
+        if ($date === NULL)
+            return NULL;
 
-        for ($i = $start; $i <= $end; $i += $this->dateRangeParams['date_step']) {
-            $date = date($this->dateRangeParams['date_pattern_php'], $i);
-            if (!key_exists($date, $ordersData)) {
-                $ordersData[$date] = 0;
+        // detecting what part of date format for mysql is missing
+        $datePatterns = array(
+            '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/' => 'day',
+            '/^[0-9]{4}-[0-9]{2}$/' => 'month',
+            '/^[0-9]{4}$/' => 'year',
+        );
+        $type = NULL;
+        foreach ($datePatterns as $pattern => $type_) {
+            if (preg_match($pattern, $date)) {
+                $type = $type_;
             }
         }
-        return $ordersData;
-    }
+        if ($type == NULL) {
+            return NULL;
+        }
 
-    /**
-     * Get orders by price
-     */
-    public function getOrdersByPrice() {
-        $sql = "SELECT shop_orders.date_created as x, sum(shop_orders_products.price) as y 
-            FROM shop_orders 
-            join shop_orders_products 
-            on shop_orders.id=shop_orders_products.order_id
-            group by shop_orders.date_created
-            order by shop_orders.date_created";
-        $res = $this->db->query($sql)->result_array();
-        return $res;
+        // to include specified end month
+        switch ($startOrEnd) {
+            case "start":
+                $lastDay = "01";
+                break;
+            case "end":
+                $lastDay = "31";
+                break;
+            default:
+                $lastDay = "01";
+        }
+        
+        // to include all specified end year 
+        if ($type == 'year' & $startOrEnd == 'end') {
+            $month = "12";
+        } else {
+            $month = "01";
+        }
+
+        $hour = " 00:00:00";
+        
+        // filling date format according to wich part is missing
+        switch ($type) {
+            case "day":
+                return $date . $hour;
+            case "month":
+                return $date .= "-{$lastDay}" . $hour;
+            case "year":
+                return $date . "-{$month}-{$lastDay}" . $hour;
+            default :
+                return NULL;
+        }
     }
 
 }
