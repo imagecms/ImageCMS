@@ -1,5 +1,5 @@
 <div class="tab-pane" id="privilege"> 
-    <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang("Have been saved")}</button>
+    <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang("Save")}</button>
     <form action="{$SELF_URL}/update_role_perms" method="post" id="save" style="clear:both;">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>

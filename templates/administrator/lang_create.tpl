@@ -63,7 +63,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="control-group">
+                                                       { /* } 
+                                                       <div class="control-group">
                                                             <label class="control-label" for="folder">{lang("Folder","admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="folder" id="folder">
@@ -73,6 +74,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        { */ }
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang("Template","admin")}:</label>
                                                             <div class="controls">
