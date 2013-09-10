@@ -3,4 +3,4 @@
 .nav-tabs.nav-stacked>div>li>a{border: 1px solid #ddd; display: block;}
 .nav-tabs.nav-stacked>div>li>a:hover {z-index: 2;border-color: #ddd;}
 .linkChart.active{color: red;}
-
+.m_l_10 {margin-left: 10px !important;}
