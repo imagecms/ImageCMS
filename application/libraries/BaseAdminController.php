@@ -33,8 +33,10 @@ class BaseAdminController extends MY_Controller {
                 Modules::load_file($moduleName, APPPATH . 'modules' . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR);
                 $moduleName = ucfirst($moduleName);
                 if (class_exists($moduleName)) {
-                    if (method_exists($moduleName, 'adminAutoload'))
+                    if (method_exists($moduleName, 'adminAutoload') && !self::$detect_load_admin[$moduleName] && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
                         $moduleName::adminAutoload();
+                        self::$detect_load_admin[$moduleName] = 1;
+                    }
                 }
             }
         }

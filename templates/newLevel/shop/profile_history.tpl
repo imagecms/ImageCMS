@@ -3,7 +3,7 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">{lang('У Вас нет зарегистрированных заказов','newLevel')}</span>
+                <span class="text-el">{lang('Вы ище не совершали покупки','newLevel')}</span>
             </div>
         </div>
     {else:}

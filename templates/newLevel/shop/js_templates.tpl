@@ -339,13 +339,13 @@
         <div class="btn-form f_l">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к списку товаров','newLevel')}{literal}</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
         </button>
         </div>
         <div class="btn-cart btn-cart-p f_r">
         <a href="/shop/cart">
         <span class="icon_cart_p"></span>
-        <span class="text-el">{/literal}{lang('Подтвердить заказ','newLevel')}{literal}</span>
+        <span class="text-el">{/literal}{lang('Оформить заказ','newLevel')}{literal}</span>
         </a>
         </div>
         </div>
@@ -366,7 +366,7 @@
         <div class="btn-form">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к списку товаров','newLevel')}{literal}</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
         </button>
         </div>
         </div>
@@ -700,13 +700,13 @@
         <div class="btn-form f_l">
         <button type="button" data-closed="closed-js">
 
-        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к списку товаров','newLevel')}{literal}</span>
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
         </button>
         </div>
         <div class="btn-cart btn-cart-p f_r">
         <a href="/shop/cart">
         <span class="icon_cart_p"></span>
-        <span class="text-el">{/literal}{lang('Подтвердить заказ','newLevel')}{literal}</span>
+        <span class="text-el">{/literal}{lang('Оформить заказ','newLevel')}{literal}</span>
         </a>
         </div>
         </div>
@@ -812,7 +812,7 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#notification" data-overlayopacity= "0" data-modal="true"></button>
+    <button style="display: none;" type="button" data-drop="#notification" data-overlayopacity= "0" data-modal="true" class="trigger"></button>
 
     <div class="drop drop-style" id="confirm">
         <div class="drop-header">

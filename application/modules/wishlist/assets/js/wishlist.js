@@ -2,7 +2,6 @@ $(function() {
     if($( "#datepicker" ).length){
         $( "#datepicker" ).datepicker();
     }
-    
  });
 
 function addToWL(varId) {

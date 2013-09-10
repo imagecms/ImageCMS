@@ -5,6 +5,7 @@ if (!defined('BASEPATH'))
 
 /**
  * @property CI_Cache $cache
+ * @property Cms_admin $cms_admin
  */
 class Settings extends BaseAdminController {
 
@@ -82,7 +83,7 @@ class Settings extends BaseAdminController {
         // Load modules list
         $this->template->assign('modules', $this->db->get('components')->result_array());
 
-        $this->template->show('settings', FALSE);
+        $this->template->show('settings_site', FALSE);
     }
 
     //++++++++++++++
@@ -322,7 +323,7 @@ class Settings extends BaseAdminController {
             }
         }
 
-        // saving admin's email in application/config/auth.php 
+        // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
         $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"A-Za-z\@\.\-]+/i';
@@ -358,7 +359,7 @@ class Settings extends BaseAdminController {
      * @access public
      */
     function save_main() {
-        
+
     }
 
 }

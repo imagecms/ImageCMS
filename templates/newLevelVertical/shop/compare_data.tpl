@@ -7,7 +7,8 @@
     <button onclick="location = '{shop_url('compare')}'">
         <span class="icon_compare_list"></span>
         <span class="text-compare-list f-s_0">
-            <span class="text-el">{lang('List of comparisons','newLevel')} </span>
+            <span class="text-el">{lang('Список сравнения','newLevel')} </span>
+            <span class="text-el">(</span>
             <span class="f-s_0">
                 <span class="text-el compareListCount"></span>
             </span>

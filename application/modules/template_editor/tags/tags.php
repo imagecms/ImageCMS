@@ -163,8 +163,8 @@ class Tags extends MY_Controller {
                     $config['total_rows']  = count($pages_id);
                     $config['per_page']    = $this->search->row_count;
                     $config['uri_segment'] = $this->uri->total_segments();
-                    $config['first_link']  = lang("The first");
-                    $config['last_link']   = lang("Last");
+                    $config['first_link']  = lang("The first", 'template_editor');
+                    $config['last_link']   = lang("Last", 'template_editor');
 
                     $config['cur_tag_open']  = '<span class="active">';
                     $config['cur_tag_close'] = '</span>';
@@ -182,7 +182,7 @@ class Tags extends MY_Controller {
             }
             else
             {
-                $this->core->set_meta_tags(lang("Search").$this->search->title_delimiter.$tag);
+                $this->core->set_meta_tags(lang("Search", 'template_editor').$this->search->title_delimiter.$tag);
                 $this->template->assign('search_title', htmlspecialchars($tag));
                 $this->search->_display($pages);
             }
