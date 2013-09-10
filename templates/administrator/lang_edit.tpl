@@ -43,6 +43,17 @@
                                                             <input type="text" name="identif" id="" value="{$identif}"  />
                                                         </div>
                                                     </div> 
+                                                   { /* }  <div class="control-group">
+                                                        <label class="control-label" for="loacle">{lang("Folder","admin")}:</label>
+                                                        <div class="controls">
+                                                            <select id="locale" name="loacle">
+                                                                {foreach $locales as $locale_name}
+                                                                    <option {if $locale_name == $locale} selected="selected" {/if} >{echo $locale_name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                            { */ } 
                                                     <div class="row-fluid">
                                                         <!--<div class="control-group">
                                                             <label class="control-label" for="inputName">{lang("Image URL","admin")}:</label>
