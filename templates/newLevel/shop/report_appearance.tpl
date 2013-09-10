@@ -21,7 +21,7 @@
             <label>
                 <span class="title">{lang('Ваше имя:','newLevel')}</span>
                 <span class="frame-form-field">
-                    <input type="text" id="" name="UserName"/>
+                    <input type="text" id="" name="UserName" value="{$CI->dx_auth->get_user_id()}"/>
                     <span class="must">*</span>
                 </span>
             </label>
