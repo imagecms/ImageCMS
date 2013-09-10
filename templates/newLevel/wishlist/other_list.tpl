@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="right-wishlist">
-                <div class="f-s_0 title-cart without-crumbs-side">
+                <div class="f-s_0 without-crumbs-side">
                     <div class="frame-title">
                         <h1 class="d_i">{$wishlist[0][title]}</h1>
                     </div>
@@ -35,8 +35,8 @@
                 <div class="text">
                     <p>{$wishlist[0][description]}</p>
                 </div>
-                <div data-rel="list-item">
-                    {if $wishlist[0][variant_id]}
+                {if $wishlist[0][variant_id]}
+                    <div data-rel="list-item">
                         <ul class="items items-catalog items-wish-list">
                             {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true, 'otherlist'=>true), 'array_product_item')}
                         </ul>
@@ -80,6 +80,18 @@
                         </div>
                     </div>
                 {/if}
+            </div>
+        {else:}
+            <div class="f-s_0 without-crumbs-side">
+                <div class="frame-title">
+                    <h1 class="d_i">{$wishlist[0][title]}</h1>
+                </div>
+            </div>
+            <div class="msg layout-highlight layout-highlight-msg">
+                <div class="info">
+                    <span class="icon_info"></span>
+                    <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                </div>
             </div>
         {/if}
     </div>

@@ -24,7 +24,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
             parent::getUserWL($this->dx_auth->get_user_id());
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery_ui')
-                    ->registerScript('cusel_min')
+                    ->registerScript('cusel_min', TRUE)
                     ->registerScript('wishlist', TRUE)
                     ->registerStyle('style', TRUE)
                     ->registerStyle('jquery_ui_1.9.2.custom.min', TRUE)
