@@ -430,7 +430,7 @@ class Wishlist_model extends CI_Model {
     public function addItem($varId, $listId, $listName, $user_id = null) {
         if (!$user_id)
             $user_id = $this->dx_auth->get_user_id();
-        
+
         if (!$listId) {
             if ($listName != '') {
                 $this->createWishList($listName, $user_id);
@@ -458,9 +458,14 @@ class Wishlist_model extends CI_Model {
     public function createUserIfNotExist($user_id, $user_name = null) {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
-
         $user = $this->db->where('id', $user_id)->get('mod_wish_list_users');
-
+        if($user){
+              $user = $user->result_array();
+        }else{
+            $user = FALSE;
+        }
+        
+//        var_dumps($user);
         if (!$user) {
 //            $user = $user->result_array();
             $this->db->insert('mod_wish_list_users', array(
