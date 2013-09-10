@@ -19,7 +19,6 @@ class Admin extends \BaseAdminController {
         $this->mainTpl = \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
 
-
         if ($this->input->get('notLoadMain') != 'true') {
             $this->mainTpl
                     ->registerStyle('style')
@@ -28,14 +27,9 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
-        //\mod_stats\classes\Orders::create()->test();
-        //$this->getOrderInfo("2011", "2013", "year", 0);
     }
-
-    public function index() {
-//        \mod_stats\classes\BaseStats::create()->test();
-    }
-
+    
+    
     /**
      * Loads template
      * @param string $statType first menu level (folder)
@@ -50,6 +44,7 @@ class Admin extends \BaseAdminController {
         echo $templateData;
     }
 
+    
     public function getOrdersCount() {
         
     }

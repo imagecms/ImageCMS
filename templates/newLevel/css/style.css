@@ -604,10 +604,10 @@ input.input-search{height: 33px;}
 .frame-l2 > ul > li > ul{margin-bottom: 10px;}
 .menu-main .frame-l2, .menu-main .frame-l2 > ul > li > ul > li > ul > li, .menu-main .frame-l2 > ul > li > ul{padding-left: 10px;}
 .frame-l2 [data-column] > ul, .menu-main .frame-l2.is-side, .menu-main .is-side > ul > li > ul{padding-left: 0;}
-.menu-main .frame-l2 > ul, [class*="x"] > ul{font-size: 0;}
-.frame-l2 > ul > li[data-column], [class*="x"] > ul > li{display: inline-block;font-size: 12px;}
-[class*="x0"] > ul > li, [class*="x1"] > ul > li, .frame-drop-menu > ul > li{display: block;}
-.frame-l2 > ul, [class*="x"] > ul{overflow: hidden;}
+.menu-main .frame-l2 > ul, .menu-main [class*="x"] > ul{font-size: 0;}
+.frame-l2 > ul > li[data-column], .menu-main [class*="x"] > ul > li{display: inline-block;font-size: 12px;}
+[class*="x0"] > ul > li, .menu-main [class*="x1"] > ul > li, .frame-drop-menu > ul > li{display: block;}
+.frame-l2 > ul, .menu-main [class*="x"] > ul{overflow: hidden;}
 [class*="x0"] > ul, [class*="x1"] > ul{overflow: auto;}
 
 .menu-row-category .frame-l2{width: 270px;}

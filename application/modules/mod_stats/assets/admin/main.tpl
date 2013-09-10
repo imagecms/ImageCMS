@@ -157,7 +157,7 @@
                 <span class="d-i_b m-r_10 m-l_10">{lang('From:','mod_stats')}</span>
                 <span class="d-i_b">
                     <label class="p_r">
-                        <input class="datepicker date_start" type="text" value="{if $_COOKIE['start_date_input'] != null}{$_COOKIE['start_date_input']}{/if}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" >
+                        <input class="datepicker date_start maxDateForDataPicker" type="text" value="{if $_COOKIE['start_date_input'] != null}{$_COOKIE['start_date_input']}{/if}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" >
                         <span class="icon-calendar"></span>
                     </label>
                 </span>
@@ -168,7 +168,7 @@
                         <span class="icon-calendar"></span>
                     </label>
                 </span>
-                <button class="btn btn-small" type="button">
+                        <button class="btn btn-small" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i>
                 </button>
                         <div class="pull-right">
