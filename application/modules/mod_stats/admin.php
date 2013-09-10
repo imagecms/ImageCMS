@@ -13,29 +13,23 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         /** Load model * */
-          $this->load->model('stats_model');
+        $this->load->model('stats_model');
 
 
-          $this->mainTpl = \CMSFactory\assetManager::create()
-          ->registerScript('scripts');
+        $this->mainTpl = \CMSFactory\assetManager::create()
+                ->registerScript('scripts');
 
-          if ($this->input->get('notLoadMain') != 'true') {
-          $this->mainTpl
-          ->registerStyle('style')
-          ->registerStyle('nvd3/nv.d3')
-          ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
-          ->registerScript('nvd3/nv.d3', FALSE, 'before')
-          ->renderAdmin('main', true);
-          } 
-         
-         // */
-        //\mod_stats\classes\Orders::create()->getPrice();
+        if ($this->input->get('notLoadMain') != 'true') {
+            $this->mainTpl
+                    ->registerStyle('style')
+                    ->registerStyle('nvd3/nv.d3')
+                    ->registerScript('nvd3/lib/d3.v3', FALSE, 'before')
+                    ->registerScript('nvd3/nv.d3', FALSE, 'before')
+                    ->renderAdmin('main', true);
+        }
     }
-
-    public function index() {
-        
-    }
-
+    
+    
     /**
      * Loads template
      * @param string $statType first menu level (folder)

@@ -237,7 +237,7 @@ class Widgets_manager extends BaseAdminController {
                 $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
                 echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('show_settings', $widget));
             } elseif ($widget['type'] == 'html') {
-                
+
             }
         } else {
             show_error(lang("Error: widget not found!"));
@@ -249,7 +249,7 @@ class Widgets_manager extends BaseAdminController {
         $widget = $this->get($id);
         if ($widget->num_rows() == 1) {
             $widget = $widget->row_array();
-            
+
 
             $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
             $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
@@ -288,7 +288,6 @@ class Widgets_manager extends BaseAdminController {
                 $this->db->insert('widget_i18n', $data);
             }
 
-
             $this->lib_admin->log(lang("Changed a widget", "admin") . $data['name']);
 
             //updateDiv('page', site_url('admin/widgets_manager'));
@@ -300,7 +299,6 @@ class Widgets_manager extends BaseAdminController {
 
     public function update_widget($id, $update_info = FALSE) {
         //cp_check_perm('widget_access_settings');
-
 
         $widget = $this->get($id);
 
@@ -417,15 +415,15 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id)->row_array();
-        
+
         $sql = "select * from widget_i18n where id = '$id' and locale = '$locale'";
         $w_i18 = $this->db->query($sql)->row_array();
-        
-        
-        
+
+
+
         $widget['data'] = $w_i18['data'];
-        
-        
+
+
         /** Init Event. Pre Create Category */
         \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetHTML:preUpdate');
         \CMSFactory\Events::runFactory();
