@@ -33,74 +33,60 @@ class Orders extends \MY_Controller {
         return self::$_instance;
     }
 
-    public function test() {
-        /* $orders = $this->stats_model_orders->getOrdersByDateRange(array(
-          'range' => 'month',
-          'paid' => NULL,
-          ));
-
-          $orders2 = $this->fillMissingWithZero($orders, 'orders_count'); */
-
-
-        $paid = $this->getOrders_(array(
-            'interval' => 'day',
-            'paid' => TRUE
-        ));
-
-        $unpaid = $this->getOrders_(array(
-            'interval' => 'day',
-            'paid' => TRUE
-        ));
-
-        echo "<pre>";
-        print_r($paid);
-        echo "</pre>";
-        exit;
-    }
-
     /**
      * Table representation for orders
      */
     public function getInfo($params) {
-        return $this->stats_model_orders->getOrdersByDateRange($params);
-        
-//        echo "<pre>";
-//        print_r($orders);
-//        echo "</pre>";
-        //exit;
+        $orders = $this->stats_model_orders->getOrdersByDateRange($params);
+
+        $data = \CMSFactory\assetManager::create()
+                ->setData(array('orders' => $orders))
+                ->fetchAdminTemplate('orders/info_table', TRUE);
+        return $data;
     }
 
     /**
      * 
      */
     public function getPrice() {
-        $query = $this->stats_model_orders->getOrdersByPrice();
-        $res['type'] = 'line';
-        $res['data'][0]['key'] = 'Все закази';
-        $res['data'][0]['values'] = $query;
-        echo json_encode($res);
+        $paid = $this->getOrders_LineDiagram(array(), 'price_sum');
+
+        $result = array(
+            'type' => 'line',
+            'data' => array(
+                0 => array(
+                    'key' => 'Оплачены',
+                    'values' => $paid
+                )
+            )
+        );
+        return json_encode($result);
     }
 
     public function getCount() {
-        $paid = $this->getOrders_(array('paid' => TRUE));
-        $unpaid = $this->getOrders_(array('paid' => FALSE));
+        $paid = $this->getOrders_LineDiagram(array('paid' => TRUE), 'orders_count');
+        $unpaid = $this->getOrders_LineDiagram(array('paid' => FALSE), 'orders_count');
+        $all = $this->getOrders_LineDiagram(array('paid' => NULL), 'orders_count');
 
-        /*
-          $result = array(
-          'type' => 'line',
-          'data' => array(
-          0 => array(
-          'key' => 'Оплачены',
-          'values' => $paid
-          ),
-          1 => array(
-          'key' => 'Неоплачены',
-          'values' => $unpaid
-          )
-          )
-          );
+        $result = array(
+            'type' => 'line',
+            'data' => array(
+                0 => array(
+                    'key' => 'Все',
+                    'values' => $all
+                ),
+                1 => array(
+                    'key' => 'Оплачены',
+                    'values' => $paid
+                ),
+                2 => array(
+                    'key' => 'Неоплачены',
+                    'values' => $unpaid
+                )
+            )
+        );
 
-          return json_encode($result); */
+        return json_encode($result);
     }
 
     /**
@@ -108,19 +94,13 @@ class Orders extends \MY_Controller {
      * @param array $ordersData
      * @return array identical to $ordersData, but with zeros
      */
-    protected function fillMissingWithZero($ordersData, $field) {
-
-        $dateExample = $ordersData[0]['date'];
-        $dateRangeType = $this->getDateRangeType($dateExample);
-
-        $newOrdersData = array();
-        foreach ($ordersData as $order) {
-            $newOrdersData[$order['date']] = $order[$field];
-        }
-
+    protected function fillMissingWithZero($ordersData) {
         // lowest date - start
-        reset($newOrdersData);
-        $start = key($newOrdersData);
+        reset($ordersData);
+        $start = key($ordersData);
+
+        $dateRangeType = $this->getDateRangeType($start);
+
         if ($dateRangeType == 'year') { // php's date() function don't parse a year - needs to add month 
             $start .= "-01";
         }
@@ -128,32 +108,29 @@ class Orders extends \MY_Controller {
         $start = strtotime($start);
 
         // highest date - end
-        end($newOrdersData);
-        $end = key($newOrdersData);
+        end($ordersData);
+        $end = key($ordersData);
         if ($dateRangeType == 'year') { // php's date() function don't parse a year - needs to add month 
             $end .= "-01";
         }
         $end = strtotime($end);
 
-        reset($newOrdersData);
+        reset($ordersData);
 
+        // filling depending on group type
         switch ($dateRangeType) {
             case 'year':
-                $ordersWithZeros = $this->fillMissingWithZero_year($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_year($start, $end, $ordersData);
                 break;
             case 'month':
-                $ordersWithZeros = $this->fillMissingWithZero_month($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_month($start, $end, $ordersData);
                 break;
             default:
-                $ordersWithZeros = $this->fillMissingWithZero_days($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_days($start, $end, $ordersData);
                 break;
         }
-        return $ordersWithZeros;
 
-        $tsOrders = array();
-        foreach ($ordersWithZeros as $date => $count) {
-            $tsOrders[strtotime($date)] = $count;
-        }
+        return $ordersWithZeros;
     }
 
     /**
@@ -243,16 +220,33 @@ class Orders extends \MY_Controller {
 
     /**
      * Creating array structure for nvd3 line diagram
-     * @param boolean $paid TRUE - Paid, FALSE not paid, NULL - all
-     * @return array
+     * @param array $params params for data selecting 
+     * @param string $field one of the fields of the query in orders model
+     * @return array data for line diagram
      */
-    protected function getOrders_($params) {
+    protected function getOrders_LineDiagram($params, $field) {
         $orders = $this->stats_model_orders->getOrdersByDateRange($params);
-        $tsOrders = array();
+
+        // getting data by only specified field
+        $dataByField = array();
         foreach ($orders as $order) {
-            $tsOrders[strtotime($order['date'])] = $order['orders_count'];
+            $dataByField[$order['date']] = $order[$field];
+        }
+        unset($orders);
+
+        // filling by zeros for wright data representation in diagram
+        $filledWithZeros = $this->fillMissingWithZero($dataByField);
+        unset($dataByField);
+
+        // timestamp for diagram
+        $tsOrders = array();
+        foreach ($filledWithZeros as $date => $count) {
+            $tsOrders[strtotime($date)] = $count;
         }
         ksort($tsOrders);
+        unset($filledWithZeros);
+
+        // creating array with structure for nvd3 line diagram
         $tsOrders_ = array();
         foreach ($tsOrders as $key => $value) {
             $tsOrders_[] = array(

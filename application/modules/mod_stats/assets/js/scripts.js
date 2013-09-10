@@ -9,6 +9,7 @@ $(document).ready(function() {
         if (link === undefined) {
             return false;
         }
+
         var splitedArray = link.split('/');
         /** Create array with params which we need**/
         var params = [];
@@ -36,7 +37,7 @@ $(document).ready(function() {
                 async: false,
                 type: 'get',
                 data: 'notLoadMain=' + 'true',
-                url: base_url + 'admin/components/init_window/mod_stats/getDiagramData/' + className + '/' + method,
+                url: base_url + 'admin/components/init_window/mod_stats/getStatsData/' + className + '/' + method,
                 success: function(response) {
                     if (response) {
                         try {
@@ -201,17 +202,18 @@ $(document).ready(function() {
 
     function drawChartsAndRefresh(className, methodName) {
         /** Prepare chart data **/
+        
         if (className !== 'false' && methodName !== 'false') {
             var chartData = prepareData(className, methodName);
         } else {
             return false;
         }
-
+        
         $.ajax({
             async: false,
             type: 'get',
             data: 'notLoadMain=' + 'true',
-            url: base_url + 'admin/components/cp/mod_stats/getStatsData/' + className + '/' + methodName,
+            url: base_url + 'admin/components/cp/mod_stats/getStatsTemplate/' + className + '/' + methodName,
             success: function(response) {
                 if (response != false) {
                     $('#chartContainer').html(response);
@@ -254,7 +256,8 @@ $(document).ready(function() {
         var params = getParamsForPrepareData(dataHref);
         $('.linkChart').removeClass('active');
         thisEl.addClass('active');
-
+       
+        
         drawChartsAndRefresh(params[0], params[1]);
 
     });
@@ -284,11 +287,11 @@ $(document).ready(function() {
         var endDate = new Date();
         var startDateForInput = '';
         var endDateForInput = '';
-        
-        if ($(".linkChart.active").data('href') === undefined){
+
+        if ($(".linkChart.active").data('href') === undefined) {
             return;
         }
-        
+
         /** Date for saving cookies(one year) **/
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
 
@@ -323,7 +326,7 @@ $(document).ready(function() {
         /**Save cookies **/
         document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
         document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
-        
+
         /** Refresh page **/
         $('#refreshIntervalsButton').trigger('click');
 
@@ -370,66 +373,5 @@ $(document).ready(function() {
 
         drawChartsAndRefresh(params[0], params[1]);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ORDER INFO
-
-    $("#stats_orders_info").delegate("#loadOrdersInfo", "click", function() {
-        loadOrderInfo();
-    });
-
-    function loadOrderInfo() {
-        // getting params
-        var params = {};
-        params.interval = $("#stats_orders_info .stats_order_info_interval.active").val();
-        params.start_date = $("#stats_orders_info #start_date").val();
-        params.end_date = $("#stats_orders_info #end_date").val();
-        params.notLoadMain = 'true';
-
-        if (statCheckDate(params.start_date) & statCheckDate(params.end_date)) {
-            $.ajax({
-                url: base_url + 'admin/components/init_window/mod_stats/getOrderInfo',
-                type: 'get',
-                data: params,
-                success: function(data) {
-                    $(data).find("script").remove();
-                    alert(data);
-                    $("#stat_info_data").html(data);
-                }
-            });
-        } else {
-            alert("Bad date");
-            return;
-        }
-    }
-
-
-    function statCheckDate(date) {
-        var datePatterns = [
-            /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g,
-            /^[0-9]{4}-[0-9]{2}$/g,
-            /^[0-9]{4}$/g,
-        ];
-
-        for (var i = 0; i < datePatterns.length; i++) {
-            if (date.match(datePatterns[i]))
-                return true;
-        }
-        return false;
-    }
 
 });

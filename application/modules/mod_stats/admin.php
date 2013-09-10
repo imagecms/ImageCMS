@@ -35,31 +35,13 @@ class Admin extends \BaseAdminController {
      * @param string $statType first menu level (folder)
      * @param string $statSubType sublevel (template file name)
      */
-    public function getStatsData($statType, $statSubType) {
+    public function getStatsTemplate($statType, $statSubType) {
         $template = $statType . "/" . $statSubType;
         $templateData = \CMSFactory\assetManager::create()
                 ->setData(array('$data' => $data))
                 ->fetchAdminTemplate($template, TRUE);
 
         echo $templateData;
-    }
-
-    
-    public function getOrdersCount() {
-        
-    }
-
-    public function getOrdersPrice() {
-        
-    }
-
-    //public function getOrderInfo($from, $to, $interval) {
-    public function getOrderInfo() {
-        $orders = \mod_stats\classes\Orders::create()->getInfo($_GET);
-        $data = \CMSFactory\assetManager::create()
-                ->setData(array('orders' => $orders))
-                ->fetchAdminTemplate('orders/info_table', TRUE);
-        echo $data;
     }
 
     /**
@@ -69,7 +51,7 @@ class Admin extends \BaseAdminController {
      * @param string $statSubType method of diagram type
      * @param array $params params for method
      */
-    public function getDiagramData($statType, $statSubType) {
+    public function getStatsData($statType, $statSubType) {
         /** Prepare method name* */
         $methodName = 'get' . ucfirst($statSubType);
 
@@ -95,9 +77,6 @@ class Admin extends \BaseAdminController {
             }
 
             echo $result;
-            // при потребі дані можуть бути оброблені ще через якусь ф-ю, 
-            // але при умові що ці дані є однотипні (тільки по діаграмах, або тільки по таблицях)
-            // інакше треба обробляти дані на вивід у самих ф-ях (або добавляти у дану ф-ю ще параметр)
         } catch (Exception $e) { // class or method not found
             // print some message
         }
