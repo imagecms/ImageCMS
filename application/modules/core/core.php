@@ -47,6 +47,8 @@ class Core extends MY_Controller {
 
         // Set site main template
         $this->config->set_item('template', $this->settings['site_template']);
+        
+        
 
         // Load Template library
         ($hook = get_hook('core_load_template_engine')) ? eval($hook) : NULL;
@@ -85,13 +87,13 @@ class Core extends MY_Controller {
 
                 // Set language template
 
-                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
+               // $this->config->set_item('template', $this->langs[$uri_lang]['template']);
 
-                $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->langs[$uri_lang]['template'] . '/');
+                //$this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->langs[$uri_lang]['template'] . '/');
 
                 ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL;
 
-                $this->load_functions_file($this->langs[$uri_lang]['template']);
+                //$this->load_functions_file($this->langs[$uri_lang]['template']);
 
                 // Reload template settings
                 $this->template->load();
@@ -623,7 +625,10 @@ class Core extends MY_Controller {
                     $this->core_data['module'] = $mod_name;
 
                     ($hook = get_hook('core_load_module_autoload')) ? eval($hook) : NULL;
-                    $this->$mod_name->autoload();
+                    if (!self::$detect_load[$mod_name] && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+                        $this->$mod_name->autoload();
+                        self::$detect_load[$mod_name] = 1;
+                    }
                 }
             }
         }
