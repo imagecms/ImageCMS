@@ -39,7 +39,7 @@
                         <li class="btn-order-call">
                             <a href="#ordercall" data-drop=".drop-order-call" data-source="{site_url('shop/callback')}">
                                 <span class="icon_order_call"></span>
-                                <span class="text-el d_l">{lang('Request a call','newLevel')}</span>
+                                <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
                             </a>
                         </li>
                     </ul>
@@ -65,10 +65,10 @@
                     <div class="p_r">
                         <form name="search" method="get" action="{shop_url('search')}"  id="autocomlete">
                             <span class="btn-search">
-                                <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('search_find')}</span></button>
+                                <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('s_se_thi_sit', 'newLevel')}" {if strpos($CI->uri->uri_string, 'search') !== false}autofocus{/if}/>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'newLevel')}" {if strpos($CI->uri->uri_string, 'search') !== false}autofocus{/if}/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>

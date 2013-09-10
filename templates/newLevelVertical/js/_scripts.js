@@ -290,6 +290,7 @@ var lazyload = {
     effect: "fadeIn"
 }
 //declaration shop functions
+
 //variants
 function tovarChangeVariant(el) {
     el = el == undefined ? body : el;
@@ -1109,8 +1110,15 @@ if (productPhotoCZoom) {
             mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
             mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
             $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
-
         })
+        $('.mousetrap').die('mouseover').live('mouseover', function() {
+            var cloudzoomlens = $('.cloud-zoom-lens')
+            if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
+                $(this).remove();
+                cloudzoomlens.remove();
+                $('#xBlock').empty();
+            }
+        });
     }
 }
 function reinitializeScrollPane(el) {
@@ -1333,6 +1341,9 @@ function init() {
     };
     optionsDrop.after = function(el, dropEl, isajax) {
         drawIcons(dropEl.find(selIcons));
+
+        dropEl.find("img.lazy:not(.load)").lazyload(lazyload);
+        wnd.scroll(); //for lazyload
 
         var carouselInDrop = dropEl.find('.carousel_js');
         if ($.existsN(carouselInDrop) && !carouselInDrop.hasClass('visited') && !dropEl.is('#photo')) {
