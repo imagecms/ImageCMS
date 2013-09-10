@@ -22,31 +22,65 @@ class Languages extends BaseAdminController {
         $this->template->show('languages', FALSE);
     }
 
-    function getLocale($lang_identifier) {
-        $langs = array(
-            'ru' => 'ru_RU',
-            'en' => 'en_US',
-            'de' => 'de_CH',
-            'uk' => 'uk_UA',
-            'es' => 'es-ES',
-            'et' => 'et-EE',
-            'eu' => 'eu-ES',
-            'fr' => 'fr-FR',
-            'it' => 'it-IT',
-            'ja' => 'ja-JP',
-            'lt' => 'lt-LT',
-            'lv' => 'lv-LV',
-            'nl' => 'nl-NL',
-            'pl' => 'pl-PL',
-            'pt' => 'pt-PT',
-            'sv' => 'sv-SE'
+    function getLocales() {
+        return $langs = array(
+            'af-ZA', 'am-ET', 'ar-AE',
+            'ar-BH', 'ar-DZ', 'ar-EG',
+            'ar-IQ', 'ar-JO', 'ar-KW',
+            'ar-LB', 'ar-LY', 'ar-MA',
+            'ar-OM', 'ar-QA', 'ar-SA',
+            'ar-SY', 'ar-TN', 'ar-YE',
+            'as-IN', 'ba-RU', 'be-BY',
+            'bg-BG', 'bn-BD', 'bn-IN',
+            'bo-CN', 'br-FR', 'ca-ES',
+            'co-FR', 'cs-CZ', 'cy-GB',
+            'da-DK', 'de-AT', 'de-CH',
+            'de-DE', 'de-LI', 'de-LU',
+            'dv-MV', 'el-GR', 'en-AU',
+            'en-BZ', 'en-CA', 'en-GB',
+            'en-IE', 'en-IN', 'en-JM',
+            'en-MY', 'en-NZ', 'en-PH',
+            'en-SG', 'en-TT', 'en-US',
+            'en-ZA', 'en-ZW', 'es-AR',
+            'es-BO', 'es-CL', 'es-CO',
+            'es-CR', 'es-DO', 'es-EC',
+            'es-ES', 'es-GT', 'es-HN',
+            'es-MX', 'es-NI', 'es-PA',
+            'es-PE', 'es-PR', 'es-PY',
+            'es-SV', 'es-US', 'es-UY',
+            'es-VE', 'et-EE', 'eu-ES',
+            'fa-IR', 'fi-FI', 'fo-FO',
+            'fr-BE', 'fr-CA', 'fr-CH',
+            'fr-FR', 'fr-LU', 'fr-MC',
+            'fy-NL', 'ga-IE', 'gd-GB',
+            'gl-ES', 'gu-IN', 'he-IL',
+            'hi-IN', 'hr-BA', 'hr-HR',
+            'hu-HU', 'hy-AM', 'id-ID',
+            'ig-NG', 'ii-CN', 'is-IS',
+            'it-CH', 'it-IT', 'ja-JP',
+            'ka-GE', 'kk-KZ', 'kl-GL',
+            'km-KH', 'kn-IN', 'ko-KR',
+            'ky-KG', 'lb-LU', 'lo-LA',
+            'lt-LT', 'lv-LV', 'mi-NZ',
+            'mk-MK', 'ml-IN', 'mn-MN',
+            'mr-IN', 'ms-BN', 'ms-MY',
+            'mt-MT', 'nb-NO', 'ne-NP',
+            'nl-BE', 'nl-NL', 'nn-NO',
+            'oc-FR', 'or-IN', 'pa-IN',
+            'pl-PL', 'ps-AF', 'pt-BR',
+            'pt-PT', 'ro-RO', 'ru-RU',
+            'rw-RW', 'sa-IN', 'se-FI',
+            'se-NO', 'se-SE', 'si-LK',
+            'sk-SK', 'sl-SI', 'sq-AL',
+            'sv-FI', 'sv-SE', 'sw-KE',
+            'ta-IN', 'te-IN', 'th-TH',
+            'tk-TM', 'tn-ZA', 'tr-TR',
+            'tt-RU', 'ug-CN', 'uk-UA',
+            'ur-PK', 'vi-VN', 'wo-SN',
+            'xh-ZA', 'yo-NG', 'zh-CN',
+            'zh-HK', 'zh-MO', 'zh-SG',
+            'zh-TW', 'zu-ZA'
         );
-        if($langs[$lang_identifier]){
-            return $langs[$lang_identifier];
-        }else{
-            return FALSE;
-        }
-        
     }
 
     /**
@@ -74,7 +108,7 @@ class Languages extends BaseAdminController {
         $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
-//        $this->form_validation->set_rules('folder', lang("Folder","admin"), 'required|max_length[250]');
+//        $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
         $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -86,6 +120,7 @@ class Languages extends BaseAdminController {
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),
+//                'locale' => $this->input->post('locale'),
 //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             );
@@ -103,21 +138,24 @@ class Languages extends BaseAdminController {
             pjax('/admin/languages/');
         }
     }
-    
-    function createLanguageFolders($lang){
-       $templates_dir = './templates';
-       if(is_dir($templates_dir)){
-           $templates = scandir($templates_dir);
-           foreach ($templates as $template){
-               if(is_dir($templates_dir . '/' . $template) && $template!="." && $template != '..' && $template[0] != '.'){
-                   if(!is_dir($templates_dir . '/' . $template . '/language/'. $template . '/ '. $lang)){
-                       mkdir($templates_dir . '/' . $template . '/language/'. $template . '/ '. $lang);
-//                       var_dumps($template);
-                   }                   
-               }
-           }
-           
-       }
+
+    function createLanguageFolders($lang) {
+//        $templates_dir = './templates';
+//        if (is_dir($templates_dir)) {
+//            $templates = scandir($templates_dir);
+//            foreach ($templates as $template) {
+//                if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
+//                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang)) {
+//                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang, 0777);
+//                        chmod($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang, 0777);
+//                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES', 0777);
+//                        chmod($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES', 0777);
+//                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/ ' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', '');
+////                       var_dumps($template);
+//                    }
+//                }
+//            }
+//        }
 //       var_dumps(is_dir($templates . '/language'));
     }
 
@@ -125,8 +163,6 @@ class Languages extends BaseAdminController {
      * Show lang_edit form
      */
     function edit($lang_id) {
-//        $lang = $this->getLocale('ua');
-//        $this->createLanguageFolders('ua_UA');
         //cp_check_perm('lang_edit');
         // get lang params
         $lang = $this->cms_admin->get_lang($lang_id);
@@ -136,6 +172,8 @@ class Languages extends BaseAdminController {
         $this->template->assign('templates', $this->_get_templates());
 
         $this->template->assign('folder_selected', $lang['folder']);
+//        $this->template->assign('locales', $this->getLocales());
+//        $this->template->assign('locale', $lang['locale']);
         $this->template->assign('template_selected', $lang['template']);
 
         $this->template->show('lang_edit', FALSE);
@@ -150,7 +188,7 @@ class Languages extends BaseAdminController {
         $this->form_validation->set_rules('lang_name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
-//        $this->form_validation->set_rules('folder', lang("Folder","admin"), 'required|max_length[250]');
+//        $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
         $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -162,6 +200,7 @@ class Languages extends BaseAdminController {
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),
+//                'locale' => $this->input->post('locale'),
 //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             );
@@ -173,6 +212,9 @@ class Languages extends BaseAdminController {
             $this->lib_admin->log(lang("Changed a language", "admin") . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
+
+//            $lang = $this->getLocale('ua');
+//            $this->createLanguageFolders('ua_UA');
 
             showMessage(lang("Changes has been saved", "admin"));
 
