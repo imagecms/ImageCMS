@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/cp/comments" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'comments')}</span></a>
-                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#comment_settings_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Have been saved", 'comments')}</button>
+                <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#comment_settings_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Save", 'comments')}</button>
             </div>
         </div>                            
     </div>
