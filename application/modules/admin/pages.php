@@ -876,13 +876,15 @@ class Pages extends BaseAdminController {
         //cp_check_perm('page_edit');
 
         $page = $this->cms_admin->get_page($page_id);
+//        var_dump($page);
 
         ($hook = get_hook('admin_page_change_status')) ? eval($hook) : NULL;
 
         switch ($page['post_status']) {
             case 'publish':
                 //$data = array('post_status' => 'pending');
-                $data = array('post_status' => 'draft');
+                $data = $page;
+                $data['post_status'] = 'draft';
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/pending.png'; ");
@@ -892,7 +894,9 @@ class Pages extends BaseAdminController {
 
             case 'pending':
                 //$data = array('post_status' => 'draft');
-                $data = array('post_status' => 'publish');
+//                $data = array('post_status' => 'publish');
+                $data = $page;
+                $data['post_status'] = 'publish';
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/draft.png'; ");
@@ -901,7 +905,8 @@ class Pages extends BaseAdminController {
                 break;
 
             case 'draft':
-                $data = array('post_status' => 'publish');
+                $data = $page;
+                $data['post_status'] = 'publish';
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
@@ -911,7 +916,8 @@ class Pages extends BaseAdminController {
 
             //For new admin interface
             default :
-                $data = array('post_status' => 'publish');
+                $data = $page;
+                $data['post_status'] = 'publish';
                 $this->cms_admin->update_page($page['id'], $data);
                 /*
                   jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
