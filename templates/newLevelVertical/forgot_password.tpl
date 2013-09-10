@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('lang_forgot_password')}
+            {lang('Забыли Пароль?','newLevel')}
         </div>
     </div>
     <div class="drop-content">
@@ -19,7 +19,7 @@
                             <span class="title">E-mail:</span>
                             <span class="frame-form-field">
                                 <input type="text" name="email" id="login" />
-                                <span class="help-block">{lang('Password will be sent on your Email ','newLevel')}</span>
+                                <span class="help-block">{lang('Пароль будет выслан на e-mail ','newLevel')}</span>
                                 <span class="must">*</span>
                             </span>
                         </label>
@@ -28,15 +28,15 @@
                             <div class="btn-form">
                                 <button type="submit">
                                     <span class="icon_forgot_password"></span>
-                                    <span class="text-el">{lang('Send','newLevel')}</span>
+                                    <span class="text-el">{lang('Отправить','newLevel')}</span>
                                 </button>
                             </div>
                         </div>
                         <div class="frame-label">
                             <span class="title">&nbsp;</span>
                             <div class="frame-form-field">
-                                <div class="help-block">{lang('I am not registered yet','newLevel')}</div>
-                                <a href="/auth/register">{lang('Go to the registration','newLevel')}</a>
+                                <div class="help-block">{lang('Я еще не зарегистрирован','newLevel')}</div>
+                                <a href="/auth/register">{lang('Перейти к регистрации','newLevel')}</a>
                             </div>
                         </div>
                     </div>
