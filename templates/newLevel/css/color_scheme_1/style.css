@@ -261,7 +261,7 @@ a:focus, a:active {color: #51d2ff;}
 .item-product .frame-wish-compare-list .frame-btn-wish{border-right: 1px solid #eae5e1;margin-left: -1px;}
 #view h2{font-size: 18px;}
 .patch-product-view{position: relative;}
-.patch-product-view[style]:after{
+.page-product .patch-product-view[style]:after{
     content: "";position: absolute;left: 0;bottom: 0;width: 100%;height: 30px;
     background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 99%, rgba(255,255,255,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(99%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
@@ -300,6 +300,7 @@ a:focus, a:active {color: #51d2ff;}
 .frame-brands .frame-brands-carousel{padding: 32px 0 24px;border: 1px solid #e7e2dd;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 1px 0 #fff;-webkit-box-shadow: 0 1px 0 #fff;box-shadow: 0 1px 0 #fff;}
 .frame-brands .frame-title > .title > .text-el{background-color: #faf8f6;padding: 0 15px;font-size: 18px;}
 
+.frame-baner-start_page{background: url("images/fon_b.png") repeat;}
 .frame-baner-start_page:before{content: "";position: absolute;left: -5%;top: -2px;width: 110%;height: 2px;-moz-box-shadow: 0 1px 9px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 9px rgba(0,0,0,0.1);box-shadow: 0 1px 9px rgba(0,0,0,0.1);}
 .baner .prev, .baner .next{width: 42px;height: 42px;background-color: #fff;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: 0.85;-khtml-opacity: 0.85;opacity: 0.85;}
 
@@ -1249,7 +1250,7 @@ footer .box-4 .main-title{color: #9c9c9c;}
 .nav-static-pages > .nav > li{border-top: 1px solid #eae5e1;}
 .nav-static-pages > .nav > li:first-child{border-top: 0;}
 .nav-static-pages > .nav > li.active{background-color: #faf8f6;}
-.nav-static-pages > .nav ul{padding-left: 17px;padding-bottom: 10px;}
+.nav-static-pages > .nav ul{padding-left: 25px;padding-right: 15px;padding-bottom: 10px;}
 .nav-static-pages > .nav ul > li{margin-bottom: 7px;}
 .nav-static-pages > .nav ul a{text-decoration: underline;}
 .nav-static-pages .is-sub .text-el{font-weight: bold;}

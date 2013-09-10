@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 10:30+0300\n"
-"PO-Revision-Date: 2013-08-29 10:31+0300\n"
+"POT-Creation-Date: 2013-09-09 12:20+0300\n"
+"PO-Revision-Date: 2013-09-09 12:20+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -58,7 +58,6 @@ msgstr "Модуль"
 #: /var/www/image.loc/_temp2.php:304
 #: /var/www/image.loc/_temp2.php:344
 #: /var/www/image.loc/_temp2.php:345
-#: /var/www/image.loc/_temp2.php:357
 #: /var/www/image.loc/_temp2.php:358
 #: /var/www/image.loc/_temp2.php:415
 msgid "Name"
@@ -592,7 +591,7 @@ msgstr "Создать ссылку"
 #: /var/www/image.loc/_temp2.php:173
 #: /var/www/image.loc/_temp2.php:354
 msgid "Create a menu"
-msgstr "Создайте меню"
+msgstr "Создать меню"
 
 #: /var/www/image.loc/_temp2.php:180
 #: /var/www/image.loc/_temp2.php:346
@@ -632,15 +631,18 @@ msgstr "Редактировать меню"
 msgid "Menu list"
 msgstr "Список меню"
 
-# а
+#: /var/www/image.loc/_temp2.php:357
+msgid "Denotation"
+msgstr "Название"
+
 #: /var/www/image.loc/_temp2.php:360
-msgid "Created or Has been created"
-msgstr "Дата создания или были созданы"
+msgid "Created"
+msgstr "Создано"
 
 #: /var/www/image.loc/_temp2.php:361
 #: /var/www/image.loc/_temp2.php:362
 msgid "Editing"
-msgstr "Редактирование"
+msgstr "Редактировать"
 
 #: ../../../admin.php:107
 #: ../../../admin.php:444
@@ -722,9 +724,11 @@ msgstr "Без категории"
 msgid "Site Menu Editor"
 msgstr "Редактор Меню Сайта"
 
+# а
+#~ msgid "Created or Has been created"
+#~ msgstr "Дата создания или были созданы"
 #~ msgid "Have been saved"
 #~ msgstr "Сохранены"
-
 # а
 #, fuzzy
 #~ msgid "Select or choose a module"

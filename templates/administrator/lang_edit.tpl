@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
-                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Save","admin")}</button>
                     <button type="submit"   class="btn btn-small formSubmit" data-form="#editLang" data-action="close"><i class="icon-ok"></i>{lang("Save and go back","admin")}</button>
                 </div>
             </div>                            
