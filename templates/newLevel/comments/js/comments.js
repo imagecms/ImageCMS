@@ -210,7 +210,8 @@ function initComments() {
             }
         });
     });
-};
+}
+;
 renderPosts = function(el, data) {
     var dataSend = "";
     if (data != undefined) {
@@ -238,7 +239,7 @@ renderPosts = function(el, data) {
                         initComments();
                     }
                 });
-                if (obj.commentsCount !== 0 && obj.commentsCount) {
+                if (obj.commentsCount != 0 && obj.commentsCount) {
                     $('#cc').html('');
                     $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), plurComments));
                 }

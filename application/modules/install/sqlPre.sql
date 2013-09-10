@@ -1802,8 +1802,8 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 INSERT INTO `shop_orders` (`id`, `key`, `delivery_method`, `delivery_price`, `status`, `paid`, `user_full_name`, `user_email`, `user_phone`, `user_deliver_to`, `user_comment`, `date_created`, `date_updated`, `user_ip`, `user_id`, `payment_method`, `total_price`, `external_id`, `gift_cert_key`, `gift_cert_price`, `comulativ`) VALUES
 (31, 'f409841g1b', 6, 0.00, 2, 1, 'Оксана', 'ad@min.com', '', '', '', 1296950400, 1296950400, '127.0.0.1', 1, 1, 62.18, NULL, NULL, NULL, NULL),
 (32, 'vi653829e7', 6, 0.00, 2, NULL, 'Валентина', 'geg@g.com', '', '', '', 1311379200, 1311379200, '127.0.0.1', 6, 1, 68.80, NULL, NULL, NULL, NULL),
-(30, 'w81299k2j2', 6, 0.00, 1, 1, 'Игор Петрович', 'ad@min.com', '', '', '', 1311638400, 1311638400, '127.0.0.1', 1, 3, 443.31, NULL, NULL, NULL, NULL),
-(29, 'g3x517u800', 6, 0.00, 1, 1, 'Игор Петрович', 'ad@min.com', '', '', '', 1309046400, 1309046400, '127.0.0.1', 1, 1, 58.89, NULL, NULL, NULL, NULL),
+(30, 'w81299k2j2', 6, 0.00, 1, 1, 'Игорь Петрович', 'ad@min.com', '', '', '', 1311638400, 1311638400, '127.0.0.1', 1, 3, 443.31, NULL, NULL, NULL, NULL),
+(29, 'g3x517u800', 6, 0.00, 1, 1, 'Игорь Петрович', 'ad@min.com', '', '', '', 1309046400, 1309046400, '127.0.0.1', 1, 1, 58.89, NULL, NULL, NULL, NULL),
 (28, '68176pt39h', 6, 0.00, 2, 0, 'Василий Пупкин', 'ad@min.com', '', '', '', 1299456000, 1299456000, '127.0.0.1', 1, 1, 35.00, NULL, NULL, NULL, NULL),
 (33, '3zw82m7510', 6, 0.00, 2, NULL, 'Юлия', 'gola@go.go', '', '', '', 1296950400, 1296950400, '127.0.0.1', 7, 1, 45.00, NULL, NULL, NULL, NULL),
 (34, 'p9334a80d9', 6, 0.00, 2, 1, 'Микола', 'hi@hello.com', '', '', '', 1301270400, 1301270400, '127.0.0.1', 8, 1, 372.00, NULL, NULL, NULL, NULL),
