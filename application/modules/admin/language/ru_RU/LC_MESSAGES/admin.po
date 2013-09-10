@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 17:24+0300\n"
+"POT-Creation-Date: 2013-09-09 18:24+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -18,6 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../templates/administrator/.\n"
+"X-Poedit-SearchPath-4: ../../modules/shop/models\n"
 
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:21
@@ -3403,7 +3404,7 @@ msgstr "врезки в продаже"
 #: /var/www/image.loc/_temp2.php:355
 #: /var/www/image.loc/_temp2.php:422
 msgid "Product main template. By default  product.tpl"
-msgstr "Основной шаблон товара. По умолчанию product.tpl"
+msgstr "Основной шаблон товара. По-умолчанию product.tpl"
 
 #: /var/www/image.loc/_temp2.php:183
 msgid "Product variations "
@@ -4306,10 +4307,6 @@ msgstr "не показывать"
 #: /var/www/image.loc/_temp2.php:20
 msgid "Currency edit"
 msgstr "Редактирование валют"
-
-#: /var/www/image.loc/_temp2.php:31
-msgid "Rate"
-msgstr "Рейтинг"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Creating cumulative discount"
@@ -6021,6 +6018,189 @@ msgstr "Экспорт прошол успешно"
 #: ../../modules/shop/admin/system.php:360
 msgid "No configuration key or<br /> key account list on Mailchimp"
 msgstr "Нет ключа конфигурации или <br /> ключа списка аккаунта на Mailchimp"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:18
+msgid "ProductId"
+msgstr "ID товара"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:20
+msgid "CSV column name "
+msgstr "Имя колонки CSV"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:21
+msgid "Multiple selection"
+msgstr "Множественний выбор"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:25
+msgid "Show on product page"
+msgstr "Показывать на странице товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:26
+msgid "Main property"
+msgstr "Главное свойство"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:27
+msgid "Show in product compare"
+msgstr "Показывать в сравнение товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:28
+msgid "Show in filter"
+msgstr "Показывать в фильтре"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:29
+msgid "Use in categories"
+msgstr "Исрользовать в  категориях"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:21
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:21
+#, fuzzy
+msgid "a_name"
+msgstr "Название бренда"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:22
+msgid "a_s_banner_text_create_b"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:23
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:22
+msgid "a_url"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:24
+#, fuzzy
+msgid "a_image"
+msgstr "Главное изображение"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:25
+#, fuzzy
+msgid "a_position"
+msgstr "Позиция"
+
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:23
+#, fuzzy
+msgid "a_description"
+msgstr "Описание"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:24
+#, fuzzy
+msgid "a_active"
+msgstr "активный"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
+msgid "a_date_start"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:27
+msgid "a_date_finish"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:28
+#, fuzzy
+msgid "a_discount"
+msgstr "Скидка"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:29
+#, fuzzy
+msgid "a_category"
+msgstr "Категория"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:30
+#, fuzzy
+msgid "a_product_n"
+msgstr "товар"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:31
+msgid "a_group_users"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:21
+#, fuzzy
+msgid "a_login"
+msgstr "Логин"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:22
+#, fuzzy
+msgid "a_password"
+msgstr "Пароль"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:23
+#, fuzzy
+msgid "a_email"
+msgstr "Email"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:24
+#, fuzzy
+msgid "a_group"
+msgstr "Группа"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:25
+msgid "a_fio"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:26
+#, fuzzy
+msgid "a_phone"
+msgstr "Главный телефон"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:27
+#, fuzzy
+msgid "a_address"
+msgstr "Адрес"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:28
+msgid "a_time_register"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:29
+msgid "a_summ_purchases"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:30
+msgid "a_role"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:21
+msgid "a_custom_f_object"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:24
+#, fuzzy
+msgid "a_field_type"
+msgstr "Тип поля"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:26
+msgid "a_custom_f_req_field_ne"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:27
+msgid "a_custom_f_multi_p"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:28
+msgid "a_custom_f_posibb_list"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:29
+#, fuzzy
+msgid "a_validations"
+msgstr "Валидаторы"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:30
+msgid "a_custom_f_fiel_active"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:31
+msgid "a_custom_f_private_field"
+msgstr ""
+
+# а
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
+#, fuzzy
+msgid "a_custom_f_right"
+msgstr "a2_acces_right"
+
+#~ msgid "Rate"
+#~ msgstr "Рейтинг"
 
 #, fuzzy
 #~ msgid "Site name or site title"
