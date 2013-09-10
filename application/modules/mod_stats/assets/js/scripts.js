@@ -269,7 +269,7 @@ $(document).ready(function() {
         var selectElement = $(this);
         var chartType = selectElement.find("option:selected").val();
 
-        drawChartsAndRefresh('products', 'brands');
+//        drawChartsAndRefresh('products', 'brands');
 
         $('.hideChart').hide();
         $('#' + chartType).fadeIn();
@@ -302,8 +302,8 @@ $(document).ready(function() {
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
                 break;
             case 'week':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 7));
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()-7));
+                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
                 break;
             case 'month':
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth());
