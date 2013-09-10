@@ -17,8 +17,8 @@ class Cms_admin extends CI_Model {
 	 *
 	 * @return integer
 	 */
-	
-	
+
+
 	function add_page($data)
 	{
 		$this->db->limit(1);
@@ -262,7 +262,7 @@ class Cms_admin extends CI_Model {
                     ->get('languages')
                     ->result_array();
 
-//		$this->db->order_by('default', 'desc');		
+//		$this->db->order_by('default', 'desc');
 		$query = $this->db->get('languages');
 
 		return $query->result_array();
