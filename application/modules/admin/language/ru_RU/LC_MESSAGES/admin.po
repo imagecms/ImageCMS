@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 18:24+0300\n"
+"POT-Creation-Date: 2013-09-10 15:11+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -2530,8 +2530,8 @@ msgstr "от"
 #: /var/www/image.loc/_temp2.php:96
 #: /var/www/image.loc/_temp2.php:155
 #: /var/www/image.loc/_temp2.php:242
-#: /var/www/image.loc/_temp2.php:259
-#: /var/www/image.loc/_temp2.php:277
+#: /var/www/image.loc/_temp2.php:258
+#: /var/www/image.loc/_temp2.php:276
 msgid "Payment method"
 msgstr "Способ оплаты"
 
@@ -2580,7 +2580,6 @@ msgstr "Список пустой"
 
 # а
 #: /var/www/image.loc/_temp2.php:99
-#: /var/www/image.loc/_temp2.php:248
 msgid "receipt"
 msgstr "получение"
 
@@ -2596,18 +2595,18 @@ msgstr "Измерительное устройство"
 #: /var/www/image.loc/_temp2.php:104
 #: /var/www/image.loc/_temp2.php:126
 #: /var/www/image.loc/_temp2.php:182
-#: /var/www/image.loc/_temp2.php:283
+#: /var/www/image.loc/_temp2.php:282
 msgid "Total price"
 msgstr "Общая цена"
 
 #: /var/www/image.loc/_temp2.php:105
-#: /var/www/image.loc/_temp2.php:324
+#: /var/www/image.loc/_temp2.php:323
 msgid "Pieces."
 msgstr "Шт."
 
 #: /var/www/image.loc/_temp2.php:107
 #: /var/www/image.loc/_temp2.php:233
-#: /var/www/image.loc/_temp2.php:271
+#: /var/www/image.loc/_temp2.php:270
 msgid "Delivery Address"
 msgstr "Адрес доставки"
 
@@ -2639,8 +2638,8 @@ msgstr "Арктикул / Название / ID"
 #: /var/www/image.loc/_temp2.php:127
 #: /var/www/image.loc/_temp2.php:212
 #: /var/www/image.loc/_temp2.php:220
-#: /var/www/image.loc/_temp2.php:282
-#: /var/www/image.loc/_temp2.php:292
+#: /var/www/image.loc/_temp2.php:281
+#: /var/www/image.loc/_temp2.php:291
 msgid "Total"
 msgstr "Общий"
 
@@ -2696,10 +2695,10 @@ msgid "Current discount"
 msgstr "Текущая скидка"
 
 #: /var/www/image.loc/_temp2.php:161
+#: /var/www/image.loc/_temp2.php:284
 #: /var/www/image.loc/_temp2.php:285
 #: /var/www/image.loc/_temp2.php:286
 #: /var/www/image.loc/_temp2.php:287
-#: /var/www/image.loc/_temp2.php:288
 msgid "Digits only"
 msgstr "Только цифры"
 
@@ -2726,11 +2725,11 @@ msgstr "Статус оплаты"
 #: /var/www/image.loc/_temp2.php:173
 #: /var/www/image.loc/_temp2.php:184
 #: /var/www/image.loc/_temp2.php:228
-#: /var/www/image.loc/_temp2.php:256
-#: /var/www/image.loc/_temp2.php:266
-#: /var/www/image.loc/_temp2.php:296
-#: /var/www/image.loc/_temp2.php:303
-#: /var/www/image.loc/_temp2.php:315
+#: /var/www/image.loc/_temp2.php:255
+#: /var/www/image.loc/_temp2.php:265
+#: /var/www/image.loc/_temp2.php:295
+#: /var/www/image.loc/_temp2.php:302
+#: /var/www/image.loc/_temp2.php:314
 msgid "Paid"
 msgstr "Оплачен"
 
@@ -2799,27 +2798,27 @@ msgid "Complete"
 msgstr "Закончыть"
 
 #: /var/www/image.loc/_temp2.php:235
-#: /var/www/image.loc/_temp2.php:273
+#: /var/www/image.loc/_temp2.php:272
 msgid "on"
 msgstr "на"
 
 #: /var/www/image.loc/_temp2.php:236
-#: /var/www/image.loc/_temp2.php:274
+#: /var/www/image.loc/_temp2.php:273
 msgid "map"
 msgstr "карта"
 
 #: /var/www/image.loc/_temp2.php:237
-#: /var/www/image.loc/_temp2.php:275
+#: /var/www/image.loc/_temp2.php:274
 msgid "Show on map"
 msgstr "Показать на карте"
 
 #: /var/www/image.loc/_temp2.php:239
-#: /var/www/image.loc/_temp2.php:293
+#: /var/www/image.loc/_temp2.php:292
 msgid "Additional data"
 msgstr "Дополнительные данные"
 
 #: /var/www/image.loc/_temp2.php:241
-#: /var/www/image.loc/_temp2.php:261
+#: /var/www/image.loc/_temp2.php:260
 msgid "Delivery Method"
 msgstr "Способ доставки"
 
@@ -2831,111 +2830,112 @@ msgstr "Заказ"
 msgid "Has been created"
 msgstr "Был создан"
 
+# а
 #: /var/www/image.loc/_temp2.php:247
-msgid "Print"
-msgstr "Печатать"
+msgid "Print receipt"
+msgstr "Распечатать чек"
 
-#: /var/www/image.loc/_temp2.php:251
+#: /var/www/image.loc/_temp2.php:250
 msgid "Basic data"
 msgstr "Основные данные"
 
-#: /var/www/image.loc/_temp2.php:252
+#: /var/www/image.loc/_temp2.php:251
 msgid "Products and order history"
 msgstr "Товары и история заказа"
 
-#: /var/www/image.loc/_temp2.php:254
+#: /var/www/image.loc/_temp2.php:253
 msgid "Date of order"
 msgstr "Дата заказа"
 
-#: /var/www/image.loc/_temp2.php:260
-#: /var/www/image.loc/_temp2.php:262
+#: /var/www/image.loc/_temp2.php:259
+#: /var/www/image.loc/_temp2.php:261
 msgid "Not specified"
 msgstr "Не указано"
 
-#: /var/www/image.loc/_temp2.php:263
+#: /var/www/image.loc/_temp2.php:262
 msgid "Order amount"
 msgstr "Сумма заказа"
 
-#: /var/www/image.loc/_temp2.php:265
-#: /var/www/image.loc/_temp2.php:291
-#: /var/www/image.loc/_temp2.php:332
+#: /var/www/image.loc/_temp2.php:264
+#: /var/www/image.loc/_temp2.php:290
+#: /var/www/image.loc/_temp2.php:331
 msgid "Delivery"
 msgstr "Доставка"
 
+#: /var/www/image.loc/_temp2.php:266
 #: /var/www/image.loc/_temp2.php:267
-#: /var/www/image.loc/_temp2.php:268
 msgid "Full user name"
 msgstr "Полное имя пользователя"
 
-#: /var/www/image.loc/_temp2.php:279
+#: /var/www/image.loc/_temp2.php:278
 msgid "Items in Cart"
 msgstr "Товары в корзине"
 
-#: /var/www/image.loc/_temp2.php:289
+#: /var/www/image.loc/_temp2.php:288
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
-#: /var/www/image.loc/_temp2.php:290
+#: /var/www/image.loc/_temp2.php:289
 msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
-#: /var/www/image.loc/_temp2.php:294
+#: /var/www/image.loc/_temp2.php:293
 msgid "Ordering information"
 msgstr "Информация для заказа"
 
-#: /var/www/image.loc/_temp2.php:297
+#: /var/www/image.loc/_temp2.php:296
 msgid "Commentary to change the status"
 msgstr "Комментарий к изменению статуса"
 
 # а
-#: /var/www/image.loc/_temp2.php:298
+#: /var/www/image.loc/_temp2.php:297
 msgid "Info buyer ch stat"
 msgstr "Уведомлять покупателя о смене статуса"
 
-#: /var/www/image.loc/_temp2.php:300
-#: /var/www/image.loc/_temp2.php:308
-#: /var/www/image.loc/_temp2.php:312
+#: /var/www/image.loc/_temp2.php:299
+#: /var/www/image.loc/_temp2.php:307
+#: /var/www/image.loc/_temp2.php:311
 msgid "Date modified"
 msgstr "Дата изменена"
 
-#: /var/www/image.loc/_temp2.php:306
+#: /var/www/image.loc/_temp2.php:305
 msgid "Status history"
 msgstr "История статусов"
 
-#: /var/www/image.loc/_temp2.php:318
+#: /var/www/image.loc/_temp2.php:317
 msgid "Product addition"
 msgstr "Додатковые товары"
 
-#: /var/www/image.loc/_temp2.php:320
-#: /var/www/image.loc/_temp2.php:326
+#: /var/www/image.loc/_temp2.php:319
+#: /var/www/image.loc/_temp2.php:325
 msgid "Add"
 msgstr "Добавить"
 
-#: /var/www/image.loc/_temp2.php:322
+#: /var/www/image.loc/_temp2.php:321
 msgid "in"
 msgstr "в"
 
-#: /var/www/image.loc/_temp2.php:323
+#: /var/www/image.loc/_temp2.php:322
 msgid "Cart"
 msgstr "Корзина"
 
-#: /var/www/image.loc/_temp2.php:331
+#: /var/www/image.loc/_temp2.php:330
 msgid "Me"
 msgstr "мне"
 
-#: /var/www/image.loc/_temp2.php:333
+#: /var/www/image.loc/_temp2.php:332
 msgid "Option"
 msgstr "Вариант"
 
-#: /var/www/image.loc/_temp2.php:334
+#: /var/www/image.loc/_temp2.php:333
 msgid "Payments"
 msgstr "Оплата"
 
-#: /var/www/image.loc/_temp2.php:335
+#: /var/www/image.loc/_temp2.php:334
 msgid "Result"
 msgstr "Результат"
 
-#: /var/www/image.loc/_temp2.php:336
+#: /var/www/image.loc/_temp2.php:335
 msgid "Orders status creating"
 msgstr "Создание статуса заказа"
 
@@ -5173,7 +5173,7 @@ msgstr "Виджет изменен"
 
 #: widgets_manager.php:295
 #: widgets_manager.php:329
-#: languages.php:132
+#: languages.php:177
 msgid "Changes has been saved"
 msgstr "Изменения сохранены"
 
@@ -5209,42 +5209,42 @@ msgstr "Ошибка при загрузке файлов обновления"
 msgid "Updating has been completed"
 msgstr "Обновление завершено"
 
-#: languages.php:70
+#: languages.php:97
 msgid "Create a language"
 msgstr "Создать язык"
 
-#: languages.php:74
+#: languages.php:101
 msgid "Language has been created"
 msgstr "Язык создан"
 
-#: languages.php:128
+#: languages.php:173
 msgid "Changed a language"
 msgstr "Язык изменен"
 
-#: languages.php:155
-#: languages.php:171
+#: languages.php:200
+#: languages.php:216
 msgid "This language has been used by default and can not be deleted"
 msgstr "Этот язык был использован по умолчанию и не может быть удален"
 
-#: languages.php:155
-#: languages.php:171
+#: languages.php:200
+#: languages.php:216
 msgid "Blocking"
 msgstr "Блокировка"
 
-#: languages.php:163
-#: languages.php:183
+#: languages.php:208
+#: languages.php:228
 msgid "Deleted the ID language"
 msgstr "ID удаленого языка"
 
-#: languages.php:185
+#: languages.php:230
 msgid "the language has been deleted"
 msgstr "язык удален"
 
-#: languages.php:206
+#: languages.php:251
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
 
-#: languages.php:208
+#: languages.php:253
 msgid "The language has been installed by default"
 msgstr "Язык был установлен по умолчанию"
 
@@ -6198,6 +6198,9 @@ msgstr ""
 #, fuzzy
 msgid "a_custom_f_right"
 msgstr "a2_acces_right"
+
+#~ msgid "Print"
+#~ msgstr "Печатать"
 
 #~ msgid "Rate"
 #~ msgstr "Рейтинг"
