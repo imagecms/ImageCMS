@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Request a call','newLevel')}
+            {lang('Заказать звонок','newLevel')}
         </div>
     </div>
     <div class="drop-content">
@@ -15,21 +15,21 @@
                             }}{/literal});
                         return false;">
                     <label>
-                        <span class="title">{lang('Name: ','newLevel')}</span>
+                        <span class="title">{lang('Имя: ','newLevel')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Name"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Phone: ','newLevel')}</span>
+                        <span class="title">{lang('Телефон: ','newLevel')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Phone"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Comment: ','newLevel')}</span>
+                        <span class="title">{lang('Комментарий: ','newLevel')}</span>
                         <span class="frame-form-field">
                             <textarea name="Comment"></textarea>
                         </span>
@@ -39,7 +39,7 @@
                         <div class="frame-form-field">
                             <div class="btn-form">
                                 <button type="submit">
-                                    <span class="text-el">{lang('Request a call','newLevel')}</span>
+                                    <span class="text-el">{lang('Заказать звонок','newLevel')}</span>
                                 </button>
                             </div>
                         </div>

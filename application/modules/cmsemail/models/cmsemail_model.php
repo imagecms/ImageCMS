@@ -162,47 +162,31 @@ class Cmsemail_model extends \CI_Model {
                 'constraint' => '256',
                 'null' => FALSE
             ),
-            'type' => array(
-                'type' => 'ENUM',
-                'constraint' => "'HTML','Text'",
-                'default' => "HTML"
-            ),
-            'user_message_active' => array(
-                'type' => 'TINYINT',
-                'constraint' => '1'
-            ),
-            'admin_message_active' => array(
-                'type' => 'TINYINT',
-                'constraint' => '1'
-            )
-        );
-
-
-        $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('mod_email_paterns');
-
-
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-            ),
-            'locale' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '5',
-            ),
             'theme' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '256',
                 'null' => FALSE
             ),
+            'type' => array(
+                'type' => 'ENUM',
+                'constraint' => "'HTML','Text'",
+                'default' => "HTML"
+            ),
             'user_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
             ),
+            'user_message_active' => array(
+                'type' => 'TINYINT',
+                'constraint' => '1'
+            ),
             'admin_message' => array(
                 'type' => 'TEXT',
                 'null' => FALSE
+            ),
+            'admin_message_active' => array(
+                'type' => 'TINYINT',
+                'constraint' => '1'
             ),
             'description' => array(
                 'type' => 'TEXT',
@@ -213,11 +197,11 @@ class Cmsemail_model extends \CI_Model {
                 'null' => FALSE
             )
         );
-        
+
+
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->add_key('locale', TRUE);
-        $this->dbforge->create_table('mod_email_paterns_i18n');
+        $this->dbforge->create_table('mod_email_paterns');
 
 
 
