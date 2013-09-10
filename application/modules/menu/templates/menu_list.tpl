@@ -44,10 +44,10 @@
                                     </span>
                                 </th>
                                 <th class="span1">{lang("ID", "menu")}</th>
-                                <th class="span3">{lang("Name", "menu")}</th>
+                                <th class="span3">{lang("Denotation", "menu")}</th>
                                 <th class="span3">{lang("Name", "menu")}</th>
                                 <th class="span4">{lang("Description", "menu")}</th>
-                                <th class="span2">{lang("Created or Has been created", "menu")}</th>
+                                <th class="span2">{lang("Created", "menu")}</th>
                                 <th class="span2">{lang("Editing", "menu")}</th>
                             </tr>
                         </thead>

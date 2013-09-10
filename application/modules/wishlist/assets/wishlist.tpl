@@ -6,7 +6,7 @@
     {if $errors}
         {foreach $errors as $error}
             <div class="msg">
-                <div class="error">{$error}</div>
+               ssssssssssssssssssssssssss <div class="error">{$error}</div>
             </div>
         {/foreach}
     {/if}
