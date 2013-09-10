@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#social_servises" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved")}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#social_servises" data-submit><i class="icon-ok icon-white"></i>{lang("Save")}</button>
             </div>
         </div>                            
     </div>
