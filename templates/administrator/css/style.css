@@ -818,3 +818,27 @@ span.check_gg {
 #siteinfo_contacts_table tr td:nth-child(3) {
     width: 35px;
 }
+
+
+
+/* Module statistic */
+
+#stats_orders_info {
+    padding: 10px;
+}
+
+.stats_label {
+    float: left;
+    text-align: right;
+    margin-right: 10px;
+    line-height: 2;
+}
+
+.stats_control {
+    float: left;
+}
+
+#stat_info_data {
+    min-height: 50px;
+    width: 100%;
+}
