@@ -215,7 +215,7 @@ function afterAjaxInitializeFilter(ready) {
         evCond: true,
         //classRemove: 'b_n',//if not standart
         //if evCond: true
-        before: function(a, b, c) {
+        before: function(a, b, c, e) {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
@@ -309,7 +309,7 @@ function ajaxRecount(el, slChk) {
 
     var catalogForm = $('#catalog_form'),
             $this = el,
-            data = catalogForm.serializeArray(),
+            data = catalogForm.serialize(),
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
     $.ajax({
