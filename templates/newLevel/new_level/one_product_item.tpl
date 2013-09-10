@@ -27,7 +27,7 @@
             {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Отметить: ','newLevel')}:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул: ','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}

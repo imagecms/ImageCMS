@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                    <button type="submit" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="submit" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
                         {if count($langs) > 1}
 

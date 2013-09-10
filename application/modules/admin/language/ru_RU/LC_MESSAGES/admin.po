@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-06 18:26+0300\n"
+"POT-Creation-Date: 2013-09-09 18:24+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -12,12 +12,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../../\n"
+"X-Poedit-Basepath: ../../..\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../templates/administrator/.\n"
+"X-Poedit-SearchPath-4: ../../modules/shop/models\n"
 
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:21
@@ -296,8 +297,8 @@ msgstr "Создать группу роли"
 #: /var/www/image.loc/_temp2.php:81
 #: /var/www/image.loc/_temp2.php:194
 #: /var/www/image.loc/_temp2.php:212
-msgid "Have been saved"
-msgstr "Изменения сохранены"
+msgid "Save"
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:82
 #: /var/www/image.loc/_temp2.php:113
@@ -1295,7 +1296,7 @@ msgstr "Здравствуйте"
 
 #: /var/www/image.loc/_temp2.php:144
 msgid "Contents"
-msgstr "Содержание"
+msgstr "Содержымое"
 
 #: /var/www/image.loc/_temp2.php:146
 msgid "Without a category"
@@ -1732,10 +1733,6 @@ msgstr "Начать поиск"
 #: /var/www/image.loc/_temp2.php:144
 msgid "Brand"
 msgstr "Бренд"
-
-#: /var/www/image.loc/_temp2.php:151
-msgid "Save"
-msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:152
 msgid "Save and create a new record"
@@ -2509,7 +2506,7 @@ msgstr "Данные"
 #: /var/www/image.loc/_temp2.php:60
 #: /var/www/image.loc/_temp2.php:91
 msgid "Description delivery price"
-msgstr "Описание ценыдоставки"
+msgstr "Описание цены доставки"
 
 #: /var/www/image.loc/_temp2.php:61
 msgid "Delivery price"
@@ -2534,7 +2531,7 @@ msgstr "от"
 #: /var/www/image.loc/_temp2.php:155
 #: /var/www/image.loc/_temp2.php:242
 #: /var/www/image.loc/_temp2.php:259
-#: /var/www/image.loc/_temp2.php:279
+#: /var/www/image.loc/_temp2.php:277
 msgid "Payment method"
 msgstr "Способ оплаты"
 
@@ -2599,18 +2596,18 @@ msgstr "Измерительное устройство"
 #: /var/www/image.loc/_temp2.php:104
 #: /var/www/image.loc/_temp2.php:126
 #: /var/www/image.loc/_temp2.php:182
-#: /var/www/image.loc/_temp2.php:285
+#: /var/www/image.loc/_temp2.php:283
 msgid "Total price"
 msgstr "Общая цена"
 
 #: /var/www/image.loc/_temp2.php:105
-#: /var/www/image.loc/_temp2.php:326
+#: /var/www/image.loc/_temp2.php:324
 msgid "Pieces."
 msgstr "Шт."
 
 #: /var/www/image.loc/_temp2.php:107
 #: /var/www/image.loc/_temp2.php:233
-#: /var/www/image.loc/_temp2.php:273
+#: /var/www/image.loc/_temp2.php:271
 msgid "Delivery Address"
 msgstr "Адрес доставки"
 
@@ -2642,8 +2639,8 @@ msgstr "Арктикул / Название / ID"
 #: /var/www/image.loc/_temp2.php:127
 #: /var/www/image.loc/_temp2.php:212
 #: /var/www/image.loc/_temp2.php:220
-#: /var/www/image.loc/_temp2.php:284
-#: /var/www/image.loc/_temp2.php:294
+#: /var/www/image.loc/_temp2.php:282
+#: /var/www/image.loc/_temp2.php:292
 msgid "Total"
 msgstr "Общий"
 
@@ -2699,10 +2696,10 @@ msgid "Current discount"
 msgstr "Текущая скидка"
 
 #: /var/www/image.loc/_temp2.php:161
+#: /var/www/image.loc/_temp2.php:285
+#: /var/www/image.loc/_temp2.php:286
 #: /var/www/image.loc/_temp2.php:287
 #: /var/www/image.loc/_temp2.php:288
-#: /var/www/image.loc/_temp2.php:289
-#: /var/www/image.loc/_temp2.php:290
 msgid "Digits only"
 msgstr "Только цифры"
 
@@ -2731,9 +2728,9 @@ msgstr "Статус оплаты"
 #: /var/www/image.loc/_temp2.php:228
 #: /var/www/image.loc/_temp2.php:256
 #: /var/www/image.loc/_temp2.php:266
-#: /var/www/image.loc/_temp2.php:298
-#: /var/www/image.loc/_temp2.php:305
-#: /var/www/image.loc/_temp2.php:317
+#: /var/www/image.loc/_temp2.php:296
+#: /var/www/image.loc/_temp2.php:303
+#: /var/www/image.loc/_temp2.php:315
 msgid "Paid"
 msgstr "Оплачен"
 
@@ -2798,28 +2795,26 @@ msgid "Notify a buyer about the status change"
 msgstr "Уведомить покупателя об изменении статуса"
 
 #: /var/www/image.loc/_temp2.php:229
-#: /var/www/image.loc/_temp2.php:267
-#: /var/www/image.loc/_temp2.php:269
 msgid "Complete"
 msgstr "Закончыть"
 
 #: /var/www/image.loc/_temp2.php:235
-#: /var/www/image.loc/_temp2.php:275
+#: /var/www/image.loc/_temp2.php:273
 msgid "on"
 msgstr "на"
 
 #: /var/www/image.loc/_temp2.php:236
-#: /var/www/image.loc/_temp2.php:276
+#: /var/www/image.loc/_temp2.php:274
 msgid "map"
 msgstr "карта"
 
 #: /var/www/image.loc/_temp2.php:237
-#: /var/www/image.loc/_temp2.php:277
+#: /var/www/image.loc/_temp2.php:275
 msgid "Show on map"
 msgstr "Показать на карте"
 
 #: /var/www/image.loc/_temp2.php:239
-#: /var/www/image.loc/_temp2.php:295
+#: /var/www/image.loc/_temp2.php:293
 msgid "Additional data"
 msgstr "Дополнительные данные"
 
@@ -2846,7 +2841,7 @@ msgstr "Основные данные"
 
 #: /var/www/image.loc/_temp2.php:252
 msgid "Products and order history"
-msgstr "Товары и история заказf "
+msgstr "Товары и история заказа"
 
 #: /var/www/image.loc/_temp2.php:254
 msgid "Date of order"
@@ -2862,80 +2857,85 @@ msgid "Order amount"
 msgstr "Сумма заказа"
 
 #: /var/www/image.loc/_temp2.php:265
-#: /var/www/image.loc/_temp2.php:293
-#: /var/www/image.loc/_temp2.php:334
+#: /var/www/image.loc/_temp2.php:291
+#: /var/www/image.loc/_temp2.php:332
 msgid "Delivery"
 msgstr "Доставка"
 
-#: /var/www/image.loc/_temp2.php:281
+#: /var/www/image.loc/_temp2.php:267
+#: /var/www/image.loc/_temp2.php:268
+msgid "Full user name"
+msgstr "Полное имя пользователя"
+
+#: /var/www/image.loc/_temp2.php:279
 msgid "Items in Cart"
 msgstr "Товары в корзине"
 
-#: /var/www/image.loc/_temp2.php:291
+#: /var/www/image.loc/_temp2.php:289
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
-#: /var/www/image.loc/_temp2.php:292
+#: /var/www/image.loc/_temp2.php:290
 msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
-#: /var/www/image.loc/_temp2.php:296
+#: /var/www/image.loc/_temp2.php:294
 msgid "Ordering information"
 msgstr "Информация для заказа"
 
-#: /var/www/image.loc/_temp2.php:299
+#: /var/www/image.loc/_temp2.php:297
 msgid "Commentary to change the status"
 msgstr "Комментарий к изменению статуса"
 
 # а
-#: /var/www/image.loc/_temp2.php:300
+#: /var/www/image.loc/_temp2.php:298
 msgid "Info buyer ch stat"
-msgstr "Информация о покупателе CH стат"
+msgstr "Уведомлять покупателя о смене статуса"
 
-#: /var/www/image.loc/_temp2.php:302
-#: /var/www/image.loc/_temp2.php:310
-#: /var/www/image.loc/_temp2.php:314
+#: /var/www/image.loc/_temp2.php:300
+#: /var/www/image.loc/_temp2.php:308
+#: /var/www/image.loc/_temp2.php:312
 msgid "Date modified"
 msgstr "Дата изменена"
 
-#: /var/www/image.loc/_temp2.php:308
+#: /var/www/image.loc/_temp2.php:306
 msgid "Status history"
 msgstr "История статусов"
 
-#: /var/www/image.loc/_temp2.php:320
+#: /var/www/image.loc/_temp2.php:318
 msgid "Product addition"
 msgstr "Додатковые товары"
 
-#: /var/www/image.loc/_temp2.php:322
-#: /var/www/image.loc/_temp2.php:328
+#: /var/www/image.loc/_temp2.php:320
+#: /var/www/image.loc/_temp2.php:326
 msgid "Add"
 msgstr "Добавить"
 
-#: /var/www/image.loc/_temp2.php:324
+#: /var/www/image.loc/_temp2.php:322
 msgid "in"
 msgstr "в"
 
-#: /var/www/image.loc/_temp2.php:325
+#: /var/www/image.loc/_temp2.php:323
 msgid "Cart"
 msgstr "Корзина"
 
-#: /var/www/image.loc/_temp2.php:333
+#: /var/www/image.loc/_temp2.php:331
 msgid "Me"
 msgstr "мне"
 
-#: /var/www/image.loc/_temp2.php:335
+#: /var/www/image.loc/_temp2.php:333
 msgid "Option"
 msgstr "Вариант"
 
-#: /var/www/image.loc/_temp2.php:336
+#: /var/www/image.loc/_temp2.php:334
 msgid "Payments"
 msgstr "Оплата"
 
-#: /var/www/image.loc/_temp2.php:337
+#: /var/www/image.loc/_temp2.php:335
 msgid "Result"
 msgstr "Результат"
 
-#: /var/www/image.loc/_temp2.php:338
+#: /var/www/image.loc/_temp2.php:336
 msgid "Orders status creating"
 msgstr "Создание статуса заказа"
 
@@ -3079,36 +3079,36 @@ msgid "Orders "
 msgstr "Заказы"
 
 #: /var/www/image.loc/_temp2.php:129
-#: /var/www/image.loc/_temp2.php:183
+#: /var/www/image.loc/_temp2.php:186
 msgid "The field should only contain letters without numbers"
 msgstr "Поле должно содержать только латинские буквы без чисел"
 
 #: /var/www/image.loc/_temp2.php:130
-#: /var/www/image.loc/_temp2.php:184
+#: /var/www/image.loc/_temp2.php:187
 msgid "Label"
 msgstr "Метка"
 
 #: /var/www/image.loc/_temp2.php:132
 #: /var/www/image.loc/_temp2.php:135
-#: /var/www/image.loc/_temp2.php:164
-#: /var/www/image.loc/_temp2.php:166
-#: /var/www/image.loc/_temp2.php:186
-#: /var/www/image.loc/_temp2.php:188
-#: /var/www/image.loc/_temp2.php:190
+#: /var/www/image.loc/_temp2.php:167
+#: /var/www/image.loc/_temp2.php:169
+#: /var/www/image.loc/_temp2.php:189
+#: /var/www/image.loc/_temp2.php:191
+#: /var/www/image.loc/_temp2.php:193
 msgid "Field"
 msgstr "Поле"
 
 #: /var/www/image.loc/_temp2.php:133
-#: /var/www/image.loc/_temp2.php:165
-#: /var/www/image.loc/_temp2.php:170
-#: /var/www/image.loc/_temp2.php:187
+#: /var/www/image.loc/_temp2.php:168
+#: /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:190
 msgid "Required"
 msgstr "Необходимое"
 
 #: /var/www/image.loc/_temp2.php:136
-#: /var/www/image.loc/_temp2.php:167
-#: /var/www/image.loc/_temp2.php:171
-#: /var/www/image.loc/_temp2.php:191
+#: /var/www/image.loc/_temp2.php:170
+#: /var/www/image.loc/_temp2.php:174
+#: /var/www/image.loc/_temp2.php:194
 msgid "Private"
 msgstr "Приватное"
 
@@ -3122,79 +3122,88 @@ msgstr "Возможные значения"
 
 #: /var/www/image.loc/_temp2.php:139
 #: /var/www/image.loc/_temp2.php:141
-#: /var/www/image.loc/_temp2.php:192
-#: /var/www/image.loc/_temp2.php:194
+#: /var/www/image.loc/_temp2.php:195
+#: /var/www/image.loc/_temp2.php:197
 msgid "Validators"
 msgstr "Валидаторы"
 
 # а
 #: /var/www/image.loc/_temp2.php:140
-#: /var/www/image.loc/_temp2.php:193
+#: /var/www/image.loc/_temp2.php:196
 msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
 msgstr "Фрагмента кода определённого формату, <br />  ппроверяет синтаксическую корректность  введеной информации — то есть, <br /> производит валидацию."
 
 #: /var/www/image.loc/_temp2.php:142
 #: /var/www/image.loc/_temp2.php:144
+msgid "Classes"
+msgstr "Классы"
+
+#: /var/www/image.loc/_temp2.php:143
+msgid "Custom classes for widget"
+msgstr "Пользовательские классы для виджета"
+
+#: /var/www/image.loc/_temp2.php:145
+#: /var/www/image.loc/_temp2.php:147
 msgid "Access rights"
 msgstr "Права доступа"
 
-#: /var/www/image.loc/_temp2.php:143
+#: /var/www/image.loc/_temp2.php:146
 msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
 msgstr "Права доступа определяют <br /> набор действий (например, чтение, <br /> запись, выполнение) разрешенных для <br /> предметов (например, пользователи <br /> системы) из <br />объектов данных."
 
 # а
-#: /var/www/image.loc/_temp2.php:145
+#: /var/www/image.loc/_temp2.php:148
 msgid "a2_acces_right"
 msgstr "a2_acces_right"
 
-#: /var/www/image.loc/_temp2.php:146
+#: /var/www/image.loc/_temp2.php:149
 msgid "Close"
 msgstr "Закрить"
 
-#: /var/www/image.loc/_temp2.php:147
-#: /var/www/image.loc/_temp2.php:151
+#: /var/www/image.loc/_temp2.php:150
+#: /var/www/image.loc/_temp2.php:154
 msgid "Remove fields"
 msgstr "Удалить поля"
 
-#: /var/www/image.loc/_temp2.php:148
+#: /var/www/image.loc/_temp2.php:151
 msgid "Remove the selected field?"
 msgstr "Удалить выделенное поле?"
 
-#: /var/www/image.loc/_temp2.php:152
+#: /var/www/image.loc/_temp2.php:155
 msgid "Remove the field?"
 msgstr "Удалите поле?"
 
-#: /var/www/image.loc/_temp2.php:153
+#: /var/www/image.loc/_temp2.php:156
 msgid "Additional fields list"
 msgstr "Список дополнительных полей"
 
-#: /var/www/image.loc/_temp2.php:154
+#: /var/www/image.loc/_temp2.php:157
 msgid "Create Field"
 msgstr "Создать поле"
 
-#: /var/www/image.loc/_temp2.php:156
-#: /var/www/image.loc/_temp2.php:173
+#: /var/www/image.loc/_temp2.php:159
+#: /var/www/image.loc/_temp2.php:176
 msgid "One user"
 msgstr "Один пользователь"
 
-#: /var/www/image.loc/_temp2.php:161
-#: /var/www/image.loc/_temp2.php:181
+#: /var/www/image.loc/_temp2.php:164
+#: /var/www/image.loc/_temp2.php:184
 msgid "Related entity"
 msgstr "Связанная сущность"
 
-#: /var/www/image.loc/_temp2.php:175
+#: /var/www/image.loc/_temp2.php:178
 msgid "Editing a custom field"
 msgstr "Редактирование дополнительного поля"
 
-#: /var/www/image.loc/_temp2.php:180
+#: /var/www/image.loc/_temp2.php:183
 msgid "Additional field data"
 msgstr "Данные дополнительного поля"
 
-#: /var/www/image.loc/_temp2.php:207
+#: /var/www/image.loc/_temp2.php:210
 msgid "Role create"
 msgstr "Создание роли"
 
-#: /var/www/image.loc/_temp2.php:231
+#: /var/www/image.loc/_temp2.php:234
 msgid "Remove group"
 msgstr "Удалить группу"
 
@@ -3395,7 +3404,7 @@ msgstr "врезки в продаже"
 #: /var/www/image.loc/_temp2.php:355
 #: /var/www/image.loc/_temp2.php:422
 msgid "Product main template. By default  product.tpl"
-msgstr "Основной шаблон товара. По умолчанию product.tpl"
+msgstr "Основной шаблон товара. По-умолчанию product.tpl"
 
 #: /var/www/image.loc/_temp2.php:183
 msgid "Product variations "
@@ -3691,8 +3700,8 @@ msgstr "Количество заказов"
 
 #: /var/www/image.loc/_temp2.php:194
 #: /var/www/image.loc/_temp2.php:205
-msgid "Appearance"
-msgstr "Появление"
+msgid "External view"
+msgstr "Внешний вид"
 
 #: /var/www/image.loc/_temp2.php:196
 #: /var/www/image.loc/_temp2.php:275
@@ -3729,8 +3738,8 @@ msgid "Products count shown on site"
 msgstr "Количество товаров на сайте"
 
 #: /var/www/image.loc/_temp2.php:207
-msgid "The values ​​for the number of products per page (example: "
-msgstr "Значения для количества товаров на сайте (пример:"
+msgid "The values ​​for the number of products per page (example: 12, 24, 48)"
+msgstr "Значения для количества товаров на сайте (например: 12, 24, 48)"
 
 #: /var/www/image.loc/_temp2.php:208
 msgid "Products count in control panel"
@@ -4231,8 +4240,8 @@ msgid "Character"
 msgstr "Символ"
 
 #: /var/www/image.loc/_temp2.php:447
-msgid "Rate"
-msgstr "Рейтинг"
+msgid "Currency rate"
+msgstr "Курс валюты"
 
 #: /var/www/image.loc/_temp2.php:448
 msgid "Remove currency"
@@ -4276,7 +4285,7 @@ msgstr "Создать валюту"
 
 #: /var/www/image.loc/_temp2.php:467
 msgid "Use the currency as default at the site"
-msgstr "Использувать валюту по умолчанию на сайте"
+msgstr "Использовать  по умолчанию на сайте"
 
 #: /var/www/image.loc/_temp2.php:470
 msgid "Make main"
@@ -4651,38 +4660,187 @@ msgstr "Создать виджет"
 msgid "No widgets created"
 msgstr "Не создано виджетов"
 
+#: /var/www/image.loc/_temp2.php:20
+msgid "Site configuration"
+msgstr "Конфигурация сайта"
+
 #: /var/www/image.loc/_temp2.php:23
+msgid "Management of Meta Tags"
+msgstr "Управление Мета-тугами"
+
+#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:60
+msgid "Enter Meta Tags"
+msgstr "Ввести мета-теги"
+
+#: /var/www/image.loc/_temp2.php:25
+msgid "Site information"
+msgstr "Информация системы"
+
+#: /var/www/image.loc/_temp2.php:27
+msgid "Site shutdown"
+msgstr "Отключение сайта"
+
+#: /var/www/image.loc/_temp2.php:28
+msgid "The site will be available only to the Administrator"
+msgstr "Сайт будет доступен только для Администратора"
+
+#: /var/www/image.loc/_temp2.php:29
+msgid "Select admin language"
+msgstr "Выбор языка для админ панели"
+
+#: /var/www/image.loc/_temp2.php:31
+msgid "Display category tree in the content"
+msgstr "Отображать дерево категорий в списке содержимого"
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Text editor"
+msgstr "Текстовый редактор"
+
+#: /var/www/image.loc/_temp2.php:36
+msgid "ID Google Analytics"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:37
+msgid "The code should be in the format ua-54545845"
+msgstr "Код должен біть в  формате ua-54545845"
+
+#: /var/www/image.loc/_temp2.php:38
+msgid "Ya.Webmaster"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:39
+msgid "ID for yandex metric"
+msgstr "Id для Yandex метрики"
+
+#: /var/www/image.loc/_temp2.php:42
+msgid "Page"
+msgstr "странице"
+
+#: /var/www/image.loc/_temp2.php:48
+msgid "Whether to display the site name in the title page"
+msgstr " Будет ли отображатся название сайта в тайтле страницы "
+
+#: /var/www/image.loc/_temp2.php:49
+msgid "Category name"
+msgstr "Название категории"
+
+#: /var/www/image.loc/_temp2.php:50
+msgid "Whether to display the category name in the title page"
+msgstr "Будет ли отображатся название категории в тайтле страницы"
+
+#: /var/www/image.loc/_temp2.php:51
+msgid "Separator"
+msgstr "Разделитель"
+
+#: /var/www/image.loc/_temp2.php:53
+#: /var/www/image.loc/_temp2.php:57
+msgid "Auto formation"
+msgstr "Сформировать автоматически "
+
+#: /var/www/image.loc/_temp2.php:54
+#: /var/www/image.loc/_temp2.php:58
+msgid "Leave empty"
+msgstr "Оставить пустым"
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "If not given or specified"
+msgstr "Если не указаны"
+
+#: /var/www/image.loc/_temp2.php:59
+msgid "If not specified"
+msgstr "Если не указано"
+
+#: /var/www/image.loc/_temp2.php:61
+msgid "Choose language"
+msgstr "Выберите язык"
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Short site name"
+msgstr "Краткое название сайта"
+
+#: /var/www/image.loc/_temp2.php:65
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+#: /var/www/image.loc/_temp2.php:67
+msgid "Company type"
+msgstr "Тип предприятия"
+
+#: /var/www/image.loc/_temp2.php:69
+msgid "Main phone"
+msgstr "Главный телефон"
+
+#: /var/www/image.loc/_temp2.php:70
+msgid "Admin email"
+msgstr " Email  админимстратора"
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "you entered as a contact type"
+msgstr "Вы ввели как тип контакту"
+
+#: /var/www/image.loc/_temp2.php:72
+msgid "Contact type"
+msgstr "Тип контакта"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Value"
+msgstr "Значение"
+
+#: /var/www/image.loc/_temp2.php:74
+msgid "Add contact"
+msgstr "Добавить контакт"
+
+#: /var/www/image.loc/_temp2.php:75
+msgid "Logo"
+msgstr "Лого"
+
+#: /var/www/image.loc/_temp2.php:76
+#: /var/www/image.loc/_temp2.php:77
+#: /var/www/image.loc/_temp2.php:78
+msgid "Click to select the image"
+msgstr "Кликните для выбора изображения"
+
+#: /var/www/image.loc/_temp2.php:80
+msgid "Basic"
+msgstr "Базовые"
+
+#: /var/www/image.loc/_temp2.php:82
+msgid "Widget editing"
+msgstr "Редактирование виджета"
+
+#: /var/www/image.loc/_temp2.php:86
 msgid "HTML code"
 msgstr "HTML код"
 
-#: /var/www/image.loc/_temp2.php:24
+#: /var/www/image.loc/_temp2.php:87
 msgid "Confirm"
 msgstr "Подтвердите"
 
-#: /var/www/image.loc/_temp2.php:25
+#: /var/www/image.loc/_temp2.php:88
 msgid "Content list"
 msgstr "Список содержимого"
 
-#: /var/www/image.loc/_temp2.php:29
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:31
+#: /var/www/image.loc/_temp2.php:92
+#: /var/www/image.loc/_temp2.php:93
+#: /var/www/image.loc/_temp2.php:94
 msgid "Create page"
 msgstr "Создать страницу"
 
-#: /var/www/image.loc/_temp2.php:32
-#: /var/www/image.loc/_temp2.php:39
+#: /var/www/image.loc/_temp2.php:95
+#: /var/www/image.loc/_temp2.php:102
 msgid "All categories"
 msgstr "Все категории"
 
-#: /var/www/image.loc/_temp2.php:34
+#: /var/www/image.loc/_temp2.php:97
 msgid "Url"
 msgstr "Url"
 
-#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:99
 msgid "Creation date"
 msgstr "Дата создания"
 
-#: /var/www/image.loc/_temp2.php:40
+#: /var/www/image.loc/_temp2.php:103
 msgid "Without category"
 msgstr "Без категории"
 
@@ -4782,15 +4940,15 @@ msgstr "Версия"
 msgid "Can't load module info file"
 msgstr "Не удается загрузить файл информации модуля"
 
-#: components.php:410
+#: components.php:413
 msgid "Positions updated"
 msgstr "Позиции обновлены"
 
-#: components.php:412
+#: components.php:415
 msgid "Fail"
 msgstr "Неудача"
 
-#: components.php:426
+#: components.php:429
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
@@ -4898,10 +5056,6 @@ msgid "Page has been created"
 msgstr "Страница была создана"
 
 #: pages.php:323
-msgid "Page"
-msgstr "странице"
-
-#: pages.php:323
 msgid "Not found"
 msgstr "не найдены"
 
@@ -4912,11 +5066,6 @@ msgstr "Язык страницы"
 #: pages.php:450
 msgid "Created. ID"
 msgstr "Дата создания. ID"
-
-#: pages.php:473
-#: settings.php:96
-msgid "Keywords"
-msgstr "Ключевые слова"
 
 #: pages.php:477
 msgid "Main page template "
@@ -5099,19 +5248,19 @@ msgstr "Указажите язык"
 msgid "The language has been installed by default"
 msgstr "Язык был установлен по умолчанию"
 
-#: settings.php:94
+#: settings.php:95
 msgid "Short name"
 msgstr "Краткое название"
 
-#: settings.php:197
+#: settings.php:198
 msgid "Page has not been found"
 msgstr "Страница не найдена"
 
-#: settings.php:242
+#: settings.php:243
 msgid "Changed wesite settings"
 msgstr "Настройки сайта изменены"
 
-#: settings.php:246
+#: settings.php:247
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
@@ -5280,7 +5429,7 @@ msgstr "Управление правами доступа"
 
 #: ../../../templates/administrator/inc/menus.php:258
 msgid "Stocks"
-msgstr "Главная"
+msgstr "Склады"
 
 #: ../../../templates/administrator/inc/menus.php:278
 msgid "Custom fields"
@@ -5551,31 +5700,31 @@ msgstr "Бренд создан"
 msgid "Brand not found"
 msgstr "Бренд не найден"
 
-#: ../../modules/shop/admin/notifications.php:123
+#: ../../modules/shop/admin/notifications.php:125
 msgid "Notification is not found"
 msgstr "Уведомление не найдено"
 
-#: ../../modules/shop/admin/notifications.php:138
+#: ../../modules/shop/admin/notifications.php:140
 msgid "Manager does not exist or is not set"
 msgstr "Менеджер не существует или не установлен"
 
-#: ../../modules/shop/admin/notifications.php:156
+#: ../../modules/shop/admin/notifications.php:158
 msgid "Notification updated"
 msgstr "Уведомление обновлено"
 
-#: ../../modules/shop/admin/notifications.php:179
+#: ../../modules/shop/admin/notifications.php:181
 msgid "Notification status updated"
 msgstr "Статус уведомления обновлен"
 
-#: ../../modules/shop/admin/notifications.php:203
+#: ../../modules/shop/admin/notifications.php:205
 msgid "User is notified by E-mail"
 msgstr "Пользователь получыл уведомление по электронной почте"
 
-#: ../../modules/shop/admin/notifications.php:256
+#: ../../modules/shop/admin/notifications.php:258
 msgid "Uninstalling"
 msgstr "Удаление"
 
-#: ../../modules/shop/admin/notifications.php:286
+#: ../../modules/shop/admin/notifications.php:288
 #: ../../modules/shop/admin/orders.php:318
 msgid "Order status changed"
 msgstr "Статус заказа изменен"
@@ -5870,6 +6019,207 @@ msgstr "Экспорт прошол успешно"
 msgid "No configuration key or<br /> key account list on Mailchimp"
 msgstr "Нет ключа конфигурации или <br /> ключа списка аккаунта на Mailchimp"
 
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:18
+msgid "ProductId"
+msgstr "ID товара"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:20
+msgid "CSV column name "
+msgstr "Имя колонки CSV"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:21
+msgid "Multiple selection"
+msgstr "Множественний выбор"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:25
+msgid "Show on product page"
+msgstr "Показывать на странице товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:26
+msgid "Main property"
+msgstr "Главное свойство"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:27
+msgid "Show in product compare"
+msgstr "Показывать в сравнение товаров"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:28
+msgid "Show in filter"
+msgstr "Показывать в фильтре"
+
+#: ../../modules/shop/models/build/classes/Shop/SProperties.php:29
+msgid "Use in categories"
+msgstr "Исрользовать в  категориях"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:21
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:21
+#, fuzzy
+msgid "a_name"
+msgstr "Название бренда"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:22
+msgid "a_s_banner_text_create_b"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:23
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:22
+msgid "a_url"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:24
+#, fuzzy
+msgid "a_image"
+msgstr "Главное изображение"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopBaners.php:25
+#, fuzzy
+msgid "a_position"
+msgstr "Позиция"
+
+#: ../../modules/shop/models/build/classes/Shop/SBrands.php:23
+#, fuzzy
+msgid "a_description"
+msgstr "Описание"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:24
+#, fuzzy
+msgid "a_active"
+msgstr "активный"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:26
+msgid "a_date_start"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:27
+msgid "a_date_finish"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:28
+#, fuzzy
+msgid "a_discount"
+msgstr "Скидка"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:29
+#, fuzzy
+msgid "a_category"
+msgstr "Категория"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:30
+#, fuzzy
+msgid "a_product_n"
+msgstr "товар"
+
+#: ../../modules/shop/models/build/classes/Shop/ShopDiscounts.php:31
+msgid "a_group_users"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:21
+#, fuzzy
+msgid "a_login"
+msgstr "Логин"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:22
+#, fuzzy
+msgid "a_password"
+msgstr "Пароль"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:23
+#, fuzzy
+msgid "a_email"
+msgstr "Email"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:24
+#, fuzzy
+msgid "a_group"
+msgstr "Группа"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:25
+msgid "a_fio"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:26
+#, fuzzy
+msgid "a_phone"
+msgstr "Главный телефон"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:27
+#, fuzzy
+msgid "a_address"
+msgstr "Адрес"
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:28
+msgid "a_time_register"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:29
+msgid "a_summ_purchases"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/SUserProfile.php:30
+msgid "a_role"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:21
+msgid "a_custom_f_object"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:24
+#, fuzzy
+msgid "a_field_type"
+msgstr "Тип поля"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:26
+msgid "a_custom_f_req_field_ne"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:27
+msgid "a_custom_f_multi_p"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:28
+msgid "a_custom_f_posibb_list"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:29
+#, fuzzy
+msgid "a_validations"
+msgstr "Валидаторы"
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:30
+msgid "a_custom_f_fiel_active"
+msgstr ""
+
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:31
+msgid "a_custom_f_private_field"
+msgstr ""
+
+# а
+#: ../../modules/shop/models/build/classes/Shop/CustomFields.php:32
+#, fuzzy
+msgid "a_custom_f_right"
+msgstr "a2_acces_right"
+
+#~ msgid "Rate"
+#~ msgstr "Рейтинг"
+
+#, fuzzy
+#~ msgid "Site name or site title"
+#~ msgstr "Название на сайте"
+
+#, fuzzy
+#~ msgid "Short site name or site title"
+#~ msgstr "Не показывать короткое название сайта"
+
+#, fuzzy
+#~ msgid "Language edit"
+#~ msgstr "Язык"
+
+#~ msgid "Have been saved"
+#~ msgstr "Изменения сохранены"
+
+#~ msgid "Appearance"
+#~ msgstr "Появление"
+
 #~ msgid "Delete category"
 #~ msgstr "Удалить категорию"
 
@@ -5896,9 +6246,6 @@ msgstr "Нет ключа конфигурации или <br /> ключа сп
 
 #~ msgid "All content by categories"
 #~ msgstr "Все содержимое по категориях"
-
-#~ msgid "Widget editing"
-#~ msgstr "Редактирование виджета"
 
 #~ msgid "Language settings"
 #~ msgstr "Языки"

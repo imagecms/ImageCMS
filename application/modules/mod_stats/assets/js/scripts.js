@@ -99,6 +99,72 @@ $(document).ready(function() {
     }
 
     /**
+     * Menu hide/show blocks
+     */
+    $('.firstLevelMenu').unbind('click').bind('click', function() {
+        var submenuBlock = $(this).closest('li').next('.submenu');
+        if (!$(submenuBlock).is(":visible")) {
+            $('.submenu').slideUp();
+            submenuBlock.slideDown();
+        }
+    })
+
+    /**
+     * Click on menu item. Show the appropriate template with chart.
+     */
+    $('.linkChart').unbind('click').bind('click', function() {
+        var thisEl = $(this);
+        /** Get link for ajax from data attribute **/
+        var dataHref = $(this).data('href');
+        /** Get params for preparing data **/
+        var params = getParamsForPrepareData(dataHref);
+        /** Prepare chart data **/
+        if (params !== 'false') {
+            var chartData = prepareData(params[0], params[1]);
+        }
+
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=' + 'true',
+            url: base_url + dataHref,
+            success: function(response) {
+                if (response != false) {
+                    $('#chartContainer').html(response);
+                    $('.linkChart').removeClass('active');
+                    thisEl.addClass('active');
+                    if (chartData === undefined) {
+                        console.log('Error getting data !');
+                        return false;
+                    }
+
+                    if (chartData.type === 'line') {
+                        drawLineWithFocusChart(chartData.data);
+                    }
+                    if (chartData.type === 'pie') {
+                        drawPieChart(chartData.data);
+                        drawBarChart(chartData.data);
+                    }
+                }
+            }
+        });
+    });
+
+    /**
+     * Choose chart type 
+     */
+    $('#selectChartType').bind('change', function() {
+        var selectElement = $(this);
+        var chartType = selectElement.find("option:selected").val();
+        $('.hideChart').hide();
+        $('#' + chartType).fadeIn();
+
+        barChartUpdate();
+
+
+    })
+
+    /**
      * Update bar chart
      * @returns 
      */
@@ -185,6 +251,7 @@ $(document).ready(function() {
             return chart;
         });
     }
+
     /**
      * Draw Bar chart
      * @param {object} data
@@ -340,11 +407,59 @@ $(document).ready(function() {
         var CookieDate = new Date();
         var selectElement = $(this);
         var groupBy = selectElement.find("option:selected").val();
-        
+
         /** Date for saving cookies(one year) **/
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
         document.cookie = "group_by=" + groupBy + ";expires=" + CookieDate.toGMTString() + ";";
     })
 
+
+
+
+    // ORDER INFO
+
+    $("#stats_orders_info").delegate("#loadOrdersInfo", "click", function() {
+        loadOrderInfo();
+    });
+
+    function loadOrderInfo() {
+        // getting params
+        var params = {};
+        params.interval = $("#stats_orders_info .stats_order_info_interval.active").val();
+        params.start_date = $("#stats_orders_info #start_date").val();
+        params.end_date = $("#stats_orders_info #end_date").val();
+        params.notLoadMain = 'true';
+
+        if (statCheckDate(params.start_date) & statCheckDate(params.end_date)) {
+            $.ajax({
+                url: base_url + 'admin/components/init_window/mod_stats/getOrderInfo',
+                type: 'get',
+                data: params,
+                success: function(data) {
+                    $(data).find("script").remove();
+                    alert(data);
+                    $("#stat_info_data").html(data);
+                }
+            });
+        } else {
+            alert("Bad date");
+            return;
+        }
+    }
+
+
+    function statCheckDate(date) {
+        var datePatterns = [
+            /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g,
+            /^[0-9]{4}-[0-9]{2}$/g,
+            /^[0-9]{4}$/g,
+        ];
+
+        for (var i = 0; i < datePatterns.length; i++) {
+            if (date.match(datePatterns[i]))
+                return true;
+        }
+        return false;
+    }
 
 });

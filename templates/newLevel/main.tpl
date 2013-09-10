@@ -23,6 +23,14 @@
 
         <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
+            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+        {else:}
+            {$lang = ''} 
+        {/if}
+        <script type="text/javascript">
+            var lang = "{echo $lang}";
+        </script>
 
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->

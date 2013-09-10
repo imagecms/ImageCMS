@@ -61,7 +61,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('Телефон:','newLevel')}:</span>
+                                    <span class="title">{lang('Телефон','newLevel')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[phone]']}
                                             <span class="must">*</span>
@@ -70,7 +70,7 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('Email:','newLevel')}:</span>
+                                    <span class="title">{lang('Email','newLevel')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[email]']}
                                             <span class="must">*</span>
@@ -91,13 +91,13 @@
                                     </span>
                                 </label>
                                 <label>
-                                    <span class="title">{lang('Комментарий','newLevel')}</span>
+                                    <span class="title">{lang('Комментарий:','newLevel')}</span>
                                     <span class="frame-form-field"><textarea name="userInfo[commentText]" ></textarea></span>
                                 </label>
                             </div>
                             <div class="groups-form">
                                 <div class="frame-label">
-                                    <span class="title">{lang('Доставка','newLevel')}</span>
+                                    <span class="title">{lang('Доставка:','newLevel')}</span>
                                     <div class="frame-form-field check-variant-delivery">
                                         {/*<div class="lineForm">
                                                 <select id="method_deliv" name="deliveryMethodId">
@@ -154,7 +154,7 @@
 
                             {if count($paymentMethods)}
                                 <div class="frame-label">
-                                    <span class="title">{lang('Варианты оплаты','newLevel')}</span>
+                                    <span class="title">{lang('Оплата:','newLevel')}</span>
                                     <div class="frame-form-field check-variant-payment p_r">
                                         <div class="paymentMethod">
                                             {/*<div class="lineForm">
