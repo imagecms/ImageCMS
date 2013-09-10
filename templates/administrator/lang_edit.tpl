@@ -56,13 +56,15 @@
                                                             </label>
                                                             <div class="controls">
                                                                 <div class="group_icon pull-right">            
-                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
                                                                 </div>
                                                                 <div class="o_h">		            
                                                                     <input type="text" name="image" id="Img" value="{$image}">					
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        { /* } 
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang("Folder","admin")}:</label>
                                                             <div class="controls">
@@ -73,6 +75,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        { */ }
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang("Template","admin")}:</label>
                                                             <div class="controls">
