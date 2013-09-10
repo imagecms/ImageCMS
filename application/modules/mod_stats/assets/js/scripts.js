@@ -9,6 +9,7 @@ $(document).ready(function() {
         if (link === undefined) {
             return false;
         }
+        
         var splitedArray = link.split('/');
         /** Create array with params which we need**/
         var params = [];
@@ -36,7 +37,7 @@ $(document).ready(function() {
                 async: false,
                 type: 'get',
                 data: 'notLoadMain=' + 'true',
-                url: base_url + 'admin/components/init_window/mod_stats/getDiagramData/' + className + '/' + method,
+                url: base_url + 'admin/components/init_window/mod_stats/getStatsData/' + className + '/' + method,
                 success: function(response) {
                     if (response) {
                         try {
@@ -313,54 +314,54 @@ $(document).ready(function() {
 //        return data;
 //    }
 
-
-    
-    // ORDER INFO
-
-    $("#stats_orders_info").delegate("#loadOrdersInfo", "click", function() {
-        loadOrderInfo();
-    });
-
-    function loadOrderInfo() {
-        // getting params
-        var params = {};
-        params.interval = $("#stats_orders_info .stats_order_info_interval.active").val();
-        params.start_date = $("#stats_orders_info #start_date").val();
-        params.end_date = $("#stats_orders_info #end_date").val();
-        params.notLoadMain = 'true';
-
-        if (statCheckDate(params.start_date) & statCheckDate(params.end_date)) {
-            $.ajax({
-                url: base_url + 'admin/components/init_window/mod_stats/getOrderInfo',
-                type: 'get',
-                data: params,
-                success: function(data) {
-                    $(data).find("script").remove();
-                    alert(data);
-                    $("#stat_info_data").html(data);
-                }
-            });
-        } else {
-            alert("Bad date");
-            return;
-        }
-    }
-
-    
-    function statCheckDate(date) {
-        var datePatterns = [
-            /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g,
-            /^[0-9]{4}-[0-9]{2}$/g,
-            /^[0-9]{4}$/g,
-        ];
-
-        for (var i = 0; i < datePatterns.length; i++) {
-            if (date.match(datePatterns[i]))
-                return true;
-        }
-        return false;
-    }
-
+    /*
+     
+     // ORDER INFO
+     
+     $("#stats_orders_info").delegate("#loadOrdersInfo", "click", function() {
+     loadOrderInfo();
+     });
+     
+     function loadOrderInfo() {
+     // getting params
+     var params = {};
+     params.interval = $("#stats_orders_info .stats_order_info_interval.active").val();
+     params.start_date = $("#stats_orders_info #start_date").val();
+     params.end_date = $("#stats_orders_info #end_date").val();
+     params.notLoadMain = 'true';
+     
+     if (statCheckDate(params.start_date) & statCheckDate(params.end_date)) {
+     $.ajax({
+     url: base_url + 'admin/components/init_window/mod_stats/getOrderInfo',
+     type: 'get',
+     data: params,
+     success: function(data) {
+     $(data).find("script").remove();
+     alert(data);
+     $("#stat_info_data").html(data);
+     }
+     });
+     } else {
+     alert("Bad date");
+     return;
+     }
+     }
+     
+     
+     function statCheckDate(date) {
+     var datePatterns = [
+     /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g,
+     /^[0-9]{4}-[0-9]{2}$/g,
+     /^[0-9]{4}$/g,
+     ];
+     
+     for (var i = 0; i < datePatterns.length; i++) {
+     if (date.match(datePatterns[i]))
+     return true;
+     }
+     return false;
+     }
+     */
 
 
 });
