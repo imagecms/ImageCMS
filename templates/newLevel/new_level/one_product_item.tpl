@@ -8,9 +8,6 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                {if $defaultItem}
-                    {$photo = $p->firstVariant->getDefaultPhoto()}
-                {/if}
                 <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
