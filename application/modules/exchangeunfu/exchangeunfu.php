@@ -311,7 +311,6 @@ class Exchangeunfu extends MY_Controller {
     public static function _extendPageAdmin($data) {
         $ci = &get_instance();
         if ($ci->uri->segment(6) == 'edit') {
-//            var_dumps($data['model']->getExternalId());
             $array = $ci->db
                     ->where('product_id', $data['model']->getId())
                     ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.external_id')

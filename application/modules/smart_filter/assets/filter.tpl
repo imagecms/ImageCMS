@@ -3,7 +3,7 @@
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
-            <div class="title">Цена в гривнах</div>
+            <div class="title">Цена</div>
             <div class="slider-cont">
                 <noscript>Джаваскрипт не включен</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}

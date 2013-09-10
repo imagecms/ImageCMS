@@ -18,17 +18,17 @@
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">{lang('Compare Products','newLevel')}</h1>
+                        <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-type="radio">
                         <li class="btn-def active">
                             <button type="button" data-href="#all-params">
-                                <span class="text-el">{lang('s_all_par')}</span>
+                                <span class="text-el">{lang('Все параметры','newLevel')}</span>
                             </button>
                         </li>
                         <li class="btn-def">
                             <button type="button" data-href="#only-dif">
-                                <span class="text-el">{lang('s_only_diff')}</span>
+                                <span class="text-el">{lang('Только Различия','newLevel')}</span>
                             </button>
                         </li>
                     </ul>
@@ -123,7 +123,7 @@
                         {/foreach}
                     </div>
                     <div class="comprasion-head">
-                        <div class="title-h3">{lang('Category products','newLevel')}:</div>
+                        <div class="title-h3">{lang('Категория:','newLevel')}:</div>
                         <ul class="tabs tabs-compare-category">
                             {foreach $categories as $category}
                                 <li>
@@ -146,13 +146,13 @@
             <div class="empty">
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">{lang('Compare Products','newLevel')}</h1>
+                        <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
                 </div>
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('You have removed all items from the comparison','newLevel')}</span>
+                        <span class="text-el">{lang('Вы удалили все товары из сравнения','newLevel')}</span>
                     </div>
                 </div>
             </div>
@@ -160,13 +160,13 @@
         {else:}
             <div class="f-s_0 title-compare without-crumbs clearfix">
                 <div class="frame-title">
-                    <h1 class="d_i title">{lang('Comparing Products','newLevel')}</h1>
+                    <h1 class="d_i title">{lang('Cравнения товаров','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('The list of comparisons is empty','newLevel')}</span>
+                    <span class="text-el">{lang('Список сравнения пуст','newLevel')}</span>
                 </div>
             </div>
         {/if}

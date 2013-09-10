@@ -15,32 +15,36 @@
         {$cnt_comp = 0}
     {/if}
     var curr = '{$CS}',
-    nextCs = '{echo $NextCS}',
-    pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-    checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}",//use in plugin plus minus
-    inCart = 'В корзине',
-    toCart = '{lang('Купить','newLevel')}',
-    pcs = 'Количество:',
-    kits = 'Комплектов:',
-    captchaText = 'Код протекции',
-    isLogin = "{$is_logged_in}" == '1' ? true : false,
-    inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
-    inServerCompare = parseInt("{$cnt_comp}"),
-    inServerWishList = parseInt("{$countWL}"),
-    countViewProd = parseInt("{$countSh}"),
-    theme = "{$THEME}";
+            nextCs = '{echo $NextCS}',
+            pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+            checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+            inCart = 'В корзине',
+            toCart = '{lang('Купить','newLevel')}',
+            pcs = 'Количество:',
+            kits = 'Комплектов:',
+            captchaText = 'Код протекции',
+            isLogin = "{$is_logged_in}" == '1' ? true : false,
+            inServerCart = parseInt("{echo ShopCore::app()->SCart->totalItems()}"),
+            inServerCompare = parseInt("{$cnt_comp}"),
+            inServerWishList = parseInt("{$countWL}"),
+            countViewProd = parseInt("{$countSh}"),
+            theme = "{$THEME}";
     plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
     plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
     plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
 
     {literal}
         text = {
-        search: function(text) {
-        return 'Введите боллее ' + text + ' символов';
-        },
-        error:{
-        notLogin: "залогинтесь"
-        }
+            search: function(text) {
+                return '{/literal}{lang("Введите боллее", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("символов", "newLevel")}'{literal};
+            },
+            error: {
+                notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", "newLevel")}'{literal},
+                fewsize: function(text) {
+                    return '{/literal}{lang("Выберете размер меньше или равно", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("пикселей", "newLevel")}'{literal};
+                },
+                enterName: '{/literal}{lang("Введите название", "newLevel")}'{literal}
+            }
         }
     {/literal}
 </script>
