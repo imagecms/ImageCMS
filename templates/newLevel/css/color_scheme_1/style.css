@@ -301,6 +301,7 @@ a:focus, a:active {color: #51d2ff;}
 .frame-brands .frame-title > .title > .text-el{background-color: #faf8f6;padding: 0 15px;font-size: 18px;}
 
 .frame-baner-start_page{background: url("images/fon_b.png") repeat;}
+.vertical-layout .frame-baner-start_page{background: none;}
 .frame-baner-start_page:before{content: "";position: absolute;left: -5%;top: -2px;width: 110%;height: 2px;-moz-box-shadow: 0 1px 9px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 9px rgba(0,0,0,0.1);box-shadow: 0 1px 9px rgba(0,0,0,0.1);}
 .baner .prev, .baner .next{width: 42px;height: 42px;background-color: #fff;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: 0.85;-khtml-opacity: 0.85;opacity: 0.85;}
 

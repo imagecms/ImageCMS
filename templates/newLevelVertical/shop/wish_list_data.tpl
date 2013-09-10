@@ -6,7 +6,8 @@
             <button onclick="location = '{site_url('wishlist')}'">
                 <span class="icon_wish_list"></span>
                 <span class="text-wish-list f-s_0">
-                    <span class="text-el">С{lang('Wishlist','newLevel')}(</span>
+                    <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                    <span class="text-el">(</span>
                     <span class="text-el wishListCount">{echo $countWL}</span>
                 </span>
                 <span class="text-el">)</span>

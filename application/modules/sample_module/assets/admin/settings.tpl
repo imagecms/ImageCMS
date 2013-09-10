@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang("Have been saved")}</button>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang("Save")}</button>
                     <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back")}</button>
                         {echo create_language_select($languages, $locale, "/admin/components/modules_table')}
                 </div>
