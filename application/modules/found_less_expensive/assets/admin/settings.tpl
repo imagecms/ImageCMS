@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/cp/found_less_expensive" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
-                <button id="settingsSave" type="button" class="btn btn-small btn-primary action_on" data-submit><i class="icon-ok"></i>{lang('Have been saved')}</button>
+                <button id="settingsSave" type="button" class="btn btn-small btn-primary action_on" data-submit><i class="icon-ok"></i>{lang('Save')}</button>
             </div>
         </div>                            
     </div>
