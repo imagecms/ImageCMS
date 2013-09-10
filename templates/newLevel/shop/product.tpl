@@ -269,7 +269,7 @@
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
-                {if $Comments[$model->getId()] && $model->enable_comments}
+                {if $Comments[$model->getId()] && $model->enable_comments && $Comments[$model->getId()]!=0}
                     <div class="frame-star t-a_j">
                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
@@ -535,7 +535,7 @@
     <div class="container f-s_0">
         <!--        Start. Tabs block       -->
         <ul class="tabs tabs-data tabs-product">
-            <li>
+            <li class="active">
                 <button data-href="#view">{lang('Обзор','newLevel')}</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
@@ -556,9 +556,10 @@
                         <span class="text-el">
                             <span id="cc">
                                 {if $Comments[$model->getId()][0] !== '0'}
-                                    {echo $Comments[$model->getId()]}
+                                    {echo intval($Comments[$model->getId()])}
+                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                                 {else:}
-                                    {lang('Оставить комментарий','newLevel')}
+                                    {lang('Оставить отзыв','newLevel')}
                                 {/if}
                             </span>
                         </span>
@@ -679,14 +680,14 @@
 </div>
 {widget('latest_news')}
 <script type="text/javascript">
-                        var hrefCategoryProduct = "{$category_url}";
+                    var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">
         var
                 //productPhotoFancybox = true,
                 productPhotoDrop = true,
-                //productPhotoCZoom = true,
+                productPhotoCZoom = true,
                 forThumbFancybox = "body{background-color:#fff;text-align: center;height:100%;margin:0;}img{height: auto; max-width: 100%; vertical-align: middle; border: 0; width: auto\9;max-height: 100%; -ms-interpolation-mode: bicubic; }.helper{vertical-align: middle;width: 0;height: 100%;padding: 0 !important;border: 0 !important;display: inline-block;}.helper + *{vertical-align: middle;display: inline-block;word-break: break-word;}";
     </script>
 {/literal}

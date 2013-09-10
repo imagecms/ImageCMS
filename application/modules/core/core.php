@@ -87,13 +87,13 @@ class Core extends MY_Controller {
 
                 // Set language template
 
-               // $this->config->set_item('template', $this->langs[$uri_lang]['template']);
+                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
 
-                //$this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->langs[$uri_lang]['template'] . '/');
+                $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->langs[$uri_lang]['template'] . '/');
 
                 ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL;
 
-                //$this->load_functions_file($this->langs[$uri_lang]['template']);
+                $this->load_functions_file($this->langs[$uri_lang]['template']);
 
                 // Reload template settings
                 $this->template->load();
