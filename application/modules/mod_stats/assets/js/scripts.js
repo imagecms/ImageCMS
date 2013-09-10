@@ -48,14 +48,14 @@ $(document).ready(function() {
                 }
             });
         }
-        
-        if (returnResult !== undefined &&  returnResult.type === 'line') {
+
+        if (returnResult !== undefined && returnResult.type === 'line') {
             returnResult = convertValuesForLineChart(returnResult);
         }
 
         return returnResult;
     }
-    
+
     /**
      * Convert values to Float
      * @param {object} data
@@ -101,7 +101,7 @@ $(document).ready(function() {
         if (params !== 'false') {
             var chartData = prepareData(params[0], params[1]);
         }
-        
+
         $.ajax({
             async: false,
             type: 'get',
@@ -127,8 +127,8 @@ $(document).ready(function() {
             }
         });
     });
-    
-    
+
+
 
     /**Draw lineWithFocusChart
      * @param {object} data
@@ -202,22 +202,22 @@ $(document).ready(function() {
             return chart;
         });
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    function testDataOrders() {
 //        var data = [];
 //        var dataOrdersAll = {};
@@ -237,4 +237,55 @@ $(document).ready(function() {
 //        data.push(dataOrdersAll);
 //        return data;
 //    }
+
+
+    
+    // ORDER INFO
+
+    $("#stats_orders_info").delegate("#loadOrdersInfo", "click", function() {
+        loadOrderInfo();
+    });
+
+    function loadOrderInfo() {
+        // getting params
+        var params = {};
+        params.interval = $("#stats_orders_info .stats_order_info_interval.active").val();
+        params.start_date = $("#stats_orders_info #start_date").val();
+        params.end_date = $("#stats_orders_info #end_date").val();
+        params.notLoadMain = 'true';
+
+        if (statCheckDate(params.start_date) & statCheckDate(params.end_date)) {
+            $.ajax({
+                url: base_url + 'admin/components/init_window/mod_stats/getOrderInfo',
+                type: 'get',
+                data: params,
+                success: function(data) {
+                    $(data).find("script").remove();
+                    alert(data);
+                    $("#stat_info_data").html(data);
+                }
+            });
+        } else {
+            alert("Bad date");
+            return;
+        }
+    }
+
+    
+    function statCheckDate(date) {
+        var datePatterns = [
+            /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/g,
+            /^[0-9]{4}-[0-9]{2}$/g,
+            /^[0-9]{4}$/g,
+        ];
+
+        for (var i = 0; i < datePatterns.length; i++) {
+            if (date.match(datePatterns[i]))
+                return true;
+        }
+        return false;
+    }
+
+
+
 });
