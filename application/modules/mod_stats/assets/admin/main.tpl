@@ -29,8 +29,8 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/brands_and_cat" data-href="admin/components/init_window/mod_stats/getStatsData/orders/brands_and_cat" class="linkChart" >&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Orders information', 'mod_stats')}                                      
+                        <a data-href="admin/components/init_window/mod_stats/getStatsData/orders/info" data-href="admin/components/init_window/mod_stats/getStatsData/orders/brands_and_cat" class="linkChart" >&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang('Information', 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>

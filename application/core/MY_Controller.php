@@ -56,6 +56,8 @@ class MY_Controller extends MX_Controller {
     public $pjaxRequest = false;
     public $ajaxRequest = false;
     public static $currentLocale = null;
+    public static $detect_load_admin = array();
+    public static $detect_load = array();
 
     public function __construct() {
         parent::__construct();
@@ -103,7 +105,7 @@ class MY_Controller extends MX_Controller {
 
         if (self::$currentLocale)
             return self::$currentLocale;
-        
+
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
 
@@ -119,10 +121,9 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        } else {
-            $defaultLanguage = self::getDefaultLanguage();
-            self::$currentLocale = $defaultLanguage['identif'];
-        }
+        } else 
+            self::$currentLocale = chose_language();
+        
         return self::$currentLocale;
     }
 

@@ -42,9 +42,9 @@
                             <a href="{shop_url('product/' . $item.model->getUrl())}">{echo ShopCore::encode($item.model->getName())}</a>
                             <span class="d_b m-b_5">
                                 {$hasCode = $variant->getNumber() == '';}
-                                <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Mark','newLevel')}: <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if})</span></span>
+                                <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Отметить','newLevel')}: <span class="code">({if !$hasCode}{echo $variant->getNumber()}{/if})</span></span>
                                 {$hasVariant = $variant->getName() == '';}
-                                <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Variant','newLevel')}: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
+                                <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}: <span class="code">({if !$hasVariant}{echo $variant->getName()}{/if})</span></span>
                             </span>
                             <!-- Start. Price -->
                             <div class="price price_f-s_16">
@@ -78,7 +78,7 @@
                                         data-origPrice="{if $item.model->hasDiscounts()}{echo $variant->toCurrency('OrigPrice')}{/if}"
                                         {echo $variant->getStock()}"
                                         >
-                                    {lang('s_buy')}
+                                    {lang('Купить','newLevel')}
                                 </button>
                             {else:}
                                 <button data-placement="bottom right"
@@ -91,7 +91,7 @@
                                         type="button"
                                         class="btn btn_not_avail">
                                     <span class="icon-but"></span>
-                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                                 </button>              
                             {/if}
                             <!-- End. Check is product available -->
@@ -113,10 +113,10 @@
             {if ShopCore::$ci->dx_auth->is_logged_in() === true}
                 <form action="" method="post" name="editForm">
                     <div class="left-order">
-                        <input type="text" placeholder="{lang('Recipient e-mail','newLevel')}" name="friendsMail"/>
+                        <input type="text" placeholder="{lang('Адрес электронной почты получателя','newLevel')}" name="friendsMail"/>
                     </div>
                     <div class="btn-order">
-                        <button type="submit"  name="sendwish"> {lang('Send to a friend','newLevel')} </button>
+                        <button type="submit"  name="sendwish"> {lang('Показать другу','newLevel')} </button>
                     </div>
                     {form_csrf()}
                 </form>
@@ -125,7 +125,7 @@
         {else:}
             <!--      Start. Empty wish list-->
             <div class="clearfix">
-                <div class="title-h3">{lang('Withlist is empty','newLevel')}</div>
+                <div class="title-h3">{lang('Список желаний пуст','newLevel')}</div>
             </div>
             <!--      End. Empty wishlist-->
         {/if}
