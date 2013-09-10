@@ -17,7 +17,7 @@ $(document).ready(function() {
         if (params instanceof Array) {
             return params;
         } else {
-            return false;
+            return 'false';
         }
     }
 
@@ -98,88 +98,6 @@ $(document).ready(function() {
         return chartDataForReturn;
     }
 
-    /**
-     * Menu hide/show blocks
-     */
-    $('.firstLevelMenu').unbind('click').bind('click', function() {
-        var submenuBlock = $(this).closest('li').next('.submenu');
-        if (!$(submenuBlock).is(":visible")) {
-            $('.submenu').slideUp();
-            submenuBlock.slideDown();
-        }
-    })
-
-    /**
-     * Click on menu item. Show the appropriate template with chart.
-     */
-    $('.linkChart').unbind('click').bind('click', function() {
-        var thisEl = $(this);
-        /** Get link for ajax from data attribute **/
-        var dataHref = $(this).data('href');
-        /** Get params for preparing data **/
-        var params = getParamsForPrepareData(dataHref);
-        /** Prepare chart data **/
-        if (params !== 'false') {
-            var chartData = prepareData(params[0], params[1]);
-        }
-
-        $.ajax({
-            async: false,
-            type: 'get',
-            data: 'notLoadMain=' + 'true',
-            url: base_url + dataHref,
-            success: function(response) {
-                if (response != false) {
-                    $('#chartContainer').html(response);
-                    $('.linkChart').removeClass('active');
-                    thisEl.addClass('active');
-                    if (chartData === undefined) {
-                        console.log('Error getting data !');
-                        return false;
-                    }
-
-                    if (chartData.type === 'line') {
-                        drawLineWithFocusChart(chartData.data);
-                    }
-                    if (chartData.type === 'pie') {
-                        drawPieChart(chartData.data);
-                        drawBarChart(chartData.data);
-                    }
-                }
-            }
-        });
-    });
-
-    /**
-     * Choose chart type 
-     */
-    $('#selectChartType').bind('change', function() {
-        var selectElement = $(this);
-        var chartType = selectElement.find("option:selected").val();
-        $('.hideChart').hide();
-        $('#' + chartType).fadeIn();
-
-        barChartUpdate();
-
-
-    })
-
-    /**
-     * Update bar chart
-     * @returns 
-     */
-    function barChartUpdate() {
-        var chart = nv.models.discreteBarChart()
-                .x(function(d) {
-            return d.label;
-        })
-                .y(function(d) {
-            return d.value;
-        });
-        d3.select('#barChart svg')
-                .call(chart);
-        chart.update;
-    }
     /**Draw lineWithFocusChart
      * @param {object} data
      * @returns chart
@@ -281,44 +199,22 @@ $(document).ready(function() {
         });
     }
 
-
-
-
-    /**
-     * Menu hide/show blocks
-     */
-    $('.firstLevelMenu').unbind('click').bind('click', function() {
-        var submenuBlock = $(this).closest('li').next('.submenu');
-        if (!$(submenuBlock).is(":visible")) {
-            $('.submenu').slideUp();
-            submenuBlock.slideDown();
-        }
-    })
-
-    /**
-     * Click on menu item. Show the appropriate template with chart.
-     */
-    $('.linkChart').unbind('click').bind('click', function() {
-        var thisEl = $(this);
-        /** Get link for ajax from data attribute **/
-        var dataHref = $(this).data('href');
-        /** Get params for preparing data **/
-        var params = getParamsForPrepareData(dataHref);
+    function drawChartsAndRefresh(className, methodName) {
         /** Prepare chart data **/
-        if (params !== 'false') {
-            var chartData = prepareData(params[0], params[1]);
+        if (className !== 'false' && methodName !== 'false') {
+            var chartData = prepareData(className, methodName);
+        } else {
+            return false;
         }
 
         $.ajax({
             async: false,
             type: 'get',
             data: 'notLoadMain=' + 'true',
-            url: base_url + dataHref,
+            url: base_url + 'admin/components/cp/mod_stats/getStatsData/' + className + '/' + methodName,
             success: function(response) {
                 if (response != false) {
                     $('#chartContainer').html(response);
-                    $('.linkChart').removeClass('active');
-                    thisEl.addClass('active');
                     if (chartData === undefined) {
                         console.log('Error getting data !');
                         return false;
@@ -334,6 +230,33 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+
+    /**
+     * Menu hide/show blocks
+     */
+    $('.firstLevelMenu').unbind('click').bind('click', function() {
+        var submenuBlock = $(this).closest('li').next('.submenu');
+        if (!$(submenuBlock).is(":visible")) {
+            $('.submenu').slideUp();
+            submenuBlock.slideDown();
+        }
+    });
+
+    /**
+     * Click on menu item. Show the appropriate template with chart.
+     */
+    $('.linkChart').unbind('click').bind('click', function() {
+        var thisEl = $(this);
+        /** Get link for ajax from data attribute **/
+        var dataHref = thisEl.data('href');
+        /** Get params for preparing data **/
+        var params = getParamsForPrepareData(dataHref);
+        $('.linkChart').removeClass('active');
+        thisEl.addClass('active');
+
+        drawChartsAndRefresh(params[0], params[1]);
+
     });
 
     /**
@@ -342,14 +265,13 @@ $(document).ready(function() {
     $('#selectChartType').bind('change', function() {
         var selectElement = $(this);
         var chartType = selectElement.find("option:selected").val();
+
+        drawChartsAndRefresh('products', 'brands');
+
         $('.hideChart').hide();
         $('#' + chartType).fadeIn();
-
-        barChartUpdate();
-
+        $('#selectChartType').find("[value=" + chartType + "]").attr('selected', 'selected')
     });
-
-
 
     /**
      * Set time interval for day, week, month, year
@@ -362,7 +284,11 @@ $(document).ready(function() {
         var endDate = new Date();
         var startDateForInput = '';
         var endDateForInput = '';
-
+        
+        if ($(".linkChart.active").data('href') === undefined){
+            return;
+        }
+        
         /** Date for saving cookies(one year) **/
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
 
@@ -395,12 +321,16 @@ $(document).ready(function() {
         $('.date_end').val(endDateForInput);
 
         /**Save cookies **/
-        document.cookie = "interval=" + interval + ";expires=" + CookieDate.toGMTString() + ";";
-        document.cookie = "date_from=" + startDate.getTime() + ";expires=" + CookieDate.toGMTString() + ";";
-        document.cookie = "date_to=" + endDate.getTime() + ";expires=" + CookieDate.toGMTString() + ";";
         document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
         document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+        
+        /** Refresh page **/
+        $('#refreshIntervalsButton').trigger('click');
+
+
     });
+
+
 
     /** Select and save to cookies group by type **/
     $('#selectGroupBy').unbind('change').bind('change', function() {
@@ -411,7 +341,47 @@ $(document).ready(function() {
         /** Date for saving cookies(one year) **/
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
         document.cookie = "group_by=" + groupBy + ";expires=" + CookieDate.toGMTString() + ";";
-    })
+
+        /** Refresh page **/
+        $('#refreshIntervalsButton').trigger('click');
+
+    });
+
+
+    $('#refreshIntervalsButton').unbind('click').bind('click', function() {
+        var thisEl = $(".linkChart.active");
+        /** Get link for ajax from data attribute **/
+        var dataHref = thisEl.data('href');
+
+        if (dataHref === undefined) {
+            return;
+        }
+
+        /** Get params for preparing data **/
+        var params = getParamsForPrepareData(dataHref);
+
+        var CookieDate = new Date;
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+
+        var startDateForInput = $('.date_start').val();
+        var endDateForInput = $('.date_end').val();
+        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+
+        drawChartsAndRefresh(params[0], params[1]);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
