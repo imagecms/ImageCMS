@@ -38,8 +38,8 @@ class Stats_model_orders extends CI_Model {
 
         $query = "
             SELECT
-                COUNT(`dtable`.`id`) as `orders_count`,
                 DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->prepareDatePattern() . "') as `date`,
+                COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
                 SUM(`dtable`.`products_count`) as `products_count`,
                 SUM(`dtable`.`quantity`) as `quantity`
