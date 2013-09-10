@@ -98,70 +98,6 @@ $(document).ready(function() {
         return chartDataForReturn;
     }
 
-
-    /**
-     * Menu hide/show blocks
-     */
-    $('.firstLevelMenu').unbind('click').bind('click', function() {
-        var submenuBlock = $(this).closest('li').next('.submenu');
-        if (!$(submenuBlock).is(":visible")) {
-            $('.submenu').slideUp();
-            submenuBlock.slideDown();
-        }
-    })
-
-    /**
-     * Click on menu item. Show the appropriate template with chart.
-     */
-    $('.linkChart').unbind('click').bind('click', function() {
-        var thisEl = $(this);
-        /** Get link for ajax from data attribute **/
-        var dataHref = $(this).data('href');
-        /** Get params for preparing data **/
-        var params = getParamsForPrepareData(dataHref);
-        /** Prepare chart data **/
-        if (params !== 'false') {
-            var chartData = prepareData(params[0], params[1]);
-        }
-
-        $.ajax({
-            async: false,
-            type: 'get',
-            data: 'notLoadMain=' + 'true',
-            url: base_url + dataHref,
-            success: function(response) {
-                if (response != false) {
-                    $('#chartContainer').html(response);
-                    $('.linkChart').removeClass('active');
-                    thisEl.addClass('active');
-                    if (chartData === undefined) {
-                        console.log('Error getting data !');
-                        return false;
-                    }
-
-                    if (chartData.type === 'line') {
-                        drawLineWithFocusChart(chartData.data);
-                    }
-                    if (chartData.type === 'pie') {
-                        drawPieChart(chartData.data);
-                        drawBarChart(chartData.data);
-                    }
-                }
-            }
-        });
-    });
-    /**
-     * Choose chart type 
-     */
-    $('#selectChartType').bind('change', function() {
-        var selectElement = $(this);
-        var chartType = selectElement.find("option:selected").val();
-        $('.hideChart').hide();
-        $('#' + chartType).fadeIn();
-
-        barChartUpdate();
-
-    })
     /**
      * Update bar chart
      * @returns 
@@ -281,31 +217,134 @@ $(document).ready(function() {
 
 
 
+    /**
+     * Menu hide/show blocks
+     */
+    $('.firstLevelMenu').unbind('click').bind('click', function() {
+        var submenuBlock = $(this).closest('li').next('.submenu');
+        if (!$(submenuBlock).is(":visible")) {
+            $('.submenu').slideUp();
+            submenuBlock.slideDown();
+        }
+    })
+
+    /**
+     * Click on menu item. Show the appropriate template with chart.
+     */
+    $('.linkChart').unbind('click').bind('click', function() {
+        var thisEl = $(this);
+        /** Get link for ajax from data attribute **/
+        var dataHref = $(this).data('href');
+        /** Get params for preparing data **/
+        var params = getParamsForPrepareData(dataHref);
+        /** Prepare chart data **/
+        if (params !== 'false') {
+            var chartData = prepareData(params[0], params[1]);
+        }
+
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=' + 'true',
+            url: base_url + dataHref,
+            success: function(response) {
+                if (response != false) {
+                    $('#chartContainer').html(response);
+                    $('.linkChart').removeClass('active');
+                    thisEl.addClass('active');
+                    if (chartData === undefined) {
+                        console.log('Error getting data !');
+                        return false;
+                    }
+
+                    if (chartData.type === 'line') {
+                        drawLineWithFocusChart(chartData.data);
+                    }
+                    if (chartData.type === 'pie') {
+                        drawPieChart(chartData.data);
+                        drawBarChart(chartData.data);
+                    }
+                }
+            }
+        });
+    });
+
+    /**
+     * Choose chart type 
+     */
+    $('#selectChartType').bind('change', function() {
+        var selectElement = $(this);
+        var chartType = selectElement.find("option:selected").val();
+        $('.hideChart').hide();
+        $('#' + chartType).fadeIn();
+
+        barChartUpdate();
+
+    });
 
 
 
+    /**
+     * Set time interval for day, week, month, year
+     */
+    $('.intervalButton').unbind('click').bind('click', function() {
+        var CookieDate = new Date;
+        var interval = $(this).data('group');
+        var nowDate = new Date();
+        var startDate = new Date();
+        var endDate = new Date();
+        var startDateForInput = '';
+        var endDateForInput = '';
+
+        /** Date for saving cookies(one year) **/
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+
+        /** Prepare times interval for day, week, month, year**/
+        switch (interval) {
+            case 'day':
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
+                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
+                break;
+            case 'week':
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
+                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 7));
+                break;
+            case 'month':
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth());
+                endDate = new Date(nowDate.getFullYear(), (nowDate.getMonth() + 1));
+                break;
+            case 'year':
+                startDate = new Date(nowDate.getFullYear(), 0);
+                endDate = new Date((nowDate.getFullYear() + 1), 0);
+                break;
+        }
+
+        /** Prepare values for start and end date inputs **/
+        startDateForInput = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + (startDate.getDate());
+        endDateForInput = endDate.getFullYear() + '-' + (endDate.getMonth() + 1) + '-' + (endDate.getDate());
+
+        /** Set values for start and end date inputs **/
+        $('.date_start').val(startDateForInput);
+        $('.date_end').val(endDateForInput);
+
+        /**Save cookies **/
+        document.cookie = "interval=" + interval + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "date_from=" + startDate.getTime() + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "date_to=" + endDate.getTime() + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+    });
+
+    /** Select and save to cookies group by type **/
+    $('#selectGroupBy').unbind('change').bind('change', function() {
+        var CookieDate = new Date();
+        var selectElement = $(this);
+        var groupBy = selectElement.find("option:selected").val();
+        
+        /** Date for saving cookies(one year) **/
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        document.cookie = "group_by=" + groupBy + ";expires=" + CookieDate.toGMTString() + ";";
+    })
 
 
-
-
-
-//    function testDataOrders() {
-//        var data = [];
-//        var dataOrdersAll = {};
-//        var dataOrdersPaid = {};
-//        dataOrdersAll['key'] = 'Все закази';
-//        dataOrdersAll['values'] = [{x: "1296950400", y: 107.18}, {x: "1297036800", y: 68.80},
-//            {x: "1299196800", y: 1178.99}, {x: "1299456000", y: 35.00}
-//            ,
-////        {x: new Date(2013, 3, 28), y: 8},
-////        {x: new Date(2013, 4, 28), y: 3},
-////        {x: new Date(2013, 5, 28), y: 11}
-//        ];
-//        dataOrdersPaid['key'] = 'Оплачение';
-//        dataOrdersPaid['values'] = [{x: new Date(2013, 1, 28), y: 2}, {x: new Date(2013, 1, 30), y: 6},
-//            {x: new Date(2013, 2, 10), y: 4}, {x: new Date(2013, 2, 25), y: 11},
-//            {x: new Date(2013, 3, 28), y: 7}, {x: new Date(2013, 4, 28), y: 3}, {x: new Date(2013, 5, 28), y: 10}];
-//        data.push(dataOrdersAll);
-//        return data;
-//    }
 });
