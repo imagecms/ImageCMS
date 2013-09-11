@@ -38,7 +38,7 @@
     <section class="container">
         <div class="row-fluid">
             <div class="span7">
-                {widget('infobox2')}
+                {widget('infobox1')}
             </div>
             <div class="span5">
                 {widget('Kits')}
