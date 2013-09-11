@@ -333,8 +333,6 @@ $(document).ready(function() {
 
     });
 
-
-
     /** Select and save to cookies group by type **/
     $('#selectGroupBy').unbind('change').bind('change', function() {
         var CookieDate = new Date();
@@ -350,7 +348,9 @@ $(document).ready(function() {
 
     });
 
-
+    /**
+     * Refresh interval button click
+     */
     $('#refreshIntervalsButton').unbind('click').bind('click', function() {
         var thisEl = $(".linkChart.active");
         /** Get link for ajax from data attribute **/
