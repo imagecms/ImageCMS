@@ -186,10 +186,11 @@ var ie = jQuery.browser.msie,
                         if (!$thisD) {
                             if (!evCond) {
                                 methods.changeCheck(nstcheck);
-                                after(frameChecks, $this, nstcheck);
+                                after(frameChecks, $this, nstcheck, e);
                             }
-                            else
-                                settings.before(frameChecks, $this, nstcheck);
+                            else {
+                                settings.before(frameChecks, $this, nstcheck, e);
+                            }
                         }
                     });
                     var form = frameChecks.closest('form');
@@ -197,10 +198,10 @@ var ie = jQuery.browser.msie,
                         methods.changeCheckallreset(form.find(elCheckWrap));
                     });
                 });
-                wrapper.find('input').unbind('click.nstCheck').on('click.nstCheck', function(e) {
-                    e.preventDefault();
+                wrapper.find('input').unbind('change.nstCheck mousedown.nstCheck click.nstCheck keyup.nstCheck').on('change.nstCheck mousedown.nstCheck click.nstCheck', function(e) {
                     $(this).closest(wrapper).trigger('click.nstcheck');
-                }).keyup(function(e) {
+                    return false;
+                }).on('keyup.nstCheck', function(e) {
                     if (e.keyCode == 32)
                         $(this).closest(wrapper).trigger('click.nstcheck');
                 })
@@ -209,7 +210,7 @@ var ie = jQuery.browser.msie,
         changeCheckStart: function(el, input) {
             var el = el,
                     input = input;
-            if (input.attr("checked")) {
+            if (input.attr("checked") != undefined) {
                 methods.checkChecked(el, input);
             }
             else {
@@ -224,7 +225,7 @@ var ie = jQuery.browser.msie,
             if (input == undefined)
                 input = $(this).find("input");
             el.addClass(activeClass).parent().addClass(activeClass);
-            input.attr("checked", true);
+            input.attr("checked", 'checked');
             $(document).trigger({'type': 'nstCheck.CC', 'el': el, 'input': input});
         },
         checkUnChecked: function(el, input) {
@@ -235,7 +236,7 @@ var ie = jQuery.browser.msie,
             if (input == undefined)
                 input = $(this).find("input");
             el.removeClass(activeClass).parent().removeClass(activeClass);
-            input.attr("checked", false);
+            input.removeAttr("checked");
             $(document).trigger({'type': 'nstCheck.CUC', 'el': el, 'input': input});
         },
         changeCheck: function(el)
@@ -244,7 +245,7 @@ var ie = jQuery.browser.msie,
             if (el == undefined)
                 el = this;
             var input = el.find("input");
-            if (!input.attr("checked")) {
+            if (input.attr("checked") == undefined) {
                 methods.checkChecked(el, input);
             }
             else {
@@ -259,7 +260,7 @@ var ie = jQuery.browser.msie,
             el.each(function() {
                 var input = el.find("input");
                 el.addClass(activeClass).parent().addClass(activeClass);
-                input.attr("checked", true);
+                input.attr("checked", "checked");
             })
         },
         changeCheckallreset: function(el)
@@ -270,7 +271,7 @@ var ie = jQuery.browser.msie,
             el.each(function() {
                 var input = el.find("input");
                 el.removeClass(activeClass).parent().removeClass(activeClass);
-                input.attr("checked", false);
+                input.removeAttr("checked");
             });
         },
         CheckallDisabled: function(el)
@@ -798,6 +799,7 @@ var ie = jQuery.browser.msie,
                     $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                 }
                 var k = [];
+                menuItem.add(menuItem.find('.helper:first')).css('height', '');
                 menuItem.each(function(index) {
                     var $this = $(this),
                             $thisW = $this.width(),
@@ -1249,8 +1251,8 @@ var ie = jQuery.browser.msie,
         },
         startCheck: function(regrefs, hashs) {
             var hashs = hashs[0].concat(hashs[1]),
-            regrefsL = regrefs.length,
-            sim = 0;
+                    regrefsL = regrefs.length,
+                    sim = 0;
             $.map(regrefs, function(n, k) {
                 var i = 0,
                         hashs2 = [].concat(hashs);
@@ -1320,7 +1322,7 @@ var ie = jQuery.browser.msie,
                 always: false,
                 animate: false,
                 moreoneNC: true,
-                timeclosemodal: false,
+                timeclosemodal: 2000,
                 before: function() {
                 },
                 after: function() {
@@ -1374,7 +1376,6 @@ var ie = jQuery.browser.msie,
                 }
                 var $this = $(this);
                 if (!$this.is('[disabled]')) {
-                    $(document).trigger({'type': 'drop.click', 'el': $this})
                     e.stopPropagation();
                     e.preventDefault();
                     var elSet = $this.data();
@@ -1382,34 +1383,41 @@ var ie = jQuery.browser.msie,
                             newModal = elSet.modal || modal,
                             newConfirm = elSet.confirm || confirm,
                             newAlways = elSet.always || always;
-                    if ($.existsN(elSetSource) && !newModal && !newAlways) {
-                        if (!$.existsN(elSetSource.parent('.for-center')) && elSet.place != 'inherit')
-                        {
-                            if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
-                                if (!$.exists('.for-center')) {
-                                    body.append('<div class="for-center" style="position: absolute;left: 0;top: 0;z-index: 1103;width: 100%;height: 100%;dispaly:none;"></div>');
-                                }
-                                $('.for-center').append(elSetSource)
-                            }
-                            else
-                                body.append(elSetSource)
-                        }
-                        methods.showDrop($this, e, optionsDrop, false);
-                    }
-                    else if ((elSet.source || newAlways)) {
-                        if (!newConfirm)
-                            confirmF();
-                        else {
-                            methods.showDrop($('[data-drop="#confirm"]').data('callback', elSet.callback), e, settings, false);
-                            $('[data-button-confirm]').focus().on('click.drop', function() {
-                                methods.closeDrop($('#confirm'));
-                                confirmF();
-                            })
-                        }
 
-                    }
-                    else {
-                        methods.showDrop($this, e, optionsDrop, false);
+                    if (elSet.before != undefined)
+                        var res = eval(elSet.before)($this, elSetSource);
+                    if (elSet.before != undefined && !res)
+                        return false;
+                    if (elSet.before == undefined || (elSet.before != undefined && res)) {
+                        if ($.existsN(elSetSource) && !newModal && !newAlways) {
+                            if (!$.existsN(elSetSource.parent('.for-center')) && elSet.place != 'inherit')
+                            {
+                                if (elSet.place != 'inherit' && elSet.place != 'noinherit') {
+                                    if (!$.exists('.for-center')) {
+                                        body.append('<div class="for-center" style="position: absolute;left: 0;top: 0;z-index: 1103;width: 100%;height: 100%;dispaly:none;"></div>');
+                                    }
+                                    $('.for-center').append(elSetSource)
+                                }
+                                else
+                                    body.append(elSetSource)
+                            }
+                            methods.showDrop($this, e, optionsDrop, false);
+                        }
+                        else if ((elSet.source || newAlways)) {
+                            if (!newConfirm)
+                                confirmF();
+                            else {
+                                methods.showDrop($('[data-drop="#confirm"]').data('callback', elSet.callback), e, settings, false);
+                                $('[data-button-confirm]').focus().on('click.drop', function() {
+                                    methods.closeDrop($('#confirm'));
+                                    confirmF();
+                                })
+                            }
+
+                        }
+                        else {
+                            methods.showDrop($this, e, optionsDrop, false);
+                        }
                     }
                     return false;
                 }
@@ -1441,10 +1449,10 @@ var ie = jQuery.browser.msie,
                     confirm = elSet.confirm || set.confirm,
                     moreoneNC = elSet.moreoneNC || set.moreoneNC,
                     dropContent = elSet.dropContent || set.dropContent,
-                    before = elSet.before || set.before,
-                    after = elSet.after || set.after,
-                    close = elSet.close || set.close,
-                    closed = elSet.closed || set.closed,
+                    before = set.before,
+                    after = set.after,
+                    close = set.close,
+                    closed = set.closed,
                     elSetSource = $(elSet.drop),
                     $thisSource = elSet.drop;
             $this.attr('data-drop', $this.data('drop')).parent().addClass(activeClass);
@@ -1485,6 +1493,7 @@ var ie = jQuery.browser.msie,
                 methods.closeDrop(elSetSource);
             }
             else {
+                $(document).trigger({'type': 'drop.click', 'el': $this})
                 before($this, elSetSource, isajax);
                 if (!moreoneNC || elSetSource.data('modal')) {
                     var objJ = $([]);
@@ -1533,7 +1542,7 @@ var ie = jQuery.browser.msie,
                         var $this = $(this);
                         $(document).trigger({type: 'drop.contentHeight', el: dC, drop: $this});
                         $this.addClass(activeClass);
-                        if (!confirm && modal && timeclosemodal)
+                        if (!confirm && modal)
                             setTimeout(function() {
                                 methods.closeDrop($this)
                             }, timeclosemodal)
@@ -1564,7 +1573,6 @@ var ie = jQuery.browser.msie,
                 else {
                     show();
                 }
-
             }
             body.unbind('click.drop').unbind('keydown.drop').on('click.drop', function(e) {
                 if (((e.which || e.button == 0) && e.relatedTarget == null) && !$.existsN($(e.target).closest('[data-elrun]'))) {

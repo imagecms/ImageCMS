@@ -2,6 +2,12 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use \mod_stats\classes\Products as Products;
+use \mod_stats\classes\Orders as Orders;
+use \mod_stats\classes\ProductsCategories as ProductsCategories;
+use \mod_stats\classes\Search as Search;
+use \mod_stats\classes\Users as Users;
+
 /**
  * Image CMS
  * Sample Module Admin
@@ -40,16 +46,56 @@ class Admin extends \BaseAdminController {
      */
     public function getStatsTemplate($statType, $statSubType) {
         $template = $statType . "/" . $statSubType;
+
+        // trying to get template data (if has)
+        if (FALSE !== $templateDataArray = $this->getTemplateData($statType, $statSubType)) {
+            $data = $templateDataArray;
+        } else {
+            $data = array();
+        }
+
         $templateData = \CMSFactory\assetManager::create()
                 ->setData(array('data' => $data))
                 ->fetchAdminTemplate($template, TRUE);
-
         echo $templateData;
     }
 
     /**
+     * Some templates may have their own data - this method is used to obtain them
+     * @param string $folder
+     * @param string $template
+     * @return array associative array with current template data
+     */
+    protected function getTemplateData($folder, $template) {
+        switch ($folder) {
+            case "products":
+                $object = Products::create();
+                break;
+            case "orders":
+                $object = Orders::create();
+                break;
+            case "categories":
+                $object = Categories::create();
+                break;
+            case "search":
+                $object = Search::create();
+                break;
+            case "users":
+                $object = Users::create();
+                break;
+            default:
+               $result = NULL;
+        }
+        
+        $methodName = 'template' . ucfirst($template);
+        if (method_exists($object, $methodName)) 
+            return $object->$methodName();
+        
+        return FALSE;
+    }
+
+    /**
      * Returns data for specific diagram
-     * (strategy)
      * @param string $statType class of diagram type
      * @param string $statSubType method of diagram type
      * @param array $params params for method
@@ -66,8 +112,8 @@ class Admin extends \BaseAdminController {
                 case "orders":
                     $result = \mod_stats\classes\Orders::create()->$methodName();
                     break;
-                case "products_categories":
-                    $result = \mod_stats\classes\ProductsCategories::create()->$methodName();
+                case "categories":
+                    $result = \mod_stats\classes\Categories::create()->$methodName();
                     break;
                 case "search":
                     $result = \mod_stats\classes\Search::create()->$methodName();
@@ -81,7 +127,7 @@ class Admin extends \BaseAdminController {
 
             echo $result;
         } catch (Exception $e) { // class or method not found
-            // print some message
+            echo "no such diagram type";
         }
     }
 

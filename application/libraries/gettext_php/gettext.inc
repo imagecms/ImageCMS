@@ -57,9 +57,6 @@ class domain {
   var $path;
   var $codeset;
 }
-function testGET(){
-    echo 'sssssssssssssssssssssssss';
-}
 
 // Utility functions
 
