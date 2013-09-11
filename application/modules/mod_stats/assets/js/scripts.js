@@ -202,13 +202,13 @@ $(document).ready(function() {
 
     function drawChartsAndRefresh(className, methodName) {
         /** Prepare chart data **/
-        
+
         if (className !== 'false' && methodName !== 'false') {
             var chartData = prepareData(className, methodName);
         } else {
             return false;
         }
-        
+
         $.ajax({
             async: false,
             type: 'get',
@@ -256,8 +256,8 @@ $(document).ready(function() {
         var params = getParamsForPrepareData(dataHref);
         $('.linkChart').removeClass('active');
         thisEl.addClass('active');
-       
-        
+
+
         drawChartsAndRefresh(params[0], params[1]);
 
     });
@@ -301,10 +301,10 @@ $(document).ready(function() {
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
                 break;
-            case 'week':
+            /*case 'week':
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 7));
-                break;
+                break;*/
             case 'month':
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth());
                 endDate = new Date(nowDate.getFullYear(), (nowDate.getMonth() + 1));
@@ -316,20 +316,22 @@ $(document).ready(function() {
         }
 
         /** Prepare values for start and end date inputs **/
-        startDateForInput = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + (startDate.getDate());
-        endDateForInput = endDate.getFullYear() + '-' + (endDate.getMonth() + 1) + '-' + (endDate.getDate());
+        startDateForInput = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (startDate.getDate() + 1)).slice(-2);
+        endDateForInput = endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (endDate.getDate() + 1)).slice(-2);
 
         /** Set values for start and end date inputs **/
         $('.date_start').val(startDateForInput);
         $('.date_end').val(endDateForInput);
 
+        var CookieDate = new Date();
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        
         /**Save cookies **/
-        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
-        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
 
         /** Refresh page **/
         $('#refreshIntervalsButton').trigger('click');
-
 
     });
 
@@ -343,7 +345,7 @@ $(document).ready(function() {
 
         /** Date for saving cookies(one year) **/
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
-        document.cookie = "group_by=" + groupBy + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "group_by=" + groupBy + ";expires=" + CookieDate.toGMTString() + ";path=/";
 
         /** Refresh page **/
         $('#refreshIntervalsButton').trigger('click');
@@ -368,8 +370,8 @@ $(document).ready(function() {
 
         var startDateForInput = $('.date_start').val();
         var endDateForInput = $('.date_end').val();
-        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
-        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";";
+        document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
+        document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
 
         drawChartsAndRefresh(params[0], params[1]);
     });
