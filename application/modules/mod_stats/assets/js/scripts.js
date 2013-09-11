@@ -269,7 +269,7 @@ $(document).ready(function() {
         var selectElement = $(this);
         var chartType = selectElement.find("option:selected").val();
 
-        drawChartsAndRefresh('products', 'brands');
+//        drawChartsAndRefresh('products', 'brands');
 
         $('.hideChart').hide();
         $('#' + chartType).fadeIn();
@@ -305,6 +305,7 @@ $(document).ready(function() {
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 7));
                 break;*/
+
             case 'month':
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth());
                 endDate = new Date(nowDate.getFullYear(), (nowDate.getMonth() + 1));
@@ -335,8 +336,6 @@ $(document).ready(function() {
 
     });
 
-
-
     /** Select and save to cookies group by type **/
     $('#selectGroupBy').unbind('change').bind('change', function() {
         var CookieDate = new Date();
@@ -352,7 +351,9 @@ $(document).ready(function() {
 
     });
 
-
+    /**
+     * Refresh interval button click
+     */
     $('#refreshIntervalsButton').unbind('click').bind('click', function() {
         var thisEl = $(".linkChart.active");
         /** Get link for ajax from data attribute **/

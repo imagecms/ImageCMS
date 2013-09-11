@@ -43,6 +43,16 @@
                                                             <input type="text" name="identif" id="identif" required/>
                                                         </div>
                                                     </div> 
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="locale">{lang("Locale","admin")}:</label>
+                                                        <div class="controls">
+                                                            <select id="locale" name="locale">
+                                                                {foreach $locales as $locale_name}
+                                                                    <option {if $locale_name == $locale} selected="selected" {/if} >{echo $locale_name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <div class="row-fluid">
                                                         <!--<div class="control-group">
                                                             <label class="control-label" for="image">{lang("Image URL","admin")}:</label>
@@ -56,20 +66,21 @@
                                                             </label>
                                                             <div class="controls">
                                                                 <div class="group_icon pull-right">            
-                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
                                                                 </div>
                                                                 <div class="o_h">		            
                                                                     <input type="text" name="image" id="Img" value="">					
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       { /* } 
-                                                       <div class="control-group">
+                                                        { /* } 
+                                                        <div class="control-group">
                                                             <label class="control-label" for="folder">{lang("Folder","admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="folder" id="folder">
                                                                     {foreach $lang_folders as $folder}
-                                                                    <option value="{$folder}">{$folder}</option>
+                                                                        <option value="{$folder}">{$folder}</option>
                                                                     {/foreach}
                                                                 </select>
                                                             </div>
@@ -80,7 +91,7 @@
                                                             <div class="controls">
                                                                 <select name="template" id="template">
                                                                     {foreach $templates as $tpl_folder}
-                                                                    <option value="{$tpl_folder}">{$tpl_folder}</option>
+                                                                        <option value="{$tpl_folder}">{$tpl_folder}</option>
                                                                     {/foreach}
                                                                 </select>
                                                             </div>

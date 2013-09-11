@@ -53,7 +53,7 @@ function createWishList(el, data) {
         location.reload();
     }
 }
-function a($this, elSetSource) {
+function validateWishPopup($this, elSetSource) {
     var name = $('[name="wishListName"]'),
             drop = name.closest('[data-elrun]');
     if (name.val() == "" && $('[data-link]').is(':checked')) {
