@@ -27,7 +27,7 @@ class Languages extends BaseAdminController {
      * @return array - locales
      */
     function getLocales() {
-        return $langs = array(
+        $langs = array(
             'af-ZA', 'am-ET', 'ar-AE',
             'ar-BH', 'ar-DZ', 'ar-EG',
             'ar-IQ', 'ar-JO', 'ar-KW',
@@ -85,6 +85,17 @@ class Languages extends BaseAdminController {
             'zh-HK', 'zh-MO', 'zh-SG',
             'zh-TW', 'zu-ZA'
         );
+//        $lang = 'en_US';
+//        var_dumps(setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang));
+//        foreach ($langs as $key => $lang) {
+//            $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
+//            if (strstr($locale, $lang)) {
+//                unset($langs[$key]);
+//            }
+//        }
+////        var_dumps($langs);
+        return $langs;
+        
     }
 
     /**
@@ -138,7 +149,7 @@ class Languages extends BaseAdminController {
             $this->lib_admin->log(lang("Create a language", "admin") . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
-            
+
             $this->createLanguageFolders($data['locale']);
 
             showMessage(lang("Language has been created", "admin"));
