@@ -32,7 +32,7 @@
                 </div>
                 {/if}
             </div>
-            {widget('infobox1')}
+            {widget('freecode')}
         </div>
     </section>
     <section class="container">
