@@ -27,13 +27,13 @@ include_once('Gettext.php');
 // test if gettext extension is installed with php
 //
 
+include_once('gettext.inc');
 if (!function_exists("gettext")) {
     include_once('gettext.inc');
     $_SESSION['GETTEXT_EXIST'] = FALSE;
 //    showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
 //    echo "gettext is not installed\n";
 } else {
-    define('GETTEXT_EXIST', TRUE);
     $_SESSION['GETTEXT_EXIST'] = TRUE;
 //    echo "gettext is supported\n";
 //    showMessage('ddddd', 'ffffffffffff2');
