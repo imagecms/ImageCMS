@@ -784,7 +784,16 @@ class Exchangeunfu extends MY_Controller {
      */
     private function command_sale_query() {
         if ($this->check_perm() === true) {
-            $this->export->export($partner_id);
+            if($parter_code = $this->input->get('partner')){
+                $parter_id = $this->select('external_id')->where('code', $parter_code)->get('mod_exchangeunfu_partners');
+                if($parter_id){
+                    $parter_id = $parter_id->row_array();
+                    $this->export->export($parter_id['external_id']);
+                }else{
+                    $this->export->export();
+                }
+            }
+            
         }
         exit();
     }
