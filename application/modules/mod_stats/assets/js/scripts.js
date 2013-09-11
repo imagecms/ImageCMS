@@ -202,7 +202,7 @@ $(document).ready(function() {
 
     function drawChartsAndRefresh(className, methodName) {
         /** Prepare chart data **/
-        
+
         if (className !== 'false' && methodName !== 'false') {
             var chartData = prepareData(className, methodName);
         } else {
@@ -212,7 +212,7 @@ $(document).ready(function() {
         $.ajax({
             async: false,
             type: 'get',
-            data: 'notLoadMain=' + 'true',
+            data: 'notLoadMain=true',
             url: base_url + 'admin/components/cp/mod_stats/getStatsTemplate/' + className + '/' + methodName,
             success: function(response) {
                 if (response != false) {
@@ -256,8 +256,8 @@ $(document).ready(function() {
         var params = getParamsForPrepareData(dataHref);
         $('.linkChart').removeClass('active');
         thisEl.addClass('active');
-       
-        
+
+
         drawChartsAndRefresh(params[0], params[1]);
 
     });
@@ -302,7 +302,7 @@ $(document).ready(function() {
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
                 break;
             case 'week':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()-7));
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() - 7));
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
                 break;
             case 'month':
@@ -374,4 +374,35 @@ $(document).ready(function() {
         drawChartsAndRefresh(params[0], params[1]);
     });
 
+    /**
+     * Save search results setting value
+     */
+    $('#saveSearchResultsSpan').unbind('click').bind('click', function() {
+        var spanBlock = $(this);
+        var checkBox = spanBlock.find('#saveSearchResultsCheckbox');
+        var newValue; // new value for saving to database
+
+        /** Get new property **/
+        if (checkBox.prop('checked') === true) {
+            newValue = 0;
+        } else {
+            newValue = 1;
+        }
+
+        /** Send ajax for saving new value **/
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=true&setting=save_search_results&value=' + newValue,
+            url: base_url + 'admin/components/cp/mod_stats/ajaxUpdateSettingValue',
+            success: function(response) {
+                if (response !== 'false') {
+                    showMessage('Message', 'Setting updated!');
+                } else {
+                    showMessage('Message', 'Setting not updated!','r');
+                }
+            }
+        });
+
+    });
 });

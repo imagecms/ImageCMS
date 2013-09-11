@@ -144,10 +144,17 @@
                 </div>
                 <!-- End. Search -->
             </ul>
-            <div class="m_l_10 m-t_20">
-                <span class="title"> {lang('Settings:','mod_stats')} </span>
-                
-                
+            <div class="m-t_20">
+                <span class="settingTitle"> {lang('Settings:','mod_stats')} </span>
+                <div class="settingsContainer">
+                    <span class="frame_label no_connection m-r_15 active" style="display: block;">
+                        <span class="niceCheck"  id="saveSearchResultsSpan" style="background-position: -46px -17px;">
+                            <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} id="saveSearchResultsCheckbox">
+                        </span>
+                       {lang('save search results','mod_stats')}
+                    </span>
+                </div>
+
             </div>
         </div>
         <div class="clearfix span9">
