@@ -72,6 +72,19 @@ class Gettext_Extension extends Gettext {
 
         bindtextdomain($params['domain'], 'application/language/admin');
         textdomain($params['domain']);
+//        extension_loaded('intl');
+//        $a = array_map(function($e) { return sprintf("%s (%s)", $e, phpversion($e)); }, get_loaded_extensions());
+//echo implode('<br>', $a);
+//        var_dumps(locale_);
+//        $SystemLocales = explode("\n", shell_exec('locale -a'));
+//        var_dumps($SystemLocales);
+//        echo setlocale(LC_ALL, 'ru_RU');
+//        $path = "/usr/share/locale/";
+//        $h = opendir($path);
+//        while ($file = readdir($h))
+//            $locales[] = $file;
+//        
+//        var_dumps($locales);
     }
 
     /**
