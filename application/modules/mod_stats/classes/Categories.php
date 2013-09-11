@@ -7,7 +7,7 @@ namespace mod_stats\classes;
  *
  * @author kolia
  */
-class ProductsCategories extends \MY_Controller {
+class Categories extends \MY_Controller {
 
     protected static $instanse;
 

@@ -36,20 +36,18 @@ class Orders extends \MY_Controller {
     /**
      * Table representation for orders
      */
-    public function getInfo($params) {
+    public function templateInfo() {
+        $params = $this->getParamsFromCookies();
         $orders = $this->stats_model_orders->getOrdersByDateRange($params);
-
-        $data = \CMSFactory\assetManager::create()
-                ->setData(array('orders' => $orders))
-                ->fetchAdminTemplate('orders/info_table', TRUE);
-        return $data;
+        return $orders;
     }
 
     /**
      * 
      */
     public function getPrice() {
-        $paid = $this->getOrders_LineDiagram(array(), 'price_sum');
+        $params = $this->getParamsFromCookies();
+        $paid = $this->getOrders_LineDiagram($params, 'price_sum');
 
         $result = array(
             'type' => 'line',
@@ -64,9 +62,14 @@ class Orders extends \MY_Controller {
     }
 
     public function getCount() {
-        $paid = $this->getOrders_LineDiagram(array('paid' => TRUE), 'orders_count');
-        $unpaid = $this->getOrders_LineDiagram(array('paid' => FALSE), 'orders_count');
-        $all = $this->getOrders_LineDiagram(array('paid' => NULL), 'orders_count');
+
+        $params = $this->getParamsFromCookies();
+        $params['paid'] = TRUE;
+        $paid = $this->getOrders_LineDiagram($params, 'orders_count');
+
+        $params['paid'] = NULL;
+        $all = $this->getOrders_LineDiagram($params, 'orders_count');
+        $delivered = $this->getOrders_LineDiagram($params, 'delivered');
 
         $result = array(
             'type' => 'line',
@@ -80,8 +83,8 @@ class Orders extends \MY_Controller {
                     'values' => $paid
                 ),
                 2 => array(
-                    'key' => 'Неоплачены',
-                    'values' => $unpaid
+                    'key' => 'Доставленные',
+                    'values' => $delivered
                 )
             )
         );
@@ -90,11 +93,34 @@ class Orders extends \MY_Controller {
     }
 
     /**
+     * Returns params for query
+     * @return type
+     */
+    protected function getParamsFromCookies() {
+
+        if (!isset($_COOKIE['group_by']))
+            $_COOKIE['group_by'] = 'day';
+        if (!isset($_COOKIE['start_date_input']))
+            $_COOKIE['start_date_input'] = date("Y-m-d 00:00:00", strtotime('now - 1 month'));
+        if (!isset($_COOKIE['end_date_input']))
+            $_COOKIE['end_date_input'] = date("Y-m-d 00:00:00");
+
+        $params['interval'] = $_COOKIE['group_by'];
+        $params['start_date'] = $_COOKIE['start_date_input'];
+        $params['end_date'] = $_COOKIE['end_date_input'];
+
+        return $params;
+    }
+
+    /**
      * Fillig no-order days/months/years by zeros (for line diagram)
      * @param array $ordersData
      * @return array identical to $ordersData, but with zeros
      */
     protected function fillMissingWithZero($ordersData) {
+        if (!count($ordersData) > 0) {
+            return $ordersData;
+        }
         // lowest date - start
         reset($ordersData);
         $start = key($ordersData);
@@ -227,6 +253,10 @@ class Orders extends \MY_Controller {
     protected function getOrders_LineDiagram($params, $field) {
         $orders = $this->stats_model_orders->getOrdersByDateRange($params);
 
+        $f = fopen('/var/www/by_price.txt', 'w+');
+        fwrite($f, print_r($orders, TRUE));
+        fclose($f);
+
         // getting data by only specified field
         $dataByField = array();
         foreach ($orders as $order) {
@@ -234,9 +264,13 @@ class Orders extends \MY_Controller {
         }
         unset($orders);
 
+
+
         // filling by zeros for wright data representation in diagram
         $filledWithZeros = $this->fillMissingWithZero($dataByField);
         unset($dataByField);
+
+
 
         // timestamp for diagram
         $tsOrders = array();
@@ -254,6 +288,7 @@ class Orders extends \MY_Controller {
                 'y' => $value
             );
         }
+
         return $tsOrders_;
     }
 
