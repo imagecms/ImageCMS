@@ -201,8 +201,8 @@ $(document).ready(function() {
     }
 
     function drawChartsAndRefresh(className, methodName) {
-        /** Prepare chart data **/
 
+        /** Prepare chart data **/
         if (className !== 'false' && methodName !== 'false') {
             var chartData = prepareData(className, methodName);
         } else {
@@ -218,7 +218,7 @@ $(document).ready(function() {
                 if (response != false) {
                     $('#chartContainer').html(response);
                     if (chartData === undefined) {
-                        console.log('Error getting data !');
+                        console.log('No chart data!');
                         return false;
                     }
 
@@ -327,7 +327,7 @@ $(document).ready(function() {
 
         var CookieDate = new Date();
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
-        
+
         /**Save cookies **/
         document.cookie = "start_date_input=" + startDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
         document.cookie = "end_date_input=" + endDateForInput + ";expires=" + CookieDate.toGMTString() + ";path=/";
@@ -403,7 +403,7 @@ $(document).ready(function() {
                 if (response !== 'false') {
                     showMessage('Message', 'Setting updated!');
                 } else {
-                    showMessage('Message', 'Setting not updated!','r');
+                    showMessage('Message', 'Setting not updated!', 'r');
                 }
             }
         });
