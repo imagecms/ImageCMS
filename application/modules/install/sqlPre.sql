@@ -613,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- Дамп даних таблиці `languages`
 --
 
-INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
+INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
 (3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU');
 
 -- --------------------------------------------------------
