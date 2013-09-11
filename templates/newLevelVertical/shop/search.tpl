@@ -37,7 +37,7 @@
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
                 </ul>
             {/if}            <!--Start. Pagination -->
             {if $pagination}

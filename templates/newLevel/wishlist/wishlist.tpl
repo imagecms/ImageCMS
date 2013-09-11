@@ -43,7 +43,7 @@
                                                 data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
                                                 data-type="json"
                                                 data-modal="true"
-                                                data-overlayopacity= "0"
+                                                
                                                 data-drop="#notification"
                                                 data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
                                                 data-callback="deleteImage"
@@ -66,7 +66,7 @@
             </ul>
             <div class="right-wishlist-data">
                 {/*}<div class="btn-edit-WL">
-                    <button type="button" data-drop=".form-data" data-place="inherit" data-overlayopacity= "0" class="d_l_1">
+                    <button type="button" data-drop=".form-data" data-place="inherit"  class="d_l_1">
                         <span class="text-el">{lang('Редактировать','newLevel')}</span>
                     </button>
                 </div>
@@ -101,7 +101,7 @@
                                         data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                         data-type="json"
                                         data-modal="true"
-                                        data-overlayopacity= "0"
+                                        
                                         data-drop="#notification"
                                         onclick="serializeForm(this)"
                                         data-callback="changeDataWishlist"
@@ -115,7 +115,7 @@
                 </div>
                 <div class="frame-button-add-wish-list">
                     <div class="btn-cart">
-                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlayopacity= "0">
+                        <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" >
                             <span class="icon_add_wish"></span>
                             <span class="text-el">{lang('Создать новый список','newLevel')}</span>
                         </button>
@@ -167,7 +167,7 @@
                                             data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                             data-type="json"
                                             data-modal="true"
-                                            data-overlayopacity= "0"
+                                            
                                             data-always="true"
                                             onclick="serializeForm(this)"
                                             data-drop="#notification"
@@ -245,7 +245,7 @@
                                             data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
                                             data-type="json"
                                             data-modal="true"
-                                            data-overlayopacity= "0"
+                                            
                                             data-drop="#notification"
                                             data-callback="removeWL"
                                             data-confirm="true"

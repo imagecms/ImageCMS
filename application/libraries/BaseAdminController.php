@@ -9,6 +9,10 @@ class BaseAdminController extends MY_Controller {
         $this->load->library('Permitions');
         Permitions::checkPermitions();
         $this->autoloadModules();
+        
+//        if(!$_SESSION['GETTEXT_EXIST']){
+//            showMessage(lang('To improve performance set php_gettext.dll extension'), lang('Advice'));
+//        }
 
         $this->lang->load('admin');
     }
