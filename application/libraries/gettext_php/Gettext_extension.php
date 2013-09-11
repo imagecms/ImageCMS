@@ -26,7 +26,6 @@ include_once('Gettext.php');
 //
 // test if gettext extension is installed with php
 //
-
 //include_once('gettext.inc');
 //if (!function_exists("gettext")) {
 //    include_once('gettext.inc');
@@ -56,6 +55,18 @@ class Gettext_Extension extends Gettext {
      */
     public function __construct($params) {
 
+        if (!function_exists("gettext")) {
+            include_once('gettext.inc');
+            $_SESSION['GETTEXT_EXIST'] = FALSE;
+    //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
+    //      echo "gettext is not installed\n";
+        } else {
+            $_SESSION['GETTEXT_EXIST'] = TRUE;
+    //      echo "gettext is supported\n";
+    //      showMessage('ddddd', 'ffffffffffff2');
+    //      define('dddd', 'fffff');
+    //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
+        }
 //        var_dumps(dddd);
         $lang = $params['locale'][0];
         $locale = $params['locale'][1];
@@ -84,7 +95,7 @@ class Gettext_Extension extends Gettext {
 //        while ($file = readdir($h))
 //            $locales[] = $file;
 //        
-        }
+    }
 
     /**
      * @param String $directory
