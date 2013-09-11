@@ -109,6 +109,26 @@ class Admin extends BaseAdminController {
                     ->renderAdmin('heder');
         }
     }
+    public function infobox2() {
+        
+        $templ = $this->cms_base->get_settings();
+        $templ = $templ['site_template'];
+        
+        
+        $text = file_get_contents("templates/$templ/widgets/menu_settings.tpl");
+        
+        //var_dump($text);
+
+        if ($_POST) {
+            file_put_contents("templates/$templ/widgets/menu_settings.tpl", $_POST['heder']);
+            showMessage('Даные сохранены');
+            
+        } else {
+
+            \CMSFactory\assetManager::create()->setData(array('text'=>$text))
+                    ->renderAdmin('infobox2');
+        }
+    }
 
     
     public function Zoom(){

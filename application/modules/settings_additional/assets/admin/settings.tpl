@@ -24,8 +24,9 @@
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="/admin/components/init_window/settings_additional/heder" class="btn btn-small">Править шапку сайта</a>
                 <a href="/admin/components/init_window/top_menu_additional" class="btn btn-small">Top menu</a>
-                <a href="/admin/widgets_manager/edit_html_widget/16" class="btn btn-small">Infobox1</a>
-                <a href="/admin/widgets_manager/edit_html_widget/17" class="btn btn-small">Infobox2</a>
+                <a href="/admin/widgets_manager/edit_html_widget/16" class="btn btn-small">Freecode</a>
+                <a href="/admin/widgets_manager/edit_html_widget/17" class="btn btn-small">Infobox1</a>
+                <a href="/admin/components/init_window/settings_additional/infobox2" class="btn btn-small">Infobox2</a>
             </div>
         </div>
         <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">

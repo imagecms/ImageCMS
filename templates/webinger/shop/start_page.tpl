@@ -8,7 +8,8 @@
 <div class="start_page container">
     <section class="row-fluid m-b_20">
         
-        {echo \Category\RenderMenu::create()->load('category_menu_vert')}
+        {include_tpl('../widgets/menu_settings')}
+        
 
         <!-- Show Banners in circle -->
         <div class="span9">
