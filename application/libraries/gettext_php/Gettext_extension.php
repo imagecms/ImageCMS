@@ -29,7 +29,7 @@ include_once('Gettext.php');
 
 if (!function_exists("gettext")) {
     include_once('gettext.inc');
-    echo "gettext is not installed\n";
+//    echo "gettext is not installed\n";
 } else {
 //    echo "gettext is supported\n";
 }
