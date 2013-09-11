@@ -1605,7 +1605,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
 
 -- --------------------------------------------------------
 
------------- discount_old------------------
+
 DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
