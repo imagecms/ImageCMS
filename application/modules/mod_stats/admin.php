@@ -61,13 +61,42 @@ class Admin extends \BaseAdminController {
     }
 
     /**
+     * Returns data for specific diagram
+     * @param string $statType class of diagram type
+     * @param string $statSubType method of diagram type
+     * @param array $params params for method
+     */
+    public function getStatsData($statType, $statSubType) {
+        $methodName = 'get' . ucfirst($statSubType);
+        $statsObject = $this->getStatsObject($statType);
+        if (method_exists($statsObject, $methodName)) {
+            echo $statsObject->$methodName();
+        } else {
+            echo "Error";
+        }
+    }
+
+    /**
      * Some templates may have their own data - this method is used to obtain them
      * @param string $folder
      * @param string $template
      * @return array associative array with current template data
      */
     protected function getTemplateData($folder, $template) {
-        switch ($folder) {
+        $statsObject = $this->getStatsObject($folder);
+        $methodName = 'template' . ucfirst($template);
+        if (method_exists($statsObject, $methodName))
+            return $statsObject->$methodName();
+
+        return FALSE;
+    }
+
+    /**
+     * For getting object of needed statistic category
+     * @return boolean|object
+     */
+    protected function getStatsObject($statType) {
+        switch ($statType) {
             case "products":
                 $object = Products::create();
                 break;
@@ -84,51 +113,9 @@ class Admin extends \BaseAdminController {
                 $object = Users::create();
                 break;
             default:
-               $result = NULL;
+                return FALSE;
         }
-        
-        $methodName = 'template' . ucfirst($template);
-        if (method_exists($object, $methodName)) 
-            return $object->$methodName();
-        
-        return FALSE;
-    }
-
-    /**
-     * Returns data for specific diagram
-     * @param string $statType class of diagram type
-     * @param string $statSubType method of diagram type
-     * @param array $params params for method
-     */
-    public function getStatsData($statType, $statSubType) {
-        /** Prepare method name* */
-        $methodName = 'get' . ucfirst($statSubType);
-
-        try {
-            switch ($statType) {
-                case "products":
-                    $result = \mod_stats\classes\Products::create()->$methodName();
-                    break;
-                case "orders":
-                    $result = \mod_stats\classes\Orders::create()->$methodName();
-                    break;
-                case "categories":
-                    $result = \mod_stats\classes\Categories::create()->$methodName();
-                    break;
-                case "search":
-                    $result = \mod_stats\classes\Search::create()->$methodName();
-                    break;
-                case "users":
-                    $result = \mod_stats\classes\Users::create()->$methodName();
-                    break;
-                default:
-                    throw new Exception;
-            }
-
-            echo $result;
-        } catch (Exception $e) { // class or method not found
-            echo "no such diagram type";
-        }
+        return $object;
     }
 
     /**
@@ -141,15 +128,15 @@ class Admin extends \BaseAdminController {
     }
 
     public function ajaxUpdateSettingValue() {
-        /** Get data from post **/
+        /** Get data from post * */
         $settingName = $this->input->get('setting');
         $settingValue = $this->input->get('value');
         var_dump($settingName);
-        
-        /** Set setting value **/
+
+        /** Set setting value * */
         $result = $this->stats_model->updateSettingByNameAndValue($settingName, $settingValue);
-        
-        /** Return result **/
+
+        /** Return result * */
         if ($result) {
             echo 'true';
         } else {

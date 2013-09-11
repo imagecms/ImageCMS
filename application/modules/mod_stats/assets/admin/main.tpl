@@ -151,7 +151,7 @@
                         <span class="niceCheck"  id="saveSearchResultsSpan" style="background-position: -46px -17px;">
                             <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} id="saveSearchResultsCheckbox">
                         </span>
-                       {lang('save search results','mod_stats')}
+                        {lang('save search results','mod_stats')}
                     </span>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                 </div>
 
             </div>
-            <div id="chartContainer" class="span9">
+            <div id="chartContainer" class="span12" style="margin-left: 0 !important;">
             </div>
         </div>
 </section>
