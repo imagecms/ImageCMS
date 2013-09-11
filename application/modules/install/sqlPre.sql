@@ -10814,7 +10814,7 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_columns` (
   `column` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---------------- discount old
+
 DROP TABLE IF EXISTS `shop_discounts`;
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
