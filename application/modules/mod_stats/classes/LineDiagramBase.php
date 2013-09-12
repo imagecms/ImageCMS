@@ -8,13 +8,24 @@ namespace mod_stats\classes;
  * @author kolia
  */
 class LineDiagramBase {
-
+    
+    protected static $_instance;
     protected $params;
 
     public function __construct() {
         $this->params = $this->getParamsFromCookies();
     }
-
+    
+    
+    /**
+     *
+     * @return LineDiagramBase
+     */
+    public static function create() {
+        (null !== self::$_instance) OR self::$_instance = new self();
+        return self::$_instance;
+    }
+    
     /**
      * For query (select)
      * @return string date pattern for mysql
@@ -35,7 +46,7 @@ class LineDiagramBase {
      * For query (where)
      * @return string condition of date range
      */
-    public function prepareDateBetweenCondition($field) {
+    public function prepareDateBetweenCondition($field, $table = 'dtable') {
         // start date
         $start_date = $this->getBetweenDate($this->params['start_date'], 'start');
         $end_date = $this->getBetweenDate($this->params['end_date'], 'end');
@@ -44,7 +55,7 @@ class LineDiagramBase {
         if (!is_null($start_date) || !is_null($end_date)) {
             $start_date = is_null($start_date) == TRUE ? "'2000-01-01 00:00:00'" : "'{$start_date}'";
             $end_date = is_null($end_date) == TRUE ? 'NOW()' : "'{$end_date}'";
-            return "AND FROM_UNIXTIME(`dtable`.`{$field}`) BETWEEN {$start_date} AND {$end_date}";
+            return "AND FROM_UNIXTIME(`".$table."`.`{$field}`) BETWEEN {$start_date} AND {$end_date}";
         } else {
             return '';
         }
