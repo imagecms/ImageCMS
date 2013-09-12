@@ -269,11 +269,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
     public function do_upload() {
         if (parent::do_upload($this->input->post('userID'))) {
             if (!$this->upload->do_upload('file')) {
-                
                 $this->errors[] = $this->upload->display_errors();
-                $f = fopen('/var/www/image.loc/baaaad.txt', "w+");
-                fwrite($f, print_r($this->errors, TRUE));
-                fclose($f);
                 return FALSE;
             } else {
                 $this->dataModel = array('upload_data' => $this->upload->data());
