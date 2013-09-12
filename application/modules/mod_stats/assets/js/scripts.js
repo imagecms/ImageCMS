@@ -298,13 +298,8 @@ $(document).ready(function() {
         /** Prepare times interval for day, week, month, year**/
         switch (interval) {
             case 'day':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
-                break;
-
-            case 'week':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() - 7));
-                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()-1));
+                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()));
                 break;
 
             case 'month':
