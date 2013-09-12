@@ -12,9 +12,6 @@ class Stats_model_orders extends CI_Model {
      * @var array
      */
     protected $dateRangeParams = array(
-        'interval' => 'day', //  date interval (string: day|month|week|year)
-        'start_date' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
-        'end_date' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
         'paid' => NULL, // TRUE|FALSE|NULL (paid, unpaid, all)
     );
 
@@ -36,9 +33,11 @@ class Stats_model_orders extends CI_Model {
                 }
             }
 
+        $lineDiagramBase = new \mod_stats\classes\LineDiagramBase();
+
         $query = "
             SELECT
-                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->prepareDatePattern() . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $lineDiagramBase->prepareDatePattern() . "') as `date`,
                 COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
                 SUM(`dtable`.`products_count`) as `products_count`,
@@ -65,15 +64,11 @@ class Stats_model_orders extends CI_Model {
                     FROM_UNIXTIME(`shop_orders`.`date_created`)
                 ) as dtable
             WHERE 1 
-                 " . $this->prepareBetweenCondition() . " 
+                 " . $lineDiagramBase->prepareDateBetweenCondition('date_created') . " 
                   " . $this->preparePaidCondition() . " 
             GROUP BY `date`
             ORDER BY FROM_UNIXTIME(`date_created`)
         ";
-
-        $f = fopen('/var/www/query.txt', 'w+');
-        fwrite($f, print_r($query, TRUE));
-
 
         $result = $this->db->query($query);
         if ($result === FALSE) {
@@ -84,8 +79,6 @@ class Stats_model_orders extends CI_Model {
             $ordersData[] = $row;
         }
 
-        fwrite($f, print_r($ordersData, TRUE));
-        fclose($f);
         return $ordersData;
     }
 
@@ -101,102 +94,6 @@ class Stats_model_orders extends CI_Model {
             return "AND (`paid` <> 1 OR `paid` IS NULL)";
 
         return "";
-    }
-
-    /**
-     * Helper function for getOrdersByDateRange()
-     * @return string date pattern for mysql
-     */
-    protected function prepareDatePattern() {
-        // date pattern for mysql
-        switch ($this->dateRangeParams['interval']) {
-            case 'month':
-                return '%Y-%m';
-            case 'year':
-                return '%Y';
-            default:
-                return '%Y-%m-%d'; // day
-        }
-    }
-
-    /**
-     * Helper function for getOrdersByDateRange()
-     * @return string condition of date range
-     */
-    protected function prepareBetweenCondition() {
-        // start date
-        $start_date = $this->getBetweenDate($this->dateRangeParams['start_date'], 'start');
-        $end_date = $this->getBetweenDate($this->dateRangeParams['end_date'], 'end');
-
-        // where between... for query
-        if (!is_null($start_date) || !is_null($end_date)) {
-            $start_date = is_null($start_date) == TRUE ? "'2000-01-01 00:00:00'" : "'{$start_date}'";
-            $end_date = is_null($end_date) == TRUE ? 'NOW()' : "'{$end_date}'";
-            return "AND FROM_UNIXTIME(`dtable`.`date_created`) BETWEEN {$start_date} AND {$end_date}";
-        } else {
-            return '';
-        }
-    }
-
-    /**
-     * Helper function for prepareBetweenCondition()
-     * mysql needs date in format YYYY-MM-DD HH:MM:SS
-     * @param type $date
-     * @param type $startOrEnd
-     * @return boolean
-     */
-    protected function getBetweenDate($date, $startOrEnd) {
-        if ($date === NULL)
-            return NULL;
-
-        // detecting what part of date format for mysql is missing
-        $datePatterns = array(
-            '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/' => 'day',
-            '/^[0-9]{4}-[0-9]{2}$/' => 'month',
-            '/^[0-9]{4}$/' => 'year',
-        );
-        $type = NULL;
-        foreach ($datePatterns as $pattern => $type_) {
-            if (preg_match($pattern, $date)) {
-                $type = $type_;
-            }
-        }
-        if ($type == NULL) {
-            return NULL;
-        }
-
-        // to include specified end month
-        switch ($startOrEnd) {
-            case "start":
-                $lastDay = "01";
-                break;
-            case "end":
-                $lastDay = "31";
-                break;
-            default:
-                $lastDay = "01";
-        }
-
-        // to include all specified end year 
-        if ($type == 'year' & $startOrEnd == 'end') {
-            $month = "12";
-        } else {
-            $month = "01";
-        }
-
-        $hour = " 00:00:00";
-
-        // filling date format according to wich part is missing
-        switch ($type) {
-            case "day":
-                return $date . $hour;
-            case "month":
-                return $date .= "-{$lastDay}" . $hour;
-            case "year":
-                return $date . "-{$month}-{$lastDay}" . $hour;
-            default :
-                return NULL;
-        }
     }
 
 }

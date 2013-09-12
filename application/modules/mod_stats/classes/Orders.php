@@ -253,10 +253,6 @@ class Orders extends \MY_Controller {
     protected function getOrders_LineDiagram($params, $field) {
         $orders = $this->stats_model_orders->getOrdersByDateRange($params);
 
-        $f = fopen('/var/www/by_price.txt', 'w+');
-        fwrite($f, print_r($orders, TRUE));
-        fclose($f);
-
         // getting data by only specified field
         $dataByField = array();
         foreach ($orders as $order) {
