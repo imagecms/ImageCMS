@@ -1,1 +1,0 @@
-products_in_search
