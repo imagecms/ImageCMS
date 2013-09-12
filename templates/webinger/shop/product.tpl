@@ -271,6 +271,51 @@
 <div class="short_desc text">
     {echo $model->getShortDescription()}
 </div>
+<ul class="info_product clearfix info_contacts">
+    <li>
+        <span class="icons_product">
+            <span class="icon_phone_product">&nbsp;</span>
+        </span>
+        <div class="description">
+            <div class="title">Заказ по телефону:</div>
+            <ul class="list-line">
+                <li>(093) 000-20-00</li>
+                <li>(093) 000-08-00</li> 
+                <li>(093) 000-40-00</li>
+            </ul>
+        </div>
+    </li>
+</ul>
+<div class="info_product clearfix">
+    <ul class="info_buy_delivery">
+        <li>
+            <span class="icons_product">
+                <span class="icon_buy_product">&nbsp;</span>
+            </span>
+            <div class="description">
+                <div class="title">Оплата <a href="{site_url('oplata')}">(узнать больше)</a></div>
+                <ul class="info-style">
+                    <li>Наличными при получении заказа</li>
+                    <li>Переводом через Сбербанк РФ</li>
+                    <li>Безналичным переводом </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <span class="icons_product">
+                <span class="icon_delivery_product"></span>
+            </span>
+            <div class="description">
+                <div class="title">Доставка <a href="{site_url('dostavka')}">(узнать больше)</a></div>
+                <ul class="info-style">
+                    <li>Транспортные компании</li>
+                    <li>Укрпочта</li>
+                    <li>Курьерская служба</li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
 <!-- End. Withdraw button to "share" -->
 <ul class="tabs clearfix">
     <!-- Start. Show the block information if available -->
