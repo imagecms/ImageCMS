@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     public static function adminAutoload() {
@@ -84,9 +84,6 @@ class Exchangeunfu extends MY_Controller {
                 ->onShopProductPreCreate()
                 ->setListener('_extendPageAdmin');
 
-//        \CMSFactory\Events::create()
-//                ->onShopProductCreate()
-//                ->setListener('_addProductExternalId');
 
         \CMSFactory\Events::create()
                 ->onShopProductCreate()
@@ -285,7 +282,7 @@ class Exchangeunfu extends MY_Controller {
         if ($ci->uri->segment(6) == 'edit') {
             $array = $ci->db
                     ->where('product_id', $data['model']->getId())
-                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.external_id')
+                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.id')
                     ->get('mod_exchangeunfu_prices');
         } else {
             $array = array();
@@ -337,36 +334,19 @@ class Exchangeunfu extends MY_Controller {
         $prices = $ci->input->post('partner_price');
         $quantities = $ci->input->post('partner_quantity');
         $product = $ci->db->select('external_id')->where('id', $data['productId'])->get('shop_products')->row_array();
-
-        foreach ($partners as $key => $partner) {
-            if ($partner) {
-                $ci->db->insert('mod_exchangeunfu_prices', array(
-                    'price' => $prices[$key],
-                    'quantity' => $quantities[$key],
-                    'product_id' => $data['productId'],
-                    'partner_external_id' => $partner,
-                    'external_id' => md5($prices[$key] . $product['external_id'])
-                ));
+        var_dumps($partners);
+       
+            foreach ($partners as $key => $partner) {
+                if ($partner != 'false') {
+                    $ci->db->insert('mod_exchangeunfu_prices', array(
+                        'price' => $prices[$key],
+                        'quantity' => $quantities[$key],
+                        'product_id' => $data['productId'],
+                        'partner_external_id' => $partner,
+                        'external_id' => md5($prices[$key] . $product['external_id'])
+                    ));
+                }
             }
-        }
-    }
-
-    /**
-     * add product external id
-     * @param type $data
-     */
-    public static function _addProductExternalId($data) {
-        $ci = &get_instance();
-        $external_id = md5($data['productId']);
-        $ci->db->update('shop_products', array('external_id' => $external_id));
-        $product_variants = $ci->db->where('product_id', $data['productId'])->get('shop_product_variants')->result_array();
-
-        $variant_counter = 0;
-        foreach ($product_variants as $variant) {
-            $external_var_id = md5($variant['id'] + $variant_counter);
-            $ci->db->where('id', $variant['id'])
-                    ->update('shop_product_variants', array('external_id' => $external_var_id));
-        }
     }
 
     /**
@@ -668,8 +648,8 @@ class Exchangeunfu extends MY_Controller {
      */
     public function getPriceForRegion($model) {
         // TEST SET COOKIE
-        set_cookie('site_region', 'asdfasdfsdsdfsdf', 10000);
-        $partner_external_id = get_cookie('site_region');
+        set_cookie('site_region', '1', 10000);
+        $partner_id = get_cookie('site_region');
         $external_ids = array();
 
         if (count($model) == 1) {
@@ -692,7 +672,7 @@ class Exchangeunfu extends MY_Controller {
         }
 
         $products_by_region = $this->db
-                ->where('partner_external_id', $partner_external_id)
+                ->where('partner_external_id', $partner_id)
                 ->where_in('product_external_id', $ids)
                 ->get('mod_exchangeunfu_prices');
 
