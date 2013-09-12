@@ -50,7 +50,7 @@
                 <select name="partner[]" class="partnersSelect">
                     <option value="false">--Не выбрано--</option>
                     {foreach $partners as $partner}
-                        <option value='{echo $partner['external_id']}'>{echo $partner['region']}</option>
+                        <option value='{echo $partner['id']}'>{echo $partner['region']}</option>
                     {/foreach}
                 </select>
             </td>

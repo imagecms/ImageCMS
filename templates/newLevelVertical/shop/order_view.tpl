@@ -93,7 +93,9 @@
                 <tr>
                     <td colspan="2">
                         <div class="frame-payment">
-                            {echo ShopSettingsQuery::create()->filterByName('adminMessageOrderPage')->findOne()->getValue()}
+                            {$locale = \MY_Controller::getCurrentLocale();}
+                            {$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row();}
+                            {echo $notif->message}
                             {echo $paymentMethod->getPaymentForm($model)}
                         </div>
                     </td>

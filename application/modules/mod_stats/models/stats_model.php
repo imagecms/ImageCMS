@@ -60,7 +60,19 @@ class Stats_model extends CI_Model {
         }
         return TRUE;
     }
-
+    
+    
+    public function saveKeyWords($keyword = '') {
+        /** Return if not set values **/
+        if ($keyword == ''){
+            return FALSE;
+        }
+        /** Insert value **/
+        $this->db->insert('mod_stats_search', array(
+            'key' => $keyword,
+            'date' => time(),
+            ));
+    }
     /**
      * Install module and update settings
      */
@@ -73,8 +85,9 @@ class Stats_model extends CI_Model {
                 'constraint' => '70',
                 'null' => TRUE,
             ),
-            'count' => array(
+            'date' => array(
                 'type' => 'INT',
+                'null' => TRUE,
             )
         );
 
