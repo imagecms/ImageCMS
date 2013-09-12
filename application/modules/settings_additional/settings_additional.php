@@ -61,7 +61,7 @@ class Settings_additional extends MY_Controller {
 
     public function loadProductParametr($data) {
 
-        if (self::$cnt == 0) {
+        
             $ci = & get_instance();
             $model = $data['model'];
 
@@ -74,8 +74,7 @@ class Settings_additional extends MY_Controller {
                 $buffer = \CMSFactory\assetManager::create()->setData(array('parametr' => $parametr))->registerScript('script')->fetchTemplate('product_parametr');
                 \CMSFactory\assetManager::create()->appendData('moduleAdditions', $buffer);
             }
-            self::$cnt++;
-        }
+         
     }
 
     public function ProductOn() {
