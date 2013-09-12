@@ -49,8 +49,8 @@ class Exchangeunfu extends MY_Controller {
             $this->config['email'] = false;
         }
 
-        $this->login = trim($_SERVER['PHP_AUTH_USER']);
-        $this->password = trim($_SERVER['PHP_AUTH_PW']);
+        $this->login = trim($this->input->server('PHP_AUTH_USER'));
+        $this->password = trim($this->input->server('PHP_AUTH_PW'));
         //saving get requests to log file
         if ($_GET) {
             foreach ($_GET as $key => $value) {
@@ -63,8 +63,8 @@ class Exchangeunfu extends MY_Controller {
         $method = 'command_';
 
         //preparing method and mode name from $_GET variables
-        if (isset($_GET['type']) && isset($_GET['mode']))
-            $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
+        if (isset($this->input->get('type')) && isset($this->input->get('mode')))
+            $method .= strtolower($this->input->get('type')) . '_' . strtolower($this->input->get('mode'));
 
         //run method if exist
         if (method_exists($this, $method))
@@ -266,7 +266,7 @@ class Exchangeunfu extends MY_Controller {
             $this->import->import($this->tempDir . $this->input->get('filename'));
             //rename import xml file after import finished
             if (!$this->config['debug'])
-                rename($this->tempDir . ShopCore::$_GET['filename'], $this->tempDir . "success_" . ShopCore::$_GET['filename']);
+                rename($this->tempDir . $this->input->get('filename'), $this->tempDir . "success_" . $this->input->get('filename'));
             //returns success status to 1c
             echo "success";
         }
@@ -336,17 +336,17 @@ class Exchangeunfu extends MY_Controller {
         $product = $ci->db->select('external_id')->where('id', $data['productId'])->get('shop_products')->row_array();
         var_dumps($partners);
 
-            foreach ($partners as $key => $partner) {
-                if ($partner != 'false') {
-                    $ci->db->insert('mod_exchangeunfu_prices', array(
-                        'price' => $prices[$key],
-                        'quantity' => $quantities[$key],
-                        'product_id' => $data['productId'],
-                        'partner_external_id' => $partner,
-                        'external_id' => md5($prices[$key] . $product['external_id'])
-                    ));
-                }
+        foreach ($partners as $key => $partner) {
+            if ($partner != 'false') {
+                $ci->db->insert('mod_exchangeunfu_prices', array(
+                    'price' => $prices[$key],
+                    'quantity' => $quantities[$key],
+                    'product_id' => $data['productId'],
+                    'partner_external_id' => $partner,
+                    'external_id' => md5($prices[$key] . $product['external_id'])
+                ));
             }
+        }
     }
 
     /**
@@ -607,15 +607,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_productivity', TRUE);
-        $this->db->query('INSERT INTO `mod_exchangeunfu` (
-                            `id` ,
-                            `product_id` ,
-                            `variant_id` ,
-                            `region`
-                        )
-                        VALUES (NULL ,  \'892\',  \'873\',  \'lviv\');'
-        );
-
+        
         $this->db->where('name', 'exchangeunfu')
                 ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
