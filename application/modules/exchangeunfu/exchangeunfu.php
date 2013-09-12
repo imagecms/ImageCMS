@@ -72,7 +72,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-        
+
     }
 
     public static function adminAutoload() {
@@ -335,7 +335,7 @@ class Exchangeunfu extends MY_Controller {
         $quantities = $ci->input->post('partner_quantity');
         $product = $ci->db->select('external_id')->where('id', $data['productId'])->get('shop_products')->row_array();
         var_dumps($partners);
-       
+
             foreach ($partners as $key => $partner) {
                 if ($partner != 'false') {
                     $ci->db->insert('mod_exchangeunfu_prices', array(
@@ -737,7 +737,7 @@ class Exchangeunfu extends MY_Controller {
     private function command_sale_query() {
         if ($this->check_perm() === true) {
             if ($this->input->get('partner')) {
-                $parter_id = $this->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                $parter_id = $this->db->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
                 if ($parter_id) {
                     $parter_id = $parter_id->row_array();
                     $this->export->export($parter_id['external_id']);
