@@ -610,6 +610,20 @@ class DX_Auth {
     function get_username() {
         return $this->ci->session->userdata('DX_username');
     }
+    
+    // Get useremail string
+    function get_user_email() {
+         $user = $this->ci->db
+                ->where('id', $this->get_user_id())
+                ->get('users');
+         if($user){
+             $user = $user->row_array();
+             return $user['email'];
+         }else{
+             return '';
+         }
+
+    }
 
     // Get user role id
     function get_role_id() {

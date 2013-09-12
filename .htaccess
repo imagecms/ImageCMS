@@ -8,7 +8,7 @@ RewriteEngine on
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 
-
+#apache2ctl -M && sudo a2enmod expires && sudo service apache2 restart (to enable mod_expires on ubuntu)
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresDefault "access 7 days"
