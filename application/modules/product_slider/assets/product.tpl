@@ -20,7 +20,7 @@
             <!--Photo block for main product-->
             <li class="span4 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photo cloud-zoom">
+                <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom">
                     <figure>
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                         <span class="helper"></span>
@@ -54,7 +54,7 @@
                 </ul>               
             </li>
             <!--Photo block for main product end-->
-            <li class="span8" id="right_popup_product" data-width="65.8">
+            <li class="span8" id="right_popup_product" data-width="65.8"  data-rel="frameP">
                 <div class="frame_w_desc">
                     <h1 class="d_i">{ echo ShopCore::encode($model->getName())}</h1>
                     <!-- Output rating for the old product Start -->
@@ -133,7 +133,7 @@
                             {foreach $variants as $key => $pv}
                                 {if $pv->getStock() > 0}
                                     <button {if $key != 0}style="display:none"{/if}
-                                                          class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant"
+                                                          class="btn btn_buy btnBuy variant_{echo $pv->getId()} variant info"
                                                           type="button"
 
                                                           data-id="{echo $pv->getId()}"
@@ -154,7 +154,7 @@
                                     </button>
                                 {else:}
                                     <button  {if $key != 0}style="display:none"{/if}
-                                                           class="btn btn_not_avail variant_{echo $pv->getId()} variant"
+                                                           class="btn btn_not_avail variant_{echo $pv->getId()} variant info"
                                                            type="button"
                                                            data-placement="top right"
                                                            data-place="noinherit"
@@ -227,6 +227,9 @@
                     </div>
                 </div>
             </div>
+            <div class="share_tov">
+                {echo $CI->load->module('share')->_make_share_form()}
+            </div>
         </div>
         <div id="xBlock"></div>
         <!-- Start. Withdraw button to "share" -->
@@ -234,7 +237,6 @@
             {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
             {if count($renderProperties) >0}
                 <div id="characteristic" data-height="200">
-
                     <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
                         <tbody>
                             {foreach $renderProperties as $prop}
