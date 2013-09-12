@@ -263,6 +263,7 @@ class Exchangeunfu extends MY_Controller {
             if ($this->config['backup'])
                 $this->makeDBBackup();
             //start import process
+//            var_dump(file_exists($this->tempDir . $this->input->get('filename')));
             $this->import->import($this->tempDir . $this->input->get('filename'));
             //rename import xml file after import finished
             if (!$this->config['debug'])
@@ -282,7 +283,7 @@ class Exchangeunfu extends MY_Controller {
         if ($ci->uri->segment(6) == 'edit') {
             $array = $ci->db
                     ->where('product_id', $data['model']->getId())
-                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_external_id=mod_exchangeunfu_partners.id')
+                    ->join('mod_exchangeunfu_partners', 'mod_exchangeunfu_prices.partner_code=mod_exchangeunfu_partners.code')
                     ->get('mod_exchangeunfu_prices');
         } else {
             $array = array();
@@ -334,15 +335,17 @@ class Exchangeunfu extends MY_Controller {
         $prices = $ci->input->post('partner_price');
         $quantities = $ci->input->post('partner_quantity');
         $product = $ci->db->select('external_id')->where('id', $data['productId'])->get('shop_products')->row_array();
-        var_dumps($partners);
 
-        foreach ($partners as $key => $partner) {
-            if ($partner != 'false') {
+        foreach ($partners as $key => $partner_code) {
+            if ($partner_code != 'false') {
+                $partner_external_id = $ci->db->select('external_id')->where('code', $partner_code)->get('mod_exchangeunfu_partners')->row_array();
+
                 $ci->db->insert('mod_exchangeunfu_prices', array(
                     'price' => $prices[$key],
                     'quantity' => $quantities[$key],
                     'product_id' => $data['productId'],
-                    'partner_external_id' => $partner,
+                    'partner_code' => $partner_code,
+                    'partner_external_id' => $partner_external_id['external_id'],
                     'external_id' => md5($prices[$key] . $product['external_id'])
                 ));
             }
@@ -390,11 +393,11 @@ class Exchangeunfu extends MY_Controller {
         $price = $this->input->post('price');
         $quantity = $this->input->post('quantity');
         $product_external_id = $this->input->post('product_external_id');
-        $partner = $this->input->post('partner');
+        $partnercode = $this->input->post('partnercode');
 
         $this->db
                 ->where('product_id', $product_external_id)
-                ->where('partner_external_id', $partner)
+                ->where('partner_code', $partnercode)
                 ->set('price', $price)
                 ->set('quantity', $quantity)
                 ->update('mod_exchangeunfu_prices');
@@ -402,46 +405,46 @@ class Exchangeunfu extends MY_Controller {
 
     public function deletePartner() {
         $product_external_id = $this->input->post('product_external_id');
-        $partner = $this->input->post('partner');
+        $partnercode = $this->input->post('partnercode');
 
         $this->db
                 ->where('product_id', $product_external_id)
-                ->where('partner_external_id', $partner)
+                ->where('partner_code', $partnercode)
                 ->delete('mod_exchangeunfu_prices');
     }
 
     public function setHit() {
         $product_external_id = $this->input->post('product_external_id');
-        $partner = $this->input->post('partner');
+        $partnercode = $this->input->post('partnercode');
         $hit = $this->input->post('hit');
 
         $this->db
                 ->where('product_id', $product_external_id)
-                ->where('partner_external_id', $partner)
+                ->where('partner_code', $partnercode)
                 ->set('hit', $hit)
                 ->update('mod_exchangeunfu_prices');
     }
 
     public function setHot() {
         $product_external_id = $this->input->post('product_external_id');
-        $partner = $this->input->post('partner');
+        $partnercode = $this->input->post('partnercode');
         $hot = $this->input->post('hot');
 
         $this->db
                 ->where('product_id', $product_external_id)
-                ->where('partner_external_id', $partner)
+                ->where('partner_code', $partnercode)
                 ->set('hot', $hot)
                 ->update('mod_exchangeunfu_prices');
     }
 
     public function setAction() {
         $product_external_id = $this->input->post('product_external_id');
-        $partner = $this->input->post('partner');
+        $partnercode = $this->input->post('partnercode');
         $action = $this->input->post('action');
 
         $this->db
                 ->where('product_id', $product_external_id)
-                ->where('partner_external_id', $partner)
+                ->where('partner_code', $partnercode)
                 ->set('action', $action)
                 ->update('mod_exchangeunfu_prices');
     }
@@ -531,6 +534,10 @@ class Exchangeunfu extends MY_Controller {
                 'type' => 'INT',
                 'constraint' => 11
             ),
+            'partner_code' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ),
             'partner_external_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 255
@@ -607,7 +614,7 @@ class Exchangeunfu extends MY_Controller {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_exchangeunfu_productivity', TRUE);
-        
+
         $this->db->where('name', 'exchangeunfu')
                 ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }

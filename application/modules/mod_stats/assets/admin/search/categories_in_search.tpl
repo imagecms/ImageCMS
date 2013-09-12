@@ -1,1 +1,0 @@
-categories_in_search
