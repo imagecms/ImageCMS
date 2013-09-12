@@ -7,6 +7,6 @@
 <div id="pieChart" class="hideChart">
     <svg style="height: 500px;"></svg>
 </div>
-<div id="barChart" class="hideChart" style="display: none;" >
-    <svg style="height: 500px;"></svg>
+    <div id="barChart" class="hideChart span12" style="display: none;">
+    <svg style="height: 500px; width: 800px;"></svg>
 </div>

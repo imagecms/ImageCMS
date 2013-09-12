@@ -69,11 +69,12 @@ class Install extends MY_Controller {
                 $allow_params[$k] = 'ok';
             }
         }
-
-        if (strnatcmp(phpversion(), '5.3.4'))
+        
+        if (strnatcmp(phpversion(), '5.3.4') != -1){
             $allow_params['PHP version >= 5.3.4'] = 'ok';
+        }
         else {
-            $allow_params['PHP version >= 5.3.4'] = 'warning';
+            $allow_params['PHP version >= 5.3.4'] = 'err';
             $result = false;
         }
 
@@ -85,6 +86,8 @@ class Install extends MY_Controller {
             'iconv' => 'ok',
             'gd' => 'ok',
             'zlib' => 'ok',
+            'gettext'=> 'ok',
+            'soap'=> 'ok'
         );
 
         foreach ($exts as $k => $v) {
@@ -97,6 +100,11 @@ class Install extends MY_Controller {
                 }
 
                 if ($k == 'mbstring') {
+                    $exts[$k] = 'err';
+                    $result = FALSE;
+                }
+                
+                if ($k == 'gettext') {
                     $exts[$k] = 'err';
                     $result = FALSE;
                 }

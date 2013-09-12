@@ -799,6 +799,7 @@ var ie = jQuery.browser.msie,
                     $(document).trigger({type: 'columnRenderComplete', el: dropOJ})
                 }
                 var k = [];
+                menuItem.add(menuItem.find('.helper:first')).css('height', '');
                 menuItem.each(function(index) {
                     var $this = $(this),
                             $thisW = $this.width(),
@@ -1173,9 +1174,8 @@ var ie = jQuery.browser.msie,
                         }
                         return false;
                     })
-
                     if (thisL - 1 == index)
-                        methods.location(regRefs[index], refs);
+                        methods.location(regRefs, refs);
                 });
                 wnd.on('hashchange', function(e) {
                     function scrollTop(wST) {
@@ -1250,23 +1250,30 @@ var ie = jQuery.browser.msie,
             methods.startCheck(regrefs, tabs.hashs);
         },
         startCheck: function(regrefs, hashs) {
-            var i = 0,
-                    hashs = hashs[0].concat(hashs[1]),
-                    hashs2 = [].concat(hashs);
-            $.map(hashs, function(n, j) {
-                if ($.inArray(n, regrefs) >= 0)
-                    i++;
-                if ($.inArray(n, regrefs) >= 0 && i > 1) {
-                    hashs2.splice(hashs2.indexOf(n), 1)
-                }
-            })
-            $.map(hashs2, function(n, i) {
-                var attrOrdataNew = "";
-                $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
-                $('[' + attrOrdataNew + '=' + n + ']').trigger({'type': 'click.tabs', 'start': true});
+            var hashs = hashs[0].concat(hashs[1]),
+                    regrefsL = regrefs.length,
+                    sim = 0;
+            $.map(regrefs, function(n, k) {
+                var i = 0,
+                        hashs2 = [].concat(hashs);
+                $.map(hashs, function(n, j) {
+                    if ($.inArray(n, regrefs[k]) >= 0)
+                        i++;
+                    if ($.inArray(n, regrefs[k]) >= 0 && i > 1) {
+                        hashs2.splice(hashs2.indexOf(n), 1)
+                    }
+                })
+                if (hashs2.join() == hashs.join())
+                    sim++;
+                if (hashs2.join() != hashs.join() || sim == regrefsL)
+                    $.map(hashs2, function(n, i) {
+                        var attrOrdataNew = "";
+                        $('[href=' + n + ']').length == 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
+                        $('[' + attrOrdataNew + '=' + n + ']').trigger({'type': 'click.tabs', 'start': true});
+                    });
             });
         }
-    };
+    }
     $.fn.tabs = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));

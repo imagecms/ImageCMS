@@ -24,7 +24,7 @@ var optionsMenu = {
     direction: 'left', //when menu place left and drop go to right (if vertical menu)
     //countColumn: 5, //if not drop-side
     sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 475, //if not define than will be actual width needs when drop-side
+    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
 //if need column partition level 2
     columnPart: true,
@@ -1123,11 +1123,11 @@ if (productPhotoCZoom) {
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {
-        el.find(selScrollPane).each(function() {
-            $(this).jScrollPane(scrollPane);
-            var api = $(this).data('jsp');
-            var throttleTimeout;
-            $(window).on('resize', function() {
+        wnd.on('resize.scroll', function() {
+            el.find(selScrollPane).each(function() {
+                $(this).jScrollPane(scrollPane);
+                var api = $(this).data('jsp');
+                var throttleTimeout;
                 if ($.browser.msie) {
                     if (!throttleTimeout) {
                         throttleTimeout = setTimeout(function() {
@@ -1806,6 +1806,7 @@ function init() {
     initCarouselJscrollPaneCycle(body);
     $(document).live('widget_ajax', function(e) {
         initCarouselJscrollPaneCycle(e.el);
+        reinitializeScrollPane(e.el);
         pasteItemsTovars(e.el);
     });
     if ($.exists(optionCompare.frameCompare))

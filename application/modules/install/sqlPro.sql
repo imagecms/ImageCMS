@@ -209,7 +209,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (177, 'banners', 'banners', 1, 0, 0, 'a:1:{s:8:"show_tpl";i:1;}', 55),
 (205, 'mod_discount', 'mod_discount', 1, 1, 0, NULL, NULL),
 (253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 8),
-(344, 'wishlist', 'wishlist', 1, 1, 0, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:5:"150";s:14:"maxImageHeight";s:5:"150";s:12:"maxImageSize";s:7:"2000000";}', NULL),
+(344, 'wishlist', 'wishlist', 1, 1, 0, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', NULL),
 (188, 'cmsemail', 'cmsemail', 1, 0, 0, 'a:9:{s:4:"from";s:12:"Default From";s:10:"from_email";s:15:"default@from.ua";s:11:"admin_email";s:13:"admin@from.ua";s:5:"theme";s:13:"Default Theme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:30:"<p>Default $content Wraper</p>";s:8:"mailpath";s:18:"/usr/sbin/sendmail";s:8:"protocol";s:4:"SMTP";s:4:"port";s:2:"80";}', 2),
 (347, 'new_level', 'new_level', 1, 1, 0, 'a:2:{s:15:"propertiesTypes";a:3:{i:0;s:6:"scroll";i:1;s:4:"full";i:2;s:8:"dropDown";}s:7:"columns";a:4:{i:0;s:1:"1";i:1;s:1:"2";i:2;s:1:"3";i:3;s:1:"4";}}', NULL);
 -- --------------------------------------------------------
@@ -629,6 +629,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `folder` varchar(100) NOT NULL,
   `template` varchar(100) NOT NULL,
   `default` int(1) NOT NULL,
+`locale` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
@@ -638,8 +639,8 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- Дамп даних таблиці `languages`
 --
 
-INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1);
+INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
+(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU');
 
 -- --------------------------------------------------------
 

@@ -6,11 +6,20 @@ class BaseAdminController extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $lang = new MY_Lang();
+        $lang->load('admin');
+
         $this->load->library('Permitions');
         Permitions::checkPermitions();
         $this->autoloadModules();
 
-        $this->lang->load('admin');
+
+//        if(!$_SESSION['GETTEXT_EXIST']){
+//            showMessage(lang('To improve performance set php_gettext.dll extension'), lang('Advice'));
+//        }
+
+//        $this->lang->load('admin');
     }
 
     /**

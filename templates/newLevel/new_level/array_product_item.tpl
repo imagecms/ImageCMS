@@ -124,7 +124,7 @@
                         type="button"
                         data-type="json"
                         data-modal="true"
-                        data-overlayopacity= "0"
+                        
                         data-drop="#notification"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-callback="removeItem"
