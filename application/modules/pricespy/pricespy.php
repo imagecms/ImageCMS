@@ -26,6 +26,24 @@ class Pricespy extends MY_Controller {
      * @param type $hash
      */
     private static function sendNotificationByEmail($email, $name, $hash) {
+        
+        /*
+         * use module cms email
+         * you need create new letter 'pricespy' in database "admin/components/cp/cmsemail/index" with next variables and other information 
+         */
+        /*
+        // variables
+        //
+        $data = array(
+            'name' => $name,
+            'server' => $_SERVER[HTTP_HOST],
+            'list_url_look' => site_url('pricespy'),
+            'delete_url_list_look' => site_url("pricespy/$hash")
+        );
+        // comand for send letter use module cms email
+        \cmsemail\email::getInstance()->sendEmail($email, 'pricespy', $data);
+        */
+        
         $CI = &get_instance();
         $CI->load->library('email');
 

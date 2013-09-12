@@ -1720,7 +1720,8 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     var get = closestTr.find('[name=get]').val();
     var tooltip = closestTr.find('[name=tooltip]').val();
     var locale = closestTr.data('locale');
-    var id = closestTr.data('id');
+    var ids = closestTr.data('id');
+
 
 
     closestTr.find('.name').text(name).css('display', 'block');
@@ -1736,7 +1737,7 @@ $('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
     $.ajax({
         type: "POST",
         data: {
-            id: id,
+            id: ids,
             locale: locale,
             name: name,
             name_front: name_front,

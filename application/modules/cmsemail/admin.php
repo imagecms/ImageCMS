@@ -40,11 +40,9 @@ class Admin extends BaseAdminController {
             if ($this->email->create()) {
 
                 showMessage(lang('Template_created'));
-                if ($this->input->post('action') == 'tomain')
-                    pjax('/admin/components/cp/cmsemail/index');
 
                 if ($this->input->post('action') == 'save')
-                    pjax('/admin/components/cp/cmsemail/edit/' . $this->db->insert_id());
+                    pjax('/admin/components/cp/cmsemail/index');
             }
             else {
                 showMessage($this->email->errors, '', 'r');
@@ -65,8 +63,12 @@ class Admin extends BaseAdminController {
         $this->email->delete($_POST['ids']);
     }
 
-    public function edit($id) {
-        $model = $this->email->getTemplateById($id);
+    public function edit($id, $locale = null) {
+        if(null === $locale)
+            $locale = chose_language();
+        
+        $model = $this->email->getTemplateById($id, $locale);
+        
         if(!$model){
             $this->load->module('core');
             $this->core->error_404();
@@ -75,7 +77,7 @@ class Admin extends BaseAdminController {
         $variables = unserialize($model['variables']);
 
         if ($_POST) {
-            if ($this->email->edit($id)) {
+            if ($this->email->edit($id, array(), $locale)) {
                 showMessage(lang('Template_edited'));
 
                 if ($this->input->post('action') == 'tomain')
@@ -87,6 +89,8 @@ class Admin extends BaseAdminController {
         }
         else
             \CMSFactory\assetManager::create()
+                    ->setData('locale', $locale)
+                    ->setData('languages',  $this->db->get('languages')->result_array())
                     ->setData('model', $model)
                     ->setData('variables', $variables)
                     ->registerScript('email', TRUE)
@@ -128,27 +132,33 @@ class Admin extends BaseAdminController {
         }
     }
 
-    public function deleteVariable() {
+    public function deleteVariable($locale = null) {
+        if (null === $locale)
+            $locale = chose_language();
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
 
-        return $this->email->deleteVariable($template_id, $variable);
+        return $this->email->deleteVariable($template_id, $variable, $locale);
     }
 
-    public function updateVariable() {
+    public function updateVariable($locale = null) {
+        if (null === $locale)
+            $locale = chose_language();
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
         $variableNewValue = $this->input->post('variableValue');
         $oldVariable = $this->input->post('oldVariable');
-        return $this->email->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+        return $this->email->updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale);
     }
 
-    public function addVariable() {
+    public function addVariable($locale = null) {
+        if (null === $locale)
+            $locale = chose_language();
         $template_id = $this->input->post('template_id');
         $variable = $this->input->post('variable');
         $variableValue = $this->input->post('variableValue');
 
-        if ($this->email->addVariable($template_id, $variable, $variableValue)) {
+        if ($this->email->addVariable($template_id, $variable, $variableValue, $locale)) {
             \CMSFactory\assetManager::create()
                     ->setData('template_id', $template_id)
                     ->setData('variable', $variable)
@@ -159,9 +169,11 @@ class Admin extends BaseAdminController {
         }
     }
 
-    public function getTemplateVariables() {
+    public function getTemplateVariables($locale = null) {
+        if (null === $locale)
+            $locale = chose_language ();
         $template_id = $this->input->post('template_id');
-        $variables = $this->email->getTemplateVariables($template_id);
+        $variables = $this->email->getTemplateVariables($template_id, $locale);
         if ($variables) {
             return \CMSFactory\assetManager::create()
                             ->setData('variables', $variables)

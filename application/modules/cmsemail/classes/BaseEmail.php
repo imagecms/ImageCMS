@@ -42,7 +42,7 @@ class BaseEmail extends ParentEmail {
         }
     }
 
-    public function edit($id, $params = array()) {
+    public function edit($id, $params = array(), $locale) {
         if (parent::edit($id, $params = array())) {
             if ($_POST) {
                 $data['from'] = $this->input->post('sender_name');
@@ -56,9 +56,9 @@ class BaseEmail extends ParentEmail {
                 $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
-                $this->cmsemail_model->edit($id, $data);
+                $this->cmsemail_model->edit($id, $data, $locale);
             } else {
-                $this->cmsemail_model->edit($id, $this->data_model);
+                $this->cmsemail_model->edit($id, $this->data_model, $locale);
             }
             return TRUE;
         } else {
