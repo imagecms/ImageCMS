@@ -230,7 +230,7 @@ class Exchangeunfu extends MY_Controller {
             $ext = pathinfo($st, PATHINFO_EXTENSION);
             if ($ext == 'xml')
             //saving xml files to cmlTemp
-                if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), 'a+')) {
+                if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), FOPEN_WRITE_CREATE_DESTRUCTIVE)) {
                     echo "success";
                 }
         }
@@ -269,40 +269,6 @@ class Exchangeunfu extends MY_Controller {
         }
         exit();
     }
-
-//    public static function adminAutoload() {
-//        \CMSFactory\Events::create()
-//                ->onShopProductPreUpdate()
-//                ->setListener('_extendPageAdmin');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopProductPreCreate()
-//                ->setListener('_extendPageAdmin');
-//
-////        \CMSFactory\Events::create()
-////                ->onShopProductCreate()
-////                ->setListener('_addProductExternalId');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopProductCreate()
-//                ->setListener('_addProductPartner');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopProductUpdate()
-//                ->setListener('_addProductPartner');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopUserCreate()
-//                ->setListener('_addUserExternalId');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopCategoryCreate()
-//                ->setListener('_addCategoryExternalId');
-//
-//        \CMSFactory\Events::create()
-//                ->onShopOrderCreate()
-//                ->setListener('_addOrderExternalId');
-//    }
 
     /**
      * render module additional region prices tab for products
@@ -784,8 +750,8 @@ class Exchangeunfu extends MY_Controller {
      */
     private function command_sale_query() {
         if ($this->check_perm() === true) {
-            if($parter_code = $this->input->get('partner')){
-                $parter_id = $this->select('external_id')->where('code', $parter_code)->get('mod_exchangeunfu_partners');
+            if($this->input->get('partner')){
+                $parter_id = $this->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
                 if($parter_id){
                     $parter_id = $parter_id->row_array();
                     $this->export->export($parter_id['external_id']);
@@ -793,7 +759,6 @@ class Exchangeunfu extends MY_Controller {
                     $this->export->export();
                 }
             }
-            
         }
         exit();
     }
