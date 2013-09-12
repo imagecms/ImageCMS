@@ -1,4 +1,4 @@
-<table class="table PartnersTable" {if !$info}style="display: none"{/if}>
+<table class="table PartnersTable table-striped table-bordered table-hover table-condensed" {if !$info}style="display: none"{/if}>
     <thead>
         <tr>
             <th class="span1">#</th>
@@ -50,7 +50,7 @@
                 <select name="partner[]" class="partnersSelect">
                     <option value="false">--Не выбрано--</option>
                     {foreach $partners as $partner}
-                        <option value='{echo $partner['external_id']}'>{echo $partner['region']}</option>
+                        <option value='{echo $partner['id']}'>{echo $partner['region']}</option>
                     {/foreach}
                 </select>
             </td>

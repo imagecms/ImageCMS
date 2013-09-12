@@ -625,10 +625,10 @@ class Core extends MY_Controller {
                     $this->core_data['module'] = $mod_name;
 
                     ($hook = get_hook('core_load_module_autoload')) ? eval($hook) : NULL;
-                    if (!self::$detect_load[$mod_name]) {
+                   // if (!self::$detect_load[$mod_name]) {
                         $this->$mod_name->autoload();
                         self::$detect_load[$mod_name] = 1;
-                    }
+                  //  }
                 }
             }
         }
