@@ -298,8 +298,8 @@ $(document).ready(function() {
         /** Prepare times interval for day, week, month, year**/
         switch (interval) {
             case 'day':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()-1));
-                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate()));
+                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
+                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
                 break;
 
             case 'month':
@@ -313,8 +313,8 @@ $(document).ready(function() {
         }
 
         /** Prepare values for start and end date inputs **/
-        startDateForInput = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (startDate.getDate() + 1)).slice(-2);
-        endDateForInput = endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (endDate.getDate() + 1)).slice(-2);
+        startDateForInput = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (startDate.getDate())).slice(-2);
+        endDateForInput = endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (endDate.getDate())).slice(-2);
 
         /** Set values for start and end date inputs **/
         $('.date_start').val(startDateForInput);
@@ -404,4 +404,23 @@ $(document).ready(function() {
         });
 
     });
+
+    /**
+     * Autocomplete products
+     */
+    if ($('#productForStats').length) {
+        $('#productForStats').autocomplete({
+            source: base_url + 'admin/components/cp/mod_stats/autoCompliteProducts?limit=25&notLoadMain=true',
+            select: function(event, ui) {
+                productsData = ui.item;
+            },
+            close: function() {
+                $('#statsProductId').val(productsData.id);
+            }
+        });
+    }
+    
+    
+    
+
 });

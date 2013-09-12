@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         {foreach $info as $k => $datas}
-            <tr class="partnerData" data-productid="{echo $datas['product_id']}" data-partner="{echo $datas['partner_external_id']}">
+            <tr class="partnerData" data-productid="{echo $datas['product_id']}" data-partner="{echo $datas['partner_external_id']}" data-partnercode="{echo $datas['partner_code']}">
                 <td>{echo $k+1}</td>
                 <td class="regionName">{echo $datas['region']}</td>
                 <td class="change">
@@ -50,7 +50,7 @@
                 <select name="partner[]" class="partnersSelect">
                     <option value="false">--Не выбрано--</option>
                     {foreach $partners as $partner}
-                        <option value='{echo $partner['id']}'>{echo $partner['region']}</option>
+                        <option value='{echo $partner['code']}'>{echo $partner['region']}</option>
                     {/foreach}
                 </select>
             </td>
