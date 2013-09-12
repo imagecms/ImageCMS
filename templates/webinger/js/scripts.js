@@ -896,6 +896,7 @@ wnd.load(function() {
         }, function() {
             $('.cycle').cycle('resume');
         });
+        $('.frame_baner .next, .frame_baner .prev').fadeIn();
     }
 
     /*call plugin myCarousel (jquery.imagecms.js and jquery.jcarousel.min.js) */
