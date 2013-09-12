@@ -223,16 +223,22 @@ class Exchangeunfu extends MY_Controller {
      */
     private function command_catalog_file() {
         if ($this->check_perm() === true) {
-            $st = $_GET['filename'];
+            $st = $this->input->get('filename');
             $st = basename($st);
+
             if (strrchr($st, "/"))
                 $st = strrchr($st, "/");
             $ext = pathinfo($st, PATHINFO_EXTENSION);
-            if ($ext == 'xml')
-            //saving xml files to cmlTemp
-                if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), FOPEN_WRITE_CREATE_DESTRUCTIVE)) {
+            if ($ext == 'xml') {
+                if (file_exists($this->tempDir . $this->input->get('filename')))
+                    rename($this->tempDir . $this->input->get('filename'), $this->tempDir . $this->input->get('filename') . time());
+                //saving xml files to cmlTemp
+                if (write_file($this->tempDir . $this->input->get('filename'), file_get_contents('php://input'), FOPEN_WRITE_CREATE_DESTRUCTIVE)) {
                     echo "success";
+                } else {
+                    echo 'Ошибка при сохранении файла';
                 }
+            }
         }
         exit();
     }
@@ -750,12 +756,12 @@ class Exchangeunfu extends MY_Controller {
      */
     private function command_sale_query() {
         if ($this->check_perm() === true) {
-            if($this->input->get('partner')){
+            if ($this->input->get('partner')) {
                 $parter_id = $this->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
-                if($parter_id){
+                if ($parter_id) {
                     $parter_id = $parter_id->row_array();
                     $this->export->export($parter_id['external_id']);
-                }else{
+                } else {
                     $this->export->export();
                 }
             }
