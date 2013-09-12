@@ -1,1 +1,1 @@
-<li><span class="title">{$title}</span>{$wrapper}</li>
+<li><span class="title">{//$title}</span>{$wrapper}</li>
