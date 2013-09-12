@@ -33,74 +33,83 @@ class Orders extends \MY_Controller {
         return self::$_instance;
     }
 
-    public function test() {
-        /* $orders = $this->stats_model_orders->getOrdersByDateRange(array(
-          'range' => 'month',
-          'paid' => NULL,
-          ));
-
-          $orders2 = $this->fillMissingWithZero($orders, 'orders_count'); */
-
-
-        $paid = $this->getOrders_(array(
-            'interval' => 'day',
-            'paid' => TRUE
-        ));
-
-        $unpaid = $this->getOrders_(array(
-            'interval' => 'day',
-            'paid' => TRUE
-        ));
-
-        echo "<pre>";
-        print_r($paid);
-        echo "</pre>";
-        exit;
-    }
-
     /**
      * Table representation for orders
      */
-    public function getInfo($params) {
-        return $this->stats_model_orders->getOrdersByDateRange($params);
-        
-//        echo "<pre>";
-//        print_r($orders);
-//        echo "</pre>";
-        //exit;
+    public function templateInfo() {
+        $params = $this->getParamsFromCookies();
+        $orders = $this->stats_model_orders->getOrdersByDateRange($params);
+        return $orders;
     }
 
     /**
      * 
      */
     public function getPrice() {
-        $query = $this->stats_model_orders->getOrdersByPrice();
-        $res['type'] = 'line';
-        $res['data'][0]['key'] = 'Все закази';
-        $res['data'][0]['values'] = $query;
-        echo json_encode($res);
+        $params = $this->getParamsFromCookies();
+        $paid = $this->getOrders_LineDiagram($params, 'price_sum');
+
+        $result = array(
+            'type' => 'line',
+            'data' => array(
+                0 => array(
+                    'key' => 'Оплачены',
+                    'values' => $paid
+                )
+            )
+        );
+        return json_encode($result);
     }
 
     public function getCount() {
-        $paid = $this->getOrders_(array('paid' => TRUE));
-        $unpaid = $this->getOrders_(array('paid' => FALSE));
 
-        /*
-          $result = array(
-          'type' => 'line',
-          'data' => array(
-          0 => array(
-          'key' => 'Оплачены',
-          'values' => $paid
-          ),
-          1 => array(
-          'key' => 'Неоплачены',
-          'values' => $unpaid
-          )
-          )
-          );
+        $params = $this->getParamsFromCookies();
+        $params['paid'] = TRUE;
+        $paid = $this->getOrders_LineDiagram($params, 'orders_count');
 
-          return json_encode($result); */
+        $params['paid'] = NULL;
+        $all = $this->getOrders_LineDiagram($params, 'orders_count');
+        $delivered = $this->getOrders_LineDiagram($params, 'delivered');
+
+        $result = array(
+            'type' => 'line',
+            'data' => array(
+                0 => array(
+                    'key' => 'Все',
+                    'values' => $all
+                ),
+                1 => array(
+                    'key' => 'Оплачены',
+                    'values' => $paid
+                ),
+                2 => array(
+                    'key' => 'Доставленные',
+                    'values' => $delivered
+                )
+            )
+        );
+
+        return json_encode($result);
+    }
+
+    /**
+     * Returns params for query
+     * @return type
+     */
+    protected function getParamsFromCookies() {
+
+        if (!isset($_COOKIE['group_by']))
+            $_COOKIE['group_by'] = 'day';
+        if (!isset($_COOKIE['start_date_input']))
+            $_COOKIE['start_date_input'] = date("Y-m-d 00:00:00", strtotime('now - 1 month'));
+        if (!isset($_COOKIE['end_date_input']))
+            $_COOKIE['end_date_input'] = date("Y-m-d 00:00:00");
+
+        $params['interval'] = $_COOKIE['group_by'];
+        $params['start_date'] = $_COOKIE['start_date_input'];
+        $params['end_date'] = $_COOKIE['end_date_input'];
+
+        return $params;
     }
 
     /**
@@ -108,19 +117,16 @@ class Orders extends \MY_Controller {
      * @param array $ordersData
      * @return array identical to $ordersData, but with zeros
      */
-    protected function fillMissingWithZero($ordersData, $field) {
-
-        $dateExample = $ordersData[0]['date'];
-        $dateRangeType = $this->getDateRangeType($dateExample);
-
-        $newOrdersData = array();
-        foreach ($ordersData as $order) {
-            $newOrdersData[$order['date']] = $order[$field];
+    protected function fillMissingWithZero($ordersData) {
+        if (!count($ordersData) > 0) {
+            return $ordersData;
         }
-
         // lowest date - start
-        reset($newOrdersData);
-        $start = key($newOrdersData);
+        reset($ordersData);
+        $start = key($ordersData);
+
+        $dateRangeType = $this->getDateRangeType($start);
+
         if ($dateRangeType == 'year') { // php's date() function don't parse a year - needs to add month 
             $start .= "-01";
         }
@@ -128,32 +134,29 @@ class Orders extends \MY_Controller {
         $start = strtotime($start);
 
         // highest date - end
-        end($newOrdersData);
-        $end = key($newOrdersData);
+        end($ordersData);
+        $end = key($ordersData);
         if ($dateRangeType == 'year') { // php's date() function don't parse a year - needs to add month 
             $end .= "-01";
         }
         $end = strtotime($end);
 
-        reset($newOrdersData);
+        reset($ordersData);
 
+        // filling depending on group type
         switch ($dateRangeType) {
             case 'year':
-                $ordersWithZeros = $this->fillMissingWithZero_year($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_year($start, $end, $ordersData);
                 break;
             case 'month':
-                $ordersWithZeros = $this->fillMissingWithZero_month($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_month($start, $end, $ordersData);
                 break;
             default:
-                $ordersWithZeros = $this->fillMissingWithZero_days($start, $end, $newOrdersData);
+                $ordersWithZeros = $this->fillMissingWithZero_days($start, $end, $ordersData);
                 break;
         }
-        return $ordersWithZeros;
 
-        $tsOrders = array();
-        foreach ($ordersWithZeros as $date => $count) {
-            $tsOrders[strtotime($date)] = $count;
-        }
+        return $ordersWithZeros;
     }
 
     /**
@@ -243,16 +246,41 @@ class Orders extends \MY_Controller {
 
     /**
      * Creating array structure for nvd3 line diagram
-     * @param boolean $paid TRUE - Paid, FALSE not paid, NULL - all
-     * @return array
+     * @param array $params params for data selecting 
+     * @param string $field one of the fields of the query in orders model
+     * @return array data for line diagram
      */
-    protected function getOrders_($params) {
+    protected function getOrders_LineDiagram($params, $field) {
         $orders = $this->stats_model_orders->getOrdersByDateRange($params);
-        $tsOrders = array();
+
+        $f = fopen('/var/www/by_price.txt', 'w+');
+        fwrite($f, print_r($orders, TRUE));
+        fclose($f);
+
+        // getting data by only specified field
+        $dataByField = array();
         foreach ($orders as $order) {
-            $tsOrders[strtotime($order['date'])] = $order['orders_count'];
+            $dataByField[$order['date']] = $order[$field];
+        }
+        unset($orders);
+
+
+
+        // filling by zeros for wright data representation in diagram
+        $filledWithZeros = $this->fillMissingWithZero($dataByField);
+        unset($dataByField);
+
+
+
+        // timestamp for diagram
+        $tsOrders = array();
+        foreach ($filledWithZeros as $date => $count) {
+            $tsOrders[strtotime($date)] = $count;
         }
         ksort($tsOrders);
+        unset($filledWithZeros);
+
+        // creating array with structure for nvd3 line diagram
         $tsOrders_ = array();
         foreach ($tsOrders as $key => $value) {
             $tsOrders_[] = array(
@@ -260,6 +288,7 @@ class Orders extends \MY_Controller {
                 'y' => $value
             );
         }
+
         return $tsOrders_;
     }
 

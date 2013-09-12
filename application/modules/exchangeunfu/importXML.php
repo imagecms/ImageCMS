@@ -81,7 +81,7 @@ class ImportXML {
      * @return string "success" if success
      */
     public function import($file = 'export.xml') {
-        $this->getXML($this->pass . $file);
+        $this->getXML($file);
 //        $start = microtime(true);
         //load db data
         $this->prod = load_product();
@@ -594,16 +594,15 @@ class ImportXML {
             $data['external_id'] = $offer->ID . '';
             $data['price'] = (float) $offer->Цена;
             $data['action'] = (int) $offer->ЭтоАкционнаяЦена;
-            if($offer->IDWebНоменклатура . ''){
+            if ($offer->IDWebНоменклатура . '') {
                 $data['product_id'] = $offer->IDWebНоменклатура . '';
-            }  else {
-                foreach ($this->prod as $key => $product){
-                    if($product == $offer->IDНоменклатура . ''){
+            } else {
+                foreach ($this->prod as $key => $product) {
+                    if ($product == $offer->IDНоменклатура . '') {
                         $data['product_id'] = $key;
                         break;
                     }
                 }
-
             }
 
             $data['partner_external_id'] = $offer->IDОрганизация . '';
@@ -642,8 +641,8 @@ class ImportXML {
             $data['address'] = $user->Адрес . '';
             $data['external_id'] = $user->ID . '';
 
-            if ($user->IDWeb) {
-                $data['id'] = $user->IDWeb . '';
+            if ($user->IDWeb || $id = is_user((string) $user->ID, $this->users)) {
+                $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
                 $this->update[] = $data;
             } else {
                 $this->insert[] = $data;

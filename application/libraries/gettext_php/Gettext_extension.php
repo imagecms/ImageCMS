@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (c) 2009 David Soria Parra
  *
@@ -22,38 +23,31 @@
  */
 
 include_once('Gettext.php');
+
 /**
  * Gettext implementation in PHP
  *
  * @copyright (c) 2009 David Soria Parra <sn_@gmx.net>
  * @author David Soria Parra <sn_@gmx.net>
  */
-class Gettext_Extension extends Gettext
-{
+class Gettext_Extension extends Gettext {
+
     /**
      * Initialize a new gettext class
      *
      * @param String $mofile The file to parse
      */
-    public function __construct($params)
-    {
-        
-        $lang = $params['locale'][0];
-        $locale = $params['locale'][1];
-
-
-        if (!setlocale (LC_ALL, $locale.'.utf8', $locale.'.utf-8', $locale.'.UTF8', $locale.'.UTF-8', $lang.'.utf-8', $lang.'.UTF-8', $lang)) {
-            // Set current locale
-            setlocale(LC_ALL, '');
+    public function __construct() {
+        if (!extension_loaded('gettext')) {
+            include_once('gettext.inc');
+            $_SESSION['GETTEXT_EXIST'] = FALSE;
+    //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
+    //      echo "gettext is not installed\n";
+        } else {
+            $_SESSION['GETTEXT_EXIST'] = TRUE;
+    //      echo "gettext is supported\n";
+    //      showMessage(lang('Advice'), lang('To improve performance set php_gettext.dll extension'));
         }
-
-        putenv('LC_ALL='.$locale);
-        putenv('LANG='.$locale);
-        putenv('LANGUAGE='.$locale);
-
-        bindtextdomain($params['domain'], 'application/language/admin');
-        textdomain($params['domain']);
-        
     }
 
     /**
@@ -62,26 +56,21 @@ class Gettext_Extension extends Gettext
      * @param String $locale
      * @return mixed|void
      */
-    public function addDomain($directory, $domain, $locale)
-    {
-//        var_dumps(dddd);
-        $lang = $locale; //TODO: select lang by locale
-
-        if (!setlocale (LC_ALL, $locale.'.utf8', $locale.'.utf-8', $locale.'.UTF8', $locale.'.UTF-8', $lang.'.utf-8', $lang.'.UTF-8', $lang)) {
+    public function addDomain($directory, $domain, $locale) {
+        if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
             // Set current locale
             setlocale(LC_ALL, '');
         }
 
-        putenv('LC_ALL='.$locale);
-        putenv('LANG='.$locale);
-        putenv('LANGUAGE='.$locale);
-//        var_dumps($domain);
+        putenv('LC_ALL=' . $locale);
+        putenv('LANG=' . $locale);
+        putenv('LANGUAGE=' . $locale);
         bindtextdomain($domain, $directory);
     }
 
     public function switchDomain($directory, $domain, $locale) {
         $this->addDomain($directory, $domain, $locale);
-        //textdomain($domain);
+        textdomain($domain);
     }
 
     /**
@@ -92,8 +81,7 @@ class Gettext_Extension extends Gettext
      *
      * @return Translated message
      */
-    public function gettext($msg)
-    {
+    public function gettext($msg) {
         return gettext($msg);
     }
 
@@ -110,8 +98,8 @@ class Gettext_Extension extends Gettext
      *
      * @return Translated string
      */
-    public function ngettext($msg, $msg_plural, $count)
-    {
+    public function ngettext($msg, $msg_plural, $count) {
         return ngettext($msg, $msg_plural, $count);
     }
+
 }

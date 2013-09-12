@@ -38,17 +38,20 @@ class Stats_model_orders extends CI_Model {
 
         $query = "
             SELECT
-                COUNT(`dtable`.`id`) as `orders_count`,
                 DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->prepareDatePattern() . "') as `date`,
+                COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
                 SUM(`dtable`.`products_count`) as `products_count`,
-                SUM(`dtable`.`quantity`) as `quantity`
+                SUM(`dtable`.`quantity`) as `quantity`,
+                SUM(`dtable`.`status`) as `delivered`
             FROM 
                 (SELECT 
                     `shop_orders`.`id`,
                     `shop_orders`.`date_created`,
                     `shop_orders`.`paid`,
-                    IFNULL(`shop_orders`.`origin_price`, 0) as `origin_price`,
+                    -- IF(ISNULL(`shop_orders`.`origin_price`), 0, `shop_orders`.`origin_price`) as `origin_price`,
+                    SUM(`shop_orders_products`.`price`) as `origin_price`,
+                    IF(`shop_orders`.`status` = 2, 1, 0) as `status`,
                     COUNT(`shop_orders_products`.`order_id`) as `products_count`,
                     SUM(`shop_orders_products`.`quantity`) as `quantity`
                  FROM 
@@ -68,9 +71,9 @@ class Stats_model_orders extends CI_Model {
             ORDER BY FROM_UNIXTIME(`date_created`)
         ";
 
-//        echo "<pre>";
-//        print_r($query);
-//        echo "</pre>";
+        $f = fopen('/var/www/query.txt', 'w+');
+        fwrite($f, print_r($query, TRUE));
+
 
         $result = $this->db->query($query);
         if ($result === FALSE) {
@@ -81,6 +84,8 @@ class Stats_model_orders extends CI_Model {
             $ordersData[] = $row;
         }
 
+        fwrite($f, print_r($ordersData, TRUE));
+        fclose($f);
         return $ordersData;
     }
 
@@ -171,7 +176,7 @@ class Stats_model_orders extends CI_Model {
             default:
                 $lastDay = "01";
         }
-        
+
         // to include all specified end year 
         if ($type == 'year' & $startOrEnd == 'end') {
             $month = "12";
@@ -180,7 +185,7 @@ class Stats_model_orders extends CI_Model {
         }
 
         $hour = " 00:00:00";
-        
+
         // filling date format according to wich part is missing
         switch ($type) {
             case "day":

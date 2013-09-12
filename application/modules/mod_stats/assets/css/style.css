@@ -4,3 +4,23 @@
 .nav-tabs.nav-stacked>div>li>a:hover {z-index: 2;border-color: #ddd;}
 .linkChart.active{color: red;}
 .m_l_10 {margin-left: 10px !important;}
+.settingTitle{
+    font-weight:bold;
+    display: block;padding: 3px;
+    padding-left: 10px;
+    background: #ddd; /* для браузеров без css3 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#dddddd');  /*для IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccd), to(#ddd));  /*для webkit */
+    background: -moz-linear-gradient(top, #ccd, #ddd);  /*для firefox 3.6+*/ 
+    -webkit-border-top-left-radius: 7px;
+    -webkit-border-top-right-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 7px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.settingsContainer{
+    border: 1px solid #ddd; display: block;
+    padding: 3px 3px 3px 10px;
+   
+}
