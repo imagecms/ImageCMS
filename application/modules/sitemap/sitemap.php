@@ -39,7 +39,7 @@ class Sitemap extends MY_Controller {
 
     public function index() {
         $categories = $this->lib_category->_build();
-        
+
         $this->template->assign('content', $this->sitemap_ul($categories));
         $this->template->show();
     }
@@ -238,7 +238,7 @@ class Sitemap extends MY_Controller {
     }
 
     public function _get_all_pages() {
-        
+
         $this->db->select('id, created, updated, lang,cat_url');
         $this->db->select('CONCAT_WS("", cat_url, url) as full_url', FALSE);
         $this->db->where('post_status', 'publish');
