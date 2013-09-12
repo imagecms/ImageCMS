@@ -5,6 +5,7 @@
 .linkChart.active{color: red;}
 .m_l_10 {margin-left: 10px !important;}
 .m_t_-10{margin-top: -10px !important;}
+.m-l_0{margin-left: 0 !important;}
 .settingTitle{
     font-weight:bold;
     display: block;padding: 3px;
@@ -24,4 +25,7 @@
     border: 1px solid #ddd; display: block;
     padding: 3px 3px 3px 10px;
    
+}
+.fixedTableWithLeftScroll{
+    overflow-y: auto; height: 500px;
 }
