@@ -24,7 +24,7 @@
                     <figure>
                         <!-- productImageUrl($model->getMainImage()) - Way before the photo to attribute img -->
                         <span class="helper"></span>
-                        <img id="imageGroup" src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" />
+                        <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg"/>
                     </figure>                        
                 </a>              
                 <ul class="frame_thumbs clearfix">                    
@@ -233,12 +233,32 @@
         </div>
         <div id="xBlock"></div>
         <!-- Start. Withdraw button to "share" -->
-        <div class="frame_tabs" data-height="358">                   
+        <div class="frame_tabs">
             {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
             {if count($renderProperties) >0}
-                <div id="characteristic" data-height="200">
+                <div id="characteristic" data-height="55">
                     <table border="0" cellpadding="4" cellspacing="0" class="characteristic">
                         <tbody>
+                            {foreach $renderProperties as $prop}
+                                <tr>
+                                    <td>
+                                        {if $prop.Desc && $prop.ShowFaq}
+                                            <div class="item_add d_i-b">
+                                                <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
+                                                <div class="drop drop_down">
+                                                    <div class="drop-content">
+                                                        {echo $prop.Desc}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        {else:}
+                                            {echo $prop.Name}                                               
+                                        {/if}
+                                    </td>
+                                    <td>{echo $prop.Value}</td>
+                                </tr>
+                            {/foreach}
                             {foreach $renderProperties as $prop}
                                 <tr>
                                     <td>
@@ -266,7 +286,7 @@
             {/if}
             <!-- End. Withdraw button to "share" -->
             {if $model->getFullDescription() != ''}
-                <div id="info" data-height="222">
+                <div id="info" data-height="45">
                     <div class="text">
                         { echo $model->getFullDescription()}                      
                     </div>
@@ -283,3 +303,7 @@
 
 <!--Kit end-->
 </div>
+<script>
+    var text = new Object();
+    text.close = '{lang('Закрыть', 'product_slider')}'
+</script>

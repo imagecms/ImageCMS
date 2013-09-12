@@ -19,17 +19,7 @@
         <div class="row">
             <!--Photo block for main product-->
             <div class="span5 clearfix">
-                <!-- productImageUrl($model->getMainModImage()) - Link to product -->
-                <div class="photo-block">
-                    <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom" click="return false;">
-                        {/*rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo"*/}
-                        <figure>
-                            <span class="helper"></span>
-                            <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg"/>
-                        </figure>
-                    </a>
-                </div>
-                <ul class="frame_thumbs">
+                <ul class="frame_thumbs span1">
                     <!-- Start. Show additional images -->
                     {if sizeof($productImages = $model->getSProductImagess()) > 0}
                         {foreach $productImages as $key => $image}
@@ -54,6 +44,61 @@
                     {/if}
                     <!-- End. Show additional images -->
                 </ul>
+                <!-- productImageUrl($model->getMainModImage()) - Link to product -->
+                <div class="photo-block span4">
+                    <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom" click="return false;">
+                        {/*rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo"*/}
+                        <figure>
+                            <span class="helper"></span>
+                            <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" id="vimg"/>
+                        </figure>
+                    </a>
+                </div>
+                {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
+                <table border="0" cellpadding="4" cellspacing="0" class="characteristic m-b_20">
+                    <tbody>
+                        {foreach $renderProperties as $prop}
+                            <tr>
+                                <td>
+                                    {if $prop.Desc && $prop.ShowFaq}
+                                        <div class="item_add d_i-b">
+                                            <span class="icon-infoM"></span><span>{echo $prop.Name}</span>
+                                            <div class="drop drop_down">
+                                                <div class="drop-content">
+                                                    {echo $prop.Desc}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {else:}
+                                        {echo $prop.Name}                                               
+                                    {/if}
+                                </td>
+                                <td>{echo $prop.Value}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+                <!-- Output rating for the old product Start -->
+                {if $Comments[$model->getId()] && $model->enable_comments}
+                    <div class="frame_response c_b">
+                        {$CI->load->module('star_rating')->show_star_rating($model, false)}
+                        <span>Рейтинг товара "{echo $model->getName()}"</span>
+                        <div class="d-i_b">
+                            <span>{lang('Оставило','webinger')}</span>
+                            <span>
+                                {intval($Comments[$model->getId()])}
+                                {lang("человек(а)","webinger")}
+                            </span>
+                        </div>
+                    </div>
+                {/if}
+                <!-- Output rating for the old product End -->
+                <div class="share_tov">
+                    {echo $CI->load->module('share')->_make_share_form()}
+                </div>
+                <div class="social_like">
+                    {echo $CI->load->module('share')->_make_like_buttons()}
+                </div>
             </div>
             <!--Photo block for main product end-->
             <div class="span8">
@@ -65,13 +110,6 @@
                         {$hasVariant = $model->firstVariant->getName() == '';}
                         <span class="frame_variant_name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант', 'webinger')}: <span class="code">({if !$hasVariant}{echo $model->firstVariant->getName()}{/if})</span></span>
                     </span>
-                    <!-- Output rating for the old product Start -->
-                    <div class="frame_response">
-                        <div class="star">
-                            {$CI->load->module('star_rating')->show_star_rating($model)}
-                        </div>
-                    </div>
-                    <!-- Output rating for the old product End -->
                     <div class="clearfix frame_buy">
                         <div class="f-s_0 d_i-b v-a_b">
                             <!-- Start. Output of all the options -->
@@ -230,9 +268,6 @@
     <div id="xBlock"></div>
 </div>
 <!-- Start. Withdraw button to "share" -->
-<div class="share_tov">
-    {echo $CI->load->module('share')->_make_share_form()}
-</div>
 <div class="short_desc text">
     {echo $model->getShortDescription()}
 </div>
@@ -250,7 +285,6 @@
     <!-- End. Show the block information if available -->
 
     <!-- Start. Display characteristics block if you have one -->
-    {$renderProperties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
     {if count($renderProperties) > 0}
         <li>
             <button type="button" data-href="#characteristic">
