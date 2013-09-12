@@ -85,14 +85,14 @@ class Languages extends BaseAdminController {
             'zh_HK', 'zh_MO', 'zh_SG',
             'zh_TW', 'zu_ZA'
         );
-        
+
         foreach ($langs as $key => $lang) {
             $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
             if (!$locale) {
                 unset($langs[$key]);
             }
         }
-        
+
         return $langs;
     }
 
@@ -194,6 +194,8 @@ class Languages extends BaseAdminController {
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang, 0777);
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES', 0777);
                         file_put_contents($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES/main.po', '');
+                        // to delete lang folders
+//                         system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/de_DE'));
                     }
                 }
             }
