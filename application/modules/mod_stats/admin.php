@@ -126,25 +126,19 @@ class Admin extends \BaseAdminController {
     public function getSetting($settingName) {
         return $this->stats_model->getSettingByName($settingName);
     }
-    
+
     /**
      * Ajax update setting by value and setting name
      */
     public function ajaxUpdateSettingValue() {
-        /** Get data from post * */
-        $settingName = $this->input->get('setting');
-        $settingValue = $this->input->get('value');
-        var_dump($settingName);
-
-        /** Set setting value * */
-        $result = $this->stats_model->updateSettingByNameAndValue($settingName, $settingValue);
-
-        /** Return result * */
-        if ($result) {
-            echo 'true';
-        } else {
-            echo 'false';
-        }
+        \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
     }
 
+    /**
+     * Autocomlete products
+     * @return jsone
+     */
+    public function autoCompliteProducts() {
+        \mod_stats\classes\AdminHelper::create()->autoCompliteProducts();
+    }
 }
