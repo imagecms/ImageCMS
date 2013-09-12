@@ -55,7 +55,7 @@ a:hover, a:active{outline:0}
 /*general images*/
 .v_f{background: url("../images/v_f.png") repeat-y;}
 .h_f, .frameNav td, .ui-widget-header{background: url("../images/h_f.png") repeat-x;}
-.pager a, [class*="icon-"], .icon, .frame_baner .btn, .frame_brand .btn_brand, .ui-slider-handle, .items_photo-album > li a:before, .frame-item-menu > ul > li > a.is-sub:after, .ie_21, #fancybox-close, .menu_vertical_side li li li > span:before, .ie_55{background: url("../images/sprite.png") no-repeat;}
+.pager a, [class*="icon-"], .icon, .frame_baner .btn, .frame_brand .btn_brand, .ui-slider-handle, .items_photo-album > li a:before, .frame-item-menu > ul > li > a.is-sub:after, .ie_21, #fancybox-close:after, .menu_vertical_side li li li > span:before, .ie_55{background: url("../images/sprite.png") no-repeat;}
 .btn_fluid, .cusel, .cuselFrameRight{background: url("../images/buttons.png") no-repeat;}
 /*general images end*/
 
@@ -237,7 +237,9 @@ a:hover .icon-archive{background-position: -197px -13px;}
 .icon-plus, .icon-minus{width: 8px;height: 5px;display: block;}
 .icon-plus{background-position: -380px 0;}
 .icon-minus{background-position: -389px 0;}
-.icon-times-enter, #fancybox-close{width: 11px;height: 11px;position: absolute;background-position: -398px 0;right: 25px;top: 15px;cursor: pointer;}
+.icon-times-enter, #fancybox-close:after{width: 11px;height: 11px;position: absolute;background-position: -398px 0;right: 25px;top: 15px;cursor: pointer;}
+#fancybox-close{position: absolute;right: 25px;top: 15px;padding-right: 15px;cursor: pointer;font-size: 14px;}
+#fancybox-close:after{content: "";top: 6px;right: 0;}
 .icon-email{width: 11px;height: 11px;background-position: -410px 0;position: absolute;top: 10px;left:10px;margin-right: 5px;}
 .icon-password{width: 10px;height: 11px;background-position: -422px 0;position: absolute;top: 10px;left:11px;margin-right: 5px;}
 .icon-person{width: 9px;height: 11px;background-position: -433px 0;position: absolute;top: 9px;left:11px;margin-right: 5px;}

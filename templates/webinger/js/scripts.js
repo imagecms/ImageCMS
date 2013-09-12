@@ -101,6 +101,14 @@ function margZoomLens() {
 
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
     })
+    $('.mousetrap').die('mouseover').live('mouseover', function() {
+        var cloudzoomlens = $('.cloud-zoom-lens')
+        if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
+            $(this).remove();
+            cloudzoomlens.remove();
+            $('#xBlock').empty();
+        }
+    });
 }
 function initBtnBuy() {
     $(genObj.btnBuy).on('click', function() {
@@ -132,7 +140,84 @@ function navPortait() {
             'top': 0
         });
 }
+function existsVnumber(vNumber, liBlock) {
+    if ($.trim(vNumber) != '') {
+        var $number = liBlock.find(genObj.frameNumber).show()
+        $number.find(genObj.code).html('(' + vNumber + ')');
+    } else {
+        var $number = liBlock.find(genObj.frameNumber).hide()
+    }
+}
+function existsVnames(vName, liBlock) {
+    if ($.trim(vName) != '') {
+        var $vname = liBlock.find(genObj.frameVName).show()
+        $vname.find(genObj.code).html('(' + vName + ')');
+    } else {
+        var $vname = liBlock.find(genObj.frameVName).hide()
+    }
+}
+function condProduct(vStock, liBlock, btnBuy) {
+    liBlock.removeClass(genObj.notAvail).removeClass(genObj.inCart);
 
+    if (vStock == 0)
+        liBlock.addClass(genObj.notAvail);
+
+    if (btnBuy.hasClass(genObj.btnCartCss))
+        liBlock.addClass(genObj.inCart)
+}
+function changeVariant(el) {
+    el.find('#variantSwitcher').live('change', function() {
+        var productId = parseInt($(this).attr('value')),
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btn = $('.info' + genObj.prefV + productId);
+
+        var vName = btn.attr('data-vname'),
+                vPrice = btn.attr('data-price'),
+                vOrigPrice = btn.attr('data-origPrice'),
+                vNumber = btn.attr('data-number'),
+                vLargeImage = btn.attr('data-largeImage'),
+                vMainImage = btn.attr('data-mainImage'),
+                vStock = btn.attr('data-stock');
+
+        $(genObj.photoProduct).attr('href', vLargeImage);
+        $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
+        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
+        liBlock.find(genObj.priceVariant).html(vPrice);
+
+        existsVnumber(vNumber, liBlock);
+        existsVnames(vName, liBlock);
+
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
+
+        liBlock.find(genObj.selVariant).hide();
+        liBlock.find(genObj.prefV + productId).show();
+    });
+    /**Variants in Category*/
+    el.find('[id ^= сVariantSwitcher_]').live('change', function() {
+        var productId = parseInt($(this).attr('value')),
+                liBlock = $(this).closest(genObj.parentBtnBuy),
+                btn = liBlock.find('.btn' + genObj.prefV + productId);
+
+        var vMediumImage = btn.attr('data-mediumImage'),
+                vName = btn.attr('data-vname'),
+                vPrice = btn.attr('data-price'),
+                vOrigPrice = btn.attr('data-origPrice'),
+                vNumber = btn.attr('data-number'),
+                vStock = btn.attr('data-stock');
+
+        liBlock.find(genObj.selVariant).hide();
+        liBlock.find(genObj.prefV + productId).show();
+
+        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
+        liBlock.find(genObj.priceVariant).html(vPrice);
+        liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
+
+        existsVnumber(vNumber, liBlock);
+        existsVnames(vName, liBlock);
+
+        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
+    });
+}
 function deleteComprasionItem(el) {
     var $this = el,
             $thisI = $this.parents(genObj.parentBtnBuy),
@@ -737,84 +822,7 @@ $(document).ready(function() {
     });
     //variants
 
-    function existsVnumber(vNumber, liBlock) {
-        if ($.trim(vNumber) != '') {
-            var $number = liBlock.find(genObj.frameNumber).show()
-            $number.find(genObj.code).html('(' + vNumber + ')');
-        } else {
-            var $number = liBlock.find(genObj.frameNumber).hide()
-        }
-    }
-    function existsVnames(vName, liBlock) {
-        if ($.trim(vName) != '') {
-            var $vname = liBlock.find(genObj.frameVName).show()
-            $vname.find(genObj.code).html('(' + vName + ')');
-        } else {
-            var $vname = liBlock.find(genObj.frameVName).hide()
-        }
-    }
-    function condProduct(vStock, liBlock, btnBuy) {
-        liBlock.removeClass(genObj.notAvail).removeClass(genObj.inCart);
-
-        if (vStock == 0)
-            liBlock.addClass(genObj.notAvail);
-
-        if (btnBuy.hasClass(genObj.btnCartCss))
-            liBlock.addClass(genObj.inCart)
-    }
-
-    $('#variantSwitcher').live('change', function() {
-        var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy),
-                btn = $('.info' + genObj.prefV + productId);
-
-        var vName = btn.attr('data-vname'),
-                vPrice = btn.attr('data-price'),
-                vOrigPrice = btn.attr('data-origPrice'),
-                vNumber = btn.attr('data-number'),
-                vLargeImage = btn.attr('data-largeImage'),
-                vMainImage = btn.attr('data-mainImage'),
-                vStock = btn.attr('data-stock');
-
-        $(genObj.photoProduct).attr('href', vLargeImage);
-        $(genObj.imgVP).attr('src', vMainImage).attr('alt', vName);
-        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
-        liBlock.find(genObj.priceVariant).html(vPrice);
-
-        existsVnumber(vNumber, liBlock);
-        existsVnames(vName, liBlock);
-
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
-
-        liBlock.find(genObj.selVariant).hide();
-        liBlock.find(genObj.prefV + productId).show();
-    });
-
-    /**Variants in Category*/
-    $('[id ^= сVariantSwitcher_]').live('change', function() {
-        var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy),
-                btn = liBlock.find('.btn' + genObj.prefV + productId);
-
-        var vMediumImage = btn.attr('data-mediumImage'),
-                vName = btn.attr('data-vname'),
-                vPrice = btn.attr('data-price'),
-                vOrigPrice = btn.attr('data-origPrice'),
-                vNumber = btn.attr('data-number'),
-                vStock = btn.attr('data-stock');
-
-        liBlock.find(genObj.selVariant).hide();
-        liBlock.find(genObj.prefV + productId).show();
-
-        liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
-        liBlock.find(genObj.priceVariant).html(vPrice);
-        liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
-
-        existsVnumber(vNumber, liBlock);
-        existsVnames(vName, liBlock);
-
-        condProduct(vStock, liBlock, liBlock.find(genObj.prefV + productId + genObj.btnBuy));
-    });
+    changeVariant($('body'));
 
     $(FilterManipulation.OnChangeSubmitSelectors).on('change', function() {
         FilterManipulation.filterSubmit();

@@ -21,7 +21,7 @@
             <div class="span5 clearfix">
                 <!-- productImageUrl($model->getMainModImage()) - Link to product -->
                 <div class="photo-block">
-                    <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom">
+                    <a rel="position: 'xBlock'" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo cloud-zoom" click="return false;">
                         {/*rel="group" id="photoGroup" href="{echo $model->firstVariant->getLargePhoto()}" class="photoProduct photo"*/}
                         <figure>
                             <span class="helper"></span>
