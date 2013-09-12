@@ -5,10 +5,17 @@ function margZoomLens() {
         mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
         $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
     })
+    $('.mousetrap').die('mouseover').live('mouseover', function() {
+        var cloudzoomlens = $('.cloud-zoom-lens')
+        if (cloudzoomlens.width() > $(genObj.photoProduct).width()) {
+            $(this).remove();
+            cloudzoomlens.remove();
+            $('#xBlock').empty();
+        }
+    });
 }
 $(document).ready(function() {
     try {
-        var kW = 0.6;
         $(".various").fancybox({
             'autoDimensions': false,
             'padding': 0,
@@ -18,6 +25,7 @@ $(document).ready(function() {
             'transitionIn': 'none',
             'transitionOut': 'none',
             onComplete: function() {
+                $('#fancybox-close').text('Закрыть');
                 $('#fancybox-left, #fancybox-right').addClass('product_slider_PN');
                 $("#fancybox-wrap").unbind('mousewheel.fb');
 
@@ -25,11 +33,11 @@ $(document).ready(function() {
                     var $rightFrameProduct = $('#right_popup_product'),
                             $whoClonded = '.frame_tabs',
                             frameWDesc = $('.frame_w_desc'),
-                            $rightFrameProductW = ($(document).width() * kW - parseInt($rightFrameProduct.css('padding-left')) * 2) * $rightFrameProduct.data('width') / 100 - 9,
                             $elWrapCH = $rightFrameProduct.find($whoClonded),
-                            elWrapCHMH = 586 - 90 - frameWDesc.css('width', $rightFrameProductW).actual('height'),
-                            $elWrapCHH = $elWrapCH.css('width', $rightFrameProductW).actual('height'),
+                            elWrapCHMH = 586 - 90 - frameWDesc.height(),
+                            $elWrapCHH = $elWrapCH.height(),
                             $elsCH = $elWrapCH.children();
+                            console.log(frameWDesc.height());
 
                     if ($elWrapCHH > elWrapCHMH) {
                         var lostH = $elWrapCHH - elWrapCHMH;
@@ -54,21 +62,22 @@ $(document).ready(function() {
 
                 $('.popup_product').fadeIn(200);
 
+                changeVariant($('.popup_product'));
                 if ($.exists('.lineForm')) {
                     cuSel(paramsSelect);
                 }
 
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-
                 function thumbsPhotoToggle() {
                     $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
-                        var $this = $(this);
-                        $this.parent().siblings().removeClass('active').end().addClass('active');
-                        $('.mousetrap').remove();
-
-                        //if cloudZomm not initialize
-//                        e.preventDefault();
-//                        $('#photoGroup').find('img').attr('src', $this.attr('href'));
+                        if (zoom_off == 1) {
+                            var $this = $(this);
+                            $this.parent().siblings().removeClass('active').end().addClass('active');
+                            $('.mousetrap').remove();
+                        }
+                        else {
+                            e.preventDefault();
+                            $('#photoGroup').find('img').attr('src', $this.attr('href'));
+                        }
                     })
                 }
                 thumbsPhotoToggle();
@@ -82,15 +91,17 @@ $(document).ready(function() {
                 compareListCount();
 
                 initBtnBuy();
-                margZoomLens();
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
-                body.append('<style id="forCloudZomm"></style>')
-                $('#photoGroup').find('img').load(function() {
-                    console.log(1)
+                if (zoom_off == 1) {
+                    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+                    body.append('<style id="forCloudZomm"></style>')
                     margZoomLens();
-                })
+                    $('#photoGroup').find('img').load(function() {
+                        margZoomLens();
+                    })
+                }
             },
             onClosed: function() {
+                $('#fancybox-close').text('');
                 $('#fancybox-left, #fancybox-right').removeClass('product_slider_PN');
             }
         });
