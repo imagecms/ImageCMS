@@ -15,10 +15,6 @@
     $__product_parametr = array('on' => 'масив включених вариантов', 'in_stol' => 'масив вариантов в наличии')
 */
 #}
-
-
-
-
 {$Comments = $CI->load->module('comments')->init($products)}
 <article class="container">
     <!-- Show Banners in circle -->
@@ -51,7 +47,7 @@
     <!-- main category page content -->
     <div class="row-fluid">
         <aside class="span3">
-             {echo \Category\RenderMenu::create()->load('sub_category_menu_vert')}
+            {echo \Category\RenderMenu::create()->load('sub_category_menu_vert')}
 
             {//echo \Category\RenderMenu::create()->showSubCategories('sub_category_menu_vert',$category->getId())}
 
@@ -284,6 +280,11 @@
                             </button>
                         {/foreach}
                     </div>
+                    {if $productSliderEnabled}
+                        <button type="button" class="btn btn_small_p" data-rel="viewFancyProduct">
+                            <span class="text-el">Быстрый просмотр</span>
+                        </button>
+                    {/if}
                 </div>
                 <div class="short_description">
                     {if $desc}
