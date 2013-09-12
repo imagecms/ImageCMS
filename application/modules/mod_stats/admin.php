@@ -126,7 +126,10 @@ class Admin extends \BaseAdminController {
     public function getSetting($settingName) {
         return $this->stats_model->getSettingByName($settingName);
     }
-
+    
+    /**
+     * Ajax update setting by value and setting name
+     */
     public function ajaxUpdateSettingValue() {
         /** Get data from post * */
         $settingName = $this->input->get('setting');

@@ -15,11 +15,11 @@ class Events extends BaseEvents {
     public $key = null;
 
     private function __construct() {
-        
+
     }
 
     private function __clone() {
-        
+
     }
 
     public static function create() {
