@@ -28,74 +28,72 @@ class Languages extends BaseAdminController {
      */
     function getLocales() {
         $langs = array(
-            'af-ZA', 'am-ET', 'ar-AE',
-            'ar-BH', 'ar-DZ', 'ar-EG',
-            'ar-IQ', 'ar-JO', 'ar-KW',
-            'ar-LB', 'ar-LY', 'ar-MA',
-            'ar-OM', 'ar-QA', 'ar-SA',
-            'ar-SY', 'ar-TN', 'ar-YE',
-            'as-IN', 'ba-RU', 'be-BY',
-            'bg-BG', 'bn-BD', 'bn-IN',
-            'bo-CN', 'br-FR', 'ca-ES',
-            'co-FR', 'cs-CZ', 'cy-GB',
-            'da-DK', 'de-AT', 'de-CH',
-            'de-DE', 'de-LI', 'de-LU',
-            'dv-MV', 'el-GR', 'en-AU',
-            'en-BZ', 'en-CA', 'en-GB',
-            'en-IE', 'en-IN', 'en-JM',
-            'en-MY', 'en-NZ', 'en-PH',
-            'en-SG', 'en-TT', 'en-US',
-            'en-ZA', 'en-ZW', 'es-AR',
-            'es-BO', 'es-CL', 'es-CO',
-            'es-CR', 'es-DO', 'es-EC',
-            'es-ES', 'es-GT', 'es-HN',
-            'es-MX', 'es-NI', 'es-PA',
-            'es-PE', 'es-PR', 'es-PY',
-            'es-SV', 'es-US', 'es-UY',
-            'es-VE', 'et-EE', 'eu-ES',
-            'fa-IR', 'fi-FI', 'fo-FO',
-            'fr-BE', 'fr-CA', 'fr-CH',
-            'fr-FR', 'fr-LU', 'fr-MC',
-            'fy-NL', 'ga-IE', 'gd-GB',
-            'gl-ES', 'gu-IN', 'he-IL',
-            'hi-IN', 'hr-BA', 'hr-HR',
-            'hu-HU', 'hy-AM', 'id-ID',
-            'ig-NG', 'ii-CN', 'is-IS',
-            'it-CH', 'it-IT', 'ja-JP',
-            'ka-GE', 'kk-KZ', 'kl-GL',
-            'km-KH', 'kn-IN', 'ko-KR',
-            'ky-KG', 'lb-LU', 'lo-LA',
-            'lt-LT', 'lv-LV', 'mi-NZ',
-            'mk-MK', 'ml-IN', 'mn-MN',
-            'mr-IN', 'ms-BN', 'ms-MY',
-            'mt-MT', 'nb-NO', 'ne-NP',
-            'nl-BE', 'nl-NL', 'nn-NO',
-            'oc-FR', 'or-IN', 'pa-IN',
-            'pl-PL', 'ps-AF', 'pt-BR',
-            'pt-PT', 'ro-RO', 'ru-RU',
-            'rw-RW', 'sa-IN', 'se-FI',
-            'se-NO', 'se-SE', 'si-LK',
-            'sk-SK', 'sl-SI', 'sq-AL',
-            'sv-FI', 'sv-SE', 'sw-KE',
-            'ta-IN', 'te-IN', 'th-TH',
-            'tk-TM', 'tn-ZA', 'tr-TR',
-            'tt-RU', 'ug-CN', 'uk-UA',
-            'ur-PK', 'vi-VN', 'wo-SN',
-            'xh-ZA', 'yo-NG', 'zh-CN',
-            'zh-HK', 'zh-MO', 'zh-SG',
-            'zh-TW', 'zu-ZA'
+            'af_ZA', 'am_ET', 'ar_AE',
+            'ar_BH', 'ar_DZ', 'ar_EG',
+            'ar_IQ', 'ar_JO', 'ar_KW',
+            'ar_LB', 'ar_LY', 'ar_MA',
+            'ar_OM', 'ar_QA', 'ar_SA',
+            'ar_SY', 'ar_TN', 'ar_YE',
+            'as_IN', 'ba_RU', 'be_BY',
+            'bg_BG', 'bn_BD', 'bn_IN',
+            'bo_CN', 'br_FR', 'ca_ES',
+            'co_FR', 'cs_CZ', 'cy_GB',
+            'da_DK', 'de_AT', 'de_CH',
+            'de_DE', 'de_LI', 'de_LU',
+            'dv_MV', 'el_GR', 'en_AU',
+            'en_BZ', 'en_CA', 'en_GB',
+            'en_IE', 'en_IN', 'en_JM',
+            'en_MY', 'en_NZ', 'en_PH',
+            'en_SG', 'en_TT', 'en_US',
+            'en_ZA', 'en_ZW', 'es_AR',
+            'es_BO', 'es_CL', 'es_CO',
+            'es_CR', 'es_DO', 'es_EC',
+            'es_ES', 'es_GT', 'es_HN',
+            'es_MX', 'es_NI', 'es_PA',
+            'es_PE', 'es_PR', 'es_PY',
+            'es_SV', 'es_US', 'es_UY',
+            'es_VE', 'et_EE', 'eu_ES',
+            'fa_IR', 'fi_FI', 'fo_FO',
+            'fr_BE', 'fr_CA', 'fr_CH',
+            'fr_FR', 'fr_LU', 'fr_MC',
+            'fy_NL', 'ga_IE', 'gd_GB',
+            'gl_ES', 'gu_IN', 'he_IL',
+            'hi_IN', 'hr_BA', 'hr_HR',
+            'hu_HU', 'hy_AM', 'id_ID',
+            'ig_NG', 'ii_CN', 'is_IS',
+            'it_CH', 'it_IT', 'ja_JP',
+            'ka_GE', 'kk_KZ', 'kl_GL',
+            'km_KH', 'kn_IN', 'ko_KR',
+            'ky_KG', 'lb_LU', 'lo_LA',
+            'lt_LT', 'lv_LV', 'mi_NZ',
+            'mk_MK', 'ml_IN', 'mn_MN',
+            'mr_IN', 'ms_BN', 'ms_MY',
+            'mt_MT', 'nb_NO', 'ne_NP',
+            'nl_BE', 'nl_NL', 'nn_NO',
+            'oc_FR', 'or_IN', 'pa_IN',
+            'pl_PL', 'ps_AF', 'pt_BR',
+            'pt_PT', 'ro_RO', 'ru_RU',
+            'rw_RW', 'sa_IN', 'se_FI',
+            'se_NO', 'se_SE', 'si_LK',
+            'sk_SK', 'sl_SI', 'sq_AL',
+            'sv_FI', 'sv_SE', 'sw_KE',
+            'ta_IN', 'te_IN', 'th_TH',
+            'tk_TM', 'tn_ZA', 'tr_TR',
+            'tt_RU', 'ug_CN', 'uk_UA',
+            'ur_PK', 'vi_VN', 'wo_SN',
+            'xh_ZA', 'yo_NG', 'zh_CN',
+            'zh_HK', 'zh_MO', 'zh_SG',
+            'zh_TW', 'zu_ZA'
         );
-//        $lang = 'en_US';
-//        var_dumps(setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang));
-//        foreach ($langs as $key => $lang) {
-//            $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
-//            if (strstr($locale, $lang)) {
-//                unset($langs[$key]);
-//            }
-//        }
-////        var_dumps($langs);
-        return $langs;
         
+        foreach ($langs as $key => $lang) {
+            $locale = setlocale(LC_ALL, $lang . '.utf8', $lang . '.utf-8', $lang . '.UTF8', $lang . '.UTF-8', $lang . '.utf-8', $lang . '.UTF-8', $lang);
+            if (!$locale) {
+                unset($langs[$key]);
+            }
+        }
+        
+        return $langs;
     }
 
     /**
