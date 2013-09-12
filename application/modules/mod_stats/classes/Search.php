@@ -11,6 +11,11 @@ class Search extends \MY_Controller {
 
     protected static $instanse;
 
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('stats_model_search');
+    }
+
     /**
      * 
      * @return Search
@@ -20,16 +25,15 @@ class Search extends \MY_Controller {
         return self::$instanse;
     }
 
-    
-   /**
+    /**
      * Table representation for keywords searched
      */
     public function templateKeywordsSearched() {
-        $params = $this->getParamsFromCookies();
-        $orders = $this->stats_model_orders->getOrdersByDateRange($params);
-        return $orders;
-    }
+        $params = \mod_stats\classes\LineDiagramBase::create()->getParamsFromCookies();
 
+        $keywords = $this->stats_model_search->getKeywordsByDateRange();
+        return $keywords;
+    }
 
 }
 

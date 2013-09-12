@@ -78,12 +78,12 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/product_info" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/productInfo" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receipt_of_goods" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receiptOfGoods" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -122,23 +122,18 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brands_in_search" class="linkChart"> &nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brandsInSearch" class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in search results', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categories_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categoriesInSearch" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang("Product's categories in search results", 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/products_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("Products in search results", 'mod_stats')}                                      
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/no_result" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("No results", 'mod_stats')}                                      
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/pageNotFound" class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("Page not found", 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>
