@@ -158,7 +158,6 @@ class ImportXML {
                 $data = array();
                 $data['external_id'] = $product->ID . "";
 
-
                 $categ = is_cat($product->IDРодитель, $this->cat);
                 if ($categ) {
                     $categoryId = $categ['id'];

@@ -389,7 +389,7 @@ class CI_Upload {
 
             return FALSE;
         }
-
+                
         // Set the uploaded data as class variables
         $this->file_temp = $_FILES[$field]['tmp_name'];
         $this->file_size = $_FILES[$field]['size'];
@@ -398,10 +398,7 @@ class CI_Upload {
         if ($this->detect_mime !== FALSE) {
             $this->_file_mime_type($_FILES[$field]);
         }
-        $f = fopen("/var/www/image.loc/qwe.txt", "w+");
-        //fwrite($f, print_r($_FILES, TRUE));
-        fwrite($f, $this->file_type);
-        fclose($f);
+        
 
         $this->file_type = preg_replace('/^(.+?);.*$/', '\\1', $this->file_type);
         $this->file_type = strtolower(trim(stripslashes($this->file_type), '"'));
