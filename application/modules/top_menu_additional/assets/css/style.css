@@ -12,8 +12,7 @@
 #frame_additional_menu > .menu_additional > .f-s_0{font-size: 0;}
 #frame_additional_menu > .menu_additional {
     height: 42px;
-    border-width: 0 1px 1px 1px;border-style: solid;border-color: #c8c8c8;width: 1022px;font-size: 0;
-
+    border-width: 0 1px 1px 1px;border-style: solid;border-color: #c8c8c8;width: 1022px;
     -moz-border-radius: 0 0 5px 5px;
     -webkit-border-radius: 0 0 5px 5px;
     border-radius: 0 0 5px 5px;
@@ -21,7 +20,7 @@
     -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 1px 2px #d7d7d7;
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 1px 2px #d7d7d7;
 }
-#frame_additional_menu > .menu_additional:after{
+#frame_additional_menu > .menu_additional:before{
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=85);-moz-opacity: .85;-khtml-opacity: .85;opacity: .85;
     content: "";position: absolute;left: 0;top: 0;z-index: -1;
     width: 100%;height: 100%;
@@ -34,13 +33,13 @@
     background: linear-gradient(to bottom,  #fdfdfd 0%,#e6e6e6 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e6e6e6',GradientType=0 ); /* IE6-9 */
 }
-#frame_additional_menu > .menu_additional > [class*="box-"]{text-align: center;height: 42px;display: inline-block;//display: inline;zoom: 1;vertical-align:top;}
+#frame_additional_menu > .menu_additional > [class*="box-"]{text-align: center;height: 42px;display: inline-block;position: relative;//display: inline;zoom: 1;vertical-align:top;}
 #frame_additional_menu > .menu_additional > [class*="box-"] > *{text-align: left;}
-#frame_additional_menu > .menu_additional > .box-1{border-right: 1px solid #c8c8c8;width: 300px;}
-#frame_additional_menu > .menu_additional > .box-4{border-left: 1px solid #fff;width: 175px;}
-#frame_additional_menu > .menu_additional > .box-2, #frame_additional_menu .menu_additional .box-3{border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #c8c8c8;}
+#frame_additional_menu > .menu_additional > .box-1{width: 300px;}
+#frame_additional_menu > .menu_additional > .box-4{width: 227px;}
 #frame_additional_menu > .menu_additional > .box-2{width: 178px;position: relative;}
-#frame_additional_menu > .menu_additional > .box-3{width: 362px;}
+#frame_additional_menu > .menu_additional > .box-3{width: 422px;}
+#frame_additional_menu > .menu_additional > [class*="box-"]:before{content: "";position: absolute;top: 0;left: 0;height: 100%;border-style: solid;border-width: 0 1px;border-left-color: #fff;border-right-color: #c8c8c8;}
 #frame_additional_menu .cleaner > span{color:#f44524;position: relative;top: 1px;}
 .cleaner .text-el{text-decoration: none;cursor: default;}
 .cleaner.isAvail .text-el{text-decoration: underline;cursor: pointer;}
