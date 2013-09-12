@@ -885,8 +885,12 @@ $(document).ready(function() {
     // preview image by url
     function addUrlImage(data) {
         $("#image_search_result").empty();
-        var url = data.url;
-        var img = "<span class='selected_image'><img class='image_by_url' src='" + url + "'></span>";
+        var img;
+        if (data.url != '0') {
+            img = "<span class='selected_image'><img class='image_by_url' src='" + data.url + "'></span>";
+        } else {
+            img = "<p>Not image</p>";
+        }
         $("#image_search_result").append(img);
     }
 
@@ -1290,6 +1294,27 @@ $(document).ready(function() {
     });
 
 
+    // if choose not a font file for watermark text
+    $("input[type='file'][name='watermark[watermark_font_path]']").live("click", function() {
+        oldFontPath = $("input[type='text'][name='watermark[watermark_font_path]']").val();
+    });
+    $("input[type='file'][name='watermark[watermark_font_path]']").live("change", function() {
+        var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
+        var ext = $(this).val().split('.').pop();
+        var extentionIsAllowed = false;
+        for (var i = 0; i < allowedFileExtentions.length; i++) {
+            if (allowedFileExtentions[i] == ext) {
+                extentionIsAllowed = true;
+                break;
+            }
+        }
+        if (extentionIsAllowed == false) {
+            $(this).removeAttr("value");
+            showMessage("Ошибка", "Можно загружать только изображения", "error");
+            $("input[type='text'][name='watermark[watermark_font_path]']").val(oldFontPath);
+            return;
+        }
+    });
 
     /**
      * Getting/Setting caret position
@@ -1400,7 +1425,7 @@ $(document).ready(function() {
         reader.readAsDataURL(file);
         $(img).addClass('img-polaroid');
         $(this).siblings('.controls').html(img);
-        
+
     });
 
     // delete image buttons
