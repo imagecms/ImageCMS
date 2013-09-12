@@ -391,24 +391,24 @@ class ParentEmail extends \MY_Controller {
         return $this->cmsemail_model->getSettings();
     }
 
-    public function getTemplateById($id) {
-        return $this->cmsemail_model->getTemplateById($id);
+    public function getTemplateById($id, $locale) {
+        return $this->cmsemail_model->getTemplateById($id, $locale);
     }
 
     public function setSettings($settings) {
         return $this->cmsemail_model->setSettings($settings);
     }
 
-    public function deleteVariable($template_id, $variable) {
-        return $this->cmsemail_model->deleteVariable($template_id, $variable);
+    public function deleteVariable($template_id, $variable, $locale) {
+        return $this->cmsemail_model->deleteVariable($template_id, $variable, $locale);
     }
 
-    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable) {
-        return $this->cmsemail_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable);
+    public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale) {
+        return $this->cmsemail_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale);
     }
 
-    public function addVariable($template_id, $variable, $variableValue) {
-        return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue);
+    public function addVariable($template_id, $variable, $variableValue, $locale) {
+        return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue, $locale);
     }
 
     public function getTemplateVariables($template_id) {
