@@ -331,7 +331,6 @@ class Exchangeunfu extends MY_Controller {
      * @param array $data
      */
     public static function _addProductPartner($data) {
-        var_dump(111);
         $ci = &get_instance();
 
         $partners = $ci->input->post('partner');
