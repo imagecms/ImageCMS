@@ -13,6 +13,7 @@ AddDefaultCharset UTF-8
 
 
 #browser caching
+#apache2ctl -M && sudo a2enmod expires && sudo service apache2 restart (to enable mod_expires on ubuntu)
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresDefault "access 7 days"
