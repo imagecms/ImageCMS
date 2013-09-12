@@ -69,23 +69,21 @@ class MY_Lang extends MX_Lang {
     private function _init() {
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
+
         if (!isset($this->ci))
             $this->ci = & get_instance();
 
         $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
-        if ($sett->lang_sel == 'english_lang') {
-            $this->ci->config->set_item('language', 'english');
-        }
-        else
-            $this->ci->config->set_item('language', 'russian');
 
+        if ($sett->lang_sel) {
+            $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
+        }
 
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
 
         $this->ci->load->library('gettext_php/gettext_extension', array());
-        $lang = $this->getLangCode($this->gettext_language);
-        $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $lang[1]);
+        $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
 
     private function _language() {
@@ -118,28 +116,28 @@ class MY_Lang extends MX_Lang {
     public function load($module = 'main') {
         if (!$this->gettext)
             $this->_init();
-        $language = $this->getLangCode($this->gettext_language);
-        $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
-        $url = uri_string();
 
-        if (strstr($url, 'admin')) {
-            $lang = $language[1];
+        if (strstr(uri_string(), 'admin')) {
+            $languageAdmin = $this->getLangCode($this->gettext_language);
+            $lang = $languageAdmin[1];
             if (!$module) {
                 $module = 'admin';
             }
         } else {
+            $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $lang = $languageFront[1];
         }
 
 //            var_dumps($module);
         if (strstr($_SERVER['PATH_INFO'], 'install'))
             return;
+        
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
-            $this->gettext->switchDomain('application/language/main/', 'main', $lang);
-            $this->gettext->switchDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
+            $this->gettext->addDomain('application/language/main/', 'main', $lang);
+            $this->gettext->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
-            $this->gettext->switchDomain('application/modules/' . $module . '/language', $module, $lang);
+            $this->gettext->addDomain('application/modules/' . $module . '/language', $module, $lang);
         }
     }
 
