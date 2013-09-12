@@ -648,8 +648,8 @@ class Exchangeunfu extends MY_Controller {
      */
     public function getPriceForRegion($model) {
         // TEST SET COOKIE
-        set_cookie('site_region', 'asdfasdfsdsdfsdf', 10000);
-        $partner_external_id = get_cookie('site_region');
+        set_cookie('site_region', '1', 10000);
+        $partner_id = get_cookie('site_region');
         $external_ids = array();
 
         if (count($model) == 1) {
@@ -672,7 +672,7 @@ class Exchangeunfu extends MY_Controller {
         }
 
         $products_by_region = $this->db
-                ->where('partner_external_id', $partner_external_id)
+                ->where('partner_external_id', $partner_id)
                 ->where_in('product_external_id', $ids)
                 ->get('mod_exchangeunfu_prices');
 
