@@ -945,7 +945,7 @@ wnd.load(function() {
     });
 
     try {
-        if (!isTouch) {
+        if (zoom_off == 0 && !isTouch) {
             $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
             body.append('<style id="forCloudZomm"></style>')
             margZoomLens();
@@ -973,6 +973,22 @@ wnd.load(function() {
     });
     /* Refresh when remove item from Compare */
     $('.frame_tabsc > div').equalHorizCell('refresh');
+    (function thumbsPhotoToggle() {
+        $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
+            var $this = $(this);
+            $this.parent().siblings().removeClass('active').end().addClass('active');
+            if (zoom_off == 0 && !isTouch) {
+                $('.mousetrap').remove();
+            }
+            else {
+                e.preventDefault();
+                $('#photoGroup').find('img').attr('src', $this.attr('href'));
+            }
+        })
+        $('#photoGroup').click(function(e) {
+            e.preventDefault();
+        });
+    })()
     /* End. Refresh when remove item from Compare */
 
     /*fancybox-based imagebox initialization*/

@@ -48,4 +48,5 @@
 </div>
 {widget('popular_products')}
 {widget('new_products')}
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>
+<script src="jquery.flexslider.js"></script>
+{/*<script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>*/}

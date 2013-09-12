@@ -1,9 +1,10 @@
+var hF = 586;
 function margZoomLens() {
     $('#wrap').find('img').each(function() {
         var $this = $(this)
         mT = Math.ceil(($this.parent().outerHeight() - $this.height()) / 2);
         mL = Math.ceil(($this.parent().outerWidth() - $this.width()) / 2);
-        $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}')
+        $('#forCloudZomm').empty().append('.cloud-zoom-lens{margin:' + mT + 'px 0 0 ' + mL + 'px;}.mousetrap{top:' + mT + 'px !important;left:' + mL + 'px !important;}.cloud-zoom-big{height: ' + (hF - $('.frame_w_desc').height() - 90) + 'px !important}')
     })
     $('.mousetrap').die('mouseover').live('mouseover', function() {
         var cloudzoomlens = $('.cloud-zoom-lens')
@@ -15,42 +16,62 @@ function margZoomLens() {
     });
 }
 $(document).ready(function() {
+    $('[data-rel="viewFancyProduct"]').click(function() {
+        $(this).closest(genObj.parentBtnBuy).find(genObj.imgVC).closest('a').click();
+    });
     try {
         $(".various").fancybox({
             'autoDimensions': false,
             'padding': 0,
-            'height': 586,
+            'height': hF,
             'width': 950,
             'autoScale': false,
             'transitionIn': 'none',
             'transitionOut': 'none',
+            onStart: function() {
+                $('#fancybox-content').after('<div style="position:absolute;left:0;top:0;z-index:10000;width:100%;height:100%;background-color:#fff;"></div>');
+            },
             onComplete: function() {
-                $('#fancybox-close').text('Закрыть');
+                $('#fancybox-close').text(text.close);
                 $('#fancybox-left, #fancybox-right').addClass('product_slider_PN');
                 $("#fancybox-wrap").unbind('mousewheel.fb');
+
+                var popupProduct = $('.popup_product');
 
                 function heightDesrcCharc() {
                     var $rightFrameProduct = $('#right_popup_product'),
                             $whoClonded = '.frame_tabs',
                             frameWDesc = $('.frame_w_desc'),
                             $elWrapCH = $rightFrameProduct.find($whoClonded),
-                            elWrapCHMH = 586 - 90 - frameWDesc.height(),
+                            elWrapCHMH = hF - 90 - frameWDesc.height(),
                             $elWrapCHH = $elWrapCH.height(),
                             $elsCH = $elWrapCH.children();
-                            console.log(frameWDesc.height());
 
                     if ($elWrapCHH > elWrapCHMH) {
-                        var lostH = $elWrapCHH - elWrapCHMH;
+                        var losth = 0;
                         $elsCH.each(function() {
                             var $this = $(this),
-                                    $thisI = $this.index(),
-                                    thisH = $($whoClonded).filter('.cloned').children().eq($thisI).height();
+                                    thisH = $this.outerHeight(),
+                                    dataH = parseInt(elWrapCHMH * $this.data('height') / 100);
+                            $this.attr({'data-height': dataH, 'data-orig-height': thisH});
 
-                            if ($this.data('height') < thisH) {
-                                $this.height(thisH - lostH);
+                            if (dataH < thisH) {
+                                $this.height(dataH);
                                 $this.addClass('hideAfter');
                             }
+                            else {
+                                losth += dataH - thisH;
+                            }
                         })
+                        var lH = $elsCH.filter('.hideAfter'),
+                                partH = losth / lH.length;
+                        lH.each(function() {
+                            var $this = $(this),
+                                    newH = $this.outerHeight() + partH;
+                            $this.css('height', newH);
+                            if (newH >= $this.attr('data-orig-height'))
+                                $this.removeClass('hideAfter');
+                        });
                     }
                     $elWrapCH.css('height', elWrapCHMH);
                 }
@@ -60,18 +81,18 @@ $(document).ready(function() {
                     e.preventDefault();
                 });
 
-                $('.popup_product').fadeIn(200);
+                popupProduct.fadeIn(200);
 
-                changeVariant($('.popup_product'));
+                changeVariant(popupProduct);
                 if ($.exists('.lineForm')) {
                     cuSel(paramsSelect);
                 }
 
                 function thumbsPhotoToggle() {
                     $('.item_tovar .frame_thumbs > li > a').bind('click', function(e) {
-                        if (zoom_off == 1) {
-                            var $this = $(this);
-                            $this.parent().siblings().removeClass('active').end().addClass('active');
+                        var $this = $(this);
+                        $this.parent().siblings().removeClass('active').end().addClass('active');
+                        if (zoom_off == 0 && !isTouch) {
                             $('.mousetrap').remove();
                         }
                         else {
@@ -91,7 +112,7 @@ $(document).ready(function() {
                 compareListCount();
 
                 initBtnBuy();
-                if (zoom_off == 1) {
+                if (zoom_off == 0 && !isTouch) {
                     $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
                     body.append('<style id="forCloudZomm"></style>')
                     margZoomLens();
@@ -99,6 +120,10 @@ $(document).ready(function() {
                         margZoomLens();
                     })
                 }
+
+                $('#fancybox-content').next().fadeOut(function() {
+                    $(this).remove();
+                });
             },
             onClosed: function() {
                 $('#fancybox-close').text('');
