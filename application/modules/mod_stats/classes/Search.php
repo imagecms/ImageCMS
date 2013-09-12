@@ -13,14 +13,22 @@ class Search extends \MY_Controller {
 
     /**
      * 
-     * @return Products
+     * @return Search
      */
     public static function create() {
-        (null !== self::$_instance) OR self::$_instance = new self();
-        return self::$_instance;
+        (null !== self::$instanse) OR self::$instanse = new self();
+        return self::$instanse;
     }
 
-   
+    
+   /**
+     * Table representation for keywords searched
+     */
+    public function templateKeywordsSearched() {
+        $params = $this->getParamsFromCookies();
+        $orders = $this->stats_model_orders->getOrdersByDateRange($params);
+        return $orders;
+    }
 
 
 }

@@ -19,7 +19,7 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart" id="startPage">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Count', 'mod_stats')}     
                         </a>
                     </li>
@@ -117,7 +117,7 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywords_searched" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywordsSearched" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
                         </a>
                     </li>
@@ -178,7 +178,7 @@
                         <span class="icon-calendar"></span>
                     </label>
                 </span>
-                <button class="btn btn-small" type="button" id="refreshIntervalsButton">
+                <button class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i>
                 </button>
                 <div class="pull-right">
