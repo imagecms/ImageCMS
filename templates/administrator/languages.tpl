@@ -4,14 +4,14 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang("Delete language","admin")}</h3>
+            <h3>{lang('Delete language',"admin")}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang("Delete selected languages?","admin")}</p>
-            <p>{lang("Attention! All pages in this language will be deleted!")}</p>
+            <p>{lang('Delete selected languages?',"admin")}</p>
+            <p>{lang('Attention! All pages in this language will be deleted!', 'admin')}</p>
         </div>
         <div class="modal-footer">
-            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang("Delete","admin")}</a>
+            <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/languages/delete')" >{lang('Delete',"admin")}</a>
             <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
         </div>
     </div>
@@ -22,12 +22,12 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Languages","admin")}</span>
+                <span class="title">{lang('Languages',"admin")}</span>
             </div>  
             <div class="pull-right">
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create language","admin")}</button>
+                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang('Create language',"admin")}</button>
                 </div>
             </div>
         </div>

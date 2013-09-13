@@ -14,8 +14,7 @@ class ImportXML {
      * Path to upload dir
      * @var string
      */
-//    private $pass = '/exchangeunfu?type=catalog&mode=import&filename';
-//
+
     /** Arrays for db data storage  */
     private $prod = array();
     private $users = array();
@@ -151,8 +150,12 @@ class ImportXML {
 
         foreach ($this->xml->СписокНоменклатуры as $product) {
 //            $searchedProduct = is_prod($product->ID, $this->prod);
+            if (!isset($product->IDРодитель))
+                continue;
 
-            if ((!$product->IDWeb && isset($product->IDРодитель)) || !is_prod((string) $product->ID, $this->prod)) {
+            $is_product = is_prod((string) $product->ID, $this->prod);
+
+            if (!$product->IDWeb || !$is_product) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -169,7 +172,7 @@ class ImportXML {
 
 
 //                $data['category_id'] = 0;
-                $data['active'] = true;
+                $data['active'] = false;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
@@ -262,7 +265,7 @@ class ImportXML {
                 //preparing data for shop_products_i18n table
                 $data = array();
                 $data['name'] = $product->Наименование . "";
-                $data['id'] = $product->IDWeb . '';
+                $data['id'] = $product->IDWeb . '' ? $product->IDWeb . '' : $is_product['id'];
                 $update_products_i18n[] = $data;
 
                 //preparing data for shop_products_categories
