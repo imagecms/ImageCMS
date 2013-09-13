@@ -7,30 +7,11 @@
 #}
 <div class="start_page container">
     <section class="row-fluid m-b_20">
-        
         {include_tpl('../widgets/menu_settings')}
-        
-
         <!-- Show Banners in circle -->
         <div class="span9">
             <div class="mainFrameBaner">
-                {$banners = ShopCore::app()->SBannerHelper->getBanners()}
-                {if count($banners)}
-                <div class="frame_baner">
-                    <ul class="cycle">
-                        {foreach $banners as $banner}
-                        <li>
-                            <a href="{echo $banner['url']}">
-                                <img src="/uploads/shop/banners/{echo $banner['image']}" alt="banner"/>
-                            </a>
-                        </li>
-                        {/foreach}
-                    </ul>
-                    <div class="pager"></div>
-                    <button class="next" type="button"></button>
-                    <button class="prev" type="button"></button>
-                </div>
-                {/if}
+                {$CI->load->module('banners')->render()}
             </div>
             {widget('freecode')}
         </div>
@@ -48,4 +29,3 @@
 </div>
 {widget('popular_products')}
 {widget('new_products')}
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>

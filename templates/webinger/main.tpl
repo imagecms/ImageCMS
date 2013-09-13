@@ -82,7 +82,7 @@
                             </nav>
                         </div>
                         <!-- Start. Block with contacts -->
-                        <div class="span4">
+                        <div class="span3">
                             <ul class="contacts_info">
                                 <li>
                                     <span class="icon-foot-phone"></span>

@@ -40,6 +40,7 @@
 #frame_additional_menu > .menu_additional > .box-2{width: 178px;position: relative;}
 #frame_additional_menu > .menu_additional > .box-3{width: 422px;}
 #frame_additional_menu > .menu_additional > [class*="box-"]:before{content: "";position: absolute;top: 0;left: 0;height: 100%;border-style: solid;border-width: 0 1px;border-left-color: #fff;border-right-color: #c8c8c8;}
+#frame_additional_menu > .menu_additional > .box-1:before{content: none;}
 #frame_additional_menu .cleaner > span{color:#f44524;position: relative;top: 1px;}
 .cleaner .text-el{text-decoration: none;cursor: default;}
 .cleaner.isAvail .text-el{text-decoration: underline;cursor: pointer;}
