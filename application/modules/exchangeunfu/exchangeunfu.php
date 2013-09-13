@@ -260,7 +260,9 @@ class Exchangeunfu extends MY_Controller {
             if ($this->config['backup'])
                 $this->makeDBBackup();
             //start import process
+
             $this->import = new \exchangeunfu\importXML();
+
             $this->import->import($this->tempDir . $this->input->get('filename'));
             //rename import xml file after import finished
             if (!$this->config['debug'])
