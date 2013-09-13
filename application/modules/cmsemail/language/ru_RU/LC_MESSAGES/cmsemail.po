@@ -2,8 +2,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-09-09 12:08+0300\n"
 "PO-Revision-Date: 2013-09-09 12:09+0300\n"
+=======
+"POT-Creation-Date: 2013-08-29 10:38+0300\n"
+"PO-Revision-Date: 2013-08-29 10:41+0300\n"
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -75,7 +80,11 @@ msgstr "Установите модули"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Label"
+<<<<<<< HEAD
 msgstr "Метка"
+=======
+msgstr "Label"
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 
 #: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:31
@@ -114,9 +123,14 @@ msgid "Go back"
 msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:36
+<<<<<<< HEAD
 #: /var/www/image.loc/_temp2.php:49
 msgid "Save"
 msgstr "Сохранить"
+=======
+msgid "Have been saved"
+msgstr "Сохранены"
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 
 #: /var/www/image.loc/_temp2.php:37
 msgid "Information"
@@ -151,6 +165,13 @@ msgstr "Список групп"
 msgid "Create a group"
 msgstr "Создать группу"
 
+<<<<<<< HEAD
+=======
+#: /var/www/image.loc/_temp2.php:49
+msgid "Save"
+msgstr "Сохранить"
+
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 #: /var/www/image.loc/_temp2.php:50
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
@@ -178,8 +199,14 @@ msgstr "Пустой список группы или группы список 
 
 # а
 #: ../../..//cfcm_forms.php:29
+<<<<<<< HEAD
 msgid "To name will be prefixed with"
 msgstr "К имени будет добавлен префикс "
+=======
+#, fuzzy
+msgid "To name will be prefixed with"
+msgstr "Чтобы имя будет с префиксом"
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 
 #: ../../..//cfcm_forms.php:40
 msgid "Participate in search"
@@ -236,7 +263,11 @@ msgstr "Укажите имя поля"
 
 #: ../../..//admin.php:100
 msgid "Specify <b>Label</b> field"
+<<<<<<< HEAD
 msgstr "Укажите <b> Метка</ B> поле"
+=======
+msgstr "Укажите <b> Label</ B> поле"
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 
 #: ../../..//admin.php:104
 msgid "Only Latin characters"
@@ -319,9 +350,12 @@ msgstr "Дизайнер полей"
 msgid "Additional fields designer for pages and categories"
 msgstr "Дизайнер  дополнительных полей для  страницы и категории"
 
+<<<<<<< HEAD
 #~ msgid "Have been saved"
 #~ msgstr "Сохранены"
 
+=======
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 #, fuzzy
 #~ msgid "a_create_group_"
 #~ msgstr "Нааааааааамеееееееееее"

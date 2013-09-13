@@ -73,16 +73,18 @@ class MY_Lang extends MX_Lang {
             $this->ci = & get_instance();
 
         $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
-        if ($sett->lang_sel == 'english_lang') {
-            $this->ci->config->set_item('language', 'english');
+        if ($sett->lang_sel) {
+            $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
         }
-        else
+//        if ($sett->lang_sel == 'english_lang') {
+//            $this->ci->config->set_item('language', 'english');
+//        }
+//        else
             $this->ci->config->set_item('language', 'russian');
-
 
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
-
+        
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $lang = $this->getLangCode($this->gettext_language);
         $this->gettext = & $this->ci->gettext_extension->getInstance('admin', 'messages', $lang[1]);
@@ -130,6 +132,7 @@ class MY_Lang extends MX_Lang {
         } else {
             $lang = $languageFront[1];
         }
+//        $lang = 'de_DE';
 
 //            var_dumps($module);
         if (strstr($_SERVER['PATH_INFO'], 'install'))
