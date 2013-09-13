@@ -14,11 +14,6 @@ $baseMenu = array(
         'class'     => 'homeAnchor',
         'icon'      => 'icon-home'
     ),
-    array (
-        'link' => '/admin/components/init_window/settings_additional',
-        'text' => 'Webinger',
-        
-    ),
     array(
         'link'      => '',
         'text'      => lang('Content', 'admin'),
