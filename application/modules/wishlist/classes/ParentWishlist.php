@@ -40,7 +40,7 @@ class ParentWishlist extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
-       
+
         $this->writeCookies();
         $this->load->model('wishlist_model');
         $this->load->helper(array('form', 'url'));
@@ -277,12 +277,12 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
-        
+
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
             $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
         }
-        
+
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');

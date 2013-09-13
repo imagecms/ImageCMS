@@ -12,10 +12,8 @@ if (!defined('BASEPATH'))
  * 
  * Нашли дешевле
  */
-
 class Found_less_expensive extends MY_Controller {
 
-    
     public function __construct() {
         parent::__construct();
         $this->load->model('found_less_expensive_model');
@@ -25,69 +23,85 @@ class Found_less_expensive extends MY_Controller {
     public static function adminAutoload() {
         parent::adminAutoload();
     }
+
     /**
      * Display button and form 
      */
-    public function showButtonWithForm(){
-       \CMSFactory\assetManager::create()
+    public function showButtonWithForm() {
+        \CMSFactory\assetManager::create()
                 ->registerStyle('style')
                 ->registerScript('scripts')
                 ->render('buttonWithForm', true);
     }
+
     /**
      * Save data from form
      * @return string
      */
-    public function save_message(){
+    public function save_message() {
         $data = $this->input->post();
         $data['date'] = time();
         $data['status'] = 0;
         unset($data['cms_token']);
-        if ($this->db->insert('mod_found_less_expensive',$data)){
+        if ($this->db->insert('mod_found_less_expensive', $data)) {
             $this->prepareEmailData($data);
             return 'success';
         }
     }
+
     /**
      * Get email settings
      * @param type $messageData
      */
-    public function prepareEmailData($messageData){
+    public function prepareEmailData($messageData) {
         $data = $this->found_less_expensive_model->getModuleSettings();
-        $this->sendEmail($data['emailTo'], $data['emailFrom'], $data['emailSubject'], $data['emailTemplate'],$messageData);
-        
+        $this->sendEmail($data['emailTo'], $data['emailFrom'], $data['emailSubject'], $data['emailTemplate'], $messageData);
     }
 
     /**
      * Send email
      * @param type $email
      */
-    public function sendEmail($fromEmail, $toEmail, $subject , $message, $messageData){
+    public function sendEmail($fromEmail, $toEmail, $subject, $message, $messageData) {
+        
+        /*
+         * use module cms email
+         * you need create new letter 'expensive' in database "admin/components/cp/cmsemail/index" with variables and other information 
+         */
+        /*
+          // variables
+          //
+          $data = array(
+            //variables
+          );
+          // comand for send letter use module cms email
+          \cmsemail\email::getInstance()->sendEmail($toEmail, 'expensive', $data);
+         */
+        
         // Init email config
-            
-            $config['wordwrap'] = TRUE;
-            $config['charset'] = 'UTF-8';
-            $config['mailtype'] = 'html';
-            
-            $this->email->initialize($config);
-                            
-            $message = "<html><body>" .$message. "</body></html>";
-            
-            // Replace %linkPage%, %linkProduct%
-            $message = str_replace('%linkPage%', $messageData['productUrl'], $message);
-            $message = str_replace('%linkProduct%', $messageData['link'], $message);
-            
-            $this->email->from($fromEmail);
-            $this->email->to($toEmail);
-            $this->email->subject($subject);
-            $this->email->message($message);
+        $config['wordwrap'] = TRUE;
+        $config['charset'] = 'UTF-8';
+        $config['mailtype'] = 'html';
 
-            $this->email->send();
+        $this->email->initialize($config);
+
+        $message = "<html><body>" . $message . "</body></html>";
+
+        // Replace %linkPage%, %linkProduct%
+        $message = str_replace('%linkPage%', $messageData['productUrl'], $message);
+        $message = str_replace('%linkProduct%', $messageData['link'], $message);
+
+        $this->email->from($fromEmail);
+        $this->email->to($toEmail);
+        $this->email->subject($subject);
+        $this->email->message($message);
+
+        $this->email->send();
     }
 
     /**
      * Install module
-    */
+     */
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;

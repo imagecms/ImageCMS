@@ -6,11 +6,20 @@ class BaseAdminController extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $lang = new MY_Lang();
+        $lang->load('admin');
+
         $this->load->library('Permitions');
         Permitions::checkPermitions();
         $this->autoloadModules();
 
-        $this->lang->load('admin');
+
+//        if(!$_SESSION['GETTEXT_EXIST']){
+//            showMessage(lang('To improve performance set php_gettext.dll extension'), lang('Advice'));
+//        }
+
+//        $this->lang->load('admin');
     }
 
     /**
@@ -33,8 +42,10 @@ class BaseAdminController extends MY_Controller {
                 Modules::load_file($moduleName, APPPATH . 'modules' . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR);
                 $moduleName = ucfirst($moduleName);
                 if (class_exists($moduleName)) {
-                    if (method_exists($moduleName, 'adminAutoload'))
+                    if (method_exists($moduleName, 'adminAutoload')) {
                         $moduleName::adminAutoload();
+                       // self::$detect_load_admin[$moduleName] = 1;
+                    }
                 }
             }
         }

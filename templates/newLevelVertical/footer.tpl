@@ -3,7 +3,7 @@
         <!--Start. Load menu in footer-->
         <div class="box-1">
             <div class="inside-padd">
-                <div class="main-title">{lang('Website','newLevel')}</div>
+                <div class="main-title">{lang('Сайт','newLevel')}</div>
                 <ul>
                     {load_menu('top_menu')}
                 </ul>
@@ -11,7 +11,7 @@
         </div>
         <div class="box-2">
             <div class="inside-padd">
-                <div class="main-title">{lang('Production','newLevel')}</div>
+                <div class="main-title">{lang('Продукция','newLevel')}</div>
                 {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
             </div>
         </div>
@@ -20,23 +20,23 @@
         <!--Start. User menu-->
         <div class="box-3">
             <div class="inside-padd">
-                <div class="main-title">{lang('User','newLevel')}</div>
+                <div class="main-title">{lang('Пользователь','newLevel')}</div>
                 <ul>
                     {if $is_logged_in}
-                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'">{lang('Logout','newLevel')}</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'">{lang('Account','newLevel')}</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'">{lang('Wishlist','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'" title="{lang('Выход','newLevel')}">{lang('Выход','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'" title="{lang('Личный кабинет','newLevel')}">{lang('Личный кабинет','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button></li>
                     {else:}
-                        <li><button type="button" data-trigger="#loginButton">{lang('Enter in shop','newLevel')}</button></li>
-                        <li><button onclick="location = '{site_url('auth/register')}'">{lang('To register page','newLevel')}</button></li>
+                        <li><button type="button" data-trigger="#loginButton" title="{lang('Вход','newLevel')}">{lang('Вход','newLevel')}</button></li>
+                        <li><button onclick="location = '{site_url('auth/register')}'" title="{lang('Регистрация','newLevel')}">{lang('Регистрация','newLevel')}</button></li>
                     {/if}
                         {if $compare = $CI->session->userdata('shopForCompare')}
                             {$count = count($compare);}
                             {if $count > 0}
-                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'">{lang('List of comparisons','newLevel')}</button></li>
+                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
                             {/if}
                         {/if}
-                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']">{lang('Callback','newLevel')}</button></li>
+                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
         </div>
@@ -45,9 +45,9 @@
         <!--Start. Info block-->
         <div class="box-4">
             <div class="inside-padd">
-                <div class="main-title">{lang('Contacts','newLevel')}</div>
+                <div class="main-title">{lang('Контакты','newLevel')}</div>
                 <ul>
-                    <li><div class="c_9">{lang('The main office','newLevel')}:</div></li>
+                    <li><div class="c_9">{lang('Главный офис','newLevel')}:</div></li>
                     <li><div class="c_w">{lang('Shevchenko St., Apt. 22, office: 39, Kiev', 'newLevel')}</div></li>
                     <li><div class="c_w f-s_0">
                             <span class="icon_phone_header"></span>
@@ -76,13 +76,13 @@
 <div class="footer-footer">
     <div class="container">
         <div class="f_l">
-            <div class="c_w">© {lang('Online Store','newLevel')} «Imageshop»,  2013</div>
-            <div class="c_9">{lang('All rights reserved','newLevel')}</div>
+            <div class="c_w">© {lang('Интернет-магазин','newLevel')} «Imageshop»,  2013</div>
+            <div class="c_9">{lang('Все права защищены','newLevel')}</div>
         </div>
         <div class="f_r">
             <a class="f-s_0 c_w">
                 <span class="icon_phone_footer"></span>
-                <span class="text-el">{lang('Mobile version','newLevel')}</span>            
+                <span class="text-el">{lang('Мобильная версия','newLevel')}</span>            
             </a>
         </div>
     </div>

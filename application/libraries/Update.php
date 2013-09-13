@@ -12,22 +12,16 @@ class Update {
     private $restore_files = array();
 
     /**
+     * update server
+     * @var string
+     */
+    private $US = "http://upd.imagecms.net/";
+
+    /**
      * path to update server
      * @var string
      */
-    private $pathUS = "http://ninjatest.imagecms.net/application/modules/update/UpdateService.wsdl";
-
-    /**
-     * шлях до сканування папок
-     * @var string
-     */
-    public $path_parse;
-
-    /**
-     * назва папки з обновленням відносно корня сайту
-     * @var string
-     */
-    public $update_directory = 'update';
+    private $pathUS;
 
     /**
      * папки, які не враховувати при обновлені
@@ -63,36 +57,6 @@ class Update {
     );
 
     /**
-     * назва архіву і папки з скачаним старим текущим релізом в оригіналі
-     * @var string
-     */
-    public $old_reliz = 'old_relith';
-
-    /**
-     * назва архіву і папки з скачаним обновленням
-     * @var string
-     */
-    public $update_file = 'update_file';
-
-    /**
-     * назва папки з обєднаними файлами
-     * @var string
-     */
-    public $marge_file = 'marge_file';
-
-    /**
-     * шлях до архіву з обновленням
-     * @var string
-     */
-    public $path_update = '';
-
-    /**
-     * шлях до архіву старого релізу
-     * @var string
-     */
-    public $path_old_reliz = '';
-
-    /**
      * instance of ci
      * @var CI
      */
@@ -106,6 +70,7 @@ class Update {
 
     public function __construct() {
         $this->ci = &get_instance();
+        $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
         $this->client = new SoapClient($this->pathUS);
     }
 
@@ -151,7 +116,7 @@ class Update {
         ini_set("soap.wsdl_cache_enabled", "0");
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, $this->getSettings('careKey'));
-        $all_href = 'http://ninjatest.imagecms.net/update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
+        $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
     }
 
@@ -251,28 +216,6 @@ class Update {
     }
 
     /**
-     *  Вказуються папки, як пропускаються в обновленні
-     */
-    public function set_distinct($array) {
-
-        $this->distinctDirs = array_merge($this->distinctDirs, $array);
-        return $this;
-    }
-
-    /**
-     * Скачує і розархівовує архіви обновлення і архів старої теперішньої версії.
-     * Записує і розпаковує у відповідні файли і папки які вказуються в настройках
-     * Доробити розархівування
-     */
-    public function download_and_unzip() {
-
-        copy($this->path_update, $this->file_zip_upd);
-        copy($this->path_old_reliz, $this->file_zip_old);
-
-        //unzip() to $this->update . DIRECTORY_SEPARATOR . $label
-    }
-
-    /**
      * Бере контрольні суми файлів текущих файлів і файлів старої теперішньої версії
      * Записує іх у відповідні файли з настройок, як серіалізований масив ключ - шлях до файлу, значення - контрольна сума
      * запускати два рази переоприділивши $this->path_parse
@@ -297,94 +240,6 @@ class Update {
                 }
 
         return $this->arr_files;
-    }
-
-    /**
-     * Аналізує які файли текущі відрізняються від старих текущих файлів версії
-     * результат записується у відаповідний файл з настройок, як серіалізований масив значення якого - шлях до файлу від "application"
-     */
-    public function get_analiz_differents() {
-
-        $arr_current = unserialize(file_get_contents($this->file_mass_curr));
-        $arr_old = unserialize(file_get_contents($this->file_mass_old));
-        $arr_diff = array();
-        foreach ($arr_current as $file => $value) {
-            $file_key = $this->dir_old_upd . str_replace($this->dir_curr, '', $file);
-            if ($arr_current[$file] != $arr_old[$file_key])
-                $arr_diff[] = str_replace($this->dir_curr, '', $file);
-        }
-
-        file_put_contents($this->file_mass_diff, serialize($arr_diff));
-    }
-
-    /**
-     * Спроба обєднання файлів які різняться
-     * записує файли які вдалося обєднати у відповідну з настройок деректорії,
-     * та записується масив файлів у відповідний з настройок файл, фкі не вдалося обєднати, ключ масиву - шлях до файлу
-     */
-    public function parse_to_marge() {
-
-        $arr_diff = unserialize(file_get_contents($this->file_mass_diff));
-        foreach ($arr_diff as $file) {
-            if ($marge = $this->marging($file)) {
-                if (!$marge['dont_marge'])
-                    file_put_contents($this->dir_marge . $file, implode("\n", $marge['marge_file']));
-                else
-                    $arr_dont_marge[] = $file;
-            }
-        }
-
-        file_put_contents($this->file_dont_marge, serialize($arr_dont_marge));
-    }
-
-    /**
-     * Порядкова система обєднання файлів, які різняться
-     */
-    public function marging($file = null) {
-
-        $file_curr = file_get_contents($this->dir_curr . $file);
-        $file_old = file_get_contents($this->dir_old_upd . $file);
-        if (file_exists($this->dir_upd . $file)) { // якщо файл обновлення існує
-            $file_upd = file_get_contents($this->dir_upd . $file);
-
-            // видалення пустих рядків у файлах
-            $file_curr_arr = $this->delete_baks($file_curr);
-            $file_old_arr = $this->delete_baks($file_old);
-            $file_upd_arr = $this->delete_baks($file_upd);
-
-            $marge_file = array();
-
-            foreach ($file_curr_arr as $line => $data) {
-                if ($file_curr_arr[$line] == $file_old_arr[$line] and $file_curr_arr[$line] == $file_upd_arr[$line])
-                    $marge_file[] = $file_curr_arr[$line]; // якщо рядки файлів збігаються
-                if ($file_curr_arr[$line] != $file_old_arr[$line] and $file_old_arr[$line] == $file_upd_arr[$line])
-                    $marge_file[] = $file_curr_arr[$line]; // якщо рядок обновлення збігається зі старим, а текущий інший
-                if ($file_curr_arr[$line] == $file_old_arr[$line] and $file_old_arr[$line] != $file_upd_arr[$line])
-                    $marge_file[] = $file_upd_arr[$line]; // якщо рядок старий і теперішній однакові, а обновлення інший
-                if ($file_curr_arr[$line] != $file_old_arr[$line] and $file_old_arr[$line] != $file_upd_arr[$line]) {
-                    $marge_dont = true; // якщо рядоки різні
-                    break;
-                }
-            }
-
-            return array('dont_marge' => $marge_dont, 'marge_file' => $marge_file);
-        }
-        else
-            return false;
-    }
-
-    /**
-     * Видалення пустих рядків у файлах ???????????
-     */
-    private function delete_baks($file) {
-
-        $file_line_arr = explode("\n", $file);
-        foreach ($file_line_arr as $line => $data) {
-            if (trim($data) == '')
-                unset($file_line_arr[$line]);
-        }
-
-        return $file_line_arr;
     }
 
     /**

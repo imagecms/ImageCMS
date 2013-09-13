@@ -13,6 +13,7 @@ AddDefaultCharset UTF-8
 
 
 #browser caching
+#apache2ctl -M && sudo a2enmod expires && sudo service apache2 restart (to enable mod_expires on ubuntu)
 <IfModule mod_expires.c>
 ExpiresActive On
 ExpiresDefault "access 7 days"
@@ -72,7 +73,7 @@ BrowserMatch "Mozilla/4.[0-9]{2}" force-no-vary
 Options -Indexes
 
 RewriteEngine on
-
+RewriteRule ^(.*)\.tpl$ [R=404]
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 

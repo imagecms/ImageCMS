@@ -1,1 +1,0 @@
-{echo \Category\RenderMenu::create()->load('category_menu_vert')}

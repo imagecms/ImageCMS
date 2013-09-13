@@ -1,4 +1,4 @@
-<table class="table PartnersTable" {if !$info}style="display: none"{/if}>
+<table class="table PartnersTable table-striped table-bordered table-hover table-condensed" {if !$info}style="display: none"{/if}>
     <thead>
         <tr>
             <th class="span1">#</th>
@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         {foreach $info as $k => $datas}
-            <tr class="partnerData" data-productid="{echo $datas['product_external_id']}" data-partner="{echo $datas['partner_external_id']}">
+            <tr class="partnerData" data-productid="{echo $datas['product_id']}" data-partner="{echo $datas['partner_external_id']}" data-partnercode="{echo $datas['partner_code']}">
                 <td>{echo $k+1}</td>
                 <td class="regionName">{echo $datas['region']}</td>
                 <td class="change">
@@ -50,8 +50,8 @@
                 <select name="partner[]" class="partnersSelect">
                     <option value="false">--Не выбрано--</option>
                     {foreach $partners as $partner}
-                        <option value='{echo $partner['external_id']}'>{echo $partner['region']}</option>
-                    {/foreach}            
+                        <option value='{echo $partner['code']}'>{echo $partner['region']}</option>
+                    {/foreach}
                 </select>
             </td>
             <td>
@@ -73,11 +73,12 @@
 </tbody>
 </table>
 <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;{if $info}display: none;{/if}">
-    Список пуст       
+    Список пуст
 </div>
 <br>
 <a class="btn btn-small pjax pull-right btn-success"  href="{$BASE_URL}admin/components/init_window/exchangeunfu" >
     <i class="icon-plus"></i>Создать партнера
 </a>
 <button type="button" class="btn btn-small action_on pull-right btn-success addPartnerBtn">
-    <i class="icon-plus"></i>Добавить партнера</button>
+    <i class="icon-plus"></i>Добавить партнера
+</button>

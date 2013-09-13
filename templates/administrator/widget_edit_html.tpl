@@ -1,7 +1,7 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
-            <span class="title">{lang("Widget editing","admin")}<b>{$widget.name}</b></span>
+            <span class="title">{lang('Widget editing',"admin")}<b> {$widget.name}</b></span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

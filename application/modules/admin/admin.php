@@ -17,8 +17,13 @@ class Admin extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+
+        $lang = new MY_Lang();
+        $lang->load('admin');
+
         $this->load->library('DX_Auth');
         admin_or_redirect();
+
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');

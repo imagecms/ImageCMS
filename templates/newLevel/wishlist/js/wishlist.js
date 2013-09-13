@@ -53,6 +53,31 @@ function createWishList(el, data) {
         location.reload();
     }
 }
+function validateWishPopup($this, elSetSource) {
+    var name = $('[name="wishListName"]'),
+            drop = name.closest('[data-elrun]');
+    if (name.val() == "" && $('[data-link]').is(':checked')) {
+        name.after(message.error(text.error.enterName));
+        name.focus();
+        $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
+        function removeErr() {
+            name.next().remove();
+            $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
+            drop.find('[type="submit"]').parent().removeClass('active');
+        }
+        name.unbind('keypress').keypress(function() {
+            removeErr();
+        });
+        $('[data-link]').unbind('change').change(function() {
+            removeErr();
+        });
+        return false;
+
+    }
+    else {
+        return true;
+    }
+}
 function reload(el, data) {
     if (data.answer == 'success') {
         location.reload();
@@ -140,6 +165,7 @@ function processWishPage() {
     });
 }
 $(document).live('scriptDefer', function() {
+    var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
                 img = document.createElement("img"),
@@ -148,8 +174,19 @@ $(document).live('scriptDefer', function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
-        $('#wishlistphoto').html($(img));
-        $('[data-wishlist="do_upload"]').removeAttr('disabled');
+        wishPhoto.html($(img));
+        $(img).load(function() {
+            if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
+                $(document).trigger({type: 'drop.successJson', el: $('#notification'), datas: {'answer': true, 'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))}});
+                $('[data-drop="#notification"].trigger').data('timeclosemodal', 3000).click();
+                $('[data-drop="#notification"].trigger').removeData('timeclosemodal');
+                wishPhoto.empty();
+                $(this).val('');
+            }
+            else {
+                $('[data-wishlist="do_upload"]').removeAttr('disabled').parent().removeClass('disabled');
+            }
+        });
     });
     processWishPage();
     $(wishList.btnBuy).click(function() {

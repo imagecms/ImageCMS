@@ -11,25 +11,26 @@
                     <span class="t-d_u">{lang('Go back')}</span>
                 </a>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="save">
-                    <i class="icon-ok"></i>{lang('Have been saved')}
+                    <i class="icon-ok"></i>{lang('Save')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
                     <i class="icon-edit"></i>{lang('Save and go back')}
                 </button>
+                {echo create_language_select($languages, $locale, "/admin/components/cp/cmsemail/edit/" . $model['id'])}
             </div>
         </div>
     </div>
     <div class="content_big_td row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}')">{lang('Template_settings')}</a>
+                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}', '{echo $locale}')">{lang('Template_settings')}</a>
                 <a href="#variables" class="btn btn-small">{lang('Template_variables')}</a>
             </div>
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="settings">
                 <div class="inside_padd">
-                    <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}" id="email_form" method="post" class="form-horizontal">
+                    <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
                             <th>{lang('Settings')}</th>
@@ -201,12 +202,12 @@
                                         <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
                                             <i class="icon-edit"></i>
                                         </button>
-                                        <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}')" class="btn btn-small refreshVariable" type="button" style="display: none;">
+                                        <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable" type="button" style="display: none;">
                                             <i class="icon-refresh"></i>
                                         </button>
                                     </td>
                                     <td class="span1">
-                                        <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this))">
+                                        <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this), '{echo $locale}')">
                                             <i class="icon-trash"></i>
                                         </button>
                                     </td>
@@ -220,7 +221,7 @@
                                     <input type="text" name="variableValueEdit" class="variableValueEdit"/>
                                 </td>
                                 <td  class="span5" colspan="2">
-                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']})"  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
+                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}')"  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </td>

@@ -143,7 +143,7 @@ function changeSelectFilter(el) {
                     cleaverFilterObj.mainWraper.css({
                         'left': left,
                         'top': elPos.offset().top - cleaverFilterObj.currentPosScroll[elPos.closest(framechecks).index()]
-                    }).removeClass().addClass('apply '+clas+' '+cleaverFilterObj.addingClass);
+                    }).removeClass().addClass('apply ' + clas + ' ' + cleaverFilterObj.addingClass);
                     cleaverFilterObj.mainWraper[cleaverFilterObj.effectIn](cleaverFilterObj.duration, function() {
                         $(document).trigger({'type': 'showCleaverFilter', 'el': $(this)});
                     });
@@ -215,7 +215,7 @@ function afterAjaxInitializeFilter(ready) {
         evCond: true,
         //classRemove: 'b_n',//if not standart
         //if evCond: true
-        before: function(a, b, c) {
+        before: function(a, b, c, e) {
             c.nStCheck('changeCheck');
             ajaxRecount('#' + b.attr('id'), false);
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
@@ -228,11 +228,11 @@ function afterAjaxInitializeFilter(ready) {
                     cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
                 }
                 else {
-                    cleaverFilterObj.currentPosScroll = [];
+                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
                 }
             }
             else {
-                cleaverFilterObj.currentPosScroll = [];
+                cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
             }
         }
     });
@@ -309,7 +309,7 @@ function ajaxRecount(el, slChk) {
 
     var catalogForm = $('#catalog_form'),
             $this = el,
-            data = catalogForm.serializeArray(),
+            data = catalogForm.serialize(),
             catUrl = window.location.pathname,
             catUrl = catUrl.replace('shop/category', 'smart_filter/filter');
     $.ajax({
@@ -327,8 +327,9 @@ function ajaxRecount(el, slChk) {
             if (slChk) {
                 otherClass = slChk;
             }
-            if ($($this).closest(framechecks).data('rel') == undefined || $($this).closest(framechecks).data('rel').match('cusel')) {
-                cleaverFilterObj.currentPosScroll = [];
+            var frameChecks = $($this).closest(framechecks);
+            if (frameChecks.data('rel') == undefined || frameChecks.data('rel').match('cusel')) {
+                cleaverFilterObj.currentPosScroll[frameChecks.index()] = 0;
                 cleaverFilterObj.cleaverFilterFunc($($this), totalProducts, otherClass);
             }
             else {

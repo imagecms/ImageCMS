@@ -14,7 +14,8 @@
                     {$page.full_text}
                 {/if}
 
-                {$Comments = $CI->load->module('comments')->init($page)}
+                {/*$Comments = $CI->load->module('comments')->init($page)*/}
+                {/*}
                 <script type="text/javascript">
                     {literal}
                         $(function() {
@@ -25,6 +26,7 @@
                 <div id="comment">
                     <div class="for_comments"></div>
                 </div>
+                { */}
             </div>
         </div>
     </div>

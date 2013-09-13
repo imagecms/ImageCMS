@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/components/init_window/new_level" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Go back')}</span></a>
-                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('Have been saved')}</button>
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#saveMenu" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang('Save')}</button>
                 </div>
             </div> 
         </div>

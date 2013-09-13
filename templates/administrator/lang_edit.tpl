@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
-                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Have been saved","admin")}</button>
+                    <button type="submit"   class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit"><i class="icon-list-alt icon-white"></i>{lang("Save","admin")}</button>
                     <button type="submit"   class="btn btn-small formSubmit" data-form="#editLang" data-action="close"><i class="icon-ok"></i>{lang("Save and go back","admin")}</button>
                 </div>
             </div>                            
@@ -43,6 +43,17 @@
                                                             <input type="text" name="identif" id="" value="{$identif}"  />
                                                         </div>
                                                     </div> 
+                                                      <div class="control-group">
+                                                        <label class="control-label" for="locale">{lang("Locale","admin")}:</label>
+                                                        <div class="controls">
+                                                            <select id="locale" name="locale">
+                                                                {foreach $locales as $locale_name}
+                                                                    <option {if $locale_name == $locale} selected="selected" {/if} >{echo $locale_name}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="row-fluid">
                                                         <!--<div class="control-group">
                                                             <label class="control-label" for="inputName">{lang("Image URL","admin")}:</label>
@@ -56,13 +67,15 @@
                                                             </label>
                                                             <div class="controls">
                                                                 <div class="group_icon pull-right">            
-                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
+                                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
                                                                 </div>
                                                                 <div class="o_h">		            
                                                                     <input type="text" name="image" id="Img" value="{$image}">					
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        { /* } 
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang("Folder","admin")}:</label>
                                                             <div class="controls">
@@ -73,6 +86,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        { */ }
                                                         <div class="control-group">
                                                             <label class="control-label" for="inputParent">{lang("Template","admin")}:</label>
                                                             <div class="controls">

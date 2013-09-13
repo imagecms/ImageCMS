@@ -13,7 +13,7 @@ var currencySymbolJS = '{echo $CS}';
             <div class="d-i_b">
                 <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-primary formSubmit submitButton" data-form="#createDiscountForm" data-submit>
-                    <i class="icon-ok icon-white"></i>{lang('Have been saved')}
+                    <i class="icon-ok icon-white"></i>{lang('Save')}
                 </button>
             </div>
         </div>

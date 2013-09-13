@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            Вибирите cписок  желаний
+            {lang('Вибирите cписок  желаний','newLevel')}
         </div>
     </div>
     <div class="drop-content">
@@ -26,7 +26,7 @@
                                     <input type="radio" name="wishlist" value="" data-link='[name="wishListName"]' {if count($wish_lists) == 0}checked="checked"{/if}>
                                 </span>
                                 <div class="name-count">
-                                    <span class="text-el">Создать список</span>
+                                    <span class="text-el">{lang('Создать список','newLevel')}</span>
                                 </div>
                             </div>
                         {/if}
@@ -44,14 +44,14 @@
                             data-source="{if $wish_list_id}{site_url('/wishlist/wishlistApi/moveItem/'.$varId . '/' . $wish_list_id)}{else:}{site_url('/wishlist/wishlistApi/addItem/'.$varId)}{/if}"
                             data-type="json"
                             data-modal="true"
-                            data-overlayopacity= "0"
                             {if $wish_list_id}
                                 data-callback="reload"
                             {else:}
                                 data-callback="addToWL"
+                                data-before="validateWishPopup"
                             {/if}
                             >
-                            <span class="text-el">{if $wish_list_id}Переместить в список{else:}Добавить в список{/if}</span> 
+                            <span class="text-el">{if $wish_list_id}{lang('Переместить в список','newLevel')}{else:}{lang('Добавить в список','newLevel')}{/if}</span> 
                         </button>
                     </div>
                     {form_csrf()}

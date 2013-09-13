@@ -51,7 +51,7 @@ class Admin extends BaseAdminController {
             'prefix' => $prefix,
             'region' => $region,
             'code' => $code,
-            'external_id' => md5($name . $region)
+            'external_id' => ''
         ));
 
         if ($result) {
