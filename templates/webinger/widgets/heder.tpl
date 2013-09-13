@@ -39,22 +39,22 @@
                                 <li>
                                     <div class="d_i-b">
                                         <span class="icon-phoneM"></span>
-                                         <div class="d_i-b v-a_t">
-                                        <span class="phone">
-                                            <span class="phone_pref">8 (097)</span><span class="d_n">−</span> 572-58-18</span>
+                                        <div class="d_i-b v-a_t">
+                                            <span class="phone">
+                                                <span class="phone_pref">8 (097)</span><span class="d_n">−</span> 572-58-18</span>
 
-                                        <ul class="tabs">
-                                            <li>
-                                                <a class="t-d_n d_b" href="#ordercall" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center" data-simple="yes">
-                                                    <span class="icon-order-call"></span>
-                                                    <span class="d_l_b">
-                                                        {lang('Заказать звонок', 'webinger')}
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                            <ul class="tabs">
+                                                <li>
+                                                    <a class="t-d_n d_b" href="#ordercall" data-drop=".drop-order-call" data-effect-on="fadeIn" data-effect-off="fadeOut" data-duration="300" data-place="center" data-simple="yes">
+                                                        <span class="icon-order-call"></span>
+                                                        <span class="d_l_b">
+                                                            {lang('Заказать звонок', 'webinger')}
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ul>
 
-</div>
+                                        </div>
                                     </div>
 
 
@@ -65,7 +65,8 @@
                                     <li>
                                         <div class="m-l_17">
                                             <span class="icon-enter-M"></span>
-                                            <div class="d_i-b enter-cont"> <span class="f-s_0  d_b">
+                                            <div class="d_i-b enter-cont">
+                                                <span class="f-s_0 d_b">
                                                     <span class="helper"></span>
                                                     <a 
                                                         id="loginButton"
@@ -75,8 +76,7 @@
                                                         data-duration="300"
                                                         data-place="noinherit"
                                                         data-placement="top right">
-
-                                                        <span>{lang('Вход в магазин', 'webinger')}</span>
+                                                        <span class="d_l_b">{lang('Вход в магазин', 'webinger')}</span>
                                                     </a>
                                                 </span>
                                                 <span class="f-s_0 d_b">

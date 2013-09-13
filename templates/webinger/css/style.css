@@ -186,7 +186,7 @@ h2, .title_h2{font-size: 18px;font-weight: normal;margin-bottom: 4px;}
 h3, .title_h3{font-size: 12px;font-weight: bold;}
 h1.d_i{margin-right: 8px;}
 
-[class*="d_l"]{line-height: 1;text-decoration: none;}
+[class*="d_l"]{line-height: 1;text-decoration: none;cursor: pointer;}
 .d_l_g, .cleaner .d_l{border-bottom: 1px dotted #5c5c5c;color: #5c5c5c;line-height: 2}
 .d_l_w, .cleaner.isAvail .d_l{border-bottom: 1px dotted #fff;color: #fff;}
 .d_l_b{border-bottom: 1px dotted #3a88cc;color: #3a88cc;}
@@ -529,9 +529,6 @@ header .helper{height: 32px !important;}
 .frameEnterReg .enter-cont button:hover .d_l_g{color:#cc0000;}
 .frameUndef_1{margin-top: 0;}
 .frameUndef_1 > div{display: inline-block !important;float: none !important;vertical-align: top;margin-top: 16px; }
-
-#loginButton span{border-bottom: 1px dotted;}
-
 
 .header{position: relative;z-index: 2;}
 .header + *{position: relative;z-index: 1;}
