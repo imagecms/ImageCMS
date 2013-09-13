@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-29 10:38+0300\n"
-"PO-Revision-Date: 2013-08-29 10:41+0300\n"
+"POT-Creation-Date: 2013-09-09 12:08+0300\n"
+"PO-Revision-Date: 2013-09-09 12:09+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -75,7 +75,7 @@ msgstr "Установите модули"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Label"
-msgstr "Label"
+msgstr "Метка"
 
 #: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:31
@@ -114,8 +114,9 @@ msgid "Go back"
 msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:36
-msgid "Have been saved"
-msgstr "Сохранены"
+#: /var/www/image.loc/_temp2.php:49
+msgid "Save"
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:37
 msgid "Information"
@@ -150,10 +151,6 @@ msgstr "Список групп"
 msgid "Create a group"
 msgstr "Создать группу"
 
-#: /var/www/image.loc/_temp2.php:49
-msgid "Save"
-msgstr "Сохранить"
-
 #: /var/www/image.loc/_temp2.php:50
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
@@ -181,9 +178,8 @@ msgstr "Пустой список группы или группы список 
 
 # а
 #: ../../..//cfcm_forms.php:29
-#, fuzzy
 msgid "To name will be prefixed with"
-msgstr "Чтобы имя будет с префиксом"
+msgstr "К имени будет добавлен префикс "
 
 #: ../../..//cfcm_forms.php:40
 msgid "Participate in search"
@@ -240,7 +236,7 @@ msgstr "Укажите имя поля"
 
 #: ../../..//admin.php:100
 msgid "Specify <b>Label</b> field"
-msgstr "Укажите <b> Label</ B> поле"
+msgstr "Укажите <b> Метка</ B> поле"
 
 #: ../../..//admin.php:104
 msgid "Only Latin characters"
@@ -322,6 +318,9 @@ msgstr "Дизайнер полей"
 #: ../../..//module_info.php:5
 msgid "Additional fields designer for pages and categories"
 msgstr "Дизайнер  дополнительных полей для  страницы и категории"
+
+#~ msgid "Have been saved"
+#~ msgstr "Сохранены"
 
 #, fuzzy
 #~ msgid "a_create_group_"

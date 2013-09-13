@@ -36,6 +36,14 @@
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
+                    {if $NextCS != null}
+                        <span class="price-add">
+                            <span>
+                                (<span class="price addCurrPrice">{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}</span>
+                                <span class="curr-add">{$NextCS}</span>)
+                            </span>
+                        </span>
+                    {/if}
                 </span>
             </div>
             <!--            End. Price-->
@@ -68,6 +76,7 @@
                                 data-prodid="{echo $p.id}"
                                 data-varid="{echo $p.variant_id}"
                                 data-price="{echo $p.price}"
+                                data-addPrice="{if $NextCS != null}{echo ShopCore::app()->SCurrencyHelper->convert($p.price, $NextCSId)}{/if}"
                                 data-count="1"
                                 data-name="{echo ShopCore::encode($p.name)}"
                                 data-maxcount="{echo $p.stock}"
@@ -76,7 +85,7 @@
                                 data-img="{echo $photo}"
                                 data-url="{echo shop_url('product/'.$p.url)}"
                                 data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'
-                                >                                
+                                >
                                 <span class="icon_cleaner icon_cleaner_buy"></span>
                                 <span class="text-el">{lang('Купить','newLevel')}</span>
                             </button>
@@ -89,7 +98,7 @@
                             type="button"
                             data-drop=".drop-report"
                             data-source="/shop/ajax/getNotifyingRequest"
-                            
+
                             data-id="{echo $p.id}"
                             data-prodid="{echo $p.id}"
                             data-varid="{echo $p.variant_id}"
@@ -111,18 +120,18 @@
         {if $p.access == 'private' || !$otherlist}
             <div class="funcs-buttons-WL-item">
                 <div class="btn-remove-item-wl">
-                    <button 
+                    <button
                         type="button"
                         data-type="json"
                         data-modal="true"
-                        data-overlayopacity= "0"
+                        
                         data-drop="#notification"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-callback="removeItem"
                         ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">
-                    <button 
+                    <button
                         type="button"
                         data-drop="#wishListPopup"
                         data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"

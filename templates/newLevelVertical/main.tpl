@@ -18,11 +18,17 @@
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
         <meta name = "format-detection" content = "telephone=no" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/style.min.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.min.css" media="all" />
 
-        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
+            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+        {else:}
+            {$lang = ''} 
+        {/if}
+        <script type="text/javascript">
+            var lang = "{echo $lang}";
+        </script>
 
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
@@ -32,6 +38,8 @@
         <![endif]-->
 
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
+        <link rel="icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="{$THEME}images/favicon.ico" type="image/x-icon" />
     </head>
     <body class="is{echo $agent[0]} not-js">        
         <div class="main-body">

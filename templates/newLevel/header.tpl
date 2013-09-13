@@ -1,4 +1,3 @@
-{$colorScheme = 'css/color_scheme_1'}
 <!--Start. Top menu and authentication data block-->
 <div class="menu-header">
     <div class="container">

@@ -56,6 +56,8 @@ class MY_Controller extends MX_Controller {
     public $pjaxRequest = false;
     public $ajaxRequest = false;
     public static $currentLocale = null;
+    public static $detect_load_admin = array();
+    public static $detect_load = array();
 
     public function __construct() {
         parent::__construct();
@@ -65,10 +67,6 @@ class MY_Controller extends MX_Controller {
 //        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
 //        if (file_exists($path_helper))
 //            require_once $path_helper;
-
-
-
-
 //        $this->load->library('gettext_php/gettext_extension');
 //        $this->gettext_extension->switchDomain('application/modules/admin/language', 'admin', 'ru_RU');
 //        $this->gettext->switchDomain('application/modules/admin/language', $module, $this->getLangCode($this->gettext_language)[1]);
@@ -107,12 +105,13 @@ class MY_Controller extends MX_Controller {
 
         if (self::$currentLocale)
             return self::$currentLocale;
-//        if (self::$currentLocale && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-//            return self::$currentLocale;
+
+        if (strstr($_SERVER['PATH_INFO'], 'install'))
+            return;
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
-        
+
         if ($lang_id) {
             $query = $ci->db
                     ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
@@ -123,11 +122,10 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        } else {
-            $defaultLanguage = self::getDefaultLanguage();
-            self::$currentLocale = $defaultLanguage['identif'];
         }
-        
+        else
+            self::$currentLocale = chose_language();
+
         return self::$currentLocale;
     }
 

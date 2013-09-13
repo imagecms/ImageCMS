@@ -23,20 +23,20 @@
                 <div class="main-title">{lang('Пользователь','newLevel')}</div>
                 <ul>
                     {if $is_logged_in}
-                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'">{lang('Выход','newLevel')}</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'">{lang('Счет','newLevel')}</button></li>
-                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'">{lang('Список желаний','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('auth/logout')}'" title="{lang('Выход','newLevel')}">{lang('Выход','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/profile')}'" title="{lang('Личный кабинет','newLevel')}">{lang('Личный кабинет','newLevel')}</button></li>
+                        <li><button type="button" onclick="location = '{site_url('shop/wish_list')}'" title="{lang('Список желаний','newLevel')}">{lang('Список желаний','newLevel')}</button></li>
                     {else:}
-                        <li><button type="button" data-trigger="#loginButton">{lang('Вход','newLevel')}</button></li>
-                        <li><button onclick="location = '{site_url('auth/register')}'">{lang('Регистрация','newLevel')}</button></li>
+                        <li><button type="button" data-trigger="#loginButton" title="{lang('Вход','newLevel')}">{lang('Вход','newLevel')}</button></li>
+                        <li><button onclick="location = '{site_url('auth/register')}'" title="{lang('Регистрация','newLevel')}">{lang('Регистрация','newLevel')}</button></li>
                     {/if}
                         {if $compare = $CI->session->userdata('shopForCompare')}
                             {$count = count($compare);}
                             {if $count > 0}
-                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'">{lang('Список сравнений','newLevel')}</button></li>
+                            <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
                             {/if}
                         {/if}
-                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']">{lang('Обратный звонок','newLevel')}</button></li>
+                    <li><button type="button" data-trigger="[data-drop='.drop-order-call']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
         </div>

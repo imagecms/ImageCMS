@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="d_i title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('product','newLevel')}","{lang('product','newLevel')}","{lang('products','newLevel')}"))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -35,7 +35,7 @@
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('No items found','newLevel')}</span>
+                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
                     </div>
                 </div>
                 <!-- End. Empty category-->
@@ -49,7 +49,7 @@
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
                 </ul>
                 <!-- render pagination-->
                 {$pagination}

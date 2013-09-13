@@ -11,7 +11,7 @@
                         class="btn btn-small btn-primary action_on formSubmit" 
                         data-form="#settings_form" 
                         data-action="save">
-                    <i class="icon-ok"></i>{lang('Have been saved')}
+                    <i class="icon-ok"></i>{lang('Save')}
                 </button>
             </div>
         </div>                            

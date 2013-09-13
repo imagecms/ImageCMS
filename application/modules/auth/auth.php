@@ -26,6 +26,9 @@ class Auth extends MY_Controller {
         $this->load->language('auth');
         $this->load->helper('url');
         $this->load->library('Form_validation');
+        
+        $lang = new MY_Lang();
+        $lang->load('auth');
 //        $this->form_validation->this = & $this;
     }
 
@@ -55,7 +58,7 @@ class Auth extends MY_Controller {
 
         $result = $this->dx_auth->is_email_available($email);
         if (!$result) {
-            $this->form_validation->set_message('email_check', lang("A user with this email is already registered."));
+            $this->form_validation->set_message('email_check', lang('A user with this email is already registered.', 'auth'));
         }
 
         return $result;
@@ -109,9 +112,9 @@ class Auth extends MY_Controller {
             // Set captcha rules if login attempts exceed max attempts in config
             if ($this->dx_auth->is_max_login_attempts_exceeded()) {
                 if ($this->dx_auth->use_recaptcha)
-                    $val->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('recaptcha_response_field', lang('Code protection', 'auth'), 'trim|xss_clean|required|callback_captcha_check');
                 else
-                    $val->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+                    $val->set_rules('captcha', lang('Code protection', 'auth'), 'trim|required|xss_clean|callback_captcha_check');
             }
 
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
@@ -127,7 +130,7 @@ class Auth extends MY_Controller {
                     $template = $this->template->fetch('shop/default/auth_data');
                     return json_encode(array(
                         'close' => true,
-                        'msg' => "<div class='fancy authcomplete'><h1>" . lang('Authorization') . "</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>" . lang('Authorization successfully completed') . "</div></div></div>",
+                        'msg' => "<div class='fancy authcomplete'><h1>" . lang('Authorization', 'auth') . "</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>" . lang('Authorization successfully completed', 'auth') . "</div></div></div>",
                         'header' => $template,
                         'reload' => 1,
                     ));
@@ -174,7 +177,7 @@ class Auth extends MY_Controller {
 //             ($hook = get_hook('auth_user_is_logged')) ? eval($hook) : NULL;
             redirect(site_url(), 301);
 
-            $this->template->assign('content', lang("You are already logged."));
+            $this->template->assign('content', lang('You are already logged.', 'auth'));
             $this->template->show();
         }
     }
@@ -191,7 +194,7 @@ class Auth extends MY_Controller {
     }
 
     public function register() {
-        $this->core->set_meta_tags(lang('Registration'));
+        $this->core->set_meta_tags(lang('Registration', 'auth'));
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
         $this->load->library('Form_validation');
@@ -199,18 +202,18 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('email', lang("Email"), 'trim|required|xss_clean|valid_email|callback_email_check');
-            $val->set_rules('username', lang("Name"), 'trim|xss_clean');
-            $val->set_rules('password', lang("Password"), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
-            $val->set_rules('confirm_password', lang("Repeat Password"), 'trim|required|xss_clean');
+            $val->set_rules('email', lang('Email', 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
+            $val->set_rules('username', lang('Name'), 'trim|xss_clean');
+            $val->set_rules('password', lang('Password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+            $val->set_rules('confirm_password', lang('Repeat Password'), 'trim|required|xss_clean');
 
 //             ($hook = get_hook('auth_reg_set_rules')) ? eval($hook) : NULL;
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
-                    $val->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('recaptcha_response_field', lang('Code protection', 'auth'), 'trim|xss_clean|required|callback_captcha_check');
                 else
-                    $val->set_rules('captcha', lang("Code protection"), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('captcha', lang('Code protection', 'auth'), 'trim|xss_clean|required|callback_captcha_check');
             }
 
             // Run form validation and register user if it's pass the validation
@@ -220,9 +223,9 @@ class Auth extends MY_Controller {
 //                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
-                    $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.");
+                    $data['auth_message'] = lang('You have successfully registered. Please check your email to activate your account.', 'auth');
                 } else {
-                    $data['auth_message'] = lang("You have successfully registered. ") . anchor(site_url($this->dx_auth->login_uri), lang("Login"));
+                    $data['auth_message'] = lang('You have successfully registered. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login', 'auth'));
                 }
 
 //                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
@@ -254,7 +257,7 @@ class Auth extends MY_Controller {
         } elseif (!$this->dx_auth->allow_registration) {
 //             ($hook = get_hook('auth_register_closed')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang("Registration is prohibited.");
+            $data['auth_message'] = lang('Registration is prohibited.', 'auth');
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
@@ -277,12 +280,12 @@ class Auth extends MY_Controller {
 
         // Activate user
         if ($this->dx_auth->activate($email, $key)) {
-            $data['auth_message'] = lang("Your account has been successfully activated. ") . anchor(site_url($this->dx_auth->login_uri), lang("Login"));
+            $data['auth_message'] = lang('Your account has been successfully activated. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login', 'auth'));
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
         } else {
-            $data['auth_message'] = lang("You have provided an incorrect activation code sent to the e-mail the new code.");
+            $data['auth_message'] = lang('You have provided an incorrect activation code.', 'auth');
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
@@ -291,18 +294,18 @@ class Auth extends MY_Controller {
 
     function forgot_password() {
 //         ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
-        $this->core->set_meta_tags(lang('Forgot password'));
+        $this->core->set_meta_tags(lang('Forgot password', 'auth'));
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;
 
         // Set form validation rules
-        $val->set_rules('email', lang("Email"), 'trim|required|xss_clean|valid_email');
+        $val->set_rules('email', lang('Email'), 'trim|required|xss_clean|valid_email');
 
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('email'))) {
-            $data['auth_message'] = lang("Please check your email for instructions on how to activate the new password.");
+            $data['auth_message'] = lang('Please check your email for instructions on how to activate the new password.', 'auth');
             $this->template->assign('info_message', $data['auth_message']);
         }
 
@@ -331,14 +334,14 @@ class Auth extends MY_Controller {
         if ($this->dx_auth->reset_password($email, $key)) {
 //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang("You have successfully zeroed my password. ") . anchor(site_url($this->dx_auth->login_uri), lang("Login Here"));
+            $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login Here', 'auth'));
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
         } else {
 //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang("Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.");
+            $data['auth_message'] = lang('Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.', 'auth');
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
@@ -355,13 +358,13 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation
-            $val->set_rules('old_password', lang("Old Password"), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
-            $val->set_rules('new_password', lang("The new password"), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
-            $val->set_rules('confirm_new_password', lang("Repeat new password"), 'trim|required|xss_clean');
+            $val->set_rules('old_password', lang('Old Password', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
+            $val->set_rules('new_password', lang('The new password', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
+            $val->set_rules('confirm_new_password', lang('Repeat new password', 'auth'), 'trim|required|xss_clean');
 
             // Validate rules and change password
             if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
-                $data['auth_message'] = lang("Your password was successfully changed.");
+                $data['auth_message'] = lang('Your password was successfully changed.', 'auth');
 
                 $this->template->assign('content', $data['auth_message']);
                 $this->template->show();
@@ -384,7 +387,7 @@ class Auth extends MY_Controller {
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('password', lang("Password"), "trim|required|xss_clean");
+            $val->set_rules('password', lang('Password', 'auth'), "trim|required|xss_clean");
 
             // Validate rules and change password
             if ($val->run() AND $this->dx_auth->cancel_account($val->set_value('password'))) {
@@ -406,14 +409,14 @@ class Auth extends MY_Controller {
     function deny() {
 //         ($hook = get_hook('auth_page_access_deny')) ? eval($hook) : NULL;
 
-        $this->template->assign('content', lang("You are not allowed to view the page."));
+        $this->template->assign('content', lang('You are not allowed to view the page.', 'auth'));
         $this->template->show();
     }
 
     function banned() {
 //         ($hook = get_hook('auth_show_banned_message')) ? eval($hook) : NULL;
 
-        echo lang("Your account has been blocked.");
+        echo lang('Your account has been blocked.', 'auth');
 
         if ($this->ban_reason != NULL) {
             echo '<br/>' . $this->ban_reason;

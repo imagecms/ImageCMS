@@ -3,4 +3,29 @@
 .nav-tabs.nav-stacked>div>li>a{border: 1px solid #ddd; display: block;}
 .nav-tabs.nav-stacked>div>li>a:hover {z-index: 2;border-color: #ddd;}
 .linkChart.active{color: red;}
-
+.m_l_10 {margin-left: 10px !important;}
+.m_t_-10{margin-top: -10px !important;}
+.m-l_0{margin-left: 0 !important;}
+.settingTitle{
+    font-weight:bold;
+    display: block;padding: 3px;
+    padding-left: 10px;
+    background: #ddd; /* для браузеров без css3 */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#dddddd');  /*для IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccd), to(#ddd));  /*для webkit */
+    background: -moz-linear-gradient(top, #ccd, #ddd);  /*для firefox 3.6+*/ 
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.settingsContainer{
+    border: 1px solid #ddd; display: block;
+    padding: 3px 3px 3px 10px;
+   
+}
+.fixedTableWithLeftScroll{
+    overflow-y: auto; height: 500px;
+}

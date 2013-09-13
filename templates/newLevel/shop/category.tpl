@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="d_i title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('товар','newLevel')}","{lang('товара','newLevel')}","{lang('товаров','newLevel')}"))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -49,7 +49,7 @@
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
                 </ul>
                 <!-- render pagination-->
                 {$pagination}

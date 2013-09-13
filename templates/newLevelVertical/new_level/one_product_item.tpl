@@ -8,9 +8,6 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                {if $defaultItem}
-                    {$photo = $p->firstVariant->getDefaultPhoto()}
-                {/if}
                 <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
@@ -27,7 +24,7 @@
             {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Mark: ','newLevel')}:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул: ','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -35,7 +32,7 @@
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Variant: ','newLevel')}:
+                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант: ','newLevel')}:
                         <span class="code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
@@ -50,7 +47,7 @@
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("comment","newLevel"),lang("comment","newLevel"),lang("comments","newLevel")))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                         </a>
                     </div>
                 {/if}
@@ -127,7 +124,7 @@
                             <div class="frame-count-buy variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 {if !widget && !$defaultItem}
                                     <div class="frame-count">
-                                        <div class="number" data-title="{lang('Quantity in the warehouse','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
+                                        <div class="number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}" data-rel="frameplusminus">
                                             <div class="frame-change-count">
                                                 <div class="btn-plus">
                                                     <button type="button">
@@ -140,7 +137,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" value="1" data-rel="plusminus" data-title="{lang('Digits only','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
+                                            <input type="text" value="1" data-rel="plusminus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
                                         </div>
                                     </div>
                                 {/if}
@@ -168,11 +165,11 @@
                                         data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                         data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'>
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('s_buy', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                     </button>
                                 </div>
                             </div>
-                                    {var_dumps(lang('s_buy', 'newLevel'))}
+                            {var_dumps(lang('Купить', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
@@ -191,7 +188,7 @@
                                     data-number="{echo trim($pv->getNumber())}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     <span class="icon-but"></span>
-                                    <span class="text-el">{lang('s_message_o_report')}</span>
+                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                                 </button>
                             </div>
                         {/if}
@@ -201,31 +198,31 @@
             {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
+                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
+                        {if $wishlist}
+                            <!-- Wish List buttons -->
+                            {foreach $variants as $key => $pv}
+                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                </div>
+                            {/foreach}
+                            <!-- end of Wish List buttons -->
+                        {/if}
                         {if !$compare}
                             <!-- compare buttons -->
                             <div class="btn-compare">
                                 <button class="toCompare"
                                         data-prodid="{echo $p->getId()}"
                                         type="button"
-                                        data-title="{lang('s_add_to_compare')}"
-                                        data-firtitle="{lang('s_add_to_compare')}"
-                                        data-sectitle="{lang('s_in_compare')}"
+                                        data-title="{lang('В список сравнений','newLevel')}"
+                                        data-firtitle="{lang('В список сравнений','newLevel')}"
+                                        data-sectitle="{lang('В списке сравнений','newLevel')}"
                                         data-rel="tooltip">
                                     <span class="icon_compare"></span>
-                                    <span class="text-el d_l">{lang('s_add_to_compare')}</span>
+                                    <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
                                 </button>
                             </div>
                             <!-- end of compare buttons -->
-                        {/if}
-                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
-                        {if $CI->uri->segment(2) != "wish_list"}
-                            <!-- Wish List buttons -->
-                            {foreach $variants as $key => $pv}
-                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
-                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                </div>
-                           {/foreach}
-                            <!-- end of Wish List buttons -->
                         {/if}
                     </div>
                 </div>

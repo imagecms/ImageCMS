@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/rbac/privilegeList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#priv_cr_form" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang("Have been saved","admin")}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#priv_cr_form" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#priv_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>                
             </div>
         </div>

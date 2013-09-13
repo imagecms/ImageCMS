@@ -51,13 +51,13 @@
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
                             <div class="btn-form m-b_15">
-                                <input type="submit" value="{lang('Вход','newLevel')}"/>
+                                <input type="submit" value="{lang('Зарегистрироваться','newLevel')}"/>
                             </div>
                             <p class="help-block">{lang('Я уже зарегистрирован','newLevel')}</p>
                             <ul class="items items-register-add-ref">
                                 <li>
                                     <button type="button" data-trigger="#loginButton">
-                                        <span class="text-el d_l_1">{lang('Я помню пароль','newLevel')}</span>
+                                        <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
                                     </button>
                                 </li>
                                 <li>

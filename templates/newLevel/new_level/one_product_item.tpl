@@ -8,9 +8,6 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                {if $defaultItem}
-                    {$photo = $p->firstVariant->getDefaultPhoto()}
-                {/if}
                 <img data-original="{echo $photo}"
                      src="{$THEME}images/blank.gif"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
@@ -27,7 +24,7 @@
             {if !$widget && !$defaultItem}
                 <span class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Отметить: ','newLevel')}:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул: ','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -172,7 +169,7 @@
                                     </button>
                                 </div>
                             </div>
-                                    {var_dumps(lang('Купить', 'newLevel'))}
+                            {var_dumps(lang('Купить', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
@@ -201,6 +198,16 @@
             {if !$widget && !$defaultItem}
                 <div class="p_r frame-without-top">
                     <div class="frame-wish-compare-list no-vis-table">
+                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
+                        {if $wishlist}
+                            <!-- Wish List buttons -->
+                            {foreach $variants as $key => $pv}
+                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                </div>
+                            {/foreach}
+                            <!-- end of Wish List buttons -->
+                        {/if}
                         {if !$compare}
                             <!-- compare buttons -->
                             <div class="btn-compare">
@@ -216,16 +223,6 @@
                                 </button>
                             </div>
                             <!-- end of compare buttons -->
-                        {/if}
-                        <!--                     Add to wishlist, if $CI->uri->segment(2) != "wish_list"-->
-                        {if $CI->uri->segment(2) != "wish_list"}
-                            <!-- Wish List buttons -->
-                            {foreach $variants as $key => $pv}
-                                <div class="variant_{echo $pv->getId()} variant d_i-b_" {if $key != 0}style="display:none"{/if} data-id="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
-                                    {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                </div>
-                           {/foreach}
-                            <!-- end of Wish List buttons -->
                         {/if}
                     </div>
                 </div>

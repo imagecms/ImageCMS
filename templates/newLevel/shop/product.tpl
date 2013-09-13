@@ -256,7 +256,7 @@
             </div>
             <div class="left-product">
                 {$sizeAddImg = sizeof($productImages = $model->getSProductImagess())}
-                <a rel="position: 'xBlock'" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
+                <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoGroup" title="{echo ShopCore::encode($model->getName())}">
                     <span class="photo-block">
                         <span class="helper"></span>
                         <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vimg" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}"/>
@@ -269,7 +269,7 @@
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
-                {if $Comments[$model->getId()] && $model->enable_comments}
+                {if $model->enable_comments && $Comments[$model->getId()] !== 0}
                     <div class="frame-star t-a_j">
                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
@@ -535,7 +535,7 @@
     <div class="container f-s_0">
         <!--        Start. Tabs block       -->
         <ul class="tabs tabs-data tabs-product">
-            <li>
+            <li class="active">
                 <button data-href="#view">{lang('Обзор','newLevel')}</button>
             </li>
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
@@ -556,9 +556,10 @@
                         <span class="text-el">
                             <span id="cc">
                                 {if $Comments[$model->getId()][0] !== '0'}
-                                    {echo $Comments[$model->getId()]}
+                                    {echo intval($Comments[$model->getId()])}
+                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                                 {else:}
-                                    {lang('Оставить комментарий','newLevel')}
+                                    {lang('Оставить отзыв','newLevel')}
                                 {/if}
                             </span>
                         </span>
@@ -679,7 +680,7 @@
 </div>
 {widget('latest_news')}
 <script type="text/javascript">
-                        var hrefCategoryProduct = "{$category_url}";
+                    var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">

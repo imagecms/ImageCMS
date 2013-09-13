@@ -20,16 +20,16 @@
             {if $totalProducts != 0}
                 <div class="f-s_0 title-category">
                     <div class="frame-title">
-                        <h1 class="d_i"><span class="s-t">{lang('Search results','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
+                        <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                     </div>
-                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('product','newLevel')}","{lang('product','newLevel')}","{lang('products','newLevel')}"))})</span>
+                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('товар','newLevel')}","{lang('товара','newLevel')}","{lang('товаров','newLevel')}"))})</span>
                 </div>
             {/if}
             {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('No items found','newLevel')}</span>
+                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
                     </div>
                 </div>
             {/if}
@@ -37,7 +37,7 @@
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 0} list{else:} table{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model)}
+                    {$CI->load->module('new_level')->OPI($model, array('wishlist'=>true))}
                 </ul>
             {/if}            <!--Start. Pagination -->
             {if $pagination}
@@ -57,7 +57,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Found in categories','newLevel')}:</div>
+                            <div class="title-h3 title">{lang('Категории','newLevel')}:</div>
                         </div>
                     </div>
                     <div class="inside-padd">

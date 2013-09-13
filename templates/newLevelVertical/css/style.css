@@ -31,7 +31,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 480px;}
+body, .overlayDrop{min-width: 960px;}
 article, .container, .horizontal-carousel .special-proposition > .frame-title{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
@@ -181,7 +181,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .icon_phone_footer{width: 10px;height: 17px;top: 5px;}
 .icon_phone_product{width: 10px;height: 17px;top: 5px;width: 13px;height: 14px;}
 .icon_exit{width: 18px;height: 18px;top: 4px;}
-.icon_times_drop{width: 9px;height: 9px;top: 4px;position: absolute !important;right: 31px;top: 23px;cursor: pointer !important;}
+.icon_times_drop{width: 10px;height: 10px;top: 4px;position: absolute !important;right: 31px;top: 23px;cursor: pointer !important;}
 .icon_times_cart{width: 9px;height: 9px;cursor: pointer !important;}
 .icon_times{width: 9px;height: 9px;cursor: pointer !important;}
 .list-check-filter .icon_times{top: 4px;}
@@ -373,7 +373,7 @@ input.input-search{height: 33px;}
 
 .items-bask .photo-block, .item-report.items-bask .photo-block{width: 62px;height: 62px;float: left;margin-right: 18px;}
 .items-bask .description{margin-left: 80px;}
-.items-bask .description .frame-prices{padding-top: 8px;}
+.items-bask .description .frame-prices:first-child{margin-top: 8px;}
 .row-kits .description{margin-left: 0;}
 .row-kits td{padding-bottom: 10px !important;}
 .row-kits li{width: 185px;margin-bottom: 10px;}
@@ -487,7 +487,8 @@ input.input-search{height: 33px;}
 .group-button-carousel .next{right: 0;}
 .vertical-layout .products-carousel .group-button-carousel .prev{position: static;margin-left: 15px;}
 .vertical-layout .products-carousel .group-button-carousel .next{position: static;margin-left: 5px;}
-.content-carousel{overflow: hidden;position: relative;z-index: 1;}
+.content-carousel{position: relative;z-index: 1;}
+.carousel_js .content-carousel, .frame-scroll-pane .content-carousel{overflow: hidden;}
 .horizontal-carousel .carousel_js .content-carousel > ul{width: 20000px;}
 .jcarousel-clip{overflow: hidden;}
 
@@ -521,6 +522,7 @@ input.input-search{height: 33px;}
 .carousel_js.baner .arrow{width: 48px;height: 48px;margin-top: -24px;}
 .frame-baner{position: relative;overflow: hidden;}
 .frame-baner-start_page{padding: 15px 0 35px;}
+.vertical-layout .frame-baner-start_page{padding-top: 0;}
 .baner .prev{left: 5px;}
 .baner .next{right: 5px;}
 .baner li > a, .baner li > span{display: block;text-align: center;height: 100%;}
@@ -530,7 +532,7 @@ input.input-search{height: 33px;}
 .cycle > li{width: 100% !important;height: 100% !important;}
 
 /*if cycle*/
-.frame-baner-start_page .baner{height: 264px;}
+.frame-baner-start_page .baner{height: 286px;}
 .frame-baner-catalog .baner{height: 145px;}
 .frame-baner .content-carousel{position: absolute;left: 50%;margin-left: -50%;height: 100%;width: 100%;}
 .frame-baner-catalog{margin-bottom: 20px;}
@@ -603,10 +605,10 @@ input.input-search{height: 33px;}
 .frame-l2 > ul > li > ul{margin-bottom: 10px;}
 .menu-main .frame-l2, .menu-main .frame-l2 > ul > li > ul > li > ul > li, .menu-main .frame-l2 > ul > li > ul{padding-left: 10px;}
 .frame-l2 [data-column] > ul, .menu-main .frame-l2.is-side, .menu-main .is-side > ul > li > ul{padding-left: 0;}
-.menu-main .frame-l2 > ul, [class*="x"] > ul{font-size: 0;}
-.frame-l2 > ul > li[data-column], [class*="x"] > ul > li{display: inline-block;font-size: 12px;}
-[class*="x0"] > ul > li, [class*="x1"] > ul > li, .frame-drop-menu > ul > li{display: block;}
-.frame-l2 > ul, [class*="x"] > ul{overflow: hidden;}
+.menu-main .frame-l2 > ul, .menu-main [class*="x"] > ul{font-size: 0;}
+.frame-l2 > ul > li[data-column], .menu-main [class*="x"] > ul > li{display: inline-block;font-size: 12px;}
+[class*="x0"] > ul > li, .menu-main [class*="x1"] > ul > li, .frame-drop-menu > ul > li{display: block;}
+.frame-l2 > ul, .menu-main [class*="x"] > ul{overflow: hidden;}
 [class*="x0"] > ul, [class*="x1"] > ul{overflow: auto;}
 
 .menu-row-category .frame-l2{width: 270px;}
@@ -676,7 +678,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .start-page-category-menu > li{margin-bottom: 20px;}
 .start-page-category-menu a{text-decoration: none;}
 .start-page-category-menu > li > a{display: block;margin-bottom: 6px;}
-.start-page-category-menu > li .photo-block{display: block;margin:0;width: 95px;height: 77px;padding: 20px;margin-bottom: 15px;}
+.start-page-category-menu > li .photo-block{display: block;margin:0;width: 95px;height: 77px;padding: 5px;margin-bottom: 15px;}
 .start-page-category-menu > li .title{padding-left: 1px;border-bottom: 0;}
 .start-page-category-menu > li{width: 180px;margin-left: 20px;}
 .start-page-category-menu > li .sub-category > li{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 100%;}
@@ -711,6 +713,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .frame-benefits-product{margin-bottom: 30px;padding-bottom: 5px;overflow: hidden;}
 .items-benefits > li{position: relative;width: 25%;padding-top: 5px;}
 .items-benefits > li:before{content: "";width: 2px;height: 67px;position: absolute;top: 0;left: -27px;}
+.vertical-layout .items-benefits > li:before{left: -5px;}
 .items-benefits > li:first-child:before{display: none;}
 .frame-icon-benefit > [class*="icon-"]{position: relative;z-index: 2;}
 .frame-description-benefit p{margin-bottom: 0;}
@@ -762,27 +765,9 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .cusel .jScrollArrowDown {width: 25px;height: 12px;position: absolute;top: auto;bottom: 0;right: 3px;cursor: pointer;overflow: hidden;}
 /*/cusel plugin style*/
 
-/*not standart checkbox radio*/
-.frame-label:hover .niceCheck{}
-.niceCheck{float: left;position: relative;top: 1px;margin-right: 5px;}
-.niceCheck.active{}
-.niceCheck.disabled{}
-.niceCheck input, .niceRadio input{display: none;}
-.b_n.niceCheck, .b_n.niceRadio{background: none;}
-.b_n.niceCheck input, .b_n.niceRadio input{display: block;}
-.niceCheck + .name-count{margin-left: 21px;padding-right: 10px;}
-.niceRadio + .name-count{margin-left: 19px;}
-.niceCheck + .name-count + .help-block{margin-left: 21px;}
-.niceRadio + .name-count + .help-block{margin-left: 19px;}
-
-.niceRadio{float: left;position: relative;top: 1px;margin-right: 5px;}
-.niceRadio.active{}
-.niceRadio.disabled{}
-/*/not standart checkbox radio*/
-
 .frame-form-field{display: block;position: relative;}
 .frame-label{display: inline-block;}
-.frame-label .frame-label, .frame-radio .frame-label{cursor: pointer;}
+.frame-label .frame-label, .frame-radio .frame-label, .frame-checks .frame-label{cursor: pointer;}
 .frame-radio{overflow: hidden;}
 .help-block{margin-top: 3px;line-height: 1.2;}
 .help-block p{margin-bottom: 0;}
@@ -1106,7 +1091,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .drop{display: none;position: absolute;top: 100%;left: 0;z-index: 1103;}
 .for-center .drop{position: relative;margin: 0 auto;left: auto;top: auto;}
 .drop.inherit{position: static;}
-.drop.form-data{float: left;width: 100%;margin-top: 20px;}
+.drop.form-data{width: 100%;margin-top: 20px;margin-bottom: 30px;}
 .drop-header{padding: 13px 35px;text-align: center;position: relative;}
 .drop-header > .title{text-transform: lowercase;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
@@ -1142,6 +1127,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 /*cleaver filter*/
 .apply{margin-top: -6px;margin-left: 15px;position: absolute;z-index: 1;display: none;}
 .apply .icon_times_apply{top: 4px;right: 4px;}
+.apply .icon_times_apply.icon_times_drop:after{content: none;}
 .content-apply{padding: 3px 23px 7px 13px;}
 .apply:before{content: "";position: absolute;left: -16px;top: 7px;}
 .apply.left{margin-left: -9px;}

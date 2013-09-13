@@ -610,6 +610,20 @@ class DX_Auth {
     function get_username() {
         return $this->ci->session->userdata('DX_username');
     }
+    
+    // Get useremail string
+    function get_user_email() {
+         $user = $this->ci->db
+                ->where('id', $this->get_user_id())
+                ->get('users');
+         if($user){
+             $user = $user->row_array();
+             return $user['email'];
+         }else{
+             return '';
+         }
+
+    }
 
     // Get user role id
     function get_role_id() {
@@ -868,7 +882,7 @@ class DX_Auth {
             $this->ci->dx_auth_event->sending_activation_email($new_user, $message);
 
             // Send email with activation link
-            $this->_email($email, $from, $subject, $message);
+//            $this->_email($email, $from, $subject, $message);
         } else {
             // Create user
             $insert = $this->ci->users->create_user($new_user);
@@ -898,7 +912,7 @@ class DX_Auth {
                 $this->ci->dx_auth_event->sending_account_email($new_user, $message);
 
                 // Send email with activation link
-                $this->_email($email, $from, $subject, $message);
+//                $this->_email($email, $from, $subject, $message);
             } else {
                 // Check if need to email account details
                 if ($this->ci->config->item('DX_email_account_details')) {
@@ -910,7 +924,7 @@ class DX_Auth {
                     $this->ci->dx_auth_event->sending_account_email($new_user, $message);
 
                     // Send email with account details
-                    $this->_email($email, $from, $subject, $message);
+//                    $this->_email($email, $from, $subject, $message);
                 }
 
             $user_variables = array(

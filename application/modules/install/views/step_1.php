@@ -11,6 +11,7 @@
 
 <h2>Проверка параметров PHP</h2>
 <p>
+    Для того, чтобы продолжить установку системы, установите параметры PHP:
     <ul class="list">
     <?php foreach ($allow_params as $k => $v) { ?>
         <li class="<?php echo $v ?>"><?php echo $k?><?php if('ok'==$v) { ?> <i class=" icon-ok-circle"></i> <?php } else { ?> <i class=" icon-minus-sign"></i> <?php } ?></li>
@@ -21,6 +22,7 @@
 
 <h2>Проверка модулей PHP</h2>
 <p>
+    Для наилучшей работы системы, установите модули PHP:
     <ul class="list">
     <?php foreach ($exts as $k => $v) { ?>
         <li class="<?php echo $v ?>"><?php echo $k?><?php if('ok'==$v) { ?> <i class=" icon-ok-circle"></i> <?php } else { ?> <i class=" icon-minus-sign"></i> <?php } ?></li>
