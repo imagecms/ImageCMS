@@ -43,6 +43,24 @@ class Products extends \MY_Controller {
         ));
     }
 
+    public function getCategories() {
+        $categoryProducts = $this->stats_model_products->getCategoriesCountsData();
+        
+        // data for pie diagram
+        $pieData = array();
+        foreach ($categoryProducts as $category) {
+            $pieData[] = array(
+                'key' => $category['name'],
+                'y' => $category['count']
+            );
+        }
+
+        return json_encode(array(
+            'type' => 'pie',
+            'data' => $pieData
+        ));
+    }
+
 }
 
 ?>

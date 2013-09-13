@@ -85,14 +85,14 @@ function mailTest() {
 }
 
 var EmailTemplateVariables = {
-    delete: function(template_id, variable, curElement) {
+    delete: function(template_id, variable, curElement, lang) {
         $.ajax({
             type: 'POST',
             data: {
                 template_id: template_id,
                 variable: variable
             },
-            url: '/admin/components/cp/cmsemail/deleteVariable',
+            url: '/admin/components/cp/cmsemail/deleteVariable/' + lang,
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не удалена', 'r');
@@ -103,7 +103,7 @@ var EmailTemplateVariables = {
             }
         });
     },
-    update: function(curElement, template_id, oldVariable) {
+    update: function(curElement, template_id, oldVariable, lang) {
         var closestTr = curElement.closest('tr');
         var variable = closestTr.find('.variableEdit');
         var variableValue = closestTr.find('.variableValueEdit');
@@ -118,7 +118,7 @@ var EmailTemplateVariables = {
                 oldVariable: oldVariable,
                 template_id: template_id
             },
-            url: '/admin/components/cp/cmsemail/updateVariable',
+            url: '/admin/components/cp/cmsemail/updateVariable/' + lang,
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не обновлена', 'r');
@@ -134,7 +134,7 @@ var EmailTemplateVariables = {
             }
         });
     },
-    add: function(curElement, template_id) {
+    add: function(curElement, template_id, lang) {
         var variable = curElement.closest('tr').find('.variableEdit');
         var variableValue = curElement.closest('tr').find('.variableValueEdit');
 
@@ -147,7 +147,7 @@ var EmailTemplateVariables = {
                 variableValue: variableValue.val(),
                 template_id: template_id
             },
-            url: '/admin/components/cp/cmsemail/addVariable',
+            url: '/admin/components/cp/cmsemail/addVariable/' + lang,
             success: function(data) {
                 if(!data){
                     showMessage('Ошибка', 'Переменная не додана', 'r');
@@ -160,14 +160,14 @@ var EmailTemplateVariables = {
             }
         });
     },
-    updateVariablesList: function(curElement, template_id) {
+    updateVariablesList: function(curElement, template_id, lang) {
         if (!curElement.hasClass('active')) {
             $.ajax({
                 type: 'POST',
                 data: {
                     template_id: template_id
                 },
-                url: '/admin/components/cp/cmsemail/getTemplateVariables',
+                url: '/admin/components/cp/cmsemail/getTemplateVariables/' + lang,
                 success: function(data) {
                     $('#userMailVariables').html(data);
                     $('#adminMailVariables').html(data);
