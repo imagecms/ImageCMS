@@ -21,7 +21,7 @@ article,.container,.horizontal-carousel .special-proposition>.frame-title{margin
 .main-body>.vertical-layout .content{position:relative;z-index:1}
 .frame-inside{position:relative;z-index:1;padding-bottom:40px}
 .frame-inside .no-empty{display:block}
-body,.overlayDrop{min-width:480px}
+body,.overlayDrop{min-width:960px}
 article,.container,.horizontal-carousel .special-proposition>.frame-title{max-width:980px}
 .container{padding:0 10px}
 .big-container{max-width:1125px}

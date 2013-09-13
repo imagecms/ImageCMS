@@ -341,7 +341,8 @@ class Settings extends BaseAdminController {
     public function switch_admin_lang($lang) {
         $langs = Array(
             'english',
-            'russian'
+            'russian',
+            'german'
         );
 
         if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
