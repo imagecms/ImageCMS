@@ -269,7 +269,7 @@
                 </a>
                 <!-- End. Photo block-->
                 <!-- Star rating -->
-                {if $Comments[$model->getId()] && $model->enable_comments && $Comments[$model->getId()]!=0}
+                {if $model->enable_comments && $Comments[$model->getId()] !== 0}
                     <div class="frame-star t-a_j">
                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                         <div class="d-i_b">
