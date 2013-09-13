@@ -9,13 +9,13 @@
                 <a href="{$BASE_URL}admin/sys_update"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('a_back')}</span>
+                    <span class="t-d_u">{lang('Back', 'admin')}</span>
                 </a>
                 <button type="button"
                         class="btn btn-small btn-primary action_on formSubmit"
                         data-form="#sys_form"
                         data-action="tomain">
-                    <i class="icon-ok"></i>{lang('a_save')}
+                    <i class="icon-ok"></i>{lang('Save', 'admin')}
                 </button>
             </div>
         </div>
