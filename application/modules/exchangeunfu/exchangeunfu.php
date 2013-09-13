@@ -26,9 +26,6 @@ class Exchangeunfu extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->export = new \exchangeunfu\exportXML();
-        $this->import = new \exchangeunfu\importXML();
-
         /* define path to folder for saving files from 1c */
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
 
@@ -63,8 +60,8 @@ class Exchangeunfu extends MY_Controller {
         $method = 'command_';
 
         //preparing method and mode name from $_GET variables
-        if (isset($this->input->get('type')) && isset($this->input->get('mode')))
-            $method .= strtolower($this->input->get('type')) . '_' . strtolower($this->input->get('mode'));
+        if (isset($_GET['type']) && isset($_GET['mode']))
+            $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
 
         //run method if exist
         if (method_exists($this, $method))
@@ -263,6 +260,9 @@ class Exchangeunfu extends MY_Controller {
             if ($this->config['backup'])
                 $this->makeDBBackup();
             //start import process
+
+            $this->import = new \exchangeunfu\importXML();
+
             $this->import->import($this->tempDir . $this->input->get('filename'));
             //rename import xml file after import finished
             if (!$this->config['debug'])
@@ -736,6 +736,7 @@ class Exchangeunfu extends MY_Controller {
         if ($this->check_perm() === true) {
             if ($this->input->get('partner')) {
                 $parter_id = $this->db->select('external_id')->where('code', $this->input->get('partner'))->get('mod_exchangeunfu_partners');
+                $this->export = new \exchangeunfu\exportXML();
                 if ($parter_id) {
                     $parter_id = $parter_id->row_array();
                     $this->export->export($parter_id['external_id']);

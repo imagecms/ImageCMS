@@ -67,7 +67,7 @@ class ImportXML {
     }
 
     public function index() {
-        
+
     }
 
     public function getXML($file) {
@@ -633,8 +633,9 @@ class ImportXML {
                 $this->insert[] = $data;
             }
         }
+//        var_dump($this->insert,$this->update);
         $this->insertData($this->prices_table);
-        $this->updateData($this->prices_table, 'id');
+        $this->updateData($this->prices_table, 'external_id');
     }
 
     /**
@@ -885,6 +886,7 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
+
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 
