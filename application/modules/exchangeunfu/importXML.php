@@ -67,7 +67,7 @@ class ImportXML {
     }
 
     public function index() {
-        
+
     }
 
     public function getXML($file) {
@@ -151,8 +151,7 @@ class ImportXML {
 
         foreach ($this->xml->СписокНоменклатуры as $product) {
 //            $searchedProduct = is_prod($product->ID, $this->prod);
-
-            if ((!$product->IDWeb && isset($product->IDРодитель)) || !is_prod((string)$product->ID, $this->prod)) {
+            if (!is_prod((string) $product->ID, $this->prod)) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -365,8 +364,8 @@ class ImportXML {
         foreach ($categories as $category) {
 //            $searchedCat = is_cat($category->ID, $this->cat);
 
-            if ($category->IDWeb || $categories_ext_id[(string)$category->ID]) {
-                $this->updateCategory($data, $parent, $category, $categories_ext_id[(string)$category->ID]);
+            if ($category->IDWeb || $categories_ext_id[(string) $category->ID]) {
+                $this->updateCategory($data, $parent, $category, $categories_ext_id[(string) $category->ID]);
             } else {
                 $this->insertCategory($data, $parent, $category, $searchedCat);
             }
@@ -484,7 +483,7 @@ class ImportXML {
         //preparing data for update
         $translit = translit_url($category->Наименование) . '';
         $data = array();
-         $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
+        $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
         $data['id'] = $category->IDWeb . '' ? $category->IDWeb . '' : $searchedCat;
         $data['url'] = $translit;
         $data['active'] = TRUE;
@@ -575,7 +574,7 @@ class ImportXML {
             $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
 
-            if ($partner->IDWeb) {
+            if ($partner->IDWeb || is_partner((string) $partner->ID, $this->partners)) {
                 $data['id'] = $partner->IDWeb . '';
                 $this->update[] = $data;
             } else {
@@ -627,15 +626,16 @@ class ImportXML {
             }
             $data['partner_code'] = $partners_external[$data['partner_external_id']];
 
-            if ($offer->IDWeb) {
-                $data['id'] = $offer->IDWeb . '';
+            if (is_price($data, $this->prices)) {
+                $data['external_id'] = $offer->ID . '';
                 $this->update[] = $data;
             } else {
                 $this->insert[] = $data;
             }
         }
+//        var_dump($this->insert,$this->update);
         $this->insertData($this->prices_table);
-        $this->updateData($this->prices_table, 'id');
+        $this->updateData($this->prices_table, 'external_id');
     }
 
     /**
@@ -757,7 +757,7 @@ class ImportXML {
                 $data['quantity'] = $product->Количество . '';
                 $data['price'] = $product->Цена . '';
                 $data['external_id'] = $product->IDДокумента . '';
-    
+
                 $product_i18n = is_product_i18n($product->IDWebНоменклатура . '', $this->products_i18n);
                 if ($product_i18n) {
                     $data['product_id'] = $product_i18n['id'];
@@ -792,7 +792,7 @@ class ImportXML {
         $order_id = is_order($order->ID . '', $this->orders);
         if (isset($order->Строки)) {
             foreach ($order->Строки as $product) {
-                
+
                 $data = array();
                 $data['quantity'] = (int) $product->Количество;
                 $data['price'] = (float) $product->Цена;
@@ -825,7 +825,6 @@ class ImportXML {
             $data['external_id'] = $order->ID . '';
             $data['id'] = $order->IDWeb . '';
             $this->update[] = $data;
-            
         }
     }
 
@@ -885,6 +884,7 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
+
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 
