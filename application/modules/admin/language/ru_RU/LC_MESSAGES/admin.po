@@ -1571,7 +1571,7 @@ msgstr "новинка"
 #: /var/www/image.loc/_temp2.php:104
 #: /var/www/image.loc/_temp2.php:105
 msgid "promotion"
-msgstr "реклама"
+msgstr "акция"
 
 #: /var/www/image.loc/_temp2.php:47
 #: /var/www/image.loc/_temp2.php:117
@@ -1662,7 +1662,7 @@ msgstr "Новый"
 #: /var/www/image.loc/_temp2.php:115
 #: /var/www/image.loc/_temp2.php:116
 msgid "Promotion"
-msgstr "Реклама"
+msgstr "Акция"
 
 #: /var/www/image.loc/_temp2.php:74
 msgid "Create copy"
@@ -2380,7 +2380,7 @@ msgstr "Популярные"
 #: /var/www/image.loc/_temp2.php:233
 #: /var/www/image.loc/_temp2.php:266
 msgid "Novelty"
-msgstr "Новинки"
+msgstr "Новинка"
 
 #: /var/www/image.loc/_temp2.php:234
 #: /var/www/image.loc/_temp2.php:267
