@@ -94,13 +94,10 @@ if (!function_exists('is_partner')) {
 
 if (!function_exists('is_price')) {
 
-    function is_price($price_import, $price_db) {
-        foreach ($price_db as $val) {
-            if ($val['external_id'] == $price_import['external_id'] &&
-                    $val['partner_external_id'] == $price_import['partner_external_id']
-            ) {
+    function is_price($price_ext_id, $prices) {
+        foreach ($prices as $val) {
+            if ($val['external_id'] == $price_ext_id)
                 return $val;
-            }
         }
         return false;
     }
@@ -109,14 +106,10 @@ if (!function_exists('is_price')) {
 
 if (!function_exists('is_productivity')) {
 
-    function is_productivity($productivity_import, $productivity_db) {
+    function is_productivity($productivity_ext_id, $productivity_db) {
         foreach ($productivity_db as $val) {
-            if ($val['date'] == $productivity_import['date'] &&
-                    $val['hour'] == $productivity_import['hour'] &&
-                    $val['partner_external_id'] == $productivity_import['partner_external_id']
-            ) {
+            if ($val['external_id'] == $productivity_ext_id)
                 return $val;
-            }
         }
         return false;
     }
