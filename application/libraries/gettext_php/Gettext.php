@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (c) 2009 David Soria Parra
  *
@@ -21,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-require_once 'Gettext_php.php';
+//require_once 'Gettext_php.php';
 require_once 'Gettext_extension.php';
 
 /**
@@ -30,8 +31,8 @@ require_once 'Gettext_extension.php';
  * @copyright (c) 2009 David Soria Parra <sn_@gmx.net>
  * @author David Soria Parra <sn_@gmx.net>
  */
-abstract class Gettext
-{
+abstract class Gettext {
+
     private static $instance = null;
 
     /**
@@ -61,7 +62,6 @@ abstract class Gettext
      */
     public abstract function ngettext($msg1, $msg2, $count);
 
-
     /**
      * add new domain and bind some lang file to it
      * @param String $directory Directory to search the mo files in
@@ -83,18 +83,12 @@ abstract class Gettext
      *
      * @return Gettext An instance of a Gettext implementation
      */
-    public static function getInstance($directory, $domain, $locale)
-    {
-        $key = $directory . $domain . $locale;
-        if (!isset(self::$instance[$key])) {
-            if (extension_loaded('gettext')) {
-//            if (0){
-                self::$instance[$key] = new Gettext_Extension(array($directory, $domain, $locale));
-            } else {
-                self::$instance[$key] = new Gettext_PHP(array($directory, $domain, $locale));
-            }
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            self::$instance = new Gettext_Extension();
         }
 
-        return self::$instance[$key];
+        return self::$instance;
     }
+
 }

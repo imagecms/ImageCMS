@@ -19,7 +19,7 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart" id="startPage">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Count', 'mod_stats')}     
                         </a>
                     </li>
@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/users/user_information" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/users/information" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('User information', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -78,12 +78,12 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/product_info" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/productInfo" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receipt_of_goods" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receiptOfGoods" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -95,17 +95,17 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products_categories/most_visited" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/most_visited" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Most visited', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products_categories/products_in_categories" class="linkChart"> &nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/products_in_categories" class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Products in categories', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products_categories/brands_in_categories" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/brands_in_categories" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in category', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -117,43 +117,44 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywords_searched" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywordsSearched" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brands_in_search" class="linkChart"> &nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brandsInSearch" class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in search results', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categories_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categoriesInSearch" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang("Product's categories in search results", 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/products_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("Products in search results", 'mod_stats')}                                      
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/no_result" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("No results", 'mod_stats')}                                      
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/pageNotFound" class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("Page not found", 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>
                 <!-- End. Search -->
             </ul>
-            <div class="m_l_10 m-t_20">
-                <span class="title"> {lang('Settings:','mod_stats')} </span>
-                
-                
+            <div class="m-t_20">
+                <span class="settingTitle"> {lang('Settings:','mod_stats')} </span>
+                <div class="settingsContainer">
+                    <span class="frame_label no_connection m-r_15 active" style="display: block;">
+                        <span class="niceCheck"  id="saveSearchResultsSpan" style="background-position: -46px -17px;">
+                            <input type="checkbox" {if $saveSearchResults == '1'}checked="checked" {/if} id="saveSearchResultsCheckbox">
+                        </span>
+                        {lang('save search results','mod_stats')}
+                    </span>
+                </div>
             </div>
         </div>
         <div class="clearfix span9">
             <div class="btn-group  m-t_20 pull-left">
                 <a class="btn btn-small intervalButton" data-group="day">{lang('day','mod_stats')}</a>
-                <a class="btn btn-small intervalButton" data-group="week">{lang('week','mod_stats')}</a>
+                <!--a class="btn btn-small intervalButton" data-group="week">{lang('week','mod_stats')}</a-->
                 <a class="btn btn-small intervalButton" data-group="month">{lang('month','mod_stats')}</a>
                 <a class="btn btn-small intervalButton" data-group="year">{lang('year','mod_stats')}</a>       
             </div>
@@ -168,11 +169,11 @@
                 <span class="d-i_b m-r_10 m-l_10">{lang('To:','mod_stats')}</span>
                 <span class="d-i_b">
                     <label class="d-i_b p_r">
-                        <input class="datepicker date_end" type="text" value="{if $_COOKIE['start_date_input'] != null}{$_COOKIE['start_date_input']}{/if}" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" >
+                        <input class="datepicker date_end" type="text" value="{if $_COOKIE['end_date_input'] != null}{$_COOKIE['end_date_input']}{/if}" name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" >
                         <span class="icon-calendar"></span>
                     </label>
                 </span>
-                <button class="btn btn-small" type="button" id="refreshIntervalsButton">
+                <button class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i>
                 </button>
                 <div class="pull-right">
@@ -180,16 +181,15 @@
                     <div class="d-i_b">
                         <select id="selectGroupBy">
                             <option value="day" {if $_COOKIE['group_by'] == 'day'}selected = "selected"{/if}>{lang('day','mod_stats')}</option>
-                            <option value="week" {if $_COOKIE['group_by'] == 'week'}selected = "selected"{/if}>{lang('week','mod_stats')}</option>
+                            <!--option value="week" {if $_COOKIE['group_by'] == 'week'}selected = "selected"{/if}>{lang('week','mod_stats')}</option-->
                             <option value="month" {if $_COOKIE['group_by'] == 'month'}selected = "selected"{/if}>{lang('month','mod_stats')}</option>
                             <option value="year" {if $_COOKIE['group_by'] == 'year'}selected = "selected"{/if}>{lang('year','mod_stats')}</option>
                         </select>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div id="chartContainer" class="span12" style="margin-left: 0 !important;">
+            </div>
         </div>
-        <div id="chartContainer" class="span9">
-        </div>
-    </div>
 </section>

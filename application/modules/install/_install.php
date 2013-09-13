@@ -103,6 +103,11 @@ class Install extends MY_Controller {
                     $exts[$k] = 'err';
                     $result = FALSE;
                 }
+                
+                if ($k == 'gettext') {
+                    $exts[$k] = 'err';
+                    $result = FALSE;
+                }
 
                 if ($k == 'curl') {
                     $exts[$k] = 'err';

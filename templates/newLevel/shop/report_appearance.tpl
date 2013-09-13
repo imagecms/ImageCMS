@@ -21,14 +21,14 @@
             <label>
                 <span class="title">{lang('Ваше имя:','newLevel')}</span>
                 <span class="frame-form-field">
-                    <input type="text" id="" name="UserName" value="{$CI->dx_auth->get_user_id()}"/>
+                    <input type="text" id="" name="UserName" value="{echo $user_name}"/>
                     <span class="must">*</span>
                 </span>
             </label>
             <label>
                 <span class="title">E-mail</span>
                 <span class="frame-form-field">
-                    <input type="text" id="" name="UserEmail"/>
+                    <input type="text" id="" name="UserEmail" value="{echo $user_email}"/>
                     <input type="hidden" name="ProductId" value=""/>
                     <input type="hidden" name="notifme" value="true"/>
                     <span class="must">*</span>
