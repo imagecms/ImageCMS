@@ -152,7 +152,7 @@ class ImportXML {
         foreach ($this->xml->СписокНоменклатуры as $product) {
 //            $searchedProduct = is_prod($product->ID, $this->prod);
 
-            if ((!$product->IDWeb && isset($product->IDРодитель)) || !is_prod((string)$product->ID, $this->prod)) {
+            if ((!$product->IDWeb && isset($product->IDРодитель)) || !is_prod((string) $product->ID, $this->prod)) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -365,8 +365,8 @@ class ImportXML {
         foreach ($categories as $category) {
 //            $searchedCat = is_cat($category->ID, $this->cat);
 
-            if ($category->IDWeb || $categories_ext_id[(string)$category->ID]) {
-                $this->updateCategory($data, $parent, $category, $categories_ext_id[(string)$category->ID]);
+            if ($category->IDWeb || $categories_ext_id[(string) $category->ID]) {
+                $this->updateCategory($data, $parent, $category, $categories_ext_id[(string) $category->ID]);
             } else {
                 $this->insertCategory($data, $parent, $category, $searchedCat);
             }
@@ -484,7 +484,7 @@ class ImportXML {
         //preparing data for update
         $translit = translit_url($category->Наименование) . '';
         $data = array();
-         $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
+        $data['id'] = (string) $user->IDWeb ? (string) $user->IDWeb : $id['id'];
         $data['id'] = $category->IDWeb . '' ? $category->IDWeb . '' : $searchedCat;
         $data['url'] = $translit;
         $data['active'] = TRUE;
@@ -574,9 +574,10 @@ class ImportXML {
             $data['code'] = $partner->Код . '';
             $data['region'] = $partner->Регион . '';
             $data['external_id'] = $partner->ID . '';
+            $partner_exsist = is_partner($data['external_id'], $this->partners);
 
-            if ($partner->IDWeb) {
-                $data['id'] = $partner->IDWeb . '';
+            if ($partner->IDWeb || $partner_exsist) {
+                $data['id'] = $partner->IDWeb . '' ? $partner->IDWeb . '' : $partner_exsist['id'];
                 $this->update[] = $data;
             } else {
                 $this->insert[] = $data;
@@ -618,17 +619,15 @@ class ImportXML {
 
             $data['partner_external_id'] = $offer->IDОрганизация . '';
 
-//            if (!is_prod($data['product_id'], $this->prod)) {
-//                return FALSE;
-//            }
-
             if (!is_partner($data['partner_external_id'], $this->partners)) {
                 return FALSE;
             }
             $data['partner_code'] = $partners_external[$data['partner_external_id']];
 
-            if ($offer->IDWeb) {
-                $data['id'] = $offer->IDWeb . '';
+            $price_exist = is_price($data['external_id'], $this->prices);
+
+            if ($offer->IDWeb || $price_exist) {
+                $data['id'] = $offer->IDWeb . '' ? $offer->IDWeb . '' : $price_exist['id'];
                 $this->update[] = $data;
             } else {
                 $this->insert[] = $data;
@@ -710,9 +709,10 @@ class ImportXML {
             } else {
                 return false;
             }
+            $order_exist = is_order($data['external_id'], $this->orders);
 
-            if ($order->IDWeb) {
-                $data['id'] = $order->IDWeb . '';
+            if ($order->IDWeb || $order_exist) {
+                $data['id'] = $order->IDWeb . '' ? $order->IDWeb . '' : $order_exist['id'];
                 $this->updateOrder($order, $data);
             } else {
                 $this->insertOrder($order, $data);
@@ -757,7 +757,7 @@ class ImportXML {
                 $data['quantity'] = $product->Количество . '';
                 $data['price'] = $product->Цена . '';
                 $data['external_id'] = $product->IDДокумента . '';
-    
+
                 $product_i18n = is_product_i18n($product->IDWebНоменклатура . '', $this->products_i18n);
                 if ($product_i18n) {
                     $data['product_id'] = $product_i18n['id'];
@@ -792,7 +792,7 @@ class ImportXML {
         $order_id = is_order($order->ID . '', $this->orders);
         if (isset($order->Строки)) {
             foreach ($order->Строки as $product) {
-                
+
                 $data = array();
                 $data['quantity'] = (int) $product->Количество;
                 $data['price'] = (float) $product->Цена;
@@ -825,7 +825,6 @@ class ImportXML {
             $data['external_id'] = $order->ID . '';
             $data['id'] = $order->IDWeb . '';
             $this->update[] = $data;
-            
         }
     }
 
@@ -843,8 +842,9 @@ class ImportXML {
             $data['partner_external_id'] = $productivity->IDОрганизация . '';
 
             if (is_partner($data['partner_external_id'], $this->partners)) {
-                if ($productivity->IDWeb) {
-                    $data['id'] = $productivity->IDWeb . '';
+                $is_productivity = is_productivity($data['external_id'], $this->productivity);
+                if ($productivity->IDWeb || $is_productivity) {
+                    $data['id'] = $productivity->IDWeb . '' ? $productivity->IDWeb . '' : $is_productivity['id'];
                     $this->update[] = $data;
                 } else {
                     $this->insert[] = $data;
