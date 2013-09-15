@@ -4,11 +4,11 @@
             <thead>
                 <tr>
                     <th>№</th>
-                    <th>Отписатся</th>
-                    <th>Товар</th>
-                    <th>Новая цена</th>
-                    <th>Старая цена</th>
-                    <th>Процент снижения цены</th>
+                    <th>{lang('Unsubscribe', 'pricespy')}</th>
+                    <th>{lang('Product', 'pricespy')}</th>
+                    <th>{lang('New price', 'pricespy')}</th>
+                    <th>{lang('Old price', 'pricespy')}</th>
+                    <th>{lang('Percentage of price reduction', 'pricespy')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +19,7 @@
                         <td>
                             <input type="submit" 
                                    class="btn" 
-                                   value="Отписаться"
+                                   value="{lang('Unsubscribe', 'pricespy')}"
                                    onclick="unspy('{$product[hash]}')"/>
                         </td>
                         <td>
@@ -36,6 +36,6 @@
             </tbody>
         </table>
     {else:}
-        Список слежения пуст
+        {lang('Watch list is empty', 'pricespy')}
     {/if}
 </article>
