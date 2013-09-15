@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => 'Модуль управления email',
-	'description' => 'Модуль управления email',
+	'menu_name' => lang('Email managing module'),
+	'description' => lang('Email managing module'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr', // xhr/iframe - если используем xhr, тогда каждой ссылке нужно добавить класс "ajax"
 	'w' => 600,

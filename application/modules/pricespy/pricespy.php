@@ -50,10 +50,10 @@ class Pricespy extends MY_Controller {
         $CI->email->from("noreplay@$_SERVER[HTTP_HOST]");
         $CI->email->to($email);
         $CI->email->set_mailtype('html');
-        $CI->email->subject('Изминение цены');
-        $CI->email->message("Цена на $name за которым вы следите на сайте $_SERVER[HTTP_HOST] изменилась.<br>
-                <a href='" . site_url('pricespy') . "' title='Посмотреть список слежения'>Посмотреть список слежения</a><br>
-                <a href='" . site_url("pricespy/$hash") . "' title='Отписатся от слежения'>Отписатся от слежения</a><br>");
+        $CI->email->subject(lang('Price changing', 'pricespy'));
+        $CI->email->message(lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . $_SERVER[HTTP_HOST] .  lang('changed', 'pricespy') . ".<br>
+                <a href='" . site_url('pricespy') . "' title='" . lang('View watch list', 'pricespy') . "'>" . lang('View watch list', 'pricespy') . "</a><br>
+                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . "</a><br>");
         $CI->email->send();
     }
 
@@ -202,13 +202,13 @@ class Pricespy extends MY_Controller {
             if ($this->isInSpy[$varId] == '')
                 \CMSFactory\assetManager::create()
                         ->setData('data', $data)
-                        ->setData('value', 'Уведомить о снижении цены')
+                        ->setData('value', lang('Notify about price cut', 'pricespy'))
                         ->setData('class', 'btn')
                         ->render('button', true);
             else
                 \CMSFactory\assetManager::create()
                         ->setData('data', $data)
-                        ->setData('value', 'Уже в слежении')
+                        ->setData('value', lang('Already in tracking', 'pricespy'))
                         ->setData('class', 'btn inSpy')
                         ->render('button', true);
         }
