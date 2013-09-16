@@ -150,7 +150,7 @@
 
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang("Latest/recent  comments")}</th>
+                        <th>{lang('Latest/recent comments', 'admin')}</th>
                         </thead>
                         <tbody>
                             {foreach $comments as $c}
@@ -171,7 +171,7 @@
                 {if count($api_news) > 1}
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang("ImageCMS news","admin")}</th>
+                        <th>{lang('ImageCMS news',"admin")}</th>
                         </thead>
                         <tbody>
                             {foreach $api_news as $a}

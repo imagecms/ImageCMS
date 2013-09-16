@@ -30,11 +30,11 @@ class Admin extends BaseAdminController {
         if (empty($_POST)) {
             $this->render('create');
         } else {
-            $this->form_validation->set_rules('mail_name', 'Название шаблона', 'required|xss_clean');
-            $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean');
-            $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
-            $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_text', 'Шаблон письма', 'xss_clean');
+            $this->form_validation->set_rules('mail_name', lang('Template name'), 'required|xss_clean');
+            $this->form_validation->set_rules('mail_theme', lang('Tempalate theme'), 'xss_clean');
+            $this->form_validation->set_rules('sender_name', lang('From'), 'xss_clean');
+            $this->form_validation->set_rules('from_email', lang('From (email)'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_text', lang('Message template'), 'xss_clean');
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors());
             } else {
@@ -48,7 +48,7 @@ class Admin extends BaseAdminController {
                 $data['locale'] = $this->locale;
                 $data['description'] = $this->input->post('mail_desc');
                 $this->sample_mail_model->fromArray($data);
-                showMessage("Шаблон создан");
+                showMessage(lang('Template created'));
                 if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/sample_mail/index');
             }
@@ -73,27 +73,29 @@ class Admin extends BaseAdminController {
                 'locale' => $locale,
             ));
         } else {
-            $this->form_validation->set_rules('mail_name', 'Название шаблона', 'required|xss_clean');
-            $this->form_validation->set_rules('mail_theme', 'Тема шаблона', 'xss_clean');
-            $this->form_validation->set_rules('sender_name', 'От кого', 'xss_clean');
-            $this->form_validation->set_rules('from_email', 'От кого(email)', 'xss_clean|valid_email');
-            $this->form_validation->set_rules('mail_text', 'Шаблон письма', 'xss_clean');
+            $this->form_validation->set_rules('mail_name', lang('Template name'), 'required|xss_clean');
+            $this->form_validation->set_rules('mail_theme', lang('Tempalate theme'), 'xss_clean');
+            $this->form_validation->set_rules('sender_name', lang('From'), 'xss_clean');
+            $this->form_validation->set_rules('from_email', lang('From (email)'), 'xss_clean|valid_email');
+            $this->form_validation->set_rules('mail_text', lang('Message template'), 'xss_clean');
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors());
-            } else {
-                $data['name'] = $this->input->post('mail_name');
-                $data['text'] = $this->input->post('mail_text');
-                $data['settings']['theme'] = $this->input->post('mail_theme');
-                $data['settings']['from'] = $this->input->post('sender_name');
-                $data['settings']['from_mail'] = $this->input->post('from_email');
-                $data['settings']['variables'] = $this->input->post('mail_variables');
-                $data['settings']['mail_type'] = $this->input->post('mail_type');
-                $data['locale'] = $locale;
-                $data['description'] = $this->input->post('mail_desc');
-                $this->sample_mail_model->fromArray($data);
-                showMessage("Шаблон успешно отредактирован");
-                if ($this->input->post('action') == 'tomain')
-                    pjax('/admin/components/cp/sample_mail/index');
+                if ($this->form_validation->run($this) == FALSE) {
+                    showMessage(validation_errors());
+                } else {
+                    $data['name'] = $this->input->post('mail_name');
+                    $data['text'] = $this->input->post('mail_text');
+                    $data['settings']['theme'] = $this->input->post('mail_theme');
+                    $data['settings']['from'] = $this->input->post('sender_name');
+                    $data['settings']['from_mail'] = $this->input->post('from_email');
+                    $data['settings']['variables'] = $this->input->post('mail_variables');
+                    $data['settings']['mail_type'] = $this->input->post('mail_type');
+                    $data['locale'] = $locale;
+                    $data['description'] = $this->input->post('mail_desc');
+                    $this->sample_mail_model->fromArray($data);
+                    showMessage(lang('Template successfully edited'));
+                    if ($this->input->post('action') == 'tomain')
+                        pjax('/admin/components/cp/sample_mail/index');
+                }
             }
         }
     }
@@ -119,7 +121,7 @@ class Admin extends BaseAdminController {
         $names = $this->input->post('ids');
         if (count($names) > 0) {
             $this->sample_mail_model->delete($names);
-            showMessage("Шаблоны удалены");
+            showMessage(lang('Templates deleted'));
         } else {
             return false;
         }

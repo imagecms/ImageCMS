@@ -14,8 +14,7 @@ class ImportXML {
      * Path to upload dir
      * @var string
      */
-//    private $pass = '/exchangeunfu?type=catalog&mode=import&filename';
-//
+
     /** Arrays for db data storage  */
     private $prod = array();
     private $users = array();
@@ -67,7 +66,7 @@ class ImportXML {
     }
 
     public function index() {
-        
+
     }
 
     public function getXML($file) {
@@ -151,8 +150,12 @@ class ImportXML {
 
         foreach ($this->xml->СписокНоменклатуры as $product) {
 //            $searchedProduct = is_prod($product->ID, $this->prod);
+            if (!isset($product->IDРодитель))
+                continue;
 
-            if ((!$product->IDWeb && isset($product->IDРодитель)) || !is_prod((string) $product->ID, $this->prod)) {
+            $is_product = is_prod((string) $product->ID, $this->prod);
+
+            if (!$product->IDWeb || !$is_product) {
                 //product not found, should be inserted
                 //preparing insert data for shop_products table
                 $data = array();
@@ -169,7 +172,7 @@ class ImportXML {
 
 
 //                $data['category_id'] = 0;
-                $data['active'] = true;
+                $data['active'] = false;
                 $data['hit'] = false;
                 $data['code'] = $product->Код . '';
                 $data['measure'] = $product->ЕдиницаИзмерения . '';
@@ -262,7 +265,7 @@ class ImportXML {
                 //preparing data for shop_products_i18n table
                 $data = array();
                 $data['name'] = $product->Наименование . "";
-                $data['id'] = $product->IDWeb . '';
+                $data['id'] = $product->IDWeb . '' ? $product->IDWeb . '' : $is_product['id'];
                 $update_products_i18n[] = $data;
 
                 //preparing data for shop_products_categories
@@ -633,8 +636,9 @@ class ImportXML {
                 $this->insert[] = $data;
             }
         }
+//        var_dump($this->insert,$this->update);
         $this->insertData($this->prices_table);
-        $this->updateData($this->prices_table, 'id');
+        $this->updateData($this->prices_table, 'external_id');
     }
 
     /**
@@ -885,6 +889,7 @@ class ImportXML {
      */
     private function updateData($table, $where = '') {
         if (!empty($this->update)) {
+
             $result = $this->ci->db->update_batch($table, $this->update, $where);
             $this->update = array();
 

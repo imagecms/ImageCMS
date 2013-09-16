@@ -98,12 +98,12 @@ class Search extends MY_Controller {
 
                 $config['page_query_string'] = FALSE;
 
-                $config['next_link'] = 'Вперед→';
-                $config['prev_link'] = '←В начало';
+                $config['next_link'] = lang('Forward', 'search') . '→';
+                $config['prev_link'] = '←' . lang('Beginning', 'search');
                 $config['cur_tag_open'] = '<a class="active">';
                 $config['cur_tag_close'] = '</a>';
 
-                $config['last_link'] = 'Назад';
+                $config['last_link'] = lang('Back', 'search');
 
                 $this->pagination->num_links = 6;
                 $this->pagination->initialize($config);
@@ -125,7 +125,7 @@ class Search extends MY_Controller {
 
         $data = $this->_highlight_text($data, $s_text);
 
-        $this->core->set_meta_tags(array(lang("Search"), $this->search_title));
+        $this->core->set_meta_tags(array(lang("Search", 'search'), $this->search_title));
         $this->_display($data);
     }
 
@@ -182,7 +182,7 @@ class Search extends MY_Controller {
             $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
             $this->db->query($query);
         }
-        showMessage("Позиции сохранены");
+        showMessage(lang('Positions saved', 'search'));
     }
 
     public function clear() {
@@ -218,7 +218,7 @@ class Search extends MY_Controller {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
-            $error = lang("Error. Select or specify the table for search");
+            $error = lang("Error. Select or specify the table for search", 'search');
             return $error;
         }
 
