@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Printing',                    // Menu name
-	'description' => 'Модуль печати.',              // Module Description
+	'menu_name'   => lang('Printing', 'print_data'),                    // Menu name
+	'description' => lang('Printing module.', 'print_data'),              // Module Description
 	'admin_type'  => 'inside',                      // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',                         // Load method. Possible values xhr/iframe
         'w'           => 600,                           // Window width
