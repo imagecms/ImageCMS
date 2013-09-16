@@ -57,6 +57,24 @@
             <!-- End.If count products in category > 0 then show products and pagination links -->
         </div>
         <div class="filter left-catalog">
+            {if $category->hasSubCats()}
+                <div class="frame-category-menu layout-highlight">
+                    <div class="title-menu-category">
+                        <div class="title-default">
+                            <div class="title-h3 title">Категории:</div>
+                        </div>
+                    </div>
+                    <div class="inside-padd">
+                        <nav>
+                            <ul class="nav nav-vertical nav-category" data-pid="{echo $key}">
+                                {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
+                                    <li class="title"><a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a></li>
+                                    {/foreach}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {/if}
             <!-- Load filter-->
             {$CI->load->module('smart_filter')->init()}
         </div>

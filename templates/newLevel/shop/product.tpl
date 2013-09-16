@@ -138,6 +138,7 @@
                                                 </div>
                                                 <div class="btn-buy btn-buy-p">
                                                     <button class="btnBuy infoBut"
+                                                            disabled="disabled"
                                                             type="button"
                                                             data-id="{echo $productVariant->getId()}"
                                                             data-prodid="{echo $model->getId()}"

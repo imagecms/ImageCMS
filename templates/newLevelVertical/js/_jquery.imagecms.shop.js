@@ -2528,22 +2528,20 @@ var ImageCMSApi = {
                     var form = $(selector);
                     ImageCMSApi.returnMsg("[status]:" + obj.status);
                     ImageCMSApi.returnMsg("[message]: " + obj.msg);
+                    if (typeof DS.callback == 'function')
+                        DS.callback(obj.msg, obj.status, form, DS);
+                    else
+                        setTimeout((function() {
+                            form.parent().find(genObj.msgF).fadeOut(function() {
+                                $(this).remove();
+                            });
+                            if (DS.hideForm)
+                                form.show();
+                        }), DS.durationHideForm);
                     if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
                         location.reload();
                     if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
                         location.href = obj.redirect;
-                    if ((obj.refresh == false || obj.refresh == 'false') && (obj.redirect == false || obj.redirect == 'false')) {
-                        if (typeof DS.callback == 'function')
-                            DS.callback(obj.msg, obj.status, form, DS);
-                        else
-                            setTimeout((function() {
-                                form.parent().find(genObj.msgF).fadeOut(function() {
-                                    $(this).remove();
-                                });
-                                if (DS.hideForm)
-                                    form.show();
-                            }), DS.durationHideForm);
-                    }
                     if (obj.status == true) {
                         if (DS.hideForm)
                             form.hide();
