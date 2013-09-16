@@ -1,0 +1,1 @@
+../../../templates/administrator/inc/javascriptVars.tpl

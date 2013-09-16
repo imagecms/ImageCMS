@@ -8,13 +8,24 @@ namespace mod_stats\classes;
  * @author kolia
  */
 class LineDiagramBase {
-
+    
+    protected static $_instance;
     protected $params;
 
     public function __construct() {
         $this->params = $this->getParamsFromCookies();
     }
-
+    
+    
+    /**
+     *
+     * @return LineDiagramBase
+     */
+    public static function create() {
+        (null !== self::$_instance) OR self::$_instance = new self();
+        return self::$_instance;
+    }
+    
     /**
      * For query (select)
      * @return string date pattern for mysql
@@ -35,6 +46,7 @@ class LineDiagramBase {
      * For query (where)
      * @return string condition of date range
      */
+
     public function prepareDateBetweenCondition($field, $table = NULL) {
         $table = is_null($table) ? "" : "`{$table}`.";
         // start date
