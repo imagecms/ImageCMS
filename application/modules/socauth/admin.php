@@ -48,7 +48,7 @@ class Admin extends BaseAdminController {
                 ->where('identif', 'socauth')
                 ->update('components', array('settings' => serialize($result)));
 
-        showMessage("Настройки сохранены");
+        showMessage(lang('Settings are saved', 'socauth'));
         pjax($_SERVER[HTTP_REFERER]);
     }
 

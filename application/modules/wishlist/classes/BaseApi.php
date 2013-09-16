@@ -60,9 +60,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $to_listName = $this->input->post('wishListName');
 
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
-            return $this->dataModel = lang('success');
+            return $this->dataModel = lang('Successful operation','wishlist');
         } else {
-            return $this->errors = lang('error_cant_move');
+            return $this->errors = lang('Unable to move','wishlist');
         }
     }
 
@@ -90,9 +90,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if ($items) {
             if (parent::deleteItemsByIds($items)) {
-                return $this->dataModel = lang('success');
+                return $this->dataModel = lang('Successful operation','wishlist');
             } else {
-                return $this->errors[] = lang('error_cant_delete');
+                return $this->errors[] = lang('Unable to move','wishlist');
             }
         }
     }
@@ -161,9 +161,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
-            return $this->dataModel = lang('updated');
+            return $this->dataModel = lang('Updated','wishlist');
         } else {
-            return $this->errors = lang('error_cant_update');
+            return $this->errors = lang('Not updated','wishlist');
         }
     }
 
@@ -193,7 +193,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $wlDescription = $this->input->post('wlDescription');
 
         if (parent::createWishList($user_id, $listName, $wlType, $wlDescription)) {
-            return $this->dataModel = lang('created');
+            return $this->dataModel = lang('Created','wishlist');
         } else {
             return $this->errors;
         }
@@ -224,7 +224,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
-            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+            $this->errors[] = lang('List description limit exhausted', 'wishlist') . '. ' . lang('List description max count', 'wishlist') . ' - ' . $this->settings['maxWLDescLenght'];
         }
 
         foreach ($this->input->post('comment') as $key => $comment) {
@@ -261,9 +261,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
 
         if (parent::deleteImage($image, $user_id)) {
-            return $this->dataModel[] = lang('deleted');
+            return $this->dataModel[] = lang('Successful deleting','wishlist');
         } else {
-            return $this->errors[] = lang('error');
+            return $this->errors[] = lang('Error','wishlist');
         }
     }
 
@@ -277,18 +277,18 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             if (parent::do_upload($this->input->post('userID'))) {
                 if (!$this->upload->do_upload()) {
                     $this->errors[] = $this->upload->display_errors();
-                    return $this->errors[] = lang('error_download');
+                    return $this->errors[] = lang('Loading error','wishlist');
                 } else {
                     $this->dataModel = array('upload_data' => $this->upload->data());
                     $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
-                    return $this->dataModel[] = lang('picture_uploaded');
+                    return $this->dataModel[] = lang('Image uploaded','wishlist');
                 }
-                return $this->dataModel[] = lang('picture_uploaded');
+                return $this->dataModel[] = lang('Image uploaded','wishlist');
             } else {
-                return $this->errors[] = lang('error_upload_photo');
+                return $this->errors[] = lang('Can not Upload photo', 'wishlist');
             }
         } else {
-            return $this->errors[] = lang('error_user_id');
+            return $this->errors[] = lang('You did not enter user','wishlist');
         }
     }
 

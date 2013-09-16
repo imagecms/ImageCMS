@@ -187,12 +187,12 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
         if (!in_array($varId, $this->userWishProducts)) {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_add_2_WL');
+            $data['value'] = lang('Add to Wish List','wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn';
         } else {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_already_in_WL');
+            $data['value'] = lang('Already in Wish List','wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn inWL';
         }
