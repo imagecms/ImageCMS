@@ -215,6 +215,88 @@ class Stats_model_products extends CI_Model {
         }
     }
 
+    /**
+     * Get product info
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getProductInfoById($id = null) {
+        if ($id == null) {
+            return FALSE;
+        }
+
+        $query = "SELECT  
+                    `shop_products_i18n`.`name`  AS 'Name' ,
+                    IFNULL (SUM(`shop_orders_products`.`quantity`), 0) AS  'CountOfPurchasses'
+                FROM  
+                    `shop_products_i18n` 
+                LEFT JOIN  `shop_orders_products` ON  `shop_products_i18n`.`id` =  `shop_orders_products`.`product_id` 
+                
+                WHERE  
+                        `shop_products_i18n`.`locale` =  '" . $this->locale . "'
+                    AND 
+                        `shop_products_i18n`.`id` = '" . $id . "'
+                GROUP BY  `shop_products_i18n`.`name`";
+
+        $result = $this->db->query($query)->row_array();
+
+        if ($result != null) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Get product rating
+     * @param int $id
+     * @return boolean|array
+     */
+    public function getProductRatingById($id = null) {
+        if ($id == null) {
+            return 0;
+        }
+
+        $result = $this->db->where('product_id', $id)->get('shop_products_rating')->row_array();
+
+        if ($result != null) {
+            $rating = number_format($result['rating'] / $result['votes'], 2);
+            return $rating;
+        } else {
+            return 0;
+        }
+    }
+    
+    /**
+     * Get first level categories ids
+     * @return boolean|array
+     */
+    public function getFirstLevelCategoriesIds() {
+        $query = "SELECT id 
+                FROM `shop_category` 
+                WHERE  `url`=`full_path`";
+        $result = $this->db->query($query)->result_array();
+        if ($result != null){
+           return $this->prepareArray($result);
+        }
+        return FALSE;
+    }
+    
+    /**
+     * Prepare array with categories ids
+     * @param array $dataArray
+     * @return boolean|array
+     */
+    public function prepareArray($dataArray = null) {
+        if ($dataArray == null) {
+            return false;
+        }
+        $result = [];
+        foreach ($dataArray as $key => $value) {
+                $result[] = $value['id'];
+        }
+        return $result;
+    }
 }
 
 ?>
