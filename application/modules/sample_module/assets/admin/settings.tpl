@@ -3,13 +3,13 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">Модуль пример</span>
+                <span class="title">{lang('Example module', 'sample_module')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang("Save")}</button>
-                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back")}</button>
+                    <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sample_module')}</span></a>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings"><i class="icon-ok"></i>{lang("Save", 'sample_module')}</button>
+                    <button type="button" class="btn btn-small formSubmit" data-form="#sample_module_settings" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'sample_module')}</button>
                         {echo create_language_select($languages, $locale, "/admin/components/modules_table')}
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th colspan="6">
-                            {lang("Properties")}
+                            {lang("Properties", 'sample_module')}
                         </th>
                     </tr>
                 </thead>
@@ -31,22 +31,22 @@
                                     <div class="row-fluid">
                                         <form id="sample_module_settings" method="post" action="{$BASE_URL}admin/components/cp/sample_module/updateSettings">
                                             <div class="control-group">
-                                                <label class="control-label" for="mailTo">Email Администратора</label>
+                                                <label class="control-label" for="mailTo">{lang('Administrator E-mail')}</label>
                                                 <div class="controls">
                                                     <input type="text" name="mailTo" id="mailTo" value="{$mailTo}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="useEmailNotification">Уведомлять по email</label>
+                                                <label class="control-label" for="useEmailNotification">{lang('Notify by E-mail')}</label>
                                                 <div class="controls">
                                                     <select name="useEmailNotification">
-                                                        <option {if $useEmailNotification == 'TRUE'}selected="selected"{/if} value="TRUE">Да</option>
-                                                        <option {if $useEmailNotification == 'FALSE'}selected="selected"{/if}value="FALSE">Нет</option>
+                                                        <option {if $useEmailNotification == 'TRUE'}selected="selected"{/if} value="TRUE">{lang('Yes', 'sample_module')}</option>
+                                                        <option {if $useEmailNotification == 'FALSE'}selected="selected"{/if}value="FALSE">{lang('No', 'sample_module')}</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="key">Секретный ключ</label>
+                                                <label class="control-label" for="key">{lang('Secret key', 'sample_module')}</label>
                                                 <div class="controls">
                                                     <input type="text" name="key" id="key" value="{$key}"/>
                                                 </div>

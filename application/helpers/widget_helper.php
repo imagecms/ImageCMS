@@ -105,8 +105,9 @@ if (!function_exists('getProductViewsCount')) {
 
     function getProductViewsCount() {
         $ci = & get_instance();
-
+        
         $views = $ci->session->userdata('page');
+        
         if($views){
             $count = count($views);
         }else{
