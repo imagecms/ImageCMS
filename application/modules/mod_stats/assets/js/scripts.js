@@ -451,18 +451,50 @@ $(document).ready(function() {
         });
     });
 
+    /** 
+     * Select category change
+     */
     $('#selectCategoryId').unbind('change').bind('change', function() {
         var selectElement = $(this);
         var categoryId = selectElement.find("option:selected").val();
         var CookieDate = new Date();
 
         /** Date for saving cookies **/
-//        CookieDate.setTime(CookieDate.getTime()+(30*60*1000));
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
         document.cookie = "cat_id_for_stats=" + categoryId + " ;expires=" + CookieDate.toGMTString() + ";path=/";
 
         $('#refreshIntervalsButton').trigger('click');
 
+    });
+
+    /** 
+     * Show/Hide select with categories list
+     */
+    $('#selectCategoryHideShow').unbind('click').bind('click', function() {
+        $('#categoriesMultiSelectBlock').toggle();
+    });
+
+    /**
+     * Re draw chart with new selected categorie's ids
+     */
+    $('#withSelectedCategoriesDrawChartButton').unbind('click').bind('click', function() {
+        var catIds = [];
+        var CookieDate = new Date();
+        var jsonCategoriesIds;
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+
+        $('#selectCategoriesIds option:selected').each(function(i, selected) {
+            catIds[i] = $(selected).val();
+        });
+        
+        try {
+            jsonCategoriesIds = JSON.stringify(catIds);
+        } catch (e) {
+            console.log(e.name);
+        }
+        document.cookie = "selected_cat_ids_prod_stat=" + jsonCategoriesIds + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+
+        $('#refreshIntervalsButton').trigger('click');
     });
 
 });
