@@ -74,7 +74,7 @@ class Stats_model_users extends CI_Model {
         return $data;
     }
 
-    public function templateInformation() {
+    public function getInformation() {
         $lineDiagramBase = new \mod_stats\classes\LineDiagramBase();
 
         $params = $lineDiagramBase->getParamsFromCookies();
@@ -89,7 +89,8 @@ class Stats_model_users extends CI_Model {
                 SUM(`products_count`) as `products_count`,
                 SUM(`quantity`) as `quantity`,
                 GROUP_CONCAT(`order_id` SEPARATOR ', ') as `orders_ids`,
-                `username`
+                `username`,
+                `user_id`
             FROM 
                 (SELECT 
                     `shop_orders`.`id` as `order_id`,
@@ -117,12 +118,6 @@ class Stats_model_users extends CI_Model {
             ORDER BY `orders_count` DESC
         ";
         
-        echo "<pre>";
-        echo $query;
-        echo "</pre>";
-        
-        return array($query);
-        
         $result = $this->db->query($query);
         if ($result === FALSE) {
             return FALSE;
@@ -131,8 +126,6 @@ class Stats_model_users extends CI_Model {
         foreach ($result->result_array() as $row) {
             $data[] = $row;
         }
-        
-        
 
         return $data;
     }
