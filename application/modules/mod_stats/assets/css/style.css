@@ -25,8 +25,17 @@
 .settingsContainer{
     border: 1px solid #ddd; display: block;
     padding: 3px 3px 3px 10px;
-   
 }
 .fixedTableWithLeftScroll{
     overflow-y: auto; height: 500px;
 }
+
+
+/* Інформація про користувачів */
+#user_information table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+#user_information table thead th {width: 10%;}
+#user_information table thead th:nth-child(5) {width: 28%;}
+#user_information table thead th:nth-child(6) {width: 12%;}

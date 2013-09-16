@@ -460,7 +460,6 @@ $(document).ready(function() {
 //        CookieDate.setTime(CookieDate.getTime()+(30*60*1000));
         CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
         document.cookie = "cat_id_for_stats=" + categoryId + " ;expires=" + CookieDate.toGMTString() + ";path=/";
-
         $('#refreshIntervalsButton').trigger('click');
 
     });
