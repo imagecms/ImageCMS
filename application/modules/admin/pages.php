@@ -155,7 +155,7 @@ class Pages extends BaseAdminController {
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
-            showMessage(validation_errors(), false, 'r');
+            showMessage(lang('Error', 'admin'), false, 'r');
         } else {
             // load site settings
             $settings = $this->cms_admin->get_settings();

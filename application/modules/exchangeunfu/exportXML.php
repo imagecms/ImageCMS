@@ -446,7 +446,7 @@ class ExportXML {
                 $this->categories_export .
                 $this->price_export .
                 $this->productivity_export .
-                $this->invoice_export .
+//                $this->invoice_export .
                 $this->order_export;
 
 

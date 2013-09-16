@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("RSS channel options or specifications")}</span>
+            <span class="title">{lang("RSS channel options or specifications", 'rss')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back")}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#rss_settings_form" data-submit><i class="icon-ok"></i>{lang("Save")}</button>
+                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'rss')}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#rss_settings_form" data-submit><i class="icon-ok"></i>{lang("Save", 'rss')}</button>
             </div>
         </div>                            
     </div>
@@ -15,47 +15,47 @@
         <form action="{$BASE_URL}admin/components/cp/rss/settings_update" id="rss_settings_form" method="post" class="form-horizontal">
             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                 <thead>
-                <th>{lang("Settings")}</th>
+                <th>{lang("Settings", 'rss')}</th>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
                             <div class="inside_padd span9">
                                 <div class="control-group">
-                                    <label class="control-label" for="comcount">{lang("Name")}:</label>
+                                    <label class="control-label" for="comcount">{lang("Name", 'rss')}:</label>
                                     <div class="controls">
                                         <input type="text" name="title" value="{$settings.title}" id="comcount"/>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="symcount">{lang("Description")}:</label>
+                                    <label class="control-label" for="symcount">{lang("Description", 'rss')}:</label>
                                     <div class="controls">
                                         <textarea class="mceEditor" name="description" id="symcount">{$settings.description}</textarea>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="selectcat">{lang("Categories")}:</label>
+                                    <label class="control-label" for="selectcat">{lang("Categories", 'rss')}:</label>
                                     <div class="controls">
                                         <select name="categories[]" multiple="multiple" id="selectcat">
-                                            <option value="0" {if $settings.categories.0 == 0} selected="selected" {/if}>{lang("Without a category")}</option>
+                                            <option value="0" {if $settings.categories.0 == 0} selected="selected" {/if}>{lang("Without a category", 'rss')}</option>
                                             <option disabled="disabled"> </option>
                                             {echo build_cats_tree($cats, $settings.categories)}
                                         </select>
-                                        <span class="help-inline">{lang("Choose transmition categories")}</span>
+                                        <span class="help-inline">{lang("Choose transmition categories", 'rss')}</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="pages_count">{lang("Number of pages")}:</label>
+                                    <label class="control-label" for="pages_count">{lang("Number of pages", 'rss')}:</label>
                                     <div class="controls">
                                         <input type="text" name="pages_count" value="{$settings.pages_count}" id="pages_count"/>
-                                        <span class="help-inline">{lang("Specify the number of pages for display")}</span>
+                                        <span class="help-inline">{lang("Specify the number of pages for display", 'rss')}</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="cache">{lang("Cache")}:</label>
+                                    <label class="control-label" for="cache">{lang("Cache", 'rss')}:</label>
                                     <div class="controls">
                                         <input type="text" name="cache_ttl" value="{$settings.cache_ttl}" id="cache"/>
-                                        <span class="help-inline">{lang("Specify cashe lifetime in minutes")}</span>
+                                        <span class="help-inline">{lang("Specify cashe lifetime in minutes", 'rss')}</span>
                                     </div>
                                 </div>
                             </div>

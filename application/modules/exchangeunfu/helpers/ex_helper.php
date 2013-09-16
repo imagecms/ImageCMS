@@ -53,7 +53,7 @@ if (!function_exists('load_productivity')) {
 
     function load_productivity() {
         $ci = & get_instance();
-        
+
         return $ci->db->get('mod_exchangeunfu_productivity')->result_array();
     }
 
@@ -63,7 +63,7 @@ if (!function_exists('load_partners')) {
 
     function load_partners() {
         $ci = & get_instance();
-        
+
         return $ci->db->get('mod_exchangeunfu_partners')->result_array();
     }
 
@@ -73,7 +73,7 @@ if (!function_exists('load_prices')) {
 
     function load_prices() {
         $ci = & get_instance();
-        
+
         return $ci->db->get('mod_exchangeunfu_prices')->result_array();
     }
 
@@ -94,14 +94,10 @@ if (!function_exists('is_partner')) {
 
 if (!function_exists('is_price')) {
 
-    function is_price($price_import, $price_db) {
-        foreach ($price_db as $val) {
-            if (    $val['product_external_id'] == $price_import['product_external_id'] && 
-                    $val['partner_external_id'] == $price_import['partner_external_id'] 
-                ){
-                    return $val;
-                }
-                
+    function is_price($price_ext_id, $prices) {
+        foreach ($prices as $val) {
+            if ($val['external_id'] == $price_ext_id)
+                return $val;
         }
         return false;
     }
@@ -110,15 +106,10 @@ if (!function_exists('is_price')) {
 
 if (!function_exists('is_productivity')) {
 
-    function is_productivity($productivity_import, $productivity_db) {
+    function is_productivity($productivity_ext_id, $productivity_db) {
         foreach ($productivity_db as $val) {
-            if (    $val['date'] == $productivity_import['date'] && 
-                    $val['hour'] == $productivity_import['hour'] &&
-                    $val['partner_external_id'] == $productivity_import['partner_external_id']
-                ){
-                    return $val;
-                }
-                
+            if ($val['external_id'] == $productivity_ext_id)
+                return $val;
         }
         return false;
     }

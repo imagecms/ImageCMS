@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Поиск',
+	'menu_name'   => lang('Search', 'search'),
 	'description' => '',                
 	'admin_type'  => 'inside',            
 	'window_type' => 'xhr',               

@@ -81,7 +81,7 @@ class MY_Lang extends MX_Lang {
 
         unset($sett);
         $this->gettext_language = $this->ci->config->item('language');
-
+        
         $this->ci->load->library('gettext_php/gettext_extension', array());
         $this->gettext = & $this->ci->gettext_extension->getInstance();
     }
@@ -127,6 +127,7 @@ class MY_Lang extends MX_Lang {
             $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
             $lang = $languageFront[1];
         }
+//        $lang = 'de_DE';
 
 //            var_dumps($module);
         if (strstr($_SERVER['PATH_INFO'], 'install'))
