@@ -419,8 +419,50 @@ $(document).ready(function() {
             }
         });
     }
-    
-    
-    
+
+    /**
+     * Show info about product
+     */
+    $('#productInfoButtonShow').unbind('click').bind('click', function() {
+        var productId = $('#statsProductId').val();
+        var responseArray;
+        if (productId === '' || productId === undefined) {
+            return;
+        }
+
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=true',
+            url: base_url + 'admin/components/cp/mod_stats/ajaxGetProductInfoById/' + productId,
+            success: function(response) {
+                if (response !== 'false') {
+                    try {
+                        responseArray = $.parseJSON(response);
+                    } catch (e) {
+                        return 'error parsing jsone';
+                    }
+                    $('#productInfoTableContainer').show();
+                    $.each(responseArray, function(index, value) {
+                        $('#productInfoTableValue' + index).html(value);
+                    });
+                }
+            }
+        });
+    });
+
+    $('#selectCategoryId').unbind('change').bind('change', function() {
+        var selectElement = $(this);
+        var categoryId = selectElement.find("option:selected").val();
+        var CookieDate = new Date();
+
+        /** Date for saving cookies **/
+//        CookieDate.setTime(CookieDate.getTime()+(30*60*1000));
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        document.cookie = "cat_id_for_stats=" + categoryId + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+
+        $('#refreshIntervalsButton').trigger('click');
+
+    });
 
 });

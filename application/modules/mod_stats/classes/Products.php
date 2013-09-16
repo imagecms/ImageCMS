@@ -60,7 +60,28 @@ class Products extends \MY_Controller {
             'data' => $pieData
         ));
     }
-
+    
+    
+    public function getProductInfo(){
+        
+    }
+    
+    /**
+     * Get product info by id (name, count of purchasses, rating, comments count)
+     * @param int $id
+     * @return json 
+     */
+    public function getProductInfoById($id = null){
+        $result = $this->stats_model_products->getProductInfoById($id);
+        if ($result == false){
+            echo 'false';
+            return;
+        }
+        $result['Rating'] = $this->stats_model_products->getProductRatingById($id);
+        
+        echo json_encode($result);
+    }
+    
 }
 
 ?>

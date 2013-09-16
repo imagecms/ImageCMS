@@ -4,7 +4,7 @@
 
 use \mod_stats\classes\Products as Products;
 use \mod_stats\classes\Orders as Orders;
-use \mod_stats\classes\ProductsCategories as ProductsCategories;
+use \mod_stats\classes\Categories as ProductsCategories;
 use \mod_stats\classes\Search as Search;
 use \mod_stats\classes\Users as Users;
 
@@ -37,6 +37,7 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
+        
     }
 
     /**
@@ -104,7 +105,7 @@ class Admin extends \BaseAdminController {
                 $object = Orders::create();
                 break;
             case "categories":
-                $object = Categories::create();
+                $object = ProductsCategories::create();
                 break;
             case "search":
                 $object = Search::create();
@@ -140,5 +141,16 @@ class Admin extends \BaseAdminController {
      */
     public function autoCompliteProducts() {
         \mod_stats\classes\AdminHelper::create()->autoCompliteProducts();
+    }
+    
+    /**
+     * Ajax get product info by id (name, count of purchasses, rating, comments count)
+     */
+    public function ajaxGetProductInfoById($id = null){
+        if ($id == null){
+            echo 'false';
+            return;
+        }
+        \mod_stats\classes\Products::create()->getProductInfoById($id);
     }
 }
