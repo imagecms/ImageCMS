@@ -1,1 +1,3 @@
-user_information
+<pre>
+{print_r($data)}
+</pre>

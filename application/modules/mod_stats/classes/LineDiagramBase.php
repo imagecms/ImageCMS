@@ -35,7 +35,8 @@ class LineDiagramBase {
      * For query (where)
      * @return string condition of date range
      */
-    public function prepareDateBetweenCondition($field) {
+    public function prepareDateBetweenCondition($field, $table = NULL) {
+        $table = is_null($table) ? "" : "`{$table}`.";
         // start date
         $start_date = $this->getBetweenDate($this->params['start_date'], 'start');
         $end_date = $this->getBetweenDate($this->params['end_date'], 'end');
@@ -44,7 +45,7 @@ class LineDiagramBase {
         if (!is_null($start_date) || !is_null($end_date)) {
             $start_date = is_null($start_date) == TRUE ? "'2000-01-01 00:00:00'" : "'{$start_date}'";
             $end_date = is_null($end_date) == TRUE ? 'NOW()' : "'{$end_date}'";
-            return "AND FROM_UNIXTIME(`dtable`.`{$field}`) BETWEEN {$start_date} AND {$end_date}";
+            return "AND FROM_UNIXTIME({$table}`{$field}`) BETWEEN {$start_date} AND {$end_date}";
         } else {
             return '';
         }

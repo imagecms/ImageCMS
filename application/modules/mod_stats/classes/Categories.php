@@ -16,8 +16,8 @@ class Categories extends \MY_Controller {
      * @return Products
      */
     public static function create() {
-        (null !== self::$_instance) OR self::$_instance = new self();
-        return self::$_instance;
+        (null !== self::$instanse) OR self::$instanse = new self();
+        return self::$instanse;
     }
 
    
