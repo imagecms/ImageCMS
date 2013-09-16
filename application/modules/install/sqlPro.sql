@@ -1628,10 +1628,14 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+<<<<<<< HEAD
 -- --------------------------------------------------------
 
 
 DROP TABLE IF EXISTS `shop_discounts`;
+=======
+-- ----------------discount_old----------------------------------------
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1647,7 +1651,10 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
   `user_group` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 --
 -- Структура таблиці `shop_gifts`
 --
