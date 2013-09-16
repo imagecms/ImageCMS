@@ -4,7 +4,7 @@
 
 use \mod_stats\classes\Products as Products;
 use \mod_stats\classes\Orders as Orders;
-use \mod_stats\classes\ProductsCategories as ProductsCategories;
+use \mod_stats\classes\Categories as Categories;
 use \mod_stats\classes\Search as Search;
 use \mod_stats\classes\Users as Users;
 

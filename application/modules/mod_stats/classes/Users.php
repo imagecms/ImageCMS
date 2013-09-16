@@ -41,15 +41,12 @@ class Users extends \MY_Controller {
         $usersRegister = $this->stats_model_users->getRegister($params);
         $lineDiagramBase = new \mod_stats\classes\LineDiagramBase();
 
-
         // getting data by only specified field
         $dataByField = array();
         foreach ($usersRegister as $user) {
             $dataByField[$user['date']] = $user['count'];
         }
         unset($usersRegister);
-
-
 
         // filling by zeros for wright data representation in diagram
         $filledWithZeros = $lineDiagramBase->fillMissingWithZero($dataByField);
