@@ -31,7 +31,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 480px;}
+body, .overlayDrop{min-width: 960px;}
 article, .container, .horizontal-carousel .special-proposition > .frame-title{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}

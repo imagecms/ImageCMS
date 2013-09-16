@@ -37,6 +37,7 @@ class Admin extends \BaseAdminController {
                     ->registerScript('nvd3/nv.d3', FALSE, 'before')
                     ->renderAdmin('main', true);
         }
+        
     }
 
     /**
@@ -127,21 +128,29 @@ class Admin extends \BaseAdminController {
         return $this->stats_model->getSettingByName($settingName);
     }
 
+    /**
+     * Ajax update setting by value and setting name
+     */
     public function ajaxUpdateSettingValue() {
-        /** Get data from post * */
-        $settingName = $this->input->get('setting');
-        $settingValue = $this->input->get('value');
-        var_dump($settingName);
-
-        /** Set setting value * */
-        $result = $this->stats_model->updateSettingByNameAndValue($settingName, $settingValue);
-
-        /** Return result * */
-        if ($result) {
-            echo 'true';
-        } else {
-            echo 'false';
-        }
+        \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
     }
 
+    /**
+     * Autocomlete products
+     * @return jsone
+     */
+    public function autoCompliteProducts() {
+        \mod_stats\classes\AdminHelper::create()->autoCompliteProducts();
+    }
+    
+    /**
+     * Ajax get product info by id (name, count of purchasses, rating, comments count)
+     */
+    public function ajaxGetProductInfoById($id = null){
+        if ($id == null){
+            echo 'false';
+            return;
+        }
+        \mod_stats\classes\Products::create()->getProductInfoById($id);
+    }
 }

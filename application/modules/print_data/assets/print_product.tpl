@@ -11,13 +11,13 @@
                     <div class="f_r image">
                         <img src="{echo $product->firstvariant->getMediumPhoto()}" /><br/>
                     </div>
-                    {if $product->getbrand()}<strong>Бренд:</strong> {echo $product->getbrand()->getname()}<br/>{/if}
-                    <strong>Категория:</strong> {echo $product->getmaincategory()->getname()}<br/>
-                    <strong>Цена:</strong> {echo $variant->getPrice()} {$CS}<br/>
-                    <strong>Количество:</strong> {echo $variant->getStock()}<br/>
-                    <strong>Характеристики:</strong><br />
+                    {if $product->getbrand()}<strong>{lang('Brand', 'print_data')}:</strong> {echo $product->getbrand()->getname()}<br/>{/if}
+                    <strong>{lang('Category', 'print_data')}:</strong> {echo $product->getmaincategory()->getname()}<br/>
+                    <strong>{lang('Price', 'print_data')}:</strong> {echo $variant->getPrice()} {$CS}<br/>
+                    <strong>{lang('Quantity', 'print_data')}:</strong> {echo $variant->getStock()}<br/>
+                    <strong>{lang('Characteristics', 'print_data')}:</strong><br />
                     {echo ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($product->getId())}
-                    <strong>Описание:</strong><br />
+                    <strong>{lang('Description', 'print_data')}:</strong><br />
                     {if $desc = trim($product->getfulldescription())}
                         {echo $desc}
                     {else:}

@@ -19,7 +19,7 @@
                 </li>
                 <div class="submenu">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/orders/count" class="linkChart" id="startPage">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Count', 'mod_stats')}     
                         </a>
                     </li>
@@ -78,12 +78,12 @@
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/product_info" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/productInfo" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Product info', 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receipt_of_goods" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/products/receiptOfGoods" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Receipt of goods', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -95,17 +95,12 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/most_visited" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/mostVisited" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Most visited', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/products_in_categories" class="linkChart"> &nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang('Products in categories', 'mod_stats')}                                        
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/brands_in_categories" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/categories/brandsInCategories" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in category', 'mod_stats')}                                      
                         </a>
                     </li>
@@ -117,28 +112,23 @@
                 </li>
                 <div class="submenu" style="display: none;">
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywords_searched" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/keywordsSearched" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Keywords searched', 'mod_stats')}     
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brands_in_search" class="linkChart"> &nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/brandsInSearch" class="linkChart"> &nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang('Brands in search results', 'mod_stats')}                                        
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categories_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/categoriesInSearch" class="linkChart">&nbsp;&nbsp;&nbsp;
                             <span class="simple_tree">↳</span>{lang("Product's categories in search results", 'mod_stats')}                                      
                         </a>
                     </li>
                     <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/products_in_search" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("Products in search results", 'mod_stats')}                                      
-                        </a>
-                    </li>
-                    <li>
-                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/no_result" class="linkChart">&nbsp;&nbsp;&nbsp;
-                            <span class="simple_tree">↳</span>{lang("No results", 'mod_stats')}                                      
+                        <a data-href="admin/components/init_window/mod_stats/getStatsTemplate/search/pageNotFound" class="linkChart">&nbsp;&nbsp;&nbsp;
+                            <span class="simple_tree">↳</span>{lang("Page not found", 'mod_stats')}                                      
                         </a>
                     </li>
                 </div>
@@ -178,7 +168,7 @@
                         <span class="icon-calendar"></span>
                     </label>
                 </span>
-                <button class="btn btn-small" type="button" id="refreshIntervalsButton">
+                <button class="btn btn-small m_t_-10" type="button" id="refreshIntervalsButton">
                     <i class="icon-refresh"></i>
                 </button>
                 <div class="pull-right">
@@ -194,6 +184,7 @@
                 </div>
 
             </div>
+            <hr class="m-t_5" />
             <div id="chartContainer" class="span12" style="margin-left: 0 !important;">
             </div>
         </div>

@@ -7,6 +7,7 @@
 if (!$ADMIN_URL) $ADMIN_URL = '/admin/components/run/shop/';
 
 $baseMenu = array(
+    
     array(
         'link'      => '/admin/dashboard',
         'text'      => lang('Dashboard', 'admin'),

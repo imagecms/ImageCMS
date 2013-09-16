@@ -302,11 +302,6 @@ $(document).ready(function() {
                 endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() + 1));
                 break;
 
-            case 'week':
-                startDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), (nowDate.getDate() - 7));
-                endDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
-                break;
-
             case 'month':
                 startDate = new Date(nowDate.getFullYear(), nowDate.getMonth());
                 endDate = new Date(nowDate.getFullYear(), (nowDate.getMonth() + 1));
@@ -318,8 +313,8 @@ $(document).ready(function() {
         }
 
         /** Prepare values for start and end date inputs **/
-        startDateForInput = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (startDate.getDate() + 1)).slice(-2);
-        endDateForInput = endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (endDate.getDate() + 1)).slice(-2);
+        startDateForInput = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (startDate.getDate())).slice(-2);
+        endDateForInput = endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' + ('0' + (endDate.getDate())).slice(-2);
 
         /** Set values for start and end date inputs **/
         $('.date_start').val(startDateForInput);
@@ -409,4 +404,65 @@ $(document).ready(function() {
         });
 
     });
+
+    /**
+     * Autocomplete products
+     */
+    if ($('#productForStats').length) {
+        $('#productForStats').autocomplete({
+            source: base_url + 'admin/components/cp/mod_stats/autoCompliteProducts?limit=25&notLoadMain=true',
+            select: function(event, ui) {
+                productsData = ui.item;
+            },
+            close: function() {
+                $('#statsProductId').val(productsData.id);
+            }
+        });
+    }
+
+    /**
+     * Show info about product
+     */
+    $('#productInfoButtonShow').unbind('click').bind('click', function() {
+        var productId = $('#statsProductId').val();
+        var responseArray;
+        if (productId === '' || productId === undefined) {
+            return;
+        }
+
+        $.ajax({
+            async: false,
+            type: 'get',
+            data: 'notLoadMain=true',
+            url: base_url + 'admin/components/cp/mod_stats/ajaxGetProductInfoById/' + productId,
+            success: function(response) {
+                if (response !== 'false') {
+                    try {
+                        responseArray = $.parseJSON(response);
+                    } catch (e) {
+                        return 'error parsing jsone';
+                    }
+                    $('#productInfoTableContainer').show();
+                    $.each(responseArray, function(index, value) {
+                        $('#productInfoTableValue' + index).html(value);
+                    });
+                }
+            }
+        });
+    });
+
+    $('#selectCategoryId').unbind('change').bind('change', function() {
+        var selectElement = $(this);
+        var categoryId = selectElement.find("option:selected").val();
+        var CookieDate = new Date();
+
+        /** Date for saving cookies **/
+//        CookieDate.setTime(CookieDate.getTime()+(30*60*1000));
+        CookieDate.setFullYear(CookieDate.getFullYear( ) + 1);
+        document.cookie = "cat_id_for_stats=" + categoryId + " ;expires=" + CookieDate.toGMTString() + ";path=/";
+
+        $('#refreshIntervalsButton').trigger('click');
+
+    });
+
 });

@@ -3,8 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-        <title>{lang("Operation panel","admin")} - Image CMS</title>
-        <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
+        <title>{lang('Operation panel',"admin")} - Image CMS</title>
+        <meta name="description" content="{lang('Operation panel',"admin")} - Image CMS" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
@@ -37,11 +37,11 @@
                         {$login_failed}
                     {/if}
                     <label>
-                        <input type="text" name="login" placeholder="{lang("E-mail")}"/>{$login_error}
+                        <input type="text" name="login" placeholder="{lang('E-mail', 'admin')}"/>{$login_error}
                         <span class="icon-user"></span>
                     </label>
                     <label>
-                        <input type="password" name="password" placeholder="{lang("Password","admin")}"/>{$password_error}
+                        <input type="password" name="password" placeholder="{lang('Password','admin')}"/>{$password_error}
                         <span class="icon-lock"></span>
                     </label>
                     {if $use_captcha == "1"}
@@ -49,7 +49,7 @@
                         <label style="margin-bottom:50px">
                             {$lang_captcha}:<br/>
                             <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang("Update the code","admin")}</a>
+                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');return false;">{lang('Update the code',"admin")}</a>
                             <input type="text" name="captcha" />{$captcha_error}
                         </label>
                     {/if}
@@ -59,12 +59,12 @@
                                 <span class="niceCheck">
                                     <input type="checkbox" name="remember" value="1"/>
                                 </span>
-                                {lang("Remember","admin")}
+                                {lang('Remember',"admin")}
                             </span>
                         </div>
-                        <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang("Forgot your password","admin")}</a>
+                        <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang('Forgot your password?',"admin")}</a>
                     </div>
-                    <input type="submit" value="{lang("Log in","admin")}" class="btn btn-info" style="margin-top: 26px;"/>
+                    <input type="submit" value="{lang('Log in',"admin")}" class="btn btn-info" style="margin-top: 26px;"/>
                     {form_csrf()}
                 </form>
             </div>

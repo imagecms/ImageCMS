@@ -278,12 +278,12 @@
                         </div>
 
                         <!-- creating hot bubble for products image if product is hot -->
-                        {if $p->getHot()}
+                        {if $product->getHot()}
                             <span class="top_tovar nowelty">{lang("New","admin")}</span>
                         {/if}
 
                         <!-- creating hot bubble for products image if product is action -->
-                        {if $p->getAction()}
+                        {if $product->getAction()}
                             <span class="top_tovar promotion">{lang("Promotion","admin")}</span>
                         {/if}
 

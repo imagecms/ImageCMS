@@ -101,7 +101,7 @@ $(document).ready(function() {
 
     $('.deletePartnerPrice').die().live('click', function() {
         var product_external_id = $(this).closest('tr').data('productid')
-        var partner = $(this).closest('tr').data('partner');
+        var partnercode = $(this).closest('tr').data('partnercode');
         $(this).closest('tr').remove();
         if (!$('.partnerData').length) {
             $('.PartnersTable').css('display', 'none');
@@ -112,7 +112,7 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 product_external_id: product_external_id,
-                partner: partner
+                partnercode: partnercode
             },
             url: '/exchangeunfu/deletePartner',
             success: function(data) {
@@ -124,7 +124,7 @@ $(document).ready(function() {
 
     $('.setHitPartner').die().live('click', function() {
         var product_external_id = $(this).closest('tr').data('productid')
-        var partner = $(this).closest('tr').data('partner');
+        var partnercode = $(this).closest('tr').data('partnercode');
         var hit = 0;
         if (!$(this).hasClass('btn-primary')) {
             hit = 1;
@@ -135,7 +135,7 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 product_external_id: product_external_id,
-                partner: partner,
+                partnercode: partnercode,
                 hit: hit
             },
             url: '/exchangeunfu/setHit',
@@ -147,7 +147,7 @@ $(document).ready(function() {
 
     $('.setHotPartner').die().live('click', function() {
         var product_external_id = $(this).closest('tr').data('productid')
-        var partner = $(this).closest('tr').data('partner');
+        var partnercode = $(this).closest('tr').data('partnercode');
         var hot = 0;
         if (!$(this).hasClass('btn-primary')) {
             hot = 1;
@@ -158,7 +158,7 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 product_external_id: product_external_id,
-                partner: partner,
+                partnercode: partnercode,
                 hot: hot
             },
             url: '/exchangeunfu/setHot',
@@ -170,7 +170,7 @@ $(document).ready(function() {
 
     $('.setActionPartner').die().live('click', function() {
         var product_external_id = $(this).closest('tr').data('productid')
-        var partner = $(this).closest('tr').data('partner');
+        var partnercode = $(this).closest('tr').data('partnercode');
         var action = 0;
         if (!$(this).hasClass('btn-primary')) {
             action = 1;
@@ -181,7 +181,7 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 product_external_id: product_external_id,
-                partner: partner,
+                partnercode: partnercode,
                 action: action
             },
             url: '/exchangeunfu/setAction',
