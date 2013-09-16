@@ -172,7 +172,7 @@
                                                     <td class="w580" width="580">
                                                         <div id="headline" align="center">
                                                             <p>
-                                                                <strong><singleline label="Title">Статус коментраия #{echo $comment->id} был обновлён успешно</singleline></strong>
+                                                                <strong><singleline label="Title">{lang('Comment status')}#{echo $comment->id} {lang('has been updated successfully')}</singleline></strong>
                                                             </p>
                                                         </div>
                                                     </td>
@@ -196,7 +196,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td class="w580" width="350" style="font-size: 16px;color: #444;">
-                                                                        <b>Перейти на страницу с комментраием :</b>
+                                                                        <b>{lang('Go to the page with the comment')}:</b>
                                                                     </td>
                                                                     <td style="font-size: 16px;">
                                                                         <a style="text-decoration: underline;" href="{site_url($comment->source['full_url'])}">{truncate(site_url($comment->source['full_url']), 35)}</a>
