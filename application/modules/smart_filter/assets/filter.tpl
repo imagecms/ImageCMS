@@ -3,9 +3,9 @@
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
-            <div class="title">Цена</div>
+            <div class="title">{lang('Price', 'smart_filter')}</div>
             <div class="slider-cont">
-                <noscript>Джаваскрипт не включен</noscript>
+                <noscript>{lang('Javascript is not enabled', 'smart_filter')}</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
                 <div class="slider" id="slider1">
                     <a href="#" class="ui-slider-handle left-slider"></a>
@@ -16,13 +16,13 @@
                 <div class="t-a_j">
                     {/*may been delete*/}
                     <label>
-                        <input type="text" class="minCost" data-title="только цифры" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
+                        <input type="text" class="minCost" data-title="{lang('Only numeric', 'smart_filter')}" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
                     </label>
                     <label>
-                        <input type="text" class="maxCost" data-title="только цифры" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
+                        <input type="text" class="maxCost" data-title="{lang('Only numeric', 'smart_filter')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
                     <div class="btn-def">
-                        <input type="submit" value="ОК"/>
+                        <input type="submit" value="{lang('OK', 'smart_filter')}"/>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
     <div class="frame-group-checks">
         <div class="inside-padd">
             {if count($brands) > 0}
-                <div class="title">Производитель</div>
+                <div class="title">{lang('Manufacturer', 'smart_filter')}</div>
                 <ul class="list-filters">
                     {foreach $brands as $brand}
                         {if is_array(ShopCore::$_GET['brand']) && in_array($brand->id, ShopCore::$_GET['brand'])}
