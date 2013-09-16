@@ -1,5 +1,5 @@
-<nav class="nav-static-pages layout-highlight">
-    <ul class="nav nav-vertical">
+<nav class="layout-highlight">
+    <ul class="nav nav-vertical nav-static-pages">
         {$wrapper}
     </ul>
 </nav>

@@ -1,5 +1,5 @@
 <div class="frame-baner-catalog frame-baner">
-    <section class="carousel_js baner container">
+    <section class="carousel_js baner container resize">
         <div class="content-carousel">
             <ul class="cycle">{/*забирати якщо не цикл*/}
                 {foreach $banners as $banner}
