@@ -38,7 +38,7 @@ class Categories extends \MY_Controller {
         foreach ($brands as $brand) {
             $pieData[] = array(
                 'key' => $brand['name'],
-                'y' => $brand['count']
+                'y' => (int) $brand['count']
             );
         }
 

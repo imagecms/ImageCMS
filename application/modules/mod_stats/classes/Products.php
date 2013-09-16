@@ -33,7 +33,7 @@ class Products extends \MY_Controller {
         foreach ($brands as $brand) {
             $pieData[] = array(
                 'key' => $brand['name'],
-                'y' => $brand['count']
+                'y' => (int) $brand['count']
             );
         }
 
@@ -51,7 +51,7 @@ class Products extends \MY_Controller {
         foreach ($categoryProducts as $category) {
             $pieData[] = array(
                 'key' => $category['name'],
-                'y' => $category['count']
+                'y' => (int) $category['count']
             );
         }
 
