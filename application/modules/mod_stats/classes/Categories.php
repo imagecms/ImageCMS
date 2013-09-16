@@ -5,24 +5,57 @@ namespace mod_stats\classes;
 /**
  * Description of Products
  *
- * @author kolia
+ * @author Igor
  */
 class Categories extends \MY_Controller {
 
-    protected static $instanse;
-
+    protected static $_instanse;
+    
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('stats_model_categories');
+    }
     /**
      * 
-     * @return Products
+     * @return Categories
      */
     public static function create() {
-        (null !== self::$_instance) OR self::$_instance = new self();
-        return self::$_instance;
+
+        (null !== self::$_instanse) OR self::$_instanse = new self();
+        return self::$_instanse;
+    }
+    
+    
+    
+    public function getBrandsInCategories(){
+        /** Get children categories ids**/
+        $childCategoriesIds = $this->stats_model_categories->getAllChildCategoriesIds($_COOKIE['cat_id_for_stats']);
+        /** Get brands in category **/
+        $brands = $this->stats_model_categories->getBrandsIdsAndCount($childCategoriesIds);
+        
+        /**  data for pie diagram **/
+        $pieData = array();
+        foreach ($brands as $brand) {
+            $pieData[] = array(
+                'key' => $brand['name'],
+                'y' => $brand['count']
+            );
+        }
+
+        return json_encode(array(
+            'type' => 'pie',
+            'data' => $pieData
+        ));
+    }
+    
+    public function templateBrandsInCategories(){
+        return \ShopCore::app()->SCategoryTree->getTree();
+    }
+    
+    public function getMostVisited() {
+        
+
     }
 
-   
-
-
 }
-
 ?>
