@@ -65,11 +65,14 @@ if (!function_exists('chose_language')) {
         $url = $ci->uri->uri_string();
         $url_arr = explode('/', $url);
 
-        $languages = $ci->db->get('languages')->result_array();
+        $languages = $ci->db->get('languages');
+
+        if ($languages)
+            $languages = $languages->result_array();
+
         foreach ($languages as $l)
             if (in_array($l['identif'], $url_arr))
                 $lang = $l['identif'];
-
 
         if (!$lang) {
             $languages = $ci->db->where('default', 1)->get('languages')->row();
