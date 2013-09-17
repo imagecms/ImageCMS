@@ -38,6 +38,8 @@ class BaseDiscount extends \MY_Controller {
         if ($this->check_module_install()) {
             $this->load->module('core');
             $this->load->model('discount_model_front');
+            $lang = new \MY_Lang();
+            $lang->load('mod_discount');
         }
     }
 

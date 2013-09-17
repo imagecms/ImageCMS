@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:33+0300\n"
+"POT-Creation-Date: 2013-09-17 17:27+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -20,135 +20,132 @@ msgstr ""
 #: /var/www/image.loc/_temp2.php:7
 #: /var/www/image.loc/_temp2.php:8
 msgid "Found less cheaper"
-msgstr ""
+msgstr "Нашли  дешевле"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Your name"
-msgstr ""
+msgstr "Ваше имя"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Phone number"
-msgstr ""
+msgstr "Номер телефона"
 
 #: /var/www/image.loc/_temp2.php:11
 #: /var/www/image.loc/_temp2.php:22
-#, fuzzy
 msgid "Product link"
-msgstr "Настр"
+msgstr "Ссилка на товар"
 
 #: /var/www/image.loc/_temp2.php:12
 #: /var/www/image.loc/_temp2.php:21
 msgid "Question"
-msgstr ""
+msgstr "Вопрос"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Send"
-msgstr ""
+msgstr "Послать"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Found less expensive"
-msgstr ""
+msgstr "Найдены дешевле"
 
 #: /var/www/image.loc/_temp2.php:15
 #: /var/www/image.loc/_temp2.php:29
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 #: /var/www/image.loc/_temp2.php:17
 #: /var/www/image.loc/_temp2.php:26
 msgid "New"
-msgstr ""
+msgstr "Новое"
 
 #: /var/www/image.loc/_temp2.php:18
 #: /var/www/image.loc/_temp2.php:27
 msgid "Processed"
-msgstr ""
+msgstr "Обработано"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /var/www/image.loc/_temp2.php:20
-#, fuzzy
 msgid "Contact information"
-msgstr "Настр"
+msgstr "Контактная информация"
 
 #: /var/www/image.loc/_temp2.php:23
 msgid "Page"
-msgstr ""
+msgstr "Страница"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: /var/www/image.loc/_temp2.php:28
-msgid "No data has been found or Nothing has been found"
-msgstr ""
+msgid "No data has been found"
+msgstr "Не было обнаружено данных"
 
 #: /var/www/image.loc/_temp2.php:30
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:33
 msgid "Mail to receive notifications"
-msgstr ""
+msgstr "Почты, чтобы получать уведомления"
 
 #: /var/www/image.loc/_temp2.php:34
-msgid "Mail to which to send the notification"
-msgstr ""
+msgid "Mail to which send the notification"
+msgstr "Адрес  на который следует посылать уведомления"
 
 #: /var/www/image.loc/_temp2.php:35
 msgid "Message theme"
-msgstr ""
+msgstr "Тема сообщения"
 
 #: /var/www/image.loc/_temp2.php:36
-#, fuzzy
 msgid "Message template"
-msgstr "Создать категорию"
+msgstr "Шаблон сообщения"
 
 #: /var/www/image.loc/_temp2.php:37
 msgid "You can use following variables"
-msgstr ""
+msgstr "Вы можете использовать следующие переменные"
 
 #: /var/www/image.loc/_temp2.php:38
 msgid "page reference on which the notice was left"
-msgstr ""
+msgstr "ссылка на страницу, на которую было оставлено уведомление"
 
 #: /var/www/image.loc/_temp2.php:39
 msgid "link to found cheaper product"
-msgstr ""
+msgstr "ссылка для поиска товара по-дешевле"
 
 #: ../../../admin.php:116
 msgid "Settings saved!"
-msgstr ""
+msgstr "Настройки сохранены!"
 
 #: ../../../admin.php:126
 msgid "Succesful deleting"
-msgstr ""
+msgstr "Успешное удаление"
 
 #: ../../../admin.php:135
 msgid "Status changed"
-msgstr ""
+msgstr "Статус изменился"
 
 #: ../../../module_info.php:5
 msgid "Found less expensive module"
-msgstr ""
+msgstr "Модуль нашли дешевле"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

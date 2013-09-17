@@ -19,6 +19,8 @@ class Admin extends BaseAdminController {
         parent::__construct();
         $this->load->language('email');
         $this->email = \cmsemail\email::getInstance();
+        $lang = new MY_Lang();
+        $lang->load('cmsemail');
     }
 
     public function index() {

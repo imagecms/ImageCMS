@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:34+0300\n"
-"PO-Revision-Date: 2013-09-16 18:34+0300\n"
+"POT-Creation-Date: 2013-09-17 17:27+0300\n"
+"PO-Revision-Date: 2013-09-17 17:28+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -19,97 +19,94 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:6
 msgid "Contacts"
-msgstr ""
+msgstr "Контакты"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Your message has been sent."
-msgstr ""
+msgstr "Ваше сообщение было отправлено."
 
 #: /var/www/image.loc/_temp2.php:8
-#, fuzzy
 msgid "Your name"
-msgstr "Нааааааааамеееееееееее"
+msgstr "Ваше имя"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: /var/www/image.loc/_temp2.php:10
-#, fuzzy
 msgid "Message text"
-msgstr "Позиція"
+msgstr "Текст сообщения"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Protection code"
-msgstr ""
+msgstr "Защитный код"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Comment"
-msgstr ""
+msgstr "Комментарий"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Feedback settings"
-msgstr ""
+msgstr "Настройки обратной связи"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Specify the e-mail address for mailing"
-msgstr ""
+msgstr "Укажите адрес электронной почты для рассылки"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "Maximum message length"
-msgstr ""
+msgstr "Максимальная длина сообщения"
 
 #: ../../..//admin.php:65
-#, fuzzy
-msgid "Settings have been saved or settings were saved"
-msgstr "Сохранение настроек прошло успешно"
+msgid "Settings have been saved"
+msgstr "Настройки сохранены"
 
 #: ../../..//module_info.php:4
 #: ../../..//feedback.php:49
 msgid "Feedback"
-msgstr ""
+msgstr "Обратная связь"
 
 #: ../../..//feedback.php:41
 msgid "Improper protection code"
-msgstr ""
+msgstr "Неправильная защита кода"
 
 #: ../../..//feedback.php:60
 #: ../../..//feedback.php:77
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #: ../../..//feedback.php:66
 #: ../../..//feedback.php:68
 msgid "Code protection"
-msgstr ""
+msgstr "Защитный код"
 
 #: ../../..//feedback.php:70
 #: ../../..//feedback.php:79
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: ../../..//feedback.php:78
 msgid "E-mail"
-msgstr ""
+msgstr "Электронная почта"
 
 #, fuzzy
-#~ msgid "Have been saved"
+#~ msgid "Settings have been saved or settings were saved"
 #~ msgstr "Сохранение настроек прошло успешно"
 
 #, fuzzy

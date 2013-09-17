@@ -28,6 +28,8 @@ class Discount_product extends classes\BaseDiscount {
     public function __construct() {
 
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('mod_discount');
         $this->get_all_discount();
         $this->collect_type();
         $this->discount_for_product = array_merge($this->discount_type['product'], $this->discount_type['brand'], $this->discount_type['category']);

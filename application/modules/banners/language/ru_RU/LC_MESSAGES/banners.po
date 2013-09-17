@@ -18,195 +18,189 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:12
-#, fuzzy
 msgid "Banner creating"
-msgstr "Настр"
+msgstr "Создание баннера"
 
 #: /var/www/image.loc/_temp2.php:13
 #: /var/www/image.loc/_temp2.php:48
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:14
 #: /var/www/image.loc/_temp2.php:49
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:15
 #: /var/www/image.loc/_temp2.php:50
 msgid "Save and exit"
-msgstr ""
+msgstr "Сохранить и выйти"
 
 #: /var/www/image.loc/_temp2.php:16
 #: /var/www/image.loc/_temp2.php:51
 msgid "Options"
-msgstr ""
+msgstr "Опции"
 
 #: /var/www/image.loc/_temp2.php:17
 #: /var/www/image.loc/_temp2.php:40
 #: /var/www/image.loc/_temp2.php:52
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #: /var/www/image.loc/_temp2.php:18
 #: /var/www/image.loc/_temp2.php:53
 msgid "Active"
-msgstr ""
+msgstr "Активный"
 
 #: /var/www/image.loc/_temp2.php:19
 #: /var/www/image.loc/_temp2.php:54
 msgid "Text banner"
-msgstr ""
+msgstr "Текст баннера"
 
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:55
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: /var/www/image.loc/_temp2.php:21
 #: /var/www/image.loc/_temp2.php:56
 msgid "Selected items"
-msgstr ""
+msgstr "Выбранные элементы"
 
 #: /var/www/image.loc/_temp2.php:22
 #: /var/www/image.loc/_temp2.php:57
 msgid "Double click to deleting"
-msgstr ""
+msgstr "Дважды щелкните для удаления"
 
 #: /var/www/image.loc/_temp2.php:23
 #: /var/www/image.loc/_temp2.php:58
 msgid "Show in categories (select items)"
-msgstr ""
+msgstr "Показать в категориях (выборание элементы)"
 
 #: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:59
 msgid "select essence"
-msgstr ""
+msgstr "выберите сущность"
 
 #: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:60
 msgid "Main"
-msgstr ""
+msgstr "Главная"
 
 #: /var/www/image.loc/_temp2.php:26
 #: /var/www/image.loc/_temp2.php:61
 msgid "Product"
-msgstr ""
+msgstr "Товар"
 
 #: /var/www/image.loc/_temp2.php:27
 #: /var/www/image.loc/_temp2.php:62
-#, fuzzy
 msgid "Product category"
-msgstr "Создать категорию"
+msgstr "Категория товара"
 
 #: /var/www/image.loc/_temp2.php:28
 #: /var/www/image.loc/_temp2.php:63
 msgid "Brand"
-msgstr ""
+msgstr "Бренд"
 
 #: /var/www/image.loc/_temp2.php:29
 #: /var/www/image.loc/_temp2.php:64
-#, fuzzy
 msgid "Pages categories"
-msgstr "Создать категорию"
+msgstr "Категории страниц"
 
 #: /var/www/image.loc/_temp2.php:30
 #: /var/www/image.loc/_temp2.php:65
 msgid "Pages"
-msgstr ""
+msgstr "Страницы"
 
 #: /var/www/image.loc/_temp2.php:31
 #: /var/www/image.loc/_temp2.php:66
 msgid "Active until"
-msgstr ""
+msgstr "Активно до"
 
 #: /var/www/image.loc/_temp2.php:32
 #: /var/www/image.loc/_temp2.php:67
 msgid "Image"
-msgstr ""
+msgstr "Изображение"
 
 #: /var/www/image.loc/_temp2.php:33
 #: /var/www/image.loc/_temp2.php:68
 msgid "Choose an image "
-msgstr ""
+msgstr "Выберите изображение "
 
 #: /var/www/image.loc/_temp2.php:34
 msgid "Banner list"
-msgstr ""
+msgstr "Список баннеров"
 
 #: /var/www/image.loc/_temp2.php:35
-#, fuzzy
 msgid "Template settings"
-msgstr "Виджети"
+msgstr "Настройки шаблона"
 
 #: /var/www/image.loc/_temp2.php:36
 msgid "Use different templates for different pages"
-msgstr ""
+msgstr "Используйте различные шаблоны для разных страниц"
 
 #: /var/www/image.loc/_temp2.php:37
-#, fuzzy
 msgid "Create a banner"
-msgstr "Создать категорию"
+msgstr "Создать баннер"
 
 #: /var/www/image.loc/_temp2.php:38
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:39
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /var/www/image.loc/_temp2.php:41
 msgid "Active to"
-msgstr ""
+msgstr "Активно на"
 
 #: /var/www/image.loc/_temp2.php:42
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:44
 msgid "Editing"
-msgstr ""
+msgstr "Редактирование"
 
 #: /var/www/image.loc/_temp2.php:45
 msgid "show"
-msgstr ""
+msgstr "показывать"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "Empty banner list."
-msgstr ""
+msgstr "Список баннеров пуст."
 
 #: /var/www/image.loc/_temp2.php:47
 msgid "Editing banner"
-msgstr ""
+msgstr "Редактирование баннера"
 
 #: /var/www/image.loc/_temp2.php:69
 msgid "don't show"
-msgstr ""
+msgstr "не показывать"
 
 #: ../../../admin.php:94
 #: ../../../admin.php:153
-#, fuzzy
 msgid "Banner name"
-msgstr "Настр"
+msgstr "Название баннера"
 
 #: ../../../admin.php:95
 #: ../../../admin.php:154
 msgid "Photo"
-msgstr ""
+msgstr "Фото"
 
 #: ../../../admin.php:176
 msgid "Data saved"
-msgstr ""
+msgstr "Данные сохраненны"
 
 #: ../../../module_info.php:4
 msgid "Banner"
-msgstr ""
+msgstr "Баннер"
 
 #: ../../../module_info.php:5
 msgid "Banner management module"
-msgstr ""
+msgstr "Модуль управления баннерами"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

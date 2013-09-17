@@ -25,6 +25,8 @@ class Exchangeunfu extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('exchangeunfu');
 
         /* define path to folder for saving files from 1c */
         $this->tempDir = PUBPATH . 'application/modules/shop/cmlTemp/';
@@ -69,7 +71,7 @@ class Exchangeunfu extends MY_Controller {
     }
 
     public function index() {
-
+        
     }
 
     public static function adminAutoload() {

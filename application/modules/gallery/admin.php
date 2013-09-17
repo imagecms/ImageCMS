@@ -58,6 +58,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
 
         if ($this->dx_auth->is_admin() == FALSE)
             exit;
@@ -504,7 +506,7 @@ class Admin extends BaseAdminController {
      * Update image description/position
      */
     public function update_info($id, $locale = null) {
-        
+
         if (null === $locale)
             $locale = $this->gallery_m->chose_locale();
         $image = $this->gallery_m->get_image_info($id);

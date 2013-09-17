@@ -19,105 +19,103 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:6
 msgid "Install"
-msgstr ""
+msgstr "Установить"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Copy contents of the archive into a directory"
-msgstr ""
+msgstr "Скопировать содержимое архива в директорию"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Install module through the control panel"
-msgstr ""
+msgstr "Установить модуль через панель управления"
 
 #: /var/www/image.loc/_temp2.php:9
-#, fuzzy
 msgid "Create directory"
-msgstr "Создать категорию"
+msgstr "Создать директорию"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "and set them to record rights"
-msgstr ""
+msgstr "и установить им права записи"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Files uploading"
-msgstr ""
+msgstr "Загрузка файлов"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Select a file"
-msgstr ""
+msgstr "Выберите файл"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Or specify URL"
-msgstr ""
+msgstr "Или укажите URL"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Upload a file"
-msgstr ""
+msgstr "Загрузить файл"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "Maximum image width"
-msgstr ""
+msgstr "Максимальная ширина изображения"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Maximum image height"
-msgstr ""
+msgstr "Максимальная высота изображения"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "Icon width"
-msgstr ""
+msgstr "Ширины иконки"
 
 #: /var/www/image.loc/_temp2.php:20
 msgid "Icon height"
-msgstr ""
+msgstr "Высоты иконки"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "Image quality"
-msgstr ""
+msgstr "Качество изображения"
 
 #: /var/www/image.loc/_temp2.php:22
-#, fuzzy
 msgid "Save ratio"
-msgstr "Настр"
+msgstr "Сохранить соотношение"
 
 #: /var/www/image.loc/_temp2.php:23
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ../../../admin.php:72
 msgid "You are trying to download banned file type "
-msgstr ""
+msgstr "Вы пытаетесь загрузить запрещенный тип файла"
 
 #: ../../../admin.php:79
 msgid "File loading error"
-msgstr ""
+msgstr "Ошибка загрузки файла"
 
 #: ../../../admin.php:189
 msgid "Changes saved"
-msgstr ""
+msgstr "Изменения сохранены"
 
 #: ../../../module_info.php:4
 msgid "ImageBox"
-msgstr ""
+msgstr "ImageBox"
 
 #: ../../../module_info.php:5
 msgid "Fast upload/insert images"
-msgstr ""
+msgstr "Быстрая загрузка / вставка изображений"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

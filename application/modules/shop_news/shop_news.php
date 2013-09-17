@@ -17,6 +17,8 @@ class Shop_news extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('shop_news');
     }
 
     public static function adminAutoload() {

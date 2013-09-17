@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-16 18:28+0300\n"
+"POT-Creation-Date: 2013-09-17 17:18+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -18,213 +18,233 @@ msgstr ""
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:20
-#: /var/www/image.loc/_temp2.php:54
 msgid "Stats"
-msgstr ""
+msgstr "Статистика"
 
 #: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:55
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:22
-#: /var/www/image.loc/_temp2.php:60
+#: /var/www/image.loc/_temp2.php:59
 msgid "Orders"
-msgstr ""
+msgstr "Заказы"
 
 #: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:54
 msgid "Count"
-msgstr ""
+msgstr "Количество"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "Information"
-msgstr ""
+msgstr "Информация"
 
 #: /var/www/image.loc/_temp2.php:26
 msgid "Users"
-msgstr ""
+msgstr "Пользователи"
 
 #: /var/www/image.loc/_temp2.php:27
 msgid "Online"
-msgstr ""
+msgstr "Онлайн"
 
 #: /var/www/image.loc/_temp2.php:28
-msgid "Register"
-msgstr ""
+msgid "Registered"
+msgstr "Зарегистирование"
 
 #: /var/www/image.loc/_temp2.php:29
 msgid "Attendance"
-msgstr ""
+msgstr "Посещаемость"
 
 #: /var/www/image.loc/_temp2.php:30
-#, fuzzy
 msgid "User information"
-msgstr "Настр"
+msgstr "Информация пользователя"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Products"
-msgstr ""
+msgstr "Продукты"
 
 #: /var/www/image.loc/_temp2.php:32
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: /var/www/image.loc/_temp2.php:33
 msgid "Brands"
-msgstr ""
+msgstr "Бренды"
 
 #: /var/www/image.loc/_temp2.php:34
-#, fuzzy
-msgid "Product info"
-msgstr "Настр"
+msgid "Product information"
+msgstr "Информация товара"
 
 #: /var/www/image.loc/_temp2.php:35
 msgid "Receipt of goods"
-msgstr ""
+msgstr "Поступление товаров"
 
 #: /var/www/image.loc/_temp2.php:36
 msgid "Most visited"
-msgstr ""
+msgstr "Самые посещаемые"
 
 #: /var/www/image.loc/_temp2.php:37
-#, fuzzy
-msgid "Products in categories"
-msgstr "Создать категорию"
+msgid "Brands in category"
+msgstr "Бренды в категориях"
 
 #: /var/www/image.loc/_temp2.php:38
-#, fuzzy
-msgid "Brands in category"
-msgstr "Создать категорию"
+msgid "Searched keywords"
+msgstr "Ключи поиска"
 
 #: /var/www/image.loc/_temp2.php:39
-msgid "Keywords searched"
-msgstr ""
+msgid "Brands in search results"
+msgstr "Бренды в результатах поиска"
 
 #: /var/www/image.loc/_temp2.php:40
-msgid "Brands in search results"
-msgstr ""
+msgid "Settings:"
+msgstr "Настройки:"
 
 #: /var/www/image.loc/_temp2.php:41
-msgid "Settings:"
-msgstr ""
+msgid "save search results"
+msgstr "сохранить результы поиска"
 
 #: /var/www/image.loc/_temp2.php:42
-msgid "save search results"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:49
+msgid "day"
+msgstr "день"
 
 #: /var/www/image.loc/_temp2.php:43
 #: /var/www/image.loc/_temp2.php:50
-msgid "day"
-msgstr ""
+msgid "week"
+msgstr "неделя"
 
 #: /var/www/image.loc/_temp2.php:44
 #: /var/www/image.loc/_temp2.php:51
-msgid "week"
-msgstr ""
+msgid "month"
+msgstr "месяц"
 
 #: /var/www/image.loc/_temp2.php:45
 #: /var/www/image.loc/_temp2.php:52
-msgid "month"
-msgstr ""
+msgid "year"
+msgstr "год"
 
 #: /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:53
-msgid "year"
-msgstr ""
+msgid "From:"
+msgstr "От:"
 
 #: /var/www/image.loc/_temp2.php:47
-msgid "From:"
-msgstr ""
+msgid "To:"
+msgstr "До:"
 
 #: /var/www/image.loc/_temp2.php:48
-msgid "To:"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:49
 msgid "Group by:"
-msgstr ""
+msgstr "Группировать по:"
+
+#: /var/www/image.loc/_temp2.php:53
+msgid "Key"
+msgstr "Ключ"
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Date"
+msgstr "Дата"
 
 #: /var/www/image.loc/_temp2.php:56
-msgid "Key"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:74
+msgid "pie"
+msgstr "круг"
+
+#: /var/www/image.loc/_temp2.php:57
+#: /var/www/image.loc/_temp2.php:67
+#: /var/www/image.loc/_temp2.php:75
+msgid "bar"
+msgstr "колонки"
 
 #: /var/www/image.loc/_temp2.php:58
-msgid "Date"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:59
 msgid "Period"
-msgstr ""
+msgstr "Период"
+
+#: /var/www/image.loc/_temp2.php:60
+msgid "Unique products"
+msgstr "Уникальные продукты"
 
 #: /var/www/image.loc/_temp2.php:61
-msgid "Unique products"
-msgstr ""
+msgid "Total products"
+msgstr "Всего товаров"
 
 #: /var/www/image.loc/_temp2.php:62
-msgid "Total products"
-msgstr ""
+msgid "Sum"
+msgstr "Сумма"
 
 #: /var/www/image.loc/_temp2.php:63
-msgid "Sum"
-msgstr ""
+msgid "Paid"
+msgstr "Оплаченый"
 
 #: /var/www/image.loc/_temp2.php:64
-msgid "Paid"
-msgstr ""
+msgid "Select categories"
+msgstr "Вибрать категорию"
 
 #: /var/www/image.loc/_temp2.php:65
-msgid "pie"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:66
-msgid "bar"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:67
-msgid "Product / ID"
-msgstr ""
+#: /var/www/image.loc/_temp2.php:69
+msgid "Show"
+msgstr "Показывать"
 
 #: /var/www/image.loc/_temp2.php:68
-msgid "Show"
-msgstr ""
-
-#: /var/www/image.loc/_temp2.php:69
-#, fuzzy
-msgid "Product's categories"
-msgstr "Настр"
+msgid "Product / ID"
+msgstr "Продукт / ID"
 
 #: /var/www/image.loc/_temp2.php:70
-msgid "Search"
-msgstr ""
+msgid "Product name"
+msgstr "Название товара"
 
 #: /var/www/image.loc/_temp2.php:71
-msgid "Product's categories in search results"
-msgstr ""
+msgid "Count of purchasses"
+msgstr "Количество покупок"
 
 #: /var/www/image.loc/_temp2.php:72
+msgid "Count of comments"
+msgstr "Количество комментариев"
+
+#: /var/www/image.loc/_temp2.php:73
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: /var/www/image.loc/_temp2.php:76
+msgid "Product's categories"
+msgstr "Категории товаров"
+
+#: /var/www/image.loc/_temp2.php:77
+msgid "Search"
+msgstr "Поиск"
+
+#: /var/www/image.loc/_temp2.php:78
+msgid "Product's categories in search results"
+msgstr "Категории товаров в результатах поиска"
+
+#: /var/www/image.loc/_temp2.php:79
 msgid "Page not found"
-msgstr ""
+msgstr "Страница не найдена"
 
 #: ../../../module_info.php:6
 msgid "Statistic"
-msgstr ""
+msgstr "Статистика"
 
-#: ../../../classes/Orders.php:78
+#: ../../../classes/Orders.php:75
 msgid "All"
-msgstr ""
+msgstr "Все"
 
-#: ../../../classes/Orders.php:86
+#: ../../../classes/Orders.php:83
 msgid "Delivered"
-msgstr ""
+msgstr "Доставленный"
 
-#: ../../../classes/Users.php:80
+#: ../../../classes/Users.php:77
 msgid "Registrations number"
-msgstr ""
+msgstr "Число регистраций"
+
+#~ msgid "Products in categories"
+#~ msgstr "Товары в категориях"
+
+#~ msgid "Keywords searched"
+#~ msgstr "Ключевые слова поиска"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"
