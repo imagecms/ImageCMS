@@ -929,6 +929,14 @@ input[data-rel="plusminus"]{float:right;width: 44px;height: 34px;display: block;
 .tabs-compare-category > .active > button{background-color: #0c99ca;position: relative;}
 .tabs-compare-category > .active > button:after{content: "";position: absolute;left: 100%;top: 0;border-width: 12px 9px;border-style: solid;border-color: transparent;border-left-color: #0c99ca;}
 .tabs-compare-category > .active .text-el{color: #fff;}
+
+.tabs-wishlist{margin-bottom: 18px;}
+.tabs-wishlist .text-el{color: #0c9acb;}
+.tabs-wishlist > li{margin-bottom: 3px;}
+.tabs-wishlist > li > button{padding: 3px 15px 5px;text-align: left;position: relative;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;}
+.tabs-wishlist > .active > button{background-color: #0c99ca;}
+.tabs-wishlist > .active > button:after{content: "";position: absolute;left: 50%;top: 100%;border-width: 6px 7px;border-style: solid;border-color: transparent;border-top-color: #0c99ca;}
+.tabs-wishlist > .active .text-el{color: #fff;border: 0;}
 .frame-tabs-ref{position: relative;z-index: 2;overflow: hidden;-moz-border-radius: 0 3px 3px 3px;-webkit-border-radius: 0 3px 3px 3px;border-radius: 0 3px 3px 3px;}
 /*/tabs*/
 

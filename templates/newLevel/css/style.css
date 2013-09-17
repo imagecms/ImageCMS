@@ -99,7 +99,7 @@ label, input[type="button"], input[type="submit"], input[type="reset"], button{p
 [class*="btn"] > button, [class*="btn"] > a{cursor: pointer;display: inline-block;font-size: 0;}
 [class*="btn"].pointer > button, [class*="btn"].pointer > a{cursor: pointer !important;}
 input[type="text"], input[type="password"], textarea{width: 100%;max-width: 100%;padding: 0 5px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
-textarea, select, input[type="text"], input[type="password"]{border: 1px solid;}
+textarea, select, input[type="text"], input[type="password"]{border: 1px solid;background-color: #fff;}
 select, input[type="text"], input[type="password"]{height: 35px;}
 textarea{overflow: auto;display: block;height: 64px;padding-top: 4px;padding-bottom: 4px;}
 sub, sup {position: relative;font-size: 75%;line-height: 0;}
@@ -230,6 +230,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 nav a{text-decoration: none;}
 .nav > li{float: left;position: relative;}
 .nav.nav-vertical > li{float: none;}
+.nav-vertical + .nav-vertical{margin-top: 10px;}
 .nav > li > a, .nav > li > span, .nav > li > button{display: block;}
 /*/base nav*/
 
