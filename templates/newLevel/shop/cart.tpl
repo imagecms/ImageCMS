@@ -17,7 +17,7 @@
         <div class="no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Контроль','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
                 </div>
             </div>
             <div class="left-cart">
