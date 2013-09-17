@@ -74,6 +74,7 @@ Options -Indexes
 
 RewriteEngine on
 RewriteRule ^(.*)\.tpl$ [R=404]
+RewriteRule ^(.*)\.zip$ [R=404]
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]
 
