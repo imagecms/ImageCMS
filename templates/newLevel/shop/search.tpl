@@ -22,7 +22,7 @@
                     <div class="frame-title">
                         <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                     </div>
-                    <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array("{lang('товар','newLevel')}","{lang('товара','newLevel')}","{lang('товаров','newLevel')}"))})</span>
+                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
                 </div>
             {/if}
             {if $totalProducts == 0}

@@ -344,7 +344,7 @@ class Sitemap extends MY_Controller {
                 $CI->db->where('name', 'sitemap');
                 $CI->db->update('components', array('settings' => serialize($XMLDataMap)));
 
-                showMessage('Пинг отправлен', 'Google ping');
+                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
             }
 
             return $code;

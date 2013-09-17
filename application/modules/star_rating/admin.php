@@ -36,7 +36,7 @@ class Admin extends BaseAdminController {
         
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
-        showMessage(lang("Settings saved success"));
+        showMessage(lang("Settings saved success", 'star_rating'));
     }
 
     public function render($viewName, array $data = array(), $return = false) {

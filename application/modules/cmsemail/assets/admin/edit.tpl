@@ -2,19 +2,19 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Email_template_editing')}</span>
+            <span class="title">{lang('Email template editing', 'cmsemail')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/cp/cmsemail/index" class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('Go back')}</span>
+                    <span class="t-d_u">{lang('Go back', 'cmsemail')}</span>
                 </a>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="save">
-                    <i class="icon-ok"></i>{lang('Save')}
+                    <i class="icon-ok"></i>{lang('Save', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
-                    <i class="icon-edit"></i>{lang('Save and go back')}
+                    <i class="icon-edit"></i>{lang('Save and go back', 'cmsemail')}
                 </button>
                 {echo create_language_select($languages, $locale, "/admin/components/cp/cmsemail/edit/" . $model['id'])}
             </div>
@@ -23,8 +23,8 @@
     <div class="content_big_td row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}', '{echo $locale}')">{lang('Template_settings')}</a>
-                <a href="#variables" class="btn btn-small">{lang('Template_variables')}</a>
+                <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}', '{echo $locale}')">{lang('Template settings', 'cmsemail')}</a>
+                <a href="#variables" class="btn btn-small">{lang('Template variables', 'cmsemail')}</a>
             </div>
         </div>
         <div class="tab-content">
@@ -33,7 +33,7 @@
                     <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
-                            <th>{lang('Settings')}</th>
+                            <th>{lang('Settings', 'cmsemail')}</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -41,35 +41,35 @@
                                         <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount">{lang('Template_name_only_latin')}:</label>
+                                                    <label class="control-label" for="comcount">{lang('Template name(only latin)', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount" type="text" name="mail_name" value="{$model['name']}" disabled="disabled"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount2">{lang('From')}:</label>
+                                                    <label class="control-label" for="comcount2">{lang('From', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount2" type="text" name="sender_name" value="{$model['from']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount3">{lang('From_email')}:</label>
+                                                    <label class="control-label" for="comcount3">{lang('From email', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount3" type="text" name="from_email" value="{$model['from_email']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount4">{lang('Theme')}:</label>
+                                                    <label class="control-label" for="comcount4">{lang('Theme', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount4" type="text" name="mail_theme" value="{$model['theme']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount5">{lang('Message_type')}:</label>
+                                                    <label class="control-label" for="comcount5">{lang('Message type', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         &nbsp; HTML &nbsp;
                                                         <span class="frame_label">
@@ -87,7 +87,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="userMailText">{lang('Template_user_mail')}:
+                                                    <label class="control-label" for="userMailText">{lang('Template user mail', 'cmsemail')}:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="userMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
@@ -103,13 +103,13 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="userMailTextRadio">{lang('Send_email_to_user')}:</label>
                                                     <div class="controls">
-                                                        &nbsp; {lang('Yes')} &nbsp;
+                                                        &nbsp; {lang('Yes', 'cmsemail')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="userMailTextRadio" value="1" {if $model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
                                                             </span>
                                                         </span>
-                                                        &nbsp; {lang('No')} &nbsp;
+                                                        &nbsp; {lang('No', 'cmsemail')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="userMailTextRadio" value="0" {if !$model['user_message_active']}checked="checked"{/if} id="userMailTextRadio"/>
@@ -119,7 +119,7 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="adminMailText">{lang('Template_admin_mail')}:
+                                                    <label class="control-label" for="adminMailText">{lang('Admin mail template', 'cmsemail')}:
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
@@ -133,15 +133,15 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="adminMailTextRadio">{lang('Send_email_to_admin')}:</label>
+                                                    <label class="control-label" for="adminMailTextRadio">{lang('Send email to admin', 'cmsemail')}:</label>
                                                     <div class="controls">
-                                                        &nbsp; {lang('Yes')} &nbsp;
+                                                        &nbsp; {lang('Yes', 'cmsemail')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="adminMailTextRadio" value="1" {if $model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
                                                             </span>
                                                         </span>
-                                                        &nbsp; {lang('No')} &nbsp;
+                                                        &nbsp; {lang('No', 'cmsemail')} &nbsp;
                                                         <span class="frame_label">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="adminMailTextRadio" value="0" {if !$model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
@@ -151,14 +151,14 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="comcount3">{lang('Admin_address')}:</label>
+                                                    <label class="control-label" for="comcount3">{lang('Admin address', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <input id="comcount3" type="text" name="admin_email" value="{$model['admin_email']}"/>
                                                     </div>
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="symcount2">{lang('Template_description')}:</label>
+                                                    <label class="control-label" for="symcount2">{lang('Template description', 'cmsemail')}:</label>
                                                     <div class="controls">
                                                         <textarea class="elRTE" name="mail_desc" id="symcount2">{$model['description']}</textarea>
                                                     </div>
@@ -179,10 +179,10 @@
                 <div class="inside_padd">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable">
                         <thead>
-                        <th>{lang('Variables')}</th>
-                        <th>{lang('Values')}</th>
-                        <th class="span2">{lang('Edit')}</th>
-                        <th class="span1">{lang('Delete')}</th>
+                        <th>{lang('Variables', 'cmsemail')}</th>
+                        <th>{lang('Values', 'cmsemail')}</th>
+                        <th class="span2">{lang('Edit', 'cmsemail')}</th>
+                        <th class="span1">{lang('Delete', 'cmsemail')}</th>
                         </thead>
                             {foreach $variables as $variable => $variable_value}
                                 <tr>
@@ -228,7 +228,7 @@
                             </tr>
                     </table>
                     <button  class="btn btn-small btn-success addVariable">
-                        <i class="icon-plus icon-white"></i>&nbsp;{lang('Add_new_variable')}
+                        <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new variable', 'cmsemail')}
                     </button>
                 </div>
             </div>

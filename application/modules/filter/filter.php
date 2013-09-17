@@ -26,14 +26,14 @@ class Filter extends MY_Controller {
 	public function no_pages_found()
 	{
 		$this->load->module('core');
-		$this->core->error(lang('At your request, page not found.'));
+		$this->core->error(lang('At your request, page not found.', 'filter'));
 		exit;
 	}
 
 	// Фильтр страниц
 	public function pages()
 	{
-                $this->load->module('core')->set_meta_tags(lang('Search'));
+                $this->load->module('core')->set_meta_tags(lang('Search', 'filter'));
 
 		// Удалим из строки запроса /filter/pages
 		$segments = array_slice($this->uri->segment_array(), 2);
@@ -57,8 +57,8 @@ class Filter extends MY_Controller {
 		$config['total_rows']    = $this->_filter_pages($ids, $search_data, TRUE);
 		$config['per_page']      = $this->items_per_page;
 		$config['uri_segment']   = $this->uri->total_segments();
-		$config['first_link']    = lang("The first");
-		$config['last_link']     = lang("Last");
+		$config['first_link']    = lang("The first", 'filter');
+		$config['last_link']     = lang("Last", 'filter');
 		$config['cur_tag_open']  = '<span class="active">';
 		$config['cur_tag_close'] = '</span>';
 		$this->pagination->num_links = 5;
@@ -139,7 +139,7 @@ class Filter extends MY_Controller {
 	{
 		if (!($form = $this->create_filter_form($group_id)))
 		{
-			$this->core->error(lang('Group has not fields'));
+			$this->core->error(lang('Group has not fields', 'filter'));
 			exit;
 		}
 
@@ -159,7 +159,7 @@ class Filter extends MY_Controller {
 		$form_html = form_open('filter/group/'.(int)$group_id);
 		$form_html .= $form->render();
 		$form_html .= form_csrf();
-		$form_html .= form_submit('submit', lang('Search'));
+		$form_html .= form_submit('submit', lang('Search', 'filter'));
 		$form_html .= form_close();
 
 		$this->template->add_array(array(

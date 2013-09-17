@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Модуль подписки и рассылки.',                                            
-	'description' => 'Модуль подписки и рассылки на новости, акции, скидки.',                  
+	'menu_name'   => lang('Subscription and mailing', 'mailer'),                                            
+	'description' => lang('Subscription and mailing module for news, promotions, discounts', 'mailer'),                  
 	'admin_type'  => 'inside',         
 	'window_type' => 'xhr',            
         'w'           => 600,              

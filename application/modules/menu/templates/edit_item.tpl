@@ -53,7 +53,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">На страницу:</label>
+                                            <label class="control-label">{lang('On page', 'menu')}:</label>
                                             <div class="controls">
                                                 <select id="per_page">
                                                     <option value="10" selected="selected">10</option>
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">Список страниц:</label>
+                                            <label class="control-label">{lang('Pages list', 'menu')}:</label>
                                             <div class="controls">
                                                 <div id="pages_list_holder" class="span3">
                                                     <ul class="nav myTab nav-tabs nav-stacked">
@@ -90,7 +90,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                Параметры:
+                                {lang('Parameters', 'menu')}:
                             </th>
                         </tr>
                     </thead>
@@ -244,7 +244,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                Параметры:
+                                {lang('Parameters', 'menu')}:
                             </th>
                         </tr>
                     </thead>
@@ -382,7 +382,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('Parameters', 'menu')}:
                                     </th>
                                 </tr>
                             </thead>
@@ -412,10 +412,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Функция:</label>
+                                                    <label class="control-label">{lang('Method', 'menu')}:</label>
                                                     <div class="controls">
                                                         <input type="text" value="{$data.method}" name="mod_method"/>
-                                                        <span class="help-inline">Например: func_name/param1/param2</span>
+                                                        <span class="help-inline">{lang('Example', 'menu')}: func_name/param1/param2</span>
                                                     </div>
                                                 </div>    
                                                 <div class="control-group">

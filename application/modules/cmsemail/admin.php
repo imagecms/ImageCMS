@@ -39,7 +39,7 @@ class Admin extends BaseAdminController {
         if ($_POST) {
             if ($this->email->create()) {
 
-                showMessage(lang('Template_created'));
+                showMessage(lang('Template created', 'cms_email'));
 
                 if ($this->input->post('action') == 'save')
                     pjax('/admin/components/cp/cmsemail/index');
@@ -102,21 +102,21 @@ class Admin extends BaseAdminController {
      */
     public function update_settings() {
         if ($_POST) {
-            $this->form_validation->set_rules('settings[admin_email]', lang('Admin_email'), 'required|xss_clean|valid_email');
-            $this->form_validation->set_rules('settings[from_email]', lang('Sender_eamil'), 'required|xss_clean|valid_email');
-            $this->form_validation->set_rules('settings[from]', lang('From'), 'required|xss_clean');
-            $this->form_validation->set_rules('settings[theme]', lang('From_email'), 'xss_clean|required');
+            $this->form_validation->set_rules('settings[admin_email]', lang('Admin email', 'cmsemail'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from_email]', lang('Sender eamil', 'cmsemail'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[from]', lang('From', 'cmsemail'), 'required|xss_clean');
+            $this->form_validation->set_rules('settings[theme]', lang('From email', 'cmsemail'), 'xss_clean|required');
 
             if ($_POST['settings']['wraper_activ'])
-                $this->form_validation->set_rules('settings[wraper]', lang('Wraper'), 'required|xss_clean|callback_wraper_check');
+                $this->form_validation->set_rules('settings[wraper]', lang('Wraper', 'cmsemail'), 'required|xss_clean|callback_wraper_check');
             else
-                $this->form_validation->set_rules('settings[wraper]', lang('Wraper'), 'xss_clean');
+                $this->form_validation->set_rules('settings[wraper]', lang('Wraper', 'cmsemail'), 'xss_clean');
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors(), lang('Message'), 'r');
+                showMessage(validation_errors(), lang('Message', 'cmsemail'), 'r');
             } else {
                 if ($this->email->setSettings($_POST['settings']))
-                    showMessage(lang('Settings_saved'), lang('Message'));
+                    showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
             }
 
             $this->cache->delete_all();
@@ -127,7 +127,7 @@ class Admin extends BaseAdminController {
         if (preg_match('/\$content/', htmlentities($wraper))) {
             return TRUE;
         } else {
-            $this->form_validation->set_message('wraper_check', lang('Field') . ' %s ' . lang('must_contain_variable') . ' $content');
+            $this->form_validation->set_message('wraper_check', lang('Field', 'cmsemail') . ' %s ' . lang('must_contain_variable', 'cmsemail') . ' $content');
             return FALSE;
         }
     }

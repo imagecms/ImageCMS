@@ -260,6 +260,8 @@ a:focus, a:active {color: #51d2ff;}
 .item-product .frame-wish-compare-list:before{-moz-box-shadow: inset 0 1px 1px #f0ece8;-webkit-box-shadow: inset 0 1px 1px #f0ece8;box-shadow: inset 0 1px 1px #f0ece8;content: "";width: 110%;position: absolute;height: 2px;top: 0;left: -5%;}
 .item-product .frame-wish-compare-list .frame-btn-wish{border-right: 1px solid #eae5e1;margin-left: -1px;}
 #view h2{font-size: 18px;}
+#view h2, #view .title-h2{color: #666;}
+#view .title-h2 + h2{color: #333;}
 .patch-product-view{position: relative;}
 .page-product .patch-product-view[style]:after{
     content: "";position: absolute;left: 0;bottom: 0;width: 100%;height: 30px;
@@ -800,6 +802,8 @@ button > [class*="icon_"]{margin-right: 3px;}
 .discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
 
 .items-bask .product-status, .items-default .product-status{top: 0;}
+.items-bask .product-status{display: none;}
+.items-bask a:hover .product-status{display: block;}
 .items-bask .product-status + .product-status, .items-default .product-status + .product-status{top: 14px;}
 .items-bask .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status{top: 28px;}
 .items-bask .product-status + .product-status + .product-status + .product-status, .items-default .product-status + .product-status + .product-status + .product-status{top: 42px;}

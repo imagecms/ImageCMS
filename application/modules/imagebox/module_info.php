@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'ImageBox',     // Menu name
-	'description' => 'Быстрая загрузка/вставка изображений',                  // Module Description
+	'menu_name'   => lang('ImageBox', 'imagebox'),     // Menu name
+	'description' => lang('Fast upload/insert images', 'imagebox'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
     'w'           => 600,                 // Window width
