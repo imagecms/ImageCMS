@@ -320,6 +320,12 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         redirect('/wishlist');
     }
 
+    public function renderEmail($wish_list_id) {
+        \CMSFactory\assetManager::create()
+                ->setData('wish_list_id', $wish_list_id)
+                ->render('sendEmail');
+    }
+
     /**
      * send email
      */
