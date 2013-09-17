@@ -1365,15 +1365,18 @@ function init() {
                 var elWrap = parentEl.find('.frame-photo-title > .photo-block').clone(true);
                 elWrap.after('<div class="description"><span class="title">' + $('h1').text() + '</span>' + parentEl.find('.frame-prices').clone().html() + '</div>')
             }
+            
+            //form initialize
             var dropElRep = dropEl.find('[data-rel="pastehere"]');
             //adding product info into form
             var formCont = $('#data-report'),
                     productId = el.attr('data-prodid');
             formCont.find('input[name="ProductId"]').val(productId)
+            ///*form initialize
 
             if (!$.existsN(dropElRep.find('.items-bask')))
                 dropElRep.append('<ul class="items items-bask item-report"><li></li></ul>');
-            dropElRep.find('.item-report').children().append(elWrap).find('.icon_times, .funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star, .funcs-buttons-WL-item').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
+            dropElRep.find('.item-report').children().append(elWrap).find('img').css('display', 'inline-block').end().find('.icon_times, .funcs-buttons, .star, .product-status, .decor-element, .check-variant-catalog, .check-variant-product, .frame-star, .funcs-buttons-WL-item').remove().end().find('.no-vis-table').parent().remove().end().end().parent().parent().append($('[data-clone="data-report"]').clone(true).removeClass('d_n'));
             return el;
         }
         if (dropEl.hasClass('frame-already-show')) {
