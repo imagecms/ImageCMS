@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => 'Навигация',
-	'description' => 'Виджет',
+	'menu_name' => lang('Navigation', 'navigation'),
+	'description' => lang('Widget', 'navigation'),
 	'admin_type' => 'window',
 	'window_type' => 'xhr',
 	'w' => 600,

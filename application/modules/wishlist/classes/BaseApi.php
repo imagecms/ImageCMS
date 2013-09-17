@@ -60,9 +60,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $to_listName = $this->input->post('wishListName');
 
         if (parent::moveItem($varId, $wish_list_id, $to_listId, $to_listName)) {
-            return $this->dataModel = lang('Successful operation','wishlist');
+            return $this->dataModel = lang('Successful operation', 'wishlist');
         } else {
-            return $this->errors = lang('Unable to move','wishlist');
+            return $this->errors = lang('Unable to move', 'wishlist');
         }
     }
 
@@ -90,9 +90,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $items = $this->input->post('listItem');
         if ($items) {
             if (parent::deleteItemsByIds($items)) {
-                return $this->dataModel = lang('Successful operation','wishlist');
+                return $this->dataModel = lang('Successful operation', 'wishlist');
             } else {
-                return $this->errors[] = lang('Unable to move','wishlist');
+                return $this->errors[] = lang('Unable to move', 'wishlist');
             }
         }
     }
@@ -161,9 +161,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
         $updated = parent::userUpdate($this->input->post('user_id'), $userName, strtotime($this->input->post('user_birthday')) + 50000, $desc);
         if ($updated) {
-            return $this->dataModel = lang('Updated','wishlist');
+            return $this->dataModel = lang('Updated', 'wishlist');
         } else {
-            return $this->errors = lang('Not updated','wishlist');
+            return $this->errors = lang('Not updated', 'wishlist');
         }
     }
 
@@ -193,7 +193,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         $wlDescription = $this->input->post('wlDescription');
 
         if (parent::createWishList($user_id, $listName, $wlType, $wlDescription)) {
-            return $this->dataModel = lang('Created','wishlist');
+            return $this->dataModel = lang('Created', 'wishlist');
         } else {
             return $this->errors;
         }
@@ -261,9 +261,9 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
         }
 
         if (parent::deleteImage($image, $user_id)) {
-            return $this->dataModel[] = lang('Successful deleting','wishlist');
+            return $this->dataModel[] = lang('Successful deleting', 'wishlist');
         } else {
-            return $this->errors[] = lang('Error','wishlist');
+            return $this->errors[] = lang('Error', 'wishlist');
         }
     }
 
@@ -277,18 +277,18 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             if (parent::do_upload($this->input->post('userID'))) {
                 if (!$this->upload->do_upload()) {
                     $this->errors[] = $this->upload->display_errors();
-                    return $this->errors[] = lang('Loading error','wishlist');
+                    return $this->errors[] = lang('Loading error', 'wishlist');
                 } else {
                     $this->dataModel = array('upload_data' => $this->upload->data());
                     $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
-                    return $this->dataModel[] = lang('Image uploaded','wishlist');
+                    return $this->dataModel[] = lang('Image uploaded', 'wishlist');
                 }
-                return $this->dataModel[] = lang('Image uploaded','wishlist');
+                return $this->dataModel[] = lang('Image uploaded', 'wishlist');
             } else {
                 return $this->errors[] = lang('Can not Upload photo', 'wishlist');
             }
         } else {
-            return $this->errors[] = lang('You did not enter user','wishlist');
+            return $this->errors[] = lang('You did not enter user', 'wishlist');
         }
     }
 
@@ -302,6 +302,20 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return $this->dataModel;
         } else {
             return $this->errors;
+        }
+    }
+
+    /**
+     * send email
+     */
+    public function send_email() {
+        $email = $this->input->post('email');
+        $wish_list_id = $this->input->post('wish_list_id');
+
+        if (parent::send_email($wish_list_id, $email)) {
+            return $this->dataModel = lang('Successful operation', 'wishlist');
+        } else {
+            return $this->errors = lang('Error', 'wishlist');
         }
     }
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 14:50+0300\n"
+"POT-Creation-Date: 2013-09-16 18:39+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -4946,6 +4946,7 @@ msgid "Fail"
 msgstr "Неудача"
 
 #: components.php:429
+#: sys_update.php:104
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
@@ -5133,6 +5134,15 @@ msgstr "Пожалуйста, проверьте свою электронную
 #: login.php:124
 msgid "Wrong protection code"
 msgstr "Неправильный код защиты"
+
+#: sys_update.php:16
+msgid "PHP SOAP extension is not installed"
+msgstr ""
+
+#: sys_update.php:106
+#, fuzzy
+msgid "Changes not saved"
+msgstr "Изменения сохранены"
 
 #: widgets_manager.php:30
 #: widgets_manager.php:80
