@@ -10939,6 +10939,10 @@ CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE `shop_products` ADD INDEX ( `external_id` ) ;
+ALTER TABLE `shop_category` ADD INDEX ( `external_id` ) ;
+ALTER TABLE `shop_product_properties` ADD INDEX ( `external_id` ) ;
+
 
 -- --------------------------------------------------------
 

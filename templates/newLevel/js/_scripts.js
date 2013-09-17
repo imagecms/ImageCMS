@@ -504,7 +504,9 @@ function displayDiscount(obj) {
     if (discC) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
+
             $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + parseFloat(kitDiscount)).toFixed(pricePrecision));
+
         });
         $(genObj.frameCurDiscount).show();
     }
