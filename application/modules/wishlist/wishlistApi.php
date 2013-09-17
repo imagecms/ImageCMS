@@ -280,6 +280,12 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         return $this->return_json();
     }
 
+    public function renderEmail($wish_list_id) {
+        \CMSFactory\assetManager::create()
+                ->setData('wish_list_id', $wish_list_id)
+                ->render('sendEmail', TRUE);
+    }
+
     /**
      * return sting format information about user wish list items
      */
