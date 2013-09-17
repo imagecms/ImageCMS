@@ -48,41 +48,41 @@ class Admin extends \ShopAdminController {
             $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
 
             if ($typeDiscount == 'comulativ') {
-                $this->form_validation->set_rules('comulativ[begin_value]', 'Значение от', 'trim|required|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[begin_value]', lang('Value from', 'mod_discount'), 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[end_value]', lang('Value to', 'mod_discount'), 'trim|integer|xss_clean');
             }
             if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|integer|xss_clean');
+                $this->form_validation->set_rules('all_order[begin_value]', lang('Value from', 'mod_discount'), 'trim|integer|xss_clean');
             }
 
             if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
-                showMessage('Сумма "от" не может быть больше суммы "до"!', '', 'r');
+                showMessage(lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount'), '', 'r');
                 exit;
             }
 
             if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) {
-                showMessage('Введите товар, который есть в базе', '', 'r');
+                showMessage(lang('Enter a product that is in the database', 'mod_discount'), '', 'r');
                 exit;
             }
 
             if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) {
-                showMessage('Введите пользователя, который есть в базе', '', 'r');
+                showMessage(lang('Enter the user who is in the database', 'mod_discount'), '', 'r');
                 exit;
             }
 
             //Check have any comulativ discount max end value
             if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()) {
-                showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!', '', 'r');
+                showMessage(lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount'), '', 'r');
                 exit;
             }
             //Check date end is > then date begin
             if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) {
-                showMessage('Неверный диапазон дат!', '', 'r');
+                showMessage(lang('Invalid date range!', 'mod_discount'), '', 'r');
                 exit;
             }
-            
+
             if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
-                showMessage('Проценты скидки не могут быть больше 99!', '', 'r');
+                showMessage(lang('Discounts percents may not be more than 99!', 'mod_discount'), '', 'r');
                 exit;
             }
 
@@ -95,7 +95,7 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table 'mod_shop_discounts'
                 $data = array(
-                   // 'name' => $postArray['name'],
+                    // 'name' => $postArray['name'],
                     'key' => $postArray['key'],
                     'max_apply' => $postArray['max_apply'],
                     'type_value' => $postArray['type_value'],
@@ -111,28 +111,28 @@ class Admin extends \ShopAdminController {
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
-                
+
                 $data_locale = array(
                     'id' => $discountId,
                     'locale' => \MY_Controller::getCurrentLocale(),
                     'name' => $postArray['name']
                 );
-                
-                 $this->discount_model_admin->insertDataToDB('mod_shop_discounts_i18n', $data_locale);
-                
+
+                $this->discount_model_admin->insertDataToDB('mod_shop_discounts_i18n', $data_locale);
+
 
                 //If was error when inserted in the table 'mod_shop_discounts' then exit
                 if ($discountId != false) {
                     $typeDiscountData['discount_id'] = $discountId;
                     $result = $this->discount_model_admin->insertDataToDB($typeDiscountTableName, $typeDiscountData);
                 } else {
-                    showMessage('Не удалось создать скидку!', '', 'r');
+                    showMessage(lang('Failed to create a discount', 'mod_discount'), '', 'r');
                     exit;
                 }
 
                 //If discount created success then show message and redirect to discounts list
                 if ($result != false) {
-                    showMessage('Скидка успешно создана!');
+                    showMessage(lang('Discount successfully created!', 'mod_discount'));
                     pjax('index');
                 }
             } else {
@@ -162,54 +162,54 @@ class Admin extends \ShopAdminController {
     public function edit($id, $locale = null) {
 
         if (null === $locale)
-            $locale = \MY_Controller::getCurrentLocale ();
+            $locale = \MY_Controller::getCurrentLocale();
         if ($this->input->post()) {
             $this->form_validation->set_rules($this->discount_model_admin->rules());
             $postArray = $this->input->post();
             $typeDiscount = $postArray['type_discount'];
-            
+
             if ($typeDiscount == 'comulativ') {
-                $this->form_validation->set_rules('comulativ[begin_value]', 'Значение от', 'trim|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', 'Значение до', 'trim|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[begin_value]', lang('Value from', 'mod_discount'), 'trim|required|integer|xss_clean');
+                $this->form_validation->set_rules('comulativ[end_value]', lang('Value to', 'mod_discount'), 'trim|integer|xss_clean');
             }
             if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', 'Значение от', 'trim|integer|xss_clean');
+                $this->form_validation->set_rules('all_order[begin_value]', lang('Value from', 'mod_discount'), 'trim|integer|xss_clean');
             }
 
             if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
-                showMessage('Сумма "от" не может быть больше суммы "до"!', '', 'r');
+                showMessage(lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount'), '', 'r');
                 exit;
             }
 
             if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) {
-                showMessage('Введите товар, который есть в базе', '', 'r');
+                showMessage(lang('Enter a product that is in the database', 'mod_discount'), '', 'r');
                 exit;
             }
             if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) {
-                showMessage('Введите пользователя, который есть в базе', '', 'r');
+                showMessage(lang('Enter the user who is in the database', 'mod_discount'), '', 'r');
                 exit;
             }
 
             //Check have any comulativ discount max end value
             if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)) {
-                showMessage('Не может существовать более одной скидки, с указанным верхним порогом как “максимум”!', '', 'r');
+                showMessage(lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount'), '', 'r');
                 exit;
             }
 
             //Check date end is > then date begin
             if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) {
-                showMessage('Неверный диапазон дат!', '', 'r');
+                showMessage(lang('Invalid date range!', 'mod_discount'), '', 'r');
                 exit;
             }
-            
 
-            
+
+
             if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
-                showMessage('Проценты скидки не могут быть больше 99!', '', 'r');
+                showMessage(lang('Discount successfully created!', 'mod_discount'));
                 exit;
             }
-            
-            
+
+
             if ($this->form_validation->run()) {
 
 
@@ -235,7 +235,7 @@ class Admin extends \ShopAdminController {
 
                 // Insert data
                 if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData, $locale)) {
-                    showMessage('Изменения сохранены!');
+                    showMessage(lang('Changes saved', 'mod_discount'));
                 }
                 //Return to list of discounts, if user clicked 'save and exit'
                 if ($postArray['action'] == 'tomain')
@@ -253,7 +253,7 @@ class Admin extends \ShopAdminController {
 
             //if can't get info about discount from database then 404 error 
             if ($discountData == false)
-                $this->error404('Скидка не найдена.');
+                $this->error404(lang('Discount not found', 'mod_discount'));
 
             //If discount type user then get user name and email
             if ($discountData['type_discount'] == 'user')

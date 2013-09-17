@@ -82,7 +82,7 @@ class ParentWishlist extends \MY_Controller {
      */
     public function all($access = array('public')) {
         if (!$users = $this->wishlist_model->getAllUsers()) {
-            $this->errors[] = lang('error_no_user');
+            $this->errors[] = lang('No users', 'wishlist');
             return FALSE;
         }
 
@@ -97,7 +97,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $lists;
             return TRUE;
         } else {
-            $this->errors[] = lang('error_no_lists');
+            $this->errors[] = lang('No lists', 'wishlist');
             return FALSE;
         }
     }
@@ -112,14 +112,14 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($hash, $access = array('shared','private', 'public')) {
+    public function show($hash, $access = array('shared', 'private', 'public')) {
         if (!$hash)
             return FALSE;
 
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
         $user_data = $this->wishlist_model->getUserByID($wishlist[0]['wl_user_id']);
-        if($wishlist[0]['access'] == 'private' ){
-            if($wishlist[0]['user_id'] != $this->dx_auth->get_user_id()){
+        if ($wishlist[0]['access'] == 'private') {
+            if ($wishlist[0]['user_id'] != $this->dx_auth->get_user_id()) {
                 $this->core->error_404();
             }
         }
@@ -131,7 +131,7 @@ class ParentWishlist extends \MY_Controller {
 
             return TRUE;
         } else {
-            $this->errors[] = lang('error_wrong_query');
+            $this->errors[] = lang('Invalid request', 'wishlist');
             return FALSE;
         }
     }
@@ -184,7 +184,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $views;
             return TRUE;
         } else {
-            $this->errors[] = lang('error_no_views');
+            $this->errors[] = lang('No views', 'wishlist');
             return FALSE;
         }
     }
@@ -204,7 +204,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $this->dataModel['wishlists'];
             return TRUE;
         } else {
-            $this->errors[] = lang('error_wrong_query');
+            $this->errors[] = lang('Invalid request', 'wishlist');
             return FALSE;
         }
     }
@@ -252,9 +252,9 @@ class ParentWishlist extends \MY_Controller {
             $this->wishlist_model->updateWishListItemsComments($id, $comments);
         }
         if ($return) {
-            $this->dataModel[] = lang("updated");
+            $this->dataModel[] = lang("Updated", "wishlist");
         } else {
-            $this->errors[] = lang('error_cant_update');
+            $this->errors[] = lang('Not updated', 'wishlist');
         }
         return $return;
     }
@@ -274,29 +274,29 @@ class ParentWishlist extends \MY_Controller {
             $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
 
         if ($count_lists >= $this->settings['maxListsCount']) {
-            $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
+            $this->errors[] = lang('Wish Lists limit exhausted', 'wishlist') . '. ' . lang('List maximum', 'wishlist') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
 
         if (iconv_strlen($wlDescription, 'UTF-8') > $this->settings['maxWLDescLenght']) {
             $wlDescription = mb_substr($wlDescription, 0, (int) $this->settings['maxWLDescLenght'], 'utf-8');
-            $this->errors[] = lang('error_list_description_limit_exhausted') . '. ' . lang('list_description_max_count') . ' - ' . $this->settings['maxWLDescLenght'];
+            $this->errors[] = lang('List description limit exhausted', 'wishlist') . '. ' . lang('List description max count', 'wishlist') . ' - ' . $this->settings['maxWLDescLenght'];
         }
 
         if ($listName) {
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
-                $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+                $this->errors[] = lang('Wish list name will be changed', 'wishlist') . '. ' . lang('List name length maximum', 'wishlist') . ' - ' . $this->settings['maxListName'];
             }
             $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
-            $this->errors[] = lang('error_listname_empty');
+            $this->errors[] = lang('Wish List name can not be empty!', 'wishlist');
         }
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('created');
+            $this->dataModel = lang('Created', 'wishlist');
             return TRUE;
         }
     }
@@ -319,12 +319,12 @@ class ParentWishlist extends \MY_Controller {
             $this->wishlist_model->delWishListProductsByWLId($id);
         }
         else
-            $this->errors[] = lang('error_WL_delete');
+            $this->errors[] = lang('You can not delete Wish List', 'wishlist');
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('deleted');
+            $this->dataModel = lang('Successfully deleted', 'wishlist');
             return TRUE;
         }
     }
@@ -344,16 +344,16 @@ class ParentWishlist extends \MY_Controller {
                 $forReturn = $this->wishlist_model->delWishListProductsByWLId($wl);
 
                 if (!$forReturn)
-                    $this->errors[] = lang('error_items_delete');
+                    $this->errors[] = lang('Can not remove items from wishlist', 'wishlist');
             }
         }
         else
-            $this->errors[] = lang('error_WL_delete');
+            $this->errors[] = lang('You can not delete Wish List', 'wishlist');
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('deleted');
+            $this->dataModel = lang('Successfully deleted', 'wishlist');
             return TRUE;
         }
     }
@@ -381,18 +381,18 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if ($count_items >= $this->settings['maxItemsCount']) {
-            $this->errors[] = lang('error_items_limit_exhausted');
+            $this->errors[] = lang('Limit of list items exhausted', 'wishlist');
             return FALSE;
         }
 
         if (!$this->dx_auth->is_logged_in()) {
-            $this->errors[] = lang('error_user_not_autorized');
+            $this->errors[] = lang('User is not logged in', 'wishlist');
             return FALSE;
         }
 
         if (mb_strlen($listName, 'utf-8') > $this->settings['maxListName']) {
             $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
-            $this->errors[] = lang('error_listname_limit_exhausted') . '. ' . lang('listname_max_count') . ' - ' . $this->settings['maxListName'];
+            $this->errors[] = lang('Wishlist name will be changed', 'wishlist') . '. ' . lang('Maximum length of wishlist name', 'wishlist') . ' - ' . $this->settings['maxListName'];
         }
 
         if ($listName) {
@@ -401,17 +401,17 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if ($count_lists >= $this->settings['maxListsCount']) {
-            $this->errors[] = lang('error_list_limit_exhausted') . '. ' . lang('list_max_count') . ' - ' . $this->settings['maxListsCount'];
+            $this->errors[] = lang('Wish Lists limit exhausted', 'wishlist') . '. ' . lang('List maximum', 'wishlist') . ' - ' . $this->settings['maxListsCount'];
             return FALSE;
         }
 
         if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
-            $this->errors[] = lang('error_cant_add');
+            $this->errors[] = lang('You can not add', 'wishlist');
 
         if (count($this->errors))
             return FALSE;
         else {
-            $this->dataModel = lang('added');
+            $this->dataModel = lang('Added to wishlist', 'wishlist');
             return TRUE;
         }
     }
@@ -454,9 +454,9 @@ class ParentWishlist extends \MY_Controller {
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
         if ($forReturn == 0)
-            $this->errors[] = lang('error_items_delete');
+            $this->errors[] = lang('Can not remove items from wishlist', 'wishlist');
         else
-            $this->dataModel = lang('success');
+            $this->dataModel = lang('Successful operation', 'wishlist');
 
         return $forReturn;
     }
@@ -496,7 +496,7 @@ class ParentWishlist extends \MY_Controller {
         }
 
         if (empty($userInfo)) {
-            $this->errors[] = lang('error_no_user_data');
+            $this->errors[] = lang('User data is not found', 'wishlist');
             return FALSE;
         }
         $w = array();
@@ -556,13 +556,13 @@ class ParentWishlist extends \MY_Controller {
         list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
         if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
-            $this->errors[] = lang('error_max_image_size_exceeded');
+            $this->errors[] = lang('Maximum image size is exceeded', 'wishlist');
         if ($this->settings['maxImageWidth'] < $width)
-            $this->errors[] = lang('error_max_image_width_exceeded');
+            $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist');
         if ($this->settings['maxImageHeight'] < $height)
-            $this->errors[] = lang('error_max_image_height_exceeded');
+            $this->errors[] = lang('Max image height exceeded', 'wishlist');
         if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
-            $this->errors[] = lang('error_invalid_file_format');
+            $this->errors[] = lang('Invalid file format', 'wishlist');
         if ($this->errors)
             return FALSE;
 
@@ -592,7 +592,7 @@ class ParentWishlist extends \MY_Controller {
             $this->dataModel = $result;
             return TRUE;
         } else {
-            $this->error[] = lang('error_wrong_query');
+            $this->error[] = lang('Invalid request', 'wishlist');
             return FALSE;
         }
     }
@@ -633,7 +633,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function deleteImage($image, $user_id) {
-        $this->db->where('id', $user_id)->update('mod_wish_list_users', array('user_image'=>''));
+        $this->db->where('id', $user_id)->update('mod_wish_list_users', array('user_image' => ''));
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
@@ -656,8 +656,42 @@ class ParentWishlist extends \MY_Controller {
         }
     }
 
-    public function autoload() {
+    /**
+     * send email
+     */
+    public function send_email($wish_list_id, $email) {
+        $user = $this->wishlist_model->getUserByID($this->dx_auth->get_user_id());
+        $wish_list = $this->db->where('id', $wish_list_id)->get('mod_wish_list');
+        
+        if ($wish_list) {
+            $wish_list = $wish_list->row_array();
+        } else {
+            $wish_list = array();
+        }
+        $db_user = $this->db->where('id', $this->dx_auth->get_user_id())->get('users')->row_array();
 
+        if ($user) {
+            $name = $user['user_name'] ? $user['user_name'] : $this->dx_auth->get_username();
+            $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
+            
+            $user_variables = array(
+                '$userName$' => $name,
+                '$userPhone$' => $phone,
+                '$wishName$' => $wish_list['title'],
+                '$wishLink$' => site_url('wishlist/show/' . $wish_list['hash']),
+                '$wishListViews$' =>  $wish_list['hash']['review_count'],
+            );
+            
+            \cmsemail\email::getInstance()->sendEmail($email, 'wish_list', $user_variables);
+            
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
+    public function autoload() {
+        
     }
 
     public static function adminAutoload() {

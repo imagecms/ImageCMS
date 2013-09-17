@@ -119,7 +119,7 @@ class Admin extends BaseAdminController {
 
             $this->db->where('identif', 'exchangeunfu')
                     ->update('components', array('settings' => serialize($config)));
-            showMessage("Настройки сохранены");
+            showMessage(lang('Settings saved', 'exchangeunfu'));
         }
     }
 

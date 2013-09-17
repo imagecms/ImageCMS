@@ -463,7 +463,7 @@ class Discount_model_admin extends CI_Model {
      */
     public function attributeLabels() {
         return array(
-            'value' => ShopCore::t('Значение'),
+            'value' => ShopCore::t(lang('Value', 'mod_discount')),
         );
     }
 
@@ -475,7 +475,7 @@ class Discount_model_admin extends CI_Model {
         return array(
             array(
                 'field' => 'value',
-                'label' => 'Значение',
+                'label' => lang('Value', 'mod_discount'),
                 'rules' => 'required|integer',
             ),
         );

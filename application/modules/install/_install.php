@@ -152,22 +152,22 @@ class Install extends MY_Controller {
         $other_errors = '';
 
         if (count($_POST) > 0) {
-            $this->form_validation->set_rules('site_title', 'Название сайта', 'required');
-            $this->form_validation->set_rules('db_host', 'Хост', 'required');
-            $this->form_validation->set_rules('db_user', 'Имя пользователя БД', 'required');
+            $this->form_validation->set_rules('site_title', lang('Site name', 'install'), 'required');
+            $this->form_validation->set_rules('db_host', lang('Host', 'install'), 'required');
+            $this->form_validation->set_rules('db_user', lang('Database username', 'install'), 'required');
             //$this->form_validation->set_rules('db_pass', 'Пароль БД', 'required');
-            $this->form_validation->set_rules('db_name', 'Имя БД', 'required');
+            $this->form_validation->set_rules('db_name', lang('Database name', 'install'), 'required');
 //            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
-            $this->form_validation->set_rules('admin_pass', 'Пароль администратора', 'required|min_length[5]');
-            $this->form_validation->set_rules('admin_mail', 'Почта администратра', 'required|valid_email');
-            $this->form_validation->set_rules('lang_sel', 'Язык', 'required');
+            $this->form_validation->set_rules('admin_pass', lang('Administrator name', 'install'), 'required|min_length[5]');
+            $this->form_validation->set_rules('admin_mail', lang('Administrator E-mail', 'install'), 'required|valid_email');
+            $this->form_validation->set_rules('lang_sel', lang('Language', 'install'), 'required');
 
             if ($this->form_validation->run() == FALSE) {
                 $result = FALSE;
             } else {
                 // Test database conn.
                 if ($this->test_db() == FALSE) {
-                    $other_errors .= 'Ошибка подключения к базе данных.<br/>';
+                    $other_errors .= lang('Database connection error', 'install') . '.<br/>';
                     $result = FALSE;
                 }
             }
@@ -362,7 +362,7 @@ class Install extends MY_Controller {
         $config = str_replace('{DB_SETTINGS}', $db_settings, $config);
 
         if (!write_file($config_file, $config)) {
-            die('Ошибка записи файла config.php');
+            die(lang('Error writing file config.php', 'install'));
         }
     }
 

@@ -31,7 +31,7 @@ class Socauth extends MY_Controller {
         $this->email->from("noreplay@$_SERVER[HTTP_HOST]");
         $this->email->to($email);
         $this->email->subject('Password');
-        $this->email->message("Ваш пароль для входа на сайт $_SERVER[HTTP_HOST] - $pass");
+        $this->email->message(lang('Your password to access the site', 'socauth') . "$_SERVER[HTTP_HOST] - $pass");
         $this->email->send();
     }
 

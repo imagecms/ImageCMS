@@ -1,1 +1,1 @@
-Оплачені
+{lang('Paid', 'mod_stats')}

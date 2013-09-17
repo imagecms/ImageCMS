@@ -8,5 +8,5 @@
                />
     </form>
 {else:}
-    <a href="/wishlist" class="btn inWL">Уже в Списке Желания</a>
+    <a href="/wishlist" class="btn inWL">{lang('Already in WishList', 'wishlist')}</a>
 {/if}

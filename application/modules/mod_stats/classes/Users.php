@@ -74,7 +74,7 @@ class Users extends \MY_Controller {
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Количество регистраций',
+                    'key' => lang('Registrations number'),
                     'values' => $ts_
                 )
             )
