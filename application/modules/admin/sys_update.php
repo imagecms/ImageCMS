@@ -13,7 +13,7 @@ class Sys_update extends BaseAdminController {
 
     public function __construct() {
         if (!extension_loaded('soap')) {
-            showMessage('Расширение PHP SOAP неустановлено', '', 'r');
+            showMessage(lang('PHP SOAP extension is not installed'), '', 'r');
             pjax('/admin');
         }
 
@@ -101,9 +101,9 @@ class Sys_update extends BaseAdminController {
     public function properties() {
         if ($this->input->post("careKey")) {
             if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey")))))
-                showMessage('Изминения сохранены');
+                showMessage(lang('Changes saved'));
             else
-                showMessage('Изминения не сохранены', 'Ошибка', 'r');
+                showMessage(lang('Changes not saved'), 'Ошибка', 'r');
         } else {
             $data = array(
                 'careKey' => $this->update->getSettings('careKey')

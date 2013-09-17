@@ -1,652 +1,509 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ImageCms\n"
+"Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-09-09 12:08+0300\n"
-"PO-Revision-Date: 2013-09-09 12:09+0300\n"
-=======
-"POT-Creation-Date: 2013-08-29 10:38+0300\n"
-"PO-Revision-Date: 2013-08-29 10:41+0300\n"
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
+"POT-Creation-Date: 2013-09-16 18:38+0300\n"
+"PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
-"Language: ru_UA\n"
+"Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SearchPath-0: ../../../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Tagalog\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:10
-msgid "Fields groups"
-msgstr "Группы полей"
+#, fuzzy
+msgid "Creating mail template"
+msgstr "Создать категорию"
 
 #: /var/www/image.loc/_temp2.php:11
-msgid "Add field"
-msgstr "Добавить поле"
+#: /var/www/image.loc/_temp2.php:59
+msgid "Go back"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:12
-msgid "Without catagory"
-msgstr "Без категории"
+#: /var/www/image.loc/_temp2.php:45
+#: /var/www/image.loc/_temp2.php:60
+msgid "Save"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:13
-msgid "List of additional fields is empty"
-msgstr "Список дополнительных полей пуст"
+#: /var/www/image.loc/_temp2.php:61
+msgid "Save and go back"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:14
-msgid "Create group"
-msgstr "Создать группу"
+#: /var/www/image.loc/_temp2.php:36
+#: /var/www/image.loc/_temp2.php:43
+#: /var/www/image.loc/_temp2.php:46
+#: /var/www/image.loc/_temp2.php:64
+#, fuzzy
+msgid "Settings"
+msgstr "Виджети"
 
 #: /var/www/image.loc/_temp2.php:15
-msgid "Field groups"
-msgstr "Группы полей"
+msgid "Template name (only latin)"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:16
-msgid "Without group"
-msgstr "Без группы"
+#: /var/www/image.loc/_temp2.php:48
+#: /var/www/image.loc/_temp2.php:66
+#: /var/www/image.loc/_temp2.php:85
+msgid "From"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:17
-#: /var/www/image.loc/_temp2.php:56
-msgid "Fields"
-msgstr "Поля"
+#: /var/www/image.loc/_temp2.php:49
+#: /var/www/image.loc/_temp2.php:67
+msgid "From email"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:18
-msgid "Delete group"
-msgstr "Удалить группу"
+#: /var/www/image.loc/_temp2.php:41
+#: /var/www/image.loc/_temp2.php:51
+#: /var/www/image.loc/_temp2.php:68
+msgid "Theme"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:19
-#: /var/www/image.loc/_temp2.php:47
-msgid "Field constructor"
-msgstr "Конструктор полей"
+#: /var/www/image.loc/_temp2.php:69
+msgid "Message type"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:20
-msgid "All modules"
-msgstr "Все модули"
+#: /var/www/image.loc/_temp2.php:70
+#, fuzzy
+msgid "Template user mail"
+msgstr "Создать категорию"
 
 #: /var/www/image.loc/_temp2.php:21
-#: /var/www/image.loc/_temp2.php:23
-#: /var/www/image.loc/_temp2.php:38
-#: /var/www/image.loc/_temp2.php:39
-msgid "Additional fields"
-msgstr "Дополнительные поля"
+msgid "Send email to user"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:22
-msgid "Install modules"
-msgstr "Установите модули"
+#: /var/www/image.loc/_temp2.php:26
+#: /var/www/image.loc/_temp2.php:72
+#: /var/www/image.loc/_temp2.php:76
+msgid "Yes"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:23
+#: /var/www/image.loc/_temp2.php:27
+#: /var/www/image.loc/_temp2.php:73
+#: /var/www/image.loc/_temp2.php:77
+msgid "No"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:24
-msgid "Label"
-<<<<<<< HEAD
-msgstr "Метка"
-=======
-msgstr "Label"
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
+#: /var/www/image.loc/_temp2.php:74
+msgid "Admin mail template"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:25
-#: /var/www/image.loc/_temp2.php:31
-#: /var/www/image.loc/_temp2.php:54
-msgid "Name"
-msgstr "Название"
-
-#: /var/www/image.loc/_temp2.php:26
-msgid "Type"
-msgstr "Тип"
-
-#: /var/www/image.loc/_temp2.php:27
-msgid "Categories"
-msgstr "Категории"
+#: /var/www/image.loc/_temp2.php:75
+msgid "Send email to admin"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:28
-#: /var/www/image.loc/_temp2.php:30
-#: /var/www/image.loc/_temp2.php:33
-#: /var/www/image.loc/_temp2.php:34
-#: /var/www/image.loc/_temp2.php:58
-msgid "Delete"
-msgstr "Удалить"
+#: /var/www/image.loc/_temp2.php:78
+msgid "Admin address"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:29
-msgid "Editing"
-msgstr "Редактирование"
+#: /var/www/image.loc/_temp2.php:79
+msgid "Template description"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:30
+msgid "Template email deleting"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:31
+#, fuzzy
+msgid "Delete selected templates"
+msgstr "Создать категорию"
 
 #: /var/www/image.loc/_temp2.php:32
-#: /var/www/image.loc/_temp2.php:55
-msgid "Description"
-msgstr "Описание"
+#: /var/www/image.loc/_temp2.php:37
+#: /var/www/image.loc/_temp2.php:83
+msgid "Delete"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:33
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:34
+msgid "Template list view"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:35
-#: /var/www/image.loc/_temp2.php:48
-msgid "Go back"
-msgstr "Назад"
+#: /var/www/image.loc/_temp2.php:44
+msgid "Back"
+msgstr ""
 
-#: /var/www/image.loc/_temp2.php:36
-<<<<<<< HEAD
-#: /var/www/image.loc/_temp2.php:49
-msgid "Save"
-msgstr "Сохранить"
-=======
-msgid "Have been saved"
-msgstr "Сохранены"
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
+#: /var/www/image.loc/_temp2.php:38
+#, fuzzy
+msgid "Create template"
+msgstr "Создать категорию"
 
-#: /var/www/image.loc/_temp2.php:37
-msgid "Information"
-msgstr "Информация"
+#: /var/www/image.loc/_temp2.php:39
+msgid "Name"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:40
-msgid "Select an image"
-msgstr "Выберите изображение"
-
-#: /var/www/image.loc/_temp2.php:41
-msgid "Select a file"
-msgstr "Выберите файл"
+msgid "Description"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:42
-msgid "Field Constructor"
-msgstr "Конструктор поля"
+msgid "Templates list empty"
+msgstr ""
 
-#: /var/www/image.loc/_temp2.php:43
-msgid "Field list"
-msgstr "Список полей"
+#: /var/www/image.loc/_temp2.php:47
+msgid "Install standart templates"
+msgstr ""
 
-#: /var/www/image.loc/_temp2.php:44
-msgid "Create a field"
-msgstr "Создать поле"
-
-#: /var/www/image.loc/_temp2.php:45
-msgid "Group list"
-msgstr "Список групп"
-
-#: /var/www/image.loc/_temp2.php:46
-#: /var/www/image.loc/_temp2.php:60
-msgid "Create a group"
-msgstr "Создать группу"
-
-<<<<<<< HEAD
-=======
-#: /var/www/image.loc/_temp2.php:49
-msgid "Save"
-msgstr "Сохранить"
-
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
 #: /var/www/image.loc/_temp2.php:50
-msgid "Save and exit"
-msgstr "Сохранить и выйти"
-
-#: /var/www/image.loc/_temp2.php:51
-msgid "Russian"
-msgstr "Русский"
+msgid "Admin email"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:52
-msgid "English"
-msgstr "Английский"
+msgid "Use wraper"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:53
-msgid "ID"
-msgstr "ID"
+msgid "Wraper"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:54
+msgid "Server path to sendmail"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:55
+msgid "Protocol"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:56
+msgid "Port"
+msgstr ""
 
 #: /var/www/image.loc/_temp2.php:57
+msgid "Check email sending"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:58
+msgid "Email template editing"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:62
+#, fuzzy
+msgid "Template settings"
+msgstr "Виджети"
+
+#: /var/www/image.loc/_temp2.php:63
+msgid "Template_variables"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:65
+msgid "Template name(only latin)"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:71
+msgid "Send_email_to_user"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:80
+msgid "Variables"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:81
+msgid "Values"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:82
 msgid "Edit"
-msgstr "Редактировать"
+msgstr ""
 
-# а
-#: /var/www/image.loc/_temp2.php:59
-msgid "Empty group list or group list is empty"
-msgstr "Пустой список группы или группы список пуст"
+#: /var/www/image.loc/_temp2.php:84
+msgid "Add new variable"
+msgstr ""
 
-# а
-#: ../../..//cfcm_forms.php:29
-<<<<<<< HEAD
-msgid "To name will be prefixed with"
-msgstr "К имени будет добавлен префикс "
-=======
+#: ../../../admin.php:42
 #, fuzzy
-msgid "To name will be prefixed with"
-msgstr "Чтобы имя будет с префиксом"
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
+msgid "Template_created"
+msgstr "Настр"
 
-#: ../../..//cfcm_forms.php:40
-msgid "Participate in search"
-msgstr "Участвует в поиске"
+#: ../../../admin.php:81
+msgid "Template_edited"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:50
-#: ../../..//cfcm_forms.php:149
-msgid "Group"
-msgstr "Группа"
+#: ../../../admin.php:105
+msgid "Admin_email"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:77
-msgid "The initial value"
-msgstr "Начальное значение"
+#: ../../../admin.php:106
+msgid "Sender_eamil"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:81
-msgid "Hint"
-msgstr "Подсказка"
+#: ../../../admin.php:108
+#: ../../../classes/ParentEmail.php:234
+#: ../../../classes/ParentEmail.php:289
+msgid "From_email"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:82
-msgid "Field description "
-msgstr "Описание поля "
+#: ../../../admin.php:116
+#: ../../../admin.php:119
+msgid "Message"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:86
-msgid "Required field"
-msgstr "Обязательное поле"
+#: ../../../admin.php:119
+msgid "Settings_saved"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:96
-msgid "Specify the possible values in the new row"
-msgstr "Укажите возможные значения в новой строке"
+#: ../../../admin.php:130
+msgid "Field"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:118
-msgid "Enable images viewing"
-msgstr "Включить просмотр изображений"
+#: ../../../admin.php:130
+msgid "must_contain_variable"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:125
-msgid "Enable file viewing"
-msgstr "Включить просмотр файлов"
+#: ../../../module_info.php:6
+msgid "CMSEmail"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:144
-msgid "Check conditions"
-msgstr "Условия проверки"
+#: ../../../module_info.php:7
+msgid "Email module"
+msgstr ""
 
-#: ../../..//cfcm_forms.php:145
-msgid "For example"
-msgstr "Например"
+#: ../../../classes/ParentEmail.php:163
+#: ../../../classes/ParentEmail.php:192
+msgid "error_user_message_doesnt_send"
+msgstr ""
 
-#: ../../..//admin.php:60
-msgid "Protection code"
-msgstr "Защитный код"
+#: ../../../classes/ParentEmail.php:232
+msgid "Template_name"
+msgstr ""
 
-#: ../../..//admin.php:96
-msgid "Specify the field name"
-msgstr "Укажите имя поля"
+#: ../../../classes/ParentEmail.php:233
+#: ../../../classes/ParentEmail.php:288
+msgid "from"
+msgstr ""
 
-#: ../../..//admin.php:100
-msgid "Specify <b>Label</b> field"
-<<<<<<< HEAD
-msgstr "Укажите <b> Метка</ B> поле"
-=======
-msgstr "Укажите <b> Label</ B> поле"
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
+#: ../../../classes/ParentEmail.php:235
+#: ../../../classes/ParentEmail.php:290
+msgid "Template_theme"
+msgstr ""
 
-#: ../../..//admin.php:104
-msgid "Only Latin characters"
-msgstr "Только латинские буквы"
+#: ../../../classes/ParentEmail.php:238
+#: ../../../classes/ParentEmail.php:240
+#: ../../../classes/ParentEmail.php:293
+#: ../../../classes/ParentEmail.php:295
+msgid "Template_user_mail"
+msgstr ""
 
-#: ../../..//admin.php:117
-msgid "Select another  name"
-msgstr "Выберите другое имя"
+#: ../../../classes/ParentEmail.php:243
+#: ../../../classes/ParentEmail.php:245
+#: ../../../classes/ParentEmail.php:298
+#: ../../../classes/ParentEmail.php:300
+msgid "Template_admin_mail"
+msgstr ""
 
-#: ../../..//admin.php:138
-msgid "Field created"
-msgstr "Поле создано"
+#: ../../../classes/ParentEmail.php:247
+#: ../../../classes/ParentEmail.php:302
+msgid "Admin_address"
+msgstr ""
 
-#: ../../..//admin.php:160
-msgid "Field editing"
-msgstr "Редактирования поля"
+#: ../../../classes/ParentEmail.php:379
+msgid "Check_email_sending"
+msgstr ""
 
-#: ../../..//admin.php:178
-#: ../../..//admin.php:266
-msgid "Field has been updated"
-msgstr "Поле обновлено"
-
-#: ../../..//admin.php:212
-msgid "Field deleted successfuly"
-msgstr "Поле успешно удалено"
-
-#: ../../..//admin.php:227
-msgid "Field editing "
-msgstr "Редактирования поля "
-
-#: ../../..//admin.php:282
-msgid "Field has not been found"
-msgstr "Поле не найдено"
-
-#: ../../..//admin.php:288
-msgid "Creating a group"
-msgstr "Создание группы"
-
-#: ../../..//admin.php:292
-msgid "Specify the group name"
-msgstr "Укажите название группы"
-
-#: ../../..//admin.php:298
-msgid "Group has been created"
-msgstr "Группа была создана"
-
-#: ../../..//admin.php:323
-msgid "Group has not been found"
-msgstr "Группа не была найдена"
-
-#: ../../..//admin.php:329
-msgid "ID group editing"
-msgstr "Редактирование группы ID"
-
-#: ../../..//admin.php:338
-msgid "Group has been updated"
-msgstr "Группа обновлена"
-
-#: ../../..//admin.php:372
-msgid "Group deleted successfuly"
-msgstr "Группа успешно удалена"
-
-#: ../../..//admin.php:453
-msgid "Group without any fields"
-msgstr "Группа без полей"
-
-#: ../../..//admin.php:458
-msgid "For category"
-msgstr "Для категории"
-
-#: ../../..//admin.php:458
-msgid "Field group has not been selected"
-msgstr "Группа полей не выбрана"
-
-#: ../../..//module_info.php:4
-msgid "Fields designer"
-msgstr "Дизайнер полей"
-
-#: ../../..//module_info.php:5
-msgid "Additional fields designer for pages and categories"
-msgstr "Дизайнер  дополнительных полей для  страницы и категории"
-
-<<<<<<< HEAD
-#~ msgid "Have been saved"
-#~ msgstr "Сохранены"
-
-=======
->>>>>>> 81c53e76a5851b7632b49cf83e8038ce1aa3f9c8
-#, fuzzy
-#~ msgid "a_create_group_"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create a category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Created a widget"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "System information"
+#~ msgstr "Настр"
+
+#~ msgid "Modules"
+#~ msgstr "Модулі"
+
+#~ msgid "Management of Meta Tags"
+#~ msgstr "Управление мета тегами"
+
+#~ msgid "Widgets"
+#~ msgstr "Виджети"
 
 #, fuzzy
-#~ msgid "Positions updated"
-#~ msgstr "Позиція змінена"
+#~ msgid "Date of creation"
+#~ msgstr "Настр"
 
-#~ msgid "Title"
-#~ msgstr "Заголовок"
-
-#, fuzzy
-#~ msgid "Created a page"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Site configuration"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "Changed wesite settings"
-#~ msgstr "Позиція"
+#~ msgid "Сonsider the category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Settings have been saved"
-#~ msgstr "Сохранение настроек прошло успешно"
+#~ msgid "Widget title"
+#~ msgstr "Виджети"
 
-#, fuzzy
-#~ msgid "Image"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "by default"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Position"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Short description"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Settings"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "Main page"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "Meta Description"
-#~ msgstr "Позиція"
-
-#, fuzzy
 #~ msgid "New pages"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgstr "Нові сторінки"
+
+#~ msgid "Buy"
+#~ msgstr "Купить"
 
 #, fuzzy
-#~ msgid "Updated pages"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Move to category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Pages"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create status"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Cancel"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create property"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "goto site"
-#~ msgstr "Позиція"
+#~ msgid "Catagory"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Create"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "turn category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "No widgets created"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Drug category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Change category data"
-#~ msgstr "Позиція змінена"
+#~ msgid "Edit the category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Module name"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Basic information"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "Languages"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#~ msgid "Hello"
-#~ msgstr "Привет"
+#~ msgid "Create a warehouse"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Create and exit"
-#~ msgstr "Позиція"
+#~ msgid "General information"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "by date"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create a way to deliver"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Orders list"
+#~ msgstr "Список замовлень"
+
+#~ msgid "Create order"
+#~ msgstr "Создатьзаказ"
+
+#~ msgid "Customer"
+#~ msgstr "Замовник"
 
 #, fuzzy
-#~ msgid "By position"
-#~ msgstr "Позиція"
+#~ msgid "Date of order"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "Create new page"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Ordering information"
+#~ msgstr "Настр"
+
+#~ msgid "New orders"
+#~ msgstr "Новие закази"
 
 #, fuzzy
-#~ msgid "Download"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Created Date"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "System update"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "Preview"
-#~ msgstr "Смотреть"
-
-#~ msgid "site"
-#~ msgstr "сайт"
+#~ msgid "Create a payment method"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Manage site"
-#~ msgstr "Позиція"
+#~ msgid "Pages and categories"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "Your remark"
-#~ msgstr "Вааааааааааааше замечание"
+#~ msgid "Picture for category"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_val_name"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Time of addition"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "ac_val_pub_date"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Product creation"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "ac_creat"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid " Create a product copy?"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_page_cont_updated"
-#~ msgstr "Позиція змінена"
+#~ msgid "Create small image"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_sett_saved"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create a set"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_val_image"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create currency"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_by_default"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Banner creation"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "ac_val_position"
-#~ msgstr "Позиція"
+#~ msgid "Create a banner"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "ac_created"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create a brand"
+#~ msgstr "Создать категорию"
+
+#~ msgid "Regular or usual pages"
+#~ msgstr "Звичайні сторінки"
 
 #, fuzzy
-#~ msgid "a_save"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create a discount"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "a_sett"
-#~ msgstr "Позиція"
+#~ msgid "Create gift certificate"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "a_yes"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Time of registration"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "a_cat_name"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Additional information"
+#~ msgstr "Настр"
 
 #, fuzzy
-#~ msgid "a_name"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create date"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "a_n"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Created date"
+#~ msgstr "Создать категорию"
 
 #, fuzzy
-#~ msgid "a_create_cat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_no_updates"
-#~ msgstr "Позиція змінена"
-
-#~ msgid "a_url"
-#~ msgstr "Посилання"
-
-#, fuzzy
-#~ msgid "a_date_create"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_type"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_footer_cancel"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_image_url"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_save_path"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_sort"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_by_pos"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_comm_by_def"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_turn_off"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "a_page_tpl"
-#~ msgstr "Позиція змінена"
-
-#, fuzzy
-#~ msgid "a_pub_stat"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_enter_sys"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "a_ftp_sett"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_in_mb"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_left"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_top"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_bottom"
-#~ msgstr "Позиція"
-
-#, fuzzy
-#~ msgid "amt_text"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_no_albums"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_album"
-#~ msgstr "Нааааааааамеееееееееее"
-
-#, fuzzy
-#~ msgid "amt_gallery"
-#~ msgstr "Нааааааааамеееееееееее"
+#~ msgid "Create catagory"
+#~ msgstr "Создать категорию"

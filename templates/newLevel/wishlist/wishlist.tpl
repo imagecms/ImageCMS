@@ -43,7 +43,7 @@
                                                 data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
                                                 data-type="json"
                                                 data-modal="true"
-                                                
+
                                                 data-drop="#notification"
                                                 data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
                                                 data-callback="deleteImage"
@@ -101,7 +101,7 @@
                                         data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
                                         data-type="json"
                                         data-modal="true"
-                                        
+
                                         data-drop="#notification"
                                         onclick="serializeForm(this)"
                                         data-callback="changeDataWishlist"
@@ -167,7 +167,7 @@
                                             data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
                                             data-type="json"
                                             data-modal="true"
-                                            
+
                                             data-always="true"
                                             onclick="serializeForm(this)"
                                             data-drop="#notification"
@@ -193,6 +193,14 @@
                             <b>{lang('Доступность:','newLevel')}</b>
                             <span class="s_t">{echo $wishlist[0][access]}</span>
                         </div>
+                        {if $wishlist[0][access]=='shared'}
+                            <form method="POST" action="{site_url('/wishlist/wishlist/send_email')}">
+                                <input type="email" name = "email" />
+                                <input type="hidden" name = "wish_list_id" value="{echo $wishlist[0][wish_list_id]}"/>
+                                <input type="submit" value="Отправить" />
+                                {form_csrf()}
+                            </form>
+                        {/if}
                         <div class="f_r">
                             {if $wishlist[0]['access'] == 'shared'}
                                 {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
@@ -245,7 +253,7 @@
                                             data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
                                             data-type="json"
                                             data-modal="true"
-                                            
+
                                             data-drop="#notification"
                                             data-callback="removeWL"
                                             data-confirm="true"
