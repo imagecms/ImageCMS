@@ -483,14 +483,14 @@ function displayInfoDiscount(tpl) {
     $.fancybox.hideActivity();
 }
 function displayDiscount(obj) {
-    var kitDiscount = getKitDiscount();
+    var kitDiscount = parseFloat(getKitDiscount());
     kitDiscount = isNaN(kitDiscount) ? 0 : kitDiscount;
     Shop.Cart.kitDiscount = kitDiscount;
     var discC = (Shop.Cart.discount.sum_discount_product != 0 && Shop.Cart.discount.sum_discount_product != undefined && Shop.Cart.totalPriceOrigin != 0) || Shop.Cart.kitDiscount != 0;
     if (discC) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
-            $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + kitDiscount).toFixed(pricePrecision));
+            $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + parseFloat(kitDiscount)).toFixed(pricePrecision));
         });
         $(genObj.frameCurDiscount).show();
     }
@@ -726,7 +726,7 @@ function recountCartPage(selectDeliv, methodDeliv) {
     }
 
     var discount = Shop.Cart.discount,
-            kitDiscount = Shop.Cart.kitDiscount,
+            kitDiscount = parseFloat(Shop.Cart.kitDiscount),
             finalAmount = Shop.Cart.getFinalAmount();
     if (discount != null && discount != 0)
         finalAmount = finalAmount - discount['result_sum_discount_convert'];

@@ -1,6 +1,6 @@
 {if count($brands) > 0}
-    <div class="big-container">
-        <div class="products-carousel frame-brands">
+    <div class="big-container frame-brands">
+        <div class="products-carousel">
             {/*carousel_js*/}
             <div class="frame-title container">
                 <div class="title">
@@ -37,7 +37,7 @@
                 <span class="show-all-brands s-all-d">
                     <a href="{shop_url('brand/')}" class="t-d_n f-s_0">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">{lang('Show all','newLevel')}</span>
+                        <span class="text-el">{lang('Смотреть все','newLevel')}</span>
                     </a>
                 </span>
             </div>
