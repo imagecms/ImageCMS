@@ -1,6 +1,6 @@
 <!-- floating elements-->
 <div id="popupCart" style="display: none;" class="drop drop-bask drop-style"></div>
-<a href="#" data-drop="#popupCart" id="showCart" style="display: none;"></a>
+<a href="#" data-drop="#popupCart" id="showCart" data-animate="true" style="display: none;"></a>
 
 <script type="text/template" id="cartPopupTemplate">
     {literal}
@@ -392,6 +392,7 @@
         <!-- for single product -->
         <% if (!item.kit) { %>
         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupProduct_<%- item.id+'_'+item.vId %>" class="items items-bask cartProduct">
+        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this);"></button></td>
         <td class="frame-items">
         <a href="<%-item.url%>" class="frame-photo-title">
         <span class="photo-block">
@@ -498,6 +499,7 @@
         <% var prodstatus = item.prodstatus %>
 
         <tr class="row-kits" data-id="popupKit_<%- item.kitId %>">
+        <td class="frame-remove-bask-btn"><button class="icon_times_cart" onclick="rmFromPopupCart(this, true);"></button></td>
         <td class="frame-items frame-items-kit">
         <ul class="items items-bask">
         <% var idsL = ids.length; _.each(ids, function(id){  %>
@@ -593,7 +595,7 @@
         </td>
         </tr>
         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
-        <td class="frame-kits-gen-sum">
+        <td class="frame-kits-gen-sum" colspan="2">
         <div class="kits-gen-sum">
         <img src="<%-theme%>/images/kits_sum.png" />
         </div>

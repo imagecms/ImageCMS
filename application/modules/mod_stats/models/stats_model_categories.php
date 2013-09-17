@@ -80,6 +80,7 @@ class Stats_model_categories extends CI_Model {
 
     /**
      * Get category id from cookie or set first
+     * @return int
      */
     public function getCategoryIdFromCookieOrSetFirst (){
         $categoryId = $_COOKIE['cat_id_for_stats'];
