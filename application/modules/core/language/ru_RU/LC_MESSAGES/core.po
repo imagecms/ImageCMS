@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-16 18:37+0300\n"
-"PO-Revision-Date: 2013-09-16 18:37+0300\n"
+"PO-Revision-Date: 2013-09-17 12:01+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Related topics"
-msgstr ""
+msgstr "Связанные темы"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Widget settings"
@@ -27,16 +27,15 @@ msgstr "Настройки виджета"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:11
-#, fuzzy
 msgid "Save and go back"
-msgstr "Позиція"
+msgstr "Сохранить и выйти"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Settings"
@@ -48,11 +47,11 @@ msgstr "Страницы"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Latest"
-msgstr ""
+msgstr "Последний"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Popular"
-msgstr ""
+msgstr "Популярный"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Categories"
@@ -72,7 +71,7 @@ msgstr "Максимальное количество символов"
 
 #: ../../..//core_widgets.php:87
 msgid "Amount of news"
-msgstr ""
+msgstr "Количество новостей"
 
 #: ../../..//core_widgets.php:101
 #, fuzzy
@@ -81,35 +80,35 @@ msgstr "Сохранение настроек прошло успешно"
 
 #: ../../..//core.php:343
 msgid "Home page not found."
-msgstr ""
+msgstr "Главная страница не найдена."
 
 #: ../../..//core.php:390
 msgid "Module uploading or loading  error"
-msgstr ""
+msgstr "Загрузки модуля или ошибка загрузки"
 
 #: ../../..//core.php:527
 msgid "The first"
-msgstr ""
+msgstr "Первый"
 
 #: ../../..//core.php:528
 msgid "Last"
-msgstr ""
+msgstr "Последний"
 
 #: ../../..//core.php:557
 msgid "Can't locate category template file."
-msgstr ""
+msgstr "Не удается найти файл шаблона категории."
 
 #: ../../..//core.php:565
 msgid "In the category has no pages."
-msgstr ""
+msgstr "В категории не имеет страниц."
 
 #: ../../..//core.php:697
 msgid "Page not found"
-msgstr ""
+msgstr "Страница не найдена"
 
 #: ../../..//core.php:699
 msgid "Page not found."
-msgstr ""
+msgstr "Страница не найдена."
 
 #, fuzzy
 #~ msgid "Have been saved"

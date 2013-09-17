@@ -27,6 +27,8 @@ class Sitemap extends MY_Controller {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('sitemap');
         $this->robots = $this->replace(file('robots.txt'));
         $this->load->module('core');
         $this->langs = $this->core->langs;

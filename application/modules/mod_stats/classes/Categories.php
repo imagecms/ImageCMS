@@ -14,6 +14,8 @@ class Categories extends \MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('stats_model_categories');
+        $lang = new \MY_Lang();
+        $lang->load('mod_stats');
     }
     /**
      * 

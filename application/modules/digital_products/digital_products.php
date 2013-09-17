@@ -10,6 +10,8 @@ class Digital_products extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('digital_products');
     }
 
     public function index() {

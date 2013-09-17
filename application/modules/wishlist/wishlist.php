@@ -11,6 +11,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('wishlist');
         $this->load->helper(array('form', 'url'));
     }
 

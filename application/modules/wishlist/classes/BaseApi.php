@@ -15,6 +15,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
 
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**

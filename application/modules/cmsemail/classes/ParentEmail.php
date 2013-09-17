@@ -102,6 +102,8 @@ class ParentEmail extends \MY_Controller {
         parent::__construct();
 
         $this->load->model('../modules/cmsemail/models/cmsemail_model');
+        $lang = new \MY_Lang();
+        $lang->load('cmsemail');
     }
 
     /**

@@ -15,6 +15,8 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     public function __construct() {
         parent::__construct();
+        $lang = new \MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**
@@ -296,7 +298,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         if (parent::send_email($wish_list_id, $email)) {
             return $this->dataModel = lang('Successful operation', 'wishlist');
         } else {
-            return $this->errors = lang('Error', 'wishlist');
+            return $this->errors[] = lang('Error', 'wishlist');
         }
     }
 

@@ -6,6 +6,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+           $lang = new MY_Lang();
+        $lang->load('trash');
 
         $this->load->library('DX_Auth');
         //cp_check_perm('module_admin');

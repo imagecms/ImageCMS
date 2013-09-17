@@ -19,31 +19,30 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:5
 msgid "Navigation"
-msgstr ""
+msgstr "Навигация"
 
 #: ../../../navigation_widgets.php:70
 #: ../../../navigation_widgets.php:76
 msgid "Brands"
-msgstr ""
+msgstr "Бренды"
 
 #: ../../../navigation_widgets.php:85
 msgid "Compare"
-msgstr ""
+msgstr "Сравнение"
 
 #: ../../../navigation_widgets.php:90
 msgid "Wish List"
-msgstr ""
+msgstr "Список Желаний"
 
 #: ../../../navigation_widgets.php:95
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: ../../../navigation_widgets.php:100
 msgid "Cart"
-msgstr ""
+msgstr "Корзина"
 
 #: ../../../module_info.php:5
-#, fuzzy
 msgid "Widget"
 msgstr "Виджети"
 
