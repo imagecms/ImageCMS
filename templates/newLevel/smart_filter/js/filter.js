@@ -194,7 +194,7 @@ function changeSelectFilter(el) {
         }
     };
 })(jQuery);
-function afterAjaxInitializeFilter(ready) {
+function afterAjaxInitializeFilter() {
     var apply = $('.apply'),
             $sliders = $('.frame-slider'),
             catalogForm = $('#catalog_form');
@@ -221,11 +221,16 @@ function afterAjaxInitializeFilter(ready) {
             var $thisframechecks = $('#' + b.attr('id')).closest(framechecks);
             if ($thisframechecks.data('rel') != undefined) {
                 if ($thisframechecks.data('rel').match('scroll')) {
-                    var scrollabel = $thisframechecks.find('.jspScrollable'),
-                            scrollabelH = scrollabel.height(),
-                            posY = scrollabel.data('jsp').getContentPositionY(),
-                            addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
-                    cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
+                    var scrollabel = $thisframechecks.find('.jspScrollable');
+                    if ($.existsN(scrollabel)) {
+                        var scrollabelH = scrollabel.height(),
+                                posY = scrollabel.data('jsp').getContentPositionY(),
+                                addH = posY > scrollabelH ? $thisframechecks.find('.jspArrowUp').height() : 0;
+                        cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = scrollabel.data('jsp').getContentPositionY() + addH;
+                    }
+                    else {
+                        cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
+                    }
                 }
                 else {
                     cleaverFilterObj.currentPosScroll[$thisframechecks.index()] = 0;
@@ -263,7 +268,8 @@ function afterAjaxInitializeFilter(ready) {
                 if (n == 'scroll') {
                     $this.show();
                     var el = filtersContent.show().jScrollPane(scrollPane);
-                    el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
+                    if (cleaverFilterObj.currentPosScroll[$this.index()])
+                        el.data('jsp').scrollToY(cleaverFilterObj.currentPosScroll[$this.index()]);
                 }
                 if (n == 'dropDown') {
                     filtersContent.hide();
@@ -322,7 +328,7 @@ function ajaxRecount(el, slChk) {
         success: function(msg) {
             var otherClass = '';
             $(frameFilter).html(msg).children(preloader).hide();
-            afterAjaxInitializeFilter(false);
+            afterAjaxInitializeFilter();
             $.fancybox.hideActivity();
             if (slChk) {
                 otherClass = slChk;
@@ -342,5 +348,5 @@ function ajaxRecount(el, slChk) {
 
 $(document).live('scriptDefer', function() {
     $(frameFilter).children(preloader).hide();
-    afterAjaxInitializeFilter(true);
+    afterAjaxInitializeFilter();
 });
