@@ -203,7 +203,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->registerScript('wishlist', TRUE)
                     ->setData('data', $data)
                     ->setData('varId', $varId)
-                    ->setData('value', lang('btn_add_2_WL'))
+                    ->setData('value', lang('Add to Wish List', 'wishlist'))
                     ->setData('class', 'btn')
                     ->setData('href', $href)
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
@@ -214,7 +214,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
                     ->setData('data', $data)
                     ->setData('varId', $varId)
                     ->setData('href', $href)
-                    ->setData('value', lang('btn_already_in_WL'))
+                    ->setData('value', lang('Already in Wish List', 'wishlist'))
                     ->setData('max_lists_count', $this->settings['maxListsCount'])
                     ->setData('class', 'btn inWL')
                     ->render('button', true);
@@ -318,6 +318,25 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     public function do_upload() {
         parent::do_upload();
         redirect('/wishlist');
+    }
+
+    public function renderEmail($wish_list_id) {
+        \CMSFactory\assetManager::create()
+                ->setData('wish_list_id', $wish_list_id)
+                ->render('sendEmail');
+    }
+
+    /**
+     * send email
+     */
+    public function send_email() {
+        parent::send_email();
+
+        if ($this->dataModel) {
+            return $this->dataModel;
+        } else {
+            return $this->errors;
+        }
     }
 
 }

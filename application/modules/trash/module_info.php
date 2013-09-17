@@ -4,8 +4,8 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'Модуль редиректа с удаленных товаров',
-    'description' => 'Модуль для создания ссылки с удаленного товара на категорию, товар, статью, 404 или другой сайт',
+    'menu_name' => lang('Module of redirects from remote products', 'trash'),
+    'description' => lang('Module for creating a link from remote product to category, product, article, 404, or another site', 'trash'),
     'admin_type' => 'inside',
     'window_type' => 'xhr',
     'w' => 600,

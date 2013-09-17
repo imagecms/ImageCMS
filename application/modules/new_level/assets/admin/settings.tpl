@@ -2,14 +2,14 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки</span>
+            <span class="title">{lang('Settings', 'new_level')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('Back')}</span>
+                    <span class="t-d_u">{lang('Back', 'new_level')}</span>
                 </a>
             </div>
         </div>
@@ -17,8 +17,8 @@
     <div class="content_big_td row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#properties" class="btn btn-small active">Настройки свойств</a>
-                <a href="#columns" class="btn btn-small">Настройки Колонок</a>
+                <a href="#properties" class="btn btn-small active">{lang('Properties settings', 'new_level')}</a>
+                <a href="#columns" class="btn btn-small">{lang('Columns settings', 'new_level')}</a>
             </div>
         </div>
         <div class="tab-content">
@@ -28,7 +28,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    Типи свойств
+                                    {lang('Properties types', 'new_level')}
                                 </th>
                             </tr>
                         </thead>
@@ -37,7 +37,7 @@
                                 <td colspan="6">
                                     <div class="inside_padd">
                                         <div class="control-group">
-                                            <label class="control-label" for="settings[propertiesTypes]">{lang(max_user_name_length)}</label>
+                                            <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
                                                 <table class="propertyTypes table table-striped table-bordered table-hover table-condensed">
                                                     {foreach $settings['propertiesTypes'] as $type}
@@ -75,7 +75,7 @@
                                                     </tr>
                                                 </table>
                                                 <a href="#properties" class="btn btn-small btn-success addType">
-                                                    <i class="icon-plus icon-white"></i>&nbsp;Добавить новый тип свойства
+                                                    <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new properties type', 'new_level')}
                                                 </a>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                         <thead>
                             <tr>
                                 <th colspan="6">
-                                    Колонки
+                                    {lang('Columns', 'new_level')}
                                 </th>
                             </tr>
                         </thead>
@@ -102,7 +102,7 @@
                                 <td colspan="6">
                                     <div class="inside_padd">
                                         <div class="control-group">
-                                            <label class="control-label" for="settings[propertiesTypes]">{lang(max_user_name_length)}</label>
+                                            <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
                                                 <table class="columns table table-striped table-bordered table-hover table-condensed">
                                                     {foreach $settings['columns'] as $column}
@@ -140,7 +140,7 @@
                                                     </tr>
                                                 </table>
                                                 <a href="#columns" class="btn btn-small btn-success addColumn">
-                                                    <i class="icon-plus icon-white"></i>&nbsp;Добавить новый тип свойства
+                                                    <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new column', 'new_level')}
                                                 </a>
                                             </div>
                                         </div>

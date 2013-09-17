@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-29 10:08+0300\n"
+"POT-Creation-Date: 2013-09-16 18:34+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,10 @@ msgstr ""
 "X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../module_info.php:4
+msgid "Filter"
+msgstr ""
 
 #: ../../../module_info.php:5
 #, fuzzy

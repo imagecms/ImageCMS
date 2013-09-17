@@ -14,10 +14,10 @@
     <div class="tab-content">
         <div class="tab-pane active" id="pages">
             <select class="link_type">
-                <option value="page">Страница</option>
-                <option value="category">Категория</option>
-                <option value="module">Модуль</option>
-                <option value="url">Ссылка</option>
+                <option value="page">{lang('Page', 'menu')}:</option>
+                <option value="category">{lang('Category', 'menu')}:</option>
+                <option value="module">{lang('Module', 'menu')}:</option>
+                <option value="url">{lang('Link', 'menu')}:</option>
             </select>
             <form method="post" action="/admin/components/cp/menu/insert_menu_item/" id="{$item_type}_form">
                 <div class="row-fluid">
@@ -45,7 +45,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">На страницу:</label>
+                                                    <label class="control-label">{lang('On page', 'menu')}::</label>
                                                     <div class="controls">
                                                         <select id="per_page">
                                                             <option value="10" selected="selected">10</option>
@@ -58,7 +58,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">Список страниц:</label>
+                                                    <label class="control-label">{lang('Pages list', 'menu')}::</label>
                                                     <div class="controls">
                                                         <div id="pages_list_holder">
                                                             <ul>
@@ -82,7 +82,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Параметры:
+                                        {lang('Parameters', 'menu')}::
                                     </th>
                                 </tr>
                             </thead>

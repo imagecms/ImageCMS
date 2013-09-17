@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-14 10:42+0200\n"
+"POT-Creation-Date: 2013-09-16 18:21+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Mark <sheme4ko@mail.ru>\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -15,10 +15,6 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
-
-#: ../../../module_info.php:4 ../../../search.php:128
-msgid "Search"
-msgstr "Поиск"
 
 #: ../../../search.php:101
 msgid "Forward"
@@ -31,6 +27,11 @@ msgstr "В начало"
 #: ../../../search.php:106
 msgid "Back"
 msgstr "Назад"
+
+#: ../../../search.php:128
+#: ../../../module_info.php:4
+msgid "Search"
+msgstr "Поиск"
 
 #: ../../../search.php:185
 msgid "Positions saved"

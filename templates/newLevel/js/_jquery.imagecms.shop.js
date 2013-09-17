@@ -587,9 +587,9 @@ var ie = jQuery.browser.msie,
             tooltip.text(settings.title);
             if (settings.otherClass !== false)
                 tooltip.addClass(settings.otherClass);
-            if (settings.effect == 'always' && !$.exists('.'+settings.otherClass+'tooltip')) {
+            if (settings.effect == 'always' && !$.exists('.' + settings.otherClass + 'tooltip')) {
                 tooltip = tooltip.clone();
-                tooltip.addClass(settings.otherClass+'tooltip').appendTo(body);
+                tooltip.addClass(settings.otherClass + 'tooltip').appendTo(body);
             }
             var tempeff = false;
             if (settings.effect == 'notalways') {
@@ -2310,6 +2310,9 @@ var Shop = {
             return template = _.template($(selector).html(), Shop.Cart);
         },
         sync: function() {
+            $(document).trigger({
+                type: 'before_sync_cart'
+            });
             $.getJSON('/shop/cart_api/sync', function(data) {
                 if (typeof(data) == 'object') {
 

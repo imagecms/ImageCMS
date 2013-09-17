@@ -18,15 +18,15 @@
                                 <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">public</option>
                             </select>
                             <textarea name="description">{$wishlist['0']['description']}</textarea>
-                            <a href="/wishlist/deleteWL/{$wishlist['0']['wish_list_id']}"class="btn">удалить</a>
+                            <a href="/wishlist/deleteWL/{$wishlist['0']['wish_list_id']}"class="btn">{lang('delete', 'wishlist')}</a>
                         </td>
                     </tr>
                     {if $wishlist[0][id] != null}
                         <tr>
                             <th>№</th>
-                            <th>Отписатся</th>
-                            <th>Товар</th>
-                            <th>Коментарий</th>
+                            <th>{lang('Unsubscribe', 'wishlist')}</th>
+                            <th>{lang('Product', 'wishlist')}</th>
+                            <th>{lang('Comment', 'wishlist')}</th>
                         </tr>
                     {/if}
                 </thead>
@@ -36,7 +36,7 @@
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
-                                    <a href="/wishlist/deleteItem/{echo $w['variant_id']}/{echo $w['wish_list_id']}"class="btn">удалить</a>
+                                    <a href="/wishlist/deleteItem/{echo $w['variant_id']}/{echo $w['wish_list_id']}"class="btn">{lang('delete', 'wishlist')}</a>
                                 </td>
                                 <td>
                                     <a href="{shop_url('product/'.$w[url])}"

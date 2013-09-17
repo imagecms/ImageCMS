@@ -43,7 +43,7 @@ class Admin extends BaseAdminController {
             $settings['thema'] = $_POST['thema'];
             $sql = "update components set settings = '" . serialize($settings) . "' where name = 'new_level'";
             $this->db->query($sql);
-            showMessage('Даные сохранены');
+            showMessage(lang('Data saved'));
         } else {
 
             $thema = array();

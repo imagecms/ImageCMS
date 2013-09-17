@@ -113,7 +113,7 @@ class Admin extends BaseAdminController {
     public function ajax_save_settings(){
         $value = serialize($this->input->post());
         $this->db->where('name','found_less_expensive')->update('components', array('settings' => $value));
-        showMessage('Настройки сохранени!');
+        showMessage(lang('Settings saved!', 'found_less_expensive'));
     }
 
    /**
@@ -123,7 +123,7 @@ class Admin extends BaseAdminController {
         $id = $this->input->post('id');
 
         $this->db->delete('mod_found_less_expensive', array('id' => $id)); 
-        showMessage('Удаление виполнено');
+        showMessage(lang('Succesful deleting', 'found_less_expensive'));
     }
     /**
      * Chenge status
@@ -132,7 +132,7 @@ class Admin extends BaseAdminController {
         $id = $this->input->post('id');
         $status = $this->input->post('status');
         $this->db->where('id',$id)->update('mod_found_less_expensive',array('status' => $status));
-        showMessage('Статус изменен');
+        showMessage(lang('Status changed', 'found_less_expensive'));
     }
     /**
      * 

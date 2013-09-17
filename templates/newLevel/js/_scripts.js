@@ -467,9 +467,23 @@ function processBtnBuyCount(el) {
     $(document).trigger({'type': 'processPageEnd'});
 }
 function getDiscount(k) {
+    $(document).trigger('showActivity');
     if ($.isFunction(window.get_discount)) {
         get_discount(k);
     }
+}
+function getKitDiscount() {
+    $(document).trigger('showActivity');
+    var _kit_disc = 0;
+    $.ajax({
+        async: false,
+        type: 'post',
+        url: '/shop/cart_api/get_kit_discount',
+        success: function(data) {
+            _kit_disc = data;
+        }
+    })
+    return _kit_disc;
 }
 function hideInfoDiscount() {
     var frameDiscountO = genObj.frameDiscount;
@@ -490,7 +504,9 @@ function displayDiscount(obj) {
     if (discC) {
         var condDisc = (obj.sum_discount_product == null || obj.sum_discount_product == undefined);
         $(genObj.genDiscount).each(function() {
+
             $(this).html((parseFloat(condDisc ? 0 : obj.sum_discount_product) + parseFloat(kitDiscount)).toFixed(pricePrecision));
+
         });
         $(genObj.frameCurDiscount).show();
     }
@@ -538,18 +554,6 @@ function renderGiftSucces(tpl, gift) {
     $(genObj.certFrame).show()
     $(genObj.gift).children(genObj.msgF).remove();
     $(genObj.gift).html(tpl);
-}
-function getKitDiscount() {
-    var _kit_disc = 0;
-    $.ajax({
-        async: false,
-        type: 'post',
-        url: '/shop/cart_api/get_kit_discount',
-        success: function(data) {
-            _kit_disc = data;
-        }
-    })
-    return _kit_disc;
 }
 function btnbuyInitialize(el) {
     el.find(genObj.btnBuy).bind('click.buy', function(e) {
@@ -1631,7 +1635,7 @@ function init() {
                 dropContent = $this.find($this.data('dropContent'));
         $(document).trigger({type: 'drop.contentHeight', el: dropContent, drop: $this})
     })
-    $(document).on('autocomplete.before drop.click showActivity', function(e) {
+    $(document).on('autocomplete.before drop.click showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
     $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart', function(e) {
@@ -1830,7 +1834,7 @@ function init() {
     tovarChangeCount();
 
     wnd.focus(function() {
-        //$.fancybox.showActivity();
+        $.fancybox.showActivity();
         processBtnBuyCount();
         checkSyncs();
         processComp();
