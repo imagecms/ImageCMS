@@ -595,7 +595,7 @@
         </td>
         </tr>
         <tr data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-id="popupKit_<%- item.kitId %>">
-        <td class="frame-kits-gen-sum">
+        <td class="frame-kits-gen-sum" colspan="2">
         <div class="kits-gen-sum">
         <img src="<%-theme%>/images/kits_sum.png" />
         </div>
