@@ -24,7 +24,7 @@
                 {if $oldoprice}
                     <span class="price-discount">
                         <span>
-                            <span class="price priceOrigVariant">{echo round($p.old_price, $pricePrecision)}</span>
+                            <span class="price priceOrigVariant">{echo intval($p.old_price)}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>

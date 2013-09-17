@@ -4,7 +4,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if} data-pos="top">
-        <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
+        <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
@@ -21,10 +21,10 @@
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            {if !$widget && !$defaultItem}
-                <span class="frame-variant-name-code">
+            {if $codeArticle}
+                <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул: ','newLevel')}:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -32,14 +32,14 @@
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант: ','newLevel')}:
+                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
                         <span class="code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
                             {/if}
                         </span>
                     </span>
-                </span>
+                </div>
             {/if}
             {if !$vertical}
                 {if $Comments[$p->getId()] && $p->enable_comments && $Comments[$p->getId()] != 0}
@@ -67,7 +67,7 @@
                 {if $oldoprice && !$hasDiscounts}
                     <span class="price-discount">
                         <span>
-                            <span class="price priceOrigVariant">{echo $p->getOldPrice()}</span>
+                            <span class="price priceOrigVariant">{echo intval($p->getOldPrice())}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>

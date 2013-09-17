@@ -24,7 +24,7 @@
                 </div>
                 <span class="frame-variant-name-code">
                     <span class="frame-variant-code" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
-                        {lang('Артикул:','newLevel')}:
+                        {lang('Артикул','newLevel')}:
                         <span class="code">
                             {if $model->firstVariant->getNumber()}
                                 {trim($model->firstVariant->getNumber())}
@@ -84,7 +84,7 @@
                                     {if $oldoprice && !$hasDiscounts}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo $model->getOldPrice()}</span>
+                                                <span class="price priceOrigVariant">{echo intval($model->getOldPrice())}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>

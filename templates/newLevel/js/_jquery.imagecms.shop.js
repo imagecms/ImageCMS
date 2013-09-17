@@ -2302,7 +2302,6 @@ var Shop = {
             if (this.shipFreeFrom > 0)
                 if (this.shipFreeFrom <= this.getTotalPriceOrigin())
                     this.shipping = 0;
-            console.log(this.totalRecount().totalPriceOrigin)
             return (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) >= 0 ? (this.totalRecount().totalPriceOrigin + this.shipping - parseFloat(this.giftCertPrice)) : 0;
         },
         renderPopupCart: function(selector) {
