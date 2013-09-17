@@ -833,7 +833,7 @@
         <div class="drop-content-confirm">
             <div class="inside-padd cofirm w-s_n-w">
                 <div class="btn-def">
-                    <button type="button" data-button-confirm>
+                    <button type="button" data-button-confirm data-modal="true">
                         <spna class="text-el">{lang('Подтвердить' , 'newLevel')}</spna>
                     </button>
                 </div>

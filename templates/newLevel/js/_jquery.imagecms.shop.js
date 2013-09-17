@@ -29,10 +29,6 @@ function pluralStr(i, str) {
             return str[2];
     }
 }
-function serializeForm(el) {
-    var $this = $(el);
-    return $this.data('data', $this.closest('form').serialize());
-}
 jQuery.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
