@@ -843,6 +843,10 @@ function condProduct(vStock, liBlock, btnBuy) {
 }
 
 //declaration front functions
+function serializeForm(el) {
+    var $this = $(el);
+    return $this.data('data', $this.closest('form').serialize());
+}
 if (!$.isFunction($.fancybox)) {
     var loadingTimer, loadingFrame = 1;
     body.append(loading = $('<div id="fancybox-loading"><div></div></div>'));
