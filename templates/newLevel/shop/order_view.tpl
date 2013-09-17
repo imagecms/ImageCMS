@@ -384,7 +384,7 @@
                                 <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
                                 <span class="price-item">
                                     <span>
-                                        <span class="text-discount current-discount">{echo $discount}{$CS}</span>
+                                        <span class="text-discount current-discount">{echo $discount} <span class="curr">{$CS}</span></span>
                                     </span>
                             </li>
                         {/if}

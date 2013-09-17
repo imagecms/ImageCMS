@@ -22,12 +22,18 @@ if (validation_errors() OR $other_errors) {
         </select>
     </div>
     <div class="form_overflow"></div>
+<<<<<<< HEAD
 
     <div class="form_text"><?php echo lang('Install products examples', 'install')?></div>
+=======
+    <? if (file_exists(__DIR__."/../../shop/shop.php")) {?> 
+    <div class="form_text">Устанавливать примеры продуктов</div>
+>>>>>>> a0ee4928ee7660f4320a773b0a5f122e9538e9f8
     <div class="form_input">
         <input type="checkbox" class="checkbox" name="product_samples" checked="checked" value = "on">
     </div>
     <div class="form_overflow"></div>
+    <?}?>
 
     <h2><?php echo lang('Database connection', 'install')?></h2>
     <div class="form_text"></div>

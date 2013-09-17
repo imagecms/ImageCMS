@@ -54,17 +54,19 @@ function createWishList(el, data) {
     }
 }
 function validateWishPopup($this, elSetSource) {
+    function removeErr() {
+        name.next(genObj.msgF).remove();
+        $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
+        drop.find('[type="submit"]').parent().removeClass('active');
+    };
     var name = $('[name="wishListName"]'),
             drop = name.closest('[data-elrun]');
     if (name.val() == "" && $('[data-link]').is(':checked')) {
+        removeErr();
         name.after(message.error(text.error.enterName));
+        $(document).trigger('hideActivity');
         name.focus();
         $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
-        function removeErr() {
-            name.next().remove();
-            $(document).trigger({'type': 'imageapi.pastemsg', el: drop});
-            drop.find('[type="submit"]').parent().removeClass('active');
-        }
         name.unbind('keypress').keypress(function() {
             removeErr();
         });
@@ -75,6 +77,7 @@ function validateWishPopup($this, elSetSource) {
 
     }
     else {
+        removeErr();
         return true;
     }
 }

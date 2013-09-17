@@ -6,6 +6,7 @@
 .m_l_10 {margin-left: 10px !important;}
 .m_t_-10{margin-top: -10px !important;}
 .m-l_0{margin-left: 0 !important;}
+.m-t_5{margin-top: 5px !important;}
 .settingTitle{
     font-weight:bold;
     display: block;padding: 3px;
@@ -24,8 +25,17 @@
 .settingsContainer{
     border: 1px solid #ddd; display: block;
     padding: 3px 3px 3px 10px;
-   
 }
 .fixedTableWithLeftScroll{
     overflow-y: auto; height: 500px;
 }
+
+
+/* Інформація про користувачів */
+#user_information table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+#user_information table thead th {width: 10%;}
+#user_information table thead th:nth-child(5) {width: 28%;}
+#user_information table thead th:nth-child(6) {width: 12%;}
