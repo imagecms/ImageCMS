@@ -20,6 +20,8 @@ class Feedback extends MY_Controller {
         parent::__construct();
         $this->load->module('core');
         $this->load_settings();
+        $lang = new MY_Lang();
+        $lang->load('feedback');
     }
 
     public function autoload() {

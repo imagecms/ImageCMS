@@ -28,6 +28,8 @@ class AdminHelper extends \MY_Controller {
         parent::__construct();
         /** Load model * */
         $this->load->model('stats_model');
+        $lang = new \MY_Lang();
+        $lang->load('mod_stats');
         
     }
 

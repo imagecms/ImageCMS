@@ -10,6 +10,7 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        
     }
 
     public function index() {

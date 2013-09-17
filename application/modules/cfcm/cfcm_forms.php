@@ -17,6 +17,8 @@ class Cfcm_forms extends MY_Controller {
         parent::__construct();
 
         $this->load->module('forms');
+        $lang = new MY_Lang();
+        $lang->load('cfcm');
     }
 
     public function create_field()

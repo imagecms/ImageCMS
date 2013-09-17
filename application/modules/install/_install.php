@@ -11,6 +11,8 @@ class Install extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+           $lang = new MY_Lang();
+        $lang->load('install');
 
 //        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
         $this->load->helper('string');

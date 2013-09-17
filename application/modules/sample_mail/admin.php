@@ -13,6 +13,8 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('sample_mail');
 
         //loading model for work with emails
         $this->load->model('sample_mail_model');

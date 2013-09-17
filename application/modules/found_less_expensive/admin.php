@@ -22,6 +22,8 @@ class Admin extends BaseAdminController {
         \CMSFactory\assetManager::create()
                 ->registerScript('scripts');
         $this->load->model('found_less_expensive_model');
+        $lang = new MY_Lang();
+        $lang->load('found_less_expensive');
     }
     /*
      * Show list of notifications about found less expensive
