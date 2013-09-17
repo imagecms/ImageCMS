@@ -3,7 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => 'Продвинутый модуль фильтра по свойствам товаров', // Menu name
+    'menu_name' => lang('Advanced filter module on properties of products', 'smart_filter'), // Menu name
     'description' => '',            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe

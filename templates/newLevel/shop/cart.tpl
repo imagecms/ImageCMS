@@ -26,7 +26,7 @@
                         <ul class="nav nav-order-user">
                             <li class="new-buyer">
                                 <span>
-                                    <span class="text-el">{lang('Я хочу зарегистрироваться!','newLevel')}</span>
+                                    <span class="text-el">{lang('Я новый покупатель','newLevel')}</span>
                                 </span>
                             </li>
                             <li class="old-buyer">

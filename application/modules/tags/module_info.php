@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => 'Теги',
-	'description' => 'Модуль тегов',
+        'menu_name' => lang('Tags', 'tags'),
+	'description' => lang('Tags module', 'tags'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr',
 	'w' => 600,

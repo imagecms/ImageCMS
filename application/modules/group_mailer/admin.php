@@ -42,10 +42,10 @@ class Admin extends BaseAdminController {
         // Load form validation class
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('subject', lang("Theme"), 'required|trim');
-        $this->form_validation->set_rules('name', lang("Your name"), 'required|trim');
-        $this->form_validation->set_rules('email', lang("Your e-mail"), 'required|trim|valid_email');
-        $this->form_validation->set_rules('message', lang("Message"), 'required|trim');
+        $this->form_validation->set_rules('subject', lang("Theme", 'group_mailer'), 'required|trim');
+        $this->form_validation->set_rules('name', lang("Your name", 'group_mailer'), 'required|trim');
+        $this->form_validation->set_rules('email', lang("Your e-mail", 'group_mailer'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('message', lang("Message", 'group_mailer'), 'required|trim');
         
 		if ($this->form_validation->run($this) == FALSE)
 		{
@@ -98,7 +98,7 @@ class Admin extends BaseAdminController {
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log(lang("Send").'('.$counter['true'].'/'.$counter['all'].')'.lang("users e-mail with a subject").')'.$_POST['subject']);
+                $this->lib_admin->log(lang("Send", 'group_mailer').'('.$counter['true'].'/'.$counter['all'].')'.lang("users e-mail with a subject", 'group_mailer').')'.$_POST['subject']);
                 $class='b';
                 if ($counter['true'] == $counter['all'])
                     {$class='g';}
@@ -106,11 +106,11 @@ class Admin extends BaseAdminController {
                     {$class='r';}
                 if ($class !== 'r')
                     {
-                    showMessage(lang("message has been sent").': '.$counter['true'].lang("Number of e-mails sent").$counter['all'].'шт.',false,$class);
+                    showMessage(lang("message has been sent", 'group_mailer').': '.$counter['true'].lang("Number of e-mails sent", 'group_mailer').$counter['all']. lang('pcs.', 'group_mailer'),false,$class);
                     }
                 else
                     {
-                    showMessage(lang("none of the messages").$counter['all'].lang("Number not"),false,$class);
+                    showMessage(lang("none of the messages", 'group_mailer').$counter['all'].lang("Number not", 'group_mailer'),false,$class);
                     }
                     
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));

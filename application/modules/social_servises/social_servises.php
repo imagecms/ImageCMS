@@ -51,7 +51,7 @@ class Social_servises extends MY_Controller {
             $_SESSION['facebook_user'] = $data;
             $_SESSION['freferer'] = $_SERVER['HTTP_REFERER'];
         } else {
-            echo "Проверьте настройки интеграции с facebook";
+            echo lang('Check the settings for integration with facebook', 'social_servises');
             exit();
             //$this->core->error_404();
         }

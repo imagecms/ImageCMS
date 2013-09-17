@@ -3,20 +3,20 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">New Level</span>
+                <span class="title">{lang('New Level', 'new_level')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('Back')}</span>
+                        <span class="t-d_u">{lang('Back', 'new_level')}</span>
                     </a>
                 </div>
                 <div class="d-i_b">
                     <a class="btn btn-small pjax" href="{$BASE_URL}admin/components/init_window/new_level/settings">
                         <i class="icon-wrench"></i>
-                        Настройки                
+                        {lang('Settings', 'new_level')}                
                     </a>
                 </div>
             </div>
@@ -25,9 +25,9 @@
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     
-                    <a href="#properties" class="btn btn-small active">Свойства</a>
-                    <a href="#columns" class="btn btn-small">Колонки</a>
-                    <a href="/admin/components/init_window/new_level/get_thema" class="btn btn-small">Цветовая схема</a>
+                    <a href="#properties" class="btn btn-small active">{lang('Properties', 'new_level')}</a>
+                    <a href="#columns" class="btn btn-small">{lang('Columns', 'new_level')}</a>
+                    <a href="/admin/components/init_window/new_level/get_thema" class="btn btn-small">{lang('Colour scheme', 'new_level')}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -78,7 +78,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        Колонки категорий:
+                                        {lang('Categories columns', 'new_level')}:
                                     </th>
                                 </tr>
                             </thead>
@@ -93,7 +93,7 @@
                                                             {foreach $columns as $column}
                                                                 <td class="span4">
                                                                     <div class="control-group">
-                                                                        <label class="control-label" for="iddCategory"><b class="columnName">Колонка {echo $column}:</b></label>
+                                                                        <label class="control-label" for="iddCategory"><b class="columnName">{lang('Column', 'new_level')} {echo $column}:</b></label>
                                                                         <div class="controls ">
                                                                             <select  id="ajaxSaveShopCategories_{echo $column}" data-id='ajaxSaveShopCategories_{echo $column}' class="ColumnsSelect" name="Categories[]" multiple="multiple" style="height:400px !important;">
                                                                                 {foreach $categories as $category}
@@ -104,7 +104,7 @@
                                                                                     {/if}
                                                                                 {/foreach}
                                                                             </select>
-                                                                            <button type="button" data-column="{echo $column}" class="btn btn-small btn-primary btn-success cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>Сохранить</button>
+                                                                            <button type="button" data-column="{echo $column}" class="btn btn-small btn-primary btn-success cattegoryColumnSaveButtonMod"><i class="icon-ok icon-white"></i>{lang('Save', 'new_level')}</button>
                                                                         </div>
                                                                     </div>   
                                                                 </td>

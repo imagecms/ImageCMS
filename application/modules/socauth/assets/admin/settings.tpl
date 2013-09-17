@@ -2,16 +2,16 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">Настройки авторизации через посторонние сервисы </span>
+            <span class="title">{lang('Authorization settings through third-party services', 'socauth')} </span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back')}</span></a>
+                <a href="{$BASE_URL}admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'socauth')}</span></a>
                 <button type="button" 
                         class="btn btn-small btn-primary action_on formSubmit" 
                         data-form="#settings_form" 
                         data-action="save">
-                    <i class="icon-ok"></i>{lang('Save')}
+                    <i class="icon-ok"></i>{lang('Save', 'socauth')}
                 </button>
             </div>
         </div>                            
@@ -21,7 +21,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки авторизации используя акаунт Google
+                       {lang('Authorization settings using your Google account', 'socauth')}
                     </th>
                 </tr>
             </thead>
@@ -34,10 +34,10 @@
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
                                         <i class="icon-info-sign"></i>
                                     </span>
-                                    <div class="d_n">Нужно получить 1 раз</div>&nbsp;Получить OAuth2 client ID:
+                                    <div class="d_n">{lang('Need to get 1 time', 'socauth')}</div>&nbsp;{lang('Get', 'socauth')} OAuth2 client ID:
                                 </span>
                                 <div class="controls">
-                                    <a href="https://code.google.com/apis/console#access" target="_blank">Получить</a>
+                                    <a href="https://code.google.com/apis/console#access" target="_blank">{lang('Get', 'socauth')}</a>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Использовать авторизацию через Google</label>
+                                <label class="control-label">{lang('Use authorization via Google', 'socauth')}</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">
@@ -72,7 +72,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки авторизации используя акаунт VK
+                        {lang('Use authorization via VK account', 'socauth')}
                     </th>
                 </tr>
             </thead>
@@ -85,10 +85,10 @@
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
                                         <i class="icon-info-sign"></i>
                                     </span>
-                                    <div class="d_n">Нужно получить 1 раз</div>&nbsp;Получить OAuth2 client ID:
+                                <div class="d_n">{lang('Need to get 1 time', 'socauth')}</div>&nbsp;{lang('Get', 'socauth')} OAuth2 client ID:
                                 </span>
                                 <div class="controls">
-                                    <a href="http://vk.com/editapp?act=create" target="_blank">Получить</a>
+                                    <a href="http://vk.com/editapp?act=create" target="_blank">{lang('Get', 'socauth')}</a>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Использовать авторизацию через ВКонтакте</label>
+                                <label class="control-label"> {lang('Use authorization via VK', 'socauth')}</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">
@@ -123,7 +123,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки авторизации используя акаунт FaceBook
+                        {lang('Authorization settings using your FaceBook account', 'socauth')}
                     </th>
                 </tr>
             </thead>
@@ -136,10 +136,10 @@
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
                                         <i class="icon-info-sign"></i>
                                     </span>
-                                    <div class="d_n">Нужно получить 1 раз</div>&nbsp;Получить OAuth2 client ID:
+                                     <div class="d_n">{lang('Need to get 1 time', 'socauth')}</div>&nbsp;{lang('Get', 'socauth')} OAuth2 client ID:
                                 </span>
                                 <div class="controls">
-                                    <a href="https://developers.facebook.com/apps" target="_blank">Получить</a>
+                                    <a href="https://developers.facebook.com/apps" target="_blank">{lang('Get', 'socauth')}</a>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Использовать авторизацию через FaceBook</label>
+                                <label class="control-label">{lang('Use authorization via FaceBook', 'socauth')}</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">
@@ -174,7 +174,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        Настройки авторизации используя акаунт Yandex
+                         {lang('Authorization settings using your Yandex account', 'socauth')} 
                     </th>
                 </tr>
             </thead>
@@ -187,26 +187,26 @@
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
                                         <i class="icon-info-sign"></i>
                                     </span>
-                                    <div class="d_n">Нужно получить 1 раз</div>&nbsp;Получить OAuth2 client ID:
+                                     <div class="d_n">{lang('Need to get 1 time', 'socauth')}</div>&nbsp;{lang('Get', 'socauth')} OAuth2 client ID:
                                 </span>
                                 <div class="controls">
-                                    <a href="https://oauth.yandex.ru/client/new" target="_blank">Получить</a>
+                                    <a href="https://oauth.yandex.ru/client/new" target="_blank">{lang('Get', 'socauth')}</a>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientID">Id приложения:</label>
+                                <label class="control-label" for="ClientID">{lang('Appication Id', 'socauth')}:</label>
                                 <div class="controls number">
                                     <input type = "text" name = "yandexClientID" value = "{$settings['yandexClientID']}"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="ClientSecret">Пароль приложения:</label>
+                                <label class="control-label" for="ClientSecret">{lang('Appication password', 'socauth')}:</label>
                                 <div class="controls">
                                     <input type = "text" name = "yandexClientSecret" value = "{$settings['yandexClientSecret']}"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Использовать авторизацию через Yandex</label>
+                                <label class="control-label">{lang('Use authorization via Yandex', 'socauth')}</label>
                                 <div class="controls">
                                     <span class="frame_label no_connection">
                                         <span class="niceCheck b_n">

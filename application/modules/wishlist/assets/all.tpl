@@ -6,21 +6,21 @@
                 <tr>
                     <td>
                         <div>
-                            <h2>Информация о пользователе</h2>
+                            <h2>{lang('User Information', 'wishlist')}</h2>
                             <div>
-                                <b>Имя: <a href="{site_url('/wishlist/user/'. $list['user']['id'])}">{$list['user']['user_name']}</a></b>
+                                <b>{lang('Name', 'wishlist')}: <a href="{site_url('/wishlist/user/'. $list['user']['id'])}">{$list['user']['user_name']}</a></b>
                             </div>
                             </br>
                             <div>
-                                <img src="{site_url('./uploads/mod_wishlist/'.$list['user']['user_image'])}" alt='Ава' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
+                                <img src="{site_url('./uploads/mod_wishlist/'.$list['user']['user_image'])}" alt='{lang('Ava', 'wishlist')}' width="{echo $settings[maxImageWidth]}"  height="{echo $settings[maxImageHeight]}"/>
                             </div>
                             </br>
-                            <div>Дата рождения: {date('Y-m-d', $list['user']['user_birthday'])}</div>
+                            <div>{lang('Birthday', 'wishlist')}: {date('Y-m-d', $list['user']['user_birthday'])}</div>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <h2>Списки пользователя</h2>
+                            <h2>{lang('User lists', 'wishlist')}</h2>
                             <ul>
                                 {foreach $list['lists'] as $listItem}
                                     <li>

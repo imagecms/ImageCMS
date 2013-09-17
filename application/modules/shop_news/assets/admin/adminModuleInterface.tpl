@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th colspan="6">
-                Новость для категории товаров
+                {lang('The news for products category', 'shop_news')}
             </th>
         </tr>
     </thead>
@@ -13,7 +13,7 @@
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="control-group">
-                                <label class="control-label" for="iddCategory">Отображать в категориях:</label>
+                                <label class="control-label" for="iddCategory">{lang('Show in categories', 'shop_news')}:</label>
                                 <div class="controls">
                                     <form  type="post">
                                         <select id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:200px !important;">
@@ -30,7 +30,7 @@
                     <div class="row-fluid">
                         <div class="control-group">
                             <div class="controls">
-                                <button type="button" class="btn btn-small btn-primary btn-success" id="saveShopNewsCategories"><i class="icon-ok icon-white"></i>Сохранить</button>
+                                <button type="button" class="btn btn-small btn-primary btn-success" id="saveShopNewsCategories"><i class="icon-ok icon-white"></i>{lang('Save', 'shop_news')}</button>
                             </div>
                         </div>
                     </div>
