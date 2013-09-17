@@ -15,6 +15,8 @@ class Pricespy extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('pricespy');
         $this->load->module('core');
         $this->load->model('pricespy_model');
     }

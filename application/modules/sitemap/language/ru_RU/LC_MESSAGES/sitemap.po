@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-13 18:10+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
+"Last-Translator: Mark <sheme4ko@mail.ru>\n"
 "Language-Team: \n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -13,77 +13,72 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: Tagalog\n"
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
 #: /var/www/image.loc/_temp2.php:5
 msgid "Send XML"
-msgstr ""
+msgstr "Отправить XML"
 
 #: /var/www/image.loc/_temp2.php:6
-#, fuzzy
 msgid "Products page"
-msgstr "Настр"
+msgstr "Страница товаров"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "XML Site Map"
-msgstr ""
+msgstr "XML Карта сайта"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Shop site map"
-msgstr ""
+msgstr "Карта магазина сайта"
 
 #: /var/www/image.loc/_temp2.php:9
-#, fuzzy
 msgid "Sitemap settings"
-msgstr "Виджети"
+msgstr "Настройки карты сайта"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Priorities"
-msgstr ""
+msgstr "Приоритеты"
 
-#: /var/www/image.loc/_temp2.php:13
-#: /var/www/image.loc/_temp2.php:17
+#: /var/www/image.loc/_temp2.php:13 /var/www/image.loc/_temp2.php:17
 msgid "Main page"
-msgstr ""
+msgstr "Главная"
 
 #: /var/www/image.loc/_temp2.php:14
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
-#: /var/www/image.loc/_temp2.php:15
-#: /var/www/image.loc/_temp2.php:19
+#: /var/www/image.loc/_temp2.php:15 /var/www/image.loc/_temp2.php:19
 msgid "Regular or usual pages"
 msgstr "Звичайні сторінки"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Page change frequency"
-msgstr ""
+msgstr "Страница изменения частоты"
 
 #: /var/www/image.loc/_temp2.php:18
 msgid "Other pages"
-msgstr ""
+msgstr "Другие страницы"
 
 #: ../../../admin.php:69
 msgid "Changes have been saved"
-msgstr ""
+msgstr "Изменения сохранены"
 
 #: ../../../module_info.php:4
 msgid "Site map"
-msgstr ""
+msgstr "Карта сайта"
 
 #: ../../../sitemap.php:347
 msgid "Ping sended"
-msgstr ""
+msgstr "Пинг отправлен"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

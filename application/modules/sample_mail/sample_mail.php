@@ -4,6 +4,8 @@ class Sample_mail extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('sample_mail');
         $this->load->model('email_model');
     }
 

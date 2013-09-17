@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-16 18:30+0300\n"
-"PO-Revision-Date: 2013-09-16 18:30+0300\n"
+"PO-Revision-Date: 2013-09-17 09:44+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: ru_UA\n"
@@ -346,16 +346,15 @@ msgstr "Список страниц"
 #: /var/www/image.loc/_temp2.php:70
 #: /var/www/image.loc/_temp2.php:86
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
 #: /var/www/image.loc/_temp2.php:46
 #: /var/www/image.loc/_temp2.php:71
 msgid "Method"
-msgstr ""
+msgstr "Метод"
 
 #: /var/www/image.loc/_temp2.php:47
 #: /var/www/image.loc/_temp2.php:72
-#, fuzzy
 msgid "Example"
 msgstr "Например"
 
@@ -390,9 +389,8 @@ msgid "Page"
 msgstr "Страница"
 
 #: /var/www/image.loc/_temp2.php:53
-#, fuzzy
 msgid "Category"
-msgstr "ID категории "
+msgstr "Категория"
 
 #: /var/www/image.loc/_temp2.php:55
 #: /var/www/image.loc/_temp2.php:105
@@ -462,21 +460,20 @@ msgid "For example"
 msgstr "Например"
 
 #: /var/www/image.loc/_temp2.php:91
-#, fuzzy
 msgid "Attention"
-msgstr "Название"
+msgstr "Внимание"
 
 #: /var/www/image.loc/_temp2.php:92
 msgid "Not found the required template file for menu"
-msgstr ""
+msgstr "Не нашли нужного файла шаблона для меню"
 
 #: /var/www/image.loc/_temp2.php:93
 msgid "Check file or change the settings menu"
-msgstr ""
+msgstr "Проверьте файл или изменить настройки меню"
 
 #: /var/www/image.loc/_temp2.php:94
 msgid "Reinstall the module menu"
-msgstr ""
+msgstr "Установите модуль меню"
 
 #: /var/www/image.loc/_temp2.php:95
 #: /var/www/image.loc/_temp2.php:149

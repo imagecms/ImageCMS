@@ -14,6 +14,8 @@ class Socauth extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+            $lang->load('socauth');
         $this->load->module('core');
         $this->load->model('socauth_model');
 

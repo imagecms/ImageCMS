@@ -18,23 +18,23 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:6
 msgid "Language Switch module"
-msgstr ""
+msgstr "Модуль Переключения языка"
 
 #: /var/www/image.loc/_temp2.php:7
 msgid "Automatic creation of the switch between the languages that are configured online"
-msgstr ""
+msgstr "Автоматическое создание переключение между языками, которые настроены на сайте"
 
 #: /var/www/image.loc/_temp2.php:8
 msgid "Set of icons, flags to work with the module. It must be specified in the two-letter language identifier format"
-msgstr ""
+msgstr "Набор иконок, флаги для работы с модулем. Это должно быть указано в наборе двух букв идентификатора языка"
 
 #: /var/www/image.loc/_temp2.php:9
 msgid "Module development"
-msgstr ""
+msgstr "Розроботка модуля"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #~ msgid "Site configuration"
 #~ msgstr "Настр1"

@@ -18,7 +18,7 @@ msgstr ""
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Invalid e-mail"
-msgstr ""
+msgstr "Неверный e-mail"
 
 #: /var/www/image.loc/_temp2.php:12
 #: /var/www/image.loc/_temp2.php:14
@@ -26,132 +26,132 @@ msgstr ""
 #: /var/www/image.loc/_temp2.php:18
 #: /var/www/image.loc/_temp2.php:20
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "The subscriber is not found"
-msgstr ""
+msgstr "Подписчик не найден"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "You have successfully subscribed"
-msgstr ""
+msgstr "Вы успешно подписались"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "You are already subscribed"
-msgstr ""
+msgstr "Вы уже подписаны"
 
 #: /var/www/image.loc/_temp2.php:19
 msgid "Unsubscribed"
-msgstr ""
+msgstr "Отписан"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "Subscribe"
-msgstr ""
+msgstr "Подписаться"
 
 #: /var/www/image.loc/_temp2.php:22
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Отписаться"
 
 #: /var/www/image.loc/_temp2.php:23
 msgid "Removing subscribers"
-msgstr ""
+msgstr "Удаление подписчиков"
 
 #: /var/www/image.loc/_temp2.php:24
 msgid "Delete all checked?"
-msgstr ""
+msgstr "Удалить всех выбранных?"
 
 #: /var/www/image.loc/_temp2.php:25
 #: /var/www/image.loc/_temp2.php:32
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:26
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 #: /var/www/image.loc/_temp2.php:27
 msgid "Removing brand"
-msgstr ""
+msgstr "Удаление бренда"
 
 #: /var/www/image.loc/_temp2.php:28
 msgid "Remove brands?"
-msgstr ""
+msgstr "Удалить бренды?"
 
 #: /var/www/image.loc/_temp2.php:29
 msgid "Subscription and Notification letters"
-msgstr ""
+msgstr "Подписка и рассылка писем"
 
 #: /var/www/image.loc/_temp2.php:30
 msgid "Go back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Send a letter"
-msgstr ""
+msgstr "Отправить письмо"
 
 #: /var/www/image.loc/_temp2.php:33
 msgid "Message parameters"
-msgstr ""
+msgstr "Параметри сообщения"
 
 #: /var/www/image.loc/_temp2.php:34
 msgid "Subscribers"
-msgstr ""
+msgstr "Подписчики"
 
 #: /var/www/image.loc/_temp2.php:35
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: /var/www/image.loc/_temp2.php:36
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: /var/www/image.loc/_temp2.php:37
 msgid "Your name"
-msgstr ""
+msgstr "Ваше имя"
 
 #: /var/www/image.loc/_temp2.php:38
 msgid "Your e-mail"
-msgstr ""
+msgstr "Ваш  e-mail"
 
 #: /var/www/image.loc/_temp2.php:39
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: /var/www/image.loc/_temp2.php:40
 msgid "Hello"
-msgstr ""
+msgstr "Привет"
 
 #: /var/www/image.loc/_temp2.php:41
 msgid "best regards, administration"
-msgstr ""
+msgstr "с уважением, администрация"
 
 #: /var/www/image.loc/_temp2.php:42
 msgid "Formatting"
-msgstr ""
+msgstr "Форматирование"
 
 #: /var/www/image.loc/_temp2.php:43
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: /var/www/image.loc/_temp2.php:44
 msgid "Plain Text"
-msgstr ""
+msgstr "Обычный текст"
 
 #: /var/www/image.loc/_temp2.php:45
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: /var/www/image.loc/_temp2.php:47
 msgid "Date"
-msgstr ""
+msgstr "Дата"
 
 #: /var/www/image.loc/_temp2.php:48
 msgid "Subscribers list is empty"
-msgstr ""
+msgstr "Список подписчиков пуст"
 
 #~ msgid "Site configuration"
 #~ msgstr "Настр1"

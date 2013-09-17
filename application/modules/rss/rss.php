@@ -15,6 +15,8 @@ class Rss extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct();
+                $lang = new MY_Lang();
+                $lang->load('rss');
     }
 
 	public function index()

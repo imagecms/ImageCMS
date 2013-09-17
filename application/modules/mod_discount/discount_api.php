@@ -24,6 +24,8 @@ class discount_api extends \mod_discount\discount {
      */
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('mod_discount');
     }
 
     /**

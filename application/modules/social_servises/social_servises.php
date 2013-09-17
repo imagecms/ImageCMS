@@ -14,6 +14,8 @@ class Social_servises extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+          $lang = new MY_Lang();
+            $lang->load('social_servises');
         //$this->load->module('core');
         $ci = &get_instance();
         $row = $ci->db->where('name', 'facebook_int')->get('shop_settings')->row();

@@ -20,172 +20,170 @@ msgstr ""
 #: /var/www/image.loc/_temp2.php:9
 #: /var/www/image.loc/_temp2.php:32
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: /var/www/image.loc/_temp2.php:10
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
 #: /var/www/image.loc/_temp2.php:11
 msgid "Count"
-msgstr ""
+msgstr "Считать"
 
 #: /var/www/image.loc/_temp2.php:12
 msgid "Stutas"
-msgstr ""
+msgstr "Stutas"
 
 #: /var/www/image.loc/_temp2.php:13
 msgid "Update"
-msgstr ""
+msgstr "Обновление"
 
 #: /var/www/image.loc/_temp2.php:14
 #: /var/www/image.loc/_temp2.php:20
 #: /var/www/image.loc/_temp2.php:34
 #: /var/www/image.loc/_temp2.php:37
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: /var/www/image.loc/_temp2.php:15
 msgid "Hit"
-msgstr ""
+msgstr "Хит"
 
 #: /var/www/image.loc/_temp2.php:16
 msgid "Novelty"
-msgstr ""
+msgstr "Новинка"
 
 #: /var/www/image.loc/_temp2.php:17
 msgid "Promotion"
-msgstr ""
+msgstr "Реклама"
 
 #: /var/www/image.loc/_temp2.php:18
 #: /var/www/image.loc/_temp2.php:33
 #: /var/www/image.loc/_temp2.php:35
 msgid "Edit"
-msgstr ""
+msgstr "Редактировать"
 
 #: /var/www/image.loc/_temp2.php:19
 #: /var/www/image.loc/_temp2.php:36
 msgid "Refresh"
-msgstr ""
+msgstr "Обновление"
 
 #: /var/www/image.loc/_temp2.php:21
 msgid "Not choose"
-msgstr ""
+msgstr "Не выбрано"
 
 #: /var/www/image.loc/_temp2.php:22
 msgid "Empty list"
-msgstr ""
+msgstr "Список пуст"
 
 #: /var/www/image.loc/_temp2.php:23
-#, fuzzy
 msgid "Create partner"
-msgstr "Создать категорию"
+msgstr "Создать партнера"
 
 #: /var/www/image.loc/_temp2.php:24
 #: /var/www/image.loc/_temp2.php:27
 msgid "Add partner"
-msgstr ""
+msgstr "Добавить партнера"
 
 #: /var/www/image.loc/_temp2.php:25
 msgid "Partners"
-msgstr ""
+msgstr "Партнеры"
 
 #: /var/www/image.loc/_temp2.php:26
 #: /var/www/image.loc/_temp2.php:40
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: /var/www/image.loc/_temp2.php:28
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: /var/www/image.loc/_temp2.php:29
 msgid "Name"
-msgstr ""
+msgstr "Название"
 
 #: /var/www/image.loc/_temp2.php:30
 msgid "Prefix"
-msgstr ""
+msgstr "Префикс"
 
 #: /var/www/image.loc/_temp2.php:31
 msgid "Code"
-msgstr ""
+msgstr "Код"
 
 #: /var/www/image.loc/_temp2.php:38
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
 #: /var/www/image.loc/_temp2.php:39
 #: /var/www/image.loc/_temp2.php:42
 msgid "Integration settings with 1C"
-msgstr ""
+msgstr "Настройки интеграции с 1С"
 
 #: /var/www/image.loc/_temp2.php:41
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: /var/www/image.loc/_temp2.php:43
 msgid "Use commpres"
-msgstr ""
+msgstr "Использувать сжатие"
 
 #: /var/www/image.loc/_temp2.php:44
 msgid "Set up a login to access the server 1C"
-msgstr ""
+msgstr "Задать логин для доступа к серверу 1С"
 
 #: /var/www/image.loc/_temp2.php:45
 msgid "Server password"
-msgstr ""
+msgstr "Пароль сервера"
 
 #: /var/www/image.loc/_temp2.php:46
 msgid "Database backup"
-msgstr ""
+msgstr "Резервное копирование базы данных"
 
 #: /var/www/image.loc/_temp2.php:47
-#, fuzzy
 msgid "Select order status"
-msgstr "Создать категорию"
+msgstr "Выбрать статус заказа"
 
 #: /var/www/image.loc/_temp2.php:48
 msgid "Status after treatment"
-msgstr ""
+msgstr "Состояние после лечения"
 
 #: /var/www/image.loc/_temp2.php:49
 msgid "All errors will be written to the file"
-msgstr ""
+msgstr "Все ошибки будут записаны в файл"
 
 #: /var/www/image.loc/_temp2.php:50
 msgid "Debugging mode"
-msgstr ""
+msgstr "Режим отладки"
 
 #: /var/www/image.loc/_temp2.php:51
 msgid "If you specify an email errors when incorrect password"
-msgstr ""
+msgstr "Если вы укажите адрес электронной почты, ошибки при неверном пароле"
 
 #: /var/www/image.loc/_temp2.php:52
 msgid "and security  will be sent to administrator"
-msgstr ""
+msgstr "и безопасности будут отправлены ​​администратору"
 
 #: /var/www/image.loc/_temp2.php:53
 msgid "Email Administrator for sending important safety mistakes"
-msgstr ""
+msgstr "E-mail администратора для отправки важных ошибок безопасности"
 
 #: ../../../admin.php:122
 msgid "Settings saved"
-msgstr ""
+msgstr "Настройки сохранены"
 
 #: ../../../module_info.php:6
 #: ../../../module_info.php:7
 msgid "exchangeunfu"
-msgstr ""
+msgstr "exchangeunfu"
 
 #: ../../../exchangeunfu.php:150
 msgid "Incorrect password"
-msgstr ""
+msgstr "Неверный пароль"
 
 #: ../../../exchangeunfu.php:208
 #: ../../../exchangeunfu.php:209
 msgid "Security error!!!"
-msgstr ""
+msgstr "Ошибка безопасности!"
 
 #, fuzzy
 #~ msgid "Create directory"

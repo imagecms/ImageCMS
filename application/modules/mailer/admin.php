@@ -14,6 +14,8 @@ class Admin extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
+         $lang = new MY_Lang();
+        $lang->load('mailer');
         //cp_check_perm('module_admin');
     }
 
