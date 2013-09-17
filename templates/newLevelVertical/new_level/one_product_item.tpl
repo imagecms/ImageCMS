@@ -169,7 +169,6 @@
                                     </button>
                                 </div>
                             </div>
-                            {var_dumps(lang('Купить', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
