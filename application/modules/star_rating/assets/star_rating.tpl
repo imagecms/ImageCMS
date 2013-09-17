@@ -6,7 +6,7 @@
                 <div style="width: {if $model->getVotes() != null}{echo ($model->getRating()*20)."%\""}{else:} 0%"{/if}></div>
             </div>        
             <span itemscope="" itemtype="" id="pageRatingData"> 
-                <meta itemprop="rating" content="4"> Оставило <span id="count_votes_g" itemprop="count">{if $model->getVotes() != null}{echo $model->getVotes()}{else:} 0 {/if}</span> человек(а).
+                <meta itemprop="rating" content="4"> {lang('Leav', 'star_rating')} <span id="count_votes_g" itemprop="count">{if $model->getVotes() != null}{echo $model->getVotes()}{else:} 0 {/if}</span> {lang('people(s)', 'star_rating')}.
             </span>
         </div>
     {else:}    
@@ -15,8 +15,8 @@
                 <div style="width: {if $data['votes'] != null}{echo $data['rating']."%\" "}{else:} 0%"{/if}></div>
             </div>        
             <span> 
-                <meta itemprop="rating" content="4"> Оставило <span id="count_votes_g" itemprop="count">{if $data['votes'] != null}{echo $data['votes']}{else:} 0 {/if}
-                </span> человек(а).
+                <meta itemprop="rating" content="4"> {lang('Leav', 'star_rating')} <span id="count_votes_g" itemprop="count">{if $data['votes'] != null}{echo $data['votes']}{else:} 0 {/if}
+                </span> {lang('people(s)', 'star_rating')}.
             </span>
         </div>
     {/if}

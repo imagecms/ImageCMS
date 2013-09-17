@@ -12,8 +12,8 @@
                 </tr>
                 <tr>
                     <th>№</th>
-                    <th>Товар</th>
-                    <th>Коментарий</th>
+                    <th>{lang('Product', 'wishlist')}</th>
+                    <th>{lang('Comment', 'wishlist')}</th>
                 </tr>
             </thead>
             <tbody>

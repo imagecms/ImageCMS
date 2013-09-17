@@ -127,9 +127,9 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{site_url('gallery')}">{lang('All albums')}</a><li>
+                <li><a href="{site_url('gallery')}">{lang('All albums', 'gallery')}</a><li>
                 <li class="empty"></li>
-                <li>{lang('Categories')}:<li>
+                <li>{lang('Categories', 'gallery')}:<li>
                 {foreach $gallery_category as $category}
                 <li><a href="{site_url('gallery/category/' . $category.id)}">{$category.name}</a></li>
                 {/foreach}

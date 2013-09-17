@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 13:22+0300\n"
-"PO-Revision-Date: 2013-09-09 13:24+0300\n"
+"POT-Creation-Date: 2013-09-16 18:37+0300\n"
+"PO-Revision-Date: 2013-09-16 18:37+0300\n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -70,44 +70,44 @@ msgstr "Количество новостей для отображения"
 msgid "Maximum number of characters"
 msgstr "Максимальное количество символов"
 
-#: ../../..//core_widgets.php:85
+#: ../../..//core_widgets.php:87
 msgid "Amount of news"
 msgstr ""
 
-#: ../../..//core_widgets.php:99
+#: ../../..//core_widgets.php:101
 #, fuzzy
 msgid "Settings have been saved or settings were saved"
 msgstr "Сохранение настроек прошло успешно"
 
-#: ../../..//core.php:341
+#: ../../..//core.php:343
 msgid "Home page not found."
 msgstr ""
 
-#: ../../..//core.php:388
+#: ../../..//core.php:390
 msgid "Module uploading or loading  error"
 msgstr ""
 
-#: ../../..//core.php:525
+#: ../../..//core.php:527
 msgid "The first"
 msgstr ""
 
-#: ../../..//core.php:526
+#: ../../..//core.php:528
 msgid "Last"
 msgstr ""
 
-#: ../../..//core.php:555
+#: ../../..//core.php:557
 msgid "Can't locate category template file."
 msgstr ""
 
-#: ../../..//core.php:563
+#: ../../..//core.php:565
 msgid "In the category has no pages."
 msgstr ""
 
-#: ../../..//core.php:692
+#: ../../..//core.php:697
 msgid "Page not found"
 msgstr ""
 
-#: ../../..//core.php:694
+#: ../../..//core.php:699
 msgid "Page not found."
 msgstr ""
 

@@ -7,7 +7,7 @@
 
 {if $useVk == 'on'}
     <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS&display=popup" 
-       title="ВКонтакте">
+       title="{lang('VK', 'socauth')}">
         <img src="/application/modules/socauth/assets/images/vk.png"/>
     </a>
 {/if}
@@ -21,7 +21,7 @@
 
 {if $useYandex == 'on'}
     <a href="https://oauth.yandex.ru/authorize?response_type=code&client_id={$yandexClientID}&display=popup" 
-       title="Яндекс">
+       title="{lang('Yandex', 'socauth')}">
         <img src="/application/modules/socauth/assets/images/ya.png"/>
     </a>
 {/if}

@@ -459,12 +459,12 @@ class Wishlist_model extends CI_Model {
         if (!$user_name)
             $user_name = $this->dx_auth->get_username();
         $user = $this->db->where('id', $user_id)->get('mod_wish_list_users');
-        if($user){
-              $user = $user->result_array();
-        }else{
+        if ($user) {
+            $user = $user->result_array();
+        } else {
             $user = FALSE;
         }
-        
+
 //        var_dumps($user);
         if (!$user) {
 //            $user = $user->result_array();
@@ -743,7 +743,21 @@ class Wishlist_model extends CI_Model {
                     'enabled' => 1,
                     'autoload' => 1
         ));
+        
+        $this->insertPaterns();
+        
         return TRUE;
+    }
+
+    public function insertPaterns() {
+        $this->db->where_in('id', '111')->delete('mod_email_paterns');
+        $this->db->where_in('id', '111')->delete('mod_email_paterns_i18n');
+        
+        $file = $this->load->file(dirname(__FILE__) . '/patern.sql', true);
+        $this->db->query($file);
+
+        $file = $this->load->file(dirname(__FILE__) . '/patern_i18n.sql', true);
+        $this->db->query($file);
     }
 
     /**
@@ -757,6 +771,10 @@ class Wishlist_model extends CI_Model {
         $this->dbforge->drop_table('mod_wish_list_products');
         $this->dbforge->drop_table('mod_wish_list_users');
         $this->dbforge->drop_table('mod_wish_list');
+
+        $this->db->where_in('id', '111')->delete('mod_email_paterns');
+        $this->db->where_in('id', '111')->delete('mod_email_paterns_i18n');
+
         return TRUE;
     }
 

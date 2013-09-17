@@ -93,7 +93,7 @@ class Shop_news extends MY_Controller {
         $this->load->model('shop_news_model');
 
         $this->shop_news_model->saveCategories($contentId, $data);
-        showMessage('Сохранено');
+        showMessage(lang('Save', 'shop_news'));
     }
 
     /**

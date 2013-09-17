@@ -65,7 +65,7 @@ class Gift extends \mod_discount\classes\BaseDiscount {
                 break;
             } 
         
-        return json_encode(array('error'=>true, 'mes'=>'Неверный код попробуйте еще раз'));
+        return json_encode(array('error'=>true, 'mes'=>lang('Invalid code try again', 'mod_discount')));
     }
       /**
      * render gift input
