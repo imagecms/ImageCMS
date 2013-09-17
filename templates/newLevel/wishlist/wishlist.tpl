@@ -193,119 +193,111 @@
                             <b>{lang('Доступность:','newLevel')}</b>
                             <span class="s_t">{echo $wishlist[0][access]}</span>
                         </div>
-                        {if $wishlist[0][access]=='shared'}
-                            <form method="POST" action="{site_url('/wishlist/wishlist/send_email')}">
-                                <input type="email" name = "email" />
-                                <input type="hidden" name = "wish_list_id" value="{echo $wishlist[0][wish_list_id]}"/>
-                                <input type="submit" value="Отправить" />
-                                {form_csrf()}
-                            </form>
-                        {/if}
                         <div class="f_r">
                             {if $wishlist[0]['access'] == 'shared'}
                                 {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
                             {/if}
-                            {if $wishlist[0]['access'] == 'public'}
-                                <a href="mailto:?body={echo site_url('wishlist/show/'.$wishlist[0]['hash'])}&subject=" title="{lang('Отправить письмом">Поделится с другом','newLevel')}</a>
-                                {/if}
-                                </div>
-                                </div>
-                                <div class="drop-content2">
-                                <div class="inside-padd">
-                                    {if $wishlist[0][title]}
-                                        <h2>{$wishlist[0][title]}</h2>
-                                    {/if}
-                                    {if $wishlist[0][description]}
-                                        <div class="text">
-                                            {$wishlist[0][description]}
-                                        </div>
-                                    {/if}
-                                    {if $wishlist[0][variant_id]}
-                                        <ul class="items items-catalog items-wish-list">
-                                            {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true), 'array_product_item')}
-                                        </ul>
-                                    {else:}
-                                        <div class="msg layout-highlight layout-highlight-msg">
-                                            <div class="info">
-                                                <span class="icon_info"></span>
-                                                <span class="text-el">{lang('Список пуст','newLevel')}</span>
-                                            </div>
-                                        </div>
-                                    {/if}
-                                </div>
+                            {if $wishlist[0]['access'] == 'shared'}
+                                <a href="{echo site_url('wishlist/renderEmail/' . $wishlist[0][wish_list_id])}" title="{lang('Поделится с другом','newLevel')}"</a>
+                            {/if}
                         </div>
-                        <div class="drop-footer2">
-                            <div class="inside-padd clearfix">
-                                <div class="funcs-buttons-wishlist f_l">
-                                    <div class="btn-edit-WL">
-                                        <button
-                                            type="button"
-                                            data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
-                                            data-drop=".drop-edit-wishlist"
-                                            data-always="true"
-                                            >
-                                            <span class="icon_edit"></span><span class="d_l_1 text-el">{lang('Редактировать список','newLevel')}</span>
-                                        </button>
-                                    </div>
-                                    <div class="btn-remove-WL">
-                                        <button 
-                                            type="button"
-                                            data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                            data-type="json"
-                                            data-modal="true"
-
-                                            data-drop="#notification"
-                                            data-callback="removeWL"
-                                            data-confirm="true"
-                                            >
-                                            <span class="icon_remove"></span>
-                                            <span class="text-el d_l_1">{lang('Удалить список','newLevel')}</span>
-                                        </button>
+                    </div>
+                    <div class="drop-content2">
+                        <div class="inside-padd">
+                            {if $wishlist[0][title]}
+                                <h2>{$wishlist[0][title]}</h2>
+                            {/if}
+                            {if $wishlist[0][description]}
+                                <div class="text">
+                                    {$wishlist[0][description]}
+                                </div>
+                            {/if}
+                            {if $wishlist[0][variant_id]}
+                                <ul class="items items-catalog items-wish-list">
+                                    {$CI->load->module('new_level')->OPI($wishlist, array('wishlist'=>true), 'array_product_item')}
+                                </ul>
+                            {else:}
+                                <div class="msg layout-highlight layout-highlight-msg">
+                                    <div class="info">
+                                        <span class="icon_info"></span>
+                                        <span class="text-el">{lang('Список пуст','newLevel')}</span>
                                     </div>
                                 </div>
-                                {if $wishlist[0][variant_id]}
-                                    <div class="f_r">
-                                        {$price = 0}
-                                        {$i = 0}
-                                        {foreach $wishlist as $key => $p}
-                                            {$price += $p.price;}
-                                            {$i++}
-                                        {/foreach}
-                                        <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')} 
-                                            <span class="frame-prices f-s_0">
-                                                <span class="current-prices">
-                                                    <span class="price-new">
-                                                        <span>
-                                                            <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
-                                                            <span class="curr">{$CS}</span>
-                                                        </span>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="drop-footer2">
+                        <div class="inside-padd clearfix">
+                            <div class="funcs-buttons-wishlist f_l">
+                                <div class="btn-edit-WL">
+                                    <button
+                                        type="button"
+                                        data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
+                                        data-drop=".drop-edit-wishlist"
+                                        data-always="true"
+                                        >
+                                        <span class="icon_edit"></span><span class="d_l_1 text-el">{lang('Редактировать список','newLevel')}</span>
+                                    </button>
+                                </div>
+                                <div class="btn-remove-WL">
+                                    <button 
+                                        type="button"
+                                        data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
+                                        data-type="json"
+                                        data-modal="true"
+
+                                        data-drop="#notification"
+                                        data-callback="removeWL"
+                                        data-confirm="true"
+                                        >
+                                        <span class="icon_remove"></span>
+                                        <span class="text-el d_l_1">{lang('Удалить список','newLevel')}</span>
+                                    </button>
+                                </div>
+                            </div>
+                            {if $wishlist[0][variant_id]}
+                                <div class="f_r">
+                                    {$price = 0}
+                                    {$i = 0}
+                                    {foreach $wishlist as $key => $p}
+                                        {$price += $p.price;}
+                                        {$i++}
+                                    {/foreach}
+                                    <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')} 
+                                        <span class="frame-prices f-s_0">
+                                            <span class="current-prices">
+                                                <span class="price-new">
+                                                    <span>
+                                                        <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
+                                                        <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
                                             </span>
-                                        </div>
-                                        <div class="btn-buy">
-                                            <button
-                                                type="button"
-                                                class="btnBuyWishList"
-                                                >
-                                                <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
-                                            </button>
-                                        </div>
+                                        </span>
                                     </div>
-                                {/if}
-                            </div>
+                                    <div class="btn-buy">
+                                        <button
+                                            type="button"
+                                            class="btnBuyWishList"
+                                            >
+                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            {/if}
                         </div>
-                        {form_csrf()}
                     </div>
-                {/foreach}
-            {else:}
-                <div class="msg layout-highlight layout-highlight-msg">
-                    <div class="info">
-                        <span class="icon_info"></span>
-                        <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
-                    </div>
+                    {form_csrf()}
                 </div>
-            {/if}
-        </div>
+            {/foreach}
+        {else:}
+            <div class="msg layout-highlight layout-highlight-msg">
+                <div class="info">
+                    <span class="icon_info"></span>
+                    <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                </div>
+            </div>
+        {/if}
     </div>
+</div>
