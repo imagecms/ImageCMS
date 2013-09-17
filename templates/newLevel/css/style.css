@@ -36,7 +36,7 @@ article, .container, .horizontal-carousel .special-proposition > .frame-title{ma
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
 
-.frame-baner-start_page .content-carousel{margin-left: -50%;width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.frame-baner-start_page .content-carousel{width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .content-carousel.container, .carousel_js.container{padding: 0;}
 
 .right-catalog{width: 74.5%;float: right;position: relative;z-index: 0;}
@@ -218,7 +218,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 /*/headers*/
 
 /*photo-block*/
-.photo-block{padding: 4px;position: relative;font-size: 0;overflow: hidden;text-align: center;display: inline-block;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.photo-block{max-width: 100%;padding: 4px;position: relative;font-size: 0;overflow: hidden;text-align: center;display: inline-block;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .photo-block .helper{height: 100%!important;}
 .photo-block img{max-height: 100%;}
 .photo-block a{display: block;}
@@ -495,7 +495,7 @@ input.input-search{height: 33px;}
 .products-carousel.carousel_js .items-h-carousel, .horizontal-carousel .products-carousel.carousel_js .items-complect{width: 20000px;margin: 0;}
 .frame-scroll-pane .items-h-carousel{white-space: nowrap;width: auto;}
 .frame-scroll-pane .items-h-carousel{margin-left: -44px;padding-bottom: 46px;}/*height scroll + padding*/
-.products-carousel.carousel_js .items-h-carousel > li{margin: 0 44px 10px 0;}
+.products-carousel.carousel_js .items-h-carousel > li{margin: 0 44px 0 0;}
 .products-carousel .items-h-carousel > li{width: 212px !important;}
 .vertical-layout .products-carousel .items-h-carousel > li{width: 209px !important;}
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin-left: 44px;margin-right: 0;margin-bottom: 0;}
@@ -526,15 +526,17 @@ input.input-search{height: 33px;}
 .baner .prev{left: 5px;}
 .baner .next{right: 5px;}
 .baner li > a, .baner li > span{display: block;text-align: center;height: 100%;}
-.baner img{max-height: 100%;display: none;}
+.baner img{display: none;}
 .frame-baner .cycle{position: relative;z-index: 1;height: 100%;}
 .frame-baner .content-carousel ul{width: 100%;}
+.baner img{max-width: none;max-height: none;position: absolute;left: 50%;}
+.baner.resize img{max-width: 100%;max-height: 100%;position: static;}
 .cycle > li{width: 100% !important;height: 100% !important;}
 
 /*if cycle*/
 .frame-baner-start_page .baner{height: 286px;}
 .frame-baner-catalog .baner{height: 145px;}
-.frame-baner .content-carousel{position: absolute;left: 50%;margin-left: -50%;height: 100%;width: 100%;}
+.frame-baner .content-carousel{position: absolute;height: 100%;width: 100%;}
 .frame-baner-catalog{margin-bottom: 20px;}
 .frame-baner-catalog .baner .prev{left: 0;}
 .frame-baner-catalog .baner .next{right: 0;}
@@ -958,6 +960,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .table-order > tbody > tr > td{padding: 20px 0;vertical-align: top;}
 .table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;}
 .table-order > tbody > tr:first-child > td{border-top: 0;}
+.table-order .frame-variant-code{margin-bottom: 10px;display: block;}
 .header-frame-foot{text-align: center;}
 .right-order .header-frame-foot{text-align: left;}
 .drop-bask .header-frame-foot{text-align: right;}
@@ -977,7 +980,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .frame-bask-order .row-kits .frame-count, .frame-bask-order .row-kits .frame-cur-sum-price{text-align: center;}
 .frame-bask-order .row-kits li{width: 153px;}
 .frame-bask-order .frame-kit{width: 118px;}
-.frame-bask-order .frame-items{padding-right: 20px; padding-left: 28px;}
+.frame-bask-order .frame-items{padding-right: 20px;}
 .kits-gen-sum{padding: 0 20px;margin-bottom: 13px;}
 .frame-bask-order .frame-cur-sum-price{margin-top: 9px;}
 .frame-bask-order .frame-cur-sum-price > .frame-prices{display: inline;}
@@ -1042,15 +1045,15 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*category-menu*/
 .frame-category-menu > .inside-padd{padding: 12px;}
-.nav-category > ul{margin-bottom: 10px;}
-.nav-category > ul > li{margin-left: 10px;}
-.nav-category > ul > li.title{margin-left: 0;}
-.nav-category > ul > li.title > span{font-size: 14px;}
-.nav-category > ul > li.title + li.title{margin-top:6px;}
+.nav-category{margin-bottom: 10px;}
+.nav-category > li{margin-left: 10px;}
+.nav-category > li.title{margin-left: 0;}
+.nav-category > li.title > span{font-size: 14px;}
+.nav-category > li.title + li.title{margin-top:6px;}
 /*/category-menu*/
 
 /*text page*/
-.nav-static-pages > .nav > li > a, .nav-static-pages > .nav > li > span{padding: 15px 16px;}
+.nav-static-pages > li > a, .nav-static-pages > li > span{padding: 15px 16px;}
 .page-text h1{margin-bottom: 20px;}
 /*.text page*/
 
@@ -1068,7 +1071,6 @@ footer{min-height:346px; margin: -346px auto 0;position: relative;z-index: 1;}
 footer:before{content: "";height: 5px;width: 100%;top: -3px;left: 0;position: absolute;}
 footer .content-footer{min-height: 245px;}
 .footer-footer{position: relative;height: 101px;}
-/*.footer-footer:before{content: "";position: absolute;left: 0;top: -3px;width: 100%;height: 5px;background-position: 0 -84px;}*/
 
 footer li{margin-bottom: 5px;}
 footer ul li{margin-bottom: 10px;position: relative;}
@@ -1159,6 +1161,5 @@ footer .box-4 > .inside-padd{padding: 21px 28px 0;}
 .drop-content-photo .inside-padd{height: 100%;}
 .drop-content-photo img{max-height: 100%;}
 .drop-content-photo .horizontal-carousel{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
-.drop-content-photo .horizontal-carousel .arrow{display: block;}
 .drop-content-photo .horizontal-carousel .next{right: 15px;}
 .drop-content-photo .horizontal-carousel .prev{left: 15px;}
