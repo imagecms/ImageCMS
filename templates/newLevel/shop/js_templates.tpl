@@ -87,7 +87,7 @@
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">{/literal}{lang('Всего','newLevel')}{literal}: </span>
+        <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
         <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <%if (item.origprice) { %>
@@ -254,7 +254,7 @@
         </div>
         </td>
         <td class="frame-cur-sum-price">
-        <span class="title">{/literal}{lang('Всего','newLevel')}{literal}: </span>
+        <span class="title">{/literal}{lang('Сумм','newLevel')}{literal}: </span>
         <div class="frame-prices f-s_0">
         <span class="price-discount">
         <span>
@@ -305,6 +305,14 @@
         <span class="text-discount current-discount"><span class="genDiscount"><% if (discC) parseFloat(Shop.Cart.discount.sum_discount_product + Shop.Cart.kitDiscount).toFixed(pricePrecision) %></span> <span class="curr"><%-curr%></span></span>
 
         </span>
+        <div class="clearfix">
+        <% if (orderDetails) { %>
+        <div class="btn-form f_l">
+        <button type="button" data-closed="closed-js">
+        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к оформлению','newLevel')}{literal}</span>
+        </button>
+        </div>
+        <% } %>
         <span class="s-t">{/literal}{lang('Всего','newLevel')}{literal}:</span>
         <span class="frame-cur-sum-price">
         <span class="frame-prices f-s_0">
@@ -332,6 +340,7 @@
         <%}%>
         </span>
         </span>
+        </div>
         </div>
         <% if (!orderDetails) { %>
         <div class="content-frame-foot">
@@ -363,12 +372,13 @@
         <div class="msg f-s_0">
         <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все элементы из корзины','newLevel')}{literal}</span></div>
         </div>
+        <% if (!orderDetails) { %>
         <div class="btn-form">
         <button type="button" data-closed="closed-js">
-
         <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
         </button>
         </div>
+        <% } %>
         </div>
         </div>
         </div>
