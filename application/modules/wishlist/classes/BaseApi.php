@@ -318,6 +318,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return $this->errors = lang('Error', 'wishlist');
         }
     }
+    
 
 }
 
