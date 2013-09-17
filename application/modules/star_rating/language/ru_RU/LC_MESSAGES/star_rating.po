@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ImageCms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-26 18:46+0300\n"
-"PO-Revision-Date: 2013-07-26 18:47+0300\n"
-"Last-Translator: asdasd <sheme4ko@mail.ru>\n"
+"POT-Creation-Date: 2013-09-13 17:30+0300\n"
+"PO-Revision-Date: 2013-09-13 17:30+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,36 +17,57 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp.php:7
-msgid "STAAAAAr"
-msgstr "Зііііірка"
+#: /var/www/image.loc/_temp2.php:7
+#: /var/www/image.loc/_temp2.php:9
+msgid "Leav"
+msgstr ""
 
-#: /var/www/image.loc/_temp.php:8
-msgid "e5555eeeeee"
-msgstr "пяяяять"
+#: /var/www/image.loc/_temp2.php:8
+#: /var/www/image.loc/_temp2.php:10
+msgid "people(s)"
+msgstr ""
 
-#: /var/www/image.loc/_temp.php:9
-#, fuzzy
-msgid "STAAAAArкк22222"
-msgstr "Зііііірка"
+#: /var/www/image.loc/_temp2.php:11
+msgid "Show on pages"
+msgstr ""
 
-#: /var/www/image.loc/_temp.php:10
-msgid "eee777"
-msgstr "сііііім"
+#: /var/www/image.loc/_temp2.php:12
+msgid "Main"
+msgstr ""
 
-#: /var/www/image.loc/_temp.php:11
+#: /var/www/image.loc/_temp2.php:13
+msgid "Contains"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:14
+msgid "Category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:15
+msgid "Product"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:16
+msgid "Products category"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:17
+msgid "Brands"
+msgstr ""
+
+#: /var/www/image.loc/_temp2.php:18
 msgid "Module settings starRating"
 msgstr "Настройки модуля Рейтинг"
 
-#: /var/www/image.loc/_temp.php:12
+#: /var/www/image.loc/_temp2.php:19
 msgid "Go back"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:13
-msgid "Have been saved"
+#: /var/www/image.loc/_temp2.php:20
+msgid "Save"
 msgstr ""
 
-#: /var/www/image.loc/_temp.php:14
+#: /var/www/image.loc/_temp2.php:21
 msgid "Save and go back"
 msgstr ""
 
@@ -54,13 +75,26 @@ msgstr ""
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
 
-#: ../../../star_rating.php:72
-msgid "s_comment_answer1"
+#: ../../../module_info.php:4
+msgid "Rating"
 msgstr ""
 
-#: ../../../star_rating.php:73
-msgid "s_comment_answer2"
+#: ../../../module_info.php:5
+msgid "Star Rating "
 msgstr ""
+
+#~ msgid "STAAAAAr"
+#~ msgstr "Зііііірка"
+
+#~ msgid "e5555eeeeee"
+#~ msgstr "пяяяять"
+
+#, fuzzy
+#~ msgid "STAAAAArкк22222"
+#~ msgstr "Зііііірка"
+
+#~ msgid "eee777"
+#~ msgstr "сііііім"
 
 #~ msgid "fghgh"
 #~ msgstr "АААААААААААААААААААААААААААА"

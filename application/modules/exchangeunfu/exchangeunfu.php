@@ -147,7 +147,7 @@ class Exchangeunfu extends MY_Controller {
             $this->checkauth();
         } else {
             echo "failure. wrong password";
-            $this->error_log('Неверно введен пароль', TRUE);
+            $this->error_log(lang('Incorrect password', 'exchangeunfu'), TRUE);
         }
     }
 
@@ -205,8 +205,8 @@ class Exchangeunfu extends MY_Controller {
         if (md5(session_id()) == $string) {
             return true;
         } else {
-            $this->error_log("Ошибка безопасности!!!", TRUE);
-            die("Ошибка безопасности!!!");
+            $this->error_log(lang('Security error!!!', 'exchangeunfu'), TRUE);
+            die(lang('Security error!!!', 'exchangeunfu'));
         }
     }
 

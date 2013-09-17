@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Скидки',     // Menu name
-	'description' => 'Модуль управления скидками',                  // Module Description
+	'menu_name'   => lang('Discounts', 'mod_discount'),     // Menu name
+	'description' => lang('Discounts control module', 'mod_discount'),                  // Module Description
 	'admin_type'  => 'inside',            // Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               // Load method. Possible values xhr/iframe
         'w'           => 600,                 // Window width

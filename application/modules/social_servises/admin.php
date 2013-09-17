@@ -32,7 +32,7 @@ class Admin extends BaseAdminController {
         $vstring = serialize($vdata);
         ShopCore::app()->SSettings->set('facebook_int', $string);
         ShopCore::app()->SSettings->set('vk_int', $vstring);
-        showMessage("Настройки успешно сохранены");
+        showMessage(lang('Settings successfully saved', 'social_servises'));
     }
 
     public function get_fsettings() {

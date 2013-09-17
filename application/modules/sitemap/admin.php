@@ -66,7 +66,7 @@ class Admin extends BaseAdminController {
         $this->db->where('name', 'sitemap');
         $this->db->update('components', array('settings' => serialize($XMLDataMap)));
 
-        showMessage(lang("Changes have been saved"));
+        showMessage(lang("Changes have been saved", 'sitemap'));
     }
 
     /**

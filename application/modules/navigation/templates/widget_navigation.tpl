@@ -1,6 +1,6 @@
 {$i=0}
 <div>
-    <b>{lang('Navigation')}:</b>
+    <b>{lang('Navigation', 'navigation')}:</b>
     {foreach $navi_cats as $item}
         {$i++}
         {if $i < count($navi_cats)}

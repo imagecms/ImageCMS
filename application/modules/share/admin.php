@@ -39,7 +39,7 @@ class Admin extends BaseAdminController {
 
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
-        showMessage("Настройки успешно сохранены");
+        showMessage(lang('Settings successfully saved', 'share'));
     }
 
     public function get_settings() {

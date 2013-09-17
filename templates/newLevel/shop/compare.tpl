@@ -123,7 +123,7 @@
                         {/foreach}
                     </div>
                     <div class="comprasion-head">
-                        <div class="title-h3">{lang('Категория:','newLevel')}:</div>
+                        <div class="title-h3">{lang('Категория','newLevel')}:</div>
                         <ul class="tabs tabs-compare-category">
                             {foreach $categories as $category}
                                 <li>
