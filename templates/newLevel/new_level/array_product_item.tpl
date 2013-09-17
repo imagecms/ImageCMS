@@ -70,6 +70,7 @@
                         </div>
                         <div class="btn-buy">
                             <button
+                                disabled="disabled"
                                 class="btnBuy infoBut"
                                 type="button"
                                 data-id="{echo $p.id}"

@@ -147,6 +147,7 @@
                                         {if $hasDiscounts}
                                             {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
                                         {/if}
+                                        disabled="disabled"
                                         class="btnBuy infoBut"
                                         type="button"
                                         data-id="{echo $pv->getId()}"
