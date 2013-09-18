@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Вибирите cписок  желаний','newLevel')}
+            {lang('Выбор cписка  желаний','newLevel')}
         </div>
     </div>
     <div class="drop-content">

@@ -17,6 +17,8 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('menu');
 
         // Only admin access
         $this->load->library('DX_Auth');

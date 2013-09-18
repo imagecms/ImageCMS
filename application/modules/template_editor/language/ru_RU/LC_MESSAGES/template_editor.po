@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 10:00+0300\n"
+"POT-Creation-Date: 2013-09-13 17:17+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: mark <shfasdfsdf>\n"
 "Language-Team: \n"
@@ -17,25 +17,25 @@ msgstr ""
 "X-Poedit-KeywordsList: lang\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: /var/www/image.loc/_temp2.php:6
+#: /var/www/image.loc/_temp2.php:5
 msgid "Template editor"
 msgstr "Редактор шаблонов"
 
-#: /var/www/image.loc/_temp2.php:7
-msgid "all tags"
-msgstr "все теги"
+#: /var/www/image.loc/_temp2.php:6
+msgid "Back"
+msgstr "Назад"
 
-#: ../../../tags/tags.php:166
-msgid "The first"
-msgstr "Первий"
+#~ msgid "all tags"
+#~ msgstr "все теги"
 
-#: ../../../tags/tags.php:167
-msgid "Last"
-msgstr "Последний"
+#~ msgid "The first"
+#~ msgstr "Первий"
 
-#: ../../../tags/tags.php:185
-msgid "Search"
-msgstr "Поиск"
+#~ msgid "Last"
+#~ msgstr "Последний"
+
+#~ msgid "Search"
+#~ msgstr "Поиск"
 
 #~ msgid "Create a category"
 #~ msgstr "Создать категорию"

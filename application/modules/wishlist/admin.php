@@ -15,6 +15,9 @@ class Admin extends BaseAdminController {
         $this->load->language('wishlist');
         $this->load->helper('string_helper');
         $this->settings = $this->wishlist_model->getSettings();
+        
+        $lang = new MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**

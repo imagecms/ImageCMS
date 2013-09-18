@@ -23,7 +23,7 @@ $(document).ready(function() {
             },
             url: url,
             success: function(data) {
-                showMessage('Сообщение', 'Тип свойства обновлен');
+                showMessage(lang('Message'), lang('Property type updated'));
             }
         });
     });

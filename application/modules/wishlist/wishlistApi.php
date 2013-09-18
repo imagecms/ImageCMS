@@ -11,6 +11,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('wishlist');
     }
 
     /**
@@ -187,12 +189,12 @@ class WishlistApi extends \wishlist\classes\BaseApi {
 
         if (!in_array($varId, $this->userWishProducts)) {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_add_2_WL');
+            $data['value'] = lang('Add to Wish List', 'wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn';
         } else {
             $data['varId'] = $varId;
-            $data['value'] = lang('btn_already_in_WL');
+            $data['value'] = lang('Already in Wish List', 'wishlist');
             $data['max_lists_count'] = $this->settings['maxListsCount'];
             $data['class'] = 'btn inWL';
         }
@@ -268,6 +270,22 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     public function do_upload() {
         parent::do_upload();
         return $this->return_json();
+    }
+
+    /**
+     * send email
+     *
+     * @return json
+     */
+    public function send_email() {
+        parent::send_email();
+        return $this->return_json();
+    }
+
+    public function renderEmail($wish_list_id) {
+        \CMSFactory\assetManager::create()
+                ->setData('wish_list_id', $wish_list_id)
+                ->render('sendEmail', TRUE);
     }
 
     /**

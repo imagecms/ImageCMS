@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name'   => 'Переключение языка',     // Menu name
-	'description' => 'Добавляет виджет переключения языков',                  		// Module Description
+	'menu_name'   => lang('Langauges switch', 'language_switch'),     // Menu name
+	'description' => lang('Adds widget to switch languages', 'language_switch'),                  		// Module Description
 	'admin_type'  => 'inside',            		// Open admin class in new window or not. Possible values window/inside
 	'window_type' => 'xhr',               		// Load method. Possible values xhr/iframe
     'w'           => 600,                 		// Window width

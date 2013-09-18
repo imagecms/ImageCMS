@@ -10,6 +10,8 @@ class Gallery_Widgets extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('gallery');
     }
 
     public function latest_fotos($widget = array()) {
@@ -50,7 +52,7 @@ class Gallery_Widgets extends MY_Controller {
             case 'update_settings':
 
                 $this->load->library('Form_validation');
-                $this->form_validation->set_rules('limit', lang("Image limit"), 'trim|required|integer');
+                $this->form_validation->set_rules('limit', lang("Image limit", 'gallery'), 'trim|required|integer');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -64,8 +66,8 @@ class Gallery_Widgets extends MY_Controller {
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
-                showMessage(lang("Settings have been saved or settings were saved"));
-                if($_POST['action'] == 'tomain')
+                showMessage(lang("Settings have been saved", 'gallery'));
+                if ($_POST['action'] == 'tomain')
                     pjax('/admin/widgets_manager/index');
                 break;
 

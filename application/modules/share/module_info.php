@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 $com_info = array(
-	'menu_name' => 'Социальные сети',
-	'description' => 'Модуль кнопок соцсетей',
+	'menu_name' => lang('Social Networking', 'share'),
+	'description' => lang('Social Networking button module', 'share'),
 	'admin_type' => 'inside',
 	'window_type' => 'xhr', // xhr/iframe - если используем xhr, тогда каждой ссылке нужно добавить класс "ajax"
 	'w' => 600,

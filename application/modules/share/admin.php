@@ -11,6 +11,8 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('share');
 
         $this->load->library('DX_Auth');
         //cp_check_perm('module_admin');
@@ -39,7 +41,7 @@ class Admin extends BaseAdminController {
 
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
-        showMessage("Настройки успешно сохранены");
+        showMessage(lang('Settings successfully saved', 'share'));
     }
 
     public function get_settings() {

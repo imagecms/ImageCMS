@@ -1,11 +1,11 @@
 <div class="tab-pane" id="privilege"> 
-    <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang("Save")}</button>
+    <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang('Save', 'user_manager')}</button>
     <form action="{$SELF_URL}/update_role_perms" method="post" id="save" style="clear:both;">
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
                 <tr>
                     <th colspan="6">
-                         {lang("Properties")}
+                         {lang('Properties', 'user_manager')}
                     </th>
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
                                 <div class="row-fluid">
                                     <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
                                         <div class="control-group">
-                                            <label class="control-label" for="role_id">{lang('Group')}</label>
+                                            <label class="control-label" for="role_id">{lang('Group', 'user_manager')}</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
                                                     {foreach $roles as $role}

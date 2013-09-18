@@ -16,6 +16,8 @@ class Users extends \MY_Controller {
         parent::__construct();
         /** Load users model * */
         $this->load->model('stats_model_users');
+        $lang = new \MY_Lang();
+        $lang->load('mod_stats');
     }
 
     /**
@@ -74,7 +76,7 @@ class Users extends \MY_Controller {
             'type' => 'line',
             'data' => array(
                 0 => array(
-                    'key' => 'Количество регистраций',
+                    'key' => lang('Registrations number'),
                     'values' => $ts_
                 )
             )

@@ -4,7 +4,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     <li {if $p->firstVariant->getStock() == 0}class="not-avail"{/if} data-pos="top">
-        <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title">
+        <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
@@ -21,10 +21,10 @@
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
         <div class="description">
-            {if !$widget && !$defaultItem}
-                <span class="frame-variant-name-code">
+            {if $codeArticle}
+                <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул: ','newLevel')}:
+                    <span class="frame-variant-code" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
                         <span class="code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -32,17 +32,17 @@
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант: ','newLevel')}:
+                    <span class="frame-variant-name" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
                         <span class="code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
                             {/if}
                         </span>
                     </span>
-                </span>
+                </div>
             {/if}
             {if !$vertical}
-                {if $Comments[$p->getId()] && $p->enable_comments && $Comments[$p->getId()] != 0}
+                {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
                     <div class="frame-star f-s_0">
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
@@ -67,7 +67,7 @@
                 {if $oldoprice && !$hasDiscounts}
                     <span class="price-discount">
                         <span>
-                            <span class="price priceOrigVariant">{echo $p->getOldPrice()}</span>
+                            <span class="price priceOrigVariant">{echo intval($p->getOldPrice())}</span>
                             <span class="curr">{$CS}</span>
                         </span>
                     </span>
@@ -147,6 +147,7 @@
                                         {if $hasDiscounts}
                                             {$discount = $pv->getvirtual('numDiscount')/$pv->toCurrency()*100}
                                         {/if}
+                                        disabled="disabled"
                                         class="btnBuy infoBut"
                                         type="button"
                                         data-id="{echo $pv->getId()}"
@@ -169,7 +170,6 @@
                                     </button>
                                 </div>
                             </div>
-                            {var_dumps(lang('Купить', 'newLevel'))}
                         {else:}
                             <div class="btn-not-avail variant_{echo $pv->getId()} variant" {if $key != 0}style="display:none"{/if}>
                                 <button
@@ -181,11 +181,14 @@
                                     data-id="{echo $pv->getId()}"
                                     data-prodid="{echo $p->getId()}"
                                     data-varid="{echo $pv->getId()}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     data-price="{echo $pv->toCurrency()}"
+                                    data-addPrice="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
                                     data-name="{echo ShopCore::encode($p->getName())}"
                                     data-vname="{echo trim(ShopCore::encode($pv->getName()))}"
                                     data-maxcount="{echo $pv->getstock()}"
                                     data-number="{echo trim($pv->getNumber())}"
+                                    data-img="{echo $pv->getSmallPhoto()}"
                                     data-mediumImage="{echo $pv->getMediumPhoto()}"
                                     <span class="icon-but"></span>
                                     <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>

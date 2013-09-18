@@ -29,6 +29,7 @@ function load_certificat() {
         });
     else {
         gift = Shop.Cart.gift;
+        console.log(gift);
         if (gift.error) {
             giftError(gift.mes);
         } else {

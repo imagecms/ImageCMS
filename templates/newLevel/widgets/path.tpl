@@ -13,13 +13,13 @@
                         <a href="{site_url($item.path_url)}" typeof="v:Breadcrumb">
                             <span class="text-el">{$item.name}<span class="divider">→</span></span>
                         </a>
-                        {else: // Make last element as plain text }
-            <button typeof="v:Breadcrumb" disabled="disabled">
-                <span class="text-el">{$item.name}</span>
-            </button>
-                        {/if}
-        </li>
-                            {/foreach}
-    </ul>
-</div>
+                    {else:}
+                        <button typeof="v:Breadcrumb" disabled="disabled">
+                            <span class="text-el">{$item.name}</span>
+                        </button>
+                    {/if}
+                </li>
+            {/foreach}
+        </ul>
+    </div>
 </div>

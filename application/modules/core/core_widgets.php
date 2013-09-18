@@ -98,12 +98,14 @@ class Core_Widgets extends MY_Controller {
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved", "core"));
+
+                    showMessage(lang("Settings have been saved", 'core'));
+
                     if($_POST['action'] == 'tomain')
                         pjax('/admin/widgets_manager/index');
                 }
                 break;
-
+            
             case 'install_defaults':
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
                 break;
