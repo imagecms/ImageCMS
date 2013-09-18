@@ -100,9 +100,9 @@ class Sys_update extends BaseAdminController {
     public function properties() {
         if ($this->input->post("careKey")) {
             if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey")))))
-                showMessage(lang('Changes saved'));
+                showMessage(lang('Changes saved', 'admin'));
             else
-                showMessage(lang('Changes not saved'), 'Ошибка', 'r');
+                showMessage(lang('Changes not saved', 'admin'), lang('Error', 'admin'), 'r');
         } else {
             $data = array(
                 'careKey' => $this->update->getSettings('careKey')

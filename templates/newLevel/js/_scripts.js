@@ -429,7 +429,7 @@ function processBtnBuyCount(el) {
             if (keys.indexOf(key) != -1) {
                 $this.parent().removeClass(genObj.btnBuyCss).addClass(genObj.btnCartCss).children().removeAttr('disabled').find(genObj.textEl).html(inCart);
                 $this.unbind('click.buy').bind('click.buy', function(e) {
-                    $.fancybox.showActivity();
+                    $(document).trigger('showActivity');
                     togglePopupCart();
                     decorElemntItemProduct($(this).closest(genObj.parentBtnBuy));
                 }).closest(genObj.parentBtnBuy).addClass(genObj.inCart);
@@ -441,7 +441,7 @@ function processBtnBuyCount(el) {
             if (keys.indexOf(key) == -1) {
                 $this.parent().removeClass(genObj.btnCartCss).addClass(genObj.btnBuyCss).children().removeAttr('disabled').find(genObj.textEl).html(toCart)
                 $this.unbind('click.buy').bind('click.buy', function(e) {
-                    $.fancybox.showActivity();
+                    $(document).trigger('showActivity');
                     var cartItem = Shop.composeCartItem($(this));
                     Shop.Cart.add(cartItem, e.button == undefined ? false : true);
                 }).closest(genObj.parentBtnBuy).removeClass(genObj.inCart);
@@ -466,9 +466,9 @@ function processBtnBuyCount(el) {
     $(document).trigger({'type': 'processPageEnd'});
 }
 function getDiscount(k) {
-//    if (!$.exists('#aa'))
-//        body.append('<div id="aa" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
-//    $('#aa').text(parseInt($('#aa').text()) + 1);
+//    if (!$.exists('#countDisc'))
+//        body.append('<div id="countDisc" style="position:absolute;left: 50px;top: 150px;z-index:1000;">0</div>')
+//    $('#countDisc').text(parseInt($('#countDisc').text()) + 1);
     $(document).trigger('showActivity');
     if ($.isFunction(window.get_discount)) {
         get_discount(k);
@@ -496,7 +496,7 @@ function displayInfoDiscount(tpl) {
     var frameDiscountO = genObj.frameDiscount;
     frameDiscountO.html(tpl);
     frameDiscountO.next(preloader).hide(); //preloader
-    $.fancybox.hideActivity();
+    $(document).trigger('hideActivity');
 }
 function displayDiscount(obj) {
     var kitDiscount = parseFloat(getKitDiscount());
@@ -545,6 +545,7 @@ function renderGiftInput(tpl) {
         $(genObj.gift).html(tpl);
 }
 function giftError(msg) {
+    console.log(msg);
     $(genObj.gift).children(genObj.msgF).remove()
     if (msg) {
         $(genObj.gift).append(message.error(msg));
@@ -559,7 +560,7 @@ function renderGiftSucces(tpl, gift) {
 }
 function btnbuyInitialize(el) {
     el.find(genObj.btnBuy).bind('click.buy', function(e) {
-        $.fancybox.showActivity();
+        $(document).trigger('showActivity');
         $(this).attr('disabled', 'disabled');
         var cartItem = Shop.composeCartItem($(this));
         Shop.Cart.add(cartItem, e.button == undefined ? false : true);
@@ -624,7 +625,7 @@ function initShopPage(showWindow, item) {
 
         if (condTooltip) {
             pd.closest(genObj.numberC).tooltip();
-            $.fancybox.hideActivity();
+            $(document).trigger('hideActivity');
         }
         cartItem.count = inputVal;
         Shop.Cart.chCount(cartItem, function() {
@@ -662,7 +663,7 @@ function initShopPage(showWindow, item) {
     }
 }
 function rmFromPopupCart(context, isKit) {
-    $.fancybox.showActivity();
+    $(document).trigger('showActivity');
     if (typeof isKit != 'undefined' && isKit == true)
         var tr = $(context).closest(genObj.trCartKit);
     else
@@ -673,7 +674,7 @@ function rmFromPopupCart(context, isKit) {
     Shop.Cart.rm(cartItem).totalRecount();
 }
 function togglePopupCart() {
-    $.fancybox.showActivity();
+    $(document).trigger('showActivity');
     $(genObj.showCart).trigger({type: 'click'});
     return false;
 }
@@ -684,6 +685,7 @@ function renderOrderDetails() {
     }));
     $(document).trigger({'type': 'renderorder.after', 'el': $(genObj.orderDetails)})
     initShopPage(false);
+    $(document).trigger('hideActivity');
 }
 
 function changeDeliveryMethod(id, selectDeliv) {
@@ -1637,7 +1639,7 @@ function init() {
     $(document).on('autocomplete.before drop.click showActivity before_sync_cart', function(e) {
         $.fancybox.showActivity();
     })
-    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart', function(e) {
+    $(document).on('autocomplete.after drop.show drop.hide hideActivity sync_cart end_sync_cart', function(e) {
         $.fancybox.hideActivity();
     })
 
@@ -1703,7 +1705,7 @@ function init() {
         wrapper: $(".frame-radio > .frame-label"),
         elCheckWrap: '.niceRadio',
         before: function(el) {
-            $.fancybox.showActivity();
+            $(document).trigger('showActivity');
             $('[name="' + $(el).find('input').attr('name') + '"]').attr('disabled', 'disabled');
         },
         after: function(el, start) {
@@ -1758,7 +1760,7 @@ function init() {
     $(document).live('cart_changed', function() {
         processCarts();
         processBtnBuyCount();
-        $.fancybox.hideActivity();
+        $(document).trigger('hideActivity');
         if ($.exists(optionCompare.frameCompare))
             $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);
     });
@@ -1795,7 +1797,7 @@ function init() {
             recountCartPage(selectDeliv, methodDeliv())
     });
     $('.' + genObj.toCompare).live('click.toCompare', function() {
-        $.fancybox.showActivity();
+        $(document).trigger('showActivity');
         var id = $(this).data('prodid');
         Shop.CompareList.add(id);
     });
@@ -1812,7 +1814,7 @@ function init() {
         $this.tooltip();
     });
     $(document).on('compare_list_add compare_list_rm compare_list_sync', function() {
-        $.fancybox.hideActivity();
+        $(document).trigger('hideActivity');
         compareListCount();
     });
     /*     refresh page after sync      */

@@ -2337,6 +2337,9 @@ var Shop = {
                         type: 'sync_cart'
                     });
                 }
+                $(document).trigger({
+                    type: 'end_sync_cart'
+                });
                 if (data == false)
                     Shop.Cart.clear();
             });
