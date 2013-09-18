@@ -837,7 +837,7 @@ class Pages extends BaseAdminController {
         $text = $this->input->post('keys');
 
         if ($text == '') {
-            echo lang("Zero-length string");
+            echo lang("Zero-length string", 'admin');
             exit;
         }
 
