@@ -1306,4 +1306,16 @@ footer .box-4{overflow: visible;}
 
 .items-text-category a .title{text-decoration: underline;border-bottom: 0;font-size: 18px;font-weight: normal;}
 .items-text-category > li > .description{border-top: 1px dotted #d7d1ca;margin-top: 13px;padding-top: 6px;}
+
+.star-small, .star-small div, .star-small span{background: url('images/stars.png');}
+.star-big, .star-big div, .star-big span{background: url('images/star-comment.png');}
+.star-small{width: 70px;height: 15px;}
+.star-big {width: 145px;height: 31px;}
+
+.productRate{position: relative;}
+.productRate div {background-position: left bottom;width: 0;height: 100%;position: absolute;top: 0;left: 0;z-index: 1;cursor: pointer;}
+.productRate span {display: block;height: 100%;position: absolute;top: 0;left: 0;z-index: 2;background-position: left center;width: 0;cursor: pointer;}
+.productRate.disabled, .productRate.disabled div{cursor: default;}
+
+.star-small div{cursor: default;}
 /*/colors style*/
